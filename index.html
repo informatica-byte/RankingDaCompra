@@ -106,9 +106,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <script>
-        // Suas chaves do Firebase (já inseridas)
+        // Suas chaves do Firebase (Corrigidas)
         const firebaseConfig = {
-            apiKey: "AIzaSyChRBmFfokCPpec7oTdC1u9obQg6M83Epk",
+            apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
             authDomain: "rankingdacompra.firebaseapp.com",
             projectId: "rankingdacompra",
             storageBucket: "rankingdacompra.firebasestorage.app",
@@ -120,7 +120,6 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Lista padrão de categorias (pode ser alterada no Dashboard)
         const categoriasPadrao = [
             { id: 'celulares', icone: '📱', nome: 'Celulares' },
             { id: 'tvs', icone: '📺', nome: 'TVs e Telas' },
