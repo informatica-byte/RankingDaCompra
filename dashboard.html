@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Guia de Compras</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
+        .painel { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 650px; margin: 0 auto 30px auto; }
+        h2 { text-align: center; border-bottom: 2px solid #ffe600; padding-bottom: 10px; margin-top:0; color: #2d3277;}
+        
+        .row { display: flex; gap: 15px; flex-wrap: wrap;}
+        .col { flex: 1; min-width: 150px;}
+        .campo { margin-bottom: 15px; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 13px; color: #444;}
+        input, textarea, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: inherit; font-size: 14px;}
+        input:focus, textarea:focus, select:focus { border-color: #3483fa; outline: none;}
+        .dica { font-size: 11px; color: #888; margin-top: 4px; display: block;}
+        
+        .btn-salvar { width: 100%; background-color: #00a650; color: white; border: none; padding: 15px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 10px; font-size: 16px; transition: 0.3s;}
+        .btn-salvar:hover { background-color: #008a42;}
+        .btn-categoria { background-color: #2d3277; }
+        .btn-categoria:hover { background-color: #1a1e4d; }
+        .btn-voltar { display: block; text-align: center; color: #3483fa; text-decoration: none; font-weight: bold; margin-top: 20px;}
+        
+        .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
+        .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
+        .badge-cat { background: #ffe600; color: #333; padding: 4px 8px; border-radius: 4px; font-size: 11px; margin-right: 10px; font-weight: bold;}
+        .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
+    </style>
+</head>
+<body>
+
+    <!-- PAINEL 1: CATEGORIAS -->
+    <div class="painel">
+        <h2>🏷️ Gerenciar Categorias</h2>
+        <form id="formCategoria">
+            <div class="row">
+                <div class="col campo">
+                    <label>ID Único (URL):</label>
+                    <input type="text" id="cat-id" placeholder="Ex: ferramentas" required pattern="[a-zA-Z0-9_-]+">
+                </div>
+                <div class="col campo">
+                    <label>Ícone (Emoji):</label>
+                    <input type="text" id="cat-icone" placeholder="Ex: 🛠️" required>
+                </div>
+            </div>
+            <div class="campo">
+                <label>Nome Visível da Categoria:</label>
+                <input type="text" id="cat-nome" placeholder="Ex: Ferramentas Elétricas" required>
+            </div>
+            <button type="submit" class="btn-salvar btn-categoria">+ Criar Categoria</button>
+        </form>
+
+        <div class="lista-admin">
+            <div id="lista-categorias-admin"></div>
+        </div>
+    </div>
+
+    <!-- PAINEL 2: PRODUTOS COMPLETOS -->
+    <div class="painel">
+        <h2>📦 Cadastro de Produto Premium</h2>
+        <form id="formProduto">
+            
+            <div class="row">
+                <div class="col campo">
+                    <label>Categoria:</label>
+                    <select id="categoria" required></select>
+                </div>
+                <div class="col campo">
+                    <label>Selo de Destaque:</label>
+                    <select id="selo">
+                        <option value="">Sem selo</option>
+                        <option value="👑 Melhor Escolha">👑 Melhor Escolha</option>
+                        <option value="💰 Custo-Benefício">💰 Custo-Benefício</option>
+                        <option value="🔥 Mais Vendido">🔥 Mais Vendido</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="campo">
+                <label>Nome do Produto:</label>
+                <input type="text" id="titulo" placeholder="Ex: Smart TV Samsung 50 4K" required>
+            </div>
+            
+            <div class="row">
+                <div class="col campo">
+                    <label>Preço Estimado (Ex: 1.500,00):</label>
+                    <input type="text" id="preco" placeholder="1.500,00">
+                </div>
+                <div class="col campo">
+                    <label>Nota Avaliação (1.0 a 5.0):</label>
+                    <input type="number" id="nota" step="0.1" min="1" max="5" value="4.8" required>
+                </div>
+            </div>
+
+            <div class="campo">
+                <label>Link Mercado Livre (Afiliado):</label>
+                <input type="url" id="link" placeholder="https://produto.mercadolivre..." required>
+            </div>
+
+            <div class="campo">
+                <label>URL da Imagem:</label>
+                <input type="url" id="foto" placeholder="Link da imagem .jpg/.png" required>
+            </div>
+
+            <div class="campo">
+                <label>Seu Comentário Curto (O "Por quê?"):</label>
+                <textarea id="comentario" rows="2" placeholder="Essa TV tem as cores mais vivas pelo menor preço..." required></textarea>
+            </div>
+
+            <div class="row">
+                <div class="col campo">
+                    <label>Prós (Separe por vírgula):</label>
+                    <textarea id="pros" rows="2" placeholder="Imagem 4K, Sistema rápido, Controle solar" required></textarea>
+                </div>
+                <div class="col campo">
+                    <label>Contras (Separe por vírgula):</label>
+                    <textarea id="contras" rows="2" placeholder="Som um pouco baixo, Pés de plástico" required></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-salvar">🚀 Publicar no Site</button>
+        </form>
+
+        <div class="lista-admin">
+            <h3>Produtos Cadastrados</h3>
+            <div id="itens-lista"></div>
+        </div>
+        
+        <a href="index.html" class="btn-voltar">👀 Ver Site Ao Vivo</a>
+    </div>
+
+    <script>
+        // Funções de Categoria
+        function carregarCategorias() {
+            let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [
+                { id: 'celulares', icone: '📱', nome: 'Celulares' },
+                { id: 'tvs', icone: '📺', nome: 'TVs e Telas' }
+            ];
+            
+            const select = document.getElementById('categoria');
+            select.innerHTML = '';
+            categorias.forEach(cat => { select.innerHTML += `<option value="${cat.id}">${cat.icone} ${cat.nome}</option>`; });
+
+            const listaCatAdmin = document.getElementById('lista-categorias-admin');
+            listaCatAdmin.innerHTML = '';
+            categorias.forEach((cat, index) => {
+                listaCatAdmin.innerHTML += `<div class="item-admin"><span>${cat.icone} <b>${cat.nome}</b></span> <button class="btn-del" onclick="deletarCategoria(${index})">X</button></div>`;
+            });
+        }
+
+        document.getElementById('formCategoria').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const novaCat = {
+                id: document.getElementById('cat-id').value.toLowerCase().replace(/\s+/g, ''),
+                icone: document.getElementById('cat-icone').value,
+                nome: document.getElementById('cat-nome').value
+            };
+            let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [];
+            if(categorias.some(c => c.id === novaCat.id)) return alert("ID já existe!");
+            categorias.push(novaCat);
+            localStorage.setItem('minhasCategorias', JSON.stringify(categorias));
+            alert('Categoria criada!');
+            this.reset();
+            carregarCategorias();
+        });
+
+        function deletarCategoria(index) {
+            let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [];
+            categorias.splice(index, 1);
+            localStorage.setItem('minhasCategorias', JSON.stringify(categorias));
+            carregarCategorias();
+        }
+
+        // Funções de Produtos
+        function atualizarListaProdutos() {
+            let produtos = JSON.parse(localStorage.getItem('produtosCategorizados')) || [];
+            let container = document.getElementById('itens-lista');
+            container.innerHTML = '';
+            produtos.forEach((prod, index) => {
+                container.innerHTML += `<div class="item-admin"><div><span class="badge-cat">${prod.categoria}</span>${prod.titulo}</div><button class="btn-del" onclick="deletarProduto(${index})">X</button></div>`;
+            });
+        }
+
+        function deletarProduto(index) {
+            let produtos = JSON.parse(localStorage.getItem('produtosCategorizados')) || [];
+            produtos.splice(index, 1);
+            localStorage.setItem('produtosCategorizados', JSON.stringify(produtos));
+            atualizarListaProdutos();
+        }
+
+        document.getElementById('formProduto').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const novoProduto = {
+                categoria: document.getElementById('categoria').value,
+                titulo: document.getElementById('titulo').value,
+                link: document.getElementById('link').value,
+                selo: document.getElementById('selo').value,
+                foto: document.getElementById('foto').value,
+                comentario: document.getElementById('comentario').value,
+                preco: document.getElementById('preco').value,
+                nota: document.getElementById('nota').value,
+                pros: document.getElementById('pros').value,
+                contras: document.getElementById('contras').value
+            };
+
+            let produtos = JSON.parse(localStorage.getItem('produtosCategorizados')) || [];
+            produtos.unshift(novoProduto); 
+            localStorage.setItem('produtosCategorizados', JSON.stringify(produtos));
+
+            alert('Produto publicado com sucesso!');
+            this.reset();
+            document.getElementById('nota').value = "4.8"; // reseta a nota padrão
+            atualizarListaProdutos();
+        });
+
+        carregarCategorias();
+        atualizarListaProdutos();
+    </script>
+</body>
+</html>
