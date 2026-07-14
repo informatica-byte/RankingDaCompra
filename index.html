@@ -165,6 +165,9 @@
                       const prosList = produto.pros ? produto.pros.split(',').map(i => `<li>${i.trim()}</li>`).join('') : '';
                       const consList = produto.contras ? produto.contras.split(',').map(i => `<li>${i.trim()}</li>`).join('') : '';
                       const precoExibicao = produto.preco ? `Est. R$ ${produto.preco}` : 'Ver Preço';
+                      
+                      // TRAVA DE SEGURANÇA: Usa o link de afiliado. Se não existir, usa o link normal.
+                      const linkComprar = produto.linkAfiliado ? produto.linkAfiliado : produto.link;
 
                       listaProdutos.innerHTML += `
                           <div class="card">
@@ -180,7 +183,7 @@
                                           <div class="preco-ref">💰 ${precoExibicao}</div>
                                       </div>
                                       <p class="comentario">${produto.comentario}</p>
-                                      <a href="${produto.link}" target="_blank" class="btn-comprar">Ver Oferta no Mercado Livre</a>
+                                      <a href="${linkComprar}" target="_blank" class="btn-comprar">Ver Oferta no Mercado Livre</a>
                                   </div>
                               </div>
                               <details>
