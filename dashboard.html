@@ -14,31 +14,27 @@
         .campo { margin-bottom: 15px; }
         label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 13px; color: #444;}
         input, textarea, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: inherit; font-size: 14px;}
-        input:disabled { background-color: #e9ecef; cursor: not-allowed; }
         
         .btn-salvar { width: 100%; background-color: #00a650; color: white; border: none; padding: 15px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 10px; font-size: 16px; transition: 0.3s;}
         .btn-salvar:hover { background-color: #008a42;}
         .btn-categoria { background-color: #2d3277; }
         .btn-categoria:hover { background-color: #1a1e4d; }
         .btn-login { background-color: #3483fa; }
-        .btn-login:hover { background-color: #2968c8; }
         .btn-sair { background-color: #f23d4f; margin-top: 20px;}
         
-        /* Botão Magico do ML e IA */
-        .btn-magico { background-color: #ffe600; color: #2d3277; border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 5px; transition: 0.3s; display: inline-block; width: 100%;}
+        /* Botão Magico do ML */
+        .btn-magico { background-color: #ffe600; color: #2d3277; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 5px; display: inline-block; width: 100%;}
         .btn-magico:hover { background-color: #e6cf00; }
-        .btn-ia { background-color: #3483fa; color: white; padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;}
-        .btn-ia:hover { background-color: #2968c8; }
+        
+        /* Caixa da IA */
+        .caixa-ia { background: #e6f0ff; border: 2px dashed #3483fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;}
         
         .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
         .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
         .badge-cat { background: #ffe600; color: #333; padding: 4px 8px; border-radius: 4px; font-size: 11px; margin-right: 10px; font-weight: bold;}
-        
         .acoes { display: flex; gap: 8px; }
-        .btn-edit { background: #ffc107; color: #333; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px;}
-        .btn-edit:hover { background: #e0a800; }
-        .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px;}
-        .btn-del:hover { background: #c82333; }
+        .btn-edit { background: #ffc107; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
+        .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
 
         #admin-content { display: none; }
         #login-content { display: block; max-width: 400px; margin: 100px auto;}
@@ -50,32 +46,14 @@
     <div class="painel" id="login-content">
         <h2>🔒 Acesso Restrito</h2>
         <form id="formLogin">
-            <div class="campo">
-                <label>E-mail:</label>
-                <input type="email" id="email" required>
-            </div>
-            <div class="campo">
-                <label>Senha:</label>
-                <input type="password" id="senha" required>
-            </div>
+            <div class="campo"><label>E-mail:</label><input type="email" id="email" required></div>
+            <div class="campo"><label>Senha:</label><input type="password" id="senha" required></div>
             <button type="submit" class="btn-salvar btn-login">Entrar</button>
         </form>
     </div>
 
     <!-- DASHBOARD -->
     <div id="admin-content">
-        
-        <!-- CONFIGURAÇÃO DA IA -->
-        <div class="painel" style="background-color: #e6f0ff; border: 2px solid #3483fa;">
-            <h2>🤖 Configuração da Inteligência Artificial</h2>
-            <div class="campo">
-                <label>Chave da API (Google Gemini):</label>
-                <div style="display: flex; gap: 10px;">
-                    <input type="password" id="gemini-key" placeholder="Cole a sua chave aqui (Ex: AQ.Ab...)" style="flex: 1;">
-                    <button type="button" class="btn-ia" onclick="salvarChaveIA()">Salvar Chave no Navegador</button>
-                </div>
-            </div>
-        </div>
 
         <div class="painel">
             <h2>🏷️ Categorias</h2>
@@ -97,7 +75,13 @@
                 <div class="campo" style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 2px dashed #ffe600;">
                     <label>1. Cole o Link do Mercado Livre aqui primeiro:</label>
                     <input type="url" id="link" placeholder="https://produto.mercadolivre.com.br/..." required>
-                    <button type="button" id="btn-magico" class="btn-magico" onclick="buscarDadosML()">✨ Puxar Dados e Escrever com IA</button>
+                    <button type="button" id="btn-magico" class="btn-magico" onclick="buscarDadosML()">✨ 1º Passo: Puxar Dados e Copiar Pedido IA</button>
+                </div>
+
+                <div class="caixa-ia">
+                    <label style="color:#2968c8;">🤖 2º Passo: Cole a resposta que o Gemini te enviou no chat aqui:</label>
+                    <textarea id="texto-ia-paste" rows="3" placeholder='Exemplo: {"comentario": "...", "pros": "...", "contras": "..."}' oninput="distribuirIA()"></textarea>
+                    <span style="font-size:11px; color:#555;">(Ao colar aqui, o sistema vai preencher os campos abaixo automaticamente)</span>
                 </div>
 
                 <div class="row">
@@ -114,14 +98,14 @@
                 </div>
 
                 <div class="campo"><label>Nome do Produto:</label><input type="text" id="titulo" required></div>
-                
                 <div class="row">
                     <div class="col campo"><label>Preço Estimado:</label><input type="text" id="preco"></div>
                     <div class="col campo"><label>Nota (1.0 a 5.0):</label><input type="number" id="nota" step="0.1" min="1" max="5" value="4.8" required></div>
                 </div>
 
                 <div class="campo"><label>URL da Imagem:</label><input type="url" id="foto" required></div>
-                <div class="campo"><label>Resumo Persuasivo (Gerado pela IA):</label><textarea id="comentario" rows="3" required></textarea></div>
+                <div class="campo"><label>Resumo Persuasivo:</label><textarea id="comentario" rows="3" required></textarea></div>
+                
                 <div class="row">
                     <div class="col campo"><label>Prós (Separe por vírgula):</label><textarea id="pros" rows="3" required></textarea></div>
                     <div class="col campo"><label>Contras (Separe por vírgula):</label><textarea id="contras" rows="3" required></textarea></div>
@@ -139,11 +123,13 @@
         </div>
     </div>
 
+    <!-- SDKs do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <script>
+        // Configuração do Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
             authDomain: "rankingdacompra.firebaseapp.com",
@@ -153,7 +139,6 @@
             appId: "1:300637600463:web:671c78dc47d5f8b39f15ba",
             measurementId: "G-NBKRX8TTR6"
         };
-
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
@@ -163,20 +148,11 @@
         let editCatIndex = null;
         let editProdId = null;
 
-        document.getElementById('gemini-key').value = localStorage.getItem('geminiApiKey') || '';
-
-        function salvarChaveIA() {
-            const key = document.getElementById('gemini-key').value.trim();
-            localStorage.setItem('geminiApiKey', key);
-            alert("✅ Chave da Inteligência Artificial salva com sucesso!");
-        }
-
         auth.onAuthStateChanged(user => {
             if (user) {
                 loginContent.style.display = 'none';
                 adminContent.style.display = 'block';
-                carregarCategorias();
-                carregarProdutos();
+                carregarCategorias(); carregarProdutos();
             } else {
                 loginContent.style.display = 'block';
                 adminContent.style.display = 'none';
@@ -192,12 +168,10 @@
         document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
 
         // ==========================================
-        // SISTEMA 100% CORRIGIDO (ML + GEMINI NOVO PADRÃO)
+        // SISTEMA HÍBRIDO (Sem chaves de API, sem erros)
         // ==========================================
         async function buscarDadosML() {
             const url = document.getElementById('link').value;
-            const geminiKey = localStorage.getItem('geminiApiKey');
-            
             if (!url) return alert("Por favor, cole o link do Mercado Livre primeiro.");
 
             const match = url.match(/MLB[-_]?\d+/i);
@@ -205,7 +179,7 @@
 
             const idML = match[0].replace(/[-_]/g, '');
             const btn = document.getElementById('btn-magico');
-            btn.innerText = "⏳ 1/2 Puxando dados do Mercado Livre...";
+            btn.innerText = "⏳ Puxando dados...";
 
             try {
                 let tituloML = '', precoML = '', fotoUrl = '', descText = '';
@@ -234,54 +208,54 @@
                     }
                 }
 
+                // Preenche o formulário
                 document.getElementById('titulo').value = tituloML || '';
                 document.getElementById('preco').value = precoML || '';
                 document.getElementById('foto').value = fotoUrl ? fotoUrl.replace('-I.jpg', '-O.jpg') : '';
 
-                if (geminiKey && geminiKey.trim().length > 20) {
-                    btn.innerText = "🤖 2/2 A Inteligência Artificial está escrevendo...";
-                    const prompt = `Você é um copywriter especialista em e-commerce. Analise o produto "${tituloML}". Descrição técnica: "${descText.substring(0, 1500)}".
-                    Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem usar blocos de código markdown (\`\`\`json):
-                    {
-                        "comentario": "Crie um parágrafo persuasivo de 3 linhas dizendo por que este produto é excelente.",
-                        "pros": "Liste 3 prós fortes deste produto, separados APENAS por vírgula.",
-                        "contras": "Liste 2 contras justos deste produto, separados APENAS por vírgula."
-                    }`;
-
-                    const responseIA = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey.trim()}`, {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({ contents: [{parts: [{text: prompt}]}] })
-                    });
-
-                    const dataIA = await responseIA.json();
-                    
-                    if (dataIA.error) {
-                        console.error("Erro da IA:", dataIA.error);
-                        alert("⚠️ O Google bloqueou o acesso à IA. Motivo: " + dataIA.error.message + "\n\nDICA: Se você acabou de criar a chave, aguarde uns 3 minutinhos e aperte o botão amarelo de novo. A chave demora um pouco para ativar lá nos servidores do Google!");
-                    } else {
-                        let textoIA = dataIA.candidates[0].content.parts[0].text;
-                        textoIA = textoIA.replace(/```json/g, '').replace(/```/g, '').trim();
-                        try {
-                            const resultadoJson = JSON.parse(textoIA);
-                            document.getElementById('comentario').value = resultadoJson.comentario;
-                            document.getElementById('pros').value = resultadoJson.pros;
-                            document.getElementById('contras').value = resultadoJson.contras;
-                            alert("✨ Mágica concluída! Dados do ML e textos da IA preenchidos.");
-                        } catch(e) {
-                            alert("⚠️ A IA enviou um texto fora do padrão. Os dados do Mercado Livre foram mantidos na tela.");
-                        }
-                    }
-                } else {
-                    alert("✅ Dados do Mercado Livre puxados! Cadastre sua chave da IA se quiser os textos automáticos.");
+                // Gera o comando para a IA e copia para a área de transferência
+                const promptIA = `Você é um copywriter especialista em e-commerce. Analise o produto "${tituloML}". Descrição técnica: "${descText.substring(0, 1000)}".
+Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de código:
+{
+  "comentario": "Crie um parágrafo persuasivo de 3 linhas dizendo por que este produto é excelente.",
+  "pros": "Liste 3 prós fortes deste produto, separados APENAS por vírgula.",
+  "contras": "Liste 2 contras justos deste produto, separados APENAS por vírgula."
+}`;
+                
+                try {
+                    await navigator.clipboard.writeText(promptIA);
+                    alert("✅ Dados do Mercado Livre puxados com sucesso!\n\n📋 O comando da Inteligência Artificial já foi COPIADO automaticamente.\n\nVá no chat do Gemini agora, aperte Ctrl+V e envie para ele!");
+                } catch(e) {
+                    alert("✅ Dados puxados! O seu navegador não deixou copiar o texto automaticamente, então apenas cole o link do produto no chat do Gemini que ele saberá o que fazer.");
                 }
+
             } catch (error) {
-                alert("Erro inesperado. Verifique o console.");
+                alert("Erro ao buscar no Mercado Livre.");
             } finally {
-                btn.innerText = "✨ Puxar Dados e Escrever com IA";
+                btn.innerText = "✨ 1º Passo: Puxar Dados e Copiar Pedido IA";
             }
         }
 
+        // Função mágica que distribui o JSON colado
+        function distribuirIA() {
+            try {
+                const texto = document.getElementById('texto-ia-paste').value.replace(/```json/g, '').replace(/```/g, '').trim();
+                const json = JSON.parse(texto);
+                
+                if(json.comentario) document.getElementById('comentario').value = json.comentario;
+                if(json.pros) document.getElementById('pros').value = json.pros;
+                if(json.contras) document.getElementById('contras').value = json.contras;
+                
+                // Pisca a cor para indicar sucesso
+                document.getElementById('texto-ia-paste').style.borderColor = "#00a650";
+            } catch (e) {
+                // Aguardando colar corretamente
+            }
+        }
+
+        // ==========================================
+        // FUNÇÕES PADRÃO (CATEGORIAS E PRODUTOS)
+        // ==========================================
         function carregarCategorias() {
             let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [
                 { id: 'celulares', icone: '📱', nome: 'Celulares' },
@@ -344,7 +318,7 @@
         }
 
         function deletarCategoria(index) {
-            if(confirm("Deseja mesmo apagar esta categoria?")) {
+            if(confirm("Deseja apagar esta categoria?")) {
                 let categorias = JSON.parse(localStorage.getItem('minhasCategorias'));
                 categorias.splice(index, 1);
                 localStorage.setItem('minhasCategorias', JSON.stringify(categorias));
@@ -382,6 +356,8 @@
         function resetarFormProduto() {
             document.getElementById('formProduto').reset();
             document.getElementById('nota').value = "4.8";
+            document.getElementById('texto-ia-paste').value = '';
+            document.getElementById('texto-ia-paste').style.borderColor = "#3483fa";
             editProdId = null;
             document.getElementById('btn-submit-prod').innerText = "🚀 Salvar na Nuvem";
         }
@@ -419,6 +395,7 @@
                     document.getElementById('comentario').value = prod.comentario;
                     document.getElementById('pros').value = prod.pros || "";
                     document.getElementById('contras').value = prod.contras || "";
+                    document.getElementById('texto-ia-paste').value = '';
 
                     editProdId = id;
                     document.getElementById('btn-submit-prod').innerText = "💾 Salvar Edição";
