@@ -24,11 +24,14 @@
         .btn-login:hover { background-color: #2968c8; }
         .btn-sair { background-color: #f23d4f; margin-top: 20px;}
         
+        /* Botão Magico do ML */
+        .btn-magico { background-color: #ffe600; color: #2d3277; border: none; padding: 8px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; margin-top: 5px; transition: 0.3s; display: inline-block;}
+        .btn-magico:hover { background-color: #e6cf00; }
+        
         .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
         .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
         .badge-cat { background: #ffe600; color: #333; padding: 4px 8px; border-radius: 4px; font-size: 11px; margin-right: 10px; font-weight: bold;}
         
-        /* Novos Botões de Ação */
         .acoes { display: flex; gap: 8px; }
         .btn-edit { background: #ffc107; color: #333; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px;}
         .btn-edit:hover { background: #e0a800; }
@@ -46,7 +49,7 @@
         <h2>🔒 Acesso Restrito</h2>
         <form id="formLogin">
             <div class="campo">
-                <label>E-mail (Criado no Firebase):</label>
+                <label>E-mail:</label>
                 <input type="email" id="email" required>
             </div>
             <div class="campo">
@@ -85,6 +88,14 @@
         <div class="painel">
             <h2>📦 Cadastro de Produto</h2>
             <form id="formProduto">
+                
+                <div class="campo" style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px dashed #ccc;">
+                    <label>1. Cole o Link do Mercado Livre aqui primeiro:</label>
+                    <input type="url" id="link" placeholder="https://produto.mercadolivre.com.br/..." required>
+                    <button type="button" class="btn-magico" onclick="buscarDadosML()">🔍 Autocompletar Dados do Produto</button>
+                    <span style="display:block; font-size:11px; color:#666; margin-top:5px;">O sistema tentará puxar título, preço e foto automaticamente.</span>
+                </div>
+
                 <div class="row">
                     <div class="col campo">
                         <label>Categoria:</label>
@@ -115,11 +126,6 @@
                         <label>Nota (1.0 a 5.0):</label>
                         <input type="number" id="nota" step="0.1" min="1" max="5" value="4.8" required>
                     </div>
-                </div>
-
-                <div class="campo">
-                    <label>Link Mercado Livre (Afiliado):</label>
-                    <input type="url" id="link" required>
                 </div>
 
                 <div class="campo">
@@ -161,7 +167,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <script>
-        // Suas chaves do Firebase
+        // CONFIGURAÇÃO EXATA DO SEU FIREBASE
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
             authDomain: "rankingdacompra.firebaseapp.com",
@@ -179,7 +185,6 @@
         const loginContent = document.getElementById('login-content');
         const adminContent = document.getElementById('admin-content');
 
-        // Variáveis de controle de Edição
         let editCatIndex = null;
         let editProdId = null;
 
@@ -203,9 +208,60 @@
 
         document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
 
-        // ==========================================
-        // CONTROLE DE CATEGORIAS
-        // ==========================================
+        // AUTOCOMPLETAR MERCADO LIVRE
+        async function buscarDadosML() {
+            const url = document.getElementById('link').value;
+            if (!url) {
+                alert("Por favor, cole o link do Mercado Livre primeiro.");
+                return;
+            }
+
+            const match = url.match(/MLB[-_]?\d+/i);
+            
+            if (!match) {
+                alert("Não foi possível encontrar o código do produto (MLB...) nesse link. Você precisará preencher manualmente.");
+                return;
+            }
+
+            const idML = match[0].replace(/[-_]/g, '');
+            const btn = document.querySelector('.btn-magico');
+            btn.innerText = "⏳ Buscando...";
+
+            try {
+                let response = await fetch(`https://api.mercadolibre.com/items/${idML}`);
+                let data = await response.json();
+
+                if (data.error) {
+                    response = await fetch(`https://api.mercadolibre.com/products/${idML}`);
+                    data = await response.json();
+                }
+
+                if (data && !data.error) {
+                    document.getElementById('titulo').value = data.title || data.name || '';
+                    if (data.price) {
+                        document.getElementById('preco').value = data.price.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+                    }
+
+                    let fotoUrl = '';
+                    if (data.pictures && data.pictures.length > 0) {
+                        fotoUrl = data.pictures[0].secure_url;
+                    } else if (data.thumbnail) {
+                        fotoUrl = data.thumbnail.replace('-I.jpg', '-O.jpg');
+                    }
+                    document.getElementById('foto').value = fotoUrl;
+
+                    alert("✅ Dados encontrados com sucesso! Verifique os campos e preencha os prós/contras.");
+                } else {
+                    alert("Produto não encontrado publicamente. Preencha manualmente.");
+                }
+            } catch (error) {
+                alert("Erro ao conectar com o Mercado Livre. Tente preencher manualmente.");
+            } finally {
+                btn.innerText = "🔍 Autocompletar Dados do Produto";
+            }
+        }
+
+        // GERENCIAR CATEGORIAS
         function carregarCategorias() {
             let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [
                 { id: 'celulares', icone: '📱', nome: 'Celulares' },
@@ -242,7 +298,6 @@
             };
 
             if (editCatIndex !== null) {
-                // Atualizando
                 categorias[editCatIndex].icone = catInfo.icone;
                 categorias[editCatIndex].nome = catInfo.nome;
                 editCatIndex = null;
@@ -250,7 +305,6 @@
                 document.getElementById('btn-submit-cat').innerText = "+ Criar Categoria";
                 alert("Categoria atualizada!");
             } else {
-                // Criando Nova
                 if(categorias.some(c => c.id === catInfo.id)) return alert("ID já existe!");
                 categorias.push(catInfo);
                 alert("Categoria criada!");
@@ -265,13 +319,13 @@
             let categorias = JSON.parse(localStorage.getItem('minhasCategorias'));
             let cat = categorias[index];
             document.getElementById('cat-id').value = cat.id;
-            document.getElementById('cat-id').disabled = true; // Impede mudar a ID para não quebrar produtos
+            document.getElementById('cat-id').disabled = true; 
             document.getElementById('cat-icone').value = cat.icone;
             document.getElementById('cat-nome').value = cat.nome;
             
             editCatIndex = index;
             document.getElementById('btn-submit-cat').innerText = "💾 Salvar Edição";
-            window.scrollTo(0, 0); // Sobe a tela
+            window.scrollTo(0, 0); 
         }
 
         function deletarCategoria(index) {
@@ -283,9 +337,7 @@
             }
         }
 
-        // ==========================================
-        // CONTROLE DE PRODUTOS NO FIREBASE
-        // ==========================================
+        // GERENCIAR PRODUTOS NO FIREBASE
         document.getElementById('formProduto').addEventListener('submit', (e) => {
             e.preventDefault();
             const dadosProduto = {
@@ -302,7 +354,6 @@
             };
 
             if (editProdId !== null) {
-                // Modo Edição
                 db.collection("produtos").doc(editProdId).update(dadosProduto)
                     .then(() => {
                         alert('Produto atualizado com sucesso!');
@@ -310,7 +361,6 @@
                     })
                     .catch(error => alert("Erro ao atualizar: " + error.message));
             } else {
-                // Modo Criação
                 dadosProduto.dataCadastro = firebase.firestore.FieldValue.serverTimestamp();
                 db.collection("produtos").add(dadosProduto)
                     .then(() => {
@@ -348,7 +398,6 @@
         }
 
         function editarProduto(id) {
-            // Busca os dados do produto no Firebase
             db.collection("produtos").doc(id).get().then(doc => {
                 if (doc.exists) {
                     const prod = doc.data();
@@ -364,10 +413,10 @@
                     document.getElementById('contras').value = prod.contras || "";
 
                     editProdId = id;
-                    document.getElementById('btn-submit-prod').innerText = "💾 Salvar Edição do Produto";
-                    window.scrollTo(0, document.getElementById('formProduto').offsetTop - 20); // Rola a página até o formulário
+                    document.getElementById('btn-submit-prod').innerText = "💾 Salvar Edição";
+                    window.scrollTo(0, document.getElementById('formProduto').offsetTop - 20);
                 }
-            }).catch(error => alert("Erro ao buscar dados: " + error.message));
+            }).catch(error => alert("Erro: " + error.message));
         }
 
         function deletarProduto(id) {
