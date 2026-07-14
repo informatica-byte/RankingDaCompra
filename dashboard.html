@@ -26,8 +26,9 @@
         .btn-magico { background-color: #ffe600; color: #2d3277; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 5px; display: inline-block; width: 100%;}
         .btn-magico:hover { background-color: #e6cf00; }
         
-        /* Caixa da IA */
-        .caixa-ia { background: #e6f0ff; border: 2px dashed #3483fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;}
+        /* Caixas de Destaque */
+        .caixa-amarela { background: #fff3cd; border: 2px dashed #ffe600; padding: 15px; border-radius: 8px; margin-bottom: 15px;}
+        .caixa-azul { background: #e6f0ff; border: 2px dashed #3483fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;}
         
         .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
         .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
@@ -72,16 +73,21 @@
             <h2>📦 Cadastro de Produto</h2>
             <form id="formProduto">
                 
-                <div class="campo" style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 2px dashed #ffe600;">
-                    <label>1. Cole o Link do Mercado Livre aqui primeiro:</label>
-                    <input type="url" id="link" placeholder="https://produto.mercadolivre.com.br/..." required>
+                <div class="campo caixa-amarela">
+                    <label>1. Cole o Link COMUM do Produto (Para o sistema achar a foto):</label>
+                    <input type="url" id="link" placeholder="Ex: https://produto.mercadolivre.com.br/MLB-1234..." required>
                     <button type="button" id="btn-magico" class="btn-magico" onclick="buscarDadosML()">✨ 1º Passo: Puxar Dados e Copiar Pedido IA</button>
                 </div>
 
-                <div class="caixa-ia">
-                    <label style="color:#2968c8;">🤖 2º Passo: Cole a resposta que o Gemini te enviou no chat aqui:</label>
-                    <textarea id="texto-ia-paste" rows="3" placeholder='Exemplo: {"comentario": "...", "pros": "...", "contras": "..."}' oninput="distribuirIA()"></textarea>
-                    <span style="font-size:11px; color:#555;">(Ao colar aqui, o sistema vai preencher os campos abaixo automaticamente)</span>
+                <div class="campo caixa-azul">
+                    <label style="color:#2968c8;">🔗 <b>2. Link de Afiliado (MUITO IMPORTANTE):</b></label>
+                    <input type="url" id="linkAfiliado" placeholder="Cole seu link de parceiro aqui. O cliente clicará nele!" required>
+                    <span style="font-size:11px; color:#555;">Este é o link que vai para o botão "Ver Oferta" do site.</span>
+                </div>
+
+                <div class="caixa-azul">
+                    <label style="color:#2968c8;">🤖 3. Cole a resposta da Inteligência Artificial aqui:</label>
+                    <textarea id="texto-ia-paste" rows="3" placeholder='Cole o código JSON gerado pelo Gemini' oninput="distribuirIA()"></textarea>
                 </div>
 
                 <div class="row">
@@ -129,7 +135,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <script>
-        // Configuração do Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
             authDomain: "rankingdacompra.firebaseapp.com",
@@ -167,15 +172,12 @@
 
         document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
 
-        // ==========================================
-        // SISTEMA HÍBRIDO (Sem chaves de API, sem erros)
-        // ==========================================
         async function buscarDadosML() {
             const url = document.getElementById('link').value;
-            if (!url) return alert("Por favor, cole o link do Mercado Livre primeiro.");
+            if (!url) return alert("Por favor, cole o link comum do Mercado Livre primeiro.");
 
             const match = url.match(/MLB[-_]?\d+/i);
-            if (!match) return alert("Código do produto não encontrado no link.");
+            if (!match) return alert("Esse link não parece ser o original do Mercado Livre (ele precisa ter o código MLB). Certifique-se de colar o link comum aqui, e não o de afiliado.");
 
             const idML = match[0].replace(/[-_]/g, '');
             const btn = document.getElementById('btn-magico');
@@ -208,12 +210,10 @@
                     }
                 }
 
-                // Preenche o formulário
                 document.getElementById('titulo').value = tituloML || '';
                 document.getElementById('preco').value = precoML || '';
                 document.getElementById('foto').value = fotoUrl ? fotoUrl.replace('-I.jpg', '-O.jpg') : '';
 
-                // Gera o comando para a IA e copia para a área de transferência
                 const promptIA = `Você é um copywriter especialista em e-commerce. Analise o produto "${tituloML}". Descrição técnica: "${descText.substring(0, 1000)}".
 Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de código:
 {
@@ -224,9 +224,9 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
                 
                 try {
                     await navigator.clipboard.writeText(promptIA);
-                    alert("✅ Dados do Mercado Livre puxados com sucesso!\n\n📋 O comando da Inteligência Artificial já foi COPIADO automaticamente.\n\nVá no chat do Gemini agora, aperte Ctrl+V e envie para ele!");
+                    alert("✅ Dados do Mercado Livre puxados!\n\n📋 O comando da IA já foi COPIADO automaticamente.\nVá no chat do Gemini, aperte Ctrl+V e envie para ele!\n\n⚠️ IMPORTANTE: Não esqueça de colar o seu Link de Afiliado na caixa logo abaixo.");
                 } catch(e) {
-                    alert("✅ Dados puxados! O seu navegador não deixou copiar o texto automaticamente, então apenas cole o link do produto no chat do Gemini que ele saberá o que fazer.");
+                    alert("✅ Dados puxados! Apenas copie o link do produto no chat do Gemini para ele criar o texto.");
                 }
 
             } catch (error) {
@@ -236,7 +236,6 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
             }
         }
 
-        // Função mágica que distribui o JSON colado
         function distribuirIA() {
             try {
                 const texto = document.getElementById('texto-ia-paste').value.replace(/```json/g, '').replace(/```/g, '').trim();
@@ -246,16 +245,12 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
                 if(json.pros) document.getElementById('pros').value = json.pros;
                 if(json.contras) document.getElementById('contras').value = json.contras;
                 
-                // Pisca a cor para indicar sucesso
                 document.getElementById('texto-ia-paste').style.borderColor = "#00a650";
             } catch (e) {
                 // Aguardando colar corretamente
             }
         }
 
-        // ==========================================
-        // FUNÇÕES PADRÃO (CATEGORIAS E PRODUTOS)
-        // ==========================================
         function carregarCategorias() {
             let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [
                 { id: 'celulares', icone: '📱', nome: 'Celulares' },
@@ -332,6 +327,7 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
                 categoria: document.getElementById('categoria').value,
                 titulo: document.getElementById('titulo').value,
                 link: document.getElementById('link').value,
+                linkAfiliado: document.getElementById('linkAfiliado').value, // NOVO CAMPO SALVO NO BANCO!
                 selo: document.getElementById('selo').value,
                 foto: document.getElementById('foto').value,
                 comentario: document.getElementById('comentario').value,
@@ -391,6 +387,7 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
                     document.getElementById('preco').value = prod.preco || "";
                     document.getElementById('nota').value = prod.nota || "4.8";
                     document.getElementById('link').value = prod.link;
+                    document.getElementById('linkAfiliado').value = prod.linkAfiliado || ""; // PUXANDO LINK DE AFILIADO
                     document.getElementById('foto').value = prod.foto;
                     document.getElementById('comentario').value = prod.comentario;
                     document.getElementById('pros').value = prod.pros || "";
