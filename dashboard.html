@@ -65,16 +65,16 @@
     <!-- DASHBOARD -->
     <div id="admin-content">
         
-        <!-- CONFIGURAÇÃO DA IA (Segura e escondida do código-fonte) -->
+        <!-- CONFIGURAÇÃO DA IA -->
         <div class="painel" style="background-color: #e6f0ff; border: 2px solid #3483fa;">
             <h2>🤖 Configuração da Inteligência Artificial</h2>
             <div class="campo">
-                <label>Sua Chave da API (Google Gemini):</label>
+                <label>Chave da API (Google Gemini):</label>
                 <div style="display: flex; gap: 10px;">
-                    <input type="password" id="gemini-key" placeholder="Cole sua chave gerada no AI Studio aqui" style="flex: 1;">
+                    <input type="password" id="gemini-key" placeholder="A chave correta começa com AIzaSy..." style="flex: 1;">
                     <button type="button" class="btn-ia" onclick="salvarChaveIA()">Salvar Chave no Navegador</button>
                 </div>
-                <span style="display:block; font-size:11px; color:#555; margin-top:5px;">Ao salvar, a chave fica protegida apenas no seu computador.</span>
+                <span style="display:block; font-size:11px; color:#555; margin-top:5px;">Esta chave fica protegida no seu computador. Sem ela, apenas os dados do Mercado Livre serão carregados.</span>
             </div>
         </div>
 
@@ -105,7 +105,7 @@
             <form id="formProduto">
                 
                 <div class="campo" style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 2px dashed #ffe600;">
-                    <label>1. Cole o Link do Mercado Livre aqui:</label>
+                    <label>1. Cole o Link do Mercado Livre aqui primeiro:</label>
                     <input type="url" id="link" placeholder="https://produto.mercadolivre.com.br/..." required>
                     <button type="button" id="btn-magico" class="btn-magico" onclick="buscarDadosML()">✨ Puxar Dados e Escrever com IA</button>
                 </div>
@@ -181,7 +181,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <script>
-        // Configuração do Firebase (Apenas a estrutura de comunicação, perfeitamente seguro)
+        // Configuração do Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
             authDomain: "rankingdacompra.firebaseapp.com",
@@ -208,7 +208,7 @@
         function salvarChaveIA() {
             const key = document.getElementById('gemini-key').value;
             localStorage.setItem('geminiApiKey', key);
-            alert("✅ Chave salva no seu navegador com sucesso!");
+            alert("✅ Chave da Inteligência Artificial salva!");
         }
 
         auth.onAuthStateChanged(user => {
@@ -232,7 +232,7 @@
         document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
 
         // ==========================================
-        // MAGIA DUPLA: MERCADO LIVRE + IA GEMINI
+        // SISTEMA ANTI-FALHA: MERCADO LIVRE + IA GEMINI
         // ==========================================
         async function buscarDadosML() {
             const url = document.getElementById('link').value;
@@ -241,84 +241,98 @@
             if (!url) return alert("Por favor, cole o link do Mercado Livre primeiro.");
 
             const match = url.match(/MLB[-_]?\d+/i);
-            if (!match) return alert("Código do produto (MLB...) não encontrado no link.");
+            if (!match) return alert("Código do produto não encontrado no link.");
 
             const idML = match[0].replace(/[-_]/g, '');
             const btn = document.getElementById('btn-magico');
             btn.innerText = "⏳ 1/2 Puxando dados do Mercado Livre...";
 
             try {
-                let response = await fetch(`https://api.mercadolibre.com/items/${idML}`);
-                let data = await response.json();
+                let tituloML = '', precoML = '', fotoUrl = '', descText = '';
 
-                if (data.error) {
-                    response = await fetch(`https://api.mercadolibre.com/products/${idML}`);
-                    data = await response.json();
+                // Tenta Endpoint 1 (Items Gerais)
+                let resItem = await fetch(`https://api.mercadolibre.com/items/${idML}`);
+                let dataItem = await resItem.json();
+
+                if (!dataItem.error) {
+                    tituloML = dataItem.title;
+                    precoML = dataItem.price ? dataItem.price.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
+                    fotoUrl = (dataItem.pictures && dataItem.pictures.length > 0) ? dataItem.pictures[0].secure_url : dataItem.thumbnail;
+                    
+                    try {
+                        let resDesc = await fetch(`https://api.mercadolibre.com/items/${idML}/description`);
+                        let dataDesc = await resDesc.json();
+                        descText = dataDesc.plain_text || "";
+                    } catch(e) {}
+                } else {
+                    // Tenta Endpoint 2 (Produtos de Catálogo)
+                    let resProd = await fetch(`https://api.mercadolibre.com/products/${idML}`);
+                    let dataProd = await resProd.json();
+                    
+                    if (!dataProd.error) {
+                        tituloML = dataProd.name;
+                        precoML = dataProd.buy_box_winner ? dataProd.buy_box_winner.price.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
+                        fotoUrl = (dataProd.pictures && dataProd.pictures.length > 0) ? dataProd.pictures[0].url : '';
+                    } else {
+                        return alert("Produto não encontrado publicamente no Mercado Livre.");
+                    }
                 }
 
-                if (data && !data.error) {
-                    const tituloML = data.title || data.name || '';
-                    document.getElementById('titulo').value = tituloML;
+                // Preenche a tela IMEDIATAMENTE com os dados do Mercado Livre
+                document.getElementById('titulo').value = tituloML || '';
+                document.getElementById('preco').value = precoML || '';
+                document.getElementById('foto').value = fotoUrl ? fotoUrl.replace('-I.jpg', '-O.jpg') : '';
+
+                // Verifica a IA
+                if (geminiKey && geminiKey.startsWith("AIzaSy")) {
+                    btn.innerText = "🤖 2/2 A Inteligência Artificial está escrevendo...";
                     
-                    if (data.price) {
-                        document.getElementById('preco').value = data.price.toLocaleString('pt-BR', {minimumFractionDigits: 2});
-                    }
+                    const prompt = `Você é um copywriter especialista em e-commerce. Analise o produto "${tituloML}". Descrição técnica: "${descText.substring(0, 1500)}".
+                    Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem usar blocos de código markdown (\`\`\`json):
+                    {
+                        "comentario": "Crie um parágrafo persuasivo de 3 linhas dizendo por que este produto é uma excelente escolha.",
+                        "pros": "Liste 3 prós fortes deste produto, separados APENAS por vírgula.",
+                        "contras": "Liste 2 contras justos deste produto, separados APENAS por vírgula."
+                    }`;
 
-                    let fotoUrl = '';
-                    if (data.pictures && data.pictures.length > 0) { fotoUrl = data.pictures[0].secure_url; } 
-                    else if (data.thumbnail) { fotoUrl = data.thumbnail.replace('-I.jpg', '-O.jpg'); }
-                    document.getElementById('foto').value = fotoUrl;
+                    const responseIA = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ contents: [{parts: [{text: prompt}]}] })
+                    });
 
-                    if (geminiKey) {
-                        btn.innerText = "🤖 2/2 A Inteligência Artificial está escrevendo...";
-                        
-                        let descText = "";
-                        try {
-                            let resDesc = await fetch(`https://api.mercadolibre.com/items/${idML}/description`);
-                            let dataDesc = await resDesc.json();
-                            descText = dataDesc.plain_text || "Produto sem descrição detalhada.";
-                        } catch(e) {}
-
-                        const prompt = `Você é um copywriter especialista em e-commerce. Analise o produto "${tituloML}". Descrição técnica: "${descText.substring(0, 1500)}".
-                        Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem usar blocos de código markdown (\`\`\`json):
-                        {
-                            "comentario": "Crie um parágrafo persuasivo de 3 linhas dizendo por que este produto é uma excelente escolha.",
-                            "pros": "Liste 3 prós fortes deste produto, separados APENAS por vírgula.",
-                            "contras": "Liste 2 contras justos deste produto, separados APENAS por vírgula."
-                        }`;
-
-                        const responseIA = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
-                            method: 'POST',
-                            headers: {'Content-Type': 'application/json'},
-                            body: JSON.stringify({ contents: [{parts: [{text: prompt}]}] })
-                        });
-
-                        const dataIA = await responseIA.json();
-                        let textoIA = dataIA.candidates[0].content.parts[0].text;
-                        
-                        textoIA = textoIA.replace(/```json/g, '').replace(/```/g, '').trim();
-                        const resultadoJson = JSON.parse(textoIA);
-
-                        document.getElementById('comentario').value = resultadoJson.comentario;
-                        document.getElementById('pros').value = resultadoJson.pros;
-                        document.getElementById('contras').value = resultadoJson.contras;
-
-                        alert("✨ Mágica concluída! Dados preenchidos e textos escritos pela IA.");
+                    const dataIA = await responseIA.json();
+                    
+                    if (dataIA.error) {
+                        alert("⚠️ O Mercado Livre funcionou e puxou as fotos, mas a IA falhou. Verifique se a sua chave do Gemini está correta.");
                     } else {
-                        alert("✅ Dados do Mercado Livre puxados! Você precisa adicionar sua chave da IA no topo da página se quiser os textos automáticos.");
+                        let textoIA = dataIA.candidates[0].content.parts[0].text;
+                        textoIA = textoIA.replace(/```json/g, '').replace(/```/g, '').trim();
+                        try {
+                            const resultadoJson = JSON.parse(textoIA);
+                            document.getElementById('comentario').value = resultadoJson.comentario;
+                            document.getElementById('pros').value = resultadoJson.pros;
+                            document.getElementById('contras').value = resultadoJson.contras;
+                            alert("✨ Mágica concluída! Dados do ML e textos da IA preenchidos.");
+                        } catch(e) {
+                            alert("⚠️ A IA enviou um texto fora do padrão. Os dados do Mercado Livre foram mantidos na tela.");
+                        }
                     }
+                } else if (geminiKey) {
+                     alert("✅ O Mercado Livre funcionou! Porém, a chave de Inteligência Artificial informada não é válida (Ela precisa começar com AIzaSy).");
                 } else {
-                    alert("Produto não encontrado publicamente.");
+                    alert("✅ Dados do Mercado Livre puxados! Você não cadastrou a chave da IA, então escreva a avaliação manualmente.");
                 }
             } catch (error) {
-                alert("Erro ao executar a automação. Preencha manualmente.");
+                alert("Erro inesperado de rede. Verifique o console.");
+                console.error(error);
             } finally {
                 btn.innerText = "✨ Puxar Dados e Escrever com IA";
             }
         }
 
         // ==========================================
-        // GERENCIAR CATEGORIAS E PRODUTOS
+        // GERENCIAR CATEGORIAS E PRODUTOS (IGUAL)
         // ==========================================
         function carregarCategorias() {
             let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [
