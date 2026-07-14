@@ -71,10 +71,9 @@
             <div class="campo">
                 <label>Chave da API (Google Gemini):</label>
                 <div style="display: flex; gap: 10px;">
-                    <input type="password" id="gemini-key" placeholder="Cole a sua chave aqui (Ex: AQ.Ab... ou AIza...)" style="flex: 1;">
+                    <input type="password" id="gemini-key" placeholder="Cole a sua chave aqui (Ex: AQ.Ab...)" style="flex: 1;">
                     <button type="button" class="btn-ia" onclick="salvarChaveIA()">Salvar Chave no Navegador</button>
                 </div>
-                <span style="display:block; font-size:11px; color:#555; margin-top:5px;">Esta chave fica protegida no seu computador para automatizar os textos.</span>
             </div>
         </div>
 
@@ -82,19 +81,10 @@
             <h2>🏷️ Categorias</h2>
             <form id="formCategoria">
                 <div class="row">
-                    <div class="col campo">
-                        <label>ID Único (URL):</label>
-                        <input type="text" id="cat-id" required pattern="[a-zA-Z0-9_-]+" placeholder="ex: celulares">
-                    </div>
-                    <div class="col campo">
-                        <label>Ícone (Emoji):</label>
-                        <input type="text" id="cat-icone" placeholder="Ex: 📱" required>
-                    </div>
+                    <div class="col campo"><label>ID Único (URL):</label><input type="text" id="cat-id" required pattern="[a-zA-Z0-9_-]+"></div>
+                    <div class="col campo"><label>Ícone (Emoji):</label><input type="text" id="cat-icone" required></div>
                 </div>
-                <div class="campo">
-                    <label>Nome Visível:</label>
-                    <input type="text" id="cat-nome" placeholder="Ex: Celulares" required>
-                </div>
+                <div class="campo"><label>Nome Visível:</label><input type="text" id="cat-nome" required></div>
                 <button type="submit" id="btn-submit-cat" class="btn-salvar btn-categoria">+ Criar Categoria</button>
             </form>
             <div class="lista-admin" id="lista-categorias-admin"></div>
@@ -111,10 +101,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col campo">
-                        <label>Categoria:</label>
-                        <select id="categoria" required></select>
-                    </div>
+                    <div class="col campo"><label>Categoria:</label><select id="categoria" required></select></div>
                     <div class="col campo">
                         <label>Selo de Destaque:</label>
                         <select id="selo">
@@ -126,41 +113,18 @@
                     </div>
                 </div>
 
-                <div class="campo">
-                    <label>Nome do Produto:</label>
-                    <input type="text" id="titulo" required>
-                </div>
+                <div class="campo"><label>Nome do Produto:</label><input type="text" id="titulo" required></div>
                 
                 <div class="row">
-                    <div class="col campo">
-                        <label>Preço Estimado:</label>
-                        <input type="text" id="preco" placeholder="Ex: 1.500,00">
-                    </div>
-                    <div class="col campo">
-                        <label>Nota (1.0 a 5.0):</label>
-                        <input type="number" id="nota" step="0.1" min="1" max="5" value="4.8" required>
-                    </div>
+                    <div class="col campo"><label>Preço Estimado:</label><input type="text" id="preco"></div>
+                    <div class="col campo"><label>Nota (1.0 a 5.0):</label><input type="number" id="nota" step="0.1" min="1" max="5" value="4.8" required></div>
                 </div>
 
-                <div class="campo">
-                    <label>URL da Imagem:</label>
-                    <input type="url" id="foto" required>
-                </div>
-
-                <div class="campo">
-                    <label>Resumo Persuasivo (Gerado pela IA):</label>
-                    <textarea id="comentario" rows="3" required></textarea>
-                </div>
-
+                <div class="campo"><label>URL da Imagem:</label><input type="url" id="foto" required></div>
+                <div class="campo"><label>Resumo Persuasivo (Gerado pela IA):</label><textarea id="comentario" rows="3" required></textarea></div>
                 <div class="row">
-                    <div class="col campo">
-                        <label>Prós (Separe por vírgula):</label>
-                        <textarea id="pros" rows="3" required></textarea>
-                    </div>
-                    <div class="col campo">
-                        <label>Contras (Separe por vírgula):</label>
-                        <textarea id="contras" rows="3" required></textarea>
-                    </div>
+                    <div class="col campo"><label>Prós (Separe por vírgula):</label><textarea id="pros" rows="3" required></textarea></div>
+                    <div class="col campo"><label>Contras (Separe por vírgula):</label><textarea id="contras" rows="3" required></textarea></div>
                 </div>
 
                 <button type="submit" id="btn-submit-prod" class="btn-salvar">🚀 Salvar na Nuvem</button>
@@ -175,13 +139,11 @@
         </div>
     </div>
 
-    <!-- SDKs do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <script>
-        // Configuração do Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
             authDomain: "rankingdacompra.firebaseapp.com",
@@ -198,11 +160,9 @@
 
         const loginContent = document.getElementById('login-content');
         const adminContent = document.getElementById('admin-content');
-
         let editCatIndex = null;
         let editProdId = null;
 
-        // Recupera a chave da IA salva no navegador
         document.getElementById('gemini-key').value = localStorage.getItem('geminiApiKey') || '';
 
         function salvarChaveIA() {
@@ -232,7 +192,7 @@
         document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
 
         // ==========================================
-        // SISTEMA CORRIGIDO: MERCADO LIVRE + IA GEMINI (ACEITA CHAVE AQ E AIza)
+        // SISTEMA 100% CORRIGIDO (ML + GEMINI NOVO PADRÃO)
         // ==========================================
         async function buscarDadosML() {
             const url = document.getElementById('link').value;
@@ -250,7 +210,6 @@
             try {
                 let tituloML = '', precoML = '', fotoUrl = '', descText = '';
 
-                // Tenta Endpoint 1 (Items Gerais)
                 let resItem = await fetch(`https://api.mercadolibre.com/items/${idML}`);
                 let dataItem = await resItem.json();
 
@@ -258,44 +217,38 @@
                     tituloML = dataItem.title;
                     precoML = dataItem.price ? dataItem.price.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
                     fotoUrl = (dataItem.pictures && dataItem.pictures.length > 0) ? dataItem.pictures[0].secure_url : dataItem.thumbnail;
-                    
                     try {
                         let resDesc = await fetch(`https://api.mercadolibre.com/items/${idML}/description`);
                         let dataDesc = await resDesc.json();
                         descText = dataDesc.plain_text || "";
                     } catch(e) {}
                 } else {
-                    // Tenta Endpoint 2 (Produtos de Catálogo)
                     let resProd = await fetch(`https://api.mercadolibre.com/products/${idML}`);
                     let dataProd = await resProd.json();
-                    
                     if (!dataProd.error) {
                         tituloML = dataProd.name;
                         precoML = dataProd.buy_box_winner ? dataProd.buy_box_winner.price.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
                         fotoUrl = (dataProd.pictures && dataProd.pictures.length > 0) ? dataProd.pictures[0].url : '';
                     } else {
-                        return alert("Produto não encontrado publicamente no Mercado Livre.");
+                        return alert("Produto não encontrado no Mercado Livre.");
                     }
                 }
 
-                // Preenche a tela IMEDIATAMENTE com os dados do Mercado Livre
                 document.getElementById('titulo').value = tituloML || '';
                 document.getElementById('preco').value = precoML || '';
                 document.getElementById('foto').value = fotoUrl ? fotoUrl.replace('-I.jpg', '-O.jpg') : '';
 
-                // Verifica a IA (AGORA ACEITA QUALQUER CHAVE VÁLIDA)
-                if (geminiKey && geminiKey.length > 20) {
+                if (geminiKey && geminiKey.trim().length > 20) {
                     btn.innerText = "🤖 2/2 A Inteligência Artificial está escrevendo...";
-                    
                     const prompt = `Você é um copywriter especialista em e-commerce. Analise o produto "${tituloML}". Descrição técnica: "${descText.substring(0, 1500)}".
                     Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem usar blocos de código markdown (\`\`\`json):
                     {
-                        "comentario": "Crie um parágrafo persuasivo de 3 linhas dizendo por que este produto é uma excelente escolha.",
+                        "comentario": "Crie um parágrafo persuasivo de 3 linhas dizendo por que este produto é excelente.",
                         "pros": "Liste 3 prós fortes deste produto, separados APENAS por vírgula.",
                         "contras": "Liste 2 contras justos deste produto, separados APENAS por vírgula."
                     }`;
 
-                    const responseIA = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
+                    const responseIA = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey.trim()}`, {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({ contents: [{parts: [{text: prompt}]}] })
@@ -304,7 +257,8 @@
                     const dataIA = await responseIA.json();
                     
                     if (dataIA.error) {
-                        alert("⚠️ O Mercado Livre funcionou e puxou as fotos, mas a chave da IA foi recusada pelo Google. A chave pode estar inválida.");
+                        console.error("Erro da IA:", dataIA.error);
+                        alert("⚠️ O Google bloqueou o acesso à IA. Motivo: " + dataIA.error.message + "\n\nDICA: Se você acabou de criar a chave, aguarde uns 3 minutinhos e aperte o botão amarelo de novo. A chave demora um pouco para ativar lá nos servidores do Google!");
                     } else {
                         let textoIA = dataIA.candidates[0].content.parts[0].text;
                         textoIA = textoIA.replace(/```json/g, '').replace(/```/g, '').trim();
@@ -319,19 +273,15 @@
                         }
                     }
                 } else {
-                    alert("✅ Dados do Mercado Livre puxados! Cadastre uma chave válida da IA se quiser que ela escreva por você.");
+                    alert("✅ Dados do Mercado Livre puxados! Cadastre sua chave da IA se quiser os textos automáticos.");
                 }
             } catch (error) {
-                alert("Erro inesperado de rede. Verifique o console.");
-                console.error(error);
+                alert("Erro inesperado. Verifique o console.");
             } finally {
                 btn.innerText = "✨ Puxar Dados e Escrever com IA";
             }
         }
 
-        // ==========================================
-        // GERENCIAR CATEGORIAS E PRODUTOS (IGUAL)
-        // ==========================================
         function carregarCategorias() {
             let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [
                 { id: 'celulares', icone: '📱', nome: 'Celulares' },
