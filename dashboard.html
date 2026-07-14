@@ -71,10 +71,10 @@
             <div class="campo">
                 <label>Chave da API (Google Gemini):</label>
                 <div style="display: flex; gap: 10px;">
-                    <input type="password" id="gemini-key" placeholder="A chave correta começa com AIzaSy..." style="flex: 1;">
+                    <input type="password" id="gemini-key" placeholder="Cole a sua chave aqui (Ex: AQ.Ab... ou AIza...)" style="flex: 1;">
                     <button type="button" class="btn-ia" onclick="salvarChaveIA()">Salvar Chave no Navegador</button>
                 </div>
-                <span style="display:block; font-size:11px; color:#555; margin-top:5px;">Esta chave fica protegida no seu computador. Sem ela, apenas os dados do Mercado Livre serão carregados.</span>
+                <span style="display:block; font-size:11px; color:#555; margin-top:5px;">Esta chave fica protegida no seu computador para automatizar os textos.</span>
             </div>
         </div>
 
@@ -206,9 +206,9 @@
         document.getElementById('gemini-key').value = localStorage.getItem('geminiApiKey') || '';
 
         function salvarChaveIA() {
-            const key = document.getElementById('gemini-key').value;
+            const key = document.getElementById('gemini-key').value.trim();
             localStorage.setItem('geminiApiKey', key);
-            alert("✅ Chave da Inteligência Artificial salva!");
+            alert("✅ Chave da Inteligência Artificial salva com sucesso!");
         }
 
         auth.onAuthStateChanged(user => {
@@ -232,7 +232,7 @@
         document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
 
         // ==========================================
-        // SISTEMA ANTI-FALHA: MERCADO LIVRE + IA GEMINI
+        // SISTEMA CORRIGIDO: MERCADO LIVRE + IA GEMINI (ACEITA CHAVE AQ E AIza)
         // ==========================================
         async function buscarDadosML() {
             const url = document.getElementById('link').value;
@@ -283,8 +283,8 @@
                 document.getElementById('preco').value = precoML || '';
                 document.getElementById('foto').value = fotoUrl ? fotoUrl.replace('-I.jpg', '-O.jpg') : '';
 
-                // Verifica a IA
-                if (geminiKey && geminiKey.startsWith("AIzaSy")) {
+                // Verifica a IA (AGORA ACEITA QUALQUER CHAVE VÁLIDA)
+                if (geminiKey && geminiKey.length > 20) {
                     btn.innerText = "🤖 2/2 A Inteligência Artificial está escrevendo...";
                     
                     const prompt = `Você é um copywriter especialista em e-commerce. Analise o produto "${tituloML}". Descrição técnica: "${descText.substring(0, 1500)}".
@@ -304,7 +304,7 @@
                     const dataIA = await responseIA.json();
                     
                     if (dataIA.error) {
-                        alert("⚠️ O Mercado Livre funcionou e puxou as fotos, mas a IA falhou. Verifique se a sua chave do Gemini está correta.");
+                        alert("⚠️ O Mercado Livre funcionou e puxou as fotos, mas a chave da IA foi recusada pelo Google. A chave pode estar inválida.");
                     } else {
                         let textoIA = dataIA.candidates[0].content.parts[0].text;
                         textoIA = textoIA.replace(/```json/g, '').replace(/```/g, '').trim();
@@ -318,10 +318,8 @@
                             alert("⚠️ A IA enviou um texto fora do padrão. Os dados do Mercado Livre foram mantidos na tela.");
                         }
                     }
-                } else if (geminiKey) {
-                     alert("✅ O Mercado Livre funcionou! Porém, a chave de Inteligência Artificial informada não é válida (Ela precisa começar com AIzaSy).");
                 } else {
-                    alert("✅ Dados do Mercado Livre puxados! Você não cadastrou a chave da IA, então escreva a avaliação manualmente.");
+                    alert("✅ Dados do Mercado Livre puxados! Cadastre uma chave válida da IA se quiser que ela escreva por você.");
                 }
             } catch (error) {
                 alert("Erro inesperado de rede. Verifique o console.");
