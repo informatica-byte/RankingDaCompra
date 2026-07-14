@@ -14,6 +14,7 @@
         .campo { margin-bottom: 15px; }
         label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 13px; color: #444;}
         input, textarea, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: inherit; font-size: 14px;}
+        input:disabled { background-color: #e9ecef; cursor: not-allowed; }
         
         .btn-salvar { width: 100%; background-color: #00a650; color: white; border: none; padding: 15px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 10px; font-size: 16px; transition: 0.3s;}
         .btn-salvar:hover { background-color: #008a42;}
@@ -26,7 +27,13 @@
         .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
         .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
         .badge-cat { background: #ffe600; color: #333; padding: 4px 8px; border-radius: 4px; font-size: 11px; margin-right: 10px; font-weight: bold;}
-        .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
+        
+        /* Novos Botões de Ação */
+        .acoes { display: flex; gap: 8px; }
+        .btn-edit { background: #ffc107; color: #333; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px;}
+        .btn-edit:hover { background: #e0a800; }
+        .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px;}
+        .btn-del:hover { background: #c82333; }
 
         #admin-content { display: none; }
         #login-content { display: block; max-width: 400px; margin: 100px auto;}
@@ -58,8 +65,8 @@
             <form id="formCategoria">
                 <div class="row">
                     <div class="col campo">
-                        <label>ID Único (ex: celulares):</label>
-                        <input type="text" id="cat-id" required pattern="[a-zA-Z0-9_-]+">
+                        <label>ID Único (URL):</label>
+                        <input type="text" id="cat-id" required pattern="[a-zA-Z0-9_-]+" placeholder="ex: celulares">
                     </div>
                     <div class="col campo">
                         <label>Ícone (Emoji):</label>
@@ -70,7 +77,7 @@
                     <label>Nome Visível:</label>
                     <input type="text" id="cat-nome" placeholder="Ex: Celulares" required>
                 </div>
-                <button type="submit" class="btn-salvar btn-categoria">+ Criar Categoria</button>
+                <button type="submit" id="btn-submit-cat" class="btn-salvar btn-categoria">+ Criar Categoria</button>
             </form>
             <div class="lista-admin" id="lista-categorias-admin"></div>
         </div>
@@ -136,7 +143,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn-salvar">🚀 Salvar na Nuvem</button>
+                <button type="submit" id="btn-submit-prod" class="btn-salvar">🚀 Salvar na Nuvem</button>
             </form>
 
             <div class="lista-admin">
@@ -154,7 +161,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <script>
-        // Suas chaves do Firebase (Corrigidas)
+        // Suas chaves do Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
             authDomain: "rankingdacompra.firebaseapp.com",
@@ -172,6 +179,10 @@
         const loginContent = document.getElementById('login-content');
         const adminContent = document.getElementById('admin-content');
 
+        // Variáveis de controle de Edição
+        let editCatIndex = null;
+        let editProdId = null;
+
         auth.onAuthStateChanged(user => {
             if (user) {
                 loginContent.style.display = 'none';
@@ -186,16 +197,15 @@
 
         document.getElementById('formLogin').addEventListener('submit', (e) => {
             e.preventDefault();
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('senha').value;
-            auth.signInWithEmailAndPassword(email, senha).catch(error => alert("Erro: " + error.message));
+            auth.signInWithEmailAndPassword(document.getElementById('email').value, document.getElementById('senha').value)
+                .catch(error => alert("Erro: " + error.message));
         });
 
-        document.getElementById('btn-sair').addEventListener('click', () => {
-            auth.signOut();
-        });
+        document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
 
-        // Controle de Categorias
+        // ==========================================
+        // CONTROLE DE CATEGORIAS
+        // ==========================================
         function carregarCategorias() {
             let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [
                 { id: 'celulares', icone: '📱', nome: 'Celulares' },
@@ -205,45 +215,80 @@
             
             const select = document.getElementById('categoria');
             select.innerHTML = '';
-            categorias.forEach(cat => { select.innerHTML += `<option value="${cat.id}">${cat.icone} ${cat.nome}</option>`; });
-
             const listaCatAdmin = document.getElementById('lista-categorias-admin');
             listaCatAdmin.innerHTML = '';
-            categorias.forEach((cat, index) => {
-                listaCatAdmin.innerHTML += `<div class="item-admin"><span>${cat.icone} <b>${cat.nome}</b></span> <button class="btn-del" onclick="deletarCategoria(${index})">X</button></div>`;
+
+            categorias.forEach((cat, index) => { 
+                select.innerHTML += `<option value="${cat.id}">${cat.icone} ${cat.nome}</option>`; 
+                listaCatAdmin.innerHTML += `
+                    <div class="item-admin">
+                        <span>${cat.icone} <b>${cat.nome}</b></span> 
+                        <div class="acoes">
+                            <button class="btn-edit" onclick="editarCategoria(${index})">✎</button>
+                            <button class="btn-del" onclick="deletarCategoria(${index})">X</button>
+                        </div>
+                    </div>`;
             });
         }
 
         document.getElementById('formCategoria').addEventListener('submit', function(e) {
             e.preventDefault();
-            const novaCat = {
+            let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [];
+            
+            const catInfo = {
                 id: document.getElementById('cat-id').value.toLowerCase().replace(/\s+/g, ''),
                 icone: document.getElementById('cat-icone').value,
                 nome: document.getElementById('cat-nome').value
             };
-            let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [
-                { id: 'celulares', icone: '📱', nome: 'Celulares' },
-                { id: 'tvs', icone: '📺', nome: 'TVs e Telas' },
-                { id: 'som', icone: '🎧', nome: 'Áudio' }
-            ];
-            if(categorias.some(c => c.id === novaCat.id)) return alert("ID já existe!");
-            categorias.push(novaCat);
+
+            if (editCatIndex !== null) {
+                // Atualizando
+                categorias[editCatIndex].icone = catInfo.icone;
+                categorias[editCatIndex].nome = catInfo.nome;
+                editCatIndex = null;
+                document.getElementById('cat-id').disabled = false;
+                document.getElementById('btn-submit-cat').innerText = "+ Criar Categoria";
+                alert("Categoria atualizada!");
+            } else {
+                // Criando Nova
+                if(categorias.some(c => c.id === catInfo.id)) return alert("ID já existe!");
+                categorias.push(catInfo);
+                alert("Categoria criada!");
+            }
+
             localStorage.setItem('minhasCategorias', JSON.stringify(categorias));
             this.reset();
             carregarCategorias();
         });
 
-        function deletarCategoria(index) {
+        function editarCategoria(index) {
             let categorias = JSON.parse(localStorage.getItem('minhasCategorias'));
-            categorias.splice(index, 1);
-            localStorage.setItem('minhasCategorias', JSON.stringify(categorias));
-            carregarCategorias();
+            let cat = categorias[index];
+            document.getElementById('cat-id').value = cat.id;
+            document.getElementById('cat-id').disabled = true; // Impede mudar a ID para não quebrar produtos
+            document.getElementById('cat-icone').value = cat.icone;
+            document.getElementById('cat-nome').value = cat.nome;
+            
+            editCatIndex = index;
+            document.getElementById('btn-submit-cat').innerText = "💾 Salvar Edição";
+            window.scrollTo(0, 0); // Sobe a tela
         }
 
-        // Controle de Produtos no Firebase
+        function deletarCategoria(index) {
+            if(confirm("Deseja mesmo apagar esta categoria?")) {
+                let categorias = JSON.parse(localStorage.getItem('minhasCategorias'));
+                categorias.splice(index, 1);
+                localStorage.setItem('minhasCategorias', JSON.stringify(categorias));
+                carregarCategorias();
+            }
+        }
+
+        // ==========================================
+        // CONTROLE DE PRODUTOS NO FIREBASE
+        // ==========================================
         document.getElementById('formProduto').addEventListener('submit', (e) => {
             e.preventDefault();
-            const novoProduto = {
+            const dadosProduto = {
                 categoria: document.getElementById('categoria').value,
                 titulo: document.getElementById('titulo').value,
                 link: document.getElementById('link').value,
@@ -253,18 +298,35 @@
                 preco: document.getElementById('preco').value,
                 nota: document.getElementById('nota').value,
                 pros: document.getElementById('pros').value,
-                contras: document.getElementById('contras').value,
-                dataCadastro: firebase.firestore.FieldValue.serverTimestamp()
+                contras: document.getElementById('contras').value
             };
 
-            db.collection("produtos").add(novoProduto)
-                .then(() => {
-                    alert('Salvo na nuvem!');
-                    document.getElementById('formProduto').reset();
-                    document.getElementById('nota').value = "4.8";
-                })
-                .catch(error => alert("Erro ao salvar: " + error.message));
+            if (editProdId !== null) {
+                // Modo Edição
+                db.collection("produtos").doc(editProdId).update(dadosProduto)
+                    .then(() => {
+                        alert('Produto atualizado com sucesso!');
+                        resetarFormProduto();
+                    })
+                    .catch(error => alert("Erro ao atualizar: " + error.message));
+            } else {
+                // Modo Criação
+                dadosProduto.dataCadastro = firebase.firestore.FieldValue.serverTimestamp();
+                db.collection("produtos").add(dadosProduto)
+                    .then(() => {
+                        alert('Salvo na nuvem com sucesso!');
+                        resetarFormProduto();
+                    })
+                    .catch(error => alert("Erro ao salvar: " + error.message));
+            }
         });
+
+        function resetarFormProduto() {
+            document.getElementById('formProduto').reset();
+            document.getElementById('nota').value = "4.8";
+            editProdId = null;
+            document.getElementById('btn-submit-prod').innerText = "🚀 Salvar na Nuvem";
+        }
 
         function carregarProdutos() {
             db.collection("produtos").orderBy("dataCadastro", "desc").onSnapshot(snapshot => {
@@ -275,15 +337,41 @@
                     container.innerHTML += `
                         <div class="item-admin">
                             <div><span class="badge-cat">${prod.categoria}</span>${prod.titulo}</div>
-                            <button class="btn-del" onclick="deletarProduto('${doc.id}')">X</button>
+                            <div class="acoes">
+                                <button class="btn-edit" onclick="editarProduto('${doc.id}')">✎</button>
+                                <button class="btn-del" onclick="deletarProduto('${doc.id}')">X</button>
+                            </div>
                         </div>
                     `;
                 });
             });
         }
 
+        function editarProduto(id) {
+            // Busca os dados do produto no Firebase
+            db.collection("produtos").doc(id).get().then(doc => {
+                if (doc.exists) {
+                    const prod = doc.data();
+                    document.getElementById('categoria').value = prod.categoria;
+                    document.getElementById('selo').value = prod.selo || "";
+                    document.getElementById('titulo').value = prod.titulo;
+                    document.getElementById('preco').value = prod.preco || "";
+                    document.getElementById('nota').value = prod.nota || "4.8";
+                    document.getElementById('link').value = prod.link;
+                    document.getElementById('foto').value = prod.foto;
+                    document.getElementById('comentario').value = prod.comentario;
+                    document.getElementById('pros').value = prod.pros || "";
+                    document.getElementById('contras').value = prod.contras || "";
+
+                    editProdId = id;
+                    document.getElementById('btn-submit-prod').innerText = "💾 Salvar Edição do Produto";
+                    window.scrollTo(0, document.getElementById('formProduto').offsetTop - 20); // Rola a página até o formulário
+                }
+            }).catch(error => alert("Erro ao buscar dados: " + error.message));
+        }
+
         function deletarProduto(id) {
-            if(confirm("Apagar este produto da nuvem?")) {
+            if(confirm("Tem certeza que deseja apagar este produto da nuvem?")) {
                 db.collection("produtos").doc(id).delete();
             }
         }
