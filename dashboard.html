@@ -24,9 +24,11 @@
         .btn-login:hover { background-color: #2968c8; }
         .btn-sair { background-color: #f23d4f; margin-top: 20px;}
         
-        /* Botão Magico do ML */
-        .btn-magico { background-color: #ffe600; color: #2d3277; border: none; padding: 8px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; margin-top: 5px; transition: 0.3s; display: inline-block;}
+        /* Botão Magico do ML e IA */
+        .btn-magico { background-color: #ffe600; color: #2d3277; border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 5px; transition: 0.3s; display: inline-block; width: 100%;}
         .btn-magico:hover { background-color: #e6cf00; }
+        .btn-ia { background-color: #3483fa; color: white; padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;}
+        .btn-ia:hover { background-color: #2968c8; }
         
         .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
         .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
@@ -63,6 +65,19 @@
     <!-- DASHBOARD -->
     <div id="admin-content">
         
+        <!-- CONFIGURAÇÃO DA IA (Segura e escondida do código-fonte) -->
+        <div class="painel" style="background-color: #e6f0ff; border: 2px solid #3483fa;">
+            <h2>🤖 Configuração da Inteligência Artificial</h2>
+            <div class="campo">
+                <label>Sua Chave da API (Google Gemini):</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="password" id="gemini-key" placeholder="Cole sua chave gerada no AI Studio aqui" style="flex: 1;">
+                    <button type="button" class="btn-ia" onclick="salvarChaveIA()">Salvar Chave no Navegador</button>
+                </div>
+                <span style="display:block; font-size:11px; color:#555; margin-top:5px;">Ao salvar, a chave fica protegida apenas no seu computador.</span>
+            </div>
+        </div>
+
         <div class="painel">
             <h2>🏷️ Categorias</h2>
             <form id="formCategoria">
@@ -89,11 +104,10 @@
             <h2>📦 Cadastro de Produto</h2>
             <form id="formProduto">
                 
-                <div class="campo" style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px dashed #ccc;">
-                    <label>1. Cole o Link do Mercado Livre aqui primeiro:</label>
+                <div class="campo" style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 2px dashed #ffe600;">
+                    <label>1. Cole o Link do Mercado Livre aqui:</label>
                     <input type="url" id="link" placeholder="https://produto.mercadolivre.com.br/..." required>
-                    <button type="button" class="btn-magico" onclick="buscarDadosML()">🔍 Autocompletar Dados do Produto</button>
-                    <span style="display:block; font-size:11px; color:#666; margin-top:5px;">O sistema tentará puxar título, preço e foto automaticamente.</span>
+                    <button type="button" id="btn-magico" class="btn-magico" onclick="buscarDadosML()">✨ Puxar Dados e Escrever com IA</button>
                 </div>
 
                 <div class="row">
@@ -134,18 +148,18 @@
                 </div>
 
                 <div class="campo">
-                    <label>Comentário / Resumo:</label>
-                    <textarea id="comentario" rows="2" required></textarea>
+                    <label>Resumo Persuasivo (Gerado pela IA):</label>
+                    <textarea id="comentario" rows="3" required></textarea>
                 </div>
 
                 <div class="row">
                     <div class="col campo">
                         <label>Prós (Separe por vírgula):</label>
-                        <textarea id="pros" rows="2" placeholder="Ex: Boa câmera, bateria dura" required></textarea>
+                        <textarea id="pros" rows="3" required></textarea>
                     </div>
                     <div class="col campo">
                         <label>Contras (Separe por vírgula):</label>
-                        <textarea id="contras" rows="2" placeholder="Ex: Não vem carregador" required></textarea>
+                        <textarea id="contras" rows="3" required></textarea>
                     </div>
                 </div>
 
@@ -167,7 +181,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <script>
-        // CONFIGURAÇÃO EXATA DO SEU FIREBASE
+        // Configuração do Firebase (Apenas a estrutura de comunicação, perfeitamente seguro)
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
             authDomain: "rankingdacompra.firebaseapp.com",
@@ -187,6 +201,15 @@
 
         let editCatIndex = null;
         let editProdId = null;
+
+        // Recupera a chave da IA salva no navegador
+        document.getElementById('gemini-key').value = localStorage.getItem('geminiApiKey') || '';
+
+        function salvarChaveIA() {
+            const key = document.getElementById('gemini-key').value;
+            localStorage.setItem('geminiApiKey', key);
+            alert("✅ Chave salva no seu navegador com sucesso!");
+        }
 
         auth.onAuthStateChanged(user => {
             if (user) {
@@ -208,24 +231,21 @@
 
         document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
 
-        // AUTOCOMPLETAR MERCADO LIVRE
+        // ==========================================
+        // MAGIA DUPLA: MERCADO LIVRE + IA GEMINI
+        // ==========================================
         async function buscarDadosML() {
             const url = document.getElementById('link').value;
-            if (!url) {
-                alert("Por favor, cole o link do Mercado Livre primeiro.");
-                return;
-            }
+            const geminiKey = localStorage.getItem('geminiApiKey');
+            
+            if (!url) return alert("Por favor, cole o link do Mercado Livre primeiro.");
 
             const match = url.match(/MLB[-_]?\d+/i);
-            
-            if (!match) {
-                alert("Não foi possível encontrar o código do produto (MLB...) nesse link. Você precisará preencher manualmente.");
-                return;
-            }
+            if (!match) return alert("Código do produto (MLB...) não encontrado no link.");
 
             const idML = match[0].replace(/[-_]/g, '');
-            const btn = document.querySelector('.btn-magico');
-            btn.innerText = "⏳ Buscando...";
+            const btn = document.getElementById('btn-magico');
+            btn.innerText = "⏳ 1/2 Puxando dados do Mercado Livre...";
 
             try {
                 let response = await fetch(`https://api.mercadolibre.com/items/${idML}`);
@@ -237,38 +257,75 @@
                 }
 
                 if (data && !data.error) {
-                    document.getElementById('titulo').value = data.title || data.name || '';
+                    const tituloML = data.title || data.name || '';
+                    document.getElementById('titulo').value = tituloML;
+                    
                     if (data.price) {
                         document.getElementById('preco').value = data.price.toLocaleString('pt-BR', {minimumFractionDigits: 2});
                     }
 
                     let fotoUrl = '';
-                    if (data.pictures && data.pictures.length > 0) {
-                        fotoUrl = data.pictures[0].secure_url;
-                    } else if (data.thumbnail) {
-                        fotoUrl = data.thumbnail.replace('-I.jpg', '-O.jpg');
-                    }
+                    if (data.pictures && data.pictures.length > 0) { fotoUrl = data.pictures[0].secure_url; } 
+                    else if (data.thumbnail) { fotoUrl = data.thumbnail.replace('-I.jpg', '-O.jpg'); }
                     document.getElementById('foto').value = fotoUrl;
 
-                    alert("✅ Dados encontrados com sucesso! Verifique os campos e preencha os prós/contras.");
+                    if (geminiKey) {
+                        btn.innerText = "🤖 2/2 A Inteligência Artificial está escrevendo...";
+                        
+                        let descText = "";
+                        try {
+                            let resDesc = await fetch(`https://api.mercadolibre.com/items/${idML}/description`);
+                            let dataDesc = await resDesc.json();
+                            descText = dataDesc.plain_text || "Produto sem descrição detalhada.";
+                        } catch(e) {}
+
+                        const prompt = `Você é um copywriter especialista em e-commerce. Analise o produto "${tituloML}". Descrição técnica: "${descText.substring(0, 1500)}".
+                        Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem usar blocos de código markdown (\`\`\`json):
+                        {
+                            "comentario": "Crie um parágrafo persuasivo de 3 linhas dizendo por que este produto é uma excelente escolha.",
+                            "pros": "Liste 3 prós fortes deste produto, separados APENAS por vírgula.",
+                            "contras": "Liste 2 contras justos deste produto, separados APENAS por vírgula."
+                        }`;
+
+                        const responseIA = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({ contents: [{parts: [{text: prompt}]}] })
+                        });
+
+                        const dataIA = await responseIA.json();
+                        let textoIA = dataIA.candidates[0].content.parts[0].text;
+                        
+                        textoIA = textoIA.replace(/```json/g, '').replace(/```/g, '').trim();
+                        const resultadoJson = JSON.parse(textoIA);
+
+                        document.getElementById('comentario').value = resultadoJson.comentario;
+                        document.getElementById('pros').value = resultadoJson.pros;
+                        document.getElementById('contras').value = resultadoJson.contras;
+
+                        alert("✨ Mágica concluída! Dados preenchidos e textos escritos pela IA.");
+                    } else {
+                        alert("✅ Dados do Mercado Livre puxados! Você precisa adicionar sua chave da IA no topo da página se quiser os textos automáticos.");
+                    }
                 } else {
-                    alert("Produto não encontrado publicamente. Preencha manualmente.");
+                    alert("Produto não encontrado publicamente.");
                 }
             } catch (error) {
-                alert("Erro ao conectar com o Mercado Livre. Tente preencher manualmente.");
+                alert("Erro ao executar a automação. Preencha manualmente.");
             } finally {
-                btn.innerText = "🔍 Autocompletar Dados do Produto";
+                btn.innerText = "✨ Puxar Dados e Escrever com IA";
             }
         }
 
-        // GERENCIAR CATEGORIAS
+        // ==========================================
+        // GERENCIAR CATEGORIAS E PRODUTOS
+        // ==========================================
         function carregarCategorias() {
             let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [
                 { id: 'celulares', icone: '📱', nome: 'Celulares' },
                 { id: 'tvs', icone: '📺', nome: 'TVs e Telas' },
                 { id: 'som', icone: '🎧', nome: 'Áudio' }
             ];
-            
             const select = document.getElementById('categoria');
             select.innerHTML = '';
             const listaCatAdmin = document.getElementById('lista-categorias-admin');
@@ -280,8 +337,8 @@
                     <div class="item-admin">
                         <span>${cat.icone} <b>${cat.nome}</b></span> 
                         <div class="acoes">
-                            <button class="btn-edit" onclick="editarCategoria(${index})">✎</button>
-                            <button class="btn-del" onclick="deletarCategoria(${index})">X</button>
+                            <button type="button" class="btn-edit" onclick="editarCategoria(${index})">✎</button>
+                            <button type="button" class="btn-del" onclick="deletarCategoria(${index})">X</button>
                         </div>
                     </div>`;
             });
@@ -290,7 +347,6 @@
         document.getElementById('formCategoria').addEventListener('submit', function(e) {
             e.preventDefault();
             let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [];
-            
             const catInfo = {
                 id: document.getElementById('cat-id').value.toLowerCase().replace(/\s+/g, ''),
                 icone: document.getElementById('cat-icone').value,
@@ -303,11 +359,9 @@
                 editCatIndex = null;
                 document.getElementById('cat-id').disabled = false;
                 document.getElementById('btn-submit-cat').innerText = "+ Criar Categoria";
-                alert("Categoria atualizada!");
             } else {
                 if(categorias.some(c => c.id === catInfo.id)) return alert("ID já existe!");
                 categorias.push(catInfo);
-                alert("Categoria criada!");
             }
 
             localStorage.setItem('minhasCategorias', JSON.stringify(categorias));
@@ -322,10 +376,9 @@
             document.getElementById('cat-id').disabled = true; 
             document.getElementById('cat-icone').value = cat.icone;
             document.getElementById('cat-nome').value = cat.nome;
-            
             editCatIndex = index;
             document.getElementById('btn-submit-cat').innerText = "💾 Salvar Edição";
-            window.scrollTo(0, 0); 
+            window.scrollTo(0, 200); 
         }
 
         function deletarCategoria(index) {
@@ -337,7 +390,6 @@
             }
         }
 
-        // GERENCIAR PRODUTOS NO FIREBASE
         document.getElementById('formProduto').addEventListener('submit', (e) => {
             e.preventDefault();
             const dadosProduto = {
@@ -355,19 +407,13 @@
 
             if (editProdId !== null) {
                 db.collection("produtos").doc(editProdId).update(dadosProduto)
-                    .then(() => {
-                        alert('Produto atualizado com sucesso!');
-                        resetarFormProduto();
-                    })
-                    .catch(error => alert("Erro ao atualizar: " + error.message));
+                    .then(() => { alert('Atualizado!'); resetarFormProduto(); })
+                    .catch(error => alert("Erro: " + error.message));
             } else {
                 dadosProduto.dataCadastro = firebase.firestore.FieldValue.serverTimestamp();
                 db.collection("produtos").add(dadosProduto)
-                    .then(() => {
-                        alert('Salvo na nuvem com sucesso!');
-                        resetarFormProduto();
-                    })
-                    .catch(error => alert("Erro ao salvar: " + error.message));
+                    .then(() => { alert('Salvo!'); resetarFormProduto(); })
+                    .catch(error => alert("Erro: " + error.message));
             }
         });
 
@@ -388,8 +434,8 @@
                         <div class="item-admin">
                             <div><span class="badge-cat">${prod.categoria}</span>${prod.titulo}</div>
                             <div class="acoes">
-                                <button class="btn-edit" onclick="editarProduto('${doc.id}')">✎</button>
-                                <button class="btn-del" onclick="deletarProduto('${doc.id}')">X</button>
+                                <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')">✎</button>
+                                <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')">X</button>
                             </div>
                         </div>
                     `;
@@ -416,13 +462,11 @@
                     document.getElementById('btn-submit-prod').innerText = "💾 Salvar Edição";
                     window.scrollTo(0, document.getElementById('formProduto').offsetTop - 20);
                 }
-            }).catch(error => alert("Erro: " + error.message));
+            });
         }
 
         function deletarProduto(id) {
-            if(confirm("Tem certeza que deseja apagar este produto da nuvem?")) {
-                db.collection("produtos").doc(id).delete();
-            }
+            if(confirm("Apagar este produto?")) db.collection("produtos").doc(id).delete();
         }
     </script>
 </body>
