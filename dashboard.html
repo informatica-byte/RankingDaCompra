@@ -157,7 +157,8 @@
         });
 
         const ai = getAI(aiApp, { backend: new GoogleAIBackend() });
-        const model = getGenerativeModel(ai, { model: "gemini-3.5-flash" });
+        // Modelo leve para reduzir recusas temporárias por alta demanda.
+        const model = getGenerativeModel(ai, { model: "gemini-3.1-flash-lite" });
 
         window.preencherComIA = async ({ produto, categorias }) => {
             const categoriasPermitidas = categorias.map(cat => `${cat.id}: ${cat.nome}`).join("; ");
