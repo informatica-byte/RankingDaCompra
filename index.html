@@ -122,11 +122,48 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        function escapeHtml(texto) {
+            if (texto === undefined || texto === null) return '';
+            return String(texto)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function urlSegura(url) {
+            try {
+                const urlValidada = new URL(String(url || ''), window.location.origin);
+                return ['http:', 'https:'].includes(urlValidada.protocol) ? urlValidada.href : '#';
+            } catch (e) {
+                return '#';
+            }
+        }
+
         function gerarEstrelas(nota) {
             const notaNum = parseFloat(nota) || 5;
             let estrelasHtml = '';
             for(let i=1; i<=5; i++) { estrelasHtml += i <= Math.round(notaNum) ? '★' : '☆'; }
             return `${estrelasHtml} <span style="color:#555; font-size:12px; font-weight:normal;">(${notaNum})</span>`;
+        }
+
+        async function atualizarPrecoProduto(produto, elementoId) {
+            const codigo = String(produto.link || '').match(/MLB[-_]?\d+/i);
+            if (!codigo) return;
+
+            try {
+                const resposta = await fetch(`https://api.mercadolibre.com/items/${codigo[0].replace(/[-_]/g, '')}`);
+                if (!resposta.ok) return;
+                const dados = await resposta.json();
+                if (typeof dados.price !== 'number') return;
+
+                const elemento = document.getElementById(elementoId);
+                if (elemento) elemento.textContent = `💰 R$ ${dados.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            } catch (erro) {
+                // Mantém o último preço salvo se o Mercado Livre estiver indisponível.
+                console.warn('Não foi possível atualizar o preço do produto.', erro);
+            }
         }
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -158,33 +195,35 @@
                       return;
                   }
 
+                  const produtos = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+                      .sort((a, b) => (Number(a.ranking) || 999) - (Number(b.ranking) || 999))
+                      .slice(0, 10);
                   listaProdutos.innerHTML = '';
-                  let index = 1;
 
-                  querySnapshot.forEach((doc) => {
-                      const produto = doc.data();
-                      const prosList = produto.pros ? produto.pros.split(',').map(i => `<li>${i.trim()}</li>`).join('') : '';
-                      const consList = produto.contras ? produto.contras.split(',').map(i => `<li>${i.trim()}</li>`).join('') : '';
-                      const precoExibicao = produto.preco ? `Est. R$ ${produto.preco}` : 'Ver Preço';
+                  produtos.forEach((produto, index) => {
+                      const prosList = produto.pros ? produto.pros.split(',').map(i => `<li>${escapeHtml(i.trim())}</li>`).join('') : '';
+                      const consList = produto.contras ? produto.contras.split(',').map(i => `<li>${escapeHtml(i.trim())}</li>`).join('') : '';
+                      const precoExibicao = produto.preco ? `Est. R$ ${escapeHtml(produto.preco)}` : 'Ver Preço';
                       
                       // TRAVA DE SEGURANÇA: Usa o link de afiliado. Se não existir, usa o link normal.
-                      const linkComprar = produto.linkAfiliado ? produto.linkAfiliado : produto.link;
+                      const linkComprar = urlSegura(produto.linkAfiliado || produto.link);
+                      const foto = urlSegura(produto.foto);
 
                       listaProdutos.innerHTML += `
                           <div class="card">
                               <div class="card-body">
                                   <div class="img-container">
-                                      <span class="badge">#${index} ${produto.selo ? ' | ' + produto.selo : ''}</span>
-                                      <img src="${produto.foto}" alt="${produto.titulo}">
+                                      <span class="badge">#${index + 1}${produto.selo ? ' | ' + escapeHtml(produto.selo) : ''}</span>
+                                      <img src="${foto}" alt="${escapeHtml(produto.titulo)}">
                                   </div>
                                   <div class="info-container">
-                                      <h3>${produto.titulo}</h3>
+                                      <h3>${escapeHtml(produto.titulo)}</h3>
                                       <div class="meta-info">
                                           <div class="estrelas">${gerarEstrelas(produto.nota)}</div>
-                                          <div class="preco-ref">💰 ${precoExibicao}</div>
+                                          <div class="preco-ref" id="preco-${produto.id}">💰 ${precoExibicao}</div>
                                       </div>
-                                      <p class="comentario">${produto.comentario}</p>
-                                      <a href="${linkComprar}" target="_blank" class="btn-comprar">Ver Oferta no Mercado Livre</a>
+                                      <p class="comentario">${escapeHtml(produto.comentario)}</p>
+                                      <a href="${linkComprar}" target="_blank" rel="noopener noreferrer" class="btn-comprar">Ver Oferta no Mercado Livre</a>
                                   </div>
                               </div>
                               <details>
@@ -196,7 +235,7 @@
                               </details>
                           </div>
                       `;
-                      index++;
+                      atualizarPrecoProduto(produto, `preco-${produto.id}`);
                   });
               })
               .catch((error) => {
@@ -218,7 +257,7 @@
                 grid.innerHTML = '';
                 querySnapshot.forEach((doc) => {
                     const cat = doc.data();
-                    grid.innerHTML += `<a href="?cat=${doc.id}" class="cat-card"><span class="cat-icon">${cat.icone}</span>${cat.nome}</a>`;
+                    grid.innerHTML += `<a href="?cat=${encodeURIComponent(doc.id)}" class="cat-card"><span class="cat-icon">${escapeHtml(cat.icone)}</span>${escapeHtml(cat.nome)}</a>`;
                 });
             }).catch(error => {
                 grid.innerHTML = '<div class="mensagem-vazia">Erro ao carregar as categorias.</div>';
