@@ -1,269 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranking da Compra - Top 10 Melhores Produtos</title>
-    <style>
-        body { font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #f4f6f9; margin: 0; color: #333; line-height: 1.6; }
-        header { background-color: #fff; padding: 15px 20px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; border-bottom: 4px solid #ffe600; }
-        header h1 { margin: 0; font-size: 22px; font-weight: 800; }
-        header a.logo { text-decoration: none; color: #2d3277; }
-        
-        .container { max-width: 900px; margin: 30px auto; padding: 0 15px; min-height: 75vh;}
-        .disclaimer { background: #eef2f5; padding: 12px 15px; border-radius: 8px; font-size: 13px; margin-bottom: 25px; border-left: 4px solid #3483fa; color: #555;}
-        
-        #secao-home { display: block; }
-        .grid-categorias { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; margin-top: 20px; }
-        .cat-card { background: white; border: 1px solid #eaeaea; border-radius: 12px; padding: 25px 15px; text-align: center; text-decoration: none; color: #333; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center;}
-        .cat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: #3483fa; color: #3483fa;}
-        .cat-icon { font-size: 38px; margin-bottom: 12px; }
-
-        #secao-produtos { display: none; }
-        .topo-lista { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ffe600; padding-bottom: 10px; margin-bottom: 20px; }
-        .titulo-categoria { margin: 0; text-transform: capitalize; color: #2d3277;}
-        .btn-voltar { text-decoration: none; color: #3483fa; font-weight: bold; font-size: 14px; background: #eef2f5; padding: 8px 12px; border-radius: 6px;}
-        .btn-voltar:hover { background: #dce4eb; }
-        
-        .card { background: white; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid #eaeaea; overflow: hidden; transition: 0.3s;}
-        .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
-        .card-body { display: flex; flex-wrap: wrap; padding: 25px; gap: 20px; align-items: center; }
-        
-        .img-container { flex: 1; min-width: 180px; text-align: center; position: relative; }
-        .img-container img { max-width: 100%; height: 200px; object-fit: contain; }
-        .badge { position: absolute; top: -10px; left: -10px; background: #2d3277; color: white; padding: 5px 12px; font-size: 12px; font-weight: bold; border-radius: 6px;}
-        
-        .info-container { flex: 2; min-width: 250px; }
-        .info-container h3 { font-size: 20px; margin: 0 0 8px 0; color: #111; }
-        
-        .meta-info { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; font-size: 14px; }
-        .estrelas { color: #f5b50a; font-weight: bold; letter-spacing: 2px;}
-        .preco-ref { background: #e6f0ff; color: #0056d3; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 13px;}
-
-        .comentario { color: #555; font-size: 15px; margin-bottom: 18px; line-height: 1.5; border-left: 3px solid #eaeaea; padding-left: 10px;}
-        .btn-comprar { display: block; background-color: #3483fa; color: white; text-decoration: none; padding: 14px 20px; border-radius: 6px; font-weight: bold; font-size: 16px; text-align: center; transition: 0.3s; width: 100%; box-sizing: border-box;}
-        .btn-comprar:hover { background-color: #2968c8; transform: scale(1.02); }
-
-        details { border-top: 1px solid #eaeaea; background: #fafbfc; }
-        summary { padding: 15px 25px; font-weight: 600; cursor: pointer; color: #555; display: flex; justify-content: space-between; font-size: 14px;}
-        summary::-webkit-details-marker { display: none; }
-        summary::after { content: '▼'; font-size: 12px; color: #888; transition: 0.3s;}
-        details[open] summary::after { transform: rotate(180deg); }
-        .details-content { padding: 0 25px 25px 25px; display: flex; gap: 20px; flex-wrap: wrap; }
-        .pros, .cons { flex: 1; min-width: 200px; background: white; padding: 15px; border-radius: 8px; border: 1px solid #eaeaea; }
-        .pros h4 { margin: 0 0 10px 0; color: #00a650; font-size: 14px;}
-        .cons h4 { margin: 0 0 10px 0; color: #f23d4f; font-size: 14px;}
-        .pros ul, .cons ul { margin: 0; padding-left: 20px; font-size: 13px; color: #444;}
-        
-        .mensagem-vazia { text-align: center; color: #666; font-size: 16px; padding: 40px; background: white; border-radius: 8px; border: 1px dashed #ccc;}
-        .carregando { text-align: center; padding: 40px; font-weight: bold; color: #3483fa; }
-
-        footer { background: #2d3277; color: white; text-align: center; padding: 20px; margin-top: 40px; font-size: 13px;}
-
-        @media (max-width: 600px) {
-            .card-body { flex-direction: column; text-align: center; padding: 15px;}
-            .info-container { min-width: 100%; }
-            .badge { top: 0; left: 0; border-radius: 0 0 8px 0; }
-            .meta-info { justify-content: center; }
-            .comentario { border-left: none; padding-left: 0; }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Rankings independentes, comparativos claros e ofertas selecionadas para você comprar melhor.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ranking da Compra | Compre melhor">
+  <meta property="og:description" content="Comparativos honestos, prós, contras e ofertas atualizadas.">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="theme-color" content="#0f3d2e">
+  <link rel="canonical" id="canonical" href="https://rankingdacompra.com.br/">
+  <title>Ranking da Compra | Melhores produtos para comprar</title>
+  <style>
+    :root{--ink:#11221d;--green:#116149;--lime:#d9f99d;--cream:#fbfaf5;--muted:#66746d;--line:#dfe7e2;--blue:#1769e0;--card:#fff;--shadow:0 15px 40px rgba(22,47,36,.09)}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.5}a{color:inherit}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+    header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.bar{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:900;text-decoration:none;font-size:1.15rem;color:var(--green)}nav{display:flex;gap:18px;align-items:center}nav a{text-decoration:none;color:#405048;font-size:.92rem;font-weight:700}.nav-cta{background:var(--green);color:#fff;padding:9px 14px;border-radius:9px}
+    .hero{padding:64px 0 40px;background:radial-gradient(circle at 85% 5%,#e5f9c4 0,transparent 32%),#f4f8f2}.eyebrow{font-size:.75rem;font-weight:900;letter-spacing:.09em;color:var(--green);text-transform:uppercase}.hero h1{font-size:clamp(2rem,5vw,4rem);line-height:1.06;letter-spacing:-.05em;max-width:800px;margin:12px 0 18px}.hero p{max-width:650px;color:#4d5b54;font-size:1.08rem}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.button{border:0;border-radius:9px;padding:13px 18px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}.primary{background:var(--green);color:white}.secondary{background:white;border:1px solid var(--line);color:var(--ink)}
+    main{padding:38px 0 64px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:0 0 16px}.section-head h2{margin:0;font-size:1.6rem;letter-spacing:-.03em}.section-head p{margin:0;color:var(--muted);font-size:.9rem}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}.category{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;text-decoration:none;min-height:145px;display:flex;flex-direction:column;justify-content:space-between;transition:.2s}.category:hover,.product-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#bad6c6}.category .icon{font-size:2rem}.category strong{font-size:1.05rem}
+    .products{display:grid;gap:16px}.product-card{display:grid;grid-template-columns:150px 1fr;gap:20px;background:var(--card);border:1px solid var(--line);padding:16px;border-radius:14px;text-decoration:none;transition:.2s}.product-card img{width:150px;height:140px;object-fit:contain;border-radius:9px;background:#fafcfb}.rank{font-size:.78rem;font-weight:900;color:var(--green);text-transform:uppercase}.product-card h3{margin:5px 0;font-size:1.12rem;line-height:1.28}.product-card p{margin:0;color:var(--muted);font-size:.92rem}.product-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}.rating{color:#b06a00;font-weight:800}.price{background:#eaf4ff;color:#075cbf;border-radius:6px;padding:4px 8px;font-size:.84rem;font-weight:800}.badge{background:#eaf7d8;color:#33620f;border-radius:6px;padding:4px 8px;font-size:.75rem;font-weight:800}
+    .notice{background:#fff7d4;border:1px solid #f0db8a;border-radius:10px;padding:14px 16px;margin:24px 0;color:#5e4c12;font-size:.87rem}.empty{padding:34px;text-align:center;background:white;border:1px dashed #b9c6bf;border-radius:12px;color:var(--muted)}.loading{padding:28px;color:var(--muted)}
+    .crumb{font-size:.86rem;color:var(--muted);margin-bottom:18px}.crumb a{color:var(--green)}.detail{background:#fff;border:1px solid var(--line);border-radius:18px;padding:clamp(20px,4vw,42px)}.detail-top{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.2fr);gap:36px}.detail-img{width:100%;max-height:420px;object-fit:contain;background:#fbfcfa;border-radius:12px}.detail h1{margin:8px 0 12px;line-height:1.12;font-size:clamp(1.7rem,4vw,2.7rem);letter-spacing:-.04em}.detail .summary{font-size:1.06rem;color:#4d5b54}.offer{background:#f3f9f5;border:1px solid #d7ebdd;border-radius:12px;padding:18px;margin-top:20px}.offer .price{display:inline-block;font-size:1.1rem;margin-bottom:10px}.offer .button{width:100%;background:var(--blue);color:#fff;margin-top:8px}.fine{font-size:.78rem;color:var(--muted);margin:10px 0 0}.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:26px}.fact{border:1px solid var(--line);padding:14px;border-radius:10px}.fact span{display:block;color:var(--muted);font-size:.78rem;font-weight:800;text-transform:uppercase}.detail-sections{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}.panel{background:#fafcfb;border:1px solid var(--line);border-radius:12px;padding:20px}.panel h2{font-size:1.05rem;margin:0 0 8px}.panel ul{padding-left:18px;margin:0}.positive h2{color:#267c31}.attention h2{color:#b1531a}.share{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.share button{background:white;border:1px solid var(--line);padding:9px 12px;border-radius:7px;cursor:pointer}
+    footer{background:#10231c;color:#dfeae4;padding:42px 0;font-size:.9rem}.foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px}.foot a{display:block;color:#dfeae4;text-decoration:none;margin:7px 0}.foot strong{color:#fff}.affiliate{margin-top:16px;font-size:.78rem;line-height:1.5;color:#aabcb2}
+    @media(max-width:680px){nav a:not(.nav-cta){display:none}.hero{padding:42px 0 28px}.product-card{grid-template-columns:100px 1fr;gap:13px}.product-card img{width:100px;height:110px}.detail-top,.detail-sections,.foot{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.facts{grid-template-columns:1fr 1fr}}
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBKRX8TTR6"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-NBKRX8TTR6',{anonymize_ip:true});</script>
 </head>
 <body>
-
-    <header>
-        <h1><a href="index.html" class="logo">🛒 Ranking da Compra</a></h1>
-    </header>
-
-    <div class="container">
-        <div class="disclaimer">
-            <strong>Transparência:</strong> Este site contém links de afiliados. Nossa seleção é independente e, caso você compre por eles, podemos receber uma comissão sem custo adicional para você.
-        </div>
-
-        <div id="secao-home">
-            <h2 style="color: #2d3277;">As Melhores Indicações de 2026</h2>
-            <div class="grid-categorias" id="grid-categorias">
-                <div class="carregando">Carregando categorias...</div>
-            </div>
-        </div>
-
-        <div id="secao-produtos">
-            <div class="topo-lista">
-                <h2 class="titulo-categoria" id="titulo-cat">Top 10</h2>
-                <a href="index.html" class="btn-voltar">← Voltar</a>
-            </div>
-            <div id="lista-produtos">
-                <div class="carregando">Buscando os melhores produtos...</div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 Ranking da Compra. Todos os direitos reservados.</p>
-        <p style="opacity: 0.7; font-size: 11px;">Os preços podem sofrer alterações no site do vendedor.</p>
-    </footer>
-
-    <!-- SDKs do Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-    <script>
-        // CONFIGURAÇÃO EXATA DO SEU FIREBASE
-        const firebaseConfig = {
-            apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
-            authDomain: "rankingdacompra.firebaseapp.com",
-            projectId: "rankingdacompra",
-            storageBucket: "rankingdacompra.firebasestorage.app",
-            messagingSenderId: "300637600463",
-            appId: "1:300637600463:web:671c78dc47d5f8b39f15ba",
-            measurementId: "G-NBKRX8TTR6"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        function escapeHtml(texto) {
-            if (texto === undefined || texto === null) return '';
-            return String(texto)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        function urlSegura(url) {
-            try {
-                const urlValidada = new URL(String(url || ''), window.location.origin);
-                return ['http:', 'https:'].includes(urlValidada.protocol) ? urlValidada.href : '#';
-            } catch (e) {
-                return '#';
-            }
-        }
-
-        function gerarEstrelas(nota) {
-            const notaNum = parseFloat(nota) || 5;
-            let estrelasHtml = '';
-            for(let i=1; i<=5; i++) { estrelasHtml += i <= Math.round(notaNum) ? '★' : '☆'; }
-            return `${estrelasHtml} <span style="color:#555; font-size:12px; font-weight:normal;">(${notaNum})</span>`;
-        }
-
-        async function atualizarPrecoProduto(produto, elementoId) {
-            const codigo = String(produto.link || '').match(/MLB[-_]?\d+/i);
-            if (!codigo) return;
-
-            try {
-                const resposta = await fetch(`https://api.mercadolibre.com/items/${codigo[0].replace(/[-_]/g, '')}`);
-                if (!resposta.ok) return;
-                const dados = await resposta.json();
-                if (typeof dados.price !== 'number') return;
-
-                const elemento = document.getElementById(elementoId);
-                if (elemento) elemento.textContent = `💰 R$ ${dados.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-            } catch (erro) {
-                // Mantém o último preço salvo se o Mercado Livre estiver indisponível.
-                console.warn('Não foi possível atualizar o preço do produto.', erro);
-            }
-        }
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const categoriaAtual = urlParams.get('cat');
-        
-        if (categoriaAtual) {
-            // EXIBE PRODUTOS DA CATEGORIA
-            document.getElementById('secao-home').style.display = 'none';
-            document.getElementById('secao-produtos').style.display = 'block';
-            
-            // Puxa o nome correto da categoria para o Título
-            db.collection("categorias").doc(categoriaAtual).get().then(doc => {
-                if (doc.exists) {
-                    document.getElementById('titulo-cat').innerText = `Top 10 ${doc.data().nome}`;
-                } else {
-                    document.getElementById('titulo-cat').innerText = 'Top 10';
-                }
-            });
-
-            // Puxa os produtos dessa categoria
-            db.collection("produtos")
-              .where("categoria", "==", categoriaAtual)
-              .get()
-              .then((querySnapshot) => {
-                  const listaProdutos = document.getElementById('lista-produtos');
-                  
-                  if (querySnapshot.empty) {
-                      listaProdutos.innerHTML = `<div class="mensagem-vazia">Nenhum produto cadastrado ainda.</div>`;
-                      return;
-                  }
-
-                  const produtos = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-                      .sort((a, b) => (Number(a.ranking) || 999) - (Number(b.ranking) || 999))
-                      .slice(0, 10);
-                  listaProdutos.innerHTML = '';
-
-                  produtos.forEach((produto, index) => {
-                      const prosList = produto.pros ? produto.pros.split(',').map(i => `<li>${escapeHtml(i.trim())}</li>`).join('') : '';
-                      const consList = produto.contras ? produto.contras.split(',').map(i => `<li>${escapeHtml(i.trim())}</li>`).join('') : '';
-                      const precoExibicao = produto.preco ? `Est. R$ ${escapeHtml(produto.preco)}` : 'Ver Preço';
-                      
-                      // TRAVA DE SEGURANÇA: Usa o link de afiliado. Se não existir, usa o link normal.
-                      const linkComprar = urlSegura(produto.linkAfiliado || produto.link);
-                      const foto = urlSegura(produto.foto);
-
-                      listaProdutos.innerHTML += `
-                          <div class="card">
-                              <div class="card-body">
-                                  <div class="img-container">
-                                      <span class="badge">#${index + 1}${produto.selo ? ' | ' + escapeHtml(produto.selo) : ''}</span>
-                                      <img src="${foto}" alt="${escapeHtml(produto.titulo)}">
-                                  </div>
-                                  <div class="info-container">
-                                      <h3>${escapeHtml(produto.titulo)}</h3>
-                                      <div class="meta-info">
-                                          <div class="estrelas">${gerarEstrelas(produto.nota)}</div>
-                                          <div class="preco-ref" id="preco-${produto.id}">💰 ${precoExibicao}</div>
-                                      </div>
-                                      <p class="comentario">${escapeHtml(produto.comentario)}</p>
-                                      <a href="${linkComprar}" target="_blank" rel="noopener noreferrer" class="btn-comprar">Ver Oferta no Mercado Livre</a>
-                                  </div>
-                              </div>
-                              <details>
-                                  <summary>Ler análise técnica detalhada</summary>
-                                  <div class="details-content">
-                                      <div class="pros"><h4>👍 O que gostamos</h4><ul>${prosList}</ul></div>
-                                      <div class="cons"><h4>👎 O que pode melhorar</h4><ul>${consList}</ul></div>
-                                  </div>
-                              </details>
-                          </div>
-                      `;
-                      atualizarPrecoProduto(produto, `preco-${produto.id}`);
-                  });
-              })
-              .catch((error) => {
-                  document.getElementById('lista-produtos').innerHTML = `<div class="mensagem-vazia">Erro ao carregar os produtos. Tente novamente mais tarde.</div>`;
-              });
-
-        } else {
-            // EXIBE AS CATEGORIAS PUXANDO DIRETO DA NUVEM (FIRESTORE)
-            document.getElementById('secao-home').style.display = 'block';
-            document.getElementById('secao-produtos').style.display = 'none';
-
-            const grid = document.getElementById('grid-categorias');
-            
-            db.collection("categorias").orderBy("criadoEm", "asc").get().then((querySnapshot) => {
-                if (querySnapshot.empty) {
-                    grid.innerHTML = '<div class="mensagem-vazia">Nenhuma categoria cadastrada ainda.</div>';
-                    return;
-                }
-                grid.innerHTML = '';
-                querySnapshot.forEach((doc) => {
-                    const cat = doc.data();
-                    grid.innerHTML += `<a href="?cat=${encodeURIComponent(doc.id)}" class="cat-card"><span class="cat-icon">${escapeHtml(cat.icone)}</span>${escapeHtml(cat.nome)}</a>`;
-                });
-            }).catch(error => {
-                grid.innerHTML = '<div class="mensagem-vazia">Erro ao carregar as categorias.</div>';
-                console.error("Erro:", error);
-            });
-        }
-    </script>
-</body>
-</html>
+<header><div class="wrap bar"><a class="brand" href="./">Ranking da Compra</a><nav><a href="./#categorias">Categorias</a><a href="como-avaliamos.html">Como avaliamos</a><a href="sobre.html">Sobre</a><a class="nav-cta" href="./#destaques">Ver rankings</a></nav></div></header>
+<div id="app"><div class="loading wrap">Carregando recomendações…</div></div>
+<footer><div class="wrap foot"><div><strong>Ranking da Compra</strong><p>Escolhas mais claras para comprar melhor.</p><p class="affiliate">Transparência: alguns links são de afiliados. Podemos receber comissão sem custo adicional para você. Nossas opiniões não são compradas.</p></div><div><strong>Institucional</strong><a href="sobre.html">Sobre nós</a><a href="como-avaliamos.html">Como avaliamos</a><a href="politica-afiliados.html">Política de afiliados</a></div><div><strong>Ajuda</strong><a href="privacidade.html">Privacidade</a><a href="contato.html">Contato</a><a href="dashboard.html">Área administrativa</a></div></div></footer>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script><script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script>
+const firebaseConfig={apiKey:'AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk',authDomain:'rankingdacompra.firebaseapp.com',projectId:'rankingdacompra',storageBucket:'rankingdacompra.firebasestorage.app',messagingSenderId:'300637600463',appId:'1:300637600463:web:671c78dc47d5f8b39f15ba'};firebase.initializeApp(firebaseConfig);const db=firebase.firestore(),app=document.getElementById('app');
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));const safe=u=>{try{let x=new URL(String(u||''),location.href);return /^https?:$/.test(x.protocol)?x.href:'#'}catch{return '#'}};const stars=n=>`${'★'.repeat(Math.round(Number(n)||0))}${'☆'.repeat(5-Math.round(Number(n)||0))}`;
+function setSeo(title,description){document.title=title;document.querySelector('meta[name=description]').content=description;document.getElementById('canonical').href=location.href.split('#')[0]}
+function getPrice(p){let key='rc-price-'+p.id,cached;try{cached=JSON.parse(sessionStorage.getItem(key))}catch{}if(cached&&Date.now()-cached.at<1800000)return Promise.resolve(cached.value);let id=String(p.link||'').match(/MLB[-_]?\d+/i);if(!id)return Promise.resolve(p.preco?`R$ ${p.preco}`:'Ver oferta');return fetch('https://api.mercadolibre.com/items/'+id[0].replace(/[-_]/g,'')).then(r=>r.ok?r.json():null).then(x=>{let v=x&&typeof x.price==='number'?`R$ ${x.price.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}`:(p.preco?`R$ ${p.preco}`:'Ver oferta');sessionStorage.setItem(key,JSON.stringify({at:Date.now(),value:v}));return v}).catch(()=>p.preco?`R$ ${p.preco}`:'Ver oferta')}
+function productCard(p,i=0){return `<a class="product-card" href="?produto=${encodeURIComponent(p.id)}"><img loading="lazy" src="${safe(p.foto)}" alt="${esc(p.titulo)}"><div><span class="rank">${i?`#${i} no ranking`:'Recomendação'}</span><h3>${esc(p.titulo)}</h3><p>${esc(p.comentario||'Veja nossa análise e a oferta atual.')}</p><div class="product-meta"><span class="rating" aria-label="Nota ${esc(p.nota)}">${stars(p.nota)} ${esc(p.nota||'')}</span><span class="price" id="price-${esc(p.id)}">Verificando preço…</span>${p.selo?`<span class="badge">${esc(p.selo)}</span>`:''}</div></div></a>`}
+function updatePrices(items){items.forEach(p=>getPrice(p).then(v=>{let el=document.getElementById('price-'+p.id);if(el)el.textContent=v}))}
+async function home(){setSeo('Ranking da Compra | Melhores produtos para comprar','Rankings independentes, comparativos claros e ofertas selecionadas para você comprar melhor.');const [cats,products]=await Promise.all([db.collection('categorias').orderBy('criadoEm','asc').get(),db.collection('produtos').get()]);const ps=products.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(a.ranking||99)-(b.ranking||99)).slice(0,6);app.innerHTML=`<section class="hero"><div class="wrap"><div class="eyebrow">Decida com confiança</div><h1>Os melhores produtos, explicados sem enrolação.</h1><p>Rankings independentes com prós, contras e ofertas atualizadas. Você compara melhor antes de comprar.</p><div class="hero-actions"><a class="button primary" href="#destaques">Ver recomendações</a><a class="button secondary" href="como-avaliamos.html">Conhecer nosso método</a></div></div></section><main class="wrap"><section id="categorias"><div class="section-head"><div><h2>Escolha uma categoria</h2><p>Encontre o ranking que importa para você.</p></div></div><div class="grid">${cats.docs.map(d=>{let c=d.data();return `<a class="category" href="?cat=${encodeURIComponent(d.id)}"><span class="icon">${esc(c.icone||'🛍️')}</span><strong>${esc(c.nome)}</strong><span>Ver ranking →</span></a>`}).join('')||'<div class="empty">As categorias serão publicadas em breve.</div>'}</div></section><section id="destaques" style="margin-top:52px"><div class="section-head"><div><h2>Destaques da semana</h2><p>Ofertas e análises selecionadas pelo nosso time.</p></div></div><div class="products">${ps.map((p,i)=>productCard(p,i+1)).join('')||'<div class="empty">Em breve, teremos produtos selecionados aqui.</div>'}</div></section><div class="notice"><b>Transparência:</b> preços e condições podem mudar no site do vendedor. Confira o valor final antes de concluir a compra.</div></main>`;updatePrices(ps)}
+async function category(id){const [cat,snap]=await Promise.all([db.collection('categorias').doc(id).get(),db.collection('produtos').where('categoria','==',id).get()]);let name=cat.exists?cat.data().nome:'Categoria';let ps=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(a.ranking||99)-(b.ranking||99)).slice(0,10);setSeo(`Melhores ${name} | Ranking da Compra`,`Veja nosso ranking dos melhores ${name}, com prós, contras e ofertas atualizadas.`);app.innerHTML=`<main class="wrap"><div class="crumb"><a href="./">Início</a> / ${esc(name)}</div><div class="section-head"><div><div class="eyebrow">Ranking atualizado</div><h2>Melhores ${esc(name)}</h2><p>Compare antes de decidir. A posição considera o conjunto de benefícios, não apenas o preço.</p></div><a class="button secondary" href="./">Todas as categorias</a></div><div class="products">${ps.map((p,i)=>productCard(p,i+1)).join('')||'<div class="empty">Ainda não há produtos nesta categoria.</div>'}</div><div class="notice"><b>Nota editorial:</b> nossos rankings são informativos; confirme compatibilidade, garantia e condições de entrega no anúncio.</div></main>`;updatePrices(ps)}
+async function product(id){let d=await db.collection('produtos').doc(id).get();if(!d.exists){app.innerHTML='<main class="wrap"><div class="empty">Produto não encontrado. <a href="./">Voltar ao início</a></div></main>';return}let p={id:d.id,...d.data()},cat=await db.collection('categorias').doc(p.categoria||'').get(),catName=cat.exists?cat.data().nome:'Ranking';setSeo(`${p.titulo} | Ranking da Compra`,p.comentario||'Análise, prós, contras e oferta atual.');let pros=String(p.pros||'').split(',').filter(Boolean).map(x=>`<li>${esc(x.trim())}</li>`).join('')||'<li>Informações em atualização.</li>',cons=String(p.contras||'').split(',').filter(Boolean).map(x=>`<li>${esc(x.trim())}</li>`).join('')||'<li>Confira os detalhes no anúncio.</li>';app.innerHTML=`<main class="wrap"><div class="crumb"><a href="./">Início</a> / <a href="?cat=${encodeURIComponent(p.categoria||'')}">${esc(catName)}</a> / ${esc(p.titulo)}</div><article class="detail"><div class="detail-top"><img class="detail-img" src="${safe(p.foto)}" alt="${esc(p.titulo)}"><div><div class="eyebrow">${p.selo?esc(p.selo):'Análise editorial'}</div><h1>${esc(p.titulo)}</h1><div class="rating">${stars(p.nota)} ${esc(p.nota||'')} de 5</div><p class="summary">${esc(p.comentario||'Veja os pontos principais antes de comprar.')}</p><div class="offer"><span class="price" id="detail-price">Verificando preço…</span><br><a class="button" id="offer-link" href="${safe(p.linkAfiliado||p.link)}" target="_blank" rel="sponsored noopener noreferrer">Ver oferta atual no Mercado Livre</a><p class="fine">Você será direcionado ao Mercado Livre. O preço final e a disponibilidade são definidos pelo vendedor.</p></div><div class="facts"><div class="fact"><span>Posição</span>#${esc(p.ranking||'-')} no ranking</div><div class="fact"><span>Categoria</span>${esc(catName)}</div></div></div></div><div class="detail-sections"><section class="panel positive"><h2>✓ Pontos positivos</h2><ul>${pros}</ul></section><section class="panel attention"><h2>! Pontos de atenção</h2><ul>${cons}</ul></section></div><div class="share"><button id="copy-link">Copiar link</button><button id="share-link">Compartilhar</button></div></article></main>`;getPrice(p).then(v=>document.getElementById('detail-price').textContent=v);document.getElementById('offer-link').addEventListener('click',()=>gtag('event','select_item',{item_list_name:catName,items:[{item_id:p.id,item_name:p.titulo,index:Number(p.ranking)||0}],affiliate:'mercado_livre'}));document.getElementById('copy-link').onclick=async()=>{await navigator.clipboard.writeText(location.href);document.getElementById('copy-link').textContent='Link copiado!'};document.getElementById('share-link').onclick=()=>navigator.share?navigator.share({title:p.titulo,text:p.comentario,url:location.href}):document.getElementById('copy-link').click()}
+let q=new URLSearchParams(location.search);(q.get('produto')?product(q.get('produto')):q.get('cat')?category(q.get('cat')):home()).catch(e=>{console.error(e);app.innerHTML='<main class="wrap"><div class="empty">Não foi possível carregar o conteúdo agora. Tente novamente em alguns instantes.</div></main>'});
+</script>
+</body></html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rankingdacompra.com.br/sitemap.xml
