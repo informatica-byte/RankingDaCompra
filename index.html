@@ -82,9 +82,7 @@
 
         <div id="secao-home">
             <h2 style="color: #2d3277;">As Melhores Indicações de 2026</h2>
-            <div class="grid-categorias" id="grid-categorias">
-                <div class="carregando">Carregando categorias...</div>
-            </div>
+            <div class="grid-categorias" id="grid-categorias"></div>
         </div>
 
         <div id="secao-produtos">
@@ -122,17 +120,12 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Evita que texto vindo do banco (título, comentário, prós/contras...) seja
-        // interpretado como HTML. Protege contra XSS e contra quebra de layout.
-        function escapeHtml(texto) {
-            if (texto === undefined || texto === null) return '';
-            return String(texto)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
+        // Lista padrão de categorias
+        const categoriasPadrao = [
+            { id: 'celulares', icone: '📱', nome: 'Celulares' },
+            { id: 'tvs', icone: '📺', nome: 'TVs e Telas' },
+            { id: 'som', icone: '🎧', nome: 'Áudio' }
+        ];
 
         function gerarEstrelas(nota) {
             const notaNum = parseFloat(nota) || 5;
@@ -141,27 +134,20 @@
             return `${estrelasHtml} <span style="color:#555; font-size:12px; font-weight:normal;">(${notaNum})</span>`;
         }
 
+        let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || categoriasPadrao;
+
         const urlParams = new URLSearchParams(window.location.search);
         const categoriaAtual = urlParams.get('cat');
-
+        
         if (categoriaAtual) {
             document.getElementById('secao-home').style.display = 'none';
             document.getElementById('secao-produtos').style.display = 'block';
+            
+            const catInfo = categorias.find(c => c.id === categoriaAtual);
+            document.getElementById('titulo-cat').innerText = catInfo ? `Top 10 ${catInfo.nome}` : 'Top 10';
 
-            // Busca o nome/ícone da categoria no Firestore para exibir no título
-            db.collection("categorias").doc(categoriaAtual).get()
-                .then(catDoc => {
-                    document.getElementById('titulo-cat').innerText = catDoc.exists
-                        ? `Top 10 ${catDoc.data().nome}`
-                        : 'Top 10';
-                })
-                .catch(() => {});
-
-            // Ordena pela nota (melhores primeiro) e limita a 10 itens = "Top 10" de verdade
             db.collection("produtos")
               .where("categoria", "==", categoriaAtual)
-              .orderBy("nota", "desc")
-              .limit(10)
               .get()
               .then((querySnapshot) => {
                   const listaProdutos = document.getElementById('lista-produtos');
@@ -176,10 +162,10 @@
 
                   querySnapshot.forEach((doc) => {
                       const produto = doc.data();
-                      const prosList = produto.pros ? produto.pros.split(',').map(i => `<li>${escapeHtml(i.trim())}</li>`).join('') : '';
-                      const consList = produto.contras ? produto.contras.split(',').map(i => `<li>${escapeHtml(i.trim())}</li>`).join('') : '';
-                      const precoExibicao = produto.preco ? `Est. R$ ${escapeHtml(produto.preco)}` : 'Ver Preço';
-
+                      const prosList = produto.pros ? produto.pros.split(',').map(i => `<li>${i.trim()}</li>`).join('') : '';
+                      const consList = produto.contras ? produto.contras.split(',').map(i => `<li>${i.trim()}</li>`).join('') : '';
+                      const precoExibicao = produto.preco ? `Est. R$ ${produto.preco}` : 'Ver Preço';
+                      
                       // TRAVA DE SEGURANÇA: Usa o link de afiliado. Se não existir, usa o link normal.
                       const linkComprar = produto.linkAfiliado ? produto.linkAfiliado : produto.link;
 
@@ -187,17 +173,17 @@
                           <div class="card">
                               <div class="card-body">
                                   <div class="img-container">
-                                      <span class="badge">#${index}${produto.selo ? ' | ' + escapeHtml(produto.selo) : ''}</span>
-                                      <img src="${escapeHtml(produto.foto)}" alt="${escapeHtml(produto.titulo)}">
+                                      <span class="badge">#${index} ${produto.selo ? ' | ' + produto.selo : ''}</span>
+                                      <img src="${produto.foto}" alt="${produto.titulo}">
                                   </div>
                                   <div class="info-container">
-                                      <h3>${escapeHtml(produto.titulo)}</h3>
+                                      <h3>${produto.titulo}</h3>
                                       <div class="meta-info">
                                           <div class="estrelas">${gerarEstrelas(produto.nota)}</div>
                                           <div class="preco-ref">💰 ${precoExibicao}</div>
                                       </div>
-                                      <p class="comentario">${escapeHtml(produto.comentario)}</p>
-                                      <a href="${escapeHtml(linkComprar)}" target="_blank" rel="noopener sponsored" class="btn-comprar">Ver Oferta no Mercado Livre</a>
+                                      <p class="comentario">${produto.comentario}</p>
+                                      <a href="${linkComprar}" target="_blank" class="btn-comprar">Ver Oferta no Mercado Livre</a>
                                   </div>
                               </div>
                               <details>
@@ -213,7 +199,6 @@
                   });
               })
               .catch((error) => {
-                  console.error(error);
                   document.getElementById('lista-produtos').innerHTML = `<div class="mensagem-vazia">Erro ao carregar os produtos. Tente novamente mais tarde.</div>`;
               });
 
@@ -221,27 +206,11 @@
             document.getElementById('secao-home').style.display = 'block';
             document.getElementById('secao-produtos').style.display = 'none';
 
-            // Categorias agora vêm do Firestore (visíveis para todo mundo,
-            // não só no navegador de quem cadastrou no painel admin)
-            db.collection("categorias").orderBy("criadoEm", "asc").get()
-                .then(querySnapshot => {
-                    const grid = document.getElementById('grid-categorias');
-                    grid.innerHTML = '';
-
-                    if (querySnapshot.empty) {
-                        grid.innerHTML = `<div class="mensagem-vazia">Nenhuma categoria cadastrada ainda.</div>`;
-                        return;
-                    }
-
-                    querySnapshot.forEach(doc => {
-                        const cat = doc.data();
-                        grid.innerHTML += `<a href="?cat=${encodeURIComponent(doc.id)}" class="cat-card"><span class="cat-icon">${escapeHtml(cat.icone)}</span>${escapeHtml(cat.nome)}</a>`;
-                    });
-                })
-                .catch(error => {
-                    console.error(error);
-                    document.getElementById('grid-categorias').innerHTML = `<div class="mensagem-vazia">Erro ao carregar categorias.</div>`;
-                });
+            const grid = document.getElementById('grid-categorias');
+            grid.innerHTML = '';
+            categorias.forEach(cat => {
+                grid.innerHTML += `<a href="?cat=${cat.id}" class="cat-card"><span class="cat-icon">${cat.icone}</span>${cat.nome}</a>`;
+            });
         }
     </script>
 </body>
