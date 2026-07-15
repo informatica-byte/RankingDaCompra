@@ -150,14 +150,28 @@
 
         const loginContent = document.getElementById('login-content');
         const adminContent = document.getElementById('admin-content');
-        let editCatIndex = null;
         let editProdId = null;
+        let editandoCatId = null;
+
+        // Evita que texto salvo (título, nome de categoria...) vire HTML/JS ao ser exibido
+        function escapeHtml(texto) {
+            if (texto === undefined || texto === null) return '';
+            return String(texto)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
 
         auth.onAuthStateChanged(user => {
             if (user) {
                 loginContent.style.display = 'none';
                 adminContent.style.display = 'block';
-                carregarCategorias(); carregarProdutos();
+                migrarCategoriasAntigasSeNecessario().then(() => {
+                    carregarCategorias();
+                    carregarProdutos();
+                });
             } else {
                 loginContent.style.display = 'block';
                 adminContent.style.display = 'none';
@@ -171,6 +185,32 @@
         });
 
         document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
+
+        // MIGRAÇÃO: se este navegador ainda tiver categorias salvas do jeito antigo
+        // (localStorage) e a nuvem estiver vazia, copia elas pro Firestore uma única vez,
+        // assim elas passam a aparecer pra todo mundo, não só neste computador.
+        async function migrarCategoriasAntigasSeNecessario() {
+            try {
+                const antigas = JSON.parse(localStorage.getItem('minhasCategorias') || 'null');
+                if (!antigas || !antigas.length) return;
+
+                const snapshot = await db.collection("categorias").limit(1).get();
+                if (!snapshot.empty) return; // já existem categorias na nuvem, não mexe
+
+                for (const cat of antigas) {
+                    if (!cat.id) continue;
+                    await db.collection("categorias").doc(cat.id).set({
+                        icone: cat.icone || '',
+                        nome: cat.nome || cat.id,
+                        criadoEm: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+                localStorage.removeItem('minhasCategorias');
+                console.log('Categorias antigas migradas para o Firestore.');
+            } catch (e) {
+                console.error('Falha ao migrar categorias antigas:', e);
+            }
+        }
 
         async function buscarDadosML() {
             const url = document.getElementById('link').value;
@@ -251,73 +291,85 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
             }
         }
 
+        // Categorias agora ficam na nuvem (Firestore), com o campo "ID Único"
+        // sendo usado como o próprio ID do documento. Isso garante que o site
+        // público (index.html) enxergue exatamente as mesmas categorias.
         function carregarCategorias() {
-            let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [
-                { id: 'celulares', icone: '📱', nome: 'Celulares' },
-                { id: 'tvs', icone: '📺', nome: 'TVs e Telas' },
-                { id: 'som', icone: '🎧', nome: 'Áudio' }
-            ];
-            const select = document.getElementById('categoria');
-            select.innerHTML = '';
-            const listaCatAdmin = document.getElementById('lista-categorias-admin');
-            listaCatAdmin.innerHTML = '';
+            db.collection("categorias").orderBy("criadoEm", "asc").onSnapshot(snapshot => {
+                const select = document.getElementById('categoria');
+                const listaCatAdmin = document.getElementById('lista-categorias-admin');
+                const categoriaSelecionada = select.value;
+                select.innerHTML = '';
+                listaCatAdmin.innerHTML = '';
 
-            categorias.forEach((cat, index) => { 
-                select.innerHTML += `<option value="${cat.id}">${cat.icone} ${cat.nome}</option>`; 
-                listaCatAdmin.innerHTML += `
-                    <div class="item-admin">
-                        <span>${cat.icone} <b>${cat.nome}</b></span> 
-                        <div class="acoes">
-                            <button type="button" class="btn-edit" onclick="editarCategoria(${index})">✎</button>
-                            <button type="button" class="btn-del" onclick="deletarCategoria(${index})">X</button>
-                        </div>
-                    </div>`;
+                snapshot.forEach(doc => {
+                    const cat = doc.data();
+                    select.innerHTML += `<option value="${doc.id}">${escapeHtml(cat.icone)} ${escapeHtml(cat.nome)}</option>`;
+                    listaCatAdmin.innerHTML += `
+                        <div class="item-admin">
+                            <span>${escapeHtml(cat.icone)} <b>${escapeHtml(cat.nome)}</b> <small style="color:#999;">(${escapeHtml(doc.id)})</small></span>
+                            <div class="acoes">
+                                <button type="button" class="btn-edit" onclick="editarCategoria('${doc.id}')">✎</button>
+                                <button type="button" class="btn-del" onclick="deletarCategoria('${doc.id}')">X</button>
+                            </div>
+                        </div>`;
+                });
+
+                // Mantém a categoria selecionada no formulário de produto, se ainda existir
+                if (categoriaSelecionada) select.value = categoriaSelecionada;
+            }, error => {
+                console.error(error);
+                alert('Erro ao carregar categorias: ' + error.message);
             });
         }
 
-        document.getElementById('formCategoria').addEventListener('submit', function(e) {
+        document.getElementById('formCategoria').addEventListener('submit', async function(e) {
             e.preventDefault();
-            let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || [];
+            const idDigitado = document.getElementById('cat-id').value.trim().toLowerCase().replace(/\s+/g, '');
             const catInfo = {
-                id: document.getElementById('cat-id').value.toLowerCase().replace(/\s+/g, ''),
                 icone: document.getElementById('cat-icone').value,
                 nome: document.getElementById('cat-nome').value
             };
 
-            if (editCatIndex !== null) {
-                categorias[editCatIndex].icone = catInfo.icone;
-                categorias[editCatIndex].nome = catInfo.nome;
-                editCatIndex = null;
-                document.getElementById('cat-id').disabled = false;
-                document.getElementById('btn-submit-cat').innerText = "+ Criar Categoria";
-            } else {
-                if(categorias.some(c => c.id === catInfo.id)) return alert("ID já existe!");
-                categorias.push(catInfo);
-            }
+            try {
+                if (editandoCatId !== null) {
+                    // Edição: só nome/ícone mudam, o ID (slug da URL) não muda
+                    await db.collection("categorias").doc(editandoCatId).update(catInfo);
+                    editandoCatId = null;
+                    document.getElementById('cat-id').disabled = false;
+                    document.getElementById('btn-submit-cat').innerText = "+ Criar Categoria";
+                } else {
+                    const docRef = db.collection("categorias").doc(idDigitado);
+                    const existe = await docRef.get();
+                    if (existe.exists) return alert("ID já existe!");
 
-            localStorage.setItem('minhasCategorias', JSON.stringify(categorias));
-            this.reset();
-            carregarCategorias();
+                    catInfo.criadoEm = firebase.firestore.FieldValue.serverTimestamp();
+                    await docRef.set(catInfo);
+                }
+                this.reset();
+            } catch (error) {
+                alert("Erro ao salvar categoria: " + error.message);
+            }
         });
 
-        function editarCategoria(index) {
-            let categorias = JSON.parse(localStorage.getItem('minhasCategorias'));
-            let cat = categorias[index];
-            document.getElementById('cat-id').value = cat.id;
-            document.getElementById('cat-id').disabled = true; 
-            document.getElementById('cat-icone').value = cat.icone;
-            document.getElementById('cat-nome').value = cat.nome;
-            editCatIndex = index;
-            document.getElementById('btn-submit-cat').innerText = "💾 Salvar Edição";
-            window.scrollTo(0, 200); 
+        function editarCategoria(id) {
+            db.collection("categorias").doc(id).get().then(doc => {
+                if (!doc.exists) return;
+                const cat = doc.data();
+                document.getElementById('cat-id').value = id;
+                document.getElementById('cat-id').disabled = true;
+                document.getElementById('cat-icone').value = cat.icone;
+                document.getElementById('cat-nome').value = cat.nome;
+                editandoCatId = id;
+                document.getElementById('btn-submit-cat').innerText = "💾 Salvar Edição";
+                window.scrollTo(0, 200);
+            });
         }
 
-        function deletarCategoria(index) {
-            if(confirm("Deseja apagar esta categoria?")) {
-                let categorias = JSON.parse(localStorage.getItem('minhasCategorias'));
-                categorias.splice(index, 1);
-                localStorage.setItem('minhasCategorias', JSON.stringify(categorias));
-                carregarCategorias();
+        function deletarCategoria(id) {
+            if(confirm("Deseja apagar esta categoria? Os produtos já cadastrados nela não serão apagados, mas ficarão sem categoria visível.")) {
+                db.collection("categorias").doc(id).delete()
+                    .catch(error => alert("Erro ao apagar categoria: " + error.message));
             }
         }
 
@@ -332,7 +384,7 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
                 foto: document.getElementById('foto').value,
                 comentario: document.getElementById('comentario').value,
                 preco: document.getElementById('preco').value,
-                nota: document.getElementById('nota').value,
+                nota: parseFloat(document.getElementById('nota').value),
                 pros: document.getElementById('pros').value,
                 contras: document.getElementById('contras').value
             };
@@ -366,7 +418,7 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
                     const prod = doc.data();
                     container.innerHTML += `
                         <div class="item-admin">
-                            <div><span class="badge-cat">${prod.categoria}</span>${prod.titulo}</div>
+                            <div><span class="badge-cat">${escapeHtml(prod.categoria)}</span>${escapeHtml(prod.titulo)}</div>
                             <div class="acoes">
                                 <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')">✎</button>
                                 <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')">X</button>
@@ -374,6 +426,9 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
                         </div>
                     `;
                 });
+            }, error => {
+                console.error(error);
+                alert('Erro ao carregar produtos: ' + error.message);
             });
         }
 
