@@ -82,7 +82,9 @@
 
         <div id="secao-home">
             <h2 style="color: #2d3277;">As Melhores Indicações de 2026</h2>
-            <div class="grid-categorias" id="grid-categorias"></div>
+            <div class="grid-categorias" id="grid-categorias">
+                <div class="carregando">Carregando categorias...</div>
+            </div>
         </div>
 
         <div id="secao-produtos">
@@ -120,13 +122,6 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Lista padrão de categorias
-        const categoriasPadrao = [
-            { id: 'celulares', icone: '📱', nome: 'Celulares' },
-            { id: 'tvs', icone: '📺', nome: 'TVs e Telas' },
-            { id: 'som', icone: '🎧', nome: 'Áudio' }
-        ];
-
         function gerarEstrelas(nota) {
             const notaNum = parseFloat(nota) || 5;
             let estrelasHtml = '';
@@ -134,18 +129,24 @@
             return `${estrelasHtml} <span style="color:#555; font-size:12px; font-weight:normal;">(${notaNum})</span>`;
         }
 
-        let categorias = JSON.parse(localStorage.getItem('minhasCategorias')) || categoriasPadrao;
-
         const urlParams = new URLSearchParams(window.location.search);
         const categoriaAtual = urlParams.get('cat');
         
         if (categoriaAtual) {
+            // EXIBE PRODUTOS DA CATEGORIA
             document.getElementById('secao-home').style.display = 'none';
             document.getElementById('secao-produtos').style.display = 'block';
             
-            const catInfo = categorias.find(c => c.id === categoriaAtual);
-            document.getElementById('titulo-cat').innerText = catInfo ? `Top 10 ${catInfo.nome}` : 'Top 10';
+            // Puxa o nome correto da categoria para o Título
+            db.collection("categorias").doc(categoriaAtual).get().then(doc => {
+                if (doc.exists) {
+                    document.getElementById('titulo-cat').innerText = `Top 10 ${doc.data().nome}`;
+                } else {
+                    document.getElementById('titulo-cat').innerText = 'Top 10';
+                }
+            });
 
+            // Puxa os produtos dessa categoria
             db.collection("produtos")
               .where("categoria", "==", categoriaAtual)
               .get()
@@ -203,13 +204,25 @@
               });
 
         } else {
+            // EXIBE AS CATEGORIAS PUXANDO DIRETO DA NUVEM (FIRESTORE)
             document.getElementById('secao-home').style.display = 'block';
             document.getElementById('secao-produtos').style.display = 'none';
 
             const grid = document.getElementById('grid-categorias');
-            grid.innerHTML = '';
-            categorias.forEach(cat => {
-                grid.innerHTML += `<a href="?cat=${cat.id}" class="cat-card"><span class="cat-icon">${cat.icone}</span>${cat.nome}</a>`;
+            
+            db.collection("categorias").orderBy("criadoEm", "asc").get().then((querySnapshot) => {
+                if (querySnapshot.empty) {
+                    grid.innerHTML = '<div class="mensagem-vazia">Nenhuma categoria cadastrada ainda.</div>';
+                    return;
+                }
+                grid.innerHTML = '';
+                querySnapshot.forEach((doc) => {
+                    const cat = doc.data();
+                    grid.innerHTML += `<a href="?cat=${doc.id}" class="cat-card"><span class="cat-icon">${cat.icone}</span>${cat.nome}</a>`;
+                });
+            }).catch(error => {
+                grid.innerHTML = '<div class="mensagem-vazia">Erro ao carregar as categorias.</div>';
+                console.error("Erro:", error);
             });
         }
     </script>
