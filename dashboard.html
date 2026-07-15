@@ -76,7 +76,7 @@
                 <div class="campo caixa-amarela">
                     <label>1. Cole o Link COMUM do Produto (Para o sistema achar a foto):</label>
                     <input type="url" id="link" placeholder="Ex: https://produto.mercadolivre.com.br/MLB-1234..." required>
-                    <button type="button" id="btn-magico" class="btn-magico" onclick="buscarDadosML()">✨ 1º Passo: Puxar Dados e Copiar Pedido IA</button>
+                    <button type="button" id="btn-magico" class="btn-magico" onclick="buscarDadosML()">✨ 1º Passo: Buscar e Preencher com IA</button>
                 </div>
 
                 <div class="campo caixa-azul">
@@ -107,6 +107,7 @@
                 <div class="row">
                     <div class="col campo"><label>Preço Estimado:</label><input type="text" id="preco"></div>
                     <div class="col campo"><label>Nota (1.0 a 5.0):</label><input type="number" id="nota" step="0.1" min="1" max="5" value="4.8" required></div>
+                    <div class="col campo"><label>Posição no ranking:</label><input type="number" id="ranking" min="1" max="10" value="10" required></div>
                 </div>
 
                 <div class="campo"><label>URL da Imagem:</label><input type="url" id="foto" required></div>
@@ -133,6 +134,59 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <!-- Firebase AI Logic + App Check: a chave do Gemini fica protegida no Firebase. -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+        import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
+        import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-ai.js";
+
+        const firebaseConfigAI = {
+            apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
+            authDomain: "rankingdacompra.firebaseapp.com",
+            projectId: "rankingdacompra",
+            storageBucket: "rankingdacompra.firebasestorage.app",
+            messagingSenderId: "300637600463",
+            appId: "1:300637600463:web:671c78dc47d5f8b39f15ba"
+        };
+
+        const aiApp = initializeApp(firebaseConfigAI, "ai-logic");
+        initializeAppCheck(aiApp, {
+            provider: new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"),
+            isTokenAutoRefreshEnabled: true
+        });
+
+        const ai = getAI(aiApp, { backend: new GoogleAIBackend() });
+        const model = getGenerativeModel(ai, { model: "gemini-3.5-flash" });
+
+        window.preencherComIA = async ({ produto, categorias }) => {
+            const categoriasPermitidas = categorias.map(cat => `${cat.id}: ${cat.nome}`).join("; ");
+            const prompt = `Você é um especialista brasileiro em e-commerce. Gere sugestões honestas para cadastrar o produto abaixo no site Ranking da Compra. Não invente especificações que não estejam no título ou na descrição. A categoria deve ser obrigatoriamente um dos IDs permitidos. Retorne SOMENTE JSON válido, sem markdown e sem texto antes ou depois.
+
+Produto: ${produto.titulo}
+Preço encontrado: ${produto.preco || "não informado"}
+Descrição do vendedor: ${(produto.descricao || "não disponível").slice(0, 1800)}
+Categorias permitidas: ${categoriasPermitidas}
+Selos permitidos: "", "🏆 Melhor Escolha", "💰 Custo-Benefício", "🔥 Mais Vendido"
+
+Use exatamente este formato:
+{
+  "categoria": "id de uma categoria permitida",
+  "selo": "um selo permitido ou vazio",
+  "titulo": "nome curto e fiel ao produto",
+  "preco": "preço estimado em formato brasileiro, se conhecido",
+  "nota": 4.5,
+  "ranking": 10,
+  "comentario": "resumo persuasivo e responsável em português",
+  "pros": "três pontos positivos separados por vírgula",
+  "contras": "dois pontos de atenção separados por vírgula"
+}`;
+
+            const result = await model.generateContent(prompt);
+            const texto = result.response.text().trim().replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/\s*```$/, "");
+            return JSON.parse(texto);
+        };
+    </script>
 
     <script>
         const firebaseConfig = {
@@ -254,26 +308,68 @@
                 document.getElementById('preco').value = precoML || '';
                 document.getElementById('foto').value = fotoUrl ? fotoUrl.replace('-I.jpg', '-O.jpg') : '';
 
-                const promptIA = `Você é um copywriter especialista em e-commerce. Analise o produto "${tituloML}". Descrição técnica: "${descText.substring(0, 1000)}".
-Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de código:
-{
-  "comentario": "Crie um parágrafo persuasivo de 3 linhas dizendo por que este produto é excelente.",
-  "pros": "Liste 3 prós fortes deste produto, separados APENAS por vírgula.",
-  "contras": "Liste 2 contras justos deste produto, separados APENAS por vírgula."
-}`;
-                
                 try {
-                    await navigator.clipboard.writeText(promptIA);
-                    alert("✅ Dados do Mercado Livre puxados!\n\n📋 O comando da IA já foi COPIADO automaticamente.\nVá no chat do Gemini, aperte Ctrl+V e envie para ele!\n\n⚠️ IMPORTANTE: Não esqueça de colar o seu Link de Afiliado na caixa logo abaixo.");
-                } catch(e) {
-                    alert("✅ Dados puxados! Apenas copie o link do produto no chat do Gemini para ele criar o texto.");
+                    if (typeof window.preencherComIA !== 'function') {
+                        throw new Error('A integração da IA ainda está carregando. Aguarde alguns segundos e tente novamente.');
+                    }
+
+                    btn.innerText = "✨ Gerando conteúdo com IA...";
+                    const categorias = Array.from(document.getElementById('categoria').options)
+                        .map(option => ({ id: option.value, nome: option.textContent.trim() }));
+                    const sugestao = await window.preencherComIA({
+                        produto: {
+                            titulo: tituloML,
+                            preco: precoML,
+                            foto: fotoUrl,
+                            descricao: descText
+                        },
+                        categorias
+                    });
+                    aplicarSugestaoIA(sugestao);
+                    alert("✅ Dados do Mercado Livre e sugestões da IA preenchidos! Revise as informações antes de salvar.");
+                } catch (erroIA) {
+                    console.error('Erro ao gerar conteúdo com IA:', erroIA);
+                    alert("Os dados do Mercado Livre foram preenchidos, mas a IA não respondeu. Tente novamente em instantes.\n\nDetalhe: " + erroIA.message);
                 }
 
             } catch (error) {
                 alert("Erro ao buscar no Mercado Livre.");
             } finally {
-                btn.innerText = "✨ 1º Passo: Puxar Dados e Copiar Pedido IA";
+                btn.innerText = "✨ 1º Passo: Buscar e Preencher com IA";
             }
+        }
+
+        function aplicarSugestaoIA(sugestao) {
+            const texto = valor => typeof valor === 'string' ? valor.trim() : '';
+            const preencher = (id, valor) => {
+                const campo = document.getElementById(id);
+                if (campo && texto(valor)) campo.value = texto(valor);
+            };
+
+            const categoria = document.getElementById('categoria');
+            if (texto(sugestao.categoria) && Array.from(categoria.options).some(option => option.value === sugestao.categoria)) {
+                categoria.value = sugestao.categoria;
+            }
+
+            const selo = document.getElementById('selo');
+            if (Array.from(selo.options).some(option => option.value === sugestao.selo)) {
+                selo.value = sugestao.selo;
+            }
+
+            preencher('titulo', sugestao.titulo);
+            preencher('preco', sugestao.preco);
+            preencher('comentario', sugestao.comentario);
+            preencher('pros', sugestao.pros);
+            preencher('contras', sugestao.contras);
+
+            const nota = Number(sugestao.nota);
+            if (Number.isFinite(nota)) document.getElementById('nota').value = Math.min(5, Math.max(1, nota)).toFixed(1);
+
+            const ranking = Number.parseInt(sugestao.ranking, 10);
+            if (Number.isFinite(ranking)) document.getElementById('ranking').value = Math.min(10, Math.max(1, ranking));
+
+            document.getElementById('texto-ia-paste').value = JSON.stringify(sugestao, null, 2);
+            document.getElementById('texto-ia-paste').style.borderColor = '#00a650';
         }
 
         function distribuirIA() {
@@ -366,7 +462,17 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
             });
         }
 
-        function deletarCategoria(id) {
+        async function deletarCategoria(id) {
+            try {
+                const produtosVinculados = await db.collection("produtos").where("categoria", "==", id).limit(1).get();
+                if (!produtosVinculados.empty) {
+                    alert("Não é possível apagar esta categoria enquanto houver produtos vinculados a ela.");
+                    return;
+                }
+            } catch (error) {
+                alert("Erro ao verificar os produtos da categoria: " + error.message);
+                return;
+            }
             if(confirm("Deseja apagar esta categoria? Os produtos já cadastrados nela não serão apagados, mas ficarão sem categoria visível.")) {
                 db.collection("categorias").doc(id).delete()
                     .catch(error => alert("Erro ao apagar categoria: " + error.message));
@@ -385,6 +491,7 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
                 comentario: document.getElementById('comentario').value,
                 preco: document.getElementById('preco').value,
                 nota: parseFloat(document.getElementById('nota').value),
+                ranking: parseInt(document.getElementById('ranking').value, 10),
                 pros: document.getElementById('pros').value,
                 contras: document.getElementById('contras').value
             };
@@ -404,6 +511,7 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
         function resetarFormProduto() {
             document.getElementById('formProduto').reset();
             document.getElementById('nota').value = "4.8";
+            document.getElementById('ranking').value = "10";
             document.getElementById('texto-ia-paste').value = '';
             document.getElementById('texto-ia-paste').style.borderColor = "#3483fa";
             editProdId = null;
@@ -441,6 +549,7 @@ Retorne EXATAMENTE e APENAS no formato JSON abaixo, sem formatar com blocos de c
                     document.getElementById('titulo').value = prod.titulo;
                     document.getElementById('preco').value = prod.preco || "";
                     document.getElementById('nota').value = prod.nota || "4.8";
+                    document.getElementById('ranking').value = prod.ranking || "10";
                     document.getElementById('link').value = prod.link;
                     document.getElementById('linkAfiliado').value = prod.linkAfiliado || ""; // PUXANDO LINK DE AFILIADO
                     document.getElementById('foto').value = prod.foto;
