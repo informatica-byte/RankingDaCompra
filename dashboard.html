@@ -29,6 +29,7 @@
         /* Caixas de Destaque */
         .caixa-amarela { background: #fff3cd; border: 2px dashed #ffe600; padding: 15px; border-radius: 8px; margin-bottom: 15px;}
         .caixa-azul { background: #e6f0ff; border: 2px dashed #3483fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;}
+        .caixa-verde { background: #edf9f0; border: 2px dashed #00a650; padding: 15px; border-radius: 8px; margin-bottom: 15px;}
         
         .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
         .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
@@ -76,6 +77,12 @@
         <div class="painel">
             <h2>📦 Cadastro de Produto</h2>
             <form id="formProduto">
+                <div class="campo caixa-verde">
+                    <label>🔎 Alternativa: digite o nome exato do produto:</label>
+                    <input type="text" id="nome-produto-busca" placeholder="Ex.: Tablet Xiaomi Redmi Pad 2 256GB 8GB RAM">
+                    <button type="button" id="btn-buscar-nome" class="btn-salvar" onclick="buscarPorNomeML()">🔎 Buscar pelo nome e preencher automaticamente</button>
+                    <small>Pesquisa ofertas públicas do Mercado Livre, escolhe o resultado mais parecido e depois gera a análise com IA.</small>
+                </div>
                 
                 <div class="campo caixa-amarela">
                     <label>1. Cole o Link COMUM do Produto (Para o sistema achar a foto):</label>
@@ -328,6 +335,49 @@ Formato obrigatório:
                 console.log('Categorias antigas migradas para o Firestore.');
             } catch (e) {
                 console.error('Falha ao migrar categorias antigas:', e);
+            }
+        }
+
+        async function buscarPorNomeML() {
+            const campoNome = document.getElementById('nome-produto-busca');
+            const nome = campoNome.value.trim();
+            if (nome.length < 5) return alert('Digite o nome do produto com pelo menos 5 caracteres.');
+
+            const botao = document.getElementById('btn-buscar-nome');
+            botao.disabled = true;
+            botao.innerText = '⏳ Pesquisando no Mercado Livre...';
+
+            try {
+                const resposta = await fetch(`https://api.mercadolibre.com/sites/MLB/search?limit=10&q=${encodeURIComponent(nome)}`);
+                const dados = await resposta.json().catch(() => ({}));
+                const resultados = Array.isArray(dados.results) ? dados.results : [];
+                if (!resultados.length) {
+                    return alert('Não encontrei esse produto no Mercado Livre. Tente incluir marca, modelo, capacidade ou cor no nome.');
+                }
+
+                // Escolhe o título que possui mais palavras do nome digitado.
+                const palavras = nome.toLocaleLowerCase('pt-BR').split(/\s+/)
+                    .map(palavra => palavra.replace(/[^\p{L}\p{N}]/gu, ''))
+                    .filter(palavra => palavra.length >= 3);
+                const candidato = resultados
+                    .map(resultado => ({
+                        ...resultado,
+                        pontuacao: palavras.filter(palavra => String(resultado.title || '').toLocaleLowerCase('pt-BR').includes(palavra)).length
+                    }))
+                    .sort((a, b) => b.pontuacao - a.pontuacao)[0];
+
+                if (!candidato?.id) throw new Error('A pesquisa não trouxe um anúncio utilizável.');
+
+                // Reaproveita a rotina principal: ela busca detalhes, preço, imagem,
+                // atributos e chama a IA para preencher o restante do cadastro.
+                document.getElementById('link').value = candidato.permalink || `https://produto.mercadolivre.com.br/${candidato.id}`;
+                await buscarDadosML();
+            } catch (erro) {
+                console.error('Erro na busca por nome:', erro);
+                alert('Não foi possível pesquisar agora. Tente novamente em alguns instantes.');
+            } finally {
+                botao.disabled = false;
+                botao.innerText = '🔎 Buscar pelo nome e preencher automaticamente';
             }
         }
 
