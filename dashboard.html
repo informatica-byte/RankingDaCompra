@@ -115,11 +115,11 @@
                 </div>
 
                 <div class="campo"><label>URL da Imagem:</label><input type="url" id="foto" required></div>
-                <div class="campo"><label>Resumo Persuasivo:</label><textarea id="comentario" rows="3" required></textarea></div>
+                <div class="campo"><label>Resumo Persuasivo (máximo de 500 caracteres):</label><textarea id="comentario" rows="3" maxlength="500" required></textarea></div>
                 
                 <div class="row">
-                    <div class="col campo"><label>Prós (Separe por vírgula):</label><textarea id="pros" rows="3" required></textarea></div>
-                    <div class="col campo"><label>Contras (Separe por vírgula):</label><textarea id="contras" rows="3" required></textarea></div>
+                    <div class="col campo"><label>Pontos positivos (máximo de 300 caracteres):</label><textarea id="pros" rows="3" maxlength="300" required></textarea></div>
+                    <div class="col campo"><label>Pontos de atenção (máximo de 300 caracteres):</label><textarea id="contras" rows="3" maxlength="300" required></textarea></div>
                 </div>
 
                 <button type="submit" id="btn-submit-prod" class="btn-salvar">🚀 Salvar na Nuvem</button>
@@ -169,11 +169,18 @@
             return texto && !/(n\/?a|informações insuficientes|dados técnicos ausentes|produto sem especificações|dados ausentes)/i.test(texto) ? texto : "";
         }
 
+        function limitarTexto(valor, limite) {
+            const texto = String(valor || "").replace(/\s+/g, " ").trim();
+            if (texto.length <= limite) return texto;
+            const corte = texto.slice(0, limite - 1).replace(/\s+\S*$/, "").trim();
+            return `${corte}…`;
+        }
+
         function listaUtil(valor, alternativas) {
             const itens = String(valor || "").split(",")
                 .map(item => item.trim())
                 .filter(item => item && !/(n\/?a|informações insuficientes|dados técnicos ausentes|dados ausentes)/i.test(item));
-            return itens.length ? itens.join(", ") : alternativas.join(", ");
+            return limitarTexto(itens.length ? itens.join(", ") : alternativas.join(", "), 300);
         }
 
         function normalizarSugestaoIA(resposta, produto, categorias) {
@@ -182,9 +189,10 @@
                 : (categorias[0]?.id || "");
             const titulo = produto.titulo || textoUtil(resposta.titulo) || "Produto selecionado";
             const especificacoes = Array.isArray(produto.especificacoes) ? produto.especificacoes.slice(0, 3) : [];
-            const resumoPadrao = especificacoes.length
-                ? `Para quem procura ${titulo}, o anúncio destaca ${especificacoes.join(", ")}. É uma opção que vale comparar com modelos da mesma faixa, principalmente pelo conjunto de recursos informado.`
-                : `${titulo} é uma opção para quem busca este tipo de produto. Antes da compra, vale conferir a ficha técnica, garantia e condições da oferta.`;
+            const dadosTecnicos = especificacoes.length
+                ? especificacoes.join(", ")
+                : "os recursos descritos no próprio título do anúncio";
+            const resumoPadrao = `O ${titulo} chama atenção por ${dadosTecnicos}. Na comparação com opções mais básicas da categoria, o conjunto anunciado tende a ser mais interessante para quem prioriza esses recursos; ainda assim, confirme autonomia, garantia e itens inclusos antes de fechar a compra.`;
 
             return {
                 categoria: categoriaValida,
@@ -193,7 +201,7 @@
                 preco: produto.preco || "",
                 nota: Number.isFinite(Number(resposta.nota)) ? Math.min(5, Math.max(1, Number(resposta.nota))) : 4.5,
                 ranking: Number.isFinite(Number.parseInt(resposta.ranking, 10)) ? Math.min(10, Math.max(1, Number.parseInt(resposta.ranking, 10))) : 10,
-                comentario: textoUtil(resposta.comentario) || resumoPadrao,
+                comentario: limitarTexto(textoUtil(resposta.comentario) || resumoPadrao, 500),
                 pros: listaUtil(resposta.pros, especificacoes.length ? especificacoes.map(item => `Destaque no anúncio: ${item}`) : ["Produto identificado no anúncio", "Informações principais disponíveis", "Oferta para comparar na categoria"]),
                 contras: listaUtil(resposta.contras, ["Conferir ficha técnica completa", "Verificar garantia e acessórios inclusos"])
             };
@@ -204,18 +212,19 @@
             const especificacoes = Array.isArray(produto.especificacoes) && produto.especificacoes.length
                 ? produto.especificacoes.join(" | ")
                 : "nenhuma especificação adicional disponível";
-            const prompt = `Você é um redator editorial brasileiro especializado em comparativos de compra. Gere um cadastro humano, específico e realista para o site Ranking da Compra.
+            const prompt = `Você é um especialista brasileiro em análise técnica de produtos e comparativos de compra. Gere um cadastro humano, específico e pronto para publicação no site Ranking da Compra.
 
-Escreva como alguém que está ajudando uma pessoa a decidir uma compra. A análise deve soar natural, equilibrada e prática — nunca como texto automático. Compare implicitamente o produto com alternativas da mesma faixa, mas NÃO cite concorrentes, preços ou especificações que não foram fornecidos.
+Escreva como alguém que testaria e compararia o produto com alternativas da mesma categoria. A análise deve usar linguagem técnica simples, realista e útil. Compare implicitamente com modelos de entrada ou da mesma faixa, mas NÃO cite concorrentes, preços ou especificações que não foram fornecidos.
 
 DADOS CONFIÁVEIS: use somente o título, preço, descrição e especificações enviados pelo anúncio do Mercado Livre. Não invente bateria, tela, processador, garantia, desempenho, acessórios, defeitos ou avaliações.
 
 REGRAS OBRIGATÓRIAS:
 - Mantenha o nome do produto fiel ao título do anúncio; nunca troque por termos genéricos como "Smartphone Genérico".
-- O resumo deve ter 2 ou 3 frases naturais. Diga para qual perfil o produto parece indicado e cite 2 ou mais informações concretas presentes nos dados quando existirem.
-- Evite frases vagas como "Conheça este produto", "informações insuficientes", "dados ausentes", "N/A" ou "verifique o anúncio" como texto principal.
-- Os prós devem ter exatamente 3 pontos curtos, separados por vírgula, cada um ligado a uma especificação real ou a uma vantagem claramente visível no anúncio.
-- Os contras devem ter exatamente 2 cuidados honestos, separados por vírgula. Use cuidados de compra reais, por exemplo comparar com modelos da mesma faixa, confirmar garantia, acessórios ou compatibilidade. Não invente defeitos.
+- O resumo deve ter entre 250 e 500 caracteres, em 2 ou 3 frases. Diga para qual perfil o produto parece indicado, explique os diferenciais e compare de modo equilibrado com opções mais básicas da categoria.
+- Os pontos positivos devem ter entre 120 e 300 caracteres no total, com 3 pontos curtos separados por vírgula. Cada ponto precisa usar uma especificação real do título, descrição ou atributos.
+- Os pontos de atenção devem ter entre 100 e 300 caracteres no total, com 2 ou 3 cuidados honestos separados por vírgula. Aponte limites técnicos esperados ou verificações importantes; nunca invente defeitos.
+- Quando só houver título, extraia dele todos os dados técnicos explícitos (ex.: potência, capacidade, memória, câmera, suspensão, conectividade). Faça inferências apenas quando usar expressões prudentes como "tende a" ou "é mais indicado para".
+- Nunca escreva "Conheça este produto", "informações insuficientes", "dados ausentes", "N/A", "produto genérico" ou "verifique o anúncio" como texto principal.
 - A categoria precisa ser exatamente um dos IDs permitidos.
 - Retorne somente JSON válido, sem markdown.
 
@@ -233,9 +242,9 @@ Formato obrigatório:
   "titulo": "repita o título original de forma fiel",
   "nota": 4.5,
   "ranking": 10,
-  "comentario": "resumo natural, específico e realista",
-  "pros": "três pontos concretos separados por vírgula",
-  "contras": "dois cuidados honestos separados por vírgula"
+  "comentario": "resumo técnico, comparativo e humano com no máximo 500 caracteres",
+  "pros": "três pontos concretos separados por vírgula, com no máximo 300 caracteres",
+  "contras": "dois ou três pontos de atenção separados por vírgula, com no máximo 300 caracteres"
 }`;
 
             const result = await model.generateContent(prompt);
@@ -640,5 +649,3 @@ Formato obrigatório:
     </script>
 </body>
 </html>
-
-
