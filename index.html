@@ -23,6 +23,10 @@
     .crumb{font-size:.86rem;color:var(--muted);margin-bottom:18px}.crumb a{color:var(--green)}.detail{background:#fff;border:1px solid var(--line);border-radius:18px;padding:clamp(20px,4vw,42px)}.detail-top{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.2fr);gap:36px}.detail-img{width:100%;max-height:420px;object-fit:contain;background:#fbfcfa;border-radius:12px}.detail h1{margin:8px 0 12px;line-height:1.12;font-size:clamp(1.7rem,4vw,2.7rem);letter-spacing:-.04em}.detail .summary{font-size:1.06rem;color:#4d5b54}.offer{background:#f3f9f5;border:1px solid #d7ebdd;border-radius:12px;padding:18px;margin-top:20px}.offer .price{display:inline-block;font-size:1.1rem;margin-bottom:10px}.offer .button{width:100%;background:var(--blue);color:#fff;margin-top:8px}.fine{font-size:.78rem;color:var(--muted);margin:10px 0 0}.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:26px}.fact{border:1px solid var(--line);padding:14px;border-radius:10px}.fact span{display:block;color:var(--muted);font-size:.78rem;font-weight:800;text-transform:uppercase}.detail-sections{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}.panel{background:#fafcfb;border:1px solid var(--line);border-radius:12px;padding:20px}.panel h2{font-size:1.05rem;margin:0 0 8px}.panel ul{padding-left:18px;margin:0}.positive h2{color:#267c31}.attention h2{color:#b1531a}.share{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.share button{background:white;border:1px solid var(--line);padding:9px 12px;border-radius:7px;cursor:pointer}
     footer{background:#10231c;color:#dfeae4;padding:42px 0;font-size:.9rem}.foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px}.foot a{display:block;color:#dfeae4;text-decoration:none;margin:7px 0}.foot strong{color:#fff}.affiliate{margin-top:16px;font-size:.78rem;line-height:1.5;color:#aabcb2}
     @media(max-width:680px){nav a:not(.nav-cta){display:none}.hero{padding:42px 0 28px}.product-card{grid-template-columns:100px 1fr;gap:13px}.product-card img{width:100px;height:110px}.detail-top,.detail-sections,.foot{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.facts{grid-template-columns:1fr 1fr}}
+    /* Foto da categoria: definida pelo painel administrativo. */
+    .category{justify-content:flex-start;gap:10px}
+    .category-image{display:block;width:100%;height:108px;object-fit:cover;border-radius:9px;background:#f4f8f2;border:1px solid var(--line)}
+    .category-image + strong{margin-top:2px}
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBKRX8TTR6"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-NBKRX8TTR6',{anonymize_ip:true});</script>
@@ -43,5 +47,38 @@ async function home(){setSeo('Ranking da Compra | Melhores produtos para comprar
 async function category(id){const [cat,snap]=await Promise.all([db.collection('categorias').doc(id).get(),db.collection('produtos').where('categoria','==',id).get()]);let name=cat.exists?cat.data().nome:'Categoria';let ps=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(a.ranking||99)-(b.ranking||99)).slice(0,10);setSeo(`Melhores ${name} | Ranking da Compra`,`Veja nosso ranking dos melhores ${name}, com prós, contras e ofertas atualizadas.`);app.innerHTML=`<main class="wrap"><div class="crumb"><a href="./">Início</a> / ${esc(name)}</div><div class="section-head"><div><div class="eyebrow">Ranking atualizado</div><h2>Melhores ${esc(name)}</h2><p>Compare antes de decidir. A posição considera o conjunto de benefícios, não apenas o preço.</p></div><a class="button secondary" href="./">Todas as categorias</a></div><div class="products">${ps.map((p,i)=>productCard(p,i+1)).join('')||'<div class="empty">Ainda não há produtos nesta categoria.</div>'}</div><div class="notice"><b>Nota editorial:</b> nossos rankings são informativos; confirme compatibilidade, garantia e condições de entrega no anúncio.</div></main>`;updatePrices(ps)}
 async function product(id){let d=await db.collection('produtos').doc(id).get();if(!d.exists){app.innerHTML='<main class="wrap"><div class="empty">Produto não encontrado. <a href="./">Voltar ao início</a></div></main>';return}let p={id:d.id,...d.data()},cat=await db.collection('categorias').doc(p.categoria||'').get(),catName=cat.exists?cat.data().nome:'Ranking';setSeo(`${p.titulo} | Ranking da Compra`,p.comentario||'Análise, prós, contras e oferta atual.');let pros=String(p.pros||'').split(',').filter(Boolean).map(x=>`<li>${esc(x.trim())}</li>`).join('')||'<li>Informações em atualização.</li>',cons=String(p.contras||'').split(',').filter(Boolean).map(x=>`<li>${esc(x.trim())}</li>`).join('')||'<li>Confira os detalhes no anúncio.</li>';app.innerHTML=`<main class="wrap"><div class="crumb"><a href="./">Início</a> / <a href="?cat=${encodeURIComponent(p.categoria||'')}">${esc(catName)}</a> / ${esc(p.titulo)}</div><article class="detail"><div class="detail-top"><img class="detail-img" src="${safe(p.foto)}" alt="${esc(p.titulo)}"><div><div class="eyebrow">${p.selo?esc(p.selo):'Análise editorial'}</div><h1>${esc(p.titulo)}</h1><div class="rating">${stars(p.nota)} ${esc(p.nota||'')} de 5</div><p class="summary">${esc(p.comentario||'Veja os pontos principais antes de comprar.')}</p><div class="offer"><span class="price" id="detail-price">Verificando preço…</span><br><a class="button" id="offer-link" href="${safe(p.linkAfiliado||p.link)}" target="_blank" rel="sponsored noopener noreferrer">Ver oferta atual no Mercado Livre</a><p class="fine">Você será direcionado ao Mercado Livre. O preço final e a disponibilidade são definidos pelo vendedor.</p></div><div class="facts"><div class="fact"><span>Posição</span>#${esc(p.ranking||'-')} no ranking</div><div class="fact"><span>Categoria</span>${esc(catName)}</div></div></div></div><div class="detail-sections"><section class="panel positive"><h2>✓ Pontos positivos</h2><ul>${pros}</ul></section><section class="panel attention"><h2>! Pontos de atenção</h2><ul>${cons}</ul></section></div><div class="share"><button id="copy-link">Copiar link</button><button id="share-link">Compartilhar</button></div></article></main>`;getPrice(p).then(v=>document.getElementById('detail-price').textContent=v);document.getElementById('offer-link').addEventListener('click',()=>gtag('event','select_item',{item_list_name:catName,items:[{item_id:p.id,item_name:p.titulo,index:Number(p.ranking)||0}],affiliate:'mercado_livre'}));document.getElementById('copy-link').onclick=async()=>{await navigator.clipboard.writeText(location.href);document.getElementById('copy-link').textContent='Link copiado!'};document.getElementById('share-link').onclick=()=>navigator.share?navigator.share({title:p.titulo,text:p.comentario,url:location.href}):document.getElementById('copy-link').click()}
 let q=new URLSearchParams(location.search);(q.get('produto')?product(q.get('produto')):q.get('cat')?category(q.get('cat')):home()).catch(e=>{console.error(e);app.innerHTML='<main class="wrap"><div class="empty">Não foi possível carregar o conteúdo agora. Tente novamente em alguns instantes.</div></main>'});
+</script>
+<script>
+  // As fotos das categorias são cadastradas e alteradas pelo dashboard.html.
+  const imagensCategorias = new Map();
+  function aplicarFotosCategorias() {
+    document.querySelectorAll('a.category').forEach(card => {
+      const categoriaId = new URL(card.href).searchParams.get('cat');
+      const imagem = imagensCategorias.get(categoriaId);
+      if (!imagem) return;
+
+      const url = safe(imagem);
+      if (url === '#') return;
+      let foto = card.querySelector('.category-image');
+      if (!foto) {
+        foto = document.createElement('img');
+        foto.className = 'category-image';
+        foto.alt = '';
+        const icone = card.querySelector('.icon');
+        if (icone) icone.replaceWith(foto);
+        else card.prepend(foto);
+      }
+      foto.src = url;
+    });
+  }
+  db.collection('categorias').onSnapshot(snapshot => {
+    imagensCategorias.clear();
+    snapshot.forEach(doc => {
+      const categoria = doc.data();
+      if (categoria.imagem) imagensCategorias.set(doc.id, categoria.imagem);
+    });
+    aplicarFotosCategorias();
+  });
+  new MutationObserver(aplicarFotosCategorias).observe(app, { childList: true, subtree: true });
 </script>
 </body></html>

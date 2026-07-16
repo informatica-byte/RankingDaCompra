@@ -32,6 +32,8 @@
         
         .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
         .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
+        .cat-miniatura { width: 42px; height: 42px; border-radius: 6px; object-fit: cover; vertical-align: middle; margin-right: 8px; border: 1px solid #ddd; background: #fff; }
+        .ajuda-categoria { margin: -7px 0 12px; color: #666; font-size: 12px; }
         .badge-cat { background: #ffe600; color: #333; padding: 4px 8px; border-radius: 4px; font-size: 11px; margin-right: 10px; font-weight: bold;}
         .acoes { display: flex; gap: 8px; }
         .btn-edit { background: #ffc107; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
@@ -61,9 +63,11 @@
             <form id="formCategoria">
                 <div class="row">
                     <div class="col campo"><label>ID Único (URL):</label><input type="text" id="cat-id" required pattern="[a-zA-Z0-9_-]+"></div>
-                    <div class="col campo"><label>Ícone (Emoji):</label><input type="text" id="cat-icone" required></div>
+                    <div class="col campo"><label>Ícone de reserva (opcional):</label><input type="text" id="cat-icone" placeholder="Ex.: 📱"></div>
                 </div>
                 <div class="campo"><label>Nome Visível:</label><input type="text" id="cat-nome" required></div>
+                <div class="campo"><label>URL da imagem da categoria (opcional):</label><input type="url" id="cat-imagem" placeholder="https://site.com/imagem-da-categoria.jpg"></div>
+                <p class="ajuda-categoria">Cole o link direto de uma imagem (JPG, PNG ou WEBP). A imagem aparecerá no card; sem imagem, será usado o ícone de reserva.</p>
                 <button type="submit" id="btn-submit-cat" class="btn-salvar btn-categoria">+ Criar Categoria</button>
             </form>
             <div class="lista-admin" id="lista-categorias-admin"></div>
@@ -461,10 +465,12 @@ Formato obrigatório:
 
                 snapshot.forEach(doc => {
                     const cat = doc.data();
-                    select.innerHTML += `<option value="${doc.id}">${escapeHtml(cat.icone)} ${escapeHtml(cat.nome)}</option>`;
+                    const icone = cat.icone ? `${escapeHtml(cat.icone)} ` : '';
+                    const miniatura = cat.imagem ? `<img class="cat-miniatura" src="${escapeHtml(cat.imagem)}" alt="">` : '';
+                    select.innerHTML += `<option value="${doc.id}">${icone}${escapeHtml(cat.nome)}</option>`;
                     listaCatAdmin.innerHTML += `
                         <div class="item-admin">
-                            <span>${escapeHtml(cat.icone)} <b>${escapeHtml(cat.nome)}</b> <small style="color:#999;">(${escapeHtml(doc.id)})</small></span>
+                            <span>${miniatura}${icone}<b>${escapeHtml(cat.nome)}</b> <small style="color:#999;">(${escapeHtml(doc.id)})</small></span>
                             <div class="acoes">
                                 <button type="button" class="btn-edit" onclick="editarCategoria('${doc.id}')">✎</button>
                                 <button type="button" class="btn-del" onclick="deletarCategoria('${doc.id}')">X</button>
@@ -484,8 +490,9 @@ Formato obrigatório:
             e.preventDefault();
             const idDigitado = document.getElementById('cat-id').value.trim().toLowerCase().replace(/\s+/g, '');
             const catInfo = {
-                icone: document.getElementById('cat-icone').value,
-                nome: document.getElementById('cat-nome').value
+                icone: document.getElementById('cat-icone').value.trim(),
+                nome: document.getElementById('cat-nome').value.trim(),
+                imagem: document.getElementById('cat-imagem').value.trim()
             };
 
             try {
@@ -515,8 +522,9 @@ Formato obrigatório:
                 const cat = doc.data();
                 document.getElementById('cat-id').value = id;
                 document.getElementById('cat-id').disabled = true;
-                document.getElementById('cat-icone').value = cat.icone;
+                document.getElementById('cat-icone').value = cat.icone || '';
                 document.getElementById('cat-nome').value = cat.nome;
+                document.getElementById('cat-imagem').value = cat.imagem || '';
                 editandoCatId = id;
                 document.getElementById('btn-submit-cat').innerText = "💾 Salvar Edição";
                 window.scrollTo(0, 200);
@@ -632,7 +640,5 @@ Formato obrigatório:
     </script>
 </body>
 </html>
-
-
 
 
