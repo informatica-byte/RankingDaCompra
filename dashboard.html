@@ -176,11 +176,11 @@
             const categoriaValida = categorias.some(categoria => categoria.id === resposta.categoria)
                 ? resposta.categoria
                 : (categorias[0]?.id || "");
-            const titulo = textoUtil(resposta.titulo) || produto.titulo || "Produto selecionado";
+            const titulo = produto.titulo || textoUtil(resposta.titulo) || "Produto selecionado";
             const especificacoes = Array.isArray(produto.especificacoes) ? produto.especificacoes.slice(0, 3) : [];
             const resumoPadrao = especificacoes.length
-                ? `${titulo} se destaca pelas informações do anúncio, como ${especificacoes.join(", ")}. Confira a oferta e a ficha técnica completa antes de comprar.`
-                : `Conheça o ${titulo}. Compare as informações do anúncio, preço e condições antes de comprar.`;
+                ? `Para quem procura ${titulo}, o anúncio destaca ${especificacoes.join(", ")}. É uma opção que vale comparar com modelos da mesma faixa, principalmente pelo conjunto de recursos informado.`
+                : `${titulo} é uma opção para quem busca este tipo de produto. Antes da compra, vale conferir a ficha técnica, garantia e condições da oferta.`;
 
             return {
                 categoria: categoriaValida,
@@ -190,7 +190,7 @@
                 nota: Number.isFinite(Number(resposta.nota)) ? Math.min(5, Math.max(1, Number(resposta.nota))) : 4.5,
                 ranking: Number.isFinite(Number.parseInt(resposta.ranking, 10)) ? Math.min(10, Math.max(1, Number.parseInt(resposta.ranking, 10))) : 10,
                 comentario: textoUtil(resposta.comentario) || resumoPadrao,
-                pros: listaUtil(resposta.pros, especificacoes.length ? especificacoes : ["Produto identificado no anúncio", "Informações principais disponíveis", "Compare as condições da oferta"]),
+                pros: listaUtil(resposta.pros, especificacoes.length ? especificacoes.map(item => `Destaque no anúncio: ${item}`) : ["Produto identificado no anúncio", "Informações principais disponíveis", "Oferta para comparar na categoria"]),
                 contras: listaUtil(resposta.contras, ["Conferir ficha técnica completa", "Verificar garantia e acessórios inclusos"])
             };
         }
@@ -200,19 +200,22 @@
             const especificacoes = Array.isArray(produto.especificacoes) && produto.especificacoes.length
                 ? produto.especificacoes.join(" | ")
                 : "nenhuma especificação adicional disponível";
-            const prompt = `Você é um editor brasileiro especializado em e-commerce. Gere um cadastro útil, honesto e pronto para publicação no site Ranking da Compra.
+            const prompt = `Você é um redator editorial brasileiro especializado em comparativos de compra. Gere um cadastro humano, específico e realista para o site Ranking da Compra.
 
-Você recebeu dados extraídos diretamente do anúncio do Mercado Livre: título, preço, descrição e especificações técnicas. Use esses dados como fonte. Não invente bateria, tela, processador, garantia, desempenho, acessórios ou defeitos que não estejam nos dados.
+Escreva como alguém que está ajudando uma pessoa a decidir uma compra. A análise deve soar natural, equilibrada e prática — nunca como texto automático. Compare implicitamente o produto com alternativas da mesma faixa, mas NÃO cite concorrentes, preços ou especificações que não foram fornecidos.
+
+DADOS CONFIÁVEIS: use somente o título, preço, descrição e especificações enviados pelo anúncio do Mercado Livre. Não invente bateria, tela, processador, garantia, desempenho, acessórios, defeitos ou avaliações.
 
 REGRAS OBRIGATÓRIAS:
-- Nunca responda "N/A", "informações insuficientes", "dados técnicos ausentes", "produto sem especificações" e não peça mais dados.
-- O resumo deve mencionar pelo menos um dado concreto presente no título ou nas especificações quando houver.
-- Os prós devem conter 3 pontos curtos, separados por vírgula, baseados exclusivamente nas especificações enviadas.
-- Os contras devem conter 2 cuidados de compra prudentes, separados por vírgula; não invente defeitos.
+- Mantenha o nome do produto fiel ao título do anúncio; nunca troque por termos genéricos como "Smartphone Genérico".
+- O resumo deve ter 2 ou 3 frases naturais. Diga para qual perfil o produto parece indicado e cite 2 ou mais informações concretas presentes nos dados quando existirem.
+- Evite frases vagas como "Conheça este produto", "informações insuficientes", "dados ausentes", "N/A" ou "verifique o anúncio" como texto principal.
+- Os prós devem ter exatamente 3 pontos curtos, separados por vírgula, cada um ligado a uma especificação real ou a uma vantagem claramente visível no anúncio.
+- Os contras devem ter exatamente 2 cuidados honestos, separados por vírgula. Use cuidados de compra reais, por exemplo comparar com modelos da mesma faixa, confirmar garantia, acessórios ou compatibilidade. Não invente defeitos.
 - A categoria precisa ser exatamente um dos IDs permitidos.
 - Retorne somente JSON válido, sem markdown.
 
-Produto: ${produto.titulo || "não informado"}
+Título original do produto: ${produto.titulo || "não informado"}
 Preço encontrado: ${produto.preco || "não informado"}
 Descrição do vendedor: ${(produto.descricao || "sem descrição disponibilizada pelo anúncio").slice(0, 1800)}
 Especificações técnicas do anúncio: ${especificacoes}
@@ -223,12 +226,12 @@ Formato obrigatório:
 {
   "categoria": "id de categoria permitida",
   "selo": "selo permitido ou vazio",
-  "titulo": "nome curto e fiel",
+  "titulo": "repita o título original de forma fiel",
   "nota": 4.5,
   "ranking": 10,
-  "comentario": "resumo útil em português",
-  "pros": "três pontos separados por vírgula",
-  "contras": "dois pontos de atenção separados por vírgula"
+  "comentario": "resumo natural, específico e realista",
+  "pros": "três pontos concretos separados por vírgula",
+  "contras": "dois cuidados honestos separados por vírgula"
 }`;
 
             const result = await model.generateContent(prompt);
@@ -629,5 +632,7 @@ Formato obrigatório:
     </script>
 </body>
 </html>
+
+
 
 
