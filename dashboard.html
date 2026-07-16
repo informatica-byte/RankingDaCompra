@@ -160,32 +160,66 @@
         // Modelo leve para reduzir recusas temporárias por alta demanda.
         const model = getGenerativeModel(ai, { model: "gemini-3.1-flash-lite" });
 
-        window.preencherComIA = async ({ produto, categorias }) => {
-            const categoriasPermitidas = categorias.map(cat => `${cat.id}: ${cat.nome}`).join("; ");
-            const prompt = `Você é um especialista brasileiro em e-commerce. Gere sugestões honestas para cadastrar o produto abaixo no site Ranking da Compra. Não invente especificações que não estejam no título ou na descrição. A categoria deve ser obrigatoriamente um dos IDs permitidos. Retorne SOMENTE JSON válido, sem markdown e sem texto antes ou depois.
+        const textoUtil = (valor) => {
+            const texto = String(valor || "").trim();
+            return texto && !/^(n\/?a|dados ausentes|informa[çc][õo]es insuficientes)/i.test(texto) ? texto : "";
+        };
 
-Produto: ${produto.titulo}
+        function normalizarSugestaoIA(resposta, produto, categorias) {
+            const categoriaValida = categorias.some(categoria => categoria.id === resposta.categoria)
+                ? resposta.categoria
+                : (categorias[0]?.id || "");
+            const titulo = textoUtil(resposta.titulo) || produto.titulo || "Produto selecionado";
+            const resumoPadrao = `Conheça o ${titulo}. Confira no anúncio as condições, a ficha técnica completa e a disponibilidade antes de comprar.`;
+
+            return {
+                categoria: categoriaValida,
+                selo: ["", "🏆 Melhor Escolha", "💰 Custo-Benefício", "🔥 Mais Vendido"].includes(resposta.selo) ? resposta.selo : "",
+                titulo,
+                preco: produto.preco || "",
+                nota: Number.isFinite(Number(resposta.nota)) ? Math.min(5, Math.max(1, Number(resposta.nota))) : 4.5,
+                ranking: Number.isFinite(Number.parseInt(resposta.ranking, 10)) ? Math.min(10, Math.max(1, Number.parseInt(resposta.ranking, 10))) : 10,
+                comentario: textoUtil(resposta.comentario) || resumoPadrao,
+                pros: textoUtil(resposta.pros) || "Produto identificado no anúncio, Informações principais disponíveis, Compare as condições da oferta",
+                contras: textoUtil(resposta.contras) || "Verificar ficha técnica completa, Conferir garantia e acessórios"
+            };
+        }
+
+        window.preencherComIA = async ({ produto, categorias }) => {
+            const categoriasPermitidas = categorias.map(categoria => `${categoria.id}: ${categoria.nome}`).join("; ");
+            const prompt = `Você é um editor brasileiro especializado em e-commerce. Gere um cadastro útil, honesto e pronto para publicação no site Ranking da Compra.
+
+Use apenas fatos presentes no título e na descrição. Quando a descrição estiver vazia, use o título como fonte principal e escreva uma análise curta e prudente. Nunca invente especificações como bateria, tela, processador, garantia, desempenho ou acessórios.
+
+REGRAS OBRIGATÓRIAS:
+- Nunca responda "N/A", "dados ausentes", "informações insuficientes", nem peça mais dados.
+- Mesmo sem descrição, produza um resumo útil usando o nome do produto e os atributos presentes nele.
+- Os prós devem usar atributos visíveis no título; se houver poucos atributos, use orientações seguras como "informações principais disponíveis no anúncio".
+- Os contras devem ser cuidados de compra honestos, como confirmar ficha técnica, garantia ou acessórios; não invente defeitos.
+- A categoria precisa ser exatamente um dos IDs permitidos.
+- Retorne somente JSON válido, sem markdown.
+
+Produto: ${produto.titulo || "não informado"}
 Preço encontrado: ${produto.preco || "não informado"}
-Descrição do vendedor: ${(produto.descricao || "não disponível").slice(0, 1800)}
+Descrição do vendedor: ${(produto.descricao || "sem descrição disponibilizada pelo anúncio").slice(0, 1800)}
 Categorias permitidas: ${categoriasPermitidas}
 Selos permitidos: "", "🏆 Melhor Escolha", "💰 Custo-Benefício", "🔥 Mais Vendido"
 
-Use exatamente este formato:
+Formato obrigatório:
 {
-  "categoria": "id de uma categoria permitida",
-  "selo": "um selo permitido ou vazio",
-  "titulo": "nome curto e fiel ao produto",
-  "preco": "preço estimado em formato brasileiro, se conhecido",
+  "categoria": "id de categoria permitida",
+  "selo": "selo permitido ou vazio",
+  "titulo": "nome curto e fiel",
   "nota": 4.5,
   "ranking": 10,
-  "comentario": "resumo persuasivo e responsável em português",
-  "pros": "três pontos positivos separados por vírgula",
+  "comentario": "resumo útil em português",
+  "pros": "três pontos separados por vírgula",
   "contras": "dois pontos de atenção separados por vírgula"
 }`;
 
             const result = await model.generateContent(prompt);
-            const texto = result.response.text().trim().replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/\s*```$/, "");
-            return JSON.parse(texto);
+            const texto = result.response.text().trim().replace(/^\`\`\`json\s*/i, "").replace(/^\`\`\`\s*/i, "").replace(/\s*\`\`\`$/, "");
+            return normalizarSugestaoIA(JSON.parse(texto), produto, categorias);
         };
     </script>
 
@@ -572,3 +606,5 @@ Use exatamente este formato:
     </script>
 </body>
 </html>
+
+
