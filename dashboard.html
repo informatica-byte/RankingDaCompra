@@ -335,8 +335,10 @@ Formato obrigatório:
             const url = document.getElementById('link').value;
             if (!url) return alert("Por favor, cole o link comum do Mercado Livre primeiro.");
 
-            const match = url.match(/MLB[-_]?\d+/i);
-            if (!match) return alert("Esse link não parece ser o original do Mercado Livre (ele precisa ter o código MLB). Certifique-se de colar o link comum aqui, e não o de afiliado.");
+            // O Mercado Livre usa vários códigos: MLB (anúncio), MLE (catálogo),
+            // MLU, MLA etc. Links de catálogo, como /p/MLE..., também são válidos.
+            const match = url.match(/\bML[A-Z]{1,3}[-_]?\d+\b/i);
+            if (!match) return alert("Não encontrei um código Mercado Livre no link. Cole o link completo do produto, que contenha algo como MLB123... ou MLE123...");
 
             const idML = match[0].replace(/[-_]/g, '');
             const btn = document.getElementById('btn-magico');
@@ -346,10 +348,10 @@ Formato obrigatório:
                 let tituloML = '', precoML = '', fotoUrl = '', descText = '', especificacoes = [];
 
                 let resItem = await fetch(`https://api.mercadolibre.com/items/${idML}`);
-                let dataItem = await resItem.json();
+                let dataItem = await resItem.json().catch(() => ({ error: true }));
 
                 if (!dataItem.error) {
-                    tituloML = dataItem.title;
+                    tituloML = dataItem.title || '';
                     precoML = dataItem.price ? dataItem.price.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
                     fotoUrl = (dataItem.pictures && dataItem.pictures.length > 0) ? dataItem.pictures[0].secure_url : dataItem.thumbnail;
                     especificacoes = (dataItem.attributes || [])
@@ -359,15 +361,18 @@ Formato obrigatório:
                     try {
                         let resDesc = await fetch(`https://api.mercadolibre.com/items/${idML}/description`);
                         let dataDesc = await resDesc.json();
-                        descText = dataDesc.plain_text || "";
+                        descText = dataDesc.plain_text || dataDesc.text || "";
                     } catch(e) {}
                 } else {
                     let resProd = await fetch(`https://api.mercadolibre.com/products/${idML}`);
-                    let dataProd = await resProd.json();
+                    let dataProd = await resProd.json().catch(() => ({ error: true }));
                     if (!dataProd.error) {
-                        tituloML = dataProd.name;
-                        precoML = dataProd.buy_box_winner ? dataProd.buy_box_winner.price.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
-                        fotoUrl = (dataProd.pictures && dataProd.pictures.length > 0) ? dataProd.pictures[0].url : '';
+                        tituloML = dataProd.name || dataProd.title || '';
+                        const precoCatalogo = dataProd.buy_box_winner?.price || dataProd.price || null;
+                        precoML = precoCatalogo ? Number(precoCatalogo).toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
+                        const primeiraFoto = dataProd.pictures?.[0] || {};
+                        fotoUrl = primeiraFoto.secure_url || primeiraFoto.url || primeiraFoto.source || '';
+                        descText = dataProd.short_description || dataProd.description || '';
                         especificacoes = (dataProd.attributes || [])
                             .filter(atributo => atributo && atributo.name && atributo.value_name)
                             .slice(0, 18)
@@ -375,6 +380,12 @@ Formato obrigatório:
                     } else {
                         return alert("Produto não encontrado no Mercado Livre.");
                     }
+                }
+
+                // Não chama a IA sem produto identificado: isso evita o texto genérico
+                // "não informado" que aparecia quando o código do link não era lido.
+                if (!tituloML) {
+                    return alert("O Mercado Livre não retornou os dados deste link. Tente abrir o anúncio e copiar novamente a URL completa da barra do navegador.");
                 }
 
                 document.getElementById('titulo').value = tituloML || '';
