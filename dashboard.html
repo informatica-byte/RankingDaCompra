@@ -335,9 +335,22 @@ Formato obrigatório:
             const url = document.getElementById('link').value;
             if (!url) return alert("Por favor, cole o link comum do Mercado Livre primeiro.");
 
+            // Em links de catálogo há dois códigos: o da página (/p/MLB...) e
+            // o do anúncio real (item_id ou wid). O anúncio real traz preço e foto,
+            // portanto ele sempre tem prioridade.
+            let codigoAnuncio = '';
+            try {
+                const urlML = new URL(url);
+                const localizarMLB = valor => String(valor || '').match(/\bMLB[-_]?\d+\b/i)?.[0] || '';
+                codigoAnuncio = localizarMLB(urlML.searchParams.get('item_id'))
+                    || localizarMLB(urlML.searchParams.get('wid'))
+                    || localizarMLB(urlML.searchParams.get('pdp_filters'))
+                    || localizarMLB(urlML.hash);
+            } catch (e) {}
+
             // O Mercado Livre usa vários códigos: MLB (anúncio), MLE (catálogo),
             // MLU, MLA etc. Links de catálogo, como /p/MLE..., também são válidos.
-            const match = url.match(/\bML[A-Z]{1,3}[-_]?\d+\b/i);
+            const match = codigoAnuncio ? [codigoAnuncio] : url.match(/\bML[A-Z]{1,3}[-_]?\d+\b/i);
             if (!match) return alert("Não encontrei um código Mercado Livre no link. Cole o link completo do produto, que contenha algo como MLB123... ou MLE123...");
 
             const idML = match[0].replace(/[-_]/g, '');
