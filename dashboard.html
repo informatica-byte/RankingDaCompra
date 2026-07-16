@@ -77,17 +77,10 @@
         <div class="painel">
             <h2>📦 Cadastro de Produto</h2>
             <form id="formProduto">
-                <div class="campo caixa-verde">
-                    <label>🔎 Alternativa: digite o nome exato do produto:</label>
-                    <input type="text" id="nome-produto-busca" placeholder="Ex.: Tablet Xiaomi Redmi Pad 2 256GB 8GB RAM">
-                    <button type="button" id="btn-buscar-nome" class="btn-salvar" onclick="buscarPorNomeML()">🔎 Buscar pelo nome e preencher automaticamente</button>
-                    <small>Pesquisa ofertas públicas do Mercado Livre, escolhe o resultado mais parecido e depois gera a análise com IA.</small>
-                </div>
-                
                 <div class="campo caixa-amarela">
-                    <label>1. Cole o Link COMUM do Produto (Para o sistema achar a foto):</label>
-                    <input type="url" id="link" placeholder="Ex: https://produto.mercadolivre.com.br/MLB-1234..." required>
-                    <button type="button" id="btn-magico" class="btn-magico" onclick="buscarDadosML()">✨ 1º Passo: Buscar e Preencher com IA</button>
+                    <label>Link comum do produto (opcional):</label>
+                    <input type="url" id="link" placeholder="Ex.: https://www.mercadolivre.com.br/...">
+                    <small>Guarde o link para sua referência. O preenchimento dos dados será manual, para evitar informações incorretas.</small>
                 </div>
 
                 <div class="campo caixa-azul">
@@ -97,8 +90,8 @@
                 </div>
 
                 <div class="caixa-azul">
-                    <label style="color:#2968c8;">🤖 3. Cole a resposta da Inteligência Artificial aqui:</label>
-                    <textarea id="texto-ia-paste" rows="3" placeholder='Cole o código JSON gerado pelo Gemini' oninput="distribuirIA()"></textarea>
+                    <label style="color:#2968c8;">🤖 Resultado técnico da IA:</label>
+                    <textarea id="texto-ia-paste" rows="3" readonly placeholder="Será preenchido automaticamente ao gerar a análise."></textarea>
                 </div>
 
                 <div class="row">
@@ -122,6 +115,12 @@
                 </div>
 
                 <div class="campo"><label>URL da Imagem:</label><input type="url" id="foto" required></div>
+                <div class="campo caixa-verde">
+                    <label>Dados técnicos para a IA (opcional, mas recomendado):</label>
+                    <textarea id="dados-tecnicos-manual" rows="4" placeholder="Cole aqui a ficha técnica do anúncio. Ex.: Tela 11 polegadas, 8 GB RAM, 256 GB, Android 16, caneta inclusa, bateria 7000 mAh."></textarea>
+                    <button type="button" id="btn-gerar-analise" class="btn-salvar" onclick="gerarAnaliseManualComIA()">✨ Gerar resumo, pontos positivos e pontos de atenção</button>
+                    <small>A IA não pesquisa preço, imagem ou especificações: ela cria apenas a análise com base no nome e nos dados que você informar.</small>
+                </div>
                 <div class="campo"><label>Resumo Persuasivo (máximo de 500 caracteres):</label><textarea id="comentario" rows="3" maxlength="500" required></textarea></div>
                 
                 <div class="row">
@@ -335,6 +334,56 @@ Formato obrigatório:
                 console.log('Categorias antigas migradas para o Firestore.');
             } catch (e) {
                 console.error('Falha ao migrar categorias antigas:', e);
+            }
+        }
+
+        async function gerarAnaliseManualComIA() {
+            const titulo = document.getElementById('titulo').value.trim();
+            const dadosTecnicos = document.getElementById('dados-tecnicos-manual').value.trim();
+            if (!titulo) return alert('Preencha primeiro o Nome do Produto.');
+            if (typeof window.preencherComIA !== 'function') {
+                return alert('A IA ainda está carregando. Aguarde alguns segundos e tente novamente.');
+            }
+
+            const botao = document.getElementById('btn-gerar-analise');
+            botao.disabled = true;
+            botao.innerText = '⏳ Criando análise técnica...';
+            try {
+                const categorias = Array.from(document.getElementById('categoria').options)
+                    .map(option => ({ id: option.value, nome: option.textContent.trim() }));
+                const especificacoes = dadosTecnicos
+                    .split(/\n|;|\|/)
+                    .map(item => item.trim())
+                    .filter(Boolean)
+                    .slice(0, 18);
+                const sugestao = await window.preencherComIA({
+                    produto: {
+                        titulo,
+                        preco: document.getElementById('preco').value.trim(),
+                        foto: document.getElementById('foto').value.trim(),
+                        descricao: dadosTecnicos,
+                        especificacoes
+                    },
+                    categorias
+                });
+
+                // Mantém todos os dados comerciais sob seu controle. A IA só escreve
+                // nos três campos editoriais que ela consegue produzir com segurança.
+                document.getElementById('comentario').value = sugestao.comentario || '';
+                document.getElementById('pros').value = sugestao.pros || '';
+                document.getElementById('contras').value = sugestao.contras || '';
+                document.getElementById('texto-ia-paste').value = JSON.stringify({
+                    resumo: sugestao.comentario,
+                    pontosPositivos: sugestao.pros,
+                    pontosAtencao: sugestao.contras
+                }, null, 2);
+                alert('✅ Análise criada. Revise o texto e salve quando estiver satisfeito.');
+            } catch (erro) {
+                console.error('Erro ao gerar análise manual:', erro);
+                alert('A IA não respondeu agora. Aguarde alguns instantes e tente novamente.');
+            } finally {
+                botao.disabled = false;
+                botao.innerText = '✨ Gerar resumo, pontos positivos e pontos de atenção';
             }
         }
 
