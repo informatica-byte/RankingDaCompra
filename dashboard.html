@@ -346,18 +346,25 @@ Formato obrigatório:
 
             try {
                 let tituloML = '', precoML = '', fotoUrl = '', descText = '', especificacoes = [];
+                const usarDadosDoItem = (item) => {
+                    if (!item || item.error || !item.title) return false;
+                    tituloML = item.title || '';
+                    const preco = item.price || item.base_price || null;
+                    precoML = preco ? Number(preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 }) : precoML;
+                    const foto = item.pictures?.[0] || {};
+                    fotoUrl = foto.secure_url || foto.url || foto.source || item.thumbnail || fotoUrl;
+                    especificacoes = (item.attributes || [])
+                        .filter(atributo => atributo && atributo.name && atributo.value_name)
+                        .slice(0, 18)
+                        .map(atributo => `${atributo.name}: ${atributo.value_name}`);
+                    return true;
+                };
 
                 let resItem = await fetch(`https://api.mercadolibre.com/items/${idML}`);
                 let dataItem = await resItem.json().catch(() => ({ error: true }));
 
                 if (!dataItem.error) {
-                    tituloML = dataItem.title || '';
-                    precoML = dataItem.price ? dataItem.price.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
-                    fotoUrl = (dataItem.pictures && dataItem.pictures.length > 0) ? dataItem.pictures[0].secure_url : dataItem.thumbnail;
-                    especificacoes = (dataItem.attributes || [])
-                        .filter(atributo => atributo && atributo.name && atributo.value_name)
-                        .slice(0, 18)
-                        .map(atributo => `${atributo.name}: ${atributo.value_name}`);
+                    usarDadosDoItem(dataItem);
                     try {
                         let resDesc = await fetch(`https://api.mercadolibre.com/items/${idML}/description`);
                         let dataDesc = await resDesc.json();
@@ -377,8 +384,45 @@ Formato obrigatório:
                             .filter(atributo => atributo && atributo.name && atributo.value_name)
                             .slice(0, 18)
                             .map(atributo => `${atributo.name}: ${atributo.value_name}`);
-                    } else {
-                        return alert("Produto não encontrado no Mercado Livre.");
+                    }
+                }
+
+                // Alguns links /p/MLE... são páginas de catálogo e não um anúncio.
+                // Primeiro, procura uma oferta pública vinculada ao catálogo.
+                if (!tituloML) {
+                    try {
+                        const resOfertas = await fetch(`https://api.mercadolibre.com/products/${idML}/items`);
+                        const dadosOfertas = await resOfertas.json().catch(() => ({}));
+                        const ofertas = Array.isArray(dadosOfertas) ? dadosOfertas : (dadosOfertas.results || dadosOfertas.items || []);
+                        const codigoItem = ofertas.find(oferta => oferta?.id || oferta?.item_id)?.id || ofertas.find(oferta => oferta?.item_id)?.item_id;
+                        if (codigoItem) {
+                            const resOferta = await fetch(`https://api.mercadolibre.com/items/${codigoItem}`);
+                            usarDadosDoItem(await resOferta.json().catch(() => ({})));
+                        }
+                    } catch (e) {
+                        console.warn('Não foi possível consultar ofertas do catálogo.', e);
+                    }
+                }
+
+                // Última alternativa: pesquisa pública pelo nome existente na URL.
+                // Isso cobre links de catálogo que não expõem uma oferta diretamente.
+                if (!tituloML) {
+                    try {
+                        const caminho = new URL(url).pathname.split('/p/')[0];
+                        const slug = caminho.split('/').filter(Boolean).pop() || '';
+                        const busca = slug.replace(/[-_]+/g, ' ').trim();
+                        if (busca.length >= 8) {
+                            const resBusca = await fetch(`https://api.mercadolibre.com/sites/MLB/search?limit=5&q=${encodeURIComponent(busca)}`);
+                            const dadosBusca = await resBusca.json().catch(() => ({}));
+                            const candidato = (dadosBusca.results || []).find(resultado => resultado?.id && resultado?.title);
+                            if (candidato) {
+                                const resDetalhe = await fetch(`https://api.mercadolibre.com/items/${candidato.id}`);
+                                const detalhe = await resDetalhe.json().catch(() => candidato);
+                                usarDadosDoItem(detalhe.error ? candidato : detalhe);
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('Não foi possível pesquisar o produto pelo nome.', e);
                     }
                 }
 
