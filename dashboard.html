@@ -21,6 +21,12 @@
         .btn-categoria:hover { background-color: #1a1e4d; }
         .btn-login { background-color: #3483fa; }
         .btn-sair { background-color: #f23d4f; margin-top: 20px;}
+        .metricas-visitas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+        .metrica-visita { background: #f3f8ff; border: 1px solid #cdddf7; border-radius: 8px; padding: 16px; text-align: center; }
+        .metrica-visita strong { display: block; color: #2d3277; font-size: 28px; margin-bottom: 4px; }
+        .metrica-visita span { color: #555; font-size: 12px; font-weight: 600; }
+        .ajuda-metrica { color: #666; font-size: 12px; line-height: 1.45; }
+        @media (max-width: 520px) { .metricas-visitas { grid-template-columns: 1fr; } }
         
         /* Botão Magico do ML */
         .btn-magico { background-color: #ffe600; color: #2d3277; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 5px; display: inline-block; width: 100%;}
@@ -58,6 +64,17 @@
 
     <!-- DASHBOARD -->
     <div id="admin-content">
+
+        <div class="painel">
+            <h2>📈 Visitas da vitrine</h2>
+            <div class="metricas-visitas">
+                <div class="metrica-visita"><strong id="visitas-total">—</strong><span>Total registrado</span></div>
+                <div class="metrica-visita"><strong id="visitas-hoje">—</strong><span>Hoje</span></div>
+                <div class="metrica-visita"><strong id="visitas-7-dias">—</strong><span>Últimos 7 dias</span></div>
+            </div>
+            <button type="button" class="btn-salvar btn-categoria" id="btn-atualizar-visitas">Atualizar contagem</button>
+            <p class="ajuda-metrica">Contagem anônima da vitrine. O mesmo navegador é contado no máximo uma vez a cada 30 minutos; por isso, é uma estimativa e não substitui o Google Analytics.</p>
+        </div>
 
         <div class="painel">
             <h2>🏷️ Categorias</h2>
@@ -296,6 +313,7 @@ Formato obrigatório:
                 migrarCategoriasAntigasSeNecessario().then(() => {
                     carregarCategorias();
                     carregarProdutos();
+                    carregarMetricasVisitas();
                 });
             } else {
                 loginContent.style.display = 'block';
@@ -310,6 +328,45 @@ Formato obrigatório:
         });
 
         document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
+        document.getElementById('btn-atualizar-visitas').addEventListener('click', carregarMetricasVisitas);
+
+        function dataBrasil(data = new Date()) {
+            const partes = new Intl.DateTimeFormat('en-CA', {
+                timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit'
+            }).formatToParts(data);
+            const valor = {};
+            partes.forEach(parte => valor[parte.type] = parte.value);
+            return `${valor.year}-${valor.month}-${valor.day}`;
+        }
+
+        async function carregarMetricasVisitas() {
+            const botao = document.getElementById('btn-atualizar-visitas');
+            botao.disabled = true;
+            botao.textContent = 'Atualizando...';
+            try {
+                const snapshot = await db.collection('visitas').get();
+                const hoje = dataBrasil();
+                const inicioSeteDias = new Date();
+                inicioSeteDias.setDate(inicioSeteDias.getDate() - 6);
+                const inicio = dataBrasil(inicioSeteDias);
+                let visitasHoje = 0, visitasSeteDias = 0;
+                snapshot.forEach(doc => {
+                    const dia = doc.data().dia || '';
+                    if (dia === hoje) visitasHoje++;
+                    if (dia >= inicio && dia <= hoje) visitasSeteDias++;
+                });
+                document.getElementById('visitas-total').textContent = snapshot.size.toLocaleString('pt-BR');
+                document.getElementById('visitas-hoje').textContent = visitasHoje.toLocaleString('pt-BR');
+                document.getElementById('visitas-7-dias').textContent = visitasSeteDias.toLocaleString('pt-BR');
+            } catch (erro) {
+                console.error('Erro ao carregar visitas:', erro);
+                document.getElementById('visitas-total').textContent = 'Erro';
+                alert('Ainda falta publicar a regra de visitas no Firestore. Veja o arquivo firestore.rules.txt atualizado.');
+            } finally {
+                botao.disabled = false;
+                botao.textContent = 'Atualizar contagem';
+            }
+        }
 
         // MIGRAÇÃO: se este navegador ainda tiver categorias salvas do jeito antigo
         // (localStorage) e a nuvem estiver vazia, copia elas pro Firestore uma única vez,
