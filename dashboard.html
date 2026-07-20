@@ -171,8 +171,8 @@
                 <div class="campo caixa-verde">
                     <label>Dados técnicos verificáveis para a IA (obrigatório):</label>
                     <textarea id="dados-tecnicos-manual" rows="4" placeholder="Cole aqui a ficha técnica do anúncio. Ex.: Tela 11 polegadas, 8 GB RAM, 256 GB, Android 16, caneta inclusa, bateria 7000 mAh."></textarea>
-                    <button type="button" id="btn-gerar-analise" class="btn-salvar" onclick="gerarAnaliseManualComIA()">✨ Gerar resumo, pontos positivos e pontos de atenção</button>
-                    <small>Informe pelo menos três características reais. A IA será bloqueada se inventar números, benefícios ou defeitos que não estejam nessa ficha.</small>
+                    <button type="button" id="btn-gerar-analise" class="btn-salvar" onclick="gerarAnaliseManualComIA()">🧠 Gerar análise com dupla revisão</button>
+                    <small>A primeira IA redige, a segunda audita e o verificador local bloqueia informações que não estejam na ficha. Se a cota acabar, será usada uma análise de contingência baseada somente nos dados informados.</small>
                 </div>
                 <div class="campo"><label>Resumo Persuasivo (máximo de 500 caracteres):</label><textarea id="comentario" rows="3" maxlength="500" required></textarea></div>
                 
@@ -242,16 +242,29 @@
         });
 
         const ai = getAI(aiApp, { backend: new GoogleAIBackend() });
-        // Modelo leve para reduzir recusas temporárias por alta demanda.
+        // A primeira IA redige; a segunda usa outro modelo para auditar a resposta.
         const model = getGenerativeModel(ai, { model: "gemini-3.1-flash-lite" });
+        const modelRevisor = getGenerativeModel(ai, { model: "gemini-3.5-flash" });
         const modelComFontePublica = getGenerativeModel(ai, {
             model: "gemini-3.1-flash-lite",
             tools: [{ urlContext: {} }]
         });
 
+        function mensagemDoErro(erro) {
+            return String(erro?.message || erro || "").replace(/\s+/g, " ").trim();
+        }
+
+        function erroDeQuota(erro) {
+            return /(429|quota|resource.?exhausted|limite.*requisi|too many requests)/i.test(mensagemDoErro(erro));
+        }
+
+        function erroTemporarioDaIA(erro) {
+            return erroDeQuota(erro) || /(503|unavailable|overloaded|failed to fetch|network|timeout|tempo esgotado)/i.test(mensagemDoErro(erro));
+        }
+
         function textoUtil(valor) {
             const texto = String(valor || "").trim();
-            return texto && !/(n\/?a|informações insuficientes|dados técnicos ausentes|produto sem especificações|dados ausentes)/i.test(texto) ? texto : "";
+            return texto && !/(\bn\/?a\b|informações insuficientes|dados técnicos ausentes|produto sem especificações|dados ausentes)/i.test(texto) ? texto : "";
         }
 
         function limitarTexto(valor, limite) {
@@ -270,7 +283,7 @@
         function listaUtil(valor, alternativas) {
             const itens = String(valor || "").split(",")
                 .map(item => item.trim())
-                .filter(item => item && !/(n\/?a|informações insuficientes|dados técnicos ausentes|dados ausentes)/i.test(item));
+                .filter(item => item && !/(\bn\/?a\b|informações insuficientes|dados técnicos ausentes|dados ausentes)/i.test(item));
             return limitarTexto(itens.length ? itens.join(", ") : alternativas.join(", "), 300);
         }
 
@@ -361,6 +374,91 @@
             };
         }
 
+        function criarAnaliseComFichaTecnica(produto) {
+            const especificacoes = Array.isArray(produto.especificacoes) ? produto.especificacoes : [];
+            const candidatos = [
+                ...especificacoes,
+                ...String(produto.descricao || "").split(/\n|;|\|/)
+            ];
+            const itens = candidatos
+                .map(item => String(item || "").replace(/\s+/g, " ").trim())
+                .filter(item => item.length >= 12)
+                .filter((item, indice, lista) => lista.indexOf(item) === indice)
+                .slice(0, 8);
+
+            if (itens.length < 3) {
+                throw new Error("A ficha precisa ter pelo menos três características separadas para criar a análise de contingência.");
+            }
+
+            const titulo = String(produto.titulo || "Produto cadastrado").replace(/\s+/g, " ").trim();
+            const fatosResumo = itens.join("; ");
+            let comentario = `${titulo}. A ficha técnica informa: ${fatosResumo}. Este resumo utiliza somente os dados fornecidos pela fonte cadastrada, sem acrescentar resultados de testes ou características não comprovadas.`;
+            if (comentario.length < 180) {
+                comentario += " As especificações devem ser comparadas com a necessidade de uso antes da compra.";
+            }
+
+            const pros = limitarTexto(`Características registradas: ${itens.slice(0, 3).join("; ")}.`, 300);
+            const itensAtencao = itens.slice(-2);
+            const contras = limitarTexto(`Pontos para conferência: ${itensAtencao.join("; ")}. A análise se limita à ficha fornecida e não representa teste prático independente.`, 300);
+
+            return {
+                titulo,
+                comentario: limitarTexto(comentario, 500),
+                pros,
+                contras,
+                evidencias: itens.slice(0, 6).map(fonte => ({ afirmacao: fonte, fonte })),
+                metodo: "contingencia_ficha_tecnica",
+                revisaoIA: "indisponivel_por_quota"
+            };
+        }
+
+        window.criarAnaliseSemIA = ({ produto }) => criarAnaliseComFichaTecnica(produto);
+
+        async function revisarComSegundaIA(sugestao, produto, categorias) {
+            const dadosProduto = {
+                titulo: produto.titulo || "",
+                descricao: produto.descricao || "",
+                especificacoes: Array.isArray(produto.especificacoes) ? produto.especificacoes : []
+            };
+            const promptRevisao = `Você é a segunda revisora técnica do site Ranking da Compra. Audite a análise candidata usando SOMENTE a ficha fornecida.
+
+OBJETIVO:
+- Corrija qualquer afirmação, número, benefício ou limitação que não esteja sustentada pela ficha.
+- Preserve o título original.
+- O resumo deve ter entre 250 e 450 caracteres.
+- Retorne exatamente 3 pontos positivos factuais e 2 pontos de atenção.
+- Em cada evidência, copie literalmente um trecho da ficha.
+- Mesmo quando a análise estiver correta, devolva todos os campos completos.
+- Retorne somente JSON válido, sem markdown.
+
+FICHA DO PRODUTO:
+${JSON.stringify(dadosProduto)}
+
+ANÁLISE CANDIDATA:
+${JSON.stringify(sugestao)}
+
+FORMATO:
+{
+  "titulo": "título original",
+  "comentario": "resumo revisado",
+  "pros": ["fato 1", "fato 2", "fato 3"],
+  "contras": ["atenção 1", "atenção 2"],
+  "evidencias": [
+    {"afirmacao": "afirmação", "fonte": "trecho literal da ficha"},
+    {"afirmacao": "afirmação", "fonte": "trecho literal da ficha"},
+    {"afirmacao": "afirmação", "fonte": "trecho literal da ficha"}
+  ]
+}`;
+
+            const result = await modelRevisor.generateContent(promptRevisao);
+            const resposta = JSON.parse(limparJsonDaIA(result.response.text()));
+            return {
+                ...normalizarSugestaoIA(resposta, produto, categorias),
+                metodo: "gemini_3_1_gerador_gemini_3_5_revisor",
+                revisaoIA: "aprovada_por_gemini_3_5"
+            };
+        }
+
         window.preencherComIA = async ({ produto, categorias }) => {
             const especificacoes = Array.isArray(produto.especificacoes) && produto.especificacoes.length
                 ? produto.especificacoes.join(" | ")
@@ -412,15 +510,41 @@ Formato obrigatório:
                 return JSON.parse(texto);
             };
 
+            let sugestaoInicial;
             try {
-                return normalizarSugestaoIA(await gerarResposta(promptBase), produto, categorias);
+                sugestaoInicial = normalizarSugestaoIA(await gerarResposta(promptBase), produto, categorias);
             } catch (primeiroErro) {
+                if (erroTemporarioDaIA(primeiroErro)) {
+                    const erroIndisponivel = new Error(erroDeQuota(primeiroErro)
+                        ? "A cota da IA principal foi atingida. O painel usará a análise de contingência baseada na ficha técnica."
+                        : "A IA principal está temporariamente indisponível. O painel usará a análise de contingência baseada na ficha técnica.");
+                    erroIndisponivel.code = erroDeQuota(primeiroErro) ? "AI_QUOTA" : "AI_UNAVAILABLE";
+                    throw erroIndisponivel;
+                }
                 const promptCorrecao = `${promptBase}\n\nA primeira resposta foi recusada pelo verificador porque: ${primeiroErro.message}\nGere novamente, corrigindo esse problema e mantendo somente fatos comprovados pelos DADOS DO PRODUTO.`;
                 try {
-                    return normalizarSugestaoIA(await gerarResposta(promptCorrecao), produto, categorias);
+                    sugestaoInicial = normalizarSugestaoIA(await gerarResposta(promptCorrecao), produto, categorias);
                 } catch (segundoErro) {
+                    if (erroTemporarioDaIA(segundoErro)) {
+                        const erroIndisponivel = new Error(erroDeQuota(segundoErro)
+                            ? "A cota da IA principal foi atingida. O painel usará a análise de contingência baseada na ficha técnica."
+                            : "A IA principal está temporariamente indisponível. O painel usará a análise de contingência baseada na ficha técnica.");
+                        erroIndisponivel.code = erroDeQuota(segundoErro) ? "AI_QUOTA" : "AI_UNAVAILABLE";
+                        throw erroIndisponivel;
+                    }
                     throw new Error(`A análise foi bloqueada por falta de comprovação: ${segundoErro.message}`);
                 }
+            }
+
+            try {
+                return await revisarComSegundaIA(sugestaoInicial, produto, categorias);
+            } catch (erroRevisao) {
+                console.warn("A segunda IA não pôde concluir a auditoria; mantendo a resposta aprovada pelo verificador local.", erroRevisao);
+                return {
+                    ...sugestaoInicial,
+                    metodo: "gemini_3_1_com_verificacao_local",
+                    revisaoIA: erroDeQuota(erroRevisao) ? "segunda_ia_sem_quota" : "segunda_ia_indisponivel"
+                };
             }
         };
 
@@ -636,24 +760,19 @@ Formato:
 
             const botao = document.getElementById('btn-gerar-analise');
             botao.disabled = true;
-            botao.innerText = '⏳ Criando análise técnica...';
-            try {
-                const categorias = Array.from(document.getElementById('categoria').options)
-                    .map(option => ({ id: option.value, nome: option.textContent.trim() }));
-                const especificacoes = itensTecnicos.slice(0, 18);
-                const sugestao = await window.preencherComIA({
-                    produto: {
-                        titulo,
-                        preco: document.getElementById('preco').value.trim(),
-                        foto: document.getElementById('foto').value.trim(),
-                        descricao: dadosTecnicos,
-                        especificacoes
-                    },
-                    categorias
-                });
+            botao.innerText = '⏳ Criando e auditando a análise...';
+            const categorias = Array.from(document.getElementById('categoria').options)
+                .map(option => ({ id: option.value, nome: option.textContent.trim() }));
+            const especificacoes = itensTecnicos.slice(0, 18);
+            const produtoParaAnalise = {
+                titulo,
+                preco: document.getElementById('preco').value.trim(),
+                foto: document.getElementById('foto').value.trim(),
+                descricao: dadosTecnicos,
+                especificacoes
+            };
 
-                // Mantém todos os dados comerciais sob seu controle. A IA só escreve
-                // nos três campos editoriais que ela consegue produzir com segurança.
+            const aplicarSugestao = sugestao => {
                 document.getElementById('comentario').value = sugestao.comentario || '';
                 document.getElementById('pros').value = sugestao.pros || '';
                 document.getElementById('contras').value = sugestao.contras || '';
@@ -661,15 +780,40 @@ Formato:
                     resumo: sugestao.comentario,
                     pontosPositivos: sugestao.pros,
                     pontosAtencao: sugestao.contras,
-                    evidenciasVerificadas: sugestao.evidencias || []
+                    evidenciasVerificadas: sugestao.evidencias || [],
+                    metodo: sugestao.metodo || 'dupla_ia',
+                    revisao: sugestao.revisaoIA || 'verificacao_local'
                 }, null, 2);
-                alert('✅ Análise criada e conferida contra a ficha técnica. Revise o texto antes de salvar.');
+            };
+
+            try {
+                const sugestao = await window.preencherComIA({
+                    produto: produtoParaAnalise,
+                    categorias
+                });
+                aplicarSugestao(sugestao);
+                if (sugestao.revisaoIA === 'aprovada_por_gemini_3_5') {
+                    alert('✅ Análise criada pela primeira IA, auditada pela segunda IA e conferida contra a ficha técnica. Revise o texto antes de salvar.');
+                } else {
+                    alert('✅ Análise criada pela IA principal e aprovada pelo verificador local. A segunda IA estava indisponível, mas nenhuma informação fora da ficha foi aceita.');
+                }
             } catch (erro) {
                 console.error('Erro ao gerar análise manual:', erro);
-                alert('A análise não pôde ser aprovada.\n\n' + (erro.message || 'Aguarde alguns instantes e tente novamente.'));
+                if (['AI_QUOTA', 'AI_UNAVAILABLE'].includes(erro?.code) && typeof window.criarAnaliseSemIA === 'function') {
+                    try {
+                        const contingencia = window.criarAnaliseSemIA({ produto: produtoParaAnalise });
+                        aplicarSugestao(contingencia);
+                        const motivo = erro.code === 'AI_QUOTA' ? 'A cota da IA foi atingida' : 'A IA está temporariamente indisponível';
+                        alert(`⚠️ ${motivo}. Para não interromper o cadastro, o painel criou uma análise de contingência usando somente a ficha técnica informada. Revise os três campos antes de salvar.`);
+                    } catch (erroContingencia) {
+                        alert('A IA está sem cota e a ficha não foi suficiente para o modo de contingência.\n\n' + erroContingencia.message);
+                    }
+                } else {
+                    alert('A análise não pôde ser aprovada.\n\n' + (erro.message || 'Aguarde alguns instantes e tente novamente.'));
+                }
             } finally {
                 botao.disabled = false;
-                botao.innerText = '✨ Gerar resumo, pontos positivos e pontos de atenção';
+                botao.innerText = '🧠 Gerar análise com dupla revisão';
             }
         }
 
