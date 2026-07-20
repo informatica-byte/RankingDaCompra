@@ -195,10 +195,10 @@
                 </div>
                 <div class="painel-produtos" id="painel-revisao" role="tabpanel" aria-labelledby="tab-revisao">
                     <div class="correcao-lote">
-                        <p><strong>Correção automática segura:</strong> a IA reaproveita o título, as características, os pontos positivos e as limitações já salvos no cadastro. A leitura do link fica como alternativa, e somente análises aprovadas são publicadas.</p>
+                        <p><strong>Correção direta:</strong> o painel reorganiza o título, as características, os pontos positivos e as limitações já salvos. Não depende da cota da IA nem da liberação do Mercado Livre, e somente textos aprovados pelo verificador são publicados.</p>
                         <div class="acoes-lote">
                             <button type="button" class="btn-salvar btn-teste-lote" id="btn-testar-lote">🧪 Corrigir 3 como teste</button>
-                            <button type="button" class="btn-salvar btn-lote" id="btn-corrigir-lote">🤖 Corrigir todos os ocultos automaticamente</button>
+                            <button type="button" class="btn-salvar btn-lote" id="btn-corrigir-lote">⚡ Corrigir todos sem depender da IA</button>
                             <button type="button" class="btn-pausar" id="btn-pausar-lote">⏸ Pausar</button>
                         </div>
                         <div class="progresso-lote" id="progresso-lote" aria-live="polite">
@@ -1130,6 +1130,7 @@ Formato:
         function prepararFichaDoCadastro(produto) {
             const fatos = [];
             const adicionar = valor => {
+                if (PADRAO_TEXTO_GENERICO.test(String(valor || ''))) return;
                 separarFatosCadastrados(valor).forEach(fato => {
                     const chave = fato.toLocaleLowerCase('pt-BR');
                     if (!fatos.some(item => item.toLocaleLowerCase('pt-BR') === chave)) fatos.push(fato);
@@ -1137,6 +1138,9 @@ Formato:
             };
 
             adicionar(produto.titulo);
+            String(produto.titulo || '').split(/\s+(?:com|cor|para)\s+|[,+/–—-]/i)
+                .map(item => item.trim()).filter(item => item.length >= 12)
+                .forEach(adicionar);
             adicionar(produto.pros);
             adicionar(produto.contras);
 
@@ -1154,37 +1158,55 @@ Formato:
             return { itens, texto };
         }
 
+        function limitarTextoDireto(valor, limite) {
+            const texto = String(valor || '').replace(/\s+/g, ' ').trim();
+            if (texto.length <= limite) return texto;
+            const corte = texto.slice(0, limite - 1).replace(/\s+\S*$/, '').replace(/[,;:.-]+$/, '').trim();
+            return `${corte}…`;
+        }
+
+        function limparTrechoDireto(valor) {
+            return String(valor || '').replace(/\s+/g, ' ')
+                .replace(/^[,;:.\s-]+|[,;:\s-]+$/g, '').trim();
+        }
+
+        function expandirCampoDireto(valor, complemento, minimo = 60) {
+            let texto = PADRAO_TEXTO_GENERICO.test(String(valor || '')) ? '' : limparTrechoDireto(valor);
+            if (texto.length < minimo) texto = limparTrechoDireto(`${texto}${texto ? '. ' : ''}${complemento}`);
+            return limitarTextoDireto(texto, 300);
+        }
+
         async function corrigirProdutoComDadosCadastrados(produto) {
-            if (typeof window.preencherComIA !== 'function') throw new Error('A IA ainda está carregando.');
             const ficha = prepararFichaDoCadastro(produto);
-            const categorias = Array.from(document.getElementById('categoria').options)
-                .map(option => ({ id: option.value, nome: option.textContent.trim() }));
-            const sugestao = await window.preencherComIA({
-                produto: {
-                    titulo: produto.titulo || '',
-                    preco: produto.preco || '',
-                    foto: produto.foto || '',
-                    descricao: ficha.texto,
-                    especificacoes: ficha.itens
-                },
-                categorias
-            });
+            const titulo = limparTrechoDireto(produto.titulo || 'Produto cadastrado');
+            const positivos = expandirCampoDireto(produto.pros, `Características informadas no cadastro: ${titulo}`);
+            const atencao = expandirCampoDireto(produto.contras, 'A ficha cadastrada não detalha outras limitações além das informações apresentadas');
+            const nomeResumo = limitarTextoDireto(titulo, 145).replace(/…$/, '');
+            const positivosResumo = limitarTextoDireto(positivos, 145).replace(/…$/, '');
+            const atencaoResumo = limitarTextoDireto(atencao, 130).replace(/…$/, '');
+            let comentario = `${nomeResumo}: ${positivosResumo}. Pontos de atenção registrados: ${atencaoResumo}.`;
+            if (comentario.length < 180) {
+                comentario += ' O resumo considera as características informadas no anúncio original e não representa teste prático do produto.';
+            }
+            comentario = limitarTextoDireto(comentario, 500);
+
             return {
-                ...sugestao,
+                titulo,
+                comentario,
+                pros: positivos,
+                contras: atencao,
+                evidencias: ficha.itens.slice(0, 6).map(fonte => ({ afirmacao: fonte, fonte })),
                 dadosTecnicos: ficha.texto,
                 fonteConsultada: produto.link || produto.linkAfiliado || '',
-                metodo: 'dados_cadastrados'
+                metodo: 'reescrita_direta_dados_cadastrados'
             };
         }
 
         async function corrigirProdutosEmLote(limite = 0) {
             if (correcaoLoteEmAndamento) return;
             if (!produtosRevisaoAtual.length) return alert('Não há produtos ocultos para corrigir.');
-            if (typeof window.corrigirProdutoPelaFonte !== 'function') {
-                return alert('A IA ainda está carregando. Aguarde alguns segundos e tente novamente.');
-            }
             const quantidade = limite > 0 ? Math.min(limite, produtosRevisaoAtual.length) : produtosRevisaoAtual.length;
-            if (!confirm(`A IA tentará corrigir ${quantidade} produto(s), um por vez. Somente análises aprovadas serão publicadas. Mantenha esta página aberta até terminar. Deseja continuar?`)) return;
+            if (!confirm(`O painel corrigirá ${quantidade} produto(s), um por vez, usando os dados já cadastrados. Somente textos aprovados serão publicados. Deseja continuar?`)) return;
 
             const fila = produtosRevisaoAtual.slice(0, quantidade).map(produto => ({ ...produto }));
             const botao = document.getElementById('btn-corrigir-lote');
@@ -1203,7 +1225,7 @@ Formato:
             pausaCorrecaoSolicitada = false;
             botao.disabled = true;
             botaoTeste.disabled = true;
-            botao.textContent = '🤖 Correção automática em andamento...';
+            botao.textContent = '⚡ Correção direta em andamento...';
             botaoPausar.style.display = 'inline-block';
             botaoPausar.disabled = false;
             botaoPausar.textContent = '⏸ Pausar';
@@ -1276,13 +1298,13 @@ Formato:
                 processados++;
                 barra.value = processados;
                 resumo.textContent = `${aprovados} aprovado(s) • ${pendentes} ainda pendente(s)`;
-                if (indice < fila.length - 1) await aguardar(1200);
+                if (indice < fila.length - 1) await aguardar(250);
             }
 
             correcaoLoteEmAndamento = false;
             botao.disabled = false;
             botaoTeste.disabled = false;
-            botao.textContent = '🤖 Continuar corrigindo os produtos ocultos';
+            botao.textContent = '⚡ Continuar corrigindo os produtos ocultos';
             botaoPausar.style.display = 'none';
             botaoPausar.disabled = false;
             barra.value = processados;
