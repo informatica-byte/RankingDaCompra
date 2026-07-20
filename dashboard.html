@@ -48,6 +48,39 @@
         .btn-edit { background: #ffc107; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
         .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
 
+        .abas-produtos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0 16px; }
+        .aba-produto { border: 1px solid #cfd4da; background: #f5f6f8; color: #333; border-radius: 8px; padding: 11px 8px; cursor: pointer; font-weight: 700; font-size: 13px; }
+        .aba-produto:hover { border-color: #2d3277; }
+        .aba-produto[aria-selected="true"] { color: white; background: #2d3277; border-color: #2d3277; }
+        .aba-produto.aba-revisao[aria-selected="true"] { color: #4b2e00; background: #ffc107; border-color: #e0a800; }
+        .contador-aba { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 5px; margin-left: 4px; border-radius: 999px; background: rgba(255,255,255,.9); color: #2d3277; font-size: 11px; }
+        .aba-revisao[aria-selected="true"] .contador-aba { color: #7a4800; }
+        .item-admin-conteudo { flex: 1; min-width: 0; line-height: 1.4; }
+        .item-admin-topo { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .item-admin-titulo { font-weight: 700; overflow-wrap: anywhere; }
+        .item-admin.item-revisao { align-items: flex-start; background: #fff7df; border: 2px solid #ffc107; }
+        .icone-atencao { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; flex: 0 0 24px; border-radius: 50%; background: #ffc107; color: #4b2e00; font-weight: 900; }
+        .status-publicado { display: inline-block; margin-top: 6px; color: #087a3d; font-size: 12px; font-weight: 700; }
+        .rotulo-oculto { display: inline-block; margin-top: 7px; padding: 3px 7px; border-radius: 4px; background: #8a4b00; color: white; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+        .lista-problemas { margin: 8px 0 0; padding-left: 19px; color: #6a3b00; font-size: 12px; line-height: 1.45; }
+        .lista-problemas li + li { margin-top: 3px; }
+        .estado-lista { padding: 18px 12px; text-align: center; color: #666; background: #f7f7f7; border-radius: 7px; }
+        .painel-produtos[hidden] { display: none; }
+        .correcao-lote { margin: 0 0 16px; padding: 14px; border: 1px solid #b8d0f5; border-radius: 8px; background: #f1f6ff; }
+        .correcao-lote p { margin: 0 0 10px; color: #334; font-size: 13px; line-height: 1.5; }
+        .acoes-lote { display: flex; gap: 8px; flex-wrap: wrap; }
+        .btn-lote { flex: 1; min-width: 210px; margin: 0; background: #2968c8; font-size: 14px; padding: 12px; }
+        .btn-pausar { display: none; flex: 0 0 auto; margin: 0; background: #805500; color: white; border: 0; border-radius: 6px; padding: 12px 16px; font-weight: 800; cursor: pointer; }
+        .progresso-lote { display: none; margin-top: 12px; }
+        .progresso-lote progress { width: 100%; height: 16px; accent-color: #00a650; }
+        .texto-progresso { margin-top: 6px; color: #334; font-size: 12px; font-weight: 700; overflow-wrap: anywhere; }
+        .resumo-lote { margin-top: 8px; color: #555; font-size: 12px; }
+        @media (max-width: 560px) {
+            .abas-produtos { grid-template-columns: 1fr; }
+            .item-admin { align-items: flex-start; gap: 10px; }
+            .acoes { flex-direction: column; }
+        }
+
         #admin-content { display: none; }
         #login-content { display: block; max-width: 400px; margin: 100px auto;}
     </style>
@@ -152,7 +185,28 @@
 
             <div class="lista-admin">
                 <h3>Produtos Cadastrados</h3>
-                <div id="itens-lista"></div>
+                <div class="abas-produtos" role="tablist" aria-label="Situação dos produtos">
+                    <button type="button" class="aba-produto" id="tab-publicados" role="tab" aria-selected="false" aria-controls="painel-publicados">✅ Publicados <span class="contador-aba" id="contagem-publicados">0</span></button>
+                    <button type="button" class="aba-produto aba-revisao" id="tab-revisao" role="tab" aria-selected="true" aria-controls="painel-revisao">⚠️ Revisão necessária <span class="contador-aba" id="contagem-revisao">0</span></button>
+                </div>
+                <div class="painel-produtos" id="painel-publicados" role="tabpanel" aria-labelledby="tab-publicados" hidden>
+                    <div id="itens-lista"></div>
+                </div>
+                <div class="painel-produtos" id="painel-revisao" role="tabpanel" aria-labelledby="tab-revisao">
+                    <div class="correcao-lote">
+                        <p><strong>Correção automática segura:</strong> a IA abre o link da fonte, extrai fatos técnicos e só salva análises aprovadas pelo verificador. Links sem informação suficiente permanecem nesta aba.</p>
+                        <div class="acoes-lote">
+                            <button type="button" class="btn-salvar btn-lote" id="btn-corrigir-lote">🤖 Corrigir todos os ocultos automaticamente</button>
+                            <button type="button" class="btn-pausar" id="btn-pausar-lote">⏸ Pausar</button>
+                        </div>
+                        <div class="progresso-lote" id="progresso-lote" aria-live="polite">
+                            <progress id="barra-correcao-lote" value="0" max="1"></progress>
+                            <div class="texto-progresso" id="texto-correcao-lote">Preparando...</div>
+                            <div class="resumo-lote" id="resumo-correcao-lote"></div>
+                        </div>
+                    </div>
+                    <div id="itens-revisao"></div>
+                </div>
             </div>
             
             <button id="btn-sair" class="btn-salvar btn-sair">Sair do Sistema</button>
@@ -188,6 +242,10 @@
         const ai = getAI(aiApp, { backend: new GoogleAIBackend() });
         // Modelo leve para reduzir recusas temporárias por alta demanda.
         const model = getGenerativeModel(ai, { model: "gemini-3.1-flash-lite" });
+        const modelComFontePublica = getGenerativeModel(ai, {
+            model: "gemini-3.1-flash-lite",
+            tools: [{ urlContext: {} }]
+        });
 
         function textoUtil(valor) {
             const texto = String(valor || "").trim();
@@ -363,6 +421,82 @@ Formato obrigatório:
                 }
             }
         };
+
+        function limparJsonDaIA(valor) {
+            return String(valor || '').trim()
+                .replace(/^\s*```json\s*/i, '')
+                .replace(/^\s*```\s*/i, '')
+                .replace(/\s*```\s*$/i, '');
+        }
+
+        function fonteRecuperadaComSucesso(resposta) {
+            const candidato = resposta?.candidates?.[0] || {};
+            const metadados = candidato.urlContextMetadata || candidato.url_context_metadata;
+            const urls = metadados?.urlMetadata || metadados?.url_metadata || [];
+            return urls.some(item => String(item.urlRetrievalStatus || item.url_retrieval_status || '').includes('SUCCESS'));
+        }
+
+        window.corrigirProdutoPelaFonte = async ({ titulo, url }) => {
+            if (!/^https?:\/\//i.test(String(url || ''))) throw new Error('O produto não possui um link público utilizável.');
+
+            const prompt = `Abra obrigatoriamente a página pública abaixo usando a ferramenta de contexto por URL:
+${url}
+
+O produto cadastrado é: ${titulo}
+
+Você é um revisor técnico do site brasileiro Ranking da Compra. Produza uma análise baseada SOMENTE no conteúdo recuperado dessa página. Você não testou o produto. Não use conhecimento próprio e não pesquise outras páginas.
+
+REGRAS:
+- Se a página não abrir, não identificar o mesmo produto ou não trouxer ao menos três fatos técnicos verificáveis, responda {"status":"sem_dados","motivo":"explicação curta"}.
+- Ignore preço, desconto, avaliações, quantidade vendida, reputação do vendedor e frases publicitárias.
+- Em dadosTecnicos, copie entre 3 e 12 trechos factuais curtos encontrados na página. Não invente nem reescreva números.
+- O resumo deve ter entre 250 e 450 caracteres e mencionar características concretas do produto.
+- Retorne exatamente 3 pontos positivos, cada um ligado a um fato da página.
+- Retorne exatamente 2 pontos de atenção. Use limitações explícitas; se não existirem, informe dados importantes que a página realmente não especifica, sem transformar ausência em defeito.
+- Em cada evidência, o campo fonte deve ser uma cópia literal de um trecho incluído em dadosTecnicos.
+- Não use as frases "chama atenção por", "recursos descritos no próprio título", "conheça este produto" ou "verifique o anúncio".
+- Retorne somente JSON válido, sem markdown.
+
+Formato:
+{
+  "status": "ok",
+  "dadosTecnicos": ["trecho factual 1", "trecho factual 2", "trecho factual 3"],
+  "comentario": "resumo factual",
+  "pros": ["ponto 1", "ponto 2", "ponto 3"],
+  "contras": ["ponto 1", "ponto 2"],
+  "evidencias": [
+    {"afirmacao":"afirmação 1","fonte":"trecho literal de dadosTecnicos"},
+    {"afirmacao":"afirmação 2","fonte":"trecho literal de dadosTecnicos"},
+    {"afirmacao":"afirmação 3","fonte":"trecho literal de dadosTecnicos"}
+  ]
+}`;
+
+            const result = await modelComFontePublica.generateContent(prompt);
+            if (!fonteRecuperadaComSucesso(result.response)) {
+                throw new Error('A fonte não pôde ser recuperada pela IA.');
+            }
+            const resposta = JSON.parse(limparJsonDaIA(result.response.text()));
+            if (resposta.status !== 'ok') throw new Error(resposta.motivo || 'A fonte não possui dados técnicos suficientes.');
+
+            const itensTecnicos = (Array.isArray(resposta.dadosTecnicos) ? resposta.dadosTecnicos : [])
+                .map(item => String(item || '').replace(/\s+/g, ' ').trim())
+                .filter(Boolean)
+                .filter((item, indice, lista) => lista.indexOf(item) === indice)
+                .slice(0, 12);
+            const dadosTecnicos = itensTecnicos.join('\n').slice(0, 3000);
+            const tituloNormalizado = normalizarTextoValidacao(titulo);
+            const fatosAlemDoTitulo = itensTecnicos.filter(item => !tituloNormalizado.includes(normalizarTextoValidacao(item)));
+            if (itensTecnicos.length < 3 || dadosTecnicos.length < 120 || fatosAlemDoTitulo.length < 2) {
+                throw new Error('A página não forneceu fatos técnicos suficientes além do título.');
+            }
+
+            const sugestao = normalizarSugestaoIA(resposta, {
+                titulo,
+                descricao: dadosTecnicos,
+                especificacoes: itensTecnicos
+            }, []);
+            return { ...sugestao, dadosTecnicos, fonteConsultada: url };
+        };
     </script>
 
     <script>
@@ -383,6 +517,9 @@ Formato obrigatório:
         const adminContent = document.getElementById('admin-content');
         let editProdId = null;
         let editandoCatId = null;
+        let produtosRevisaoAtual = [];
+        let correcaoLoteEmAndamento = false;
+        let pausaCorrecaoSolicitada = false;
 
         // Evita que texto salvo (título, nome de categoria...) vire HTML/JS ao ser exibido
         function escapeHtml(texto) {
@@ -929,22 +1066,211 @@ Formato obrigatório:
             document.getElementById('btn-submit-prod').innerText = "🚀 Salvar na Nuvem";
         }
 
+        let abaProdutosAtiva = 'revisao';
+        const PADRAO_TEXTO_GENERICO = /(chama aten[cç][aã]o por|recursos descritos no próprio título|informações em atualização|produto identificado no anúncio|oferta para comparar|conheça este produto)/i;
+
+        function produtoOcultoNaVitrine(produto) {
+            const resumo = String(produto.comentario || '').replace(/\s+/g, ' ').trim();
+            return resumo.length < 180 || PADRAO_TEXTO_GENERICO.test(resumo);
+        }
+
+        function problemasProduto(produto) {
+            const problemas = [];
+            const resumo = String(produto.comentario || '').replace(/\s+/g, ' ').trim();
+            const pros = String(produto.pros || '').trim();
+            const contras = String(produto.contras || '').trim();
+            const dadosTecnicos = String(produto.dadosTecnicos || '').trim();
+            const itensTecnicos = dadosTecnicos.split(/\n|;|\|/).map(item => item.trim()).filter(Boolean);
+
+            if (produto.statusCorrecaoIA === 'falha' && produto.erroCorrecaoIA) problemas.push(`Última tentativa automática: ${produto.erroCorrecaoIA}`);
+            if (PADRAO_TEXTO_GENERICO.test(resumo)) problemas.push('O resumo contém uma frase genérica e precisa ser refeito com características reais deste produto.');
+            if (resumo.length < 180) problemas.push(`O resumo tem ${resumo.length} caracteres; precisa ter pelo menos 180.`);
+            if (pros.length < 60) problemas.push(`Os pontos positivos têm ${pros.length} caracteres; precisam ter pelo menos 60.`);
+            if (contras.length < 60) problemas.push(`Os pontos de atenção têm ${contras.length} caracteres; precisam ter pelo menos 60.`);
+            if (dadosTecnicos.length < 120 || itensTecnicos.length < 3) problemas.push(`A ficha técnica tem ${dadosTecnicos.length} caracteres e ${itensTecnicos.length} item(ns); informe ao menos 3 características reais e 120 caracteres.`);
+            return problemas;
+        }
+
+        function ativarAbaProdutos(nomeAba) {
+            abaProdutosAtiva = nomeAba === 'publicados' ? 'publicados' : 'revisao';
+            const publicadosAtivos = abaProdutosAtiva === 'publicados';
+            document.getElementById('tab-publicados').setAttribute('aria-selected', String(publicadosAtivos));
+            document.getElementById('tab-revisao').setAttribute('aria-selected', String(!publicadosAtivos));
+            document.getElementById('painel-publicados').hidden = !publicadosAtivos;
+            document.getElementById('painel-revisao').hidden = publicadosAtivos;
+        }
+
+        document.getElementById('tab-publicados').addEventListener('click', () => ativarAbaProdutos('publicados'));
+        document.getElementById('tab-revisao').addEventListener('click', () => ativarAbaProdutos('revisao'));
+        document.getElementById('btn-corrigir-lote').addEventListener('click', corrigirProdutosEmLote);
+        document.getElementById('btn-pausar-lote').addEventListener('click', () => {
+            pausaCorrecaoSolicitada = true;
+            document.getElementById('btn-pausar-lote').disabled = true;
+            document.getElementById('btn-pausar-lote').textContent = 'Pausando após este produto...';
+        });
+
+        function aguardar(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function mensagemErroCurta(erro) {
+            const mensagem = String(erro?.message || 'Não foi possível concluir a análise.').replace(/\s+/g, ' ').trim();
+            return mensagem.slice(0, 240);
+        }
+
+        async function corrigirProdutosEmLote() {
+            if (correcaoLoteEmAndamento) return;
+            if (!produtosRevisaoAtual.length) return alert('Não há produtos ocultos para corrigir.');
+            if (typeof window.corrigirProdutoPelaFonte !== 'function') {
+                return alert('A IA ainda está carregando. Aguarde alguns segundos e tente novamente.');
+            }
+            if (!confirm(`A IA tentará corrigir ${produtosRevisaoAtual.length} produto(s), um por vez. Somente análises aprovadas serão publicadas. Mantenha esta página aberta até terminar. Deseja continuar?`)) return;
+
+            const fila = produtosRevisaoAtual.map(produto => ({ ...produto }));
+            const botao = document.getElementById('btn-corrigir-lote');
+            const botaoPausar = document.getElementById('btn-pausar-lote');
+            const progresso = document.getElementById('progresso-lote');
+            const barra = document.getElementById('barra-correcao-lote');
+            const texto = document.getElementById('texto-correcao-lote');
+            const resumo = document.getElementById('resumo-correcao-lote');
+            let aprovados = 0;
+            let pendentes = 0;
+            let processados = 0;
+            let limiteTemporario = false;
+
+            correcaoLoteEmAndamento = true;
+            pausaCorrecaoSolicitada = false;
+            botao.disabled = true;
+            botao.textContent = '🤖 Correção automática em andamento...';
+            botaoPausar.style.display = 'inline-block';
+            botaoPausar.disabled = false;
+            botaoPausar.textContent = '⏸ Pausar';
+            progresso.style.display = 'block';
+            barra.max = fila.length;
+            barra.value = 0;
+
+            for (let indice = 0; indice < fila.length; indice++) {
+                if (pausaCorrecaoSolicitada) break;
+                const produto = fila[indice];
+                const urlFonte = produto.link || produto.linkAfiliado || '';
+                texto.textContent = `Analisando ${indice + 1} de ${fila.length}: ${produto.titulo || 'Produto sem título'}`;
+                resumo.textContent = `${aprovados} aprovado(s) • ${pendentes} ainda pendente(s)`;
+
+                try {
+                    const correcao = await window.corrigirProdutoPelaFonte({
+                        titulo: produto.titulo || '',
+                        url: urlFonte
+                    });
+                    const atualizacao = {
+                        comentario: correcao.comentario,
+                        pros: correcao.pros,
+                        contras: correcao.contras,
+                        dadosTecnicos: correcao.dadosTecnicos,
+                        evidenciasIA: correcao.evidencias || [],
+                        fonteCorrecaoIA: correcao.fonteConsultada,
+                        statusCorrecaoIA: 'aprovado',
+                        erroCorrecaoIA: firebase.firestore.FieldValue.delete(),
+                        autor: 'Equipe editorial Ranking da Compra',
+                        atualizadoEm: firebase.firestore.FieldValue.serverTimestamp()
+                    };
+                    const erroEditorial = validarConteudoEditorial({ ...produto, ...atualizacao });
+                    if (erroEditorial) throw new Error(erroEditorial);
+                    await db.collection('produtos').doc(produto.id).update(atualizacao);
+                    aprovados++;
+                } catch (erro) {
+                    const detalhe = mensagemErroCurta(erro);
+                    console.warn(`Correção automática não aprovada para ${produto.titulo}:`, erro);
+                    if (/(429|quota|resource.?exhausted|limite.*requisi|too many requests)/i.test(detalhe)) {
+                        limiteTemporario = true;
+                        texto.textContent = 'A IA atingiu um limite temporário. O progresso foi preservado.';
+                        break;
+                    }
+                    pendentes++;
+                    try {
+                        await db.collection('produtos').doc(produto.id).update({
+                            statusCorrecaoIA: 'falha',
+                            erroCorrecaoIA: detalhe,
+                            ultimaTentativaCorrecaoIA: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    } catch (erroRegistro) {
+                        console.warn('Não foi possível registrar a pendência da correção.', erroRegistro);
+                    }
+                }
+
+                processados++;
+                barra.value = processados;
+                resumo.textContent = `${aprovados} aprovado(s) • ${pendentes} ainda pendente(s)`;
+                if (indice < fila.length - 1) await aguardar(1200);
+            }
+
+            correcaoLoteEmAndamento = false;
+            botao.disabled = false;
+            botao.textContent = '🤖 Continuar corrigindo os produtos ocultos';
+            botaoPausar.style.display = 'none';
+            botaoPausar.disabled = false;
+            barra.value = processados;
+
+            const parou = pausaCorrecaoSolicitada || limiteTemporario;
+            texto.textContent = parou
+                ? `Processo pausado. ${aprovados} produto(s) aprovado(s) nesta execução.`
+                : `Processo concluído. ${aprovados} produto(s) aprovado(s) nesta execução.`;
+            resumo.textContent = `${aprovados} publicado(s) • ${pendentes} mantido(s) em revisão`;
+            alert(parou
+                ? `Correção pausada com segurança.\n\n${aprovados} produto(s) foram corrigidos e publicados. Você pode continuar depois pelo mesmo botão.`
+                : `Correção concluída.\n\n${aprovados} produto(s) foram corrigidos e publicados.\n${pendentes} produto(s) permaneceram na revisão porque a fonte não trouxe dados suficientes.`);
+        }
+
+        function cartaoProdutoPublicado(doc) {
+            const prod = doc.data();
+            return `
+                <div class="item-admin">
+                    <div class="item-admin-conteudo">
+                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span></div>
+                        <span class="status-publicado">✓ Visível na vitrine pública</span>
+                    </div>
+                    <div class="acoes">
+                        <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')" aria-label="Editar ${escapeHtml(prod.titulo || 'produto')}">✎ Editar</button>
+                        <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')" aria-label="Excluir ${escapeHtml(prod.titulo || 'produto')}">X</button>
+                    </div>
+                </div>`;
+        }
+
+        function cartaoProdutoRevisao(doc) {
+            const prod = doc.data();
+            const problemas = problemasProduto(prod);
+            return `
+                <div class="item-admin item-revisao">
+                    <span class="icone-atencao" aria-hidden="true">!</span>
+                    <div class="item-admin-conteudo">
+                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span></div>
+                        <span class="rotulo-oculto">Oculto da vitrine</span>
+                        <ul class="lista-problemas">${problemas.map(problema => `<li>${escapeHtml(problema)}</li>`).join('')}</ul>
+                    </div>
+                    <div class="acoes">
+                        <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')" aria-label="Corrigir ${escapeHtml(prod.titulo || 'produto')}">✎ Corrigir</button>
+                        <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')" aria-label="Excluir ${escapeHtml(prod.titulo || 'produto')}">X</button>
+                    </div>
+                </div>`;
+        }
+
         function carregarProdutos() {
             db.collection("produtos").orderBy("dataCadastro", "desc").onSnapshot(snapshot => {
-                const container = document.getElementById('itens-lista');
-                container.innerHTML = '';
+                const publicados = [];
+                const revisao = [];
                 snapshot.forEach(doc => {
-                    const prod = doc.data();
-                    container.innerHTML += `
-                        <div class="item-admin">
-                            <div><span class="badge-cat">${escapeHtml(prod.categoria)}</span>${escapeHtml(prod.titulo)}</div>
-                            <div class="acoes">
-                                <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')">✎</button>
-                                <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')">X</button>
-                            </div>
-                        </div>
-                    `;
+                    (produtoOcultoNaVitrine(doc.data()) ? revisao : publicados).push(doc);
                 });
+
+                document.getElementById('contagem-publicados').textContent = publicados.length;
+                document.getElementById('contagem-revisao').textContent = revisao.length;
+                produtosRevisaoAtual = revisao.map(doc => ({ id: doc.id, ...doc.data() }));
+                document.getElementById('itens-lista').innerHTML = publicados.length
+                    ? publicados.map(cartaoProdutoPublicado).join('')
+                    : '<div class="estado-lista">Nenhum produto publicado no momento.</div>';
+                document.getElementById('itens-revisao').innerHTML = revisao.length
+                    ? revisao.map(cartaoProdutoRevisao).join('')
+                    : '<div class="estado-lista">✅ Tudo certo: nenhum produto oculto precisa de revisão.</div>';
+                ativarAbaProdutos(abaProdutosAtiva);
             }, error => {
                 console.error(error);
                 alert('Erro ao carregar produtos: ' + error.message);
