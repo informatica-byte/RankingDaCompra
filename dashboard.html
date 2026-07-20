@@ -70,6 +70,7 @@
         .correcao-lote p { margin: 0 0 10px; color: #334; font-size: 13px; line-height: 1.5; }
         .acoes-lote { display: flex; gap: 8px; flex-wrap: wrap; }
         .btn-lote { flex: 1; min-width: 210px; margin: 0; background: #2968c8; font-size: 14px; padding: 12px; }
+        .btn-teste-lote { flex: 0 1 auto; min-width: 180px; margin: 0; background: #00a650; font-size: 14px; padding: 12px; }
         .btn-pausar { display: none; flex: 0 0 auto; margin: 0; background: #805500; color: white; border: 0; border-radius: 6px; padding: 12px 16px; font-weight: 800; cursor: pointer; }
         .progresso-lote { display: none; margin-top: 12px; }
         .progresso-lote progress { width: 100%; height: 16px; accent-color: #00a650; }
@@ -194,8 +195,9 @@
                 </div>
                 <div class="painel-produtos" id="painel-revisao" role="tabpanel" aria-labelledby="tab-revisao">
                     <div class="correcao-lote">
-                        <p><strong>Correção automática segura:</strong> a IA abre o link da fonte, extrai fatos técnicos e só salva análises aprovadas pelo verificador. Links sem informação suficiente permanecem nesta aba.</p>
+                        <p><strong>Correção automática segura:</strong> a IA reaproveita o título, as características, os pontos positivos e as limitações já salvos no cadastro. A leitura do link fica como alternativa, e somente análises aprovadas são publicadas.</p>
                         <div class="acoes-lote">
+                            <button type="button" class="btn-salvar btn-teste-lote" id="btn-testar-lote">🧪 Corrigir 3 como teste</button>
                             <button type="button" class="btn-salvar btn-lote" id="btn-corrigir-lote">🤖 Corrigir todos os ocultos automaticamente</button>
                             <button type="button" class="btn-pausar" id="btn-pausar-lote">⏸ Pausar</button>
                         </div>
@@ -1102,7 +1104,8 @@ Formato:
 
         document.getElementById('tab-publicados').addEventListener('click', () => ativarAbaProdutos('publicados'));
         document.getElementById('tab-revisao').addEventListener('click', () => ativarAbaProdutos('revisao'));
-        document.getElementById('btn-corrigir-lote').addEventListener('click', corrigirProdutosEmLote);
+        document.getElementById('btn-testar-lote').addEventListener('click', () => corrigirProdutosEmLote(3));
+        document.getElementById('btn-corrigir-lote').addEventListener('click', () => corrigirProdutosEmLote(0));
         document.getElementById('btn-pausar-lote').addEventListener('click', () => {
             pausaCorrecaoSolicitada = true;
             document.getElementById('btn-pausar-lote').disabled = true;
@@ -1118,16 +1121,74 @@ Formato:
             return mensagem.slice(0, 240);
         }
 
-        async function corrigirProdutosEmLote() {
+        function separarFatosCadastrados(valor) {
+            return String(valor || '').split(/\n|;|\||,(?=\s*[A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9])/)
+                .map(item => item.replace(/\s+/g, ' ').trim())
+                .filter(item => item.length >= 12);
+        }
+
+        function prepararFichaDoCadastro(produto) {
+            const fatos = [];
+            const adicionar = valor => {
+                separarFatosCadastrados(valor).forEach(fato => {
+                    const chave = fato.toLocaleLowerCase('pt-BR');
+                    if (!fatos.some(item => item.toLocaleLowerCase('pt-BR') === chave)) fatos.push(fato);
+                });
+            };
+
+            adicionar(produto.titulo);
+            adicionar(produto.pros);
+            adicionar(produto.contras);
+
+            const comentarioAntigo = String(produto.comentario || '');
+            const trechoDepoisDoGenerico = comentarioAntigo.split(/chama aten[cç][aã]o por/i)[1] || '';
+            if (trechoDepoisDoGenerico && !/recursos descritos no próprio título/i.test(trechoDepoisDoGenerico)) {
+                adicionar(trechoDepoisDoGenerico.replace(/\.\.\.$|…$/g, ''));
+            }
+
+            const itens = fatos.slice(0, 18);
+            const texto = itens.join('\n').slice(0, 3000);
+            if (itens.length < 3 || texto.length < 120) {
+                throw new Error('O cadastro antigo não possui três fatos suficientes para uma análise segura.');
+            }
+            return { itens, texto };
+        }
+
+        async function corrigirProdutoComDadosCadastrados(produto) {
+            if (typeof window.preencherComIA !== 'function') throw new Error('A IA ainda está carregando.');
+            const ficha = prepararFichaDoCadastro(produto);
+            const categorias = Array.from(document.getElementById('categoria').options)
+                .map(option => ({ id: option.value, nome: option.textContent.trim() }));
+            const sugestao = await window.preencherComIA({
+                produto: {
+                    titulo: produto.titulo || '',
+                    preco: produto.preco || '',
+                    foto: produto.foto || '',
+                    descricao: ficha.texto,
+                    especificacoes: ficha.itens
+                },
+                categorias
+            });
+            return {
+                ...sugestao,
+                dadosTecnicos: ficha.texto,
+                fonteConsultada: produto.link || produto.linkAfiliado || '',
+                metodo: 'dados_cadastrados'
+            };
+        }
+
+        async function corrigirProdutosEmLote(limite = 0) {
             if (correcaoLoteEmAndamento) return;
             if (!produtosRevisaoAtual.length) return alert('Não há produtos ocultos para corrigir.');
             if (typeof window.corrigirProdutoPelaFonte !== 'function') {
                 return alert('A IA ainda está carregando. Aguarde alguns segundos e tente novamente.');
             }
-            if (!confirm(`A IA tentará corrigir ${produtosRevisaoAtual.length} produto(s), um por vez. Somente análises aprovadas serão publicadas. Mantenha esta página aberta até terminar. Deseja continuar?`)) return;
+            const quantidade = limite > 0 ? Math.min(limite, produtosRevisaoAtual.length) : produtosRevisaoAtual.length;
+            if (!confirm(`A IA tentará corrigir ${quantidade} produto(s), um por vez. Somente análises aprovadas serão publicadas. Mantenha esta página aberta até terminar. Deseja continuar?`)) return;
 
-            const fila = produtosRevisaoAtual.map(produto => ({ ...produto }));
+            const fila = produtosRevisaoAtual.slice(0, quantidade).map(produto => ({ ...produto }));
             const botao = document.getElementById('btn-corrigir-lote');
+            const botaoTeste = document.getElementById('btn-testar-lote');
             const botaoPausar = document.getElementById('btn-pausar-lote');
             const progresso = document.getElementById('progresso-lote');
             const barra = document.getElementById('barra-correcao-lote');
@@ -1141,6 +1202,7 @@ Formato:
             correcaoLoteEmAndamento = true;
             pausaCorrecaoSolicitada = false;
             botao.disabled = true;
+            botaoTeste.disabled = true;
             botao.textContent = '🤖 Correção automática em andamento...';
             botaoPausar.style.display = 'inline-block';
             botaoPausar.disabled = false;
@@ -1157,10 +1219,23 @@ Formato:
                 resumo.textContent = `${aprovados} aprovado(s) • ${pendentes} ainda pendente(s)`;
 
                 try {
-                    const correcao = await window.corrigirProdutoPelaFonte({
-                        titulo: produto.titulo || '',
-                        url: urlFonte
-                    });
+                    let correcao;
+                    try {
+                        correcao = await corrigirProdutoComDadosCadastrados(produto);
+                    } catch (erroDadosCadastrados) {
+                        console.warn('Os dados cadastrados não foram suficientes; tentando a fonte pública.', erroDadosCadastrados);
+                        if (/(429|quota|resource.?exhausted|limite.*requisi|too many requests)/i.test(mensagemErroCurta(erroDadosCadastrados))) {
+                            throw erroDadosCadastrados;
+                        }
+                        try {
+                            correcao = await window.corrigirProdutoPelaFonte({
+                                titulo: produto.titulo || '',
+                                url: urlFonte
+                            });
+                        } catch (erroFonte) {
+                            throw new Error(`Dados cadastrados: ${mensagemErroCurta(erroDadosCadastrados)} | Fonte externa: ${mensagemErroCurta(erroFonte)}`);
+                        }
+                    }
                     const atualizacao = {
                         comentario: correcao.comentario,
                         pros: correcao.pros,
@@ -1168,6 +1243,7 @@ Formato:
                         dadosTecnicos: correcao.dadosTecnicos,
                         evidenciasIA: correcao.evidencias || [],
                         fonteCorrecaoIA: correcao.fonteConsultada,
+                        metodoCorrecaoIA: correcao.metodo || 'fonte_publica',
                         statusCorrecaoIA: 'aprovado',
                         erroCorrecaoIA: firebase.firestore.FieldValue.delete(),
                         autor: 'Equipe editorial Ranking da Compra',
@@ -1205,6 +1281,7 @@ Formato:
 
             correcaoLoteEmAndamento = false;
             botao.disabled = false;
+            botaoTeste.disabled = false;
             botao.textContent = '🤖 Continuar corrigindo os produtos ocultos';
             botaoPausar.style.display = 'none';
             botaoPausar.disabled = false;
