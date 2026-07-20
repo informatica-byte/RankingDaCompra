@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Admin - Login</title>
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+    <meta name="referrer" content="same-origin">
+    <title>Painel administrativo | Ranking da Compra</title>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
         .painel { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 650px; margin: 0 auto 30px auto; }
@@ -56,8 +58,8 @@
     <div class="painel" id="login-content">
         <h2>🔒 Acesso Restrito</h2>
         <form id="formLogin">
-            <div class="campo"><label>E-mail:</label><input type="email" id="email" required></div>
-            <div class="campo"><label>Senha:</label><input type="password" id="senha" required></div>
+            <div class="campo"><label for="email">E-mail:</label><input type="email" id="email" autocomplete="username" required></div>
+            <div class="campo"><label for="senha">Senha:</label><input type="password" id="senha" autocomplete="current-password" required></div>
             <button type="submit" class="btn-salvar btn-login">Entrar</button>
         </form>
     </div>
@@ -80,11 +82,11 @@
             <h2>🏷️ Categorias</h2>
             <form id="formCategoria">
                 <div class="row">
-                    <div class="col campo"><label>ID Único (URL):</label><input type="text" id="cat-id" required pattern="[a-zA-Z0-9_-]+"></div>
-                    <div class="col campo"><label>Ícone de reserva (opcional):</label><input type="text" id="cat-icone" placeholder="Ex.: 📱"></div>
+                    <div class="col campo"><label for="cat-id">ID único (URL):</label><input type="text" id="cat-id" required placeholder="Ex.: celulares"></div>
+                    <div class="col campo"><label for="cat-icone">Ícone de reserva (opcional):</label><input type="text" id="cat-icone" placeholder="Ex.: 📱"></div>
                 </div>
-                <div class="campo"><label>Nome Visível:</label><input type="text" id="cat-nome" required></div>
-                <div class="campo"><label>URL da imagem da categoria (opcional):</label><input type="url" id="cat-imagem" placeholder="https://site.com/imagem-da-categoria.jpg"></div>
+                <div class="campo"><label for="cat-nome">Nome visível:</label><input type="text" id="cat-nome" required></div>
+                <div class="campo"><label for="cat-imagem">URL da imagem da categoria (opcional):</label><input type="url" id="cat-imagem" placeholder="https://site.com/imagem-da-categoria.jpg"></div>
                 <p class="ajuda-categoria">Cole o link direto de uma imagem (JPG, PNG ou WEBP). A imagem aparecerá no card; sem imagem, será usado o ícone de reserva.</p>
                 <button type="submit" id="btn-submit-cat" class="btn-salvar btn-categoria">+ Criar Categoria</button>
             </form>
@@ -95,9 +97,9 @@
             <h2>📦 Cadastro de Produto</h2>
             <form id="formProduto">
                 <div class="campo caixa-amarela">
-                    <label>Link comum do produto (opcional):</label>
-                    <input type="url" id="link" placeholder="Ex.: https://www.mercadolivre.com.br/...">
-                    <small>Guarde o link para sua referência. O preenchimento dos dados será manual, para evitar informações incorretas.</small>
+                    <label for="link">Link da fonte técnica:</label>
+                    <input type="url" id="link" placeholder="Ex.: https://www.mercadolivre.com.br/..." required>
+                    <small>Este endereço identifica a fonte das especificações e será exibido como referência editorial.</small>
                 </div>
 
                 <div class="campo caixa-azul">
@@ -127,7 +129,7 @@
                 <div class="campo"><label>Nome do Produto:</label><input type="text" id="titulo" required></div>
                 <div class="row">
                     <div class="col campo"><label>Preço Estimado:</label><input type="text" id="preco"></div>
-                    <div class="col campo"><label>Nota (1.0 a 5.0):</label><input type="number" id="nota" step="0.1" min="1" max="5" value="4.8" required></div>
+                    <div class="col campo"><label for="nota">Nota editorial (1,0 a 5,0):</label><input type="number" id="nota" step="0.1" min="1" max="5" value="4.8" required></div>
                     <div class="col campo"><label>Posição no ranking:</label><input type="number" id="ranking" min="1" max="10" value="10" required></div>
                 </div>
 
@@ -199,6 +201,12 @@
             return `${corte}…`;
         }
 
+        function textoEditorialValido(valor, minimo = 80) {
+            const texto = textoUtil(valor);
+            const generico = /(chama atenção por os recursos descritos|recursos descritos no próprio título|informações em atualização|produto identificado no anúncio|oferta para comparar|conheça este produto)/i;
+            return texto.length >= minimo && !generico.test(texto) ? texto : "";
+        }
+
         function listaUtil(valor, alternativas) {
             const itens = String(valor || "").split(",")
                 .map(item => item.trim())
@@ -212,10 +220,17 @@
                 : (categorias[0]?.id || "");
             const titulo = produto.titulo || textoUtil(resposta.titulo) || "Produto selecionado";
             const especificacoes = Array.isArray(produto.especificacoes) ? produto.especificacoes.slice(0, 3) : [];
-            const dadosTecnicos = especificacoes.length
-                ? especificacoes.join(", ")
-                : "os recursos descritos no próprio título do anúncio";
-            const resumoPadrao = `O ${titulo} chama atenção por ${dadosTecnicos}. Na comparação com opções mais básicas da categoria, o conjunto anunciado tende a ser mais interessante para quem prioriza esses recursos; ainda assim, confirme autonomia, garantia e itens inclusos antes de fechar a compra.`;
+            const fonteTecnica = especificacoes.join(" ") || textoUtil(produto.descricao);
+            if (fonteTecnica.length < 40) {
+                throw new Error("Inclua pelo menos 40 caracteres de dados técnicos antes de gerar a análise.");
+            }
+
+            const comentario = textoEditorialValido(resposta.comentario, 180);
+            const pros = limitarTexto(listaUtil(resposta.pros, []), 300);
+            const contras = limitarTexto(listaUtil(resposta.contras, []), 300);
+            if (!comentario || pros.length < 60 || contras.length < 60) {
+                throw new Error("A IA não produziu uma análise específica o suficiente. Acrescente dados técnicos e tente novamente.");
+            }
 
             return {
                 categoria: categoriaValida,
@@ -224,9 +239,9 @@
                 preco: produto.preco || "",
                 nota: Number.isFinite(Number(resposta.nota)) ? Math.min(5, Math.max(1, Number(resposta.nota))) : 4.5,
                 ranking: Number.isFinite(Number.parseInt(resposta.ranking, 10)) ? Math.min(10, Math.max(1, Number.parseInt(resposta.ranking, 10))) : 10,
-                comentario: limitarTexto(textoUtil(resposta.comentario) || resumoPadrao, 500),
-                pros: listaUtil(resposta.pros, especificacoes.length ? especificacoes.map(item => `Destaque no anúncio: ${item}`) : ["Produto identificado no anúncio", "Informações principais disponíveis", "Oferta para comparar na categoria"]),
-                contras: listaUtil(resposta.contras, ["Conferir ficha técnica completa", "Verificar garantia e acessórios inclusos"])
+                comentario: limitarTexto(comentario, 500),
+                pros,
+                contras
             };
         }
 
@@ -398,6 +413,7 @@ Formato obrigatório:
             const titulo = document.getElementById('titulo').value.trim();
             const dadosTecnicos = document.getElementById('dados-tecnicos-manual').value.trim();
             if (!titulo) return alert('Preencha primeiro o Nome do Produto.');
+            if (dadosTecnicos.length < 40) return alert('Inclua pelo menos 40 caracteres de dados técnicos verificáveis para gerar uma análise específica.');
             if (typeof window.preencherComIA !== 'function') {
                 return alert('A IA ainda está carregando. Aguarde alguns segundos e tente novamente.');
             }
@@ -604,6 +620,8 @@ Formato obrigatório:
                 document.getElementById('titulo').value = tituloML || '';
                 document.getElementById('preco').value = precoML || '';
                 document.getElementById('foto').value = fotoUrl ? fotoUrl.replace('-I.jpg', '-O.jpg') : '';
+                document.getElementById('dados-tecnicos-manual').value = [descText, ...especificacoes]
+                    .filter(Boolean).join('\n').slice(0, 3000);
 
                 try {
                     if (typeof window.preencherComIA !== 'function') {
@@ -685,6 +703,15 @@ Formato obrigatório:
             }
         }
 
+        function corrigirNomeCategoria(nome) {
+            return String(nome || '').trim().replace(/air\s+frayer/gi, 'Air Fryer');
+        }
+
+        function normalizarSlug(valor) {
+            return String(valor || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 70);
+        }
+
         // Categorias agora ficam na nuvem (Firestore), com o campo "ID Único"
         // sendo usado como o próprio ID do documento. Isso garante que o site
         // público (index.html) enxergue exatamente as mesmas categorias.
@@ -699,7 +726,7 @@ Formato obrigatório:
                 snapshot.forEach(doc => {
                     const cat = doc.data();
                     const icone = cat.icone ? `${escapeHtml(cat.icone)} ` : '';
-                    const miniatura = cat.imagem ? `<img class="cat-miniatura" src="${escapeHtml(cat.imagem)}" alt="">` : '';
+                    const miniatura = cat.imagem ? `<img class="cat-miniatura" src="${escapeHtml(cat.imagem)}" alt="Categoria ${escapeHtml(cat.nome)}">` : '';
                     select.innerHTML += `<option value="${doc.id}">${icone}${escapeHtml(cat.nome)}</option>`;
                     listaCatAdmin.innerHTML += `
                         <div class="item-admin">
@@ -721,10 +748,11 @@ Formato obrigatório:
 
         document.getElementById('formCategoria').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const idDigitado = document.getElementById('cat-id').value.trim().toLowerCase().replace(/\s+/g, '');
+            const idDigitado = normalizarSlug(document.getElementById('cat-id').value || document.getElementById('cat-nome').value);
+            if (!idDigitado) return alert('Informe um ID de categoria válido.');
             const catInfo = {
                 icone: document.getElementById('cat-icone').value.trim(),
-                nome: document.getElementById('cat-nome').value.trim(),
+                nome: corrigirNomeCategoria(document.getElementById('cat-nome').value),
                 imagem: document.getElementById('cat-imagem').value.trim()
             };
 
@@ -781,22 +809,38 @@ Formato obrigatório:
             }
         }
 
+        function validarConteudoEditorial(dados) {
+            const textoCompleto = `${dados.comentario} ${dados.pros} ${dados.contras}`;
+            const generico = /(chama atenção por os recursos descritos|recursos descritos no próprio título|informações em atualização|produto identificado no anúncio|oferta para comparar|conheça este produto)/i;
+            if (generico.test(textoCompleto)) return 'O texto contém uma descrição genérica. Acrescente informações específicas e verificáveis do produto.';
+            if (dados.comentario.length < 180) return 'O resumo precisa ter pelo menos 180 caracteres de análise específica.';
+            if (dados.pros.length < 60 || dados.contras.length < 60) return 'Pontos positivos e pontos de atenção precisam ter pelo menos 60 caracteres cada.';
+            if (!dados.dadosTecnicos || dados.dadosTecnicos.length < 40) return 'Inclua pelo menos 40 caracteres de dados técnicos verificáveis.';
+            return '';
+        }
+
         document.getElementById('formProduto').addEventListener('submit', (e) => {
             e.preventDefault();
             const dadosProduto = {
                 categoria: document.getElementById('categoria').value,
-                titulo: document.getElementById('titulo').value,
-                link: document.getElementById('link').value,
-                linkAfiliado: document.getElementById('linkAfiliado').value, // NOVO CAMPO SALVO NO BANCO!
+                titulo: document.getElementById('titulo').value.trim(),
+                link: document.getElementById('link').value.trim(),
+                linkAfiliado: document.getElementById('linkAfiliado').value.trim(),
                 selo: document.getElementById('selo').value,
-                foto: document.getElementById('foto').value,
-                comentario: document.getElementById('comentario').value,
-                preco: document.getElementById('preco').value,
+                foto: document.getElementById('foto').value.trim(),
+                comentario: document.getElementById('comentario').value.trim(),
+                preco: document.getElementById('preco').value.trim(),
                 nota: parseFloat(document.getElementById('nota').value),
                 ranking: parseInt(document.getElementById('ranking').value, 10),
-                pros: document.getElementById('pros').value,
-                contras: document.getElementById('contras').value
+                pros: document.getElementById('pros').value.trim(),
+                contras: document.getElementById('contras').value.trim(),
+                dadosTecnicos: document.getElementById('dados-tecnicos-manual').value.trim(),
+                autor: 'Equipe editorial Ranking da Compra',
+                atualizadoEm: firebase.firestore.FieldValue.serverTimestamp()
             };
+
+            const erroEditorial = validarConteudoEditorial(dadosProduto);
+            if (erroEditorial) return alert(erroEditorial);
 
             if (editProdId !== null) {
                 db.collection("produtos").doc(editProdId).update(dadosProduto)
@@ -858,6 +902,7 @@ Formato obrigatório:
                     document.getElementById('comentario').value = prod.comentario;
                     document.getElementById('pros').value = prod.pros || "";
                     document.getElementById('contras').value = prod.contras || "";
+                    document.getElementById('dados-tecnicos-manual').value = prod.dadosTecnicos || "";
                     document.getElementById('texto-ia-paste').value = '';
 
                     editProdId = id;
