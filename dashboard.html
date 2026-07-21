@@ -38,6 +38,12 @@
         .caixa-amarela { background: #fff3cd; border: 2px dashed #ffe600; padding: 15px; border-radius: 8px; margin-bottom: 15px;}
         .caixa-azul { background: #e6f0ff; border: 2px dashed #3483fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;}
         .caixa-verde { background: #edf9f0; border: 2px dashed #00a650; padding: 15px; border-radius: 8px; margin-bottom: 15px;}
+        .caixa-promocao { background: #fff8dc; border: 2px solid #f0c419; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .linha-promocao { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+        .linha-promocao input { width: auto; min-width: 18px; height: 18px; }
+        .linha-promocao label { margin: 0; font-size: 14px; color: #5d4600; }
+        .ajuda-promocao { display: block; color: #6b5b27; font-size: 12px; line-height: 1.45; margin-top: 2px; }
+        .status-promocao { display: inline-block; margin: 6px 0 0 7px; padding: 3px 7px; border-radius: 999px; background: #d83b2d; color: white; font-size: 11px; font-weight: 800; }
         
         .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
         .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
@@ -165,6 +171,19 @@
                     <div class="col campo"><label>Preço Estimado:</label><input type="text" id="preco"></div>
                     <div class="col campo"><label for="nota">Nota editorial (1,0 a 5,0):</label><input type="number" id="nota" step="0.1" min="1" max="5" value="4.8" required></div>
                     <div class="col campo"><label>Posição no ranking:</label><input type="number" id="ranking" min="1" max="10" value="10" required></div>
+                </div>
+
+                <div class="caixa-promocao">
+                    <div class="linha-promocao">
+                        <input type="checkbox" id="promocaoAtiva">
+                        <label for="promocaoAtiva"><b>Exibir em “Promoções do Dia”</b></label>
+                    </div>
+                    <div class="row">
+                        <div class="col campo"><label for="precoAnterior">Preço anterior:</label><input type="text" id="precoAnterior" inputmode="decimal" placeholder="Ex.: 99,90"></div>
+                        <div class="col campo"><label for="precoPromocional">Preço promocional:</label><input type="text" id="precoPromocional" inputmode="decimal" placeholder="Ex.: 79,90"></div>
+                        <div class="col campo"><label for="promocaoValidaAte">Válida até:</label><input type="date" id="promocaoValidaAte"></div>
+                    </div>
+                    <small class="ajuda-promocao">Ative somente após conferir a oferta no vendedor. O produto sairá automaticamente da seção quando a validade terminar. O preço anterior precisa ser maior que o promocional.</small>
                 </div>
 
                 <div class="campo"><label>URL da Imagem:</label><input type="url" id="foto" required></div>
@@ -1167,6 +1186,29 @@ Formato:
             return '';
         }
 
+        function numeroPrecoPromocao(valor) {
+            let texto = String(valor || '').replace(/R\$/gi, '').replace(/\s/g, '').replace(/[^\d,.-]/g, '');
+            if (!texto) return 0;
+            if (texto.includes(',')) texto = texto.replace(/\./g, '').replace(',', '.');
+            else if (/^\d{1,3}(?:\.\d{3})+$/.test(texto)) texto = texto.replace(/\./g, '');
+            const numero = Number(texto);
+            return Number.isFinite(numero) && numero > 0 ? numero : 0;
+        }
+
+        function validarDadosPromocao(dados) {
+            if (!dados.promocaoAtiva) return '';
+            const anterior = numeroPrecoPromocao(dados.precoAnterior);
+            const promocional = numeroPrecoPromocao(dados.precoPromocional);
+            if (!anterior || !promocional) return 'Para ativar a promoção, informe o preço anterior e o preço promocional.';
+            if (promocional >= anterior) return 'O preço promocional precisa ser menor que o preço anterior.';
+            if (!dados.promocaoValidaAte) return 'Informe até que dia a promoção é válida.';
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+            const validade = new Date(`${dados.promocaoValidaAte}T23:59:59`);
+            if (Number.isNaN(validade.getTime()) || validade < hoje) return 'A validade da promoção não pode estar no passado.';
+            return '';
+        }
+
         document.getElementById('formProduto').addEventListener('submit', (e) => {
             e.preventDefault();
             const dadosProduto = {
@@ -1180,6 +1222,10 @@ Formato:
                 preco: document.getElementById('preco').value.trim(),
                 nota: parseFloat(document.getElementById('nota').value),
                 ranking: parseInt(document.getElementById('ranking').value, 10),
+                promocaoAtiva: document.getElementById('promocaoAtiva').checked,
+                precoAnterior: document.getElementById('precoAnterior').value.trim(),
+                precoPromocional: document.getElementById('precoPromocional').value.trim(),
+                promocaoValidaAte: document.getElementById('promocaoValidaAte').value,
                 pros: document.getElementById('pros').value.trim(),
                 contras: document.getElementById('contras').value.trim(),
                 dadosTecnicos: document.getElementById('dados-tecnicos-manual').value.trim(),
@@ -1189,6 +1235,8 @@ Formato:
 
             const erroEditorial = validarConteudoEditorial(dadosProduto);
             if (erroEditorial) return alert(erroEditorial);
+            const erroPromocao = validarDadosPromocao(dadosProduto);
+            if (erroPromocao) return alert(erroPromocao);
 
             if (editProdId !== null) {
                 db.collection("produtos").doc(editProdId).update(dadosProduto)
@@ -1468,7 +1516,7 @@ Formato:
             return `
                 <div class="item-admin">
                     <div class="item-admin-conteudo">
-                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span></div>
+                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span>${prod.promocaoAtiva ? '<span class="status-promocao">PROMOÇÃO MARCADA</span>' : ''}</div>
                         <span class="status-publicado">✓ Visível na vitrine pública</span>
                     </div>
                     <div class="acoes">
@@ -1530,6 +1578,10 @@ Formato:
                     document.getElementById('preco').value = prod.preco || "";
                     document.getElementById('nota').value = prod.nota || "4.8";
                     document.getElementById('ranking').value = prod.ranking || "10";
+                    document.getElementById('promocaoAtiva').checked = prod.promocaoAtiva === true;
+                    document.getElementById('precoAnterior').value = prod.precoAnterior || "";
+                    document.getElementById('precoPromocional').value = prod.precoPromocional || "";
+                    document.getElementById('promocaoValidaAte').value = prod.promocaoValidaAte || "";
                     document.getElementById('link').value = prod.link;
                     document.getElementById('linkAfiliado').value = prod.linkAfiliado || ""; // PUXANDO LINK DE AFILIADO
                     document.getElementById('foto').value = prod.foto;
