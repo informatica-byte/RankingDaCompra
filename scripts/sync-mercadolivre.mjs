@@ -1,21 +1,138 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
+import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const OUTPUT = resolve("mercadolivre-status.json");
-const ACCESS_TOKEN = String(process.env.MERCADO_LIVRE_ACCESS_TOKEN || "").trim();
+const TOKEN_FILE = resolve(".mercadolivre-token.enc");
+let accessToken = String(process.env.MERCADO_LIVRE_ACCESS_TOKEN || "").trim();
+const CLIENT_ID = String(process.env.MERCADO_LIVRE_CLIENT_ID || "").trim();
+const CLIENT_SECRET = String(process.env.MERCADO_LIVRE_CLIENT_SECRET || "").trim();
+const TOKEN_KEY = String(process.env.MERCADO_LIVRE_TOKEN_KEY || "").trim();
+const AUTHORIZATION_CODE = String(process.env.MERCADO_LIVRE_AUTHORIZATION_CODE || "").trim();
+const REDIRECT_URI = String(
+  process.env.MERCADO_LIVRE_REDIRECT_URI
+  || "https://rankingdacompra.com.br/oauth-mercadolivre.html",
+).trim();
 const MAX_PARALLEL_REQUESTS = 5;
 const CONFIRMATIONS_TO_HIDE = 2;
-const execFileAsync = promisify(execFile);
 
 function fieldValue(field) {
   if (!field) return "";
   return field.stringValue ?? field.integerValue ?? field.doubleValue
     ?? field.booleanValue ?? field.timestampValue ?? "";
+}
+
+function encryptionKey() {
+  return createHash("sha256").update(TOKEN_KEY, "utf8").digest();
+}
+
+function encryptTokenSession(session) {
+  const iv = randomBytes(12);
+  const cipher = createCipheriv("aes-256-gcm", encryptionKey(), iv);
+  const encrypted = Buffer.concat([
+    cipher.update(JSON.stringify(session), "utf8"),
+    cipher.final(),
+  ]);
+  return JSON.stringify({
+    version: 1,
+    iv: iv.toString("base64"),
+    tag: cipher.getAuthTag().toString("base64"),
+    data: encrypted.toString("base64"),
+  });
+}
+
+function decryptTokenSession(value) {
+  const payload = JSON.parse(value);
+  if (payload?.version !== 1) throw new Error("Arquivo de autorização incompatível");
+  const decipher = createDecipheriv(
+    "aes-256-gcm",
+    encryptionKey(),
+    Buffer.from(payload.iv, "base64"),
+  );
+  decipher.setAuthTag(Buffer.from(payload.tag, "base64"));
+  const decrypted = Buffer.concat([
+    decipher.update(Buffer.from(payload.data, "base64")),
+    decipher.final(),
+  ]);
+  return JSON.parse(decrypted.toString("utf8"));
+}
+
+async function readTokenSession() {
+  try {
+    return decryptTokenSession(await readFile(TOKEN_FILE, "utf8"));
+  } catch (error) {
+    if (error?.code === "ENOENT") return null;
+    throw new Error("Não foi possível abrir a autorização criptografada do Mercado Livre");
+  }
+}
+
+async function requestOAuthToken(fields) {
+  const response = await fetch("https://api.mercadolibre.com/oauth/token", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "content-type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams(fields),
+    signal: AbortSignal.timeout(20_000),
+  });
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok || !payload.access_token) {
+    const reason = String(payload.error_description || payload.message || `HTTP ${response.status}`);
+    throw new Error(`Autorização do Mercado Livre recusada: ${reason.slice(0, 180)}`);
+  }
+  return payload;
+}
+
+async function saveOAuthToken(payload) {
+  const session = {
+    accessToken: String(payload.access_token),
+    refreshToken: String(payload.refresh_token || ""),
+    expiresAt: Date.now() + Math.max(300, Number(payload.expires_in || 21600)) * 1000,
+  };
+  await writeFile(TOKEN_FILE, `${encryptTokenSession(session)}\n`, "utf8");
+  return session;
+}
+
+async function prepareAccessToken() {
+  if (accessToken) return "access_token";
+  const oauthConfigured = CLIENT_ID && CLIENT_SECRET && TOKEN_KEY;
+  if (!oauthConfigured) return "not_configured";
+
+  const stored = await readTokenSession();
+  if (stored?.accessToken && Number(stored.expiresAt) > Date.now() + 10 * 60 * 1000) {
+    accessToken = String(stored.accessToken);
+    return "encrypted_session";
+  }
+
+  let payload;
+  if (stored?.refreshToken) {
+    payload = await requestOAuthToken({
+      grant_type: "refresh_token",
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+      refresh_token: String(stored.refreshToken),
+    });
+  } else if (AUTHORIZATION_CODE) {
+    payload = await requestOAuthToken({
+      grant_type: "authorization_code",
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+      code: AUTHORIZATION_CODE,
+      redirect_uri: REDIRECT_URI,
+    });
+  } else {
+    throw new Error(
+      "Autorização inicial pendente: adicione MERCADO_LIVRE_AUTHORIZATION_CODE uma única vez",
+    );
+  }
+
+  const session = await saveOAuthToken(payload);
+  accessToken = session.accessToken;
+  return stored ? "refreshed" : "authorized";
 }
 
 async function listProducts() {
@@ -175,7 +292,7 @@ async function resolveItemId(product) {
 }
 
 function requestHeaders() {
-  return ACCESS_TOKEN ? { Authorization: `Bearer ${ACCESS_TOKEN}` } : {};
+  return accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
 }
 
 async function fetchJson(url, { allowMissing = false } = {}) {
@@ -314,66 +431,6 @@ export function parseMarketplaceHtml(html, itemId) {
   throw new Error("Mercado Livre: página sem preço ou disponibilidade verificável");
 }
 
-async function renderMarketplacePage(url, itemId) {
-  const chromePath = String(
-    process.env.CHROME_PATH
-    || (process.platform === "win32"
-      ? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-      : "google-chrome"),
-  );
-  try {
-    const { stdout } = await execFileAsync(chromePath, [
-      "--headless=new",
-      "--no-sandbox",
-      "--disable-gpu",
-      "--disable-dev-shm-usage",
-      "--hide-scrollbars",
-      "--window-size=1365,2400",
-      "--virtual-time-budget=10000",
-      "--dump-dom",
-      url,
-    ], {
-      encoding: "utf8",
-      maxBuffer: 20 * 1024 * 1024,
-      timeout: 35_000,
-    });
-    return parseMarketplaceHtml(stdout, itemId);
-  } catch (error) {
-    if (String(error?.message || "").includes("página sem preço")) throw error;
-    throw new Error("Mercado Livre: navegador de verificação indisponível");
-  }
-}
-
-async function fetchMarketplacePage(itemId) {
-  const itemPath = itemId.replace(/^MLB/i, "MLB-");
-  const url = `https://produto.mercadolivre.com.br/${itemPath}`;
-  const response = await fetch(url, {
-    redirect: "follow",
-    headers: {
-      "Accept-Language": "pt-BR,pt;q=0.9",
-      "User-Agent": "RankingDaCompra/1.0 (verificador de preço e disponibilidade)",
-    },
-    signal: AbortSignal.timeout(20_000),
-  });
-  if (response.status === 404) {
-    return {
-      itemId,
-      status: "not_found",
-      available: false,
-      price: null,
-      regularPrice: null,
-      currencyId: "BRL",
-      source: "public_page",
-    };
-  }
-  if (!response.ok) throw new Error(`Mercado Livre página: HTTP ${response.status}`);
-  try {
-    return parseMarketplaceHtml(await response.text(), itemId);
-  } catch {
-    return renderMarketplacePage(url, itemId);
-  }
-}
-
 async function fetchMarketplaceItem(itemId) {
   let item;
   try {
@@ -392,12 +449,11 @@ async function fetchMarketplaceItem(itemId) {
         source: "api",
       };
     }
-    if ([401, 403].includes(error.httpStatus)) return fetchMarketplacePage(itemId);
     throw error;
   }
 
   let salePrice = null;
-  if (ACCESS_TOKEN) {
+  if (accessToken) {
     salePrice = await fetchJson(
       `https://api.mercadolibre.com/items/${itemId}/sale_price`,
       { allowMissing: true },
@@ -520,6 +576,14 @@ async function checkProduct(product, previousRecord, checkedAt) {
 }
 
 async function main() {
+  const authorization = await prepareAccessToken();
+  if (authorization === "not_configured") {
+    console.log(
+      "Sincronização pausada com segurança: configure a autorização oficial do Mercado Livre.",
+    );
+    return;
+  }
+
   const [products, previous] = await Promise.all([listProducts(), readPrevious()]);
   const checkedAt = new Date().toISOString();
   const entries = await mapWithConcurrency(
