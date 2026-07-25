@@ -1,6 +1,8 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
@@ -8,6 +10,7 @@ const OUTPUT = resolve("mercadolivre-status.json");
 const ACCESS_TOKEN = String(process.env.MERCADO_LIVRE_ACCESS_TOKEN || "").trim();
 const MAX_PARALLEL_REQUESTS = 5;
 const CONFIRMATIONS_TO_HIDE = 2;
+const execFileAsync = promisify(execFile);
 
 function fieldValue(field) {
   if (!field) return "";
@@ -249,12 +252,16 @@ export function parseMarketplaceHtml(html, itemId) {
   const pricePatterns = [
     /property=["']product:price:amount["'][^>]+content=["']([^"']+)/i,
     /itemprop=["']price["'][^>]+content=["']([^"']+)/i,
+    /aria-label=["']Agora:\s*([\d.]+)\s*reais(?:\s+com\s+(\d+)\s+centavos)?/i,
+    /aria-label=["'](?!Antes:)([\d.]+)\s*reais(?:\s+com\s+(\d+)\s+centavos)?/i,
     /"price"\s*:\s*"?(\d+(?:[.,]\d+)?)/i,
   ];
   let price = null;
   for (const pattern of pricePatterns) {
     const match = source.match(pattern);
-    price = numberFromValue(match?.[1]);
+    price = numberFromValue(
+      match?.[2] ? `${match[1]},${String(match[2]).padStart(2, "0")}` : match?.[1],
+    );
     if (price) break;
   }
 
@@ -264,6 +271,7 @@ export function parseMarketplaceHtml(html, itemId) {
     .replace(/&iacute;/gi, "í")
     .replace(/&oacute;/gi, "ó")
     .replace(/&ccedil;/gi, "ç")
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
     .toLowerCase();
   const unavailable = [
     "anúncio pausado",
@@ -306,9 +314,40 @@ export function parseMarketplaceHtml(html, itemId) {
   throw new Error("Mercado Livre: página sem preço ou disponibilidade verificável");
 }
 
+async function renderMarketplacePage(url, itemId) {
+  const chromePath = String(
+    process.env.CHROME_PATH
+    || (process.platform === "win32"
+      ? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      : "google-chrome"),
+  );
+  try {
+    const { stdout } = await execFileAsync(chromePath, [
+      "--headless=new",
+      "--no-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--hide-scrollbars",
+      "--window-size=1365,2400",
+      "--virtual-time-budget=10000",
+      "--dump-dom",
+      url,
+    ], {
+      encoding: "utf8",
+      maxBuffer: 20 * 1024 * 1024,
+      timeout: 35_000,
+    });
+    return parseMarketplaceHtml(stdout, itemId);
+  } catch (error) {
+    if (String(error?.message || "").includes("página sem preço")) throw error;
+    throw new Error("Mercado Livre: navegador de verificação indisponível");
+  }
+}
+
 async function fetchMarketplacePage(itemId) {
   const itemPath = itemId.replace(/^MLB/i, "MLB-");
-  const response = await fetch(`https://produto.mercadolivre.com.br/${itemPath}`, {
+  const url = `https://produto.mercadolivre.com.br/${itemPath}`;
+  const response = await fetch(url, {
     redirect: "follow",
     headers: {
       "Accept-Language": "pt-BR,pt;q=0.9",
@@ -328,7 +367,11 @@ async function fetchMarketplacePage(itemId) {
     };
   }
   if (!response.ok) throw new Error(`Mercado Livre página: HTTP ${response.status}`);
-  return parseMarketplaceHtml(await response.text(), itemId);
+  try {
+    return parseMarketplaceHtml(await response.text(), itemId);
+  } catch {
+    return renderMarketplacePage(url, itemId);
+  }
 }
 
 async function fetchMarketplaceItem(itemId) {
