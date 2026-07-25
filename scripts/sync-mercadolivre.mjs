@@ -56,6 +56,88 @@ export function extractItemIdFromUrl(value) {
   }
 }
 
+function extractCatalogIdFromUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    const match = url.pathname.match(/\/p\/(MLB\d{6,})/i);
+    return match ? match[1].toUpperCase() : "";
+  } catch {
+    return "";
+  }
+}
+
+function normalizeTitle(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+async function itemFromCatalog(catalogId) {
+  if (!catalogId) return "";
+  try {
+    const payload = await fetchJson(
+      `https://api.mercadolibre.com/products/${catalogId}/items`,
+      { allowMissing: true },
+    );
+    const candidates = Array.isArray(payload) ? payload : (payload?.results || []);
+    const active = candidates.find((candidate) => (
+      candidate?.status === "active" && extractItemIdFromText(candidate?.item_id || candidate?.id)
+    ));
+    const any = active || candidates.find((candidate) => (
+      extractItemIdFromText(candidate?.item_id || candidate?.id)
+    ));
+    return extractItemIdFromText(any?.item_id || any?.id);
+  } catch {
+    return "";
+  }
+}
+
+async function itemFromExactTitle(title) {
+  const normalized = normalizeTitle(title);
+  if (normalized.length < 18) return "";
+  try {
+    const payload = await fetchJson(
+      `https://api.mercadolibre.com/sites/MLB/search?limit=10&q=${encodeURIComponent(title)}`,
+      { allowMissing: true },
+    );
+    const exactMatches = (payload?.results || []).filter((candidate) => (
+      candidate?.status === "active"
+      && normalizeTitle(candidate?.title) === normalized
+      && extractItemIdFromText(candidate?.id)
+    ));
+    return exactMatches.length === 1 ? extractItemIdFromText(exactMatches[0].id) : "";
+  } catch {
+    return "";
+  }
+}
+
+async function itemFromRedirect(value) {
+  try {
+    const url = new URL(String(value || ""));
+    if (!/meli\.la$|mercadolivre\.com/i.test(url.hostname)) return "";
+    for (const method of ["HEAD", "GET"]) {
+      const response = await fetch(url, {
+        method,
+        redirect: "follow",
+        signal: AbortSignal.timeout(12_000),
+      });
+      const direct = extractItemIdFromUrl(response.url);
+      if (direct) return direct;
+      const catalog = extractCatalogIdFromUrl(response.url);
+      const catalogItem = await itemFromCatalog(catalog);
+      if (catalogItem) return catalogItem;
+      if (response.body) await response.body.cancel();
+    }
+  } catch {
+    return "";
+  }
+  return "";
+}
+
 async function resolveItemId(product) {
   const explicit = extractItemIdFromText(product.mercadoLivreItemId);
   if (explicit) return explicit;
@@ -65,22 +147,16 @@ async function resolveItemId(product) {
     const direct = extractItemIdFromUrl(value);
     if (direct) return direct;
 
-    try {
-      const url = new URL(value);
-      if (/meli\.la$|mercadolivre\.com/i.test(url.hostname)) {
-        const response = await fetch(url, {
-          method: "HEAD",
-          redirect: "follow",
-          signal: AbortSignal.timeout(12_000),
-        });
-        const redirected = extractItemIdFromUrl(response.url);
-        if (redirected) return redirected;
-      }
-    } catch {
-      // O produto continua visível e será marcado como não gerenciado.
-    }
+    const catalogItem = await itemFromCatalog(extractCatalogIdFromUrl(value));
+    if (catalogItem) return catalogItem;
+
+    const redirected = await itemFromRedirect(value);
+    if (redirected) return redirected;
   }
-  return "";
+
+  // Migração dos cadastros antigos: só aceita uma correspondência de título
+  // exatamente igual, evitando associar automaticamente um produto diferente.
+  return itemFromExactTitle(product.titulo);
 }
 
 function requestHeaders() {
