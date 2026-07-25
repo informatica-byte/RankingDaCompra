@@ -1,4 +1,4 @@
-import { writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const PROJECT_ID = "rankingdacompra";
@@ -42,6 +42,15 @@ function editorialProduct(product) {
   return summary.length >= 180 && !GENERIC_TEXT.test(summary);
 }
 
+async function marketplaceStatus() {
+  try {
+    const payload = JSON.parse(await readFile(resolve("mercadolivre-status.json"), "utf8"));
+    return payload?.products && typeof payload.products === "object" ? payload.products : {};
+  } catch {
+    return {};
+  }
+}
+
 function dateOnly(value) {
   if (!value) return "";
   const date = new Date(value);
@@ -64,12 +73,16 @@ function renderUrl(entry) {
   return `  <url>\n    <loc>${escapeXml(entry.location)}</loc>${lastModified}\n    <changefreq>${entry.frequency}</changefreq>\n    <priority>${entry.priority}</priority>\n  </url>`;
 }
 
-const [allCategories, allProducts] = await Promise.all([
+const [allCategories, allProducts, marketplaceProducts] = await Promise.all([
   listCollection("categorias"),
   listCollection("produtos"),
+  marketplaceStatus(),
 ]);
 
-const products = allProducts.filter(editorialProduct).sort((a, b) => a.id.localeCompare(b.id));
+const products = allProducts
+  .filter(editorialProduct)
+  .filter((product) => marketplaceProducts[product.id]?.visible !== false)
+  .sort((a, b) => a.id.localeCompare(b.id));
 const productsByCategory = new Map();
 for (const product of products) {
   const items = productsByCategory.get(product.categoria) || [];
