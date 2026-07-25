@@ -479,12 +479,22 @@ async function fetchMarketplacePublicPage(itemId) {
 async function fetchMarketplaceItem(itemId) {
   let item;
   try {
-    item = await fetchJson(
-      `https://api.mercadolibre.com/items/${itemId}?attributes=id,status,available_quantity,currency_id,permalink,price,original_price`,
+    const payload = await fetchJson(
+      `https://api.mercadolibre.com/items?ids=${itemId}&attributes=id,status,available_quantity,currency_id,permalink,price,original_price`,
       // O recurso de item é público. Tokens de vendedores podem receber 403 ao
       // consultar anúncios de terceiros, por isso esta chamada não envia OAuth.
       { authenticated: false },
     );
+    const result = Array.isArray(payload) ? payload[0] : payload;
+    const resultCode = Number(result?.code || 200);
+    if (resultCode !== 200) {
+      const error = new Error(
+        `Mercado Livre: item HTTP ${resultCode}${result?.body?.message ? ` - ${result.body.message}` : ""}`,
+      );
+      error.httpStatus = resultCode;
+      throw error;
+    }
+    item = result?.body || result;
   } catch (error) {
     if (error.httpStatus === 404) {
       return {
