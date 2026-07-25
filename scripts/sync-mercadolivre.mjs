@@ -409,6 +409,11 @@ export function parseMarketplaceHtml(html, itemId) {
     "estoque disponível",
     "estoque disponivel",
     "comprar agora",
+    "opções de compra",
+    "opcoes de compra",
+    "ir para a compra",
+    "adicionar ao carrinho",
+    "buybox-form",
     "instock",
   ].some((marker) => normalized.includes(marker));
 
@@ -434,7 +439,9 @@ export function parseMarketplaceHtml(html, itemId) {
       source: "public_page",
     };
   }
-  throw new Error("Mercado Livre: página sem preço ou disponibilidade verificável");
+  throw new Error(
+    `Mercado Livre: página sem preço ou disponibilidade verificável (preço=${price ? "sim" : "não"}, compra=${available ? "sim" : "não"}, tamanho=${source.length})`,
+  );
 }
 
 async function fetchMarketplacePublicPage(itemId) {
