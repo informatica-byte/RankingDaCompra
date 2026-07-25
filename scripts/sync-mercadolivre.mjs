@@ -130,7 +130,19 @@ async function itemFromRedirect(value) {
       const catalog = extractCatalogIdFromUrl(response.url);
       const catalogItem = await itemFromCatalog(catalog);
       if (catalogItem) return catalogItem;
-      if (response.body) await response.body.cancel();
+      if (method === "GET") {
+        const html = await response.text();
+        const embeddedPatterns = [
+          /(?:wid|item_id)(?:=|%3D|\\u003[dD])(?:MLB[-_]?)(\d{6,})/i,
+          /pdp_filters[^"'<>]{0,100}(?:MLB[-_]?)(\d{6,})/i,
+        ];
+        for (const pattern of embeddedPatterns) {
+          const embedded = html.match(pattern);
+          if (embedded) return `MLB${embedded[1]}`;
+        }
+      } else if (response.body) {
+        await response.body.cancel();
+      }
     }
   } catch {
     return "";
@@ -177,6 +189,148 @@ async function fetchJson(url, { allowMissing = false } = {}) {
   return response.json();
 }
 
+function numberFromValue(value) {
+  if (typeof value === "number") return Number.isFinite(value) ? value : null;
+  const normalized = String(value ?? "")
+    .trim()
+    .replace(/\s/g, "")
+    .replace(/\.(?=\d{3}(?:\D|$))/g, "")
+    .replace(",", ".");
+  const parsed = Number(normalized);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
+function walkJson(value, visitor) {
+  if (!value || typeof value !== "object") return;
+  visitor(value);
+  for (const child of Object.values(value)) {
+    if (Array.isArray(child)) child.forEach((item) => walkJson(item, visitor));
+    else walkJson(child, visitor);
+  }
+}
+
+export function parseMarketplaceHtml(html, itemId) {
+  const source = String(html || "");
+  const products = [];
+  const jsonLdPattern = /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+  for (const match of source.matchAll(jsonLdPattern)) {
+    try {
+      const parsed = JSON.parse(match[1].trim());
+      walkJson(parsed, (node) => {
+        const type = String(node["@type"] || "").toLowerCase();
+        if (type === "product" && node.offers) products.push(node);
+      });
+    } catch {
+      // Alguns anúncios incluem blocos não JSON; os metadados abaixo continuam disponíveis.
+    }
+  }
+
+  for (const product of products) {
+    const offers = Array.isArray(product.offers) ? product.offers : [product.offers];
+    for (const offer of offers.filter(Boolean)) {
+      const availability = String(offer.availability || "").toLowerCase();
+      const price = numberFromValue(
+        offer.price ?? offer.lowPrice ?? offer.priceSpecification?.price,
+      );
+      if (!price) continue;
+      const unavailable = /outofstock|soldout|discontinued/.test(availability);
+      return {
+        itemId,
+        status: unavailable ? "inactive" : "active",
+        available: !unavailable,
+        price,
+        regularPrice: null,
+        currencyId: String(offer.priceCurrency || "BRL"),
+        source: "public_page",
+      };
+    }
+  }
+
+  const pricePatterns = [
+    /property=["']product:price:amount["'][^>]+content=["']([^"']+)/i,
+    /itemprop=["']price["'][^>]+content=["']([^"']+)/i,
+    /"price"\s*:\s*"?(\d+(?:[.,]\d+)?)/i,
+  ];
+  let price = null;
+  for (const pattern of pricePatterns) {
+    const match = source.match(pattern);
+    price = numberFromValue(match?.[1]);
+    if (price) break;
+  }
+
+  const normalized = source
+    .replace(/&aacute;/gi, "á")
+    .replace(/&atilde;/gi, "ã")
+    .replace(/&iacute;/gi, "í")
+    .replace(/&oacute;/gi, "ó")
+    .replace(/&ccedil;/gi, "ç")
+    .toLowerCase();
+  const unavailable = [
+    "anúncio pausado",
+    "anuncio pausado",
+    "produto indisponível",
+    "produto indisponivel",
+    "publicação finalizada",
+    "publicacao finalizada",
+    "outofstock",
+  ].some((marker) => normalized.includes(marker));
+  const available = [
+    "estoque disponível",
+    "estoque disponivel",
+    "comprar agora",
+    "instock",
+  ].some((marker) => normalized.includes(marker));
+
+  if (unavailable) {
+    return {
+      itemId,
+      status: "inactive",
+      available: false,
+      price,
+      regularPrice: null,
+      currencyId: "BRL",
+      source: "public_page",
+    };
+  }
+  if (price && available) {
+    return {
+      itemId,
+      status: "active",
+      available: true,
+      price,
+      regularPrice: null,
+      currencyId: "BRL",
+      source: "public_page",
+    };
+  }
+  throw new Error("Mercado Livre: página sem preço ou disponibilidade verificável");
+}
+
+async function fetchMarketplacePage(itemId) {
+  const itemPath = itemId.replace(/^MLB/i, "MLB-");
+  const response = await fetch(`https://produto.mercadolivre.com.br/${itemPath}`, {
+    redirect: "follow",
+    headers: {
+      "Accept-Language": "pt-BR,pt;q=0.9",
+      "User-Agent": "RankingDaCompra/1.0 (verificador de preço e disponibilidade)",
+    },
+    signal: AbortSignal.timeout(20_000),
+  });
+  if (response.status === 404) {
+    return {
+      itemId,
+      status: "not_found",
+      available: false,
+      price: null,
+      regularPrice: null,
+      currencyId: "BRL",
+      source: "public_page",
+    };
+  }
+  if (!response.ok) throw new Error(`Mercado Livre página: HTTP ${response.status}`);
+  return parseMarketplaceHtml(await response.text(), itemId);
+}
+
 async function fetchMarketplaceItem(itemId) {
   let item;
   try {
@@ -192,8 +346,10 @@ async function fetchMarketplaceItem(itemId) {
         price: null,
         regularPrice: null,
         currencyId: "BRL",
+        source: "api",
       };
     }
+    if ([401, 403].includes(error.httpStatus)) return fetchMarketplacePage(itemId);
     throw error;
   }
 
@@ -217,6 +373,7 @@ async function fetchMarketplaceItem(itemId) {
     price: Number.isFinite(amount) && amount > 0 ? amount : null,
     regularPrice: Number.isFinite(regularAmount) && regularAmount > amount ? regularAmount : null,
     currencyId: String(salePrice?.currency_id || item?.currency_id || "BRL"),
+    source: "api",
   };
 }
 
@@ -236,6 +393,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
       price: result.price,
       regularPrice: result.regularPrice,
       currencyId: result.currencyId,
+      source: result.source || "api",
       checkedAt,
     };
   }
@@ -250,6 +408,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
     price: result.price,
     regularPrice: result.regularPrice,
     currencyId: result.currencyId,
+    source: result.source || "api",
     checkedAt,
   };
 }
@@ -257,7 +416,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
 function sameBusinessState(a = {}, b = {}) {
   const keys = [
     "itemId", "managed", "status", "available", "visible",
-    "unavailableChecks", "price", "regularPrice", "currencyId", "lastError",
+    "unavailableChecks", "price", "regularPrice", "currencyId", "source", "lastError",
   ];
   return keys.every((key) => (a[key] ?? null) === (b[key] ?? null));
 }
@@ -343,17 +502,20 @@ async function main() {
   await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
 
   const counts = Object.values(nextProducts).reduce((summary, record) => {
-    if (!record.managed) summary.unmanaged++;
+    if (record.lastError) summary.errors++;
+    else if (!record.managed) summary.unmanaged++;
     else if (record.visible === false) summary.hidden++;
     else if (record.available === false) summary.confirming++;
-    else summary.active++;
+    else if (record.available === true) summary.active++;
+    else summary.errors++;
     return summary;
-  }, { active: 0, hidden: 0, confirming: 0, unmanaged: 0 });
+  }, { active: 0, hidden: 0, confirming: 0, unmanaged: 0, errors: 0 });
 
   console.log(
     `Mercado Livre sincronizado: ${products.length} produtos; `
     + `${counts.active} ativos, ${counts.hidden} ocultos, `
-    + `${counts.confirming} aguardando confirmação e ${counts.unmanaged} sem item_id.`,
+    + `${counts.confirming} aguardando confirmação, ${counts.unmanaged} sem item_id `
+    + `e ${counts.errors} com falha temporária.`,
   );
 }
 
