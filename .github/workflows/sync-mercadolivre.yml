@@ -30,6 +30,11 @@ jobs:
       - name: Consultar preços e disponibilidade
         env:
           MERCADO_LIVRE_ACCESS_TOKEN: ${{ secrets.MERCADO_LIVRE_ACCESS_TOKEN }}
+          MERCADO_LIVRE_CLIENT_ID: ${{ secrets.MERCADO_LIVRE_CLIENT_ID }}
+          MERCADO_LIVRE_CLIENT_SECRET: ${{ secrets.MERCADO_LIVRE_CLIENT_SECRET }}
+          MERCADO_LIVRE_TOKEN_KEY: ${{ secrets.MERCADO_LIVRE_TOKEN_KEY }}
+          MERCADO_LIVRE_AUTHORIZATION_CODE: ${{ secrets.MERCADO_LIVRE_AUTHORIZATION_CODE }}
+          MERCADO_LIVRE_REDIRECT_URI: https://rankingdacompra.com.br/oauth-mercadolivre.html
         run: node scripts/sync-mercadolivre.mjs
 
       - name: Atualizar o sitemap
@@ -38,7 +43,7 @@ jobs:
       - name: Publicar somente quando houver mudança
         shell: bash
         run: |
-          if git diff --quiet -- mercadolivre-status.json sitemap.xml; then
+          if git diff --quiet -- mercadolivre-status.json sitemap.xml .mercadolivre-token.enc; then
             echo "Preços e disponibilidade continuam iguais."
             exit 0
           fi
@@ -46,5 +51,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add mercadolivre-status.json sitemap.xml
+          if [[ -f .mercadolivre-token.enc ]]; then
+            git add .mercadolivre-token.enc
+          fi
           git commit -m "Atualiza preços e disponibilidade automaticamente"
           git push
