@@ -54,17 +54,21 @@
         .btn-edit { background: #ffc107; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
         .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
 
-        .abas-produtos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0 16px; }
+        .abas-produtos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0 16px; }
         .aba-produto { border: 1px solid #cfd4da; background: #f5f6f8; color: #333; border-radius: 8px; padding: 11px 8px; cursor: pointer; font-weight: 700; font-size: 13px; }
         .aba-produto:hover { border-color: #2d3277; }
         .aba-produto[aria-selected="true"] { color: white; background: #2d3277; border-color: #2d3277; }
         .aba-produto.aba-revisao[aria-selected="true"] { color: #4b2e00; background: #ffc107; border-color: #e0a800; }
+        .aba-produto.aba-indisponiveis[aria-selected="true"] { color: white; background: #b42318; border-color: #8f1c13; }
         .contador-aba { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 5px; margin-left: 4px; border-radius: 999px; background: rgba(255,255,255,.9); color: #2d3277; font-size: 11px; }
         .aba-revisao[aria-selected="true"] .contador-aba { color: #7a4800; }
         .item-admin-conteudo { flex: 1; min-width: 0; line-height: 1.4; }
         .item-admin-topo { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
         .item-admin-titulo { font-weight: 700; overflow-wrap: anywhere; }
         .item-admin.item-revisao { align-items: flex-start; background: #fff7df; border: 2px solid #ffc107; }
+        .item-admin.item-indisponivel { align-items: flex-start; background: #fff1f0; border: 2px solid #d83b2d; }
+        .status-indisponivel { display: inline-block; margin-top: 7px; padding: 3px 7px; border-radius: 4px; background: #b42318; color: white; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+        .detalhe-indisponivel { margin: 8px 0 0; color: #7a271a; font-size: 12px; line-height: 1.45; }
         .icone-atencao { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; flex: 0 0 24px; border-radius: 50%; background: #ffc107; color: #4b2e00; font-weight: 900; }
         .status-publicado { display: inline-block; margin-top: 6px; color: #087a3d; font-size: 12px; font-weight: 700; }
         .rotulo-oculto { display: inline-block; margin-top: 7px; padding: 3px 7px; border-radius: 4px; background: #8a4b00; color: white; font-size: 11px; font-weight: 800; text-transform: uppercase; }
@@ -72,6 +76,7 @@
         .lista-problemas li + li { margin-top: 3px; }
         .estado-lista { padding: 18px 12px; text-align: center; color: #666; background: #f7f7f7; border-radius: 7px; }
         .painel-produtos[hidden] { display: none; }
+        @media (max-width: 700px) { .abas-produtos { grid-template-columns: 1fr; } }
         .correcao-lote { margin: 0 0 16px; padding: 14px; border: 1px solid #b8d0f5; border-radius: 8px; background: #f1f6ff; }
         .correcao-lote p { margin: 0 0 10px; color: #334; font-size: 13px; line-height: 1.5; }
         .acoes-lote { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -208,6 +213,7 @@
                 <div class="abas-produtos" role="tablist" aria-label="Situação dos produtos">
                     <button type="button" class="aba-produto" id="tab-publicados" role="tab" aria-selected="false" aria-controls="painel-publicados">✅ Publicados <span class="contador-aba" id="contagem-publicados">0</span></button>
                     <button type="button" class="aba-produto aba-revisao" id="tab-revisao" role="tab" aria-selected="true" aria-controls="painel-revisao">⚠️ Revisão necessária <span class="contador-aba" id="contagem-revisao">0</span></button>
+                    <button type="button" class="aba-produto aba-indisponiveis" id="tab-indisponiveis" role="tab" aria-selected="false" aria-controls="painel-indisponiveis">⛔ Indisponíveis <span class="contador-aba" id="contagem-indisponiveis">0</span></button>
                 </div>
                 <div class="painel-produtos" id="painel-publicados" role="tabpanel" aria-labelledby="tab-publicados" hidden>
                     <div id="itens-lista"></div>
@@ -227,6 +233,10 @@
                         </div>
                     </div>
                     <div id="itens-revisao"></div>
+                </div>
+                <div class="painel-produtos" id="painel-indisponiveis" role="tabpanel" aria-labelledby="tab-indisponiveis" hidden>
+                    <div class="estado-lista" style="margin-bottom:12px">Estes produtos foram retirados automaticamente da vitrine após duas verificações confirmarem que o anúncio não está ativo. Eles voltarão sozinhos se o anúncio for reativado.</div>
+                    <div id="itens-indisponiveis"></div>
                 </div>
             </div>
             
@@ -665,6 +675,18 @@ Formato:
         let produtosRevisaoAtual = [];
         let correcaoLoteEmAndamento = false;
         let pausaCorrecaoSolicitada = false;
+        let statusMercadoLivreAdmin = {};
+        const statusMercadoLivreAdminPronto = fetch('./mercadolivre-status.json', { cache: 'no-store' })
+            .then(resposta => resposta.ok ? resposta.json() : null)
+            .then(dados => {
+                statusMercadoLivreAdmin = dados?.products && typeof dados.products === 'object' ? dados.products : {};
+                return statusMercadoLivreAdmin;
+            })
+            .catch(erro => {
+                console.warn('Não foi possível carregar o status automático do Mercado Livre.', erro);
+                statusMercadoLivreAdmin = {};
+                return statusMercadoLivreAdmin;
+            });
 
         // Evita que texto salvo (título, nome de categoria...) vire HTML/JS ao ser exibido
         function escapeHtml(texto) {
@@ -1209,13 +1231,31 @@ Formato:
             return '';
         }
 
+        function extrairIdMercadoLivreCadastro(valor) {
+            try {
+                const url = new URL(String(valor || ''));
+                const textoConsulta = `${url.searchParams.get('item_id') || ''} ${url.searchParams.get('wid') || ''} ${url.searchParams.get('pdp_filters') || ''}`;
+                const consulta = textoConsulta.match(/\bMLB[-_]?(\d{6,})\b/i);
+                if (consulta) return `MLB${consulta[1]}`;
+                if (/\/p\/MLB\d+/i.test(url.pathname)) return '';
+                const caminho = url.pathname.match(/\bMLB[-_]?(\d{6,})\b/i);
+                return caminho ? `MLB${caminho[1]}` : '';
+            } catch {
+                const direto = String(valor || '').match(/\bMLB[-_]?(\d{6,})\b/i);
+                return direto ? `MLB${direto[1]}` : '';
+            }
+        }
+
         document.getElementById('formProduto').addEventListener('submit', (e) => {
             e.preventDefault();
+            const linkProduto = document.getElementById('link').value.trim();
+            const linkAfiliadoProduto = document.getElementById('linkAfiliado').value.trim();
             const dadosProduto = {
                 categoria: document.getElementById('categoria').value,
                 titulo: document.getElementById('titulo').value.trim(),
-                link: document.getElementById('link').value.trim(),
-                linkAfiliado: document.getElementById('linkAfiliado').value.trim(),
+                link: linkProduto,
+                linkAfiliado: linkAfiliadoProduto,
+                mercadoLivreItemId: extrairIdMercadoLivreCadastro(linkProduto) || extrairIdMercadoLivreCadastro(linkAfiliadoProduto),
                 selo: document.getElementById('selo').value,
                 foto: document.getElementById('foto').value.trim(),
                 comentario: document.getElementById('comentario').value.trim(),
@@ -1286,16 +1326,21 @@ Formato:
         }
 
         function ativarAbaProdutos(nomeAba) {
-            abaProdutosAtiva = nomeAba === 'publicados' ? 'publicados' : 'revisao';
+            abaProdutosAtiva = ['publicados', 'revisao', 'indisponiveis'].includes(nomeAba) ? nomeAba : 'revisao';
             const publicadosAtivos = abaProdutosAtiva === 'publicados';
+            const revisaoAtiva = abaProdutosAtiva === 'revisao';
+            const indisponiveisAtivos = abaProdutosAtiva === 'indisponiveis';
             document.getElementById('tab-publicados').setAttribute('aria-selected', String(publicadosAtivos));
-            document.getElementById('tab-revisao').setAttribute('aria-selected', String(!publicadosAtivos));
+            document.getElementById('tab-revisao').setAttribute('aria-selected', String(revisaoAtiva));
+            document.getElementById('tab-indisponiveis').setAttribute('aria-selected', String(indisponiveisAtivos));
             document.getElementById('painel-publicados').hidden = !publicadosAtivos;
-            document.getElementById('painel-revisao').hidden = publicadosAtivos;
+            document.getElementById('painel-revisao').hidden = !revisaoAtiva;
+            document.getElementById('painel-indisponiveis').hidden = !indisponiveisAtivos;
         }
 
         document.getElementById('tab-publicados').addEventListener('click', () => ativarAbaProdutos('publicados'));
         document.getElementById('tab-revisao').addEventListener('click', () => ativarAbaProdutos('revisao'));
+        document.getElementById('tab-indisponiveis').addEventListener('click', () => ativarAbaProdutos('indisponiveis'));
         document.getElementById('btn-testar-lote').addEventListener('click', () => corrigirProdutosEmLote(3));
         document.getElementById('btn-corrigir-lote').addEventListener('click', () => corrigirProdutosEmLote(0));
         document.getElementById('btn-pausar-lote').addEventListener('click', () => {
@@ -1544,24 +1589,63 @@ Formato:
                 </div>`;
         }
 
+        function cartaoProdutoIndisponivel(doc) {
+            const prod = doc.data();
+            const status = statusMercadoLivreAdmin[doc.id] || {};
+            const motivos = {
+                closed: 'O anúncio foi encerrado no Mercado Livre.',
+                paused: 'O anúncio está pausado no Mercado Livre.',
+                under_review: 'O anúncio está em revisão no Mercado Livre.',
+                not_found: 'O anúncio não foi mais encontrado no Mercado Livre.',
+            };
+            const motivo = motivos[status.status]
+                || (status.available === false ? 'O anúncio está sem estoque ou indisponível.' : 'A oferta não está disponível.');
+            const preco = Number(status.price) > 0
+                ? Number(status.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                : 'Preço indisponível';
+            return `
+                <div class="item-admin item-indisponivel">
+                    <span class="icone-atencao" aria-hidden="true">!</span>
+                    <div class="item-admin-conteudo">
+                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span></div>
+                        <span class="status-indisponivel">Oculto automaticamente</span>
+                        <p class="detalhe-indisponivel">${escapeHtml(motivo)} Último preço consultado: ${escapeHtml(preco)}. O produto voltará à vitrine automaticamente se o anúncio ficar ativo novamente.</p>
+                    </div>
+                    <div class="acoes">
+                        <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')" aria-label="Alterar anúncio de ${escapeHtml(prod.titulo || 'produto')}">✎ Alterar link</button>
+                        <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')" aria-label="Excluir ${escapeHtml(prod.titulo || 'produto')}">X</button>
+                    </div>
+                </div>`;
+        }
+
         function carregarProdutos() {
             db.collection("produtos").orderBy("dataCadastro", "desc").onSnapshot(snapshot => {
-                const publicados = [];
-                const revisao = [];
-                snapshot.forEach(doc => {
-                    (produtoOcultoNaVitrine(doc.data()) ? revisao : publicados).push(doc);
-                });
+                statusMercadoLivreAdminPronto.then(() => {
+                    const publicados = [];
+                    const revisao = [];
+                    const indisponiveis = [];
+                    snapshot.forEach(doc => {
+                        const status = statusMercadoLivreAdmin[doc.id];
+                        if (status?.visible === false) indisponiveis.push(doc);
+                        else if (produtoOcultoNaVitrine(doc.data())) revisao.push(doc);
+                        else publicados.push(doc);
+                    });
 
-                document.getElementById('contagem-publicados').textContent = publicados.length;
-                document.getElementById('contagem-revisao').textContent = revisao.length;
-                produtosRevisaoAtual = revisao.map(doc => ({ id: doc.id, ...doc.data() }));
-                document.getElementById('itens-lista').innerHTML = publicados.length
-                    ? publicados.map(cartaoProdutoPublicado).join('')
-                    : '<div class="estado-lista">Nenhum produto publicado no momento.</div>';
-                document.getElementById('itens-revisao').innerHTML = revisao.length
-                    ? revisao.map(cartaoProdutoRevisao).join('')
-                    : '<div class="estado-lista">✅ Tudo certo: nenhum produto oculto precisa de revisão.</div>';
-                ativarAbaProdutos(abaProdutosAtiva);
+                    document.getElementById('contagem-publicados').textContent = publicados.length;
+                    document.getElementById('contagem-revisao').textContent = revisao.length;
+                    document.getElementById('contagem-indisponiveis').textContent = indisponiveis.length;
+                    produtosRevisaoAtual = revisao.map(doc => ({ id: doc.id, ...doc.data() }));
+                    document.getElementById('itens-lista').innerHTML = publicados.length
+                        ? publicados.map(cartaoProdutoPublicado).join('')
+                        : '<div class="estado-lista">Nenhum produto publicado no momento.</div>';
+                    document.getElementById('itens-revisao').innerHTML = revisao.length
+                        ? revisao.map(cartaoProdutoRevisao).join('')
+                        : '<div class="estado-lista">✅ Tudo certo: nenhum produto oculto precisa de revisão.</div>';
+                    document.getElementById('itens-indisponiveis').innerHTML = indisponiveis.length
+                        ? indisponiveis.map(cartaoProdutoIndisponivel).join('')
+                        : '<div class="estado-lista">✅ Nenhum anúncio encerrado ou sem estoque.</div>';
+                    ativarAbaProdutos(abaProdutosAtiva);
+                });
             }, error => {
                 console.error(error);
                 alert('Erro ao carregar produtos: ' + error.message);
