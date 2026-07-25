@@ -295,14 +295,20 @@ function requestHeaders() {
   return accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
 }
 
-async function fetchJson(url, { allowMissing = false } = {}) {
+async function fetchJson(url, { allowMissing = false, authenticated = true } = {}) {
   const response = await fetch(url, {
-    headers: requestHeaders(),
+    headers: authenticated ? requestHeaders() : {},
     signal: AbortSignal.timeout(15_000),
   });
   if (allowMissing && [401, 403, 404].includes(response.status)) return null;
   if (!response.ok) {
-    const error = new Error(`Mercado Livre: HTTP ${response.status}`);
+    const payload = await response.json().catch(() => ({}));
+    const detail = String(
+      payload?.message || payload?.error || payload?.code || "",
+    ).trim();
+    const error = new Error(
+      `Mercado Livre: HTTP ${response.status}${detail ? ` - ${detail}` : ""}`,
+    );
     error.httpStatus = response.status;
     throw error;
   }
@@ -436,6 +442,9 @@ async function fetchMarketplaceItem(itemId) {
   try {
     item = await fetchJson(
       `https://api.mercadolibre.com/items/${itemId}?attributes=id,status,available_quantity,currency_id,permalink,price,original_price`,
+      // O recurso de item é público. Tokens de vendedores podem receber 403 ao
+      // consultar anúncios de terceiros, por isso esta chamada não envia OAuth.
+      { authenticated: false },
     );
   } catch (error) {
     if (error.httpStatus === 404) {
