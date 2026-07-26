@@ -444,11 +444,18 @@ export function parseMarketplaceHtml(html, itemId) {
   );
 }
 
-async function fetchMarketplacePublicPage(itemId) {
+async function fetchMarketplacePublicPage(itemId, productUrls = []) {
   const numericId = String(itemId || "").replace(/\D/g, "");
-  const response = await fetch(
+  const candidates = [
+    ...productUrls,
     `https://produto.mercadolivre.com.br/MLB-${numericId}-_JM`,
-    {
+  ].filter((value, index, list) => value && list.indexOf(value) === index);
+  let lastError = new Error("Mercado Livre: página pública indisponível");
+
+  for (const candidate of candidates) {
+    let response;
+    try {
+      response = await fetch(candidate, {
       headers: {
         accept: "text/html,application/xhtml+xml",
         "accept-language": "pt-BR,pt;q=0.9",
@@ -457,44 +464,29 @@ async function fetchMarketplacePublicPage(itemId) {
       },
       redirect: "follow",
       signal: AbortSignal.timeout(15_000),
-    },
-  );
-  if (response.status === 404) {
-    return {
-      itemId,
-      status: "not_found",
-      available: false,
-      price: null,
-      regularPrice: null,
-      currencyId: "BRL",
-      source: "public_page",
-    };
+      });
+      if (response.status === 404) continue;
+      if (!response.ok) {
+        lastError = new Error(`Mercado Livre: página pública HTTP ${response.status}`);
+        continue;
+      }
+      return parseMarketplaceHtml(await response.text(), itemId);
+    } catch (error) {
+      lastError = error;
+    }
   }
-  if (!response.ok) {
-    throw new Error(`Mercado Livre: página pública HTTP ${response.status}`);
-  }
-  return parseMarketplaceHtml(await response.text(), itemId);
+  throw lastError;
 }
 
-async function fetchMarketplaceItem(itemId) {
+async function fetchMarketplaceItem(itemId, product = {}) {
   let item;
   try {
-    const payload = await fetchJson(
-      `https://api.mercadolibre.com/items?ids=${itemId}&attributes=id,status,available_quantity,currency_id,permalink,price,original_price`,
+    item = await fetchJson(
+      `https://api.mercadolibre.com/items/${itemId}?attributes=id,status,available_quantity,currency_id,permalink,price,original_price`,
       // O recurso de item é público. Tokens de vendedores podem receber 403 ao
       // consultar anúncios de terceiros, por isso esta chamada não envia OAuth.
       { authenticated: false },
     );
-    const result = Array.isArray(payload) ? payload[0] : payload;
-    const resultCode = Number(result?.code || 200);
-    if (resultCode !== 200) {
-      const error = new Error(
-        `Mercado Livre: item HTTP ${resultCode}${result?.body?.message ? ` - ${result.body.message}` : ""}`,
-      );
-      error.httpStatus = resultCode;
-      throw error;
-    }
-    item = result?.body || result;
   } catch (error) {
     if (error.httpStatus === 404) {
       return {
@@ -508,7 +500,10 @@ async function fetchMarketplaceItem(itemId) {
       };
     }
     if ([401, 403].includes(error.httpStatus)) {
-      return fetchMarketplacePublicPage(itemId);
+      return fetchMarketplacePublicPage(
+        itemId,
+        [product.link, product.linkAfiliado].filter(Boolean),
+      );
     }
     throw error;
   }
@@ -622,7 +617,7 @@ async function checkProduct(product, previousRecord, checkedAt) {
 
   const relevantPrevious = previousRecord.itemId === itemId ? previousRecord : {};
   try {
-    const result = await fetchMarketplaceItem(itemId);
+    const result = await fetchMarketplaceItem(itemId, product);
     return deriveRecord(relevantPrevious, result, checkedAt);
   } catch (error) {
     return {
