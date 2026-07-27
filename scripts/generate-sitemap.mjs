@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
+const SHARE_VERSION = "20260727-2";
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const CATEGORY_ALIASES = new Map([
   ["patineteelétrica", "parafusadeira-eletrica"],
@@ -77,6 +78,9 @@ function absoluteImage(value) {
   try {
     const url = new URL(String(value || ""));
     if (url.protocol === "http:") url.protocol = "https:";
+    if (url.hostname.endsWith("mlstatic.com") && url.pathname.endsWith(".webp")) {
+      url.pathname = url.pathname.replace(/\.webp$/i, ".jpg");
+    }
     return url.protocol === "https:" ? url.href : `${SITE}og-ranking-da-compra.png`;
   } catch {
     return `${SITE}og-ranking-da-compra.png`;
@@ -88,7 +92,7 @@ function productDetailUrl(product) {
 }
 
 function productShareUrl(product) {
-  return `${SITE}produto/${encodeURIComponent(product.id)}.html`;
+  return `${SITE}produto/${encodeURIComponent(product.id)}.html?v=${SHARE_VERSION}`;
 }
 
 function renderSharePage(product) {
@@ -122,7 +126,6 @@ function renderSharePage(product) {
   <meta name="twitter:title" content="${escapeHtml(title)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${escapeHtml(image)}">
-  <meta http-equiv="refresh" content="0;url=${escapeHtml(detailUrl)}">
   <style>body{font-family:Arial,sans-serif;background:#fbfaf5;color:#11221d;margin:0;padding:32px}.card{max-width:560px;margin:auto;background:#fff;border:1px solid #dfe7e2;border-radius:16px;padding:24px;text-align:center}.card img{width:100%;max-height:420px;object-fit:contain}.card a{display:inline-block;margin-top:16px;background:#116149;color:#fff;padding:12px 18px;border-radius:9px;text-decoration:none;font-weight:700}</style>
 </head>
 <body>
