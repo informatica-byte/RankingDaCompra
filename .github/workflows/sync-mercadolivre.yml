@@ -37,20 +37,20 @@ jobs:
           MERCADO_LIVRE_REDIRECT_URI: https://rankingdacompra.com.br/oauth-mercadolivre.html
         run: node scripts/sync-mercadolivre.mjs
 
-      - name: Atualizar o sitemap
+      - name: Atualizar o sitemap e as páginas sociais
         run: node scripts/generate-sitemap.mjs
 
       - name: Publicar somente quando houver mudança
         shell: bash
         run: |
-          if git diff --quiet -- mercadolivre-status.json sitemap.xml .mercadolivre-token.enc; then
+          if [[ -z "$(git status --porcelain -- mercadolivre-status.json sitemap.xml produto .mercadolivre-token.enc)" ]]; then
             echo "Preços e disponibilidade continuam iguais."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mercadolivre-status.json sitemap.xml
+          git add -A mercadolivre-status.json sitemap.xml produto
           if [[ -f .mercadolivre-token.enc ]]; then
             git add .mercadolivre-token.enc
           fi
