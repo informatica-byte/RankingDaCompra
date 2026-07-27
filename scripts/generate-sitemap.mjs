@@ -1,4 +1,4 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const PROJECT_ID = "rankingdacompra";
@@ -67,6 +67,77 @@ function escapeXml(value) {
   })[character]);
 }
 
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  })[character]);
+}
+
+function absoluteImage(value) {
+  try {
+    const url = new URL(String(value || ""));
+    if (url.protocol === "http:") url.protocol = "https:";
+    return url.protocol === "https:" ? url.href : `${SITE}og-ranking-da-compra.png`;
+  } catch {
+    return `${SITE}og-ranking-da-compra.png`;
+  }
+}
+
+function productDetailUrl(product) {
+  return `${SITE}?produto=${encodeURIComponent(product.id)}`;
+}
+
+function productShareUrl(product) {
+  return `${SITE}produto/${encodeURIComponent(product.id)}.html`;
+}
+
+function renderSharePage(product) {
+  const title = String(product.titulo || "Produto recomendado").replace(/\s+/g, " ").trim();
+  const description = String(product.comentario || "Confira a análise no Ranking da Compra.")
+    .replace(/\s+/g, " ").trim().slice(0, 240);
+  const image = absoluteImage(product.foto);
+  const detailUrl = productDetailUrl(product);
+  const shareUrl = productShareUrl(product);
+  const redirectJson = JSON.stringify(detailUrl).replace(/</g, "\\u003c");
+
+  return `<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <title>${escapeHtml(title)} | Ranking da Compra</title>
+  <meta name="description" content="${escapeHtml(description)}">
+  <link rel="canonical" href="${escapeHtml(detailUrl)}">
+  <meta property="og:type" content="product">
+  <meta property="og:site_name" content="Ranking da Compra">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="${escapeHtml(shareUrl)}">
+  <meta property="og:title" content="${escapeHtml(title)}">
+  <meta property="og:description" content="${escapeHtml(description)}">
+  <meta property="og:image" content="${escapeHtml(image)}">
+  <meta property="og:image:secure_url" content="${escapeHtml(image)}">
+  <meta property="og:image:alt" content="Foto de ${escapeHtml(title)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(title)}">
+  <meta name="twitter:description" content="${escapeHtml(description)}">
+  <meta name="twitter:image" content="${escapeHtml(image)}">
+  <meta http-equiv="refresh" content="0;url=${escapeHtml(detailUrl)}">
+  <style>body{font-family:Arial,sans-serif;background:#fbfaf5;color:#11221d;margin:0;padding:32px}.card{max-width:560px;margin:auto;background:#fff;border:1px solid #dfe7e2;border-radius:16px;padding:24px;text-align:center}.card img{width:100%;max-height:420px;object-fit:contain}.card a{display:inline-block;margin-top:16px;background:#116149;color:#fff;padding:12px 18px;border-radius:9px;text-decoration:none;font-weight:700}</style>
+</head>
+<body>
+  <main class="card">
+    <img src="${escapeHtml(image)}" alt="Foto de ${escapeHtml(title)}">
+    <h1>${escapeHtml(title)}</h1>
+    <p>${escapeHtml(description)}</p>
+    <a href="${escapeHtml(detailUrl)}">Ver análise e oferta</a>
+  </main>
+  <script>location.replace(${redirectJson});</script>
+</body>
+</html>
+`;
+}
+
 function renderUrl(entry) {
   const lastModified = entry.lastModified
     ? `\n    <lastmod>${escapeXml(entry.lastModified)}</lastmod>` : "";
@@ -128,4 +199,15 @@ const urls = [
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(renderUrl).join("\n")}\n</urlset>\n`;
 await writeFile(resolve("sitemap.xml"), xml, "utf8");
 
-console.log(`Sitemap atualizado: ${urls.length} URLs (${products.length} produtos e ${categories.length} categorias).`);
+const productDirectory = resolve("produto");
+await rm(productDirectory, { recursive: true, force: true });
+await mkdir(productDirectory, { recursive: true });
+for (const product of products) {
+  if (!/^[A-Za-z0-9_-]+$/.test(product.id)) {
+    console.warn(`Página social ignorada por ID inválido: ${product.id}`);
+    continue;
+  }
+  await writeFile(resolve(productDirectory, `${product.id}.html`), renderSharePage(product), "utf8");
+}
+
+console.log(`Sitemap e páginas sociais atualizados: ${urls.length} URLs (${products.length} produtos e ${categories.length} categorias).`);
