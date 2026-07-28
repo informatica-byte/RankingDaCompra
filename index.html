@@ -61,7 +61,7 @@ function dataBrasil(data=new Date()){const partes=new Intl.DateTimeFormat('en-CA
 async function registrarVisita(){const chave='ranking-da-compra-ultima-visita',intervalo=30*60*1000,ultima=Number(localStorage.getItem(chave)||0);if(Date.now()-ultima<intervalo)return;try{const id=(crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(36).slice(2)}`);await db.collection('visitas').doc(id).set({criadoEm:firebase.firestore.FieldValue.serverTimestamp(),dia:dataBrasil(),origem:location.pathname.slice(0,80)});localStorage.setItem(chave,String(Date.now()))}catch(erro){console.warn('N\u00e3o foi poss\u00edvel registrar esta visita.',erro)}}
 registrarVisita();
 const SITE_URL='https://rankingdacompra.com.br/';
-const SHARE_VERSION='20260727-2';
+const SHARE_VERSION='20260728-3';
 const CATEGORY_ALIASES=new Map([['parafusadeira-eletrica','patineteelétrica'],['fritadeira-air-fryer-eletrica','fritadeiraairfrayerelétrica']]);
 const CATEGORY_PUBLIC_IDS=new Map([...CATEGORY_ALIASES].map(([publicId,databaseId])=>[databaseId,publicId]));
 const corrigirNomeCategoriaPublica=nome=>String(nome||'').trim().replace(/air\s+frayer/gi,'Air Fryer');
