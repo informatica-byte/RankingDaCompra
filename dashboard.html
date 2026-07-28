@@ -79,6 +79,8 @@
         .campo-preco-manual label { margin: 0; color: #5e4a13; font-size: 11px; font-weight: 800; }
         .campo-preco-manual input { width: 135px; padding: 8px; border: 1px solid #c49a14; border-radius: 5px; background: white; }
         .btn-preco { background: #00a650; color: white; border: 0; padding: 9px 11px; border-radius: 5px; cursor: pointer; font-weight: 800; }
+        .btn-ia-preco { background: #5b21b6; }
+        .btn-ia-preco:disabled, .btn-preco:disabled { opacity: .65; cursor: wait; }
         .resumo-precos { margin: 0 0 12px; padding: 13px; border: 1px solid #e3b520; border-radius: 8px; background: #fff9e8; color: #5e4a13; font-size: 13px; line-height: 1.5; }
         @media (max-width: 760px) { .item-admin.item-preco { flex-direction: column; } .correcao-preco { width: 100%; justify-content: flex-start; min-width: 0; } }
         .icone-atencao { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; flex: 0 0 24px; border-radius: 50%; background: #ffc107; color: #4b2e00; font-weight: 900; }
@@ -669,6 +671,46 @@ Formato:
             }, []);
             return { ...sugestao, dadosTecnicos, fonteConsultada: url };
         };
+
+
+        window.conferirPrecoPelaFonteIA = async ({ titulo, url }) => {
+            if (!/^https?:\/\//i.test(String(url || ''))) throw new Error('O produto não possui um link público utilizável.');
+            const prompt = `Abra obrigatoriamente a página pública abaixo usando a ferramenta de contexto por URL:
+${url}
+
+Produto cadastrado: ${titulo}
+
+Sua única tarefa é conferir o PREÇO ATUAL desse mesmo produto. Use somente o conteúdo recuperado dessa página.
+
+REGRAS DE SEGURANÇA:
+- Confirme que a página corresponde ao produto cadastrado.
+- Leia apenas o preço principal disponível para compra à vista neste momento.
+- Não use preço antigo riscado, valor de parcela, frete, cupom condicionado, cashback ou preço de outro vendedor.
+- Se houver variações com preços diferentes, página bloqueada, produto diferente ou qualquer ambiguidade, responda status sem_dados.
+- Não estime, não calcule e não use conhecimento próprio.
+- Em evidencia, copie literalmente um trecho curto da página que contenha o símbolo R$ e o preço.
+- Retorne somente JSON válido, sem markdown.
+
+Formato quando comprovado:
+{"status":"ok","tituloEncontrado":"nome visível","preco":149.90,"evidencia":"trecho literal contendo R$ 149,90"}
+
+Formato sem comprovação:
+{"status":"sem_dados","motivo":"explicação curta"}`;
+            const result = await modelComFontePublica.generateContent(prompt);
+            if (!fonteRecuperadaComSucesso(result.response)) throw new Error('A página da oferta não pôde ser recuperada pela IA.');
+            const resposta = JSON.parse(limparJsonDaIA(result.response.text()));
+            if (resposta.status !== 'ok') throw new Error(resposta.motivo || 'A IA não encontrou um preço comprovável.');
+            const preco = Number(resposta.preco);
+            const evidencia = String(resposta.evidencia || '').replace(/\s+/g, ' ').trim();
+            const tituloEncontrado = String(resposta.tituloEncontrado || '').replace(/\s+/g, ' ').trim();
+            if (!Number.isFinite(preco) || preco <= 0) throw new Error('A IA não retornou um preço numérico válido.');
+            if (!/R\$\s*\d/i.test(evidencia)) throw new Error('A IA não apresentou uma evidência literal contendo R$ e o preço.');
+            const palavrasCadastro = normalizarTextoValidacao(titulo).split(' ').filter(item => item.length >= 4);
+            const tituloFonte = normalizarTextoValidacao(tituloEncontrado);
+            const coincidencias = palavrasCadastro.filter(item => tituloFonte.includes(item)).length;
+            if (!tituloFonte || coincidencias < Math.min(2, palavrasCadastro.length)) throw new Error('A página recuperada não comprovou que se trata do mesmo produto.');
+            return { preco, evidencia, tituloEncontrado, fonteConsultada: url };
+        };
     </script>
 
     <script>
@@ -691,6 +733,7 @@ Formato:
         let editandoCatId = null;
         let produtosRevisaoAtual = [];
         let produtosPrecoPendenteAtual = [];
+        const conferenciasPrecoIA = {};
         let correcaoLoteEmAndamento = false;
         let pausaCorrecaoSolicitada = false;
         let statusMercadoLivreAdmin = {};
@@ -1725,10 +1768,47 @@ Formato:
                             <label for="preco-manual-${doc.id}">${escapeHtml(rotuloCampo)}</label>
                             <input type="text" inputmode="decimal" id="preco-manual-${doc.id}" value="${valorSugerido ? escapeHtml(formatarPrecoCampo(valorSugerido)) : ''}" placeholder="Ex.: 149,90">
                         </div>
+                        <button type="button" class="btn-preco btn-ia-preco" data-ai-preco-id="${doc.id}" onclick="conferirPrecoComIA('${doc.id}', this)">✨ IA conferir</button>
                         <button type="button" class="btn-preco" onclick="salvarPrecoManual('${doc.id}')">Salvar preço</button>
                         <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')">Editar completo</button>
                     </div>
                 </div>`;
+        }
+
+        async function conferirPrecoComIA(id, botao) {
+            const textoOriginal = botao?.textContent || '✨ IA conferir';
+            if (botao) { botao.disabled = true; botao.textContent = '⏳ IA conferindo...'; }
+            try {
+                const documento = await db.collection('produtos').doc(id).get();
+                if (!documento.exists) throw new Error('Produto não encontrado.');
+                const produto = documento.data();
+                const url = produto.link || produto.linkAfiliado || '';
+                if (!url) throw new Error('Cadastre o link original ou o link de afiliado antes de usar a IA.');
+                if (typeof window.conferirPrecoPelaFonteIA !== 'function') throw new Error('A conferência por IA ainda não terminou de carregar. Tente novamente em alguns segundos.');
+                const resultado = await window.conferirPrecoPelaFonteIA({ titulo: produto.titulo || '', url });
+                const preco = numeroPreco(resultado.preco);
+                if (!preco) throw new Error('A IA não retornou um preço válido.');
+                const campoEntrada = document.getElementById(`preco-manual-${id}`);
+                if (!campoEntrada) throw new Error('O campo de preço não está disponível.');
+                campoEntrada.value = formatarPrecoCampo(preco);
+                conferenciasPrecoIA[id] = {
+                    preco,
+                    evidencia: String(resultado.evidencia || '').slice(0, 500),
+                    tituloEncontrado: String(resultado.tituloEncontrado || '').slice(0, 300),
+                    fonteConsultada: String(resultado.fonteConsultada || url).slice(0, 1000)
+                };
+                const confirmado = confirm(`A IA encontrou R$ ${formatarPrecoCampo(preco)}.\n\nEvidência: ${conferenciasPrecoIA[id].evidencia}\n\nDeseja salvar esse preço no produto?`);
+                if (confirmado) await salvarPrecoManual(id);
+            } catch (erro) {
+                console.error('Falha na conferência de preço por IA:', erro);
+                const mensagem = String(erro?.message || erro).replace(/\s+/g, ' ').trim();
+                const amigavel = /(429|quota|resource.?exhausted|limite.*requisi)/i.test(mensagem)
+                    ? 'A cota da IA está temporariamente esgotada. O item continua disponível para correção manual.'
+                    : mensagem;
+                alert('A IA não conseguiu comprovar o preço.\n\n' + amigavel);
+            } finally {
+                if (botao) { botao.disabled = false; botao.textContent = textoOriginal; }
+            }
         }
 
         async function salvarPrecoManual(id) {
@@ -1743,13 +1823,25 @@ Formato:
                 if (!documento.exists) throw new Error('Produto não encontrado.');
                 const produto = documento.data();
                 const campo = campoPrecoExibido(produto);
-                await referencia.update({
+                const verificacaoIA = conferenciasPrecoIA[id] || null;
+                const atualizacao = {
                     [campo]: formatarPrecoCampo(numero),
                     precoAtualizadoManualmente: true,
                     precoAtualizadoManualmenteEm: firebase.firestore.FieldValue.serverTimestamp(),
                     atualizadoEm: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert('Preço atualizado. O item ficará marcado como conferido manualmente pelas próximas 24 horas.');
+                };
+                if (verificacaoIA) {
+                    atualizacao.precoConferidoPorIA = true;
+                    atualizacao.precoConferidoPorIAEm = firebase.firestore.FieldValue.serverTimestamp();
+                    atualizacao.precoConferenciaIAEvidencia = verificacaoIA.evidencia || '';
+                    atualizacao.precoConferenciaIATitulo = verificacaoIA.tituloEncontrado || '';
+                    atualizacao.precoConferenciaIAFonte = verificacaoIA.fonteConsultada || '';
+                }
+                await referencia.update(atualizacao);
+                delete conferenciasPrecoIA[id];
+                alert(verificacaoIA
+                    ? 'Preço conferido pela IA e atualizado. O item ficará marcado como conferido pelas próximas 24 horas.'
+                    : 'Preço atualizado. O item ficará marcado como conferido manualmente pelas próximas 24 horas.');
             } catch (erro) {
                 console.error(erro);
                 alert('Não foi possível salvar o preço: ' + String(erro?.message || erro));
