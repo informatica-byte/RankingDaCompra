@@ -54,6 +54,1849 @@
         .btn-edit { background: #ffc107; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
         .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
 
+        .abas-produtos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 14px 0 16px; }
+        .aba-produto { border: 1px solid #cfd4da; background: #f5f6f8; color: #333; border-radius: 8px; padding: 11px 8px; cursor: pointer; font-weight: 700; font-size: 13px; }
+        .aba-produto:hover { border-color: #2d3277; }
+        .aba-produto[aria-selected="true"] { color: white; background: #2d3277; border-color: #2d3277; }
+        .aba-produto.aba-revisao[aria-selected="true"] { color: #4b2e00; background: #ffc107; border-color: #e0a800; }
+        .aba-produto.aba-indisponiveis[aria-selected="true"] { color: white; background: #b42318; border-color: #8f1c13; }
+        .contador-aba { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 5px; margin-left: 4px; border-radius: 999px; background: rgba(255,255,255,.9); color: #2d3277; font-size: 11px; }
+        .aba-revisao[aria-selected="true"] .contador-aba { color: #7a4800; }
+        .item-admin-conteudo { flex: 1; min-width: 0; line-height: 1.4; }
+        .item-admin-topo { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .item-admin-titulo { font-weight: 700; overflow-wrap: anywhere; }
+        .item-admin.item-revisao { align-items: flex-start; background: #fff7df; border: 2px solid #ffc107; }
+        .item-admin.item-indisponivel { align-items: flex-start; background: #fff1f0; border: 2px solid #d83b2d; }
+        .status-indisponivel { display: inline-block; margin-top: 7px; padding: 3px 7px; border-radius: 4px; background: #b42318; color: white; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+        .detalhe-indisponivel { margin: 8px 0 0; color: #7a271a; font-size: 12px; line-height: 1.45; }
+        .aba-produto.aba-precos[aria-selected="true"] { color: #2f2100; background: #ffcf40; border-color: #d9a900; }
+        .aba-precos[aria-selected="true"] .contador-aba { color: #6b4c00; }
+        .item-admin.item-preco { align-items: flex-start; gap: 12px; background: #fff9e8; border: 2px solid #e3b520; }
+        .status-preco { display: inline-block; margin-top: 7px; padding: 3px 7px; border-radius: 4px; background: #8a6500; color: white; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+        .detalhe-preco { margin: 7px 0 0; color: #5e4a13; font-size: 12px; line-height: 1.45; }
+        .correcao-preco { display: flex; align-items: end; justify-content: flex-end; gap: 7px; flex-wrap: wrap; min-width: 285px; }
+        .campo-preco-manual { display: grid; gap: 4px; min-width: 135px; }
+        .campo-preco-manual label { margin: 0; color: #5e4a13; font-size: 11px; font-weight: 800; }
+        .campo-preco-manual input { width: 135px; padding: 8px; border: 1px solid #c49a14; border-radius: 5px; background: white; }
+        .btn-preco { background: #00a650; color: white; border: 0; padding: 9px 11px; border-radius: 5px; cursor: pointer; font-weight: 800; }
+        .resumo-precos { margin: 0 0 12px; padding: 13px; border: 1px solid #e3b520; border-radius: 8px; background: #fff9e8; color: #5e4a13; font-size: 13px; line-height: 1.5; }
+        @media (max-width: 760px) { .item-admin.item-preco { flex-direction: column; } .correcao-preco { width: 100%; justify-content: flex-start; min-width: 0; } }
+        .icone-atencao { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; flex: 0 0 24px; border-radius: 50%; background: #ffc107; color: #4b2e00; font-weight: 900; }
+        .status-publicado { display: inline-block; margin-top: 6px; color: #087a3d; font-size: 12px; font-weight: 700; }
+        .rotulo-oculto { display: inline-block; margin-top: 7px; padding: 3px 7px; border-radius: 4px; background: #8a4b00; color: white; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+        .lista-problemas { margin: 8px 0 0; padding-left: 19px; color: #6a3b00; font-size: 12px; line-height: 1.45; }
+        .lista-problemas li + li { margin-top: 3px; }
+        .estado-lista { padding: 18px 12px; text-align: center; color: #666; background: #f7f7f7; border-radius: 7px; }
+        .painel-produtos[hidden] { display: none; }
+        @media (max-width: 700px) { .abas-produtos { grid-template-columns: 1fr; } }
+        .correcao-lote { margin: 0 0 16px; padding: 14px; border: 1px solid #b8d0f5; border-radius: 8px; background: #f1f6ff; }
+        .correcao-lote p { margin: 0 0 10px; color: #334; font-size: 13px; line-height: 1.5; }
+        .acoes-lote { display: flex; gap: 8px; flex-wrap: wrap; }
+        .btn-lote { flex: 1; min-width: 210px; margin: 0; background: #2968c8; font-size: 14px; padding: 12px; }
+        .btn-teste-lote { flex: 0 1 auto; min-width: 180px; margin: 0; background: #00a650; font-size: 14px; padding: 12px; }
+        .btn-pausar { display: none; flex: 0 0 auto; margin: 0; background: #805500; color: white; border: 0; border-radius: 6px; padding: 12px 16px; font-weight: 800; cursor: pointer; }
+        .progresso-lote { display: none; margin-top: 12px; }
+        .progresso-lote progress { width: 100%; height: 16px; accent-color: #00a650; }
+        .texto-progresso { margin-top: 6px; color: #334; font-size: 12px; font-weight: 700; overflow-wrap: anywhere; }
+        .resumo-lote { margin-top: 8px; color: #555; font-size: 12px; }
+        @media (max-width: 560px) {
+            .abas-produtos { grid-template-columns: 1fr; }
+            .item-admin { align-items: flex-start; gap: 10px; }
+            .acoes { flex-direction: column; }
+        }
+
+        #admin-content { display: none; }
+        #login-content { display: block; max-width: 400px; margin: 100px auto;}
+    </style>
+</head>
+<body>
+
+    <!-- TELA DE LOGIN -->
+    <div class="painel" id="login-content">
+        <h2>🔒 Acesso Restrito</h2>
+        <form id="formLogin">
+            <div class="campo"><label for="email">E-mail:</label><input type="email" id="email" autocomplete="username" required></div>
+            <div class="campo"><label for="senha">Senha:</label><input type="password" id="senha" autocomplete="current-password" required></div>
+            <button type="submit" class="btn-salvar btn-login">Entrar</button>
+        </form>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="admin-content">
+
+        <div class="painel">
+            <h2>📈 Visitas da vitrine</h2>
+            <div class="metricas-visitas">
+                <div class="metrica-visita"><strong id="visitas-total">—</strong><span>Total registrado</span></div>
+                <div class="metrica-visita"><strong id="visitas-hoje">—</strong><span>Hoje</span></div>
+                <div class="metrica-visita"><strong id="visitas-7-dias">—</strong><span>Últimos 7 dias</span></div>
+            </div>
+            <button type="button" class="btn-salvar btn-categoria" id="btn-atualizar-visitas">Atualizar contagem</button>
+            <p class="ajuda-metrica">Contagem anônima da vitrine. O mesmo navegador é contado no máximo uma vez a cada 30 minutos; por isso, é uma estimativa e não substitui o Google Analytics.</p>
+        </div>
+
+        <div class="painel">
+            <h2>🏷️ Categorias</h2>
+            <form id="formCategoria">
+                <div class="row">
+                    <div class="col campo"><label for="cat-id">ID único (URL):</label><input type="text" id="cat-id" required placeholder="Ex.: celulares"></div>
+                    <div class="col campo"><label for="cat-icone">Ícone de reserva (opcional):</label><input type="text" id="cat-icone" placeholder="Ex.: 📱"></div>
+                </div>
+                <div class="campo"><label for="cat-nome">Nome visível:</label><input type="text" id="cat-nome" required></div>
+                <div class="campo"><label for="cat-imagem">URL da imagem da categoria (opcional):</label><input type="url" id="cat-imagem" placeholder="https://site.com/imagem-da-categoria.jpg"></div>
+                <p class="ajuda-categoria">Cole o link direto de uma imagem (JPG, PNG ou WEBP). A imagem aparecerá no card; sem imagem, será usado o ícone de reserva.</p>
+                <button type="submit" id="btn-submit-cat" class="btn-salvar btn-categoria">+ Criar Categoria</button>
+            </form>
+            <div class="lista-admin" id="lista-categorias-admin"></div>
+        </div>
+
+        <div class="painel">
+            <h2>📦 Cadastro de Produto</h2>
+            <form id="formProduto">
+                <div class="campo caixa-amarela">
+                    <label for="link">Link da fonte técnica:</label>
+                    <input type="url" id="link" placeholder="Ex.: https://www.mercadolivre.com.br/..." required>
+                    <small>Este endereço identifica a fonte das especificações e será exibido como referência editorial.</small>
+                </div>
+
+                <div class="campo caixa-azul">
+                    <label style="color:#2968c8;">🔗 <b>2. Link de Afiliado (MUITO IMPORTANTE):</b></label>
+                    <input type="url" id="linkAfiliado" placeholder="Cole seu link de parceiro aqui. O cliente clicará nele!" required>
+                    <span style="font-size:11px; color:#555;">Este é o link que vai para o botão "Ver Oferta" do site.</span>
+                </div>
+
+                <div class="caixa-azul">
+                    <label style="color:#2968c8;">🤖 Resultado técnico da IA:</label>
+                    <textarea id="texto-ia-paste" rows="3" readonly placeholder="Será preenchido automaticamente ao gerar a análise."></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col campo"><label>Categoria:</label><select id="categoria" required></select></div>
+                    <div class="col campo">
+                        <label>Selo de Destaque:</label>
+                        <select id="selo">
+                            <option value="">Sem selo</option>
+                            <option value="👑 Melhor Escolha">👑 Melhor Escolha</option>
+                            <option value="💰 Custo-Benefício">💰 Custo-Benefício</option>
+                            <option value="🔥 Mais Vendido">🔥 Mais Vendido</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="campo"><label>Nome do Produto:</label><input type="text" id="titulo" required></div>
+                <div class="row">
+                    <div class="col campo"><label>Preço Estimado:</label><input type="text" id="preco"></div>
+                    <div class="col campo"><label for="nota">Nota editorial (1,0 a 5,0):</label><input type="number" id="nota" step="0.1" min="1" max="5" value="4.8" required></div>
+                    <div class="col campo"><label>Posição no ranking:</label><input type="number" id="ranking" min="1" max="10" value="10" required></div>
+                </div>
+
+                <div class="caixa-promocao">
+                    <div class="linha-promocao">
+                        <input type="checkbox" id="promocaoAtiva">
+                        <label for="promocaoAtiva"><b>Exibir em “Promoções do Dia”</b></label>
+                    </div>
+                    <div class="row">
+                        <div class="col campo"><label for="precoAnterior">Preço anterior:</label><input type="text" id="precoAnterior" inputmode="decimal" placeholder="Ex.: 99,90"></div>
+                        <div class="col campo"><label for="precoPromocional">Preço promocional:</label><input type="text" id="precoPromocional" inputmode="decimal" placeholder="Ex.: 79,90"></div>
+                        <div class="col campo"><label for="promocaoValidaAte">Válida até:</label><input type="date" id="promocaoValidaAte"></div>
+                    </div>
+                    <small class="ajuda-promocao">Ative somente após conferir a oferta no vendedor. O produto sairá automaticamente da seção quando a validade terminar. O preço anterior precisa ser maior que o promocional.</small>
+                </div>
+
+                <div class="campo"><label>URL da Imagem:</label><input type="url" id="foto" required></div>
+                <div class="campo caixa-verde">
+                    <label>Dados técnicos verificáveis para a IA (obrigatório):</label>
+                    <textarea id="dados-tecnicos-manual" rows="4" placeholder="Cole aqui a ficha técnica do anúncio. Ex.: Tela 11 polegadas, 8 GB RAM, 256 GB, Android 16, caneta inclusa, bateria 7000 mAh."></textarea>
+                    <button type="button" id="btn-gerar-analise" class="btn-salvar" onclick="gerarAnaliseManualComIA()">🧠 Gerar análise com dupla revisão</button>
+                    <small>A primeira IA redige, a segunda audita e o verificador local bloqueia informações que não estejam na ficha. Se a cota acabar, será usada uma análise de contingência baseada somente nos dados informados.</small>
+                </div>
+                <div class="campo"><label>Resumo Persuasivo (máximo de 500 caracteres):</label><textarea id="comentario" rows="3" maxlength="500" required></textarea></div>
+                
+                <div class="row">
+                    <div class="col campo"><label>Pontos positivos (máximo de 300 caracteres):</label><textarea id="pros" rows="3" maxlength="300" required></textarea></div>
+                    <div class="col campo"><label>Pontos de atenção (máximo de 300 caracteres):</label><textarea id="contras" rows="3" maxlength="300" required></textarea></div>
+                </div>
+
+                <button type="submit" id="btn-submit-prod" class="btn-salvar">🚀 Salvar na Nuvem</button>
+            </form>
+
+            <div class="lista-admin">
+                <h3>Produtos Cadastrados</h3>
+                <div class="abas-produtos" role="tablist" aria-label="Situação dos produtos">
+                    <button type="button" class="aba-produto" id="tab-publicados" role="tab" aria-selected="false" aria-controls="painel-publicados">✅ Publicados <span class="contador-aba" id="contagem-publicados">0</span></button>
+                    <button type="button" class="aba-produto aba-revisao" id="tab-revisao" role="tab" aria-selected="true" aria-controls="painel-revisao">⚠️ Revisão necessária <span class="contador-aba" id="contagem-revisao">0</span></button>
+                    <button type="button" class="aba-produto aba-indisponiveis" id="tab-indisponiveis" role="tab" aria-selected="false" aria-controls="painel-indisponiveis">⛔ Indisponíveis <span class="contador-aba" id="contagem-indisponiveis">0</span></button>
+                    <button type="button" class="aba-produto aba-precos" id="tab-precos" role="tab" aria-selected="false" aria-controls="painel-precos">💰 Preços pendentes <span class="contador-aba" id="contagem-precos">0</span></button>
+                </div>
+                <div class="painel-produtos" id="painel-publicados" role="tabpanel" aria-labelledby="tab-publicados" hidden>
+                    <div id="itens-lista"></div>
+                </div>
+                <div class="painel-produtos" id="painel-revisao" role="tabpanel" aria-labelledby="tab-revisao">
+                    <div class="correcao-lote">
+                        <p><strong>Correção direta:</strong> o painel reorganiza o título, as características, os pontos positivos e as limitações já salvos. Não depende da cota da IA nem da liberação do Mercado Livre, e somente textos aprovados pelo verificador são publicados.</p>
+                        <div class="acoes-lote">
+                            <button type="button" class="btn-salvar btn-teste-lote" id="btn-testar-lote">🧪 Corrigir 3 como teste</button>
+                            <button type="button" class="btn-salvar btn-lote" id="btn-corrigir-lote">⚡ Corrigir todos sem depender da IA</button>
+                            <button type="button" class="btn-pausar" id="btn-pausar-lote">⏸ Pausar</button>
+                        </div>
+                        <div class="progresso-lote" id="progresso-lote" aria-live="polite">
+                            <progress id="barra-correcao-lote" value="0" max="1"></progress>
+                            <div class="texto-progresso" id="texto-correcao-lote">Preparando...</div>
+                            <div class="resumo-lote" id="resumo-correcao-lote"></div>
+                        </div>
+                    </div>
+                    <div id="itens-revisao"></div>
+                </div>
+                <div class="painel-produtos" id="painel-indisponiveis" role="tabpanel" aria-labelledby="tab-indisponiveis" hidden>
+                    <div class="estado-lista" style="margin-bottom:12px">Estes produtos foram retirados automaticamente da vitrine após duas verificações confirmarem que o anúncio não está ativo. Eles voltarão sozinhos se o anúncio for reativado.</div>
+                    <div id="itens-indisponiveis"></div>
+                </div>
+                <div class="painel-produtos" id="painel-precos" role="tabpanel" aria-labelledby="tab-precos" hidden>
+                    <div class="resumo-precos" id="resumo-precos">Carregando o relatório da última verificação automática...</div>
+                    <div id="itens-precos"></div>
+                </div>
+            </div>
+            
+            <button id="btn-sair" class="btn-salvar btn-sair">Sair do Sistema</button>
+        </div>
+    </div>
+
+    <!-- SDKs do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <!-- Firebase AI Logic + App Check: a chave do Gemini fica protegida no Firebase. -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+        import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
+        import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-ai.js";
+
+        const firebaseConfigAI = {
+            apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
+            authDomain: "rankingdacompra.firebaseapp.com",
+            projectId: "rankingdacompra",
+            storageBucket: "rankingdacompra.firebasestorage.app",
+            messagingSenderId: "300637600463",
+            appId: "1:300637600463:web:671c78dc47d5f8b39f15ba"
+        };
+
+        const aiApp = initializeApp(firebaseConfigAI, "ai-logic");
+        initializeAppCheck(aiApp, {
+            provider: new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"),
+            isTokenAutoRefreshEnabled: true
+        });
+
+        const ai = getAI(aiApp, { backend: new GoogleAIBackend() });
+        // A primeira IA redige; a segunda usa outro modelo para auditar a resposta.
+        const model = getGenerativeModel(ai, { model: "gemini-3.1-flash-lite" });
+        const modelRevisor = getGenerativeModel(ai, { model: "gemini-3.5-flash" });
+        const modelComFontePublica = getGenerativeModel(ai, {
+            model: "gemini-3.1-flash-lite",
+            tools: [{ urlContext: {} }]
+        });
+
+        function mensagemDoErro(erro) {
+            return String(erro?.message || erro || "").replace(/\s+/g, " ").trim();
+        }
+
+        function erroDeQuota(erro) {
+            return /(429|quota|resource.?exhausted|limite.*requisi|too many requests)/i.test(mensagemDoErro(erro));
+        }
+
+        function erroTemporarioDaIA(erro) {
+            return erroDeQuota(erro) || /(503|unavailable|overloaded|failed to fetch|network|timeout|tempo esgotado)/i.test(mensagemDoErro(erro));
+        }
+
+        function textoUtil(valor) {
+            const texto = String(valor || "").trim();
+            return texto && !/(\bn\/?a\b|informações insuficientes|dados técnicos ausentes|produto sem especificações|dados ausentes)/i.test(texto) ? texto : "";
+        }
+
+        function limitarTexto(valor, limite) {
+            const texto = String(valor || "").replace(/\s+/g, " ").trim();
+            if (texto.length <= limite) return texto;
+            const corte = texto.slice(0, limite - 1).replace(/\s+\S*$/, "").trim();
+            return `${corte}…`;
+        }
+
+        function textoEditorialValido(valor, minimo = 80) {
+            const texto = textoUtil(valor);
+            const generico = /(chama aten[cç][aã]o por|recursos descritos no próprio título|informações em atualização|produto identificado no anúncio|oferta para comparar|conheça este produto)/i;
+            return texto.length >= minimo && !generico.test(texto) ? texto : "";
+        }
+
+        function listaUtil(valor, alternativas) {
+            const itens = String(valor || "").split(",")
+                .map(item => item.trim())
+                .filter(item => item && !/(\bn\/?a\b|informações insuficientes|dados técnicos ausentes|dados ausentes)/i.test(item));
+            return limitarTexto(itens.length ? itens.join(", ") : alternativas.join(", "), 300);
+        }
+
+        function normalizarTextoValidacao(valor) {
+            return String(valor || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase("pt-BR").replace(/[^\p{L}\p{N}%]+/gu, " ").replace(/\s+/g, " ").trim();
+        }
+
+        const PALAVRAS_SEM_EVIDENCIA = new Set([
+            "produto", "modelo", "opcao", "categoria", "indicado", "indicada", "ideal", "uso", "usuario", "usuarios",
+            "oferece", "entrega", "permite", "pode", "tende", "maior", "menor", "melhor", "basico", "basica",
+            "ficha", "tecnica", "anuncio", "informacao", "informacoes", "recurso", "recursos", "comparacao", "compra"
+        ]);
+
+        function palavrasComEvidencia(valor) {
+            return normalizarTextoValidacao(valor).split(" ")
+                .filter(palavra => palavra.length >= 4 && !PALAVRAS_SEM_EVIDENCIA.has(palavra));
+        }
+
+        function itensDaResposta(valor) {
+            const itens = Array.isArray(valor) ? valor : String(valor || "").split(/\n|;|,/);
+            return itens.map(item => String(item || "").replace(/\s+/g, " ").trim()).filter(Boolean).slice(0, 4);
+        }
+
+        function validarRespostaBaseadaNaFonte({ comentario, prosItens, contrasItens, evidencias }, fonteTecnica) {
+            const fonteNormalizada = normalizarTextoValidacao(fonteTecnica);
+            const palavrasFonte = new Set(palavrasComEvidencia(fonteTecnica));
+            const textoResposta = [comentario, ...prosItens, ...contrasItens].join(" ");
+            const coincidencias = new Set(palavrasComEvidencia(textoResposta).filter(palavra => palavrasFonte.has(palavra)));
+            if (coincidencias.size < 5) {
+                throw new Error("A análise não citou características suficientes da ficha técnica.");
+            }
+
+            const padraoNumero = /\b\d+(?:[.,]\d+)?\s*(?:tb|gb|mb|mah|wh|w|hz|khz|mp|cm|mm|kg|g|ml|l|polegadas?|pol|v|volts?|rpm|mbps|gbps|h)\b/gi;
+            const fonteCompacta = fonteNormalizada.replace(/\s+/g, "").replace(/,/g, ".");
+            const numerosResposta = [...textoResposta.matchAll(padraoNumero)]
+                .map(match => normalizarTextoValidacao(match[0]).replace(/\s+/g, "").replace(/,/g, "."));
+            const numerosInventados = [...new Set(numerosResposta.filter(numero => !fonteCompacta.includes(numero)))];
+            if (numerosInventados.length) {
+                throw new Error(`A IA tentou usar números ausentes da ficha: ${numerosInventados.join(", ")}.`);
+            }
+
+            for (const item of [...prosItens, ...contrasItens]) {
+                if (/n[aã]o informa|n[aã]o especifica|n[aã]o detalha/i.test(item)) continue;
+                const possuiFato = palavrasComEvidencia(item).some(palavra => palavrasFonte.has(palavra));
+                if (!possuiFato) throw new Error("Um dos pontos não está ligado a nenhum dado real da ficha técnica.");
+            }
+
+            const evidenciasValidas = (Array.isArray(evidencias) ? evidencias : [])
+                .map(item => ({
+                    afirmacao: String(item?.afirmacao || "").trim(),
+                    fonte: String(item?.fonte || "").trim()
+                }))
+                .filter(item => item.afirmacao.length >= 12 && item.fonte.length >= 4
+                    && fonteNormalizada.includes(normalizarTextoValidacao(item.fonte)));
+            if (evidenciasValidas.length < 3) {
+                throw new Error("A IA não apresentou pelo menos três evidências copiadas da ficha do produto.");
+            }
+            return evidenciasValidas.slice(0, 6);
+        }
+
+        function normalizarSugestaoIA(resposta, produto, categorias) {
+            const titulo = produto.titulo || textoUtil(resposta.titulo) || "Produto selecionado";
+            const especificacoes = Array.isArray(produto.especificacoes) ? produto.especificacoes.filter(Boolean).slice(0, 18) : [];
+            const fonteTecnica = [titulo, produto.descricao, ...especificacoes].filter(Boolean).join(" | ");
+            if (normalizarTextoValidacao(fonteTecnica).length < 120 || (especificacoes.length < 3 && String(produto.descricao || "").length < 200)) {
+                throw new Error("Inclua pelo menos três características técnicas reais ou uma descrição técnica completa antes de gerar a análise.");
+            }
+
+            const comentario = textoEditorialValido(resposta.comentario, 180);
+            const prosItens = itensDaResposta(resposta.pros);
+            const contrasItens = itensDaResposta(resposta.contras);
+            const pros = limitarTexto(prosItens.join(", "), 300);
+            const contras = limitarTexto(contrasItens.join(", "), 300);
+            if (!comentario || prosItens.length < 3 || contrasItens.length < 2 || pros.length < 80 || contras.length < 70) {
+                throw new Error("A IA não produziu uma análise específica o suficiente. Acrescente dados técnicos e tente novamente.");
+            }
+            const evidencias = validarRespostaBaseadaNaFonte({
+                comentario, prosItens, contrasItens, evidencias: resposta.evidencias
+            }, fonteTecnica);
+
+            return {
+                titulo,
+                comentario: limitarTexto(comentario, 500),
+                pros,
+                contras,
+                evidencias
+            };
+        }
+
+        function criarAnaliseComFichaTecnica(produto) {
+            const especificacoes = Array.isArray(produto.especificacoes) ? produto.especificacoes : [];
+            const candidatos = [
+                ...especificacoes,
+                ...String(produto.descricao || "").split(/\n|;|\|/)
+            ];
+            const itens = candidatos
+                .map(item => String(item || "").replace(/\s+/g, " ").trim())
+                .filter(item => item.length >= 12)
+                .filter((item, indice, lista) => lista.indexOf(item) === indice)
+                .slice(0, 8);
+
+            if (itens.length < 3) {
+                throw new Error("A ficha precisa ter pelo menos três características separadas para criar a análise de contingência.");
+            }
+
+            const titulo = String(produto.titulo || "Produto cadastrado").replace(/\s+/g, " ").trim();
+            const fatosResumo = itens.join("; ");
+            let comentario = `${titulo}. A ficha técnica informa: ${fatosResumo}. Este resumo utiliza somente os dados fornecidos pela fonte cadastrada, sem acrescentar resultados de testes ou características não comprovadas.`;
+            if (comentario.length < 180) {
+                comentario += " As especificações devem ser comparadas com a necessidade de uso antes da compra.";
+            }
+
+            const pros = limitarTexto(`Características registradas: ${itens.slice(0, 3).join("; ")}.`, 300);
+            const itensAtencao = itens.slice(-2);
+            const contras = limitarTexto(`Pontos para conferência: ${itensAtencao.join("; ")}. A análise se limita à ficha fornecida e não representa teste prático independente.`, 300);
+
+            return {
+                titulo,
+                comentario: limitarTexto(comentario, 500),
+                pros,
+                contras,
+                evidencias: itens.slice(0, 6).map(fonte => ({ afirmacao: fonte, fonte })),
+                metodo: "contingencia_ficha_tecnica",
+                revisaoIA: "indisponivel_por_quota"
+            };
+        }
+
+        window.criarAnaliseSemIA = ({ produto }) => criarAnaliseComFichaTecnica(produto);
+
+        async function revisarComSegundaIA(sugestao, produto, categorias) {
+            const dadosProduto = {
+                titulo: produto.titulo || "",
+                descricao: produto.descricao || "",
+                especificacoes: Array.isArray(produto.especificacoes) ? produto.especificacoes : []
+            };
+            const promptRevisao = `Você é a segunda revisora técnica do site Ranking da Compra. Audite a análise candidata usando SOMENTE a ficha fornecida.
+
+OBJETIVO:
+- Corrija qualquer afirmação, número, benefício ou limitação que não esteja sustentada pela ficha.
+- Preserve o título original.
+- O resumo deve ter entre 250 e 450 caracteres.
+- Retorne exatamente 3 pontos positivos factuais e 2 pontos de atenção.
+- Em cada evidência, copie literalmente um trecho da ficha.
+- Mesmo quando a análise estiver correta, devolva todos os campos completos.
+- Retorne somente JSON válido, sem markdown.
+
+FICHA DO PRODUTO:
+${JSON.stringify(dadosProduto)}
+
+ANÁLISE CANDIDATA:
+${JSON.stringify(sugestao)}
+
+FORMATO:
+{
+  "titulo": "título original",
+  "comentario": "resumo revisado",
+  "pros": ["fato 1", "fato 2", "fato 3"],
+  "contras": ["atenção 1", "atenção 2"],
+  "evidencias": [
+    {"afirmacao": "afirmação", "fonte": "trecho literal da ficha"},
+    {"afirmacao": "afirmação", "fonte": "trecho literal da ficha"},
+    {"afirmacao": "afirmação", "fonte": "trecho literal da ficha"}
+  ]
+}`;
+
+            const result = await modelRevisor.generateContent(promptRevisao);
+            const resposta = JSON.parse(limparJsonDaIA(result.response.text()));
+            return {
+                ...normalizarSugestaoIA(resposta, produto, categorias),
+                metodo: "gemini_3_1_gerador_gemini_3_5_revisor",
+                revisaoIA: "aprovada_por_gemini_3_5"
+            };
+        }
+
+        window.preencherComIA = async ({ produto, categorias }) => {
+            const especificacoes = Array.isArray(produto.especificacoes) && produto.especificacoes.length
+                ? produto.especificacoes.join(" | ")
+                : "nenhuma especificação adicional disponível";
+            const promptBase = `Você é um analista brasileiro responsável por resumir uma ficha técnica para o site Ranking da Compra.
+
+Você NÃO testou o produto. Não escreva como se tivesse usado, medido ou comprovado desempenho. Sua única fonte é o bloco DADOS DO PRODUTO abaixo. Trate a descrição do vendedor como informação declarada no anúncio, não como prova independente.
+
+REGRAS DE VERACIDADE:
+- Use somente fatos presentes no título, descrição ou especificações fornecidas.
+- Toda frase do resumo e todo ponto positivo deve mencionar pelo menos uma característica concreta da ficha.
+- Não invente bateria, autonomia, desempenho, qualidade, resistência, garantia, acessórios, compatibilidade, popularidade, vendas ou resultados de uso.
+- Não diga "testamos", "comprovamos", "garante", "sem gargalos", "a melhor escolha", "escolha definitiva", "excelente" ou "supera concorrentes".
+- Não transforme ausência de informação em defeito. Quando um dado importante não estiver disponível, escreva "A ficha não informa..." ou "O anúncio não especifica...".
+- Números e unidades usados na resposta devem existir exatamente nos dados fornecidos.
+- Antes de responder, confira silenciosamente cada afirmação contra a ficha.
+
+REGRAS OBRIGATÓRIAS:
+- Mantenha o nome do produto fiel ao título do anúncio; nunca troque por termos genéricos como "Smartphone Genérico".
+- O resumo deve ter entre 250 e 450 caracteres, em 2 ou 3 frases objetivas.
+- Retorne exatamente 3 pontos positivos. Cada item deve citar um dado real diferente.
+- Retorne exatamente 2 pontos de atenção baseados em limitação explícita ou informação importante ausente.
+- Inclua entre 3 e 6 evidências. Em "fonte", copie literalmente um trecho curto dos DADOS DO PRODUTO que sustente a afirmação.
+- Nunca escreva "Conheça este produto", "informações insuficientes", "dados ausentes", "N/A", "produto genérico" ou "verifique o anúncio" como texto principal.
+- Retorne somente JSON válido, sem markdown.
+
+DADOS DO PRODUTO:
+Título original do produto: ${produto.titulo || "não informado"}
+Preço encontrado: ${produto.preco || "não informado"}
+Descrição do vendedor: ${(produto.descricao || "sem descrição disponibilizada pelo anúncio").slice(0, 1800)}
+Especificações técnicas do anúncio: ${especificacoes}
+
+Formato obrigatório:
+{
+  "titulo": "repita o título original de forma fiel",
+  "comentario": "resumo factual com no máximo 450 caracteres",
+  "pros": ["fato positivo 1", "fato positivo 2", "fato positivo 3"],
+  "contras": ["limite ou ausência 1", "limite ou ausência 2"],
+  "evidencias": [
+    {"afirmacao": "afirmação produzida", "fonte": "trecho literal dos dados"},
+    {"afirmacao": "afirmação produzida", "fonte": "trecho literal dos dados"},
+    {"afirmacao": "afirmação produzida", "fonte": "trecho literal dos dados"}
+  ]
+}`;
+
+            const gerarResposta = async prompt => {
+                const result = await model.generateContent(prompt);
+                const texto = result.response.text().trim().replace(/^\`\`\`json\s*/i, "").replace(/^\`\`\`\s*/i, "").replace(/\s*\`\`\`$/, "");
+                return JSON.parse(texto);
+            };
+
+            let sugestaoInicial;
+            try {
+                sugestaoInicial = normalizarSugestaoIA(await gerarResposta(promptBase), produto, categorias);
+            } catch (primeiroErro) {
+                if (erroTemporarioDaIA(primeiroErro)) {
+                    const erroIndisponivel = new Error(erroDeQuota(primeiroErro)
+                        ? "A cota da IA principal foi atingida. O painel usará a análise de contingência baseada na ficha técnica."
+                        : "A IA principal está temporariamente indisponível. O painel usará a análise de contingência baseada na ficha técnica.");
+                    erroIndisponivel.code = erroDeQuota(primeiroErro) ? "AI_QUOTA" : "AI_UNAVAILABLE";
+                    throw erroIndisponivel;
+                }
+                const promptCorrecao = `${promptBase}\n\nA primeira resposta foi recusada pelo verificador porque: ${primeiroErro.message}\nGere novamente, corrigindo esse problema e mantendo somente fatos comprovados pelos DADOS DO PRODUTO.`;
+                try {
+                    sugestaoInicial = normalizarSugestaoIA(await gerarResposta(promptCorrecao), produto, categorias);
+                } catch (segundoErro) {
+                    if (erroTemporarioDaIA(segundoErro)) {
+                        const erroIndisponivel = new Error(erroDeQuota(segundoErro)
+                            ? "A cota da IA principal foi atingida. O painel usará a análise de contingência baseada na ficha técnica."
+                            : "A IA principal está temporariamente indisponível. O painel usará a análise de contingência baseada na ficha técnica.");
+                        erroIndisponivel.code = erroDeQuota(segundoErro) ? "AI_QUOTA" : "AI_UNAVAILABLE";
+                        throw erroIndisponivel;
+                    }
+                    throw new Error(`A análise foi bloqueada por falta de comprovação: ${segundoErro.message}`);
+                }
+            }
+
+            try {
+                return await revisarComSegundaIA(sugestaoInicial, produto, categorias);
+            } catch (erroRevisao) {
+                console.warn("A segunda IA não pôde concluir a auditoria; mantendo a resposta aprovada pelo verificador local.", erroRevisao);
+                return {
+                    ...sugestaoInicial,
+                    metodo: "gemini_3_1_com_verificacao_local",
+                    revisaoIA: erroDeQuota(erroRevisao) ? "segunda_ia_sem_quota" : "segunda_ia_indisponivel"
+                };
+            }
+        };
+
+        function limparJsonDaIA(valor) {
+            return String(valor || '').trim()
+                .replace(/^\s*```json\s*/i, '')
+                .replace(/^\s*```\s*/i, '')
+                .replace(/\s*```\s*$/i, '');
+        }
+
+        function fonteRecuperadaComSucesso(resposta) {
+            const candidato = resposta?.candidates?.[0] || {};
+            const metadados = candidato.urlContextMetadata || candidato.url_context_metadata;
+            const urls = metadados?.urlMetadata || metadados?.url_metadata || [];
+            return urls.some(item => String(item.urlRetrievalStatus || item.url_retrieval_status || '').includes('SUCCESS'));
+        }
+
+        window.corrigirProdutoPelaFonte = async ({ titulo, url }) => {
+            if (!/^https?:\/\//i.test(String(url || ''))) throw new Error('O produto não possui um link público utilizável.');
+
+            const prompt = `Abra obrigatoriamente a página pública abaixo usando a ferramenta de contexto por URL:
+${url}
+
+O produto cadastrado é: ${titulo}
+
+Você é um revisor técnico do site brasileiro Ranking da Compra. Produza uma análise baseada SOMENTE no conteúdo recuperado dessa página. Você não testou o produto. Não use conhecimento próprio e não pesquise outras páginas.
+
+REGRAS:
+- Se a página não abrir, não identificar o mesmo produto ou não trouxer ao menos três fatos técnicos verificáveis, responda {"status":"sem_dados","motivo":"explicação curta"}.
+- Ignore preço, desconto, avaliações, quantidade vendida, reputação do vendedor e frases publicitárias.
+- Em dadosTecnicos, copie entre 3 e 12 trechos factuais curtos encontrados na página. Não invente nem reescreva números.
+- O resumo deve ter entre 250 e 450 caracteres e mencionar características concretas do produto.
+- Retorne exatamente 3 pontos positivos, cada um ligado a um fato da página.
+- Retorne exatamente 2 pontos de atenção. Use limitações explícitas; se não existirem, informe dados importantes que a página realmente não especifica, sem transformar ausência em defeito.
+- Em cada evidência, o campo fonte deve ser uma cópia literal de um trecho incluído em dadosTecnicos.
+- Não use as frases "chama atenção por", "recursos descritos no próprio título", "conheça este produto" ou "verifique o anúncio".
+- Retorne somente JSON válido, sem markdown.
+
+Formato:
+{
+  "status": "ok",
+  "dadosTecnicos": ["trecho factual 1", "trecho factual 2", "trecho factual 3"],
+  "comentario": "resumo factual",
+  "pros": ["ponto 1", "ponto 2", "ponto 3"],
+  "contras": ["ponto 1", "ponto 2"],
+  "evidencias": [
+    {"afirmacao":"afirmação 1","fonte":"trecho literal de dadosTecnicos"},
+    {"afirmacao":"afirmação 2","fonte":"trecho literal de dadosTecnicos"},
+    {"afirmacao":"afirmação 3","fonte":"trecho literal de dadosTecnicos"}
+  ]
+}`;
+
+            const result = await modelComFontePublica.generateContent(prompt);
+            if (!fonteRecuperadaComSucesso(result.response)) {
+                throw new Error('A fonte não pôde ser recuperada pela IA.');
+            }
+            const resposta = JSON.parse(limparJsonDaIA(result.response.text()));
+            if (resposta.status !== 'ok') throw new Error(resposta.motivo || 'A fonte não possui dados técnicos suficientes.');
+
+            const itensTecnicos = (Array.isArray(resposta.dadosTecnicos) ? resposta.dadosTecnicos : [])
+                .map(item => String(item || '').replace(/\s+/g, ' ').trim())
+                .filter(Boolean)
+                .filter((item, indice, lista) => lista.indexOf(item) === indice)
+                .slice(0, 12);
+            const dadosTecnicos = itensTecnicos.join('\n').slice(0, 3000);
+            const tituloNormalizado = normalizarTextoValidacao(titulo);
+            const fatosAlemDoTitulo = itensTecnicos.filter(item => !tituloNormalizado.includes(normalizarTextoValidacao(item)));
+            if (itensTecnicos.length < 3 || dadosTecnicos.length < 120 || fatosAlemDoTitulo.length < 2) {
+                throw new Error('A página não forneceu fatos técnicos suficientes além do título.');
+            }
+
+            const sugestao = normalizarSugestaoIA(resposta, {
+                titulo,
+                descricao: dadosTecnicos,
+                especificacoes: itensTecnicos
+            }, []);
+            return { ...sugestao, dadosTecnicos, fonteConsultada: url };
+        };
+    </script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
+            authDomain: "rankingdacompra.firebaseapp.com",
+            projectId: "rankingdacompra",
+            storageBucket: "rankingdacompra.firebasestorage.app",
+            messagingSenderId: "300637600463",
+            appId: "1:300637600463:web:671c78dc47d5f8b39f15ba",
+            measurementId: "G-NBKRX8TTR6"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        const loginContent = document.getElementById('login-content');
+        const adminContent = document.getElementById('admin-content');
+        let editProdId = null;
+        let editandoCatId = null;
+        let produtosRevisaoAtual = [];
+        let produtosPrecoPendenteAtual = [];
+        let correcaoLoteEmAndamento = false;
+        let pausaCorrecaoSolicitada = false;
+        let statusMercadoLivreAdmin = {};
+        let statusMercadoLivreAtualizadoEm = '';
+        const statusMercadoLivreAdminPronto = fetch('./mercadolivre-status.json', { cache: 'no-store' })
+            .then(resposta => resposta.ok ? resposta.json() : null)
+            .then(dados => {
+                statusMercadoLivreAdmin = dados?.products && typeof dados.products === 'object' ? dados.products : {};
+                statusMercadoLivreAtualizadoEm = String(dados?.updatedAt || '');
+                return statusMercadoLivreAdmin;
+            })
+            .catch(erro => {
+                console.warn('Não foi possível carregar o status automático do Mercado Livre.', erro);
+                statusMercadoLivreAdmin = {};
+                return statusMercadoLivreAdmin;
+            });
+
+        // Evita que texto salvo (título, nome de categoria...) vire HTML/JS ao ser exibido
+        function escapeHtml(texto) {
+            if (texto === undefined || texto === null) return '';
+            return String(texto)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                loginContent.style.display = 'none';
+                adminContent.style.display = 'block';
+                migrarCategoriasAntigasSeNecessario().then(() => {
+                    carregarCategorias();
+                    carregarProdutos();
+                    carregarMetricasVisitas();
+                });
+            } else {
+                loginContent.style.display = 'block';
+                adminContent.style.display = 'none';
+            }
+        });
+
+        document.getElementById('formLogin').addEventListener('submit', (e) => {
+            e.preventDefault();
+            auth.signInWithEmailAndPassword(document.getElementById('email').value, document.getElementById('senha').value)
+                .catch(error => alert("Erro: " + error.message));
+        });
+
+        document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
+        document.getElementById('btn-atualizar-visitas').addEventListener('click', carregarMetricasVisitas);
+
+        function dataBrasil(data = new Date()) {
+            const partes = new Intl.DateTimeFormat('en-CA', {
+                timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit'
+            }).formatToParts(data);
+            const valor = {};
+            partes.forEach(parte => valor[parte.type] = parte.value);
+            return `${valor.year}-${valor.month}-${valor.day}`;
+        }
+
+        async function carregarMetricasVisitas() {
+            const botao = document.getElementById('btn-atualizar-visitas');
+            botao.disabled = true;
+            botao.textContent = 'Atualizando...';
+            try {
+                const snapshot = await db.collection('visitas').get();
+                const hoje = dataBrasil();
+                const inicioSeteDias = new Date();
+                inicioSeteDias.setDate(inicioSeteDias.getDate() - 6);
+                const inicio = dataBrasil(inicioSeteDias);
+                let visitasHoje = 0, visitasSeteDias = 0;
+                snapshot.forEach(doc => {
+                    const dia = doc.data().dia || '';
+                    if (dia === hoje) visitasHoje++;
+                    if (dia >= inicio && dia <= hoje) visitasSeteDias++;
+                });
+                document.getElementById('visitas-total').textContent = snapshot.size.toLocaleString('pt-BR');
+                document.getElementById('visitas-hoje').textContent = visitasHoje.toLocaleString('pt-BR');
+                document.getElementById('visitas-7-dias').textContent = visitasSeteDias.toLocaleString('pt-BR');
+            } catch (erro) {
+                console.error('Erro ao carregar visitas:', erro);
+                document.getElementById('visitas-total').textContent = 'Erro';
+                alert('Ainda falta publicar a regra de visitas no Firestore. Veja o arquivo firestore.rules.txt atualizado.');
+            } finally {
+                botao.disabled = false;
+                botao.textContent = 'Atualizar contagem';
+            }
+        }
+
+        // MIGRAÇÃO: se este navegador ainda tiver categorias salvas do jeito antigo
+        // (localStorage) e a nuvem estiver vazia, copia elas pro Firestore uma única vez,
+        // assim elas passam a aparecer pra todo mundo, não só neste computador.
+        async function migrarCategoriasAntigasSeNecessario() {
+            try {
+                const antigas = JSON.parse(localStorage.getItem('minhasCategorias') || 'null');
+                if (!antigas || !antigas.length) return;
+
+                const snapshot = await db.collection("categorias").limit(1).get();
+                if (!snapshot.empty) return; // já existem categorias na nuvem, não mexe
+
+                for (const cat of antigas) {
+                    if (!cat.id) continue;
+                    await db.collection("categorias").doc(cat.id).set({
+                        icone: cat.icone || '',
+                        nome: cat.nome || cat.id,
+                        criadoEm: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+                localStorage.removeItem('minhasCategorias');
+                console.log('Categorias antigas migradas para o Firestore.');
+            } catch (e) {
+                console.error('Falha ao migrar categorias antigas:', e);
+            }
+        }
+
+        async function gerarAnaliseManualComIA() {
+            const titulo = document.getElementById('titulo').value.trim();
+            const dadosTecnicos = document.getElementById('dados-tecnicos-manual').value.trim();
+            if (!titulo) return alert('Preencha primeiro o Nome do Produto.');
+            const itensTecnicos = dadosTecnicos.split(/\n|;|\|/).map(item => item.trim()).filter(Boolean);
+            if (dadosTecnicos.length < 120 || itensTecnicos.length < 3) {
+                return alert('Inclua pelo menos três características técnicas reais, totalizando 120 caracteres ou mais.');
+            }
+            if (typeof window.preencherComIA !== 'function') {
+                return alert('A IA ainda está carregando. Aguarde alguns segundos e tente novamente.');
+            }
+
+            const botao = document.getElementById('btn-gerar-analise');
+            botao.disabled = true;
+            botao.innerText = '⏳ Criando e auditando a análise...';
+            const categorias = Array.from(document.getElementById('categoria').options)
+                .map(option => ({ id: option.value, nome: option.textContent.trim() }));
+            const especificacoes = itensTecnicos.slice(0, 18);
+            const produtoParaAnalise = {
+                titulo,
+                preco: document.getElementById('preco').value.trim(),
+                foto: document.getElementById('foto').value.trim(),
+                descricao: dadosTecnicos,
+                especificacoes
+            };
+
+            const aplicarSugestao = sugestao => {
+                document.getElementById('comentario').value = sugestao.comentario || '';
+                document.getElementById('pros').value = sugestao.pros || '';
+                document.getElementById('contras').value = sugestao.contras || '';
+                document.getElementById('texto-ia-paste').value = JSON.stringify({
+                    resumo: sugestao.comentario,
+                    pontosPositivos: sugestao.pros,
+                    pontosAtencao: sugestao.contras,
+                    evidenciasVerificadas: sugestao.evidencias || [],
+                    metodo: sugestao.metodo || 'dupla_ia',
+                    revisao: sugestao.revisaoIA || 'verificacao_local'
+                }, null, 2);
+            };
+
+            try {
+                const sugestao = await window.preencherComIA({
+                    produto: produtoParaAnalise,
+                    categorias
+                });
+                aplicarSugestao(sugestao);
+                if (sugestao.revisaoIA === 'aprovada_por_gemini_3_5') {
+                    alert('✅ Análise criada pela primeira IA, auditada pela segunda IA e conferida contra a ficha técnica. Revise o texto antes de salvar.');
+                } else {
+                    alert('✅ Análise criada pela IA principal e aprovada pelo verificador local. A segunda IA estava indisponível, mas nenhuma informação fora da ficha foi aceita.');
+                }
+            } catch (erro) {
+                console.error('Erro ao gerar análise manual:', erro);
+                if (['AI_QUOTA', 'AI_UNAVAILABLE'].includes(erro?.code) && typeof window.criarAnaliseSemIA === 'function') {
+                    try {
+                        const contingencia = window.criarAnaliseSemIA({ produto: produtoParaAnalise });
+                        aplicarSugestao(contingencia);
+                        const motivo = erro.code === 'AI_QUOTA' ? 'A cota da IA foi atingida' : 'A IA está temporariamente indisponível';
+                        alert(`⚠️ ${motivo}. Para não interromper o cadastro, o painel criou uma análise de contingência usando somente a ficha técnica informada. Revise os três campos antes de salvar.`);
+                    } catch (erroContingencia) {
+                        alert('A IA está sem cota e a ficha não foi suficiente para o modo de contingência.\n\n' + erroContingencia.message);
+                    }
+                } else {
+                    alert('A análise não pôde ser aprovada.\n\n' + (erro.message || 'Aguarde alguns instantes e tente novamente.'));
+                }
+            } finally {
+                botao.disabled = false;
+                botao.innerText = '🧠 Gerar análise com dupla revisão';
+            }
+        }
+
+        async function buscarPorNomeML() {
+            const campoNome = document.getElementById('nome-produto-busca');
+            const nome = campoNome.value.trim();
+            if (nome.length < 5) return alert('Digite o nome do produto com pelo menos 5 caracteres.');
+
+            const botao = document.getElementById('btn-buscar-nome');
+            botao.disabled = true;
+            botao.innerText = '⏳ Pesquisando no Mercado Livre...';
+
+            try {
+                const resposta = await fetch(`https://api.mercadolibre.com/sites/MLB/search?limit=10&q=${encodeURIComponent(nome)}`);
+                const dados = await resposta.json().catch(() => ({}));
+                const resultados = Array.isArray(dados.results) ? dados.results : [];
+                if (!resultados.length) {
+                    return alert('Não encontrei esse produto no Mercado Livre. Tente incluir marca, modelo, capacidade ou cor no nome.');
+                }
+
+                // Escolhe o título que possui mais palavras do nome digitado.
+                const palavras = nome.toLocaleLowerCase('pt-BR').split(/\s+/)
+                    .map(palavra => palavra.replace(/[^\p{L}\p{N}]/gu, ''))
+                    .filter(palavra => palavra.length >= 3);
+                const candidato = resultados
+                    .map(resultado => ({
+                        ...resultado,
+                        pontuacao: palavras.filter(palavra => String(resultado.title || '').toLocaleLowerCase('pt-BR').includes(palavra)).length
+                    }))
+                    .sort((a, b) => b.pontuacao - a.pontuacao)[0];
+
+                if (!candidato?.id) throw new Error('A pesquisa não trouxe um anúncio utilizável.');
+
+                // Reaproveita a rotina principal: ela busca detalhes, preço, imagem,
+                // atributos e chama a IA para preencher o restante do cadastro.
+                document.getElementById('link').value = candidato.permalink || `https://produto.mercadolivre.com.br/${candidato.id}`;
+                await buscarDadosML();
+            } catch (erro) {
+                console.error('Erro na busca por nome:', erro);
+                alert('Não foi possível pesquisar agora. Tente novamente em alguns instantes.');
+            } finally {
+                botao.disabled = false;
+                botao.innerText = '🔎 Buscar pelo nome e preencher automaticamente';
+            }
+        }
+
+        async function buscarDadosML() {
+            const url = document.getElementById('link').value;
+            if (!url) return alert("Por favor, cole o link comum do Mercado Livre primeiro.");
+
+            // Em links de catálogo há dois códigos: o da página (/p/MLB...) e
+            // o do anúncio real (item_id ou wid). O anúncio real traz preço e foto,
+            // portanto ele sempre tem prioridade.
+            let codigoAnuncio = '';
+            try {
+                const urlML = new URL(url);
+                const localizarMLB = valor => String(valor || '').match(/\bMLB[-_]?\d+\b/i)?.[0] || '';
+                codigoAnuncio = localizarMLB(urlML.searchParams.get('item_id'))
+                    || localizarMLB(urlML.searchParams.get('wid'))
+                    || localizarMLB(urlML.searchParams.get('pdp_filters'))
+                    || localizarMLB(urlML.hash);
+            } catch (e) {}
+
+            // O Mercado Livre usa vários códigos: MLB (anúncio), MLE (catálogo),
+            // MLU, MLA etc. Links de catálogo, como /p/MLE..., também são válidos.
+            const match = codigoAnuncio ? [codigoAnuncio] : url.match(/\bML[A-Z]{1,3}[-_]?\d+\b/i);
+            if (!match) return alert("Não encontrei um código Mercado Livre no link. Cole o link completo do produto, que contenha algo como MLB123... ou MLE123...");
+
+            const idML = match[0].replace(/[-_]/g, '');
+            const btn = document.getElementById('btn-magico');
+            btn.innerText = "⏳ Puxando dados...";
+
+            try {
+                let tituloML = '', precoML = '', fotoUrl = '', descText = '', especificacoes = [];
+                const usarDadosDoItem = (item) => {
+                    if (!item || item.error || !item.title) return false;
+                    tituloML = item.title || '';
+                    const preco = item.price || item.base_price || null;
+                    precoML = preco ? Number(preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 }) : precoML;
+                    const foto = item.pictures?.[0] || {};
+                    fotoUrl = foto.secure_url || foto.url || foto.source || item.thumbnail || fotoUrl;
+                    especificacoes = (item.attributes || [])
+                        .filter(atributo => atributo && atributo.name && atributo.value_name)
+                        .slice(0, 18)
+                        .map(atributo => `${atributo.name}: ${atributo.value_name}`);
+                    return true;
+                };
+
+                let resItem = await fetch(`https://api.mercadolibre.com/items/${idML}`);
+                let dataItem = await resItem.json().catch(() => ({ error: true }));
+
+                if (!dataItem.error) {
+                    usarDadosDoItem(dataItem);
+                    try {
+                        let resDesc = await fetch(`https://api.mercadolibre.com/items/${idML}/description`);
+                        let dataDesc = await resDesc.json();
+                        descText = dataDesc.plain_text || dataDesc.text || "";
+                    } catch(e) {}
+                } else {
+                    let resProd = await fetch(`https://api.mercadolibre.com/products/${idML}`);
+                    let dataProd = await resProd.json().catch(() => ({ error: true }));
+                    if (!dataProd.error) {
+                        tituloML = dataProd.name || dataProd.title || '';
+                        const precoCatalogo = dataProd.buy_box_winner?.price || dataProd.price || null;
+                        precoML = precoCatalogo ? Number(precoCatalogo).toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
+                        const primeiraFoto = dataProd.pictures?.[0] || {};
+                        fotoUrl = primeiraFoto.secure_url || primeiraFoto.url || primeiraFoto.source || '';
+                        descText = dataProd.short_description || dataProd.description || '';
+                        especificacoes = (dataProd.attributes || [])
+                            .filter(atributo => atributo && atributo.name && atributo.value_name)
+                            .slice(0, 18)
+                            .map(atributo => `${atributo.name}: ${atributo.value_name}`);
+                    }
+                }
+
+                // Alguns links /p/MLE... são páginas de catálogo e não um anúncio.
+                // Primeiro, procura uma oferta pública vinculada ao catálogo.
+                if (!tituloML) {
+                    try {
+                        const resOfertas = await fetch(`https://api.mercadolibre.com/products/${idML}/items`);
+                        const dadosOfertas = await resOfertas.json().catch(() => ({}));
+                        const ofertas = Array.isArray(dadosOfertas) ? dadosOfertas : (dadosOfertas.results || dadosOfertas.items || []);
+                        const codigoItem = ofertas.find(oferta => oferta?.id || oferta?.item_id)?.id || ofertas.find(oferta => oferta?.item_id)?.item_id;
+                        if (codigoItem) {
+                            const resOferta = await fetch(`https://api.mercadolibre.com/items/${codigoItem}`);
+                            usarDadosDoItem(await resOferta.json().catch(() => ({})));
+                        }
+                    } catch (e) {
+                        console.warn('Não foi possível consultar ofertas do catálogo.', e);
+                    }
+                }
+
+                // Última alternativa: pesquisa pública pelo nome existente na URL.
+                // Isso cobre links de catálogo que não expõem uma oferta diretamente.
+                if (!tituloML) {
+                    try {
+                        const caminho = new URL(url).pathname.split('/p/')[0];
+                        const slug = caminho.split('/').filter(Boolean).pop() || '';
+                        const busca = slug.replace(/[-_]+/g, ' ').trim();
+                        if (busca.length >= 8) {
+                            const resBusca = await fetch(`https://api.mercadolibre.com/sites/MLB/search?limit=5&q=${encodeURIComponent(busca)}`);
+                            const dadosBusca = await resBusca.json().catch(() => ({}));
+                            const candidato = (dadosBusca.results || []).find(resultado => resultado?.id && resultado?.title);
+                            if (candidato) {
+                                const resDetalhe = await fetch(`https://api.mercadolibre.com/items/${candidato.id}`);
+                                const detalhe = await resDetalhe.json().catch(() => candidato);
+                                usarDadosDoItem(detalhe.error ? candidato : detalhe);
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('Não foi possível pesquisar o produto pelo nome.', e);
+                    }
+                }
+
+                // Não chama a IA sem produto identificado: isso evita o texto genérico
+                // "não informado" que aparecia quando o código do link não era lido.
+                if (!tituloML) {
+                    return alert("O Mercado Livre não retornou os dados deste link. Tente abrir o anúncio e copiar novamente a URL completa da barra do navegador.");
+                }
+
+                document.getElementById('titulo').value = tituloML || '';
+                document.getElementById('preco').value = precoML || '';
+                document.getElementById('foto').value = fotoUrl ? fotoUrl.replace('-I.jpg', '-O.jpg') : '';
+                document.getElementById('dados-tecnicos-manual').value = [descText, ...especificacoes]
+                    .filter(Boolean).join('\n').slice(0, 3000);
+
+                try {
+                    if (typeof window.preencherComIA !== 'function') {
+                        throw new Error('A integração da IA ainda está carregando. Aguarde alguns segundos e tente novamente.');
+                    }
+
+                    btn.innerText = "✨ Gerando conteúdo com IA...";
+                    const categorias = Array.from(document.getElementById('categoria').options)
+                        .map(option => ({ id: option.value, nome: option.textContent.trim() }));
+                    const sugestao = await window.preencherComIA({
+                        produto: {
+                            titulo: tituloML,
+                            preco: precoML,
+                            foto: fotoUrl,
+                            descricao: descText,
+                            especificacoes
+                        },
+                        categorias
+                    });
+                    aplicarSugestaoIA(sugestao);
+                    alert("✅ Dados do Mercado Livre e sugestões da IA preenchidos! Revise as informações antes de salvar.");
+                } catch (erroIA) {
+                    console.error('Erro ao gerar conteúdo com IA:', erroIA);
+                    alert("Os dados do Mercado Livre foram preenchidos, mas a análise da IA não foi aprovada. Complete a ficha técnica ou tente gerar novamente.\n\nDetalhe: " + erroIA.message);
+                }
+
+            } catch (error) {
+                alert("Erro ao buscar no Mercado Livre.");
+            } finally {
+                btn.innerText = "✨ 1º Passo: Buscar e Preencher com IA";
+            }
+        }
+
+        function aplicarSugestaoIA(sugestao) {
+            const texto = valor => typeof valor === 'string' ? valor.trim() : '';
+            const preencher = (id, valor) => {
+                const campo = document.getElementById(id);
+                if (campo && texto(valor)) campo.value = texto(valor);
+            };
+
+            preencher('titulo', sugestao.titulo);
+            // Categoria, selo, preço, nota e ranking permanecem sob controle editorial.
+            preencher('comentario', sugestao.comentario);
+            preencher('pros', sugestao.pros);
+            preencher('contras', sugestao.contras);
+            document.getElementById('texto-ia-paste').value = JSON.stringify({
+                resumo: sugestao.comentario,
+                pontosPositivos: sugestao.pros,
+                pontosAtencao: sugestao.contras,
+                evidenciasVerificadas: sugestao.evidencias || []
+            }, null, 2);
+            document.getElementById('texto-ia-paste').style.borderColor = '#00a650';
+        }
+
+        function distribuirIA() {
+            try {
+                const texto = document.getElementById('texto-ia-paste').value.replace(/```json/g, '').replace(/```/g, '').trim();
+                const json = JSON.parse(texto);
+                
+                if(json.comentario) document.getElementById('comentario').value = json.comentario;
+                if(json.pros) document.getElementById('pros').value = json.pros;
+                if(json.contras) document.getElementById('contras').value = json.contras;
+                
+                document.getElementById('texto-ia-paste').style.borderColor = "#00a650";
+            } catch (e) {
+                // Aguardando colar corretamente
+            }
+        }
+
+        function corrigirNomeCategoria(nome) {
+            return String(nome || '').trim().replace(/air\s+frayer/gi, 'Air Fryer');
+        }
+
+        function normalizarSlug(valor) {
+            return String(valor || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 70);
+        }
+
+        // Categorias agora ficam na nuvem (Firestore), com o campo "ID Único"
+        // sendo usado como o próprio ID do documento. Isso garante que o site
+        // público (index.html) enxergue exatamente as mesmas categorias.
+        function carregarCategorias() {
+            db.collection("categorias").orderBy("criadoEm", "asc").onSnapshot(snapshot => {
+                const select = document.getElementById('categoria');
+                const listaCatAdmin = document.getElementById('lista-categorias-admin');
+                const categoriaSelecionada = select.value;
+                select.innerHTML = '';
+                listaCatAdmin.innerHTML = '';
+
+                snapshot.forEach(doc => {
+                    const cat = doc.data();
+                    cat.nome = corrigirNomeCategoria(cat.nome);
+                    const icone = cat.icone ? `${escapeHtml(cat.icone)} ` : '';
+                    const miniatura = cat.imagem ? `<img class="cat-miniatura" src="${escapeHtml(cat.imagem)}" alt="Categoria ${escapeHtml(cat.nome)}">` : '';
+                    select.innerHTML += `<option value="${doc.id}">${icone}${escapeHtml(cat.nome)}</option>`;
+                    listaCatAdmin.innerHTML += `
+                        <div class="item-admin">
+                            <span>${miniatura}${icone}<b>${escapeHtml(cat.nome)}</b> <small style="color:#999;">(${escapeHtml(doc.id)})</small></span>
+                            <div class="acoes">
+                                <button type="button" class="btn-edit" onclick="editarCategoria('${doc.id}')">✎</button>
+                                <button type="button" class="btn-del" onclick="deletarCategoria('${doc.id}')">X</button>
+                            </div>
+                        </div>`;
+                });
+
+                // Mantém a categoria selecionada no formulário de produto, se ainda existir
+                if (categoriaSelecionada) select.value = categoriaSelecionada;
+            }, error => {
+                console.error(error);
+                alert('Erro ao carregar categorias: ' + error.message);
+            });
+        }
+
+        document.getElementById('formCategoria').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const idDigitado = normalizarSlug(document.getElementById('cat-id').value || document.getElementById('cat-nome').value);
+            if (!idDigitado) return alert('Informe um ID de categoria válido.');
+            const catInfo = {
+                icone: document.getElementById('cat-icone').value.trim(),
+                nome: corrigirNomeCategoria(document.getElementById('cat-nome').value),
+                imagem: document.getElementById('cat-imagem').value.trim()
+            };
+
+            try {
+                if (editandoCatId !== null) {
+                    // Edição: só nome/ícone mudam, o ID (slug da URL) não muda
+                    await db.collection("categorias").doc(editandoCatId).update(catInfo);
+                    editandoCatId = null;
+                    document.getElementById('cat-id').disabled = false;
+                    document.getElementById('btn-submit-cat').innerText = "+ Criar Categoria";
+                } else {
+                    const docRef = db.collection("categorias").doc(idDigitado);
+                    const existe = await docRef.get();
+                    if (existe.exists) return alert("ID já existe!");
+
+                    catInfo.criadoEm = firebase.firestore.FieldValue.serverTimestamp();
+                    await docRef.set(catInfo);
+                }
+                this.reset();
+            } catch (error) {
+                alert("Erro ao salvar categoria: " + error.message);
+            }
+        });
+
+        function editarCategoria(id) {
+            db.collection("categorias").doc(id).get().then(doc => {
+                if (!doc.exists) return;
+                const cat = doc.data();
+                document.getElementById('cat-id').value = id;
+                document.getElementById('cat-id').disabled = true;
+                document.getElementById('cat-icone').value = cat.icone || '';
+                document.getElementById('cat-nome').value = corrigirNomeCategoria(cat.nome);
+                document.getElementById('cat-imagem').value = cat.imagem || '';
+                editandoCatId = id;
+                document.getElementById('btn-submit-cat').innerText = "💾 Salvar Edição";
+                window.scrollTo(0, 200);
+            });
+        }
+
+        async function deletarCategoria(id) {
+            try {
+                const produtosVinculados = await db.collection("produtos").where("categoria", "==", id).limit(1).get();
+                if (!produtosVinculados.empty) {
+                    alert("Não é possível apagar esta categoria enquanto houver produtos vinculados a ela.");
+                    return;
+                }
+            } catch (error) {
+                alert("Erro ao verificar os produtos da categoria: " + error.message);
+                return;
+            }
+            if(confirm("Deseja apagar esta categoria? Os produtos já cadastrados nela não serão apagados, mas ficarão sem categoria visível.")) {
+                db.collection("categorias").doc(id).delete()
+                    .catch(error => alert("Erro ao apagar categoria: " + error.message));
+            }
+        }
+
+        function validarConteudoEditorial(dados) {
+            const textoCompleto = `${dados.comentario} ${dados.pros} ${dados.contras}`;
+            const generico = /(chama aten[cç][aã]o por|recursos descritos no próprio título|informações em atualização|produto identificado no anúncio|oferta para comparar|conheça este produto)/i;
+            if (generico.test(textoCompleto)) return 'O texto contém uma descrição genérica. Acrescente informações específicas e verificáveis do produto.';
+            if (dados.comentario.length < 180) return 'O resumo precisa ter pelo menos 180 caracteres de análise específica.';
+            if (dados.pros.length < 60 || dados.contras.length < 60) return 'Pontos positivos e pontos de atenção precisam ter pelo menos 60 caracteres cada.';
+            const dadosTecnicos = String(dados.dadosTecnicos || '');
+            const itensTecnicos = dadosTecnicos.split(/\n|;|\|/).map(item => item.trim()).filter(Boolean);
+            if (dadosTecnicos.length < 120 || itensTecnicos.length < 3) return 'Inclua pelo menos três características técnicas reais, totalizando 120 caracteres ou mais.';
+            return '';
+        }
+
+        function numeroPrecoPromocao(valor) {
+            let texto = String(valor || '').replace(/R\$/gi, '').replace(/\s/g, '').replace(/[^\d,.-]/g, '');
+            if (!texto) return 0;
+            if (texto.includes(',')) texto = texto.replace(/\./g, '').replace(',', '.');
+            else if (/^\d{1,3}(?:\.\d{3})+$/.test(texto)) texto = texto.replace(/\./g, '');
+            const numero = Number(texto);
+            return Number.isFinite(numero) && numero > 0 ? numero : 0;
+        }
+
+        function validarDadosPromocao(dados) {
+            if (!dados.promocaoAtiva) return '';
+            const anterior = numeroPrecoPromocao(dados.precoAnterior);
+            const promocional = numeroPrecoPromocao(dados.precoPromocional);
+            if (!anterior || !promocional) return 'Para ativar a promoção, informe o preço anterior e o preço promocional.';
+            if (promocional >= anterior) return 'O preço promocional precisa ser menor que o preço anterior.';
+            if (!dados.promocaoValidaAte) return 'Informe até que dia a promoção é válida.';
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+            const validade = new Date(`${dados.promocaoValidaAte}T23:59:59`);
+            if (Number.isNaN(validade.getTime()) || validade < hoje) return 'A validade da promoção não pode estar no passado.';
+            return '';
+        }
+
+        function extrairIdMercadoLivreCadastro(valor) {
+            try {
+                const url = new URL(String(valor || ''));
+                const textoConsulta = `${url.searchParams.get('item_id') || ''} ${url.searchParams.get('wid') || ''} ${url.searchParams.get('pdp_filters') || ''}`;
+                const consulta = textoConsulta.match(/\bMLB[-_]?(\d{6,})\b/i);
+                if (consulta) return `MLB${consulta[1]}`;
+                if (/\/p\/MLB\d+/i.test(url.pathname)) return '';
+                const caminho = url.pathname.match(/\bMLB[-_]?(\d{6,})\b/i);
+                return caminho ? `MLB${caminho[1]}` : '';
+            } catch {
+                const direto = String(valor || '').match(/\bMLB[-_]?(\d{6,})\b/i);
+                return direto ? `MLB${direto[1]}` : '';
+            }
+        }
+
+        document.getElementById('formProduto').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const linkProduto = document.getElementById('link').value.trim();
+            const linkAfiliadoProduto = document.getElementById('linkAfiliado').value.trim();
+            const dadosProduto = {
+                categoria: document.getElementById('categoria').value,
+                titulo: document.getElementById('titulo').value.trim(),
+                link: linkProduto,
+                linkAfiliado: linkAfiliadoProduto,
+                mercadoLivreItemId: extrairIdMercadoLivreCadastro(linkProduto) || extrairIdMercadoLivreCadastro(linkAfiliadoProduto),
+                selo: document.getElementById('selo').value,
+                foto: document.getElementById('foto').value.trim(),
+                comentario: document.getElementById('comentario').value.trim(),
+                preco: document.getElementById('preco').value.trim(),
+                nota: parseFloat(document.getElementById('nota').value),
+                ranking: parseInt(document.getElementById('ranking').value, 10),
+                promocaoAtiva: document.getElementById('promocaoAtiva').checked,
+                precoAnterior: document.getElementById('precoAnterior').value.trim(),
+                precoPromocional: document.getElementById('precoPromocional').value.trim(),
+                promocaoValidaAte: document.getElementById('promocaoValidaAte').value,
+                pros: document.getElementById('pros').value.trim(),
+                contras: document.getElementById('contras').value.trim(),
+                dadosTecnicos: document.getElementById('dados-tecnicos-manual').value.trim(),
+                autor: 'Equipe editorial Ranking da Compra',
+                atualizadoEm: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            const erroEditorial = validarConteudoEditorial(dadosProduto);
+            if (erroEditorial) return alert(erroEditorial);
+            const erroPromocao = validarDadosPromocao(dadosProduto);
+            if (erroPromocao) return alert(erroPromocao);
+
+            if (editProdId !== null) {
+                db.collection("produtos").doc(editProdId).update(dadosProduto)
+                    .then(() => { alert('Atualizado!'); resetarFormProduto(); })
+                    .catch(error => alert("Erro: " + error.message));
+            } else {
+                dadosProduto.dataCadastro = firebase.firestore.FieldValue.serverTimestamp();
+                db.collection("produtos").add(dadosProduto)
+                    .then(() => { alert('Salvo!'); resetarFormProduto(); })
+                    .catch(error => alert("Erro: " + error.message));
+            }
+        });
+
+        function resetarFormProduto() {
+            document.getElementById('formProduto').reset();
+            document.getElementById('nota').value = "4.8";
+            document.getElementById('ranking').value = "10";
+            document.getElementById('texto-ia-paste').value = '';
+            document.getElementById('texto-ia-paste').style.borderColor = "#3483fa";
+            editProdId = null;
+            document.getElementById('btn-submit-prod').innerText = "🚀 Salvar na Nuvem";
+        }
+
+        let abaProdutosAtiva = 'revisao';
+        const PADRAO_TEXTO_GENERICO = /(chama aten[cç][aã]o por|recursos descritos no próprio título|informações em atualização|produto identificado no anúncio|oferta para comparar|conheça este produto)/i;
+
+        function produtoOcultoNaVitrine(produto) {
+            const resumo = String(produto.comentario || '').replace(/\s+/g, ' ').trim();
+            return resumo.length < 180 || PADRAO_TEXTO_GENERICO.test(resumo);
+        }
+
+        function problemasProduto(produto) {
+            const problemas = [];
+            const resumo = String(produto.comentario || '').replace(/\s+/g, ' ').trim();
+            const pros = String(produto.pros || '').trim();
+            const contras = String(produto.contras || '').trim();
+            const dadosTecnicos = String(produto.dadosTecnicos || '').trim();
+            const itensTecnicos = dadosTecnicos.split(/\n|;|\|/).map(item => item.trim()).filter(Boolean);
+
+            if (produto.statusCorrecaoIA === 'falha' && produto.erroCorrecaoIA) problemas.push(`Última tentativa automática: ${produto.erroCorrecaoIA}`);
+            if (PADRAO_TEXTO_GENERICO.test(resumo)) problemas.push('O resumo contém uma frase genérica e precisa ser refeito com características reais deste produto.');
+            if (resumo.length < 180) problemas.push(`O resumo tem ${resumo.length} caracteres; precisa ter pelo menos 180.`);
+            if (pros.length < 60) problemas.push(`Os pontos positivos têm ${pros.length} caracteres; precisam ter pelo menos 60.`);
+            if (contras.length < 60) problemas.push(`Os pontos de atenção têm ${contras.length} caracteres; precisam ter pelo menos 60.`);
+            if (dadosTecnicos.length < 120 || itensTecnicos.length < 3) problemas.push(`A ficha técnica tem ${dadosTecnicos.length} caracteres e ${itensTecnicos.length} item(ns); informe ao menos 3 características reais e 120 caracteres.`);
+            return problemas;
+        }
+
+        function ativarAbaProdutos(nomeAba) {
+            abaProdutosAtiva = ['publicados', 'revisao', 'indisponiveis', 'precos'].includes(nomeAba) ? nomeAba : 'revisao';
+            const publicadosAtivos = abaProdutosAtiva === 'publicados';
+            const revisaoAtiva = abaProdutosAtiva === 'revisao';
+            const indisponiveisAtivos = abaProdutosAtiva === 'indisponiveis';
+            const precosAtivos = abaProdutosAtiva === 'precos';
+            document.getElementById('tab-publicados').setAttribute('aria-selected', String(publicadosAtivos));
+            document.getElementById('tab-revisao').setAttribute('aria-selected', String(revisaoAtiva));
+            document.getElementById('tab-indisponiveis').setAttribute('aria-selected', String(indisponiveisAtivos));
+            document.getElementById('tab-precos').setAttribute('aria-selected', String(precosAtivos));
+            document.getElementById('painel-publicados').hidden = !publicadosAtivos;
+            document.getElementById('painel-revisao').hidden = !revisaoAtiva;
+            document.getElementById('painel-indisponiveis').hidden = !indisponiveisAtivos;
+            document.getElementById('painel-precos').hidden = !precosAtivos;
+        }
+
+        document.getElementById('tab-publicados').addEventListener('click', () => ativarAbaProdutos('publicados'));
+        document.getElementById('tab-revisao').addEventListener('click', () => ativarAbaProdutos('revisao'));
+        document.getElementById('tab-indisponiveis').addEventListener('click', () => ativarAbaProdutos('indisponiveis'));
+        document.getElementById('tab-precos').addEventListener('click', () => ativarAbaProdutos('precos'));
+        document.getElementById('btn-testar-lote').addEventListener('click', () => corrigirProdutosEmLote(3));
+        document.getElementById('btn-corrigir-lote').addEventListener('click', () => corrigirProdutosEmLote(0));
+        document.getElementById('btn-pausar-lote').addEventListener('click', () => {
+            pausaCorrecaoSolicitada = true;
+            document.getElementById('btn-pausar-lote').disabled = true;
+            document.getElementById('btn-pausar-lote').textContent = 'Pausando após este produto...';
+        });
+
+        function aguardar(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function mensagemErroCurta(erro) {
+            const mensagem = String(erro?.message || 'Não foi possível concluir a análise.').replace(/\s+/g, ' ').trim();
+            return mensagem.slice(0, 240);
+        }
+
+        function separarFatosCadastrados(valor) {
+            return String(valor || '').split(/\n|;|\||,(?=\s*[A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9])/)
+                .map(item => item.replace(/\s+/g, ' ').trim())
+                .filter(item => item.length >= 12);
+        }
+
+        function prepararFichaDoCadastro(produto) {
+            const fatos = [];
+            const adicionar = valor => {
+                if (PADRAO_TEXTO_GENERICO.test(String(valor || ''))) return;
+                separarFatosCadastrados(valor).forEach(fato => {
+                    const chave = fato.toLocaleLowerCase('pt-BR');
+                    if (!fatos.some(item => item.toLocaleLowerCase('pt-BR') === chave)) fatos.push(fato);
+                });
+            };
+
+            adicionar(produto.titulo);
+            String(produto.titulo || '').split(/\s+(?:com|cor|para)\s+|[,+/–—-]/i)
+                .map(item => item.trim()).filter(item => item.length >= 12)
+                .forEach(adicionar);
+            adicionar(produto.pros);
+            adicionar(produto.contras);
+
+            const comentarioAntigo = String(produto.comentario || '');
+            const trechoDepoisDoGenerico = comentarioAntigo.split(/chama aten[cç][aã]o por/i)[1] || '';
+            if (trechoDepoisDoGenerico && !/recursos descritos no próprio título/i.test(trechoDepoisDoGenerico)) {
+                adicionar(trechoDepoisDoGenerico.replace(/\.\.\.$|…$/g, ''));
+            }
+
+            const itens = fatos.slice(0, 18);
+            const texto = itens.join('\n').slice(0, 3000);
+            if (itens.length < 3 || texto.length < 120) {
+                throw new Error('O cadastro antigo não possui três fatos suficientes para uma análise segura.');
+            }
+            return { itens, texto };
+        }
+
+        function limitarTextoDireto(valor, limite) {
+            const texto = String(valor || '').replace(/\s+/g, ' ').trim();
+            if (texto.length <= limite) return texto;
+            const corte = texto.slice(0, limite - 1).replace(/\s+\S*$/, '').replace(/[,;:.-]+$/, '').trim();
+            return `${corte}…`;
+        }
+
+        function limparTrechoDireto(valor) {
+            return String(valor || '').replace(/\s+/g, ' ')
+                .replace(/^[,;:.\s-]+|[,;:\s-]+$/g, '').trim();
+        }
+
+        function expandirCampoDireto(valor, complemento, minimo = 60) {
+            let texto = PADRAO_TEXTO_GENERICO.test(String(valor || '')) ? '' : limparTrechoDireto(valor);
+            if (texto.length < minimo) texto = limparTrechoDireto(`${texto}${texto ? '. ' : ''}${complemento}`);
+            return limitarTextoDireto(texto, 300);
+        }
+
+        async function corrigirProdutoComDadosCadastrados(produto) {
+            const ficha = prepararFichaDoCadastro(produto);
+            const titulo = limparTrechoDireto(produto.titulo || 'Produto cadastrado');
+            const positivos = expandirCampoDireto(produto.pros, `Características informadas no cadastro: ${titulo}`);
+            const atencao = expandirCampoDireto(produto.contras, 'A ficha cadastrada não detalha outras limitações além das informações apresentadas');
+            const nomeResumo = limitarTextoDireto(titulo, 145).replace(/…$/, '');
+            const positivosResumo = limitarTextoDireto(positivos, 145).replace(/…$/, '');
+            const atencaoResumo = limitarTextoDireto(atencao, 130).replace(/…$/, '');
+            let comentario = `${nomeResumo}: ${positivosResumo}. Pontos de atenção registrados: ${atencaoResumo}.`;
+            if (comentario.length < 180) {
+                comentario += ' O resumo considera as características informadas no anúncio original e não representa teste prático do produto.';
+            }
+            comentario = limitarTextoDireto(comentario, 500);
+
+            return {
+                titulo,
+                comentario,
+                pros: positivos,
+                contras: atencao,
+                evidencias: ficha.itens.slice(0, 6).map(fonte => ({ afirmacao: fonte, fonte })),
+                dadosTecnicos: ficha.texto,
+                fonteConsultada: produto.link || produto.linkAfiliado || '',
+                metodo: 'reescrita_direta_dados_cadastrados'
+            };
+        }
+
+        async function corrigirProdutosEmLote(limite = 0) {
+            if (correcaoLoteEmAndamento) return;
+            if (!produtosRevisaoAtual.length) return alert('Não há produtos ocultos para corrigir.');
+            const quantidade = limite > 0 ? Math.min(limite, produtosRevisaoAtual.length) : produtosRevisaoAtual.length;
+            if (!confirm(`O painel corrigirá ${quantidade} produto(s), um por vez, usando os dados já cadastrados. Somente textos aprovados serão publicados. Deseja continuar?`)) return;
+
+            const fila = produtosRevisaoAtual.slice(0, quantidade).map(produto => ({ ...produto }));
+            const botao = document.getElementById('btn-corrigir-lote');
+            const botaoTeste = document.getElementById('btn-testar-lote');
+            const botaoPausar = document.getElementById('btn-pausar-lote');
+            const progresso = document.getElementById('progresso-lote');
+            const barra = document.getElementById('barra-correcao-lote');
+            const texto = document.getElementById('texto-correcao-lote');
+            const resumo = document.getElementById('resumo-correcao-lote');
+            let aprovados = 0;
+            let pendentes = 0;
+            let processados = 0;
+            let limiteTemporario = false;
+
+            correcaoLoteEmAndamento = true;
+            pausaCorrecaoSolicitada = false;
+            botao.disabled = true;
+            botaoTeste.disabled = true;
+            botao.textContent = '⚡ Correção direta em andamento...';
+            botaoPausar.style.display = 'inline-block';
+            botaoPausar.disabled = false;
+            botaoPausar.textContent = '⏸ Pausar';
+            progresso.style.display = 'block';
+            barra.max = fila.length;
+            barra.value = 0;
+
+            for (let indice = 0; indice < fila.length; indice++) {
+                if (pausaCorrecaoSolicitada) break;
+                const produto = fila[indice];
+                const urlFonte = produto.link || produto.linkAfiliado || '';
+                texto.textContent = `Analisando ${indice + 1} de ${fila.length}: ${produto.titulo || 'Produto sem título'}`;
+                resumo.textContent = `${aprovados} aprovado(s) • ${pendentes} ainda pendente(s)`;
+
+                try {
+                    let correcao;
+                    try {
+                        correcao = await corrigirProdutoComDadosCadastrados(produto);
+                    } catch (erroDadosCadastrados) {
+                        console.warn('Os dados cadastrados não foram suficientes; tentando a fonte pública.', erroDadosCadastrados);
+                        if (/(429|quota|resource.?exhausted|limite.*requisi|too many requests)/i.test(mensagemErroCurta(erroDadosCadastrados))) {
+                            throw erroDadosCadastrados;
+                        }
+                        try {
+                            correcao = await window.corrigirProdutoPelaFonte({
+                                titulo: produto.titulo || '',
+                                url: urlFonte
+                            });
+                        } catch (erroFonte) {
+                            throw new Error(`Dados cadastrados: ${mensagemErroCurta(erroDadosCadastrados)} | Fonte externa: ${mensagemErroCurta(erroFonte)}`);
+                        }
+                    }
+                    const atualizacao = {
+                        comentario: correcao.comentario,
+                        pros: correcao.pros,
+                        contras: correcao.contras,
+                        dadosTecnicos: correcao.dadosTecnicos,
+                        evidenciasIA: correcao.evidencias || [],
+                        fonteCorrecaoIA: correcao.fonteConsultada,
+                        metodoCorrecaoIA: correcao.metodo || 'fonte_publica',
+                        statusCorrecaoIA: 'aprovado',
+                        erroCorrecaoIA: firebase.firestore.FieldValue.delete(),
+                        autor: 'Equipe editorial Ranking da Compra',
+                        atualizadoEm: firebase.firestore.FieldValue.serverTimestamp()
+                    };
+                    const erroEditorial = validarConteudoEditorial({ ...produto, ...atualizacao });
+                    if (erroEditorial) throw new Error(erroEditorial);
+                    await db.collection('produtos').doc(produto.id).update(atualizacao);
+                    aprovados++;
+                } catch (erro) {
+                    const detalhe = mensagemErroCurta(erro);
+                    console.warn(`Correção automática não aprovada para ${produto.titulo}:`, erro);
+                    if (/(429|quota|resource.?exhausted|limite.*requisi|too many requests)/i.test(detalhe)) {
+                        limiteTemporario = true;
+                        texto.textContent = 'A IA atingiu um limite temporário. O progresso foi preservado.';
+                        break;
+                    }
+                    pendentes++;
+                    try {
+                        await db.collection('produtos').doc(produto.id).update({
+                            statusCorrecaoIA: 'falha',
+                            erroCorrecaoIA: detalhe,
+                            ultimaTentativaCorrecaoIA: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    } catch (erroRegistro) {
+                        console.warn('Não foi possível registrar a pendência da correção.', erroRegistro);
+                    }
+                }
+
+                processados++;
+                barra.value = processados;
+                resumo.textContent = `${aprovados} aprovado(s) • ${pendentes} ainda pendente(s)`;
+                if (indice < fila.length - 1) await aguardar(250);
+            }
+
+            correcaoLoteEmAndamento = false;
+            botao.disabled = false;
+            botaoTeste.disabled = false;
+            botao.textContent = '⚡ Continuar corrigindo os produtos ocultos';
+            botaoPausar.style.display = 'none';
+            botaoPausar.disabled = false;
+            barra.value = processados;
+
+            const parou = pausaCorrecaoSolicitada || limiteTemporario;
+            texto.textContent = parou
+                ? `Processo pausado. ${aprovados} produto(s) aprovado(s) nesta execução.`
+                : `Processo concluído. ${aprovados} produto(s) aprovado(s) nesta execução.`;
+            resumo.textContent = `${aprovados} publicado(s) • ${pendentes} mantido(s) em revisão`;
+            alert(parou
+                ? `Correção pausada com segurança.\n\n${aprovados} produto(s) foram corrigidos e publicados. Você pode continuar depois pelo mesmo botão.`
+                : `Correção concluída.\n\n${aprovados} produto(s) foram corrigidos e publicados.\n${pendentes} produto(s) permaneceram na revisão porque a fonte não trouxe dados suficientes.`);
+        }
+
+        function cartaoProdutoPublicado(doc) {
+            const prod = doc.data();
+            return `
+                <div class="item-admin">
+                    <div class="item-admin-conteudo">
+                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span>${prod.promocaoAtiva ? '<span class="status-promocao">PROMOÇÃO MARCADA</span>' : ''}</div>
+                        <span class="status-publicado">✓ Visível na vitrine pública</span>
+                    </div>
+                    <div class="acoes">
+                        <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')" aria-label="Editar ${escapeHtml(prod.titulo || 'produto')}">✎ Editar</button>
+                        <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')" aria-label="Excluir ${escapeHtml(prod.titulo || 'produto')}">X</button>
+                    </div>
+                </div>`;
+        }
+
+        function cartaoProdutoRevisao(doc) {
+            const prod = doc.data();
+            const problemas = problemasProduto(prod);
+            return `
+                <div class="item-admin item-revisao">
+                    <span class="icone-atencao" aria-hidden="true">!</span>
+                    <div class="item-admin-conteudo">
+                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span></div>
+                        <span class="rotulo-oculto">Oculto da vitrine</span>
+                        <ul class="lista-problemas">${problemas.map(problema => `<li>${escapeHtml(problema)}</li>`).join('')}</ul>
+                    </div>
+                    <div class="acoes">
+                        <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')" aria-label="Corrigir ${escapeHtml(prod.titulo || 'produto')}">✎ Corrigir</button>
+                        <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')" aria-label="Excluir ${escapeHtml(prod.titulo || 'produto')}">X</button>
+                    </div>
+                </div>`;
+        }
+
+        function cartaoProdutoIndisponivel(doc) {
+            const prod = doc.data();
+            const status = statusMercadoLivreAdmin[doc.id] || {};
+            const motivos = {
+                closed: 'O anúncio foi encerrado no Mercado Livre.',
+                paused: 'O anúncio está pausado no Mercado Livre.',
+                under_review: 'O anúncio está em revisão no Mercado Livre.',
+                not_found: 'O anúncio não foi mais encontrado no Mercado Livre.',
+            };
+            const motivo = motivos[status.status]
+                || (status.available === false ? 'O anúncio está sem estoque ou indisponível.' : 'A oferta não está disponível.');
+            const preco = Number(status.price) > 0
+                ? Number(status.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                : 'Preço indisponível';
+            return `
+                <div class="item-admin item-indisponivel">
+                    <span class="icone-atencao" aria-hidden="true">!</span>
+                    <div class="item-admin-conteudo">
+                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span></div>
+                        <span class="status-indisponivel">Oculto automaticamente</span>
+                        <p class="detalhe-indisponivel">${escapeHtml(motivo)} Último preço consultado: ${escapeHtml(preco)}. O produto voltará à vitrine automaticamente se o anúncio ficar ativo novamente.</p>
+                    </div>
+                    <div class="acoes">
+                        <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')" aria-label="Alterar anúncio de ${escapeHtml(prod.titulo || 'produto')}">✎ Alterar link</button>
+                        <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')" aria-label="Excluir ${escapeHtml(prod.titulo || 'produto')}">X</button>
+                    </div>
+                </div>`;
+        }
+
+        function numeroPreco(valor) {
+            const texto = String(valor ?? '').replace(/[^0-9,.-]/g, '').trim();
+            if (!texto) return null;
+            const normalizado = texto.includes(',') ? texto.replace(/\./g, '').replace(',', '.') : texto;
+            const numero = Number(normalizado);
+            return Number.isFinite(numero) && numero > 0 ? numero : null;
+        }
+
+        function formatarPrecoCampo(valor) {
+            return Number(valor).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function campoPrecoExibido(produto) {
+            return produto.promocaoAtiva ? 'precoPromocional' : 'preco';
+        }
+
+        function millisDataFirebase(valor) {
+            if (!valor) return 0;
+            if (typeof valor.toMillis === 'function') return valor.toMillis();
+            if (typeof valor.seconds === 'number') return valor.seconds * 1000;
+            const convertido = Date.parse(valor);
+            return Number.isFinite(convertido) ? convertido : 0;
+        }
+
+        function formatarDataHoraPreco(valor) {
+            const millis = typeof valor === 'number' ? valor : Date.parse(valor || '');
+            if (!Number.isFinite(millis) || millis <= 0) return 'não informada';
+            return new Date(millis).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+        }
+
+        function diagnosticoPreco(doc) {
+            const produto = doc.data();
+            const status = statusMercadoLivreAdmin[doc.id] || null;
+            const campo = campoPrecoExibido(produto);
+            const precoSite = numeroPreco(produto[campo]);
+            const precoAutomatico = Number(status?.price) > 0 ? Number(status.price) : null;
+            const revisaoManualEm = millisDataFirebase(produto.precoAtualizadoManualmenteEm);
+            const manualRecente = revisaoManualEm > Date.now() - (24 * 60 * 60 * 1000);
+            const consultaEm = Date.parse(status?.checkedAt || statusMercadoLivreAtualizadoEm || '');
+            const motivos = [];
+
+            if (!precoSite) motivos.push('O preço exibido no site está vazio ou inválido.');
+            if (precoAutomatico && (!precoSite || Math.abs(precoAutomatico - precoSite) >= 0.01)) {
+                motivos.push(`Diferença encontrada: site R$ ${precoSite ? formatarPrecoCampo(precoSite) : 'sem preço'}; Mercado Livre R$ ${formatarPrecoCampo(precoAutomatico)}.`);
+            } else if (!manualRecente) {
+                if (!status || status.managed === false || status.status === 'missing_item_id' || !status.itemId) {
+                    motivos.push('O link não contém um código de anúncio MLB identificável; a automação não consegue consultar esse item.');
+                } else if (status.lastError) {
+                    motivos.push(`A última consulta automática falhou: ${String(status.lastError).slice(0, 220)}`);
+                } else if (!Number.isFinite(consultaEm) || Date.now() - consultaEm > 4 * 60 * 60 * 1000) {
+                    motivos.push('A última confirmação automática tem mais de 4 horas.');
+                } else if (!precoAutomatico) {
+                    motivos.push('A consulta automática não retornou um preço que pudesse ser confirmado.');
+                }
+            }
+
+            return { pendente: motivos.length > 0, motivos, campo, precoSite, precoAutomatico, consultaEm, revisaoManualEm, manualRecente };
+        }
+
+        function cartaoProdutoPreco(doc) {
+            const produto = doc.data();
+            const diagnostico = diagnosticoPreco(doc);
+            const valorSugerido = diagnostico.precoAutomatico || diagnostico.precoSite || '';
+            const rotuloCampo = diagnostico.campo === 'precoPromocional' ? 'Preço promocional correto' : 'Preço correto';
+            const precoSite = diagnostico.precoSite ? `R$ ${formatarPrecoCampo(diagnostico.precoSite)}` : 'não informado';
+            const precoMercadoLivre = diagnostico.precoAutomatico ? `R$ ${formatarPrecoCampo(diagnostico.precoAutomatico)}` : 'não confirmado';
+            const linkOferta = produto.link || produto.linkAfiliado || '';
+            return `
+                <div class="item-admin item-preco">
+                    <span class="icone-atencao" aria-hidden="true">!</span>
+                    <div class="item-admin-conteudo">
+                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(produto.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(produto.titulo || 'Produto sem título')}</span></div>
+                        <span class="status-preco">Conferência de preço</span>
+                        <p class="detalhe-preco">Preço no site: <strong>${escapeHtml(precoSite)}</strong> · Consulta automática: <strong>${escapeHtml(precoMercadoLivre)}</strong></p>
+                        <ul class="lista-problemas">${diagnostico.motivos.map(motivo => `<li>${escapeHtml(motivo)}</li>`).join('')}</ul>
+                        <p class="detalhe-preco">Última confirmação automática: ${escapeHtml(formatarDataHoraPreco(diagnostico.consultaEm))}. A correção manual vale como conferida por 24 horas.</p>
+                        ${linkOferta ? `<a href="${escapeHtml(linkOferta)}" target="_blank" rel="noopener noreferrer">Abrir oferta para conferir</a>` : ''}
+                    </div>
+                    <div class="correcao-preco">
+                        <div class="campo-preco-manual">
+                            <label for="preco-manual-${doc.id}">${escapeHtml(rotuloCampo)}</label>
+                            <input type="text" inputmode="decimal" id="preco-manual-${doc.id}" value="${valorSugerido ? escapeHtml(formatarPrecoCampo(valorSugerido)) : ''}" placeholder="Ex.: 149,90">
+                        </div>
+                        <button type="button" class="btn-preco" onclick="salvarPrecoManual('${doc.id}')">Salvar preço</button>
+                        <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')">Editar completo</button>
+                    </div>
+                </div>`;
+        }
+
+        async function salvarPrecoManual(id) {
+            const campoEntrada = document.getElementById(`preco-manual-${id}`);
+            const numero = numeroPreco(campoEntrada?.value);
+            if (!numero) return alert('Informe um preço válido, por exemplo: 149,90.');
+            const botao = campoEntrada.closest('.correcao-preco')?.querySelector('.btn-preco');
+            if (botao) { botao.disabled = true; botao.textContent = 'Salvando...'; }
+            try {
+                const referencia = db.collection('produtos').doc(id);
+                const documento = await referencia.get();
+                if (!documento.exists) throw new Error('Produto não encontrado.');
+                const produto = documento.data();
+                const campo = campoPrecoExibido(produto);
+                await referencia.update({
+                    [campo]: formatarPrecoCampo(numero),
+                    precoAtualizadoManualmente: true,
+                    precoAtualizadoManualmenteEm: firebase.firestore.FieldValue.serverTimestamp(),
+                    atualizadoEm: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert('Preço atualizado. O item ficará marcado como conferido manualmente pelas próximas 24 horas.');
+            } catch (erro) {
+                console.error(erro);
+                alert('Não foi possível salvar o preço: ' + String(erro?.message || erro));
+            } finally {
+                if (botao) { botao.disabled = false; botao.textContent = 'Salvar preço'; }
+            }
+        }
+
+        function carregarProdutos() {
+            db.collection("produtos").orderBy("dataCadastro", "desc").onSnapshot(snapshot => {
+                statusMercadoLivreAdminPronto.then(() => {
+                    const publicados = [];
+                    const revisao = [];
+                    const indisponiveis = [];
+                    const precosPendentes = [];
+                    snapshot.forEach(doc => {
+                        const status = statusMercadoLivreAdmin[doc.id];
+                        if (status?.visible === false) indisponiveis.push(doc);
+                        else if (produtoOcultoNaVitrine(doc.data())) revisao.push(doc);
+                        else publicados.push(doc);
+                        if (status?.visible !== false && diagnosticoPreco(doc).pendente) precosPendentes.push(doc);
+                    });
+
+                    precosPendentes.sort((a, b) => {
+                        const da = diagnosticoPreco(a);
+                        const dbPreco = diagnosticoPreco(b);
+                        return Number(Boolean(dbPreco.precoAutomatico)) - Number(Boolean(da.precoAutomatico));
+                    });
+                    document.getElementById('contagem-publicados').textContent = publicados.length;
+                    document.getElementById('contagem-revisao').textContent = revisao.length;
+                    document.getElementById('contagem-indisponiveis').textContent = indisponiveis.length;
+                    document.getElementById('contagem-precos').textContent = precosPendentes.length;
+                    produtosRevisaoAtual = revisao.map(doc => ({ id: doc.id, ...doc.data() }));
+                    produtosPrecoPendenteAtual = precosPendentes.map(doc => ({ id: doc.id, ...doc.data() }));
+                    document.getElementById('itens-lista').innerHTML = publicados.length
+                        ? publicados.map(cartaoProdutoPublicado).join('')
+                        : '<div class="estado-lista">Nenhum produto publicado no momento.</div>';
+                    document.getElementById('itens-revisao').innerHTML = revisao.length
+                        ? revisao.map(cartaoProdutoRevisao).join('')
+                        : '<div class="estado-lista">✅ Tudo certo: nenhum produto oculto precisa de revisão.</div>';
+                    document.getElementById('itens-indisponiveis').innerHTML = indisponiveis.length
+                        ? indisponiveis.map(cartaoProdutoIndisponivel).join('')
+                        : '<div class="estado-lista">✅ Nenhum anúncio encerrado ou sem estoque.</div>';
+                    document.getElementById('itens-precos').innerHTML = precosPendentes.length
+                        ? precosPendentes.map(cartaoProdutoPreco).join('')
+                        : '<div class="estado-lista">✅ Todos os preços foram confirmados automaticamente ou revisados manualmente nas últimas 24 horas.</div>';
+                    const totalRelatorio = Object.keys(statusMercadoLivreAdmin).length;
+                    document.getElementById('resumo-precos').innerHTML = `<strong>Última tentativa automática:</strong> ${escapeHtml(formatarDataHoraPreco(statusMercadoLivreAtualizadoEm))}. <strong>Itens no relatório:</strong> ${totalRelatorio}. <strong>Precisam de conferência:</strong> ${precosPendentes.length}. Ao salvar um preço, o produto fica marcado como revisado manualmente por 24 horas.`;
+                    ativarAbaProdutos(abaProdutosAtiva);
+                });
+            }, error => {
+                console.error(error);
+                alert('Erro ao carregar produtos: ' + error.message);
+            });
+        }
+
+        function editarProduto(id) {
+            db.collection("produtos").doc(id).get().then(doc => {
+                if (doc.exists) {
+                    const prod = doc.data();
+                    document.getElementById('categoria').value = prod.categoria;
+                    document.getElementById('selo').value = prod.selo || "";
+                    document.getElementById('titulo').value = prod.titulo;
+                    document.getElementById('preco').value = prod.preco || "";
+                    document.getElementById('nota').value = prod.nota || "4.8";
+                    document.getElementById('ranking').value = prod.ranking || "10";
+                    document.getElementById('promocaoAtiva').checked = prod.promocaoAtiva === true;
+                    document.getElementById('precoAnterior').value = prod.precoAnterior || "";
+                    document.getElementById('precoPromocional').value = prod.precoPromocional || "";
+                    document.getElementById('promocaoValidaAte').value = prod.promocaoValidaAte || "";
+                    document.getElementById('link').value = prod.link;
+                    document.getElementById('linkAfiliado').value = prod.linkAfiliado || ""; // PUXANDO LINK DE AFILIADO
+                    document.getElementById('foto').value = prod.foto;
+                    document.getElementById('comentario').value = prod.comentario;
+                    document.getElementById('pros').value = prod.pros || "";
+                    document.getElementById('contras').value = prod.contras || "";
+                    document.getElementById('dados-tecnicos-manual').value = prod.dadosTecnicos || "";
+                    document.getElementById('texto-ia-paste').value = '';
+
+                    editProdId = id;
+                    document.getElementById('btn-submit-prod').innerText = "💾 Salvar Edição";
+                    window.scrollTo(0, document.getElementById('formProduto').offsetTop - 20);
+                }
+            });
+        }
+
+        function deletarProduto(id) {
+            if(confirm("Apagar este produto?")) db.collection("produtos").doc(id).delete();
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+    <meta name="referrer" content="same-origin">
+    <title>Painel administrativo | Ranking da Compra</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
+        .painel { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 650px; margin: 0 auto 30px auto; }
+        h2 { text-align: center; border-bottom: 2px solid #ffe600; padding-bottom: 10px; margin-top:0; color: #2d3277;}
+        
+        .row { display: flex; gap: 15px; flex-wrap: wrap;}
+        .col { flex: 1; min-width: 150px;}
+        .campo { margin-bottom: 15px; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 13px; color: #444;}
+        input, textarea, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: inherit; font-size: 14px;}
+        
+        .btn-salvar { width: 100%; background-color: #00a650; color: white; border: none; padding: 15px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 10px; font-size: 16px; transition: 0.3s;}
+        .btn-salvar:hover { background-color: #008a42;}
+        .btn-categoria { background-color: #2d3277; }
+        .btn-categoria:hover { background-color: #1a1e4d; }
+        .btn-login { background-color: #3483fa; }
+        .btn-sair { background-color: #f23d4f; margin-top: 20px;}
+        .metricas-visitas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+        .metrica-visita { background: #f3f8ff; border: 1px solid #cdddf7; border-radius: 8px; padding: 16px; text-align: center; }
+        .metrica-visita strong { display: block; color: #2d3277; font-size: 28px; margin-bottom: 4px; }
+        .metrica-visita span { color: #555; font-size: 12px; font-weight: 600; }
+        .ajuda-metrica { color: #666; font-size: 12px; line-height: 1.45; }
+        @media (max-width: 520px) { .metricas-visitas { grid-template-columns: 1fr; } }
+        
+        /* Botão Magico do ML */
+        .btn-magico { background-color: #ffe600; color: #2d3277; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 5px; display: inline-block; width: 100%;}
+        .btn-magico:hover { background-color: #e6cf00; }
+        
+        /* Caixas de Destaque */
+        .caixa-amarela { background: #fff3cd; border: 2px dashed #ffe600; padding: 15px; border-radius: 8px; margin-bottom: 15px;}
+        .caixa-azul { background: #e6f0ff; border: 2px dashed #3483fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;}
+        .caixa-verde { background: #edf9f0; border: 2px dashed #00a650; padding: 15px; border-radius: 8px; margin-bottom: 15px;}
+        .caixa-promocao { background: #fff8dc; border: 2px solid #f0c419; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .linha-promocao { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+        .linha-promocao input { width: auto; min-width: 18px; height: 18px; }
+        .linha-promocao label { margin: 0; font-size: 14px; color: #5d4600; }
+        .ajuda-promocao { display: block; color: #6b5b27; font-size: 12px; line-height: 1.45; margin-top: 2px; }
+        .status-promocao { display: inline-block; margin: 6px 0 0 7px; padding: 3px 7px; border-radius: 999px; background: #d83b2d; color: white; font-size: 11px; font-weight: 800; }
+        
+        .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
+        .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
+        .cat-miniatura { width: 42px; height: 42px; border-radius: 6px; object-fit: cover; vertical-align: middle; margin-right: 8px; border: 1px solid #ddd; background: #fff; }
+        .ajuda-categoria { margin: -7px 0 12px; color: #666; font-size: 12px; }
+        .badge-cat { background: #ffe600; color: #333; padding: 4px 8px; border-radius: 4px; font-size: 11px; margin-right: 10px; font-weight: bold;}
+        .acoes { display: flex; gap: 8px; }
+        .btn-edit { background: #ffc107; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
+        .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
+
         .abas-produtos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0 16px; }
         .aba-produto { border: 1px solid #cfd4da; background: #f5f6f8; color: #333; border-radius: 8px; padding: 11px 8px; cursor: pointer; font-weight: 700; font-size: 13px; }
         .aba-produto:hover { border-color: #2d3277; }
