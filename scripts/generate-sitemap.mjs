@@ -1,10 +1,11 @@
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
-const SHARE_VERSION = "20260727-2";
+const SHARE_VERSION = "20260728-3";
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const CATEGORY_ALIASES = new Map([
   ["patineteelétrica", "parafusadeira-eletrica"],
@@ -87,6 +88,75 @@ function absoluteImage(value) {
   }
 }
 
+
+function imageMime(extension) {
+  return extension === "png" ? "image/png" : "image/jpeg";
+}
+
+async function fileExists(filePath) {
+  try {
+    await access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function cacheProductImage(product, imageDirectory) {
+  const source = absoluteImage(product.foto);
+  const fallback = `${SITE}og-ranking-da-compra.png`;
+  if (source === fallback) return { url: source, mime: "image/png", fileName: "" };
+
+  let extension;
+  try {
+    const match = new URL(source).pathname.match(/\.(jpe?g|png)$/i);
+    if (!match) return { url: source, mime: "image/jpeg", fileName: "" };
+    extension = match[1].toLowerCase().replace("jpeg", "jpg");
+  } catch {
+    return { url: fallback, mime: "image/png", fileName: "" };
+  }
+
+  const hash = createHash("sha256").update(source).digest("hex").slice(0, 12);
+  const fileName = `${product.id}-${hash}.${extension}`;
+  const filePath = resolve(imageDirectory, fileName);
+  if (!(await fileExists(filePath))) {
+    try {
+      const response = await fetch(source, {
+        headers: { "User-Agent": "RankingDaCompra-SocialImage/1.0" },
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const contentType = String(response.headers.get("content-type") || "").split(";")[0];
+      if (!contentType.startsWith("image/")) throw new Error(`tipo inválido: ${contentType || "desconhecido"}`);
+      if (extension === "jpg" && contentType !== "image/jpeg") throw new Error(`esperado JPEG, recebido ${contentType}`);
+      if (extension === "png" && contentType !== "image/png") throw new Error(`esperado PNG, recebido ${contentType}`);
+      const bytes = new Uint8Array(await response.arrayBuffer());
+      if (!bytes.length || bytes.length > 5 * 1024 * 1024) throw new Error("tamanho de imagem inválido");
+      await writeFile(filePath, bytes);
+    } catch (error) {
+      console.warn(`Foto social não armazenada para ${product.id}: ${error.message}`);
+      return { url: source, mime: imageMime(extension), fileName: "" };
+    }
+  }
+
+  return {
+    url: `${SITE}produto/imagens/${fileName}?v=${SHARE_VERSION}`,
+    mime: imageMime(extension),
+    fileName,
+  };
+}
+
+async function cacheProductImages(products, imageDirectory) {
+  const images = new Map();
+  const concurrency = 8;
+  for (let index = 0; index < products.length; index += concurrency) {
+    const batch = products.slice(index, index + concurrency);
+    await Promise.all(batch.map(async (product) => {
+      images.set(product.id, await cacheProductImage(product, imageDirectory));
+    }));
+  }
+  return images;
+}
+
 function productDetailUrl(product) {
   return `${SITE}?produto=${encodeURIComponent(product.id)}`;
 }
@@ -95,11 +165,12 @@ function productShareUrl(product) {
   return `${SITE}produto/${encodeURIComponent(product.id)}.html?v=${SHARE_VERSION}`;
 }
 
-function renderSharePage(product) {
+function renderSharePage(product, socialImage) {
   const title = String(product.titulo || "Produto recomendado").replace(/\s+/g, " ").trim();
   const description = String(product.comentario || "Confira a análise no Ranking da Compra.")
     .replace(/\s+/g, " ").trim().slice(0, 240);
-  const image = absoluteImage(product.foto);
+  const image = socialImage?.url || absoluteImage(product.foto);
+  const imageType = socialImage?.mime || "image/jpeg";
   const detailUrl = productDetailUrl(product);
   const shareUrl = productShareUrl(product);
   const redirectJson = JSON.stringify(detailUrl).replace(/</g, "\\u003c");
@@ -121,6 +192,7 @@ function renderSharePage(product) {
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:image" content="${escapeHtml(image)}">
   <meta property="og:image:secure_url" content="${escapeHtml(image)}">
+  <meta property="og:image:type" content="${escapeHtml(imageType)}">
   <meta property="og:image:alt" content="Foto de ${escapeHtml(title)}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(title)}">
@@ -203,14 +275,41 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.s
 await writeFile(resolve("sitemap.xml"), xml, "utf8");
 
 const productDirectory = resolve("produto");
-await rm(productDirectory, { recursive: true, force: true });
-await mkdir(productDirectory, { recursive: true });
-for (const product of products) {
-  if (!/^[A-Za-z0-9_-]+$/.test(product.id)) {
-    console.warn(`Página social ignorada por ID inválido: ${product.id}`);
-    continue;
-  }
-  await writeFile(resolve(productDirectory, `${product.id}.html`), renderSharePage(product), "utf8");
+const imageDirectory = resolve(productDirectory, "imagens");
+await mkdir(imageDirectory, { recursive: true });
+
+const validProducts = products.filter((product) => {
+  const valid = /^[A-Za-z0-9_-]+$/.test(product.id);
+  if (!valid) console.warn(`Página social ignorada por ID inválido: ${product.id}`);
+  return valid;
+});
+const socialImages = await cacheProductImages(validProducts, imageDirectory);
+const expectedPages = new Set();
+for (const product of validProducts) {
+  const fileName = `${product.id}.html`;
+  expectedPages.add(fileName);
+  await writeFile(
+    resolve(productDirectory, fileName),
+    renderSharePage(product, socialImages.get(product.id)),
+    "utf8",
+  );
 }
 
-console.log(`Sitemap e páginas sociais atualizados: ${urls.length} URLs (${products.length} produtos e ${categories.length} categorias).`);
+for (const entry of await readdir(productDirectory, { withFileTypes: true })) {
+  if (entry.isFile() && entry.name.endsWith(".html") && !expectedPages.has(entry.name)) {
+    await rm(resolve(productDirectory, entry.name), { force: true });
+  }
+}
+const expectedImages = new Set(
+  [...socialImages.values()].map((image) => image.fileName).filter(Boolean),
+);
+for (const entry of await readdir(imageDirectory, { withFileTypes: true })) {
+  if (entry.isFile() && !expectedImages.has(entry.name)) {
+    await rm(resolve(imageDirectory, entry.name), { force: true });
+  }
+}
+
+const locallyHostedImages = expectedImages.size;
+console.log(
+  `Sitemap e páginas sociais atualizados: ${urls.length} URLs (${products.length} produtos, ${categories.length} categorias e ${locallyHostedImages} fotos locais).`,
+);
