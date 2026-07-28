@@ -207,7 +207,7 @@ function renderSharePage(product, socialImage) {
     <p>${escapeHtml(description)}</p>
     <a href="${escapeHtml(detailUrl)}">Ver análise e oferta</a>
   </main>
-  <script>location.replace(${redirectJson});</script>
+  <script>(()=>{const destino=new URL(${redirectJson});const entrada=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_content'].forEach(chave=>{const valor=entrada.get(chave);if(valor)destino.searchParams.set(chave,valor)});location.replace(destino.href)})();</script>
 </body>
 </html>
 `;
