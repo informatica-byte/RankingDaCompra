@@ -1,4 +1,4 @@
-import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+const SHARE_VERSION = "20260730-3";import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 
