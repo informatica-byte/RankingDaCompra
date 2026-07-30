@@ -1,11 +1,11 @@
-const SHARE_VERSION = "20260730-3";import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
-const SHARE_VERSION = "20260730-2";
+const SHARE_VERSION = "20260730-3";
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const CATEGORY_ALIASES = new Map([
   ["patineteelétrica", "parafusadeira-eletrica"],
