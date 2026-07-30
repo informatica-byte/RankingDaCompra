@@ -44,6 +44,12 @@
         .linha-promocao label { margin: 0; font-size: 14px; color: #5d4600; }
         .ajuda-promocao { display: block; color: #6b5b27; font-size: 12px; line-height: 1.45; margin-top: 2px; }
         .status-promocao { display: inline-block; margin: 6px 0 0 7px; padding: 3px 7px; border-radius: 999px; background: #d83b2d; color: white; font-size: 11px; font-weight: 800; }
+        .caixa-relampago { background: #17130a; border: 2px solid #ffd21a; color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .caixa-relampago .linha-promocao label { color: #ffd21a; }
+        .caixa-relampago label { color: white; }
+        .caixa-relampago small { display: block; color: #eadfba; line-height: 1.45; }
+        .caixa-relampago input[type="datetime-local"] { background: white; color: #17130a; }
+        .status-relampago { display: inline-block; margin: 6px 0 0 7px; padding: 3px 8px; border-radius: 999px; background: #ffd21a; color: #17130a; font-size: 11px; font-weight: 900; }
         
         .lista-admin { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;}
         .item-admin { display: flex; justify-content: space-between; padding: 12px; background: #f9f9f9; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 6px; align-items: center; font-size: 14px;}
@@ -232,6 +238,15 @@
                         <div class="col campo"><label for="promocaoValidaAte">Válida até:</label><input type="date" id="promocaoValidaAte"></div>
                     </div>
                     <small class="ajuda-promocao">Ative somente após conferir a oferta no vendedor. O produto sairá automaticamente da seção quando a validade terminar. O preço anterior precisa ser maior que o promocional.</small>
+                </div>
+
+                <div class="caixa-relampago">
+                    <div class="linha-promocao">
+                        <input type="checkbox" id="ofertaRelampagoAtiva">
+                        <label for="ofertaRelampagoAtiva"><b>⚡ Exibir como “Oferta Relâmpago”</b></label>
+                    </div>
+                    <div class="campo"><label for="ofertaRelampagoTerminaEm">Horário verdadeiro de término:</label><input type="datetime-local" id="ofertaRelampagoTerminaEm" step="60"></div>
+                    <small>O sistema tentará obter o horário pela API do Mercado Livre. Use este campo quando a API não liberar a promoção de terceiros. O contador nunca reinicia e a oferta desaparece automaticamente ao zerar.</small>
                 </div>
 
                 <div class="campo"><label>URL da Imagem:</label><input type="url" id="foto" required></div>
@@ -882,36 +897,39 @@ function moedaCentral(valor){return numeroPrecoPromocao(valor).toLocaleString('p
 function descontoCentral(produto){const anterior=numeroPrecoPromocao(produto?.precoAnterior),atual=numeroPrecoPromocao(produto?.precoPromocional);return anterior>atual&&atual>0?Math.round((1-atual/anterior)*100):0}
 
 function promocaoValidaCentral(produto){if(!produto?.promocaoAtiva||!descontoCentral(produto))return false;const validade=new Date(`${String(produto.promocaoValidaAte||'').slice(0,10)}T23:59:59-03:00`);return !Number.isNaN(validade.getTime())&&validade.getTime()>=Date.now()}
+function fimRelampagoCentral(produto){const status=statusMercadoLivreAdmin[String(produto?.id||'')]||{},valor=status.lightningActive===true?status.lightningEndsAt:produto?.ofertaRelampagoTerminaEm,data=new Date(valor||'');return Number.isNaN(data.getTime())?null:data}
+function relampagoAtivoCentral(produto){const status=statusMercadoLivreAdmin[String(produto?.id||'')]||{},fim=fimRelampagoCentral(produto);return (status.lightningActive===true||produto?.ofertaRelampagoAtiva===true)&&fim&&fim.getTime()>Date.now()&&descontoCentral(produto)>0}
+function campanhaValidaCentral(produto){return relampagoAtivoCentral(produto)||promocaoValidaCentral(produto)}
 
 function linkAfiliadoValidoCentral(produto){try{const afiliado=new URL(String(produto?.linkAfiliado||'')),fonte=String(produto?.link||'').trim();return /^https?:$/.test(afiliado.protocol)&&afiliado.href!==fonte&&/mercado(?:livre|libre)|meli\.la/i.test(afiliado.hostname+afiliado.pathname)}catch{return false}}
 
 function precoAtualCentral(produto){const status=statusMercadoLivreAdmin[String(produto?.id||'')]||{};if(status.visible===false)return false;const atualizado=Math.max(dataMsCentral(status.checkedAt||status.updatedAt),dataMsCentral(produto?.precoAtualizadoManualmenteEm),dataMsCentral(statusMercadoLivreAtualizadoEm));return atualizado>0&&Date.now()-atualizado<=30*60*60*1000}
 
-function pontuacaoOfertaCentral(produto){return descontoCentral(produto)*3+(Number(produto?.nota)||0)*5+(linkAfiliadoValidoCentral(produto)?18:0)+(precoAtualCentral(produto)?15:0)-(statusMercadoLivreAdmin[String(produto?.id||'')]?.visible===false?1000:0)}
+function pontuacaoOfertaCentral(produto){return descontoCentral(produto)*3+(Number(produto?.nota)||0)*5+(linkAfiliadoValidoCentral(produto)?18:0)+(precoAtualCentral(produto)?15:0)+(relampagoAtivoCentral(produto)?35:0)-(statusMercadoLivreAdmin[String(produto?.id||'')]?.visible===false?1000:0)}
 
-function melhoresOfertasCentral(){return produtosCentralAtual.filter(promocaoValidaCentral).filter(produto=>statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).sort((a,b)=>pontuacaoOfertaCentral(b)-pontuacaoOfertaCentral(a)).slice(0,3)}
+function melhoresOfertasCentral(){return produtosCentralAtual.filter(campanhaValidaCentral).filter(produto=>statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).sort((a,b)=>pontuacaoOfertaCentral(b)-pontuacaoOfertaCentral(a)).slice(0,3)}
 
 const SHARE_VERSION_CENTRAL='20260730-2';
 
 function urlCampanhaCentral(produto,canal){const url=new URL(`produto/${encodeURIComponent(produto.id)}-${SHARE_VERSION_CENTRAL}.html`,'https://rankingdacompra.com.br/');url.searchParams.set('utm_source',canal||'painel');url.searchParams.set('utm_medium','social');url.searchParams.set('utm_campaign','ofertas_do_dia');url.searchParams.set('utm_content',String(produto.id));return url.href}
 
-function textoPadraoCentral(produto){const desconto=descontoCentral(produto),fato=String(produto.pros||produto.comentario||'').split(/,|\n|;/).map(item=>item.trim()).find(Boolean)||'';return `🔥 ${produto.titulo}\nDe ${moedaCentral(produto.precoAnterior)} por ${moedaCentral(produto.precoPromocional)} (-${desconto}%).${fato?`\n✅ ${fato}`:''}\nConfira o preço, o frete e o estoque antes de comprar:`}
+function textoPadraoCentral(produto){const desconto=descontoCentral(produto),fato=String(produto.pros||produto.comentario||'').split(/,|\n|;/).map(item=>item.trim()).find(Boolean)||'',inicio=relampagoAtivoCentral(produto)?'⚡ Oferta relâmpago':'🔥 Promoção do dia';return `${inicio}: ${produto.titulo}\nDe ${moedaCentral(produto.precoAnterior)} por ${moedaCentral(produto.precoPromocional)} (-${desconto}%).${fato?`\n✅ ${fato}`:''}\nConfira o preço, o frete e o estoque antes de comprar:`}
 
 function statusOfertaCentral(produto){const avisos=[];if(!precoAtualCentral(produto))avisos.push('preço precisa de conferência');if(!linkAfiliadoValidoCentral(produto))avisos.push('link comum ou afiliado não identificado');return avisos}
 
 function metricasProdutoCentral(id){const hoje=dataBrasil(),inicioData=new Date();inicioData.setDate(inicioData.getDate()-6);const inicio=dataBrasil(inicioData),eventos=metricasCentralAtual.filter(item=>String(item.produtoId||'')===String(id));return {hoje:eventos.filter(item=>item.tipo==='clique_oferta'&&item.dia===hoje).length,semana:eventos.filter(item=>item.tipo==='clique_oferta'&&item.dia>=inicio&&item.dia<=hoje).length,compartilhamentos:eventos.filter(item=>item.tipo==='compartilhamento'&&item.dia>=inicio&&item.dia<=hoje).length}}
 
-function cartaoOfertaCentral(produto,indice){if(!textosCampanhaCentral[produto.id])textosCampanhaCentral[produto.id]=textoPadraoCentral(produto);const metricas=metricasProdutoCentral(produto.id),avisos=statusOfertaCentral(produto),canal='whatsapp',link=urlCampanhaCentral(produto,canal);return `<article class="campanha-card" data-campanha-card="${escapeHtml(produto.id)}"><div class="campanha-posicao">#${indice+1} recomendada</div><div class="campanha-topo"><img src="${escapeHtml(produto.foto||'')}" alt="${escapeHtml(produto.titulo||'Produto')}"><div><span class="campanha-desconto">-${descontoCentral(produto)}%</span><h4>${escapeHtml(produto.titulo||'Produto')}</h4><p><s>${escapeHtml(moedaCentral(produto.precoAnterior))}</s> <strong>${escapeHtml(moedaCentral(produto.precoPromocional))}</strong></p></div></div><div class="campanha-status ${avisos.length?'campanha-alerta':'campanha-ok'}">${avisos.length?`⚠️ ${escapeHtml(avisos.join(' · '))}`:'✓ Preço e link prontos para divulgar'}</div><div class="campanha-mini-metricas"><span><b>${metricas.hoje}</b> cliques hoje</span><span><b>${metricas.semana}</b> em 7 dias</span><span><b>${metricas.compartilhamentos}</b> compartilhamentos</span></div><label>Texto da campanha</label><textarea id="campanha-texto-${escapeHtml(produto.id)}" rows="5" maxlength="650">${escapeHtml(textosCampanhaCentral[produto.id])}</textarea><div class="campanha-acoes"><button type="button" class="btn-ia-campanha" data-central-ia="${escapeHtml(produto.id)}">✨ Melhorar com IA</button><select aria-label="Rede social para ${escapeHtml(produto.titulo)}" data-central-canal="${escapeHtml(produto.id)}"><option value="whatsapp">WhatsApp</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option></select><button type="button" class="btn-compartilhar-campanha" data-central-compartilhar="${escapeHtml(produto.id)}">↗ Compartilhar campanha</button></div><label>Link identificado</label><input id="campanha-link-${escapeHtml(produto.id)}" class="campanha-link" value="${escapeHtml(link)}" readonly></article>`}
+function cartaoOfertaCentral(produto,indice){if(!textosCampanhaCentral[produto.id])textosCampanhaCentral[produto.id]=textoPadraoCentral(produto);const metricas=metricasProdutoCentral(produto.id),avisos=statusOfertaCentral(produto),canal='whatsapp',link=urlCampanhaCentral(produto,canal);return `<article class="campanha-card" data-campanha-card="${escapeHtml(produto.id)}"><div class="campanha-posicao">${relampagoAtivoCentral(produto)?'⚡ Oferta relâmpago':`#${indice+1} recomendada`}</div><div class="campanha-topo"><img src="${escapeHtml(produto.foto||'')}" alt="${escapeHtml(produto.titulo||'Produto')}"><div><span class="campanha-desconto">-${descontoCentral(produto)}%</span><h4>${escapeHtml(produto.titulo||'Produto')}</h4><p><s>${escapeHtml(moedaCentral(produto.precoAnterior))}</s> <strong>${escapeHtml(moedaCentral(produto.precoPromocional))}</strong></p></div></div><div class="campanha-status ${avisos.length?'campanha-alerta':'campanha-ok'}">${avisos.length?`⚠️ ${escapeHtml(avisos.join(' · '))}`:'✓ Preço e link prontos para divulgar'}</div><div class="campanha-mini-metricas"><span><b>${metricas.hoje}</b> cliques hoje</span><span><b>${metricas.semana}</b> em 7 dias</span><span><b>${metricas.compartilhamentos}</b> compartilhamentos</span></div><label>Texto da campanha</label><textarea id="campanha-texto-${escapeHtml(produto.id)}" rows="5" maxlength="650">${escapeHtml(textosCampanhaCentral[produto.id])}</textarea><div class="campanha-acoes"><button type="button" class="btn-ia-campanha" data-central-ia="${escapeHtml(produto.id)}">✨ Melhorar com IA</button><select aria-label="Rede social para ${escapeHtml(produto.titulo)}" data-central-canal="${escapeHtml(produto.id)}"><option value="whatsapp">WhatsApp</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option></select><button type="button" class="btn-compartilhar-campanha" data-central-compartilhar="${escapeHtml(produto.id)}">↗ Compartilhar campanha</button></div><label>Link identificado</label><input id="campanha-link-${escapeHtml(produto.id)}" class="campanha-link" value="${escapeHtml(link)}" readonly></article>`}
 
 function renderizarOfertasCentral(){const melhores=melhoresOfertasCentral(),container=document.getElementById('central-melhores');if(!container)return;container.innerHTML=melhores.length?melhores.map(cartaoOfertaCentral).join(''):'<div class="estado-lista">Nenhuma promoção válida está pronta. Ative uma promoção com preço anterior, preço atual e validade.</div>';renderizarAlertasCentral();renderizarRelatorioCentral()}
 
-function renderizarAlertasCentral(){const alvo=document.getElementById('central-alertas');if(!alvo)return;const problemas=[];produtosCentralAtual.forEach(produto=>{const avisos=statusOfertaCentral(produto);if(promocaoValidaCentral(produto)&&avisos.length)problemas.push({produto,avisos})});alvo.innerHTML=problemas.length?problemas.slice(0,12).map(item=>`<div class="central-alerta-item"><strong>${escapeHtml(item.produto.titulo)}</strong><span>${escapeHtml(item.avisos.join(' · '))}</span><button type="button" data-central-editar="${escapeHtml(item.produto.id)}">Corrigir produto</button></div>`).join(''):'<div class="central-tudo-certo">✓ Todas as promoções ativas estão prontas para divulgação.</div>'}
+function renderizarAlertasCentral(){const alvo=document.getElementById('central-alertas');if(!alvo)return;const problemas=[];produtosCentralAtual.forEach(produto=>{const avisos=statusOfertaCentral(produto);if(campanhaValidaCentral(produto)&&avisos.length)problemas.push({produto,avisos})});alvo.innerHTML=problemas.length?problemas.slice(0,12).map(item=>`<div class="central-alerta-item"><strong>${escapeHtml(item.produto.titulo)}</strong><span>${escapeHtml(item.avisos.join(' · '))}</span><button type="button" data-central-editar="${escapeHtml(item.produto.id)}">Corrigir produto</button></div>`).join(''):'<div class="central-tudo-certo">✓ Todas as promoções ativas estão prontas para divulgação.</div>'}
 
 function renderizarRelatorioCentral(){const alvo=document.getElementById('central-relatorio');if(!alvo)return;const hoje=dataBrasil(),inicioData=new Date();inicioData.setDate(inicioData.getDate()-6);const inicio=dataBrasil(inicioData);const cliques=metricasCentralAtual.filter(item=>item.tipo==='clique_oferta'),compartilhamentos=metricasCentralAtual.filter(item=>item.tipo==='compartilhamento');const cliquesHoje=cliques.filter(item=>item.dia===hoje),cliquesSemana=cliques.filter(item=>item.dia>=inicio&&item.dia<=hoje),sharesSemana=compartilhamentos.filter(item=>item.dia>=inicio&&item.dia<=hoje);document.getElementById('central-cliques-hoje').textContent=cliquesHoje.length.toLocaleString('pt-BR');document.getElementById('central-cliques-semana').textContent=cliquesSemana.length.toLocaleString('pt-BR');document.getElementById('central-compartilhamentos').textContent=sharesSemana.length.toLocaleString('pt-BR');document.getElementById('central-total-eventos').textContent=metricasCentralAtual.length.toLocaleString('pt-BR');const porProduto=new Map();[...cliquesSemana,...sharesSemana].forEach(item=>{const id=String(item.produtoId||'sem-id'),atual=porProduto.get(id)||{id,titulo:item.titulo||'Produto',cliques:0,shares:0};if(item.tipo==='clique_oferta')atual.cliques++;else atual.shares++;porProduto.set(id,atual)});const ranking=[...porProduto.values()].sort((a,b)=>b.cliques-a.cliques||b.shares-a.shares).slice(0,10);const canais={};metricasCentralAtual.filter(item=>item.dia>=inicio&&item.dia<=hoje).forEach(item=>{const canal=String(item.canal||'site');canais[canal]=(canais[canal]||0)+1});const totalCanais=Math.max(1,...Object.values(canais));const nomesCanal={site:'Site',whatsapp:'WhatsApp',instagram:'Instagram',facebook:'Facebook',copy:'Copiar link',painel:'Painel'};const barras=Object.entries(canais).sort((a,b)=>b[1]-a[1]).map(([canal,total])=>`<div class="canal-linha"><span>${escapeHtml(nomesCanal[canal]||canal)}</span><div><i style="width:${Math.max(5,Math.round(total/totalCanais*100))}%"></i></div><b>${total}</b></div>`).join('')||'<p class="estado-lista">Os canais aparecerão após os primeiros cliques e compartilhamentos.</p>';alvo.innerHTML=`<div class="central-relatorio-grid"><div><h4>Ranking dos produtos — 7 dias</h4>${ranking.length?`<div class="tabela-central"><table><thead><tr><th>Produto</th><th>Cliques</th><th>Compart.</th></tr></thead><tbody>${ranking.map((item,i)=>`<tr><td><b>#${i+1}</b> ${escapeHtml(item.titulo)}</td><td>${item.cliques}</td><td>${item.shares}</td></tr>`).join('')}</tbody></table></div>`:'<p class="estado-lista">O ranking começará a ser preenchido com os próximos acessos.</p>'}</div><div><h4>Resultado por canal — 7 dias</h4><div class="canais-central">${barras}</div></div></div>`}
 
 function decodificarMetricaCentral(dados,id){if(dados.tipo==='clique_oferta'||dados.tipo==='compartilhamento')return{id,...dados};const origem=String(dados.origem||'');if(!origem.startsWith('evento:'))return null;const partes=origem.split(':');const tipo=partes[1]||'',produtoId=partes[2]||'',canal=partes[3]||'site';if(!['clique_oferta','compartilhamento'].includes(tipo)||!produtoId)return null;const produto=produtosCentralAtual.find(item=>String(item.id)===String(produtoId));return{id,tipo,produtoId,titulo:produto?.titulo||produtoId,categoria:produto?.categoria||'',canal,campanha:'ofertas_do_dia',dia:dados.dia||'',criadoEm:dados.criadoEm,origem}}
 
-async function carregarMetricasCentral(){const status=document.getElementById('central-status');if(status)status.textContent='Atualizando relatório...';try{const snapshot=await db.collection('visitas').get();metricasCentralAtual=[];snapshot.forEach(doc=>{const metrica=decodificarMetricaCentral(doc.data(),doc.id);if(metrica)metricasCentralAtual.push(metrica)});renderizarRelatorioCentral();renderizarOfertasCentral();if(status)status.textContent=`Relatório atualizado às ${new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}.`}catch(erro){console.error('Erro ao carregar métricas comerciais:',erro);if(status)status.textContent='Não foi possível carregar as métricas. Confirme as regras do Firestore.'}}
+function atualizarCentralComProdutos(snapshot){produtosCentralAtual=snapshot.docs.map(doc=>{const produto={id:doc.id,...doc.data()},status=statusMercadoLivreAdmin[String(doc.id)]||{},atual=Number(status.lightningPrice)>0?Number(status.lightningPrice):Number(status.price),anterior=Number(status.regularPrice);if(status.lightningActive===true&&anterior>atual&&atual>0){produto.precoAnterior=anterior.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});produto.precoPromocional=atual.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}return produto});metricasCentralAtual=metricasCentralAtual.map(item=>{const produto=produtosCentralAtual.find(p=>String(p.id)===String(item.produtoId));return produto?{...item,titulo:produto.titulo||item.titulo,categoria:produto.categoria||item.categoria}:item});renderizarRelatorioCentral();renderizarOfertasCentral()}
 
 function atualizarCentralComProdutos(snapshot){produtosCentralAtual=snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));metricasCentralAtual=metricasCentralAtual.map(item=>{const produto=produtosCentralAtual.find(p=>String(p.id)===String(item.produtoId));return produto?{...item,titulo:produto.titulo||item.titulo,categoria:produto.categoria||item.categoria}:item});renderizarRelatorioCentral();renderizarOfertasCentral()}
 
@@ -925,7 +943,7 @@ async function fotoHospedadaCentral(produto){const fallback=String(produto?.foto
 
 function carregarImagemCentral(url){return new Promise((resolve,reject)=>{const img=new Image();img.crossOrigin='anonymous';img.onload=()=>resolve(img);img.onerror=reject;img.src=url})}
 
-async function arquivoCampanhaCentral(produto){const fotoHospedada=await fotoHospedadaCentral(produto),canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1080;const ctx=canvas.getContext('2d');ctx.fillStyle='#fbfaf5';ctx.fillRect(0,0,1080,1080);ctx.fillStyle='#0f4f3b';ctx.fillRect(0,0,1080,170);ctx.fillStyle='#fff';ctx.font='900 52px Arial';ctx.fillText('Ranking da Compra',64,103);ctx.font='700 25px Arial';ctx.fillText('PROMOÇÃO VERIFICADA DO DIA',64,145);ctx.fillStyle='#fff';ctx.fillRect(55,220,465,590);try{const img=await carregarImagemCentral(fotoHospedada);const escala=Math.min(400/img.width,500/img.height);const w=img.width*escala,h=img.height*escala;ctx.drawImage(img,55+(465-w)/2,260+(500-h)/2,w,h)}catch{}ctx.fillStyle='#d83b2d';ctx.beginPath();ctx.roundRect(55,835,250,90,45);ctx.fill();ctx.fillStyle='#fff';ctx.font='900 44px Arial';ctx.fillText(`-${descontoCentral(produto)}%`,105,895);ctx.fillStyle='#11221d';ctx.font='800 43px Arial';let y=quebrarTextoCanvas(ctx,produto.titulo,565,260,455,56,5);ctx.fillStyle='#6b746f';ctx.font='31px Arial';ctx.fillText(`De ${moedaCentral(produto.precoAnterior)}`,565,y+35);ctx.fillStyle='#087a3d';ctx.font='900 66px Arial';ctx.fillText(moedaCentral(produto.precoPromocional),565,y+115);ctx.fillStyle='#11221d';ctx.font='700 28px Arial';quebrarTextoCanvas(ctx,'Confira preço, frete e estoque antes de comprar.',565,y+180,430,38,3);ctx.fillStyle='#d9f99d';ctx.fillRect(0,980,1080,100);ctx.fillStyle='#0f4f3b';ctx.font='800 30px Arial';ctx.fillText('rankingdacompra.com.br',64,1042);const blob=await new Promise((resolve,reject)=>canvas.toBlob(valor=>valor?resolve(valor):reject(new Error('Falha ao criar imagem.')),'image/png',.95));return new File([blob],`oferta-${String(produto.id).replace(/[^a-z0-9-]/gi,'')}.png`,{type:'image/png'})}
+async function arquivoCampanhaCentral(produto){const fotoHospedada=await fotoHospedadaCentral(produto),relampago=relampagoAtivoCentral(produto),canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1080;const ctx=canvas.getContext('2d');ctx.fillStyle='#fbfaf5';ctx.fillRect(0,0,1080,1080);ctx.fillStyle='#0f4f3b';ctx.fillRect(0,0,1080,170);ctx.fillStyle='#fff';ctx.font='900 52px Arial';ctx.fillText('Ranking da Compra',64,103);ctx.font='700 25px Arial';ctx.fillText(relampago?'OFERTA RELÂMPAGO':'PROMOÇÃO VERIFICADA DO DIA',64,145);ctx.fillStyle='#fff';ctx.fillRect(55,220,465,590);try{const img=await carregarImagemCentral(fotoHospedada);const escala=Math.min(400/img.width,500/img.height);const w=img.width*escala,h=img.height*escala;ctx.drawImage(img,55+(465-w)/2,260+(500-h)/2,w,h)}catch{}ctx.fillStyle='#d83b2d';ctx.beginPath();ctx.roundRect(55,835,250,90,45);ctx.fill();ctx.fillStyle='#fff';ctx.font='900 44px Arial';ctx.fillText(`-${descontoCentral(produto)}%`,105,895);ctx.fillStyle='#11221d';ctx.font='800 43px Arial';let y=quebrarTextoCanvas(ctx,produto.titulo,565,260,455,56,5);ctx.fillStyle='#6b746f';ctx.font='31px Arial';ctx.fillText(`De ${moedaCentral(produto.precoAnterior)}`,565,y+35);ctx.fillStyle='#087a3d';ctx.font='900 66px Arial';ctx.fillText(moedaCentral(produto.precoPromocional),565,y+115);ctx.fillStyle='#11221d';ctx.font='700 28px Arial';quebrarTextoCanvas(ctx,'Confira preço, frete e estoque antes de comprar.',565,y+180,430,38,3);ctx.fillStyle='#d9f99d';ctx.fillRect(0,980,1080,100);ctx.fillStyle='#0f4f3b';ctx.font='800 30px Arial';ctx.fillText('rankingdacompra.com.br',64,1042);const blob=await new Promise((resolve,reject)=>canvas.toBlob(valor=>valor?resolve(valor):reject(new Error('Falha ao criar imagem.')),'image/png',.95));return new File([blob],`oferta-${String(produto.id).replace(/[^a-z0-9-]/gi,'')}.png`,{type:'image/png'})}
 
 async function registrarCompartilhamentoCentral(produto,canal){try{await db.collection('visitas').add({tipo:'compartilhamento',produtoId:String(produto.id),titulo:String(produto.titulo||'').slice(0,180),categoria:String(produto.categoria||''),canal:String(canal||'painel'),campanha:'ofertas_do_dia',dia:dataBrasil(),criadoEm:firebase.firestore.FieldValue.serverTimestamp()});metricasCentralAtual.push({tipo:'compartilhamento',produtoId:String(produto.id),titulo:produto.titulo||'',categoria:produto.categoria||'',canal,campanha:'ofertas_do_dia',dia:dataBrasil()});renderizarRelatorioCentral()}catch(erro){console.warn('Não foi possível registrar o compartilhamento.',erro)}}
 
@@ -1407,6 +1425,18 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             return '';
         }
 
+        function validarDadosRelampago(dados) {
+            if (!dados.ofertaRelampagoAtiva) return '';
+            const anterior = numeroPrecoPromocao(dados.precoAnterior);
+            const promocional = numeroPrecoPromocao(dados.precoPromocional);
+            if (!anterior || !promocional) return 'Para ativar a oferta relâmpago, informe o preço anterior e o preço promocional.';
+            if (promocional >= anterior) return 'Na oferta relâmpago, o preço promocional precisa ser menor que o preço anterior.';
+            if (!dados.ofertaRelampagoTerminaEm) return 'Informe o horário verdadeiro em que a oferta relâmpago termina.';
+            const termino = new Date(dados.ofertaRelampagoTerminaEm);
+            if (Number.isNaN(termino.getTime()) || termino.getTime() <= Date.now() + 30000) return 'O término da oferta relâmpago precisa estar no futuro.';
+            return '';
+        }
+
         function extrairIdMercadoLivreCadastro(valor) {
             try {
                 const url = new URL(String(valor || ''));
@@ -1442,6 +1472,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 precoAnterior: document.getElementById('precoAnterior').value.trim(),
                 precoPromocional: document.getElementById('precoPromocional').value.trim(),
                 promocaoValidaAte: document.getElementById('promocaoValidaAte').value,
+                ofertaRelampagoAtiva: document.getElementById('ofertaRelampagoAtiva').checked,
+                ofertaRelampagoTerminaEm: document.getElementById('ofertaRelampagoTerminaEm').value,
                 pros: document.getElementById('pros').value.trim(),
                 contras: document.getElementById('contras').value.trim(),
                 dadosTecnicos: document.getElementById('dados-tecnicos-manual').value.trim(),
@@ -1453,6 +1485,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             if (erroEditorial) return alert(erroEditorial);
             const erroPromocao = validarDadosPromocao(dadosProduto);
             if (erroPromocao) return alert(erroPromocao);
+            const erroRelampago = validarDadosRelampago(dadosProduto);
+            if (erroRelampago) return alert(erroRelampago);
 
             if (editProdId !== null) {
                 db.collection("produtos").doc(editProdId).update(dadosProduto)
@@ -1738,10 +1772,13 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
         function cartaoProdutoPublicado(doc) {
             const prod = doc.data();
+            const status = statusMercadoLivreAdmin[doc.id] || {};
+            const fimRelampago = new Date(status.lightningActive === true ? status.lightningEndsAt : (prod.ofertaRelampagoTerminaEm || ''));
+            const relampagoAtivo = (status.lightningActive === true || prod.ofertaRelampagoAtiva === true) && !Number.isNaN(fimRelampago.getTime()) && fimRelampago.getTime() > Date.now();
             return `
                 <div class="item-admin">
                     <div class="item-admin-conteudo">
-                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span>${prod.promocaoAtiva ? '<span class="status-promocao">PROMOÇÃO MARCADA</span>' : ''}</div>
+                        <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span>${relampagoAtivo ? '<span class="status-relampago">⚡ RELÂMPAGO</span>' : ''}${prod.promocaoAtiva ? '<span class="status-promocao">PROMOÇÃO MARCADA</span>' : ''}</div>
                         <span class="status-publicado">✓ Visível na vitrine pública</span>
                     </div>
                     <div class="acoes">
@@ -2154,6 +2191,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     document.getElementById('precoAnterior').value = prod.precoAnterior || "";
                     document.getElementById('precoPromocional').value = prod.precoPromocional || "";
                     document.getElementById('promocaoValidaAte').value = prod.promocaoValidaAte || "";
+                    document.getElementById('ofertaRelampagoAtiva').checked = prod.ofertaRelampagoAtiva === true;
+                    document.getElementById('ofertaRelampagoTerminaEm').value = prod.ofertaRelampagoTerminaEm || "";
                     document.getElementById('link').value = prod.link;
                     document.getElementById('linkAfiliado').value = prod.linkAfiliado || ""; // PUXANDO LINK DE AFILIADO
                     document.getElementById('foto').value = prod.foto;
