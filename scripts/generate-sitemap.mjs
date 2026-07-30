@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
-const SHARE_VERSION = "20260728-3";
+const SHARE_VERSION = "20260730-1";
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const CATEGORY_ALIASES = new Map([
   ["patineteelétrica", "parafusadeira-eletrica"],
@@ -225,10 +225,12 @@ const [allCategories, allProducts, marketplaceProducts] = await Promise.all([
   marketplaceStatus(),
 ]);
 
-const products = allProducts
-  .filter(editorialProduct)
+// As páginas usadas por WhatsApp, Facebook e Instagram devem existir para todo
+// produto ativo. As regras editoriais continuam valendo somente para o sitemap.
+const shareProducts = allProducts
   .filter((product) => marketplaceProducts[product.id]?.visible !== false)
   .sort((a, b) => a.id.localeCompare(b.id));
+const products = shareProducts.filter(editorialProduct);
 const productsByCategory = new Map();
 for (const product of products) {
   const items = productsByCategory.get(product.categoria) || [];
@@ -278,7 +280,7 @@ const productDirectory = resolve("produto");
 const imageDirectory = resolve(productDirectory, "imagens");
 await mkdir(imageDirectory, { recursive: true });
 
-const validProducts = products.filter((product) => {
+const validProducts = shareProducts.filter((product) => {
   const valid = /^[A-Za-z0-9_-]+$/.test(product.id);
   if (!valid) console.warn(`Página social ignorada por ID inválido: ${product.id}`);
   return valid;
