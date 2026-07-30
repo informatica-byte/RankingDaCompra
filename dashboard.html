@@ -245,8 +245,8 @@
                         <input type="checkbox" id="ofertaRelampagoAtiva">
                         <label for="ofertaRelampagoAtiva"><b>⚡ Exibir como “Oferta Relâmpago”</b></label>
                     </div>
-                    <div class="campo"><label for="ofertaRelampagoTerminaEm">Horário verdadeiro de término:</label><input type="datetime-local" id="ofertaRelampagoTerminaEm" step="60"></div>
-                    <small>O sistema tentará obter o horário pela API do Mercado Livre. Use este campo quando a API não liberar a promoção de terceiros. O contador nunca reinicia e a oferta desaparece automaticamente ao zerar.</small>
+                    <div class="campo"><label for="ofertaRelampagoDuracao">Tempo restante (HH:MM:SS):</label><input type="text" id="ofertaRelampagoDuracao" inputmode="numeric" maxlength="9" placeholder="Ex.: 11:26:25" aria-describedby="ajuda-duracao-relampago"></div>
+                    <small id="ajuda-duracao-relampago">Copie somente o tempo que falta, como aparece no Mercado Livre. Exemplo: 11:26:25. O sistema calculará automaticamente o horário final, o contador não reiniciará e a oferta desaparecerá ao zerar.</small>
                 </div>
 
                 <div class="campo"><label>URL da Imagem:</label><input type="url" id="foto" required></div>
@@ -1425,15 +1425,39 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             return '';
         }
 
+        function segundosDuracaoRelampago(valor) {
+            const texto = String(valor || '').trim();
+            const partes = texto.split(':');
+            if (partes.length !== 3 || partes.some(parte => !/^\d+$/.test(parte))) return 0;
+            const [horas, minutos, segundos] = partes.map(Number);
+            if (!Number.isInteger(horas) || horas < 0 || horas > 999 || minutos < 0 || minutos > 59 || segundos < 0 || segundos > 59) return 0;
+            return horas * 3600 + minutos * 60 + segundos;
+        }
+
+        function calcularTerminoRelampago(duracao) {
+            const totalSegundos = segundosDuracaoRelampago(duracao);
+            return totalSegundos > 30 ? new Date(Date.now() + totalSegundos * 1000).toISOString() : '';
+        }
+
+        function formatarDuracaoRelampago(milissegundos) {
+            const total = Math.max(0, Math.floor(Number(milissegundos || 0) / 1000));
+            const horas = Math.floor(total / 3600);
+            const minutos = Math.floor((total % 3600) / 60);
+            const segundos = total % 60;
+            return [horas, minutos, segundos].map(valor => String(valor).padStart(2, '0')).join(':');
+        }
+
         function validarDadosRelampago(dados) {
             if (!dados.ofertaRelampagoAtiva) return '';
             const anterior = numeroPrecoPromocao(dados.precoAnterior);
             const promocional = numeroPrecoPromocao(dados.precoPromocional);
             if (!anterior || !promocional) return 'Para ativar a oferta relâmpago, informe o preço anterior e o preço promocional.';
             if (promocional >= anterior) return 'Na oferta relâmpago, o preço promocional precisa ser menor que o preço anterior.';
-            if (!dados.ofertaRelampagoTerminaEm) return 'Informe o horário verdadeiro em que a oferta relâmpago termina.';
-            const termino = new Date(dados.ofertaRelampagoTerminaEm);
-            if (Number.isNaN(termino.getTime()) || termino.getTime() <= Date.now() + 30000) return 'O término da oferta relâmpago precisa estar no futuro.';
+            const duracao = segundosDuracaoRelampago(dados.ofertaRelampagoDuracao);
+            if (!duracao) return 'Informe o tempo restante no formato HH:MM:SS. Exemplo: 11:26:25.';
+            if (duracao <= 30) return 'A oferta relâmpago precisa ter mais de 30 segundos restantes.';
+            const termino = new Date(dados.ofertaRelampagoTerminaEm || '');
+            if (Number.isNaN(termino.getTime()) || termino.getTime() <= Date.now() + 30000) return 'Não foi possível calcular o término. Confira o tempo restante informado.';
             return '';
         }
 
@@ -1456,6 +1480,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             e.preventDefault();
             const linkProduto = document.getElementById('link').value.trim();
             const linkAfiliadoProduto = document.getElementById('linkAfiliado').value.trim();
+            const ofertaRelampagoAtiva = document.getElementById('ofertaRelampagoAtiva').checked;
+            const ofertaRelampagoDuracao = document.getElementById('ofertaRelampagoDuracao').value.trim();
             const dadosProduto = {
                 categoria: document.getElementById('categoria').value,
                 titulo: document.getElementById('titulo').value.trim(),
@@ -1472,8 +1498,9 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 precoAnterior: document.getElementById('precoAnterior').value.trim(),
                 precoPromocional: document.getElementById('precoPromocional').value.trim(),
                 promocaoValidaAte: document.getElementById('promocaoValidaAte').value,
-                ofertaRelampagoAtiva: document.getElementById('ofertaRelampagoAtiva').checked,
-                ofertaRelampagoTerminaEm: document.getElementById('ofertaRelampagoTerminaEm').value,
+                ofertaRelampagoAtiva,
+                ofertaRelampagoDuracao,
+                ofertaRelampagoTerminaEm: ofertaRelampagoAtiva ? calcularTerminoRelampago(ofertaRelampagoDuracao) : '',
                 pros: document.getElementById('pros').value.trim(),
                 contras: document.getElementById('contras').value.trim(),
                 dadosTecnicos: document.getElementById('dados-tecnicos-manual').value.trim(),
@@ -1487,7 +1514,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             if (erroPromocao) return alert(erroPromocao);
             const erroRelampago = validarDadosRelampago(dadosProduto);
             if (erroRelampago) return alert(erroRelampago);
-            if (dadosProduto.ofertaRelampagoAtiva) dadosProduto.ofertaRelampagoTerminaEm = new Date(dadosProduto.ofertaRelampagoTerminaEm).toISOString();
+            delete dadosProduto.ofertaRelampagoDuracao;
 
             if (editProdId !== null) {
                 db.collection("produtos").doc(editProdId).update(dadosProduto)
@@ -2194,7 +2221,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     document.getElementById('promocaoValidaAte').value = prod.promocaoValidaAte || "";
                     document.getElementById('ofertaRelampagoAtiva').checked = prod.ofertaRelampagoAtiva === true;
                     const fimRelampago = new Date(prod.ofertaRelampagoTerminaEm || '');
-                    document.getElementById('ofertaRelampagoTerminaEm').value = Number.isNaN(fimRelampago.getTime()) ? "" : new Date(fimRelampago.getTime() - fimRelampago.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+                    const restanteRelampago = Number.isNaN(fimRelampago.getTime()) ? 0 : fimRelampago.getTime() - Date.now();
+                    document.getElementById('ofertaRelampagoDuracao').value = restanteRelampago > 0 ? formatarDuracaoRelampago(restanteRelampago) : "";
                     document.getElementById('link').value = prod.link;
                     document.getElementById('linkAfiliado').value = prod.linkAfiliado || ""; // PUXANDO LINK DE AFILIADO
                     document.getElementById('foto').value = prod.foto;
