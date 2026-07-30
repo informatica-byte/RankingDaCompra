@@ -74,7 +74,7 @@ registrarVisita();
 function origemCampanhaAtual(){const params=new URLSearchParams(location.search);return String(params.get('utm_source')||'site').slice(0,40)}
 async function registrarMetricaComercial(tipo,produto,canal){try{const id=crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(36).slice(2)}`;await db.collection('visitas').doc(id).set({tipo:String(tipo||'').slice(0,40),produtoId:String(produto?.id||'').slice(0,100),titulo:String(produto?.titulo||'').slice(0,180),categoria:String(produto?.categoria||'').slice(0,100),canal:String(canal||origemCampanhaAtual()).slice(0,40),campanha:String(new URLSearchParams(location.search).get('utm_campaign')||'site').slice(0,80),dia:dataBrasil(),origem:location.pathname.slice(0,80),criadoEm:firebase.firestore.FieldValue.serverTimestamp()})}catch(erro){console.warn('Não foi possível registrar a métrica comercial.',erro)}}
 const SITE_URL='https://rankingdacompra.com.br/';
-const SHARE_VERSION='20260730-1';
+const SHARE_VERSION='20260730-2';
 const CATEGORY_ALIASES=new Map([['parafusadeira-eletrica','patineteelétrica'],['fritadeira-air-fryer-eletrica','fritadeiraairfrayerelétrica']]);
 const CATEGORY_PUBLIC_IDS=new Map([...CATEGORY_ALIASES].map(([publicId,databaseId])=>[databaseId,publicId]));
 const corrigirNomeCategoriaPublica=nome=>String(nome||'').trim().replace(/air\s+frayer/gi,'Air Fryer');
@@ -86,7 +86,7 @@ function resumoParaExibicao(produto){return conteudoEditorialValido(produto)?Str
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));const safe=u=>{try{let x=new URL(String(u||''),location.href);return /^https?:$/.test(x.protocol)?x.href:'#'}catch{return '#'}};const stars=n=>`${'★'.repeat(Math.round(Number(n)||0))}${'☆'.repeat(5-Math.round(Number(n)||0))}`;
 const urlAtual=()=>location.href.split('#')[0];
 const urlProduto=id=>new URL(`?produto=${encodeURIComponent(id)}`,SITE_URL).href;
-const urlCompartilharProduto=id=>{const url=new URL(`produto/${encodeURIComponent(id)}.html`,SITE_URL);url.searchParams.set('v',SHARE_VERSION);return url.href};
+const urlCompartilharProduto=id=>new URL(`produto/${encodeURIComponent(id)}-${SHARE_VERSION}.html`,SITE_URL).href;
 const urlCategoria=(id,pagina)=>new URL(`?cat=${encodeURIComponent(id)}${pagina>1?`&pagina=${pagina}`:''}`,SITE_URL).href;
 const setMeta=(selector,value)=>{const meta=document.querySelector(selector);if(meta&&value)meta.content=value};
 function schemaBase(){return [{"@type":"Organization","@id":`${SITE_URL}#organization`,name:'Ranking da Compra',url:SITE_URL},{"@type":"WebSite","@id":`${SITE_URL}#website`,url:SITE_URL,name:'Ranking da Compra',publisher:{"@id":`${SITE_URL}#organization`},inLanguage:'pt-BR',potentialAction:{"@type":"SearchAction",target:`${SITE_URL}?busca={search_term_string}`,"query-input":'required name=search_term_string'}}]}
