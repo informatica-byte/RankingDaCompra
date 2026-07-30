@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
-const SHARE_VERSION = "20260730-1";
+const SHARE_VERSION = "20260730-2";
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const CATEGORY_ALIASES = new Map([
   ["patineteelétrica", "parafusadeira-eletrica"],
@@ -162,7 +162,7 @@ function productDetailUrl(product) {
 }
 
 function productShareUrl(product) {
-  return `${SITE}produto/${encodeURIComponent(product.id)}.html?v=${SHARE_VERSION}`;
+  return `${SITE}produto/${encodeURIComponent(product.id)}-${SHARE_VERSION}.html`;
 }
 
 function renderSharePage(product, socialImage) {
@@ -288,7 +288,7 @@ const validProducts = shareProducts.filter((product) => {
 const socialImages = await cacheProductImages(validProducts, imageDirectory);
 const expectedPages = new Set();
 for (const product of validProducts) {
-  const fileName = `${product.id}.html`;
+  const fileName = `${product.id}-${SHARE_VERSION}.html`;
   expectedPages.add(fileName);
   await writeFile(
     resolve(productDirectory, fileName),
