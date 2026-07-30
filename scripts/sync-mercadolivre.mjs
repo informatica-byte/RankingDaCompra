@@ -315,6 +315,35 @@ async function fetchJson(url, { allowMissing = false, authenticated = true } = {
   return response.json();
 }
 
+async function fetchLightningPromotion(itemId) {
+  if (!accessToken) return null;
+  const payload = await fetchJson(
+    `https://api.mercadolibre.com/seller-promotions/items/${itemId}?app_version=v2`,
+    { allowMissing: true },
+  );
+  if (!payload) return null;
+  const promotions = Array.isArray(payload) ? payload : Array.isArray(payload.results) ? payload.results : [];
+  const lightning = promotions.find((promotion) => {
+    const type = String(promotion?.type || promotion?.promotion_type || "").toUpperCase();
+    const status = String(promotion?.status?.id || promotion?.status || "").toLowerCase();
+    return type === "LIGHTNING" && ["active", "started"].includes(status);
+  });
+  if (!lightning) return { checked: true, active: false };
+  const endsAt = String(lightning.end_date || lightning.finish_date || lightning.date_to || "").trim();
+  const startsAt = String(lightning.start_date || lightning.begin_date || lightning.date_from || "").trim();
+  const endTime = Date.parse(endsAt);
+  const price = Number(lightning.deal_price ?? lightning.price ?? lightning.discounted_price);
+  return {
+    checked: true,
+    active: Boolean(endsAt && Number.isFinite(endTime) && endTime > Date.now()),
+    promotionId: String(lightning.id || lightning.promotion_id || ""),
+    startsAt,
+    endsAt,
+    price: Number.isFinite(price) && price > 0 ? price : null,
+    source: "seller-promotions",
+  };
+}
+
 function numberFromValue(value) {
   if (typeof value === "number") return Number.isFinite(value) ? value : null;
   const normalized = String(value ?? "")
@@ -515,6 +544,7 @@ async function fetchMarketplaceItem(itemId, product = {}) {
       { allowMissing: true },
     );
   }
+  const lightning = await fetchLightningPromotion(itemId);
 
   const amount = Number(salePrice?.amount ?? item?.price);
   const regularAmount = Number(salePrice?.regular_amount ?? item?.original_price);
@@ -529,6 +559,20 @@ async function fetchMarketplaceItem(itemId, product = {}) {
     regularPrice: Number.isFinite(regularAmount) && regularAmount > amount ? regularAmount : null,
     currencyId: String(salePrice?.currency_id || item?.currency_id || "BRL"),
     source: "api",
+    lightning,
+  };
+}
+
+function lightningFields(result = {}) {
+  const promotion = result.lightning || {};
+  return {
+    lightningChecked: promotion.checked === true,
+    lightningActive: promotion.active === true,
+    lightningPromotionId: String(promotion.promotionId || ""),
+    lightningStartsAt: String(promotion.startsAt || ""),
+    lightningEndsAt: String(promotion.endsAt || ""),
+    lightningPrice: Number(promotion.price) > 0 ? Number(promotion.price) : null,
+    lightningSource: String(promotion.source || ""),
   };
 }
 
@@ -550,6 +594,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
       currencyId: result.currencyId,
       source: result.source || "api",
       checkedAt,
+      ...lightningFields(result),
     };
   }
 
@@ -565,6 +610,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
     currencyId: result.currencyId,
     source: result.source || "api",
     checkedAt,
+    ...lightningFields(result),
   };
 }
 
@@ -572,6 +618,8 @@ function sameBusinessState(a = {}, b = {}) {
   const keys = [
     "itemId", "managed", "status", "available", "visible",
     "unavailableChecks", "price", "regularPrice", "currencyId", "source", "lastError",
+    "lightningChecked", "lightningActive", "lightningPromotionId", "lightningStartsAt",
+    "lightningEndsAt", "lightningPrice", "lightningSource",
   ];
   return keys.every((key) => (a[key] ?? null) === (b[key] ?? null));
 }
