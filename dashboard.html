@@ -1487,6 +1487,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             if (erroPromocao) return alert(erroPromocao);
             const erroRelampago = validarDadosRelampago(dadosProduto);
             if (erroRelampago) return alert(erroRelampago);
+            if (dadosProduto.ofertaRelampagoAtiva) dadosProduto.ofertaRelampagoTerminaEm = new Date(dadosProduto.ofertaRelampagoTerminaEm).toISOString();
 
             if (editProdId !== null) {
                 db.collection("produtos").doc(editProdId).update(dadosProduto)
@@ -2192,7 +2193,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     document.getElementById('precoPromocional').value = prod.precoPromocional || "";
                     document.getElementById('promocaoValidaAte').value = prod.promocaoValidaAte || "";
                     document.getElementById('ofertaRelampagoAtiva').checked = prod.ofertaRelampagoAtiva === true;
-                    document.getElementById('ofertaRelampagoTerminaEm').value = prod.ofertaRelampagoTerminaEm || "";
+                    const fimRelampago = new Date(prod.ofertaRelampagoTerminaEm || '');
+                    document.getElementById('ofertaRelampagoTerminaEm').value = Number.isNaN(fimRelampago.getTime()) ? "" : new Date(fimRelampago.getTime() - fimRelampago.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
                     document.getElementById('link').value = prod.link;
                     document.getElementById('linkAfiliado').value = prod.linkAfiliado || ""; // PUXANDO LINK DE AFILIADO
                     document.getElementById('foto').value = prod.foto;
