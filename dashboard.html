@@ -909,7 +909,7 @@ function pontuacaoOfertaCentral(produto){return descontoCentral(produto)*3+(Numb
 
 function melhoresOfertasCentral(){return produtosCentralAtual.filter(campanhaValidaCentral).filter(produto=>statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).sort((a,b)=>pontuacaoOfertaCentral(b)-pontuacaoOfertaCentral(a)).slice(0,3)}
 
-const SHARE_VERSION_CENTRAL='20260730-2';
+const SHARE_VERSION_CENTRAL='20260730-3';
 
 function urlCampanhaCentral(produto,canal){const url=new URL(`produto/${encodeURIComponent(produto.id)}-${SHARE_VERSION_CENTRAL}.html`,'https://rankingdacompra.com.br/');url.searchParams.set('utm_source',canal||'painel');url.searchParams.set('utm_medium','social');url.searchParams.set('utm_campaign','ofertas_do_dia');url.searchParams.set('utm_content',String(produto.id));return url.href}
 
