@@ -943,7 +943,7 @@ async function fotoHospedadaCentral(produto){const fallback=String(produto?.foto
 
 function carregarImagemCentral(url){return new Promise((resolve,reject)=>{const img=new Image();img.crossOrigin='anonymous';img.onload=()=>resolve(img);img.onerror=reject;img.src=url})}
 
-async function arquivoCampanhaCentral(produto){const fotoHospedada=await fotoHospedadaCentral(produto),relampago=relampagoAtivoCentral(produto),canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1080;const ctx=canvas.getContext('2d');ctx.fillStyle='#fbfaf5';ctx.fillRect(0,0,1080,1080);ctx.fillStyle='#0f4f3b';ctx.fillRect(0,0,1080,170);ctx.fillStyle='#fff';ctx.font='900 52px Arial';ctx.fillText('Ranking da Compra',64,103);ctx.font='700 25px Arial';ctx.fillText(relampago?'OFERTA RELÂMPAGO':'PROMOÇÃO VERIFICADA DO DIA',64,145);ctx.fillStyle='#fff';ctx.fillRect(55,220,465,590);try{const img=await carregarImagemCentral(fotoHospedada);const escala=Math.min(400/img.width,500/img.height);const w=img.width*escala,h=img.height*escala;ctx.drawImage(img,55+(465-w)/2,260+(500-h)/2,w,h)}catch{}ctx.fillStyle='#d83b2d';ctx.beginPath();ctx.roundRect(55,835,250,90,45);ctx.fill();ctx.fillStyle='#fff';ctx.font='900 44px Arial';ctx.fillText(`-${descontoCentral(produto)}%`,105,895);ctx.fillStyle='#11221d';ctx.font='800 43px Arial';let y=quebrarTextoCanvas(ctx,produto.titulo,565,260,455,56,5);ctx.fillStyle='#6b746f';ctx.font='31px Arial';ctx.fillText(`De ${moedaCentral(produto.precoAnterior)}`,565,y+35);ctx.fillStyle='#087a3d';ctx.font='900 66px Arial';ctx.fillText(moedaCentral(produto.precoPromocional),565,y+115);ctx.fillStyle='#11221d';ctx.font='700 28px Arial';quebrarTextoCanvas(ctx,'Confira preço, frete e estoque antes de comprar.',565,y+180,430,38,3);ctx.fillStyle='#d9f99d';ctx.fillRect(0,980,1080,100);ctx.fillStyle='#0f4f3b';ctx.font='800 30px Arial';ctx.fillText('rankingdacompra.com.br',64,1042);const blob=await new Promise((resolve,reject)=>canvas.toBlob(valor=>valor?resolve(valor):reject(new Error('Falha ao criar imagem.')),'image/png',.95));return new File([blob],`oferta-${String(produto.id).replace(/[^a-z0-9-]/gi,'')}.png`,{type:'image/png'})}
+async function arquivoCampanhaCentral(produto){const fotoHospedada=await fotoHospedadaCentral(produto),relampago=relampagoAtivoCentral(produto),canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1080;const ctx=canvas.getContext('2d');ctx.fillStyle='#fbfaf5';ctx.fillRect(0,0,1080,1080);ctx.fillStyle='#0f4f3b';ctx.fillRect(0,0,1080,170);ctx.fillStyle='#fff';ctx.font='900 52px Arial';ctx.fillText('Ranking da Compra',64,103);ctx.font='700 25px Arial';ctx.fillText(relampago?'OFERTA RELÂMPAGO':'PROMOÇÃO VERIFICADA DO DIA',64,145);ctx.fillStyle='#fff';ctx.fillRect(55,220,465,590);try{const img=await carregarImagemCentral(fotoHospedada);const escala=Math.min(400/img.width,500/img.height);const w=img.width*escala,h=img.height*escala;ctx.drawImage(img,55+(465-w)/2,260+(500-h)/2,w,h)}catch{}ctx.fillStyle='#d83b2d';if(typeof ctx.roundRect==='function'){ctx.beginPath();ctx.roundRect(55,835,250,90,45);ctx.fill()}else{ctx.fillRect(55,835,250,90)}ctx.fillStyle='#fff';ctx.font='900 44px Arial';ctx.fillText(`-${descontoCentral(produto)}%`,105,895);ctx.fillStyle='#11221d';ctx.font='800 43px Arial';let y=quebrarTextoCanvas(ctx,produto.titulo,565,260,455,56,5);ctx.fillStyle='#6b746f';ctx.font='31px Arial';ctx.fillText(`De ${moedaCentral(produto.precoAnterior)}`,565,y+35);ctx.fillStyle='#087a3d';ctx.font='900 66px Arial';ctx.fillText(moedaCentral(produto.precoPromocional),565,y+115);ctx.fillStyle='#11221d';ctx.font='700 28px Arial';quebrarTextoCanvas(ctx,'Confira preço, frete e estoque antes de comprar.',565,y+180,430,38,3);ctx.fillStyle='#d9f99d';ctx.fillRect(0,980,1080,100);ctx.fillStyle='#0f4f3b';ctx.font='800 30px Arial';ctx.fillText('rankingdacompra.com.br',64,1042);const blob=await new Promise((resolve,reject)=>canvas.toBlob(valor=>valor?resolve(valor):reject(new Error('Falha ao criar imagem.')),'image/png',.95));return new File([blob],`oferta-${String(produto.id).replace(/[^a-z0-9-]/gi,'')}.png`,{type:'image/png'})}
 
 async function registrarCompartilhamentoCentral(produto,canal){try{await db.collection('visitas').add({tipo:'compartilhamento',produtoId:String(produto.id),titulo:String(produto.titulo||'').slice(0,180),categoria:String(produto.categoria||''),canal:String(canal||'painel'),campanha:'ofertas_do_dia',dia:dataBrasil(),criadoEm:firebase.firestore.FieldValue.serverTimestamp()});metricasCentralAtual.push({tipo:'compartilhamento',produtoId:String(produto.id),titulo:produto.titulo||'',categoria:produto.categoria||'',canal,campanha:'ofertas_do_dia',dia:dataBrasil()});renderizarRelatorioCentral()}catch(erro){console.warn('Não foi possível registrar o compartilhamento.',erro)}}
 
@@ -951,7 +951,69 @@ async function copiarTextoCentral(texto){try{await navigator.clipboard.writeText
 
 function baixarArquivoCentral(arquivo){const url=URL.createObjectURL(arquivo),link=document.createElement('a');link.href=url;link.download=arquivo.name;link.click();setTimeout(()=>URL.revokeObjectURL(url),2000)}
 
-async function compartilharCampanhaCentral(id,botao){const produto=produtoCentralPorId(id);if(!produto)return;const seletor=document.querySelector(`[data-central-canal="${CSS.escape(String(id))}"]`),canal=seletor?.value||'whatsapp',campoTexto=document.getElementById(`campanha-texto-${id}`),texto=String(campoTexto?.value||textoPadraoCentral(produto)).trim(),link=urlCampanhaCentral(produto,canal),mensagem=`${texto}\n${link}`,rotulo=botao?.textContent;if(botao){botao.disabled=true;botao.textContent='Preparando imagem...'}try{const arquivo=await arquivoCampanhaCentral(produto),podeCompartilharArquivo=Boolean(navigator.share&&navigator.canShare?.({files:[arquivo]}));await registrarCompartilhamentoCentral(produto,canal);if(canal==='whatsapp'&&podeCompartilharArquivo){await navigator.share({title:produto.titulo,text:mensagem,files:[arquivo]})}else if(canal==='whatsapp'){window.open(`https://wa.me/?text=${encodeURIComponent(mensagem)}`,'_blank','noopener');await copiarTextoCentral(mensagem)}else if(canal==='facebook'){window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`,'_blank','noopener');await copiarTextoCentral(mensagem)}else if(podeCompartilharArquivo){await navigator.share({title:produto.titulo,text:mensagem,files:[arquivo]})}else{await copiarTextoCentral(mensagem);baixarArquivoCentral(arquivo);alert('Texto copiado e imagem baixada. Agora publique os dois no Instagram.')}}catch(erro){console.error(erro);await copiarTextoCentral(mensagem);alert('O texto e o link foram copiados. Não foi possível preparar a imagem automaticamente neste navegador.')}finally{if(botao){botao.disabled=false;botao.textContent=rotulo||'↗ Compartilhar campanha'}}}
+async function compartilharCampanhaCentral(id, botao) {
+    const produto = produtoCentralPorId(id);
+    if (!produto) {
+        alert('Não foi possível localizar esta oferta. Atualize o painel e tente novamente.');
+        return;
+    }
+
+    const seletor = [...document.querySelectorAll('[data-central-canal]')]
+        .find(elemento => elemento.dataset.centralCanal === String(id));
+    const canal = seletor?.value || 'whatsapp';
+    const campoTexto = document.getElementById(`campanha-texto-${id}`);
+    const texto = String(campoTexto?.value || textoPadraoCentral(produto)).trim();
+    const link = urlCampanhaCentral(produto, canal);
+    const mensagem = `${texto}\n${link}`;
+    const rotulo = botao?.textContent;
+
+    if (botao) {
+        botao.disabled = true;
+        botao.textContent = canal === 'instagram' ? 'Preparando imagem...' : 'Abrindo...';
+    }
+
+    try {
+        // WhatsApp e Facebook precisam ser abertos ainda durante o clique.
+        // Se houver qualquer espera antes, o navegador pode bloquear como pop-up.
+        if (canal === 'whatsapp' || canal === 'facebook') {
+            const destino = canal === 'whatsapp'
+                ? `https://wa.me/?text=${encodeURIComponent(mensagem)}`
+                : `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`;
+            window.open(destino, '_blank', 'noopener,noreferrer');
+            await Promise.allSettled([
+                copiarTextoCentral(mensagem),
+                registrarCompartilhamentoCentral(produto, canal)
+            ]);
+            return;
+        }
+
+        let arquivo = null;
+        try {
+            arquivo = await arquivoCampanhaCentral(produto);
+            const podeCompartilharArquivo = Boolean(navigator.share && navigator.canShare?.({ files: [arquivo] }));
+            await registrarCompartilhamentoCentral(produto, canal);
+            if (podeCompartilharArquivo) {
+                await navigator.share({ title: produto.titulo, text: mensagem, files: [arquivo] });
+            } else {
+                await copiarTextoCentral(mensagem);
+                baixarArquivoCentral(arquivo);
+                alert('Texto copiado e imagem baixada. Agora publique os dois no Instagram.');
+            }
+        } catch (erro) {
+            console.error(erro);
+            await copiarTextoCentral(mensagem);
+            if (arquivo) baixarArquivoCentral(arquivo);
+            alert(arquivo
+                ? 'O texto foi copiado e a imagem foi baixada para você publicar no Instagram.'
+                : 'O texto e o link foram copiados. Não foi possível preparar a imagem neste navegador.');
+        }
+    } finally {
+        if (botao) {
+            botao.disabled = false;
+            botao.textContent = rotulo || '↗ Compartilhar campanha';
+        }
+    }
+}
 
 function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;centralDivulgacaoInicializada=true;document.getElementById('btn-central-atualizar')?.addEventListener('click',carregarMetricasCentral);document.getElementById('btn-central-ia')?.addEventListener('click',async evento=>{const botao=evento.currentTarget,ofertas=melhoresOfertasCentral();botao.disabled=true;const original=botao.textContent;for(let i=0;i<ofertas.length;i++){botao.textContent=`IA escrevendo ${i+1} de ${ofertas.length}...`;await gerarTextoCampanhaCentral(ofertas[i].id,null)}botao.disabled=false;botao.textContent=original});const area=document.getElementById('central-divulgacao');area?.addEventListener('change',evento=>{const seletor=evento.target.closest?.('[data-central-canal]');if(!seletor)return;const produto=produtoCentralPorId(seletor.dataset.centralCanal),campo=document.getElementById(`campanha-link-${seletor.dataset.centralCanal}`);if(produto&&campo)campo.value=urlCampanhaCentral(produto,seletor.value)});area?.addEventListener('input',evento=>{if(!evento.target.id?.startsWith('campanha-texto-'))return;const id=evento.target.id.replace('campanha-texto-','');textosCampanhaCentral[id]=evento.target.value});area?.addEventListener('click',evento=>{const compartilhar=evento.target.closest?.('[data-central-compartilhar]'),ia=evento.target.closest?.('[data-central-ia]'),editar=evento.target.closest?.('[data-central-editar]');if(compartilhar)compartilharCampanhaCentral(compartilhar.dataset.centralCompartilhar,compartilhar);else if(ia)gerarTextoCampanhaCentral(ia.dataset.centralIa,ia);else if(editar)editarProduto(editar.dataset.centralEditar)})}
 
