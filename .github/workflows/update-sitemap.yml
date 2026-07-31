@@ -2,8 +2,8 @@ name: Atualizar sitemap automaticamente
 
 on:
   schedule:
-    # A cada 15 minutos para novos produtos ganharem foto social rapidamente.
-    - cron: "7,22,37,52 * * * *"
+    # A cada 5 minutos para novos produtos ganharem foto social rapidamente.
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
