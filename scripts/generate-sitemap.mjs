@@ -161,8 +161,25 @@ function productDetailUrl(product) {
   return `${SITE}?produto=${encodeURIComponent(product.id)}`;
 }
 
+function shareDay() {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+}
+
+function shareHash(value) {
+  let hash = 0;
+  for (const character of String(value || "")) hash = (hash * 31 + character.charCodeAt(0)) >>> 0;
+  return hash.toString(36);
+}
+
+function shareRevision(product) {
+  const values = [product?.id, product?.foto, product?.precoAnterior, product?.precoPromocional, product?.preco, product?.promocaoValidaAte, product?.ofertaRelampagoTerminaEm];
+  return `${shareDay().replace(/\D/g, "")}-${shareHash(values.join("|"))}`;
+}
+
 function productShareUrl(product) {
-  return `${SITE}produto/${encodeURIComponent(product.id)}-${SHARE_VERSION}.html`;
+  const url = new URL(`produto/${encodeURIComponent(product.id)}-${SHARE_VERSION}.html`, SITE);
+  url.searchParams.set("v", shareRevision(product));
+  return url.href;
 }
 
 function renderSharePage(product, socialImage) {
