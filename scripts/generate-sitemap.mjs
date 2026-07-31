@@ -172,7 +172,7 @@ function shareHash(value) {
 }
 
 function shareRevision(product) {
-  const values = [product?.id, product?.foto, product?.precoAnterior, product?.precoPromocional, product?.preco, product?.promocaoValidaAte, product?.ofertaRelampagoTerminaEm];
+  const values = [product?.id, product?.foto];
   return `${shareDay().replace(/\D/g, "")}-${shareHash(values.join("|"))}`;
 }
 
