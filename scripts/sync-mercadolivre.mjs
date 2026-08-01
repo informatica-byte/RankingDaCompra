@@ -512,9 +512,9 @@ async function fetchMarketplaceItem(itemId, product = {}) {
   try {
     item = await fetchJson(
       `https://api.mercadolibre.com/items/${itemId}?attributes=id,status,available_quantity,currency_id,permalink,price,original_price`,
-      // O recurso de item é público. Tokens de vendedores podem receber 403 ao
-      // consultar anúncios de terceiros, por isso esta chamada não envia OAuth.
-      { authenticated: false },
+      // A documentação atual do Mercado Livre exige Authorization no recurso Items.
+      // O token renovável do aplicativo também permite consultar anúncios de terceiros.
+      { authenticated: Boolean(accessToken) },
     );
   } catch (error) {
     if (error.httpStatus === 404) {
