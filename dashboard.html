@@ -90,6 +90,9 @@
         .resumo-precos { margin: 0 0 12px; padding: 13px; border: 1px solid #e3b520; border-radius: 8px; background: #fff9e8; color: #5e4a13; font-size: 13px; line-height: 1.5; }
         .conferencia-precos-ia { margin: 0 0 16px; padding: 14px; border: 1px solid #b99be8; border-radius: 8px; background: #f7f2ff; }
         .conferencia-precos-ia p { margin: 9px 0 0; color: #4d3572; font-size: 12px; line-height: 1.45; }
+        .status-bot-precos { margin-top: 10px; padding: 9px 11px; border-radius: 7px; background: #fff4cc; color: #725400; font-size: 12px; font-weight: 800; }
+        .status-bot-precos.conectado { background: #dff7e8; color: #087a3d; }
+        .link-instalar-bot { display: inline-block; margin-top: 8px; color: #4d1b9b; font-size: 12px; font-weight: 800; }
         .btn-conferir-precos-ia { width: 100%; margin: 0; padding: 13px; border: 0; border-radius: 7px; background: #5b21b6; color: white; font-size: 15px; font-weight: 900; cursor: pointer; }
         .btn-conferir-precos-ia:disabled { opacity: .68; cursor: wait; }
         .progresso-precos-ia { display: none; margin-top: 12px; }
@@ -300,13 +303,15 @@
                 <div class="painel-produtos" id="painel-precos" role="tabpanel" aria-labelledby="tab-precos" hidden>
                     <div class="resumo-precos" id="resumo-precos">Carregando o relatório da última verificação automática...</div>
                     <div class="conferencia-precos-ia">
-                        <button type="button" class="btn-conferir-precos-ia" id="btn-conferir-precos-ia" onclick="iniciarConferenciaPrecosIAEmLote()">✨ Conferir todos os preços com IA</button>
+                        <button type="button" class="btn-conferir-precos-ia" id="btn-conferir-precos-ia" onclick="iniciarConferenciaPrecosIAEmLote()">🤖 Conferir todos os preços</button>
+                        <div class="status-bot-precos" id="status-bot-precos-local">Verificando o robô local...</div>
+                        <a class="link-instalar-bot" href="/bot-precos.user.js" target="_blank" rel="noopener">Instalar ou atualizar o robô de preços (uma única vez)</a>
                         <div class="progresso-precos-ia" id="progresso-precos-ia" aria-live="polite">
                             <progress id="barra-precos-ia" value="0" max="1"></progress>
                             <div class="texto-progresso-precos-ia" id="texto-precos-ia">Preparando a conferência...</div>
                             <div class="resumo-progresso-precos-ia" id="resumo-precos-ia"></div>
                         </div>
-                        <p>Uma confirmação inicia toda a fila. A IA salva apenas preços comprovados e deixa os casos duvidosos para revisão manual.</p>
+                        <p>Um clique percorre toda a fila. O robô usa a página real do anúncio, salva somente preços comprovados e deixa dúvidas para revisão.</p>
                     </div>
                     <div id="itens-precos"></div>
                 </div>
@@ -1967,10 +1972,12 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 const produto = documento.data();
                 const url = produto.link || produto.linkAfiliado || '';
                 if (!url) throw new Error('Cadastre o link original ou o link de afiliado antes de usar a IA.');
-                if (typeof window.conferirPrecoPelaFonteIA !== 'function') throw new Error('A conferência por IA ainda não terminou de carregar. Tente novamente em alguns segundos.');
-                const resultado = await window.conferirPrecoPelaFonteIA({ titulo: produto.titulo || '', url });
+                const motor = motorConferenciaPrecoDisponivel();
+                if (!motor) throw new Error('O robô de preços ainda não está conectado. Instale-o pelo link na aba Preços e recarregue o painel.');
+                if (botao) botao.textContent = `⏳ ${motor.nome} conferindo...`;
+                const resultado = await motor.conferir({ titulo: produto.titulo || '', url });
                 const preco = numeroPreco(resultado.preco);
-                if (!preco) throw new Error('A IA não retornou um preço válido.');
+                if (!preco) throw new Error('A conferência não retornou um preço válido.');
                 const campoEntrada = document.getElementById(`preco-manual-${id}`);
                 if (!campoEntrada) throw new Error('O campo de preço não está disponível.');
                 campoEntrada.value = formatarPrecoCampo(preco);
@@ -2002,6 +2009,29 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             return /(429|quota|resource.?exhausted|limite.*requisi|too many requests)/i.test(String(erro?.message || erro || ''));
         }
 
+        function motorConferenciaPrecoDisponivel() {
+            if (typeof window.conferirPrecoPelaFonteLocal === 'function') {
+                return { nome: 'Robô local', intervalo: 3500, conferir: window.conferirPrecoPelaFonteLocal };
+            }
+            if (typeof window.conferirPrecoPelaFonteIA === 'function') {
+                return { nome: 'IA online', intervalo: 1400, conferir: window.conferirPrecoPelaFonteIA };
+            }
+            return null;
+        }
+
+        function atualizarStatusBotPrecosLocal() {
+            const status = document.getElementById('status-bot-precos-local');
+            if (!status) return;
+            const conectado = typeof window.conferirPrecoPelaFonteLocal === 'function';
+            status.classList.toggle('conectado', conectado);
+            status.textContent = conectado
+                ? '✅ Robô local conectado — pronto para conferir todos os links.'
+                : '⚠️ Robô local ainda não conectado. Instale pelo link abaixo e recarregue o painel.';
+        }
+
+        window.setTimeout(atualizarStatusBotPrecosLocal, 700);
+        window.setInterval(atualizarStatusBotPrecosLocal, 2500);
+
         function urlDiretaParaConferenciaIA(produto, id) {
             const urlCadastrada = String(produto.link || produto.linkAfiliado || '').trim();
             const itemId = String(produto.mercadoLivreItemId || statusMercadoLivreAdmin[id]?.itemId || extrairIdMercadoLivreCadastro(urlCadastrada) || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
@@ -2013,13 +2043,14 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
         async function salvarPrecoConferidoEmLote(id, produto, resultado, urlConsultada) {
             const preco = numeroPreco(resultado.preco);
-            if (!preco) throw new Error('A IA não retornou um preço válido.');
+            if (!preco) throw new Error('A conferência não retornou um preço válido.');
             const campo = campoPrecoExibido(produto);
             await db.collection('produtos').doc(id).update({
                 [campo]: formatarPrecoCampo(preco),
                 precoAtualizadoManualmente: true,
                 precoAtualizadoManualmenteEm: firebase.firestore.FieldValue.serverTimestamp(),
                 precoConferidoPorIA: true,
+                precoConferidoPor: String(resultado.origem || 'ia_online').slice(0, 80),
                 precoConferidoPorIAEm: firebase.firestore.FieldValue.serverTimestamp(),
                 precoConferenciaIAEvidencia: String(resultado.evidencia || '').slice(0, 500),
                 precoConferenciaIATitulo: String(resultado.tituloEncontrado || '').slice(0, 300),
@@ -2046,10 +2077,11 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
             const fila = produtosPrecoPendenteAtual.map(produto => ({ ...produto }));
             if (!fila.length) return alert('Não há preços pendentes para conferir.');
-            if (typeof window.conferirPrecoPelaFonteIA !== 'function') {
-                return alert('A IA ainda não terminou de carregar. Aguarde alguns segundos e tente novamente.');
+            const motor = motorConferenciaPrecoDisponivel();
+            if (!motor) {
+                return alert('O robô de preços ainda não está conectado. Use o link "Instalar ou atualizar o robô", recarregue o painel e tente novamente.');
             }
-            if (!confirm(`A IA verificará ${fila.length} produto(s), um de cada vez, e salvará somente os preços comprovados. Deseja iniciar?`)) return;
+            if (!confirm(`${motor.nome} verificará ${fila.length} produto(s), um de cada vez, e salvará somente os preços comprovados. Deseja iniciar?`)) return;
 
             conferenciaPrecoIAEmAndamento = true;
             pausaConferenciaPrecoIASolicitada = false;
@@ -2075,7 +2107,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
                     try {
                         if (!urlConsultada) throw new Error('Produto sem link ou código MLB utilizável.');
-                        const resultado = await window.conferirPrecoPelaFonteIA({
+                        const resultado = await motor.conferir({
                             titulo: produto.titulo || '',
                             url: urlConsultada
                         });
@@ -2084,7 +2116,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     } catch (erro) {
                         falhas += 1;
                         ultimaFalha = String(erro?.message || erro).replace(/\s+/g, ' ').trim();
-                        console.warn('Preço não comprovado pela IA:', produto.titulo, erro);
+                        console.warn('Preço não comprovado pela conferência:', produto.titulo, erro);
                         if (erroDeQuotaPrecoIA(erro)) {
                             quotaEsgotada = true;
                             break;
@@ -2092,7 +2124,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     }
 
                     if (resumo) resumo.textContent = `${aprovados} aprovado(s) · ${falhas} não comprovado(s)`;
-                    if (indice + 1 < fila.length) await aguardarConferenciaPrecoIA(1400);
+                    if (indice + 1 < fila.length) await aguardarConferenciaPrecoIA(motor.intervalo);
                 }
             } finally {
                 conferenciaPrecoIAEmAndamento = false;
@@ -2100,7 +2132,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 pausaConferenciaPrecoIASolicitada = false;
                 if (botao) {
                     botao.disabled = false;
-                    botao.textContent = '✨ Conferir todos os preços com IA';
+                    botao.textContent = '🤖 Conferir todos os preços';
                 }
                 if (resumo) resumo.textContent = `${aprovados} aprovado(s) · ${falhas} não comprovado(s) · ${processados} de ${fila.length} processado(s)`;
 
@@ -2186,7 +2218,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     if (botaoConferenciaIA && !conferenciaPrecoIAEmAndamento) {
                         botaoConferenciaIA.disabled = precosPendentes.length === 0;
                         botaoConferenciaIA.textContent = precosPendentes.length
-                            ? `✨ Conferir todos os preços com IA (${precosPendentes.length})`
+                            ? `🤖 Conferir todos os preços (${precosPendentes.length})`
                             : '✅ Nenhum preço pendente';
                     }
                     document.getElementById('itens-lista').innerHTML = publicados.length
