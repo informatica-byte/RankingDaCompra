@@ -510,12 +510,23 @@ async function fetchMarketplacePublicPage(itemId, productUrls = []) {
 async function fetchMarketplaceItem(itemId, product = {}) {
   let item;
   try {
-    item = await fetchJson(
-      `https://api.mercadolibre.com/items/${itemId}?attributes=id,status,available_quantity,currency_id,permalink,price,original_price`,
-      // A documentação atual do Mercado Livre exige Authorization no recurso Items.
-      // O token renovável do aplicativo também permite consultar anúncios de terceiros.
+    const batch = await fetchJson(
+      `https://api.mercadolibre.com/items?ids=${encodeURIComponent(itemId)}&attributes=id,status,available_quantity,currency_id,permalink,price,original_price`,
       { authenticated: Boolean(accessToken) },
     );
+    const entry = Array.isArray(batch) ? batch[0] : null;
+    if (!entry || Number(entry.code) !== 200 || !entry.body) {
+      const status = Number(entry?.code || 502);
+      const detail = String(
+        entry?.body?.message || entry?.body?.error || "resposta inválida",
+      ).trim();
+      const requestError = new Error(
+        `Mercado Livre Multiget: HTTP ${status} - ${detail}`,
+      );
+      requestError.httpStatus = status;
+      throw requestError;
+    }
+    item = entry.body;
   } catch (error) {
     if (error.httpStatus === 404) {
       return {
