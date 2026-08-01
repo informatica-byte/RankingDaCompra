@@ -58,7 +58,8 @@
         .badge-cat { background: #ffe600; color: #333; padding: 4px 8px; border-radius: 4px; font-size: 11px; margin-right: 10px; font-weight: bold;}
         .acoes { display: flex; gap: 8px; }
         .btn-edit { background: #ffc107; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
-        .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;}
+        .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .correcao-preco .btn-del { padding: 9px 11px; border-radius: 5px; }
 
         .abas-produtos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 14px 0 16px; }
         .aba-produto { border: 1px solid #cfd4da; background: #f5f6f8; color: #333; border-radius: 8px; padding: 11px 8px; cursor: pointer; font-weight: 700; font-size: 13px; }
@@ -1959,6 +1960,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                         </div>
                         <button type="button" class="btn-preco" onclick="salvarPrecoManual('${doc.id}')">Salvar preço</button>
                         <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')">Editar completo</button>
+                        <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')" aria-label="Excluir ${escapeHtml(produto.titulo || 'produto')}">Excluir produto</button>
                     </div>
                 </div>`;
         }
@@ -2277,8 +2279,15 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             });
         }
 
-        function deletarProduto(id) {
-            if(confirm("Apagar este produto?")) db.collection("produtos").doc(id).delete();
+        async function deletarProduto(id) {
+            const confirmado = confirm("Excluir este produto definitivamente?\n\nEle será removido do painel e do site. Use esta opção somente se a oferta não existir mais.");
+            if (!confirmado) return;
+            try {
+                await db.collection("produtos").doc(id).delete();
+            } catch (erro) {
+                console.error("Erro ao excluir produto:", erro);
+                alert("Não foi possível excluir o produto. Tente novamente.");
+            }
         }
     </script>
 </body>
