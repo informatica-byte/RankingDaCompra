@@ -540,6 +540,32 @@ async function fetchMarketplaceItem(itemId, product = {}) {
       };
     }
     if ([401, 403].includes(error.httpStatus)) {
+      let salePriceError;
+      try {
+        const salePrice = await fetchJson(
+          `https://api.mercadolibre.com/items/${itemId}/sale_price?context=channel_marketplace`,
+          { authenticated: Boolean(accessToken) },
+        );
+        const amount = Number(salePrice?.amount);
+        const regularAmount = Number(salePrice?.regular_amount);
+        if (Number.isFinite(amount) && amount > 0) {
+          return {
+            itemId,
+            status: "active",
+            available: true,
+            price: amount,
+            regularPrice:
+              Number.isFinite(regularAmount) && regularAmount > amount
+                ? regularAmount
+                : null,
+            currencyId: String(salePrice?.currency_id || "BRL"),
+            source: "sale_price_api",
+          };
+        }
+        throw new Error("Mercado Livre: preço de venda ausente");
+      } catch (caught) {
+        salePriceError = caught;
+      }
       try {
         return await fetchMarketplacePublicPage(
           itemId,
@@ -547,7 +573,7 @@ async function fetchMarketplaceItem(itemId, product = {}) {
         );
       } catch (publicError) {
         throw new Error(
-          `${error.message}; fallback público: ${publicError.message}`,
+          `${error.message}; preço: ${salePriceError?.message || "indisponível"}; fallback público: ${publicError.message}`,
         );
       }
     }
