@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-01T16:46:35.917Z",
+  "updatedAt": "2026-08-01T17:26:03.245Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "itemId": "MLB2171368181",
@@ -1175,14 +1175,15 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "public_page",
-      "checkedAt": "2026-08-01T16:46:35.917Z",
+      "checkedAt": "2026-08-01T17:26:03.245Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden"
     },
     "SEqRg2PsdNDdUJEB4T3W": {
       "itemId": "",
