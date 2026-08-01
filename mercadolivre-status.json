@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-01T06:43:26.313Z",
+  "updatedAt": "2026-08-01T10:12:19.709Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "itemId": "MLB2171368181",
@@ -39,8 +39,8 @@
       "itemId": "MLB5761677016",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "1c9dmLesD1G0pPTCYrjt": {
       "itemId": "",
@@ -70,8 +70,8 @@
       "itemId": "MLB5671281280",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "2vFXQV4acjGHUTy8Lsk1": {
       "itemId": "",
@@ -89,8 +89,8 @@
       "itemId": "MLB4555189589",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "31Lco0eFCDaomsks3iM3": {
       "itemId": "",
@@ -141,8 +141,8 @@
       "itemId": "MLB4688076761",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "5FQyewGiYpron6Bn32d1": {
       "itemId": "",
@@ -286,8 +286,8 @@
       "itemId": "MLB5534460646",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21145)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "7RRjhxWIikQCIf7hMecA": {
       "itemId": "MLB4516715979",
@@ -300,7 +300,7 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "public_page",
-      "checkedAt": "2026-07-31T21:32:41.037Z",
+      "checkedAt": "2026-08-01T10:12:19.709Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -308,7 +308,7 @@
       "lightningEndsAt": "",
       "lightningPrice": null,
       "lightningSource": "",
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)"
     },
     "7m4toROPHx9QFdjcgYK4": {
       "itemId": "MLB6080424808",
@@ -352,8 +352,8 @@
       "itemId": "MLB3946172085",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "8j6511Zon4ueAEx3YQm3": {
       "itemId": "",
@@ -464,8 +464,8 @@
       "itemId": "MLB4466469885",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21145)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "BCg2WOVSiX5WQWBLytF3": {
       "itemId": "",
@@ -559,8 +559,8 @@
       "itemId": "MLB4698657905",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-07-31T23:26:01.925Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "DIab1xDgULuHRH3qhVng": {
       "itemId": "MLB5299097242",
@@ -635,15 +635,15 @@
       "itemId": "MLB4030613465",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "Epxmh8h9SUURpJ90EVsU": {
       "itemId": "MLB4345564271",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-07-31T23:26:01.925Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "EqohVCbzvQYEWPnsDLVE": {
       "itemId": "",
@@ -661,8 +661,8 @@
       "itemId": "MLB6142903662",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-07-31T21:32:41.037Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "G6HUKfBXKEFnrqRtUluo": {
       "itemId": "MLB5724876880",
@@ -675,8 +675,8 @@
       "itemId": "MLB3834227763",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21145)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "GT9gxxxsfkbjOfDG2uIM": {
       "itemId": "",
@@ -763,8 +763,8 @@
       "itemId": "MLB6434829478",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-07-31T19:57:08.524Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "IDA76uppTv69u52PSwg4": {
       "itemId": "MLB4864912263",
@@ -777,15 +777,15 @@
       "itemId": "MLB4439306401",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "IIyCFOzd5pJPAYsrFAVi": {
       "itemId": "MLB6760718206",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-07-31T23:26:01.925Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "JRAFxivVt0j9tJHdlF8W": {
       "itemId": "",
@@ -815,8 +815,8 @@
       "itemId": "MLB4445173579",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T03:55:33.978Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "K8a5mSjRuB5F4s8PL7sW": {
       "itemId": "",
@@ -932,15 +932,15 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "public_page",
-      "checkedAt": "2026-07-31T19:57:08.524Z",
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)"
+      "checkedAt": "2026-08-01T10:12:19.709Z",
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21145)"
     },
     "MBhoRb0kSLsHrhutbTLN": {
       "itemId": "MLB4654569763",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "MEkEjNiiDdi5MpmlP07R": {
       "itemId": "",
@@ -958,29 +958,29 @@
       "itemId": "MLB4200316101",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-07-31T21:32:41.037Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=23030)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "MWjfkNgY4oXJD8NhCOQn": {
       "itemId": "MLB4888474966",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "MbHUcSnjO3yOTMLtvaHh": {
       "itemId": "MLB4516670993",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "N3JYVELP3Zqr7KuZYA3n": {
       "itemId": "MLB3634111858",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21150)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "N4KsHh8DV3Bp6DWv7s89": {
       "itemId": "MLB3843025927",
@@ -1005,8 +1005,8 @@
       "itemId": "MLB4595279704",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "OADfHMMVftq1AKtGgcaP": {
       "itemId": "",
@@ -1024,8 +1024,8 @@
       "itemId": "MLB5761444412",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21145)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "OiQ4hPolSkHoDk0bpbJI": {
       "itemId": "MLB3994439565",
@@ -1062,8 +1062,8 @@
       "itemId": "MLB7159697020",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "Q9UWVUsXl8sIvWyM1hKt": {
       "itemId": "",
@@ -1093,8 +1093,8 @@
       "itemId": "MLB5198704110",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T03:55:33.978Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "ROi9CBPuf7ShFF2BoZiU": {
       "itemId": "MLB6970014088",
@@ -1145,8 +1145,8 @@
       "itemId": "MLB4516309629",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "Scnb3umRqlUnVZT4kIQ5": {
       "itemId": "",
@@ -1197,15 +1197,15 @@
       "itemId": "MLB6242762384",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "Tf2Gd5imbuF5N31MFaSj": {
       "itemId": "MLB4156439551",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T03:55:33.978Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21145)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "UKgaZuJb7nXBb1ED38NA": {
       "itemId": "",
@@ -1223,8 +1223,8 @@
       "itemId": "MLB4533376199",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-07-31T14:42:03.667Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "UlgA45nNx2rsEykMbv67": {
       "itemId": "",
@@ -1285,8 +1285,8 @@
       "itemId": "MLB4418866933",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "VyYiww5HVcBRIH8SD5SD": {
       "itemId": "MLB6563286992",
@@ -1299,8 +1299,8 @@
       "itemId": "MLB5344006946",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=23025)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "WOserRLJ8a5xgPNXykgB": {
       "itemId": "MLB5619172918",
@@ -1325,15 +1325,15 @@
       "itemId": "MLB6538432578",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T03:55:33.978Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "WvcS8YmsKHzIhPWu5tcb": {
       "itemId": "MLB4610178565",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "XABgPdyXFaOvxvzo4g1M": {
       "itemId": "MLB3225819794",
@@ -1346,8 +1346,8 @@
       "itemId": "MLB5758565582",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-07-31T23:26:01.925Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "XWXtgVSsCBCwOtcMCdO3": {
       "itemId": "",
@@ -1415,8 +1415,8 @@
       "itemId": "MLB3900167827",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T03:55:33.978Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "Ylzqr7X617VzKJDxAVrl": {
       "itemId": "MLB5849956254",
@@ -1505,7 +1505,7 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "public_page",
-      "checkedAt": "2026-08-01T06:43:26.313Z",
+      "checkedAt": "2026-08-01T10:12:19.709Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1513,7 +1513,7 @@
       "lightningEndsAt": "",
       "lightningPrice": null,
       "lightningSource": "",
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21215)"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)"
     },
     "b5s8jSx2KsXwtlFXlB6X": {
       "itemId": "MLB5578006340",
@@ -1638,8 +1638,8 @@
       "itemId": "MLB3941733035",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=23035)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "eJn1Xl8uCPLxKCObXB6r": {
       "itemId": "",
@@ -1657,8 +1657,8 @@
       "itemId": "MLB3964141405",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-07-31T23:26:01.925Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "eWSvbRDlCUBkWhNx5s6T": {
       "itemId": "MLB5451783886",
@@ -1793,8 +1793,8 @@
       "itemId": "MLB4873923933",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
-      "checkedAt": "2026-08-01T03:55:33.978Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21145)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "iSyPxYQcVUDjHvjIHLhS": {
       "itemId": "MLB6519291232",
@@ -1807,8 +1807,8 @@
       "itemId": "MLB4867225937",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "jtoMVM4B6489xr6wyHxD": {
       "itemId": "MLB4188994271",
@@ -1864,8 +1864,8 @@
       "itemId": "MLB6230997792",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-07-31T21:32:41.037Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "lBNuqOAaKBimLnMTsaN6": {
       "itemId": "",
@@ -1883,8 +1883,8 @@
       "itemId": "MLB4645102377",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21145)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "liYhKi9ZlLnwNTT1uvBl": {
       "itemId": "MLB2645813318",
@@ -1897,8 +1897,8 @@
       "itemId": "MLB4671001438",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "mh7qDBFGUmyIdAbEfI11": {
       "itemId": "MLB3371578831",
@@ -1923,8 +1923,8 @@
       "itemId": "MLB4268042659",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T03:55:33.978Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "o6oq1IPOS41xUDtF3TG7": {
       "itemId": "MLB5832558364",
@@ -2044,8 +2044,8 @@
       "itemId": "MLB5476808252",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "rprMIfgXVzsyWCFxyqi2": {
       "itemId": "MLB4726985137",
@@ -2249,8 +2249,8 @@
       "itemId": "MLB4030613465",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "x75GETnbI3P4zycAKwOI": {
       "itemId": "MLB5107773742",
@@ -2263,8 +2263,8 @@
       "itemId": "MLB3817190966",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21140)",
-      "checkedAt": "2026-08-01T06:43:26.313Z"
+      "lastError": "Mercado Livre: página sem preço ou disponibilidade verificável (preço=não, compra=não, tamanho=21135)",
+      "checkedAt": "2026-08-01T10:12:19.709Z"
     },
     "xl3Lu9wu6NJqDUpGmBsV": {
       "itemId": "",
