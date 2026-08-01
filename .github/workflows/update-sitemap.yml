@@ -10,8 +10,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: atualizar-sitemap
-  cancel-in-progress: true
+  group: rankingdacompra-publicacao
+  cancel-in-progress: false
 
 jobs:
   atualizar:
@@ -25,7 +25,7 @@ jobs:
       - name: Preparar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Gerar sitemap e páginas sociais com os dados do Firebase
         run: node scripts/generate-sitemap.mjs
