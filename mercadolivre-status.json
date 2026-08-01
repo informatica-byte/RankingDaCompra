@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-01T17:26:03.245Z",
+  "updatedAt": "2026-08-01T23:15:02.205Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "itemId": "MLB2171368181",
@@ -296,27 +296,6 @@
       "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
       "checkedAt": "2026-08-01T16:46:35.917Z"
     },
-    "7RRjhxWIikQCIf7hMecA": {
-      "itemId": "MLB4516715979",
-      "managed": true,
-      "status": "active",
-      "available": true,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": 169,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-01T16:46:35.917Z",
-      "lightningChecked": false,
-      "lightningActive": false,
-      "lightningPromotionId": "",
-      "lightningStartsAt": "",
-      "lightningEndsAt": "",
-      "lightningPrice": null,
-      "lightningSource": "",
-      "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden"
-    },
     "7m4toROPHx9QFdjcgYK4": {
       "itemId": "MLB6080424808",
       "managed": true,
@@ -473,18 +452,6 @@
       "visible": true,
       "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
       "checkedAt": "2026-08-01T16:46:35.917Z"
-    },
-    "BCg2WOVSiX5WQWBLytF3": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "BfbQg5xZZO8bsTlObKHe": {
       "itemId": "MLB7143036282",
@@ -956,20 +923,6 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
-    "LvXBsF9wYGKcC3aEH9yS": {
-      "itemId": "MLB4038604887",
-      "managed": true,
-      "status": "active",
-      "available": true,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": 163,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-01T16:46:35.917Z",
-      "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden"
-    },
     "MBhoRb0kSLsHrhutbTLN": {
       "itemId": "MLB4654569763",
       "managed": true,
@@ -1012,13 +965,6 @@
     },
     "N3JYVELP3Zqr7KuZYA3n": {
       "itemId": "MLB3634111858",
-      "managed": true,
-      "visible": true,
-      "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
-      "checkedAt": "2026-08-01T16:46:35.917Z"
-    },
-    "N4KsHh8DV3Bp6DWv7s89": {
-      "itemId": "MLB3843025927",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
@@ -1787,18 +1733,6 @@
       "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
       "checkedAt": "2026-08-01T16:46:35.917Z"
     },
-    "g3HdMnRiCKGfxp8iwEGh": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
-    },
     "gEZA9TsOQlwkoL5Csfgv": {
       "itemId": "MLB6588418806",
       "managed": true,
@@ -2124,13 +2058,6 @@
       "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
       "checkedAt": "2026-08-01T16:46:35.917Z"
     },
-    "rprMIfgXVzsyWCFxyqi2": {
-      "itemId": "MLB4726985137",
-      "managed": true,
-      "visible": true,
-      "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
-      "checkedAt": "2026-08-01T16:46:35.917Z"
-    },
     "rrtpCXXyFAXB9Htjmf5O": {
       "itemId": "",
       "managed": false,
@@ -2355,18 +2282,6 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
-    "xoYXqy1jny6VAtOWOdin": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
-    },
     "xq3BIapk5fun5CkIrwc1": {
       "itemId": "MLB3756676515",
       "managed": true,
@@ -2420,18 +2335,6 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "zb4ZDbdfJGUurcSXtVaa": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
-    },
-    "zebACdixrirTBGNqYhQ6": {
       "itemId": "",
       "managed": false,
       "status": "missing_item_id",
