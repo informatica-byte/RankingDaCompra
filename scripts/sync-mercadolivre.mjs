@@ -529,10 +529,16 @@ async function fetchMarketplaceItem(itemId, product = {}) {
       };
     }
     if ([401, 403].includes(error.httpStatus)) {
-      return fetchMarketplacePublicPage(
-        itemId,
-        [product.link, product.linkAfiliado].filter(Boolean),
-      );
+      try {
+        return await fetchMarketplacePublicPage(
+          itemId,
+          [product.link, product.linkAfiliado].filter(Boolean),
+        );
+      } catch (publicError) {
+        throw new Error(
+          `${error.message}; fallback público: ${publicError.message}`,
+        );
+      }
     }
     throw error;
   }
