@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-02T14:02:06.418Z",
+  "updatedAt": "2026-08-02T17:27:03.749Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "itemId": "MLB2171368181",
@@ -1312,6 +1312,13 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "VaxspecNzGrFQjieZlq0": {
+      "itemId": "MLB4035471677",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
+      "checkedAt": "2026-08-02T17:27:03.749Z"
     },
     "VfMW16M9t5lgB6JcDJYp": {
       "itemId": "",
