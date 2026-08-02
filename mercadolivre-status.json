@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-02T17:27:03.749Z",
+  "updatedAt": "2026-08-02T19:38:37.823Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "itemId": "MLB2171368181",
@@ -827,18 +827,6 @@
       "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
       "checkedAt": "2026-08-01T16:46:35.917Z"
     },
-    "K8a5mSjRuB5F4s8PL7sW": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
-    },
     "K8hXvUkqAAnbt0Om6wRj": {
       "itemId": "MLB6609986264",
       "managed": true,
@@ -1408,16 +1396,11 @@
       "checkedAt": "2026-08-01T16:46:35.917Z"
     },
     "XWXtgVSsCBCwOtcMCdO3": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
+      "itemId": "MLB6798371404",
+      "managed": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
+      "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
+      "checkedAt": "2026-08-02T19:38:37.823Z"
     },
     "XXQfkSFgQfT2yD1mVrsP": {
       "itemId": "",
@@ -1883,18 +1866,6 @@
       "visible": true,
       "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
       "checkedAt": "2026-08-01T16:46:35.917Z"
-    },
-    "jxHGyR79Wzg7phsnL344": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "kClWzYNN4MPgWsNp7fni": {
       "itemId": "MLB4026985089",
