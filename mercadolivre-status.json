@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-02T11:37:35.542Z",
+  "updatedAt": "2026-08-02T14:02:06.418Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "itemId": "MLB2171368181",
@@ -1538,6 +1538,13 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "avV2oOE8xcX9ioG4GNnT": {
+      "itemId": "MLB5300250366",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
+      "checkedAt": "2026-08-02T14:02:06.418Z"
+    },
     "avmb0aivir2BN7HKGMXm": {
       "itemId": "MLB6726373470",
       "managed": true,
@@ -1775,6 +1782,13 @@
       "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
       "checkedAt": "2026-08-01T16:46:35.917Z"
     },
+    "gEwfNvxGOQwqTtwLHPEW": {
+      "itemId": "MLB4519183083",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
+      "checkedAt": "2026-08-02T14:02:06.418Z"
+    },
     "gPWdMxuZEb1GV98WNpNc": {
       "itemId": "",
       "managed": false,
@@ -1938,6 +1952,13 @@
       "visible": true,
       "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
       "checkedAt": "2026-08-01T16:46:35.917Z"
+    },
+    "m0fs4Hae1mAy5jL3RdQj": {
+      "itemId": "MLB7210127338",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre Multiget: HTTP 403 - Access to the requested resource is forbidden; preço: Mercado Livre: HTTP 403 - Access to the requested resource is forbidden",
+      "checkedAt": "2026-08-02T14:02:06.418Z"
     },
     "mTOcmpdCWJJ0QtwUx4tz": {
       "itemId": "MLB4671001438",
