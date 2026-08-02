@@ -61,6 +61,14 @@
         .btn-del { background: #f23d4f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
         .correcao-preco .btn-del { padding: 9px 11px; border-radius: 5px; }
 
+        .busca-produtos-admin { margin: 10px 0 14px; padding: 13px; background: #f3f8ff; border: 1px solid #c9dcf7; border-radius: 9px; }
+        .busca-produtos-admin label { color: #24456f; font-size: 12px; }
+        .linha-busca-produtos { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+        .linha-busca-produtos input { padding-left: 38px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23566b84' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 12px center; }
+        .btn-limpar-busca { width: auto; min-width: 86px; border: 1px solid #9bb8df; background: white; color: #24456f; border-radius: 6px; padding: 0 12px; cursor: pointer; font-weight: 800; }
+        .btn-limpar-busca:hover { background: #e5effc; }
+        .resumo-busca-produtos { min-height: 17px; margin-top: 7px; color: #52667d; font-size: 11px; font-weight: 700; }
+        @media (max-width: 520px) { .linha-busca-produtos { grid-template-columns: 1fr; } .btn-limpar-busca { min-height: 40px; } }
         .abas-produtos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 14px 0 16px; }
         .aba-produto { border: 1px solid #cfd4da; background: #f5f6f8; color: #333; border-radius: 8px; padding: 11px 8px; cursor: pointer; font-weight: 700; font-size: 13px; }
         .aba-produto:hover { border-color: #2d3277; }
@@ -272,6 +280,14 @@
 
             <div class="lista-admin">
                 <h3>Produtos Cadastrados</h3>
+                <div class="busca-produtos-admin">
+                    <label for="busca-produtos-admin">🔎 Buscar produto cadastrado</label>
+                    <div class="linha-busca-produtos">
+                        <input type="search" id="busca-produtos-admin" placeholder="Digite nome, categoria, código MLB ou link" autocomplete="off">
+                        <button type="button" class="btn-limpar-busca" id="btn-limpar-busca-produtos" hidden>Limpar</button>
+                    </div>
+                    <div class="resumo-busca-produtos" id="resumo-busca-produtos" aria-live="polite">Digite acima para localizar rapidamente um produto.</div>
+                </div>
                 <div class="abas-produtos" role="tablist" aria-label="Situação dos produtos">
                     <button type="button" class="aba-produto" id="tab-publicados" role="tab" aria-selected="false" aria-controls="painel-publicados">✅ Publicados <span class="contador-aba" id="contagem-publicados">0</span></button>
                     <button type="button" class="aba-produto aba-revisao" id="tab-revisao" role="tab" aria-selected="true" aria-controls="painel-revisao">⚠️ Revisão necessária <span class="contador-aba" id="contagem-revisao">0</span></button>
@@ -1564,12 +1580,77 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         }
 
         let abaProdutosAtiva = 'revisao';
+        let termoBuscaProdutos = '';
+        let colecoesProdutosAtuais = { publicados: [], revisao: [], indisponiveis: [], precos: [] };
         const PADRAO_TEXTO_GENERICO = /(chama aten[cç][aã]o por|recursos descritos no próprio título|informações em atualização|produto identificado no anúncio|oferta para comparar|conheça este produto)/i;
 
         function produtoOcultoNaVitrine(produto) {
             const resumo = String(produto.comentario || '').replace(/\s+/g, ' ').trim();
             return resumo.length < 180 || PADRAO_TEXTO_GENERICO.test(resumo);
         }
+
+        function normalizarBuscaProduto(valor) {
+            return String(valor || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR').replace(/\s+/g, ' ').trim();
+        }
+
+        function documentoCombinaComBusca(doc) {
+            const termo = normalizarBuscaProduto(termoBuscaProdutos);
+            if (!termo) return true;
+            const produto = doc?.data ? doc.data() : doc || {};
+            const texto = [
+                doc?.id || produto.id,
+                produto.titulo,
+                produto.categoria,
+                produto.selo,
+                produto.mercadoLivreItemId,
+                produto.link,
+                produto.linkAfiliado,
+                produto.preco,
+                produto.precoPromocional,
+                produto.comentario
+            ].map(normalizarBuscaProduto).join(' ');
+            return texto.includes(termo);
+        }
+
+        function produtosFiltradosDaAba(nomeAba) {
+            return (colecoesProdutosAtuais[nomeAba] || []).filter(documentoCombinaComBusca);
+        }
+
+        function atualizarResumoBuscaProdutos() {
+            const resumo = document.getElementById('resumo-busca-produtos');
+            const limpar = document.getElementById('btn-limpar-busca-produtos');
+            if (!resumo || !limpar) return;
+            const total = (colecoesProdutosAtuais[abaProdutosAtiva] || []).length;
+            const exibidos = produtosFiltradosDaAba(abaProdutosAtiva).length;
+            const pesquisando = Boolean(normalizarBuscaProduto(termoBuscaProdutos));
+            limpar.hidden = !pesquisando;
+            resumo.textContent = pesquisando
+                ? 'Mostrando '+exibidos+' de '+total+' produto(s) nesta aba.'
+                : total+' produto(s) nesta aba. Digite para buscar por nome, categoria, MLB ou link.';
+        }
+
+        function renderizarListasProdutosBusca() {
+            const publicados = produtosFiltradosDaAba('publicados');
+            const revisao = produtosFiltradosDaAba('revisao');
+            const indisponiveis = produtosFiltradosDaAba('indisponiveis');
+            const precos = produtosFiltradosDaAba('precos');
+            const pesquisando = Boolean(normalizarBuscaProduto(termoBuscaProdutos));
+            const vazioBusca = '<div class="estado-lista">🔎 Nenhum produto encontrado com essa busca nesta aba.</div>';
+            document.getElementById('itens-lista').innerHTML = publicados.length
+                ? publicados.map(cartaoProdutoPublicado).join('')
+                : (pesquisando ? vazioBusca : '<div class="estado-lista">Nenhum produto publicado no momento.</div>');
+            document.getElementById('itens-revisao').innerHTML = revisao.length
+                ? revisao.map(cartaoProdutoRevisao).join('')
+                : (pesquisando ? vazioBusca : '<div class="estado-lista">✅ Tudo certo: nenhum produto oculto precisa de revisão.</div>');
+            document.getElementById('itens-indisponiveis').innerHTML = indisponiveis.length
+                ? indisponiveis.map(cartaoProdutoIndisponivel).join('')
+                : (pesquisando ? vazioBusca : '<div class="estado-lista">✅ Nenhum anúncio encerrado ou sem estoque.</div>');
+            document.getElementById('itens-precos').innerHTML = precos.length
+                ? precos.map(cartaoProdutoPreco).join('')
+                : (pesquisando ? vazioBusca : '<div class="estado-lista">✅ Todos os preços foram confirmados automaticamente ou revisados manualmente nas últimas 24 horas.</div>');
+            atualizarResumoBuscaProdutos();
+        }
+
 
         function problemasProduto(produto) {
             const problemas = [];
@@ -1602,12 +1683,31 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             document.getElementById('painel-revisao').hidden = !revisaoAtiva;
             document.getElementById('painel-indisponiveis').hidden = !indisponiveisAtivos;
             document.getElementById('painel-precos').hidden = !precosAtivos;
+            atualizarResumoBuscaProdutos();
         }
 
         document.getElementById('tab-publicados').addEventListener('click', () => ativarAbaProdutos('publicados'));
         document.getElementById('tab-revisao').addEventListener('click', () => ativarAbaProdutos('revisao'));
         document.getElementById('tab-indisponiveis').addEventListener('click', () => ativarAbaProdutos('indisponiveis'));
         document.getElementById('tab-precos').addEventListener('click', () => ativarAbaProdutos('precos'));
+        const campoBuscaProdutos = document.getElementById('busca-produtos-admin');
+        const botaoLimparBuscaProdutos = document.getElementById('btn-limpar-busca-produtos');
+        campoBuscaProdutos.addEventListener('input', () => {
+            termoBuscaProdutos = campoBuscaProdutos.value;
+            renderizarListasProdutosBusca();
+        });
+        campoBuscaProdutos.addEventListener('keydown', evento => {
+            if (evento.key !== 'Escape') return;
+            campoBuscaProdutos.value = '';
+            termoBuscaProdutos = '';
+            renderizarListasProdutosBusca();
+        });
+        botaoLimparBuscaProdutos.addEventListener('click', () => {
+            campoBuscaProdutos.value = '';
+            termoBuscaProdutos = '';
+            renderizarListasProdutosBusca();
+            campoBuscaProdutos.focus();
+        });
         document.getElementById('btn-testar-lote').addEventListener('click', () => corrigirProdutosEmLote(3));
         document.getElementById('btn-corrigir-lote').addEventListener('click', () => corrigirProdutosEmLote(0));
         document.getElementById('btn-pausar-lote').addEventListener('click', () => {
@@ -2229,6 +2329,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     document.getElementById('contagem-precos').textContent = precosPendentes.length;
                     produtosRevisaoAtual = revisao.map(doc => ({ id: doc.id, ...doc.data() }));
                     produtosPrecoPendenteAtual = precosPendentes.map(doc => ({ id: doc.id, ...doc.data() }));
+                    colecoesProdutosAtuais = { publicados, revisao, indisponiveis, precos: precosPendentes };
                     const botaoConferenciaIA = document.getElementById('btn-conferir-precos-ia');
                     if (botaoConferenciaIA && !conferenciaPrecoIAEmAndamento) {
                         botaoConferenciaIA.disabled = precosPendentes.length === 0;
@@ -2236,18 +2337,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                             ? `🤖 Conferir todos os preços (${precosPendentes.length})`
                             : '✅ Nenhum preço pendente';
                     }
-                    document.getElementById('itens-lista').innerHTML = publicados.length
-                        ? publicados.map(cartaoProdutoPublicado).join('')
-                        : '<div class="estado-lista">Nenhum produto publicado no momento.</div>';
-                    document.getElementById('itens-revisao').innerHTML = revisao.length
-                        ? revisao.map(cartaoProdutoRevisao).join('')
-                        : '<div class="estado-lista">✅ Tudo certo: nenhum produto oculto precisa de revisão.</div>';
-                    document.getElementById('itens-indisponiveis').innerHTML = indisponiveis.length
-                        ? indisponiveis.map(cartaoProdutoIndisponivel).join('')
-                        : '<div class="estado-lista">✅ Nenhum anúncio encerrado ou sem estoque.</div>';
-                    document.getElementById('itens-precos').innerHTML = precosPendentes.length
-                        ? precosPendentes.map(cartaoProdutoPreco).join('')
-                        : '<div class="estado-lista">✅ Todos os preços foram confirmados automaticamente ou revisados manualmente nas últimas 24 horas.</div>';
+                    renderizarListasProdutosBusca();
                     const totalRelatorio = Object.keys(statusMercadoLivreAdmin).length;
                     document.getElementById('resumo-precos').innerHTML = `<strong>Última tentativa automática:</strong> ${escapeHtml(formatarDataHoraPreco(statusMercadoLivreAtualizadoEm))}. <strong>Itens no relatório:</strong> ${totalRelatorio}. <strong>Precisam de conferência:</strong> ${precosPendentes.length}. Ao salvar um preço, o produto fica marcado como revisado manualmente por 24 horas.`;
                     ativarAbaProdutos(abaProdutosAtiva);
