@@ -509,25 +509,73 @@ async function fetchMarketplacePublicPage(itemId, productUrls = []) {
 
 async function fetchMarketplaceItem(itemId, product = {}) {
   let item;
-  try {
-    const batch = await fetchJson(
-      `https://api.mercadolibre.com/items?ids=${encodeURIComponent(itemId)}&attributes=id,status,available_quantity,currency_id,permalink,price,original_price`,
-      { authenticated: Boolean(accessToken) },
-    );
-    const entry = Array.isArray(batch) ? batch[0] : null;
-    if (!entry || Number(entry.code) !== 200 || !entry.body) {
-      const status = Number(entry?.code || 502);
-      const detail = String(
-        entry?.body?.message || entry?.body?.error || "resposta inválida",
-      ).trim();
-      const requestError = new Error(
-        `Mercado Livre Multiget: HTTP ${status} - ${detail}`,
-      );
-      requestError.httpStatus = status;
-      throw requestError;
+  let itemError = null;
+  const attributes =
+    "id,status,available_quantity,currency_id,permalink,price,original_price";
+  const batchUrl =
+    "https://api.mercadolibre.com/items?ids="
+    + encodeURIComponent(itemId)
+    + "&attributes="
+    + attributes;
+  const authenticationAttempts = accessToken ? [true, false] : [false];
+
+  for (const authenticated of authenticationAttempts) {
+    try {
+      const batch = await fetchJson(batchUrl, { authenticated });
+      const entry = Array.isArray(batch) ? batch[0] : null;
+      if (!entry || Number(entry.code) !== 200 || !entry.body) {
+        const status = Number(entry?.code || 502);
+        const detail = String(
+          entry?.body?.message || entry?.body?.error || "resposta inválida",
+        ).trim();
+        const requestError = new Error(
+          "Mercado Livre Multiget: HTTP " + status + " - " + detail,
+        );
+        requestError.httpStatus = status;
+        throw requestError;
+      }
+      item = entry.body;
+      break;
+    } catch (error) {
+      itemError = error;
+      if (error.httpStatus === 404) {
+        return {
+          itemId,
+          status: "not_found",
+          available: false,
+          price: null,
+          regularPrice: null,
+          currencyId: "BRL",
+          source: "api",
+        };
+      }
+      if (authenticated && [401, 403].includes(error.httpStatus)) {
+        console.warn(
+          "Mercado Livre recusou o token para " + itemId
+          + "; tentando a consulta pública oficial.",
+        );
+        continue;
+      }
+      break;
     }
-    item = entry.body;
-  } catch (error) {
+  }
+
+  if (!item && [401, 403].includes(itemError?.httpStatus)) {
+    try {
+      item = await fetchJson(
+        "https://api.mercadolibre.com/items/"
+          + encodeURIComponent(itemId)
+          + "?attributes="
+          + attributes,
+        { authenticated: false },
+      );
+    } catch (error) {
+      itemError = error;
+    }
+  }
+
+  if (!item) {
+    const error = itemError || new Error("Mercado Livre: anúncio sem resposta");
     if (error.httpStatus === 404) {
       return {
         itemId,
@@ -541,30 +589,40 @@ async function fetchMarketplaceItem(itemId, product = {}) {
     }
     if ([401, 403].includes(error.httpStatus)) {
       let salePriceError;
-      try {
-        const salePrice = await fetchJson(
-          `https://api.mercadolibre.com/items/${itemId}/sale_price?context=channel_marketplace`,
-          { authenticated: Boolean(accessToken) },
-        );
-        const amount = Number(salePrice?.amount);
-        const regularAmount = Number(salePrice?.regular_amount);
-        if (Number.isFinite(amount) && amount > 0) {
-          return {
-            itemId,
-            status: "active",
-            available: true,
-            price: amount,
-            regularPrice:
-              Number.isFinite(regularAmount) && regularAmount > amount
-                ? regularAmount
-                : null,
-            currencyId: String(salePrice?.currency_id || "BRL"),
-            source: "sale_price_api",
-          };
+      for (const authenticated of authenticationAttempts) {
+        try {
+          const salePrice = await fetchJson(
+            "https://api.mercadolibre.com/items/"
+              + encodeURIComponent(itemId)
+              + "/sale_price?context=channel_marketplace",
+            { authenticated },
+          );
+          const amount = Number(salePrice?.amount);
+          const regularAmount = Number(salePrice?.regular_amount);
+          if (Number.isFinite(amount) && amount > 0) {
+            return {
+              itemId,
+              status: "active",
+              available: true,
+              price: amount,
+              regularPrice:
+                Number.isFinite(regularAmount) && regularAmount > amount
+                  ? regularAmount
+                  : null,
+              currencyId: String(salePrice?.currency_id || "BRL"),
+              source: authenticated
+                ? "sale_price_api"
+                : "sale_price_public_api",
+            };
+          }
+          throw new Error("Mercado Livre: preço de venda ausente");
+        } catch (caught) {
+          salePriceError = caught;
+          if (authenticated && [401, 403].includes(caught.httpStatus)) {
+            continue;
+          }
+          break;
         }
-        throw new Error("Mercado Livre: preço de venda ausente");
-      } catch (caught) {
-        salePriceError = caught;
       }
       try {
         return await fetchMarketplacePublicPage(
@@ -573,7 +631,11 @@ async function fetchMarketplaceItem(itemId, product = {}) {
         );
       } catch (publicError) {
         throw new Error(
-          `${error.message}; preço: ${salePriceError?.message || "indisponível"}; fallback público: ${publicError.message}`,
+          error.message
+          + "; preço: "
+          + (salePriceError?.message || "indisponível")
+          + "; fallback público: "
+          + publicError.message,
         );
       }
     }
@@ -583,7 +645,7 @@ async function fetchMarketplaceItem(itemId, product = {}) {
   let salePrice = null;
   if (accessToken) {
     salePrice = await fetchJson(
-      `https://api.mercadolibre.com/items/${itemId}/sale_price`,
+      "https://api.mercadolibre.com/items/" + itemId + "/sale_price",
       { allowMissing: true },
     );
   }
@@ -601,7 +663,7 @@ async function fetchMarketplaceItem(itemId, product = {}) {
     price: Number.isFinite(amount) && amount > 0 ? amount : null,
     regularPrice: Number.isFinite(regularAmount) && regularAmount > amount ? regularAmount : null,
     currencyId: String(salePrice?.currency_id || item?.currency_id || "BRL"),
-    source: "api",
+    source: itemError ? "public_api" : "api",
     lightning,
   };
 }
@@ -771,6 +833,21 @@ async function main() {
     + `${counts.confirming} aguardando confirmação, ${counts.unmanaged} sem item_id `
     + `e ${counts.errors} com falha temporária.`,
   );
+
+  const successfulChecks = entries.reduce(
+    (total, [, record]) =>
+      total + (record.managed === true && !record.lastError ? 1 : 0),
+    0,
+  );
+  console.log(
+    "Preços efetivamente confirmados nesta execução: " + successfulChecks + ".",
+  );
+  if (products.length > 0 && successfulChecks === 0) {
+    throw new Error(
+      "Sincronização inválida: nenhum preço foi confirmado. "
+      + "O relatório foi gerado, mas a execução será marcada como falha.",
+    );
+  }
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
