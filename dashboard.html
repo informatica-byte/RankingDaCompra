@@ -813,6 +813,10 @@ Formato sem comprovação:
         const conferenciasPrecoIA = {};
         let conferenciaPrecoIAEmAndamento = false;
         let pausaConferenciaPrecoIASolicitada = false;
+        let conferenciaPrecoAutomaticaAgendada = false;
+        const CHAVE_CONFERENCIA_PRECOS_DIARIA = 'ranking_da_compra_conferencia_precos_diaria_v1';
+        const ATRASO_CONFERENCIA_PRECOS_DIARIA = 4000;
+        const LIMITE_TRAVA_CONFERENCIA_PRECOS = 2 * 60 * 60 * 1000;
         let correcaoLoteEmAndamento = false;
         let pausaCorrecaoSolicitada = false;
         let statusMercadoLivreAdmin = {};
@@ -2134,14 +2138,83 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             return null;
         }
 
+        function chaveDiaConferenciaPrecos() {
+            const agora = new Date();
+            return [agora.getFullYear(), String(agora.getMonth() + 1).padStart(2, '0'), String(agora.getDate()).padStart(2, '0')].join('-');
+        }
+
+        function lerConferenciaPrecosDiaria() {
+            try {
+                return JSON.parse(localStorage.getItem(CHAVE_CONFERENCIA_PRECOS_DIARIA) || 'null');
+            } catch (erro) {
+                console.warn('Não foi possível ler a trava da conferência diária.', erro);
+                return null;
+            }
+        }
+
+        function registrarConferenciaPrecosDiaria(status, detalhes = {}) {
+            localStorage.setItem(CHAVE_CONFERENCIA_PRECOS_DIARIA, JSON.stringify({
+                dia: chaveDiaConferenciaPrecos(),
+                status,
+                atualizadoEm: Date.now(),
+                ...detalhes
+            }));
+        }
+
+        function limparConferenciaPrecosDiaria() {
+            localStorage.removeItem(CHAVE_CONFERENCIA_PRECOS_DIARIA);
+        }
+
+        function tentarIniciarConferenciaPrecosAutomatica() {
+            if (conferenciaPrecoAutomaticaAgendada || conferenciaPrecoIAEmAndamento) return;
+            if (!produtosPrecoPendenteAtual.length) return;
+            if (typeof window.conferirPrecoPelaFonteLocal !== 'function') return;
+
+            const estado = lerConferenciaPrecosDiaria();
+            const hoje = chaveDiaConferenciaPrecos();
+            if (estado?.dia === hoje && estado.status === 'concluida') return;
+            if (estado?.dia === hoje && estado.status === 'executando' && Date.now() - Number(estado.atualizadoEm || 0) < LIMITE_TRAVA_CONFERENCIA_PRECOS) return;
+
+            conferenciaPrecoAutomaticaAgendada = true;
+            window.setTimeout(async () => {
+                conferenciaPrecoAutomaticaAgendada = false;
+                if (conferenciaPrecoIAEmAndamento || !produtosPrecoPendenteAtual.length) return;
+                if (typeof window.conferirPrecoPelaFonteLocal !== 'function') return;
+
+                const estadoAtual = lerConferenciaPrecosDiaria();
+                const diaAtual = chaveDiaConferenciaPrecos();
+                if (estadoAtual?.dia === diaAtual && estadoAtual.status === 'concluida') return;
+                if (estadoAtual?.dia === diaAtual && estadoAtual.status === 'executando' && Date.now() - Number(estadoAtual.atualizadoEm || 0) < LIMITE_TRAVA_CONFERENCIA_PRECOS) return;
+
+                try {
+                    await iniciarConferenciaPrecosIAEmLote({ automatico: true });
+                } catch (erro) {
+                    limparConferenciaPrecosDiaria();
+                    console.error('Falha na conferência automática diária de preços.', erro);
+                } finally {
+                    atualizarStatusBotPrecosLocal();
+                }
+            }, ATRASO_CONFERENCIA_PRECOS_DIARIA);
+        }
         function atualizarStatusBotPrecosLocal() {
             const status = document.getElementById('status-bot-precos-local');
             if (!status) return;
             const conectado = typeof window.conferirPrecoPelaFonteLocal === 'function';
+            const estado = lerConferenciaPrecosDiaria();
+            const hoje = chaveDiaConferenciaPrecos();
             status.classList.toggle('conectado', conectado);
-            status.textContent = conectado
-                ? '✅ Robô local conectado — pronto para conferir todos os links.'
-                : '⚠️ Robô local ainda não conectado. Instale pelo link abaixo e recarregue o painel.';
+            if (!conectado) {
+                status.textContent = '⚠️ Robô local ainda não conectado. Instale pelo link abaixo e recarregue o painel.';
+                return;
+            }
+            if (estado?.dia === hoje && estado.status === 'executando') {
+                status.textContent = '🤖 Conferência automática de hoje em andamento...';
+            } else if (estado?.dia === hoje && estado.status === 'concluida') {
+                status.textContent = '✅ Conferência automática de hoje concluída. O botão manual continua disponível.';
+            } else {
+                status.textContent = '✅ Robô local conectado — a conferência diária iniciará automaticamente.';
+            }
+            tentarIniciarConferenciaPrecosAutomatica();
         }
 
         window.setTimeout(atualizarStatusBotPrecosLocal, 700);
@@ -2174,7 +2247,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             });
         }
 
-        async function iniciarConferenciaPrecosIAEmLote() {
+        async function iniciarConferenciaPrecosIAEmLote(opcoes = {}) {
+            const automatico = opcoes?.automatico === true;
             const botao = document.getElementById('btn-conferir-precos-ia');
             const painelProgresso = document.getElementById('progresso-precos-ia');
             const barra = document.getElementById('barra-precos-ia');
@@ -2191,15 +2265,22 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             }
 
             const fila = produtosPrecoPendenteAtual.map(produto => ({ ...produto }));
-            if (!fila.length) return alert('Não há preços pendentes para conferir.');
-            const motor = motorConferenciaPrecoDisponivel();
-            if (!motor) {
-                return alert('O robô de preços ainda não está conectado. Use o link "Instalar ou atualizar o robô", recarregue o painel e tente novamente.');
+            if (!fila.length) {
+                if (!automatico) alert('Não há preços pendentes para conferir.');
+                return;
             }
-            if (!confirm(`${motor.nome} verificará ${fila.length} produto(s), um de cada vez, e salvará somente os preços comprovados. Deseja iniciar?`)) return;
+            const motor = motorConferenciaPrecoDisponivel();
+            if (!motor || (automatico && motor.nome !== 'Robô local')) {
+                if (!automatico) {
+                    alert('O robô de preços ainda não está conectado. Use o link "Instalar ou atualizar o robô", recarregue o painel e tente novamente.');
+                }
+                return;
+            }
+            if (!automatico && !confirm(`${motor.nome} verificará ${fila.length} produto(s), um de cada vez, e salvará somente os preços comprovados. Deseja iniciar?`)) return;
 
             conferenciaPrecoIAEmAndamento = true;
             pausaConferenciaPrecoIASolicitada = false;
+            if (automatico) registrarConferenciaPrecosDiaria('executando');
             let aprovados = 0;
             let falhas = 0;
             let processados = 0;
@@ -2245,6 +2326,10 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 conferenciaPrecoIAEmAndamento = false;
                 const pausada = pausaConferenciaPrecoIASolicitada;
                 pausaConferenciaPrecoIASolicitada = false;
+                if (automatico) {
+                    if (pausada || quotaEsgotada) limparConferenciaPrecosDiaria();
+                    else registrarConferenciaPrecosDiaria('concluida', { aprovados, falhas, processados, total: fila.length });
+                }
                 if (botao) {
                     botao.disabled = false;
                     botao.textContent = '🤖 Conferir todos os preços';
@@ -2253,12 +2338,12 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
                 if (quotaEsgotada) {
                     if (texto) texto.textContent = 'Conferência interrompida porque a cota da IA foi atingida.';
-                    alert(`Conferência pausada pela cota da IA.\n\nAprovados: ${aprovados}\nNão comprovados: ${falhas}\nProcessados: ${processados} de ${fila.length}\n\nÚltima mensagem: ${ultimaFalha.slice(0, 350)}`);
+                    if (!automatico) alert(`Conferência pausada pela cota da IA.\n\nAprovados: ${aprovados}\nNão comprovados: ${falhas}\nProcessados: ${processados} de ${fila.length}\n\nÚltima mensagem: ${ultimaFalha.slice(0, 350)}`);
                 } else if (pausada) {
                     if (texto) texto.textContent = 'Conferência pausada. Clique no mesmo botão para iniciar novamente os itens que ainda estiverem pendentes.';
                 } else {
                     if (texto) texto.textContent = 'Conferência concluída.';
-                    alert(`Conferência concluída.\n\nPreços atualizados: ${aprovados}\nNão comprovados: ${falhas}`);
+                    if (!automatico) alert(`Conferência concluída.\n\nPreços atualizados: ${aprovados}\nNão comprovados: ${falhas}`);
                 }
             }
         }
