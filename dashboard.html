@@ -970,6 +970,27 @@ function renderizarRelatorioCentral(){const alvo=document.getElementById('centra
 
 function decodificarMetricaCentral(dados,id){if(dados.tipo==='clique_oferta'||dados.tipo==='compartilhamento')return{id,...dados};const origem=String(dados.origem||'');if(!origem.startsWith('evento:'))return null;const partes=origem.split(':');const tipo=partes[1]||'',produtoId=partes[2]||'',canal=partes[3]||'site';if(!['clique_oferta','compartilhamento'].includes(tipo)||!produtoId)return null;const produto=produtosCentralAtual.find(item=>String(item.id)===String(produtoId));return{id,tipo,produtoId,titulo:produto?.titulo||produtoId,categoria:produto?.categoria||'',canal,campanha:'ofertas_do_dia',dia:dados.dia||'',criadoEm:dados.criadoEm,origem}}
 
+async function carregarMetricasCentral(){
+const botao=document.getElementById('btn-central-atualizar'),status=document.getElementById('central-status'),textoOriginal=botao?.textContent||'↻ Atualizar relatório';
+if(botao){botao.disabled=true;botao.textContent='Atualizando relatório...'}
+if(status)status.textContent='Buscando cliques e compartilhamentos registrados...';
+try{
+const snapshot=await db.collection('visitas').get(),eventos=[];
+snapshot.forEach(doc=>{const evento=decodificarMetricaCentral(doc.data(),doc.id);if(evento)eventos.push(evento)});
+eventos.sort((a,b)=>dataMsCentral(b.criadoEm)-dataMsCentral(a.criadoEm));
+metricasCentralAtual=eventos;
+renderizarRelatorioCentral();
+renderizarOfertasCentral();
+if(status)status.textContent=eventos.length?('Relatório atualizado: '+eventos.length.toLocaleString('pt-BR')+' evento(s) comercial(is) encontrado(s).'):'Ainda não há cliques ou compartilhamentos comerciais registrados. Os próximos eventos aparecerão automaticamente aqui.';
+}catch(erro){
+console.error('Não foi possível carregar o relatório comercial.',erro);
+metricasCentralAtual=[];
+renderizarRelatorioCentral();
+if(status)status.textContent='Não foi possível consultar o relatório agora. Verifique a conexão e tente novamente.';
+}finally{
+if(botao){botao.disabled=false;botao.textContent=textoOriginal}
+}
+}
 function atualizarCentralComProdutos(snapshot){produtosCentralAtual=snapshot.docs.map(doc=>{const produto={id:doc.id,...doc.data()},status=statusMercadoLivreAdmin[String(doc.id)]||{},atual=Number(status.lightningPrice)>0?Number(status.lightningPrice):Number(status.price),anterior=Number(status.regularPrice);if(status.lightningActive===true&&anterior>atual&&atual>0){produto.precoAnterior=anterior.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});produto.precoPromocional=atual.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}return produto});metricasCentralAtual=metricasCentralAtual.map(item=>{const produto=produtosCentralAtual.find(p=>String(p.id)===String(item.produtoId));return produto?{...item,titulo:produto.titulo||item.titulo,categoria:produto.categoria||item.categoria}:item});renderizarRelatorioCentral();renderizarOfertasCentral()}
 
 function atualizarCentralComProdutos(snapshot){produtosCentralAtual=snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));metricasCentralAtual=metricasCentralAtual.map(item=>{const produto=produtosCentralAtual.find(p=>String(p.id)===String(item.produtoId));return produto?{...item,titulo:produto.titulo||item.titulo,categoria:produto.categoria||item.categoria}:item});renderizarRelatorioCentral();renderizarOfertasCentral()}
