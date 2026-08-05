@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-05T19:58:59.647Z",
+  "updatedAt": "2026-08-05T21:37:16.311Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "itemId": "MLB2171368181",
@@ -1322,14 +1322,15 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "public_page",
-      "checkedAt": "2026-08-05T19:58:59.647Z",
+      "checkedAt": "2026-08-05T21:37:16.311Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "Mercado Livre: HTTP 503"
     },
     "UlgA45nNx2rsEykMbv67": {
       "itemId": "",
@@ -1411,8 +1412,8 @@
       "itemId": "MLB6563286992",
       "managed": true,
       "visible": true,
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "lastError": "Mercado Livre: HTTP 503",
+      "checkedAt": "2026-08-05T21:37:16.311Z"
     },
     "W1AVC9x7OoPeSbT374St": {
       "itemId": "MLB5344006946",
@@ -2455,9 +2456,22 @@
     "yt2IxgY7XW8jco4juyhY": {
       "itemId": "MLB5872060016",
       "managed": true,
+      "status": "active",
+      "available": true,
       "visible": true,
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T18:08:13.091Z"
+      "unavailableChecks": 0,
+      "price": 42.9,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "public_page",
+      "checkedAt": "2026-08-05T21:37:16.311Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
     },
     "yxqaNbV9fYlB5zQKWLqj": {
       "itemId": "MLB3767918194",
