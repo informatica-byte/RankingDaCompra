@@ -2,8 +2,8 @@ name: Atualizar preços e disponibilidade
 
 on:
   schedule:
-    # A cada duas horas, evitando o início da hora, quando há maior fila no GitHub.
-    - cron: "23 */2 * * *"
+    # Uma vez por dia; o robô local continua fazendo a conferência diária ao abrir o painel.
+    - cron: "23 8 * * *"
   workflow_dispatch:
 
 permissions:
