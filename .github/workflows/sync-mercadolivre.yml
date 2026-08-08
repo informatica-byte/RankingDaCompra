@@ -1,9 +1,7 @@
 name: Atualizar preços e disponibilidade
 
 on:
-  schedule:
-    # Uma vez por dia; o robô local continua fazendo a conferência diária ao abrir o painel.
-    - cron: "23 8 * * *"
+  # Execução apenas manual; a conferência diária é feita pelo robô local do navegador.
   workflow_dispatch:
 
 permissions:
