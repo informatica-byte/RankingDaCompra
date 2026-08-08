@@ -98,9 +98,12 @@ async function saveOAuthToken(payload) {
 }
 
 async function prepareAccessToken() {
-  if (accessToken) return "access_token";
+  const staticAccessToken = accessToken;
   const oauthConfigured = CLIENT_ID && CLIENT_SECRET && TOKEN_KEY;
-  if (!oauthConfigured) return "not_configured";
+
+  if (!oauthConfigured) {
+    return staticAccessToken ? "access_token" : "not_configured";
+  }
 
   const stored = await readTokenSession();
   if (stored?.accessToken && Number(stored.expiresAt) > Date.now() + 10 * 60 * 1000) {
@@ -124,6 +127,9 @@ async function prepareAccessToken() {
       code: AUTHORIZATION_CODE,
       redirect_uri: REDIRECT_URI,
     });
+  } else if (staticAccessToken) {
+    accessToken = staticAccessToken;
+    return "access_token";
   } else {
     throw new Error(
       "Autorização inicial pendente: adicione MERCADO_LIVRE_AUTHORIZATION_CODE uma única vez",
