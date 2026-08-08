@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /dashboard.html
+Disallow: /oauth-mercadolivre.html
+Disallow: /bot-precos.user.js
 
 Sitemap: https://rankingdacompra.com.br/sitemap.xml
