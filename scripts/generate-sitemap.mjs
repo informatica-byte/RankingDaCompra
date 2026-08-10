@@ -18,14 +18,45 @@ function fieldValue(field) {
     ?? field.booleanValue ?? field.timestampValue ?? "";
 }
 
+const RETRYABLE_HTTP_STATUS = new Set([429, 500, 502, 503, 504]);
+
+function wait(milliseconds) {
+  return new Promise((resolveWait) => setTimeout(resolveWait, milliseconds));
+}
+
+async function fetchFirestore(url, collection, maxAttempts = 6) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    const response = await fetch(url);
+    if (response.ok) return response;
+
+    const retryable = RETRYABLE_HTTP_STATUS.has(response.status);
+    if (!retryable || attempt === maxAttempts) {
+      throw new Error(collection + ": HTTP " + response.status + " após " + attempt + " tentativa(s)");
+    }
+
+    const retryAfterSeconds = Number(response.headers.get("retry-after"));
+    const exponentialDelay = Math.min(1000 * (2 ** (attempt - 1)), 30000);
+    const retryDelay = Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0
+      ? retryAfterSeconds * 1000
+      : exponentialDelay + Math.floor(Math.random() * 500);
+
+    console.warn(
+      collection + ": HTTP " + response.status + "; nova tentativa " + (attempt + 1) + "/" + maxAttempts + " em " + retryDelay + " ms.",
+    );
+    await wait(retryDelay);
+  }
+
+  throw new Error(collection + ": falha inesperada ao consultar o Firestore");
+}
+
 async function listCollection(collection) {
   const documents = [];
   let pageToken = "";
   do {
     const query = new URLSearchParams({ pageSize: "300" });
     if (pageToken) query.set("pageToken", pageToken);
-    const response = await fetch(`${FIRESTORE}/${collection}?${query}`);
-    if (!response.ok) throw new Error(`${collection}: HTTP ${response.status}`);
+    const requestUrl = FIRESTORE + "/" + collection + "?" + query;
+    const response = await fetchFirestore(requestUrl, collection);
     const payload = await response.json();
     for (const document of payload.documents || []) {
       const record = { id: document.name.split("/").pop() };
