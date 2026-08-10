@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
-const SHARE_VERSION = "20260730-3";
+const SHARE_VERSION = "20260810-1";
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const CATEGORY_ALIASES = new Map([
   ["patineteelétrica", "parafusadeira-eletrica"],
@@ -189,7 +189,7 @@ async function cacheProductImages(products, imageDirectory) {
 }
 
 function productDetailUrl(product) {
-  return `${SITE}?produto=${encodeURIComponent(product.id)}`;
+  return `${SITE}produto/${encodeURIComponent(product.id)}-${SHARE_VERSION}.html`;
 }
 
 function shareDay() {
@@ -213,23 +213,92 @@ function productShareUrl(product) {
   return url.href;
 }
 
-function renderSharePage(product, socialImage) {
+function safeExternalUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    return ["http:", "https:"].includes(url.protocol) ? url.href : "#";
+  } catch {
+    return "#";
+  }
+}
+
+function numberPrice(value) {
+  let text = String(value || "").replace(/R\$/gi, "").replace(/\s/g, "").replace(/[^\d,.-]/g, "");
+  if (!text) return 0;
+  if (text.includes(",")) text = text.replace(/\./g, "").replace(",", ".");
+  else if (/^\d{1,3}(?:\.\d{3})+$/.test(text)) text = text.replace(/\./g, "");
+  const number = Number(text);
+  return Number.isFinite(number) && number > 0 ? number : 0;
+}
+
+function promotionIsValid(product) {
+  const previous = numberPrice(product.precoAnterior);
+  const promotional = numberPrice(product.precoPromocional);
+  const end = product.promocaoValidaAte
+    ? new Date(`${String(product.promocaoValidaAte).slice(0, 10)}T23:59:59-03:00`)
+    : null;
+  return product.promocaoAtiva === true && previous > promotional && promotional > 0
+    && (!end || (!Number.isNaN(end.getTime()) && end.getTime() >= Date.now()));
+}
+
+function money(value) {
+  return Number(value).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
+function editorialItems(value) {
+  return String(value || "").split(/\n|;/).flatMap((part) => part.split(","))
+    .map((part) => part.replace(/^[\s•✓!+-]+/, "").trim()).filter(Boolean).slice(0, 6);
+}
+
+function renderSharePage(product, socialImage, categoryNames) {
   const title = String(product.titulo || "Produto recomendado").replace(/\s+/g, " ").trim();
-  const description = String(product.comentario || "Confira a análise no Ranking da Compra.")
-    .replace(/\s+/g, " ").trim().slice(0, 240);
+  const summary = String(product.comentario || "Confira a análise no Ranking da Compra.")
+    .replace(/\s+/g, " ").trim();
+  const description = `${title}: veja preço informado, pontos positivos e pontos de atenção antes de comprar.`.slice(0, 158);
   const image = socialImage?.url || absoluteImage(product.foto);
   const imageType = socialImage?.mime || "image/jpeg";
   const detailUrl = productDetailUrl(product);
   const shareUrl = productShareUrl(product);
-  const redirectJson = JSON.stringify(detailUrl).replace(/</g, "\\u003c");
+  const offerUrl = safeExternalUrl(product.linkAfiliado || product.link);
+  const sourceUrl = safeExternalUrl(product.link);
+  const categoryName = categoryNames.get(product.categoria) || "Produtos";
+  const positive = editorialItems(product.pros);
+  const attention = editorialItems(product.contras);
+  const editorial = editorialProduct(product);
+  const promotional = promotionIsValid(product);
+  const currentPrice = promotional ? numberPrice(product.precoPromocional) : numberPrice(product.preco);
+  const previousPrice = promotional ? numberPrice(product.precoAnterior) : 0;
+  const modified = newestDate([product.atualizadoEm, product.dataCadastro]);
+  const rating = Number(product.nota);
+  const productSchema = { "@type": "Product", "@id": `${detailUrl}#product`, name: title, description: summary, image: [image], category: categoryName, url: detailUrl };
+  if (offerUrl !== "#" && currentPrice > 0) productSchema.offers = { "@type": "Offer", url: offerUrl, priceCurrency: "BRL", price: currentPrice.toFixed(2), availability: "https://schema.org/InStock" };
+  if (editorial && Number.isFinite(rating) && rating >= 1 && rating <= 5) {
+    productSchema.review = { "@type": "Review", name: `Análise editorial de ${title}`, author: { "@type": "Organization", name: "Equipe editorial Ranking da Compra" }, publisher: { "@id": `${SITE}#organization` }, reviewBody: summary, reviewRating: { "@type": "Rating", ratingValue: rating, bestRating: 5, worstRating: 1 } };
+    if (positive.length) productSchema.review.positiveNotes = { "@type": "ItemList", itemListElement: positive.map((name, index) => ({ "@type": "ListItem", position: index + 1, name })) };
+    if (attention.length) productSchema.review.negativeNotes = { "@type": "ItemList", itemListElement: attention.map((name, index) => ({ "@type": "ListItem", position: index + 1, name })) };
+  }
+  const structuredData = JSON.stringify({ "@context": "https://schema.org", "@graph": [
+    { "@type": "Organization", "@id": `${SITE}#organization`, name: "Ranking da Compra", url: SITE },
+    { "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Início", item: SITE },
+      { "@type": "ListItem", position: 2, name: categoryName, item: `${SITE}?cat=${encodeURIComponent(product.categoria || "")}` },
+      { "@type": "ListItem", position: 3, name: title, item: detailUrl },
+    ] },
+    productSchema,
+  ] }).replace(/</g, "\\u003c");
+  const positiveHtml = positive.length ? positive.map((item) => `<li>${escapeHtml(item)}</li>`).join("") : "<li>Confira a análise completa acima.</li>";
+  const attentionHtml = attention.length ? attention.map((item) => `<li>${escapeHtml(item)}</li>`).join("") : "<li>Confirme compatibilidade, garantia, frete e vendedor antes da compra.</li>";
+  const priceHtml = currentPrice > 0
+    ? `${previousPrice > currentPrice ? `<span class="previous">De ${escapeHtml(money(previousPrice))}</span>` : ""}<strong>${promotional ? "Oferta informada: " : "Preço informado: "}${escapeHtml(money(currentPrice))}</strong>`
+    : "<strong>Consulte o preço atual no vendedor</strong>";
 
   return `<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,follow">
-  <title>${escapeHtml(title)} | Ranking da Compra</title>
+  <meta name="robots" content="${editorial ? "index,follow,max-image-preview:large" : "noindex,follow"}">
+  <title>${escapeHtml(title)}: preço, prós e contras | Ranking da Compra</title>
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="canonical" href="${escapeHtml(detailUrl)}">
   <meta property="og:type" content="product">
@@ -246,16 +315,20 @@ function renderSharePage(product, socialImage) {
   <meta name="twitter:title" content="${escapeHtml(title)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${escapeHtml(image)}">
-  <style>body{font-family:Arial,sans-serif;background:#fbfaf5;color:#11221d;margin:0;padding:32px}.card{max-width:560px;margin:auto;background:#fff;border:1px solid #dfe7e2;border-radius:16px;padding:24px;text-align:center}.card img{width:100%;max-height:420px;object-fit:contain}.card a{display:inline-block;margin-top:16px;background:#116149;color:#fff;padding:12px 18px;border-radius:9px;text-decoration:none;font-weight:700}</style>
+  <meta name="theme-color" content="#0f3d2e">
+  <script type="application/ld+json">${structuredData}</script>
+  <style>:root{--green:#116149;--ink:#11221d;--muted:#66746d;--line:#dfe7e2;--cream:#fbfaf5;--blue:#1769e0}*{box-sizing:border-box}body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--cream);color:var(--ink);margin:0;line-height:1.55}a{color:inherit}.wrap{width:min(1040px,calc(100% - 32px));margin:auto}header{background:#fff;border-bottom:1px solid var(--line)}header .wrap{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{color:var(--green);font-weight:900;text-decoration:none}.back{color:var(--green);font-weight:750;text-decoration:none;font-size:.9rem}main{padding:30px 0 56px}.crumb{color:var(--muted);font-size:.82rem;margin-bottom:16px}.crumb a{color:var(--green)}article{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,42px)}.top{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(0,1.15fr);gap:38px}.photo{width:100%;height:390px;object-fit:contain;background:#fafcfb;border-radius:14px}.eyebrow{color:var(--green);font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900}h1{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.12;letter-spacing:-.04em;margin:9px 0 12px}.rating{color:#9b6000;font-weight:850}.summary{color:#43534b;font-size:1.03rem}.offer{background:#edf7f1;border:1px solid #cde4d5;border-radius:14px;padding:18px;margin-top:20px}.previous{display:block;color:#727b76;text-decoration:line-through;font-size:.86rem}.offer strong{display:block;color:#087a3d;font-size:1.25rem}.cta{display:flex;align-items:center;justify-content:center;margin-top:12px;background:var(--blue);color:#fff;padding:13px 17px;border-radius:9px;text-decoration:none;font-weight:900}.share-cta{width:100%;border:1px solid #9ab9a7;background:#fff;color:var(--green);padding:11px 15px;border-radius:9px;font:inherit;font-weight:850;cursor:pointer;margin-top:9px}.share-status{min-height:1.1em;color:var(--green);font-weight:800}.fine{font-size:.78rem;color:var(--muted);margin:9px 0 0}.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.fact{border:1px solid var(--line);border-radius:10px;padding:12px}.fact span{display:block;color:var(--muted);font-size:.72rem;font-weight:850;text-transform:uppercase}.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}.panel{background:#fafcfb;border:1px solid var(--line);border-radius:13px;padding:20px}.panel h2{font-size:1.05rem;margin:0 0 8px}.positive h2{color:#267c31}.attention h2{color:#a94a16}.panel ul{padding-left:19px;margin:0}.source{margin-top:22px}.source a{color:var(--green)}footer{background:#10231c;color:#dfeae4;padding:30px 0;font-size:.82rem}footer a{color:#fff}@media(max-width:700px){.top,.panels{grid-template-columns:1fr}.photo{height:300px}.facts{grid-template-columns:1fr}header .wrap{padding:15px 0;align-items:flex-start}}</style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBKRX8TTR6"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-NBKRX8TTR6',{anonymize_ip:true});</script>
 </head>
 <body>
-  <main class="card">
-    <img src="${escapeHtml(image)}" alt="Foto de ${escapeHtml(title)}">
-    <h1>${escapeHtml(title)}</h1>
-    <p>${escapeHtml(description)}</p>
-    <a href="${escapeHtml(detailUrl)}">Ver análise e oferta</a>
+  <header><div class="wrap"><a class="brand" href="${SITE}">Ranking da Compra</a><a class="back" href="${SITE}#promocoes">Ver promoções do dia</a></div></header>
+  <main class="wrap">
+    <nav class="crumb" aria-label="Navegação estrutural"><a href="${SITE}">Início</a> / <a href="${SITE}?cat=${encodeURIComponent(product.categoria || "")}">${escapeHtml(categoryName)}</a> / ${escapeHtml(title)}</nav>
+    <article><div class="top"><img class="photo" src="${escapeHtml(image)}" width="480" height="390" alt="${escapeHtml(title)}"><div><div class="eyebrow">Análise para decidir melhor</div><h1>${escapeHtml(title)}</h1>${editorial && Number.isFinite(rating) && rating >= 1 && rating <= 5 ? `<div class="rating">Nota editorial: ${"★".repeat(Math.round(rating))}${"☆".repeat(5 - Math.round(rating))} ${escapeHtml(rating.toFixed(1))} de 5</div>` : ""}<p class="summary">${escapeHtml(summary)}</p><div class="offer">${priceHtml}${offerUrl !== "#" ? `<a class="cta" id="affiliate-offer" href="${escapeHtml(offerUrl)}" target="_blank" rel="sponsored noopener noreferrer">Ver preço atual no Mercado Livre</a>` : ""}<button class="share-cta" id="share-product" type="button">↗ Compartilhar produto</button><p class="fine share-status" id="share-status" aria-live="polite"></p><p class="fine">${modified ? `Informações atualizadas em ${escapeHtml(new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeZone: "America/Sao_Paulo" }).format(new Date(`${modified}T12:00:00-03:00`)))}. ` : ""}Preço, estoque, frete e condições finais são definidos pelo vendedor.</p></div><div class="facts"><div class="fact"><span>Categoria</span>${escapeHtml(categoryName)}</div><div class="fact"><span>Transparência</span>Link de afiliado identificado</div></div></div></div><div class="panels"><section class="panel positive"><h2>✓ Pontos positivos</h2><ul>${positiveHtml}</ul></section><section class="panel attention"><h2>! Pontos de atenção</h2><ul>${attentionHtml}</ul></section></div>${sourceUrl !== "#" ? `<p class="fine source">Fonte técnica consultada: <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="nofollow noopener noreferrer">anúncio do produto</a>. A equipe não afirma ter testado o item.</p>` : ""}</article>
   </main>
-  <script>(()=>{const destino=new URL(${redirectJson});const entrada=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_content'].forEach(chave=>{const valor=entrada.get(chave);if(valor)destino.searchParams.set(chave,valor)});location.replace(destino.href)})();</script>
+  <footer><div class="wrap"><b>Ranking da Compra</b> — escolhas mais claras para comprar melhor. Alguns links são de afiliados; podemos receber comissão sem custo adicional para você. <a href="${SITE}politica-afiliados.html">Entenda nossa política</a>.</div></footer>
+  <script>document.getElementById('affiliate-offer')?.addEventListener('click',function(){gtag('event','select_item',{item_list_name:'pagina_produto',items:[{item_id:${JSON.stringify(product.id)},item_name:${JSON.stringify(title)}}],affiliate:'mercado_livre'})});document.getElementById('share-product')?.addEventListener('click',async function(){const status=document.getElementById('share-status'),data={title:${JSON.stringify(title)},text:${JSON.stringify(`Confira esta análise no Ranking da Compra: ${title}`)},url:${JSON.stringify(shareUrl)}};try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(data.text+'\\n'+data.url);status.textContent='Texto e link copiados!'}gtag('event','share',{method:navigator.share?'system':'copy',content_type:'product',item_id:${JSON.stringify(product.id)}})}catch(error){if(error?.name!=='AbortError')status.textContent='Não foi possível compartilhar agora.'}});</script>
 </body>
 </html>
 `;
@@ -291,6 +364,10 @@ for (const product of products) {
 const categories = allCategories
   .filter((category) => productsByCategory.has(category.id))
   .sort((a, b) => a.id.localeCompare(b.id));
+const categoryNames = new Map(allCategories.map((category) => [
+  category.id,
+  String(category.nome || category.id).replace(/air\s+frayer/gi, "Air Fryer"),
+]));
 
 const siteLastModified = newestDate([
   ...products.flatMap((product) => [product.atualizadoEm, product.dataCadastro]),
@@ -314,10 +391,10 @@ const urls = [
     priority: "0.8",
   })),
   ...products.map((product) => ({
-    location: `${SITE}?produto=${encodeURIComponent(product.id)}`,
+    location: productDetailUrl(product),
     lastModified: newestDate([product.atualizadoEm, product.dataCadastro]),
-    frequency: "weekly",
-    priority: "0.7",
+    frequency: promotionIsValid(product) ? "daily" : "weekly",
+    priority: promotionIsValid(product) ? "0.9" : "0.7",
   })),
 ];
 
@@ -340,7 +417,7 @@ for (const product of validProducts) {
   expectedPages.add(fileName);
   await writeFile(
     resolve(productDirectory, fileName),
-    renderSharePage(product, socialImages.get(product.id)),
+    renderSharePage(product, socialImages.get(product.id), categoryNames),
     "utf8",
   );
 }
