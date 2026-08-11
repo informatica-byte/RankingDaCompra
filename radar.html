@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="same-origin">
+  <title>Radar Internacional | Ranking da Compra</title>
+  <style>
+    :root{--verde:#075d36;--azul:#17376e;--amarelo:#ffe168;--fundo:#f2f6f3}
+    *{box-sizing:border-box} body{margin:0;background:var(--fundo);font-family:Inter,Arial,sans-serif;color:#17382b}
+    .topo{background:#fff;border-bottom:1px solid #dce6df;padding:18px 22px;position:sticky;top:0;z-index:10}
+    .topo-interno{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .marca{font-weight:900;color:var(--verde);font-size:1.25rem}.voltar{color:var(--azul);font-weight:800;text-decoration:none;border:1px solid #aec6b8;border-radius:9px;padding:10px 14px}
+    main{max-width:1120px;margin:26px auto;padding:0 18px 50px}.apresentacao{background:#fff;border:1px solid #dce6df;border-radius:18px;padding:24px}
+    .selo{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#087a47;font-weight:900}.apresentacao h1{margin:6px 0;color:var(--azul);font-size:clamp(1.8rem,4vw,2.7rem)}
+    .apresentacao p{line-height:1.55;color:#53665c;max-width:850px}.status{margin-top:16px;padding:12px 14px;border-radius:10px;background:#fff4c7;border:1px solid #e3c660;color:#674f00}
+    .status.ok{background:#e4f7eb;border-color:#a7d7ba;color:#075d36}.status.erro{background:#ffeded;border-color:#efb3b3;color:#8b2020}
+    #catalogo-resumo{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.numero{background:#f6faf7;border:1px solid #d6e4da;border-radius:10px;padding:10px 13px;font-weight:800}
+    #itens-lista{display:none}
+    @media(max-width:600px){.topo{padding:13px}.apresentacao{padding:18px}main{margin-top:16px}}
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+<body>
+  <header class="topo"><div class="topo-interno"><div class="marca">Ranking da Compra</div><a class="voltar" href="dashboard.html">← Voltar ao dashboard</a></div></header>
+  <main>
+    <section class="apresentacao" id="central-divulgacao">
+      <div class="selo">Ferramenta de oportunidade</div>
+      <h1>🌎 Radar Internacional</h1>
+      <p>Descubra pesquisas em alta nos países atendidos pelo Mercado Livre e compare os termos com os produtos que você já cadastrou. O Radar somente recomenda oportunidades: ele não altera preços, links, promoções ou produtos.</p>
+      <div id="status-login" class="status">Conferindo seu acesso e carregando o catálogo…</div>
+      <div id="catalogo-resumo"></div>
+    </section>
+    <div id="itens-lista" aria-hidden="true"></div>
+  </main>
+  <script>
+    (function(){
+      'use strict';
+      var firebaseConfig={
+        apiKey:'AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk',
+        authDomain:'rankingdacompra.firebaseapp.com',
+        projectId:'rankingdacompra',
+        storageBucket:'rankingdacompra.firebasestorage.app',
+        messagingSenderId:'300637600463',
+        appId:'1:300637600463:web:671c78dc47d5f8b39f15ba',
+        measurementId:'G-NBKRX8TTR6'
+      };
+      if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+      var auth=firebase.auth();
+      var db=firebase.firestore();
+      var status=document.getElementById('status-login');
+      var lista=document.getElementById('itens-lista');
+      var resumo=document.getElementById('catalogo-resumo');
+
+      function escapar(valor){
+        return String(valor==null?'':valor).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+      }
+      window.editarProduto=function(){ window.location.href='dashboard.html'; };
+
+      auth.onAuthStateChanged(async function(usuario){
+        if(!usuario){
+          status.className='status erro';
+          status.innerHTML='Sua sessão administrativa não está ativa. <a href="dashboard.html">Entre no dashboard</a> e depois volte ao Radar.';
+          return;
+        }
+        try{
+          status.className='status';
+          status.textContent='Carregando os produtos cadastrados…';
+          var categoriasSnap=await db.collection('categorias').get();
+          var categorias={};
+          categoriasSnap.forEach(function(doc){var d=doc.data()||{};categorias[doc.id]=d.nome||d.titulo||doc.id;});
+          var produtosSnap=await db.collection('produtos').get();
+          var total=0;
+          lista.innerHTML='';
+          produtosSnap.forEach(function(doc){
+            var p=doc.data()||{};
+            if(!p.titulo) return;
+            total++;
+            var categoria=categorias[p.categoria]||p.categoriaNome||p.categoria||'Sem categoria';
+            var card=document.createElement('article');
+            card.className='item-admin';
+            card.innerHTML='<div class="badge-cat">'+escapar(categoria)+'</div><div class="item-admin-titulo">'+escapar(p.titulo)+'</div><button type="button" onclick="editarProduto(''+escapar(doc.id)+'')">Abrir cadastro</button>';
+            lista.appendChild(card);
+          });
+          resumo.innerHTML='<div class="numero">'+total+' produtos disponíveis para comparação</div><div class="numero">'+Object.keys(categorias).length+' categorias</div>';
+          status.className='status ok';
+          status.textContent='Catálogo carregado. Escolha um país e atualize as tendências.';
+        }catch(erro){
+          console.error('Erro ao carregar catálogo do Radar:',erro);
+          status.className='status erro';
+          status.textContent='Não foi possível carregar o catálogo: '+(erro.message||'erro desconhecido')+'. O dashboard continua intacto.';
+        }
+      });
+    })();
+  </script>
+  <script src="radar-internacional.js?v=20260811-2" defer></script>
+</body>
+</html>
