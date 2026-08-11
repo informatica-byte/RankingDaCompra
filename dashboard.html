@@ -1289,7 +1289,6 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     }
 
                     btn.innerText = "✨ Gerando conteúdo com IA...";
-    </body>
                     const categorias = Array.from(document.getElementById('categoria').options)
                         .map(option => ({ id: option.value, nome: option.textContent.trim() }));
                     const sugestao = await window.preencherComIA({
@@ -2502,6 +2501,5 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             }
         }
     </script>
-    <script src="radar-internacional.js?v=20260811-1" defer></script>
 </body>
 </html>
