@@ -170,7 +170,7 @@
         <div class="painel central-divulgacao" id="central-divulgacao">
             <div class="central-cabecalho">
                 <div><span class="central-kicker">CRESCIMENTO E RECEITA</span><h2>🚀 Central de Divulgação e Resultados</h2><p>As três promoções mais fortes, textos reais, imagens prontas e desempenho por produto e rede social.</p></div>
-                <div class="central-cabecalho-acoes"><button type="button" class="btn-central-secundario" id="btn-central-atualizar">↻ Atualizar relatório</button><button type="button" class="btn-salvar" id="btn-central-ia">✨ Gerar textos com IA para as 3</button></div>
+                <div class="central-cabecalho-acoes"><a class="btn-central-secundario" href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer" style="text-decoration:none">⚡ Preparar páginas agora</a><button type="button" class="btn-central-secundario" id="btn-central-atualizar">↻ Atualizar relatório</button><button type="button" class="btn-salvar" id="btn-central-ia">✨ Gerar textos com IA para as 3</button></div>
             </div>
             <div class="central-metricas">
                 <div><strong id="central-cliques-hoje">0</strong><span>Cliques hoje</span></div>
@@ -937,7 +937,7 @@ function pontuacaoOfertaCentral(produto){return descontoCentral(produto)*3+(Numb
 
 function melhoresOfertasCentral(){return produtosCentralAtual.filter(campanhaValidaCentral).filter(produto=>statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).sort((a,b)=>pontuacaoOfertaCentral(b)-pontuacaoOfertaCentral(a)).slice(0,3)}
 
-const SHARE_VERSION_CENTRAL='20260730-3';
+const SHARE_VERSION_CENTRAL='20260810-1';
 
 function hashCampanhaCentral(valor){let h=0;for(const c of String(valor||''))h=(h*31+c.charCodeAt(0))>>>0;return h.toString(36)}function revisaoCampanhaCentral(produto){return `${dataBrasil().replace(/\D/g,'')}-${hashCampanhaCentral([produto?.id,produto?.foto].join('|'))}`}function urlCampanhaCentral(produto,canal){const url=new URL(`produto/${encodeURIComponent(produto.id)}-${SHARE_VERSION_CENTRAL}.html`,'https://rankingdacompra.com.br/');url.searchParams.set('v',revisaoCampanhaCentral(produto));url.searchParams.set('utm_source',canal||'painel');url.searchParams.set('utm_medium','social');url.searchParams.set('utm_campaign','ofertas_do_dia');url.searchParams.set('utm_content',String(produto.id));return url.href}
 const INTERVALO_PUBLICACAO_CENTRAL=15000;
