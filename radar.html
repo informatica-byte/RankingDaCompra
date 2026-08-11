@@ -82,7 +82,12 @@
             var categoria=categorias[p.categoria]||p.categoriaNome||p.categoria||'Sem categoria';
             var card=document.createElement('article');
             card.className='item-admin';
-            card.innerHTML='<div class="badge-cat">'+escapar(categoria)+'</div><div class="item-admin-titulo">'+escapar(p.titulo)+'</div><button type="button" onclick="editarProduto(''+escapar(doc.id)+'')">Abrir cadastro</button>';
+            card.innerHTML='<div class="badge-cat">'+escapar(categoria)+'</div><div class="item-admin-titulo">'+escapar(p.titulo)+'</div>';
+            var abrir=document.createElement('button');
+            abrir.type='button';
+            abrir.textContent='Abrir cadastro';
+            abrir.addEventListener('click',function(){window.location.href='dashboard.html';});
+            card.appendChild(abrir);
             lista.appendChild(card);
           });
           resumo.innerHTML='<div class="numero">'+total+' produtos disponíveis para comparação</div><div class="numero">'+Object.keys(categorias).length+' categorias</div>';
