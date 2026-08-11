@@ -24,7 +24,7 @@ function wait(milliseconds) {
   return new Promise((resolveWait) => setTimeout(resolveWait, milliseconds));
 }
 
-async function fetchFirestore(url, collection, maxAttempts = 6) {
+async function fetchFirestore(url, collection, maxAttempts = 8) {
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     const response = await fetch(url);
     if (response.ok) return response;
@@ -35,7 +35,7 @@ async function fetchFirestore(url, collection, maxAttempts = 6) {
     }
 
     const retryAfterSeconds = Number(response.headers.get("retry-after"));
-    const exponentialDelay = Math.min(1000 * (2 ** (attempt - 1)), 30000);
+    const exponentialDelay = Math.min(2000 * (2 ** (attempt - 1)), 60000);
     const retryDelay = Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0
       ? retryAfterSeconds * 1000
       : exponentialDelay + Math.floor(Math.random() * 500);
@@ -340,11 +340,11 @@ function renderUrl(entry) {
   return `  <url>\n    <loc>${escapeXml(entry.location)}</loc>${lastModified}\n    <changefreq>${entry.frequency}</changefreq>\n    <priority>${entry.priority}</priority>\n  </url>`;
 }
 
-const [allCategories, allProducts, marketplaceProducts] = await Promise.all([
-  listCollection("categorias"),
-  listCollection("produtos"),
-  marketplaceStatus(),
-]);
+// Consulta uma coleção por vez para evitar o limite temporário HTTP 429 do Firebase.
+const allCategories = await listCollection("categorias");
+await wait(1500);
+const allProducts = await listCollection("produtos");
+const marketplaceProducts = await marketplaceStatus();
 
 // As páginas usadas por WhatsApp, Facebook e Instagram devem existir para todo
 // produto ativo. As regras editoriais continuam valendo somente para o sitemap.
