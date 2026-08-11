@@ -1,16 +1,16 @@
 (function () {
     'use strict';
 
-    const VERSION = '20260811-1';
+    const VERSION = '20260811-3';
     const STORAGE_PREFIX = 'ranking_da_compra_radar_v1_';
     const PAISES = {
-        MLB: { nome: 'Brasil', bandeira: '🇧🇷', idioma: 'pt-BR', moeda: 'BRL', dominio: 'mercadolivre.com.br' },
-        MLA: { nome: 'Argentina', bandeira: '🇦🇷', idioma: 'es-AR', moeda: 'ARS', dominio: 'mercadolibre.com.ar' },
-        MLM: { nome: 'México', bandeira: '🇲🇽', idioma: 'es-MX', moeda: 'MXN', dominio: 'mercadolibre.com.mx' },
-        MLC: { nome: 'Chile', bandeira: '🇨🇱', idioma: 'es-CL', moeda: 'CLP', dominio: 'mercadolibre.cl' },
-        MCO: { nome: 'Colômbia', bandeira: '🇨🇴', idioma: 'es-CO', moeda: 'COP', dominio: 'mercadolibre.com.co' },
-        MLU: { nome: 'Uruguai', bandeira: '🇺🇾', idioma: 'es-UY', moeda: 'UYU', dominio: 'mercadolibre.com.uy' },
-        MPE: { nome: 'Peru', bandeira: '🇵🇪', idioma: 'es-PE', moeda: 'PEN', dominio: 'mercadolibre.com.pe' }
+        MLB: { nome: 'Brasil', bandeira: '🇧🇷', idioma: 'pt-BR', moeda: 'BRL', dominio: 'mercadolivre.com.br', subdominio: 'lista' },
+        MLA: { nome: 'Argentina', bandeira: '🇦🇷', idioma: 'es-AR', moeda: 'ARS', dominio: 'mercadolibre.com.ar', subdominio: 'listado' },
+        MLM: { nome: 'México', bandeira: '🇲🇽', idioma: 'es-MX', moeda: 'MXN', dominio: 'mercadolibre.com.mx', subdominio: 'listado' },
+        MLC: { nome: 'Chile', bandeira: '🇨🇱', idioma: 'es-CL', moeda: 'CLP', dominio: 'mercadolibre.cl', subdominio: 'listado' },
+        MCO: { nome: 'Colômbia', bandeira: '🇨🇴', idioma: 'es-CO', moeda: 'COP', dominio: 'mercadolibre.com.co', subdominio: 'listado' },
+        MLU: { nome: 'Uruguai', bandeira: '🇺🇾', idioma: 'es-UY', moeda: 'UYU', dominio: 'mercadolibre.com.uy', subdominio: 'listado' },
+        MPE: { nome: 'Peru', bandeira: '🇵🇪', idioma: 'es-PE', moeda: 'PEN', dominio: 'mercadolibre.com.pe', subdominio: 'listado' }
     };
 
     let paisAtual = 'MLB';
@@ -245,7 +245,7 @@
         const unicas = new Set(campo.value.split(/\n|;|,/).map(item => item.trim()).filter(Boolean));
         tendenciasAtuais = Array.from(unicas).slice(0, 50).map(keyword => ({
             keyword,
-            url: `https://lista.${PAISES[paisAtual].dominio}/${encodeURIComponent(normalizar(keyword).replace(/\s+/g, '-'))}`
+            url: `https://${PAISES[paisAtual].subdominio}.${PAISES[paisAtual].dominio}/${encodeURIComponent(normalizar(keyword).replace(/\s+/g, '-'))}`
         }));
         if (!tendenciasAtuais.length) {
             document.getElementById('radar-status').className = 'radar-status erro';
@@ -299,7 +299,7 @@
                 : razoavel
                     ? `<strong>${escapar(produto.titulo)}</strong><br><span>Confira se é realmente o mesmo produto.</span><br><span class="radar-pontuacao fraca">${produto.pontos}% de correspondência</span>`
                     : '<strong>Oportunidade ainda não cadastrada</strong><br><span>Procure um anúncio confiável e gere o link de afiliado correto para esse país.</span>';
-            const busca = item.url || `https://lista.${PAISES[paisAtual].dominio}/${encodeURIComponent(normalizar(item.keyword).replace(/\s+/g, '-'))}`;
+            const busca = item.url || `https://${PAISES[paisAtual].subdominio}.${PAISES[paisAtual].dominio}/${encodeURIComponent(normalizar(item.keyword).replace(/\s+/g, '-'))}`;
             return `
                 <article class="radar-item">
                     <div><span class="radar-posicao">${item.posicao}</span><span class="radar-termo">${escapar(item.keyword)}</span></div>
