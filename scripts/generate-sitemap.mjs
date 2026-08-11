@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 
 const PROJECT_ID = "rankingdacompra";
+const FIREBASE_API_KEY = "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
 const SHARE_VERSION = "20260810-1";
@@ -53,7 +54,7 @@ async function listCollection(collection) {
   const documents = [];
   let pageToken = "";
   do {
-    const query = new URLSearchParams({ pageSize: "300" });
+    const query = new URLSearchParams({ pageSize: "300", key: FIREBASE_API_KEY });
     if (pageToken) query.set("pageToken", pageToken);
     const requestUrl = FIRESTORE + "/" + collection + "?" + query;
     const response = await fetchFirestore(requestUrl, collection);
