@@ -139,19 +139,31 @@ async function cacheProductImage(product, imageDirectory) {
   const fallback = `${SITE}og-ranking-da-compra.png`;
   if (source === fallback) return { url: source, mime: "image/png", fileName: "" };
 
-  let extension;
+  let extension = "";
   try {
     const match = new URL(source).pathname.match(/\.(jpe?g|png)$/i);
-    if (!match) return { url: source, mime: "image/jpeg", fileName: "" };
-    extension = match[1].toLowerCase().replace("jpeg", "jpg");
+    if (match) extension = match[1].toLowerCase().replace("jpeg", "jpg");
   } catch {
     return { url: fallback, mime: "image/png", fileName: "" };
   }
 
   const hash = createHash("sha256").update(source).digest("hex").slice(0, 12);
-  const fileName = `${product.id}-${hash}.${extension}`;
-  const filePath = resolve(imageDirectory, fileName);
-  if (!(await fileExists(filePath))) {
+  let fileName = extension ? `${product.id}-${hash}.${extension}` : "";
+  let filePath = fileName ? resolve(imageDirectory, fileName) : "";
+
+  if (!extension) {
+    for (const candidate of ["jpg", "png"]) {
+      const candidateName = `${product.id}-${hash}.${candidate}`;
+      if (await fileExists(resolve(imageDirectory, candidateName))) {
+        extension = candidate;
+        fileName = candidateName;
+        filePath = resolve(imageDirectory, fileName);
+        break;
+      }
+    }
+  }
+
+  if (!filePath || !(await fileExists(filePath))) {
     try {
       const response = await fetch(source, {
         headers: { "User-Agent": "RankingDaCompra-SocialImage/1.0" },
@@ -159,8 +171,12 @@ async function cacheProductImage(product, imageDirectory) {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const contentType = String(response.headers.get("content-type") || "").split(";")[0];
       if (!contentType.startsWith("image/")) throw new Error(`tipo inválido: ${contentType || "desconhecido"}`);
-      if (extension === "jpg" && contentType !== "image/jpeg") throw new Error(`esperado JPEG, recebido ${contentType}`);
-      if (extension === "png" && contentType !== "image/png") throw new Error(`esperado PNG, recebido ${contentType}`);
+      const detectedExtension = contentType === "image/png" ? "png" : contentType === "image/jpeg" ? "jpg" : "";
+      if (!detectedExtension) throw new Error(`formato não compatível: ${contentType}`);
+      if (extension && extension !== detectedExtension) throw new Error(`esperado ${extension.toUpperCase()}, recebido ${contentType}`);
+      extension = detectedExtension;
+      fileName = `${product.id}-${hash}.${extension}`;
+      filePath = resolve(imageDirectory, fileName);
       const bytes = new Uint8Array(await response.arrayBuffer());
       if (!bytes.length || bytes.length > 5 * 1024 * 1024) throw new Error("tamanho de imagem inválido");
       await writeFile(filePath, bytes);
