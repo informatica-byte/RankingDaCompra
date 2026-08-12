@@ -1,6 +1,8 @@
 import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 
 const PROJECT_ID = "rankingdacompra";
 const FIREBASE_API_KEY = "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk";
@@ -8,6 +10,9 @@ const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/da
 const SITE = "https://rankingdacompra.com.br/";
 const SHARE_VERSION = "20260810-1";
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
+const execFileAsync = promisify(execFile);
+let partialProductSource = false;
+
 const CATEGORY_ALIASES = new Map([
   ["patineteelétrica", "parafusadeira-eletrica"],
   ["fritadeiraairfrayerelétrica", "fritadeira-air-fryer-eletrica"],
@@ -78,6 +83,107 @@ async function listCollection(collection, maxAttempts = 8) {
     pageToken = payload.nextPageToken || "";
   } while (pageToken);
   return documents;
+}
+
+function decodePublicHtml(value) {
+  return String(value || "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;|&#160;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function htmlAttribute(fragment, name) {
+  const match = String(fragment || "").match(new RegExp(name + '="([^"]*)"', "i"));
+  return decodePublicHtml(match?.[1] || "");
+}
+
+function htmlClassText(fragment, className) {
+  const expression = new RegExp(
+    '<[^>]+class="[^"]*' + className + '[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>',
+    "i",
+  );
+  return decodePublicHtml(String(fragment || "").match(expression)?.[1] || "");
+}
+
+async function listPublicOffers() {
+  console.warn("Firebase temporariamente limitado; lendo as ofertas já exibidas na vitrine pública.");
+  const chromeCandidates = [
+    process.env.CHROME_PATH,
+    "google-chrome",
+    "google-chrome-stable",
+    "chromium",
+    "chromium-browser",
+  ].filter(Boolean);
+  let html = "";
+  let lastError = null;
+  for (const executable of chromeCandidates) {
+    try {
+      const result = await execFileAsync(
+        executable,
+        [
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--dump-dom",
+          "--virtual-time-budget=15000",
+          SITE + "?gerador-social=" + Date.now(),
+        ],
+        { maxBuffer: 12 * 1024 * 1024, timeout: 50000 },
+      );
+      html = result.stdout || "";
+      if (html.includes("data-share-product")) break;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  if (!html.includes("data-share-product")) {
+    throw new Error("A vitrine pública não pôde ser lida para o modo de emergência. " + String(lastError?.message || ""));
+  }
+
+  const productsById = new Map();
+  for (const match of html.matchAll(/<article\b[^>]*class="[^"]*deal-card[^"]*"[^>]*>[\s\S]*?<\/article>/gi)) {
+    const card = match[0];
+    const id = htmlAttribute(card, "data-flash-card")
+      || htmlAttribute(card, "data-share-product")
+      || decodePublicHtml(card.match(/data-share-product="([^"]+)"/i)?.[1] || "");
+    if (!/^[A-Za-z0-9_-]+$/.test(id)) continue;
+    const title = htmlClassText(card, "deal-title")
+      || decodePublicHtml(card.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i)?.[1] || "")
+      || htmlAttribute(card.match(/<img\b[^>]*>/i)?.[0], "alt");
+    const image = htmlAttribute(card.match(/<img\b[^>]*>/i)?.[0], "src");
+    if (!title || !image) continue;
+    const currentPrice = htmlClassText(card, "deal-price");
+    const previousPrice = htmlClassText(card, "old-price");
+    productsById.set(id, {
+      id,
+      titulo: title,
+      foto: image,
+      categoria: "ofertas",
+      comentario: "Oferta em destaque na vitrine do Ranking da Compra. Confira o preço, o prazo, o estoque, o frete e as condições atualizadas antes de finalizar a compra.",
+      pros: "Preço promocional exibido na vitrine; acesso pela página do Ranking da Compra; condições verificáveis antes da compra",
+      contras: "O preço e o estoque podem mudar; confirme o frete; verifique as condições do vendedor",
+      preco: currentPrice,
+      precoAnterior: previousPrice,
+      precoPromocional: currentPrice,
+      promocaoAtiva: true,
+      link: SITE + "?produto=" + encodeURIComponent(id),
+      linkAfiliado: SITE + "?produto=" + encodeURIComponent(id),
+      nota: "",
+    });
+  }
+
+  const products = [...productsById.values()];
+  if (!products.length) throw new Error("Nenhuma oferta ativa foi encontrada na vitrine pública.");
+  console.log("Modo de emergência: " + products.length + " oferta(s) recuperada(s) da vitrine.");
+  return products;
 }
 
 function editorialProduct(product) {
@@ -367,7 +473,14 @@ function renderUrl(entry) {
 }
 
 // As páginas dos produtos são prioridade. Categorias nunca podem bloquear sua criação.
-const allProducts = await listCollection("produtos");
+let allProducts = [];
+try {
+  allProducts = await listCollection("produtos", 2);
+} catch (error) {
+  partialProductSource = true;
+  console.warn("Produtos: limite temporário do Firebase detectado. " + String(error?.message || error));
+  allProducts = await listPublicOffers();
+}
 const marketplaceProducts = await marketplaceStatus();
 
 let allCategories = [];
@@ -442,7 +555,11 @@ const urls = [
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(renderUrl).join("\n")}\n</urlset>\n`;
-await writeFile(resolve("sitemap.xml"), xml, "utf8");
+if (!partialProductSource) {
+  await writeFile(resolve("sitemap.xml"), xml, "utf8");
+} else {
+  console.warn("Sitemap anterior preservado porque a fonte de produtos está parcial.");
+}
 
 const productDirectory = resolve("produto");
 const imageDirectory = resolve(productDirectory, "imagens");
@@ -476,17 +593,21 @@ for (const product of validProducts) {
   );
 }
 
-for (const entry of await readdir(productDirectory, { withFileTypes: true })) {
-  if (entry.isFile() && entry.name.endsWith(".html") && !expectedPages.has(entry.name)) {
-    await rm(resolve(productDirectory, entry.name), { force: true });
+if (!partialProductSource) {
+  for (const entry of await readdir(productDirectory, { withFileTypes: true })) {
+    if (entry.isFile() && entry.name.endsWith(".html") && !expectedPages.has(entry.name)) {
+      await rm(resolve(productDirectory, entry.name), { force: true });
+    }
   }
 }
 const expectedImages = new Set(
   [...socialImages.values()].map((image) => image.fileName).filter(Boolean),
 );
-for (const entry of await readdir(imageDirectory, { withFileTypes: true })) {
-  if (entry.isFile() && !expectedImages.has(entry.name)) {
-    await rm(resolve(imageDirectory, entry.name), { force: true });
+if (!partialProductSource) {
+  for (const entry of await readdir(imageDirectory, { withFileTypes: true })) {
+    if (entry.isFile() && !expectedImages.has(entry.name)) {
+      await rm(resolve(imageDirectory, entry.name), { force: true });
+    }
   }
 }
 
