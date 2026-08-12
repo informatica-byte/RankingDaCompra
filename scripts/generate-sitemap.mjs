@@ -50,14 +50,23 @@ async function fetchFirestore(url, collection, maxAttempts = 8) {
   throw new Error(collection + ": falha inesperada ao consultar o Firestore");
 }
 
-async function listCollection(collection) {
+async function listCollection(collection, maxAttempts = 8) {
   const documents = [];
   let pageToken = "";
   do {
-    const query = new URLSearchParams({ pageSize: "300", key: FIREBASE_API_KEY });
+    const query = new URLSearchParams({ pageSize: "300" });
     if (pageToken) query.set("pageToken", pageToken);
     const requestUrl = FIRESTORE + "/" + collection + "?" + query;
-    const response = await fetchFirestore(requestUrl, collection);
+    let response;
+    try {
+      // A leitura pública evita consumir a cota vinculada à chave da aplicação.
+      response = await fetchFirestore(requestUrl, collection, maxAttempts);
+    } catch (error) {
+      // Usa a chave somente se as regras exigirem autenticação da API.
+      if (!/HTTP (401|403)/.test(String(error?.message || error))) throw error;
+      query.set("key", FIREBASE_API_KEY);
+      response = await fetchFirestore(FIRESTORE + "/" + collection + "?" + query, collection, maxAttempts);
+    }
     const payload = await response.json();
     for (const document of payload.documents || []) {
       const record = { id: document.name.split("/").pop() };
@@ -357,11 +366,28 @@ function renderUrl(entry) {
   return `  <url>\n    <loc>${escapeXml(entry.location)}</loc>${lastModified}\n    <changefreq>${entry.frequency}</changefreq>\n    <priority>${entry.priority}</priority>\n  </url>`;
 }
 
-// Consulta uma coleção por vez para evitar o limite temporário HTTP 429 do Firebase.
-const allCategories = await listCollection("categorias");
-await wait(1500);
+// As páginas dos produtos são prioridade. Categorias nunca podem bloquear sua criação.
 const allProducts = await listCollection("produtos");
 const marketplaceProducts = await marketplaceStatus();
+
+let allCategories = [];
+try {
+  await wait(1500);
+  allCategories = await listCollection("categorias", 2);
+} catch (error) {
+  console.warn(
+    "Categorias temporariamente indisponíveis; as páginas dos produtos continuarão sendo criadas. " +
+    String(error?.message || error),
+  );
+  const categoryIds = [...new Set(
+    allProducts.map((product) => String(product.categoria || "").trim()).filter(Boolean),
+  )];
+  allCategories = categoryIds.map((id) => ({
+    id,
+    nome: id.replace(/[-_]+/g, " ").replace(/(^|\s)\S/g, (letter) => letter.toUpperCase()),
+    criadoEm: "",
+  }));
+}
 
 // As páginas usadas por WhatsApp, Facebook e Instagram devem existir para todo
 // produto ativo. As regras editoriais continuam valendo somente para o sitemap.
