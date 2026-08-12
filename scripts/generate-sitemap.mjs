@@ -427,7 +427,18 @@ const validProducts = shareProducts.filter((product) => {
   if (!valid) console.warn(`Página social ignorada por ID inválido: ${product.id}`);
   return valid;
 });
-const socialImages = await cacheProductImages(validProducts, imageDirectory);
+let socialImages = await cacheProductImages(validProducts, imageDirectory);
+let pendingSocialImages = validProducts.filter((product) => !socialImages.get(product.id)?.fileName);
+for (let repairAttempt = 1; pendingSocialImages.length && repairAttempt <= 2; repairAttempt += 1) {
+  console.warn(`Autorreparo de fotos: tentativa ${repairAttempt}/2 para ${pendingSocialImages.length} produto(s).`);
+  await wait(repairAttempt * 4000);
+  const repairedImages = await cacheProductImages(pendingSocialImages, imageDirectory);
+  for (const [productId, image] of repairedImages) socialImages.set(productId, image);
+  pendingSocialImages = pendingSocialImages.filter((product) => !socialImages.get(product.id)?.fileName);
+}
+if (pendingSocialImages.length) {
+  throw new Error(`Autorreparo incompleto. Corrija a foto destes produtos: ${pendingSocialImages.map((product) => product.id).join(", ")}`);
+}
 const expectedPages = new Set();
 for (const product of validProducts) {
   const fileName = `${product.id}-${SHARE_VERSION}.html`;
