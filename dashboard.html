@@ -170,7 +170,7 @@
         <div class="painel central-divulgacao" id="central-divulgacao">
             <div class="central-cabecalho">
                 <div><span class="central-kicker">CRESCIMENTO E RECEITA</span><h2>🚀 Central de Divulgação e Resultados</h2><p>As três promoções mais fortes, textos reais, imagens prontas e desempenho por produto e rede social.</p></div>
-                <div class="central-cabecalho-acoes"><a class="btn-central-secundario" href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer" style="text-decoration:none">⚡ Preparar páginas agora</a><button type="button" class="btn-central-secundario" id="btn-central-atualizar">↻ Atualizar relatório</button><button type="button" class="btn-salvar" id="btn-central-ia">✨ Gerar textos com IA para as 3</button></div>
+                <div class="central-cabecalho-acoes"><a class="btn-central-secundario" href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer" style="text-decoration:none">🔧 Corrigir páginas pendentes agora</a><button type="button" class="btn-central-secundario" id="btn-central-atualizar">↻ Atualizar relatório</button><button type="button" class="btn-salvar" id="btn-central-ia">✨ Gerar textos com IA para as 3</button></div>
             </div>
             <div class="central-metricas">
                 <div><strong id="central-cliques-hoje">0</strong><span>Cliques hoje</span></div>
@@ -941,13 +941,29 @@ const SHARE_VERSION_CENTRAL='20260810-1';
 
 function hashCampanhaCentral(valor){let h=0;for(const c of String(valor||''))h=(h*31+c.charCodeAt(0))>>>0;return h.toString(36)}function revisaoCampanhaCentral(produto){return `${dataBrasil().replace(/\D/g,'')}-${hashCampanhaCentral([produto?.id,produto?.foto].join('|'))}`}function urlCampanhaCentral(produto,canal){const url=new URL(`produto/${encodeURIComponent(produto.id)}-${SHARE_VERSION_CENTRAL}.html`,'https://rankingdacompra.com.br/');url.searchParams.set('v',revisaoCampanhaCentral(produto));url.searchParams.set('utm_source',canal||'painel');url.searchParams.set('utm_medium','social');url.searchParams.set('utm_campaign','ofertas_do_dia');url.searchParams.set('utm_content',String(produto.id));return url.href}
 const INTERVALO_PUBLICACAO_CENTRAL=15000;
+const LIMITE_ESPERA_PUBLICACAO_CENTRAL=120000;
+const URL_REPARO_PUBLICACAO_CENTRAL='https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml';
 const estadosPublicacaoCentral=new Map();
 let relogioPublicacaoCentral=null;
 
 function duracaoPublicacaoCentral(ms){const total=Math.max(0,Math.floor(ms/1000)),minutos=Math.floor(total/60),segundos=total%60;return String(minutos).padStart(2,'0')+':'+String(segundos).padStart(2,'0')}
 function horaPublicacaoCentral(ms){return new Date(ms).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
 
-function atualizarAvisoPublicacaoCentral(produto){const id=String(produto?.id||''),estado=estadosPublicacaoCentral.get(id),aviso=document.querySelector('[data-central-publicacao="'+CSS.escape(id)+'"]');if(!estado||!aviso)return;const podeCompartilhar=estado.pronto===true&&estado.arquivoPronto===true,botoes=[...document.querySelectorAll('[data-central-compartilhar="'+CSS.escape(id)+'"]')];botoes.forEach(botao=>{botao.classList.toggle('is-preparing',!podeCompartilhar);botao.setAttribute('aria-disabled',String(!podeCompartilhar));if(botao.tagName==='BUTTON')botao.disabled=!podeCompartilhar;if(podeCompartilhar)botao.removeAttribute('title');else botao.title='Aguarde o aviso verde: imagem publicada.'});aviso.classList.remove('publicacao-aguardando','publicacao-pronta','publicacao-erro');if(estado.pronto){aviso.classList.add('publicacao-pronta');aviso.textContent='✅ Pronto para compartilhar com foto · confirmado às '+horaPublicacaoCentral(estado.confirmadoEm);return}const aguardando=duracaoPublicacaoCentral(Date.now()-estado.iniciadoEm),proxima=Math.max(0,Math.ceil((estado.proximaVerificacao-Date.now())/1000));aviso.classList.add(estado.erro?'publicacao-erro':'publicacao-aguardando');aviso.textContent=estado.verificando?'🔎 Conferindo agora se a foto já foi publicada...':(estado.erro?'⚠️ Ainda não foi possível conferir · tentando novamente em '+proxima+'s':'⏳ Preparando página com foto · aguardando '+aguardando+' · nova conferência em '+proxima+'s')}
+function atualizarAvisoPublicacaoCentral(produto){
+ const id=String(produto?.id||'').trim(),estado=estadoPublicacaoCentral(id),aviso=document.querySelector('[data-publicacao-status="'+escapeSeletorCentral(id)+'"]');
+ if(!aviso)return;
+ aviso.classList.remove('publicacao-pronta','publicacao-aguardando','publicacao-erro');
+ if(estado.pronto){aviso.classList.add('publicacao-pronta');aviso.textContent='✅ Página com foto pronta para compartilhar';return}
+ const aguardando=formatDuracaoCentral(Date.now()-estado.iniciadoEm),proxima=Math.max(1,Math.ceil((INTERVALO_PUBLICACAO_CENTRAL-(Date.now()-estado.ultimaVerificacao))/1000));
+ const demorando=Date.now()-estado.iniciadoEm>=LIMITE_ESPERA_PUBLICACAO_CENTRAL;
+ if(!estado.verificando&&demorando){
+  aviso.classList.add('publicacao-erro');
+  aviso.innerHTML='⚠️ A página está demorando mais que o normal. <a href="'+URL_REPARO_PUBLICACAO_CENTRAL+'" target="_blank" rel="noopener noreferrer" title="Abra o GitHub e clique em Run workflow">🔧 Corrigir agora</a>';
+  return;
+ }
+ aviso.classList.add(estado.erro?'publicacao-erro':'publicacao-aguardando');
+ aviso.textContent=estado.verificando?'🔎 Conferindo agora...':(estado.erro?'⚠️ Ainda não foi possível conferir · tentando novamente em '+proxima+'s':'⏳ Preparando página com foto · aguardando '+aguardando+' · nova conferência em '+proxima+'s');
+}
 
 async function conferirPaginaSocialCentral(produto){const id=String(produto?.id||''),estado=estadosPublicacaoCentral.get(id);if(!estado||estado.pronto||estado.verificando)return;estado.verificando=true;estado.erro=false;atualizarAvisoPublicacaoCentral(produto);try{const url=urlCampanhaCentral(produto,'verificacao')+'&rdc_check='+Date.now(),resposta=await fetch(url,{cache:'no-store',credentials:'same-origin'}),html=await resposta.text(),imagem=(html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/i)||[])[1]||'',temProduto=html.includes('?produto='+encodeURIComponent(id))||html.includes('/produto/imagens/'+id+'-'),imagemEspecifica=Boolean(imagem&&!/og-ranking-da-compra\.png/i.test(imagem));if(resposta.ok&&temProduto&&imagemEspecifica){estado.pronto=true;estado.confirmadoEm=Date.now();estado.erro=false}else estado.proximaVerificacao=Date.now()+INTERVALO_PUBLICACAO_CENTRAL}catch(erro){console.warn('A página social ainda não pôde ser confirmada.',erro);estado.erro=true;estado.proximaVerificacao=Date.now()+INTERVALO_PUBLICACAO_CENTRAL}finally{estado.verificando=false;atualizarAvisoPublicacaoCentral(produto)}}
 
@@ -2504,4 +2520,4 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
     <a id="atalho-radar-internacional" href="radar.html" target="_blank" rel="noopener noreferrer" style="position:fixed;right:18px;bottom:18px;z-index:9998;display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:999px;background:#17376e;color:#fff;text-decoration:none;font-weight:800;box-shadow:0 8px 24px rgba(23,55,110,.28);border:2px solid #ffe168">🌎 Abrir Radar Internacional</a>
 
 </body>
-</html>
+</html>LIMITE_ESPERA_PUBLICACAO_CENTRAL
