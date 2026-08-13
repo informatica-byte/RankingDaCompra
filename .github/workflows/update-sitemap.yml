@@ -2,8 +2,8 @@ name: Atualizar sitemap automaticamente
 
 on:
   schedule:
-    # Uma vez por hora: mantém as páginas atualizadas e reduz o consumo da cota gratuita do Firebase.
-    - cron: "17 * * * *"
+    # A cada 30 minutos, fora do minuto cheio, para publicar novas ofertas mais rapidamente.
+    - cron: "17,47 * * * *"
   workflow_dispatch:
 
 permissions:
