@@ -2,8 +2,8 @@ name: Atualizar sitemap automaticamente
 
 on:
   schedule:
-    # A cada 30 minutos para preparar páginas sem esgotar a cota gratuita do Firebase.
-    - cron: "*/30 * * * *"
+    # Uma vez por hora: mantém as páginas atualizadas e reduz o consumo da cota gratuita do Firebase.
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,7 +17,6 @@ jobs:
   atualizar:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-
     steps:
       - name: Baixar os arquivos do site
         uses: actions/checkout@v4
@@ -37,7 +36,6 @@ jobs:
             echo "O sitemap e as páginas sociais já estão atualizados."
             exit 0
           fi
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A sitemap.xml produto
