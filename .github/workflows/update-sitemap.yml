@@ -17,6 +17,7 @@ jobs:
   atualizar:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+
     steps:
       - name: Baixar os arquivos do site
         uses: actions/checkout@v4
@@ -26,18 +27,21 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Gerar sitemap e páginas sociais com os dados do Firebase
-        run: node scripts/generate-sitemap.mjs
+      - name: Gerar sitemap, páginas sociais e descoberta interna
+        run: |
+          node scripts/generate-sitemap.mjs
+          node scripts/generate-discovery.mjs
 
       - name: Publicar sitemap e páginas sociais quando houver alteração
         shell: bash
         run: |
-          if [[ -z "$(git status --porcelain -- sitemap.xml produto)" ]]; then
-            echo "O sitemap e as páginas sociais já estão atualizados."
+          if [[ -z "$(git status --porcelain -- sitemap.xml produto analises.html)" ]]; then
+            echo "O sitemap, as páginas sociais e o diretório de análises já estão atualizados."
             exit 0
           fi
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A sitemap.xml produto
-          git commit -m "Atualiza sitemap e fotos de compartilhamento"
+          git add -A sitemap.xml produto analises.html
+          git commit -m "Atualiza sitemap, análises e fotos de compartilhamento"
           git push
