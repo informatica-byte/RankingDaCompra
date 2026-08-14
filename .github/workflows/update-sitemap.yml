@@ -29,7 +29,9 @@ jobs:
 
       - name: Gerar sitemap, páginas sociais e descoberta interna
         run: |
-          node scripts/generate-sitemap.mjs
+          if ! timeout 90s node scripts/generate-sitemap.mjs; then
+            echo "::warning::O gerador principal ficou temporariamente indisponível. A descoberta interna continuará usando as páginas publicadas."
+          fi
           node scripts/generate-discovery.mjs
 
       - name: Publicar sitemap e páginas sociais quando houver alteração
