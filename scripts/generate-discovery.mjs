@@ -40,7 +40,7 @@ async function listCollection(collection) {
   do {
     const query = new URLSearchParams({ pageSize: "300" });
     if (pageToken) query.set("pageToken", pageToken);
-    const response = await fetchFirestore(`${FIRESTORE}/${collection}?${query}`, collection);
+    const response = await fetchFirestore(`${FIRESTORE}/${collection}?${query}`, collection, 2);
     const payload = await response.json();
     for (const document of payload.documents || []) {
       const record = { id: document.name.split("/").pop() };
@@ -69,7 +69,72 @@ async function loadData() {
     const payload = JSON.parse(await readFile(resolve(fixture), "utf8"));
     return [payload.categories || [], payload.products || [], payload.marketplaceProducts || {}];
   }
-  return Promise.all([listCollection("categorias"), listCollection("produtos"), marketplaceStatus()]);
+  try {
+    return await Promise.all([listCollection("categorias"), listCollection("produtos"), marketplaceStatus()]);
+  } catch (error) {
+    console.warn(`Firebase temporariamente indisponível na descoberta interna: ${error.message}`);
+    const fallback = await loadGeneratedPages();
+    if (fallback[1].length) {
+      console.warn(`Usando ${fallback[1].length} páginas de produto já publicadas como contingência.`);
+      return fallback;
+    }
+    throw error;
+  }
+}
+
+function decodeHtml(value) {
+  return String(value || "")
+    .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'")
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)));
+}
+
+function textFromHtml(value) {
+  return decodeHtml(String(value || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim());
+}
+
+function attribute(html, elementPattern, name) {
+  const element = String(html || "").match(elementPattern)?.[0] || "";
+  return decodeHtml(element.match(new RegExp(`${name}=["']([^"']+)["']`, "i"))?.[1] || "");
+}
+
+async function loadGeneratedPages() {
+  const categories = new Map();
+  const products = [];
+  let entries = [];
+  try {
+    entries = await readdir(resolve("produto"), { withFileTypes: true });
+  } catch {
+    return [[], [], {}];
+  }
+  for (const entry of entries) {
+    if (!entry.isFile() || !entry.name.endsWith(".html")) continue;
+    let html;
+    try {
+      html = await readFile(resolve("produto", entry.name), "utf8");
+    } catch {
+      continue;
+    }
+    const robots = attribute(html, /<meta[^>]+name=["']robots["'][^>]*>/i, "content");
+    if (robots && !/\bindex\b/i.test(robots)) continue;
+    const title = textFromHtml(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]);
+    const summary = textFromHtml(html.match(/<p[^>]+class=["'][^"']*summary[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1]);
+    if (!title || summary.length < 180 || GENERIC_TEXT.test(summary)) continue;
+    const categoryName = textFromHtml(html.match(/<div[^>]+class=["'][^"']*fact[^"']*["'][^>]*>\s*<span[^>]*>Categoria<\/span>([\s\S]*?)<\/div>/i)?.[1]) || "Produtos";
+    const categoryId = slug(categoryName);
+    const canonical = attribute(html, /<link[^>]+rel=["']canonical["'][^>]*>/i, "href")
+      || `${SITE}produto/${encodeURIComponent(entry.name)}`;
+    categories.set(categoryId, { id: categoryId, nome: categoryName });
+    products.push({
+      id: entry.name.replace(/\.html$/i, ""),
+      titulo: title,
+      categoria: categoryId,
+      comentario: summary,
+      atualizadoEm: new Date().toISOString(),
+      __productUrl: canonical,
+    });
+  }
+  return [[...categories.values()], products, {}];
 }
 
 function editorialProduct(product) {
@@ -148,6 +213,10 @@ async function productUrlMap(products, sitemapXml) {
   }
   const map = new Map();
   for (const product of products) {
+    if (product.__productUrl) {
+      map.set(product.id, product.__productUrl);
+      continue;
+    }
     const encodedId = encodeURIComponent(product.id);
     const match = locations.find((location) => {
       try {
