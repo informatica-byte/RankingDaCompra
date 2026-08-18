@@ -377,6 +377,13 @@ function money(value) {
   return Number(value).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
+function compactText(value, maxLength) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (text.length <= maxLength) return text;
+  const shortened = text.slice(0, Math.max(1, maxLength - 1)).replace(/\s+\S*$/, "").trim();
+  return `${shortened || text.slice(0, maxLength - 1)}…`;
+}
+
 function editorialItems(value) {
   return String(value || "").split(/\n|;/).flatMap((part) => part.split(","))
     .map((part) => part.replace(/^[\s•✓!+-]+/, "").trim()).filter(Boolean).slice(0, 6);
@@ -386,7 +393,6 @@ function renderSharePage(product, socialImage, categoryNames) {
   const title = String(product.titulo || "Produto recomendado").replace(/\s+/g, " ").trim();
   const summary = String(product.comentario || "Confira a análise no Ranking da Compra.")
     .replace(/\s+/g, " ").trim();
-  const description = `${title}: veja preço informado, pontos positivos e pontos de atenção antes de comprar.`.slice(0, 158);
   const image = socialImage?.url || absoluteImage(product.foto);
   const imageType = socialImage?.mime || "image/jpeg";
   const detailUrl = productDetailUrl(product);
@@ -400,6 +406,21 @@ function renderSharePage(product, socialImage, categoryNames) {
   const promotional = promotionIsValid(product);
   const currentPrice = promotional ? numberPrice(product.precoPromocional) : numberPrice(product.preco);
   const previousPrice = promotional ? numberPrice(product.precoAnterior) : 0;
+  const discount = previousPrice > currentPrice ? Math.round((1 - currentPrice / previousPrice) * 100) : 0;
+  const seoHook = promotional && discount >= 5
+    ? `${discount}% OFF por ${money(currentPrice)}`
+    : currentPrice > 0
+      ? `${money(currentPrice)}: vale a pena?`
+      : "vale a pena? prós e contras";
+  const seoProductName = compactText(title, Math.max(24, 64 - seoHook.length - 2));
+  const seoTitle = `${seoProductName}: ${seoHook}`;
+  const browserTitle = seoTitle.length <= 43 ? `${seoTitle} | Ranking da Compra` : seoTitle;
+  const descriptionLead = promotional && discount >= 5
+    ? `Oferta informada: ${title} por ${money(currentPrice)} (${discount}% OFF).`
+    : currentPrice > 0
+      ? `Preço informado de ${title}: ${money(currentPrice)}.`
+      : `Análise de ${title}.`;
+  const description = compactText(`${descriptionLead} ${summary}`, 158);
   const modified = newestDate([product.atualizadoEm, product.dataCadastro]);
   const rating = Number(product.nota);
   const productSchema = { "@type": "Product", "@id": `${detailUrl}#product`, name: title, description: summary, image: [image], category: categoryName, url: detailUrl };
@@ -430,21 +451,21 @@ function renderSharePage(product, socialImage, categoryNames) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="${editorial ? "index,follow,max-image-preview:large" : "noindex,follow"}">
-  <title>${escapeHtml(title)}: preço, prós e contras | Ranking da Compra</title>
+  <title>${escapeHtml(browserTitle)}</title>
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="canonical" href="${escapeHtml(detailUrl)}">
   <meta property="og:type" content="product">
   <meta property="og:site_name" content="Ranking da Compra">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="${escapeHtml(shareUrl)}">
-  <meta property="og:title" content="${escapeHtml(title)}">
+  <meta property="og:title" content="${escapeHtml(seoTitle)}">
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:image" content="${escapeHtml(image)}">
   <meta property="og:image:secure_url" content="${escapeHtml(image)}">
   <meta property="og:image:type" content="${escapeHtml(imageType)}">
   <meta property="og:image:alt" content="Foto de ${escapeHtml(title)}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${escapeHtml(title)}">
+  <meta name="twitter:title" content="${escapeHtml(seoTitle)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${escapeHtml(image)}">
   <meta name="theme-color" content="#0f3d2e">
