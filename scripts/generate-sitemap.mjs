@@ -372,6 +372,166 @@ function promotionIsValid(product) {
   return product.promocaoAtiva === true && previous > promotional && promotional > 0
     && (!end || (!Number.isNaN(end.getTime()) && end.getTime() >= Date.now()));
 }
+function weeklyTopWeek(date = new Date()) {
+  const localDay = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Sao_Paulo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+  const monday = new Date(localDay + "T12:00:00Z");
+  const weekday = monday.getUTCDay() || 7;
+  monday.setUTCDate(monday.getUTCDate() - weekday + 1);
+  const sunday = new Date(monday);
+  sunday.setUTCDate(sunday.getUTCDate() + 6);
+  return {
+    id: monday.toISOString().slice(0, 10),
+    start: monday.toISOString().slice(0, 10),
+    end: sunday.toISOString().slice(0, 10),
+  };
+}
+
+function weeklyTopVerifiedAt(product) {
+  return newestDate([
+    product.precoConferidoPorIAEm,
+    product.precoAtualizadoManualmenteEm,
+    product.atualizadoEm,
+    product.dataCadastro,
+  ]);
+}
+
+function weeklyTopFreshnessDays(product) {
+  const verifiedAt = weeklyTopVerifiedAt(product);
+  if (!verifiedAt) return 999;
+  const time = Date.parse(verifiedAt + "T12:00:00Z");
+  return Number.isNaN(time) ? 999 : Math.max(0, Math.floor((Date.now() - time) / 86400000));
+}
+
+function weeklyTopCurrentPrice(product) {
+  if (promotionIsValid(product)) return numberPrice(product.precoPromocional);
+  return numberPrice(product.preco) || numberPrice(product.precoPromocional);
+}
+
+function weeklyTopDiscount(product) {
+  const current = weeklyTopCurrentPrice(product);
+  const previous = numberPrice(product.precoAnterior);
+  return previous > current && current > 0 ? Math.round((1 - current / previous) * 100) : 0;
+}
+
+function weeklyTopRotation(product, weekId) {
+  const digest = createHash("sha256").update(weekId + ":" + product.id).digest("hex").slice(0, 8);
+  return Number.parseInt(digest, 16) % 31;
+}
+
+function weeklyTopScore(product, weekId) {
+  const freshness = weeklyTopFreshnessDays(product);
+  const rating = Math.max(0, Math.min(5, Number(product.nota) || 0));
+  const ranking = Math.max(0, 25 - (Number(product.ranking) || 25));
+  const freshBoost = freshness <= 7 ? 42 : freshness <= 14 ? 24 : freshness <= 30 ? 8 : 0;
+  return weeklyTopDiscount(product) * 4 + rating * 11 + ranking + freshBoost
+    + weeklyTopRotation(product, weekId);
+}
+
+async function readPreviousWeeklyTop() {
+  try {
+    return JSON.parse(await readFile(resolve("top5-semanal.json"), "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function weeklyTopSnapshot(product, image, position) {
+  const current = weeklyTopCurrentPrice(product);
+  const previous = numberPrice(product.precoAnterior);
+  return {
+    id: String(product.id),
+    position,
+    titulo: String(product.titulo || "").trim(),
+    categoria: String(product.categoria || "ofertas").trim(),
+    selo: String(product.selo || "Escolha da semana").trim(),
+    foto: SITE + "produto/imagens/" + image.fileName + "?v=" + SHARE_VERSION,
+    productUrl: productShareUrl(product),
+    linkAfiliado: String(product.linkAfiliado || product.link || "").trim(),
+    preco: current.toFixed(2).replace(".", ","),
+    precoAnterior: previous > current ? previous.toFixed(2).replace(".", ",") : "",
+    precoPromocional: current.toFixed(2).replace(".", ","),
+    desconto: weeklyTopDiscount(product),
+    nota: String(product.nota || ""),
+    ranking: String(product.ranking || ""),
+    comentario: String(product.comentario || ""),
+    pros: String(product.pros || ""),
+    contras: String(product.contras || ""),
+    dadosTecnicos: String(product.dadosTecnicos || ""),
+    precoConferidoEm: weeklyTopVerifiedAt(product),
+  };
+}
+
+async function generateWeeklyTop(products, socialImages) {
+  const week = weeklyTopWeek();
+  const previous = await readPreviousWeeklyTop();
+  const candidates = products.filter((product) => {
+    const image = socialImages.get(product.id);
+    const affiliate = String(product.linkAfiliado || product.link || "").trim();
+    return editorialProduct(product)
+      && image?.fileName
+      && affiliate.toLowerCase().startsWith("https://")
+      && weeklyTopCurrentPrice(product) > 0;
+  });
+
+  const freshCandidates = candidates.filter((product) => weeklyTopFreshnessDays(product) <= 14);
+  const baseCandidates = freshCandidates.length >= 5 ? freshCandidates : candidates;
+  const previousIds = new Set((previous?.products || []).map((product) => String(product.id)));
+  const sameWeek = previous?.weekStart === week.start;
+  let ordered = [];
+
+  if (sameWeek) {
+    const byId = new Map(baseCandidates.map((product) => [String(product.id), product]));
+    ordered = (previous.products || []).map((product) => byId.get(String(product.id))).filter(Boolean);
+    const selectedIds = new Set(ordered.map((product) => String(product.id)));
+    ordered.push(...baseCandidates.filter((product) => !selectedIds.has(String(product.id)))
+      .sort((a, b) => weeklyTopScore(b, week.id) - weeklyTopScore(a, week.id)));
+  } else {
+    const rotated = baseCandidates.filter((product) => !previousIds.has(String(product.id)));
+    const pool = rotated.length >= 5 ? rotated : baseCandidates;
+    ordered = [...pool].sort((a, b) => weeklyTopScore(b, week.id) - weeklyTopScore(a, week.id));
+  }
+
+  const selected = [];
+  const categoryCounts = new Map();
+  for (const product of ordered) {
+    const category = String(product.categoria || "ofertas");
+    if ((categoryCounts.get(category) || 0) >= 2) continue;
+    selected.push(product);
+    categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+    if (selected.length === 5) break;
+  }
+  if (selected.length < 5) {
+    const selectedIds = new Set(selected.map((product) => String(product.id)));
+    for (const product of ordered) {
+      if (selectedIds.has(String(product.id))) continue;
+      selected.push(product);
+      if (selected.length === 5) break;
+    }
+  }
+
+  const payload = {
+    version: 1,
+    weekStart: week.start,
+    validUntil: week.end + "T23:59:59-03:00",
+    updatedAt: week.start + "T07:00:00-03:00",
+    selectionRule: freshCandidates.length >= 5
+      ? "precos-conferidos-nos-ultimos-14-dias"
+      : "melhores-produtos-disponiveis",
+    products: selected.map((product, index) => weeklyTopSnapshot(
+      product,
+      socialImages.get(product.id),
+      index + 1,
+    )),
+  };
+  await writeFile(resolve("top5-semanal.json"), JSON.stringify(payload, null, 2) + "\n", "utf8");
+  return payload;
+}
+
 
 function money(value) {
   return Number(value).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -603,6 +763,15 @@ for (let repairAttempt = 1; pendingSocialImages.length && repairAttempt <= 2; re
 if (pendingSocialImages.length) {
   throw new Error(`Autorreparo incompleto. Corrija a foto destes produtos: ${pendingSocialImages.map((product) => product.id).join(", ")}`);
 }
+
+let weeklyTop = null;
+if (!partialProductSource) {
+  weeklyTop = await generateWeeklyTop(validProducts, socialImages);
+  console.log("Top 5 semanal atualizado: " + weeklyTop.products.length + " produto(s), semana " + weeklyTop.weekStart + ".");
+} else {
+  console.warn("Top 5 semanal anterior preservado porque a fonte de produtos está parcial.");
+}
+
 const expectedPages = new Set();
 for (const product of validProducts) {
   const fileName = `${product.id}-${SHARE_VERSION}.html`;
