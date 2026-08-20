@@ -58,6 +58,14 @@
     /* No celular, a primeira promoção aparece mais cedo. */
     @media(max-width:680px){header .bar{height:62px}.brand{max-width:132px;font-size:1rem;line-height:1.15}.nav-cta{padding:8px 10px;font-size:.78rem}.search-toggle{width:36px;height:36px}.hero{padding:24px 0 18px}.hero .eyebrow{font-size:.68rem}.hero h1{margin:8px 0 10px;font-size:clamp(1.9rem,9.2vw,2.35rem);line-height:1.03}.hero p{margin:0;font-size:.9rem;line-height:1.45}.hero-actions{margin-top:17px}.hero-actions .primary{width:100%;padding:10px 12px}.hero-actions .secondary{display:none}.hero-proof{flex-wrap:nowrap;gap:4px;margin-top:12px;overflow-x:auto;scrollbar-width:none}.hero-proof::-webkit-scrollbar{display:none}.hero-proof span{flex:0 0 auto;padding:5px 7px;font-size:.63rem}.hero + main{padding-top:18px}.hero + main .daily-deals,.hero + main .flash-deals{margin-top:0}.deals-heading{margin-bottom:12px}.deals-heading .deal-count{display:none}.deals-heading h2{font-size:1.45rem}.deals-heading p{font-size:.78rem}}
     /* Radar de Promoção Real: ferramenta principal entre ofertas e rankings. */
+
+    .weekly-top{margin-top:30px;padding:24px;background:linear-gradient(135deg,#eef6ff,#fff);border:1px solid #bed7f3;border-radius:18px;box-shadow:0 14px 38px rgba(23,55,110,.08)}
+    .weekly-top .eyebrow{color:#17376e}.weekly-top .deal-count{background:#e8f1ff;border-color:#c5d8f1;color:#17376e}
+    .weekly-top .deal-card{border-color:#d4e2f2}.weekly-top .deal-card:hover{border-color:#8eb7e4}
+    .weekly-rank{background:#17376e;text-transform:uppercase}.weekly-discount{position:absolute;top:14px;right:14px;background:#d83b2d;color:#fff;border-radius:999px;padding:6px 10px;font-size:.78rem;font-weight:900}
+    .weekly-card .deal-check{color:#17376e}.weekly-card .deal-validity{min-height:2.4em}
+    @media(max-width:680px){.weekly-top{padding:18px}.weekly-grid{grid-template-columns:1fr}}
+
     .radar-section{margin:34px 0 46px;padding:30px;border-radius:22px;background:linear-gradient(135deg,#0c4b39,#116149 58%,#197255);color:#fff;box-shadow:0 18px 46px rgba(11,70,52,.18)}
     .radar-top{display:grid;grid-template-columns:minmax(0,.9fr) minmax(320px,1.1fr);gap:28px;align-items:center}
     .radar-section .eyebrow{color:var(--lime)}.radar-section h2{margin:6px 0 9px;font-size:clamp(1.7rem,3.3vw,2.55rem);line-height:1.06;letter-spacing:-.04em}.radar-section p{margin:0;color:#dfeee7}
@@ -125,6 +133,52 @@ function moeda(valor){return Number(valor).toLocaleString('pt-BR',{style:'curren
 function descontoPromocao(produto){const anterior=numeroPreco(produto.precoAnterior),promocional=numeroPreco(produto.precoPromocional);return Math.max(1,Math.round((1-promocional/anterior)*100))}
 function validadePromocao(valor){const limite=dataLimitePromocao(valor);return limite?`Válida até ${new Intl.DateTimeFormat('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}).format(limite)}`:'Enquanto durar o estoque'}
 function promotionCard(p){const desconto=descontoPromocao(p);produtosParaCompartilhar.set(String(p.id),{...p,tipoCompartilhamento:'promocao'});return `<article class="deal-card"><span class="deal-tag">-${desconto}%</span><img loading="lazy" decoding="async" width="260" height="154" src="${safe(p.foto)}" alt="${esc(p.titulo)}"><div class="deal-check">✓ Preço conferido</div><h3>${esc(p.titulo)}</h3><div class="deal-prices"><span class="old-price">De ${moeda(numeroPreco(p.precoAnterior))}</span><span class="deal-price">${moeda(numeroPreco(p.precoPromocional))}</span></div><p class="deal-validity">${esc(validadePromocao(p.promocaoValidaAte))}</p><div class="deal-actions"><a class="button offer-button" href="${urlProduto(p.id)}" data-promo-id="${esc(p.id)}">Ver análise e oferta</a><div class="deal-secondary-actions"><button class="share-deal-button" type="button" data-share-product="${esc(p.id)}" aria-label="Compartilhar promoção de ${esc(p.titulo)}">↗ Compartilhar</button></div></div></article>`}
+async function carregarTop5Semanal() {
+  try {
+    const response = await fetch("./top5-semanal.json?dia=" + dataBrasil(), { cache: "no-store" });
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const payload = await response.json();
+    const products = Array.isArray(payload?.products) ? payload.products : [];
+    return { ...payload, products: products.filter((product) => product?.id && product?.titulo && product?.foto) };
+  } catch (error) {
+    console.warn("Não foi possível carregar o Top 5 semanal.", error);
+    return { products: [] };
+  }
+}
+
+function weeklyTopCard(product, index) {
+  const current = numeroPreco(product.precoPromocional) || numeroPreco(product.preco);
+  const previous = numeroPreco(product.precoAnterior);
+  const discount = Number(product.desconto) || (previous > current && current > 0
+    ? Math.round((1 - current / previous) * 100)
+    : 0);
+  const verified = formatarData(product.precoConferidoEm);
+  produtosParaCompartilhar.set(String(product.id), {
+    ...product,
+    precoPromocional: current,
+    precoAnterior: previous,
+    tipoCompartilhamento: "top5",
+  });
+  return `<article class="deal-card weekly-card">
+    <span class="deal-tag weekly-rank">#${index + 1} da semana</span>
+    ${discount > 0 ? `<span class="weekly-discount">-${discount}%</span>` : ""}
+    <img loading="lazy" decoding="async" width="260" height="154" src="${safe(product.foto)}" alt="${esc(product.titulo)}">
+    <div class="deal-check">✓ Produto e preço selecionados</div>
+    <h3>${esc(product.titulo)}</h3>
+    <div class="deal-prices">
+      ${previous > current ? `<span class="old-price">De ${moeda(previous)}</span>` : ""}
+      <span class="deal-price">${moeda(current)}</span>
+    </div>
+    <p class="deal-validity">${verified ? "Preço conferido em " + esc(verified) : "Confirme o preço atual antes da compra"}</p>
+    <div class="deal-actions">
+      <a class="button offer-button" href="${safe(product.productUrl || urlProduto(product.id))}" data-weekly-id="${esc(product.id)}">Ver análise e oferta</a>
+      <div class="deal-secondary-actions">
+        <button class="share-deal-button" type="button" data-share-product="${esc(product.id)}" aria-label="Compartilhar produto ${esc(product.titulo)}">↗ Compartilhar</button>
+      </div>
+    </div>
+  </article>`;
+}
+
 function fimOfertaRelampago(produto){const status=statusMercadoLivre(produto),valor=status?.lightningActive===true?status.lightningEndsAt:produto?.ofertaRelampagoTerminaEm;const data=new Date(valor||'');return Number.isNaN(data.getTime())?null:data}
 function precosOfertaRelampago(produto){const status=statusMercadoLivre(produto),atual=Number(status?.lightningPrice)>0?Number(status.lightningPrice):numeroPreco(produto?.precoPromocional),anterior=Number(status?.regularPrice)>atual?Number(status.regularPrice):numeroPreco(produto?.precoAnterior);return{anterior,atual}}
 function ofertaRelampagoValida(produto){const status=statusMercadoLivre(produto),ativa=status?.lightningActive===true||produto?.ofertaRelampagoAtiva===true,fim=fimOfertaRelampago(produto),inicio=status?.lightningStartsAt?new Date(status.lightningStartsAt):null,{anterior,atual}=precosOfertaRelampago(produto);return ativa&&fim&&fim.getTime()>Date.now()&&(!inicio||Number.isNaN(inicio.getTime())||inicio.getTime()<=Date.now())&&anterior>atual&&atual>0}
@@ -160,7 +214,138 @@ function cartaoRadar(produto,lista){const id=String(produto.id),preco=precoAtual
 function configurarRadar(produtos){const secao=document.getElementById('radar'),form=document.getElementById('radar-form'),campo=document.getElementById('radar-input'),resultado=document.getElementById('radar-result'),seguidos=document.getElementById('radar-followed'),contador=document.getElementById('radar-count');if(!secao||!form||!campo||!resultado||!seguidos||!contador)return;const ordenados=produtos.slice().sort((a,b)=>Number(ofertaRelampagoValida(b))-Number(ofertaRelampagoValida(a))||Number(promocaoValida(b))-Number(promocaoValida(a))||String(a.titulo||'').localeCompare(String(b.titulo||''),'pt-BR')),porId=new Map(ordenados.map(produto=>[String(produto.id),produto]));let lista=carregarRadar();for(const[id,item]of Object.entries(lista)){const produto=porId.get(id);if(!produto){delete lista[id];continue}const preco=precoAtualRadar(produto);lista[id]={...item,id,titulo:produto.titulo,foto:produto.foto,ultimoPreco:preco,atualizadoEm:new Date().toISOString()};if(!(numeroPreco(lista[id].precoReferencia)>0)&&preco>0)lista[id].precoReferencia=preco}salvarRadar(lista);function renderLista(){const produtosSeguidos=Object.keys(lista).map(id=>porId.get(id)).filter(Boolean);contador.textContent=produtosSeguidos.length?`${produtosSeguidos.length} produto${produtosSeguidos.length===1?'':'s'} acompanhado${produtosSeguidos.length===1?'':'s'}`:'Nenhum produto acompanhado';seguidos.innerHTML=produtosSeguidos.length?produtosSeguidos.map(produto=>cartaoRadar(produto,lista)).join(''):'<div class="radar-empty">Ao acompanhar um produto, o preço atual fica salvo para comparação na próxima visita.</div>'}function pesquisar(){const termo=normalizarRadar(campo.value);if(termo.length<2){resultado.innerHTML='<div class="radar-empty">Digite pelo menos duas letras para consultar os produtos acompanhados pelo Ranking da Compra.</div>';return}const encontrados=ordenados.filter(produto=>normalizarRadar([produto.titulo,produto.categoria,produto.selo].join(' ')).includes(termo)).slice(0,4);resultado.innerHTML=encontrados.length?`<div class="radar-result-grid">${encontrados.map(produto=>cartaoRadar(produto,lista)).join('')}</div>`:`<div class="radar-empty">Não encontramos “${esc(campo.value)}” entre os produtos acompanhados. Tente outra palavra.</div>`}form.addEventListener('submit',evento=>{evento.preventDefault();registrarMetricaComercial('clique_secao',{id:'radar',titulo:'Radar de Promoção Real'},'site');pesquisar()});campo.addEventListener('input',()=>{if(normalizarRadar(campo.value).length>=2)pesquisar()});secao.addEventListener('click',evento=>{const analise=evento.target.closest('.radar-analysis');if(analise)registrarMetricaComercial('clique_secao',{id:'radar',titulo:'Radar de Promoção Real'},'site');const botao=evento.target.closest('[data-radar-track]');if(!botao)return;registrarMetricaComercial('clique_secao',{id:'radar',titulo:'Radar de Promoção Real'},'site');const id=String(botao.dataset.radarTrack||''),produto=porId.get(id);if(!produto)return;if(lista[id])delete lista[id];else{const preco=precoAtualRadar(produto);lista[id]={id,titulo:produto.titulo,foto:produto.foto,precoReferencia:preco,ultimoPreco:preco,iniciadoEm:new Date().toISOString(),atualizadoEm:new Date().toISOString()}}salvarRadar(lista);renderLista();if(normalizarRadar(campo.value).length>=2)pesquisar()});renderLista()}
 
 function configurarRadarSobDemanda(){const form=document.getElementById('radar-form'),campo=document.getElementById('radar-input'),resultado=document.getElementById('radar-result');if(!form||!campo||!resultado)return;let pronto=false,carregando=false;form.addEventListener('submit',async evento=>{if(pronto||carregando)return;evento.preventDefault();evento.stopImmediatePropagation();if(normalizarRadar(campo.value).length<2){resultado.innerHTML='<div class="radar-empty">Digite pelo menos duas letras para pesquisar.</div>';return}carregando=true;resultado.innerHTML='<div class="radar-empty">Consultando o Radar…</div>';try{const snapshot=await db.collection('produtos').get(),produtos=snapshot.docs.map(doc=>aplicarDadosMercadoLivre({id:doc.id,...doc.data()})).filter(produto=>produtoDisponivel(produto)&&conteudoEditorialValido(produto));pronto=true;configurarRadar(produtos);form.requestSubmit()}catch(erro){console.warn('Não foi possível consultar o Radar.',erro);resultado.innerHTML='<div class="radar-empty">O Radar está temporariamente indisponível. Tente novamente em alguns instantes.</div>'}finally{carregando=false}},true)}
-async function homeComPromocoes(){await home();await mercadoLivreStatusPronto;let promocoes=[],relampagos=[],todos=[];try{const [promocoesSnapshot,relampagosSnapshot]=await Promise.all([db.collection('produtos').where('promocaoAtiva','==',true).get(),db.collection('produtos').where('ofertaRelampagoAtiva','==',true).get()]),unicos=new Map();[...promocoesSnapshot.docs,...relampagosSnapshot.docs].forEach(doc=>unicos.set(doc.id,aplicarDadosMercadoLivre({id:doc.id,...doc.data()})));todos=[...unicos.values()].filter(produto=>produtoDisponivel(produto)&&conteudoEditorialValido(produto));relampagos=todos.filter(ofertaRelampagoValida).sort((a,b)=>fimOfertaRelampago(a)-fimOfertaRelampago(b)||descontoOfertaRelampago(b)-descontoOfertaRelampago(a)).slice(0,3);promocoes=todos.filter(produto=>produto.promocaoAtiva===true&&!ofertaRelampagoValida(produto)&&promocaoValida(produto)).sort((a,b)=>descontoPromocao(b)-descontoPromocao(a)).slice(0,6)}catch(erro){console.warn('Não foi possível carregar as promoções.',erro)}const ancoraRadar=document.getElementById('radar'),secaoRelampago=document.createElement('section'),secao=document.createElement('section');if(relampagos.length){secaoRelampago.id='relampagos';secaoRelampago.className='flash-deals';secaoRelampago.innerHTML=`<div class="section-head deals-heading"><div><div class="eyebrow">Urgência verdadeira</div><h2>⚡ Ofertas Relâmpago</h2><p>O contador acompanha o horário informado pelo Mercado Livre ou conferido no painel.</p></div><span class="deal-count">${relampagos.length} oferta${relampagos.length===1?'':'s'} ativa${relampagos.length===1?'':'s'}</span></div><div class="deal-grid">${relampagos.map(relampagoCard).join('')}</div><p class="flash-disclaimer"><b>Atenção:</b> a oferta pode terminar antes se o estoque reservado acabar. Confirme preço, frete e disponibilidade no Mercado Livre.</p>`;if(ancoraRadar)ancoraRadar.parentNode.insertBefore(secaoRelampago,ancoraRadar);else app.querySelector('main')?.prepend(secaoRelampago)}secao.id='promocoes';secao.className='daily-deals';secao.innerHTML=`<div class="section-head deals-heading"><div><div class="eyebrow">Seleção de hoje</div><h2>Promoções do Dia</h2><p>${esc(rotuloAtualizacao())}</p></div><span class="deal-count">${promocoes.length} oferta${promocoes.length===1?'':'s'} em destaque</span></div>${promocoes.length?`<div class="deal-grid">${promocoes.map(promotionCard).join('')}</div>`:'<div class="empty">Nenhuma promoção válida foi selecionada hoje. Confira novamente em breve.</div>'}<p class="deal-disclaimer"><b>Atenção:</b> o preço final, o frete e o estoque são confirmados na página do vendedor.</p>`;if(ancoraRadar)ancoraRadar.parentNode.insertBefore(secao,ancoraRadar);else app.querySelector('main')?.prepend(secao);iniciarContadoresRelampago();configurarRadarSobDemanda();setSeo('Promoções do Dia | Ranking da Compra','Ofertas do dia selecionadas, com preço e disponibilidade conferidos para você comprar melhor.',{"@context":"https://schema.org","@graph":[...schemaBase(),{"@type":"ItemList","@id":`${SITE_URL}#relampagos`,name:'Ofertas Relâmpago',itemListElement:relampagos.map((p,i)=>({"@type":"ListItem",position:i+1,url:urlProduto(p.id),name:p.titulo}))},{"@type":"ItemList","@id":`${SITE_URL}#promocoes`,name:'Promoções do Dia',itemListElement:promocoes.map((p,i)=>({"@type":"ListItem",position:i+1,url:urlProduto(p.id),name:p.titulo}))}]});secao.querySelectorAll('[data-promo-id]').forEach(link=>link.addEventListener('click',()=>{const produto=promocoes.find(item=>String(item.id)===String(link.dataset.promoId))||{id:link.dataset.promoId,titulo:'Promoção do dia'};gtag('event','select_promotion',{promotion_name:'Promoções do Dia',items:[{item_id:link.dataset.promoId}]});registrarMetricaComercial('clique_oferta',produto,origemCampanhaAtual())}));secaoRelampago.querySelectorAll('[data-flash-promo-id]').forEach(link=>link.addEventListener('click',()=>{const produto=relampagos.find(item=>String(item.id)===String(link.dataset.flashPromoId))||{id:link.dataset.flashPromoId,titulo:'Oferta relâmpago'};gtag('event','select_promotion',{promotion_name:'Ofertas Relâmpago',items:[{item_id:link.dataset.flashPromoId}]});registrarMetricaComercial('clique_oferta',produto,origemCampanhaAtual())}))}
+async function homeComPromocoes(){
+  await home();
+  await mercadoLivreStatusPronto;
+  const top5PayloadPromise = carregarTop5Semanal();
+  let promocoes = [], relampagos = [], todos = [];
+  try {
+    const [promocoesSnapshot, relampagosSnapshot] = await Promise.all([
+      db.collection("produtos").where("promocaoAtiva", "==", true).get(),
+      db.collection("produtos").where("ofertaRelampagoAtiva", "==", true).get(),
+    ]);
+    const unicos = new Map();
+    [...promocoesSnapshot.docs, ...relampagosSnapshot.docs].forEach((doc) => {
+      unicos.set(doc.id, aplicarDadosMercadoLivre({ id: doc.id, ...doc.data() }));
+    });
+    todos = [...unicos.values()].filter((produto) => produtoDisponivel(produto) && conteudoEditorialValido(produto));
+    relampagos = todos.filter(ofertaRelampagoValida)
+      .sort((a, b) => fimOfertaRelampago(a) - fimOfertaRelampago(b) || descontoOfertaRelampago(b) - descontoOfertaRelampago(a))
+      .slice(0, 3);
+    promocoes = todos.filter((produto) => produto.promocaoAtiva === true && !ofertaRelampagoValida(produto) && promocaoValida(produto))
+      .sort((a, b) => descontoPromocao(b) - descontoPromocao(a))
+      .slice(0, 6);
+  } catch (erro) {
+    console.warn("Não foi possível carregar as promoções.", erro);
+  }
+
+  const top5Payload = await top5PayloadPromise;
+  const activeIds = new Set([...relampagos, ...promocoes].map((produto) => String(produto.id)));
+  const top5Semanal = (top5Payload.products || [])
+    .filter((produto) => !activeIds.has(String(produto.id)))
+    .slice(0, 5);
+  const ancoraRadar = document.getElementById("radar");
+  const secaoRelampago = document.createElement("section");
+  const secao = document.createElement("section");
+  const secaoTop5 = document.createElement("section");
+
+  if (relampagos.length) {
+    secaoRelampago.id = "relampagos";
+    secaoRelampago.className = "flash-deals";
+    secaoRelampago.innerHTML = `<div class="section-head deals-heading"><div><div class="eyebrow">Urgência verdadeira</div><h2>⚡ Ofertas Relâmpago</h2><p>O contador acompanha o horário informado pelo Mercado Livre ou conferido no painel.</p></div><span class="deal-count">${relampagos.length} oferta${relampagos.length === 1 ? "" : "s"} ativa${relampagos.length === 1 ? "" : "s"}</span></div><div class="deal-grid">${relampagos.map(relampagoCard).join("")}</div><p class="flash-disclaimer"><b>Atenção:</b> a oferta pode terminar antes se o estoque reservado acabar. Confirme preço, frete e disponibilidade no Mercado Livre.</p>`;
+    if (ancoraRadar) ancoraRadar.parentNode.insertBefore(secaoRelampago, ancoraRadar);
+    else app.querySelector("main")?.prepend(secaoRelampago);
+  }
+
+  secao.id = "promocoes";
+  secao.className = "daily-deals";
+  secao.innerHTML = `<div class="section-head deals-heading"><div><div class="eyebrow">Seleção de hoje</div><h2>Promoções do Dia</h2><p>${esc(rotuloAtualizacao())}</p></div><span class="deal-count">${promocoes.length} oferta${promocoes.length === 1 ? "" : "s"} em destaque</span></div>${promocoes.length ? `<div class="deal-grid">${promocoes.map(promotionCard).join("")}</div>` : `<div class="empty">As promoções de hoje ainda não foram publicadas. O Top 5 da semana continua disponível abaixo.</div>`}<p class="deal-disclaimer"><b>Atenção:</b> o preço final, o frete e o estoque são confirmados na página do vendedor.</p>`;
+  if (ancoraRadar) ancoraRadar.parentNode.insertBefore(secao, ancoraRadar);
+  else app.querySelector("main")?.prepend(secao);
+
+  if (top5Semanal.length) {
+    const top5Updated = formatarData(top5Payload.updatedAt);
+    secaoTop5.id = "top5-semanal";
+    secaoTop5.className = "weekly-top";
+    secaoTop5.innerHTML = `<div class="section-head deals-heading"><div><div class="eyebrow">Vitrine sempre atualizada</div><h2>🏆 Top 5 melhores oportunidades da semana</h2><p>Seleção automática renovada toda segunda-feira${top5Updated ? " · atualizada em " + esc(top5Updated) : ""}.</p></div><span class="deal-count">${top5Semanal.length} escolha${top5Semanal.length === 1 ? "" : "s"} da semana</span></div><div class="deal-grid weekly-grid">${top5Semanal.map(weeklyTopCard).join("")}</div><p class="deal-disclaimer"><b>Importante:</b> os preços podem mudar. Confira preço, frete e estoque no anúncio antes de comprar.</p>`;
+    if (ancoraRadar) ancoraRadar.parentNode.insertBefore(secaoTop5, ancoraRadar);
+    else app.querySelector("main")?.append(secaoTop5);
+  }
+
+  iniciarContadoresRelampago();
+  configurarRadarSobDemanda();
+  setSeo(
+    "Promoções do Dia | Ranking da Compra",
+    "Ofertas do dia selecionadas, com preço e disponibilidade conferidos para você comprar melhor.",
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        ...schemaBase(),
+        {
+          "@type": "ItemList",
+          "@id": SITE_URL + "#relampagos",
+          name: "Ofertas Relâmpago",
+          itemListElement: relampagos.map((produto, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: urlProduto(produto.id),
+            name: produto.titulo,
+          })),
+        },
+        {
+          "@type": "ItemList",
+          "@id": SITE_URL + "#promocoes",
+          name: "Promoções do Dia",
+          itemListElement: promocoes.map((produto, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: urlProduto(produto.id),
+            name: produto.titulo,
+          })),
+        },
+        {
+          "@type": "ItemList",
+          "@id": SITE_URL + "#top5-semanal",
+          name: "Top 5 melhores oportunidades da semana",
+          itemListElement: top5Semanal.map((produto, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: produto.productUrl || urlProduto(produto.id),
+            name: produto.titulo,
+          })),
+        },
+      ],
+    },
+  );
+
+  secao.querySelectorAll("[data-promo-id]").forEach((link) => link.addEventListener("click", () => {
+    const produto = promocoes.find((item) => String(item.id) === String(link.dataset.promoId))
+      || { id: link.dataset.promoId, titulo: "Promoção do dia" };
+    gtag("event", "select_promotion", {
+      promotion_name: "Promoções do Dia",
+      items: [{ item_id: link.dataset.promoId }],
+    });
+    registrarMetricaComercial("clique_oferta", produto, origemCampanhaAtual());
+  }));
+  secaoRelampago.querySelectorAll("[data-flash-promo-id]").forEach((link) => link.addEventListener("click", () => {
+    const produto = relampagos.find((item) => String(item.id) === String(link.dataset.flashPromoId))
+      || { id: link.dataset.flashPromoId, titulo: "Oferta relâmpago" };
+    gtag("event", "select_promotion", {
+      promotion_name: "Ofertas Relâmpago",
+      items: [{ item_id: link.dataset.flashPromoId }],
+    });
+    registrarMetricaComercial("clique_oferta", produto, origemCampanhaAtual());
+  }));
+  secaoTop5.querySelectorAll("[data-weekly-id]").forEach((link) => link.addEventListener("click", () => {
+    const produto = top5Semanal.find((item) => String(item.id) === String(link.dataset.weeklyId))
+      || { id: link.dataset.weeklyId, titulo: "Top 5 da semana" };
+    gtag("event", "select_promotion", {
+      promotion_name: "Top 5 da Semana",
+      items: [{ item_id: link.dataset.weeklyId }],
+    });
+    registrarMetricaComercial("clique_top5", produto, origemCampanhaAtual());
+  }));
+}
 document.addEventListener('click',evento=>{if(evento.target.closest('[data-promo-id]'))registrarMetricaComercial('clique_secao',{id:'promocoes',titulo:'Promoções do Dia'},'site');else if(evento.target.closest('[data-flash-promo-id]'))registrarMetricaComercial('clique_secao',{id:'relampagos',titulo:'Ofertas Relâmpago'},'site')});
 const ITENS_POR_PAGINA=10;
 function categoryPagination(categoryId,currentPage,totalPages){if(totalPages<=1)return '';const link=page=>`?cat=${encodeURIComponent(categoryId)}&pagina=${page}`;let items=[];items.push(currentPage>1?`<a class="pagination-label" href="${link(currentPage-1)}" aria-label="Ir para a página anterior">← Anterior</a>`:'<span class="pagination-label disabled" aria-disabled="true">← Anterior</span>');for(let page=1;page<=totalPages;page++)items.push(page===currentPage?`<span class="current" aria-current="page" aria-label="Página ${page}">${page}</span>`:`<a href="${link(page)}" aria-label="Ir para a página ${page}">${page}</a>`);items.push(currentPage<totalPages?`<a class="pagination-label" href="${link(currentPage+1)}" aria-label="Ir para a próxima página">Próxima →</a>`:'<span class="pagination-label disabled" aria-disabled="true">Próxima →</span>');return `<nav class="pagination" aria-label="Páginas do ranking">${items.join('')}</nav>`}
