@@ -280,6 +280,22 @@
 
             <div class="lista-admin">
                 <h3>Produtos Cadastrados</h3>
+                <section id="painel-top5-semanal" style="margin:0 0 18px;padding:18px;border:1px solid #b9d4ef;border-radius:14px;background:linear-gradient(135deg,#eef6ff,#fff)">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap">
+                        <div>
+                            <div style="font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#17376e">Vitrine automática</div>
+                            <h4 style="margin:4px 0 7px;font-size:1.2rem;color:#17376e">🏆 Top 5 da Semana</h4>
+                            <p id="status-top5-semanal" style="margin:0;color:#40566f">Carregando a seleção semanal...</p>
+                        </div>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap">
+                            <button type="button" onclick="abrirAtualizacaoTop5()" style="border:0;border-radius:9px;padding:11px 14px;background:#17376e;color:#fff;font-weight:800;cursor:pointer">⚙️ Atualizar Top 5 agora</button>
+                            <a href="/#top5-semanal" target="_blank" rel="noopener" style="border:1px solid #17376e;border-radius:9px;padding:10px 14px;background:#fff;color:#17376e;font-weight:800;text-decoration:none">Ver na vitrine</a>
+                        </div>
+                    </div>
+                    <div id="itens-top5-semanal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:13px"></div>
+                    <small style="display:block;margin-top:10px;color:#607286">A seleção muda automaticamente toda semana. O botão abre a automação segura do GitHub; clique em “Run workflow” para antecipar a atualização.</small>
+                </section>
+
                 <div class="busca-produtos-admin">
                     <label for="busca-produtos-admin">🔎 Buscar produto cadastrado</label>
                     <div class="linha-busca-produtos">
@@ -2536,6 +2552,48 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         }
     </script>
     <a id="atalho-radar-internacional" href="radar.html" target="_blank" rel="noopener noreferrer" style="position:fixed;right:18px;bottom:18px;z-index:9998;display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:999px;background:#17376e;color:#fff;text-decoration:none;font-weight:800;box-shadow:0 8px 24px rgba(23,55,110,.28);border:2px solid #ffe168">🌎 Abrir Radar Internacional</a>
+
+
+<script>
+(function(){
+  function dataTop5(valor){
+    if(!valor)return "";
+    const data=new Date(valor);
+    if(Number.isNaN(data.getTime()))return "";
+    return new Intl.DateTimeFormat("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric"}).format(data);
+  }
+  function escaparTop5(valor){
+    return String(valor||"").replace(/[&<>"']/g,function(caractere){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[caractere];
+    });
+  }
+  window.abrirAtualizacaoTop5=function(){
+    window.open("https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml","_blank","noopener,noreferrer");
+  };
+  async function carregarTop5Admin(){
+    const status=document.getElementById("status-top5-semanal");
+    const lista=document.getElementById("itens-top5-semanal");
+    if(!status||!lista)return;
+    try{
+      const resposta=await fetch("/top5-semanal.json?v="+Date.now(),{cache:"no-store"});
+      if(!resposta.ok)throw new Error("HTTP "+resposta.status);
+      const dados=await resposta.json();
+      const produtos=Array.isArray(dados.products)?dados.products:[];
+      status.innerHTML=produtos.length
+        ? "<strong>"+produtos.length+" produtos prontos</strong> · semana de "+escaparTop5(dataTop5(dados.weekStart))+" · válida até "+escaparTop5(dataTop5(dados.validUntil))
+        : "<strong>Nenhum produto selecionado.</strong> Execute a atualização automática.";
+      lista.innerHTML=produtos.map(function(produto,index){
+        return '<div style="padding:9px;border:1px solid #d8e4f1;border-radius:9px;background:#fff;font-size:.82rem"><strong style="color:#17376e">#'+(index+1)+'</strong> '+escaparTop5(produto.titulo)+'</div>';
+      }).join("");
+    }catch(erro){
+      status.innerHTML="<strong>Top 5 aguardando a primeira geração.</strong> Use o botão de atualização.";
+      lista.innerHTML="";
+    }
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",carregarTop5Admin);
+  else carregarTop5Admin();
+})();
+</script>
 
 </body>
 </html>
