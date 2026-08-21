@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const PRODUCT_DIR = path.join(ROOT, "produto");
 const OUTPUT = path.join(ROOT, "historico-precos.json");
 const DAYS = 30;
+const GROWTH_SCRIPT = '<script defer src="/growth-tools.js"></script>';
 
 function saoPauloDate(date = new Date()) {
   return new Intl.DateTimeFormat("en-CA", {
@@ -73,7 +74,14 @@ async function main() {
   let recorded = 0;
 
   for (const filename of files) {
-    const html = await fs.readFile(path.join(PRODUCT_DIR, filename), "utf8");
+    const filePath = path.join(PRODUCT_DIR, filename);
+    let html = await fs.readFile(filePath, "utf8");
+    if (!html.includes('/growth-tools.js')) {
+      html = /<\/body>/i.test(html)
+        ? html.replace(/<\/body>/i, `  ${GROWTH_SCRIPT}\n</body>`)
+        : `${html.trimEnd()}\n${GROWTH_SCRIPT}\n`;
+      await fs.writeFile(filePath, html, "utf8");
+    }
     const product = extractProduct(html);
     const price = priceFrom(product);
     if (!product || !price) continue;
