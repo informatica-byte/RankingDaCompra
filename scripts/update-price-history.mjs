@@ -76,12 +76,14 @@ async function main() {
   for (const filename of files) {
     const filePath = path.join(PRODUCT_DIR, filename);
     let html = await fs.readFile(filePath, "utf8");
+    const originalHtml = html;
+    html = html.replace(/>\s*Ver preço atual no Mercado Livre\s*</gi, ">Comprar agora no Mercado Livre<");
     if (!html.includes('/growth-tools.js')) {
       html = /<\/body>/i.test(html)
         ? html.replace(/<\/body>/i, `  ${GROWTH_SCRIPT}\n</body>`)
         : `${html.trimEnd()}\n${GROWTH_SCRIPT}\n`;
-      await fs.writeFile(filePath, html, "utf8");
     }
+    if (html !== originalHtml) await fs.writeFile(filePath, html, "utf8");
     const product = extractProduct(html);
     const price = priceFrom(product);
     if (!product || !price) continue;
