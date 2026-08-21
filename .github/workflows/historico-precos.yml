@@ -1,0 +1,45 @@
+name: Atualizar historico de precos
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "35 9 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: historico-precos
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Baixar versao atual do site
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Registrar precos e preparar paginas
+        run: node scripts/update-price-history.mjs
+
+      - name: Publicar somente se houver mudancas
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add historico-precos.json produto/
+          if git diff --cached --quiet; then
+            echo "Nenhuma mudanca para publicar."
+            exit 0
+          fi
+          git commit -m "Atualiza historico de precos e paginas"
+          git pull --rebase origin main
+          git push origin HEAD:main
