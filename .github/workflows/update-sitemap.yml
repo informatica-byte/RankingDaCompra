@@ -33,6 +33,7 @@ jobs:
             echo "::warning::O gerador principal ficou temporariamente indisponível. A descoberta interna continuará usando as páginas publicadas."
           fi
           node scripts/generate-discovery.mjs
+          node scripts/product-title-corrections.mjs
 
       - name: Publicar sitemap e páginas sociais quando houver alteração
         id: publicar
