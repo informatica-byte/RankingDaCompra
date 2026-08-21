@@ -217,7 +217,9 @@
   }
 
   async function renderAdmin() {
-    if (!/dashboard\.html$/i.test(location.pathname) || document.getElementById("growth-admin")) return;
+    if (!/dashboard\.html$/i.test(location.pathname) || document.getElementById("growth-admin")) return false;
+    const logout = [...document.querySelectorAll("button,a")].find(el => /sair do sistema/i.test(el.textContent || ""));
+    if (!logout) return false;
     const container = document.createElement("section");
     container.id = "growth-admin";
     container.className = "growth-admin";
@@ -229,7 +231,6 @@
       <div class="growth-row"><label><input id="growth-whatsapp-enabled" type="checkbox" checked> Exibir o Clube na vitrine</label></div>
       <div class="growth-row"><button id="growth-whatsapp-save" type="button">Salvar Clube de Ofertas</button><a id="growth-whatsapp-test" href="#" target="_blank" rel="noopener noreferrer">Testar link</a></div>
       <p class="growth-admin-status" id="growth-admin-status" role="status" aria-live="polite"></p>`;
-    const logout = [...document.querySelectorAll("button,a")].find(el => /sair do sistema/i.test(el.textContent || ""));
     const anchor = logout?.closest("section,div") || document.querySelector("main") || document.body;
     if (logout?.parentNode) logout.parentNode.insertBefore(container, logout);
     else anchor.appendChild(container);
@@ -269,12 +270,18 @@
         status.textContent = "Não foi possível salvar. Confirme se você está conectado ao painel.";
       } finally { button.disabled = false; }
     });
+    return true;
   }
 
   async function init() {
     injectStyles();
     if (/dashboard\.html$/i.test(location.pathname)) {
-      await renderAdmin();
+      if (await renderAdmin()) return;
+      const observer = new MutationObserver(async () => {
+        if (await renderAdmin()) observer.disconnect();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+      setTimeout(() => observer.disconnect(), 120000);
       return;
     }
     await Promise.all([loadHistory(), loadConfig()]);
