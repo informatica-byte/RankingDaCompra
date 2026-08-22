@@ -97,7 +97,8 @@ $("mlb-localizar").addEventListener("click", async () => {
   $("mlb-resultado").hidden = true;
   try {
     status("Enviando para o robô gratuito do GitHub...");
-    const docRef = await addDoc(collection(db, "mlbSolicitacoes"), {
+    const docRef = await addDoc(collection(db, "visitas"), {
+      tipo: "mlb_solicitacao",
       link,
       entradaOriginal: raw,
       status: "pendente",
