@@ -5,7 +5,7 @@ import { readFile, writeFile } from "node:fs/promises";
 const execFileAsync = promisify(execFile);
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
-const COLLECTION = "visitas";
+const COLLECTION = "mlbSolicitacoes";
 const OUTPUT = "mlb-resolucoes.json";
 
 function field(fieldValue) {
@@ -26,27 +26,10 @@ function plain(value) {
 }
 
 async function requests() {
-  const response = await fetch(`${FIRESTORE}:runQuery`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      structuredQuery: {
-        from: [{ collectionId: COLLECTION }],
-        where: {
-          fieldFilter: {
-            field: { fieldPath: "tipo" },
-            op: "EQUAL",
-            value: { stringValue: "mlb_solicitacao" }
-          }
-        },
-        orderBy: [{ field: { fieldPath: "criadoEm" }, direction: "DESCENDING" }],
-        limit: 100
-      }
-    })
-  });
+  const response = await fetch(`${FIRESTORE}/${COLLECTION}?pageSize=300`);
   if (!response.ok) throw new Error(`Fila Firebase: HTTP ${response.status}`);
   const payload = await response.json();
-  return payload.map((row) => row.document).filter(Boolean).map((document) => {
+  return (payload.documents || []).map((document) => {
     const data = { id: document.name.split("/").pop() };
     for (const [key, value] of Object.entries(document.fields || {})) data[key] = field(value);
     return data;
