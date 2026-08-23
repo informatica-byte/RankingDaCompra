@@ -22,27 +22,38 @@
 
 
 async function aguardarRobo(link, linkAfiliado, tipo, motivoInicial) {
-  const pedido = await addDoc(collection(db, "mlbSolicitacoes"), {
-    link,
-    linkAfiliado,
-    tipo,
-    status: "pendente",
-    criadoEm: serverTimestamp(),
-  });
-  msg("status", "O Mercado Livre bloqueou a leitura direta. O robô seguro assumiu a tarefa; mantenha esta página aberta por até 8 minutos.");
-  for (let tentativa = 1; tentativa <= 48; tentativa += 1) {
+  const chave = "ranking_mlb_pendente:" + link;
+  let pedidoId = "";
+  try {
+    const salvo = JSON.parse(localStorage.getItem(chave) || "null");
+    if (salvo?.id && Date.now() - Number(salvo.criadoEm || 0) < 2 * 60 * 60 * 1000) pedidoId = salvo.id;
+  } catch {}
+  if (!pedidoId) {
+    const pedido = await addDoc(collection(db, "mlbSolicitacoes"), {
+      link,
+      linkAfiliado,
+      tipo,
+      status: "pendente",
+      criadoEm: serverTimestamp(),
+    });
+    pedidoId = pedido.id;
+    try { localStorage.setItem(chave, JSON.stringify({ id: pedidoId, criadoEm: Date.now() })); } catch {}
+  }
+  msg("status", "O Mercado Livre bloqueou a leitura direta. O robô seguro assumiu a tarefa. A solicitação ficou salva e será retomada mesmo se você fechar e abrir o painel.");
+  for (let tentativa = 1; tentativa <= 180; tentativa += 1) {
     await new Promise(resolve => setTimeout(resolve, 10000));
-    msg("status", "Robô conferindo o anúncio… tentativa " + tentativa + " de 48. Você não precisa clicar novamente.");
+    msg("status", "Robô conferindo o anúncio… tentativa " + tentativa + " de 180. Você não precisa clicar novamente.");
     const response = await fetch("mlb-resolucoes.json?v=" + Date.now(), { cache: "no-store" });
     if (!response.ok) continue;
     const payload = await response.json();
-    const encontrado = payload?.resultados?.[pedido.id];
+    const encontrado = payload?.resultados?.[pedidoId];
     if (!encontrado) continue;
+    try { localStorage.removeItem(chave); } catch {}
     if (encontrado.status === "erro") throw Error(encontrado.motivo || motivoInicial || "O anúncio não pôde ser comprovado.");
     aplicarResultadoRobo(encontrado, link, linkAfiliado, tipo);
     return;
   }
-  throw Error("O robô ainda não concluiu. Aguarde alguns minutos e toque em Preparar publicação novamente.");
+  throw Error("A solicitação ficou salva. Abra o painel mais tarde e toque em Preparar publicação para continuar a mesma conferência.");
 }
 
 
