@@ -407,6 +407,74 @@ async function listPublicOffers() {
 
 
 
+
+function schemaNotes(list) {
+  return (list?.itemListElement || [])
+    .map((item) => repairPortugueseEncoding(item?.name || ""))
+    .filter(Boolean)
+    .join("; ");
+}
+
+async function listPublishedProducts() {
+  console.warn("Usando as páginas de produto já publicadas como fonte segura de contingência.");
+  const directory = resolve("produto");
+  const entries = await readdir(directory, { withFileTypes: true });
+  const products = [];
+
+  for (const entry of entries) {
+    if (!entry.isFile() || !entry.name.endsWith("-" + SHARE_VERSION + ".html")) continue;
+    const id = entry.name.slice(0, -("-" + SHARE_VERSION + ".html").length);
+    if (!/^[A-Za-z0-9_-]+$/.test(id)) continue;
+
+    try {
+      const html = await readFile(resolve(directory, entry.name), "utf8");
+      let schema = null;
+      for (const match of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+        try {
+          const payload = JSON.parse(match[1]);
+          const nodes = Array.isArray(payload?.["@graph"]) ? payload["@graph"] : [payload];
+          schema = nodes.find((node) => node?.["@type"] === "Product");
+          if (schema) break;
+        } catch {
+          // Ignora um bloco inválido e tenta o próximo.
+        }
+      }
+      if (!schema?.name) continue;
+
+      const offer = Array.isArray(schema.offers) ? schema.offers[0] : schema.offers || {};
+      const review = Array.isArray(schema.review) ? schema.review[0] : schema.review || {};
+      const images = Array.isArray(schema.image) ? schema.image : [schema.image];
+      const sourceMatch = html.match(/class=["'][^"']*source[^"']*["'][\s\S]*?<a\b[^>]*href=["']([^"']+)["']/i);
+
+      products.push({
+        id,
+        titulo: repairPortugueseEncoding(schema.name),
+        foto: String(images.find(Boolean) || ""),
+        categoria: repairPortugueseEncoding(schema.category || "ofertas"),
+        comentario: repairPortugueseEncoding(schema.description || review.reviewBody || ""),
+        pros: schemaNotes(review.positiveNotes),
+        contras: schemaNotes(review.negativeNotes),
+        preco: String(offer.price || ""),
+        precoAnterior: "",
+        precoPromocional: "",
+        promocaoAtiva: false,
+        link: decodePublicHtml(sourceMatch?.[1] || offer.url || ""),
+        linkAfiliado: String(offer.url || ""),
+        nota: String(review?.reviewRating?.ratingValue || ""),
+        atualizadoEm: "",
+        dataCadastro: "",
+      });
+    } catch (error) {
+      console.warn("Página de contingência ignorada (" + entry.name + "): " + error.message);
+    }
+  }
+
+  if (!products.length) throw new Error("Nenhuma página de produto publicada pôde ser lida.");
+  console.log("Modo de contingência: " + products.length + " produto(s) recuperado(s) das páginas publicadas.");
+  return products;
+}
+
+
 function editorialProduct(product) {
 
   const summary = repairPortugueseEncoding(product.comentario);
@@ -1353,7 +1421,12 @@ try {
 
   console.warn("Produtos: limite temporário do Firebase detectado. " + String(error?.message || error));
 
-  allProducts = await listPublicOffers();
+  try {
+    allProducts = await listPublicOffers();
+  } catch (publicError) {
+    console.warn("Vitrine dinâmica indisponível: " + String(publicError?.message || publicError));
+    allProducts = await listPublishedProducts();
+  }
 
 }
 
@@ -1524,14 +1597,10 @@ const urls = [
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(renderUrl).join("\n")}\n</urlset>\n`;
 
-if (!partialProductSource) {
+await writeFile(resolve("sitemap.xml"), xml, "utf8");
 
-  await writeFile(resolve("sitemap.xml"), xml, "utf8");
-
-} else {
-
-  console.warn("Sitemap anterior preservado porque a fonte de produtos está parcial.");
-
+if (partialProductSource) {
+  console.warn("Sitemap reconstruído com segurança a partir das páginas de produto já publicadas.");
 }
 
 
@@ -1554,9 +1623,13 @@ const validProducts = shareProducts.filter((product) => {
 
 });
 
-let socialImages = await cacheProductImages(validProducts, imageDirectory);
+let socialImages = partialProductSource
+  ? new Map()
+  : await cacheProductImages(validProducts, imageDirectory);
 
-let pendingSocialImages = validProducts.filter((product) => !socialImages.get(product.id)?.fileName);
+let pendingSocialImages = partialProductSource
+  ? []
+  : validProducts.filter((product) => !socialImages.get(product.id)?.fileName);
 
 for (let repairAttempt = 1; pendingSocialImages.length && repairAttempt <= 2; repairAttempt += 1) {
 
@@ -1600,21 +1673,20 @@ if (!partialProductSource) {
 const expectedPages = new Set();
 
 for (const product of validProducts) {
-
   const fileName = `${product.id}-${SHARE_VERSION}.html`;
-
   expectedPages.add(fileName);
 
-  await writeFile(
+  if (!partialProductSource) {
+    await writeFile(
+      resolve(productDirectory, fileName),
+      renderSharePage(product, socialImages.get(product.id), categoryNames),
+      "utf8",
+    );
+  }
+}
 
-    resolve(productDirectory, fileName),
-
-    renderSharePage(product, socialImages.get(product.id), categoryNames),
-
-    "utf8",
-
-  );
-
+if (partialProductSource) {
+  console.warn("Páginas de produto anteriores preservadas; nenhuma página foi sobrescrita pela contingência.");
 }
 
 
