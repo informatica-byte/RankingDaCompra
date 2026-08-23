@@ -103,7 +103,7 @@ async function accessToken() {
 function factualText(item, attributes) {
   const facts = attributes.slice(0, 6);
   const base = item.title + ". " + facts.join("; ") + ".";
-  return (base + " Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.").slice(0, 480);
+  return (base + " Informa��es consultadas no an�ncio oficial do Mercado Livre. Confira pre�o, estoque, frete e prazo no momento da compra.").slice(0, 480);
 }
 
 
@@ -132,8 +132,8 @@ function pageDetails(html) {
     product.brand ? "Marca: " + (product.brand.name || product.brand) : "",
     product.color ? "Cor: " + product.color : "",
     product.weight ? "Peso informado: " + (product.weight.value || product.weight) : "",
-    product.sku ? "Código do catálogo: " + product.sku : "",
-    product.itemCondition ? "Condição informada: novo" : "",
+    product.sku ? "C�digo do cat�logo: " + product.sku : "",
+    product.itemCondition ? "Condi��o informada: novo" : "",
   ].filter(Boolean);
   const attributes = [...new Set([...descriptionFacts, ...extraFacts])].slice(0, 10);
   const currentPrice = Number(offer.price || offer.lowPrice || 0);
@@ -147,9 +147,9 @@ function pageDetails(html) {
     precoAtual: currentPrice,
     precoAnterior: originalPrice > currentPrice ? originalPrice : 0,
     dadosTecnicos: attributes,
-    comentario: (title + ". " + attributes.slice(0, 6).join("; ") + ". Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.").slice(0, 480),
-    pros: ("Características reais do anúncio: " + attributes.slice(0, 4).join("; ") + ".").slice(0, 290),
-    contras: "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
+    comentario: (title + ". " + attributes.slice(0, 6).join("; ") + ". Informa��es extra�das dos dados p�blicos do an�ncio. Confira pre�o, estoque, frete e prazo no momento da compra.").slice(0, 480),
+    pros: ("Caracter�sticas reais do an�ncio: " + attributes.slice(0, 4).join("; ") + ".").slice(0, 290),
+    contras: "Confirme voltagem, medidas, varia��es, compatibilidade, frete, prazo e estoque diretamente no an�ncio antes de comprar.",
     urlProduto: String(offer.url || ""),
   };
 }
@@ -171,9 +171,9 @@ async function officialDetails(itemId, html = "") {
       return value ? attribute.name + ": " + value : "";
     })
     .filter(Boolean);
-  if (item.condition) attributes.push("Condição informada: " + item.condition);
+  if (item.condition) attributes.push("Condi��o informada: " + item.condition);
   if (item.category_id) attributes.push("Categoria Mercado Livre: " + item.category_id);
-  if (Number.isFinite(Number(item.available_quantity))) attributes.push("Estoque informado no anúncio: " + item.available_quantity);
+  if (Number.isFinite(Number(item.available_quantity))) attributes.push("Estoque informado no an�ncio: " + item.available_quantity);
   const unique = [...new Set(attributes)].slice(0, 10);
   const title = String(item.title || "").trim();
   const currentPrice = Number(item.price || 0);
@@ -185,8 +185,8 @@ async function officialDetails(itemId, html = "") {
     precoAnterior: originalPrice > currentPrice ? originalPrice : 0,
     dadosTecnicos: unique,
     comentario: factualText(item, unique),
-    pros: ("Características reais do anúncio: " + unique.slice(0, 4).join("; ") + ".").slice(0, 290),
-    contras: "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
+    pros: ("Caracter�sticas reais do an�ncio: " + unique.slice(0, 4).join("; ") + ".").slice(0, 290),
+    contras: "Confirme voltagem, medidas, varia��es, compatibilidade, frete, prazo e estoque diretamente no an�ncio antes de comprar.",
     urlProduto: item.permalink || "",
   };
 }
@@ -204,7 +204,40 @@ async function requests() {
 }
 
 
+
+async function dumpWithPlaywright(url) {
+  let launched;
+  try {
+    const { chromium } = await import("playwright-core");
+    launched = await chromium.launch({
+      headless: false,
+      executablePath: process.env.CHROME_PATH || "/usr/bin/google-chrome",
+      args: ["--no-sandbox", "--disable-dev-shm-usage", "--disable-blink-features=AutomationControlled"],
+    });
+    const context = await launched.newContext({
+      userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      viewport: { width: 1440, height: 1200 },
+      locale: "pt-BR",
+      timezoneId: "America/Sao_Paulo",
+    });
+    const page = await context.newPage();
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+    await page.waitForTimeout(15000);
+    const html = await page.content();
+    await launched.close();
+    launched = null;
+    if (html && html.length > 1000) return html;
+  } catch (error) {
+    console.warn("Navegador completo indisponível:", error?.message || error);
+  } finally {
+    if (launched) await launched.close().catch(() => {});
+  }
+  return "";
+}
+
 async function dump(url) {
+  const rendered = await dumpWithPlaywright(url);
+  if (rendered) return rendered;
   const executables = [process.env.CHROME_PATH, "google-chrome", "google-chrome-stable", "chromium", "chromium-browser"].filter(Boolean);
   let lastError;
   for (const executable of executables) {
@@ -220,7 +253,7 @@ async function dump(url) {
       lastError = error;
     }
   }
-  throw new Error(`O navegador não conseguiu abrir o link. ${lastError?.message || ""}`.trim());
+  throw new Error(`O navegador n�o conseguiu abrir o link. ${lastError?.message || ""}`.trim());
 }
 
 
@@ -257,18 +290,18 @@ function fallback(html, link) {
 async function resolveRequest(request) {
   let html = "";
   try { html = await dump(request.link); } catch {}
-  // Links de produto podem conter o código do catálogo e o código do anúncio.
-  // Preço, foto e estoque pertencem ao anúncio (item_id/wid), então ele tem prioridade.
+  // Links de produto podem conter o c�digo do cat�logo e o c�digo do an�ncio.
+  // Pre�o, foto e estoque pertencem ao an�ncio (item_id/wid), ent�o ele tem prioridade.
   const saleId = request.link.match(/(?:item_id(?:%3A|:)|[?&#]wid=)(MLB-?\d{6,})/i)?.[1]?.replace("-", "").toUpperCase();
   const directId = request.link.match(/(?:\/|\b)(MLB-?\d{6,})(?:-|\/|\?|#|\b)/i)?.[1]?.replace("-", "").toUpperCase();
   const htmlFound = candidates(html)[0] || fallback(html, request.link);
   const found = saleId
     ? { ...(htmlFound || {}), mlb: saleId, urlProduto: request.link, titulo: htmlFound?.titulo || "" }
     : htmlFound || (directId ? { mlb: directId, urlProduto: request.link, titulo: "" } : null);
-  if (!found) throw new Error("O Mercado Livre não mostrou um anúncio identificável nesse link.");
+  if (!found) throw new Error("O Mercado Livre n�o mostrou um an�ncio identific�vel nesse link.");
   const details = await officialDetails(found.mlb, html);
   if (!details?.titulo || !details?.foto || !details?.precoAtual) {
-    throw new Error("O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.");
+    throw new Error("O an�ncio foi localizado, mas os dados oficiais ainda n�o ficaram dispon�veis.");
   }
   return {
     status: "ok",
@@ -312,3 +345,4 @@ const entries = Object.entries(payload.resultados).sort((a, b) => String(b[1].re
 payload.resultados = Object.fromEntries(entries);
 payload.atualizadoEm = new Date().toISOString();
 await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`);
+
