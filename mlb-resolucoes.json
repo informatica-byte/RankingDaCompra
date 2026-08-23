@@ -1,6 +1,12 @@
 {
-  "atualizadoEm": "2026-08-23T11:03:18.799Z",
+  "atualizadoEm": "2026-08-23T11:30:52.082Z",
   "resultados": {
+    "wpipsyRe7kJHOVSQ91qJ": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/maquina-solda-inversora-mma-the-black-tools-preto-5060hz-voltagem/p/MLB21362130?pdp_filters=item_id%3AMLB3342376179&matt_tool=38524122&ua=p_jQWKPyUcfuyhUj8kOOOMEZonEFElrGi9-Btye5edmrHf0#origin=share&sid=share&wid=MLB3342376179&action=copy",
+      "resolvidoEm": "2026-08-23T11:30:51.971Z"
+    },
     "cPv3uhRXFlgWVo24ieoS": {
       "status": "erro",
       "motivo": "O Mercado Livre não mostrou um anúncio identificável nesse link.",
