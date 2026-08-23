@@ -212,8 +212,8 @@ async function dump(url) {
       const { stdout } = await execFileAsync(executable, [
         "--headless=new", "--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage",
         "--disable-blink-features=AutomationControlled",
-        "--user-agent=Mozilla/5.0 (Linux; Android 13; SM-A525M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Mobile Safari/537.36",
-        "--dump-dom", "--virtual-time-budget=18000", url
+        "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+        "--window-size=1440,1200", "--lang=pt-BR", "--dump-dom", "--virtual-time-budget=30000", url
       ], { timeout: 50000, maxBuffer: 18 * 1024 * 1024 });
       if (stdout && stdout.length > 1000) return stdout;
     } catch (error) {
