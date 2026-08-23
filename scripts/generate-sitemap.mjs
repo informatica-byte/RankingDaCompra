@@ -1399,7 +1399,44 @@ const shareProducts = allProducts
 
   .sort((a, b) => a.id.localeCompare(b.id));
 
-const products = shareProducts.filter(editorialProduct);
+function normalizedProductTitle(product) {
+  const title = repairPortugueseEncoding(product?.titulo || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+  return title || "id:" + String(product?.id || "");
+}
+
+function productSeoScore(product) {
+  const updated = Math.max(
+    0,
+    Date.parse(product?.atualizadoEm || "") || 0,
+    Date.parse(product?.dataCadastro || "") || 0,
+  );
+  const affiliate = String(product?.linkAfiliado || product?.link || "").startsWith("https://") ? 1 : 0;
+  const image = absoluteImage(product?.foto) !== SITE + "og-ranking-da-compra.png" ? 1 : 0;
+  return (promotionIsValid(product) ? 1e16 : 0) + affiliate * 1e15 + image * 1e14 + updated;
+}
+
+function deduplicateEditorialProducts(products) {
+  const selected = new Map();
+  for (const product of products) {
+    const key = normalizedProductTitle(product);
+    const current = selected.get(key);
+    if (!current || productSeoScore(product) > productSeoScore(current)) selected.set(key, product);
+  }
+  if (selected.size !== products.length) {
+    console.warn(
+      "SEO: " + (products.length - selected.size) +
+      " página(s) duplicada(s) removida(s) do sitemap; as ofertas continuam disponíveis no site.",
+    );
+  }
+  return [...selected.values()].sort((a, b) => String(a.id).localeCompare(String(b.id)));
+}
+
+const products = deduplicateEditorialProducts(shareProducts.filter(editorialProduct));
 
 const productsByCategory = new Map();
 
@@ -1458,24 +1495,6 @@ const urls = [
   { location: `${SITE}privacidade.html`, frequency: "yearly", priority: "0.3" },
 
   { location: `${SITE}contato.html`, frequency: "yearly", priority: "0.5" },
-
-  ...categories.map((category) => ({
-
-    location: `${SITE}?cat=${encodeURIComponent(CATEGORY_ALIASES.get(category.id) || category.id)}`,
-
-    lastModified: newestDate([
-
-      category.criadoEm,
-
-      ...(productsByCategory.get(category.id) || []).flatMap((product) => [product.atualizadoEm, product.dataCadastro]),
-
-    ]),
-
-    frequency: "weekly",
-
-    priority: "0.8",
-
-  })),
 
   ...products.map((product) => ({
 
@@ -1544,9 +1563,10 @@ for (let repairAttempt = 1; pendingSocialImages.length && repairAttempt <= 2; re
 }
 
 if (pendingSocialImages.length) {
-
-  throw new Error(`Autorreparo incompleto. Corrija a foto destes produtos: ${pendingSocialImages.map((product) => product.id).join(", ")}`);
-
+  console.warn(
+    `Fotos não armazenadas localmente para ${pendingSocialImages.map((product) => product.id).join(", ")}; ` +
+    "usando a imagem remota ou a imagem padrão sem interromper a criação das páginas.",
+  );
 }
 
 
@@ -1632,4 +1652,3 @@ console.log(
   `Sitemap e páginas sociais atualizados: ${urls.length} URLs (${products.length} produtos, ${categories.length} categorias e ${locallyHostedImages} fotos locais).`,
 
 );
-
