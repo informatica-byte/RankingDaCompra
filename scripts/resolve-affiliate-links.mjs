@@ -205,6 +205,32 @@ async function requests() {
 
 
 
+
+async function dumpViaMirror(url) {
+  try {
+    const mirror = new URL(url);
+    const host = mirror.hostname.toLowerCase();
+    if (!host.endsWith("mercadolivre.com.br")) return "";
+    mirror.hostname = host.replace(/\./g, "-") + ".translate.goog";
+    mirror.searchParams.set("_x_tr_sl", "pt");
+    mirror.searchParams.set("_x_tr_tl", "en");
+    mirror.searchParams.set("_x_tr_hl", "pt-BR");
+    const response = await fetch(mirror.href, {
+      redirect: "follow",
+      headers: {
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0.0.0 Safari/537.36",
+        "accept-language": "pt-BR,pt;q=0.9",
+      },
+    });
+    if (!response.ok) return "";
+    const html = await response.text();
+    if (html && html.length > 10000 && pageDetails(html)) return html;
+  } catch (error) {
+    console.warn("Espelho público indisponível:", error?.message || error);
+  }
+  return "";
+}
+
 async function dumpWithPlaywright(url) {
   let launched;
   try {
@@ -345,4 +371,5 @@ const entries = Object.entries(payload.resultados).sort((a, b) => String(b[1].re
 payload.resultados = Object.fromEntries(entries);
 payload.atualizadoEm = new Date().toISOString();
 await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`);
+
 
