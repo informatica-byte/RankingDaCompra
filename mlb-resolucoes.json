@@ -1,6 +1,58 @@
 {
-  "atualizadoEm": "2026-08-22T17:20:42.457Z",
+  "atualizadoEm": "2026-08-23T07:27:51.957Z",
   "resultados": {
+    "cPv3uhRXFlgWVo24ieoS": {
+      "status": "erro",
+      "motivo": "O Mercado Livre não mostrou um anúncio identificável nesse link.",
+      "linkOriginal": "https://lista.mercadolivre.com.br/KSDZN8-4TAA",
+      "resolvidoEm": "2026-08-23T07:27:51.957Z"
+    },
+    "CM0t5fLEsWz7YRcakXTU": {
+      "status": "erro",
+      "motivo": "O Mercado Livre não mostrou um anúncio identificável nesse link.",
+      "linkOriginal": "https://lista.mercadolivre.com.br/KSDZN8-4TAA",
+      "resolvidoEm": "2026-08-23T07:27:50.607Z"
+    },
+    "UZIOdPe4qVWNIkYnw0uJ": {
+      "status": "ok",
+      "mlb": "MLB4096635423",
+      "urlProduto": "https://meli.la/1sAsFxg",
+      "titulo": "CONEXAODIGITAL | Perfil Social",
+      "linkOriginal": "https://meli.la/1sAsFxg",
+      "resolvidoEm": "2026-08-23T07:27:48.988Z"
+    },
+    "tyhMYGmScATbLZS3mrwy": {
+      "status": "ok",
+      "mlb": "MLB4096635423",
+      "urlProduto": "https://meli.la/1sAsFxg",
+      "titulo": "CONEXAODIGITAL | Perfil Social",
+      "linkOriginal": "https://meli.la/1sAsFxg",
+      "resolvidoEm": "2026-08-23T07:27:46.606Z"
+    },
+    "BN9t5GuWzX9HpKAdQ4pi": {
+      "status": "ok",
+      "mlb": "MLB6363542818",
+      "urlProduto": "https://meli.la/1r8jUQC",
+      "titulo": "CONEXAODIGITAL | Perfil Social",
+      "linkOriginal": "https://meli.la/1r8jUQC",
+      "resolvidoEm": "2026-08-23T07:27:44.238Z"
+    },
+    "vkdx0y8qM2LSG6eQ8XbA": {
+      "status": "ok",
+      "mlb": "MLB6363542818",
+      "urlProduto": "https://meli.la/1r8jUQC",
+      "titulo": "CONEXAODIGITAL | Perfil Social",
+      "linkOriginal": "https://meli.la/1r8jUQC",
+      "resolvidoEm": "2026-08-23T07:27:41.830Z"
+    },
+    "ZXfWNqZq6Psv2EoKEm0W": {
+      "status": "ok",
+      "mlb": "MLB6363542818",
+      "urlProduto": "https://meli.la/1r8jUQC",
+      "titulo": "CONEXAODIGITAL | Perfil Social",
+      "linkOriginal": "https://meli.la/1r8jUQC",
+      "resolvidoEm": "2026-08-23T07:27:39.479Z"
+    },
     "AJ3QhXC3mclqU3QIAOj3": {
       "status": "ok",
       "mlb": "MLB20216926",
