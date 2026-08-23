@@ -1421,11 +1421,15 @@ try {
 
   console.warn("Produtos: limite temporário do Firebase detectado. " + String(error?.message || error));
 
-  try {
-    allProducts = await listPublicOffers();
-  } catch (publicError) {
-    console.warn("Vitrine dinâmica indisponível: " + String(publicError?.message || publicError));
+  if (process.env.GITHUB_ACTIONS === "true") {
     allProducts = await listPublishedProducts();
+  } else {
+    try {
+      allProducts = await listPublicOffers();
+    } catch (publicError) {
+      console.warn("Vitrine dinâmica indisponível: " + String(publicError?.message || publicError));
+      allProducts = await listPublishedProducts();
+    }
   }
 
 }
