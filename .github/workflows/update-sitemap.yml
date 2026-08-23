@@ -16,20 +16,20 @@ concurrency:
 jobs:
   atualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
 
     steps:
       - name: Baixar os arquivos do site
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Preparar Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "24"
 
       - name: Gerar sitemap, páginas sociais e descoberta interna
         run: |
-          if ! timeout 90s node scripts/generate-sitemap.mjs; then
+          if ! timeout 240s node scripts/generate-sitemap.mjs; then
             echo "::warning::O gerador principal ficou temporariamente indisponível. A descoberta interna continuará usando as páginas publicadas."
           fi
           node scripts/generate-discovery.mjs
