@@ -262,6 +262,8 @@ async function dumpWithPlaywright(url) {
 }
 
 async function dump(url) {
+  const mirrored = await dumpViaMirror(url);
+  if (mirrored) return mirrored;
   const rendered = await dumpWithPlaywright(url);
   if (rendered) return rendered;
   const executables = [process.env.CHROME_PATH, "google-chrome", "google-chrome-stable", "chromium", "chromium-browser"].filter(Boolean);
@@ -371,5 +373,6 @@ const entries = Object.entries(payload.resultados).sort((a, b) => String(b[1].re
 payload.resultados = Object.fromEntries(entries);
 payload.atualizadoEm = new Date().toISOString();
 await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`);
+
 
 
