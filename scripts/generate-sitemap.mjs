@@ -120,29 +120,39 @@ async function listCollection(collection, maxAttempts = 8) {
 
   do {
 
-    const query = new URLSearchParams({ pageSize: "300" });
+    const query = new URLSearchParams({ pageSize: "300", key: FIREBASE_API_KEY });
 
     if (pageToken) query.set("pageToken", pageToken);
-
-    const requestUrl = FIRESTORE + "/" + collection + "?" + query;
 
     let response;
 
     try {
 
-      // A leitura pública evita consumir a cota vinculada à chave da aplicação.
-
-      response = await fetchFirestore(requestUrl, collection, maxAttempts);
-
-    } catch (error) {
-
-      // Usa a chave somente se as regras exigirem autenticação da API.
-
-      if (!/HTTP (401|403)/.test(String(error?.message || error))) throw error;
-
-      query.set("key", FIREBASE_API_KEY);
+      // A chave pública identifica o projeto e evita o limite baixo das leituras anônimas.
 
       response = await fetchFirestore(FIRESTORE + "/" + collection + "?" + query, collection, maxAttempts);
+
+    } catch (keyError) {
+
+      // Mantém a leitura pública como contingência caso a chave esteja temporariamente indisponível.
+
+      query.delete("key");
+
+      try {
+
+        response = await fetchFirestore(FIRESTORE + "/" + collection + "?" + query, collection, maxAttempts);
+
+      } catch (publicError) {
+
+        throw new Error(
+
+          collection + ": leitura com chave falhou (" + String(keyError?.message || keyError) +
+
+          "); leitura pública falhou (" + String(publicError?.message || publicError) + ")",
+
+        );
+
+      }
 
     }
 
