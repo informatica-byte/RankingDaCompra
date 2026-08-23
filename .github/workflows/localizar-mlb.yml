@@ -1,16 +1,20 @@
 name: Localizar produto e codigo MLB
 
+
 on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 
+
 permissions:
   contents: write
+
 
 concurrency:
   group: rankingdacompra-localizador-mlb
   cancel-in-progress: false
+
 
 jobs:
   localizar:
@@ -20,24 +24,32 @@ jobs:
       - name: Baixar a versao atual do site
         uses: actions/checkout@v4
 
+
       - name: Preparar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "24"
 
+
       - name: Abrir links e identificar anuncios
+        env:
+          MERCADO_LIVRE_CLIENT_ID: ${{ secrets.MERCADO_LIVRE_CLIENT_ID }}
+          MERCADO_LIVRE_CLIENT_SECRET: ${{ secrets.MERCADO_LIVRE_CLIENT_SECRET }}
+          MERCADO_LIVRE_TOKEN_KEY: ${{ secrets.MERCADO_LIVRE_TOKEN_KEY }}
         run: node scripts/resolve-affiliate-links.mjs
+
 
       - name: Publicar novos resultados
         shell: bash
         run: |
-          if git diff --quiet -- mlb-resolucoes.json; then
+          if git diff --quiet -- mlb-resolucoes.json .mercadolivre-token.enc; then
             echo "Nenhum novo pedido encontrado."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add mlb-resolucoes.json
+          if [[ -f .mercadolivre-token.enc ]]; then git add .mercadolivre-token.enc; fi
           git commit -m "Atualiza localizador de codigos MLB"
           git pull --rebase origin main
           git push origin HEAD:main
