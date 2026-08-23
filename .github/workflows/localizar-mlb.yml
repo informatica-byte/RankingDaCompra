@@ -31,12 +31,16 @@ jobs:
           node-version: "24"
 
 
+      - name: Instalar navegador automatizado
+        run: npm install --no-save --ignore-scripts playwright-core
+
+
       - name: Abrir links e identificar anuncios
         env:
           MERCADO_LIVRE_CLIENT_ID: ${{ secrets.MERCADO_LIVRE_CLIENT_ID }}
           MERCADO_LIVRE_CLIENT_SECRET: ${{ secrets.MERCADO_LIVRE_CLIENT_SECRET }}
           MERCADO_LIVRE_TOKEN_KEY: ${{ secrets.MERCADO_LIVRE_TOKEN_KEY }}
-        run: node scripts/resolve-affiliate-links.mjs
+        run: xvfb-run -a node scripts/resolve-affiliate-links.mjs
 
 
       - name: Publicar novos resultados
@@ -53,3 +57,4 @@ jobs:
           git commit -m "Atualiza localizador de codigos MLB"
           git pull --rebase origin main
           git push origin HEAD:main
+
