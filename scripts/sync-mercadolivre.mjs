@@ -87,11 +87,12 @@ async function requestOAuthToken(fields) {
   return payload;
 }
 
-async function saveOAuthToken(payload) {
+async function saveOAuthToken(payload, authorizationCodeHash = "") {
   const session = {
     accessToken: String(payload.access_token),
     refreshToken: String(payload.refresh_token || ""),
     expiresAt: Date.now() + Math.max(300, Number(payload.expires_in || 21600)) * 1000,
+    authorizationCodeHash,
   };
   await writeFile(TOKEN_FILE, `${encryptTokenSession(session)}\n`, "utf8");
   return session;
@@ -106,6 +107,23 @@ async function prepareAccessToken() {
   }
 
   const stored = await readTokenSession();
+  const authorizationCodeHash = AUTHORIZATION_CODE
+    ? createHash("sha256").update(AUTHORIZATION_CODE, "utf8").digest("hex")
+    : "";
+
+  if (AUTHORIZATION_CODE && stored?.authorizationCodeHash !== authorizationCodeHash) {
+    const payload = await requestOAuthToken({
+      grant_type: "authorization_code",
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+      code: AUTHORIZATION_CODE,
+      redirect_uri: REDIRECT_URI,
+    });
+    const session = await saveOAuthToken(payload, authorizationCodeHash);
+    accessToken = session.accessToken;
+    return "authorized";
+  }
+
   if (stored?.accessToken && Number(stored.expiresAt) > Date.now() + 10 * 60 * 1000) {
     accessToken = String(stored.accessToken);
     return "encrypted_session";
@@ -119,14 +137,6 @@ async function prepareAccessToken() {
       client_secret: CLIENT_SECRET,
       refresh_token: String(stored.refreshToken),
     });
-  } else if (AUTHORIZATION_CODE) {
-    payload = await requestOAuthToken({
-      grant_type: "authorization_code",
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      code: AUTHORIZATION_CODE,
-      redirect_uri: REDIRECT_URI,
-    });
   } else if (staticAccessToken) {
     accessToken = staticAccessToken;
     return "access_token";
@@ -136,9 +146,23 @@ async function prepareAccessToken() {
     );
   }
 
-  const session = await saveOAuthToken(payload);
+  const session = await saveOAuthToken(payload, stored?.authorizationCodeHash || authorizationCodeHash);
   accessToken = session.accessToken;
-  return stored ? "refreshed" : "authorized";
+  return "refreshed";
+}
+
+async function fetchFirestorePage(url, attempt = 0) {
+  const response = await fetch(url);
+  if (response.ok) return response;
+  const retryable = response.status === 429 || response.status >= 500;
+  if (retryable && attempt < 4) {
+    const retryAfter = Number(response.headers.get("retry-after") || 0);
+    const delay = Math.max(retryAfter * 1000, 1500 * (2 ** attempt));
+    console.warn(`Firestore respondeu HTTP ${response.status}; nova tentativa em ${delay} ms.`);
+    await new Promise((resolveDelay) => setTimeout(resolveDelay, delay));
+    return fetchFirestorePage(url, attempt + 1);
+  }
+  throw new Error(`Firestore: HTTP ${response.status}`);
 }
 
 async function listProducts() {
@@ -147,8 +171,7 @@ async function listProducts() {
   do {
     const query = new URLSearchParams({ pageSize: "300" });
     if (pageToken) query.set("pageToken", pageToken);
-    const response = await fetch(`${FIRESTORE}/produtos?${query}`);
-    if (!response.ok) throw new Error(`Firestore: HTTP ${response.status}`);
+    const response = await fetchFirestorePage(`${FIRESTORE}/produtos?${query}`);
     const payload = await response.json();
     for (const document of payload.documents || []) {
       const product = { id: document.name.split("/").pop() };
@@ -799,7 +822,19 @@ async function main() {
     return;
   }
 
-  const [products, previous] = await Promise.all([listProducts(), readPrevious()]);
+  let products;
+  let previous;
+  try {
+    [products, previous] = await Promise.all([listProducts(), readPrevious()]);
+  } catch (error) {
+    if (/Firestore: HTTP 429/.test(String(error?.message || error))) {
+      console.warn(
+        "Autorização atualizada. O Firebase atingiu o limite temporário; tente novamente mais tarde.",
+      );
+      return;
+    }
+    throw error;
+  }
   const checkedAt = new Date().toISOString();
   const entries = await mapWithConcurrency(
     products,
