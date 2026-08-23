@@ -207,8 +207,14 @@ function fallback(html, link) {
 async function resolveRequest(request) {
   let html = "";
   try { html = await dump(request.link); } catch {}
+  // Links de produto podem conter o código do catálogo e o código do anúncio.
+  // Preço, foto e estoque pertencem ao anúncio (item_id/wid), então ele tem prioridade.
+  const saleId = request.link.match(/(?:item_id(?:%3A|:)|[?&#]wid=)(MLB-?\d{6,})/i)?.[1]?.replace("-", "").toUpperCase();
   const directId = request.link.match(/(?:\/|\b)(MLB-?\d{6,})(?:-|\/|\?|#|\b)/i)?.[1]?.replace("-", "").toUpperCase();
-  const found = candidates(html)[0] || fallback(html, request.link) || (directId ? { mlb: directId, urlProduto: request.link, titulo: "" } : null);
+  const htmlFound = candidates(html)[0] || fallback(html, request.link);
+  const found = saleId
+    ? { ...(htmlFound || {}), mlb: saleId, urlProduto: request.link, titulo: htmlFound?.titulo || "" }
+    : htmlFound || (directId ? { mlb: directId, urlProduto: request.link, titulo: "" } : null);
   if (!found) throw new Error("O Mercado Livre não mostrou um anúncio identificável nesse link.");
   const details = await officialDetails(found.mlb);
   if (!details?.titulo || !details?.foto || !details?.precoAtual) {
