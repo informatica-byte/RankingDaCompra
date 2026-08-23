@@ -107,7 +107,57 @@ function factualText(item, attributes) {
 }
 
 
-async function officialDetails(itemId) {
+function pageDetails(html) {
+  const products = [];
+  for (const match of String(html || "").matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      const parsed = JSON.parse(decode(match[1]));
+      const queue = Array.isArray(parsed) ? [...parsed] : [parsed];
+      while (queue.length) {
+        const value = queue.shift();
+        if (!value || typeof value !== "object") continue;
+        if (Array.isArray(value)) { queue.push(...value); continue; }
+        const type = Array.isArray(value["@type"]) ? value["@type"] : [value["@type"]];
+        if (type.some(item => String(item).toLowerCase() === "product")) products.push(value);
+        if (Array.isArray(value["@graph"])) queue.push(...value["@graph"]);
+      }
+    } catch {}
+  }
+  const product = products.find(item => item?.offers && item?.name) || products[0];
+  if (!product) return null;
+  const offer = Array.isArray(product.offers) ? product.offers[0] : product.offers || {};
+  const imageValue = Array.isArray(product.image) ? product.image[0] : product.image;
+  const descriptionFacts = String(product.description || "").split(/\s*\|\s*|\n+/).map(plain).filter(Boolean);
+  const extraFacts = [
+    product.brand ? "Marca: " + (product.brand.name || product.brand) : "",
+    product.color ? "Cor: " + product.color : "",
+    product.weight ? "Peso informado: " + (product.weight.value || product.weight) : "",
+    product.sku ? "Código do catálogo: " + product.sku : "",
+    product.itemCondition ? "Condição informada: novo" : "",
+  ].filter(Boolean);
+  const attributes = [...new Set([...descriptionFacts, ...extraFacts])].slice(0, 10);
+  const currentPrice = Number(offer.price || offer.lowPrice || 0);
+  const originalMatch = String(html || "").match(/"original_price"\s*:\s*(\d+(?:\.\d+)?)/i);
+  const originalPrice = Number(originalMatch?.[1] || 0);
+  const title = String(product.name || "").trim();
+  if (!title || !currentPrice || !/^https:\/\//i.test(String(imageValue || ""))) return null;
+  return {
+    titulo: title,
+    foto: String(imageValue).replace(/^http:/, "https:"),
+    precoAtual: currentPrice,
+    precoAnterior: originalPrice > currentPrice ? originalPrice : 0,
+    dadosTecnicos: attributes,
+    comentario: (title + ". " + attributes.slice(0, 6).join("; ") + ". Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.").slice(0, 480),
+    pros: ("Características reais do anúncio: " + attributes.slice(0, 4).join("; ") + ".").slice(0, 290),
+    contras: "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
+    urlProduto: String(offer.url || ""),
+  };
+}
+
+
+async function officialDetails(itemId, html = "") {
+  const page = pageDetails(html);
+  if (page?.titulo && page?.foto && page?.precoAtual) return page;
   const token = await accessToken();
   if (!token || !itemId) return null;
   const response = await fetch("https://api.mercadolibre.com/items/" + itemId, {
@@ -216,7 +266,7 @@ async function resolveRequest(request) {
     ? { ...(htmlFound || {}), mlb: saleId, urlProduto: request.link, titulo: htmlFound?.titulo || "" }
     : htmlFound || (directId ? { mlb: directId, urlProduto: request.link, titulo: "" } : null);
   if (!found) throw new Error("O Mercado Livre não mostrou um anúncio identificável nesse link.");
-  const details = await officialDetails(found.mlb);
+  const details = await officialDetails(found.mlb, html);
   if (!details?.titulo || !details?.foto || !details?.precoAtual) {
     throw new Error("O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.");
   }
