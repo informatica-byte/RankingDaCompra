@@ -138,7 +138,7 @@ function validadePromocao(valor){const limite=dataLimitePromocao(valor);return l
 function promotionCard(p){const desconto=descontoPromocao(p);produtosParaCompartilhar.set(String(p.id),{...p,tipoCompartilhamento:'promocao'});return `<article class="deal-card"><span class="deal-tag">-${desconto}%</span><img loading="lazy" decoding="async" width="260" height="154" src="${safe(p.foto)}" alt="${esc(p.titulo)}"><div class="deal-check">✓ Preço conferido</div><h3>${esc(p.titulo)}</h3><div class="deal-prices"><span class="old-price">De ${moeda(numeroPreco(p.precoAnterior))}</span><span class="deal-price">${moeda(numeroPreco(p.precoPromocional))}</span></div><p class="deal-validity">${esc(validadePromocao(p.promocaoValidaAte))}</p><div class="deal-actions"><a class="button offer-button" href="${urlProduto(p.id)}" data-promo-id="${esc(p.id)}">Ver análise e oferta</a><div class="deal-secondary-actions"><button class="share-deal-button" type="button" data-share-product="${esc(p.id)}" aria-label="Compartilhar promoção de ${esc(p.titulo)}">↗ Compartilhar</button></div></div></article>`}
 async function carregarTop5Semanal() {
   try {
-    const response = await fetch("./top5-semanal.json?dia=" + dataBrasil(), { cache: "no-store" });
+    const response = await fetch("./top5-semanal.json?dia=" + dataBrasil() + "&atualizacao=" + Date.now(), { cache: "no-store" });
     if (!response.ok) throw new Error("HTTP " + response.status);
     const payload = await response.json();
     const products = Array.isArray(payload?.products) ? payload.products : [];
