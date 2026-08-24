@@ -246,7 +246,7 @@ async function homeComPromocoes(){
   const activeIds = new Set([...relampagos, ...promocoes].map((produto) => String(produto.id)));
   const top5Semanal = (top5Payload.products || [])
     .filter((produto) => !activeIds.has(String(produto.id)))
-    .slice(0, 5);
+    .slice(0, 6);
   const ancoraRadar = document.getElementById("radar");
   const secaoRelampago = document.createElement("section");
   const secao = document.createElement("section");
