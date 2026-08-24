@@ -1707,7 +1707,7 @@ if (pendingSocialImages.length) {
 
 let weeklyTop = null;
 
-if (!partialProductSource) {
+if (!partialProductSource || validProducts.length >= 6) {
 
   weeklyTop = await generateWeeklyTop(validProducts, socialImages);
 
@@ -1715,7 +1715,7 @@ if (!partialProductSource) {
 
 } else {
 
-  console.warn("Top 6 semanal anterior preservado porque a fonte de produtos está parcial.");
+  console.warn("Top 6 semanal anterior preservado porque há menos de 6 produtos válidos na fonte parcial.");
 
 }
 
