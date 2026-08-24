@@ -477,7 +477,7 @@ async function listPublishedProducts() {
 
 function editorialProduct(product) {
 
-  const summary = repairPortugueseEncoding(product.comentario);
+  const summary = sanitizeEditorialSummary(product.comentario);
 
   return summary.length >= 180 && !GENERIC_TEXT.test(summary);
 
@@ -1205,7 +1205,7 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   const title = repairPortugueseEncoding(product.titulo || "Produto recomendado");
 
-  const summary = repairPortugueseEncoding(product.comentario || "Confira a análise no Ranking da Compra.");
+  const summary = sanitizeEditorialSummary(product.comentario || "Confira a análise no Ranking da Compra.");
 
   const image = socialImage?.url || absoluteImage(product.foto);
 
@@ -1219,7 +1219,7 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   const sourceUrl = safeExternalUrl(product.link);
 
-  const categoryName = categoryNames.get(product.categoria) || "Produtos";
+  const categoryName = productCategoryName(product, categoryNames);
 
   const positive = editorialItems(product.pros);
 
@@ -1268,6 +1268,10 @@ function renderSharePage(product, socialImage, categoryNames) {
   const rating = Number(product.nota);
 
   const productSchema = { "@type": "Product", "@id": `${detailUrl}#product`, name: title, description: summary, image: [image], category: categoryName, url: detailUrl };
+  const brand = repairPortugueseEncoding(product.marca || product.brand || "");
+  const gtin = String(product.gtin13 || product.gtin14 || product.gtin || product.ean || "").replace(/\D/g, "");
+  if (brand) productSchema.brand = { "@type": "Brand", name: brand };
+  if ([8, 12, 13, 14].includes(gtin.length)) productSchema["gtin" + gtin.length] = gtin;
 
   if (offerUrl !== "#" && currentPrice > 0) productSchema.offers = { "@type": "Offer", url: offerUrl, priceCurrency: "BRL", price: currentPrice.toFixed(2), availability: "https://schema.org/InStock" };
 
@@ -1480,7 +1484,7 @@ try {
 
 // produto ativo. As regras editoriais continuam valendo somente para o sitemap.
 
-const shareProducts = allProducts
+const rawShareProducts = allProducts
 
   .filter((product) => marketplaceProducts[product.id]?.visible !== false)
 
@@ -1496,6 +1500,48 @@ function normalizedProductTitle(product) {
   return title || "id:" + String(product?.id || "");
 }
 
+function normalizedUrlIdentity(value) {
+  try {
+    const url = new URL(String(value || "").trim());
+    url.hash = "";
+    for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]) {
+      url.searchParams.delete(key);
+    }
+    url.pathname = url.pathname.replace(/\/+$/, "");
+    return url.hostname.toLowerCase() + url.pathname + (url.searchParams.size ? "?" + url.searchParams.toString() : "");
+  } catch {
+    return "";
+  }
+}
+
+function productIdentityKey(product) {
+  const identityText = [
+    product?.codigoMLB, product?.codigoMlb, product?.mlb, product?.idMLB,
+    product?.link, product?.linkAfiliado, product?.dadosTecnicos,
+  ].filter(Boolean).join(" ");
+  const mlb = identityText.match(/\bMLB[-_\s]?(\d{6,})\b/i);
+  if (mlb) return "mlb:" + mlb[1];
+  const affiliate = normalizedUrlIdentity(product?.linkAfiliado);
+  if (affiliate) return "affiliate:" + affiliate;
+  const source = normalizedUrlIdentity(product?.link);
+  if (source) return "source:" + source;
+  return "title:" + normalizedProductTitle(product);
+}
+
+function sanitizeEditorialSummary(value) {
+  return repairPortugueseEncoding(value)
+    .replace(/\b(?:comercializado|vendido|ofertado|disponível)\s+(?:pelo\s+)?(?:valor|preço)\s+de\s+R?\$?\s*[\d.,]+/gi, "com preço sujeito a alteração pelo vendedor")
+    .replace(/\b(?:preço|valor)\s*(?:atual|informado)?\s*(?:de|:)\s*R\$\s*[\d.,]+/gi, "preço sujeito a alteração no anúncio")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function productCategoryName(product, categoryNames) {
+  const normalizedTitle = normalizedProductTitle(product);
+  if (/\b(?:bicicleta|bike)\b/.test(normalizedTitle)) return "Bicicletas";
+  return categoryNames.get(product.categoria) || "Produtos";
+}
+
 function productSeoScore(product) {
   const updated = Math.max(
     0,
@@ -1507,23 +1553,24 @@ function productSeoScore(product) {
   return (promotionIsValid(product) ? 1e16 : 0) + affiliate * 1e15 + image * 1e14 + updated;
 }
 
-function deduplicateEditorialProducts(products) {
+function deduplicateProducts(products) {
   const selected = new Map();
   for (const product of products) {
-    const key = normalizedProductTitle(product);
+    const key = productIdentityKey(product);
     const current = selected.get(key);
     if (!current || productSeoScore(product) > productSeoScore(current)) selected.set(key, product);
   }
   if (selected.size !== products.length) {
     console.warn(
       "SEO: " + (products.length - selected.size) +
-      " página(s) duplicada(s) removida(s) do sitemap; as ofertas continuam disponíveis no site.",
+      " produto(s) duplicado(s) do mesmo anúncio removido(s) das páginas e do sitemap.",
     );
   }
   return [...selected.values()].sort((a, b) => String(a.id).localeCompare(String(b.id)));
 }
 
-const products = deduplicateEditorialProducts(shareProducts.filter(editorialProduct));
+const shareProducts = deduplicateProducts(rawShareProducts);
+const products = shareProducts.filter(editorialProduct);
 
 const productsByCategory = new Map();
 
