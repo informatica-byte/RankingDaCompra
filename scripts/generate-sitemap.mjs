@@ -1130,6 +1130,14 @@ async function generateWeeklyTop(products, socialImages) {
   }
 
 
+  if (selected.length < 6) {
+    if (previous?.products?.length) {
+      console.warn("Top 6 anterior preservado: somente " + selected.length + " produto(s) elegível(is).");
+      return previous;
+    }
+    throw new Error("Não há 6 produtos elegíveis para montar o Top 6 semanal.");
+  }
+
 
   const payload = {
 
@@ -1707,7 +1715,7 @@ if (pendingSocialImages.length) {
 
 let weeklyTop = null;
 
-if (!partialProductSource || validProducts.length >= 6) {
+if (!partialProductSource) {
 
   weeklyTop = await generateWeeklyTop(validProducts, socialImages);
 
@@ -1715,7 +1723,7 @@ if (!partialProductSource || validProducts.length >= 6) {
 
 } else {
 
-  console.warn("Top 6 semanal anterior preservado porque há menos de 6 produtos válidos na fonte parcial.");
+  console.warn("Top 6 semanal anterior preservado porque a fonte de produtos está parcial.");
 
 }
 
