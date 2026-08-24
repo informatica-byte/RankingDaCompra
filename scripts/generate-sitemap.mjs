@@ -1061,7 +1061,7 @@ async function generateWeeklyTop(products, socialImages) {
 
   const freshCandidates = candidates.filter((product) => weeklyTopFreshnessDays(product) <= 14);
 
-  const baseCandidates = freshCandidates.length >= 5 ? freshCandidates : candidates;
+  const baseCandidates = freshCandidates.length >= 6 ? freshCandidates : candidates;
 
   const previousIds = new Set((previous?.products || []).map((product) => String(product.id)));
 
@@ -1087,7 +1087,7 @@ async function generateWeeklyTop(products, socialImages) {
 
     const rotated = baseCandidates.filter((product) => !previousIds.has(String(product.id)));
 
-    const pool = rotated.length >= 5 ? rotated : baseCandidates;
+    const pool = rotated.length >= 6 ? rotated : baseCandidates;
 
     ordered = [...pool].sort((a, b) => weeklyTopScore(b, week.id) - weeklyTopScore(a, week.id));
 
@@ -1109,11 +1109,11 @@ async function generateWeeklyTop(products, socialImages) {
 
     categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
 
-    if (selected.length === 5) break;
+    if (selected.length === 6) break;
 
   }
 
-  if (selected.length < 5) {
+  if (selected.length < 6) {
 
     const selectedIds = new Set(selected.map((product) => String(product.id)));
 
@@ -1123,7 +1123,7 @@ async function generateWeeklyTop(products, socialImages) {
 
       selected.push(product);
 
-      if (selected.length === 5) break;
+      if (selected.length === 6) break;
 
     }
 
@@ -1141,7 +1141,7 @@ async function generateWeeklyTop(products, socialImages) {
 
     updatedAt: week.start + "T07:00:00-03:00",
 
-    selectionRule: freshCandidates.length >= 5
+    selectionRule: freshCandidates.length >= 6
 
       ? "precos-conferidos-nos-ultimos-14-dias"
 
@@ -1711,11 +1711,11 @@ if (!partialProductSource) {
 
   weeklyTop = await generateWeeklyTop(validProducts, socialImages);
 
-  console.log("Top 5 semanal atualizado: " + weeklyTop.products.length + " produto(s), semana " + weeklyTop.weekStart + ".");
+  console.log("Top 6 semanal atualizado: " + weeklyTop.products.length + " produto(s), semana " + weeklyTop.weekStart + ".");
 
 } else {
 
-  console.warn("Top 5 semanal anterior preservado porque a fonte de produtos está parcial.");
+  console.warn("Top 6 semanal anterior preservado porque a fonte de produtos está parcial.");
 
 }
 
