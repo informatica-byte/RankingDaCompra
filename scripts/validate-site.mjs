@@ -49,6 +49,23 @@ for (const file of ["como-avaliamos.html", "sobre.html", "politica-afiliados.htm
   has(html, /name="twitter:card"\s+content="summary_large_image"/i, "cartão social do Twitter ausente", file);
 }
 
+const weeklyTop = JSON.parse(await readFile(resolve("top5-semanal.json"), "utf8"));
+const weeklyProducts = Array.isArray(weeklyTop.products) ? weeklyTop.products : [];
+if (weeklyProducts.length !== 6) fail("top5-semanal.json: o Top 6 precisa conter exatamente 6 produtos válidos");
+const weeklyIds = new Set();
+for (const product of weeklyProducts) {
+  const id = String(product?.id || "").trim();
+  if (!id) fail("top5-semanal.json: produto sem identificador");
+  else if (weeklyIds.has(id)) fail("top5-semanal.json: produto duplicado no Top 6: " + id);
+  else weeklyIds.add(id);
+  if (!String(product?.titulo || "").trim()) fail("top5-semanal.json: produto sem título: " + (id || "desconhecido"));
+  if (!String(product?.foto || "").startsWith("https://")) fail("top5-semanal.json: produto sem imagem segura: " + (id || "desconhecido"));
+  if (!String(product?.productUrl || "").startsWith(SITE + "produto/")) fail("top5-semanal.json: página de produto inválida: " + (id || "desconhecido"));
+  if (!String(product?.linkAfiliado || "").startsWith("https://")) fail("top5-semanal.json: link de afiliado inválido: " + (id || "desconhecido"));
+  const price = Number(String(product?.precoPromocional || product?.preco || "0").replace(/\./g, "").replace(",", "."));
+  if (!(price > 0)) fail("top5-semanal.json: preço inválido: " + (id || "desconhecido"));
+}
+
 if (errors.length) {
   console.error("\nValidação bloqueou a publicação:");
   for (const error of errors) console.error(" - " + error);
