@@ -144,7 +144,7 @@ async function carregarTop5Semanal() {
     const products = Array.isArray(payload?.products) ? payload.products : [];
     return { ...payload, products: products.filter((product) => product?.id && product?.titulo && product?.foto) };
   } catch (error) {
-    console.warn("Não foi possível carregar o Top 5 semanal.", error);
+    console.warn("Não foi possível carregar o Top 6 semanal.", error);
     return { products: [] };
   }
 }
@@ -262,7 +262,7 @@ async function homeComPromocoes(){
 
   secao.id = "promocoes";
   secao.className = "daily-deals";
-  secao.innerHTML = `<div class="section-head deals-heading"><div><div class="eyebrow">Seleção de hoje</div><h2>Promoções do Dia</h2><p>${esc(rotuloAtualizacao())}</p></div><span class="deal-count">${promocoes.length} oferta${promocoes.length === 1 ? "" : "s"} em destaque</span></div>${promocoes.length ? `<div class="deal-grid">${promocoes.map(promotionCard).join("")}</div>` : `<div class="empty">As promoções de hoje ainda não foram publicadas. O Top 5 da semana continua disponível abaixo.</div>`}<p class="deal-disclaimer"><b>Atenção:</b> o preço final, o frete e o estoque são confirmados na página do vendedor.</p>`;
+  secao.innerHTML = `<div class="section-head deals-heading"><div><div class="eyebrow">Seleção de hoje</div><h2>Promoções do Dia</h2><p>${esc(rotuloAtualizacao())}</p></div><span class="deal-count">${promocoes.length} oferta${promocoes.length === 1 ? "" : "s"} em destaque</span></div>${promocoes.length ? `<div class="deal-grid">${promocoes.map(promotionCard).join("")}</div>` : `<div class="empty">As promoções de hoje ainda não foram publicadas. O Top 6 da semana continua disponível abaixo.</div>`}<p class="deal-disclaimer"><b>Atenção:</b> o preço final, o frete e o estoque são confirmados na página do vendedor.</p>`;
   if (ancoraRadar) ancoraRadar.parentNode.insertBefore(secao, ancoraRadar);
   else app.querySelector("main")?.prepend(secao);
 
@@ -270,7 +270,7 @@ async function homeComPromocoes(){
     const top5Updated = formatarData(top5Payload.updatedAt);
     secaoTop5.id = "top5-semanal";
     secaoTop5.className = "weekly-top";
-    secaoTop5.innerHTML = `<div class="section-head deals-heading"><div><div class="eyebrow">Vitrine sempre atualizada</div><h2>🏆 Top 5 melhores oportunidades da semana</h2><p>Seleção automática renovada toda segunda-feira${top5Updated ? " · atualizada em " + esc(top5Updated) : ""}.</p></div><span class="deal-count">${top5Semanal.length} escolha${top5Semanal.length === 1 ? "" : "s"} da semana</span></div><div class="deal-grid weekly-grid">${top5Semanal.map(weeklyTopCard).join("")}</div><p class="deal-disclaimer"><b>Importante:</b> os preços podem mudar. Confira preço, frete e estoque no anúncio antes de comprar.</p>`;
+    secaoTop5.innerHTML = `<div class="section-head deals-heading"><div><div class="eyebrow">Vitrine sempre atualizada</div><h2>🏆 Top 6 melhores oportunidades da semana</h2><p>Seleção automática renovada toda segunda-feira${top5Updated ? " · atualizada em " + esc(top5Updated) : ""}.</p></div><span class="deal-count">${top5Semanal.length} escolha${top5Semanal.length === 1 ? "" : "s"} da semana</span></div><div class="deal-grid weekly-grid">${top5Semanal.map(weeklyTopCard).join("")}</div><p class="deal-disclaimer"><b>Importante:</b> os preços podem mudar. Confira preço, frete e estoque no anúncio antes de comprar.</p>`;
     if (ancoraRadar) ancoraRadar.parentNode.insertBefore(secaoTop5, ancoraRadar);
     else app.querySelector("main")?.append(secaoTop5);
   }
@@ -309,7 +309,7 @@ async function homeComPromocoes(){
         {
           "@type": "ItemList",
           "@id": SITE_URL + "#top5-semanal",
-          name: "Top 5 melhores oportunidades da semana",
+          name: "Top 6 melhores oportunidades da semana",
           itemListElement: top5Semanal.map((produto, index) => ({
             "@type": "ListItem",
             position: index + 1,
@@ -341,9 +341,9 @@ async function homeComPromocoes(){
   }));
   secaoTop5.querySelectorAll("[data-weekly-id]").forEach((link) => link.addEventListener("click", () => {
     const produto = top5Semanal.find((item) => String(item.id) === String(link.dataset.weeklyId))
-      || { id: link.dataset.weeklyId, titulo: "Top 5 da semana" };
+      || { id: link.dataset.weeklyId, titulo: "Top 6 da semana" };
     gtag("event", "select_promotion", {
-      promotion_name: "Top 5 da Semana",
+      promotion_name: "Top 6 da Semana",
       items: [{ item_id: link.dataset.weeklyId }],
     });
     registrarMetricaComercial("clique_top5", produto, origemCampanhaAtual());
