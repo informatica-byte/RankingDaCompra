@@ -284,11 +284,11 @@
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap">
                         <div>
                             <div style="font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#17376e">Vitrine automática</div>
-                            <h4 style="margin:4px 0 7px;font-size:1.2rem;color:#17376e">🏆 Top 5 da Semana</h4>
+                            <h4 style="margin:4px 0 7px;font-size:1.2rem;color:#17376e">🏆 Top 6 da Semana</h4>
                             <p id="status-top5-semanal" style="margin:0;color:#40566f">Carregando a seleção semanal...</p>
                         </div>
                         <div style="display:flex;gap:8px;flex-wrap:wrap">
-                            <button type="button" onclick="abrirAtualizacaoTop5()" style="border:0;border-radius:9px;padding:11px 14px;background:#17376e;color:#fff;font-weight:800;cursor:pointer">⚙️ Atualizar Top 5 agora</button>
+                            <button type="button" onclick="abrirAtualizacaoTop5()" style="border:0;border-radius:9px;padding:11px 14px;background:#17376e;color:#fff;font-weight:800;cursor:pointer">⚙️ Atualizar Top 6 agora</button>
                             <a href="/#top5-semanal" target="_blank" rel="noopener" style="border:1px solid #17376e;border-radius:9px;padding:10px 14px;background:#fff;color:#17376e;font-weight:800;text-decoration:none">Ver na vitrine</a>
                         </div>
                     </div>
@@ -2586,7 +2586,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         return '<div style="padding:9px;border:1px solid #d8e4f1;border-radius:9px;background:#fff;font-size:.82rem"><strong style="color:#17376e">#'+(index+1)+'</strong> '+escaparTop5(produto.titulo)+'</div>';
       }).join("");
     }catch(erro){
-      status.innerHTML="<strong>Top 5 aguardando a primeira geração.</strong> Use o botão de atualização.";
+      status.innerHTML="<strong>Top 6 aguardando a primeira geração.</strong> Use o botão de atualização.";
       lista.innerHTML="";
     }
   }
