@@ -32,7 +32,7 @@ for (const url of urls) {
   has(html, /<meta\s+name="description"\s+content="[^"]{50,}"/i, "descrição ausente ou curta", relative);
   has(html, /<meta\s+property="og:image"\s+content="https:\/\/rankingdacompra\.com\.br\/produto\/imagens\/[^"]+"/i, "imagem social local ausente", relative);
   has(html, /"@type":"Product"/i, "dados estruturados de produto ausentes", relative);
-  if (!html.includes("rel="canonical" href="" + url + """)) fail(relative + ": endereço canônico divergente");
+  if (!html.includes('rel="canonical" href="' + url + '"')) fail(relative + ": endereço canônico divergente");
   if (/name="robots"\s+content="[^"]*noindex/i.test(html)) fail(relative + ": página do sitemap marcada como noindex");
   if (html.includes("\uFFFD")) fail(relative + ": caractere corrompido encontrado");
 
