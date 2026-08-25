@@ -185,6 +185,22 @@
     } catch { return false; }
   }
 
+  async function loadPublishedConfig() {
+    try {
+      const response = await fetch(`/site-config.json?v=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) return null;
+      const config = await response.json();
+      return config && typeof config === "object" ? config : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function sameClubConfig(config, url, enabled) {
+    return String(config?.whatsappClubUrl || "").trim() === url
+      && (config?.whatsappClubEnabled !== false) === enabled;
+  }
+
   function trackClubClick(place) {
     try { window.gtag?.("event", "join_whatsapp_club", { placement: place }); } catch {}
     try {
@@ -258,6 +274,9 @@
       button.disabled = true;
       status.textContent = "Salvando...";
       try {
+        if (typeof auth !== "undefined" && !auth.currentUser) {
+          throw Object.assign(new Error("Sessão administrativa não encontrada."), { code: "auth/no-current-user" });
+        }
         await db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).set({
           whatsappClubUrl: value,
           whatsappClubEnabled: enabled.checked,
@@ -267,7 +286,18 @@
         status.textContent = value ? "✓ Clube salvo. O convite já pode aparecer na vitrine." : "✓ Configuração salva. O convite ficará oculto até você informar um link.";
       } catch (error) {
         console.error(error);
-        status.textContent = "Não foi possível salvar. Confirme se você está conectado ao painel.";
+        const publishedConfig = await loadPublishedConfig();
+        if (sameClubConfig(publishedConfig, value, enabled.checked)) {
+          state.config = { ...(state.config || {}), ...publishedConfig };
+          status.textContent = "✓ Clube já está publicado e ativo na vitrine.";
+        } else {
+          const code = String(error?.code || "").replace(/^firestore\//, "");
+          status.textContent = code === "permission-denied"
+            ? "O Firebase recusou a alteração. O convite que já está publicado continua ativo."
+            : code === "auth/no-current-user"
+              ? "Sua sessão expirou. Saia do painel, entre novamente e tente salvar."
+              : `Não foi possível salvar${code ? ` (${code})` : ""}. O convite publicado continua protegido.`;
+        }
       } finally { button.disabled = false; }
     });
     return true;
