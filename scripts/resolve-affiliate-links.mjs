@@ -35,6 +35,43 @@ function plain(value) {
 }
 
 
+function fitText(value, maxLength) {
+  const cleaned = plain(value)
+    .replace(/\.\s*;/g, ".")
+    .replace(/;\s*\./g, ".")
+    .replace(/\s+([,.;:!?])/g, "$1")
+    .replace(/([,.;:!?])(?=[A-Za-zÀ-ÿ])/g, "$1 ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (cleaned.length <= maxLength) return cleaned;
+  const slice = cleaned.slice(0, maxLength + 1);
+  const sentence = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("! "), slice.lastIndexOf("? "));
+  if (sentence >= Math.floor(maxLength * 0.65)) return slice.slice(0, sentence + 1).trim();
+  const word = slice.lastIndexOf(" ");
+  return (word > 0 ? slice.slice(0, word) : slice.slice(0, maxLength)).replace(/[,;:\s.-]+$/, "").trim() + ".";
+}
+
+
+function prosText(title, attributes) {
+  return fitText(`${title}. Características confirmadas no anúncio: ${attributes.slice(0, 5).join("; ")}.`, 290);
+}
+
+
+function attentionText(title) {
+  const normalized = String(title || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  if (/perfume|fragrancia|eau de/.test(normalized)) {
+    return "A percepção da fragrância e a fixação variam conforme a pele e o uso. Confira volume, vendedor, frete, prazo e estoque no anúncio antes da compra.";
+  }
+  if (/roupa|camisa|camiseta|calca|vestido|tenis|sapato|sandalia/.test(normalized)) {
+    return "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.";
+  }
+  if (/celular|smartphone|notebook|tablet|tv|monitor|eletro|ferramenta|furadeira|parafusadeira/.test(normalized)) {
+    return "Confira voltagem quando aplicável, medidas, compatibilidade, garantia, vendedor, frete, prazo e estoque no anúncio antes da compra.";
+  }
+  return "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.";
+}
+
+
 function encryptionKey() {
   if (!TOKEN_KEY) return null;
   return createHash("sha256").update(TOKEN_KEY, "utf8").digest();
@@ -103,7 +140,7 @@ async function accessToken() {
 function factualText(item, attributes) {
   const facts = attributes.slice(0, 6);
   const base = item.title + ". " + facts.join("; ") + ".";
-  return (base + " Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.").slice(0, 480);
+  return fitText(base + " Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.", 480);
 }
 
 
@@ -147,9 +184,9 @@ function pageDetails(html) {
     precoAtual: currentPrice,
     precoAnterior: originalPrice > currentPrice ? originalPrice : 0,
     dadosTecnicos: attributes,
-    comentario: (title + ". " + attributes.slice(0, 6).join("; ") + ". Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.").slice(0, 480),
-    pros: ("Características reais do anúncio: " + attributes.slice(0, 4).join("; ") + ".").slice(0, 290),
-    contras: "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
+    comentario: fitText(title + ". " + attributes.slice(0, 6).join("; ") + ". Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.", 480),
+    pros: prosText(title, attributes),
+    contras: attentionText(title),
     urlProduto: String(offer.url || ""),
   };
 }
@@ -185,8 +222,8 @@ async function officialDetails(itemId, html = "") {
     precoAnterior: originalPrice > currentPrice ? originalPrice : 0,
     dadosTecnicos: unique,
     comentario: factualText(item, unique),
-    pros: ("Características reais do anúncio: " + unique.slice(0, 4).join("; ") + ".").slice(0, 290),
-    contras: "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
+    pros: prosText(title, unique),
+    contras: attentionText(title),
     urlProduto: item.permalink || "",
   };
 }
