@@ -24,32 +24,42 @@ function atencaoEditorial(titulo,valor){
 }
 
 function categoriaDoResultado(d){
-  const texto=textoNormalizado([d.titulo,...lista(d.dadosTecnicos),d.comentario].join(" "));
+  const caminhoOficial=Array.isArray(d.categoriaMercadoLivreCaminho)?d.categoriaMercadoLivreCaminho.join(" > "):String(d.categoriaMercadoLivreCaminho||"");
+  const texto=textoNormalizado([d.categoriaMercadoLivreNome,caminhoOficial,d.titulo,...lista(d.dadosTecnicos),d.comentario].join(" "));
+  const contem=termo=>{
+    const normalizado=textoNormalizado(termo);
+    if(normalizado.length>3)return texto.includes(normalizado);
+    return new RegExp("(?:^|\\s)"+normalizado.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?:$|\\s)").test(texto);
+  };
   const regras=[
-    [["perfume"],["perfume","fragrancia","eau de parfum","eau de toilette"]],
-    [["celular"],["smartphone","celular","iphone"]],
-    [["notebook"],["notebook","laptop","macbook"]],
+    [["patinete"],["patinete eletrico","scooter eletrica"]],
+    [["perfume"],["perfume","perfumaria","fragrancia","eau de parfum","eau de toilette","body splash"]],
+    [["celular"],["celulares e telefones","smartphone","celular","iphone"]],
+    [["notebook"],["notebook","laptop","macbook","chromebook"]],
     [["tablet"],["tablet","ipad"]],
-    [["fones"],["fone de ouvido","headphone","headset","earbuds"]],
-    [["camera"],["camera de seguranca","camera ip","webcam"]],
-    [["parafusadeira"],["parafusadeira","furadeira"]],
-    [["teclado","mouse"],["teclado","mouse"]],
-    [["fritadeira"],["air fryer","fritadeira"]],
-    [["roteador"],["roteador","wi-fi","wifi"]],
-    [["caixa de som"],["caixa de som","alto-falante","speaker"]],
-    [["smart tv"],["smart tv","televisor","televisao"]],
-    [["impressora"],["impressora","multifuncional"]],
-    [["roupas","calcados"],["tenis","sapato","sandalia","camiseta","vestido","calca"]],
-    [["malas","bolsas"],["mala de viagem","mochila","bolsa"]],
-    [["relogio","smartwatch"],["smartwatch","relogio inteligente"]],
-    [["ferramentas"],["ferramenta","serra","solda","compressor"]],
-    [["carro"],["automotivo","veicular","carro"]],
-    [["informatica"],["ssd","monitor","memoria ram","computador"]],
-    [["esporte","lazer"],["bicicleta","academia","fitness","camping"]],
-    [["brinquedos"],["brinquedo","boneca","carrinho infantil"]]
+    [["fones"],["fone de ouvido","headphone","headset","earbuds","auriculares"]],
+    [["camera"],["cameras e acessorios","camera de seguranca","camera ip","webcam","cftv","dvr"]],
+    [["parafusadeira"],["parafusadeira","furadeira e parafusadeira","furadeira"]],
+    [["teclado","mouse"],["kit teclado e mouse","teclado sem fio","mouse sem fio"]],
+    [["fritadeira"],["air fryer","fritadeira eletrica","fritadeiras"]],
+    [["roteador"],["roteador","roteadores","wi fi","wifi","repetidor de sinal"]],
+    [["caixa de som"],["caixa de som","alto falante","speaker","audio portatil"]],
+    [["smart tv"],["smart tv","televisor","televisao","televisores"]],
+    [["impressora"],["impressora","impressoras","multifuncional","plotter"]],
+    [["malas","bolsas"],["malas e bolsas","mala de viagem","mochila"]],
+    [["relogio","smartwatch"],["relogios e joias","smartwatch","relogio inteligente","relogio de pulso"]],
+    [["super mercado"],["alimentos e bebidas","supermercado","mercearia","bebidas","alimentos"]],
+    [["roupas","calcados"],["roupas e calcados","calcados roupas e bolsas","tenis","sapato","sandalia","camiseta","vestido","calca"]],
+    [["brinquedos"],["brinquedos e hobbies","brinquedo","boneca","carrinho infantil","jogos de tabuleiro"]],
+    [["esporte","lazer"],["esportes e fitness","bicicleta","academia","fitness","camping","pesca","futebol","bola"]],
+    [["carro"],["acessorios para veiculos","pecas de carros","automotivo","veicular","carro","moto"]],
+    [["informatica"],["informatica","computadores","componentes para pc","ssd","monitor","memoria ram","computador"]],
+    [["beleza","cuidados"],["beleza e cuidado pessoal","saude","cosmetico","maquiagem","cuidados pessoais","modelador de cachos","cacheador","protetor solar","shampoo","condicionador","massageador","vitamina","suplemento"]],
+    [["ferramentas"],["ferramentas","construcao","industria e comercio","serra","solda","compressor","rocadeira","aparador de grama"]],
+    [["casa"],["casa moveis e decoracao","eletrodomesticos","jardim","cozinha","bebes","animais","instrumentos musicais","livros revistas e comics","arte papelaria e armarinho","antiguidades e colecoes","colchao","liquidificador","cafeteira","sanduicheira","lixeira","espelho","mop","maquina de costura"]]
   ];
   for(const [nomes,termos] of regras){
-    if(!termos.some(termo=>texto.includes(termo)))continue;
+    if(!termos.some(contem))continue;
     const encontrada=cats.find(cat=>nomes.some(nome=>textoNormalizado(cat.nome).includes(nome)));
     if(encontrada)return encontrada.id;
   }
@@ -59,7 +69,9 @@ function categoriaDoResultado(d){
     const total=tokens.filter(token=>texto.includes(token)).length;
     if(total>pontos){melhor=cat;pontos=total}
   }
-  return melhor?.id||cats[0]?.id||"";
+  if(melhor&&pontos>0)return melhor.id;
+  const generica=cats.find(cat=>textoNormalizado(cat.nome)==="casa");
+  return caminhoOficial&&generica?generica.id:"";
 }
 
 function mostrarAtalhoRobo(mostrar){
@@ -86,7 +98,9 @@ async function gerarIA(prompt){try{const r=await comPrazo(modelRapido.generateCo
   resultado = { link, linkAfiliado, tipo, evidencia: "API oficial do Mercado Livre pelo robô do GitHub" };
   edicaoManual = false;
   $("titulo").value = String(d.titulo).trim();
-  $("categoria").value = categoriaDoResultado(d);
+  const categoriaId = categoriaDoResultado(d);
+  if (!categoriaId) throw Error("A categoria oficial deste produto ainda não possui correspondência no painel. Escolha a categoria na revisão antes de publicar.");
+  $("categoria").value = categoriaId;
   $("foto").value = String(d.foto);
   $("anterior").value = preco(d.precoAnterior);
   $("atual").value = preco(d.precoAtual);
