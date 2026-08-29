@@ -45,12 +45,21 @@ async function criarPedidoRobo(link,linkAfiliado,tipo){
 }
 
 async function lerResultadoRobo(pedidoId){
-  try{
-    const response=await fetch("mlb-resolucoes.json?v="+Date.now(),{cache:"no-store"});
-    if(!response.ok)return null;
-    const payload=await response.json();
-    return payload?.resultados?.[pedidoId]||null;
-  }catch{return null}
+  const versao=Date.now();
+  const fontes=[
+    "https://raw.githubusercontent.com/informatica-byte/RankingDaCompra/main/mlb-resolucoes.json?v="+versao,
+    "mlb-resolucoes.json?v="+versao
+  ];
+  for(const fonte of fontes){
+    try{
+      const response=await fetch(fonte,{cache:"no-store"});
+      if(!response.ok)continue;
+      const payload=await response.json();
+      const encontrado=payload?.resultados?.[pedidoId];
+      if(encontrado)return encontrado;
+    }catch{}
+  }
+  return null;
 }
 
 async function monitorarRoboSegundoPlano(pedidoId,chave,link,linkAfiliado,tipo,monitorId){
