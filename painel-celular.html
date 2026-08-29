@@ -101,8 +101,9 @@ buscarProdutoExistente=async function(link,linkAfiliado){
   if(existente)return existente;
   try{
     const salvo=JSON.parse(localStorage.getItem("ranking_mlb_pendente:"+link)||"null");
-    if(!salvo?.id||Date.now()-Number(salvo.criadoEm||0)>=30*60*1000)return null;
-    const d=await lerResultadoRobo(salvo.id,true);
+    let d=null;
+    if(salvo?.id&&Date.now()-Number(salvo.criadoEm||0)<30*60*1000)d=await lerResultadoRobo(salvo.id,true);
+    if(!d)d=await lerResultadoRoboPorLink(link,true);
     if(!d||d.status!=="ok")return null;
     mostrarAtalhoRobo(false);
     return{
@@ -141,9 +142,9 @@ async function criarPedidoRobo(link,linkAfiliado,tipo){
   return{pedidoId,chave};
 }
 
-async function lerResultadoRobo(pedidoId,forcarApi=false){
+async function atualizarResultadosApi(forcar=false){
   const versao=Date.now();
-  if(forcarApi||versao-ultimaConsultaResultadosApi>=60000){
+  if(forcar||versao-ultimaConsultaResultadosApi>=60000){
     ultimaConsultaResultadosApi=versao;
     try{
       const response=await fetch(RESULTADOS_API+"&v="+versao,{cache:"no-store",headers:{accept:"application/vnd.github.raw+json"}});
@@ -153,6 +154,23 @@ async function lerResultadoRobo(pedidoId,forcarApi=false){
       }
     }catch{}
   }
+}
+
+async function lerResultadoRoboPorLink(link,forcarApi=false){
+  await atualizarResultadosApi(forcarApi);
+  const codigo=mlb(link);
+  const agora=Date.now();
+  return Object.values(cacheResultadosApi).find(item=>{
+    if(item?.status!=="ok")return false;
+    const idade=agora-Date.parse(item.resolvidoEm||0);
+    if(!Number.isFinite(idade)||idade<0||idade>30*60*1000)return false;
+    return item.linkOriginal===link||(codigo&&(item.mlb===codigo||mlb(item.linkOriginal)===codigo));
+  })||null;
+}
+
+async function lerResultadoRobo(pedidoId,forcarApi=false){
+  const versao=Date.now();
+  await atualizarResultadosApi(forcarApi);
   if(cacheResultadosApi[pedidoId])return cacheResultadosApi[pedidoId];
   const fontes=[
     "https://raw.githubusercontent.com/informatica-byte/RankingDaCompra/main/mlb-resolucoes.json?v="+versao,
