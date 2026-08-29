@@ -13,6 +13,7 @@ const TOKEN_FILE = ".mercadolivre-token.enc";
 const TOKEN_KEY = process.env.MERCADO_LIVRE_TOKEN_KEY || "";
 const CLIENT_ID = process.env.MERCADO_LIVRE_CLIENT_ID || "";
 const CLIENT_SECRET = process.env.MERCADO_LIVRE_CLIENT_SECRET || "";
+const categoryCache = new Map();
 
 
 function field(fieldValue) {
@@ -192,16 +193,45 @@ function pageDetails(html) {
 }
 
 
+async function officialCategory(categoryId, token) {
+  if (!categoryId) return {};
+  if (categoryCache.has(categoryId)) return categoryCache.get(categoryId);
+  const empty = { categoriaMercadoLivreId: categoryId };
+  try {
+    const response = await fetch("https://api.mercadolibre.com/categories/" + categoryId, {
+      headers: token ? { authorization: "Bearer " + token } : {},
+    });
+    if (!response.ok) return empty;
+    const category = await response.json();
+    const path = (category.path_from_root || []).map((part) => plain(part.name)).filter(Boolean);
+    const result = {
+      categoriaMercadoLivreId: categoryId,
+      categoriaMercadoLivreNome: plain(category.name || path.at(-1) || ""),
+      categoriaMercadoLivreCaminho: path,
+    };
+    categoryCache.set(categoryId, result);
+    return result;
+  } catch {
+    return empty;
+  }
+}
+
+
 async function officialDetails(itemId, html = "") {
   const page = pageDetails(html);
-  if (page?.titulo && page?.foto && page?.precoAtual) return page;
   const token = await accessToken();
-  if (!token || !itemId) return null;
-  const response = await fetch("https://api.mercadolibre.com/items/" + itemId, {
-    headers: { authorization: "Bearer " + token },
-  });
-  if (!response.ok) return null;
+  if (!token || !itemId) return page;
+  let response;
+  try {
+    response = await fetch("https://api.mercadolibre.com/items/" + itemId, {
+      headers: { authorization: "Bearer " + token },
+    });
+  } catch {
+    return page;
+  }
+  if (!response.ok) return page;
   const item = await response.json();
+  const category = await officialCategory(item.category_id, token);
   const attributes = (item.attributes || [])
     .map((attribute) => {
       const value = attribute.value_name || attribute.value_struct?.number || attribute.values?.[0]?.name || "";
@@ -216,15 +246,17 @@ async function officialDetails(itemId, html = "") {
   const currentPrice = Number(item.price || 0);
   const originalPrice = Number(item.original_price || 0);
   return {
-    titulo: title,
-    foto: String(item.pictures?.[0]?.secure_url || item.thumbnail || "").replace(/^http:/, "https:"),
-    precoAtual: currentPrice,
-    precoAnterior: originalPrice > currentPrice ? originalPrice : 0,
-    dadosTecnicos: unique,
-    comentario: factualText(item, unique),
-    pros: prosText(title, unique),
-    contras: attentionText(title),
-    urlProduto: item.permalink || "",
+    ...page,
+    titulo: title || page?.titulo || "",
+    foto: String(item.pictures?.[0]?.secure_url || item.thumbnail || page?.foto || "").replace(/^http:/, "https:"),
+    precoAtual: currentPrice || page?.precoAtual || 0,
+    precoAnterior: originalPrice > currentPrice ? originalPrice : page?.precoAnterior || 0,
+    dadosTecnicos: unique.length >= 3 ? unique : page?.dadosTecnicos || unique,
+    comentario: title && unique.length ? factualText(item, unique) : page?.comentario || "",
+    pros: title && unique.length ? prosText(title, unique) : page?.pros || "",
+    contras: attentionText(title || page?.titulo || ""),
+    urlProduto: item.permalink || page?.urlProduto || "",
+    ...category,
   };
 }
 
