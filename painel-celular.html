@@ -16,6 +16,13 @@ function textoEditorial(valor,limite){
   return texto;
 }
 
+function atencaoEditorial(titulo,valor){
+  const normalizado=textoNormalizado(titulo);
+  if(/perfume|fragrancia|eau de/.test(normalizado))return "A percepção da fragrância e a fixação variam conforme a pele e o uso. Confira volume, vendedor, frete, prazo e estoque no anúncio antes da compra.";
+  if(/roupa|camisa|camiseta|calca|vestido|tenis|sapato|sandalia/.test(normalizado))return "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.";
+  return textoEditorial(valor,290);
+}
+
 function categoriaDoResultado(d){
   const texto=textoNormalizado([d.titulo,...lista(d.dadosTecnicos),d.comentario].join(" "));
   const regras=[
@@ -86,7 +93,7 @@ async function gerarIA(prompt){try{const r=await comPrazo(modelRapido.generateCo
   $("dados").value = tecnicos.join("\n");
   $("resumo").value = textoEditorial(d.comentario, 480);
   $("pros").value = textoEditorial(d.pros, 290);
-  $("contras").value = textoEditorial(d.contras, 290);
+  $("contras").value = atencaoEditorial(d.titulo, d.contras);
   $("foto-previa").src = d.foto;
   $("foto-previa").style.display = "block";
   $("preview").style.display = "block";
@@ -115,7 +122,7 @@ buscarProdutoExistente=async function(link,linkAfiliado){
       dadosTecnicos:lista(d.dadosTecnicos).join("\n"),
       comentario:textoEditorial(d.comentario,480),
       pros:textoEditorial(d.pros,290),
-      contras:textoEditorial(d.contras,290),
+      contras:atencaoEditorial(d.titulo,d.contras),
       fonteCadastro:"robo_github"
     };
   }catch{return null}
