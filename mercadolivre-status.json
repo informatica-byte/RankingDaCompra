@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-07T11:11:10.754Z",
+  "updatedAt": "2026-08-29T12:55:25.403Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "itemId": "MLB2171368181",
@@ -16,6 +16,40 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-05T17:56:40.772Z"
     },
+    "0Q5DTdleixACi5nzWOVy": {
+      "itemId": "MLB63184696",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "0TQPS3z5Mj1mWyEjdcjd": {
+      "itemId": "MLB4186648429",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "0UsruHJ405ImvUXyhYgW": {
+      "itemId": "MLB4031566272",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "0ZlMlzbCo5Rh41J5oUjj": {
       "itemId": "MLB4291609113",
       "managed": true,
@@ -23,15 +57,35 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "11ZyTOBCZV57t4q1dEKw": {
-      "itemId": "MLB7152427120",
+    "0m3HpX03EE3qzYLzgLnm": {
+      "itemId": "MLB58582424",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "0t4pziMMofW72pLu8Xeg": {
+      "itemId": "MLB5983100078",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
-    "1ChjjF2d2DuG2QHcbAbc": {
-      "itemId": "MLB4191445923",
+    "11ZyTOBCZV57t4q1dEKw": {
+      "itemId": "MLB7152427120",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
@@ -48,6 +102,13 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "1OfMg1pRePuvTqXaLiV6": {
+      "itemId": "MLB6367837476",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "1WM5CLqoLFN2yEUguuVY": {
       "itemId": "MLB5761677016",
@@ -80,12 +141,12 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
-    "2FC9L7Y5Bkhj8Ul8gLha": {
-      "itemId": "MLB4719648905",
+    "2bvf1eThLNTx4TSWmm6j": {
+      "itemId": "MLB5363320228",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "2dyWZlptV7ZQQF9Uih4Y": {
       "itemId": "MLB6653102934",
@@ -94,26 +155,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "2scORhAabjhHGjOZOfDA": {
-      "itemId": "MLB5671281280",
+    "2hCKUJ8VSblNDYJYgPph": {
+      "itemId": "MLB4592608548",
       "managed": true,
-      "status": "active",
-      "available": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": 1972.94,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-04T18:08:13.091Z",
-      "lightningChecked": false,
-      "lightningActive": false,
-      "lightningPromotionId": "",
-      "lightningStartsAt": "",
-      "lightningEndsAt": "",
-      "lightningPrice": null,
-      "lightningSource": "",
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "2vFXQV4acjGHUTy8Lsk1": {
       "itemId": "",
@@ -160,12 +207,47 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "37zRkLVqUxzOjxBLGhO1": {
+      "itemId": "MLB4731987477",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "3AiculsXxRCfEkCx7Qin": {
+      "itemId": "MLB5084785712",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "3LvfME6IDi9pD4RgvTBd": {
       "itemId": "MLB6974647044",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-07T11:11:10.754Z"
+    },
+    "3hr9hL0VA6MpH502d4rF": {
+      "itemId": "MLB4374486439",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "3yIHMxCIF9QgqjNOrSXC": {
+      "itemId": "MLB2171368181",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "41xTWhFAFp82XNFL5V87": {
+      "itemId": "MLB4742623935",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "4DLJoHbBXNFffpz3DNcv": {
       "itemId": "",
@@ -193,12 +275,60 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "4eal5Q0HLTcrspjkUwee": {
+      "itemId": "MLB5096586835",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "4hz7dBtWE0cKEjVF8DUJ": {
+      "itemId": "MLB66275098",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "4jC1Qsk9fyxycEyS6INY": {
+      "itemId": "MLB4699336817",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "4oci5e7Xmlhwmp8WiCOr": {
       "itemId": "MLB4688076761",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "4w4LORDgVwdEfsGV9G36": {
+      "itemId": "MLB4638455035",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "4z4oSlECfrllB2e69JP1": {
+      "itemId": "MLB5828068334",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "51ek2WOgqwYGnIqBAEPP": {
       "itemId": "MLB6644496628",
@@ -279,6 +409,26 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "5QtQ7inwgE9uAZcwVtij": {
+      "itemId": "MLB3935924305",
+      "managed": true,
+      "status": "inactive",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": 59.9,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "public_page",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
     "5bQKU9inL3pq14yE8K4L": {
       "itemId": "MLB5410758826",
       "managed": true,
@@ -286,12 +436,47 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "5eAXaJha93EuQsvd2SJn": {
+      "itemId": "MLB5864818802",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "5mErcSQoxlQYCUo82lDG": {
+      "itemId": "MLB7183651528",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "5ohGMLIwCSUjFKcWyWyy": {
+      "itemId": "MLB4188994271",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "5paJasEjP2KUh4VffUAn": {
+      "itemId": "MLB6099857432",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "695lD8JQZNl8YW6RkFiF": {
       "itemId": "MLB5534474346",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "6CiOb7YKL9YmF8Sqg1wT": {
+      "itemId": "MLB6630725010",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "6Di2evTNS0Fx5mXD9bfY": {
       "itemId": "MLB6692315302",
@@ -312,6 +497,13 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "6V6XLL6R0ANUSaDHDcPa": {
+      "itemId": "MLB4504257005",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "6kC1jJj7i4kRtYyp3SZr": {
       "itemId": "MLB3449174039",
       "managed": true,
@@ -325,6 +517,13 @@
       "source": "public_page",
       "checkedAt": "2026-08-04T10:58:58.004Z",
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ"
+    },
+    "6l6oYkxxsrdu1M3y00MD": {
+      "itemId": "MLB2766771378",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "6mTC2ilqUMIpviykSWpA": {
       "itemId": "",
@@ -366,12 +565,39 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "7evzZBujin11TlbT8hvm": {
+      "itemId": "MLB6972021044",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "7m4toROPHx9QFdjcgYK4": {
       "itemId": "MLB6080424808",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "7rePUShpSdwOYQTR3OUy": {
+      "itemId": "MLB5041220911",
+      "managed": true,
+      "status": "active",
+      "available": true,
+      "visible": true,
+      "unavailableChecks": 0,
+      "price": 29.99,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
     },
     "7sGaWCXgE0WHNA1T4Io0": {
       "itemId": "MLB4628955679",
@@ -411,6 +637,47 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "8kyvTosaAgCTHCM0D3ih": {
+      "itemId": "MLB40674473",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "8oHSkf32jY7LKS2WSv36": {
+      "itemId": "MLB4188994271",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "8sDa6bmYd25zEEKRnQJn": {
+      "itemId": "MLB4583723537",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "96Pf23TdUYjzKH9stEXS": {
+      "itemId": "MLB6433211634",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "98SABYq2yUWEDUxLKmRA": {
       "itemId": "",
       "managed": false,
@@ -442,6 +709,13 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "9MH0XlaLQuIqWe1dlAHz": {
+      "itemId": "MLB5872060016",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "9XyRhvHb9nBlCsGOM4pj": {
       "itemId": "",
       "managed": false,
@@ -465,6 +739,13 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "9mrh9VQEs49ewAlruh38": {
+      "itemId": "MLB3909103951",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "9msfgHpg4NvqpzFSGQ9x": {
       "itemId": "MLB5187039710",
@@ -497,19 +778,19 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
-    "AiPhm8rEy0G4a0yBe2IR": {
-      "itemId": "MLB4280955679",
+    "AZvssPDpX6PUePQXxOqW": {
+      "itemId": "MLB6232748412",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
-    "AkcUnKZSe5hR6w4qkRjl": {
-      "itemId": "MLB7158258930",
+    "AhbvEgzfMuC19ltrB2WN": {
+      "itemId": "MLB4856710463",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "Atdgj978A3yqY4Wt8glh": {
       "itemId": "MLB4839435023",
@@ -524,6 +805,40 @@
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "B9fbqt1jwPWxMqfn0rmW": {
+      "itemId": "MLB53045101",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "BcfEuX1oed02O8pYXKyg": {
+      "itemId": "MLB6038239378",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "Bf3ccSwSiVkLw1Z8k2Hu": {
+      "itemId": "MLB4297760749",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "BfbQg5xZZO8bsTlObKHe": {
       "itemId": "MLB7143036282",
@@ -546,24 +861,26 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "C8VXX9MfKS8ULwDiDWXn": {
+      "itemId": "MLB3905003519",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "CBswVNfcCG0MRGj8SPsa": {
+      "itemId": "MLB4839435023",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "CFEyN1hdeMSM6BS89h5o": {
       "itemId": "MLB3817089255",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
-    },
-    "CUyKDNstNEOufxCn2az2": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "CXMWhCkfWah2EmRBTFtF": {
       "itemId": "MLB5275589650",
@@ -585,16 +902,11 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "Ct4VSBOaVTJkcxhiAyGJ": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
+      "itemId": "MLB6232648420",
+      "managed": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "D5FI7Z4OhbJsHiE7wOmc": {
       "itemId": "",
@@ -617,13 +929,6 @@
     },
     "DIab1xDgULuHRH3qhVng": {
       "itemId": "MLB5299097242",
-      "managed": true,
-      "visible": true,
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
-    },
-    "DdiT0dTIyogjX6FEzOzN": {
-      "itemId": "MLB4002919471",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
@@ -660,6 +965,27 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "DxKvFr3DpyCL2sbvQBJB": {
+      "itemId": "MLB6905143892",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "E0IqKVLfgOBD56DdDQsk": {
+      "itemId": "MLB5481787698",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "E4L1IqNlovRGggmaVOHW": {
+      "itemId": "MLB5885455180",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "E4SDe0v0L4ztydHzIbRw": {
       "itemId": "",
       "managed": false,
@@ -671,13 +997,6 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
-    },
-    "EMCxK43aL2CdvqhcucC1": {
-      "itemId": "MLB3809352680",
-      "managed": true,
-      "visible": true,
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-07T11:11:10.754Z"
     },
     "EbNVkHXOor6py78Wgl8X": {
       "itemId": "MLB5643705886",
@@ -697,13 +1016,6 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
-    },
-    "Ef076le19HeypUaNMIsl": {
-      "itemId": "MLB6674803356",
-      "managed": true,
-      "visible": true,
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-05T17:56:40.772Z"
     },
     "EmrdwlcDgCCM5suoz8dB": {
       "itemId": "MLB4030613465",
@@ -731,12 +1043,46 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "FEBxkePUbUdVGDJK7CQJ": {
+      "itemId": "MLB5222250670",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "FWRyLtto1bKeKurNikKq": {
+      "itemId": "MLB4840111509",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "FlqPY3yHJ2xPoNgnhSTE": {
       "itemId": "MLB6142903662",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "FucssnV5ibR0KiYHIgYP": {
+      "itemId": "MLB18462360",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
     },
     "G6HUKfBXKEFnrqRtUluo": {
       "itemId": "MLB5724876880",
@@ -748,9 +1094,22 @@
     "G7A1YTKc51eI8lr3V6a9": {
       "itemId": "MLB3834227763",
       "managed": true,
+      "status": "inactive",
+      "available": false,
       "visible": true,
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "unavailableChecks": 1,
+      "price": 62.7,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "public_page",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
     },
     "GT9gxxxsfkbjOfDG2uIM": {
       "itemId": "",
@@ -771,17 +1130,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-05T17:56:40.772Z"
     },
-    "GfbtrlYZjY1nOk3Xp2Zw": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
+    "Gcz9OSyGgHGMKYfG87IS": {
+      "itemId": "MLB6361515378",
+      "managed": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "GhxvMZYaZM60wLsGuNdw": {
       "itemId": "",
@@ -795,26 +1149,12 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
-    "GzdRee1JioUoMumJEsnR": {
-      "itemId": "MLB3561888587",
+    "GpoXj5YCjA93hBDg5L0v": {
+      "itemId": "MLB4585516185",
       "managed": true,
-      "status": "active",
-      "available": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": 338.84,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-05T19:58:59.647Z",
-      "lightningChecked": false,
-      "lightningActive": false,
-      "lightningPromotionId": "",
-      "lightningStartsAt": "",
-      "lightningEndsAt": "",
-      "lightningPrice": null,
-      "lightningSource": "",
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "GzjyGVKcBkoiKgQEo4p9": {
       "itemId": "MLB3556275459",
@@ -847,13 +1187,6 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
-    "H9kp6RQdEpMMa9ApKouA": {
-      "itemId": "MLB4727212263",
-      "managed": true,
-      "visible": true,
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
-    },
     "HRJ09W5cRlt8lCXiVFL8": {
       "itemId": "MLB6434829478",
       "managed": true,
@@ -861,12 +1194,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "IDA76uppTv69u52PSwg4": {
-      "itemId": "MLB4864912263",
+    "HaNX0t4d6yM4n5xblHHm": {
+      "itemId": "MLB5312423928",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "IIBNXuN1JmBc0Ol6iO6O": {
       "itemId": "MLB4439306401",
@@ -882,12 +1215,19 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "JLaEJzdRa8gTlTbgX7uV": {
-      "itemId": "MLB5743100834",
+    "IWytZmoYiSEAp3UqCBLh": {
+      "itemId": "MLB4497907913",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "J6WCPaTR5KOqjsAC1nM7": {
+      "itemId": "MLB6513365616",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "JRAFxivVt0j9tJHdlF8W": {
       "itemId": "",
@@ -908,6 +1248,20 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-07T11:11:10.754Z"
     },
+    "JY36kE95u7uCT7UJWvpt": {
+      "itemId": "MLB5761715520",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "JaEIKKAz742WyLDV6Oqr": {
+      "itemId": "MLB6156594588",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "Jh08YEZhEmt2fiB9V0wG": {
       "itemId": "MLB4208012055",
       "managed": true,
@@ -922,24 +1276,26 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "JuHTAByi0pSeuxzlBCy4": {
+      "itemId": "MLB4587377807",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "K7G9dwWzBBYuq7q1NPBA": {
+      "itemId": "MLB4972139311",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "K8hXvUkqAAnbt0Om6wRj": {
       "itemId": "MLB6609986264",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
-    },
-    "KCIJ9glpigDFtZWWKfXD": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "KHQKsjwv2MzJGObyoZkd": {
       "itemId": "",
@@ -984,6 +1340,26 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "L9Vdxx2fNGSSaTR0d7Iu": {
+      "itemId": "MLB19506691",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
     "LAPIX3Gs1DA6iyK26qTM": {
       "itemId": "",
       "managed": false,
@@ -1003,6 +1379,13 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "LQ12PkH1sbM7Uu0geBQf": {
+      "itemId": "MLB3798032968",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "LS2YLo5zNF7RptrFMYgB": {
       "itemId": "",
       "managed": false,
@@ -1014,6 +1397,33 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "LXdin9t4iNArNhi4BTDD": {
+      "itemId": "MLB7021490670",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "LrJn9p8N4KF5HhsvGNL2": {
+      "itemId": "MLB4228627923",
+      "managed": true,
+      "status": "active",
+      "available": true,
+      "visible": true,
+      "unavailableChecks": 0,
+      "price": 719.1,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "public_page",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
     },
     "MBhoRb0kSLsHrhutbTLN": {
       "itemId": "MLB4654569763",
@@ -1041,6 +1451,13 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "MN4E2frVjIqIDK1GfbuX": {
+      "itemId": "MLB6404871036",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "MWjfkNgY4oXJD8NhCOQn": {
       "itemId": "MLB4888474966",
       "managed": true,
@@ -1054,6 +1471,13 @@
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "Mdyju6zRmHsKRpOYqz51": {
+      "itemId": "MLB6043042334",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "N3JYVELP3Zqr7KuZYA3n": {
       "itemId": "MLB3634111858",
@@ -1074,12 +1498,33 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "NJipazuMXMzOH9YZbxwu": {
+      "itemId": "MLB4587377807",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "NQAtVQKwZQtKxXtEn21Q": {
+      "itemId": "MLB5814842486",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "NfQ2YF7qf3SL1oehasTi": {
       "itemId": "MLB4595279704",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "Nxytgn3V38vGkyecRao8": {
+      "itemId": "MLB5048226831",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "O6sfkmnugDGyVCAnNtyN": {
       "itemId": "MLB3225819794",
@@ -1114,24 +1559,19 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-07T11:11:10.754Z"
     },
+    "OgPEOg0xXetmU6vMUr9X": {
+      "itemId": "MLB5382062300",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "OiQ4hPolSkHoDk0bpbJI": {
       "itemId": "MLB3994439565",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
-    },
-    "On8crSzQ0860VVhKDmdx": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "OoiX2KUtndnLft7W5teS": {
       "itemId": "",
@@ -1152,6 +1592,20 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "P2XcvZpq3TaHobnex6nN": {
+      "itemId": "MLB5534474346",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "PEegqDESPIk3onguTRg8": {
+      "itemId": "MLB5010641270",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "PP8JorVbOJNMg5FXOr47": {
       "itemId": "MLB4337879731",
       "managed": true,
@@ -1159,12 +1613,19 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T18:08:13.091Z"
     },
-    "Pg0CgByD2EiRcIvspPTz": {
-      "itemId": "MLB6031721818",
+    "Pcye5MBHzWVlBIhtSnXX": {
+      "itemId": "MLB5724593344",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-05T17:56:40.772Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "PfU3x9udsDbmj7DXjaCk": {
+      "itemId": "MLB4448570816",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "PmRGdMRk6Cq2Ul1dF5Lo": {
       "itemId": "MLB4852897019",
@@ -1172,6 +1633,13 @@
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T18:08:13.091Z"
+    },
+    "Q8DBpY2NmhVcQxfbHhrK": {
+      "itemId": "MLB5899077506",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "Q9UWVUsXl8sIvWyM1hKt": {
       "itemId": "",
@@ -1185,12 +1653,26 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "QTYdXWzIass66gfOMOEM": {
+      "itemId": "MLB6310670746",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "QV00w4vTmt2SwgU8xisL": {
       "itemId": "MLB3605484231",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "QpEN96fYjYkEyW9QITuG": {
+      "itemId": "MLB5312623578",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "Qwej9VDipQviT3wfRoxl": {
       "itemId": "",
@@ -1211,24 +1693,19 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "RBLyylh5JdXN5idQJx7a": {
+      "itemId": "MLB4096635423",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "ROi9CBPuf7ShFF2BoZiU": {
       "itemId": "MLB6970014088",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
-    },
-    "RUEIuhT3S59e0IWRJtlu": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "RkG7ChkGaSnGLttQOCOC": {
       "itemId": "MLB7062541988",
@@ -1268,6 +1745,27 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "SctMie0hqocPmrWupQLO": {
+      "itemId": "MLB5254673406",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "SnMMDq9bDXiMWX0IXYdO": {
+      "itemId": "MLB1793491599",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "SrygX7sIaaQGH9HRAUul": {
+      "itemId": "MLB6657396330",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "SygHpzKu3GjwmNMqKljJ": {
       "itemId": "MLB6434829478",
       "managed": true,
@@ -1296,17 +1794,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "TFaszZDXRvNbULhPcDZp": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
+    "TJk9BUtlZ9v02ETWQRuG": {
+      "itemId": "MLB3269837602",
+      "managed": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "TLWfr8q21DK8xDKMh01u": {
       "itemId": "MLB6242762384",
@@ -1315,31 +1808,79 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "Tf2Gd5imbuF5N31MFaSj": {
-      "itemId": "MLB4156439551",
+    "Th0eGSWOwV4uTPn9bEUF": {
+      "itemId": "MLB67291937",
       "managed": true,
+      "status": "not_found",
+      "available": false,
       "visible": true,
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
-    },
-    "TsVMNj4ygDVOIX5w1aWE": {
-      "itemId": "MLB4905203637",
-      "managed": true,
-      "visible": true,
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
-    },
-    "UKgaZuJb7nXBb1ED38NA": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
+      "unavailableChecks": 1,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "Th1cm6hi9QYlLqUWQKgq": {
+      "itemId": "MLB3371578831",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "TrzTXkSEyUdbuBl0fjZF": {
+      "itemId": "MLB67291937",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "U48dOJf8c7jF4d39r908": {
+      "itemId": "MLB19612966",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "UKgaZuJb7nXBb1ED38NA": {
+      "itemId": "MLB4695561997",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "US79RfQ8IswohAw8psL4": {
       "itemId": "MLB4455905847",
@@ -1355,26 +1896,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "UYSiODv10sv75UGUkFtq": {
-      "itemId": "MLB4533376199",
+    "Uh8jBpd9D8uEtK4Q3X43": {
+      "itemId": "MLB4307126823",
       "managed": true,
-      "status": "active",
-      "available": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": 4548.16,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-06T03:45:04.415Z",
-      "lightningChecked": false,
-      "lightningActive": false,
-      "lightningPromotionId": "",
-      "lightningStartsAt": "",
-      "lightningEndsAt": "",
-      "lightningPrice": null,
-      "lightningSource": "",
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "UlgA45nNx2rsEykMbv67": {
       "itemId": "",
@@ -1388,6 +1915,13 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "UnTwhXqatX5MyoPnl6DN": {
+      "itemId": "MLB2723576006",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "UqO48Rj9I0f8SpOqabpv": {
       "itemId": "",
       "managed": false,
@@ -1400,6 +1934,13 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "UqiDgQqIGUW5AWzaZg8i": {
+      "itemId": "MLB4291609113",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "UwYGeOO2ABtDN07iR9ch": {
       "itemId": "MLB4169895537",
       "managed": true,
@@ -1407,17 +1948,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "VOVMBi4iezPpn9725KjM": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
+    "VJ0UNCYoJYS4gSEKpZKQ": {
+      "itemId": "MLB4181577977",
+      "managed": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "VaxspecNzGrFQjieZlq0": {
       "itemId": "MLB4035471677",
@@ -1438,6 +1974,13 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "VgdT8EtzIO0zWeDyEz7E": {
+      "itemId": "MLB5000118226",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "Vgm0UKQmBdAvSbO683Yj": {
       "itemId": "MLB4418866933",
       "managed": true,
@@ -1445,12 +1988,26 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "VtnfNB5O9EUMqVR1TkIG": {
-      "itemId": "MLB4675828857",
+    "VmHOC0IhW5yPtAhwDFly": {
+      "itemId": "MLB4136027339",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-05T17:56:40.772Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "VmSyFD3D40S6Feh838IC": {
+      "itemId": "MLB4996111095",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "VtUN3mF5fFJvH5yW1kNK": {
+      "itemId": "MLB6391243490",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "VyYiww5HVcBRIH8SD5SD": {
       "itemId": "MLB6563286992",
@@ -1458,6 +2015,13 @@
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-06T03:45:04.415Z"
+    },
+    "VzQgxGhowdzlfNshI3ZC": {
+      "itemId": "MLB6756757832",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "W1AVC9x7OoPeSbT374St": {
       "itemId": "MLB5344006946",
@@ -1485,12 +2049,26 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "Wny29umvm2bXCrY9WGqg": {
+      "itemId": "MLB6160472112",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "WpCGzZDy0ND4DZmvKbwj": {
       "itemId": "MLB6538432578",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "X1sO1Bfcr5qpROxhGltE": {
+      "itemId": "MLB5275428302",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "XABgPdyXFaOvxvzo4g1M": {
       "itemId": "MLB3225819794",
@@ -1513,6 +2091,40 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "XRKv9OGoKrBbcDP0GxER": {
+      "itemId": "MLB6797156948",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "XTP2yIK8ACvG9Ag5px1t": {
+      "itemId": "MLB17512828",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "XVNxx76dZLNlt2MWMphX": {
+      "itemId": "MLB3797986470",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "XWXtgVSsCBCwOtcMCdO3": {
       "itemId": "MLB6798371404",
       "managed": true,
@@ -1531,13 +2143,6 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
-    },
-    "XkcD09oTsCVCXpXl4dGn": {
-      "itemId": "MLB6429093518",
-      "managed": true,
-      "visible": true,
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
     },
     "Y0m34sJnzLnojKcK5wAp": {
       "itemId": "",
@@ -1563,12 +2168,47 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "Y2LaqRfUnmllTmesIOpB": {
+      "itemId": "MLB5758653414",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "Y50ZvW7bI3HJBgSiQEfp": {
+      "itemId": "MLB5373623226",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "YKSSWNPjLAaUeRSLtVWT": {
+      "itemId": "MLB5400923188",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "YQ2jG9GgNpoRO7ocIocJ": {
+      "itemId": "MLB3621404839",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "YXWzi1lwQq9gJaRPmst9": {
       "itemId": "MLB3754663331",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "YXqPx6O5Gl3YRR4I8w9a": {
+      "itemId": "MLB5402372302",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "YZvcITogQcf1bnnARlRx": {
       "itemId": "MLB5775901318",
@@ -1602,6 +2242,13 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "YvHQQREIes8QpSf3sV7G": {
+      "itemId": "MLB4481471232",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "Z4BxOInHt44ImemttzRQ": {
       "itemId": "MLB6674392266",
@@ -1648,6 +2295,13 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T18:08:13.091Z"
     },
+    "aNbistjKOWFkFjMw9PYJ": {
+      "itemId": "MLB3371578831",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "aqN9d0IKYi8X1yUcyFy9": {
       "itemId": "",
       "managed": false,
@@ -1660,6 +2314,13 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "asTGBkjkQIZ4mhlc7cxX": {
+      "itemId": "MLB6194539818",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "avV2oOE8xcX9ioG4GNnT": {
       "itemId": "MLB5300250366",
       "managed": true,
@@ -1667,12 +2328,26 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "b2ejp8pkiWYOgBAdeXto": {
+      "itemId": "MLB6501275666",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "b5s8jSx2KsXwtlFXlB6X": {
       "itemId": "MLB5578006340",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "bjRcUhAfXiIDliNXbqwE": {
+      "itemId": "MLB5761715520",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "bl7H9O18KchH8c7oHfWk": {
       "itemId": "",
@@ -1712,12 +2387,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "cY1NuaTRTAyCSl79jRYG": {
-      "itemId": "MLB4891932193",
+    "cKuKwHses7zJioGoWHQt": {
+      "itemId": "MLB5687361430",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "ce1jz7DMAA0uEuKCvzKC": {
       "itemId": "",
@@ -1738,6 +2413,26 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "d2Nq6puCsgmaKLAA4MRN": {
+      "itemId": "MLB15154780",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
     "d31e9yty1t0dekViXbAi": {
       "itemId": "",
       "managed": false,
@@ -1749,6 +2444,13 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "dBaly9C7BwpAEsZ5mShK": {
+      "itemId": "MLB3751699033",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "dMbluI9x5kQ0Gwxg8fOU": {
       "itemId": "",
@@ -1793,6 +2495,20 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "dvJusdTpbTVn5ID62YpK": {
+      "itemId": "MLB4702726821",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "dx5wMfuCrvsIeGN0QJOp": {
+      "itemId": "MLB4620567101",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "eJn1Xl8uCPLxKCObXB6r": {
       "itemId": "",
       "managed": false,
@@ -1818,6 +2534,27 @@
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "eb6zL5KD6hGwH5SdE6Ua": {
+      "itemId": "MLB6797156948",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "elvNcaWSZ5ed34Pmj8SV": {
+      "itemId": "MLB4108132843",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "f0T2GaYrpjP00DEYQGRI": {
+      "itemId": "MLB5955152608",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "f3MOXgokgTifrolFYOhc": {
       "itemId": "MLB3848948895",
@@ -1845,6 +2582,13 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "fIfthy35XMTtNbHT0FXH": {
+      "itemId": "MLB7438379216",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "fMwDJ0aYUKjwcpHFiRus": {
       "itemId": "",
       "managed": false,
@@ -1856,6 +2600,13 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "fOQZ2dyrpaoVIulwTufz": {
+      "itemId": "MLB5382062300",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "fQAJIJDeSjtSvdevGCQm": {
       "itemId": "",
@@ -1876,45 +2627,33 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "gEZA9TsOQlwkoL5Csfgv": {
-      "itemId": "MLB6588418806",
-      "managed": true,
-      "status": "active",
-      "available": true,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": 66.78,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-05T17:56:40.772Z",
-      "lightningChecked": false,
-      "lightningActive": false,
-      "lightningPromotionId": "",
-      "lightningStartsAt": "",
-      "lightningEndsAt": "",
-      "lightningPrice": null,
-      "lightningSource": "",
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ"
-    },
-    "gEwfNvxGOQwqTtwLHPEW": {
-      "itemId": "MLB4519183083",
+    "fui9uff5MTKnVydSsaIR": {
+      "itemId": "MLB4812143184",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
-    "gPWdMxuZEb1GV98WNpNc": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
+    "gAEWW6a25mIMXGwgzhTZ": {
+      "itemId": "MLB5275428302",
+      "managed": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "gNcq5nSqWbfqYi1M9c23": {
+      "itemId": "MLB6191335498",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "gbPrK7d1XCPts0DfWYdI": {
+      "itemId": "MLB4699349241",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "gdzQLBaIl5ADZ7qdesva": {
       "itemId": "",
@@ -1928,6 +2667,20 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "goH2juydLAa3JYXzctkH": {
+      "itemId": "MLB6587035878",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "h0a3vchlbGQbAnHdbujA": {
+      "itemId": "MLB4539764247",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "hAuFZAOhcg72qH7L1lSz": {
       "itemId": "",
       "managed": false,
@@ -1939,6 +2692,47 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "hKnDa7Px57sw5YzW1s6V": {
+      "itemId": "MLB61991325",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "hrVMdybD738SpffBFQIq": {
+      "itemId": "MLB7023811646",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "htLzwGXLZpkVa0eXWdkr": {
+      "itemId": "MLB3705389546",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "hvEYsBQVyORk8vWbQCNU": {
+      "itemId": "MLB4077829432",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "hxfdbsGD41bgGROlz0Ta": {
       "itemId": "",
@@ -1971,6 +2765,20 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "iEXAHv7Lvrd0qvzDXiMA": {
+      "itemId": "MLB3651421579",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "iItFRxNZH02gsEssFVwm": {
+      "itemId": "MLB3705221476",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "iSyPxYQcVUDjHvjIHLhS": {
       "itemId": "MLB6519291232",
       "managed": true,
@@ -1985,19 +2793,47 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "jtoMVM4B6489xr6wyHxD": {
-      "itemId": "MLB4188994271",
+    "ik7zBiCAAqDLqr9Di5Ue": {
+      "itemId": "MLB5605758720",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
-    "kClWzYNN4MPgWsNp7fni": {
-      "itemId": "MLB4026985089",
+    "jABp2HpfTmQNwXsPgrYQ": {
+      "itemId": "MLB4812143184",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "k7uNky9V7WM8x0Zp822A": {
+      "itemId": "MLB6333810632",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "k82L2iy2Q6giFdCHVbSg": {
+      "itemId": "MLB6889668614",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "kBNzedVW81R1oLmPJeGv": {
+      "itemId": "MLB5744392274",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "kNmf4r3kzbgWX6Fz3Y0x": {
+      "itemId": "MLB4213547319",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "kYzXt8BeErDzXsC6BlwB": {
       "itemId": "MLB3949019849",
@@ -2018,6 +2854,20 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "kgJU0gjx7ezuQO3lDtl4": {
+      "itemId": "MLB5410730324",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "kkADU0pbN4LUhcYR1HMH": {
+      "itemId": "MLB5554213538",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "ks3O1tyqJfeskTkVNaJ3": {
       "itemId": "",
       "managed": false,
@@ -2037,12 +2887,26 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T18:08:13.091Z"
     },
+    "kyK4G9Uov6eBaFnNVED7": {
+      "itemId": "MLB5011962698",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "l74bHt4unPmSKnza5N7m": {
       "itemId": "MLB6230997792",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "l7Z9wjqB0dHSHYJ6IVMA": {
+      "itemId": "MLB4108132843",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "lBNuqOAaKBimLnMTsaN6": {
       "itemId": "",
@@ -2063,6 +2927,13 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
+    "lfGwhT6zO5b7LOPvqkuL": {
+      "itemId": "MLB5363840668",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "liYhKi9ZlLnwNTT1uvBl": {
       "itemId": "MLB2645813318",
       "managed": true,
@@ -2070,33 +2941,32 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "m0fs4Hae1mAy5jL3RdQj": {
-      "itemId": "MLB7210127338",
+    "mMWeLANeahGbxGFHmpie": {
+      "itemId": "MLB3954862383",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
-    "mTOcmpdCWJJ0QtwUx4tz": {
-      "itemId": "MLB4671001438",
+    "mPixDp8GCOfE75yK2vcc": {
+      "itemId": "MLB37800447",
       "managed": true,
-      "status": "active",
-      "available": true,
+      "status": "not_found",
+      "available": false,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": 239,
+      "unavailableChecks": 1,
+      "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-07T11:11:10.754Z",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": "",
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ"
+      "lightningSource": ""
     },
     "mh7qDBFGUmyIdAbEfI11": {
       "itemId": "MLB3371578831",
@@ -2116,6 +2986,34 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "n4IIyDvWZZGMKhBisDSq": {
+      "itemId": "MLB6842727330",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "ng6QEHZclCsBhfUzpTvm": {
+      "itemId": "MLB7031573794",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "nkiU71IDc1QBKfGQpKN2": {
+      "itemId": "MLB5910576536",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "nkjwnOorKUJttBrERNIm": {
+      "itemId": "MLB5264419644",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "noGVkSU4i5rd3zXI3PQB": {
       "itemId": "MLB4268042659",
@@ -2149,6 +3047,33 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "oYoalVz8s4bR2iumSyhW": {
+      "itemId": "MLB4883864997",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "onBP5kevUw2cvHIt6Sgi": {
+      "itemId": "MLB6139411",
+      "managed": true,
+      "status": "not_found",
+      "available": false,
+      "visible": true,
+      "unavailableChecks": 1,
+      "price": null,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
     },
     "p9csD1mVQKKLvmFbV1VX": {
       "itemId": "MLB6549158890",
@@ -2207,12 +3132,60 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "ppQhZEUfZDuGcIZRmFB5": {
+      "itemId": "MLB4037910198",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "q4XshIAfttQBQ9Bwz7uB": {
+      "itemId": "MLB4550389799",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "qPNJGNmzPbZzprZanGOC": {
       "itemId": "MLB2765715868",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "qmQDbj5nJH3h5CPtZdHp": {
+      "itemId": "MLB6487643856",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "r0qHVsoWZ2QI0EDiCKji": {
+      "itemId": "MLB5046495691",
+      "managed": true,
+      "status": "active",
+      "available": true,
+      "visible": true,
+      "unavailableChecks": 0,
+      "price": 29.99,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
+    "rJhe4VyyDiFudQmQmXCV": {
+      "itemId": "MLB5847406884",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "rL4T2UGKrNxcJGZoJVpX": {
       "itemId": "MLB4593220957",
@@ -2233,12 +3206,52 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "rfym6WivFVhxpwn2WF6r": {
+      "itemId": "MLB5046495691",
+      "managed": true,
+      "status": "active",
+      "available": true,
+      "visible": true,
+      "unavailableChecks": 0,
+      "price": 29.99,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
+    },
     "riLMp5VhwAvPgQPWcjJP": {
       "itemId": "MLB5476808252",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "rjkXSj5wDd3i4spfoHet": {
+      "itemId": "MLB5041220911",
+      "managed": true,
+      "status": "active",
+      "available": true,
+      "visible": true,
+      "unavailableChecks": 0,
+      "price": 29.99,
+      "regularPrice": null,
+      "currencyId": "BRL",
+      "source": "api",
+      "checkedAt": "2026-08-29T12:55:25.403Z",
+      "lightningChecked": false,
+      "lightningActive": false,
+      "lightningPromotionId": "",
+      "lightningStartsAt": "",
+      "lightningEndsAt": "",
+      "lightningPrice": null,
+      "lightningSource": ""
     },
     "rrtpCXXyFAXB9Htjmf5O": {
       "itemId": "",
@@ -2251,6 +3264,13 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "sCCEJZohlc5e7c4yVrl4": {
+      "itemId": "MLB4918003479",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "sIeDtT4BuRsDRnKrSUMR": {
       "itemId": "",
@@ -2283,12 +3303,19 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "ss3nwzokgDyPj0WhtX8a": {
-      "itemId": "MLB6628307400",
+    "tMZJl4W09gWMswhmwKr4": {
+      "itemId": "MLB6232699786",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "tb7c733uByymDrSRjT5f": {
+      "itemId": "MLB5687309408",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "tnKe3LKzV8Y8vgQRZ3cH": {
       "itemId": "",
@@ -2326,17 +3353,19 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
-    "uDdjPmggVGYBo1283x4U": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
+    "uN99T96zBRKEYX9YVW2I": {
+      "itemId": "MLB4052499943",
+      "managed": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "uRfZSbUKT8yjArcSlGPL": {
+      "itemId": "MLB4228627923",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "uUKUID2oq9qQLbntifWk": {
       "itemId": "MLB5264261326",
@@ -2357,12 +3386,33 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "uVSddfqWEhUv6l94yiMK": {
+      "itemId": "MLB4839435111",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "ufHw7Y6qN2oc8ePqgHkj": {
+      "itemId": "MLB4555189589",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "unUG8jaH8nxlQhMgdqKf": {
       "itemId": "MLB4598461891",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "utSoKgSklj5q1SAS7Wjl": {
+      "itemId": "MLB5983100078",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "uvlx1EGGFowAjO3EBgrw": {
       "itemId": "MLB5800224038",
@@ -2395,6 +3445,13 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
+    "vdgdhBrdL4pb4rL1YK0x": {
+      "itemId": "MLB4190456415",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
     "vfoOrRV7xpu2EgJ8aIUy": {
       "itemId": "",
       "managed": false,
@@ -2407,17 +3464,19 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
-    "vl21M6iWKnbakNjVabhE": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
+    "vlH62M9xcCAxq2KDGKNZ": {
+      "itemId": "MLB7001593224",
+      "managed": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
+    },
+    "voyycquYPRJSv4TtyT29": {
+      "itemId": "MLB4296595075",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "vr2uogxbiKqrQx1MYdD9": {
       "itemId": "",
@@ -2431,32 +3490,19 @@
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
-    "w5JkI65PcSkmNhtk3zYI": {
-      "itemId": "MLB4339787931",
+    "w6ZYUr8kElTNYfOIBKFW": {
+      "itemId": "MLB1230533155",
       "managed": true,
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
-      "checkedAt": "2026-08-04T10:58:58.004Z"
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
-    "wAKwjbtRzvQ4F3Vd8H1e": {
-      "itemId": "MLB4540716592",
+    "w7DR6QTHjF5FdGZyQTYX": {
+      "itemId": "MLB2631867798",
       "managed": true,
-      "status": "active",
-      "available": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": 296.67,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-07T11:11:10.754Z",
-      "lightningChecked": false,
-      "lightningActive": false,
-      "lightningPromotionId": "",
-      "lightningStartsAt": "",
-      "lightningEndsAt": "",
-      "lightningPrice": null,
-      "lightningSource": ""
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "wAsxhijcNyAq9AblyLkN": {
       "itemId": "MLB3873397755",
@@ -2465,25 +3511,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T18:08:13.091Z"
     },
-    "wlQ7RAYHgKDAq1VMd16l": {
-      "itemId": "MLB4030613465",
+    "wyofwkDoOxUtpmtG9uhf": {
+      "itemId": "MLB2212309325",
       "managed": true,
-      "status": "active",
-      "available": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": 1089.9,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-07T11:11:10.754Z",
-      "lightningChecked": false,
-      "lightningActive": false,
-      "lightningPromotionId": "",
-      "lightningStartsAt": "",
-      "lightningEndsAt": "",
-      "lightningPrice": null,
-      "lightningSource": ""
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "x75GETnbI3P4zycAKwOI": {
       "itemId": "MLB5107773742",
@@ -2498,6 +3531,13 @@
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
+    },
+    "xf3R0E1g5JRkAzIknjH8": {
+      "itemId": "MLB6034503430",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "xl3Lu9wu6NJqDUpGmBsV": {
       "itemId": "",
@@ -2518,58 +3558,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
-    "yF1zz1argeumgtxAbMAg": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
-    },
-    "yWhaRADPhKEhBc7wPB9Y": {
-      "itemId": "MLB6410119440",
+    "yCg6fJ5uioPKguwGIkEX": {
+      "itemId": "MLB4676470149",
       "managed": true,
-      "status": "active",
-      "available": true,
       "visible": true,
-      "unavailableChecks": 0,
-      "price": 912.81,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-07T11:11:10.754Z",
-      "lightningChecked": false,
-      "lightningActive": false,
-      "lightningPromotionId": "",
-      "lightningStartsAt": "",
-      "lightningEndsAt": "",
-      "lightningPrice": null,
-      "lightningSource": ""
-    },
-    "yt2IxgY7XW8jco4juyhY": {
-      "itemId": "MLB5872060016",
-      "managed": true,
-      "status": "active",
-      "available": true,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": 42.9,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-06T03:45:04.415Z",
-      "lightningChecked": false,
-      "lightningActive": false,
-      "lightningPromotionId": "",
-      "lightningStartsAt": "",
-      "lightningEndsAt": "",
-      "lightningPrice": null,
-      "lightningSource": "",
-      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ"
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "yxqaNbV9fYlB5zQKWLqj": {
       "itemId": "MLB3767918194",
@@ -2577,38 +3571,6 @@
       "visible": true,
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
       "checkedAt": "2026-08-04T10:58:58.004Z"
-    },
-    "z0NSiSA2kwtReu7LEwtG": {
-      "itemId": "MLB5922768846",
-      "managed": true,
-      "status": "active",
-      "available": true,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": 549.9,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "source": "public_page",
-      "checkedAt": "2026-08-07T11:11:10.754Z",
-      "lightningChecked": false,
-      "lightningActive": false,
-      "lightningPromotionId": "",
-      "lightningStartsAt": "",
-      "lightningEndsAt": "",
-      "lightningPrice": null,
-      "lightningSource": ""
-    },
-    "zRT10KWkaT3OrenWDoeu": {
-      "itemId": "",
-      "managed": false,
-      "status": "missing_item_id",
-      "available": null,
-      "visible": true,
-      "unavailableChecks": 0,
-      "price": null,
-      "regularPrice": null,
-      "currencyId": "BRL",
-      "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "zb4ZDbdfJGUurcSXtVaa": {
       "itemId": "",
@@ -2621,6 +3583,13 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "checkedAt": "2026-07-25T22:21:45.259Z"
+    },
+    "zev1LogqUFpJ3cLlIXyy": {
+      "itemId": "MLB7218305234",
+      "managed": true,
+      "visible": true,
+      "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ",
+      "checkedAt": "2026-08-29T12:55:25.403Z"
     }
   }
 }
