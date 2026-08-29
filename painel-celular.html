@@ -1,5 +1,75 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#07563f"><title>Painel celular | Ranking da Compra</title><style> *{box-sizing:border-box}body{margin:0;background:#f2f7f4;color:#102b22;font:16px system-ui,-apple-system,Segoe UI,sans-serif}header{position:sticky;top:0;z-index:3;background:#07563f;color:white;padding:14px 16px}header div{max-width:680px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}header b{font-size:18px}header a{color:white;text-decoration:none;border:1px solid #ffffff77;border-radius:9px;padding:8px;font-size:12px;font-weight:800}main{max-width:680px;margin:auto;padding:14px}.card{background:white;border:1px solid #d5e5de;border-radius:18px;padding:17px;margin-bottom:14px;box-shadow:0 8px 25px #1232}h1,h2{margin:0 0 8px}h1{font-size:23px}h2{font-size:19px}p{color:#587066;line-height:1.45}.etapa{color:#08794d;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}label{display:block;font-weight:800;margin:13px 0 6px}.campo{width:100%;min-height:49px;border:1px solid #a9c1b7;border-radius:12px;padding:12px;background:white}textarea.campo{min-height:105px}.btn{width:100%;min-height:52px;border:0;border-radius:12px;margin-top:14px;padding:10px;font-weight:900}.verde{background:#0a8f5b;color:white}.azul{background:#246bdb;color:white}.claro{background:#edf4f1;color:#07563f}.btn:disabled{opacity:.55}.tipos,.grade{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tipo{position:relative}.tipo input{position:absolute;opacity:0}.tipo span{display:flex;min-height:52px;align-items:center;justify-content:center;border:2px solid #d5e5de;border-radius:12px;font-weight:900;text-align:center}.tipo input:checked+span{border-color:#0a8f5b;background:#e9f8f0}.largo{grid-column:1/-1}.status{display:none;margin-top:13px;padding:12px;border-radius:12px;background:#eef5ff;color:#174b91}.status.on{display:block}.status.erro{background:#fff0ee;color:#a61b12}.status.ok{background:#e8f8ef;color:#096b43}#app,#preview{display:none}#foto-previa{display:none;width:100%;max-height:250px;object-fit:contain;border:1px solid #d5e5de;border-radius:14px}.mini{font-size:12px;color:#61776e}@media(max-width:480px){.grade{grid-template-columns:1fr}.largo{grid-column:auto}} </style></head><body><header><div><b>📱 Painel móvel</b><a href="dashboard.html">Painel completo</a></div></header><main> <section id="login" class="card"><div class="etapa">Acesso protegido</div><h1>Entrar</h1><p>Use o mesmo login do painel original.</p><form id="form-login"><label>E-mail</label><input id="email" class="campo" type="email" autocomplete="username" required><label>Senha</label><input id="senha" class="campo" type="password" autocomplete="current-password" required><button class="btn verde">Entrar</button></form><div id="login-status" class="status"></div></section> <section id="app"><div class="card"><div class="etapa">Publicação expressa</div><h1>Cole seu link de afiliado</h1><p>Cole o link completo do produto para buscar os dados reais e o link de afiliado para o botão de compra.</p><label>1. Link completo do produto no Mercado Livre</label><input id="link" class="campo" type="url" inputmode="url" placeholder="https://www.mercadolivre.com.br/..." required><div class="mini">Abra o produto no navegador e copie o endereço completo. Não use o link curto neste campo.</div><label>2. Link de afiliado</label><input id="link-afiliado" class="campo" type="url" inputmode="url" placeholder="https://meli.la/..." required><div class="mini">Este será o endereço usado no botão Comprar.</div><label>Tipo</label><div class="tipos"><label class="tipo"><input name="tipo" type="radio" value="promocao" checked><span>🔥 Promoção do dia</span></label><label class="tipo"><input name="tipo" type="radio" value="relampago"><span>⚡ Oferta relâmpago</span></label></div><div id="duracao-box" hidden><label>Tempo restante</label><input id="duracao" class="campo" inputmode="numeric" placeholder="HH:MM:SS"><div class="mini">Só será necessário se o contador não for identificado.</div></div><button id="analisar" class="btn verde" type="button">✨ Preparar publicação</button><div id="status" class="status"></div></div> <form id="preview" class="card"><div class="etapa">Revisão</div><h2>Confira antes de publicar</h2><p>Verifique principalmente a foto, o produto e os preços. Se o Mercado Livre bloquear a leitura automática, complete os campos abaixo.</p><img id="foto-previa" alt="Foto do produto"><div class="grade"><div class="largo"><label>Produto</label><input id="titulo" class="campo" required></div><div><label>Categoria</label><select id="categoria" class="campo" required></select></div><div><label>Selo</label><select id="selo" class="campo"><option value="">Sem selo</option><option>🔥 Mais Vendido</option><option>💰 Custo-Benefício</option><option>👑 Melhor Escolha</option></select></div><div><label>Preço anterior</label><input id="anterior" class="campo" inputmode="decimal" required></div><div><label>Preço atual</label><input id="atual" class="campo" inputmode="decimal" required></div><div class="largo"><label>URL da foto</label><input id="foto" class="campo" type="url" required></div><div class="largo"><label>Dados técnicos reais</label><textarea id="dados" class="campo" required></textarea></div><div class="largo"><label>Resumo</label><textarea id="resumo" class="campo" maxlength="500" required></textarea></div><div class="largo"><label>Pontos positivos</label><textarea id="pros" class="campo" maxlength="300" required></textarea></div><div class="largo"><label>Pontos de atenção</label><textarea id="contras" class="campo" maxlength="300" required></textarea></div></div><button id="publicar" class="btn azul">🚀 Publicar na mesma vitrine</button><button id="limpar" class="btn claro" type="button">Começar outra publicação</button><div id="pub-status" class="status"></div></form> <div class="card"><b>✅ Sincronizado com o painel original</b><p>Os dois usam o mesmo login e o mesmo Firebase. A página compartilhável continuará sendo criada pela automação existente.</p><button id="sair" class="btn claro">Sair</button></div></section></main> <script type="module"> import{initializeApp}from"https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";import{initializeAppCheck,ReCaptchaEnterpriseProvider}from"https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut}from"https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";import{getFirestore,collection,getDocs,query,where,limit,orderBy,addDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";import{getAI,getGenerativeModel,GoogleAIBackend}from"https://www.gstatic.com/firebasejs/12.10.0/firebase-ai.js"; const cfg={apiKey:"AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",authDomain:"rankingdacompra.firebaseapp.com",projectId:"rankingdacompra",storageBucket:"rankingdacompra.firebasestorage.app",messagingSenderId:"300637600463",appId:"1:300637600463:web:671c78dc47d5f8b39f15ba"},app=initializeApp(cfg),aiApp=initializeApp(cfg,"ai-logic");initializeAppCheck(aiApp,{provider:new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"),isTokenAutoRefreshEnabled:true});const auth=getAuth(app),db=getFirestore(app),mobileAI=getAI(aiApp,{backend:new GoogleAIBackend()}),modelRapido=getGenerativeModel(mobileAI,{model:"gemini-3.5-flash-lite",tools:[{urlContext:{}}]}),modelReserva=getGenerativeModel(mobileAI,{model:"gemini-3.7-flash",tools:[{urlContext:{}}]}),$=id=>document.getElementById(id);let cats=[],resultado=null; function msg(id,texto,tipo=""){const a=$(id);a.textContent=texto;a.className="status on "+tipo}function off(id){$(id).className="status";$(id).textContent=""}function lista(v){return(Array.isArray(v)?v:String(v||"").split(/\n|;|\|/)).map(x=>String(x).replace(/\s+/g," ").trim()).filter(Boolean)}function json(v){return String(v||"").replace(/^\s*\x60\x60\x60(?:json)?/i,"").replace(/\x60\x60\x60\s*$/,"").trim()}function fonte(r){const c=r?.candidates?.[0]||{},m=c.urlContextMetadata||c.url_context_metadata||{},u=m.urlMetadata||m.url_metadata||[];return u.some(x=>String(x.urlRetrievalStatus||x.url_retrieval_status||"").includes("SUCCESS"))} function numero(v){let t=String(v||"").replace(/R\$/gi,"").replace(/\s/g,"").replace(/[^\d,.-]/g,"");if(!t)return 0;if(t.includes(","))t=t.replace(/\./g,"").replace(",",".");const n=Number(t);return Number.isFinite(n)&&n>0?n:0}function preco(v){const n=numero(v);return n?n.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2}):""}function hoje(){const x=new Intl.DateTimeFormat("en-CA",{timeZone:"America/Sao_Paulo",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date()),p={};x.forEach(i=>p[i.type]=i.value);return p.year+"-"+p.month+"-"+p.day}function esperar(ms){return new Promise(resolve=>setTimeout(resolve,ms))}
-let edicaoManual=false,roboMonitorId=0;
+let edicaoManual=false,roboMonitorId=0,ultimaConsultaResultadosApi=0,cacheResultadosApi={};
+const RESULTADOS_API="https://api.github.com/repos/informatica-byte/RankingDaCompra/contents/mlb-resolucoes.json?ref=main";
+
+function textoNormalizado(valor){return String(valor||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}
+
+function textoEditorial(valor,limite){
+  let texto=String(valor||"").replace(/\.\s*;/g,".").replace(/;\s*\./g,".").replace(/\s+/g," ").trim();
+  if(!texto)return "";
+  if(texto.length>=limite-5||!/[.!?]$/.test(texto)){
+    const trecho=texto.slice(0,limite+1);
+    const final=Math.max(trecho.lastIndexOf(". "),trecho.lastIndexOf("! "),trecho.lastIndexOf("? "),trecho.lastIndexOf("; "));
+    if(final>=Math.min(80,Math.floor(limite*.35)))texto=trecho.slice(0,final+1).replace(/;$/,".");
+    else{const espaco=trecho.lastIndexOf(" ");texto=(espaco>0?trecho.slice(0,espaco):trecho.slice(0,limite)).replace(/[,;:\s.-]+$/,"")+"."}
+  }
+  return texto;
+}
+
+function categoriaDoResultado(d){
+  const texto=textoNormalizado([d.titulo,...lista(d.dadosTecnicos),d.comentario].join(" "));
+  const regras=[
+    [["perfume"],["perfume","fragrancia","eau de parfum","eau de toilette"]],
+    [["celular"],["smartphone","celular","iphone"]],
+    [["notebook"],["notebook","laptop","macbook"]],
+    [["tablet"],["tablet","ipad"]],
+    [["fones"],["fone de ouvido","headphone","headset","earbuds"]],
+    [["camera"],["camera de seguranca","camera ip","webcam"]],
+    [["parafusadeira"],["parafusadeira","furadeira"]],
+    [["teclado","mouse"],["teclado","mouse"]],
+    [["fritadeira"],["air fryer","fritadeira"]],
+    [["roteador"],["roteador","wi-fi","wifi"]],
+    [["caixa de som"],["caixa de som","alto-falante","speaker"]],
+    [["smart tv"],["smart tv","televisor","televisao"]],
+    [["impressora"],["impressora","multifuncional"]],
+    [["roupas","calcados"],["tenis","sapato","sandalia","camiseta","vestido","calca"]],
+    [["malas","bolsas"],["mala de viagem","mochila","bolsa"]],
+    [["relogio","smartwatch"],["smartwatch","relogio inteligente"]],
+    [["ferramentas"],["ferramenta","serra","solda","compressor"]],
+    [["carro"],["automotivo","veicular","carro"]],
+    [["informatica"],["ssd","monitor","memoria ram","computador"]],
+    [["esporte","lazer"],["bicicleta","academia","fitness","camping"]],
+    [["brinquedos"],["brinquedo","boneca","carrinho infantil"]]
+  ];
+  for(const [nomes,termos] of regras){
+    if(!termos.some(termo=>texto.includes(termo)))continue;
+    const encontrada=cats.find(cat=>nomes.some(nome=>textoNormalizado(cat.nome).includes(nome)));
+    if(encontrada)return encontrada.id;
+  }
+  let melhor=null,pontos=0;
+  for(const cat of cats){
+    const tokens=textoNormalizado(cat.nome).split(/\s+/).map(x=>x.replace(/s$/,"")).filter(x=>x.length>3);
+    const total=tokens.filter(token=>texto.includes(token)).length;
+    if(total>pontos){melhor=cat;pontos=total}
+  }
+  return melhor?.id||cats[0]?.id||"";
+}
+
+function mostrarAtalhoRobo(mostrar){
+  let atalho=$("acelerar-robo");
+  if(!atalho){
+    atalho=document.createElement("a");
+    atalho.id="acelerar-robo";
+    atalho.href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/localizar-mlb.yml";
+    atalho.target="_blank";
+    atalho.rel="noopener";
+    atalho.textContent="⚡ Acelerar robô no GitHub";
+    atalho.style.cssText="display:block;margin-top:10px;padding:12px;border:1px solid #d7a900;border-radius:12px;background:#fff7d6;color:#654b00;text-align:center;text-decoration:none;font-weight:900";
+    $("status").after(atalho);
+  }
+  atalho.hidden=!mostrar;
+  atalho.style.display=mostrar?"block":"none";
+}
 async function comPrazo(promessa,ms,rotulo){let timer;try{return await Promise.race([promessa,new Promise((_,rejeitar)=>{timer=setTimeout(()=>rejeitar(Error(rotulo+" demorou mais de "+Math.round(ms/1000)+" segundos.")),ms)})])}finally{clearTimeout(timer)}}
 async function gerarIA(prompt){try{const r=await comPrazo(modelRapido.generateContent(prompt),15000,"A IA rápida"),texto=String(r?.response?.text?.()||"");if(fonte(r.response)&&/"status"\s*:\s*"ok"/i.test(texto))return r;msg("status","A IA rápida não conseguiu comprovar todos os dados. A IA reserva está analisando por até 15 segundos...")}catch(e){const s=String(e?.message||e||"");if(/App Check|401|403|throttled/i.test(s))throw e;msg("status","A IA rápida não concluiu em até 15 segundos. A IA reserva assumiu a análise...")}return comPrazo(modelReserva.generateContent(prompt),15000,"A IA reserva")}function mensagemIA(e){const s=String(e?.message||e||"").replace(/\s+/g," ").trim(),m=s.match(/again after ([^()]+)/i);if(/appCheck\/throttled|Requests throttled/i.test(s))return "O Firebase pausou temporariamente a validação neste celular"+(m?" por "+m[1]:"")+". Não tente repetidamente. Feche o navegador, aguarde o prazo e abra o painel novamente.";if(/401|403|App Check token is invalid/i.test(s))return "Este celular não foi validado pelo Firebase. Atualize a página uma vez. Se continuar, use o painel completo enquanto verificamos a proteção App Check.";return s;}function mlb(v){const a=String(v||"").match(/\bMLB[-_]?(\d{6,})\b/i);return a?"MLB"+a[1]:""}function seg(v){const p=String(v||"").split(":").map(Number);return p.length===3&&!p.some(x=>!Number.isInteger(x)||x<0)?p[0]*3600+p[1]*60+p[2]:0}function tituloDoLink(v){try{const partes=decodeURIComponent(new URL(v).pathname).split("/").filter(Boolean),slug=partes.find(x=>x.length>12&&!/^(?:p|up|MLB\d*|MLBU\d*)$/i.test(x))||"";return slug.replace(/[-_]+/g," ").replace(/\b\w/g,x=>x.toUpperCase()).trim()}catch{return ""}}async function buscarProdutoExistente(link,linkAfiliado){const buscas=[],codigo=mlb(link)||mlb(linkAfiliado);if(codigo){buscas.push(query(collection(db,"produtos"),where("mercadoLivreItemId","==",codigo),limit(1)));buscas.push(query(collection(db,"produtos"),where("mercadoLivreItemId","==",codigo.replace("MLB","MLB-")),limit(1)))}buscas.push(query(collection(db,"produtos"),where("link","==",link),limit(1)));buscas.push(query(collection(db,"produtos"),where("linkAfiliado","==",linkAfiliado),limit(1)));const respostas=await Promise.allSettled(buscas.map(consulta=>getDocs(consulta)));for(const resposta of respostas)if(resposta.status==="fulfilled"&&!resposta.value.empty)return{id:resposta.value.docs[0].id,...resposta.value.docs[0].data()};return null}async function abrirManual(link,linkAfiliado,tipo,motivo,existentePronto=null){resultado={link,linkAfiliado,tipo,evidencia:"preenchimento manual"};$("titulo").value=tituloDoLink(link);$("anterior").value="";$("atual").value="";$("foto").value="";$("dados").value="";$("resumo").value="";$("pros").value="";$("contras").value="";$("foto-previa").removeAttribute("src");$("foto-previa").style.display="none";const existente=existentePronto||await buscarProdutoExistente(link,linkAfiliado);if(existente){$("titulo").value=String(existente.titulo||$("titulo").value);if(cats.some(x=>x.id===existente.categoria))$("categoria").value=existente.categoria;$("selo").value=String(existente.selo||"");$("anterior").value=preco(existente.precoAnterior||existente.preco);$("atual").value=preco(existente.precoPromocional||existente.preco);$("foto").value=String(existente.foto||existente.imagem||"");$("dados").value=String(existente.dadosTecnicos||"");$("resumo").value=String(existente.comentario||"");$("pros").value=String(existente.pros||"");$("contras").value=String(existente.contras||"");if(/^https:\/\//i.test($("foto").value)){$("foto-previa").src=$("foto").value;$("foto-previa").style.display="block"}msg("status","Produto já cadastrado encontrado. A foto e os dados anteriores foram reutilizados; confira principalmente o preço.","ok")}else msg("status","O Mercado Livre bloqueou o preenchimento automático e não encontrei este produto no cadastro. Complete os campos abaixo. "+String(motivo||""),"erro");edicaoManual=false;$("preview").style.display="block";$("preview").scrollIntoView({behavior:"smooth"})} function aplicarResultadoRobo(d,link,linkAfiliado,tipo) {
   const tecnicos = lista(d.dadosTecnicos);
@@ -9,29 +79,56 @@ async function gerarIA(prompt){try{const r=await comPrazo(modelRapido.generateCo
   resultado = { link, linkAfiliado, tipo, evidencia: "API oficial do Mercado Livre pelo robô do GitHub" };
   edicaoManual = false;
   $("titulo").value = String(d.titulo).trim();
-  $("categoria").value = cats[0]?.id || "";
+  $("categoria").value = categoriaDoResultado(d);
   $("foto").value = String(d.foto);
   $("anterior").value = preco(d.precoAnterior);
   $("atual").value = preco(d.precoAtual);
   $("dados").value = tecnicos.join("\n");
-  $("resumo").value = String(d.comentario || "").trim();
-  $("pros").value = String(d.pros || "").trim();
-  $("contras").value = String(d.contras || "").trim();
+  $("resumo").value = textoEditorial(d.comentario, 480);
+  $("pros").value = textoEditorial(d.pros, 290);
+  $("contras").value = textoEditorial(d.contras, 290);
   $("foto-previa").src = d.foto;
   $("foto-previa").style.display = "block";
   $("preview").style.display = "block";
+  mostrarAtalhoRobo(false);
   msg("status", "Pronto. O robô conferiu o anúncio na fonte oficial; revise e publique.", "ok");
   $("preview").scrollIntoView({ behavior: "smooth" });
 }
 
+const buscarProdutoExistenteNoBanco=buscarProdutoExistente;
+buscarProdutoExistente=async function(link,linkAfiliado){
+  const existente=await buscarProdutoExistenteNoBanco(link,linkAfiliado);
+  if(existente)return existente;
+  try{
+    const salvo=JSON.parse(localStorage.getItem("ranking_mlb_pendente:"+link)||"null");
+    if(!salvo?.id||Date.now()-Number(salvo.criadoEm||0)>=30*60*1000)return null;
+    const d=await lerResultadoRobo(salvo.id,true);
+    if(!d||d.status!=="ok")return null;
+    mostrarAtalhoRobo(false);
+    return{
+      titulo:d.titulo,
+      categoria:categoriaDoResultado(d),
+      precoAnterior:preco(d.precoAnterior),
+      precoPromocional:preco(d.precoAtual),
+      foto:d.foto,
+      dadosTecnicos:lista(d.dadosTecnicos).join("\n"),
+      comentario:textoEditorial(d.comentario,480),
+      pros:textoEditorial(d.pros,290),
+      contras:textoEditorial(d.contras,290),
+      fonteCadastro:"robo_github"
+    };
+  }catch{return null}
+};
+
 
 async function criarPedidoRobo(link,linkAfiliado,tipo){
+  mostrarAtalhoRobo(false);
   const chave="ranking_mlb_pendente:"+link;
   let pedidoId="";
   try{
     const salvo=JSON.parse(localStorage.getItem(chave)||"null");
     if(salvo?.id&&Date.now()-Number(salvo.criadoEm||0)<30*60*1000){
-      const resultadoAnterior=await lerResultadoRobo(salvo.id);
+      const resultadoAnterior=await lerResultadoRobo(salvo.id,true);
       if(resultadoAnterior?.status==="erro")localStorage.removeItem(chave);
       else pedidoId=salvo.id;
     }
@@ -44,8 +141,19 @@ async function criarPedidoRobo(link,linkAfiliado,tipo){
   return{pedidoId,chave};
 }
 
-async function lerResultadoRobo(pedidoId){
+async function lerResultadoRobo(pedidoId,forcarApi=false){
   const versao=Date.now();
+  if(forcarApi||versao-ultimaConsultaResultadosApi>=60000){
+    ultimaConsultaResultadosApi=versao;
+    try{
+      const response=await fetch(RESULTADOS_API+"&v="+versao,{cache:"no-store",headers:{accept:"application/vnd.github.raw+json"}});
+      if(response.ok){
+        const payload=await response.json();
+        cacheResultadosApi=payload?.resultados||{};
+      }
+    }catch{}
+  }
+  if(cacheResultadosApi[pedidoId])return cacheResultadosApi[pedidoId];
   const fontes=[
     "https://raw.githubusercontent.com/informatica-byte/RankingDaCompra/main/mlb-resolucoes.json?v="+versao,
     "mlb-resolucoes.json?v="+versao
@@ -63,7 +171,7 @@ async function lerResultadoRobo(pedidoId){
 }
 
 async function monitorarRoboSegundoPlano(pedidoId,chave,link,linkAfiliado,tipo,monitorId){
-  for(let tentativa=1;tentativa<=60;tentativa+=1){
+  for(let tentativa=1;tentativa<=180;tentativa+=1){
     await esperar(5000);
     if(monitorId!==roboMonitorId)return;
     const encontrado=await lerResultadoRobo(pedidoId);
@@ -80,6 +188,8 @@ async function monitorarRoboSegundoPlano(pedidoId,chave,link,linkAfiliado,tipo,m
     try{aplicarResultadoRobo(encontrado,link,linkAfiliado,tipo)}catch(e){msg("status",String(e?.message||e),"erro")}
     return;
   }
+  mostrarAtalhoRobo(true);
+  msg("status","O GitHub ainda não iniciou o robô. Toque em “Acelerar robô no GitHub” e depois volte ao painel; o monitoramento continuará ativo.","erro");
 }
 
 async function aguardarRobo(link,linkAfiliado,tipo,motivoInicial,pedidoAntecipado=null){
@@ -100,6 +210,7 @@ async function aguardarRobo(link,linkAfiliado,tipo,motivoInicial,pedidoAntecipad
     return;
   }
   monitorarRoboSegundoPlano(pedidoId,chave,link,linkAfiliado,tipo,monitorId);
+  mostrarAtalhoRobo(true);
   throw Error("O robô continua trabalhando em segundo plano. A revisão foi liberada para você não ficar preso esperando; se o resultado chegar e os campos não tiverem sido alterados, ele será preenchido automaticamente.");
 }
 
