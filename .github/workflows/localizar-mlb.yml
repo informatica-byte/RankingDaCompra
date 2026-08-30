@@ -6,7 +6,7 @@ on:
     # Evita os minutos mais congestionados do GitHub Actions. O GitHub
     # documenta que execucoes agendadas podem atrasar ou ser descartadas
     # nos horarios de pico, principalmente no inicio de cada hora.
-    - cron: "2,7,12,17,22,27,32,37,42,47,52,57 * * * *"
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
 
 
