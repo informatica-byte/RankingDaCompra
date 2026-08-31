@@ -1199,11 +1199,23 @@ function compactText(value, maxLength) {
 
 
 
-function editorialItems(value) {
+function editorialItems(value, productTitle = "") {
+
+  const titleWords = new Set(normalizedProductTitle({ titulo: productTitle }).split(" ").filter((word) => word.length > 2));
+  const generic = /informa[cç][oõ]es? (?:extra[ií]das?|obtidas?)|dados p[uú]blicos|confira (?:no|o) an[uú]ncio|recursos descritos|produto identificado|ficha (?:n[aã]o )?informa/i;
+  const normalized = (text) => String(text || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 
   return repairPortugueseEncoding(value).split(/\n|;/).flatMap((part) => part.split(","))
 
-    .map((part) => part.replace(/^[\s•✓!+-]+/, "").trim()).filter(Boolean).slice(0, 6);
+    .map((part) => part.replace(/^[\s•✓!+-]+/, "").replace(/\s+/g, " ").trim())
+    .filter((part) => {
+      if (part.length < 18 || part.split(/\s+/).length < 3 || generic.test(part)) return false;
+      const words = normalized(part).split(" ").filter((word) => word.length > 2);
+      const overlap = words.length ? words.filter((word) => titleWords.has(word)).length / words.length : 1;
+      return overlap < 0.8;
+    })
+    .filter((part, index, items) => items.findIndex((other) => normalized(other) === normalized(part)) === index)
+    .slice(0, 4);
 
 }
 
@@ -1229,9 +1241,9 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   const categoryName = productCategoryName(product, categoryNames);
 
-  const positive = editorialItems(product.pros);
+  const positive = editorialItems(product.pros, title);
 
-  const attention = editorialItems(product.contras);
+  const attention = editorialItems(product.contras, title);
 
   const editorial = editorialProduct(product);
 
@@ -1311,7 +1323,7 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   ] }).replace(/</g, "\\u003c");
 
-  const positiveHtml = positive.length ? positive.map((item) => `<li>${escapeHtml(item)}</li>`).join("") : "<li>Confira a análise completa acima.</li>";
+  const positiveHtml = positive.length ? positive.map((item) => `<li>${escapeHtml(item)}</li>`).join("") : "<li>A ficha cadastrada ainda não traz pontos positivos específicos suficientes.</li>";
 
   const attentionHtml = attention.length ? attention.map((item) => `<li>${escapeHtml(item)}</li>`).join("") : "<li>Confirme compatibilidade, garantia, frete e vendedor antes da compra.</li>";
 
@@ -1389,7 +1401,7 @@ function renderSharePage(product, socialImage, categoryNames) {
 
     <nav class="crumb" aria-label="Navegação estrutural"><a href="${SITE}">Início</a> / <a href="${SITE}?cat=${encodeURIComponent(product.categoria || "")}">${escapeHtml(categoryName)}</a> / ${escapeHtml(title)}</nav>
 
-    <article><div class="top"><img class="photo" src="${escapeHtml(image)}" width="480" height="390" alt="${escapeHtml(title)}"><div><div class="eyebrow">Análise para decidir melhor</div><h1>${escapeHtml(title)}</h1>${editorial && Number.isFinite(rating) && rating >= 1 && rating <= 5 ? `<div class="rating">Nota editorial: ${"★".repeat(Math.round(rating))}${"☆".repeat(5 - Math.round(rating))} ${escapeHtml(rating.toFixed(1))} de 5</div>` : ""}<p class="summary">${escapeHtml(summary)}</p><div class="offer">${priceHtml}${offerUrl !== "#" ? `<a class="cta" id="affiliate-offer" href="${escapeHtml(offerUrl)}" target="_blank" rel="sponsored noopener noreferrer">Comprar agora no Mercado Livre</a>` : ""}<button class="share-cta" id="share-product" type="button">↗ Compartilhar produto</button><p class="fine share-status" id="share-status" aria-live="polite"></p><p class="fine">${modified ? `Informações atualizadas em ${escapeHtml(new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeZone: "America/Sao_Paulo" }).format(new Date(`${modified}T12:00:00-03:00`)))}. ` : ""}Preço, estoque, frete e condições finais são definidos pelo vendedor.</p></div><div class="facts"><div class="fact"><span>Categoria</span>${escapeHtml(categoryName)}</div><div class="fact"><span>Transparência</span>Link de afiliado identificado</div></div></div></div><div class="panels"><section class="panel positive"><h2>✓ Pontos positivos</h2><ul>${positiveHtml}</ul></section><section class="panel attention"><h2>! Pontos de atenção</h2><ul>${attentionHtml}</ul></section></div>${sourceUrl !== "#" ? `<p class="fine source">Fonte técnica consultada: <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="nofollow noopener noreferrer">anúncio do produto</a>. A equipe não afirma ter testado o item.</p>` : ""}</article>
+    <article><div class="top"><img class="photo" src="${escapeHtml(image)}" width="480" height="390" alt="${escapeHtml(title)}"><div><div class="eyebrow">Análise para decidir melhor</div><h1>${escapeHtml(title)}</h1>${editorial && Number.isFinite(rating) && rating >= 1 && rating <= 5 ? `<div class="rating">Custo-benefício editorial: ${"★".repeat(Math.round(rating))}${"☆".repeat(5 - Math.round(rating))} ${escapeHtml(rating.toFixed(1))} de 5 · <a href="${SITE}como-avaliamos.html">entenda a avaliação</a></div>` : ""}<p class="summary">${escapeHtml(summary)}</p><div class="offer">${priceHtml}${offerUrl !== "#" ? `<a class="cta" id="affiliate-offer" href="${escapeHtml(offerUrl)}" target="_blank" rel="sponsored noopener noreferrer">Comprar agora no Mercado Livre</a>` : ""}<button class="share-cta" id="share-product" type="button">↗ Compartilhar produto</button><p class="fine share-status" id="share-status" aria-live="polite"></p><p class="fine">${modified ? `Informações atualizadas em ${escapeHtml(new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeZone: "America/Sao_Paulo" }).format(new Date(`${modified}T12:00:00-03:00`)))}. ` : ""}Preço, estoque, frete e condições finais são definidos pelo vendedor.</p></div><div class="facts"><div class="fact"><span>Categoria</span>${escapeHtml(categoryName)}</div><div class="fact"><span>Transparência</span>Link de afiliado identificado</div></div></div></div><div class="panels"><section class="panel positive"><h2>✓ Pontos positivos</h2><ul>${positiveHtml}</ul></section><section class="panel attention"><h2>! Pontos de atenção</h2><ul>${attentionHtml}</ul></section></div>${sourceUrl !== "#" ? `<p class="fine source">Fonte técnica consultada: <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="nofollow noopener noreferrer">anúncio do produto</a>. A equipe não afirma ter testado o item.</p>` : ""}</article>
 
   </main>
 
@@ -1793,3 +1805,6 @@ console.log(
   `Sitemap e páginas sociais atualizados: ${urls.length} URLs (${products.length} produtos, ${categories.length} categorias e ${locallyHostedImages} fotos locais).`,
 
 );
+
+
+
