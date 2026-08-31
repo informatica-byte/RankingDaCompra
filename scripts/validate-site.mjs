@@ -13,6 +13,19 @@ function productIdentity(html) {
   return affiliate ? "affiliate:" + affiliate[0].toLowerCase() : "";
 }
 
+const homeHtml = await readFile(resolve("index.html"), "utf8");
+has(homeHtml, /const rotaInicial=.*:homeComPromocoes\(\)/, "a vitrine inicial ainda espera serviços externos antes de aparecer", "index.html");
+has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo histórico ausente", "index.html");
+has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
+
+const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
+has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
+if (growthTools.includes("✓ Oferta comprovada pelo histórico")) fail("growth-tools.js: afirmação genérica de oferta comprovada ainda presente");
+
+const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
+has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
+
 const sitemap = await readFile(resolve("sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
 const uniqueUrls = new Set(urls);
@@ -73,3 +86,4 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + identities.size + " produtos únicos e metadados sociais completos.");
+
