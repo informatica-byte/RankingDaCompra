@@ -53,6 +53,62 @@
     }
   }
 
+  function repairPortugueseText(value) {
+    return String(value || "")
+      .replace(/Informa\uFFFD+es/gi, "Informações")
+      .replace(/Caracter\uFFFDsticas/gi, "Características")
+      .replace(/Condi\uFFFD+o/gi, "Condição")
+      .replace(/extra\uFFFDdas/gi, "extraídas")
+      .replace(/p\uFFFDblicos/gi, "públicos")
+      .replace(/an\uFFFDncio/gi, "anúncio")
+      .replace(/pre\uFFFDo/gi, "preço")
+      .replace(/varia\uFFFD+es/gi, "variações")
+      .replace(/n\uFFFDo/gi, "não")
+      .replace(/\uFFFD+/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function normalizedWords(value) {
+    return repairPortugueseText(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(word => word.length > 2);
+  }
+
+  function repairVisibleEditorial() {
+    document.querySelectorAll(".summary,.panel li").forEach(element => {
+      const repaired = repairPortugueseText(element.textContent);
+      if (repaired && repaired !== element.textContent.trim()) element.textContent = repaired;
+    });
+    const titleWords = new Set(normalizedWords(document.querySelector(".top h1,.detail h1")?.textContent));
+    document.querySelectorAll(".panels .panel,.detail-sections .panel").forEach(panel => {
+      const items = [...panel.querySelectorAll("li")];
+      items.forEach(item => {
+        const text = repairPortugueseText(item.textContent);
+        const words = normalizedWords(text);
+        const overlap = words.length ? words.filter(word => titleWords.has(word)).length / words.length : 1;
+        const generic = /informa[cç][oõ]es? (?:extra[ií]das?|obtidas?)|dados p[uú]blicos|recursos descritos|produto identificado/i.test(text);
+        if (text.length < 18 || words.length < 3 || generic || overlap >= 0.8) item.remove();
+      });
+      const list = panel.querySelector("ul");
+      if (list && !list.querySelector("li")) {
+        const fallback = document.createElement("li");
+        fallback.textContent = panel.classList.contains("positive")
+          ? "A ficha cadastrada ainda não traz pontos positivos específicos suficientes."
+          : "Confirme compatibilidade, garantia, frete e vendedor antes da compra.";
+        list.appendChild(fallback);
+      }
+    });
+    const rating = document.querySelector(".rating");
+    if (rating && /Nota editorial:/i.test(rating.textContent) && !rating.querySelector("a")) {
+      rating.firstChild.textContent = rating.firstChild.textContent.replace(/Nota editorial:/i, "Custo-benefício editorial:");
+      rating.append(" · ");
+      const method = document.createElement("a");
+      method.href = `${SITE}/como-avaliamos.html`;
+      method.textContent = "entenda a avaliação";
+      rating.appendChild(method);
+    }
+  }
+
   function injectStyles() {
     if (document.getElementById(STYLE_ID)) return;
     const style = document.createElement("style");
@@ -63,6 +119,10 @@
       .offer-proof small{display:block;color:#557065;font-size:.69rem;margin-top:3px}
       .offer-proof.is-learning{border-color:#dfcb7b;background:#fff9df;color:#6f5a0a}
       .offer-proof.is-learning strong{color:#725900}
+      .offer-proof.is-near{border-color:#9dbdd8;background:#f2f8fd;color:#294f70}
+      .offer-proof.is-near strong{color:#185d91}
+      .offer-proof.is-warning{border-color:#e2ad90;background:#fff5ef;color:#7a3c20}
+      .offer-proof.is-warning strong{color:#a33e16}
       .club-whatsapp{width:min(1180px,calc(100% - 32px));margin:24px auto;padding:22px;border:1px solid #98d7af;border-radius:18px;background:linear-gradient(135deg,#eaf9ef,#fff);display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;box-shadow:0 12px 34px rgba(17,97,73,.09)}
       .club-whatsapp h2{margin:0 0 6px;color:#0f5132;font-size:clamp(1.25rem,3vw,1.8rem)}
       .club-whatsapp p{margin:0;color:#4f665c;max-width:720px}
@@ -128,14 +188,22 @@
     const lastDate = summary.latest?.date;
     const dateText = lastDate ? dateBr.format(new Date(`${lastDate}T12:00:00-03:00`)) : "hoje";
     const enough = summary.points.length >= 2;
-    const atMinimum = summary.minimum > 0 && summary.currentPrice > 0 && summary.currentPrice <= summary.minimum + 0.009;
-    const title = enough
-      ? (atMinimum ? "✓ Oferta comprovada — menor preço registrado" : "✓ Oferta comprovada pelo histórico")
-      : "✓ Preço registrado — histórico iniciado";
+    const ratio = summary.minimum > 0 && summary.currentPrice > 0 ? summary.currentPrice / summary.minimum : 0;
+    const atMinimum = enough && ratio > 0 && ratio <= 1.03;
+    const nearMinimum = enough && ratio > 1.03 && ratio <= 1.10;
+    const aboveMinimum = enough && ratio > 1.10;
+    const title = atMinimum
+      ? "✓ Oferta comprovada — perto do menor preço"
+      : nearMinimum
+        ? "✓ Preço competitivo no histórico recente"
+        : aboveMinimum
+          ? "⚠ Preço atual acima do menor valor recente"
+          : "Preço registrado — histórico iniciado";
+    const stateClass = atMinimum ? "is-good" : nearMinimum ? "is-near" : aboveMinimum ? "is-warning" : "is-learning";
     const detail = summary.minimum > 0
       ? `Menor preço em até ${HISTORY_DAYS} dias: ${brl.format(summary.minimum)}`
       : "Estamos formando o histórico deste produto.";
-    return `<div class="offer-proof${enough ? "" : " is-learning"}" data-offer-proof><strong>${escapeHtml(title)}</strong>${escapeHtml(detail)}<small>Último registro: ${escapeHtml(dateText)} · confirme o valor final no Mercado Livre.</small></div>`;
+    return `<div class="offer-proof ${stateClass}" data-offer-proof data-price-history-state="${stateClass}"><strong>${escapeHtml(title)}</strong>${escapeHtml(detail)}<small>Último registro: ${escapeHtml(dateText)} · confirme o valor final no Mercado Livre.</small></div>`;
   }
 
   function decorateProductCard(card) {
@@ -305,6 +373,7 @@
 
   async function init() {
     injectStyles();
+    repairVisibleEditorial();
     if (/dashboard\.html$/i.test(location.pathname)) {
       if (await renderAdmin()) return;
       const observer = new MutationObserver(async () => {
@@ -317,7 +386,10 @@
     await Promise.all([loadHistory(), loadConfig()]);
     decorateVisibleProducts();
     renderClub(state.config);
-    const observer = new MutationObserver(() => decorateVisibleProducts());
+    const observer = new MutationObserver(() => {
+      repairVisibleEditorial();
+      decorateVisibleProducts();
+    });
     observer.observe(document.body, { childList: true, subtree: true });
     setTimeout(() => observer.disconnect(), 30000);
   }
@@ -325,3 +397,4 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();
+
