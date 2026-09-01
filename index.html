@@ -270,9 +270,15 @@ async function homeComPromocoes(){
   const [top5Payload, historicoVitrine] = await Promise.all([top5PayloadPromise, historicoPromise]);
   const activeIds = new Set([...relampagos, ...promocoes].map((produto) => String(produto.id)));
   const top5Semanal = (top5Payload.products || [])
-    .filter((produto) => !activeIds.has(String(produto.id)))
-    .map((produto, ordemOriginal) => ({ produto, ordemOriginal, qualidade: qualidadeHistoricoSemanal(produto, historicoVitrine) }))
-    .sort((a, b) => b.qualidade - a.qualidade || a.ordemOriginal - b.ordemOriginal)
+    .map((produto, ordemOriginal) => ({
+      produto,
+      ordemOriginal,
+      repetidoEmDestaque: activeIds.has(String(produto.id)),
+      qualidade: qualidadeHistoricoSemanal(produto, historicoVitrine),
+    }))
+    .sort((a, b) => Number(a.repetidoEmDestaque) - Number(b.repetidoEmDestaque)
+      || b.qualidade - a.qualidade
+      || a.ordemOriginal - b.ordemOriginal)
     .map((item) => item.produto)
     .slice(0, 6);
   const ancoraRadar = document.getElementById("radar");
