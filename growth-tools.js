@@ -30,6 +30,11 @@
     natal: { name: "Natal", icon: "🎄", title: "Natal de presentes e boas escolhas", message: "Encontre oportunidades para presentear toda a família com carinho e economia.", colors: ["#064e3b", "#a4161a", "#f6c85f"], particles: ["❄", "🎄", "✦", "🎁", "❄", "⭐"] }
   };
 
+  const RANKI_THEME_IMAGES = Object.fromEntries(
+    Object.keys(SEASONAL_THEMES).map(id => [id, `/assets/ranki/${id}.png`])
+  );
+  let rankiPreviousFocus = null;
+
   const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
   const dateBr = new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo" });
 
@@ -198,6 +203,7 @@
     for (const property of ["--seasonal-a", "--seasonal-b", "--seasonal-accent"]) document.body.style.removeProperty(property);
     const id = configuredThemeId(config);
     const theme = SEASONAL_THEMES[id];
+    updateMascotTheme(theme ? id : "");
     if (!theme || /dashboard\.html|painel-celular\.html/i.test(location.pathname)) return;
     document.body.dataset.seasonalTheme = id;
     document.body.style.setProperty("--seasonal-a", theme.colors[0]);
@@ -215,15 +221,215 @@
     else (document.querySelector("header") || document.body.firstElementChild)?.insertAdjacentElement("afterend", banner);
   }
 
+  function updateMascotTheme(id = "") {
+    const image = document.querySelector("[data-ranki-image]");
+    if (!image) return;
+    const theme = SEASONAL_THEMES[id];
+    image.src = RANKI_THEME_IMAGES[id] || "/ranki.png";
+    image.width = theme ? 362 : 512;
+    image.height = theme ? 362 : 768;
+    image.alt = theme
+      ? `Ranki com roupa de ${theme.name}, assistente de ofertas do Ranking da Compra`
+      : "Ranki, a raposa assistente de ofertas do Ranking da Compra";
+    image.closest("[data-ranki-mascot]")?.toggleAttribute("data-ranki-themed", Boolean(theme));
+  }
+
   function renderMascot() {
     const hero = document.querySelector(".hero");
     const wrap = hero?.querySelector(".wrap");
     if (!wrap || wrap.querySelector("[data-ranki-mascot]") || /dashboard\.html|painel-celular\.html/i.test(location.pathname)) return;
-    const mascot = document.createElement("figure");
+    const mascot = document.createElement("div");
     mascot.className = "ranki-hero";
     mascot.dataset.rankiMascot = "hero";
-    mascot.innerHTML = `<img src="/ranki.png" width="512" height="768" decoding="async" alt="Ranki, a raposa guia de ofertas do Ranking da Compra"><figcaption><strong>Ranki</strong><span>guia de boas ofertas</span></figcaption>`;
+    mascot.innerHTML = `<button class="ranki-trigger" type="button" aria-expanded="false" aria-controls="ranki-help" aria-label="Abrir o Ranki Ajuda"><img src="/ranki.png" width="512" height="768" decoding="async" alt="Ranki, a raposa assistente de ofertas do Ranking da Compra" data-ranki-image><span class="ranki-caption"><strong>Ranki</strong><span>posso ajudar?</span></span></button>`;
     wrap.appendChild(mascot);
+    updateMascotTheme(document.body.dataset.seasonalTheme || "");
+    ensureRankiHelp();
+  }
+
+  function trackRanki(action) {
+    try { window.gtag?.("event", "ranki_help", { action }); } catch {}
+    try {
+      window.registrarMetricaComercial?.("ranki_ajuda", { id: action, titulo: "Ranki Ajuda" }, "site");
+    } catch {}
+  }
+
+  function rankiNormalize(value) {
+    return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+  }
+
+  function rankiAnswer(message, links = []) {
+    const target = document.querySelector("[data-ranki-answer]");
+    if (!target) return;
+    target.replaceChildren();
+    const paragraph = document.createElement("p");
+    paragraph.textContent = message;
+    target.appendChild(paragraph);
+    if (links.length) {
+      const list = document.createElement("div");
+      list.className = "ranki-results";
+      links.forEach(item => {
+        const link = document.createElement("a");
+        link.href = item.href;
+        link.textContent = item.label;
+        link.addEventListener("click", () => trackRanki("resultado_produto"));
+        list.appendChild(link);
+      });
+      target.appendChild(list);
+    }
+  }
+
+  function visibleProductMatches(term) {
+    const normalized = rankiNormalize(term);
+    if (!normalized) return [];
+    const terms = normalized.split(/\s+/).filter(word => word.length > 1);
+    const matches = new Map();
+    document.querySelectorAll("article,.deal-card,.product-card-wrap").forEach(card => {
+      const title = card.querySelector("h3,h2")?.textContent?.trim();
+      const link = card.querySelector('a[href*="/produto/"],a[href*="produto/"]');
+      const normalizedTitle = rankiNormalize(title);
+      if (!title || !link || !terms.every(word => normalizedTitle.includes(word))) return;
+      const href = new URL(link.getAttribute("href"), location.href).href;
+      if (!matches.has(href)) matches.set(href, { href, label: title });
+    });
+    return [...matches.values()].slice(0, 3);
+  }
+
+  function focusSiteSearch(query = "") {
+    const input = document.getElementById("search-input");
+    if (!input) {
+      location.href = `/?busca=${encodeURIComponent(query)}`;
+      return;
+    }
+    document.getElementById("search-toggle")?.click();
+    if (query) input.value = query;
+    input.scrollIntoView({ behavior: "smooth", block: "center" });
+    input.focus({ preventScroll: true });
+  }
+
+  function handleRankiQuestion(rawQuestion) {
+    const question = String(rawQuestion || "").trim();
+    const normalized = rankiNormalize(question);
+    if (!normalized) {
+      rankiAnswer("Escreva o produto ou a dúvida que você quer consultar.");
+      return;
+    }
+    trackRanki("pergunta");
+    if (/oferta|promocao|desconto/.test(normalized)) {
+      rankiAnswer("As ofertas exibidas são selecionadas e o preço final deve ser confirmado no Mercado Livre. Vou levar você às promoções de hoje.");
+      document.getElementById("promocoes")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    if (/historico|menor preco|preco antigo|comprovad/.test(normalized)) {
+      rankiAnswer("O histórico usa registros recentes do próprio site para comparar o valor atual. Ele ajuda a identificar uma boa oportunidade, mas o preço final, o frete e o estoque devem ser confirmados no Mercado Livre.");
+      document.querySelector("[data-offer-proof]")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    if (/como aval|nota|criterio|avaliacao/.test(normalized)) {
+      rankiAnswer("Nossas análises consideram ficha técnica, utilidade, pontos positivos, limitações e custo-benefício. Você pode consultar a metodologia completa.", [{ href: "/como-avaliamos.html", label: "Ver como avaliamos" }]);
+      return;
+    }
+    if (/afiliad|comissao|custo extra/.test(normalized)) {
+      rankiAnswer("Alguns links são de afiliados. O Ranking da Compra pode receber uma comissão, sem custo adicional para você. Isso não altera o preço nem compra nossa opinião.", [{ href: "/politica-afiliados.html", label: "Ler política de afiliados" }]);
+      return;
+    }
+    if (/segur|golpe|confiavel|comprar/.test(normalized)) {
+      rankiAnswer("A compra e o pagamento são concluídos no Mercado Livre. Antes de pagar, confirme vendedor, reputação, frete, prazo, garantia e se o endereço continua no domínio oficial mercadolivre.com.br.");
+      return;
+    }
+    if (/whatsapp|canal|clube/.test(normalized)) {
+      const club = document.querySelector('[data-whatsapp-club="section"] a,[data-whatsapp-club="floating"]');
+      rankiAnswer(club ? "O Clube de Ofertas envia as promoções mais fortes e ofertas relâmpago verificadas." : "O convite do Clube de Ofertas está temporariamente indisponível.", club ? [{ href: club.href, label: "Entrar no Clube de Ofertas" }] : []);
+      return;
+    }
+    const matches = visibleProductMatches(question);
+    if (matches.length) {
+      rankiAnswer(`Encontrei ${matches.length} resultado${matches.length > 1 ? "s" : ""} visível${matches.length > 1 ? "is" : ""} para “${question}”.`, matches);
+      return;
+    }
+    focusSiteSearch(question);
+    rankiAnswer(`Coloquei “${question}” na busca do site. Confira os resultados e tente também a marca ou o modelo do produto.`);
+  }
+
+  function closeRankiHelp(restoreFocus = true) {
+    const help = document.getElementById("ranki-help");
+    if (!help || help.hidden) return;
+    help.hidden = true;
+    document.body.classList.remove("ranki-help-open");
+    document.querySelector(".ranki-trigger")?.setAttribute("aria-expanded", "false");
+    if (restoreFocus === true) rankiPreviousFocus?.focus?.();
+  }
+
+  function openRankiHelp() {
+    const help = ensureRankiHelp();
+    if (!help) return;
+    rankiPreviousFocus = document.activeElement;
+    help.hidden = false;
+    document.body.classList.add("ranki-help-open");
+    document.querySelector(".ranki-trigger")?.setAttribute("aria-expanded", "true");
+    help.querySelector("[data-ranki-close]")?.focus();
+    trackRanki("abrir");
+  }
+
+  function handleRankiAction(action) {
+    trackRanki(action);
+    if (action === "ofertas") {
+      const target = document.getElementById("promocoes");
+      closeRankiHelp(false);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      else location.href = "/#promocoes";
+      rankiAnswer("Aqui estão as promoções selecionadas para hoje. Confirme preço, frete e estoque antes de comprar.");
+    } else if (action === "procurar") {
+      rankiAnswer("Digite a marca, o modelo ou o tipo de produto na busca do site.");
+      closeRankiHelp(false);
+      focusSiteSearch();
+    } else if (action === "avaliamos") {
+      location.href = "/como-avaliamos.html";
+    } else if (action === "historico") {
+      const proof = document.querySelector("[data-offer-proof]");
+      if (proof) proof.scrollIntoView({ behavior: "smooth", block: "center" });
+      rankiAnswer("O histórico compara registros recentes e destaca quando o valor está perto do menor preço observado. O valor final deve ser confirmado no Mercado Livre.");
+    } else if (action === "whatsapp") {
+      const club = document.querySelector('[data-whatsapp-club="section"] a,[data-whatsapp-club="floating"]');
+      if (club?.href) window.open(club.href, "_blank", "noopener,noreferrer");
+      else rankiAnswer("O convite do Clube de Ofertas está temporariamente indisponível.");
+    }
+  }
+
+  function ensureRankiHelp() {
+    let help = document.getElementById("ranki-help");
+    const trigger = document.querySelector(".ranki-trigger");
+    if (trigger && !trigger.dataset.rankiReady) {
+      trigger.dataset.rankiReady = "true";
+      trigger.addEventListener("click", () => help?.hidden ? openRankiHelp() : closeRankiHelp());
+    }
+    if (help || /dashboard\.html|painel-celular\.html/i.test(location.pathname)) return help;
+    help = document.createElement("aside");
+    help.id = "ranki-help";
+    help.className = "ranki-help";
+    help.hidden = true;
+    help.setAttribute("role", "dialog");
+    help.setAttribute("aria-modal", "false");
+    help.setAttribute("aria-labelledby", "ranki-help-title");
+    help.innerHTML = `<div class="ranki-help-head"><div><span>🦊 RANKI AJUDA</span><h2 id="ranki-help-title">Como posso ajudar?</h2></div><button type="button" data-ranki-close aria-label="Fechar o Ranki Ajuda">×</button></div><div class="ranki-answer" data-ranki-answer aria-live="polite"><p>Olá! Eu sou o Ranki. Posso ajudar você a encontrar ofertas e entender como verificamos os preços.</p></div><div class="ranki-actions"><button type="button" data-ranki-action="ofertas">🔥 Ofertas de hoje</button><button type="button" data-ranki-action="procurar">🔎 Procurar produto</button><button type="button" data-ranki-action="avaliamos">✓ Como avaliamos?</button><button type="button" data-ranki-action="historico">📉 Histórico de preço</button><button type="button" data-ranki-action="whatsapp">💚 WhatsApp</button></div><form class="ranki-question"><label for="ranki-question-input">Pergunte ao Ranki</label><div><input id="ranki-question-input" type="search" maxlength="90" autocomplete="off" placeholder="Ex.: notebook, preço ou segurança"><button type="submit">Enviar</button></div></form><p class="ranki-disclaimer">Respostas baseadas nas informações públicas e verificadas do Ranking da Compra. Preço, frete e estoque podem mudar.</p>`;
+    document.body.appendChild(help);
+    help.querySelector("[data-ranki-close]").addEventListener("click", closeRankiHelp);
+    help.querySelectorAll("[data-ranki-action]").forEach(button => button.addEventListener("click", () => handleRankiAction(button.dataset.rankiAction)));
+    help.querySelector("form").addEventListener("submit", event => {
+      event.preventDefault();
+      handleRankiQuestion(help.querySelector("#ranki-question-input").value);
+    });
+    help.querySelector("#ranki-question-input").addEventListener("keydown", event => {
+      if (event.key !== "Enter") return;
+      event.preventDefault();
+      handleRankiQuestion(event.currentTarget.value);
+    });
+    document.addEventListener("keydown", event => { if (event.key === "Escape") closeRankiHelp(); });
+    if (trigger && !trigger.dataset.rankiReady) {
+      trigger.dataset.rankiReady = "true";
+      trigger.addEventListener("click", () => help.hidden ? openRankiHelp() : closeRankiHelp());
+    }
+    return help;
   }
 
   function themeOptions() {
@@ -236,7 +442,7 @@
     preview.style.setProperty("--season-a", theme.colors[0]);
     preview.style.setProperty("--season-b", theme.colors[1]);
     preview.style.setProperty("--season-accent", theme.colors[2]);
-    preview.innerHTML = `<strong>${escapeHtml(theme.icon)} ${escapeHtml(theme.title)}</strong><span>${escapeHtml(theme.message)}</span>`;
+    preview.innerHTML = `<img src="${escapeHtml(RANKI_THEME_IMAGES[id])}" width="362" height="362" alt="Prévia da roupa do Ranki para ${escapeHtml(theme.name)}"><div><strong>${escapeHtml(theme.icon)} ${escapeHtml(theme.title)}</strong><span>${escapeHtml(theme.message)}</span></div>`;
   }
 
   function injectStyles() {
@@ -259,7 +465,8 @@
       .club-whatsapp a{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 20px;border-radius:12px;background:#168a48;color:#fff;text-decoration:none;font-weight:900;box-shadow:0 8px 20px rgba(22,138,72,.2)}
       .club-whatsapp a:hover{background:#10733b}
       .club-floating{position:fixed;right:18px;bottom:18px;z-index:850;display:inline-flex;align-items:center;gap:7px;padding:12px 15px;border-radius:999px;background:#168a48;color:#fff;text-decoration:none;font-weight:900;box-shadow:0 12px 32px rgba(0,0,0,.22)}
-      .hero .wrap{position:relative;padding-right:210px}.hero .wrap>:not(.ranki-hero){position:relative;z-index:1}.ranki-hero{position:absolute;z-index:0;right:3px;bottom:-31px;width:clamp(138px,17vw,194px);margin:0;pointer-events:none;filter:drop-shadow(0 17px 18px rgba(17,34,29,.18))}.ranki-hero img{display:block;width:100%;height:auto}.ranki-hero figcaption{position:absolute;right:50%;bottom:24px;transform:translateX(50%);min-width:132px;padding:7px 10px;border:1px solid rgba(17,97,73,.18);border-radius:999px;background:rgba(255,255,255,.92);color:#116149;text-align:center;box-shadow:0 8px 20px rgba(17,34,29,.12);backdrop-filter:blur(7px)}.ranki-hero figcaption strong,.ranki-hero figcaption span{display:block;line-height:1.1}.ranki-hero figcaption strong{font-size:.82rem}.ranki-hero figcaption span{margin-top:2px;color:#52645b;font-size:.58rem;font-weight:800;letter-spacing:.035em;text-transform:uppercase}
+      .hero .wrap{position:relative;padding-right:210px}.hero .wrap>:not(.ranki-hero){position:relative;z-index:1}.ranki-hero{position:absolute;z-index:2;right:3px;bottom:-31px;width:clamp(138px,17vw,194px);margin:0;filter:drop-shadow(0 17px 18px rgba(17,34,29,.18))}.ranki-trigger{position:relative;display:block;width:100%;margin:0;padding:0;border:0;background:transparent;color:inherit;cursor:pointer;transition:transform .18s ease}.ranki-trigger:hover{transform:translateY(-4px) scale(1.015)}.ranki-trigger:focus-visible{outline:3px solid #f6c85f;outline-offset:5px;border-radius:22px}.ranki-hero img{display:block;width:100%;height:auto}.ranki-hero[data-ranki-themed] img{width:145%;max-width:none;margin-left:-22.5%}.ranki-caption{position:absolute;right:50%;bottom:24px;transform:translateX(50%);min-width:132px;padding:7px 10px;border:1px solid rgba(17,97,73,.18);border-radius:999px;background:rgba(255,255,255,.94);color:#116149;text-align:center;box-shadow:0 8px 20px rgba(17,34,29,.12);backdrop-filter:blur(7px);pointer-events:none}.ranki-caption strong,.ranki-caption span{display:block;line-height:1.1}.ranki-caption strong{font-size:.82rem}.ranki-caption span{margin-top:2px;color:#52645b;font-size:.58rem;font-weight:800;letter-spacing:.035em;text-transform:uppercase}
+      .ranki-help[hidden]{display:none!important}.ranki-help{position:fixed;z-index:1100;right:18px;bottom:78px;width:min(390px,calc(100vw - 28px));max-height:calc(100vh - 105px);overflow:auto;padding:18px;border:1px solid #a8cab8;border-radius:20px;background:#fff;color:#17251f;box-shadow:0 24px 70px rgba(12,45,34,.28)}.ranki-help-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}.ranki-help-head span{display:block;color:#0b7550;font-size:.66rem;font-weight:950;letter-spacing:.12em}.ranki-help-head h2{margin:3px 0 0;color:#123a2d;font-size:1.35rem}.ranki-help-head button{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;padding:0;border:1px solid #c8d9d0;border-radius:50%;background:#f5faf7;color:#24483b;font-size:1.45rem;cursor:pointer}.ranki-answer{margin:14px 0;padding:13px 14px;border-left:4px solid #129462;border-radius:11px;background:#eef9f3;color:#355b4c;line-height:1.48}.ranki-answer p{margin:0}.ranki-results{display:grid;gap:7px;margin-top:10px}.ranki-results a{display:block;padding:9px 10px;border:1px solid #b6d8c6;border-radius:9px;background:#fff;color:#0b6647;font-weight:800;text-decoration:none}.ranki-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ranki-actions button{min-height:44px;padding:9px;border:1px solid #b7d1c4;border-radius:10px;background:#fff;color:#24483b;font:inherit;font-size:.8rem;font-weight:850;cursor:pointer}.ranki-actions button:hover,.ranki-actions button:focus-visible{border-color:#0d8a5a;background:#effaf4}.ranki-actions button:last-child{grid-column:1/-1;background:#168a48;color:#fff;border-color:#168a48}.ranki-question{margin-top:14px}.ranki-question label{display:block;margin-bottom:6px;color:#274d3f;font-size:.76rem;font-weight:900}.ranki-question>div{display:grid;grid-template-columns:1fr auto}.ranki-question input{min-width:0;padding:11px;border:1px solid #afc9b9;border-radius:10px 0 0 10px;font:inherit}.ranki-question button{padding:10px 13px;border:0;border-radius:0 10px 10px 0;background:#0d7650;color:#fff;font:inherit;font-weight:900;cursor:pointer}.ranki-disclaimer{margin:11px 0 0;color:#66776f;font-size:.67rem;line-height:1.4}.ranki-help-open .club-floating{opacity:0;pointer-events:none}
       .seasonal-banner{--season-a:#123c69;--season-b:#1f8a70;--season-accent:#ffd166;position:relative;isolation:isolate;overflow:hidden;width:min(1180px,calc(100% - 32px));margin:22px auto 6px;border:1px solid color-mix(in srgb,var(--season-accent) 62%,transparent);border-radius:22px;background:linear-gradient(120deg,var(--season-a),var(--season-b));color:#fff;box-shadow:0 18px 45px color-mix(in srgb,var(--season-a) 28%,transparent)}
       .seasonal-banner::before{content:"";position:absolute;inset:-80%;z-index:-2;background:conic-gradient(from 90deg at 50% 50%,transparent,var(--season-accent),transparent 18%);opacity:.14;animation:seasonGlow 18s linear infinite}.seasonal-banner::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 82% 12%,color-mix(in srgb,var(--season-accent) 42%,transparent),transparent 34%),linear-gradient(100deg,rgba(255,255,255,.1),transparent 45%)}
       .seasonal-banner-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;padding:22px 26px}.seasonal-icon{display:grid;place-items:center;width:66px;height:66px;border:1px solid rgba(255,255,255,.32);border-radius:19px;background:rgba(255,255,255,.15);font-size:2.15rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.25);backdrop-filter:blur(8px)}
@@ -274,9 +481,9 @@
       .growth-admin button,.growth-admin a{border:0;border-radius:8px;padding:10px 14px;font:inherit;font-weight:850;cursor:pointer;text-decoration:none}
       .growth-admin button{background:#087a3d;color:#fff}.growth-admin a{background:#fff;color:#0b5b39;border:1px solid #9dc6ae}
       .growth-admin-status{min-height:1.3em;margin-top:10px!important;font-weight:800!important;color:#0b6b3a!important}
-      .seasonal-admin{margin-top:22px;padding-top:20px;border-top:1px solid #b9d8c5}.seasonal-admin h2{display:flex;align-items:center;gap:8px}.seasonal-admin-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:12px}.seasonal-admin select,.seasonal-admin input[type=date]{width:100%;padding:11px;border:1px solid #afc9b9;border-radius:8px;background:#fff;font:inherit}.seasonal-preview{--season-a:#123c69;--season-b:#1f8a70;--season-accent:#ffd166;position:relative;overflow:hidden;margin-top:14px;padding:17px;border-radius:14px;background:linear-gradient(120deg,var(--season-a),var(--season-b));color:#fff}.seasonal-preview strong{display:block;font-size:1.08rem}.seasonal-preview span{display:block;margin-top:4px;color:rgba(255,255,255,.86);font-size:.82rem}.seasonal-admin-help{font-size:.78rem;color:#607068}.seasonal-admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.seasonal-admin-actions button{margin:0}.seasonal-status{min-height:1.3em;margin:9px 0 0!important;font-weight:850!important;color:#0b6b3a!important}
+      .seasonal-admin{margin-top:22px;padding-top:20px;border-top:1px solid #b9d8c5}.seasonal-admin h2{display:flex;align-items:center;gap:8px}.seasonal-admin-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:12px}.seasonal-admin select,.seasonal-admin input[type=date]{width:100%;padding:11px;border:1px solid #afc9b9;border-radius:8px;background:#fff;font:inherit}.seasonal-preview{--season-a:#123c69;--season-b:#1f8a70;--season-accent:#ffd166;position:relative;overflow:hidden;display:grid;grid-template-columns:96px 1fr;align-items:center;gap:14px;margin-top:14px;padding:10px 17px;border-radius:14px;background:linear-gradient(120deg,var(--season-a),var(--season-b));color:#fff}.seasonal-preview img{display:block;width:96px;height:96px;object-fit:contain;filter:drop-shadow(0 7px 8px rgba(0,0,0,.2))}.seasonal-preview strong{display:block;font-size:1.08rem}.seasonal-preview span{display:block;margin-top:4px;color:rgba(255,255,255,.86);font-size:.82rem}.seasonal-admin-help{font-size:.78rem;color:#607068}.seasonal-admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.seasonal-admin-actions button{margin:0}.seasonal-status{min-height:1.3em;margin:9px 0 0!important;font-weight:850!important;color:#0b6b3a!important}
       @media(max-width:900px){.hero .wrap{padding-right:145px}.ranki-hero{right:2px;width:130px}}
-      @media(max-width:700px){.hero .wrap{padding-right:0}.ranki-hero{right:-5px;bottom:-8px;width:88px;opacity:.2;filter:none}.ranki-hero figcaption{display:none}.club-whatsapp{grid-template-columns:1fr}.club-whatsapp a{width:100%}.club-floating{right:12px;bottom:12px;font-size:.82rem}.seasonal-banner-inner{grid-template-columns:auto 1fr;padding:17px;gap:12px}.seasonal-icon{width:52px;height:52px;border-radius:15px;font-size:1.65rem}.seasonal-cta{grid-column:1/-1;width:100%}.seasonal-copy p{font-size:.82rem}.seasonal-admin-grid{grid-template-columns:1fr}}
+      @media(max-width:700px){.hero .wrap{padding-right:0}.ranki-hero{right:-5px;bottom:-8px;width:88px;opacity:.94;filter:drop-shadow(0 8px 9px rgba(17,34,29,.16))}.ranki-hero[data-ranki-themed] img{width:100%;max-width:100%;margin-left:0}.ranki-caption{display:none}.ranki-help{left:10px;right:10px;bottom:10px;width:auto;max-height:calc(100vh - 20px);border-radius:17px}.ranki-actions{grid-template-columns:1fr 1fr}.club-whatsapp{grid-template-columns:1fr}.club-whatsapp a{width:100%}.club-floating{right:12px;bottom:12px;font-size:.82rem}.seasonal-banner-inner{grid-template-columns:auto 1fr;padding:17px;gap:12px}.seasonal-icon{width:52px;height:52px;border-radius:15px;font-size:1.65rem}.seasonal-cta{grid-column:1/-1;width:100%}.seasonal-copy p{font-size:.82rem}.seasonal-admin-grid{grid-template-columns:1fr}.seasonal-preview{grid-template-columns:76px 1fr}.seasonal-preview img{width:76px;height:76px}}
       @media(prefers-reduced-motion:reduce){.seasonal-banner::before,.seasonal-particle{animation:none!important}}
     `;
     document.head.appendChild(style);
@@ -635,5 +842,6 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();
+
 
 

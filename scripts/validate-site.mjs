@@ -31,8 +31,19 @@ has(growthTools, /tipo:\s*"configuracao_tema"/, "identificação do registro té
 has(growthTools, /function renderMascot\(\)/, "integração do mascote Ranki ausente", "growth-tools.js");
 has(growthTools, /src="\/ranki\.png"/, "imagem do mascote Ranki não está ligada à vitrine", "growth-tools.js");
 has(growthTools, /data-ranki-mascot/, "proteção contra duplicação do mascote ausente", "growth-tools.js");
-for (const theme of ["ano-novo", "volta-aulas", "carnaval", "consumidor", "pascoa", "maes", "namorados", "festa-junina", "pais", "criancas", "black-friday", "natal"]) {
+has(growthTools, /const RANKI_THEME_IMAGES/, "roupas temáticas do Ranki ausentes", "growth-tools.js");
+has(growthTools, /function ensureRankiHelp\(\)/, "janela do Ranki Ajuda ausente", "growth-tools.js");
+has(growthTools, /data-ranki-action="ofertas"/, "atalhos do Ranki Ajuda ausentes", "growth-tools.js");
+has(growthTools, /aria-controls="ranki-help"/, "controle acessível do Ranki Ajuda ausente", "growth-tools.js");
+has(growthTools, /if \(event\.key === "Escape"\) closeRankiHelp\(\)/, "fechamento do Ranki Ajuda pelo teclado ausente", "growth-tools.js");
+const seasonalThemeIds = ["ano-novo", "volta-aulas", "carnaval", "consumidor", "pascoa", "maes", "namorados", "festa-junina", "pais", "criancas", "black-friday", "natal"];
+for (const theme of seasonalThemeIds) {
   if (!growthTools.includes(`${theme}:`) && !growthTools.includes(`"${theme}":`)) fail(`growth-tools.js: tema sazonal ausente: ${theme}`);
+  let themedRanki = null;
+  try { themedRanki = await readFile(resolve(`assets/ranki/${theme}.png`)); } catch {}
+  if (!themedRanki || themedRanki.length < 10000 || themedRanki[0] !== 0x89 || themedRanki.toString("ascii", 1, 4) !== "PNG") {
+    fail(`assets/ranki/${theme}.png: roupa temática do Ranki ausente ou inválida`);
+  }
 }
 
 const rankiImage = await readFile(resolve("ranki.png"));
@@ -105,5 +116,6 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + identities.size + " produtos únicos e metadados sociais completos.");
+
 
 
