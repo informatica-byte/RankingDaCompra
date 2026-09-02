@@ -215,6 +215,17 @@
     else (document.querySelector("header") || document.body.firstElementChild)?.insertAdjacentElement("afterend", banner);
   }
 
+  function renderMascot() {
+    const hero = document.querySelector(".hero");
+    const wrap = hero?.querySelector(".wrap");
+    if (!wrap || wrap.querySelector("[data-ranki-mascot]") || /dashboard\.html|painel-celular\.html/i.test(location.pathname)) return;
+    const mascot = document.createElement("figure");
+    mascot.className = "ranki-hero";
+    mascot.dataset.rankiMascot = "hero";
+    mascot.innerHTML = `<img src="/ranki.png" width="512" height="768" decoding="async" alt="Ranki, a raposa guia de ofertas do Ranking da Compra"><figcaption><strong>Ranki</strong><span>guia de boas ofertas</span></figcaption>`;
+    wrap.appendChild(mascot);
+  }
+
   function themeOptions() {
     return Object.entries(SEASONAL_THEMES).map(([id, theme]) => `<option value="${escapeHtml(id)}">${escapeHtml(theme.icon)} ${escapeHtml(theme.name)}</option>`).join("");
   }
@@ -248,6 +259,7 @@
       .club-whatsapp a{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 20px;border-radius:12px;background:#168a48;color:#fff;text-decoration:none;font-weight:900;box-shadow:0 8px 20px rgba(22,138,72,.2)}
       .club-whatsapp a:hover{background:#10733b}
       .club-floating{position:fixed;right:18px;bottom:18px;z-index:850;display:inline-flex;align-items:center;gap:7px;padding:12px 15px;border-radius:999px;background:#168a48;color:#fff;text-decoration:none;font-weight:900;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+      .hero .wrap{position:relative;padding-right:210px}.hero .wrap>:not(.ranki-hero){position:relative;z-index:1}.ranki-hero{position:absolute;z-index:0;right:3px;bottom:-31px;width:clamp(138px,17vw,194px);margin:0;pointer-events:none;filter:drop-shadow(0 17px 18px rgba(17,34,29,.18))}.ranki-hero img{display:block;width:100%;height:auto}.ranki-hero figcaption{position:absolute;right:50%;bottom:24px;transform:translateX(50%);min-width:132px;padding:7px 10px;border:1px solid rgba(17,97,73,.18);border-radius:999px;background:rgba(255,255,255,.92);color:#116149;text-align:center;box-shadow:0 8px 20px rgba(17,34,29,.12);backdrop-filter:blur(7px)}.ranki-hero figcaption strong,.ranki-hero figcaption span{display:block;line-height:1.1}.ranki-hero figcaption strong{font-size:.82rem}.ranki-hero figcaption span{margin-top:2px;color:#52645b;font-size:.58rem;font-weight:800;letter-spacing:.035em;text-transform:uppercase}
       .seasonal-banner{--season-a:#123c69;--season-b:#1f8a70;--season-accent:#ffd166;position:relative;isolation:isolate;overflow:hidden;width:min(1180px,calc(100% - 32px));margin:22px auto 6px;border:1px solid color-mix(in srgb,var(--season-accent) 62%,transparent);border-radius:22px;background:linear-gradient(120deg,var(--season-a),var(--season-b));color:#fff;box-shadow:0 18px 45px color-mix(in srgb,var(--season-a) 28%,transparent)}
       .seasonal-banner::before{content:"";position:absolute;inset:-80%;z-index:-2;background:conic-gradient(from 90deg at 50% 50%,transparent,var(--season-accent),transparent 18%);opacity:.14;animation:seasonGlow 18s linear infinite}.seasonal-banner::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 82% 12%,color-mix(in srgb,var(--season-accent) 42%,transparent),transparent 34%),linear-gradient(100deg,rgba(255,255,255,.1),transparent 45%)}
       .seasonal-banner-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;padding:22px 26px}.seasonal-icon{display:grid;place-items:center;width:66px;height:66px;border:1px solid rgba(255,255,255,.32);border-radius:19px;background:rgba(255,255,255,.15);font-size:2.15rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.25);backdrop-filter:blur(8px)}
@@ -263,7 +275,8 @@
       .growth-admin button{background:#087a3d;color:#fff}.growth-admin a{background:#fff;color:#0b5b39;border:1px solid #9dc6ae}
       .growth-admin-status{min-height:1.3em;margin-top:10px!important;font-weight:800!important;color:#0b6b3a!important}
       .seasonal-admin{margin-top:22px;padding-top:20px;border-top:1px solid #b9d8c5}.seasonal-admin h2{display:flex;align-items:center;gap:8px}.seasonal-admin-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:12px}.seasonal-admin select,.seasonal-admin input[type=date]{width:100%;padding:11px;border:1px solid #afc9b9;border-radius:8px;background:#fff;font:inherit}.seasonal-preview{--season-a:#123c69;--season-b:#1f8a70;--season-accent:#ffd166;position:relative;overflow:hidden;margin-top:14px;padding:17px;border-radius:14px;background:linear-gradient(120deg,var(--season-a),var(--season-b));color:#fff}.seasonal-preview strong{display:block;font-size:1.08rem}.seasonal-preview span{display:block;margin-top:4px;color:rgba(255,255,255,.86);font-size:.82rem}.seasonal-admin-help{font-size:.78rem;color:#607068}.seasonal-admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.seasonal-admin-actions button{margin:0}.seasonal-status{min-height:1.3em;margin:9px 0 0!important;font-weight:850!important;color:#0b6b3a!important}
-      @media(max-width:700px){.club-whatsapp{grid-template-columns:1fr}.club-whatsapp a{width:100%}.club-floating{right:12px;bottom:12px;font-size:.82rem}.seasonal-banner-inner{grid-template-columns:auto 1fr;padding:17px;gap:12px}.seasonal-icon{width:52px;height:52px;border-radius:15px;font-size:1.65rem}.seasonal-cta{grid-column:1/-1;width:100%}.seasonal-copy p{font-size:.82rem}.seasonal-admin-grid{grid-template-columns:1fr}}
+      @media(max-width:900px){.hero .wrap{padding-right:145px}.ranki-hero{right:2px;width:130px}}
+      @media(max-width:700px){.hero .wrap{padding-right:0}.ranki-hero{right:-5px;bottom:-8px;width:88px;opacity:.2;filter:none}.ranki-hero figcaption{display:none}.club-whatsapp{grid-template-columns:1fr}.club-whatsapp a{width:100%}.club-floating{right:12px;bottom:12px;font-size:.82rem}.seasonal-banner-inner{grid-template-columns:auto 1fr;padding:17px;gap:12px}.seasonal-icon{width:52px;height:52px;border-radius:15px;font-size:1.65rem}.seasonal-cta{grid-column:1/-1;width:100%}.seasonal-copy p{font-size:.82rem}.seasonal-admin-grid{grid-template-columns:1fr}}
       @media(prefers-reduced-motion:reduce){.seasonal-banner::before,.seasonal-particle{animation:none!important}}
     `;
     document.head.appendChild(style);
@@ -595,6 +608,7 @@
   async function init() {
     injectStyles();
     repairVisibleEditorial();
+    renderMascot();
     if (/dashboard\.html$/i.test(location.pathname)) {
       if (await renderAdmin()) return;
       const observer = new MutationObserver(async () => {
@@ -612,6 +626,7 @@
     const observer = new MutationObserver(() => {
       repairVisibleEditorial();
       decorateVisibleProducts();
+      renderMascot();
     });
     observer.observe(document.body, { childList: true, subtree: true });
     setTimeout(() => observer.disconnect(), 30000);
@@ -620,4 +635,5 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();
+
 

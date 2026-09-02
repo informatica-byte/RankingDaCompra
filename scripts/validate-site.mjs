@@ -28,8 +28,16 @@ has(growthTools, /automaticThemeId/, "calendário automático de campanhas ausen
 has(growthTools, /prefers-reduced-motion/, "acessibilidade das animações sazonais ausente", "growth-tools.js");
 has(growthTools, /collection\("produtos"\)\.doc\("\.site-theme"\)/, "armazenamento seguro e invisível dos temas ausente", "growth-tools.js");
 has(growthTools, /tipo:\s*"configuracao_tema"/, "identificação do registro técnico de temas ausente", "growth-tools.js");
+has(growthTools, /function renderMascot\(\)/, "integração do mascote Ranki ausente", "growth-tools.js");
+has(growthTools, /src="\/ranki\.png"/, "imagem do mascote Ranki não está ligada à vitrine", "growth-tools.js");
+has(growthTools, /data-ranki-mascot/, "proteção contra duplicação do mascote ausente", "growth-tools.js");
 for (const theme of ["ano-novo", "volta-aulas", "carnaval", "consumidor", "pascoa", "maes", "namorados", "festa-junina", "pais", "criancas", "black-friday", "natal"]) {
   if (!growthTools.includes(`${theme}:`) && !growthTools.includes(`"${theme}":`)) fail(`growth-tools.js: tema sazonal ausente: ${theme}`);
+}
+
+const rankiImage = await readFile(resolve("ranki.png"));
+if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("ascii", 1, 4) !== "PNG") {
+  fail("ranki.png: arquivo PNG do mascote ausente ou inválido");
 }
 
 const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
@@ -97,4 +105,5 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + identities.size + " produtos únicos e metadados sociais completos.");
+
 
