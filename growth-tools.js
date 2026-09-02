@@ -355,27 +355,35 @@
 
   async function loadConfig() {
     if (state.config) return state.config;
-    let config = {};
-    try {
-      const response = await fetch("/site-config.json", { cache: "no-store" });
-      if (response.ok) config = { ...config, ...(await response.json()) };
-    } catch {}
-    try {
-      if (typeof db !== "undefined") {
-        const doc = await db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).get();
-        if (doc.exists) config = { ...config, ...doc.data() };
-      }
-    } catch (error) {
-      console.warn("Não foi possível ler a configuração do Clube de Ofertas.", error);
-    }
-    try {
-      if (typeof db !== "undefined") {
-        const themeDoc = await db.collection("produtos").doc(".site-theme").get();
-        if (themeDoc.exists) config = { ...config, ...themeDoc.data() };
-      }
-    } catch (error) {
-      console.warn("Não foi possível ler o tema sazonal da vitrine.", error);
-    }
+    const [published, remote, seasonal] = await Promise.all([
+      (async () => {
+        try {
+          const response = await fetch("/site-config.json", { cache: "no-store" });
+          return response.ok ? await response.json() : {};
+        } catch { return {}; }
+      })(),
+      (async () => {
+        try {
+          if (typeof db === "undefined") return {};
+          const doc = await db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).get();
+          return doc.exists ? doc.data() : {};
+        } catch (error) {
+          console.warn("Não foi possível ler a configuração do Clube de Ofertas.", error);
+          return {};
+        }
+      })(),
+      (async () => {
+        try {
+          if (typeof db === "undefined") return {};
+          const doc = await db.collection("produtos").doc(".site-theme").get();
+          return doc.exists ? doc.data() : {};
+        } catch (error) {
+          console.warn("Não foi possível ler o tema sazonal da vitrine.", error);
+          return {};
+        }
+      })()
+    ]);
+    const config = { ...published, ...remote, ...seasonal };
     state.config = config;
     return state.config;
   }
@@ -596,6 +604,7 @@
       setTimeout(() => observer.disconnect(), 120000);
       return;
     }
+    if (new URLSearchParams(location.search).has("tema-preview")) renderSeasonalTheme({});
     await Promise.all([loadHistory(), loadConfig()]);
     decorateVisibleProducts();
     renderClub(state.config);
