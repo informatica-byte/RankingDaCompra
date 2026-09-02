@@ -22,6 +22,15 @@ has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter sei
 const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
 has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
 if (growthTools.includes("✓ Oferta comprovada pelo histórico")) fail("growth-tools.js: afirmação genérica de oferta comprovada ainda presente");
+has(growthTools, /const SEASONAL_THEMES = \{/, "catálogo de temas sazonais ausente", "growth-tools.js");
+has(growthTools, /seasonalThemeMode/, "controle manual e automático de temas ausente", "growth-tools.js");
+has(growthTools, /automaticThemeId/, "calendário automático de campanhas ausente", "growth-tools.js");
+has(growthTools, /prefers-reduced-motion/, "acessibilidade das animações sazonais ausente", "growth-tools.js");
+has(growthTools, /collection\("produtos"\)\.doc\("\.site-theme"\)/, "armazenamento seguro e invisível dos temas ausente", "growth-tools.js");
+has(growthTools, /tipo:\s*"configuracao_tema"/, "identificação do registro técnico de temas ausente", "growth-tools.js");
+for (const theme of ["ano-novo", "volta-aulas", "carnaval", "consumidor", "pascoa", "maes", "namorados", "festa-junina", "pais", "criancas", "black-friday", "natal"]) {
+  if (!growthTools.includes(`${theme}:`) && !growthTools.includes(`"${theme}":`)) fail(`growth-tools.js: tema sazonal ausente: ${theme}`);
+}
 
 const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
