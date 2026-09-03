@@ -1,8 +1,15 @@
 name: Atualizar sitemap automaticamente
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate-sitemap.mjs"
+      - "scripts/generate-discovery.mjs"
+      - "scripts/validate-site.mjs"
+      - ".github/workflows/update-sitemap.yml"
   schedule:
-    # A cada 5 minutos, fora do minuto cheio, para publicar novas ofertas mais rapidamente.
+    # A cada 30 minutos, fora do minuto cheio, para publicar novas ofertas mais rapidamente.
     - cron: "13,43 * * * *"
   workflow_dispatch:
 

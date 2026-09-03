@@ -15,6 +15,43 @@ const CLIENT_ID = process.env.MERCADO_LIVRE_CLIENT_ID || "";
 const CLIENT_SECRET = process.env.MERCADO_LIVRE_CLIENT_SECRET || "";
 const categoryCache = new Map();
 
+const RETRYABLE_FIREBASE_STATUS = new Set([429, 500, 502, 503, 504]);
+
+
+function wait(milliseconds) {
+  return new Promise((resolvePromise) => setTimeout(resolvePromise, milliseconds));
+}
+
+
+async function fetchFirebase(url, label, maxAttempts = 6) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    let response;
+    try {
+      response = await fetch(url, { signal: AbortSignal.timeout(20000) });
+    } catch (error) {
+      if (attempt === maxAttempts) throw error;
+      const delay = Math.min(1500 * (2 ** (attempt - 1)), 30000);
+      console.warn(label + ": falha de rede; nova tentativa em " + delay + " ms.");
+      await wait(delay);
+      continue;
+    }
+    if (response.ok) return response;
+    if (!RETRYABLE_FIREBASE_STATUS.has(response.status) || attempt === maxAttempts) {
+      throw new Error(label + ": HTTP " + response.status);
+    }
+    const retryAfter = Number(response.headers.get("retry-after"));
+    const delay = Number.isFinite(retryAfter) && retryAfter > 0
+      ? retryAfter * 1000
+      : Math.min(1500 * (2 ** (attempt - 1)), 30000);
+    console.warn(
+      label + ": HTTP " + response.status + "; tentativa " + attempt + "/" +
+      maxAttempts + ". Aguardando " + delay + " ms.",
+    );
+    await wait(delay);
+  }
+  throw new Error(label + ": Firebase temporariamente indisponível");
+}
+
 
 function field(fieldValue) {
   return fieldValue?.stringValue ?? fieldValue?.timestampValue ?? fieldValue?.booleanValue ?? "";

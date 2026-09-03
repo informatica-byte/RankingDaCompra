@@ -6,11 +6,12 @@ const errors = [];
 
 function fail(message) { errors.push(message); }
 function has(html, pattern, label, file) { if (!pattern.test(html)) fail(file + ": " + label); }
-function productIdentity(html) {
-  const mlb = html.match(/\bMLB[-_\s]?(\d{6,})\b/i);
-  if (mlb) return "mlb:" + mlb[1];
-  const affiliate = html.match(/https:\/\/meli\.la\/[A-Za-z0-9_-]+/i);
-  return affiliate ? "affiliate:" + affiliate[0].toLowerCase() : "";
+function productIdentityKeys(html) {
+  const mlbKeys = [...html.matchAll(/\\bMLB[-_\\s]?(\\d{6,})\\b/gi)]
+    .map((match) => "mlb:" + match[1]);
+  const affiliateKeys = [...html.matchAll(/https:\/\/meli\\.la\/[A-Za-z0-9_-]+/gi)]
+    .map((match) => "affiliate:" + match[0].toLowerCase());
+  return [...new Set([...mlbKeys, ...affiliateKeys])];
 }
 
 const homeHtml = await readFile(resolve("index.html"), "utf8");
@@ -79,11 +80,36 @@ for (const url of urls) {
   if (/name="robots"\s+content="[^"]*noindex/i.test(html)) fail(relative + ": página do sitemap marcada como noindex");
   if (html.includes("\uFFFD")) fail(relative + ": caractere corrompido encontrado");
 
-  const identity = productIdentity(html);
-  if (!identity) continue;
-  const previous = identities.get(identity);
-  if (previous) fail("Produto duplicado (" + identity + "): " + previous + " e " + relative);
-  else identities.set(identity, relative);
+  for (const identity of productIdentityKeys(html)) {
+    const previous = identities.get(identity);
+    if (previous && previous !== relative) {
+      fail("Produto duplicado (" + identity + "): " + previous + " e " + relative);
+    } else {
+      identities.set(identity, relative);
+    }
+  }
+}
+
+const directoryHtml = await readFile(resolve("analises.html"), "utf8");
+const directoryUrls = new Set(
+  [...directoryHtml.matchAll(/href=["'](https:\/\/rankingdacompra\\.com\\.br\/produto\/[^"'?#]+)["']/gi)]
+    .map((match) => match[1]),
+);
+const sitemapProductUrls = new Set(urls.filter((url) => url.startsWith(SITE + "produto/")));
+for (const url of directoryUrls) {
+  if (!sitemapProductUrls.has(url)) {
+    fail("analises.html: produto fora do sitemap ou sem página publicada: " + url);
+    continue;
+  }
+  const relative = decodeURIComponent(url.slice(SITE.length));
+  try { await readFile(resolve(relative), "utf8"); }
+  catch { fail("analises.html: link para arquivo inexistente: " + relative); }
+}
+if (directoryUrls.size !== sitemapProductUrls.size) {
+  fail(
+    "analises.html: catálogo possui " + directoryUrls.size +
+    " produtos, mas o sitemap possui " + sitemapProductUrls.size,
+  );
 }
 
 for (const file of ["como-avaliamos.html", "sobre.html", "politica-afiliados.html", "privacidade.html", "contato.html"]) {

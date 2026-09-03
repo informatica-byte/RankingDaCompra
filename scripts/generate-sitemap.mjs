@@ -1536,18 +1536,21 @@ function normalizedUrlIdentity(value) {
   }
 }
 
-function productIdentityKey(product) {
+function productIdentityKeys(product) {
   const identityText = [
     product?.codigoMLB, product?.codigoMlb, product?.mlb, product?.idMLB,
     product?.link, product?.linkAfiliado, product?.dadosTecnicos,
   ].filter(Boolean).join(" ");
-  const mlb = identityText.match(/\bMLB[-_\s]?(\d{6,})\b/i);
-  if (mlb) return "mlb:" + mlb[1];
+  const mlbKeys = [...identityText.matchAll(/\\bMLB[-_\\s]?(\\d{6,})\\b/gi)]
+    .map((match) => "mlb:" + match[1]);
   const affiliate = normalizedUrlIdentity(product?.linkAfiliado);
-  if (affiliate) return "affiliate:" + affiliate;
   const source = normalizedUrlIdentity(product?.link);
-  if (source) return "source:" + source;
-  return "title:" + normalizedProductTitle(product);
+  const stableKeys = [
+    ...mlbKeys,
+    affiliate ? "affiliate:" + affiliate : "",
+    source ? "source:" + source : "",
+  ].filter(Boolean);
+  return [...new Set(stableKeys.length ? stableKeys : ["title:" + normalizedProductTitle(product)])];
 }
 
 function sanitizeEditorialSummary(value) {
@@ -1576,19 +1579,41 @@ function productSeoScore(product) {
 }
 
 function deduplicateProducts(products) {
-  const selected = new Map();
+  const groups = new Set();
+  const aliases = new Map();
   for (const product of products) {
-    const key = productIdentityKey(product);
-    const current = selected.get(key);
-    if (!current || productSeoScore(product) > productSeoScore(current)) selected.set(key, product);
+    const keys = productIdentityKeys(product);
+    const matchedGroups = [...new Set(keys.map((key) => aliases.get(key)).filter(Boolean))];
+    let group = matchedGroups[0];
+    if (!group) {
+      group = { products: [], keys: new Set() };
+      groups.add(group);
+    } else {
+      for (const other of matchedGroups.slice(1)) {
+        if (other === group) continue;
+        group.products.push(...other.products);
+        for (const key of other.keys) {
+          group.keys.add(key);
+          aliases.set(key, group);
+        }
+        groups.delete(other);
+      }
+    }
+    group.products.push(product);
+    for (const key of keys) {
+      group.keys.add(key);
+      aliases.set(key, group);
+    }
   }
-  if (selected.size !== products.length) {
+  const selected = [...groups].map((group) => group.products.reduce((best, product) =>
+    !best || productSeoScore(product) > productSeoScore(best) ? product : best, null));
+  if (selected.length !== products.length) {
     console.warn(
-      "SEO: " + (products.length - selected.size) +
+      "SEO: " + (products.length - selected.length) +
       " produto(s) duplicado(s) do mesmo anúncio removido(s) das páginas e do sitemap.",
     );
   }
-  return [...selected.values()].sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  return selected.sort((a, b) => String(a.id).localeCompare(String(b.id)));
 }
 
 const shareProducts = deduplicateProducts(rawShareProducts);

@@ -211,17 +211,23 @@ async function productUrlMap(products, sitemapXml) {
   } catch {
     files = [];
   }
+  const fileSet = new Set(files);
   const map = new Map();
   for (const product of products) {
     if (product.__productUrl) {
-      map.set(product.id, product.__productUrl);
+      try {
+        const fileName = decodeURIComponent(basename(new URL(product.__productUrl).pathname));
+        if (fileSet.has(fileName)) map.set(product.id, product.__productUrl);
+      } catch {
+        // Produto sem página publicada fica fora do diretório até a próxima geração.
+      }
       continue;
     }
-    const encodedId = encodeURIComponent(product.id);
     const match = locations.find((location) => {
       try {
         const fileName = decodeURIComponent(basename(new URL(location).pathname));
-        return fileName === `${product.id}.html` || fileName.startsWith(`${product.id}-`);
+        return fileSet.has(fileName)
+          && (fileName === `${product.id}.html` || fileName.startsWith(`${product.id}-`));
       } catch {
         return false;
       }
@@ -230,8 +236,10 @@ async function productUrlMap(products, sitemapXml) {
       map.set(product.id, match);
       continue;
     }
-    const fileName = files.filter((name) => name === `${product.id}.html` || name.startsWith(`${product.id}-`)).sort().at(-1);
-    map.set(product.id, fileName ? `${SITE}produto/${encodeURIComponent(fileName)}` : `${SITE}produto/${encodedId}.html`);
+    const fileName = files
+      .filter((name) => name === `${product.id}.html` || name.startsWith(`${product.id}-`))
+      .sort().at(-1);
+    if (fileName) map.set(product.id, `${SITE}produto/${encodeURIComponent(fileName)}`);
   }
   return map;
 }
@@ -312,10 +320,19 @@ function updateSitemap(xml, lastModified) {
 }
 
 const [allCategories, allProducts, marketplaceProducts] = await loadData();
-const products = allProducts
+const candidateProducts = allProducts
   .filter(editorialProduct)
   .filter((product) => marketplaceProducts[product.id]?.visible !== false)
   .sort(sortProducts);
+let sitemapXml = await readFile(resolve("sitemap.xml"), "utf8");
+const productUrls = await productUrlMap(candidateProducts, sitemapXml);
+const products = candidateProducts.filter((product) => productUrls.has(product.id));
+if (products.length !== candidateProducts.length) {
+  console.warn(
+    "Descoberta interna: " + (candidateProducts.length - products.length) +
+    " cadastro(s) sem página publicada foram ignorados para impedir links 404.",
+  );
+}
 const productsByCategory = new Map();
 for (const product of products) {
   const items = productsByCategory.get(product.categoria) || [];
@@ -334,8 +351,6 @@ const lastModified = newestDate([
   ...products.flatMap((product) => [product.atualizadoEm, product.dataCadastro]),
   ...categories.map((category) => category.criadoEm),
 ]);
-let sitemapXml = await readFile(resolve("sitemap.xml"), "utf8");
-const productUrls = await productUrlMap(products, sitemapXml);
 await writeFile(resolve("analises.html"), renderDirectoryPage(categories, productsByCategory, productUrls, categoryNames, lastModified), "utf8");
 sitemapXml = updateSitemap(sitemapXml, lastModified);
 await writeFile(resolve("sitemap.xml"), sitemapXml, "utf8");
