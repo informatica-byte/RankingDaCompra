@@ -49,6 +49,16 @@ has(growthTools, /config\?\.publicado !== true \|\| products\.length !== 5/, "pr
 has(growthTools, /function renderWeeklyComparison\(/, "vitrine pública do ranking comparativo ausente", "growth-tools.js");
 has(growthTools, /Como classificamos/, "transparência da metodologia do ranking ausente", "growth-tools.js");
 
+const mobilePanelHtml = await readFile(resolve("painel-celular.html"), "utf8");
+has(mobilePanelHtml, /id="ranking-mobile"/, "painel do ranking comparativo ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /id="ranking-termo"/, "filtro por produto ou categoria ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /id="ranking-preco"/, "limite de preço do ranking ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /rankingSugerirTema/, "sugestão pelo interesse semanal ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /where\("dia",">=",chave\)/, "análise dos últimos sete dias ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /Publicar após aprovação/, "aprovação obrigatória do ranking ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /doc\(db,"configuracoes","ranking-semanal"\)/, "sincronização do ranking entre os painéis ausente", "painel-celular.html");
+has(mobilePanelHtml, /candidatos\.slice\(0,5\)/, "limite de cinco colocados ausente no celular", "painel-celular.html");
+
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
 has(dashboardHtml, /id="central-visualizacoes-semana"/, "contador de visualizações do funil ausente", "dashboard.html");
 has(dashboardHtml, /id="central-taxa-clique"/, "taxa de avanço ao Mercado Livre ausente", "dashboard.html");
