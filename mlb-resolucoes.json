@@ -1,6 +1,12 @@
 {
-  "atualizadoEm": "2026-09-03T09:53:18.986Z",
+  "atualizadoEm": "2026-09-03T09:57:27.874Z",
   "resultados": {
+    "vqpNlDK5S0J66MbgR47p": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://produto.mercadolivre.com.br/MLB-4803090739-tnis-mizuno-wave-creation-20-original-academia-treino-_JM?searchVariation=206805159249#is_advertising=true&searchVariation=206805159249&backend_model=search-backend&be_origin=backend&position=28&search_layout=grid&type=pad&tracking_id=4bcc1fe7-6b14-4386-9394-b3538721b90c&ad_domain=VQCATCORE_LST&ad_position=28&ad_click_id=ZDU1NzYzODktMzkxOC00ZGU1LTkyNWUtYTNiYzExNThhNjBh",
+      "resolvidoEm": "2026-09-03T09:57:27.869Z"
+    },
     "D9n3NyfhXoaB6SchEQrp": {
       "status": "ok",
       "mlb": "MLB5157546240",
