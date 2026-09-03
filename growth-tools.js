@@ -927,11 +927,338 @@
         button.disabled = false;
       }
     });
+    await setupWeeklyRankingAdmin(container);
     return true;
+  }
+
+
+  const WEEKLY_COMPARISON_DOC = "ranking-semanal";
+  let weeklyRankingDraft = null;
+
+  function weeklyMondayKey(date = new Date()) {
+    const local = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit"
+    }).format(date);
+    const monday = new Date(local + "T12:00:00Z");
+    const weekday = monday.getUTCDay() || 7;
+    monday.setUTCDate(monday.getUTCDate() - weekday + 1);
+    return monday.toISOString().slice(0, 10);
+  }
+
+  function weeklyValidUntil(weekStart) {
+    const end = new Date(String(weekStart) + "T12:00:00Z");
+    end.setUTCDate(end.getUTCDate() + 6);
+    return end.toISOString().slice(0, 10);
+  }
+
+  function weeklyTextList(value, limit = 3) {
+    const items = Array.isArray(value) ? value : String(value || "").split(/\n|;|\|/);
+    return items.map(item => repairPortugueseText(item)).filter(item => item.length >= 8).slice(0, limit);
+  }
+
+  function weeklyProductPrice(product) {
+    return numberPrice(product.precoPromocional) || numberPrice(product.preco) || numberPrice(product.precoAtual);
+  }
+
+  function weeklyProductUrl(product) {
+    const direct = String(product.productUrl || product.paginaUrl || "").trim();
+    if (/^https:\/\/rankingdacompra\.com\.br\/produto\//i.test(direct)) return direct;
+    return SITE + "/produto/" + encodeURIComponent(String(product.id)) + "-20260810-1.html";
+  }
+
+  function weeklyProductImage(product) {
+    const value = String(product.foto || product.imagem || product.image || "").trim();
+    try {
+      const url = new URL(value, location.origin);
+      return url.protocol === "https:" ? url.href : "";
+    } catch {
+      return "";
+    }
+  }
+
+  function weeklyProductEligible(product) {
+    return product && product.sistema !== true && product.disponivel !== false
+      && String(product.titulo || "").trim() && weeklyProductPrice(product) > 0
+      && weeklyProductImage(product) && String(product.linkAfiliado || product.link || "").trim();
+  }
+
+  function weeklyMetricKind(metric) {
+    const type = String(metric?.tipo || "");
+    const channel = String(metric?.canal || "");
+    if (type === "clique_secao" && channel.startsWith("view:")) return "visualizacao_produto";
+    return type;
+  }
+
+  function weeklyNormalize(value) {
+    return repairPortugueseText(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  }
+
+  function weeklyReason(item, position) {
+    const parts = [];
+    if (item.clicks > 0) parts.push(item.clicks + (item.clicks === 1 ? " clique em Comprar" : " cliques em Comprar"));
+    if (item.views > 0) parts.push(item.views + (item.views === 1 ? " visualização" : " visualizações"));
+    if (item.rating > 0) parts.push("nota " + item.rating.toFixed(1).replace(".", ","));
+    parts.push("preço de " + brl.format(item.price));
+    return "Ficou em " + position + "º lugar pelo equilíbrio entre " + parts.join(", ") + " e a qualidade das informações cadastradas.";
+  }
+
+  function weeklyRankingCard(item) {
+    const pros = item.pros.length ? item.pros : ["Pontos positivos específicos em revisão editorial."];
+    const cons = item.cons.length ? item.cons : ["Pontos de atenção específicos em revisão editorial."];
+    return '<article class="weekly-ranking-card">'
+      + '<div class="weekly-ranking-position">' + item.position + 'º lugar</div>'
+      + '<img src="' + escapeHtml(item.foto) + '" alt="' + escapeHtml(item.titulo) + '" loading="lazy" decoding="async">'
+      + '<h3>' + escapeHtml(item.titulo) + '</h3>'
+      + '<strong class="weekly-ranking-price">' + escapeHtml(brl.format(item.price)) + '</strong>'
+      + '<p class="weekly-ranking-reason">' + escapeHtml(item.motivo) + '</p>'
+      + '<div class="weekly-ranking-points"><div><b>✓ Pontos positivos</b><ul>'
+      + pros.map(value => '<li>' + escapeHtml(value) + '</li>').join("")
+      + '</ul></div><div><b>⚠ Pontos de atenção</b><ul>'
+      + cons.map(value => '<li>' + escapeHtml(value) + '</li>').join("")
+      + '</ul></div></div>'
+      + '<a href="' + escapeHtml(item.productUrl) + '" data-weekly-ranking-product="' + escapeHtml(item.id) + '">Ver análise e comprar</a>'
+      + '</article>';
+  }
+
+  async function loadWeeklyComparison() {
+    try {
+      const database = typeof db !== "undefined" ? db : await metricsDb();
+      const snapshot = await database.collection(CONFIG_COLLECTION).doc(WEEKLY_COMPARISON_DOC).get();
+      return snapshot.exists ? snapshot.data() : null;
+    } catch (error) {
+      console.warn("Ranking comparativo semanal temporariamente indisponível.", error);
+      return null;
+    }
+  }
+
+  function renderWeeklyComparison(config) {
+    document.querySelector("[data-weekly-comparison]")?.remove();
+    const products = Array.isArray(config?.produtos) ? config.produtos.slice(0, 5) : [];
+    if (config?.publicado !== true || products.length !== 5 || !/^\/(?:index\.html)?$/.test(location.pathname)) return;
+    const section = document.createElement("section");
+    section.className = "weekly-comparison";
+    section.id = "ranking-da-semana";
+    section.dataset.weeklyComparison = config.semana || "ativo";
+    const subtitle = config.precoMaximo > 0
+      ? "Cinco opções comparadas até " + brl.format(numberPrice(config.precoMaximo)) + "."
+      : "Cinco opções da mesma categoria comparadas lado a lado.";
+    section.innerHTML = '<div class="weekly-comparison-head"><div><small>COMPARATIVO EDITORIAL ATUALIZADO SEMANALMENTE</small>'
+      + '<h2>🏆 ' + escapeHtml(config.titulo || "Ranking da Semana") + '</h2>'
+      + '<p>' + escapeHtml(subtitle) + ' Confira preço, frete e estoque antes da compra.</p></div>'
+      + '<a href="/como-avaliamos.html">Como classificamos</a></div>'
+      + '<div class="weekly-ranking-grid">' + products.map(weeklyRankingCard).join("") + '</div>'
+      + '<p class="weekly-ranking-method">A ordem considera procura dentro do site, cliques em Comprar, avaliação, preço, atualidade e qualidade da ficha cadastrada. A aprovação final é sempre feita pelo administrador.</p>';
+    const anchor = document.getElementById("top5-semanal") || document.querySelector("#promocoes") || document.querySelector("main");
+    if (anchor?.parentNode) anchor.insertAdjacentElement(anchor.matches("main") ? "afterbegin" : "afterend", section);
+  }
+
+  async function weeklyAdminData(status) {
+    const database = typeof db !== "undefined" ? db : await metricsDb();
+    if (status) status.textContent = "Carregando produtos e sinais dos últimos sete dias...";
+    const start = new Date();
+    start.setDate(start.getDate() - 6);
+    const startKey = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit"
+    }).format(start);
+    const [productsSnapshot, categoriesSnapshot, metricsSnapshot, publishedSnapshot] = await Promise.all([
+      database.collection("produtos").get(),
+      database.collection("categorias").get(),
+      database.collection("visitas").where("dia", ">=", startKey).get(),
+      database.collection(CONFIG_COLLECTION).doc(WEEKLY_COMPARISON_DOC).get()
+    ]);
+    const categories = {};
+    categoriesSnapshot.forEach(doc => { categories[doc.id] = String(doc.data()?.nome || doc.id); });
+    const products = [];
+    productsSnapshot.forEach(doc => products.push({ id: doc.id, ...doc.data() }));
+    const metrics = [];
+    metricsSnapshot.forEach(doc => metrics.push({ id: doc.id, ...doc.data() }));
+    return { products: products.filter(weeklyProductEligible), categories, metrics, published: publishedSnapshot.exists ? publishedSnapshot.data() : null };
+  }
+
+  function weeklyChooseTheme(data) {
+    const byId = new Map(data.products.map(product => [String(product.id), product]));
+    const categoryScores = new Map();
+    for (const metric of data.metrics) {
+      const product = byId.get(String(metric.produtoId || ""));
+      if (!product) continue;
+      const kind = weeklyMetricKind(metric);
+      const weight = kind === "clique_oferta" ? 5 : kind === "visualizacao_produto" ? 1 : 0;
+      if (!weight) continue;
+      const category = String(product.categoria || "ofertas");
+      categoryScores.set(category, (categoryScores.get(category) || 0) + weight);
+    }
+    const eligibleCounts = new Map();
+    for (const product of data.products) {
+      const category = String(product.categoria || "ofertas");
+      eligibleCounts.set(category, (eligibleCounts.get(category) || 0) + 1);
+    }
+    const choices = [...eligibleCounts].filter(([, count]) => count >= 5)
+      .sort((a, b) => (categoryScores.get(b[0]) || 0) - (categoryScores.get(a[0]) || 0) || b[1] - a[1]);
+    const category = choices[0]?.[0] || "";
+    return { category, label: data.categories[category] || category };
+  }
+
+  function weeklyBuildDraft(data, query, maxPrice) {
+    const normalizedQuery = weeklyNormalize(query);
+    const queryWords = normalizedQuery.split(/\s+/).filter(Boolean);
+    const metricScores = new Map();
+    for (const metric of data.metrics) {
+      const id = String(metric.produtoId || "");
+      if (!id) continue;
+      const kind = weeklyMetricKind(metric);
+      const current = metricScores.get(id) || { clicks: 0, views: 0 };
+      if (kind === "clique_oferta") current.clicks += 1;
+      if (kind === "visualizacao_produto") current.views += 1;
+      metricScores.set(id, current);
+    }
+    const candidates = data.products.map(product => {
+      const label = data.categories[String(product.categoria || "")] || String(product.categoria || "");
+      const haystack = weeklyNormalize([product.titulo, product.categoria, label].join(" "));
+      const price = weeklyProductPrice(product);
+      const rating = numberPrice(product.nota || product.avaliacao);
+      const signals = metricScores.get(String(product.id)) || { clicks: 0, views: 0 };
+      const match = !queryWords.length || queryWords.every(word => haystack.includes(word));
+      const withinBudget = !(maxPrice > 0) || price <= maxPrice;
+      const editorial = weeklyTextList(product.pros || product.pontosPositivos).length
+        + weeklyTextList(product.contras || product.pontosNegativos).length;
+      const score = signals.clicks * 80 + signals.views * 14 + rating * 12
+        + numberPrice(product.ranking) * 2 + editorial * 4;
+      return { product, price, rating, clicks: signals.clicks, views: signals.views, score, match, withinBudget };
+    }).filter(item => item.match && item.withinBudget)
+      .sort((a, b) => b.score - a.score || b.rating - a.rating || a.price - b.price);
+    if (candidates.length < 5) throw new Error("Encontrei somente " + candidates.length + " produto(s) válido(s) nesse filtro. Amplie o preço máximo ou use um termo mais geral.");
+    const selected = candidates.slice(0, 5).map((item, index) => {
+      const product = item.product;
+      const snapshot = {
+        id: String(product.id), position: index + 1, titulo: repairPortugueseText(product.titulo),
+        categoria: String(product.categoria || ""), categoriaNome: data.categories[String(product.categoria || "")] || String(product.categoria || ""),
+        preco: item.price, foto: weeklyProductImage(product), productUrl: weeklyProductUrl(product),
+        linkAfiliado: String(product.linkAfiliado || product.link || ""), nota: item.rating,
+        pros: weeklyTextList(product.pros || product.pontosPositivos),
+        cons: weeklyTextList(product.contras || product.pontosNegativos),
+        clicks: item.clicks, views: item.views
+      };
+      snapshot.motivo = weeklyReason({ ...item, ...snapshot }, index + 1);
+      return snapshot;
+    });
+    const label = query || selected[0].categoriaNome || "produtos";
+    return {
+      versao: 1, semana: weeklyMondayKey(), validoAte: weeklyValidUntil(weeklyMondayKey()),
+      titulo: "Top 5 " + String(label).trim() + (maxPrice > 0 ? " até " + brl.format(maxPrice) : ""),
+      termo: String(query || "").trim(), precoMaximo: maxPrice || 0, produtos: selected
+    };
+  }
+
+  function weeklyDraftMarkup(draft) {
+    return '<div class="weekly-admin-draft"><h3>' + escapeHtml(draft.titulo) + '</h3><p>Semana de '
+      + escapeHtml(dateBr.format(new Date(draft.semana + "T12:00:00-03:00"))) + ' · revise os cinco colocados antes de publicar.</p>'
+      + '<ol>' + draft.produtos.map(item => '<li><strong>' + escapeHtml(item.position + "º — " + item.titulo)
+        + '</strong><span>' + escapeHtml(brl.format(item.preco)) + ' · ' + escapeHtml(item.motivo) + '</span></li>').join("") + '</ol></div>';
+  }
+
+  async function setupWeeklyRankingAdmin(container) {
+    const section = document.createElement("section");
+    section.className = "weekly-ranking-admin";
+    section.id = "weekly-ranking-admin";
+    section.innerHTML = '<h2>🏆 Ranking comparativo da semana</h2>'
+      + '<p>Escolha um produto ou categoria e o preço máximo. O sistema usa procura, cliques e dados cadastrados para ordenar cinco opções. Nada vai para a vitrine sem sua aprovação.</p>'
+      + '<div class="weekly-admin-grid"><div><label for="weekly-ranking-query">Produto ou categoria</label>'
+      + '<input id="weekly-ranking-query" type="text" placeholder="Ex.: celular, patinete, air fryer"></div>'
+      + '<div><label for="weekly-ranking-price">Preço máximo (opcional)</label>'
+      + '<input id="weekly-ranking-price" type="number" min="1" step="0.01" inputmode="decimal" placeholder="Ex.: 1000,00"></div></div>'
+      + '<div class="weekly-admin-actions"><button id="weekly-ranking-suggest" type="button">✨ Sugerir pelo interesse da semana</button>'
+      + '<button id="weekly-ranking-prepare" type="button">Preparar comparação</button>'
+      + '<button id="weekly-ranking-publish" type="button" disabled>Publicar após aprovação</button>'
+      + '<a href="/#ranking-da-semana" target="_blank" rel="noopener">Ver na vitrine</a></div>'
+      + '<p id="weekly-ranking-status" class="weekly-ranking-status" role="status" aria-live="polite">Pronto para preparar o próximo ranking.</p>'
+      + '<div id="weekly-ranking-review"></div>';
+    container.appendChild(section);
+    const query = section.querySelector("#weekly-ranking-query");
+    const price = section.querySelector("#weekly-ranking-price");
+    const status = section.querySelector("#weekly-ranking-status");
+    const review = section.querySelector("#weekly-ranking-review");
+    const publish = section.querySelector("#weekly-ranking-publish");
+    let cachedData = null;
+    const ensureData = async () => cachedData || (cachedData = await weeklyAdminData(status));
+    section.querySelector("#weekly-ranking-suggest").addEventListener("click", async event => {
+      const button = event.currentTarget;
+      button.disabled = true;
+      try {
+        const data = await ensureData();
+        const suggestion = weeklyChooseTheme(data);
+        if (!suggestion.category) throw new Error("Ainda não há uma categoria com cinco produtos válidos.");
+        query.value = suggestion.label;
+        status.textContent = "Sugestão da semana: " + suggestion.label + ". Você pode ajustar o termo e o limite de preço.";
+      } catch (error) {
+        status.textContent = "Não foi possível sugerir agora: " + error.message;
+      } finally { button.disabled = false; }
+    });
+    section.querySelector("#weekly-ranking-prepare").addEventListener("click", async event => {
+      const button = event.currentTarget;
+      button.disabled = true;
+      publish.disabled = true;
+      status.textContent = "Preparando o comparativo...";
+      try {
+        const data = await ensureData();
+        const maxPrice = numberPrice(price.value);
+        let term = query.value.trim();
+        if (!term) {
+          const suggestion = weeklyChooseTheme(data);
+          term = suggestion.label;
+          query.value = term;
+        }
+        weeklyRankingDraft = weeklyBuildDraft(data, term, maxPrice);
+        review.innerHTML = weeklyDraftMarkup(weeklyRankingDraft);
+        publish.disabled = false;
+        status.textContent = "Comparação pronta. Confira a ordem e publique somente se estiver de acordo.";
+      } catch (error) {
+        weeklyRankingDraft = null;
+        review.innerHTML = "";
+        status.textContent = error.message;
+      } finally { button.disabled = false; }
+    });
+    publish.addEventListener("click", async event => {
+      if (!weeklyRankingDraft) return;
+      const button = event.currentTarget;
+      button.disabled = true;
+      status.textContent = "Publicando o ranking aprovado...";
+      try {
+        if (typeof auth !== "undefined" && !auth.currentUser) throw new Error("Sua sessão administrativa expirou.");
+        const database = typeof db !== "undefined" ? db : await metricsDb();
+        await database.collection(CONFIG_COLLECTION).doc(WEEKLY_COMPARISON_DOC).set({
+          ...weeklyRankingDraft, publicado: true,
+          atualizadoEm: window.firebase.firestore.FieldValue.serverTimestamp()
+        });
+        status.textContent = "✓ Ranking aprovado e publicado. A vitrine já pode exibir os cinco colocados.";
+        cachedData = null;
+      } catch (error) {
+        status.textContent = "Não foi possível publicar: " + error.message + " A versão anterior foi preservada.";
+        button.disabled = false;
+      }
+    });
+    try {
+      const current = await loadWeeklyComparison();
+      if (current?.publicado) {
+        const expired = String(current.semana || "") !== weeklyMondayKey();
+        status.textContent = expired
+          ? "O ranking publicado é da semana anterior. Prepare e aprove a nova seleção."
+          : "✓ O ranking desta semana está publicado. Você pode preparar outro sem afetar o atual.";
+      }
+    } catch {}
+  }
+
+  function injectWeeklyRankingStyles() {
+    if (document.getElementById("weekly-ranking-style")) return;
+    const style = document.createElement("style");
+    style.id = "weekly-ranking-style";
+    style.textContent = '.weekly-comparison{max-width:1180px;margin:28px auto;padding:24px;border:1px solid #b8d7ca;border-radius:22px;background:linear-gradient(145deg,#f4fff9,#fff);box-sizing:border-box}.weekly-comparison-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px}.weekly-comparison-head small{font-weight:900;letter-spacing:.08em;color:#08784f}.weekly-comparison-head h2{margin:5px 0 6px;font-size:clamp(1.45rem,3vw,2.2rem);color:#073b2b}.weekly-comparison-head p{margin:0;color:#405a50}.weekly-comparison-head>a{font-weight:800;color:#086e4a}.weekly-ranking-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.weekly-ranking-card{position:relative;display:flex;flex-direction:column;padding:13px;border:1px solid #cfe1d8;border-radius:15px;background:#fff;box-shadow:0 8px 24px rgba(5,74,51,.07)}.weekly-ranking-position{align-self:flex-start;margin-bottom:8px;padding:5px 9px;border-radius:999px;background:#0b7a53;color:#fff;font-size:.78rem;font-weight:900}.weekly-ranking-card:first-child{border:2px solid #e4ae18;background:linear-gradient(180deg,#fffbea,#fff)}.weekly-ranking-card:first-child .weekly-ranking-position{background:#a86d00}.weekly-ranking-card img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}.weekly-ranking-card h3{font-size:.98rem;line-height:1.28;margin:11px 0 7px;color:#10251e}.weekly-ranking-price{font-size:1.14rem;color:#08784f}.weekly-ranking-reason{font-size:.82rem;line-height:1.42;color:#465a52}.weekly-ranking-points{font-size:.78rem;line-height:1.35}.weekly-ranking-points b{display:block;color:#174c3a}.weekly-ranking-points ul{margin:4px 0 10px;padding-left:17px}.weekly-ranking-card>a{margin-top:auto;padding:10px;border-radius:9px;background:#1468d4;color:#fff;text-align:center;text-decoration:none;font-weight:900}.weekly-ranking-method{margin:16px 0 0;font-size:.78rem;color:#557066}.weekly-ranking-admin{margin-top:26px;padding-top:24px;border-top:2px solid #d7eadf}.weekly-admin-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}.weekly-admin-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.weekly-admin-actions button,.weekly-admin-actions a{border:1px solid #0a7850;border-radius:9px;padding:10px 12px;background:#fff;color:#075a3e;font-weight:800;text-decoration:none;cursor:pointer}.weekly-admin-actions button:nth-child(2),.weekly-admin-actions button:nth-child(3){background:#087a52;color:#fff}.weekly-admin-actions button:disabled{opacity:.5;cursor:not-allowed}.weekly-ranking-status{font-weight:700;color:#285c49}.weekly-admin-draft{margin-top:14px;padding:14px;border-radius:12px;background:#f2faf6}.weekly-admin-draft h3{margin:0 0 5px}.weekly-admin-draft ol{padding-left:24px}.weekly-admin-draft li{margin:10px 0}.weekly-admin-draft li span{display:block;font-size:.85rem;color:#4c625a}@media(max-width:980px){.weekly-ranking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.weekly-comparison{margin:18px 10px;padding:16px}.weekly-comparison-head{display:block}.weekly-comparison-head>a{display:inline-block;margin-top:10px}.weekly-ranking-grid,.weekly-admin-grid{grid-template-columns:1fr}}';
+    document.head.appendChild(style);
   }
 
   async function init() {
     injectStyles();
+    injectWeeklyRankingStyles();
     repairVisibleEditorial();
     renderMascot();
     setupFunnelTracking();
@@ -949,6 +1276,7 @@
     decorateVisibleProducts();
     renderClub(state.config);
     renderSeasonalTheme(state.config);
+    if (/^\/(?:index\.html)?$/.test(location.pathname)) loadWeeklyComparison().then(renderWeeklyComparison);
     const observer = new MutationObserver(() => {
       repairVisibleEditorial();
       decorateVisibleProducts();
