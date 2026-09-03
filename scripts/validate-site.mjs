@@ -7,9 +7,9 @@ const errors = [];
 function fail(message) { errors.push(message); }
 function has(html, pattern, label, file) { if (!pattern.test(html)) fail(file + ": " + label); }
 function productIdentityKeys(html) {
-  const mlbKeys = [...html.matchAll(/\\bMLB[-_\\s]?(\\d{6,})\\b/gi)]
+  const mlbKeys = [...html.matchAll(/\bMLB[-_\s]?(\d{6,})\b/gi)]
     .map((match) => "mlb:" + match[1]);
-  const affiliateKeys = [...html.matchAll(/https:\/\/meli\\.la\/[A-Za-z0-9_-]+/gi)]
+  const affiliateKeys = [...html.matchAll(/https:\/\/meli\.la\/[A-Za-z0-9_-]+/gi)]
     .map((match) => "affiliate:" + match[0].toLowerCase());
   return [...new Set([...mlbKeys, ...affiliateKeys])];
 }
@@ -92,7 +92,7 @@ for (const url of urls) {
 
 const directoryHtml = await readFile(resolve("analises.html"), "utf8");
 const directoryUrls = new Set(
-  [...directoryHtml.matchAll(/href=["'](https:\/\/rankingdacompra\\.com\\.br\/produto\/[^"'?#]+)["']/gi)]
+  [...directoryHtml.matchAll(/href=["'](https:\/\/rankingdacompra\.com\.br\/produto\/[^"'?#]+)["']/gi)]
     .map((match) => match[1]),
 );
 const sitemapProductUrls = new Set(urls.filter((url) => url.startsWith(SITE + "produto/")));

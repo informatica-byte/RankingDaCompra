@@ -1541,7 +1541,7 @@ function productIdentityKeys(product) {
     product?.codigoMLB, product?.codigoMlb, product?.mlb, product?.idMLB,
     product?.link, product?.linkAfiliado, product?.dadosTecnicos,
   ].filter(Boolean).join(" ");
-  const mlbKeys = [...identityText.matchAll(/\\bMLB[-_\\s]?(\\d{6,})\\b/gi)]
+  const mlbKeys = [...identityText.matchAll(/\bMLB[-_\s]?(\d{6,})\b/gi)]
     .map((match) => "mlb:" + match[1]);
   const affiliate = normalizedUrlIdentity(product?.linkAfiliado);
   const source = normalizedUrlIdentity(product?.link);
