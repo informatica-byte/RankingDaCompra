@@ -1,6 +1,12 @@
 {
-  "atualizadoEm": "2026-09-03T10:04:02.389Z",
+  "atualizadoEm": "2026-09-03T10:07:05.937Z",
   "resultados": {
+    "4t6zndmgkVmXsxdjlVxc": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://produto.mercadolivre.com.br/MLB-5049422013-tenis-caminhada-academia-skate-suede-couro-xl-envio-ja-_JM?searchVariation=206325258011#is_advertising=true&searchVariation=206325258011&backend_model=search-backend&be_origin=backend&position=1&search_layout=grid&type=pad&tracking_id=917e5371-bc32-4102-b3fe-bd6c8b23ccda&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=YTg3NjZlNjAtMDlkNi00MzhhLTkxYjgtNzdkZjlkOWU2YWQ2",
+      "resolvidoEm": "2026-09-03T10:07:05.929Z"
+    },
     "RQK1tWL90zfNFDjTXB3r": {
       "status": "ok",
       "mlb": "MLB7391120488",
