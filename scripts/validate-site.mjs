@@ -37,6 +37,15 @@ has(growthTools, /function ensureRankiHelp\(\)/, "janela do Ranki Ajuda ausente"
 has(growthTools, /data-ranki-action="ofertas"/, "atalhos do Ranki Ajuda ausentes", "growth-tools.js");
 has(growthTools, /aria-controls="ranki-help"/, "controle acessível do Ranki Ajuda ausente", "growth-tools.js");
 has(growthTools, /if \(event\.key === "Escape"\) closeRankiHelp\(\)/, "fechamento do Ranki Ajuda pelo teclado ausente", "growth-tools.js");
+has(growthTools, /function setupFunnelTracking\(\)/, "rastreamento do funil comercial ausente", "growth-tools.js");
+has(growthTools, /recordFunnelMetric\("visualizacao_produto"/, "visualizações de produto não são registradas no funil", "growth-tools.js");
+has(growthTools, /recordFunnelMetric\("clique_oferta"/, "cliques em Comprar não são registrados no funil", "growth-tools.js");
+
+const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
+has(dashboardHtml, /id="central-visualizacoes-semana"/, "contador de visualizações do funil ausente", "dashboard.html");
+has(dashboardHtml, /id="central-taxa-clique"/, "taxa de avanço ao Mercado Livre ausente", "dashboard.html");
+has(dashboardHtml, /Produtos vistos sem resultado/, "lista de produtos vistos sem resultado ausente", "dashboard.html");
+has(dashboardHtml, /visualizacao_produto/, "painel não reconhece visualizações das páginas de produto", "dashboard.html");
 const seasonalThemeIds = ["ano-novo", "volta-aulas", "carnaval", "consumidor", "pascoa", "maes", "namorados", "festa-junina", "pais", "criancas", "black-friday", "natal"];
 for (const theme of seasonalThemeIds) {
   if (!growthTools.includes(`${theme}:`) && !growthTools.includes(`"${theme}":`)) fail(`growth-tools.js: tema sazonal ausente: ${theme}`);
@@ -56,6 +65,7 @@ const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"),
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /<script defer src="\/growth-tools\.js"><\/script>/, "corretor editorial não foi incluído nas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /id="affiliate-offer"/, "botão de compra rastreável ausente das páginas de produto", "scripts/generate-sitemap.mjs");
 
 const sitemap = await readFile(resolve("sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
