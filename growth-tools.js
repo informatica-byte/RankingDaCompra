@@ -123,7 +123,7 @@
     }
   }
 
-  async function recordFunnelMetric(type, link) {
+  async function recordFunnelMetric(type, link, channel = "") {
     const product = funnelProduct(link);
     if (!product.id) return;
     const params = new URLSearchParams(location.search);
@@ -133,7 +133,7 @@
       produtoId: product.id,
       titulo: product.title,
       categoria: product.category,
-      canal: funnelSource(),
+      canal: String(channel || funnelSource()).slice(0, 40),
       campanha: String(params.get("utm_campaign") || "site").slice(0, 80),
       dia: todayKey(),
       origem: location.pathname.slice(0, 80),
@@ -158,10 +158,9 @@
     let lastView = 0;
     try { lastView = Number(localStorage.getItem(storageKey) || 0); } catch {}
     if (Date.now() - lastView < METRICS_VIEW_INTERVAL_MS) return;
-    try { localStorage.setItem(storageKey, String(Date.now())); } catch {}
-    const register = () => void recordFunnelMetric("visualizacao_produto", offer).catch(error =>
-      console.warn("Não foi possível registrar a visualização comercial.", error)
-    );
+    const register = () => void recordFunnelMetric("clique_secao", offer, "view:" + funnelSource())
+      .then(() => { try { localStorage.setItem(storageKey, String(Date.now())); } catch {} })
+      .catch(error => console.warn("Não foi possível registrar a visualização comercial.", error));
     if ("requestIdleCallback" in window) window.requestIdleCallback(register, { timeout: 2500 });
     else setTimeout(register, 1200);
   }
