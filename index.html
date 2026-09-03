@@ -400,6 +400,6 @@ let q=new URLSearchParams(location.search);const rotaInicial=q.get('produto')||q
 <script>
 window.registrarMetricaComercial=async function(tipo,produto,canal){try{const id=crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);const limpo=valor=>String(valor||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9_-]/gi,'').slice(0,32);const origem=('evento:'+limpo(tipo)+':'+limpo(produto?.id)+':'+limpo(canal||origemCampanhaAtual())).slice(0,80);await db.collection('visitas').doc(id).set({criadoEm:firebase.firestore.FieldValue.serverTimestamp(),dia:dataBrasil(),origem})}catch(erro){console.warn('Não foi possível registrar a métrica comercial.',erro)}};
 </script>
-  <script defer src="/growth-tools.js"></script>
+  <script defer src="/growth-tools.js?v=20260903-nan2"></script>
 </body></html>
 
