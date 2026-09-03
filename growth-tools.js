@@ -47,6 +47,125 @@
     }).format(new Date());
   }
 
+  const METRICS_FIREBASE_CONFIG = {
+    apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
+    authDomain: "rankingdacompra.firebaseapp.com",
+    projectId: "rankingdacompra",
+    storageBucket: "rankingdacompra.firebasestorage.app",
+    messagingSenderId: "300637600463",
+    appId: "1:300637600463:web:671c78dc47d5f8b39f15ba"
+  };
+  const METRICS_VIEW_INTERVAL_MS = 30 * 60 * 1000;
+  let metricsDbPromise = null;
+
+  function loadMetricsScript(src, ready) {
+    if (ready()) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const absolute = new URL(src, location.href).href;
+      const existing = [...document.scripts].find(script => script.src === absolute);
+      const script = existing || document.createElement("script");
+      const done = () => ready() ? resolve() : reject(new Error("Biblioteca de métricas indisponível."));
+      script.addEventListener("load", done, { once: true });
+      script.addEventListener("error", () => reject(new Error("Falha ao carregar métricas.")), { once: true });
+      if (!existing) {
+        script.src = src;
+        script.async = true;
+        document.head.appendChild(script);
+      } else if (ready()) {
+        resolve();
+      }
+    });
+  }
+
+  async function metricsDb() {
+    if (metricsDbPromise) return metricsDbPromise;
+    metricsDbPromise = (async () => {
+      await loadMetricsScript(
+        "https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js",
+        () => Boolean(window.firebase)
+      );
+      await loadMetricsScript(
+        "https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js",
+        () => Boolean(window.firebase?.firestore)
+      );
+      if (!window.firebase.apps.length) window.firebase.initializeApp(METRICS_FIREBASE_CONFIG);
+      return window.firebase.firestore();
+    })().catch(error => {
+      metricsDbPromise = null;
+      throw error;
+    });
+    return metricsDbPromise;
+  }
+
+  function funnelProduct(link) {
+    const categoryFact = [...document.querySelectorAll(".fact")].find(item =>
+      /^categoria$/i.test(item.querySelector("span")?.textContent?.trim() || "")
+    );
+    const title = document.querySelector("h1")?.textContent?.replace(/\s+/g, " ").trim() || "Produto";
+    const category = categoryFact?.textContent?.replace(/categoria/i, "").replace(/\s+/g, " ").trim() || "";
+    return {
+      id: String(link?.dataset?.productId || productIdFromUrl(location.href)).slice(0, 100),
+      title: String(link?.dataset?.productTitle || title).slice(0, 180),
+      category: String(link?.dataset?.productCategory || category).slice(0, 100)
+    };
+  }
+
+  function funnelSource() {
+    const params = new URLSearchParams(location.search);
+    const tagged = params.get("utm_source");
+    if (tagged) return String(tagged).slice(0, 40);
+    try {
+      if (!document.referrer) return "direto";
+      const host = new URL(document.referrer).hostname.replace(/^www\./, "");
+      return host === location.hostname.replace(/^www\./, "") ? "site" : host.slice(0, 40);
+    } catch {
+      return "direto";
+    }
+  }
+
+  async function recordFunnelMetric(type, link) {
+    const product = funnelProduct(link);
+    if (!product.id) return;
+    const params = new URLSearchParams(location.search);
+    const database = await metricsDb();
+    await database.collection("visitas").add({
+      tipo: String(type).slice(0, 40),
+      produtoId: product.id,
+      titulo: product.title,
+      categoria: product.category,
+      canal: funnelSource(),
+      campanha: String(params.get("utm_campaign") || "site").slice(0, 80),
+      dia: todayKey(),
+      origem: location.pathname.slice(0, 80),
+      criadoEm: window.firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+
+  function setupFunnelTracking() {
+    if (document.documentElement.dataset.funnelTrackingReady) return;
+    document.documentElement.dataset.funnelTrackingReady = "true";
+    document.addEventListener("click", event => {
+      const offer = event.target.closest?.("#affiliate-offer");
+      if (!offer) return;
+      void recordFunnelMetric("clique_oferta", offer).catch(error =>
+        console.warn("Não foi possível registrar o clique comercial.", error)
+      );
+    });
+    const offer = document.getElementById("affiliate-offer");
+    if (!offer) return;
+    const product = funnelProduct(offer);
+    const storageKey = "ranking-funnel-view:" + product.id;
+    let lastView = 0;
+    try { lastView = Number(localStorage.getItem(storageKey) || 0); } catch {}
+    if (Date.now() - lastView < METRICS_VIEW_INTERVAL_MS) return;
+    try { localStorage.setItem(storageKey, String(Date.now())); } catch {}
+    const register = () => void recordFunnelMetric("visualizacao_produto", offer).catch(error =>
+      console.warn("Não foi possível registrar a visualização comercial.", error)
+    );
+    if ("requestIdleCallback" in window) window.requestIdleCallback(register, { timeout: 2500 });
+    else setTimeout(register, 1200);
+  }
+
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>'"]/g, char => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
@@ -816,6 +935,7 @@
     injectStyles();
     repairVisibleEditorial();
     renderMascot();
+    setupFunnelTracking();
     if (/dashboard\.html$/i.test(location.pathname)) {
       if (await renderAdmin()) return;
       const observer = new MutationObserver(async () => {
