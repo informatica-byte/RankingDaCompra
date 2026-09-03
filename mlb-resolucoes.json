@@ -1,6 +1,12 @@
 {
-  "atualizadoEm": "2026-09-03T09:59:02.232Z",
+  "atualizadoEm": "2026-09-03T10:02:35.857Z",
   "resultados": {
+    "wrHAXOX6jL92GcVVz8sy": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/tenis-mizuno-creation-corrida-caminhada-macio-treino-oferta/up/MLBU4671312457?pdp_filters=item_id:MLB7391120488#polycard_client=recommendations_vip-pads-mid&wid=MLB7391120488&sid=recos&reco_backend=vpp_pads_mid_retrieval_system_fashion&reco_model=fallback_productos-tom-brands-promocionados&reco_client=vip-pads-mid&reco_item_pos=1&reco_backend_type=low_level&reco_id=0ddadafc-dd10-41c9-8695-ae5839c3a205&is_advertising=true&ad_domain=VIPDESKTOP_MID&ad_position=2&ad_click_id=NGExNTQzNTAtZTM1Yi00MzU1LTkxMDctYjU1MGIzYzEzZmQx",
+      "resolvidoEm": "2026-09-03T10:02:35.847Z"
+    },
     "fx6U2OxhTfQfRh4k5sKn": {
       "status": "ok",
       "mlb": "MLB4803090739",
