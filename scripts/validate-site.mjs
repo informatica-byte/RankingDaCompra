@@ -48,6 +48,9 @@ has(growthTools, /Publicar após aprovação/, "aprovação obrigatória do rank
 has(growthTools, /config\?\.publicado !== true \|\| products\.length !== 5/, "proteção contra ranking incompleto ou não aprovado ausente", "growth-tools.js");
 has(growthTools, /function renderWeeklyComparison\(/, "vitrine pública do ranking comparativo ausente", "growth-tools.js");
 has(growthTools, /Como classificamos/, "transparência da metodologia do ranking ausente", "growth-tools.js");
+has(growthTools, /numberPrice\(item\.preco \?\? item\.price\)/, "compatibilidade entre os campos preco e price ausente", "growth-tools.js");
+has(growthTools, /Preço a confirmar/, "proteção visual contra preço inválido ausente", "growth-tools.js");
+if (/brl\.format\(item\.price\)/.test(growthTools)) fail("growth-tools.js: preço do ranking ainda pode renderizar NaN");
 
 const mobilePanelHtml = await readFile(resolve("painel-celular.html"), "utf8");
 has(mobilePanelHtml, /id="ranking-mobile"/, "painel do ranking comparativo ausente no celular", "painel-celular.html");
