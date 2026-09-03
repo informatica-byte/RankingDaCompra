@@ -212,12 +212,15 @@ async function productUrlMap(products, sitemapXml) {
     files = [];
   }
   const fileSet = new Set(files);
+  const locationSet = new Set(locations);
   const map = new Map();
   for (const product of products) {
     if (product.__productUrl) {
       try {
         const fileName = decodeURIComponent(basename(new URL(product.__productUrl).pathname));
-        if (fileSet.has(fileName)) map.set(product.id, product.__productUrl);
+        if (fileSet.has(fileName) && locationSet.has(product.__productUrl)) {
+          map.set(product.id, product.__productUrl);
+        }
       } catch {
         // Produto sem página publicada fica fora do diretório até a próxima geração.
       }
@@ -236,10 +239,8 @@ async function productUrlMap(products, sitemapXml) {
       map.set(product.id, match);
       continue;
     }
-    const fileName = files
-      .filter((name) => name === `${product.id}.html` || name.startsWith(`${product.id}-`))
-      .sort().at(-1);
-    if (fileName) map.set(product.id, `${SITE}produto/${encodeURIComponent(fileName)}`);
+    // Um arquivo fora do sitemap pode ser uma versão antiga ou duplicada.
+    // Ele permanece preservado no repositório, mas não entra no catálogo público.
   }
   return map;
 }
