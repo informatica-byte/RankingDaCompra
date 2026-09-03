@@ -996,21 +996,23 @@
 
   function weeklyReason(item, position) {
     const parts = [];
+    const displayedPrice = numberPrice(item.preco ?? item.price);
     if (item.clicks > 0) parts.push(item.clicks + (item.clicks === 1 ? " clique em Comprar" : " cliques em Comprar"));
     if (item.views > 0) parts.push(item.views + (item.views === 1 ? " visualização" : " visualizações"));
     if (item.rating > 0) parts.push("nota " + item.rating.toFixed(1).replace(".", ","));
-    parts.push("preço de " + brl.format(item.price));
+    parts.push(displayedPrice > 0 ? "preço de " + brl.format(displayedPrice) : "preço em conferência");
     return "Ficou em " + position + "º lugar pelo equilíbrio entre " + parts.join(", ") + " e a qualidade das informações cadastradas.";
   }
 
   function weeklyRankingCard(item) {
+    const displayedPrice = numberPrice(item.preco ?? item.price);
     const pros = item.pros.length ? item.pros : ["Pontos positivos específicos em revisão editorial."];
     const cons = item.cons.length ? item.cons : ["Pontos de atenção específicos em revisão editorial."];
     return '<article class="weekly-ranking-card">'
       + '<div class="weekly-ranking-position">' + item.position + 'º lugar</div>'
       + '<img src="' + escapeHtml(item.foto) + '" alt="' + escapeHtml(item.titulo) + '" loading="lazy" decoding="async">'
       + '<h3>' + escapeHtml(item.titulo) + '</h3>'
-      + '<strong class="weekly-ranking-price">' + escapeHtml(brl.format(item.price)) + '</strong>'
+      + '<strong class="weekly-ranking-price">' + escapeHtml(displayedPrice > 0 ? brl.format(displayedPrice) : "Preço a confirmar") + '</strong>'
       + '<p class="weekly-ranking-reason">' + escapeHtml(item.motivo) + '</p>'
       + '<div class="weekly-ranking-points"><div><b>✓ Pontos positivos</b><ul>'
       + pros.map(value => '<li>' + escapeHtml(value) + '</li>').join("")
