@@ -141,7 +141,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log("Validação concluída: " + urls.length + " URLs, " + identities.size + " produtos únicos e metadados sociais completos.");
+console.log("Validação concluída: " + urls.length + " URLs, " + sitemapProductUrls.size + " produtos públicos e metadados sociais completos.");
 
 
 
