@@ -38,7 +38,7 @@ has(growthTools, /data-ranki-action="ofertas"/, "atalhos do Ranki Ajuda ausentes
 has(growthTools, /aria-controls="ranki-help"/, "controle acessível do Ranki Ajuda ausente", "growth-tools.js");
 has(growthTools, /if \(event\.key === "Escape"\) closeRankiHelp\(\)/, "fechamento do Ranki Ajuda pelo teclado ausente", "growth-tools.js");
 has(growthTools, /function setupFunnelTracking\(\)/, "rastreamento do funil comercial ausente", "growth-tools.js");
-has(growthTools, /recordFunnelMetric\("visualizacao_produto"/, "visualizações de produto não são registradas no funil", "growth-tools.js");
+has(growthTools, /recordFunnelMetric\("clique_secao",\s*offer,\s*"view:"/, "visualizações de produto não são registradas de forma compatível com as regras", "growth-tools.js");
 has(growthTools, /recordFunnelMetric\("clique_oferta"/, "cliques em Comprar não são registrados no funil", "growth-tools.js");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
