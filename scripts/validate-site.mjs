@@ -19,7 +19,7 @@ has(homeHtml, /const rotaInicial=.*:homeComPromocoes\(\)/, "a vitrine inicial ai
 has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo histórico ausente", "index.html");
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
-has(homeHtml, /growth-tools\.js\?v=20260904-ranking2/, "cache antigo das ferramentas da vitrine ainda pode ser usado", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20260904-rankingia1/, "cache antigo das ferramentas da vitrine ainda pode ser usado", "index.html");
 
 const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
 has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
@@ -60,6 +60,10 @@ has(growthTools, /Por que está em /, "justificativa individual de posição aus
 has(growthTools, /Ficou atrás do /, "comparação com o colocado anterior ausente", "growth-tools.js");
 has(growthTools, /abaixo da média dos cinco/, "comparação de preço com a média ausente", "growth-tools.js");
 has(growthTools, /Nota comparativa /, "nota comparativa de 0 a 10 ausente", "growth-tools.js");
+has(growthTools, /id="weekly-ranking-ai"/, "botão de análise humanizada ausente", "growth-tools.js");
+has(growthTools, /function weeklyApplyAIAnalysis\(/, "validação local da análise por IA ausente", "growth-tools.js");
+has(growthTools, /Análise editorial com IA auditada/, "análise humanizada não aparece na vitrine", "growth-tools.js");
+has(growthTools, /Fontes consolidadas:/, "fontes da análise humanizada não aparecem na vitrine", "growth-tools.js");
 if (/pelo equilíbrio entre/.test(growthTools)) fail("growth-tools.js: justificativa vaga do ranking ainda presente");
 if (/brl\.format\(item\.price\)/.test(growthTools)) fail("growth-tools.js: preço do ranking ainda pode renderizar NaN");
 
@@ -72,13 +76,18 @@ has(mobilePanelHtml, /where\("dia",">=",chave\)/, "análise dos últimos sete di
 has(mobilePanelHtml, /Publicar após aprovação/, "aprovação obrigatória do ranking ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /doc\(db,"configuracoes","ranking-semanal"\)/, "sincronização do ranking entre os painéis ausente", "painel-celular.html");
 has(mobilePanelHtml, /rankingPontuar\(candidatos\)\.slice\(0,5\)/, "limite de cinco colocados ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /id="ranking-ia"/, "botão de análise humanizada ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /function rankingGerarIA\(/, "gerador humanizado ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /function rankingAplicarIA\(/, "auditoria local da análise ausente no celular", "painel-celular.html");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
 has(dashboardHtml, /id="central-visualizacoes-semana"/, "contador de visualizações do funil ausente", "dashboard.html");
 has(dashboardHtml, /id="central-taxa-clique"/, "taxa de avanço ao Mercado Livre ausente", "dashboard.html");
 has(dashboardHtml, /Produtos vistos sem resultado/, "lista de produtos vistos sem resultado ausente", "dashboard.html");
+has(dashboardHtml, /window\.gerarAnaliseRankingIA/, "integração Gemini do ranking humanizado ausente", "dashboard.html");
+has(dashboardHtml, /segunda revisora independente/, "segunda IA revisora do ranking ausente", "dashboard.html");
 has(dashboardHtml, /visualizacao_produto/, "painel não reconhece visualizações das páginas de produto", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20260904-ranking2/, "cache antigo das ferramentas do painel ainda pode ser usado", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20260904-rankingia1/, "cache antigo das ferramentas do painel ainda pode ser usado", "dashboard.html");
 const seasonalThemeIds = ["ano-novo", "volta-aulas", "carnaval", "consumidor", "pascoa", "maes", "namorados", "festa-junina", "pais", "criancas", "black-friday", "natal"];
 for (const theme of seasonalThemeIds) {
   if (!growthTools.includes(`${theme}:`) && !growthTools.includes(`"${theme}":`)) fail(`growth-tools.js: tema sazonal ausente: ${theme}`);
@@ -97,7 +106,7 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260904-ranking2"><\/script>/, "versão atual do corretor editorial não foi incluída nas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260904-rankingia1"><\/script>/, "versão atual do corretor editorial não foi incluída nas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="affiliate-offer"/, "botão de compra rastreável ausente das páginas de produto", "scripts/generate-sitemap.mjs");
 
 const sitemap = await readFile(resolve("sitemap.xml"), "utf8");
@@ -161,6 +170,8 @@ has(methodHtml, /Avaliação informada — 30%/, "peso de avaliação ausente da
 has(methodHtml, /Interesse observado — 15%/, "peso de interesse ausente da metodologia pública", "como-avaliamos.html");
 has(methodHtml, /Qualidade das evidências — 20%/, "peso de evidências ausente da metodologia pública", "como-avaliamos.html");
 has(methodHtml, /não tratamos cliques como vendas/i, "limite editorial sobre cliques ausente", "como-avaliamos.html");
+has(methodHtml, /Uma segunda IA audita/, "auditoria por IA não está explicada ao público", "como-avaliamos.html");
+has(methodHtml, /não altera silenciosamente a ordem calculada/i, "limite da IA sobre a classificação ausente", "como-avaliamos.html");
 
 for (const file of ["como-avaliamos.html", "sobre.html", "politica-afiliados.html", "privacidade.html", "contato.html"]) {
   const html = await readFile(resolve(file), "utf8");
