@@ -690,6 +690,90 @@ Formato obrigatório:
             }
         };
 
+        window.gerarAnaliseRankingIA = async draft => {
+            const produtos = (Array.isArray(draft?.produtos) ? draft.produtos : []).map(item => ({
+                id: String(item.id),
+                posicao: Number(item.position),
+                titulo: String(item.titulo || ""),
+                preco: Number(item.preco || 0),
+                notaComparativa: Number(item.scoreTotal || 0),
+                criterios: item.criterios || {},
+                avaliacaoInformada: Number(item.nota || 0),
+                cliques7Dias: Number(item.clicks || 0),
+                visualizacoes7Dias: Number(item.views || 0),
+                pontosPositivos: Array.isArray(item.pros) ? item.pros : [],
+                pontosAtencao: Array.isArray(item.cons) ? item.cons : [],
+                justificativaMatematica: String(item.motivo || ""),
+                paginaPublica: String(item.productUrl || "")
+            }));
+            if (produtos.length !== 5) throw new Error("Prepare primeiro uma comparação válida com cinco produtos.");
+            const formato = `{
+  "resumoGeral": "síntese de 250 a 550 caracteres",
+  "produtos": [
+    {
+      "id": "id exatamente igual ao recebido",
+      "veredito": "avaliação humana, concreta e equilibrada",
+      "paraQuem": "perfil de comprador beneficiado pelos dados disponíveis",
+      "comparacaoDireta": "diferença concreta para os concorrentes do grupo",
+      "limitePrincipal": "limitação real ou informação importante ausente"
+    }
+  ]
+}`;
+            const regras = `Você é a analista editorial brasileira do Ranking da Compra. Compare os cinco produtos como uma pessoa experiente explicaria a um comprador, com linguagem natural e sem frases publicitárias.
+
+REGRAS DE VERACIDADE:
+- Use exclusivamente os DADOS CONSOLIDADOS fornecidos e, quando a ferramenta conseguir abrir, as cinco PÁGINAS PÚBLICAS listadas.
+- Não afirme que testou fisicamente, mediu desempenho, confirmou vendas ou pesquisou toda a internet.
+- Não invente garantia, durabilidade, reputação, quantidade vendida, qualidade de construção ou especificações.
+- Diferencie avaliação informada, nota comparativa calculada e interesse observado no próprio site.
+- Para cada posição, cite pelo menos duas diferenças concretas: preço, nota, critério, vantagem ou limitação.
+- Explique honestamente quando a ficha não permite concluir algo.
+- Preserve a ordem matemática recebida; você explica a ordem, não cria outra.
+- Escreva veredito, paraQuem, comparacaoDireta e limitePrincipal com 40 a 240 caracteres cada.
+- Retorne os cinco IDs exatamente uma vez e somente JSON válido, sem markdown.
+
+DADOS CONSOLIDADOS:
+${JSON.stringify(produtos)}
+
+FORMATO:
+${formato}`;
+            let candidata;
+            let fonte = "dados_consolidados";
+            try {
+                const paginas = produtos.map(item => item.paginaPublica).filter(url => /^https:\/\//i.test(url));
+                const comFontes = await modelComFontePublica.generateContent(`Abra as páginas públicas abaixo quando estiverem acessíveis:
+${paginas.join("\n")}
+
+${regras}`);
+                if (fonteRecuperadaComSucesso(comFontes.response)) fonte = "paginas_publicas_e_dados_consolidados";
+                candidata = JSON.parse(limparJsonDaIA(comFontes.response.text()));
+            } catch (erroFonte) {
+                console.warn("As páginas públicas não puderam ser consolidadas; usando somente os dados já verificados.", erroFonte);
+                const resposta = await model.generateContent(regras);
+                candidata = JSON.parse(limparJsonDaIA(resposta.response.text()));
+            }
+            const auditoria = `Você é a segunda revisora independente do Ranking da Compra. Audite a análise candidata comparando cada frase com os dados consolidados.
+
+- Remova ou corrija qualquer afirmação sem apoio nos dados.
+- Não acrescente conhecimento próprio.
+- Preserve os cinco IDs e a ordem recebida.
+- Mantenha linguagem natural, clara e útil.
+- Cada comparação deve explicar diferenças concretas entre os produtos.
+- Retorne somente JSON válido no mesmo formato solicitado.
+
+DADOS CONSOLIDADOS:
+${JSON.stringify(produtos)}
+
+ANÁLISE CANDIDATA:
+${JSON.stringify(candidata)}
+
+FORMATO:
+${formato}`;
+            const revisao = await modelRevisor.generateContent(auditoria);
+            const auditada = JSON.parse(limparJsonDaIA(revisao.response.text()));
+            return { ...auditada, metodo: "gemini_gerador_e_gemini_revisor", fonte };
+        };
+
         function limparJsonDaIA(valor) {
             return String(valor || '').trim()
                 .replace(/^\s*```json\s*/i, '')
@@ -2630,7 +2714,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 })();
 </script>
 
-  <script defer src="/growth-tools.js?v=20260904-ranking2"></script>
+  <script defer src="/growth-tools.js?v=20260904-rankingia1"></script>
 </body>
 </html>
 
