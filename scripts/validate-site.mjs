@@ -79,6 +79,9 @@ has(mobilePanelHtml, /rankingPontuar\(candidatos\)\.slice\(0,5\)/, "limite de ci
 has(mobilePanelHtml, /id="ranking-ia"/, "botão de análise humanizada ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /function rankingGerarIA\(/, "gerador humanizado ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /function rankingAplicarIA\(/, "auditoria local da análise ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /id="focus-mobile"/, "resumo da Central de foco ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /function focusMobileRender\(/, "cálculo de foco por categoria ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /Usar categoria no ranking semanal/, "atalho móvel para o ranking ausente", "painel-celular.html");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
 has(dashboardHtml, /id="central-visualizacoes-semana"/, "contador de visualizações do funil ausente", "dashboard.html");
@@ -87,6 +90,10 @@ has(dashboardHtml, /Produtos vistos sem resultado/, "lista de produtos vistos se
 has(dashboardHtml, /window\.gerarAnaliseRankingIA/, "integração Gemini do ranking humanizado ausente", "dashboard.html");
 has(dashboardHtml, /segunda revisora independente/, "segunda IA revisora do ranking ausente", "dashboard.html");
 has(dashboardHtml, /visualizacao_produto/, "painel não reconhece visualizações das páginas de produto", "dashboard.html");
+has(dashboardHtml, /id="central-foco"/, "Central de foco por categoria e produto ausente", "dashboard.html");
+has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Central de foco ausente", "dashboard.html");
+has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
+has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
 has(dashboardHtml, /growth-tools\.js\?v=20260904-rankingia1/, "cache antigo das ferramentas do painel ainda pode ser usado", "dashboard.html");
 const seasonalThemeIds = ["ano-novo", "volta-aulas", "carnaval", "consumidor", "pascoa", "maes", "namorados", "festa-junina", "pais", "criancas", "black-friday", "natal"];
 for (const theme of seasonalThemeIds) {
