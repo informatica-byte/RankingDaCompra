@@ -46,7 +46,7 @@ has(growthTools, /function weeklyBuildDraft\(/, "motor de seleção do ranking c
 has(growthTools, /function weeklyMetricKind\(/, "uso de cliques e visualizações no ranking semanal ausente", "growth-tools.js");
 has(growthTools, /setupWeeklyRankingAdmin\(container\)/, "painel de revisão do ranking semanal ausente", "growth-tools.js");
 has(growthTools, /Publicar após aprovação/, "aprovação obrigatória do ranking semanal ausente", "growth-tools.js");
-has(growthTools, /config\?\.publicado !== true \|\| products\.length !== 5/, "proteção contra ranking incompleto ou não aprovado ausente", "growth-tools.js");
+has(growthTools, /config\?\.publicado !== true \|\| storedProducts\.length !== 5/, "proteção contra ranking incompleto ou não aprovado ausente", "growth-tools.js");
 has(growthTools, /function renderWeeklyComparison\(/, "vitrine pública do ranking comparativo ausente", "growth-tools.js");
 has(growthTools, /Como classificamos/, "transparência da metodologia do ranking ausente", "growth-tools.js");
 has(growthTools, /numberPrice\(item\.preco \?\? item\.price\)/, "compatibilidade entre os campos preco e price ausente", "growth-tools.js");
@@ -71,7 +71,7 @@ has(mobilePanelHtml, /rankingSugerirTema/, "sugestão pelo interesse semanal aus
 has(mobilePanelHtml, /where\("dia",">=",chave\)/, "análise dos últimos sete dias ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /Publicar após aprovação/, "aprovação obrigatória do ranking ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /doc\(db,"configuracoes","ranking-semanal"\)/, "sincronização do ranking entre os painéis ausente", "painel-celular.html");
-has(mobilePanelHtml, /candidatos\.slice\(0,5\)/, "limite de cinco colocados ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /rankingPontuar\(candidatos\)\.slice\(0,5\)/, "limite de cinco colocados ausente no celular", "painel-celular.html");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
 has(dashboardHtml, /id="central-visualizacoes-semana"/, "contador de visualizações do funil ausente", "dashboard.html");
