@@ -994,25 +994,102 @@
       .toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
   }
 
-  function weeklyReason(item, position) {
-    const parts = [];
-    const displayedPrice = numberPrice(item.preco ?? item.price);
-    if (item.clicks > 0) parts.push(item.clicks + (item.clicks === 1 ? " clique em Comprar" : " cliques em Comprar"));
-    if (item.views > 0) parts.push(item.views + (item.views === 1 ? " visualização" : " visualizações"));
-    if (item.rating > 0) parts.push("nota " + item.rating.toFixed(1).replace(".", ","));
-    parts.push(displayedPrice > 0 ? "preço de " + brl.format(displayedPrice) : "preço em conferência");
-    return "Ficou em " + position + "º lugar pelo equilíbrio entre " + parts.join(", ") + " e a qualidade das informações cadastradas.";
+  function weeklyClamp(value, min = 0, max = 100) {
+    return Math.min(max, Math.max(min, Number.isFinite(value) ? value : min));
+  }
+
+  function weeklyScoreProducts(items) {
+    const normalized = items.map(item => ({
+      ...item,
+      preco: numberPrice(item.preco ?? item.price),
+      nota: numberPrice(item.nota ?? item.rating),
+      clicks: Number(item.clicks ?? item.cliques) || 0,
+      views: Number(item.views ?? item.visitas) || 0,
+      pros: weeklyTextList(item.pros || item.pontosPositivos),
+      cons: weeklyTextList(item.cons || item.pontosNegativos)
+    }));
+    const prices = normalized.map(item => item.preco).filter(value => value > 0);
+    const minPrice = Math.min(...prices);
+    const maxPrice = Math.max(...prices);
+    const averagePrice = prices.reduce((total, value) => total + value, 0) / Math.max(1, prices.length);
+    const maxDemand = Math.max(0, ...normalized.map(item => item.clicks * 4 + item.views));
+    const ranked = normalized.map(item => {
+      const priceRange = maxPrice - minPrice;
+      const costBenefit = item.preco > 0
+        ? (priceRange > 0 ? 100 - ((item.preco - minPrice) / priceRange) * 45 : 100)
+        : 0;
+      const rating = item.nota > 0 ? weeklyClamp((item.nota / 5) * 100) : 55;
+      const demandRaw = item.clicks * 4 + item.views;
+      const demand = maxDemand > 0 ? 30 + (Math.log1p(demandRaw) / Math.log1p(maxDemand)) * 70 : 60;
+      const evidence = weeklyClamp(35 + item.pros.length * 12 + item.cons.length * 10 + (item.nota > 0 ? 12 : 0));
+      const total = costBenefit * 0.35 + rating * 0.30 + demand * 0.15 + evidence * 0.20;
+      return {
+        ...item,
+        scoreTotal: Number((total / 10).toFixed(1)),
+        criterios: {
+          custoBeneficio: Number((costBenefit / 10).toFixed(1)),
+          avaliacao: Number((rating / 10).toFixed(1)),
+          interesse: Number((demand / 10).toFixed(1)),
+          evidencia: Number((evidence / 10).toFixed(1))
+        }
+      };
+    }).sort((a, b) => b.scoreTotal - a.scoreTotal || b.nota - a.nota || a.preco - b.preco);
+    return ranked.map((item, index, group) => {
+      const position = index + 1;
+      const previous = group[index - 1] || null;
+      return { ...item, position, motivo: weeklyReason(item, position, { averagePrice, previous }) };
+    });
+  }
+
+  function weeklyReason(item, position, context = {}) {
+    const price = numberPrice(item.preco ?? item.price);
+    const average = numberPrice(context.averagePrice);
+    const previous = context.previous;
+    const difference = average > 0 ? Math.round(Math.abs(price - average) / average * 100) : 0;
+    const priceFact = price > 0 && average > 0
+      ? (price <= average ? difference + "% abaixo da média dos cinco" : difference + "% acima da média dos cinco")
+      : "preço ainda sujeito a confirmação";
+    const ratingFact = item.nota > 0 ? "nota informada de " + item.nota.toFixed(1).replace(".", ",") + "/5" : "sem nota disponível";
+    const demandFact = item.clicks || item.views
+      ? item.clicks + " clique(s) em Comprar e " + item.views + " visualização(ões) nos últimos 7 dias"
+      : "ainda sem interação suficiente nos últimos 7 dias";
+    const mainPro = item.pros[0] || "ficha com os dados comparáveis disponíveis";
+    const mainCon = item.cons[0] || "faltam detalhes adicionais para uma conclusão mais ampla";
+    let placement = "Lidera porque obteve o melhor resultado ponderado entre custo-benefício, avaliação, interesse e evidências cadastradas.";
+    if (position > 1 && previous) {
+      const gaps = [
+        ["custo-benefício", previous.criterios.custoBeneficio - item.criterios.custoBeneficio],
+        ["avaliação", previous.criterios.avaliacao - item.criterios.avaliacao],
+        ["interesse observado", previous.criterios.interesse - item.criterios.interesse],
+        ["qualidade das evidências", previous.criterios.evidencia - item.criterios.evidencia]
+      ].sort((a, b) => b[1] - a[1]);
+      const decisive = gaps[0][1] > 0.05 ? gaps[0][0] : "avaliação e preço";
+      const scoreGap = Math.max(0, previous.scoreTotal - item.scoreTotal);
+      placement = scoreGap < 0.1
+        ? "Ficou em " + position + "º após empate técnico na nota final; o desempate considerou " + decisive + "."
+        : "Ficou atrás do " + (position - 1) + "º colocado principalmente em " + decisive
+          + ", com diferença de " + scoreGap.toFixed(1).replace(".", ",") + " ponto(s) na nota final.";
+    }
+    return placement + " Dados objetivos: " + priceFact + "; " + ratingFact + "; " + demandFact
+      + ". Principal vantagem: " + mainPro + ". Limitação considerada: " + mainCon + ".";
   }
 
   function weeklyRankingCard(item) {
     const displayedPrice = numberPrice(item.preco ?? item.price);
     const pros = item.pros.length ? item.pros : ["Pontos positivos específicos em revisão editorial."];
     const cons = item.cons.length ? item.cons : ["Pontos de atenção específicos em revisão editorial."];
+    const criteria = item.criterios || {};
     return '<article class="weekly-ranking-card">'
       + '<div class="weekly-ranking-position">' + item.position + 'º lugar</div>'
       + '<img src="' + escapeHtml(item.foto) + '" alt="' + escapeHtml(item.titulo) + '" loading="lazy" decoding="async">'
       + '<h3>' + escapeHtml(item.titulo) + '</h3>'
       + '<strong class="weekly-ranking-price">' + escapeHtml(displayedPrice > 0 ? brl.format(displayedPrice) : "Preço a confirmar") + '</strong>'
+      + '<div class="weekly-ranking-score"><b>Nota comparativa ' + escapeHtml(Number(item.scoreTotal || 0).toFixed(1).replace(".", ",")) + '/10</b>'
+      + '<span>Custo-benefício ' + escapeHtml(Number(criteria.custoBeneficio || 0).toFixed(1).replace(".", ",")) + '</span>'
+      + '<span>Avaliação ' + escapeHtml(Number(criteria.avaliacao || 0).toFixed(1).replace(".", ",")) + '</span>'
+      + '<span>Interesse ' + escapeHtml(Number(criteria.interesse || 0).toFixed(1).replace(".", ",")) + '</span>'
+      + '<span>Evidências ' + escapeHtml(Number(criteria.evidencia || 0).toFixed(1).replace(".", ",")) + '</span></div>'
+      + '<h4 class="weekly-ranking-why">Por que está em ' + item.position + 'º?</h4>'
       + '<p class="weekly-ranking-reason">' + escapeHtml(item.motivo) + '</p>'
       + '<div class="weekly-ranking-points"><div><b>✓ Pontos positivos</b><ul>'
       + pros.map(value => '<li>' + escapeHtml(value) + '</li>').join("")
@@ -1036,8 +1113,9 @@
 
   function renderWeeklyComparison(config) {
     document.querySelector("[data-weekly-comparison]")?.remove();
-    const products = Array.isArray(config?.produtos) ? config.produtos.slice(0, 5) : [];
-    if (config?.publicado !== true || products.length !== 5 || !/^\/(?:index\.html)?$/.test(location.pathname)) return;
+    const storedProducts = Array.isArray(config?.produtos) ? config.produtos.slice(0, 5) : [];
+    if (config?.publicado !== true || storedProducts.length !== 5 || !/^\/(?:index\.html)?$/.test(location.pathname)) return;
+    const products = weeklyScoreProducts(storedProducts);
     const section = document.createElement("section");
     section.className = "weekly-comparison";
     section.id = "ranking-da-semana";
@@ -1050,7 +1128,7 @@
       + '<p>' + escapeHtml(subtitle) + ' Confira preço, frete e estoque antes da compra.</p></div>'
       + '<a href="/como-avaliamos.html">Como classificamos</a></div>'
       + '<div class="weekly-ranking-grid">' + products.map(weeklyRankingCard).join("") + '</div>'
-      + '<p class="weekly-ranking-method">A ordem considera procura dentro do site, cliques em Comprar, avaliação, preço, atualidade e qualidade da ficha cadastrada. A aprovação final é sempre feita pelo administrador.</p>';
+      + '<p class="weekly-ranking-method"><b>Metodologia:</b> nota de 0 a 10 calculada com custo-benefício (35%), avaliação informada (30%), interesse observado nos últimos 7 dias (15%) e qualidade das evidências cadastradas (20%). Preço, frete, estoque e avaliações podem mudar; confira o anúncio antes da compra. A aprovação final é sempre feita pelo administrador.</p>';
     const anchor = document.getElementById("top5-semanal") || document.querySelector("#promocoes") || document.querySelector("main");
     if (anchor?.parentNode) anchor.insertAdjacentElement(anchor.matches("main") ? "afterbegin" : "afterend", section);
   }
@@ -1122,33 +1200,25 @@
       const signals = metricScores.get(String(product.id)) || { clicks: 0, views: 0 };
       const match = !queryWords.length || queryWords.every(word => haystack.includes(word));
       const withinBudget = !(maxPrice > 0) || price <= maxPrice;
-      const editorial = weeklyTextList(product.pros || product.pontosPositivos).length
-        + weeklyTextList(product.contras || product.pontosNegativos).length;
-      const score = signals.clicks * 80 + signals.views * 14 + rating * 12
-        + numberPrice(product.ranking) * 2 + editorial * 4;
-      return { product, price, rating, clicks: signals.clicks, views: signals.views, score, match, withinBudget };
-    }).filter(item => item.match && item.withinBudget)
-      .sort((a, b) => b.score - a.score || b.rating - a.rating || a.price - b.price);
-    if (candidates.length < 5) throw new Error("Encontrei somente " + candidates.length + " produto(s) válido(s) nesse filtro. Amplie o preço máximo ou use um termo mais geral.");
-    const selected = candidates.slice(0, 5).map((item, index) => {
-      const product = item.product;
-      const snapshot = {
-        id: String(product.id), position: index + 1, titulo: repairPortugueseText(product.titulo),
-        categoria: String(product.categoria || ""), categoriaNome: data.categories[String(product.categoria || "")] || String(product.categoria || ""),
-        preco: item.price, foto: weeklyProductImage(product), productUrl: weeklyProductUrl(product),
-        linkAfiliado: String(product.linkAfiliado || product.link || ""), nota: item.rating,
+      return {
+        id: String(product.id), titulo: repairPortugueseText(product.titulo),
+        categoria: String(product.categoria || ""), categoriaNome: label,
+        preco: price, foto: weeklyProductImage(product), productUrl: weeklyProductUrl(product),
+        linkAfiliado: String(product.linkAfiliado || product.link || ""), nota: rating,
         pros: weeklyTextList(product.pros || product.pontosPositivos),
         cons: weeklyTextList(product.contras || product.pontosNegativos),
-        clicks: item.clicks, views: item.views
+        clicks: signals.clicks, views: signals.views, match, withinBudget
       };
-      snapshot.motivo = weeklyReason({ ...item, ...snapshot }, index + 1);
-      return snapshot;
-    });
-    const label = query || selected[0].categoriaNome || "produtos";
+    }).filter(item => item.match && item.withinBudget);
+    if (candidates.length < 5) throw new Error("Encontrei somente " + candidates.length + " produto(s) válido(s) nesse filtro. Amplie o preço máximo ou use um termo mais geral.");
+    const selected = weeklyScoreProducts(candidates).slice(0, 5);
+    const finalSelection = weeklyScoreProducts(selected);
+    const label = query || finalSelection[0].categoriaNome || "produtos";
     return {
-      versao: 1, semana: weeklyMondayKey(), validoAte: weeklyValidUntil(weeklyMondayKey()),
+      versao: 2, semana: weeklyMondayKey(), validoAte: weeklyValidUntil(weeklyMondayKey()),
       titulo: "Top 5 " + String(label).trim() + (maxPrice > 0 ? " até " + brl.format(maxPrice) : ""),
-      termo: String(query || "").trim(), precoMaximo: maxPrice || 0, produtos: selected
+      termo: String(query || "").trim(), precoMaximo: maxPrice || 0, produtos: finalSelection,
+      metodologia: { custoBeneficio: 35, avaliacao: 30, interesse: 15, evidencia: 20 }
     };
   }
 
@@ -1254,7 +1324,7 @@
     if (document.getElementById("weekly-ranking-style")) return;
     const style = document.createElement("style");
     style.id = "weekly-ranking-style";
-    style.textContent = '.weekly-comparison{max-width:1180px;margin:28px auto;padding:24px;border:1px solid #b8d7ca;border-radius:22px;background:linear-gradient(145deg,#f4fff9,#fff);box-sizing:border-box}.weekly-comparison-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px}.weekly-comparison-head small{font-weight:900;letter-spacing:.08em;color:#08784f}.weekly-comparison-head h2{margin:5px 0 6px;font-size:clamp(1.45rem,3vw,2.2rem);color:#073b2b}.weekly-comparison-head p{margin:0;color:#405a50}.weekly-comparison-head>a{font-weight:800;color:#086e4a}.weekly-ranking-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.weekly-ranking-card{position:relative;display:flex;flex-direction:column;padding:13px;border:1px solid #cfe1d8;border-radius:15px;background:#fff;box-shadow:0 8px 24px rgba(5,74,51,.07)}.weekly-ranking-position{align-self:flex-start;margin-bottom:8px;padding:5px 9px;border-radius:999px;background:#0b7a53;color:#fff;font-size:.78rem;font-weight:900}.weekly-ranking-card:first-child{border:2px solid #e4ae18;background:linear-gradient(180deg,#fffbea,#fff)}.weekly-ranking-card:first-child .weekly-ranking-position{background:#a86d00}.weekly-ranking-card img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}.weekly-ranking-card h3{font-size:.98rem;line-height:1.28;margin:11px 0 7px;color:#10251e}.weekly-ranking-price{font-size:1.14rem;color:#08784f}.weekly-ranking-reason{font-size:.82rem;line-height:1.42;color:#465a52}.weekly-ranking-points{font-size:.78rem;line-height:1.35}.weekly-ranking-points b{display:block;color:#174c3a}.weekly-ranking-points ul{margin:4px 0 10px;padding-left:17px}.weekly-ranking-card>a{margin-top:auto;padding:10px;border-radius:9px;background:#1468d4;color:#fff;text-align:center;text-decoration:none;font-weight:900}.weekly-ranking-method{margin:16px 0 0;font-size:.78rem;color:#557066}.weekly-ranking-admin{margin-top:26px;padding-top:24px;border-top:2px solid #d7eadf}.weekly-admin-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}.weekly-admin-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.weekly-admin-actions button,.weekly-admin-actions a{border:1px solid #0a7850;border-radius:9px;padding:10px 12px;background:#fff;color:#075a3e;font-weight:800;text-decoration:none;cursor:pointer}.weekly-admin-actions button:nth-child(2),.weekly-admin-actions button:nth-child(3){background:#087a52;color:#fff}.weekly-admin-actions button:disabled{opacity:.5;cursor:not-allowed}.weekly-ranking-status{font-weight:700;color:#285c49}.weekly-admin-draft{margin-top:14px;padding:14px;border-radius:12px;background:#f2faf6}.weekly-admin-draft h3{margin:0 0 5px}.weekly-admin-draft ol{padding-left:24px}.weekly-admin-draft li{margin:10px 0}.weekly-admin-draft li span{display:block;font-size:.85rem;color:#4c625a}@media(max-width:980px){.weekly-ranking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.weekly-comparison{margin:18px 10px;padding:16px}.weekly-comparison-head{display:block}.weekly-comparison-head>a{display:inline-block;margin-top:10px}.weekly-ranking-grid,.weekly-admin-grid{grid-template-columns:1fr}}';
+    style.textContent = '.weekly-comparison{max-width:1180px;margin:28px auto;padding:24px;border:1px solid #b8d7ca;border-radius:22px;background:linear-gradient(145deg,#f4fff9,#fff);box-sizing:border-box}.weekly-comparison-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px}.weekly-comparison-head small{font-weight:900;letter-spacing:.08em;color:#08784f}.weekly-comparison-head h2{margin:5px 0 6px;font-size:clamp(1.45rem,3vw,2.2rem);color:#073b2b}.weekly-comparison-head p{margin:0;color:#405a50}.weekly-comparison-head>a{font-weight:800;color:#086e4a}.weekly-ranking-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.weekly-ranking-card{position:relative;display:flex;flex-direction:column;padding:13px;border:1px solid #cfe1d8;border-radius:15px;background:#fff;box-shadow:0 8px 24px rgba(5,74,51,.07)}.weekly-ranking-position{align-self:flex-start;margin-bottom:8px;padding:5px 9px;border-radius:999px;background:#0b7a53;color:#fff;font-size:.78rem;font-weight:900}.weekly-ranking-card:first-child{border:2px solid #e4ae18;background:linear-gradient(180deg,#fffbea,#fff)}.weekly-ranking-card:first-child .weekly-ranking-position{background:#a86d00}.weekly-ranking-card img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}.weekly-ranking-card h3{font-size:.98rem;line-height:1.28;margin:11px 0 7px;color:#10251e}.weekly-ranking-price{font-size:1.14rem;color:#08784f}.weekly-ranking-score{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:9px 0;padding:9px;border:1px solid #b9d7ca;border-radius:9px;background:#f4fbf7;font-size:.72rem;color:#31594a}.weekly-ranking-score b{grid-column:1/-1;color:#075f40;font-size:.86rem}.weekly-ranking-why{margin:8px 0 2px;font-size:.84rem;color:#173f31}.weekly-ranking-reason{font-size:.82rem;line-height:1.42;color:#465a52}.weekly-ranking-points{font-size:.78rem;line-height:1.35}.weekly-ranking-points b{display:block;color:#174c3a}.weekly-ranking-points ul{margin:4px 0 10px;padding-left:17px}.weekly-ranking-card>a{margin-top:auto;padding:10px;border-radius:9px;background:#1468d4;color:#fff;text-align:center;text-decoration:none;font-weight:900}.weekly-ranking-method{margin:16px 0 0;font-size:.78rem;color:#557066}.weekly-ranking-admin{margin-top:26px;padding-top:24px;border-top:2px solid #d7eadf}.weekly-admin-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}.weekly-admin-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.weekly-admin-actions button,.weekly-admin-actions a{border:1px solid #0a7850;border-radius:9px;padding:10px 12px;background:#fff;color:#075a3e;font-weight:800;text-decoration:none;cursor:pointer}.weekly-admin-actions button:nth-child(2),.weekly-admin-actions button:nth-child(3){background:#087a52;color:#fff}.weekly-admin-actions button:disabled{opacity:.5;cursor:not-allowed}.weekly-ranking-status{font-weight:700;color:#285c49}.weekly-admin-draft{margin-top:14px;padding:14px;border-radius:12px;background:#f2faf6}.weekly-admin-draft h3{margin:0 0 5px}.weekly-admin-draft ol{padding-left:24px}.weekly-admin-draft li{margin:10px 0}.weekly-admin-draft li span{display:block;font-size:.85rem;color:#4c625a}@media(max-width:980px){.weekly-ranking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.weekly-comparison{margin:18px 10px;padding:16px}.weekly-comparison-head{display:block}.weekly-comparison-head>a{display:inline-block;margin-top:10px}.weekly-ranking-grid,.weekly-admin-grid{grid-template-columns:1fr}}';
     document.head.appendChild(style);
   }
 
