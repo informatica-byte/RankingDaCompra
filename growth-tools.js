@@ -986,7 +986,16 @@
     const type = String(metric?.tipo || "");
     const channel = String(metric?.canal || "");
     if (type === "clique_secao" && channel.startsWith("view:")) return "visualizacao_produto";
-    return type;
+    if (["clique_oferta", "compartilhamento", "clique_secao", "visualizacao_produto"].includes(type)) return type;
+    const legacy = String(metric?.origem || "").split(":");
+    return legacy[0] === "evento" ? String(legacy[1] || "") : type;
+  }
+
+  function weeklyMetricProductId(metric) {
+    const direct = String(metric?.produtoId || "");
+    if (direct) return direct;
+    const legacy = String(metric?.origem || "").split(":");
+    return legacy[0] === "evento" ? String(legacy[2] || "") : "";
   }
 
   function weeklyNormalize(value) {
@@ -1202,7 +1211,7 @@
     const byId = new Map(data.products.map(product => [String(product.id), product]));
     const categoryScores = new Map();
     for (const metric of data.metrics) {
-      const product = byId.get(String(metric.produtoId || ""));
+      const product = byId.get(weeklyMetricProductId(metric));
       if (!product) continue;
       const kind = weeklyMetricKind(metric);
       const weight = kind === "clique_oferta" ? 5 : kind === "visualizacao_produto" ? 1 : 0;
@@ -1226,7 +1235,7 @@
     const queryWords = normalizedQuery.split(/\s+/).filter(Boolean);
     const metricScores = new Map();
     for (const metric of data.metrics) {
-      const id = String(metric.produtoId || "");
+      const id = weeklyMetricProductId(metric);
       if (!id) continue;
       const kind = weeklyMetricKind(metric);
       const current = metricScores.get(id) || { clicks: 0, views: 0 };

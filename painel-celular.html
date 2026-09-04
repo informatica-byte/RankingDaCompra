@@ -264,7 +264,9 @@ function rankingPrecoProduto(p){return numero(p.precoPromocional)||numero(p.prec
 function rankingLista(v){return lista(v).map(x=>String(x).replace(/\s+/g," ").trim()).filter(x=>x.length>=8).slice(0,3)}
 function rankingFoto(p){const u=String(p.foto||p.imagem||p.image||"").trim();try{const x=new URL(u,location.origin);return x.protocol==="https:"?x.href:""}catch{return""}}
 function rankingElegivel(p){return p&&p.sistema!==true&&p.disponivel!==false&&String(p.titulo||"").trim()&&rankingPrecoProduto(p)>0&&rankingFoto(p)&&String(p.linkAfiliado||p.link||"").trim()}
-function rankingTipoMetrica(m){const t=String(m?.tipo||""),c=String(m?.canal||"");return t==="clique_secao"&&c.startsWith("view:")?"visualizacao_produto":t}
+function rankingTipoMetrica(m){const t=String(m?.tipo||""),c=String(m?.canal||"");if(t==="clique_secao"&&c.startsWith("view:"))return"visualizacao_produto";if(["clique_oferta","compartilhamento","clique_secao","visualizacao_produto"].includes(t))return t;const p=String(m?.origem||"").split(":");return p[0]==="evento"?String(p[1]||""):t}
+function rankingMetricaProdutoId(m){const id=String(m?.produtoId||"");if(id)return id;const p=String(m?.origem||"").split(":");return p[0]==="evento"?String(p[2]||""):""}
+function rankingMetricaCanal(m){const canal=String(m?.canal||"");if(canal)return canal.replace(/^view:/,"");const p=String(m?.origem||"").split(":");return p[0]==="evento"?String(p[3]||"site"):"direto"}
 function rankingUrlProduto(p){const u=String(p.productUrl||p.paginaUrl||"");return /^https:\/\/rankingdacompra\.com\.br\/produto\//i.test(u)?u:"https://rankingdacompra.com.br/produto/"+encodeURIComponent(String(p.id))+"-20260810-1.html"}
 async function rankingCarregarDados(){
  if(rankingDadosMovel)return rankingDadosMovel;
@@ -281,7 +283,7 @@ function focusMobileNomeCategoria(id){return rankingCategoriaNome(id)||String(id
 function focusMobileRender(dados){
  const alvo=$("focus-mobile-result");if(!alvo)return;
  const produtos=new Map(dados.produtos.map(p=>[String(p.id),p])),porProduto=new Map(),porCategoria=new Map(),origens=new Map();
- dados.metricas.forEach(m=>{const tipo=rankingTipoMetrica(m);if(!["visualizacao_produto","clique_oferta","compartilhamento"].includes(tipo))return;const id=String(m.produtoId||""),produto=produtos.get(id);if(!id)return;const categoria=String(produto?.categoria||m.categoria||"sem-categoria"),p=porProduto.get(id)||{titulo:String(produto?.titulo||m.titulo||id),views:0,cliques:0,shares:0};if(tipo==="visualizacao_produto")p.views++;if(tipo==="clique_oferta")p.cliques++;if(tipo==="compartilhamento")p.shares++;porProduto.set(id,p);const c=porCategoria.get(categoria)||{id:categoria,nome:focusMobileNomeCategoria(categoria),views:0,cliques:0,shares:0};if(tipo==="visualizacao_produto")c.views++;if(tipo==="clique_oferta")c.cliques++;if(tipo==="compartilhamento")c.shares++;porCategoria.set(categoria,c);if(tipo==="visualizacao_produto"){const canal=String(m.canal||"direto").replace(/^view:/,"");origens.set(canal,(origens.get(canal)||0)+1)}});
+ dados.metricas.forEach(m=>{const tipo=rankingTipoMetrica(m);if(!["visualizacao_produto","clique_oferta","compartilhamento"].includes(tipo))return;const id=rankingMetricaProdutoId(m),produto=produtos.get(id);if(!id)return;const categoria=String(produto?.categoria||m.categoria||"sem-categoria"),p=porProduto.get(id)||{titulo:String(produto?.titulo||m.titulo||id),views:0,cliques:0,shares:0};if(tipo==="visualizacao_produto")p.views++;if(tipo==="clique_oferta")p.cliques++;if(tipo==="compartilhamento")p.shares++;porProduto.set(id,p);const c=porCategoria.get(categoria)||{id:categoria,nome:focusMobileNomeCategoria(categoria),views:0,cliques:0,shares:0};if(tipo==="visualizacao_produto")c.views++;if(tipo==="clique_oferta")c.cliques++;if(tipo==="compartilhamento")c.shares++;porCategoria.set(categoria,c);if(tipo==="visualizacao_produto"){const canal=rankingMetricaCanal(m);origens.set(canal,(origens.get(canal)||0)+1)}});
  const finalizar=x=>({...x,pontos:x.views+x.cliques*5+x.shares*2,taxa:x.views?x.cliques/x.views*100:0});
  const categorias=[...porCategoria.values()].map(finalizar).sort((a,b)=>b.pontos-a.pontos||b.cliques-a.cliques),lista=[...porProduto.values()].map(finalizar).sort((a,b)=>b.pontos-a.pontos||b.cliques-a.cliques),cat=categorias[0],produto=lista[0],origem=[...origens].sort((a,b)=>b[1]-a[1])[0],sinais=dados.metricas.filter(m=>["visualizacao_produto","clique_oferta","compartilhamento"].includes(rankingTipoMetrica(m))).length;
  if(!sinais){alvo.innerHTML='<div class="focus-mobile-rec">Ainda não há sinais suficientes. Continue divulgando; a recomendação aparecerá automaticamente.</div>';return}
@@ -294,7 +296,7 @@ async function focusMobileLoad(){const alvo=$("focus-mobile-result");if(alvo)alv
 function rankingSugerirTema(dados){
  const produtos=new Map(dados.produtos.map(p=>[String(p.id),p])),pontos=new Map(),contagem=new Map();
  dados.produtos.forEach(p=>{const c=String(p.categoria||"ofertas");contagem.set(c,(contagem.get(c)||0)+1)});
- dados.metricas.forEach(m=>{const p=produtos.get(String(m.produtoId||""));if(!p)return;const t=rankingTipoMetrica(m),peso=t==="clique_oferta"?5:t==="visualizacao_produto"?1:0,c=String(p.categoria||"ofertas");if(peso)pontos.set(c,(pontos.get(c)||0)+peso)});
+ dados.metricas.forEach(m=>{const p=produtos.get(rankingMetricaProdutoId(m));if(!p)return;const t=rankingTipoMetrica(m),peso=t==="clique_oferta"?5:t==="visualizacao_produto"?1:0,c=String(p.categoria||"ofertas");if(peso)pontos.set(c,(pontos.get(c)||0)+peso)});
  const escolhido=[...contagem].filter(([,n])=>n>=5).sort((a,b)=>(pontos.get(b[0])||0)-(pontos.get(a[0])||0)||b[1]-a[1])[0]?.[0];
  if(!escolhido)throw Error("Ainda não há uma categoria com cinco produtos válidos.");
  return rankingCategoriaNome(escolhido);
@@ -308,7 +310,7 @@ function rankingPontuar(itens){
 }
 function rankingPreparar(dados,termo,teto){
  const palavras=rankingNorm(termo).split(/\s+/).filter(Boolean),sinais=new Map();
- dados.metricas.forEach(m=>{const id=String(m.produtoId||"");if(!id)return;const s=sinais.get(id)||{cliques:0,visitas:0},t=rankingTipoMetrica(m);if(t==="clique_oferta")s.cliques++;if(t==="visualizacao_produto")s.visitas++;sinais.set(id,s)});
+ dados.metricas.forEach(m=>{const id=rankingMetricaProdutoId(m);if(!id)return;const s=sinais.get(id)||{cliques:0,visitas:0},t=rankingTipoMetrica(m);if(t==="clique_oferta")s.cliques++;if(t==="visualizacao_produto")s.visitas++;sinais.set(id,s)});
  const candidatos=dados.produtos.map(p=>{const valor=rankingPrecoProduto(p),busca=rankingNorm([p.titulo,p.categoria,rankingCategoriaNome(p.categoria)].join(" ")),s=sinais.get(String(p.id))||{cliques:0,visitas:0};return{id:String(p.id),titulo:String(p.titulo),categoria:String(p.categoria||""),categoriaNome:rankingCategoriaNome(p.categoria),preco:valor,valor,foto:rankingFoto(p),productUrl:rankingUrlProduto(p),linkAfiliado:String(p.linkAfiliado||p.link||""),nota:numero(p.nota||p.avaliacao),pros:rankingLista(p.pros||p.pontosPositivos),cons:rankingLista(p.contras||p.pontosNegativos),cliques:s.cliques,visitas:s.visitas,aceito:(!palavras.length||palavras.every(x=>busca.includes(x)))&&(!(teto>0)||valor<=teto)}}).filter(x=>x.aceito);
  if(candidatos.length<5)throw Error("Encontrei somente "+candidatos.length+" produto(s) válido(s). Amplie o preço máximo ou use um termo mais geral.");
  const produtos=rankingPontuar(rankingPontuar(candidatos).slice(0,5)).map(x=>({...x,preco:x.valor,clicks:x.cliques,views:x.visitas}));

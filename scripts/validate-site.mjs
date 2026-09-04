@@ -19,7 +19,7 @@ has(homeHtml, /const rotaInicial=.*:homeComPromocoes\(\)/, "a vitrine inicial ai
 has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo histórico ausente", "index.html");
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
-has(homeHtml, /growth-tools\.js\?v=20260904-rankingia1/, "cache antigo das ferramentas da vitrine ainda pode ser usado", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20260904-focus1/, "cache antigo das ferramentas da vitrine ainda pode ser usado", "index.html");
 
 const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
 has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
@@ -44,6 +44,7 @@ has(growthTools, /recordFunnelMetric\("clique_oferta"/, "cliques em Comprar não
 has(growthTools, /const WEEKLY_COMPARISON_DOC = "ranking-semanal"/, "documento do ranking comparativo semanal ausente", "growth-tools.js");
 has(growthTools, /function weeklyBuildDraft\(/, "motor de seleção do ranking comparativo ausente", "growth-tools.js");
 has(growthTools, /function weeklyMetricKind\(/, "uso de cliques e visualizações no ranking semanal ausente", "growth-tools.js");
+has(growthTools, /function weeklyMetricProductId\(/, "compatibilidade com métricas históricas ausente no ranking", "growth-tools.js");
 has(growthTools, /setupWeeklyRankingAdmin\(container\)/, "painel de revisão do ranking semanal ausente", "growth-tools.js");
 has(growthTools, /Publicar após aprovação/, "aprovação obrigatória do ranking semanal ausente", "growth-tools.js");
 has(growthTools, /config\?\.publicado !== true \|\| storedProducts\.length !== 5/, "proteção contra ranking incompleto ou não aprovado ausente", "growth-tools.js");
@@ -73,6 +74,7 @@ has(mobilePanelHtml, /id="ranking-termo"/, "filtro por produto ou categoria ause
 has(mobilePanelHtml, /id="ranking-preco"/, "limite de preço do ranking ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /rankingSugerirTema/, "sugestão pelo interesse semanal ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /where\("dia",">=",chave\)/, "análise dos últimos sete dias ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /function rankingMetricaProdutoId\(/, "compatibilidade móvel com métricas históricas ausente", "painel-celular.html");
 has(mobilePanelHtml, /Publicar após aprovação/, "aprovação obrigatória do ranking ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /doc\(db,"configuracoes","ranking-semanal"\)/, "sincronização do ranking entre os painéis ausente", "painel-celular.html");
 has(mobilePanelHtml, /rankingPontuar\(candidatos\)\.slice\(0,5\)/, "limite de cinco colocados ausente no celular", "painel-celular.html");
@@ -94,7 +96,7 @@ has(dashboardHtml, /id="central-foco"/, "Central de foco por categoria e produto
 has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Central de foco ausente", "dashboard.html");
 has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20260904-rankingia1/, "cache antigo das ferramentas do painel ainda pode ser usado", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20260904-focus1/, "cache antigo das ferramentas do painel ainda pode ser usado", "dashboard.html");
 const seasonalThemeIds = ["ano-novo", "volta-aulas", "carnaval", "consumidor", "pascoa", "maes", "namorados", "festa-junina", "pais", "criancas", "black-friday", "natal"];
 for (const theme of seasonalThemeIds) {
   if (!growthTools.includes(`${theme}:`) && !growthTools.includes(`"${theme}":`)) fail(`growth-tools.js: tema sazonal ausente: ${theme}`);
@@ -113,7 +115,7 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260904-rankingia1"><\/script>/, "versão atual do corretor editorial não foi incluída nas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260904-focus1"><\/script>/, "versão atual do corretor editorial não foi incluída nas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="affiliate-offer"/, "botão de compra rastreável ausente das páginas de produto", "scripts/generate-sitemap.mjs");
 
 const sitemap = await readFile(resolve("sitemap.xml"), "utf8");
