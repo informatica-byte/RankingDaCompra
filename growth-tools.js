@@ -1074,11 +1074,48 @@
       + ". Principal vantagem: " + mainPro + ". Limitação considerada: " + mainCon + ".";
   }
 
+  function weeklyApplyAIAnalysis(draft, result) {
+    const summary = repairPortugueseText(String(result?.resumoGeral || "")).replace(/\s+/g, " ").trim();
+    const analyses = Array.isArray(result?.produtos) ? result.produtos : [];
+    if (summary.length < 120 || analyses.length !== 5) throw new Error("A IA não entregou uma análise completa dos cinco produtos.");
+    const byId = new Map(analyses.map(item => [String(item?.id || ""), item]));
+    const forbidden = /(nós testamos|testamos o produto|vendas comprovadas|o mais vendido|pesquisa em toda a internet|garante resultados)/i;
+    const products = draft.produtos.map(product => {
+      const analysis = byId.get(String(product.id));
+      if (!analysis) throw new Error("A IA não analisou " + product.titulo + ".");
+      const fields = {
+        veredito: repairPortugueseText(String(analysis.veredito || "")).replace(/\s+/g, " ").trim(),
+        paraQuem: repairPortugueseText(String(analysis.paraQuem || "")).replace(/\s+/g, " ").trim(),
+        comparacaoDireta: repairPortugueseText(String(analysis.comparacaoDireta || "")).replace(/\s+/g, " ").trim(),
+        limitePrincipal: repairPortugueseText(String(analysis.limitePrincipal || "")).replace(/\s+/g, " ").trim()
+      };
+      if (Object.values(fields).some(value => value.length < 25) || Object.values(fields).some(value => forbidden.test(value))) {
+        throw new Error("A auditoria local recusou uma afirmação sem comprovação em " + product.titulo + ".");
+      }
+      return { ...product, analiseHumana: fields };
+    });
+    return {
+      ...draft, versao: 3, produtos: products, resumoIA: summary,
+      analiseIA: {
+        metodo: String(result?.metodo || "gemini_com_auditoria"),
+        fonte: String(result?.fonte || "dados_consolidados_e_paginas_publicas"),
+        geradaEm: new Date().toISOString()
+      }
+    };
+  }
+
   function weeklyRankingCard(item) {
     const displayedPrice = numberPrice(item.preco ?? item.price);
     const pros = item.pros.length ? item.pros : ["Pontos positivos específicos em revisão editorial."];
     const cons = item.cons.length ? item.cons : ["Pontos de atenção específicos em revisão editorial."];
     const criteria = item.criterios || {};
+    const human = item.analiseHumana || {};
+    const humanMarkup = human.veredito
+      ? '<div class="weekly-ranking-human"><b>🤖 Análise editorial com IA auditada</b><p>' + escapeHtml(human.veredito) + '</p>'
+        + '<dl><dt>Para quem faz sentido</dt><dd>' + escapeHtml(human.paraQuem) + '</dd>'
+        + '<dt>Comparação direta</dt><dd>' + escapeHtml(human.comparacaoDireta) + '</dd>'
+        + '<dt>Principal ressalva</dt><dd>' + escapeHtml(human.limitePrincipal) + '</dd></dl></div>'
+      : "";
     return '<article class="weekly-ranking-card">'
       + '<div class="weekly-ranking-position">' + item.position + 'º lugar</div>'
       + '<img src="' + escapeHtml(item.foto) + '" alt="' + escapeHtml(item.titulo) + '" loading="lazy" decoding="async">'
@@ -1091,6 +1128,7 @@
       + '<span>Evidências ' + escapeHtml(Number(criteria.evidencia || 0).toFixed(1).replace(".", ",")) + '</span></div>'
       + '<h4 class="weekly-ranking-why">Por que está em ' + item.position + 'º?</h4>'
       + '<p class="weekly-ranking-reason">' + escapeHtml(item.motivo) + '</p>'
+      + humanMarkup
       + '<div class="weekly-ranking-points"><div><b>✓ Pontos positivos</b><ul>'
       + pros.map(value => '<li>' + escapeHtml(value) + '</li>').join("")
       + '</ul></div><div><b>⚠ Pontos de atenção</b><ul>'
@@ -1120,6 +1158,8 @@
     section.className = "weekly-comparison";
     section.id = "ranking-da-semana";
     section.dataset.weeklyComparison = config.semana || "ativo";
+    const aiSummary = String(config.resumoIA || "").trim();
+    const sourceLinks = products.map(item => '<a href="' + escapeHtml(item.productUrl) + '">' + escapeHtml(item.position + "º: " + item.titulo) + "</a>").join(" · ");
     const subtitle = config.precoMaximo > 0
       ? "Cinco opções comparadas até " + brl.format(numberPrice(config.precoMaximo)) + "."
       : "Cinco opções da mesma categoria comparadas lado a lado.";
@@ -1127,7 +1167,9 @@
       + '<h2>🏆 ' + escapeHtml(config.titulo || "Ranking da Semana") + '</h2>'
       + '<p>' + escapeHtml(subtitle) + ' Confira preço, frete e estoque antes da compra.</p></div>'
       + '<a href="/como-avaliamos.html">Como classificamos</a></div>'
+      + (aiSummary ? '<div class="weekly-ai-summary"><b>Visão geral da IA editorial</b><p>' + escapeHtml(aiSummary) + '</p></div>' : "")
       + '<div class="weekly-ranking-grid">' + products.map(weeklyRankingCard).join("") + '</div>'
+      + (aiSummary ? '<p class="weekly-ranking-sources"><b>Fontes consolidadas:</b> fichas públicas dos cinco produtos — ' + sourceLinks + '. Pesquisa gerada em ' + escapeHtml(dateBr.format(new Date(config.analiseIA?.geradaEm || Date.now()))) + '.</p>' : "")
       + '<p class="weekly-ranking-method"><b>Metodologia:</b> nota de 0 a 10 calculada com custo-benefício (35%), avaliação informada (30%), interesse observado nos últimos 7 dias (15%) e qualidade das evidências cadastradas (20%). Preço, frete, estoque e avaliações podem mudar; confira o anúncio antes da compra. A aprovação final é sempre feita pelo administrador.</p>';
     const anchor = document.getElementById("top5-semanal") || document.querySelector("#promocoes") || document.querySelector("main");
     if (anchor?.parentNode) anchor.insertAdjacentElement(anchor.matches("main") ? "afterbegin" : "afterend", section);
@@ -1223,10 +1265,17 @@
   }
 
   function weeklyDraftMarkup(draft) {
+    const aiIntro = draft.resumoIA ? '<div class="weekly-admin-ai"><b>🤖 Visão geral auditada</b><p>' + escapeHtml(draft.resumoIA) + '</p></div>' : "";
     return '<div class="weekly-admin-draft"><h3>' + escapeHtml(draft.titulo) + '</h3><p>Semana de '
       + escapeHtml(dateBr.format(new Date(draft.semana + "T12:00:00-03:00"))) + ' · revise os cinco colocados antes de publicar.</p>'
-      + '<ol>' + draft.produtos.map(item => '<li><strong>' + escapeHtml(item.position + "º — " + item.titulo)
-        + '</strong><span>' + escapeHtml(brl.format(item.preco)) + ' · ' + escapeHtml(item.motivo) + '</span></li>').join("") + '</ol></div>';
+      + aiIntro + '<ol>' + draft.produtos.map(item => {
+        const human = item.analiseHumana;
+        return '<li><strong>' + escapeHtml(item.position + "º — " + item.titulo)
+          + '</strong><span>' + escapeHtml(brl.format(item.preco)) + ' · ' + escapeHtml(item.motivo)
+          + (human ? '<br><b>IA:</b> ' + escapeHtml(human.veredito) + '<br><b>Para quem:</b> ' + escapeHtml(human.paraQuem)
+            + '<br><b>Comparação:</b> ' + escapeHtml(human.comparacaoDireta) + '<br><b>Ressalva:</b> ' + escapeHtml(human.limitePrincipal) : "")
+          + '</span></li>';
+      }).join("") + '</ol></div>';
   }
 
   async function setupWeeklyRankingAdmin(container) {
@@ -1241,6 +1290,7 @@
       + '<input id="weekly-ranking-price" type="number" min="1" step="0.01" inputmode="decimal" placeholder="Ex.: 1000,00"></div></div>'
       + '<div class="weekly-admin-actions"><button id="weekly-ranking-suggest" type="button">✨ Sugerir pelo interesse da semana</button>'
       + '<button id="weekly-ranking-prepare" type="button">Preparar comparação</button>'
+      + '<button id="weekly-ranking-ai" type="button" disabled>🤖 Gerar análise humanizada</button>'
       + '<button id="weekly-ranking-publish" type="button" disabled>Publicar após aprovação</button>'
       + '<a href="/#ranking-da-semana" target="_blank" rel="noopener">Ver na vitrine</a></div>'
       + '<p id="weekly-ranking-status" class="weekly-ranking-status" role="status" aria-live="polite">Pronto para preparar o próximo ranking.</p>'
@@ -1251,6 +1301,7 @@
     const status = section.querySelector("#weekly-ranking-status");
     const review = section.querySelector("#weekly-ranking-review");
     const publish = section.querySelector("#weekly-ranking-publish");
+    const aiButton = section.querySelector("#weekly-ranking-ai");
     let cachedData = null;
     const ensureData = async () => cachedData || (cachedData = await weeklyAdminData(status));
     section.querySelector("#weekly-ranking-suggest").addEventListener("click", async event => {
@@ -1270,6 +1321,7 @@
       const button = event.currentTarget;
       button.disabled = true;
       publish.disabled = true;
+      aiButton.disabled = true;
       status.textContent = "Preparando o comparativo...";
       try {
         const data = await ensureData();
@@ -1282,13 +1334,33 @@
         }
         weeklyRankingDraft = weeklyBuildDraft(data, term, maxPrice);
         review.innerHTML = weeklyDraftMarkup(weeklyRankingDraft);
+        aiButton.disabled = false;
         publish.disabled = false;
-        status.textContent = "Comparação pronta. Confira a ordem e publique somente se estiver de acordo.";
+        status.textContent = "Comparação pronta. Você pode gerar a análise humanizada com IA antes de publicar.";
       } catch (error) {
         weeklyRankingDraft = null;
         review.innerHTML = "";
         status.textContent = error.message;
       } finally { button.disabled = false; }
+    });
+    aiButton.addEventListener("click", async event => {
+      if (!weeklyRankingDraft) return;
+      const button = event.currentTarget;
+      button.disabled = true;
+      publish.disabled = true;
+      status.textContent = "A primeira IA está redigindo e a segunda está auditando os cinco produtos...";
+      try {
+        if (typeof window.gerarAnaliseRankingIA !== "function") throw new Error("A IA editorial ainda não terminou de carregar. Aguarde alguns segundos.");
+        const result = await window.gerarAnaliseRankingIA(weeklyRankingDraft);
+        weeklyRankingDraft = weeklyApplyAIAnalysis(weeklyRankingDraft, result);
+        review.innerHTML = weeklyDraftMarkup(weeklyRankingDraft);
+        status.textContent = "✓ Análise humanizada e auditada. Confira o texto e publique somente se estiver de acordo.";
+      } catch (error) {
+        status.textContent = "A IA não concluiu: " + error.message + " O ranking matemático foi preservado e ainda pode ser publicado.";
+      } finally {
+        button.disabled = false;
+        publish.disabled = false;
+      }
     });
     publish.addEventListener("click", async event => {
       if (!weeklyRankingDraft) return;
@@ -1324,7 +1396,7 @@
     if (document.getElementById("weekly-ranking-style")) return;
     const style = document.createElement("style");
     style.id = "weekly-ranking-style";
-    style.textContent = '.weekly-comparison{max-width:1180px;margin:28px auto;padding:24px;border:1px solid #b8d7ca;border-radius:22px;background:linear-gradient(145deg,#f4fff9,#fff);box-sizing:border-box}.weekly-comparison-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px}.weekly-comparison-head small{font-weight:900;letter-spacing:.08em;color:#08784f}.weekly-comparison-head h2{margin:5px 0 6px;font-size:clamp(1.45rem,3vw,2.2rem);color:#073b2b}.weekly-comparison-head p{margin:0;color:#405a50}.weekly-comparison-head>a{font-weight:800;color:#086e4a}.weekly-ranking-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.weekly-ranking-card{position:relative;display:flex;flex-direction:column;padding:13px;border:1px solid #cfe1d8;border-radius:15px;background:#fff;box-shadow:0 8px 24px rgba(5,74,51,.07)}.weekly-ranking-position{align-self:flex-start;margin-bottom:8px;padding:5px 9px;border-radius:999px;background:#0b7a53;color:#fff;font-size:.78rem;font-weight:900}.weekly-ranking-card:first-child{border:2px solid #e4ae18;background:linear-gradient(180deg,#fffbea,#fff)}.weekly-ranking-card:first-child .weekly-ranking-position{background:#a86d00}.weekly-ranking-card img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}.weekly-ranking-card h3{font-size:.98rem;line-height:1.28;margin:11px 0 7px;color:#10251e}.weekly-ranking-price{font-size:1.14rem;color:#08784f}.weekly-ranking-score{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:9px 0;padding:9px;border:1px solid #b9d7ca;border-radius:9px;background:#f4fbf7;font-size:.72rem;color:#31594a}.weekly-ranking-score b{grid-column:1/-1;color:#075f40;font-size:.86rem}.weekly-ranking-why{margin:8px 0 2px;font-size:.84rem;color:#173f31}.weekly-ranking-reason{font-size:.82rem;line-height:1.42;color:#465a52}.weekly-ranking-points{font-size:.78rem;line-height:1.35}.weekly-ranking-points b{display:block;color:#174c3a}.weekly-ranking-points ul{margin:4px 0 10px;padding-left:17px}.weekly-ranking-card>a{margin-top:auto;padding:10px;border-radius:9px;background:#1468d4;color:#fff;text-align:center;text-decoration:none;font-weight:900}.weekly-ranking-method{margin:16px 0 0;font-size:.78rem;color:#557066}.weekly-ranking-admin{margin-top:26px;padding-top:24px;border-top:2px solid #d7eadf}.weekly-admin-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}.weekly-admin-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.weekly-admin-actions button,.weekly-admin-actions a{border:1px solid #0a7850;border-radius:9px;padding:10px 12px;background:#fff;color:#075a3e;font-weight:800;text-decoration:none;cursor:pointer}.weekly-admin-actions button:nth-child(2),.weekly-admin-actions button:nth-child(3){background:#087a52;color:#fff}.weekly-admin-actions button:disabled{opacity:.5;cursor:not-allowed}.weekly-ranking-status{font-weight:700;color:#285c49}.weekly-admin-draft{margin-top:14px;padding:14px;border-radius:12px;background:#f2faf6}.weekly-admin-draft h3{margin:0 0 5px}.weekly-admin-draft ol{padding-left:24px}.weekly-admin-draft li{margin:10px 0}.weekly-admin-draft li span{display:block;font-size:.85rem;color:#4c625a}@media(max-width:980px){.weekly-ranking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.weekly-comparison{margin:18px 10px;padding:16px}.weekly-comparison-head{display:block}.weekly-comparison-head>a{display:inline-block;margin-top:10px}.weekly-ranking-grid,.weekly-admin-grid{grid-template-columns:1fr}}';
+    style.textContent = '.weekly-comparison{max-width:1180px;margin:28px auto;padding:24px;border:1px solid #b8d7ca;border-radius:22px;background:linear-gradient(145deg,#f4fff9,#fff);box-sizing:border-box}.weekly-comparison-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px}.weekly-comparison-head small{font-weight:900;letter-spacing:.08em;color:#08784f}.weekly-comparison-head h2{margin:5px 0 6px;font-size:clamp(1.45rem,3vw,2.2rem);color:#073b2b}.weekly-comparison-head p{margin:0;color:#405a50}.weekly-comparison-head>a{font-weight:800;color:#086e4a}.weekly-ranking-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.weekly-ranking-card{position:relative;display:flex;flex-direction:column;padding:13px;border:1px solid #cfe1d8;border-radius:15px;background:#fff;box-shadow:0 8px 24px rgba(5,74,51,.07)}.weekly-ranking-position{align-self:flex-start;margin-bottom:8px;padding:5px 9px;border-radius:999px;background:#0b7a53;color:#fff;font-size:.78rem;font-weight:900}.weekly-ranking-card:first-child{border:2px solid #e4ae18;background:linear-gradient(180deg,#fffbea,#fff)}.weekly-ranking-card:first-child .weekly-ranking-position{background:#a86d00}.weekly-ranking-card img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}.weekly-ranking-card h3{font-size:.98rem;line-height:1.28;margin:11px 0 7px;color:#10251e}.weekly-ranking-price{font-size:1.14rem;color:#08784f}.weekly-ranking-score{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:9px 0;padding:9px;border:1px solid #b9d7ca;border-radius:9px;background:#f4fbf7;font-size:.72rem;color:#31594a}.weekly-ranking-score b{grid-column:1/-1;color:#075f40;font-size:.86rem}.weekly-ranking-why{margin:8px 0 2px;font-size:.84rem;color:#173f31}.weekly-ranking-reason{font-size:.82rem;line-height:1.42;color:#465a52}.weekly-ranking-points{font-size:.78rem;line-height:1.35}.weekly-ranking-points b{display:block;color:#174c3a}.weekly-ranking-points ul{margin:4px 0 10px;padding-left:17px}.weekly-ranking-card>a{margin-top:auto;padding:10px;border-radius:9px;background:#1468d4;color:#fff;text-align:center;text-decoration:none;font-weight:900}.weekly-ranking-human{margin:10px 0;padding:10px;border-left:4px solid #6f42c1;border-radius:8px;background:#f7f3ff;font-size:.78rem;line-height:1.4;color:#3f315d}.weekly-ranking-human>b{color:#512b89}.weekly-ranking-human p{margin:5px 0 8px}.weekly-ranking-human dl{margin:0}.weekly-ranking-human dt{margin-top:6px;font-weight:900}.weekly-ranking-human dd{margin:1px 0 0}.weekly-ai-summary,.weekly-admin-ai{margin:0 0 16px;padding:14px;border:1px solid #cfc2ea;border-radius:12px;background:#faf7ff;color:#42325e}.weekly-ai-summary p,.weekly-admin-ai p{margin:6px 0 0;line-height:1.55}.weekly-ranking-sources{font-size:.76rem;line-height:1.5;color:#557066}.weekly-ranking-sources a{color:#075f40}.weekly-ranking-method{margin:16px 0 0;font-size:.78rem;color:#557066}.weekly-ranking-admin{margin-top:26px;padding-top:24px;border-top:2px solid #d7eadf}.weekly-admin-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}.weekly-admin-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.weekly-admin-actions button,.weekly-admin-actions a{border:1px solid #0a7850;border-radius:9px;padding:10px 12px;background:#fff;color:#075a3e;font-weight:800;text-decoration:none;cursor:pointer}.weekly-admin-actions button:nth-child(2),.weekly-admin-actions button:nth-child(3),.weekly-admin-actions button:nth-child(4){background:#087a52;color:#fff}.weekly-admin-actions button:disabled{opacity:.5;cursor:not-allowed}.weekly-ranking-status{font-weight:700;color:#285c49}.weekly-admin-draft{margin-top:14px;padding:14px;border-radius:12px;background:#f2faf6}.weekly-admin-draft h3{margin:0 0 5px}.weekly-admin-draft ol{padding-left:24px}.weekly-admin-draft li{margin:10px 0}.weekly-admin-draft li span{display:block;font-size:.85rem;color:#4c625a}@media(max-width:980px){.weekly-ranking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.weekly-comparison{margin:18px 10px;padding:16px}.weekly-comparison-head{display:block}.weekly-comparison-head>a{display:inline-block;margin-top:10px}.weekly-ranking-grid,.weekly-admin-grid{grid-template-columns:1fr}}';
     document.head.appendChild(style);
   }
 
