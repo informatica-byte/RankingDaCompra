@@ -24,6 +24,10 @@ has(homeHtml, /growth-tools\.js\?v=20260904-focus1/, "cache antigo das ferrament
 const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
 has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
 if (growthTools.includes("✓ Oferta comprovada pelo histórico")) fail("growth-tools.js: afirmação genérica de oferta comprovada ainda presente");
+const priceHistoryUpdater = await readFile(resolve("scripts/update-price-history.mjs"), "utf8");
+has(priceHistoryUpdater, /function productIdentity\(html\)/, "identidade MLB não é registrada no histórico", "scripts/update-price-history.mjs");
+has(priceHistoryUpdater, /const resetHistory = identityChanged \|\| \(!currentIdentity && titleChanged\)/, "histórico antigo não é reiniciado quando o produto muda", "scripts/update-price-history.mjs");
+has(priceHistoryUpdater, /const sourcePoints = resetHistory \? \[\] : current\.points/, "pontos de outro produto ainda podem ser reaproveitados", "scripts/update-price-history.mjs");
 has(growthTools, /const SEASONAL_THEMES = \{/, "catálogo de temas sazonais ausente", "growth-tools.js");
 has(growthTools, /seasonalThemeMode/, "controle manual e automático de temas ausente", "growth-tools.js");
 has(growthTools, /automaticThemeId/, "calendário automático de campanhas ausente", "growth-tools.js");
@@ -237,4 +241,3 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + sitemapProductUrls.size + " produtos públicos e metadados sociais completos.");
-
