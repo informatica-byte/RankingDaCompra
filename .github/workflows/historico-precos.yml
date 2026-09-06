@@ -18,14 +18,14 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Baixar versao atual do site
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Preparar Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Registrar precos e preparar paginas
         run: node scripts/update-price-history.mjs
