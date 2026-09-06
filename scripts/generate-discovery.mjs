@@ -1,5 +1,6 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
+import { correctProductData } from "./product-title-corrections.mjs";
 
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
@@ -69,6 +70,9 @@ async function loadData() {
     const payload = JSON.parse(await readFile(resolve(fixture), "utf8"));
     return [payload.categories || [], payload.products || [], payload.marketplaceProducts || {}];
   }
+  // O gerador principal acabou de consultar o Firebase e criar as páginas.
+  // Reutilizá-las evita reler centenas de documentos na mesma execução.
+  if (process.env.DISCOVERY_USE_GENERATED === "true") return loadGeneratedPages();
   try {
     return await Promise.all([listCollection("categorias"), listCollection("produtos"), marketplaceStatus()]);
   } catch (error) {
@@ -321,7 +325,7 @@ function updateSitemap(xml, lastModified) {
 }
 
 const [allCategories, allProducts, marketplaceProducts] = await loadData();
-const candidateProducts = allProducts
+const candidateProducts = allProducts.map(correctProductData)
   .filter(editorialProduct)
   .filter((product) => marketplaceProducts[product.id]?.visible !== false)
   .sort(sortProducts);

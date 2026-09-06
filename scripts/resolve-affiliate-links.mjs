@@ -23,11 +23,11 @@ function wait(milliseconds) {
 }
 
 
-async function fetchFirebase(url, label, maxAttempts = 6) {
+async function fetchFirebase(url, label, maxAttempts = 6, options = {}) {
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     let response;
     try {
-      response = await fetch(url, { signal: AbortSignal.timeout(20000) });
+      response = await fetch(url, { ...options, signal: AbortSignal.timeout(20000) });
     } catch (error) {
       if (attempt === maxAttempts) throw error;
       const delay = Math.min(1500 * (2 ** (attempt - 1)), 30000);
@@ -36,6 +36,9 @@ async function fetchFirebase(url, label, maxAttempts = 6) {
       continue;
     }
     if (response.ok) return response;
+    // Cota diária não melhora com novas tentativas imediatas; repetir só aumenta
+    // ruído nos Actions e posterga o próximo ciclo útil.
+    if (response.status === 429) throw new Error(label + ": HTTP 429 (cota temporariamente esgotada)");
     if (!RETRYABLE_FIREBASE_STATUS.has(response.status) || attempt === maxAttempts) {
       throw new Error(label + ": HTTP " + response.status);
     }
@@ -299,14 +302,38 @@ async function officialDetails(itemId, html = "") {
 
 
 async function requests() {
-  const response = await fetch(`${FIRESTORE}/${COLLECTION}?pageSize=300`);
-  if (!response.ok) throw new Error(`Fila Firebase: HTTP ${response.status}`);
-  const payload = await response.json();
-  return (payload.documents || []).map((document) => {
-    const data = { id: document.name.split("/").pop() };
-    for (const [key, value] of Object.entries(document.fields || {})) data[key] = field(value);
-    return data;
-  }).filter((item) => item.status === "pendente" && item.link);
+  const structuredQuery = {
+    structuredQuery: {
+      from: [{ collectionId: COLLECTION }],
+      where: {
+        fieldFilter: {
+          field: { fieldPath: "status" },
+          op: "EQUAL",
+          value: { stringValue: "pendente" },
+        },
+      },
+      limit: 10,
+    },
+  };
+  try {
+    const response = await fetchFirebase(`${FIRESTORE}:runQuery`, "Fila Firebase", 3, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(structuredQuery),
+    });
+    const payload = await response.json();
+    return (Array.isArray(payload) ? payload : []).map((row) => row.document).filter(Boolean).map((document) => {
+      const data = { id: document.name.split("/").pop() };
+      for (const [key, value] of Object.entries(document.fields || {})) data[key] = field(value);
+      return data;
+    }).filter((item) => item.status === "pendente" && item.link);
+  } catch (error) {
+    if (/HTTP 429|cota temporariamente esgotada/i.test(String(error?.message || error))) {
+      console.warn("Fila Firebase: cota temporariamente esgotada; execução encerrada sem alterar resultados.");
+      return [];
+    }
+    throw error;
+  }
 }
 
 
@@ -459,26 +486,28 @@ const queue = (await requests())
   .slice(0, 10);
 
 
-for (const request of queue) {
-  try {
-    payload.resultados[request.id] = await resolveRequest(request);
-    console.log(`${request.id}: ${payload.resultados[request.id].mlb}`);
-  } catch (error) {
-    payload.resultados[request.id] = {
-      status: "erro",
-      motivo: String(error?.message || error),
-      linkOriginal: request.link,
-      resolvidoEm: new Date().toISOString()
-    };
-    console.warn(`${request.id}: ${payload.resultados[request.id].motivo}`);
+if (!queue.length) {
+  console.log("Nenhum pedido MLB pendente; nenhum arquivo foi alterado.");
+} else {
+  for (const request of queue) {
+    try {
+      payload.resultados[request.id] = await resolveRequest(request);
+      console.log(`${request.id}: ${payload.resultados[request.id].mlb}`);
+    } catch (error) {
+      payload.resultados[request.id] = {
+        status: "erro",
+        motivo: String(error?.message || error),
+        linkOriginal: request.link,
+        resolvidoEm: new Date().toISOString()
+      };
+      console.warn(`${request.id}: ${payload.resultados[request.id].motivo}`);
+    }
   }
+  const entries = Object.entries(payload.resultados).sort((a, b) => String(b[1].resolvidoEm).localeCompare(String(a[1].resolvidoEm))).slice(0, 300);
+  payload.resultados = Object.fromEntries(entries);
+  payload.atualizadoEm = new Date().toISOString();
+  await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`);
 }
-
-
-const entries = Object.entries(payload.resultados).sort((a, b) => String(b[1].resolvidoEm).localeCompare(String(a[1].resolvidoEm))).slice(0, 300);
-payload.resultados = Object.fromEntries(entries);
-payload.atualizadoEm = new Date().toISOString();
-await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`);
 
 
 

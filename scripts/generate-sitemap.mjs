@@ -1,6 +1,7 @@
 import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 
 import { createHash } from "node:crypto";
+import { correctProductData } from "./product-title-corrections.mjs";
 
 import { resolve } from "node:path";
 
@@ -1205,7 +1206,9 @@ function editorialItems(value, productTitle = "") {
   const generic = /informa[cç][oõ]es? (?:extra[ií]das?|obtidas?)|dados p[uú]blicos|confira (?:no|o) an[uú]ncio|recursos descritos|produto identificado|ficha (?:n[aã]o )?informa/i;
   const normalized = (text) => String(text || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 
-  return repairPortugueseEncoding(value).split(/\n|;/).flatMap((part) => part.split(","))
+  // Vírgulas fazem parte de números (1,82), especificações e orações. Separá-las
+  // criava itens como "82 polegadas" e continuações iniciadas em minúscula.
+  return repairPortugueseEncoding(value).split(/\n|;/)
 
     .map((part) => part.replace(/^[\s•✓!+-]+/, "").replace(/\s+/g, " ").trim())
     .filter((part) => {
@@ -1505,6 +1508,8 @@ try {
 // As páginas usadas por WhatsApp, Facebook e Instagram devem existir para todo
 
 // produto ativo. As regras editoriais continuam valendo somente para o sitemap.
+
+allProducts = allProducts.map(correctProductData);
 
 const rawShareProducts = allProducts
 

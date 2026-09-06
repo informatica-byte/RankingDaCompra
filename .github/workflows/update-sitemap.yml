@@ -49,7 +49,7 @@ jobs:
             echo "::error::O gerador principal falhou após três tentativas. A publicação foi bloqueada para preservar o site."
             exit 1
           fi
-          node scripts/generate-discovery.mjs
+          DISCOVERY_USE_GENERATED=true node scripts/generate-discovery.mjs
           node scripts/product-title-corrections.mjs
           node scripts/validate-site.mjs
 

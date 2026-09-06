@@ -117,6 +117,21 @@ has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliaçã
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260904-focus1"><\/script>/, "versão atual do corretor editorial não foi incluída nas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="affiliate-offer"/, "botão de compra rastreável ausente das páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /allProducts = allProducts\.map\(correctProductData\)/, "correções editoriais preventivas não são aplicadas aos produtos", "scripts/generate-sitemap.mjs");
+if (/flatMap\(\(part\) => part\.split\(","\)\)/.test(sitemapGenerator)) {
+  fail("scripts/generate-sitemap.mjs: pontos editoriais ainda são quebrados em toda vírgula");
+}
+
+const discoveryGenerator = await readFile(resolve("scripts/generate-discovery.mjs"), "utf8");
+has(discoveryGenerator, /DISCOVERY_USE_GENERATED/, "descoberta interna ainda pode duplicar centenas de leituras do Firebase", "scripts/generate-discovery.mjs");
+const updateWorkflow = await readFile(resolve(".github/workflows/update-sitemap.yml"), "utf8");
+has(updateWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "workflow ainda repete a leitura completa dos produtos", ".github/workflows/update-sitemap.yml");
+const affiliateResolver = await readFile(resolve("scripts/resolve-affiliate-links.mjs"), "utf8");
+has(affiliateResolver, /documents:runQuery|\$\{FIRESTORE\}:runQuery/, "localizador ainda pode ler toda a fila MLB", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /limit:\s*10/, "consulta limitada da fila MLB ausente", "scripts/resolve-affiliate-links.mjs");
+if (/\$\{FIRESTORE\}\/\$\{COLLECTION\}\?pageSize=300/.test(affiliateResolver)) {
+  fail("scripts/resolve-affiliate-links.mjs: leitura integral de até 300 pedidos ainda está ativa");
+}
 
 const sitemap = await readFile(resolve("sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
@@ -140,6 +155,7 @@ for (const url of urls) {
   if (!html.includes('rel="canonical" href="' + url + '"')) fail(relative + ": endereço canônico divergente");
   if (/name="robots"\s+content="[^"]*noindex/i.test(html)) fail(relative + ": página do sitemap marcada como noindex");
   if (html.includes("\uFFFD")) fail(relative + ": caractere corrompido encontrado");
+  if (/<li>\s*[a-záàâãéêíóôõúüç]/u.test(html)) fail(relative + ": item editorial iniciado como fragmento de frase");
 
   for (const identity of productIdentityKeys(html)) {
     const previous = identities.get(identity);
@@ -152,6 +168,11 @@ for (const url of urls) {
 }
 
 const directoryHtml = await readFile(resolve("analises.html"), "utf8");
+if (/\b(?:ablet HUAWEI|mpressora 3x1)\b/i.test(directoryHtml)) fail("analises.html: título conhecido ainda está truncado");
+if (/\b(?:T{2,}Tablet HUAWEI|I{2,}Impressora 3x1)\b/u.test(directoryHtml)) fail("analises.html: correção de título foi aplicada mais de uma vez");
+if ((directoryHtml.match(/Celimax Retinal Shot Tightening Booster 15ml Pele Corean/g) || []).length > 1) {
+  fail("analises.html: título repetido do produto Celimax ainda está presente");
+}
 const directoryUrls = new Set(
   [...directoryHtml.matchAll(/href=["'](https:\/\/rankingdacompra\.com\.br\/produto\/[^"'?#]+)["']/gi)]
     .map((match) => match[1]),
