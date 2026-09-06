@@ -129,9 +129,12 @@ has(updateWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discove
 const affiliateResolver = await readFile(resolve("scripts/resolve-affiliate-links.mjs"), "utf8");
 has(affiliateResolver, /documents:runQuery|\$\{FIRESTORE\}:runQuery/, "localizador ainda pode ler toda a fila MLB", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /limit:\s*10/, "consulta limitada da fila MLB ausente", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /fieldPath:\s*"criadoEm"[\s\S]{0,120}direction:\s*"DESCENDING"/, "fila MLB nao prioriza os pedidos mais recentes", "scripts/resolve-affiliate-links.mjs");
 if (/\$\{FIRESTORE\}\/\$\{COLLECTION\}\?pageSize=300/.test(affiliateResolver)) {
   fail("scripts/resolve-affiliate-links.mjs: leitura integral de até 300 pedidos ainda está ativa");
 }
+
+has(mobilePanelHtml, /idade<2\*60\*1000/, "painel celular ainda pode reutilizar pedido MLB antigo", "painel-celular.html");
 
 const sitemap = await readFile(resolve("sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
@@ -233,6 +236,5 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + sitemapProductUrls.size + " produtos públicos e metadados sociais completos.");
-
 
 

@@ -305,13 +305,10 @@ async function requests() {
   const structuredQuery = {
     structuredQuery: {
       from: [{ collectionId: COLLECTION }],
-      where: {
-        fieldFilter: {
-          field: { fieldPath: "status" },
-          op: "EQUAL",
-          value: { stringValue: "pendente" },
-        },
-      },
+      // Os documentos processados continuam na colecao. Buscar os dez mais
+      // recentes impede que pedidos antigos ocupem toda a fila sem aumentar
+      // o numero de leituras do Firebase.
+      orderBy: [{ field: { fieldPath: "criadoEm" }, direction: "DESCENDING" }],
       limit: 10,
     },
   };
