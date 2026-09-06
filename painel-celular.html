@@ -149,10 +149,12 @@ async function criarPedidoRobo(link,linkAfiliado,tipo){
   let pedidoId="";
   try{
     const salvo=JSON.parse(localStorage.getItem(chave)||"null");
-    if(salvo?.id&&Date.now()-Number(salvo.criadoEm||0)<30*60*1000){
+    if(salvo?.id){
+      const idade=Date.now()-Number(salvo.criadoEm||0);
       const resultadoAnterior=await lerResultadoRobo(salvo.id,true);
-      if(resultadoAnterior?.status==="erro")localStorage.removeItem(chave);
-      else pedidoId=salvo.id;
+      if(resultadoAnterior?.status==="ok")pedidoId=salvo.id;
+      else if(!resultadoAnterior&&idade>=0&&idade<2*60*1000)pedidoId=salvo.id;
+      else localStorage.removeItem(chave);
     }
   }catch{}
   if(!pedidoId){
