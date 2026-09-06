@@ -20,6 +20,32 @@ function productId(filename) {
   return filename.replace(/-\d{8}-\d+\.html$/i, "").replace(/\.html$/i, "");
 }
 
+function productIdentity(html) {
+  const match = String(html || "").match(/\bMLB[-_\s]?(\d{6,})\b/i);
+  return match ? `MLB${match[1]}` : "";
+}
+
+function normalizedTitle(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function sameProductTitle(left, right) {
+  const a = normalizedTitle(left);
+  const b = normalizedTitle(right);
+  if (!a || !b) return false;
+  if (a === b) return true;
+  const aTokens = new Set(a.split(" ").filter(token => token.length > 2));
+  const bTokens = new Set(b.split(" ").filter(token => token.length > 2));
+  if (!aTokens.size || !bTokens.size) return false;
+  const overlap = [...aTokens].filter(token => bTokens.has(token)).length;
+  return overlap / Math.min(aTokens.size, bTokens.size) >= 0.7;
+}
+
 function findProduct(node) {
   if (!node || typeof node !== "object") return null;
   if (Array.isArray(node)) {
@@ -89,14 +115,23 @@ async function main() {
     if (!product || !price) continue;
     const id = productId(filename);
     const current = products[id] && typeof products[id] === "object" ? products[id] : {};
-    const points = Array.isArray(current.points) ? current.points.filter(point => Array.isArray(point) && String(point[0]) >= cutoff) : [];
+    const title = String(product.name || current.title || "Produto").slice(0, 220);
+    const identity = productIdentity(html);
+    const currentIdentity = String(current.identity || "");
+    const identityChanged = Boolean(currentIdentity && identity && currentIdentity !== identity);
+    const titleChanged = Boolean(current.title && !sameProductTitle(current.title, title));
+    const resetHistory = identityChanged || (!currentIdentity && titleChanged);
+    const sourcePoints = resetHistory ? [] : current.points;
+    const points = Array.isArray(sourcePoints) ? sourcePoints.filter(point => Array.isArray(point) && String(point[0]) >= cutoff) : [];
     const withoutToday = points.filter(point => String(point[0]) !== today);
     withoutToday.push([today, price]);
     withoutToday.sort((a, b) => String(a[0]).localeCompare(String(b[0])));
     products[id] = {
-      title: String(product.name || current.title || "Produto").slice(0, 220),
+      title,
+      ...(identity ? { identity } : {}),
       points: withoutToday.slice(-DAYS)
     };
+    if (resetHistory) console.log(`Histórico reiniciado para ${id}: o produto do registro mudou.`);
     recorded++;
   }
 
