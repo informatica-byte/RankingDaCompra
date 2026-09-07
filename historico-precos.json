@@ -1,7 +1,7 @@
 {
   "version": 1,
   "days": 30,
-  "updatedAt": "2026-09-07T15:09:13.006Z",
+  "updatedAt": "2026-09-07T19:42:37.776Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "title": "Colchão Casal Emma Original 138x188cm",
@@ -1778,6 +1778,7 @@
     },
     "4J4ERfLVdezQdivsmwyZ": {
       "title": "Notebook Lenovo IdeaPad Slim 3 15IRH10 Intel Core i5-13420H 8GB 512GB SSD Windows 11 15.3\" - 83NS0002BR Luna Grey",
+      "identity": "MLB51233304",
       "points": [
         [
           "2026-08-21",
@@ -1838,11 +1839,16 @@
         [
           "2026-09-05",
           3891.93
+        ],
+        [
+          "2026-09-07",
+          3891.93
         ]
       ]
     },
     "4Md1JdJwRlvNfEYXxyEC": {
       "title": "TP-Link Tapo C500 Câmera de Segurança Wifi 1080P 360° Colorida IP65",
+      "identity": "MLB23037572",
       "points": [
         [
           "2026-08-21",
@@ -1907,6 +1913,10 @@
         [
           "2026-09-05",
           226.32
+        ],
+        [
+          "2026-09-07",
+          215.2
         ]
       ]
     },
@@ -2062,7 +2072,7 @@
         ],
         [
           "2026-09-07",
-          979
+          949
         ]
       ]
     },
@@ -4194,7 +4204,7 @@
         ],
         [
           "2026-09-07",
-          190.25
+          180.4
         ]
       ]
     },
@@ -6228,7 +6238,7 @@
         ],
         [
           "2026-09-07",
-          3540
+          3850
         ]
       ]
     },
@@ -15914,7 +15924,7 @@
         ],
         [
           "2026-09-07",
-          1008.89
+          1008.88
         ]
       ]
     },
@@ -17007,7 +17017,7 @@
         ],
         [
           "2026-09-07",
-          1612.33
+          1569.76
         ]
       ]
     },
@@ -19956,6 +19966,7 @@
     },
     "mh7qDBFGUmyIdAbEfI11": {
       "title": "Parafusadeira Furadeira The Black Tools TB12A 3/8 a Bateria Cor Amarelo Frequência 60Hz",
+      "identity": "MLB24076624",
       "points": [
         [
           "2026-08-21",
@@ -19995,6 +20006,10 @@
         ],
         [
           "2026-09-05",
+          71.15
+        ],
+        [
+          "2026-09-07",
           71.15
         ]
       ]
@@ -29375,6 +29390,36 @@
         [
           "2026-09-07",
           86.9
+        ]
+      ]
+    },
+    "Gmic9wRgAK4JcePtUWlr": {
+      "title": "Roçadeira Gasolina Knakasaki 75cc 3,6hp 8 Em 1 Motopoda",
+      "identity": "MLB3822666395",
+      "points": [
+        [
+          "2026-09-07",
+          539.06
+        ]
+      ]
+    },
+    "VcquMB5m0mi7bPtsOhvW": {
+      "title": "Motosserra Elétrica Knakasaki 48v 1000w Com Extensor 3m",
+      "identity": "MLB4280998645",
+      "points": [
+        [
+          "2026-09-07",
+          362.59
+        ]
+      ]
+    },
+    "r3FSTFORXo77XwAiWk3Y": {
+      "title": "Câmera De Segurança Wi-fi 3mp Visão Noturna Colorida Áudio",
+      "identity": "MLB7399987274",
+      "points": [
+        [
+          "2026-09-07",
+          63.76
         ]
       ]
     }
