@@ -88,6 +88,9 @@ has(mobilePanelHtml, /function rankingAplicarIA\(/, "auditoria local da análise
 has(mobilePanelHtml, /id="focus-mobile"/, "resumo da Central de foco ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /function focusMobileRender\(/, "cálculo de foco por categoria ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /Usar categoria no ranking semanal/, "atalho móvel para o ranking ausente", "painel-celular.html");
+has(mobilePanelHtml, /Modo econômico ativo/, "modo econômico não está explicado no painel celular", "painel-celular.html");
+has(mobilePanelHtml, /focusMobileLeituraAutorizada=true/, "análise móvel não exige ação manual antes da leitura completa", "painel-celular.html");
+has(mobilePanelHtml, /actions\/workflows\/sync-mercadolivre\.yml/, "atalho móvel para a conferência em lote ausente", "painel-celular.html");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
 has(dashboardHtml, /id="central-visualizacoes-semana"/, "contador de visualizações do funil ausente", "dashboard.html");
@@ -101,6 +104,10 @@ has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Cent
 has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
 has(dashboardHtml, /growth-tools\.js\?v=20260904-focus1/, "cache antigo das ferramentas do painel ainda pode ser usado", "dashboard.html");
+has(dashboardHtml, /Verificar todos os produtos agora no GitHub/, "atalho de atualização manual em lote ausente", "dashboard.html");
+if (/tentarIniciarConferenciaPrecosAutomatica|automatico:\s*true/.test(dashboardHtml)) {
+  fail("dashboard.html: conferência de preços ainda pode iniciar automaticamente e consumir cota sem autorização");
+}
 const seasonalThemeIds = ["ano-novo", "volta-aulas", "carnaval", "consumidor", "pascoa", "maes", "namorados", "festa-junina", "pais", "criancas", "black-friday", "natal"];
 for (const theme of seasonalThemeIds) {
   if (!growthTools.includes(`${theme}:`) && !growthTools.includes(`"${theme}":`)) fail(`growth-tools.js: tema sazonal ausente: ${theme}`);
@@ -130,6 +137,9 @@ const discoveryGenerator = await readFile(resolve("scripts/generate-discovery.mj
 has(discoveryGenerator, /DISCOVERY_USE_GENERATED/, "descoberta interna ainda pode duplicar centenas de leituras do Firebase", "scripts/generate-discovery.mjs");
 const updateWorkflow = await readFile(resolve(".github/workflows/update-sitemap.yml"), "utf8");
 has(updateWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "workflow ainda repete a leitura completa dos produtos", ".github/workflows/update-sitemap.yml");
+const priceWorkflow = await readFile(resolve(".github/workflows/sync-mercadolivre.yml"), "utf8");
+has(priceWorkflow, /workflow_dispatch:/, "atualização manual de todos os preços ausente", ".github/workflows/sync-mercadolivre.yml");
+if (/^\s*schedule:/m.test(priceWorkflow)) fail(".github/workflows/sync-mercadolivre.yml: conferência de preços não deve iniciar sem comando manual");
 const affiliateResolver = await readFile(resolve("scripts/resolve-affiliate-links.mjs"), "utf8");
 has(affiliateResolver, /documents:runQuery|\$\{FIRESTORE\}:runQuery/, "localizador ainda pode ler toda a fila MLB", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /limit:\s*10/, "consulta limitada da fila MLB ausente", "scripts/resolve-affiliate-links.mjs");
