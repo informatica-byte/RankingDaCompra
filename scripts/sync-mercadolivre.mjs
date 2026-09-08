@@ -7,6 +7,10 @@ const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const OUTPUT = resolve("mercadolivre-status.json");
 const TOKEN_FILE = resolve(".mercadolivre-token.enc");
+const PRODUCT_SNAPSHOT = String(process.env.RDC_PRODUCTS_SNAPSHOT || "").trim();
+const BATCH_SKIP_MARKER = String(process.env.RDC_BATCH_SKIP_MARKER || "").trim();
+const DAILY_BATCH = String(process.env.RDC_DAILY_BATCH || "").toLowerCase() === "true";
+const FORCE_BATCH = String(process.env.RDC_FORCE_BATCH || "").toLowerCase() === "true";
 let accessToken = String(process.env.MERCADO_LIVRE_ACCESS_TOKEN || "").trim();
 const CLIENT_ID = String(process.env.MERCADO_LIVRE_CLIENT_ID || "").trim();
 const CLIENT_SECRET = String(process.env.MERCADO_LIVRE_CLIENT_SECRET || "").trim();
@@ -786,6 +790,23 @@ async function readPrevious() {
   }
 }
 
+function saoPauloDay(value = new Date()) {
+  const date = value instanceof Date ? value : new Date(value);
+  if (!Number.isFinite(date.getTime())) return "";
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Sao_Paulo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+}
+
+export function shouldSkipDailyBatch(previous = {}, now = new Date()) {
+  if (!DAILY_BATCH || FORCE_BATCH) return false;
+  const lastBatchDay = saoPauloDay(previous.lastBatchAt);
+  return Boolean(lastBatchDay && lastBatchDay === saoPauloDay(now));
+}
+
 async function mapWithConcurrency(items, limit, worker) {
   const results = new Array(items.length);
   let nextIndex = 0;
@@ -841,10 +862,16 @@ async function main() {
     return;
   }
 
+  const previous = await readPrevious();
+  if (shouldSkipDailyBatch(previous)) {
+    if (BATCH_SKIP_MARKER) await writeFile(resolve(BATCH_SKIP_MARKER), "skipped\n", "utf8");
+    console.log("Lote diário já concluído hoje; nenhuma leitura do Firebase foi realizada.");
+    return;
+  }
+
   let products;
-  let previous;
   try {
-    [products, previous] = await Promise.all([listProducts(), readPrevious()]);
+    products = await listProducts();
   } catch (error) {
     if (/Firestore: HTTP 429/.test(String(error?.message || error))) {
       console.warn(
@@ -853,6 +880,13 @@ async function main() {
       return;
     }
     throw error;
+  }
+  if (PRODUCT_SNAPSHOT) {
+    await writeFile(resolve(PRODUCT_SNAPSHOT), `${JSON.stringify({
+      version: 1,
+      createdAt: new Date().toISOString(),
+      products,
+    })}\n`, "utf8");
   }
   const checkedAt = new Date().toISOString();
   const entries = await mapWithConcurrency(
@@ -873,6 +907,7 @@ async function main() {
   const payload = {
     version: 1,
     updatedAt: changed ? checkedAt : (previous.updatedAt || checkedAt),
+    lastBatchAt: checkedAt,
     products: nextProducts,
   };
   await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`, "utf8");

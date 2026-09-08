@@ -10,7 +10,7 @@ function instalarModoEconomicoMobile(){
   const card=document.createElement("div");
   card.className="card";
   card.id="precos-mobile";
-  card.innerHTML='<div class="etapa">Economia de Firebase</div><h2>💰 Conferir todos os preços</h2><p>A execução é iniciada somente por você e verifica todos os produtos em um único lote no GitHub. Nenhuma conferência começa sozinha ao abrir este painel.</p><a class="btn azul" style="display:flex;align-items:center;justify-content:center;text-decoration:none" href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">Verificar preços de todos agora</a><div class="mini" style="margin-top:9px">No GitHub, toque em “Run workflow”. Aguarde terminar antes de executar novamente.</div>';
+  card.innerHTML='<div class="etapa">Economia de Firebase</div><h2>💰 Lote diário de preços</h2><p>Todos os produtos são conferidos juntos uma vez por dia, por volta das 8h30. O resultado completo só aparece quando o lote termina.</p><a class="btn azul" style="display:flex;align-items:center;justify-content:center;text-decoration:none" href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">Acompanhar lote diário</a><div class="mini" style="margin-top:9px">Uma segunda execução no mesmo dia é bloqueada para economizar Firebase. No GitHub, marque “force” somente em uma necessidade excepcional.</div>';
   sincronizado.before(card);
 }
 instalarModoEconomicoMobile();

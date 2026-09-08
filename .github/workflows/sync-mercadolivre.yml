@@ -2,8 +2,16 @@ name: Atualizar preços e disponibilidade
 
 
 on:
-  # Execução apenas manual; a conferência diária é feita pelo robô local do navegador.
   workflow_dispatch:
+    inputs:
+      force:
+        description: "Repetir mesmo se o lote de hoje já terminou"
+        required: false
+        default: false
+        type: boolean
+  schedule:
+    # Uma única conferência diária às 08:30 no horário de Brasília (11:30 UTC).
+    - cron: "30 11 * * *"
 
 
 permissions:
@@ -19,6 +27,11 @@ jobs:
   atualizar:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      RDC_PRODUCTS_SNAPSHOT: .price-sync-products.json
+      RDC_BATCH_SKIP_MARKER: .price-sync-skipped
+      RDC_DAILY_BATCH: "true"
+      RDC_FORCE_BATCH: ${{ github.event_name == 'workflow_dispatch' && inputs.force || false }}
     steps:
       - name: Baixar os arquivos do site
         uses: actions/checkout@v5
@@ -40,16 +53,22 @@ jobs:
           MERCADO_LIVRE_REDIRECT_URI: https://rankingdacompra.com.br/oauth-mercadolivre.html
         run: |
           node --test scripts/test-sync-mercadolivre.mjs
+          node --test scripts/test-daily-price-batch.mjs
           node scripts/sync-mercadolivre.mjs
 
 
       - name: Atualizar o sitemap e as páginas sociais
         shell: bash
         run: |
+          if [[ -f "$RDC_BATCH_SKIP_MARKER" ]]; then
+            echo "O lote de hoje já foi publicado; geração e novas leituras foram dispensadas."
+            exit 0
+          fi
           if ! node scripts/generate-sitemap.mjs; then
             echo "::warning::Firebase temporariamente indisponível; mantendo o sitemap e as páginas atuais."
             git restore --worktree -- sitemap.xml produto
           fi
+          rm -f "$RDC_PRODUCTS_SNAPSHOT"
 
 
       - name: Publicar somente quando houver mudança

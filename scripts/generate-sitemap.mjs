@@ -20,6 +20,7 @@ const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/da
 const SITE = "https://rankingdacompra.com.br/";
 
 const SHARE_VERSION = "20260810-1";
+const PRODUCT_SNAPSHOT = String(process.env.RDC_PRODUCTS_SNAPSHOT || "").trim();
 
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 
@@ -179,6 +180,15 @@ async function listCollection(collection, maxAttempts = 8) {
 
   return documents;
 
+}
+
+async function readProductSnapshot() {
+  if (!PRODUCT_SNAPSHOT) return null;
+  const payload = JSON.parse(await readFile(resolve(PRODUCT_SNAPSHOT), "utf8"));
+  if (!Array.isArray(payload?.products)) {
+    throw new Error("snapshot do lote diário não contém uma lista válida de produtos");
+  }
+  return payload.products;
 }
 
 
@@ -1439,11 +1449,16 @@ function renderUrl(entry) {
 // As páginas dos produtos são prioridade. Categorias nunca podem bloquear sua criação.
 
 let allProducts = [];
+const snapshotProducts = await readProductSnapshot().catch((error) => {
+  console.warn("Snapshot do lote indisponível: " + String(error?.message || error));
+  return null;
+});
 
-try {
-
+if (snapshotProducts) {
+  allProducts = snapshotProducts;
+  console.log(`Produtos reutilizados do lote diário: ${allProducts.length}; leitura duplicada do Firebase evitada.`);
+} else try {
   allProducts = await listCollection("produtos", 2);
-
 } catch (error) {
 
   partialProductSource = true;

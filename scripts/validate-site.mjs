@@ -91,6 +91,7 @@ has(mobilePanelHtml, /Usar categoria no ranking semanal/, "atalho móvel para o 
 has(mobilePanelHtml, /Modo econômico ativo/, "modo econômico não está explicado no painel celular", "painel-celular.html");
 has(mobilePanelHtml, /focusMobileLeituraAutorizada=true/, "análise móvel não exige ação manual antes da leitura completa", "painel-celular.html");
 has(mobilePanelHtml, /actions\/workflows\/sync-mercadolivre\.yml/, "atalho móvel para a conferência em lote ausente", "painel-celular.html");
+has(mobilePanelHtml, /Todos os produtos são conferidos juntos uma vez por dia/, "explicação móvel do lote diário ausente", "painel-celular.html");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
 has(dashboardHtml, /id="central-visualizacoes-semana"/, "contador de visualizações do funil ausente", "dashboard.html");
@@ -104,7 +105,11 @@ has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Cent
 has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
 has(dashboardHtml, /growth-tools\.js\?v=20260904-focus1/, "cache antigo das ferramentas do painel ainda pode ser usado", "dashboard.html");
-has(dashboardHtml, /Verificar todos os produtos agora no GitHub/, "atalho de atualização manual em lote ausente", "dashboard.html");
+has(dashboardHtml, /Ver lote diário de todos os produtos/, "atalho do lote diário ausente", "dashboard.html");
+has(dashboardHtml, /todos os produtos são conferidos juntos uma vez por dia/i, "explicação do lote diário ausente", "dashboard.html");
+if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
+  fail("dashboard.html: botão antigo ainda pode gravar preços um por um e aumentar o consumo do Firebase");
+}
 if (/tentarIniciarConferenciaPrecosAutomatica|automatico:\s*true/.test(dashboardHtml)) {
   fail("dashboard.html: conferência de preços ainda pode iniciar automaticamente e consumir cota sem autorização");
 }
@@ -140,10 +145,19 @@ has(updateWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discove
 const priceWorkflow = await readFile(resolve(".github/workflows/sync-mercadolivre.yml"), "utf8");
 has(priceWorkflow, /workflow_dispatch:/, "atualização manual de todos os preços ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /node --test scripts\/test-sync-mercadolivre\.mjs/, "teste preventivo do identificador MLB ausente", ".github/workflows/sync-mercadolivre.yml");
-if (/^\s*schedule:/m.test(priceWorkflow)) fail(".github/workflows/sync-mercadolivre.yml: conferência de preços não deve iniciar sem comando manual");
+has(priceWorkflow, /cron:\s*["']30 11 \* \* \*["']/, "lote diário único das 08:30 ausente", ".github/workflows/sync-mercadolivre.yml");
+if ((priceWorkflow.match(/\bcron:/g) || []).length !== 1) fail(".github/workflows/sync-mercadolivre.yml: deve existir exatamente uma conferência agendada por dia");
+has(priceWorkflow, /RDC_PRODUCTS_SNAPSHOT:\s*\.price-sync-products\.json/, "snapshot para evitar releitura integral ausente", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /RDC_BATCH_SKIP_MARKER:\s*\.price-sync-skipped/, "bloqueio integral de uma segunda execução diária ausente", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /-f "\$RDC_BATCH_SKIP_MARKER"[\s\S]{0,220}exit 0/, "gerador ainda pode reler produtos após lote diário já concluído", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /node --test scripts\/test-daily-price-batch\.mjs/, "teste preventivo do lote diário ausente", ".github/workflows/sync-mercadolivre.yml");
 const priceSync = await readFile(resolve("scripts/sync-mercadolivre.mjs"), "utf8");
 has(priceSync, /shouldTrustStoredItemId/, "proteção contra código de catálogo tratado como anúncio ausente", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /const direct = extractItemIdFromUrl\(value\);[\s\S]{0,80}if \(direct\) return direct;/, "wid do anúncio não tem prioridade sobre o cadastro antigo", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /shouldSkipDailyBatch/, "bloqueio contra repetição do lote no mesmo dia ausente", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /lastBatchAt:\s*checkedAt/, "registro da conclusão do lote diário ausente", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /PRODUCT_SNAPSHOT[\s\S]{0,240}writeFile/, "snapshot único de produtos ausente", "scripts/sync-mercadolivre.mjs");
+has(sitemapGenerator, /readProductSnapshot/, "gerador ainda pode reler todos os produtos no mesmo lote", "scripts/generate-sitemap.mjs");
 const affiliateResolver = await readFile(resolve("scripts/resolve-affiliate-links.mjs"), "utf8");
 has(affiliateResolver, /documents:runQuery|\$\{FIRESTORE\}:runQuery/, "localizador ainda pode ler toda a fila MLB", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /limit:\s*10/, "consulta limitada da fila MLB ausente", "scripts/resolve-affiliate-links.mjs");

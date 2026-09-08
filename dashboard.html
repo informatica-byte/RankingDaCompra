@@ -339,16 +339,15 @@
                 <div class="painel-produtos" id="painel-precos" role="tabpanel" aria-labelledby="tab-precos" hidden>
                     <div class="resumo-precos" id="resumo-precos">Carregando o relatório da última verificação automática...</div>
                     <div class="conferencia-precos-ia">
-                        <button type="button" class="btn-conferir-precos-ia" id="btn-conferir-precos-ia" onclick="iniciarConferenciaPrecosIAEmLote()">🤖 Conferir todos os preços</button>
                         <div class="status-bot-precos" id="status-bot-precos-local">Verificando o robô local...</div>
-                        <a class="link-instalar-bot" href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">⚡ Verificar todos os produtos agora no GitHub</a>
+                        <a class="link-instalar-bot" href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">⚡ Ver lote diário de todos os produtos</a>
                         <a class="link-instalar-bot" href="/bot-precos.user.js" target="_blank" rel="noopener">Instalar ou atualizar o robô de preços (uma única vez)</a>
                         <div class="progresso-precos-ia" id="progresso-precos-ia" aria-live="polite">
                             <progress id="barra-precos-ia" value="0" max="1"></progress>
                             <div class="texto-progresso-precos-ia" id="texto-precos-ia">Preparando a conferência...</div>
                             <div class="resumo-progresso-precos-ia" id="resumo-precos-ia"></div>
                         </div>
-                        <p><strong>Modo econômico:</strong> nenhuma conferência começa sozinha. O botão do GitHub consulta todos os produtos em um único lote; o robô local permanece como opção manual para revisar apenas as pendências.</p>
+                        <p><strong>Modo econômico diário:</strong> todos os produtos são conferidos juntos uma vez por dia, por volta das 8h30. O resultado inteiro só aparece quando o lote termina. O link do GitHub permite consultar o andamento ou uma repetição excepcional.</p>
                     </div>
                     <div id="itens-precos"></div>
                 </div>
