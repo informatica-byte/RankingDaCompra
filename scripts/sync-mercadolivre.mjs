@@ -215,6 +215,19 @@ function extractCatalogIdFromUrl(value) {
   }
 }
 
+export function shouldTrustStoredItemId(itemId, product = {}) {
+  const normalized = extractItemIdFromText(itemId);
+  if (!normalized) return false;
+  const urls = [product.link, product.linkAfiliado].filter(Boolean);
+  const catalogIds = urls.map(extractCatalogIdFromUrl).filter(Boolean);
+  if (catalogIds.includes(normalized)) return false;
+  const digits = normalized.replace(/\D/g, "");
+  // Os anúncios atuais usam um MLB longo. Códigos curtos encontrados em links
+  // /p/ são catálogo ou campanha e não podem justificar ocultação automática.
+  if (urls.length && digits.length < 10) return false;
+  return true;
+}
+
 function normalizeTitle(value) {
   return String(value || "")
     .normalize("NFD")
@@ -301,12 +314,18 @@ async function itemFromRedirect(value) {
 
 async function resolveItemId(product) {
   const explicit = extractItemIdFromText(product.mercadoLivreItemId);
-  if (explicit) return explicit;
-
   const urls = [product.link, product.linkAfiliado].filter(Boolean);
+
+  // O wid/item_id do endereço identifica a oferta concreta e deve prevalecer
+  // sobre um código antigo salvo no cadastro.
   for (const value of urls) {
     const direct = extractItemIdFromUrl(value);
     if (direct) return direct;
+  }
+
+  if (shouldTrustStoredItemId(explicit, product)) return explicit;
+
+  for (const value of urls) {
 
     const catalogItem = await itemFromCatalog(extractCatalogIdFromUrl(value));
     if (catalogItem) return catalogItem;
@@ -904,3 +923,4 @@ if (isMain) {
     process.exitCode = 1;
   });
 }
+
