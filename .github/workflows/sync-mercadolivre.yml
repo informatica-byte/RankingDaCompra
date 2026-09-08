@@ -38,7 +38,9 @@ jobs:
           MERCADO_LIVRE_TOKEN_KEY: ${{ secrets.MERCADO_LIVRE_TOKEN_KEY }}
           MERCADO_LIVRE_AUTHORIZATION_CODE: ${{ secrets.MERCADO_LIVRE_AUTHORIZATION_CODE }}
           MERCADO_LIVRE_REDIRECT_URI: https://rankingdacompra.com.br/oauth-mercadolivre.html
-        run: node scripts/sync-mercadolivre.mjs
+        run: |
+          node --test scripts/test-sync-mercadolivre.mjs
+          node scripts/sync-mercadolivre.mjs
 
 
       - name: Atualizar o sitemap e as páginas sociais
@@ -67,4 +69,5 @@ jobs:
           fi
           git commit -m "Atualiza preços e disponibilidade automaticamente"
           git push
+
 
