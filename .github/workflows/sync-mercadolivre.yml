@@ -70,4 +70,3 @@ jobs:
           git commit -m "Atualiza preços e disponibilidade automaticamente"
           git push
 
-
