@@ -255,4 +255,3 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + sitemapProductUrls.size + " produtos públicos e metadados sociais completos.");
-
