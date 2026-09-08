@@ -24,4 +24,3 @@ test("nao trata codigo de catalogo como anuncio indisponivel", () => {
 test("mantem codigo explicito quando nao ha endereco para conferir", () => {
   assert.equal(shouldTrustStoredItemId("MLB1234567", {}), true);
 });
-
