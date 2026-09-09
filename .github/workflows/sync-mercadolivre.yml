@@ -10,8 +10,8 @@ on:
         default: false
         type: boolean
   schedule:
-    # Uma única conferência diária às 08:30 no horário de Brasília (11:30 UTC).
-    - cron: "30 11 * * *"
+    # Uma única conferência diária às 09:30 no horário de Brasília (12:30 UTC).
+    - cron: "30 12 * * *"
 
 
 permissions:

@@ -8,7 +8,7 @@ const generator = await readFile("scripts/generate-sitemap.mjs", "utf8");
 
 test("agenda somente um lote completo por dia", () => {
   assert.equal((workflow.match(/\bcron:/g) || []).length, 1);
-  assert.match(workflow, /cron:\s*["']30 11 \* \* \*["']/);
+  assert.match(workflow, /cron:\s*["']30 12 \* \* \*["']/);
   assert.match(workflow, /concurrency:[\s\S]*cancel-in-progress:\s*false/);
 });
 

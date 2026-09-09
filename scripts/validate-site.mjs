@@ -105,7 +105,7 @@ has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Cent
 has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
 has(dashboardHtml, /growth-tools\.js\?v=20260904-focus1/, "cache antigo das ferramentas do painel ainda pode ser usado", "dashboard.html");
-has(dashboardHtml, /Ver lote diário de todos os produtos/, "atalho do lote diário ausente", "dashboard.html");
+has(dashboardHtml, /Executar ou acompanhar o lote diário/, "atalho do lote diário ausente", "dashboard.html");
 has(dashboardHtml, /todos os produtos são conferidos juntos uma vez por dia/i, "explicação do lote diário ausente", "dashboard.html");
 if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
   fail("dashboard.html: botão antigo ainda pode gravar preços um por um e aumentar o consumo do Firebase");
@@ -145,7 +145,7 @@ has(updateWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discove
 const priceWorkflow = await readFile(resolve(".github/workflows/sync-mercadolivre.yml"), "utf8");
 has(priceWorkflow, /workflow_dispatch:/, "atualização manual de todos os preços ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /node --test scripts\/test-sync-mercadolivre\.mjs/, "teste preventivo do identificador MLB ausente", ".github/workflows/sync-mercadolivre.yml");
-has(priceWorkflow, /cron:\s*["']30 11 \* \* \*["']/, "lote diário único das 08:30 ausente", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /cron:\s*["']30 12 \* \* \*["']/, "lote diário único das 09:30 ausente", ".github/workflows/sync-mercadolivre.yml");
 if ((priceWorkflow.match(/\bcron:/g) || []).length !== 1) fail(".github/workflows/sync-mercadolivre.yml: deve existir exatamente uma conferência agendada por dia");
 has(priceWorkflow, /RDC_PRODUCTS_SNAPSHOT:\s*\.price-sync-products\.json/, "snapshot para evitar releitura integral ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /RDC_BATCH_SKIP_MARKER:\s*\.price-sync-skipped/, "bloqueio integral de uma segunda execução diária ausente", ".github/workflows/sync-mercadolivre.yml");
