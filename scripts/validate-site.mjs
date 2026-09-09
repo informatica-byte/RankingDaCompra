@@ -192,6 +192,16 @@ if (/\$\{FIRESTORE\}\/\$\{COLLECTION\}\?pageSize=300/.test(affiliateResolver)) {
 has(mobilePanelHtml, /idade<2\*60\*1000/, "painel celular ainda pode reutilizar pedido MLB antigo", "painel-celular.html");
 has(mobilePanelHtml, /d\.dadosTecnicos\.length<70/, "validacao tecnica do painel celular esta desalinhada com o robo", "painel-celular.html");
 
+if (/collection\(["']visitas["']\)\.get\(\)/.test(dashboardHtml)) {
+  fail("dashboard.html: leitura integral e ilimitada do histórico de visitas voltou a ser usada");
+}
+has(dashboardHtml, /obterMetricasPainel[\s\S]{0,1200}collection\(["']visitas["']\)\.where\(["']dia["'],\s*["']>=["']/, "consulta econômica compartilhada das métricas ausente", "dashboard.html");
+const consultasRecentesVisitas = dashboardHtml.match(/collection\(["']visitas["']\)\.where\(["']dia["'],\s*["']>=["']/g) || [];
+if (consultasRecentesVisitas.length !== 1) {
+  fail("dashboard.html: deve existir exatamente uma consulta compartilhada do histórico recente de visitas");
+}
+has(dashboardHtml, /JANELA_METRICAS_PAINEL_DIAS\s*=\s*14/, "janela de 14 dias necessária para a comparação semanal ausente", "dashboard.html");
+
 const sitemap = await readFile(resolve("sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
 const uniqueUrls = new Set(urls);
@@ -309,3 +319,4 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + sitemapProductUrls.size + " produtos públicos e metadados sociais completos.");
+

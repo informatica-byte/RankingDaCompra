@@ -158,7 +158,7 @@
         <div class="painel">
             <h2>📈 Visitas da vitrine</h2>
             <div class="metricas-visitas">
-                <div class="metrica-visita"><strong id="visitas-total">—</strong><span>Total registrado</span></div>
+                <div class="metrica-visita"><strong id="visitas-total">—</strong><span>Últimos 14 dias</span></div>
                 <div class="metrica-visita"><strong id="visitas-hoje">—</strong><span>Hoje</span></div>
                 <div class="metrica-visita"><strong id="visitas-7-dias">—</strong><span>Últimos 7 dias</span></div>
             </div>
@@ -974,7 +974,7 @@ Formato sem comprovação:
         });
 
         document.getElementById('btn-sair').addEventListener('click', () => auth.signOut());
-        document.getElementById('btn-atualizar-visitas').addEventListener('click', carregarMetricasVisitas);
+        document.getElementById('btn-atualizar-visitas').addEventListener('click', () => carregarMetricasVisitas(true));
 
         function dataBrasil(data = new Date()) {
             const partes = new Intl.DateTimeFormat('en-CA', {
@@ -985,26 +985,57 @@ Formato sem comprovação:
             return `${valor.year}-${valor.month}-${valor.day}`;
         }
 
-        async function carregarMetricasVisitas() {
+        const JANELA_METRICAS_PAINEL_DIAS = 14;
+        const CACHE_METRICAS_PAINEL_MS = 5 * 60 * 1000;
+        const CACHE_MINIMO_ATUALIZACAO_MS = 60 * 1000;
+        let metricasPainelCache = null;
+        let metricasPainelCacheEm = 0;
+        let metricasPainelPromise = null;
+
+        function inicioMetricasPainel() {
+            const inicio = new Date();
+            inicio.setDate(inicio.getDate() - (JANELA_METRICAS_PAINEL_DIAS - 1));
+            return dataBrasil(inicio);
+        }
+
+        async function obterMetricasPainel(forcar = false) {
+            if (metricasPainelPromise) return metricasPainelPromise;
+            const idadeCache = Date.now() - metricasPainelCacheEm;
+            const cacheValido = metricasPainelCache && idadeCache < CACHE_METRICAS_PAINEL_MS;
+            const atualizacaoMuitoRecente = metricasPainelCache && idadeCache < CACHE_MINIMO_ATUALIZACAO_MS;
+            if (cacheValido && (!forcar || atualizacaoMuitoRecente)) return metricasPainelCache;
+
+            const inicio = inicioMetricasPainel();
+            metricasPainelPromise = db.collection('visitas').where('dia', '>=', inicio).get()
+                .then(snapshot => {
+                    metricasPainelCache = snapshot;
+                    metricasPainelCacheEm = Date.now();
+                    return snapshot;
+                })
+                .finally(() => { metricasPainelPromise = null; });
+            return metricasPainelPromise;
+        }
+
+        async function carregarMetricasVisitas(forcar = false) {
             const botao = document.getElementById('btn-atualizar-visitas');
             botao.disabled = true;
             botao.textContent = 'Atualizando...';
             try {
-                const snapshot = await db.collection('visitas').get();
+                const snapshot = await obterMetricasPainel(forcar === true);
                 const hoje = dataBrasil();
                 const inicioSeteDias = new Date();
                 inicioSeteDias.setDate(inicioSeteDias.getDate() - 6);
                 const inicio = dataBrasil(inicioSeteDias);
-                let visitasTotal = 0, visitasHoje = 0, visitasSeteDias = 0;
+                let visitasQuatorzeDias = 0, visitasHoje = 0, visitasSeteDias = 0;
                 snapshot.forEach(doc => {
                     const dadosVisita = doc.data();
                     if ((dadosVisita.tipo && dadosVisita.tipo !== 'visita') || String(dadosVisita.origem || '').startsWith('evento:')) return;
-                    visitasTotal++;
+                    visitasQuatorzeDias++;
                     const dia = dadosVisita.dia || '';
                     if (dia === hoje) visitasHoje++;
                     if (dia >= inicio && dia <= hoje) visitasSeteDias++;
                 });
-                document.getElementById('visitas-total').textContent = visitasTotal.toLocaleString('pt-BR');
+                document.getElementById('visitas-total').textContent = visitasQuatorzeDias.toLocaleString('pt-BR');
                 document.getElementById('visitas-hoje').textContent = visitasHoje.toLocaleString('pt-BR');
                 document.getElementById('visitas-7-dias').textContent = visitasSeteDias.toLocaleString('pt-BR');
             } catch (erro) {
@@ -1170,12 +1201,12 @@ function renderizarSecoesCentral(){const alvo=document.getElementById('central-s
 const renderizarRelatorioCentralBase=renderizarRelatorioCentral;renderizarRelatorioCentral=function(){renderizarRelatorioCentralBase();renderizarSecoesCentral();renderizarFocoCentral()};
 function decodificarMetricaCentral(dados,id){if(['clique_oferta','compartilhamento','clique_secao','visualizacao_produto'].includes(dados.tipo)){const evento={id,...dados};if(evento.tipo==='clique_secao'&&String(evento.canal||'').startsWith('view:')){evento.tipo='visualizacao_produto';evento.canal=String(evento.canal).slice(5)||'direto'}return evento}const origem=String(dados.origem||'');if(!origem.startsWith('evento:'))return null;const partes=origem.split(':');const tipo=partes[1]||'',produtoId=partes[2]||'',canal=partes[3]||'site';if(!['clique_oferta','compartilhamento','clique_secao','visualizacao_produto'].includes(tipo)||!produtoId)return null;const produto=produtosCentralAtual.find(item=>String(item.id)===String(produtoId));return{id,tipo,produtoId,titulo:produto?.titulo||produtoId,categoria:produto?.categoria||'',canal,campanha:'ofertas_do_dia',dia:dados.dia||'',criadoEm:dados.criadoEm,origem}}
 
-async function carregarMetricasCentral(){
+async function carregarMetricasCentral(forcar=false){
 const botao=document.getElementById('btn-central-atualizar'),status=document.getElementById('central-status'),textoOriginal=botao?.textContent||'↻ Atualizar relatório';
 if(botao){botao.disabled=true;botao.textContent='Atualizando relatório...'}
 if(status)status.textContent='Buscando cliques e compartilhamentos registrados...';
 try{
-const snapshot=await db.collection('visitas').get(),eventos=[];
+const snapshot=await obterMetricasPainel(forcar===true),eventos=[];
 snapshot.forEach(doc=>{const evento=decodificarMetricaCentral(doc.data(),doc.id);if(evento)eventos.push(evento)});
 eventos.sort((a,b)=>dataMsCentral(b.criadoEm)-dataMsCentral(a.criadoEm));
 metricasCentralAtual=eventos;
@@ -1217,7 +1248,7 @@ function baixarArquivoCentral(arquivo){const url=URL.createObjectURL(arquivo),li
 
 async function compartilharCampanhaCentral(id,canal,botao,evento){const produto=produtoCentralPorId(id);if(!produto){evento?.preventDefault();alert('Não foi possível localizar esta oferta. Atualize o painel e tente novamente.');return}const estadoPublicacao=estadosPublicacaoCentral.get(String(id));if(!estadoPublicacao?.pronto||!estadoPublicacao?.arquivoPronto){evento?.preventDefault();alert('A página e a foto ainda estão sendo preparadas. Clique em Criar páginas agora e aguarde a confirmação verde.');return}const campoTexto=document.getElementById(`campanha-texto-${id}`),texto=String(campoTexto?.value||textoPadraoCentral(produto)).trim(),link=urlCampanhaCentral(produto,canal),mensagem=`${texto}\n${link}`,arquivo=arquivosCampanhaCentral.get(chaveArquivoCampanhaCentral(produto))||null,podeCompartilharFoto=Boolean(arquivo&&navigator.share&&navigator.canShare?.({files:[arquivo]}));if(podeCompartilharFoto){evento?.preventDefault();const rotulo=botao?.textContent;if(botao){botao.disabled=true;botao.textContent='Compartilhando...'}try{await navigator.share({title:produto.titulo,text:texto,url:link,files:[arquivo]});void registrarCompartilhamentoCentral(produto,canal)}catch(erro){if(erro?.name!=='AbortError'){console.error(erro);await copiarTextoCentral(mensagem);baixarArquivoCentral(arquivo);alert('A foto foi baixada e o texto com o link foi copiado para você publicar.')}}finally{if(botao){botao.disabled=false;botao.textContent=rotulo||canal}}return}if(canal==='instagram'){evento?.preventDefault();const rotulo=botao?.textContent;if(botao){botao.disabled=true;botao.textContent='Preparando foto...'}try{const foto=arquivo||await prepararArquivoCampanhaCentral(produto);await copiarTextoCentral(mensagem);if(foto)baixarArquivoCentral(foto);void registrarCompartilhamentoCentral(produto,canal);alert(foto?'A foto foi baixada e o texto com o link foi copiado. Agora publique os dois no Instagram.':'O texto e o link foram copiados, mas a foto não pôde ser preparada neste navegador.')}finally{if(botao){botao.disabled=false;botao.textContent=rotulo||'Instagram'}}return}const destino=canal==='facebook'?`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`:`https://wa.me/?text=${encodeURIComponent(mensagem)}`;if(botao?.tagName==='A')botao.href=destino;void copiarTextoCentral(mensagem);void registrarCompartilhamentoCentral(produto,canal)}
 
-function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;centralDivulgacaoInicializada=true;document.getElementById('btn-central-atualizar')?.addEventListener('click',carregarMetricasCentral);document.getElementById('btn-central-ia')?.addEventListener('click',async evento=>{const botao=evento.currentTarget,ofertas=melhoresOfertasCentral();botao.disabled=true;const original=botao.textContent;for(let i=0;i<ofertas.length;i++){botao.textContent=`IA escrevendo ${i+1} de ${ofertas.length}...`;await gerarTextoCampanhaCentral(ofertas[i].id,null)}botao.disabled=false;botao.textContent=original});const area=document.getElementById('central-divulgacao');area?.addEventListener('input',evento=>{if(!evento.target.id?.startsWith('campanha-texto-'))return;const id=evento.target.id.replace('campanha-texto-','');textosCampanhaCentral[id]=evento.target.value});area?.addEventListener('click',evento=>{const compartilhar=evento.target.closest?.('[data-central-compartilhar]'),ia=evento.target.closest?.('[data-central-ia]'),editar=evento.target.closest?.('[data-central-editar]'),foco=evento.target.closest?.('[data-central-foco-ranking]');if(compartilhar)compartilharCampanhaCentral(compartilhar.dataset.centralCompartilhar,compartilhar.dataset.centralRede||'whatsapp',compartilhar,evento);else if(ia)gerarTextoCampanhaCentral(ia.dataset.centralIa,ia);else if(editar)editarProduto(editar.dataset.centralEditar);else if(foco){const campo=document.getElementById('weekly-ranking-query');if(campo)campo.value=foco.dataset.centralFocoRanking||'';document.getElementById('weekly-ranking-admin')?.scrollIntoView({behavior:'smooth',block:'start'})}})}
+function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;centralDivulgacaoInicializada=true;document.getElementById('btn-central-atualizar')?.addEventListener('click',()=>carregarMetricasCentral(true));document.getElementById('btn-central-ia')?.addEventListener('click',async evento=>{const botao=evento.currentTarget,ofertas=melhoresOfertasCentral();botao.disabled=true;const original=botao.textContent;for(let i=0;i<ofertas.length;i++){botao.textContent=`IA escrevendo ${i+1} de ${ofertas.length}...`;await gerarTextoCampanhaCentral(ofertas[i].id,null)}botao.disabled=false;botao.textContent=original});const area=document.getElementById('central-divulgacao');area?.addEventListener('input',evento=>{if(!evento.target.id?.startsWith('campanha-texto-'))return;const id=evento.target.id.replace('campanha-texto-','');textosCampanhaCentral[id]=evento.target.value});area?.addEventListener('click',evento=>{const compartilhar=evento.target.closest?.('[data-central-compartilhar]'),ia=evento.target.closest?.('[data-central-ia]'),editar=evento.target.closest?.('[data-central-editar]'),foco=evento.target.closest?.('[data-central-foco-ranking]');if(compartilhar)compartilharCampanhaCentral(compartilhar.dataset.centralCompartilhar,compartilhar.dataset.centralRede||'whatsapp',compartilhar,evento);else if(ia)gerarTextoCampanhaCentral(ia.dataset.centralIa,ia);else if(editar)editarProduto(editar.dataset.centralEditar);else if(foco){const campo=document.getElementById('weekly-ranking-query');if(campo)campo.value=foco.dataset.centralFocoRanking||'';document.getElementById('weekly-ranking-admin')?.scrollIntoView({behavior:'smooth',block:'start'})}})}
 
                 // MIGRAÇÃO: se este navegador ainda tiver categorias salvas do jeito antigo
         // (localStorage) e a nuvem estiver vazia, copia elas pro Firestore uma única vez,
@@ -2675,3 +2706,4 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 </html>
 
 <script src="indexacao-dashboard.js?v=20260814-1" defer></script>
+
