@@ -2,6 +2,13 @@ name: Atualizar preços e disponibilidade
 
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/sync-mercadolivre.mjs"
+      - "scripts/test-sync-mercadolivre.mjs"
+      - "scripts/test-daily-price-batch.mjs"
+      - ".github/workflows/sync-mercadolivre.yml"
   workflow_dispatch:
     inputs:
       force:

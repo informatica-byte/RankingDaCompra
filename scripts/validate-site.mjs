@@ -160,6 +160,7 @@ has(updateWorkflow, /git add -A sitemap\.xml produto analises\.html top5-semanal
 has(updateWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do sitemap ainda pode falhar por concorrência no GitHub", ".github/workflows/update-sitemap.yml");
 const priceWorkflow = await readFile(resolve(".github/workflows/sync-mercadolivre.yml"), "utf8");
 has(priceWorkflow, /workflow_dispatch:/, "atualização manual de todos os preços ausente", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /push:[\s\S]{0,260}scripts\/sync-mercadolivre\.mjs[\s\S]{0,260}scripts\/test-daily-price-batch\.mjs/, "correção do sincronizador não dispara uma conferência protegida", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /node --test scripts\/test-sync-mercadolivre\.mjs/, "teste preventivo do identificador MLB ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /cron:\s*["']30 12 \* \* \*["']/, "lote diário único das 09:30 ausente", ".github/workflows/sync-mercadolivre.yml");
 if ((priceWorkflow.match(/\bcron:/g) || []).length !== 1) fail(".github/workflows/sync-mercadolivre.yml: deve existir exatamente uma conferência agendada por dia");
@@ -171,6 +172,7 @@ has(priceWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discover
 has(priceWorkflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html search-index\.json/, "lote diário não publica o índice de busca", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do lote diário ainda pode falhar por concorrência no GitHub", ".github/workflows/sync-mercadolivre.yml");
 const priceSync = await readFile(resolve("scripts/sync-mercadolivre.mjs"), "utf8");
+has(priceSync, /function saoPauloDay\(value\)[\s\S]{0,120}value === undefined[\s\S]{0,120}return ""/, "lastBatchAt ausente ainda pode bloquear o primeiro lote do dia", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /shouldTrustStoredItemId/, "proteção contra código de catálogo tratado como anúncio ausente", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /const direct = extractItemIdFromUrl\(value\);[\s\S]{0,80}if \(direct\) return direct;/, "wid do anúncio não tem prioridade sobre o cadastro antigo", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /shouldSkipDailyBatch/, "bloqueio contra repetição do lote no mesmo dia ausente", "scripts/sync-mercadolivre.mjs");

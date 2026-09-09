@@ -790,7 +790,8 @@ async function readPrevious() {
   }
 }
 
-function saoPauloDay(value = new Date()) {
+function saoPauloDay(value) {
+  if (value === undefined || value === null || value === "") return "";
   const date = value instanceof Date ? value : new Date(value);
   if (!Number.isFinite(date.getTime())) return "";
   return new Intl.DateTimeFormat("en-CA", {

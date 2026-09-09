@@ -32,6 +32,14 @@ test("bloqueia de verdade uma segunda execução na mesma data de São Paulo", a
     { lastBatchAt: "2026-09-07T11:45:00.000Z" },
     new Date("2026-09-08T20:00:00.000Z"),
   ), false);
+  assert.equal(shouldSkipDailyBatch(
+    {},
+    new Date("2026-09-08T20:00:00.000Z"),
+  ), false, "a ausência de lastBatchAt deve executar o primeiro lote");
+  assert.equal(shouldSkipDailyBatch(
+    { lastBatchAt: "" },
+    new Date("2026-09-08T20:00:00.000Z"),
+  ), false, "lastBatchAt vazio não pode ser interpretado como hoje");
 });
 
 test("reutiliza a mesma lista na geração e publica somente no final", () => {
