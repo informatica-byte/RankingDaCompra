@@ -173,6 +173,8 @@ has(priceWorkflow, /git add -A mercadolivre-status\.json sitemap\.xml produto an
 has(priceWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do lote diário ainda pode falhar por concorrência no GitHub", ".github/workflows/sync-mercadolivre.yml");
 const priceSync = await readFile(resolve("scripts/sync-mercadolivre.mjs"), "utf8");
 has(priceSync, /function saoPauloDay\(value\)[\s\S]{0,120}value === undefined[\s\S]{0,120}return ""/, "lastBatchAt ausente ainda pode bloquear o primeiro lote do dia", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /function repairLegacyHiddenRecords\([\s\S]{0,500}status === "not_found"[\s\S]{0,500}itemDigits\.length < 10/, "falsos indisponíveis antigos não possuem migração segura", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /legacyRepair\.repaired[\s\S]{0,300}writeFile\(OUTPUT/, "reparo dos estados antigos não é persistido antes da leitura do Firebase", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /shouldTrustStoredItemId/, "proteção contra código de catálogo tratado como anúncio ausente", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /const direct = extractItemIdFromUrl\(value\);[\s\S]{0,80}if \(direct\) return direct;/, "wid do anúncio não tem prioridade sobre o cadastro antigo", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /shouldSkipDailyBatch/, "bloqueio contra repetição do lote no mesmo dia ausente", "scripts/sync-mercadolivre.mjs");

@@ -790,6 +790,38 @@ async function readPrevious() {
   }
 }
 
+export function repairLegacyHiddenRecords(previous = {}, repairedAt = new Date().toISOString()) {
+  let repaired = 0;
+  const products = Object.fromEntries(
+    Object.entries(previous.products || {}).map(([id, recordValue]) => {
+      const record = recordValue && typeof recordValue === "object" ? recordValue : {};
+      const itemId = extractItemIdFromText(record.itemId);
+      const itemDigits = itemId.replace(/\D/g, "");
+      const legacyCatalogFalsePositive = record.visible === false
+        && record.status === "not_found"
+        && itemDigits.length > 0
+        && itemDigits.length < 10;
+      if (!legacyCatalogFalsePositive) return [id, record];
+      repaired++;
+      return [id, {
+        ...record,
+        itemId: "",
+        managed: false,
+        status: "missing_item_id",
+        available: null,
+        visible: true,
+        unavailableChecks: 0,
+        lastError: "",
+        legacyRepairAt: repairedAt,
+      }];
+    }),
+  );
+  return {
+    repaired,
+    payload: repaired ? { ...previous, updatedAt: repairedAt, products } : previous,
+  };
+}
+
 function saoPauloDay(value) {
   if (value === undefined || value === null || value === "") return "";
   const date = value instanceof Date ? value : new Date(value);
@@ -863,7 +895,15 @@ async function main() {
     return;
   }
 
-  const previous = await readPrevious();
+  let previous = await readPrevious();
+  const legacyRepair = repairLegacyHiddenRecords(previous);
+  if (legacyRepair.repaired > 0) {
+    previous = legacyRepair.payload;
+    await writeFile(OUTPUT, `${JSON.stringify(previous, null, 2)}\n`, "utf8");
+    console.log(
+      `Reparo seguro: ${legacyRepair.repaired} falso(s) indisponível(is) antigo(s) voltou(aram) para revisão.`,
+    );
+  }
   if (shouldSkipDailyBatch(previous)) {
     if (BATCH_SKIP_MARKER) await writeFile(resolve(BATCH_SKIP_MARKER), "skipped\n", "utf8");
     console.log("Lote diário já concluído hoje; nenhuma leitura do Firebase foi realizada.");
