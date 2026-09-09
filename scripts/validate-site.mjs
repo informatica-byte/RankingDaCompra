@@ -19,7 +19,11 @@ has(homeHtml, /const rotaInicial=.*:homeComPromocoes\(\)/, "a vitrine inicial ai
 has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo histórico ausente", "index.html");
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
-has(homeHtml, /growth-tools\.js\?v=20260904-focus1/, "cache antigo das ferramentas da vitrine ainda pode ser usado", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20260909-search1/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
+has(homeHtml, /fetch\(`\.\/search-index\.json\?v=/, "busca estática sem Firebase ausente", "index.html");
+const searchFunction = homeHtml.match(/async function search\(term\)\{[\s\S]*?\nconst formBusca=/)?.[0] || "";
+if (!searchFunction) fail("index.html: função de busca não foi localizada");
+if (/db\.collection\(/.test(searchFunction)) fail("index.html: a busca ainda lê o Firebase diretamente");
 
 const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
 has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
@@ -69,6 +73,7 @@ has(growthTools, /id="weekly-ranking-ai"/, "botão de análise humanizada ausent
 has(growthTools, /function weeklyApplyAIAnalysis\(/, "validação local da análise por IA ausente", "growth-tools.js");
 has(growthTools, /Análise editorial com IA auditada/, "análise humanizada não aparece na vitrine", "growth-tools.js");
 has(growthTools, /Fontes consolidadas:/, "fontes da análise humanizada não aparecem na vitrine", "growth-tools.js");
+has(growthTools, /!routeParams\.has\("busca"\)[\s\S]{0,100}!routeParams\.has\("cat"\)[\s\S]{0,100}!routeParams\.has\("produto"\)/, "comparativo semanal ainda pode invadir busca, categoria ou produto", "growth-tools.js");
 if (/pelo equilíbrio entre/.test(growthTools)) fail("growth-tools.js: justificativa vaga do ranking ainda presente");
 if (/brl\.format\(item\.price\)/.test(growthTools)) fail("growth-tools.js: preço do ranking ainda pode renderizar NaN");
 
@@ -131,7 +136,7 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260904-focus1"><\/script>/, "versão atual do corretor editorial não foi incluída nas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260909-search1"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="affiliate-offer"/, "botão de compra rastreável ausente das páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /allProducts = allProducts\.map\(correctProductData\)/, "correções editoriais preventivas não são aplicadas aos produtos", "scripts/generate-sitemap.mjs");
 if (/flatMap\(\(part\) => part\.split\(","\)\)/.test(sitemapGenerator)) {
@@ -140,8 +145,13 @@ if (/flatMap\(\(part\) => part\.split\(","\)\)/.test(sitemapGenerator)) {
 
 const discoveryGenerator = await readFile(resolve("scripts/generate-discovery.mjs"), "utf8");
 has(discoveryGenerator, /DISCOVERY_USE_GENERATED/, "descoberta interna ainda pode duplicar centenas de leituras do Firebase", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /writeFile\([\s\S]{0,100}search-index\.json/, "geração preventiva do índice de busca ausente", "scripts/generate-discovery.mjs");
 const updateWorkflow = await readFile(resolve(".github/workflows/update-sitemap.yml"), "utf8");
 has(updateWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "workflow ainda repete a leitura completa dos produtos", ".github/workflows/update-sitemap.yml");
+has(updateWorkflow, /cron:\s*["']17 \* \* \* \*["']/, "sitemap deve rodar no máximo uma vez por hora", ".github/workflows/update-sitemap.yml");
+if ((updateWorkflow.match(/\bcron:/g) || []).length !== 1) fail(".github/workflows/update-sitemap.yml: deve existir exatamente um agendamento econômico");
+has(updateWorkflow, /git add -A sitemap\.xml produto analises\.html top5-semanal\.json search-index\.json/, "índice de busca não está incluído na publicação", ".github/workflows/update-sitemap.yml");
+has(updateWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do sitemap ainda pode falhar por concorrência no GitHub", ".github/workflows/update-sitemap.yml");
 const priceWorkflow = await readFile(resolve(".github/workflows/sync-mercadolivre.yml"), "utf8");
 has(priceWorkflow, /workflow_dispatch:/, "atualização manual de todos os preços ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /node --test scripts\/test-sync-mercadolivre\.mjs/, "teste preventivo do identificador MLB ausente", ".github/workflows/sync-mercadolivre.yml");
@@ -151,6 +161,9 @@ has(priceWorkflow, /RDC_PRODUCTS_SNAPSHOT:\s*\.price-sync-products\.json/, "snap
 has(priceWorkflow, /RDC_BATCH_SKIP_MARKER:\s*\.price-sync-skipped/, "bloqueio integral de uma segunda execução diária ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /-f "\$RDC_BATCH_SKIP_MARKER"[\s\S]{0,220}exit 0/, "gerador ainda pode reler produtos após lote diário já concluído", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /node --test scripts\/test-daily-price-batch\.mjs/, "teste preventivo do lote diário ausente", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "lote diário não atualiza a busca estática", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html search-index\.json/, "lote diário não publica o índice de busca", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do lote diário ainda pode falhar por concorrência no GitHub", ".github/workflows/sync-mercadolivre.yml");
 const priceSync = await readFile(resolve("scripts/sync-mercadolivre.mjs"), "utf8");
 has(priceSync, /shouldTrustStoredItemId/, "proteção contra código de catálogo tratado como anúncio ausente", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /const direct = extractItemIdFromUrl\(value\);[\s\S]{0,80}if \(direct\) return direct;/, "wid do anúncio não tem prioridade sobre o cadastro antigo", "scripts/sync-mercadolivre.mjs");
@@ -214,6 +227,19 @@ const directoryUrls = new Set(
     .map((match) => match[1]),
 );
 const sitemapProductUrls = new Set(urls.filter((url) => url.startsWith(SITE + "produto/")));
+const searchIndex = JSON.parse(await readFile(resolve("search-index.json"), "utf8"));
+const searchProducts = Array.isArray(searchIndex.products) ? searchIndex.products : [];
+if (searchProducts.length !== sitemapProductUrls.size) {
+  fail("search-index.json: possui " + searchProducts.length + " produtos, mas o sitemap possui " + sitemapProductUrls.size);
+}
+const searchUrls = new Set();
+for (const product of searchProducts) {
+  if (!String(product?.title || "").trim()) fail("search-index.json: produto sem título");
+  if (String(product?.summary || "").trim().length < 180) fail("search-index.json: resumo editorial curto em " + (product?.id || "produto desconhecido"));
+  if (!sitemapProductUrls.has(product?.url)) fail("search-index.json: endereço fora do sitemap: " + product?.url);
+  if (searchUrls.has(product?.url)) fail("search-index.json: endereço duplicado: " + product?.url);
+  searchUrls.add(product?.url);
+}
 for (const url of directoryUrls) {
   if (!sitemapProductUrls.has(url)) {
     fail("analises.html: produto fora do sitemap ou sem página publicada: " + url);
@@ -244,6 +270,10 @@ for (const file of ["como-avaliamos.html", "sobre.html", "politica-afiliados.htm
   has(html, /property="og:image"\s+content="https:\/\/rankingdacompra\.com\.br\/og-ranking-da-compra\.png"/i, "imagem social ausente", file);
   has(html, /name="twitter:card"\s+content="summary_large_image"/i, "cartão social do Twitter ausente", file);
 }
+
+const notFoundHtml = await readFile(resolve("404.html"), "utf8");
+has(notFoundHtml, /name="robots" content="noindex,follow"/, "página 404 deve ficar fora do índice e preservar a descoberta", "404.html");
+has(notFoundHtml, /href="\/analises\.html"/, "página 404 não oferece caminho para as análises atuais", "404.html");
 
 const weeklyTop = JSON.parse(await readFile(resolve("top5-semanal.json"), "utf8"));
 const weeklyProducts = Array.isArray(weeklyTop.products) ? weeklyTop.products : [];

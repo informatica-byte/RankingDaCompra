@@ -1429,7 +1429,11 @@
     decorateVisibleProducts();
     renderClub(state.config);
     renderSeasonalTheme(state.config);
-    if (/^\/(?:index\.html)?$/.test(location.pathname)) loadWeeklyComparison().then(renderWeeklyComparison);
+    const routeParams = new URLSearchParams(location.search);
+    if (/^\/(?:index\.html)?$/.test(location.pathname)
+      && !routeParams.has("busca") && !routeParams.has("cat") && !routeParams.has("produto")) {
+      loadWeeklyComparison().then(renderWeeklyComparison);
+    }
     const observer = new MutationObserver(() => {
       repairVisibleEditorial();
       decorateVisibleProducts();

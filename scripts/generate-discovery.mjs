@@ -5,6 +5,7 @@ import { correctProductData } from "./product-title-corrections.mjs";
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
+const SHARE_VERSION = "20260810-1";
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const RETRYABLE_HTTP_STATUS = new Set([429, 500, 502, 503, 504]);
 
@@ -102,6 +103,26 @@ function attribute(html, elementPattern, name) {
   return decodeHtml(element.match(new RegExp(`${name}=["']([^"']+)["']`, "i"))?.[1] || "");
 }
 
+function structuredProduct(html) {
+  for (const match of String(html || "").matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      const payload = JSON.parse(match[1]);
+      const nodes = Array.isArray(payload) ? payload : Array.isArray(payload?.["@graph"]) ? payload["@graph"] : [payload];
+      const product = nodes.find((node) => node?.["@type"] === "Product"
+        || (Array.isArray(node?.["@type"]) && node["@type"].includes("Product")));
+      if (product) return product;
+    } catch {
+      // Um bloco inválido não impede a leitura dos demais dados públicos da página.
+    }
+  }
+  return {};
+}
+
+function firstUrl(value) {
+  const candidate = Array.isArray(value) ? value[0] : value;
+  return /^https:\/\//i.test(String(candidate || "")) ? String(candidate) : "";
+}
+
 async function loadGeneratedPages() {
   const categories = new Map();
   const products = [];
@@ -120,20 +141,33 @@ async function loadGeneratedPages() {
       continue;
     }
     const robots = attribute(html, /<meta[^>]+name=["']robots["'][^>]*>/i, "content");
-    if (robots && !/\bindex\b/i.test(robots)) continue;
-    const title = textFromHtml(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]);
-    const summary = textFromHtml(html.match(/<p[^>]+class=["'][^"']*summary[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1]);
+    if (/\bnoindex\b/i.test(robots)) continue;
+    const schema = structuredProduct(html);
+    const title = textFromHtml(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]) || String(schema.name || "").trim();
+    const summary = textFromHtml(html.match(/<p[^>]+class=["'][^"']*summary[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1]) || String(schema.description || "").trim();
     if (!title || summary.length < 180 || GENERIC_TEXT.test(summary)) continue;
-    const categoryName = textFromHtml(html.match(/<div[^>]+class=["'][^"']*fact[^"']*["'][^>]*>\s*<span[^>]*>Categoria<\/span>([\s\S]*?)<\/div>/i)?.[1]) || "Produtos";
+    const categoryName = textFromHtml(html.match(/<div[^>]+class=["'][^"']*fact[^"']*["'][^>]*>\s*<span[^>]*>Categoria<\/span>([\s\S]*?)<\/div>/i)?.[1]) || String(schema.category || "Produtos").trim();
     const categoryId = slug(categoryName);
     const canonical = attribute(html, /<link[^>]+rel=["']canonical["'][^>]*>/i, "href")
       || `${SITE}produto/${encodeURIComponent(entry.name)}`;
+    const offer = Array.isArray(schema.offers) ? schema.offers[0] : schema.offers || {};
+    const review = Array.isArray(schema.review) ? schema.review[0] : schema.review || {};
+    const rating = Number(schema.aggregateRating?.ratingValue || review.reviewRating?.ratingValue || 0);
+    const image = firstUrl(schema.image)
+      || attribute(html, /<meta[^>]+property=["']og:image["'][^>]*>/i, "content");
+    const ranking = Number(textFromHtml(html).match(/#(\d+)\s+no ranking/i)?.[1] || 0);
+    const suffix = `-${SHARE_VERSION}.html`;
+    const productId = entry.name.endsWith(suffix) ? entry.name.slice(0, -suffix.length) : entry.name.replace(/\.html$/i, "");
     categories.set(categoryId, { id: categoryId, nome: categoryName });
     products.push({
-      id: entry.name.replace(/\.html$/i, ""),
+      id: productId,
       titulo: title,
       categoria: categoryId,
       comentario: summary,
+      foto: image,
+      preco: numberPrice(offer.price),
+      nota: Number.isFinite(rating) ? rating : 0,
+      ranking,
       atualizadoEm: new Date().toISOString(),
       __productUrl: canonical,
     });
@@ -324,6 +358,25 @@ function updateSitemap(xml, lastModified) {
   return withoutOldDirectory.replace("</urlset>", `${entry}</urlset>`);
 }
 
+function buildSearchIndex(categories, products, productUrls, categoryNames, lastModified) {
+  const categoryPayload = categories.map((category) => ({
+    id: category.id,
+    name: categoryNames.get(category.id) || category.id,
+  }));
+  const productPayload = products.map((product) => ({
+    id: product.id,
+    title: String(product.titulo || "").trim(),
+    summary: String(product.comentario || "").replace(/\s+/g, " ").trim(),
+    category: categoryNames.get(product.categoria) || product.categoria || "Produtos",
+    image: firstUrl(product.foto),
+    price: numberPrice(product.precoPromocional || product.preco),
+    rating: Number(product.nota) || 0,
+    ranking: Number(product.ranking) || 9999,
+    url: productUrls.get(product.id),
+  })).filter((product) => product.title && product.summary.length >= 180 && product.url);
+  return { version: 1, updatedAt: lastModified, categories: categoryPayload, products: productPayload };
+}
+
 const [allCategories, allProducts, marketplaceProducts] = await loadData();
 const candidateProducts = allProducts.map(correctProductData)
   .filter(editorialProduct)
@@ -357,8 +410,13 @@ const lastModified = newestDate([
   ...categories.map((category) => category.criadoEm),
 ]);
 await writeFile(resolve("analises.html"), renderDirectoryPage(categories, productsByCategory, productUrls, categoryNames, lastModified), "utf8");
+await writeFile(
+  resolve("search-index.json"),
+  JSON.stringify(buildSearchIndex(categories, products, productUrls, categoryNames, lastModified), null, 2) + "\n",
+  "utf8",
+);
 sitemapXml = updateSitemap(sitemapXml, lastModified);
 await writeFile(resolve("sitemap.xml"), sitemapXml, "utf8");
 const relatedPages = await addRelatedLinks(products, productsByCategory, productUrls, categoryNames);
 
-console.log(`Descoberta interna atualizada: ${products.length} análises ligadas em analises.html e ${relatedPages} páginas com produtos relacionados.`);
+console.log(`Descoberta interna atualizada: ${products.length} análises pesquisáveis sem Firebase, ${relatedPages} páginas com produtos relacionados.`);

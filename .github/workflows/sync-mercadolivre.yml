@@ -68,13 +68,14 @@ jobs:
             echo "::warning::Firebase temporariamente indisponível; mantendo o sitemap e as páginas atuais."
             git restore --worktree -- sitemap.xml produto
           fi
+          DISCOVERY_USE_GENERATED=true node scripts/generate-discovery.mjs
           rm -f "$RDC_PRODUCTS_SNAPSHOT"
 
 
       - name: Publicar somente quando houver mudança
         shell: bash
         run: |
-          if [[ -z "$(git status --porcelain -- mercadolivre-status.json sitemap.xml produto .mercadolivre-token.enc)" ]]; then
+          if [[ -z "$(git status --porcelain -- mercadolivre-status.json sitemap.xml produto analises.html search-index.json .mercadolivre-token.enc)" ]]; then
             echo "Preços e disponibilidade continuam iguais."
             exit 0
           fi
@@ -82,10 +83,11 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A mercadolivre-status.json sitemap.xml produto
+          git add -A mercadolivre-status.json sitemap.xml produto analises.html search-index.json
           if [[ -f .mercadolivre-token.enc ]]; then
             git add .mercadolivre-token.enc
           fi
           git commit -m "Atualiza preços e disponibilidade automaticamente"
-          git push
+          git pull --rebase origin main
+          git push origin HEAD:main
 

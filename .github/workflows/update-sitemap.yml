@@ -7,10 +7,11 @@ on:
       - "scripts/generate-sitemap.mjs"
       - "scripts/generate-discovery.mjs"
       - "scripts/validate-site.mjs"
+      - "search-index.json"
       - ".github/workflows/update-sitemap.yml"
   schedule:
-    # A cada 30 minutos, fora do minuto cheio, para publicar novas ofertas mais rapidamente.
-    - cron: "13,43 * * * *"
+    # Uma vez por hora, fora do minuto cheio: mantém novas páginas rápidas e reduz pela metade as leituras.
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -57,7 +58,7 @@ jobs:
         id: publicar
         shell: bash
         run: |
-          if [[ -z "$(git status --porcelain -- sitemap.xml produto analises.html top5-semanal.json)" ]]; then
+          if [[ -z "$(git status --porcelain -- sitemap.xml produto analises.html top5-semanal.json search-index.json)" ]]; then
             echo "O sitemap, as páginas sociais e o diretório de análises já estão atualizados."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -65,9 +66,10 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A sitemap.xml produto analises.html top5-semanal.json
-          git commit -m "Atualiza sitemap, análises, Top 5 e fotos de compartilhamento"
-          git push
+          git add -A sitemap.xml produto analises.html top5-semanal.json search-index.json
+          git commit -m "Atualiza sitemap, análises, busca e Top 6"
+          git pull --rebase origin main
+          git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Avisar Bing, Yahoo e buscadores compatíveis pelo IndexNow
