@@ -109,7 +109,7 @@ has(dashboardHtml, /id="central-foco"/, "Central de foco por categoria e produto
 has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Central de foco ausente", "dashboard.html");
 has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20260904-focus1/, "cache antigo das ferramentas do painel ainda pode ser usado", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20260909-search1/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
 has(dashboardHtml, /Executar ou acompanhar o lote diário/, "atalho do lote diário ausente", "dashboard.html");
 has(dashboardHtml, /todos os produtos são conferidos juntos uma vez por dia/i, "explicação do lote diário ausente", "dashboard.html");
 if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
@@ -137,6 +137,12 @@ const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"),
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260909-search1"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
+const growthToolsVersionPattern = /growth-tools\.js\?v=([^"'<>]+)/;
+const growthToolsVersions = [homeHtml, dashboardHtml, sitemapGenerator]
+  .map((source) => source.match(growthToolsVersionPattern)?.[1] || "");
+if (growthToolsVersions.some((version) => !version) || new Set(growthToolsVersions).size !== 1) {
+  fail("index.html, dashboard.html e scripts/generate-sitemap.mjs: versões de cache das ferramentas não estão alinhadas");
+}
 has(sitemapGenerator, /id="affiliate-offer"/, "botão de compra rastreável ausente das páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /allProducts = allProducts\.map\(correctProductData\)/, "correções editoriais preventivas não são aplicadas aos produtos", "scripts/generate-sitemap.mjs");
 if (/flatMap\(\(part\) => part\.split\(","\)\)/.test(sitemapGenerator)) {
@@ -148,7 +154,7 @@ has(discoveryGenerator, /DISCOVERY_USE_GENERATED/, "descoberta interna ainda pod
 has(discoveryGenerator, /writeFile\([\s\S]{0,100}search-index\.json/, "geração preventiva do índice de busca ausente", "scripts/generate-discovery.mjs");
 const updateWorkflow = await readFile(resolve(".github/workflows/update-sitemap.yml"), "utf8");
 has(updateWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "workflow ainda repete a leitura completa dos produtos", ".github/workflows/update-sitemap.yml");
-has(updateWorkflow, /cron:\s*["']17 \* \* \* \*["']/, "sitemap deve rodar no máximo uma vez por hora", ".github/workflows/update-sitemap.yml");
+has(updateWorkflow, /cron:\s*["']17 13,16,19,22 \* \* \*["']/, "sitemap deve usar somente as quatro janelas econômicas diárias", ".github/workflows/update-sitemap.yml");
 if ((updateWorkflow.match(/\bcron:/g) || []).length !== 1) fail(".github/workflows/update-sitemap.yml: deve existir exatamente um agendamento econômico");
 has(updateWorkflow, /git add -A sitemap\.xml produto analises\.html top5-semanal\.json search-index\.json/, "índice de busca não está incluído na publicação", ".github/workflows/update-sitemap.yml");
 has(updateWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do sitemap ainda pode falhar por concorrência no GitHub", ".github/workflows/update-sitemap.yml");

@@ -10,8 +10,9 @@ on:
       - "search-index.json"
       - ".github/workflows/update-sitemap.yml"
   schedule:
-    # Uma vez por hora, fora do minuto cheio: mantém novas páginas rápidas e reduz pela metade as leituras.
-    - cron: "17 * * * *"
+    # Quatro janelas complementares ao lote diário das 09:30 (horários abaixo em UTC).
+    # Em Brasília: 10:17, 13:17, 16:17 e 19:17. Para publicar imediatamente, use Run workflow.
+    - cron: "17 13,16,19,22 * * *"
   workflow_dispatch:
 
 permissions:
