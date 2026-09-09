@@ -1,6 +1,12 @@
 {
-  "atualizadoEm": "2026-09-09T10:23:16.949Z",
+  "atualizadoEm": "2026-09-09T10:41:03.648Z",
   "resultados": {
+    "gl99MmHTEXRGwJU1eOh1": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/suporte-de-celular-veicular-automotivo-360-universal-ajustavel-com-ventosa-gruda-no-painel-vidro-parabrisa-para-gps-encaixe-giratorio-articulado-com-trava-automatica-anti-queda-para-carro-caminhao/p/MLB38802877?pdp_filters=item_id:MLB6175281792#is_advertising=true&searchVariation=MLB38802877&backend_model=search-backend;EQ:SUPORTE%20CELULAR%20PAINEL&be_origin=backend&position=15&search_layout=grid&type=pad&tracking_id=ba836472-c816-4dc6-bcea-b45583bed6c5&ad_domain=VQCATCORE_LST&ad_position=15&ad_click_id=YTYzZTVhYTgtODk3OS00NTQ2LWIwNTEtYTQ0Y2FkMzI2MWUx",
+      "resolvidoEm": "2026-09-09T10:41:03.640Z"
+    },
     "cgbQYfANXwPi1SqEHYyM": {
       "status": "ok",
       "mlb": "MLB6739561262",
