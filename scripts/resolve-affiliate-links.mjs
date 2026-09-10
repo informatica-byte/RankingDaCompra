@@ -13,6 +13,7 @@ const TOKEN_FILE = ".mercadolivre-token.enc";
 const TOKEN_KEY = process.env.MERCADO_LIVRE_TOKEN_KEY || "";
 const CLIENT_ID = process.env.MERCADO_LIVRE_CLIENT_ID || "";
 const CLIENT_SECRET = process.env.MERCADO_LIVRE_CLIENT_SECRET || "";
+const MAX_REQUEST_ATTEMPTS = 3;
 const categoryCache = new Map();
 
 const RETRYABLE_FIREBASE_STATUS = new Set([429, 500, 502, 503, 504]);
@@ -149,32 +150,45 @@ async function writeTokenSession(session) {
 }
 
 
-async function accessToken() {
+async function accessToken(forceRefresh = false) {
   const session = await readTokenSession();
-  if (!session?.access_token) return "";
-  if (!session.expires_at || Number(session.expires_at) > Date.now() + 120000) return session.access_token;
-  if (!session.refresh_token || !CLIENT_ID || !CLIENT_SECRET) return session.access_token;
+  // O sincronizador de preços grava o formato camelCase. As chaves antigas em
+  // snake_case continuam aceitas para não invalidar sessões já existentes.
+  const currentToken = String(session?.accessToken || session?.access_token || "");
+  const refreshToken = String(session?.refreshToken || session?.refresh_token || "");
+  const expiresAt = Number(session?.expiresAt || session?.expires_at || 0);
+  if (!currentToken && !refreshToken) return "";
+  if (!forceRefresh && currentToken && (!expiresAt || expiresAt > Date.now() + 120000)) return currentToken;
+  if (!refreshToken || !CLIENT_ID || !CLIENT_SECRET) return currentToken;
   const body = new URLSearchParams({
     grant_type: "refresh_token",
     client_id: CLIENT_ID,
     client_secret: CLIENT_SECRET,
-    refresh_token: session.refresh_token,
+    refresh_token: refreshToken,
   });
-  const response = await fetch("https://api.mercadolibre.com/oauth/token", {
-    method: "POST",
-    headers: { "content-type": "application/x-www-form-urlencoded" },
-    body,
-  });
-  if (!response.ok) return session.access_token;
-  const payload = await response.json();
-  const next = {
-    ...session,
-    ...payload,
-    refresh_token: payload.refresh_token || session.refresh_token,
-    expires_at: Date.now() + Math.max(60, Number(payload.expires_in || 21600)) * 1000,
-  };
-  await writeTokenSession(next);
-  return next.access_token;
+  try {
+    const response = await fetch("https://api.mercadolibre.com/oauth/token", {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body,
+      signal: AbortSignal.timeout(20000),
+    });
+    if (!response.ok) return currentToken;
+    const payload = await response.json();
+    const next = {
+      ...session,
+      accessToken: String(payload.access_token || currentToken),
+      refreshToken: String(payload.refresh_token || refreshToken),
+      expiresAt: Date.now() + Math.max(300, Number(payload.expires_in || 21600)) * 1000,
+    };
+    delete next.access_token;
+    delete next.refresh_token;
+    delete next.expires_at;
+    await writeTokenSession(next);
+    return next.accessToken;
+  } catch {
+    return currentToken;
+  }
 }
 
 
@@ -259,13 +273,23 @@ async function officialCategory(categoryId, token) {
 
 async function officialDetails(itemId, html = "") {
   const page = pageDetails(html);
-  const token = await accessToken();
-  if (!token || !itemId) return page;
+  if (!itemId) return page;
+  let token = await accessToken();
   let response;
+  const requestItem = (candidateToken) => fetch("https://api.mercadolibre.com/items/" + itemId, {
+    headers: candidateToken ? { authorization: "Bearer " + candidateToken } : {},
+    signal: AbortSignal.timeout(20000),
+  });
   try {
-    response = await fetch("https://api.mercadolibre.com/items/" + itemId, {
-      headers: { authorization: "Bearer " + token },
-    });
+    response = await requestItem(token);
+    if (token && [401, 403].includes(response.status)) {
+      const refreshed = await accessToken(true);
+      if (refreshed) {
+        token = refreshed;
+        response = await requestItem(token);
+      }
+    }
+    if (token && [401, 403].includes(response.status)) response = await requestItem("");
   } catch {
     return page;
   }
@@ -478,7 +502,12 @@ payload.resultados ||= {};
 
 
 const queue = (await requests())
-  .filter((request) => !payload.resultados[request.id])
+  .filter((request) => {
+    const previous = payload.resultados[request.id];
+    if (!previous) return true;
+    return previous.status === "erro"
+      && Number(previous.tentativas || 0) < MAX_REQUEST_ATTEMPTS;
+  })
   .sort((a, b) => String(a.criadoEm).localeCompare(String(b.criadoEm)))
   .slice(0, 10);
 
@@ -487,15 +516,20 @@ if (!queue.length) {
   console.log("Nenhum pedido MLB pendente; nenhum arquivo foi alterado.");
 } else {
   for (const request of queue) {
+    const previousAttempts = Number(payload.resultados[request.id]?.tentativas || 0);
     try {
-      payload.resultados[request.id] = await resolveRequest(request);
+      payload.resultados[request.id] = {
+        ...(await resolveRequest(request)),
+        tentativas: previousAttempts + 1,
+      };
       console.log(`${request.id}: ${payload.resultados[request.id].mlb}`);
     } catch (error) {
       payload.resultados[request.id] = {
         status: "erro",
         motivo: String(error?.message || error),
         linkOriginal: request.link,
-        resolvidoEm: new Date().toISOString()
+        resolvidoEm: new Date().toISOString(),
+        tentativas: previousAttempts + 1,
       };
       console.warn(`${request.id}: ${payload.resultados[request.id].motivo}`);
     }
@@ -505,6 +539,7 @@ if (!queue.length) {
   payload.atualizadoEm = new Date().toISOString();
   await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`);
 }
+
 
 
 

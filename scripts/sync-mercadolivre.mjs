@@ -155,6 +155,31 @@ async function prepareAccessToken() {
   return "refreshed";
 }
 
+let rejectedAccessTokenRefreshPromise = null;
+
+async function refreshRejectedAccessToken() {
+  if (!CLIENT_ID || !CLIENT_SECRET || !TOKEN_KEY) return false;
+  if (rejectedAccessTokenRefreshPromise) return rejectedAccessTokenRefreshPromise;
+  rejectedAccessTokenRefreshPromise = (async () => {
+    const stored = await readTokenSession();
+    if (!stored?.refreshToken) return false;
+    const payload = await requestOAuthToken({
+      grant_type: "refresh_token",
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+      refresh_token: String(stored.refreshToken),
+    });
+    const session = await saveOAuthToken(payload, stored.authorizationCodeHash || "");
+    accessToken = session.accessToken;
+    console.log("Autorização do Mercado Livre renovada após recusa da sessão anterior.");
+    return true;
+  })().catch((error) => {
+    console.warn("Não foi possível renovar a autorização recusada: " + String(error?.message || error));
+    return false;
+  });
+  return rejectedAccessTokenRefreshPromise;
+}
+
 async function fetchFirestorePage(url, attempt = 0) {
   const response = await fetch(url);
   if (response.ok) return response;
@@ -571,22 +596,26 @@ async function fetchMarketplaceItem(itemId, product = {}) {
     + attributes;
   const authenticationAttempts = accessToken ? [true, false] : [false];
 
+  const requestBatchItem = async (authenticated) => {
+    const batch = await fetchJson(batchUrl, { authenticated });
+    const entry = Array.isArray(batch) ? batch[0] : null;
+    if (!entry || Number(entry.code) !== 200 || !entry.body) {
+      const status = Number(entry?.code || 502);
+      const detail = String(
+        entry?.body?.message || entry?.body?.error || "resposta inválida",
+      ).trim();
+      const requestError = new Error(
+        "Mercado Livre Multiget: HTTP " + status + " - " + detail,
+      );
+      requestError.httpStatus = status;
+      throw requestError;
+    }
+    return entry.body;
+  };
+
   for (const authenticated of authenticationAttempts) {
     try {
-      const batch = await fetchJson(batchUrl, { authenticated });
-      const entry = Array.isArray(batch) ? batch[0] : null;
-      if (!entry || Number(entry.code) !== 200 || !entry.body) {
-        const status = Number(entry?.code || 502);
-        const detail = String(
-          entry?.body?.message || entry?.body?.error || "resposta inválida",
-        ).trim();
-        const requestError = new Error(
-          "Mercado Livre Multiget: HTTP " + status + " - " + detail,
-        );
-        requestError.httpStatus = status;
-        throw requestError;
-      }
-      item = entry.body;
+      item = await requestBatchItem(authenticated);
       break;
     } catch (error) {
       itemError = error;
@@ -602,6 +631,14 @@ async function fetchMarketplaceItem(itemId, product = {}) {
         };
       }
       if (authenticated && [401, 403].includes(error.httpStatus)) {
+        if (await refreshRejectedAccessToken()) {
+          try {
+            item = await requestBatchItem(true);
+            break;
+          } catch (refreshedError) {
+            itemError = refreshedError;
+          }
+        }
         console.warn(
           "Mercado Livre recusou o token para " + itemId
           + "; tentando a consulta pública oficial.",
@@ -999,3 +1036,4 @@ if (isMain) {
     process.exitCode = 1;
   });
 }
+

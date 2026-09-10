@@ -169,7 +169,8 @@ has(priceWorkflow, /RDC_BATCH_SKIP_MARKER:\s*\.price-sync-skipped/, "bloqueio in
 has(priceWorkflow, /-f "\$RDC_BATCH_SKIP_MARKER"[\s\S]{0,220}exit 0/, "gerador ainda pode reler produtos após lote diário já concluído", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /node --test scripts\/test-daily-price-batch\.mjs/, "teste preventivo do lote diário ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "lote diário não atualiza a busca estática", ".github/workflows/sync-mercadolivre.yml");
-has(priceWorkflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html search-index\.json/, "lote diário não publica o índice de busca", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html top5-semanal\.json search-index\.json/, "lote diário não publica todos os arquivos gerados", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*true/, "execução manual do lote não força a conferência por padrão", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do lote diário ainda pode falhar por concorrência no GitHub", ".github/workflows/sync-mercadolivre.yml");
 const priceSync = await readFile(resolve("scripts/sync-mercadolivre.mjs"), "utf8");
 has(priceSync, /function saoPauloDay\(value\)[\s\S]{0,120}value === undefined[\s\S]{0,120}return ""/, "lastBatchAt ausente ainda pode bloquear o primeiro lote do dia", "scripts/sync-mercadolivre.mjs");
@@ -180,6 +181,8 @@ has(priceSync, /const direct = extractItemIdFromUrl\(value\);[\s\S]{0,80}if \(di
 has(priceSync, /shouldSkipDailyBatch/, "bloqueio contra repetição do lote no mesmo dia ausente", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /lastBatchAt:\s*checkedAt/, "registro da conclusão do lote diário ausente", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /PRODUCT_SNAPSHOT[\s\S]{0,240}writeFile/, "snapshot único de produtos ausente", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /rejectedAccessTokenRefreshPromise/, "lote de preços não compartilha a renovação de token recusado", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /\[401, 403\]\.includes\(error\.httpStatus\)[\s\S]{0,180}refreshRejectedAccessToken\(\)/, "lote de preços não renova a autorização recusada", "scripts/sync-mercadolivre.mjs");
 has(sitemapGenerator, /readProductSnapshot/, "gerador ainda pode reler todos os produtos no mesmo lote", "scripts/generate-sitemap.mjs");
 const affiliateResolver = await readFile(resolve("scripts/resolve-affiliate-links.mjs"), "utf8");
 has(affiliateResolver, /documents:runQuery|\$\{FIRESTORE\}:runQuery/, "localizador ainda pode ler toda a fila MLB", "scripts/resolve-affiliate-links.mjs");
@@ -188,6 +191,12 @@ has(affiliateResolver, /fieldPath:\s*"criadoEm"[\s\S]{0,120}direction:\s*"DESCEN
 if (/\$\{FIRESTORE\}\/\$\{COLLECTION\}\?pageSize=300/.test(affiliateResolver)) {
   fail("scripts/resolve-affiliate-links.mjs: leitura integral de até 300 pedidos ainda está ativa");
 }
+has(affiliateResolver, /session\?\.accessToken\s*\|\|\s*session\?\.access_token/, "localizador não reconhece a sessão criptografada atual", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /session\?\.refreshToken\s*\|\|\s*session\?\.refresh_token/, "localizador não reconhece o refresh token atual", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /\[401, 403\]\.includes\(response\.status\)[\s\S]{0,160}accessToken\(true\)/, "localizador não renova a autorização recusada", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /MAX_REQUEST_ATTEMPTS\s*=\s*3/, "localizador sem limite de novas tentativas", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /previous\.status\s*===\s*"erro"[\s\S]{0,160}previous\.tentativas[\s\S]{0,100}MAX_REQUEST_ATTEMPTS/, "localizador não recupera erro temporário com limite", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /tentativas:\s*previousAttempts\s*\+\s*1/, "localizador não registra o número de tentativas", "scripts/resolve-affiliate-links.mjs");
 
 has(mobilePanelHtml, /idade<2\*60\*1000/, "painel celular ainda pode reutilizar pedido MLB antigo", "painel-celular.html");
 has(mobilePanelHtml, /d\.dadosTecnicos\.length<70/, "validacao tecnica do painel celular esta desalinhada com o robo", "painel-celular.html");
@@ -319,4 +328,5 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + sitemapProductUrls.size + " produtos públicos e metadados sociais completos.");
+
 

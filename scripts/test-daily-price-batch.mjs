@@ -5,6 +5,7 @@ import { readFile } from "node:fs/promises";
 const workflow = await readFile(".github/workflows/sync-mercadolivre.yml", "utf8");
 const sync = await readFile("scripts/sync-mercadolivre.mjs", "utf8");
 const generator = await readFile("scripts/generate-sitemap.mjs", "utf8");
+const resolver = await readFile("scripts/resolve-affiliate-links.mjs", "utf8");
 
 test("agenda somente um lote completo por dia", () => {
   assert.equal((workflow.match(/\bcron:/g) || []).length, 1);
@@ -48,3 +49,21 @@ test("reutiliza a mesma lista na geração e publica somente no final", () => {
   assert.match(generator, /readProductSnapshot/);
   assert.equal((workflow.match(/git commit /g) || []).length, 1);
 });
+
+test("execução manual força o lote e publica todos os arquivos gerados", () => {
+  assert.match(workflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*true/);
+  assert.match(workflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html top5-semanal\.json search-index\.json/);
+});
+
+test("localizador reutiliza e renova a autorização criptografada", () => {
+  assert.match(resolver, /session\?\.accessToken\s*\|\|\s*session\?\.access_token/);
+  assert.match(resolver, /session\?\.refreshToken\s*\|\|\s*session\?\.refresh_token/);
+  assert.match(resolver, /async function accessToken\(forceRefresh = false\)/);
+  assert.match(resolver, /\[401, 403\]\.includes\(response\.status\)[\s\S]{0,160}accessToken\(true\)/);
+  assert.match(resolver, /MAX_REQUEST_ATTEMPTS\s*=\s*3/);
+  assert.match(resolver, /previous\.status\s*===\s*"erro"[\s\S]{0,160}previous\.tentativas[\s\S]{0,100}MAX_REQUEST_ATTEMPTS/);
+  assert.match(resolver, /tentativas:\s*previousAttempts\s*\+\s*1/);
+  assert.match(sync, /rejectedAccessTokenRefreshPromise/);
+  assert.match(sync, /\[401, 403\]\.includes\(error\.httpStatus\)[\s\S]{0,180}refreshRejectedAccessToken\(\)/);
+});
+
