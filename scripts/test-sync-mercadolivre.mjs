@@ -1,10 +1,35 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  catalogRecordFromPayload,
+  extractCatalogIdFromUrl,
   extractItemIdFromUrl,
   repairLegacyHiddenRecords,
   shouldTrustStoredItemId,
 } from "./sync-mercadolivre.mjs";
+
+test("usa o catálogo oficial quando o anúncio individual é recusado", () => {
+  const url = "https://www.mercadolivre.com.br/liquidificador/p/MLB15699907?wid=MLB3306024289";
+  assert.equal(extractCatalogIdFromUrl(url), "MLB15699907");
+  assert.deepEqual(catalogRecordFromPayload("MLB15699907", {
+    id: "MLB15699907",
+    buy_box_winner: {
+      item_id: "MLB3306024289",
+      price: 179.9,
+      original_price: 219.9,
+      currency_id: "BRL",
+    },
+  }), {
+    itemId: "MLB3306024289",
+    catalogId: "MLB15699907",
+    status: "active",
+    available: true,
+    price: 179.9,
+    regularPrice: 219.9,
+    currencyId: "BRL",
+    source: "catalog_api",
+  });
+});
 
 test("prioriza o wid real em uma pagina de catalogo", () => {
   const url = "https://www.mercadolivre.com.br/notebook/p/MLB35715045"
@@ -56,3 +81,4 @@ test("reativa somente falsos indisponiveis antigos com codigo de catalogo", () =
   assert.equal(payload.products.catalogo.unavailableChecks, 0);
   assert.deepEqual(payload.products.anuncioReal, previous.products.anuncioReal);
 });
+

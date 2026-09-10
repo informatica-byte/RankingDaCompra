@@ -183,6 +183,8 @@ has(priceSync, /lastBatchAt:\s*checkedAt/, "registro da conclusão do lote diár
 has(priceSync, /PRODUCT_SNAPSHOT[\s\S]{0,240}writeFile/, "snapshot único de produtos ausente", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /rejectedAccessTokenRefreshPromise/, "lote de preços não compartilha a renovação de token recusado", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /\[401, 403\]\.includes\(error\.httpStatus\)[\s\S]{0,180}refreshRejectedAccessToken\(\)/, "lote de preços não renova a autorização recusada", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /fetchMarketplaceCatalog\(catalogId\)/, "lote de preços não tenta o catálogo oficial quando o anúncio é bloqueado", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /catalogRecordFromPayload/, "lote de preços não interpreta o preço oficial do catálogo", "scripts/sync-mercadolivre.mjs");
 has(sitemapGenerator, /readProductSnapshot/, "gerador ainda pode reler todos os produtos no mesmo lote", "scripts/generate-sitemap.mjs");
 const affiliateResolver = await readFile(resolve("scripts/resolve-affiliate-links.mjs"), "utf8");
 has(affiliateResolver, /documents:runQuery|\$\{FIRESTORE\}:runQuery/, "localizador ainda pode ler toda a fila MLB", "scripts/resolve-affiliate-links.mjs");
@@ -197,6 +199,7 @@ has(affiliateResolver, /\[401, 403\]\.includes\(response\.status\)[\s\S]{0,160}a
 has(affiliateResolver, /MAX_REQUEST_ATTEMPTS\s*=\s*3/, "localizador sem limite de novas tentativas", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /previous\.status\s*===\s*"erro"[\s\S]{0,160}previous\.tentativas[\s\S]{0,100}MAX_REQUEST_ATTEMPTS/, "localizador não recupera erro temporário com limite", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /tentativas:\s*previousAttempts\s*\+\s*1/, "localizador não registra o número de tentativas", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /officialCatalogDetails\(catalogId/, "localizador não usa o catálogo oficial como alternativa", "scripts/resolve-affiliate-links.mjs");
 
 has(mobilePanelHtml, /idade<2\*60\*1000/, "painel celular ainda pode reutilizar pedido MLB antigo", "painel-celular.html");
 has(mobilePanelHtml, /d\.dadosTecnicos\.length<70/, "validacao tecnica do painel celular esta desalinhada com o robo", "painel-celular.html");
@@ -210,6 +213,11 @@ if (consultasRecentesVisitas.length !== 1) {
   fail("dashboard.html: deve existir exatamente uma consulta compartilhada do histórico recente de visitas");
 }
 has(dashboardHtml, /JANELA_METRICAS_PAINEL_DIAS\s*=\s*14/, "janela de 14 dias necessária para a comparação semanal ausente", "dashboard.html");
+has(dashboardHtml, /tipo\s*=\s*['"]divergente['"]/, "painel não identifica divergência real de preço separadamente", "dashboard.html");
+has(dashboardHtml, /tipo\s*\|\|\s*['"]nao_confirmado['"]/, "painel não identifica verificação temporariamente inconclusiva", "dashboard.html");
+has(dashboardHtml, /status\?\.itemId\s*\|\|\s*status\?\.catalogId/, "painel ignora o identificador oficial de catálogo", "dashboard.html");
+has(dashboardHtml, /Preços realmente divergentes:[\s\S]{0,220}Verificações não concluídas:/, "resumo de preços ainda mistura divergências com bloqueios temporários", "dashboard.html");
+has(dashboardHtml, /\.item-admin\.item-preco\s*\{[^}]*display:\s*grid[^}]*grid-template-columns:\s*24px minmax\(0,\s*1fr\)/, "cartão de preço pode voltar a esmagar o título do produto", "dashboard.html");
 
 const sitemap = await readFile(resolve("sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());

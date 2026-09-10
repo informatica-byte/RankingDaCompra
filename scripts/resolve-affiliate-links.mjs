@@ -271,9 +271,70 @@ async function officialCategory(categoryId, token) {
 }
 
 
-async function officialDetails(itemId, html = "") {
+function catalogDetailsFromPayload(payload = {}, page = {}) {
+  const winner = payload?.buy_box_winner || payload?.buyBoxWinner || {};
+  const title = plain(payload?.name || payload?.title || page?.titulo || "");
+  const picture = payload?.pictures?.[0] || {};
+  const photo = String(
+    picture.secure_url || picture.url || picture.source || page?.foto || "",
+  ).replace(/^http:/, "https:");
+  const currentPrice = Number(winner.price ?? payload?.price ?? page?.precoAtual ?? 0);
+  const originalPrice = Number(
+    winner.original_price ?? payload?.original_price ?? page?.precoAnterior ?? 0,
+  );
+  const attributes = (payload?.attributes || [])
+    .map((attribute) => {
+      const value = attribute?.value_name || attribute?.value_struct?.number || attribute?.values?.[0]?.name || "";
+      return attribute?.name && value ? `${attribute.name}: ${value}` : "";
+    })
+    .filter(Boolean);
+  const unique = [...new Set([...(page?.dadosTecnicos || []), ...attributes])].slice(0, 10);
+  if (!title || !photo || !Number.isFinite(currentPrice) || currentPrice <= 0) return page;
+  return {
+    ...page,
+    titulo: title,
+    foto: photo,
+    precoAtual: currentPrice,
+    precoAnterior: originalPrice > currentPrice ? originalPrice : page?.precoAnterior || 0,
+    dadosTecnicos: unique,
+    comentario: unique.length ? factualText({ title }, unique) : page?.comentario || "",
+    pros: unique.length ? prosText(title, unique) : page?.pros || "",
+    contras: attentionText(title),
+    urlProduto: winner.permalink || page?.urlProduto || "",
+  };
+}
+
+
+async function officialCatalogDetails(catalogId, token, page = {}) {
+  if (!catalogId) return page;
+  const requestCatalog = (candidateToken) => fetch(
+    "https://api.mercadolibre.com/products/" + encodeURIComponent(catalogId),
+    {
+      headers: candidateToken ? { authorization: "Bearer " + candidateToken } : {},
+      signal: AbortSignal.timeout(20000),
+    },
+  );
+  try {
+    let response = await requestCatalog(token);
+    if (token && [401, 403].includes(response.status)) {
+      const refreshed = await accessToken(true);
+      if (refreshed) {
+        token = refreshed;
+        response = await requestCatalog(token);
+      }
+    }
+    if (token && [401, 403].includes(response.status)) response = await requestCatalog("");
+    if (!response.ok) return page;
+    return catalogDetailsFromPayload(await response.json(), page);
+  } catch {
+    return page;
+  }
+}
+
+
+async function officialDetails(itemId, html = "", catalogId = "") {
   const page = pageDetails(html);
-  if (!itemId) return page;
+  if (!itemId) return officialCatalogDetails(catalogId, await accessToken(), page);
   let token = await accessToken();
   let response;
   const requestItem = (candidateToken) => fetch("https://api.mercadolibre.com/items/" + itemId, {
@@ -291,9 +352,9 @@ async function officialDetails(itemId, html = "") {
     }
     if (token && [401, 403].includes(response.status)) response = await requestItem("");
   } catch {
-    return page;
+    return officialCatalogDetails(catalogId, token, page);
   }
-  if (!response.ok) return page;
+  if (!response.ok) return officialCatalogDetails(catalogId, token, page);
   const item = await response.json();
   const category = await officialCategory(item.category_id, token);
   const attributes = (item.attributes || [])
@@ -309,7 +370,7 @@ async function officialDetails(itemId, html = "") {
   const title = String(item.title || "").trim();
   const currentPrice = Number(item.price || 0);
   const originalPrice = Number(item.original_price || 0);
-  return {
+  const result = {
     ...page,
     titulo: title || page?.titulo || "",
     foto: String(item.pictures?.[0]?.secure_url || item.thumbnail || page?.foto || "").replace(/^http:/, "https:"),
@@ -322,6 +383,8 @@ async function officialDetails(itemId, html = "") {
     urlProduto: item.permalink || page?.urlProduto || "",
     ...category,
   };
+  if (result.titulo && result.foto && result.precoAtual) return result;
+  return officialCatalogDetails(catalogId, token, result);
 }
 
 
@@ -476,12 +539,13 @@ async function resolveRequest(request) {
   // Preço, foto e estoque pertencem ao anúncio (item_id/wid), então ele tem prioridade.
   const saleId = request.link.match(/(?:item_id(?:%3A|:)|[?&#]wid=)(MLB-?\d{6,})/i)?.[1]?.replace("-", "").toUpperCase();
   const directId = request.link.match(/(?:\/|\b)(MLB-?\d{6,})(?:-|\/|\?|#|\b)/i)?.[1]?.replace("-", "").toUpperCase();
+  const catalogId = request.link.match(/\/p\/(MLB\d{6,})/i)?.[1]?.toUpperCase() || "";
   const htmlFound = candidates(html)[0] || fallback(html, request.link);
   const found = saleId
     ? { ...(htmlFound || {}), mlb: saleId, urlProduto: request.link, titulo: htmlFound?.titulo || "" }
     : htmlFound || (directId ? { mlb: directId, urlProduto: request.link, titulo: "" } : null);
   if (!found) throw new Error("O Mercado Livre não mostrou um anúncio identificável nesse link.");
-  const details = await officialDetails(found.mlb, html);
+  const details = await officialDetails(found.mlb, html, catalogId);
   if (!details?.titulo || !details?.foto || !details?.precoAtual) {
     throw new Error("O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.");
   }

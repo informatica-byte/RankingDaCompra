@@ -86,10 +86,11 @@
         .detalhe-indisponivel { margin: 8px 0 0; color: #7a271a; font-size: 12px; line-height: 1.45; }
         .aba-produto.aba-precos[aria-selected="true"] { color: #2f2100; background: #ffcf40; border-color: #d9a900; }
         .aba-precos[aria-selected="true"] .contador-aba { color: #6b4c00; }
-        .item-admin.item-preco { align-items: flex-start; gap: 12px; background: #fff9e8; border: 2px solid #e3b520; }
+        .item-admin.item-preco { display: grid; grid-template-columns: 24px minmax(0, 1fr); align-items: flex-start; gap: 12px; background: #fff9e8; border: 2px solid #e3b520; }
         .status-preco { display: inline-block; margin-top: 7px; padding: 3px 7px; border-radius: 4px; background: #8a6500; color: white; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+        .status-preco-nao-confirmado { background: #5b6472; }
         .detalhe-preco { margin: 7px 0 0; color: #5e4a13; font-size: 12px; line-height: 1.45; }
-        .correcao-preco { display: flex; align-items: end; justify-content: flex-end; gap: 7px; flex-wrap: wrap; min-width: 285px; }
+        .correcao-preco { grid-column: 2; display: flex; align-items: end; justify-content: flex-start; gap: 7px; flex-wrap: wrap; width: 100%; min-width: 0; padding-top: 10px; border-top: 1px solid #ead796; }
         .campo-preco-manual { display: grid; gap: 4px; min-width: 135px; }
         .campo-preco-manual label { margin: 0; color: #5e4a13; font-size: 11px; font-weight: 800; }
         .campo-preco-manual input { width: 135px; padding: 8px; border: 1px solid #c49a14; border-radius: 5px; background: white; }
@@ -108,7 +109,7 @@
         .progresso-precos-ia progress { width: 100%; height: 17px; accent-color: #5b21b6; }
         .texto-progresso-precos-ia { margin-top: 7px; color: #4d3572; font-size: 12px; font-weight: 800; overflow-wrap: anywhere; }
         .resumo-progresso-precos-ia { margin-top: 6px; color: #65557b; font-size: 12px; }
-        @media (max-width: 760px) { .item-admin.item-preco { flex-direction: column; } .correcao-preco { width: 100%; justify-content: flex-start; min-width: 0; } }
+        @media (max-width: 520px) { .correcao-preco { grid-column: 1 / -1; } }
         .icone-atencao { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; flex: 0 0 24px; border-radius: 50%; background: #ffc107; color: #4b2e00; font-weight: 900; }
         .status-publicado { display: inline-block; margin-top: 6px; color: #087a3d; font-size: 12px; font-weight: 700; }
         .rotulo-oculto { display: inline-block; margin-top: 7px; padding: 3px 7px; border-radius: 4px; background: #8a4b00; color: white; font-size: 11px; font-weight: 800; text-transform: uppercase; }
@@ -311,7 +312,7 @@
                     <button type="button" class="aba-produto" id="tab-publicados" role="tab" aria-selected="false" aria-controls="painel-publicados">✅ Publicados <span class="contador-aba" id="contagem-publicados">0</span></button>
                     <button type="button" class="aba-produto aba-revisao" id="tab-revisao" role="tab" aria-selected="true" aria-controls="painel-revisao">⚠️ Revisão necessária <span class="contador-aba" id="contagem-revisao">0</span></button>
                     <button type="button" class="aba-produto aba-indisponiveis" id="tab-indisponiveis" role="tab" aria-selected="false" aria-controls="painel-indisponiveis">⛔ Indisponíveis <span class="contador-aba" id="contagem-indisponiveis">0</span></button>
-                    <button type="button" class="aba-produto aba-precos" id="tab-precos" role="tab" aria-selected="false" aria-controls="painel-precos">💰 Preços pendentes <span class="contador-aba" id="contagem-precos">0</span></button>
+                    <button type="button" class="aba-produto aba-precos" id="tab-precos" role="tab" aria-selected="false" aria-controls="painel-precos">🔎 Verificações de preço <span class="contador-aba" id="contagem-precos">0</span></button>
                 </div>
                 <div class="painel-produtos" id="painel-publicados" role="tabpanel" aria-labelledby="tab-publicados" hidden>
                     <div id="itens-lista"></div>
@@ -2282,23 +2283,33 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const manualRecente = revisaoManualEm > Date.now() - (24 * 60 * 60 * 1000);
             const consultaEm = Date.parse(status?.checkedAt || statusMercadoLivreAtualizadoEm || '');
             const motivos = [];
+            let tipo = '';
 
-            if (!precoSite) motivos.push('O preço exibido no site está vazio ou inválido.');
+            if (!precoSite) {
+                tipo = 'divergente';
+                motivos.push('O preço exibido no site está vazio ou inválido.');
+            }
             if (precoAutomatico && (!precoSite || Math.abs(precoAutomatico - precoSite) >= 0.01)) {
+                tipo = 'divergente';
                 motivos.push(`Diferença encontrada: site R$ ${precoSite ? formatarPrecoCampo(precoSite) : 'sem preço'}; Mercado Livre R$ ${formatarPrecoCampo(precoAutomatico)}.`);
             } else if (!manualRecente) {
-                if (!status || status.managed === false || status.status === 'missing_item_id' || !status.itemId) {
-                    motivos.push('O link não contém um código de anúncio MLB identificável; a automação não consegue consultar esse item.');
+                const temIdentificadorOficial = Boolean(status?.itemId || status?.catalogId);
+                if (!status || status.managed === false || (status.status === 'missing_item_id' && !status.catalogId) || !temIdentificadorOficial) {
+                    tipo = tipo || 'nao_confirmado';
+                    motivos.push('O link ainda não forneceu um código oficial de anúncio ou catálogo que permita confirmar este preço.');
                 } else if (status.lastError) {
-                    motivos.push(`A última consulta automática falhou: ${String(status.lastError).slice(0, 220)}`);
+                    tipo = tipo || 'nao_confirmado';
+                    motivos.push(`A última verificação não foi concluída: ${String(status.lastError).slice(0, 220)}`);
                 } else if (!Number.isFinite(consultaEm) || Date.now() - consultaEm > 4 * 60 * 60 * 1000) {
+                    tipo = tipo || 'nao_confirmado';
                     motivos.push('A última confirmação automática tem mais de 4 horas.');
                 } else if (!precoAutomatico) {
+                    tipo = tipo || 'nao_confirmado';
                     motivos.push('A consulta automática não retornou um preço que pudesse ser confirmado.');
                 }
             }
 
-            return { pendente: motivos.length > 0, motivos, campo, precoSite, precoAutomatico, consultaEm, revisaoManualEm, manualRecente };
+            return { pendente: motivos.length > 0, tipo, motivos, campo, precoSite, precoAutomatico, consultaEm, revisaoManualEm, manualRecente };
         }
 
         function cartaoProdutoPreco(doc) {
@@ -2309,14 +2320,20 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const precoSite = diagnostico.precoSite ? `R$ ${formatarPrecoCampo(diagnostico.precoSite)}` : 'não informado';
             const precoMercadoLivre = diagnostico.precoAutomatico ? `R$ ${formatarPrecoCampo(diagnostico.precoAutomatico)}` : 'não confirmado';
             const linkOferta = produto.link || produto.linkAfiliado || '';
+            const naoConfirmado = diagnostico.tipo === 'nao_confirmado';
+            const rotuloStatus = naoConfirmado ? 'Verificação não concluída' : 'Preço divergente';
+            const explicacaoStatus = naoConfirmado
+                ? 'O último preço conhecido foi preservado. Revise manualmente somente se desejar; uma falha temporária do Mercado Livre não altera o preço publicado.'
+                : 'A automação encontrou uma diferença real no preço ou um campo inválido.';
             return `
                 <div class="item-admin item-preco">
                     <span class="icone-atencao" aria-hidden="true">!</span>
                     <div class="item-admin-conteudo">
                         <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(produto.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(produto.titulo || 'Produto sem título')}</span></div>
-                        <span class="status-preco">Conferência de preço</span>
+                        <span class="status-preco${naoConfirmado ? ' status-preco-nao-confirmado' : ''}">${escapeHtml(rotuloStatus)}</span>
                         <p class="detalhe-preco">Preço no site: <strong>${escapeHtml(precoSite)}</strong> · Consulta automática: <strong>${escapeHtml(precoMercadoLivre)}</strong></p>
                         <ul class="lista-problemas">${diagnostico.motivos.map(motivo => `<li>${escapeHtml(motivo)}</li>`).join('')}</ul>
+                        <p class="detalhe-preco">${escapeHtml(explicacaoStatus)}</p>
                         <p class="detalhe-preco">Última confirmação automática: ${escapeHtml(formatarDataHoraPreco(diagnostico.consultaEm))}. A correção manual vale como conferida por 24 horas.</p>
                         ${linkOferta ? `<a href="${escapeHtml(linkOferta)}" target="_blank" rel="noopener noreferrer">Abrir oferta para conferir</a>` : ''}
                     </div>
@@ -2587,6 +2604,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                         const dbPreco = diagnosticoPreco(b);
                         return Number(Boolean(dbPreco.precoAutomatico)) - Number(Boolean(da.precoAutomatico));
                     });
+                    const precosDivergentes = precosPendentes.filter(doc => diagnosticoPreco(doc).tipo === 'divergente').length;
+                    const verificacoesNaoConcluidas = precosPendentes.length - precosDivergentes;
                     document.getElementById('contagem-publicados').textContent = publicados.length;
                     document.getElementById('contagem-revisao').textContent = revisao.length;
                     document.getElementById('contagem-indisponiveis').textContent = indisponiveis.length;
@@ -2598,12 +2617,12 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     if (botaoConferenciaIA && !conferenciaPrecoIAEmAndamento) {
                         botaoConferenciaIA.disabled = precosPendentes.length === 0;
                         botaoConferenciaIA.textContent = precosPendentes.length
-                            ? `🤖 Conferir todos os preços (${precosPendentes.length})`
-                            : '✅ Nenhum preço pendente';
+                            ? `🤖 Revisar verificações (${precosPendentes.length})`
+                            : '✅ Todos os preços confirmados';
                     }
                     renderizarListasProdutosBusca();
                     const totalRelatorio = Object.keys(statusMercadoLivreAdmin).length;
-                    document.getElementById('resumo-precos').innerHTML = `<strong>Última tentativa automática:</strong> ${escapeHtml(formatarDataHoraPreco(statusMercadoLivreAtualizadoEm))}. <strong>Itens no relatório:</strong> ${totalRelatorio}. <strong>Precisam de conferência:</strong> ${precosPendentes.length}. Ao salvar um preço, o produto fica marcado como revisado manualmente por 24 horas.`;
+                    document.getElementById('resumo-precos').innerHTML = `<strong>Última tentativa automática:</strong> ${escapeHtml(formatarDataHoraPreco(statusMercadoLivreAtualizadoEm))}. <strong>Itens no relatório:</strong> ${totalRelatorio}. <strong>Preços realmente divergentes:</strong> ${precosDivergentes}. <strong>Verificações não concluídas:</strong> ${verificacoesNaoConcluidas}. Falhas temporárias preservam o último preço conhecido; ao salvar manualmente, o produto fica marcado como revisado por 24 horas.`;
                     ativarAbaProdutos(abaProdutosAtiva);
                 });
             }, error => {
@@ -2706,4 +2725,5 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 </html>
 
 <script src="indexacao-dashboard.js?v=20260814-1" defer></script>
+
 

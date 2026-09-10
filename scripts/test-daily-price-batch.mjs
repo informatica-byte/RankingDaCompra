@@ -6,6 +6,7 @@ const workflow = await readFile(".github/workflows/sync-mercadolivre.yml", "utf8
 const sync = await readFile("scripts/sync-mercadolivre.mjs", "utf8");
 const generator = await readFile("scripts/generate-sitemap.mjs", "utf8");
 const resolver = await readFile("scripts/resolve-affiliate-links.mjs", "utf8");
+const dashboard = await readFile("dashboard.html", "utf8");
 
 test("agenda somente um lote completo por dia", () => {
   assert.equal((workflow.match(/\bcron:/g) || []).length, 1);
@@ -63,7 +64,19 @@ test("localizador reutiliza e renova a autorização criptografada", () => {
   assert.match(resolver, /MAX_REQUEST_ATTEMPTS\s*=\s*3/);
   assert.match(resolver, /previous\.status\s*===\s*"erro"[\s\S]{0,160}previous\.tentativas[\s\S]{0,100}MAX_REQUEST_ATTEMPTS/);
   assert.match(resolver, /tentativas:\s*previousAttempts\s*\+\s*1/);
+  assert.match(resolver, /officialCatalogDetails\(catalogId/);
+  assert.match(resolver, /api\.mercadolibre\.com\/products\/[^\n]+catalogId/);
   assert.match(sync, /rejectedAccessTokenRefreshPromise/);
+  assert.match(sync, /fetchMarketplaceCatalog\(catalogId\)/);
   assert.match(sync, /\[401, 403\]\.includes\(error\.httpStatus\)[\s\S]{0,180}refreshRejectedAccessToken\(\)/);
+});
+
+test("painel separa preço divergente de consulta temporariamente bloqueada", () => {
+  assert.match(dashboard, /tipo\s*=\s*'divergente'/);
+  assert.match(dashboard, /tipo\s*\|\|\s*'nao_confirmado'/);
+  assert.match(dashboard, /status\?\.itemId\s*\|\|\s*status\?\.catalogId/);
+  assert.match(dashboard, /Preços realmente divergentes:/);
+  assert.match(dashboard, /Verificações não concluídas:/);
+  assert.match(dashboard, /grid-template-columns:\s*24px minmax\(0, 1fr\)/);
 });
 

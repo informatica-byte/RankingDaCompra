@@ -234,7 +234,7 @@ export function extractItemIdFromUrl(value) {
   }
 }
 
-function extractCatalogIdFromUrl(value) {
+export function extractCatalogIdFromUrl(value) {
   try {
     const url = new URL(String(value || ""));
     const match = url.pathname.match(/\/p\/(MLB\d{6,})/i);
@@ -390,6 +390,56 @@ async function fetchJson(url, { allowMissing = false, authenticated = true } = {
     throw error;
   }
   return response.json();
+}
+
+export function catalogRecordFromPayload(catalogId, payload = {}) {
+  const winner = payload?.buy_box_winner || payload?.buyBoxWinner || {};
+  const amount = Number(winner.price ?? payload?.price);
+  const regularAmount = Number(winner.original_price ?? payload?.original_price);
+  if (!Number.isFinite(amount) || amount <= 0) return null;
+  return {
+    itemId: extractItemIdFromText(winner.item_id || winner.id || ""),
+    catalogId: String(catalogId || payload?.id || "").toUpperCase(),
+    status: "active",
+    available: true,
+    price: amount,
+    regularPrice: Number.isFinite(regularAmount) && regularAmount > amount ? regularAmount : null,
+    currencyId: String(winner.currency_id || payload?.currency_id || "BRL"),
+    source: "catalog_api",
+  };
+}
+
+async function fetchMarketplaceCatalog(catalogId) {
+  if (!catalogId) throw new Error("Mercado Livre: código de catálogo ausente");
+  const url = `https://api.mercadolibre.com/products/${encodeURIComponent(catalogId)}`;
+  const attempts = accessToken ? [true, false] : [false];
+  let lastError = new Error("Mercado Livre: catálogo sem preço verificável");
+  for (const authenticated of attempts) {
+    try {
+      const payload = await fetchJson(url, { authenticated });
+      const record = catalogRecordFromPayload(catalogId, payload);
+      if (record) return record;
+      lastError = new Error("Mercado Livre: catálogo sem preço verificável");
+    } catch (error) {
+      lastError = error;
+      if (authenticated && [401, 403].includes(error.httpStatus)) {
+        if (await refreshRejectedAccessToken()) {
+          try {
+            const refreshed = catalogRecordFromPayload(
+              catalogId,
+              await fetchJson(url, { authenticated: true }),
+            );
+            if (refreshed) return refreshed;
+          } catch (refreshedError) {
+            lastError = refreshedError;
+          }
+        }
+        continue;
+      }
+      break;
+    }
+  }
+  throw lastError;
 }
 
 async function fetchLightningPromotion(itemId) {
@@ -719,6 +769,17 @@ async function fetchMarketplaceItem(itemId, product = {}) {
           [product.link, product.linkAfiliado].filter(Boolean),
         );
       } catch (publicError) {
+        const catalogId = [product.link, product.linkAfiliado]
+          .map(extractCatalogIdFromUrl)
+          .find(Boolean);
+        if (catalogId) {
+          try {
+            const catalog = await fetchMarketplaceCatalog(catalogId);
+            return { ...catalog, itemId: itemId || catalog.itemId };
+          } catch {
+            // Mantém abaixo o erro completo das tentativas do anúncio.
+          }
+        }
         throw new Error(
           error.message
           + "; preço: "
@@ -778,6 +839,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
     );
     return {
       itemId: result.itemId,
+      catalogId: result.catalogId || "",
       managed: true,
       status: result.status,
       available: false,
@@ -794,6 +856,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
 
   return {
     itemId: result.itemId,
+    catalogId: result.catalogId || "",
     managed: true,
     status: result.status,
     available: true,
@@ -810,7 +873,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
 
 function sameBusinessState(a = {}, b = {}) {
   const keys = [
-    "itemId", "managed", "status", "available", "visible",
+    "itemId", "catalogId", "managed", "status", "available", "visible",
     "unavailableChecks", "price", "regularPrice", "currencyId", "source", "lastError",
     "lightningChecked", "lightningActive", "lightningPromotionId", "lightningStartsAt",
     "lightningEndsAt", "lightningPrice", "lightningSource",
@@ -892,9 +955,31 @@ async function mapWithConcurrency(items, limit, worker) {
 
 async function checkProduct(product, previousRecord, checkedAt) {
   const itemId = await resolveItemId(product);
+  const catalogId = [product.link, product.linkAfiliado]
+    .map(extractCatalogIdFromUrl)
+    .find(Boolean) || "";
   if (!itemId) {
+    if (catalogId) {
+      try {
+        const result = await fetchMarketplaceCatalog(catalogId);
+        return deriveRecord(previousRecord, { ...result, itemId: "", catalogId }, checkedAt);
+      } catch (error) {
+        return {
+          ...previousRecord,
+          itemId: "",
+          catalogId,
+          managed: true,
+          status: "catalog_unavailable",
+          available: null,
+          visible: previousRecord.visible !== false,
+          lastError: String(error?.message || "Falha temporária no catálogo").slice(0, 160),
+          checkedAt,
+        };
+      }
+    }
     return {
       itemId: "",
+      catalogId: "",
       managed: false,
       status: "missing_item_id",
       available: null,
@@ -910,7 +995,7 @@ async function checkProduct(product, previousRecord, checkedAt) {
   const relevantPrevious = previousRecord.itemId === itemId ? previousRecord : {};
   try {
     const result = await fetchMarketplaceItem(itemId, product);
-    return deriveRecord(relevantPrevious, result, checkedAt);
+    return deriveRecord(relevantPrevious, { ...result, catalogId }, checkedAt);
   } catch (error) {
     return {
       ...relevantPrevious,
