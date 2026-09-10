@@ -1,6 +1,40 @@
 {
-  "atualizadoEm": "2026-09-10T13:00:05.968Z",
+  "atualizadoEm": "2026-09-10T13:35:17.508Z",
   "resultados": {
+    "Hxvwdai3Nk6Xqc8JE5i1": {
+      "status": "ok",
+      "mlb": "MLB5411374090",
+      "urlProduto": "https://www.mercadolivre.com.br/mixer-philco-pmx2000-3-em-1-inox-800w-cor-preto/p/MLB28406392",
+      "titulo": "Mixer Philco Pmx2000 3 Em 1 Inox 800w cor preto",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_894088-MLA116202947413_082026-O.webp",
+      "precoAtual": 206.81,
+      "precoAnterior": 385.57,
+      "dadosTecnicos": [
+        "Potência de 800 watts.",
+        "Suas lâminas são feitas de aço inoxidável.",
+        "Inclui acessórios.",
+        "Lâmina de aço inoxidável.",
+        "Ideal para todos os tipos de preparações.",
+        "Marca: Philco",
+        "Cor: Preto",
+        "Peso informado: 0.8 g",
+        "Código do catálogo: MLB28406392",
+        "Condição informada: novo"
+      ],
+      "comentario": "Mixer Philco Pmx2000 3 Em 1 Inox 800w cor preto. Potência de 800 watts. Suas lâminas são feitas de aço inoxidável. Inclui acessórios. Lâmina de aço inoxidável. Ideal para todos os tipos de preparações. Marca: Philco. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "pros": "Mixer Philco Pmx2000 3 Em 1 Inox 800w cor preto. Características confirmadas no anúncio: Potência de 800 watts. Suas lâminas são feitas de aço inoxidável. Inclui acessórios. Lâmina de aço inoxidável. Ideal para todos os tipos de preparações..",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/mixer-philco-pmx2000-3-em-1-inox-800w-cor-preto/p/MLB28406392?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=e864a41d-5122-4783-8f47-76eccf6f34c5&tracking_id=5c5e3edb-219a-42b8-acd6-31d0e2ba27f8&wid=MLB5411374090&sid=offers",
+      "resolvidoEm": "2026-09-10T13:35:17.507Z",
+      "tentativas": 1
+    },
+    "64qbBYzcqTB9pMpEtMlz": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/grill-arno-compact-preto-gpto/p/MLB41533649?pdp_filters=deal%3AMLB916440-2#polycard_client=offers&deal_print_id=d9424298-c020-48fc-b775-8bd8d17c6c21&position=7&tracking_id=2aecb5e7-28f6-4674-9310-859c219a9852&wid=MLB5953742262&sid=offers",
+      "resolvidoEm": "2026-09-10T13:35:16.092Z",
+      "tentativas": 3
+    },
     "oxlrpdutKC1Kz0yLL5E9": {
       "status": "ok",
       "mlb": "MLB5934587642",
@@ -27,13 +61,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/caixa-de-som-portatil-inova-caixinha-com-rgb-tws-recarregavel-subwoofer-potente-caixas-bluetooth-ideal-festas-ao-ar-livre-e-uso-diario-preto/p/MLB61642416?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=6f80b52e-4e6f-4e20-ba3f-d08545965324&position=39&tracking_id=f22dd15f-0ce8-4ae1-9869-330ac423bb82&wid=MLB5934587642&sid=offers",
       "resolvidoEm": "2026-09-10T13:00:05.968Z",
       "tentativas": 1
-    },
-    "64qbBYzcqTB9pMpEtMlz": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/grill-arno-compact-preto-gpto/p/MLB41533649?pdp_filters=deal%3AMLB916440-2#polycard_client=offers&deal_print_id=d9424298-c020-48fc-b775-8bd8d17c6c21&position=7&tracking_id=2aecb5e7-28f6-4674-9310-859c219a9852&wid=MLB5953742262&sid=offers",
-      "resolvidoEm": "2026-09-10T13:00:04.221Z",
-      "tentativas": 2
     },
     "gsubZw8jtydpQikf6HKO": {
       "status": "erro",
