@@ -1,6 +1,40 @@
 {
-  "atualizadoEm": "2026-09-10T12:12:52.134Z",
+  "atualizadoEm": "2026-09-10T12:23:49.786Z",
   "resultados": {
+    "nFpl0FLpVG1HIHvT1LPW": {
+      "status": "ok",
+      "mlb": "MLB6705638808",
+      "urlProduto": "https://www.mercadolivre.com.br/caixa-de-som-amplificada-philco-extreme-bluetooth-53-480w-2-microfones-tws-flash-light-bateria-recarregavel-pcx4801/p/MLB69013896",
+      "titulo": "Caixa de Som Amplificada Philco Extreme Bluetooth 5.3 480W 2 Microfones TWS Flash Light Bateria Recarregável PCX4801",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_680616-MLA116669244073_082026-O.webp",
+      "precoAtual": 475.15,
+      "precoAnterior": 1212.86,
+      "dadosTecnicos": [
+        "Potência de 480W: som potente e envolvente para animar festas, eventos e reuniões.",
+        "2 microfones sem fio inclusos: perfeitos para karaokê, apresentações e momentos de diversão.",
+        "Bateria recarregável: até 8 horas de autonomia para curtir suas músicas sem interrupções.",
+        "Bluetooth 5.3: conexão mais rápida, estável e com melhor eficiência energética.",
+        "Tecnologia Philco Connection (TWS): conecte duas caixas compatíveis e amplie a experiência sonora.",
+        "Flash Light com 7 efeitos: iluminação dinâmica que acompanha o ritmo da sua festa.",
+        "Woofer de 8\" e tweeter: graves marcantes e áudio equilibrado para diversos estilos musicais.",
+        "Entrada USB: reproduza músicas diretamente de pendrives com praticidade.",
+        "Marca: Philco",
+        "Cor: Preto"
+      ],
+      "comentario": "Caixa de Som Amplificada Philco Extreme Bluetooth 5.3 480W 2 Microfones TWS Flash Light Bateria Recarregável PCX4801. Potência de 480W: som potente e envolvente para animar festas, eventos e reuniões. 2 microfones sem fio inclusos: perfeitos para karaokê, apresentações e momentos de diversão. Bateria recarregável: até 8 horas de autonomia para curtir suas músicas sem interrupções. Bluetooth 5.3: conexão mais rápida, estável e com melhor eficiência energética.",
+      "pros": "Caixa de Som Amplificada Philco Extreme Bluetooth 5.3 480W 2 Microfones TWS Flash Light Bateria Recarregável PCX4801. Características confirmadas no anúncio: Potência de 480W: som potente e envolvente para animar festas, eventos e reuniões.",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/caixa-de-som-amplificada-philco-extreme-bluetooth-53-480w-2-microfones-tws-flash-light-bateria-recarregavel-pcx4801/p/MLB69013896?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=8ccb3198-aa06-4b34-991a-52623a55d0c1&position=4&tracking_id=ec32a279-f029-4134-bf15-b7bc3c16c409&wid=MLB6705638808&sid=offers",
+      "resolvidoEm": "2026-09-10T12:23:49.785Z",
+      "tentativas": 1
+    },
+    "n9lUNzRaU6kjJQsbNrWU": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/liquidificador-turbo-power-mondial-550w-l-99-fr/p/MLB15699907#polycard_client=search_best-seller&tracking_id=f002eb33-c682-4627-a61e-5d06c1e4fe9a&wid=MLB3306024289&sid=search",
+      "resolvidoEm": "2026-09-10T12:23:48.473Z",
+      "tentativas": 3
+    },
     "buyhUcoOTq28wgbaH0m6": {
       "status": "ok",
       "mlb": "MLB7514174346",
@@ -27,13 +61,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/frigideira-antiaderente-ceramica-granito-24cm-com-espatula-cabo-de-madeira-inducao-cooktop-e-fogao-a-gas-nao-gruda-sem-oleo-viacruz/p/MLB78748305?pdp_filters=price%3A0.0-100.0%7Cdeal%3AMLB779362-1#polycard_client=offers&deal_print_id=423cf88a-667c-4633-a08d-c5533912828c&position=13&tracking_id=72a97f59-3c4d-41ca-aed7-00d17a61684f&wid=MLB7514174346&sid=offers",
       "resolvidoEm": "2026-09-10T12:12:52.134Z",
       "tentativas": 1
-    },
-    "n9lUNzRaU6kjJQsbNrWU": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/liquidificador-turbo-power-mondial-550w-l-99-fr/p/MLB15699907#polycard_client=search_best-seller&tracking_id=f002eb33-c682-4627-a61e-5d06c1e4fe9a&wid=MLB3306024289&sid=search",
-      "resolvidoEm": "2026-09-10T12:12:50.306Z",
-      "tentativas": 2
     },
     "LuN4z5PCLbEi4zKBTR0w": {
       "status": "erro",
