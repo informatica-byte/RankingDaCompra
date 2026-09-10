@@ -1,6 +1,13 @@
 {
-  "atualizadoEm": "2026-09-10T12:38:39.574Z",
+  "atualizadoEm": "2026-09-10T12:41:58.950Z",
   "resultados": {
+    "f9QwOuBXuVDigVE455i4": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/grill-arno-compact-preto-gpto/p/MLB41533649?pdp_filters=deal%3AMLB916440-2#polycard_client=offers&deal_print_id=d9424298-c020-48fc-b775-8bd8d17c6c21&position=7&tracking_id=2aecb5e7-28f6-4674-9310-859c219a9852&wid=MLB5953742262&sid=offers",
+      "resolvidoEm": "2026-09-10T12:41:58.942Z",
+      "tentativas": 1
+    },
     "oqXV5zH7lAvD5X5UNhLF": {
       "status": "ok",
       "mlb": "MLB4372955877",
