@@ -2309,7 +2309,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 }
             }
 
-            return { pendente: motivos.length > 0, tipo, motivos, campo, precoSite, precoAutomatico, consultaEm, revisaoManualEm, manualRecente };
+            return { pendente: tipo === 'divergente', tipo, motivos, campo, precoSite, precoAutomatico, consultaEm, revisaoManualEm, manualRecente };
         }
 
         function cartaoProdutoPreco(doc) {
@@ -2591,12 +2591,17 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     const revisao = [];
                     const indisponiveis = [];
                     const precosPendentes = [];
+                    let verificacoesNaoConcluidas = 0;
                     snapshot.forEach(doc => {
                         const status = statusMercadoLivreAdmin[doc.id];
                         if (status?.visible === false) indisponiveis.push(doc);
                         else if (produtoOcultoNaVitrine(doc.data())) revisao.push(doc);
                         else publicados.push(doc);
-                        if (status?.visible !== false && diagnosticoPreco(doc).pendente) precosPendentes.push(doc);
+                        if (status?.visible !== false) {
+                            const diagnostico = diagnosticoPreco(doc);
+                            if (diagnostico.pendente) precosPendentes.push(doc);
+                            else if (diagnostico.tipo === 'nao_confirmado') verificacoesNaoConcluidas += 1;
+                        }
                     });
 
                     precosPendentes.sort((a, b) => {
@@ -2604,8 +2609,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                         const dbPreco = diagnosticoPreco(b);
                         return Number(Boolean(dbPreco.precoAutomatico)) - Number(Boolean(da.precoAutomatico));
                     });
-                    const precosDivergentes = precosPendentes.filter(doc => diagnosticoPreco(doc).tipo === 'divergente').length;
-                    const verificacoesNaoConcluidas = precosPendentes.length - precosDivergentes;
+                    const precosDivergentes = precosPendentes.length;
                     document.getElementById('contagem-publicados').textContent = publicados.length;
                     document.getElementById('contagem-revisao').textContent = revisao.length;
                     document.getElementById('contagem-indisponiveis').textContent = indisponiveis.length;

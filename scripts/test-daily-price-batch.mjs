@@ -74,6 +74,8 @@ test("localizador reutiliza e renova a autorização criptografada", () => {
 test("painel separa preço divergente de consulta temporariamente bloqueada", () => {
   assert.match(dashboard, /tipo\s*=\s*'divergente'/);
   assert.match(dashboard, /tipo\s*\|\|\s*'nao_confirmado'/);
+  assert.match(dashboard, /pendente:\s*tipo\s*===\s*'divergente'/);
+  assert.match(dashboard, /diagnostico\.tipo\s*===\s*'nao_confirmado'[\s\S]{0,80}verificacoesNaoConcluidas\s*\+=\s*1/);
   assert.match(dashboard, /status\?\.itemId\s*\|\|\s*status\?\.catalogId/);
   assert.match(dashboard, /Preços realmente divergentes:/);
   assert.match(dashboard, /Verificações não concluídas:/);

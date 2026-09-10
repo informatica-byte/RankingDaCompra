@@ -215,6 +215,8 @@ if (consultasRecentesVisitas.length !== 1) {
 has(dashboardHtml, /JANELA_METRICAS_PAINEL_DIAS\s*=\s*14/, "janela de 14 dias necessária para a comparação semanal ausente", "dashboard.html");
 has(dashboardHtml, /tipo\s*=\s*['"]divergente['"]/, "painel não identifica divergência real de preço separadamente", "dashboard.html");
 has(dashboardHtml, /tipo\s*\|\|\s*['"]nao_confirmado['"]/, "painel não identifica verificação temporariamente inconclusiva", "dashboard.html");
+has(dashboardHtml, /pendente:\s*tipo\s*===\s*['"]divergente['"]/, "painel ainda inclui bloqueios temporários na fila de correções", "dashboard.html");
+has(dashboardHtml, /diagnostico\.tipo\s*===\s*['"]nao_confirmado['"][\s\S]{0,80}verificacoesNaoConcluidas\s*\+=\s*1/, "painel não contabiliza separadamente as consultas inconclusivas", "dashboard.html");
 has(dashboardHtml, /status\?\.itemId\s*\|\|\s*status\?\.catalogId/, "painel ignora o identificador oficial de catálogo", "dashboard.html");
 has(dashboardHtml, /Preços realmente divergentes:[\s\S]{0,220}Verificações não concluídas:/, "resumo de preços ainda mistura divergências com bloqueios temporários", "dashboard.html");
 has(dashboardHtml, /\.item-admin\.item-preco\s*\{[^}]*display:\s*grid[^}]*grid-template-columns:\s*24px minmax\(0,\s*1fr\)/, "cartão de preço pode voltar a esmagar o título do produto", "dashboard.html");
