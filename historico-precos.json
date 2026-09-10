@@ -1,7 +1,7 @@
 {
   "version": 1,
   "days": 30,
-  "updatedAt": "2026-09-10T09:35:32.207Z",
+  "updatedAt": "2026-09-10T13:45:01.451Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "title": "Colchão Casal Emma Original 138x188cm",
@@ -20706,6 +20706,10 @@
         [
           "2026-09-08",
           31.96
+        ],
+        [
+          "2026-09-10",
+          31.96
         ]
       ]
     },
@@ -33058,6 +33062,7 @@
     },
     "cq6GYICiBnjXrygHzhaO": {
       "title": "Câmera de segurança Elsys ESC-WB3F com resolução de 2MP visão noturna incluída branca",
+      "identity": "MLB18946706",
       "points": [
         [
           "2026-09-04",
@@ -33070,6 +33075,10 @@
         [
           "2026-09-06",
           156.93
+        ],
+        [
+          "2026-09-10",
+          165.87
         ]
       ]
     },
@@ -33338,6 +33347,10 @@
         ],
         [
           "2026-09-07",
+          798.3
+        ],
+        [
+          "2026-09-10",
           798.3
         ]
       ]
@@ -33769,6 +33782,10 @@
         [
           "2026-09-08",
           299.9
+        ],
+        [
+          "2026-09-10",
+          299.9
         ]
       ]
     },
@@ -33917,6 +33934,96 @@
         [
           "2026-09-10",
           47.3
+        ]
+      ]
+    },
+    "CqcFkZIu8ozeDLwRHAEG": {
+      "title": "Caixa De Som Portatil Inova Caixinha Com Rgb Tws Recarregável Subwoofer, Potente Caixas Bluetooth Ideal Festas Ao Ar Livre E Uso Diário, Preto",
+      "identity": "MLB61642416",
+      "points": [
+        [
+          "2026-09-10",
+          73
+        ]
+      ]
+    },
+    "F8RXRAtxM4QOCg5hbFh9": {
+      "title": "Chaleira Eletrica Atacama Inox 1,8 Litros 220v Unitermi Cor Cinza-escuro",
+      "identity": "MLB58523311",
+      "points": [
+        [
+          "2026-09-10",
+          43.86
+        ]
+      ]
+    },
+    "FlQInLlTCwVdemK0g3rZ": {
+      "title": "Kit 5 Potes De Vidro Marmita C/ Tampa Hermético 640ml",
+      "identity": "MLB47853797",
+      "points": [
+        [
+          "2026-09-10",
+          57.99
+        ]
+      ]
+    },
+    "M9arBHEFyVVMelHK70ml": {
+      "title": "Liquidificador Philco Portátil 2 Squeezes 400W PLQ04A",
+      "identity": "MLB63184766",
+      "points": [
+        [
+          "2026-09-10",
+          145.89
+        ]
+      ]
+    },
+    "NUNROG3VOfMVViIW5Rtk": {
+      "title": "Grill Arno Compact Preto Gpto",
+      "identity": "MLB41533649",
+      "points": [
+        [
+          "2026-09-10",
+          129.99
+        ]
+      ]
+    },
+    "cRVdkjWSED5sBpQ3JMXd": {
+      "title": "Frigideira Antiaderente Cerâmica Granito 24cm com Espátula Cabo de Madeira Indução Cooktop e Fogão a Gás Não Gruda Sem Óleo Viacruz",
+      "identity": "MLB78748305",
+      "points": [
+        [
+          "2026-09-10",
+          48.9
+        ]
+      ]
+    },
+    "cSmjEdmFugRGDdJHkMcR": {
+      "title": "Smartwatch Esportivo Masculina Relógio Inteligente Redondo",
+      "identity": "MLB3793292751",
+      "points": [
+        [
+          "2026-09-10",
+          110.8
+        ]
+      ]
+    },
+    "f9oPhNSAdi4gqtwPJbJh": {
+      "title": "Mixer Philco Pmx2000 3 Em 1 Inox 800w cor preto",
+      "identity": "MLB28406392",
+      "points": [
+        [
+          "2026-09-10",
+          206.81
+        ]
+      ]
+    },
+    "xx8WNgdzcfFZiiBErwpe": {
+      "title": "Caixa de Som Amplificada Philco Extreme Bluetooth 5.3 480W 2 Microfones TWS Flash Light Bateria Recarregável PCX4801",
+      "identity": "MLB69013896",
+      "points": [
+        [
+          "2026-09-10",
+          475.15
         ]
       ]
     }
