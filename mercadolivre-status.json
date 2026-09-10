@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-10T11:59:06.707Z",
+  "updatedAt": "2026-09-10T15:55:37.487Z",
   "lastBatchAt": "2026-09-10T11:59:06.707Z",
   "products": {
     ".site-theme": {
@@ -79,12 +79,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ"
     },
     "0o2cubZBfwlgcwFokAWY": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -96,7 +96,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "0t4pziMMofW72pLu8Xeg": {
       "itemId": "MLB5983100078",
@@ -120,12 +122,12 @@
       "lastError": "Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; preço: Mercado Livre: HTTP 403 - At least one policy returned UNAUTHORIZED.; fallback públ"
     },
     "0vNEHjhD3cm0iTyBCZRe": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -137,7 +139,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "1Iyoc1zKTUsDEQGbvIM3": {
       "itemId": "",
@@ -317,12 +321,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "4FX7Gso8kz2bxeL8MKdU": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -334,7 +338,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "4J4ERfLVdezQdivsmwyZ": {
       "itemId": "MLB4183197053",
@@ -615,12 +621,12 @@
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
     "7EgFgcD6NyeoMB8KW4Pp": {
-      "itemId": "MLB1784299",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -632,7 +638,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "7evzZBujin11TlbT8hvm": {
       "itemId": "MLB6972021044",
@@ -821,12 +829,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "AF2AykzSppuQzGXdmvlT": {
-      "itemId": "MLB1578289",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -838,7 +846,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "AZvssPDpX6PUePQXxOqW": {
       "itemId": "MLB6232748412",
@@ -883,12 +893,12 @@
       "checkedAt": "2026-09-03T10:04:53.575Z"
     },
     "BZdWuWJ4c71PUMLZXbbx": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -900,7 +910,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "BcfEuX1oed02O8pYXKyg": {
       "itemId": "MLB6038239378",
@@ -1018,12 +1030,12 @@
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
     "DNqszoYPu5LLhotuYNKp": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -1035,7 +1047,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "DgfiI7KzKzTsjOEl1Ez1": {
       "itemId": "",
@@ -1062,12 +1076,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "DrtEH7UwR0UyKkiUTQEw": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -1079,7 +1093,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "DuqIf8kBMwEZzRskn9LR": {
       "itemId": "MLB6930924132",
@@ -1115,12 +1131,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "EMkRJbRaAkESLs4ejPvT": {
-      "itemId": "MLB1784299",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -1132,7 +1148,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "EbNVkHXOor6py78Wgl8X": {
       "itemId": "MLB5643705886",
@@ -1180,12 +1198,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "Exr5iz41Fk5XQLKaQdB7": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -1197,7 +1215,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "F8RXRAtxM4QOCg5hbFh9": {
       "itemId": "MLB5174690945",
@@ -1221,12 +1241,12 @@
       "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "FeYsjVKPd6nzosN6U8QB": {
-      "itemId": "MLB1784299",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -1238,7 +1258,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "FeywUF0Zq5KmO8USHJdF": {
       "itemId": "MLB5039137609",
@@ -1495,12 +1517,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "KMiiTKAtWzXLuHi0Lcad": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -1512,7 +1534,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "KrFVJP58aJ8Tx9EriH9R": {
       "itemId": "",
@@ -1565,12 +1589,12 @@
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
     "LDzmbLcaHUVNztsXyp52": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -1582,7 +1606,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "LQ12PkH1sbM7Uu0geBQf": {
       "itemId": "MLB3798032968",
@@ -1753,12 +1779,12 @@
       "lightningSource": ""
     },
     "NzjV5XgJazvytVp805A3": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -1770,7 +1796,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "O6sfkmnugDGyVCAnNtyN": {
       "itemId": "MLB3225819794",
@@ -1900,12 +1928,12 @@
       "checkedAt": "2026-09-03T10:04:53.575Z"
     },
     "QNzmR100ehzO5NSBLhTw": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -1917,7 +1945,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "QTYdXWzIass66gfOMOEM": {
       "itemId": "MLB6310670746",
@@ -2291,12 +2321,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "WcV6iy1IS12dL74uflws": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -2308,7 +2338,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "Wny29umvm2bXCrY9WGqg": {
       "itemId": "MLB6160472112",
@@ -2360,12 +2392,12 @@
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
     "XGM5P52X6EJc7X55vC8Y": {
-      "itemId": "MLB1578289",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -2377,7 +2409,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "XRKv9OGoKrBbcDP0GxER": {
       "itemId": "MLB6797156948",
@@ -2557,12 +2591,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "Zo8ybuHaQjV6HlCbCWqf": {
-      "itemId": "MLB1578289",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -2574,15 +2608,17 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "a77W30LAOCEPjWdkcAlU": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -2594,7 +2630,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "aIWLmzyxlViGPWt6Mctg": {
       "itemId": "MLB6224960422",
@@ -2779,12 +2817,12 @@
       "checkedAt": "2026-09-03T10:04:53.575Z"
     },
     "dVcHtGhQTqXzldhTAOVv": {
-      "itemId": "MLB1784299",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -2796,7 +2834,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "daGq7fKoqOEBFAra9JOX": {
       "itemId": "",
@@ -2839,12 +2879,12 @@
       "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "e2xjzhLqo2TSHdOKUEaB": {
-      "itemId": "MLB1784299",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -2856,7 +2896,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "eJn1Xl8uCPLxKCObXB6r": {
       "itemId": "",
@@ -2878,12 +2920,12 @@
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
     "eLIzAkv4GxeN7eIPOKEx": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -2895,7 +2937,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "eWSvbRDlCUBkWhNx5s6T": {
       "itemId": "MLB5451783886",
@@ -2985,12 +3029,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "fN8YK4ZPWWiysLzZWL8s": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3002,15 +3046,17 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "fOI4O124KZd2vLCx8Fmj": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3022,7 +3068,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "fOQZ2dyrpaoVIulwTufz": {
       "itemId": "MLB5382062300",
@@ -3206,12 +3254,12 @@
       "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "jpfsQDwQMrok9k3UQ66e": {
-      "itemId": "MLB1578289",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3223,15 +3271,17 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "k0fHNRurzCmYEdcHcn1V": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3243,7 +3293,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "k7uNky9V7WM8x0Zp822A": {
       "itemId": "MLB6333810632",
@@ -3400,12 +3452,12 @@
       "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "mWdbAKSL36ZpIPwUTbdv": {
-      "itemId": "MLB1298579",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3417,7 +3469,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "mh7qDBFGUmyIdAbEfI11": {
       "itemId": "MLB3371578831",
@@ -3486,12 +3540,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "oH64t9Zq6tGqwpIqRgpX": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3503,7 +3557,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "oYoalVz8s4bR2iumSyhW": {
       "itemId": "MLB4883864997",
@@ -3513,12 +3569,12 @@
       "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "of7SzAJ9klKkySvWpSsO": {
-      "itemId": "MLB1768877",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3530,7 +3586,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "ouW04Ht6SW5LTvyklxPv": {
       "itemId": "MLB4506025355",
@@ -3585,12 +3643,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "pNwNrsWTQMEyOC4qwff1": {
-      "itemId": "MLB1784299",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3602,7 +3660,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "pdHLCjya0u2obU1KNUcL": {
       "itemId": "",
@@ -3638,12 +3698,12 @@
       "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "q8wxWRl86XmL7Gglikg7": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3655,15 +3715,17 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "qAkENABz4tpPjLGpyPEw": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3675,7 +3737,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "qPNJGNmzPbZzprZanGOC": {
       "itemId": "MLB2765715868",
@@ -3712,12 +3776,12 @@
       "lightningSource": ""
     },
     "r3FSTFORXo77XwAiWk3Y": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3729,7 +3793,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "rJhe4VyyDiFudQmQmXCV": {
       "itemId": "MLB5847406884",
@@ -3862,12 +3928,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "sfV5mG9A2qmqdyJhbQc0": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3879,7 +3945,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "sgbLci6wEaVhYxUR6BIE": {
       "itemId": "MLB6161516868",
@@ -3889,12 +3957,12 @@
       "checkedAt": "2026-08-04T10:58:58.004Z"
     },
     "t4cAWb59UILzYeRHO0qk": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3906,7 +3974,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "tQpEIHL2QaiZ7xOWZ6py": {
       "itemId": "MLB7216680136",
@@ -3973,12 +4043,12 @@
       "checkedAt": "2026-09-10T10:40:47.959Z"
     },
     "uN0To7b1oG7xjWib5gLN": {
-      "itemId": "MLB1298579",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -3990,7 +4060,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "uN99T96zBRKEYX9YVW2I": {
       "itemId": "MLB4052499943",
@@ -4033,12 +4105,12 @@
       "checkedAt": "2026-08-29T12:55:25.403Z"
     },
     "ucknzxk5UJWl0GnOXadP": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -4050,7 +4122,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "ufHw7Y6qN2oc8ePqgHkj": {
       "itemId": "MLB4555189589",
@@ -4265,12 +4339,12 @@
       "checkedAt": "2026-07-25T22:21:45.259Z"
     },
     "zdgHJ1hvNj2NYd3q7YHW": {
-      "itemId": "MLB779362",
-      "managed": true,
-      "status": "not_found",
-      "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "itemId": "",
+      "managed": false,
+      "status": "missing_item_id",
+      "available": null,
+      "visible": true,
+      "unavailableChecks": 0,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
@@ -4282,7 +4356,9 @@
       "lightningStartsAt": "",
       "lightningEndsAt": "",
       "lightningPrice": null,
-      "lightningSource": ""
+      "lightningSource": "",
+      "lastError": "",
+      "legacyRepairAt": "2026-09-10T15:55:37.487Z"
     },
     "zev1LogqUFpJ3cLlIXyy": {
       "itemId": "MLB7218305234",
