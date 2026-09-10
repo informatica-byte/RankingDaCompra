@@ -1,6 +1,12 @@
 {
-  "atualizadoEm": "2026-09-10T09:21:25.875Z",
+  "atualizadoEm": "2026-09-10T09:24:26.254Z",
   "resultados": {
+    "eWf25PQThS8BDVbcz6tB": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/liquidificador-turbo-power-mondial-550w-l-99-fr/p/MLB15699907#polycard_client=search_best-seller&tracking_id=f002eb33-c682-4627-a61e-5d06c1e4fe9a&wid=MLB3306024289&sid=search",
+      "resolvidoEm": "2026-09-10T09:24:26.246Z"
+    },
     "0VH625sQHMJdGCALWZLs": {
       "status": "ok",
       "mlb": "MLB7427045170",
