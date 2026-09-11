@@ -1,12 +1,60 @@
 {
-  "atualizadoEm": "2026-09-11T09:43:29.183Z",
+  "atualizadoEm": "2026-09-11T09:50:59.288Z",
   "resultados": {
+    "MPiQJnRWcHeXwe5qv4HI": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
+      "resolvidoEm": "2026-09-11T09:50:59.287Z",
+      "tentativas": 1
+    },
+    "x7YwUvb7G25dUGp4UGwE": {
+      "status": "ok",
+      "mlb": "MLB4780148071",
+      "urlProduto": "https://www.mercadolivre.com.br/fonte-de-alimentacao-fortrek-pws-2003-200w-atx-silenciosa-204-pinos-pc/p/MLB27752331",
+      "titulo": "Fonte de Alimentação Fortrek PWS-2003 200W ATX Silenciosa 20+4 Pinos PC",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_898261-MLA99937692981_112025-F.jpg",
+      "precoAtual": 62.23,
+      "precoAnterior": 0,
+      "dadosTecnicos": [
+        "Potência de saída de 200W.",
+        "Tipo de fonte ATX.",
+        "Refrigeração por ar.",
+        "Diâmetro do ventilador de 8 cm.",
+        "Marca: Fortrek",
+        "Código do catálogo: MLB27752331",
+        "Condição informada: novo",
+        "Modelo: PWS-2003",
+        "Potência de saída: 200 W",
+        "Diâmetro do ventilador: 8 cm"
+      ],
+      "comentario": "Fonte de Alimentação Fortrek PWS-2003 200W ATX Silenciosa 20+4 Pinos PC. Potência de saída de 200W. Tipo de fonte ATX. Refrigeração por ar. Diâmetro do ventilador de 8 cm. Marca: Fortrek; Código do catálogo: MLB27752331. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "pros": "Fonte de Alimentação Fortrek PWS-2003 200W ATX Silenciosa 20+4 Pinos PC. Características confirmadas no anúncio: Potência de saída de 200W. Tipo de fonte ATX. Refrigeração por ar. Diâmetro do ventilador de 8 cm. Marca: Fortrek.",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/fonte-de-alimentacao-fortrek-pws-2003-200w-atx-silenciosa-204-pinos-pc/p/MLB27752331?pdp_filters=item_id:MLB4780148071#is_advertising=true&searchVariation=MLB27752331&backend_model=search-backend&be_origin=backend&position=3&search_layout=grid&type=pad&tracking_id=9184cd6d-6156-4c3d-b209-36b30667f85c&ad_domain=VQCATCORE_LST&ad_position=3&ad_click_id=ZjhjNmU0NTAtODUxMi00NDVjLTgxMGYtNWQ1MzM1MmUwN2U5",
+      "resolvidoEm": "2026-09-11T09:50:41.720Z",
+      "tentativas": 1
+    },
     "50qtAwBQSA5ZfYkCDuUU": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
-      "resolvidoEm": "2026-09-11T09:43:29.182Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-11T09:50:40.468Z",
+      "tentativas": 2
+    },
+    "OVfm9QUYiyi65XGjXq0b": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
+      "resolvidoEm": "2026-09-11T09:50:22.887Z",
+      "tentativas": 2
+    },
+    "uWSPZYQMVkEz3a9E2qq7": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
+      "resolvidoEm": "2026-09-11T09:50:05.533Z",
+      "tentativas": 3
     },
     "KgRz26dnMy9T4kiNfdKt": {
       "status": "ok",
@@ -34,20 +82,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/teclado-com-fio-usb-logitech-k120-com-layout-abnt2-cor-de-teclado-preto-idioma-portugues-brasil-qwerty/p/MLB10001444#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=8&type=product&tracking_id=090b26be-323f-4f0e-856d-9a1835952247&wid=MLB6228036252&sid=search",
       "resolvidoEm": "2026-09-11T09:43:11.345Z",
       "tentativas": 1
-    },
-    "OVfm9QUYiyi65XGjXq0b": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
-      "resolvidoEm": "2026-09-11T09:43:09.741Z",
-      "tentativas": 1
-    },
-    "uWSPZYQMVkEz3a9E2qq7": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
-      "resolvidoEm": "2026-09-11T09:42:52.144Z",
-      "tentativas": 2
     },
     "unbopsOfI3gDhUKAjgVm": {
       "status": "erro",
