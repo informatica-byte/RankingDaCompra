@@ -1,12 +1,53 @@
 {
-  "atualizadoEm": "2026-09-11T09:38:59.360Z",
+  "atualizadoEm": "2026-09-11T09:43:29.183Z",
   "resultados": {
+    "50qtAwBQSA5ZfYkCDuUU": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
+      "resolvidoEm": "2026-09-11T09:43:29.182Z",
+      "tentativas": 1
+    },
+    "KgRz26dnMy9T4kiNfdKt": {
+      "status": "ok",
+      "mlb": "MLB6228036252",
+      "urlProduto": "https://www.mercadolivre.com.br/teclado-com-fio-usb-logitech-k120-com-layout-abnt2-cor-de-teclado-preto-idioma-portugues-brasil-qwerty/p/MLB10001444",
+      "titulo": "Teclado Com Fio Usb Logitech K120 Com Layout Abnt2 Cor de teclado Preto Idioma Português Brasil QWERTY",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_889766-MLA99449024848_112025-F.jpg",
+      "precoAtual": 78.9,
+      "precoAnterior": 199,
+      "dadosTecnicos": [
+        "Tipo de switch: Membrana.",
+        "Layout: QWERTY.",
+        "Cor de teclado: Preto.",
+        "É resistente a salpicos.",
+        "Contém teclado numérico.",
+        "Tipo de teclado: membrana.",
+        "Tecla cilíndrica.",
+        "Com conector: USB.",
+        "Teclado Logitech K120, resistente a salpicos, proporciona uma digitação confortável com teclas cilíndricas e conexão USB.",
+        "Medidas: 15.5 cm de altura, 45 cm de largura e 2.35 cm de profundidade."
+      ],
+      "comentario": "Teclado Com Fio Usb Logitech K120 Com Layout Abnt2 Cor de teclado Preto Idioma Português Brasil QWERTY. Tipo de switch: Membrana. Layout: QWERTY. Cor de teclado: Preto. É resistente a salpicos. Contém teclado numérico. Tipo de teclado: membrana.. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "pros": "Teclado Com Fio Usb Logitech K120 Com Layout Abnt2 Cor de teclado Preto Idioma Português Brasil QWERTY. Características confirmadas no anúncio: Tipo de switch: Membrana. Layout: QWERTY. Cor de teclado: Preto. É resistente a salpicos. Contém teclado numérico..",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/teclado-com-fio-usb-logitech-k120-com-layout-abnt2-cor-de-teclado-preto-idioma-portugues-brasil-qwerty/p/MLB10001444#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=8&type=product&tracking_id=090b26be-323f-4f0e-856d-9a1835952247&wid=MLB6228036252&sid=search",
+      "resolvidoEm": "2026-09-11T09:43:11.345Z",
+      "tentativas": 1
+    },
+    "OVfm9QUYiyi65XGjXq0b": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
+      "resolvidoEm": "2026-09-11T09:43:09.741Z",
+      "tentativas": 1
+    },
     "uWSPZYQMVkEz3a9E2qq7": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
-      "resolvidoEm": "2026-09-11T09:38:59.359Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-11T09:42:52.144Z",
+      "tentativas": 2
     },
     "unbopsOfI3gDhUKAjgVm": {
       "status": "erro",
