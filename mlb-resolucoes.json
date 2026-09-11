@@ -1,12 +1,26 @@
 {
-  "atualizadoEm": "2026-09-11T09:50:59.288Z",
+  "atualizadoEm": "2026-09-11T13:48:23.416Z",
   "resultados": {
     "MPiQJnRWcHeXwe5qv4HI": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
-      "resolvidoEm": "2026-09-11T09:50:59.287Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-11T13:48:23.415Z",
+      "tentativas": 2
+    },
+    "50qtAwBQSA5ZfYkCDuUU": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
+      "resolvidoEm": "2026-09-11T13:48:05.579Z",
+      "tentativas": 3
+    },
+    "OVfm9QUYiyi65XGjXq0b": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
+      "resolvidoEm": "2026-09-11T13:47:45.183Z",
+      "tentativas": 3
     },
     "x7YwUvb7G25dUGp4UGwE": {
       "status": "ok",
@@ -34,20 +48,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/fonte-de-alimentacao-fortrek-pws-2003-200w-atx-silenciosa-204-pinos-pc/p/MLB27752331?pdp_filters=item_id:MLB4780148071#is_advertising=true&searchVariation=MLB27752331&backend_model=search-backend&be_origin=backend&position=3&search_layout=grid&type=pad&tracking_id=9184cd6d-6156-4c3d-b209-36b30667f85c&ad_domain=VQCATCORE_LST&ad_position=3&ad_click_id=ZjhjNmU0NTAtODUxMi00NDVjLTgxMGYtNWQ1MzM1MmUwN2U5",
       "resolvidoEm": "2026-09-11T09:50:41.720Z",
       "tentativas": 1
-    },
-    "50qtAwBQSA5ZfYkCDuUU": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
-      "resolvidoEm": "2026-09-11T09:50:40.468Z",
-      "tentativas": 2
-    },
-    "OVfm9QUYiyi65XGjXq0b": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
-      "resolvidoEm": "2026-09-11T09:50:22.887Z",
-      "tentativas": 2
     },
     "uWSPZYQMVkEz3a9E2qq7": {
       "status": "erro",
