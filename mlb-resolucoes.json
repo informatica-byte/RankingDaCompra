@@ -1,6 +1,13 @@
 {
-  "atualizadoEm": "2026-09-11T09:32:16.166Z",
+  "atualizadoEm": "2026-09-11T09:35:30.268Z",
   "resultados": {
+    "unbopsOfI3gDhUKAjgVm": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/mouse-sem-fio-m280-preto-logitech/p/MLB6072946#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=c8bda777-039a-42df-bda8-8276719c216f&wid=MLB1813853926&sid=search",
+      "resolvidoEm": "2026-09-11T09:35:30.260Z",
+      "tentativas": 1
+    },
     "6xpxSp1mrmYFm6WavTIh": {
       "status": "ok",
       "mlb": "MLB36213556",
