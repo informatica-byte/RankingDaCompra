@@ -4,9 +4,17 @@ import {
   catalogRecordFromPayload,
   extractCatalogIdFromUrl,
   extractItemIdFromUrl,
+  isMercadoLivreProduct,
   repairLegacyHiddenRecords,
   shouldTrustStoredItemId,
 } from "./sync-mercadolivre.mjs";
+
+test("mantem produtos antigos no lote MLB e ignora produtos Shopee", () => {
+  assert.equal(isMercadoLivreProduct({ link: "https://www.mercadolivre.com.br/produto" }), true);
+  assert.equal(isMercadoLivreProduct({ marketplace: "mercado_livre" }), true);
+  assert.equal(isMercadoLivreProduct({ marketplace: "shopee", link: "https://shopee.com.br/produto" }), false);
+  assert.equal(isMercadoLivreProduct({ linkAfiliado: "https://s.shopee.com.br/exemplo" }), false);
+});
 
 test("usa o catálogo oficial quando o anúncio individual é recusado", () => {
   const url = "https://www.mercadolivre.com.br/liquidificador/p/MLB15699907?wid=MLB3306024289";

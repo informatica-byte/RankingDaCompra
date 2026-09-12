@@ -214,6 +214,19 @@ async function listProducts() {
   return products;
 }
 
+export function isMercadoLivreProduct(product) {
+  const marketplace = String(product?.marketplace || "").toLowerCase();
+  if (marketplace === "shopee") return false;
+  if (marketplace === "mercado_livre") return true;
+  try {
+    const host = new URL(String(product?.linkAfiliado || product?.link || "")).hostname.toLowerCase();
+    if (host === "shopee.com.br" || host.endsWith(".shopee.com.br")) return false;
+  } catch {}
+  // Compatibilidade: todos os documentos antigos, sem o campo marketplace,
+  // continuam sendo tratados como produtos do Mercado Livre.
+  return true;
+}
+
 export function extractItemIdFromText(value) {
   const text = String(value || "");
   const direct = text.match(/\bMLB[-_]?(\d{6,})\b/i);
@@ -1034,7 +1047,10 @@ async function main() {
 
   let products;
   try {
-    products = await listProducts();
+    const allProducts = await listProducts();
+    products = allProducts.filter(isMercadoLivreProduct);
+    const ignored = allProducts.length - products.length;
+    if (ignored > 0) console.log(`${ignored} produto(s) de outras lojas ignorado(s) pelo robô do Mercado Livre.`);
   } catch (error) {
     if (/Firestore: HTTP 429/.test(String(error?.message || error))) {
       console.warn(

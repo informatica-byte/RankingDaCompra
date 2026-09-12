@@ -208,8 +208,16 @@
         <div class="painel">
             <h2>📦 Cadastro de Produto</h2>
             <form id="formProduto">
+                <div class="campo">
+                    <label for="marketplace">Loja:</label>
+                    <select id="marketplace" required>
+                        <option value="mercado_livre">🟡 Mercado Livre</option>
+                        <option value="shopee">🟠 Shopee</option>
+                    </select>
+                    <small id="ajuda-marketplace">O robô oficial de preços continuará sendo usado somente para produtos do Mercado Livre.</small>
+                </div>
                 <div class="campo caixa-amarela">
-                    <label for="link">Link da fonte técnica:</label>
+                    <label for="link" id="label-link-produto">Link da fonte técnica do Mercado Livre:</label>
                     <input type="url" id="link" placeholder="Ex.: https://www.mercadolivre.com.br/..." required>
                     <small>Este endereço identifica a fonte das especificações e será exibido como referência editorial.</small>
                 </div>
@@ -1062,7 +1070,11 @@ function fimRelampagoCentral(produto){const status=statusMercadoLivreAdmin[Strin
 function relampagoAtivoCentral(produto){const status=statusMercadoLivreAdmin[String(produto?.id||'')]||{},fim=fimRelampagoCentral(produto);return (status.lightningActive===true||produto?.ofertaRelampagoAtiva===true)&&fim&&fim.getTime()>Date.now()&&descontoCentral(produto)>0}
 function campanhaValidaCentral(produto){return relampagoAtivoCentral(produto)||promocaoValidaCentral(produto)}
 
-function linkAfiliadoValidoCentral(produto){try{const afiliado=new URL(String(produto?.linkAfiliado||'')),fonte=String(produto?.link||'').trim();return /^https?:$/.test(afiliado.protocol)&&afiliado.href!==fonte&&/mercado(?:livre|libre)|meli\.la/i.test(afiliado.hostname+afiliado.pathname)}catch{return false}}
+function marketplaceProduto(produto){const informado=String(produto?.marketplace||'').toLowerCase();if(informado==='shopee')return 'shopee';try{const host=new URL(String(produto?.linkAfiliado||produto?.link||'')).hostname.toLowerCase();if(host==='shopee.com.br'||host.endsWith('.shopee.com.br'))return 'shopee'}catch{}return 'mercado_livre'}
+
+function linkMarketplaceValidoCadastro(valor,marketplace){try{const url=new URL(String(valor||'')),host=url.hostname.toLowerCase();if(url.protocol!=='https:')return false;if(marketplace==='shopee')return host==='shopee.com.br'||host.endsWith('.shopee.com.br');return /(^|\.)(mercadolivre\.com\.br|mercadolibre\.com|meli\.la)$/.test(host)}catch{return false}}
+
+function linkAfiliadoValidoCentral(produto){try{const afiliado=new URL(String(produto?.linkAfiliado||'')),fonte=String(produto?.link||'').trim();return afiliado.href!==fonte&&linkMarketplaceValidoCadastro(afiliado.href,marketplaceProduto(produto))}catch{return false}}
 
 function precoAtualCentral(produto){const status=statusMercadoLivreAdmin[String(produto?.id||'')]||{};if(status.visible===false)return false;const atualizado=Math.max(dataMsCentral(status.checkedAt||status.updatedAt),dataMsCentral(produto?.precoAtualizadoManualmenteEm),dataMsCentral(statusMercadoLivreAtualizadoEm));return atualizado>0&&Date.now()-atualizado<=30*60*60*1000}
 
@@ -1774,10 +1786,34 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             }
         }
 
+        function atualizarMarketplaceCadastro() {
+            const marketplace = document.getElementById('marketplace').value || 'mercado_livre';
+            const shopee = marketplace === 'shopee';
+            document.getElementById('label-link-produto').textContent = shopee
+                ? 'Link da fonte técnica da Shopee:'
+                : 'Link da fonte técnica do Mercado Livre:';
+            document.getElementById('link').placeholder = shopee
+                ? 'Ex.: https://shopee.com.br/...'
+                : 'Ex.: https://www.mercadolivre.com.br/...';
+            document.getElementById('linkAfiliado').placeholder = shopee
+                ? 'Cole seu link de afiliado da Shopee aqui.'
+                : 'Cole seu link de parceiro do Mercado Livre aqui.';
+            document.getElementById('ajuda-marketplace').textContent = shopee
+                ? 'Na Shopee, cole o link do produto e o link personalizado de afiliado. Preço e estoque serão conferidos editorialmente.'
+                : 'O robô oficial de preços continuará sendo usado somente para produtos do Mercado Livre.';
+        }
+
+        document.getElementById('marketplace').addEventListener('change', atualizarMarketplaceCadastro);
+        atualizarMarketplaceCadastro();
+
         document.getElementById('formProduto').addEventListener('submit', (e) => {
             e.preventDefault();
             const linkProduto = document.getElementById('link').value.trim();
             const linkAfiliadoProduto = document.getElementById('linkAfiliado').value.trim();
+            const marketplace = document.getElementById('marketplace').value || 'mercado_livre';
+            const nomeLoja = marketplace === 'shopee' ? 'Shopee' : 'Mercado Livre';
+            if (!linkMarketplaceValidoCadastro(linkProduto, marketplace)) return alert(`Cole um link HTTPS válido do produto na ${nomeLoja}.`);
+            if (!linkMarketplaceValidoCadastro(linkAfiliadoProduto, marketplace)) return alert(`Cole um link de afiliado HTTPS válido da ${nomeLoja}.`);
             const ofertaRelampagoAtiva = document.getElementById('ofertaRelampagoAtiva').checked;
             const ofertaRelampagoDuracao = document.getElementById('ofertaRelampagoDuracao').value.trim();
             const dadosProduto = {
@@ -1785,7 +1821,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 titulo: document.getElementById('titulo').value.trim(),
                 link: linkProduto,
                 linkAfiliado: linkAfiliadoProduto,
-                mercadoLivreItemId: extrairIdMercadoLivreCadastro(linkProduto) || extrairIdMercadoLivreCadastro(linkAfiliadoProduto),
+                marketplace,
+                mercadoLivreItemId: marketplace === 'mercado_livre' ? (extrairIdMercadoLivreCadastro(linkProduto) || extrairIdMercadoLivreCadastro(linkAfiliadoProduto)) : '',
                 selo: document.getElementById('selo').value,
                 foto: document.getElementById('foto').value.trim(),
                 comentario: document.getElementById('comentario').value.trim(),
@@ -1828,6 +1865,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
         function resetarFormProduto() {
             document.getElementById('formProduto').reset();
+            atualizarMarketplaceCadastro();
             document.getElementById('nota').value = "4.8";
             document.getElementById('ranking').value = "10";
             document.getElementById('texto-ia-paste').value = '';
@@ -2655,6 +2693,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     const fimRelampago = new Date(prod.ofertaRelampagoTerminaEm || '');
                     const restanteRelampago = Number.isNaN(fimRelampago.getTime()) ? 0 : fimRelampago.getTime() - Date.now();
                     document.getElementById('ofertaRelampagoDuracao').value = restanteRelampago > 0 ? formatarDuracaoRelampago(restanteRelampago) : "";
+                    document.getElementById('marketplace').value = marketplaceProduto(prod);
+                    atualizarMarketplaceCadastro();
                     document.getElementById('link').value = prod.link;
                     document.getElementById('linkAfiliado').value = prod.linkAfiliado || ""; // PUXANDO LINK DE AFILIADO
                     document.getElementById('foto').value = prod.foto;

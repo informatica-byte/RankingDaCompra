@@ -11,7 +11,9 @@ function productIdentityKeys(html) {
     .map((match) => "mlb:" + match[1]);
   const affiliateKeys = [...html.matchAll(/https:\/\/meli\.la\/[A-Za-z0-9_-]+/gi)]
     .map((match) => "affiliate:" + match[0].toLowerCase());
-  return [...new Set([...mlbKeys, ...affiliateKeys])];
+  const shopeeKeys = [...html.matchAll(/https:\/\/(?:[a-z0-9-]+\.)?shopee\.com\.br\/[A-Za-z0-9_?&=.%/-]+/gi)]
+    .map((match) => "affiliate:" + match[0].toLowerCase());
+  return [...new Set([...mlbKeys, ...affiliateKeys, ...shopeeKeys])];
 }
 
 const homeHtml = await readFile(resolve("index.html"), "utf8");
@@ -96,11 +98,11 @@ has(mobilePanelHtml, /id="ranking-mobile"/, "painel do ranking comparativo ausen
 has(mobilePanelHtml, /id="ranking-termo"/, "filtro por produto ou categoria ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /id="ranking-preco"/, "limite de preço do ranking ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /rankingSugerirTema/, "sugestão pelo interesse semanal ausente no celular", "painel-celular.html");
-has(mobilePanelHtml, /where\("dia",">=",chave\)/, "análise dos últimos sete dias ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /where\("dia",\s*">=",\s*chave\)/, "análise dos últimos sete dias ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /function rankingMetricaProdutoId\(/, "compatibilidade móvel com métricas históricas ausente", "painel-celular.html");
 has(mobilePanelHtml, /Publicar após aprovação/, "aprovação obrigatória do ranking ausente no celular", "painel-celular.html");
-has(mobilePanelHtml, /doc\(db,"configuracoes","ranking-semanal"\)/, "sincronização do ranking entre os painéis ausente", "painel-celular.html");
-has(mobilePanelHtml, /rankingPontuar\(candidatos\)\.slice\(0,5\)/, "limite de cinco colocados ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /doc\(db,\s*"configuracoes",\s*"ranking-semanal"\)/, "sincronização do ranking entre os painéis ausente", "painel-celular.html");
+has(mobilePanelHtml, /rankingPontuar\(candidatos\)\.slice\(0,\s*5\)/, "limite de cinco colocados ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /id="ranking-ia"/, "botão de análise humanizada ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /function rankingGerarIA\(/, "gerador humanizado ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /function rankingAplicarIA\(/, "auditoria local da análise ausente no celular", "painel-celular.html");
@@ -108,9 +110,12 @@ has(mobilePanelHtml, /id="focus-mobile"/, "resumo da Central de foco ausente no 
 has(mobilePanelHtml, /function focusMobileRender\(/, "cálculo de foco por categoria ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /Usar categoria no ranking semanal/, "atalho móvel para o ranking ausente", "painel-celular.html");
 has(mobilePanelHtml, /Modo econômico ativo/, "modo econômico não está explicado no painel celular", "painel-celular.html");
-has(mobilePanelHtml, /focusMobileLeituraAutorizada=true/, "análise móvel não exige ação manual antes da leitura completa", "painel-celular.html");
+has(mobilePanelHtml, /focusMobileLeituraAutorizada\s*=\s*true/, "análise móvel não exige ação manual antes da leitura completa", "painel-celular.html");
 has(mobilePanelHtml, /actions\/workflows\/sync-mercadolivre\.yml/, "atalho móvel para a conferência em lote ausente", "painel-celular.html");
 has(mobilePanelHtml, /Todos os produtos são conferidos juntos uma vez por dia/, "explicação móvel do lote diário ausente", "painel-celular.html");
+has(mobilePanelHtml, /name="marketplace"[^>]+value="shopee"/, "opção Shopee ausente no painel celular", "painel-celular.html");
+has(mobilePanelHtml, /marketplace:\s*resultado\.marketplace/, "loja não é salva no cadastro móvel", "painel-celular.html");
+has(mobilePanelHtml, /if \(marketplace === "mercado_livre"\) \{[\s\S]{0,300}criarPedidoRobo/, "robô MLB não está isolado de produtos Shopee", "painel-celular.html");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
 has(dashboardHtml, /<h1 class="sr-only">Painel administrativo do Ranking da Compra<\/h1>/, "título principal acessível ausente", "dashboard.html");
@@ -118,6 +123,16 @@ has(dashboardHtml, /id="central-visualizacoes-semana"/, "contador de visualizaç
 has(dashboardHtml, /id="central-taxa-clique"/, "taxa de avanço ao Mercado Livre ausente", "dashboard.html");
 has(dashboardHtml, /Produtos vistos sem resultado/, "lista de produtos vistos sem resultado ausente", "dashboard.html");
 has(dashboardHtml, /window\.gerarAnaliseRankingIA/, "integração Gemini do ranking humanizado ausente", "dashboard.html");
+has(dashboardHtml, /<option value="shopee">/, "opção Shopee ausente no painel completo", "dashboard.html");
+has(dashboardHtml, /marketplace === 'mercado_livre' \? \(extrairIdMercadoLivreCadastro/, "código MLB pode ser gravado indevidamente em produto Shopee", "dashboard.html");
+
+const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
+has(sitemapGenerator, /function productMarketplace\(product\)/, "identificação da loja ausente no gerador", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /Ver preço na Shopee/, "botão Shopee ausente nas páginas compartilháveis", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /affiliate:\$\{JSON\.stringify\(marketplace\)\}/, "métrica não diferencia Mercado Livre e Shopee", "scripts/generate-sitemap.mjs");
+
+const mercadoLivreSync = await readFile(resolve("scripts/sync-mercadolivre.mjs"), "utf8");
+has(mercadoLivreSync, /products = allProducts\.filter\(isMercadoLivreProduct\)/, "robô de preços não exclui outras lojas", "scripts/sync-mercadolivre.mjs");
 has(dashboardHtml, /segunda revisora independente/, "segunda IA revisora do ranking ausente", "dashboard.html");
 has(dashboardHtml, /visualizacao_produto/, "painel não reconhece visualizações das páginas de produto", "dashboard.html");
 has(dashboardHtml, /id="central-foco"/, "Central de foco por categoria e produto ausente", "dashboard.html");
@@ -148,7 +163,6 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
   fail("ranki.png: arquivo PNG do mascote ausente ou inválido");
 }
 
-const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260912-ranking2"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
@@ -220,8 +234,8 @@ has(affiliateResolver, /previous\.status\s*===\s*"erro"[\s\S]{0,160}previous\.te
 has(affiliateResolver, /tentativas:\s*previousAttempts\s*\+\s*1/, "localizador não registra o número de tentativas", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /officialCatalogDetails\(catalogId/, "localizador não usa o catálogo oficial como alternativa", "scripts/resolve-affiliate-links.mjs");
 
-has(mobilePanelHtml, /idade<2\*60\*1000/, "painel celular ainda pode reutilizar pedido MLB antigo", "painel-celular.html");
-has(mobilePanelHtml, /d\.dadosTecnicos\.length<70/, "validacao tecnica do painel celular esta desalinhada com o robo", "painel-celular.html");
+has(mobilePanelHtml, /idade\s*<\s*2\s*\*\s*60\s*\*\s*1000/, "painel celular ainda pode reutilizar pedido MLB antigo", "painel-celular.html");
+has(mobilePanelHtml, /d\.dadosTecnicos\.length\s*<\s*70/, "validacao tecnica do painel celular esta desalinhada com o robo", "painel-celular.html");
 
 if (/collection\(["']visitas["']\)\.get\(\)/.test(dashboardHtml)) {
   fail("dashboard.html: leitura integral e ilimitada do histórico de visitas voltou a ser usada");
