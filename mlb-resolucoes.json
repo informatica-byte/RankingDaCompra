@@ -1,6 +1,20 @@
 {
-  "atualizadoEm": "2026-09-12T10:50:41.170Z",
+  "atualizadoEm": "2026-09-12T10:53:42.948Z",
   "resultados": {
+    "xm38nE8cESzryhQzjGPu": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
+      "resolvidoEm": "2026-09-12T10:53:42.947Z",
+      "tentativas": 1
+    },
+    "GaoOeN7hjTRPk8euSJLs": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-eletrica-xroymexroy-eb5-max-para-adultos-com-motor-de-1000w-e-rodas-de-20/p/MLB66169196?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=3a79b923-358a-4894-9091-e3f262ec8837&position=8&tracking_id=7c4ef41a-1da5-4e72-a9cf-8646a0944d29&wid=MLB6250529372&sid=offers",
+      "resolvidoEm": "2026-09-12T10:53:25.849Z",
+      "tentativas": 3
+    },
     "LT3S9YEXu6yQMPF7pZ4Q": {
       "status": "ok",
       "mlb": "MLB6760902576",
@@ -27,13 +41,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/smartphone-motorola-edge-70-pro-5g-256gb-24gb-12gb-ram12gb-ram-boost-4-cameras-de-50mp-tela-15k-extreme-amoled-144hz-bateria-6500-mah-ip68ip69-azul-escuro/p/MLB69322382#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=1&type=product&tracking_id=3331181a-ccbf-40e2-a0a8-437c6a5eb10a&wid=MLB6760902576&sid=search",
       "resolvidoEm": "2026-09-12T10:50:41.169Z",
       "tentativas": 1
-    },
-    "GaoOeN7hjTRPk8euSJLs": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-eletrica-xroymexroy-eb5-max-para-adultos-com-motor-de-1000w-e-rodas-de-20/p/MLB66169196?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=3a79b923-358a-4894-9091-e3f262ec8837&position=8&tracking_id=7c4ef41a-1da5-4e72-a9cf-8646a0944d29&wid=MLB6250529372&sid=offers",
-      "resolvidoEm": "2026-09-12T10:50:39.597Z",
-      "tentativas": 2
     },
     "RoPCc1REyJsTJ2xZFSPz": {
       "status": "erro",
