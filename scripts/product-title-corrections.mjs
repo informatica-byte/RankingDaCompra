@@ -61,19 +61,40 @@ const PRODUCT_CORRECTIONS = new Map([
       ["potência de 1400W para um aquecimento rápido. Características informadas no cadastro: Fritadeira Elétrica Air Fryer Quad Fry 4", "Capacidade de 4,2 litros e potência de 1.400 W para aquecimento rápido."],
       ["capacidade limitada para preparos em grande escala. A ficha cadastrada não detalha outras limitações além das informações apresentadas", "A capacidade de 4,2 litros pode ser limitada para preparos em grande escala."],
     ],
+    positiveNotes: [
+      "Capacidade de 4,2 litros para preparar porções pequenas e médias.",
+      "Potência informada de 1.400 W para aquecimento rápido.",
+    ],
+    negativeNotes: [
+      "A capacidade de 4,2 litros pode ser limitada para preparos em grande escala.",
+    ],
   }],
   ["Ct4VSBOaVTJkcxhiAyGJ", {
     fileReplacements: [
       ["memória RAM de 6GB para fluidez, tela ampla de 11 polegadas. Características informadas no cadastro: Tablet Samsung Galaxy Tab A11+", "Memória RAM de 6 GB para maior fluidez e tela ampla de 11 polegadas."],
+    ],
+    positiveNotes: [
+      "Memória RAM de 6 GB para maior fluidez nas tarefas do dia a dia.",
+      "Tela ampla de 11 polegadas para vídeos, leitura e produtividade.",
+    ],
+    negativeNotes: [
+      "Confirme no anúncio a compatibilidade de acessórios e a versão do sistema antes da compra.",
     ],
   }],
 ]);
 
 export function correctProductData(product) {
   const correction = PRODUCT_CORRECTIONS.get(String(product?.id || ""));
+  const applyReplacements = (value) => (correction?.replacements || []).reduce(
+    (current, [incorrect, correct]) => String(current || "").split(incorrect).join(correct),
+    String(value || ""),
+  );
   return {
     ...product,
-    titulo: correction?.correct || String(product?.titulo || "").replace(/\s+/g, " ").trim(),
+    titulo: correction?.correct || applyReplacements(product?.titulo).replace(/\s+/g, " ").trim(),
+    comentario: applyReplacements(product?.comentario),
+    pros: applyReplacements(product?.pros),
+    contras: applyReplacements(product?.contras),
     categoria: correction?.category || product?.categoria,
   };
 }

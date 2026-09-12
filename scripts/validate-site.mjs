@@ -24,6 +24,9 @@ has(homeHtml, /fetch\(`\.\/search-index\.json\?v=/, "busca estática sem Firebas
 const searchFunction = homeHtml.match(/async function search\(term\)\{[\s\S]*?\nconst formBusca=/)?.[0] || "";
 if (!searchFunction) fail("index.html: função de busca não foi localizada");
 if (/db\.collection\(/.test(searchFunction)) fail("index.html: a busca ainda lê o Firebase diretamente");
+has(searchFunction, /relevancia:pontuar\(p\)/, "busca não ordena os resultados por relevância", "index.html");
+has(homeHtml, /\.search-toggle\{[^}]*width:44px;height:44px/, "botão de busca menor que 44 pixels", "index.html");
+has(homeHtml, /\.share-card-button,\.share-deal-button\{min-height:44px/, "botões de compartilhamento menores que 44 pixels", "index.html");
 
 const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
 has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
@@ -110,6 +113,7 @@ has(mobilePanelHtml, /actions\/workflows\/sync-mercadolivre\.yml/, "atalho móve
 has(mobilePanelHtml, /Todos os produtos são conferidos juntos uma vez por dia/, "explicação móvel do lote diário ausente", "painel-celular.html");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
+has(dashboardHtml, /<h1 class="sr-only">Painel administrativo do Ranking da Compra<\/h1>/, "título principal acessível ausente", "dashboard.html");
 has(dashboardHtml, /id="central-visualizacoes-semana"/, "contador de visualizações do funil ausente", "dashboard.html");
 has(dashboardHtml, /id="central-taxa-clique"/, "taxa de avanço ao Mercado Livre ausente", "dashboard.html");
 has(dashboardHtml, /Produtos vistos sem resultado/, "lista de produtos vistos sem resultado ausente", "dashboard.html");
@@ -156,6 +160,10 @@ if (growthToolsVersions.some((version) => !version) || new Set(growthToolsVersio
 }
 has(sitemapGenerator, /id="affiliate-offer"/, "botão de compra rastreável ausente das páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /allProducts = allProducts\.map\(correctProductData\)/, "correções editoriais preventivas não são aplicadas aos produtos", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /const separated = repairPortugueseEncoding\(value\)/, "separação segura dos fatos editoriais ausente", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /const indexable = editorial && offerUrl !== "#" && currentPrice > 0/, "produto sem preço ou oferta ainda pode ser indexado", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /editorialProduct\(product\) && price > 0/, "produto sem preço ainda pode entrar no sitemap", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /previousSitemapMetadata/, "modo de contingência pode apagar datas e prioridades do sitemap", "scripts/generate-sitemap.mjs");
 if (/flatMap\(\(part\) => part\.split\(","\)\)/.test(sitemapGenerator)) {
   fail("scripts/generate-sitemap.mjs: pontos editoriais ainda são quebrados em toda vírgula");
 }
@@ -255,6 +263,11 @@ for (const url of urls) {
   if (/name="robots"\s+content="[^"]*noindex/i.test(html)) fail(relative + ": página do sitemap marcada como noindex");
   if (html.includes("\uFFFD")) fail(relative + ": caractere corrompido encontrado");
   if (/<li>\s*[a-záàâãéêíóôõúüç]/u.test(html)) fail(relative + ": item editorial iniciado como fragmento de frase");
+  if (/<li>[^<]*(?:\.,|,\.)[^<]*<\/li>/u.test(html)) fail(relative + ": pontuação editorial duplicada encontrada");
+  const visibleH1 = (html.match(/<h1>([^<]+)<\/h1>/i)?.[1] || "")
+    .replace(/&#\d+;|&[a-z]+;/gi, "x");
+  if (visibleH1.length > 100) fail(relative + ": título visível maior que 100 caracteres");
+  has(html, /"offers":\{"@type":"Offer"/, "oferta estruturada ausente em página indexável", relative);
 
   for (const identity of productIdentityKeys(html)) {
     const previous = identities.get(identity);
@@ -318,7 +331,12 @@ has(methodHtml, /não altera silenciosamente a ordem calculada/i, "limite da IA 
 for (const file of ["como-avaliamos.html", "sobre.html", "politica-afiliados.html", "privacidade.html", "contato.html"]) {
   const html = await readFile(resolve(file), "utf8");
   has(html, /property="og:image"\s+content="https:\/\/rankingdacompra\.com\.br\/og-ranking-da-compra\.png"/i, "imagem social ausente", file);
+  has(html, /property="og:url"\s+content="https:\/\/rankingdacompra\.com\.br\//i, "endereço social ausente", file);
+  has(html, /property="og:title"\s+content="[^"]+"/i, "título social ausente", file);
+  has(html, /property="og:description"\s+content="[^"]+"/i, "descrição social ausente", file);
   has(html, /name="twitter:card"\s+content="summary_large_image"/i, "cartão social do Twitter ausente", file);
+  has(html, /name="twitter:title"\s+content="[^"]+"/i, "título do Twitter ausente", file);
+  has(html, /name="twitter:description"\s+content="[^"]+"/i, "descrição do Twitter ausente", file);
 }
 
 const notFoundHtml = await readFile(resolve("404.html"), "utf8");

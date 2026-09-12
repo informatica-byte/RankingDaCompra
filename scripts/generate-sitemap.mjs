@@ -1216,11 +1216,18 @@ function editorialItems(value, productTitle = "") {
   const generic = /informa[cç][oõ]es? (?:extra[ií]das?|obtidas?)|dados p[uú]blicos|confira (?:no|o) an[uú]ncio|recursos descritos|produto identificado|ficha (?:n[aã]o )?informa/i;
   const normalized = (text) => String(text || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 
-  // Vírgulas fazem parte de números (1,82), especificações e orações. Separá-las
-  // criava itens como "82 polegadas" e continuações iniciadas em minúscula.
-  return repairPortugueseEncoding(value).split(/\n|;/)
+  // Vírgulas fazem parte de números (1,82), especificações e orações. Só criamos
+  // um novo item quando uma vírgula aparece depois do fim de uma frase.
+  const separated = repairPortugueseEncoding(value)
+    .replace(/([.!?])\s*,\s*(?=[A-ZÀ-Ý])/gu, "$1\n");
+  return separated.split(/\n|;/)
 
-    .map((part) => part.replace(/^[\s•✓!+-]+/, "").replace(/\s+/g, " ").trim())
+    .map((part) => part
+      .replace(/^[\s•✓!+-]+/, "")
+      .replace(/\s+/g, " ")
+      .replace(/[.,;:!?]+$/u, "")
+      .trim())
+    .map((part) => part.replace(/^([a-záàâãéêíóôõúüç])/u, (letter) => letter.toLocaleUpperCase("pt-BR")))
     .filter((part) => {
       if (part.length < 18 || part.split(/\s+/).length < 3 || generic.test(part)) return false;
       const words = normalized(part).split(" ").filter((word) => word.length > 2);
@@ -1263,6 +1270,14 @@ function renderSharePage(product, socialImage, categoryNames) {
   const promotional = promotionIsValid(product);
 
   const currentPrice = promotional ? numberPrice(product.precoPromocional) : numberPrice(product.preco);
+
+  const indexable = editorial && offerUrl !== "#" && currentPrice > 0;
+
+  const displayTitle = compactText(title, 96);
+
+  const completeTitle = displayTitle !== title
+    ? `<details class="full-title"><summary>Ver nome completo do anúncio</summary><p>${escapeHtml(title)}</p></details>`
+    : "";
 
   const previousPrice = promotional ? numberPrice(product.precoAnterior) : 0;
 
@@ -1358,7 +1373,7 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <meta name="robots" content="${editorial ? "index,follow,max-image-preview:large" : "noindex,follow"}">
+  <meta name="robots" content="${indexable ? "index,follow,max-image-preview:large" : "noindex,follow"}">
 
   <title>${escapeHtml(browserTitle)}</title>
 
@@ -1398,7 +1413,7 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   <script type="application/ld+json">${structuredData}</script>
 
-  <style>:root{--green:#116149;--ink:#11221d;--muted:#66746d;--line:#dfe7e2;--cream:#fbfaf5;--blue:#1769e0}*{box-sizing:border-box}body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--cream);color:var(--ink);margin:0;line-height:1.55}a{color:inherit}.wrap{width:min(1040px,calc(100% - 32px));margin:auto}header{background:#fff;border-bottom:1px solid var(--line)}header .wrap{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{color:var(--green);font-weight:900;text-decoration:none}.back{color:var(--green);font-weight:750;text-decoration:none;font-size:.9rem}main{padding:30px 0 56px}.crumb{color:var(--muted);font-size:.82rem;margin-bottom:16px}.crumb a{color:var(--green)}article{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,42px)}.top{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(0,1.15fr);gap:38px}.photo{width:100%;height:390px;object-fit:contain;background:#fafcfb;border-radius:14px}.eyebrow{color:var(--green);font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900}h1{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.12;letter-spacing:-.04em;margin:9px 0 12px}.rating{color:#9b6000;font-weight:850}.summary{color:#43534b;font-size:1.03rem}.offer{background:#edf7f1;border:1px solid #cde4d5;border-radius:14px;padding:18px;margin-top:20px}.previous{display:block;color:#727b76;text-decoration:line-through;font-size:.86rem}.offer strong{display:block;color:#087a3d;font-size:1.25rem}.cta{display:flex;align-items:center;justify-content:center;margin-top:12px;background:var(--blue);color:#fff;padding:13px 17px;border-radius:9px;text-decoration:none;font-weight:900}.share-cta{width:100%;border:1px solid #9ab9a7;background:#fff;color:var(--green);padding:11px 15px;border-radius:9px;font:inherit;font-weight:850;cursor:pointer;margin-top:9px}.share-status{min-height:1.1em;color:var(--green);font-weight:800}.fine{font-size:.78rem;color:var(--muted);margin:9px 0 0}.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.fact{border:1px solid var(--line);border-radius:10px;padding:12px}.fact span{display:block;color:var(--muted);font-size:.72rem;font-weight:850;text-transform:uppercase}.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}.panel{background:#fafcfb;border:1px solid var(--line);border-radius:13px;padding:20px}.panel h2{font-size:1.05rem;margin:0 0 8px}.positive h2{color:#267c31}.attention h2{color:#a94a16}.panel ul{padding-left:19px;margin:0}.source{margin-top:22px}.source a{color:var(--green)}footer{background:#10231c;color:#dfeae4;padding:30px 0;font-size:.82rem}footer a{color:#fff}@media(max-width:700px){.top,.panels{grid-template-columns:1fr}.photo{height:300px}.facts{grid-template-columns:1fr}header .wrap{padding:15px 0;align-items:flex-start}}</style>
+  <style>:root{--green:#116149;--ink:#11221d;--muted:#66746d;--line:#dfe7e2;--cream:#fbfaf5;--blue:#1769e0}*{box-sizing:border-box}body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--cream);color:var(--ink);margin:0;line-height:1.55}a{color:inherit}.wrap{width:min(1040px,calc(100% - 32px));margin:auto}header{background:#fff;border-bottom:1px solid var(--line)}header .wrap{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{color:var(--green);font-weight:900;text-decoration:none}.back{color:var(--green);font-weight:750;text-decoration:none;font-size:.9rem}main{padding:30px 0 56px}.crumb{color:var(--muted);font-size:.82rem;margin-bottom:16px}.crumb a{color:var(--green)}article{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,42px)}.top{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(0,1.15fr);gap:38px}.photo{width:100%;height:390px;object-fit:contain;background:#fafcfb;border-radius:14px}.eyebrow{color:var(--green);font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900}h1{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.12;letter-spacing:-.04em;margin:9px 0 12px}.full-title{margin:-3px 0 12px;color:var(--muted);font-size:.82rem}.full-title summary{color:var(--green);font-weight:800;cursor:pointer}.full-title p{margin:7px 0 0}.rating{color:#9b6000;font-weight:850}.summary{color:#43534b;font-size:1.03rem}.offer{background:#edf7f1;border:1px solid #cde4d5;border-radius:14px;padding:18px;margin-top:20px}.previous{display:block;color:#727b76;text-decoration:line-through;font-size:.86rem}.offer strong{display:block;color:#087a3d;font-size:1.25rem}.cta{display:flex;align-items:center;justify-content:center;margin-top:12px;background:var(--blue);color:#fff;padding:13px 17px;border-radius:9px;text-decoration:none;font-weight:900}.share-cta{width:100%;min-height:44px;border:1px solid #9ab9a7;background:#fff;color:var(--green);padding:11px 15px;border-radius:9px;font:inherit;font-weight:850;cursor:pointer;margin-top:9px}.share-status{min-height:1.1em;color:var(--green);font-weight:800}.fine{font-size:.78rem;color:var(--muted);margin:9px 0 0}.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.fact{border:1px solid var(--line);border-radius:10px;padding:12px}.fact span{display:block;color:var(--muted);font-size:.72rem;font-weight:850;text-transform:uppercase}.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}.panel{background:#fafcfb;border:1px solid var(--line);border-radius:13px;padding:20px}.panel h2{font-size:1.05rem;margin:0 0 8px}.positive h2{color:#267c31}.attention h2{color:#a94a16}.panel ul{padding-left:19px;margin:0}.source{margin-top:22px}.source a{color:var(--green)}footer{background:#10231c;color:#dfeae4;padding:30px 0;font-size:.82rem}footer a{color:#fff}@media(max-width:700px){.top,.panels{grid-template-columns:1fr}.photo{height:300px}.facts{grid-template-columns:1fr}header .wrap{padding:15px 0;align-items:flex-start}}</style>
 
   <script defer src="/growth-tools.js?v=20260912-ranking2"></script>
 
@@ -1414,9 +1429,9 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   <main class="wrap">
 
-    <nav class="crumb" aria-label="Navegação estrutural"><a href="${SITE}">Início</a> / <a href="${SITE}?cat=${encodeURIComponent(product.categoria || "")}">${escapeHtml(categoryName)}</a> / ${escapeHtml(title)}</nav>
+    <nav class="crumb" aria-label="Navegação estrutural"><a href="${SITE}">Início</a> / <a href="${SITE}?cat=${encodeURIComponent(product.categoria || "")}">${escapeHtml(categoryName)}</a> / ${escapeHtml(displayTitle)}</nav>
 
-    <article><div class="top"><img class="photo" src="${escapeHtml(image)}" width="480" height="390" alt="${escapeHtml(title)}"><div><div class="eyebrow">Análise para decidir melhor</div><h1>${escapeHtml(title)}</h1>${editorial && Number.isFinite(rating) && rating >= 1 && rating <= 5 ? `<div class="rating">Custo-benefício editorial: ${"★".repeat(Math.round(rating))}${"☆".repeat(5 - Math.round(rating))} ${escapeHtml(rating.toFixed(1))} de 5 · <a href="${SITE}como-avaliamos.html">entenda a avaliação</a></div>` : ""}<p class="summary">${escapeHtml(summary)}</p><div class="offer">${priceHtml}${offerUrl !== "#" ? `<a class="cta" id="affiliate-offer" href="${escapeHtml(offerUrl)}" target="_blank" rel="sponsored noopener noreferrer">Comprar agora no Mercado Livre</a>` : ""}<button class="share-cta" id="share-product" type="button">↗ Compartilhar produto</button><p class="fine share-status" id="share-status" aria-live="polite"></p><p class="fine">${modified ? `Informações atualizadas em ${escapeHtml(new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeZone: "America/Sao_Paulo" }).format(new Date(`${modified}T12:00:00-03:00`)))}. ` : ""}Preço, estoque, frete e condições finais são definidos pelo vendedor.</p></div><div class="facts"><div class="fact"><span>Categoria</span>${escapeHtml(categoryName)}</div><div class="fact"><span>Transparência</span>Link de afiliado identificado</div></div></div></div><div class="panels"><section class="panel positive"><h2>✓ Pontos positivos</h2><ul>${positiveHtml}</ul></section><section class="panel attention"><h2>! Pontos de atenção</h2><ul>${attentionHtml}</ul></section></div>${sourceUrl !== "#" ? `<p class="fine source">Fonte técnica consultada: <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="nofollow noopener noreferrer">anúncio do produto</a>. A equipe não afirma ter testado o item.</p>` : ""}</article>
+    <article><div class="top"><img class="photo" src="${escapeHtml(image)}" width="480" height="390" alt="${escapeHtml(title)}"><div><div class="eyebrow">Análise para decidir melhor</div><h1>${escapeHtml(displayTitle)}</h1>${completeTitle}${editorial && Number.isFinite(rating) && rating >= 1 && rating <= 5 ? `<div class="rating">Custo-benefício editorial: ${"★".repeat(Math.round(rating))}${"☆".repeat(5 - Math.round(rating))} ${escapeHtml(rating.toFixed(1))} de 5 · <a href="${SITE}como-avaliamos.html">entenda a avaliação</a></div>` : ""}<p class="summary">${escapeHtml(summary)}</p><div class="offer">${priceHtml}${offerUrl !== "#" ? `<a class="cta" id="affiliate-offer" href="${escapeHtml(offerUrl)}" target="_blank" rel="sponsored noopener noreferrer">Comprar agora no Mercado Livre</a>` : ""}<button class="share-cta" id="share-product" type="button">↗ Compartilhar produto</button><p class="fine share-status" id="share-status" aria-live="polite"></p><p class="fine">${modified ? `Informações atualizadas em ${escapeHtml(new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeZone: "America/Sao_Paulo" }).format(new Date(`${modified}T12:00:00-03:00`)))}. ` : ""}Preço, estoque, frete e condições finais são definidos pelo vendedor.</p></div><div class="facts"><div class="fact"><span>Categoria</span>${escapeHtml(categoryName)}</div><div class="fact"><span>Transparência</span>Link de afiliado identificado</div></div></div></div><div class="panels"><section class="panel positive"><h2>✓ Pontos positivos</h2><ul>${positiveHtml}</ul></section><section class="panel attention"><h2>! Pontos de atenção</h2><ul>${attentionHtml}</ul></section></div>${sourceUrl !== "#" ? `<p class="fine source">Fonte técnica consultada: <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="nofollow noopener noreferrer">anúncio do produto</a>. A equipe não afirma ter testado o item.</p>` : ""}</article>
 
   </main>
 
@@ -1427,7 +1442,6 @@ function renderSharePage(product, socialImage, categoryNames) {
 </body>
 
 </html>
-
 `;
 
 }
@@ -1637,7 +1651,11 @@ function deduplicateProducts(products) {
 }
 
 const shareProducts = deduplicateProducts(rawShareProducts);
-const products = shareProducts.filter(editorialProduct);
+const products = shareProducts.filter((product) => {
+  const promotional = promotionIsValid(product);
+  const price = promotional ? numberPrice(product.precoPromocional) : numberPrice(product.preco);
+  return editorialProduct(product) && price > 0 && safeExternalUrl(product.linkAfiliado || product.link) !== "#";
+});
 
 const productsByCategory = new Map();
 
@@ -1671,6 +1689,35 @@ const categoryNames = new Map(allCategories.map((category) => [
 
 ]));
 
+// Quando o Firebase limita temporariamente a leitura, preserve datas e sinais de
+// prioridade já publicados. Assim o modo de contingência não rebaixa promoções
+// nem apaga o histórico de atualização do sitemap.
+const previousSitemapMetadata = new Map();
+if (partialProductSource) {
+  try {
+    const previousSitemap = await readFile(resolve("sitemap.xml"), "utf8");
+    for (const match of previousSitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>([\s\S]*?)<\/url>/g)) {
+      previousSitemapMetadata.set(match[1], {
+        lastModified: match[2].match(/<lastmod>([^<]+)<\/lastmod>/)?.[1] || "",
+        frequency: match[2].match(/<changefreq>([^<]+)<\/changefreq>/)?.[1] || "",
+        priority: match[2].match(/<priority>([^<]+)<\/priority>/)?.[1] || "",
+      });
+    }
+  } catch {
+    // O primeiro sitemap ainda pode não existir.
+  }
+}
+
+function sitemapEntry(location, options = {}) {
+  const previous = previousSitemapMetadata.get(location) || {};
+  return {
+    location,
+    lastModified: options.lastModified || previous.lastModified || "",
+    frequency: partialProductSource && previous.frequency ? previous.frequency : options.frequency,
+    priority: partialProductSource && previous.priority ? previous.priority : options.priority,
+  };
+}
+
 
 
 const siteLastModified = newestDate([
@@ -1685,7 +1732,7 @@ const siteLastModified = newestDate([
 
 const urls = [
 
-  { location: SITE, lastModified: siteLastModified, frequency: "daily", priority: "1.0" },
+  sitemapEntry(SITE, { lastModified: siteLastModified, frequency: "daily", priority: "1.0" }),
 
   { location: `${SITE}como-avaliamos.html`, frequency: "monthly", priority: "0.8" },
 
@@ -1697,9 +1744,7 @@ const urls = [
 
   { location: `${SITE}contato.html`, frequency: "yearly", priority: "0.5" },
 
-  ...products.map((product) => ({
-
-    location: productDetailUrl(product),
+  ...products.map((product) => sitemapEntry(productDetailUrl(product), {
 
     lastModified: newestDate([product.atualizadoEm, product.dataCadastro]),
 
