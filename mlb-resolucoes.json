@@ -1,6 +1,33 @@
 {
-  "atualizadoEm": "2026-09-11T17:19:23.102Z",
+  "atualizadoEm": "2026-09-12T10:24:03.642Z",
   "resultados": {
+    "rKHOzrJMf5mbdkNMBcg3": {
+      "status": "ok",
+      "mlb": "MLB7276126962",
+      "urlProduto": "https://www.mercadolivre.com.br/case-para-hd-ssd-de-25-usb-30-transparente-da-divanstor/p/MLB75798568",
+      "titulo": "Case para HD SSD de 2.5\" USB 3.0 Transparente da Divanstor",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_672149-MLA115507389076_082026-F.jpg",
+      "precoAtual": 23.99,
+      "precoAnterior": 0,
+      "dadosTecnicos": [
+        "Interface interna SATA III compatível com HD e SSD de 2,5 polegadas para armazenamento de até 3TB de dados.",
+        "Conexão externa USB 3.0 que permite taxas de transferência de arquivos de até 6Gbps entre dispositivos.",
+        "Protocolo UASP integrado que otimiza a velocidade de leitura e gravação em relação a conexões USB convencionais.",
+        "Alimentação elétrica de 5V suprida diretamente pela porta USB do computador dispensando fontes de energia externas.",
+        "Indicador LED frontal que exibe o status de funcionamento do disco rígido ou SSD conectado ao equipamento.",
+        "Estrutura em material ABS com dimensões de 126 por 78 por 13 milímetros que comporta discos de 2,5 polegadas.",
+        "Marca: DIVANSTOR",
+        "Peso informado: 98 g",
+        "Código do catálogo: MLB75798568",
+        "Condição informada: novo"
+      ],
+      "comentario": "Case para HD SSD de 2.5\" USB 3.0 Transparente da Divanstor. Interface interna SATA III compatível com HD e SSD de 2,5 polegadas para armazenamento de até 3TB de dados. Conexão externa USB 3.0 que permite taxas de transferência de arquivos de até 6Gbps entre dispositivos. Protocolo UASP integrado que otimiza a velocidade de leitura e gravação em relação a conexões USB convencionais.",
+      "pros": "Case para HD SSD de 2.5\" USB 3.0 Transparente da Divanstor. Características confirmadas no anúncio: Interface interna SATA III compatível com HD e SSD de 2,5 polegadas para armazenamento de até 3TB de dados.",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/case-para-hd-ssd-de-25-usb-30-transparente-da-divanstor/p/MLB75798568?pdp_filters=item_id:MLB7276126962#is_advertising=true&searchVariation=MLB75798568&backend_model=search-backend;EQ:CASE%20SSD;EQ:CASE%20HD%20EXTERNO&be_origin=backend&position=4&search_layout=grid&type=pad&tracking_id=1801c89b-3f4c-4794-ac79-39ebc4c31c00&ad_domain=VQCATCORE_LST&ad_position=4&ad_click_id=MWQzNDg4MTgtYzMwNC00Y2Y0LWE3MTYtNTU2MDVhM2IxNjUx",
+      "resolvidoEm": "2026-09-12T10:24:03.635Z",
+      "tentativas": 1
+    },
     "MPiQJnRWcHeXwe5qv4HI": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
