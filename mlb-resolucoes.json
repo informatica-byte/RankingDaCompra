@@ -1,6 +1,61 @@
 {
-  "atualizadoEm": "2026-09-12T11:31:44.782Z",
+  "atualizadoEm": "2026-09-12T11:36:23.387Z",
   "resultados": {
+    "DFAL4QYIJX1223aCbsc7": {
+      "status": "ok",
+      "mlb": "MLB6776301606",
+      "urlProduto": "https://www.mercadolivre.com.br/tenis-olympikus-masculino-cosmo/up/MLBU3962008749",
+      "titulo": "Tênis Olympikus Masculino Cosmo",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_800159-MLB111584770325_052026-O.webp",
+      "precoAtual": 179.99,
+      "precoAnterior": 259.99,
+      "dadosTecnicos": [
+        "Tipo de largura: Padrão",
+        "Ano de lançamento: 2024.",
+        "Tem cadarços para um ajuste confortável.",
+        "Calcanhar curto.",
+        "Sola antiderrapante.",
+        "Sua cor principal é verde com um design liso.",
+        "Interior de tecido e palmilhas removíveis.",
+        "A entressola de borracha eva proporciona maior amortecimento e estabilidade na pisada.",
+        "Língua acolchoada.",
+        "Com talão acolchoado."
+      ],
+      "comentario": "Tênis Olympikus Masculino Cosmo. Tipo de largura: Padrão; Ano de lançamento: 2024. Tem cadarços para um ajuste confortável. Calcanhar curto. Sola antiderrapante. Sua cor principal é verde com um design liso.. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "pros": "Tênis Olympikus Masculino Cosmo. Características confirmadas no anúncio: Tipo de largura: Padrão; Ano de lançamento: 2024. Tem cadarços para um ajuste confortável. Calcanhar curto. Sola antiderrapante..",
+      "contras": "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/tenis-olympikus-masculino-cosmo/up/MLBU3962008749?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=ae6be7a4-5d7e-48d8-a723-5cc217d66abd&position=15&tracking_id=f31961e4-a6ac-4aa6-9f19-3e08369c562d&wid=MLB6776301606&sid=offers",
+      "resolvidoEm": "2026-09-12T11:36:23.387Z",
+      "tentativas": 1
+    },
+    "6yifzeyCxXIz32sVs49c": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
+      "resolvidoEm": "2026-09-12T11:36:21.994Z",
+      "tentativas": 2
+    },
+    "7dT0AASWWgvSwGxgvIHV": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
+      "resolvidoEm": "2026-09-12T11:36:05.219Z",
+      "tentativas": 2
+    },
+    "GsQjFiZp2UsztOhBAwy6": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
+      "resolvidoEm": "2026-09-12T11:35:48.311Z",
+      "tentativas": 3
+    },
+    "dPzK8rOLSD2JVxSzadzX": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
+      "resolvidoEm": "2026-09-12T11:35:31.630Z",
+      "tentativas": 3
+    },
     "GCnNxE4Dz6m4hQ8tYOku": {
       "status": "ok",
       "mlb": "MLB3252795227",
@@ -26,34 +81,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/interruptor-inteligente-wifi-novadigital-mini-1ch-16a-alexa/up/MLBU1445024188?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=a47a40c4-7f3b-4fc5-9ba4-fd0c10d0e4b4&position=13&tracking_id=7a481ad7-c6ce-4439-b947-89fcf05f63d9&wid=MLB3252795227&sid=offers",
       "resolvidoEm": "2026-09-12T11:31:44.782Z",
       "tentativas": 1
-    },
-    "6yifzeyCxXIz32sVs49c": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
-      "resolvidoEm": "2026-09-12T11:31:43.544Z",
-      "tentativas": 1
-    },
-    "7dT0AASWWgvSwGxgvIHV": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
-      "resolvidoEm": "2026-09-12T11:31:26.939Z",
-      "tentativas": 1
-    },
-    "GsQjFiZp2UsztOhBAwy6": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
-      "resolvidoEm": "2026-09-12T11:31:10.403Z",
-      "tentativas": 2
-    },
-    "dPzK8rOLSD2JVxSzadzX": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
-      "resolvidoEm": "2026-09-12T11:30:53.784Z",
-      "tentativas": 2
     },
     "V1PP2f1vbfRGuHd7CdWr": {
       "status": "erro",
