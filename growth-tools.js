@@ -1060,11 +1060,11 @@
       : "preço ainda sujeito a confirmação";
     const ratingFact = item.nota > 0 ? "nota informada de " + item.nota.toFixed(1).replace(".", ",") + "/5" : "sem nota disponível";
     const demandFact = item.clicks || item.views
-      ? item.clicks + " clique(s) em Comprar e " + item.views + " visualização(ões) nos últimos 7 dias"
-      : "ainda sem interação suficiente nos últimos 7 dias";
+      ? "Interesse recente: " + item.clicks + " clique(s) em Comprar e " + item.views + " visualização(ões) em 7 dias"
+      : "Ainda há pouca interação no site para medir a procura";
     const mainPro = item.pros[0] || "ficha com os dados comparáveis disponíveis";
     const mainCon = item.cons[0] || "faltam detalhes adicionais para uma conclusão mais ampla";
-    let placement = "Lidera porque obteve o melhor resultado ponderado entre custo-benefício, avaliação, interesse e evidências cadastradas.";
+    let placement = "É o vencedor porque teve a melhor combinação de preço, avaliação, procura no site e qualidade das informações.";
     if (position > 1 && previous) {
       const gaps = [
         ["custo-benefício", previous.criterios.custoBeneficio - item.criterios.custoBeneficio],
@@ -1075,12 +1075,35 @@
       const decisive = gaps[0][1] > 0.05 ? gaps[0][0] : "avaliação e preço";
       const scoreGap = Math.max(0, previous.scoreTotal - item.scoreTotal);
       placement = scoreGap < 0.1
-        ? "Ficou em " + position + "º após empate técnico na nota final; o desempate considerou " + decisive + "."
-        : "Ficou atrás do " + (position - 1) + "º colocado principalmente em " + decisive
-          + ", com diferença de " + scoreGap.toFixed(1).replace(".", ",") + " ponto(s) na nota final.";
+        ? "Ficou em " + position + "º após um empate técnico; o desempate foi pelo critério de " + decisive + "."
+        : "Ficou em " + position + "º porque perdeu pontos principalmente em " + decisive
+          + " e terminou " + scoreGap.toFixed(1).replace(".", ",") + " ponto(s) atrás do produto anterior.";
     }
-    return placement + " Dados objetivos: " + priceFact + "; " + ratingFact + "; " + demandFact
-      + ". Principal vantagem: " + mainPro + ". Limitação considerada: " + mainCon + ".";
+    return placement + " Preço: " + priceFact + ". Avaliação: " + ratingFact + ". " + demandFact
+      + ". Destaque: " + mainPro + ". Atenção: " + mainCon + ".";
+  }
+
+  function weeklyHighlights(products) {
+    if (!products.length) return [];
+    const byCostBenefit = products.slice().sort((a, b) =>
+      Number(b.criterios?.custoBeneficio || 0) - Number(a.criterios?.custoBeneficio || 0)
+      || Number(b.scoreTotal || 0) - Number(a.scoreTotal || 0));
+    const byPrice = products.filter(item => numberPrice(item.preco) > 0)
+      .sort((a, b) => numberPrice(a.preco) - numberPrice(b.preco));
+    const demandValue = item => Number(item.clicks || 0) * 4 + Number(item.views || 0);
+    const byDemand = products.slice().sort((a, b) => demandValue(b) - demandValue(a));
+    const highlights = [
+      { icon: "🏆", label: "Melhor geral", item: products[0], detail: "Nota " + Number(products[0].scoreTotal || 0).toFixed(1).replace(".", ",") + "/10" },
+      { icon: "💚", label: "Melhor custo-benefício", item: byCostBenefit[0], detail: "Equilíbrio entre preço e qualidade" },
+      { icon: "💰", label: "Mais barato", item: byPrice[0], detail: byPrice[0] ? brl.format(numberPrice(byPrice[0].preco)) : "Preço a confirmar" }
+    ];
+    if (byDemand[0] && demandValue(byDemand[0]) > 0) {
+      highlights.push({
+        icon: "🔥", label: "Mais procurado no site", item: byDemand[0],
+        detail: Number(byDemand[0].clicks || 0) + " clique(s) e " + Number(byDemand[0].views || 0) + " visualização(ões)"
+      });
+    }
+    return highlights.filter(highlight => highlight.item);
   }
 
   function weeklyApplyAIAnalysis(draft, result) {
@@ -1113,12 +1136,14 @@
     };
   }
 
-  function weeklyRankingCard(item) {
+  function weeklyRankingCard(item, highlights = []) {
     const displayedPrice = numberPrice(item.preco ?? item.price);
     const pros = item.pros.length ? item.pros : ["Pontos positivos específicos em revisão editorial."];
     const cons = item.cons.length ? item.cons : ["Pontos de atenção específicos em revisão editorial."];
     const criteria = item.criterios || {};
     const human = item.analiseHumana || {};
+    const badges = highlights.filter(highlight => String(highlight.item?.id) === String(item.id))
+      .map(highlight => '<span>' + highlight.icon + ' ' + escapeHtml(highlight.label) + '</span>').join("");
     const humanMarkup = human.veredito
       ? '<div class="weekly-ranking-human"><b>🤖 Análise editorial com IA auditada</b><p>' + escapeHtml(human.veredito) + '</p>'
         + '<dl><dt>Para quem faz sentido</dt><dd>' + escapeHtml(human.paraQuem) + '</dd>'
@@ -1127,6 +1152,7 @@
       : "";
     return '<article class="weekly-ranking-card">'
       + '<div class="weekly-ranking-position">' + item.position + 'º lugar</div>'
+      + (badges ? '<div class="weekly-ranking-badges">' + badges + '</div>' : '')
       + '<img src="' + escapeHtml(item.foto) + '" alt="' + escapeHtml(item.titulo) + '" loading="lazy" decoding="async">'
       + '<h3>' + escapeHtml(item.titulo) + '</h3>'
       + '<strong class="weekly-ranking-price">' + escapeHtml(displayedPrice > 0 ? brl.format(displayedPrice) : "Preço a confirmar") + '</strong>'
@@ -1143,7 +1169,7 @@
       + '</ul></div><div><b>⚠ Pontos de atenção</b><ul>'
       + cons.map(value => '<li>' + escapeHtml(value) + '</li>').join("")
       + '</ul></div></div>'
-      + '<a href="' + escapeHtml(item.productUrl) + '" data-weekly-ranking-product="' + escapeHtml(item.id) + '">Ver análise e comprar</a>'
+      + '<a href="' + escapeHtml(item.productUrl) + '" data-weekly-ranking-product="' + escapeHtml(item.id) + '">Ver preço e análise</a>'
       + '</article>';
   }
 
@@ -1163,6 +1189,7 @@
     const storedProducts = Array.isArray(config?.produtos) ? config.produtos.slice(0, 5) : [];
     if (config?.publicado !== true || storedProducts.length !== 5 || !/^\/(?:index\.html)?$/.test(location.pathname)) return;
     const products = weeklyScoreProducts(storedProducts);
+    const highlights = weeklyHighlights(products);
     const section = document.createElement("section");
     section.className = "weekly-comparison";
     section.id = "ranking-da-semana";
@@ -1172,12 +1199,17 @@
     const subtitle = config.precoMaximo > 0
       ? "Cinco opções comparadas até " + brl.format(numberPrice(config.precoMaximo)) + "."
       : "Cinco opções da mesma categoria comparadas lado a lado.";
+    const quickPicks = '<div class="weekly-quick-picks" aria-label="Destaques rápidos do comparativo">'
+      + highlights.map(highlight => '<a href="' + escapeHtml(highlight.item.productUrl) + '"><span>' + highlight.icon + '</span><div><small>'
+        + escapeHtml(highlight.label) + '</small><b>' + escapeHtml(highlight.item.titulo) + '</b><em>' + escapeHtml(highlight.detail) + '</em></div></a>').join("")
+      + '</div>';
     section.innerHTML = '<div class="weekly-comparison-head"><div><small>COMPARATIVO EDITORIAL ATUALIZADO SEMANALMENTE</small>'
       + '<h2>🏆 ' + escapeHtml(config.titulo || "Ranking da Semana") + '</h2>'
       + '<p>' + escapeHtml(subtitle) + ' Confira preço, frete e estoque antes da compra.</p></div>'
       + '<a href="/como-avaliamos.html">Como classificamos</a></div>'
+      + quickPicks
       + (aiSummary ? '<div class="weekly-ai-summary"><b>Visão geral da IA editorial</b><p>' + escapeHtml(aiSummary) + '</p></div>' : "")
-      + '<div class="weekly-ranking-grid">' + products.map(weeklyRankingCard).join("") + '</div>'
+      + '<div class="weekly-ranking-grid">' + products.map(item => weeklyRankingCard(item, highlights)).join("") + '</div>'
       + (aiSummary ? '<p class="weekly-ranking-sources"><b>Fontes consolidadas:</b> fichas públicas dos cinco produtos — ' + sourceLinks + '. Pesquisa gerada em ' + escapeHtml(dateBr.format(new Date(config.analiseIA?.geradaEm || Date.now()))) + '.</p>' : "")
       + '<p class="weekly-ranking-method"><b>Metodologia:</b> nota de 0 a 10 calculada com custo-benefício (35%), avaliação informada (30%), interesse observado nos últimos 7 dias (15%) e qualidade das evidências cadastradas (20%). Preço, frete, estoque e avaliações podem mudar; confira o anúncio antes da compra. A aprovação final é sempre feita pelo administrador.</p>';
     const anchor = document.getElementById("top5-semanal") || document.querySelector("#promocoes") || document.querySelector("main");
@@ -1406,6 +1438,7 @@
     const style = document.createElement("style");
     style.id = "weekly-ranking-style";
     style.textContent = '.weekly-comparison{max-width:1180px;margin:28px auto;padding:24px;border:1px solid #b8d7ca;border-radius:22px;background:linear-gradient(145deg,#f4fff9,#fff);box-sizing:border-box}.weekly-comparison-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px}.weekly-comparison-head small{font-weight:900;letter-spacing:.08em;color:#08784f}.weekly-comparison-head h2{margin:5px 0 6px;font-size:clamp(1.45rem,3vw,2.2rem);color:#073b2b}.weekly-comparison-head p{margin:0;color:#405a50}.weekly-comparison-head>a{font-weight:800;color:#086e4a}.weekly-ranking-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.weekly-ranking-card{position:relative;display:flex;flex-direction:column;padding:13px;border:1px solid #cfe1d8;border-radius:15px;background:#fff;box-shadow:0 8px 24px rgba(5,74,51,.07)}.weekly-ranking-position{align-self:flex-start;margin-bottom:8px;padding:5px 9px;border-radius:999px;background:#0b7a53;color:#fff;font-size:.78rem;font-weight:900}.weekly-ranking-card:first-child{border:2px solid #e4ae18;background:linear-gradient(180deg,#fffbea,#fff)}.weekly-ranking-card:first-child .weekly-ranking-position{background:#a86d00}.weekly-ranking-card img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}.weekly-ranking-card h3{font-size:.98rem;line-height:1.28;margin:11px 0 7px;color:#10251e}.weekly-ranking-price{font-size:1.14rem;color:#08784f}.weekly-ranking-score{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:9px 0;padding:9px;border:1px solid #b9d7ca;border-radius:9px;background:#f4fbf7;font-size:.72rem;color:#31594a}.weekly-ranking-score b{grid-column:1/-1;color:#075f40;font-size:.86rem}.weekly-ranking-why{margin:8px 0 2px;font-size:.84rem;color:#173f31}.weekly-ranking-reason{font-size:.82rem;line-height:1.42;color:#465a52}.weekly-ranking-points{font-size:.78rem;line-height:1.35}.weekly-ranking-points b{display:block;color:#174c3a}.weekly-ranking-points ul{margin:4px 0 10px;padding-left:17px}.weekly-ranking-card>a{margin-top:auto;padding:10px;border-radius:9px;background:#1468d4;color:#fff;text-align:center;text-decoration:none;font-weight:900}.weekly-ranking-human{margin:10px 0;padding:10px;border-left:4px solid #6f42c1;border-radius:8px;background:#f7f3ff;font-size:.78rem;line-height:1.4;color:#3f315d}.weekly-ranking-human>b{color:#512b89}.weekly-ranking-human p{margin:5px 0 8px}.weekly-ranking-human dl{margin:0}.weekly-ranking-human dt{margin-top:6px;font-weight:900}.weekly-ranking-human dd{margin:1px 0 0}.weekly-ai-summary,.weekly-admin-ai{margin:0 0 16px;padding:14px;border:1px solid #cfc2ea;border-radius:12px;background:#faf7ff;color:#42325e}.weekly-ai-summary p,.weekly-admin-ai p{margin:6px 0 0;line-height:1.55}.weekly-ranking-sources{font-size:.76rem;line-height:1.5;color:#557066}.weekly-ranking-sources a{color:#075f40}.weekly-ranking-method{margin:16px 0 0;font-size:.78rem;color:#557066}.weekly-ranking-admin{margin-top:26px;padding-top:24px;border-top:2px solid #d7eadf}.weekly-admin-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}.weekly-admin-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.weekly-admin-actions button,.weekly-admin-actions a{border:1px solid #0a7850;border-radius:9px;padding:10px 12px;background:#fff;color:#075a3e;font-weight:800;text-decoration:none;cursor:pointer}.weekly-admin-actions button:nth-child(2),.weekly-admin-actions button:nth-child(3),.weekly-admin-actions button:nth-child(4){background:#087a52;color:#fff}.weekly-admin-actions button:disabled{opacity:.5;cursor:not-allowed}.weekly-ranking-status{font-weight:700;color:#285c49}.weekly-admin-draft{margin-top:14px;padding:14px;border-radius:12px;background:#f2faf6}.weekly-admin-draft h3{margin:0 0 5px}.weekly-admin-draft ol{padding-left:24px}.weekly-admin-draft li{margin:10px 0}.weekly-admin-draft li span{display:block;font-size:.85rem;color:#4c625a}@media(max-width:980px){.weekly-ranking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.weekly-comparison{margin:18px 10px;padding:16px}.weekly-comparison-head{display:block}.weekly-comparison-head>a{display:inline-block;margin-top:10px}.weekly-ranking-grid,.weekly-admin-grid{grid-template-columns:1fr}}';
+    style.textContent += '.weekly-quick-picks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 18px}.weekly-quick-picks>a{display:flex;align-items:flex-start;gap:10px;min-width:0;padding:12px;border:1px solid #c6dfd3;border-radius:13px;background:#fff;color:#173f31;text-decoration:none;box-shadow:0 5px 16px rgba(5,74,51,.06)}.weekly-quick-picks>a>span{font-size:1.35rem}.weekly-quick-picks a div{display:grid;min-width:0}.weekly-quick-picks small{color:#08784f;font-size:.69rem;font-weight:900;text-transform:uppercase;letter-spacing:.03em}.weekly-quick-picks b{margin:3px 0;font-size:.78rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.weekly-quick-picks em{color:#52695f;font-size:.7rem;font-style:normal}.weekly-ranking-badges{display:flex;flex-wrap:wrap;gap:5px;margin:-2px 0 8px}.weekly-ranking-badges span{padding:4px 7px;border-radius:999px;background:#e7f7ef;color:#075f40;font-size:.67rem;font-weight:900}.weekly-ranking-reason{margin-top:5px}.weekly-ranking-card>a:hover,.weekly-quick-picks>a:hover{filter:brightness(.97)}@media(max-width:980px){.weekly-quick-picks{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.weekly-quick-picks{grid-template-columns:1fr}.weekly-quick-picks b{white-space:normal}}';
     document.head.appendChild(style);
   }
 
@@ -1446,6 +1479,7 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();
+
 
 
 
