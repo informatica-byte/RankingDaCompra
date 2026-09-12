@@ -1,12 +1,19 @@
 {
-  "atualizadoEm": "2026-09-12T10:53:42.948Z",
+  "atualizadoEm": "2026-09-12T10:57:46.548Z",
   "resultados": {
+    "V1PP2f1vbfRGuHd7CdWr": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
+      "resolvidoEm": "2026-09-12T10:57:46.548Z",
+      "tentativas": 1
+    },
     "xm38nE8cESzryhQzjGPu": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/razer-gold-digital-r-30-digital/p/MLB51757399",
-      "resolvidoEm": "2026-09-12T10:53:42.947Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-12T10:57:29.455Z",
+      "tentativas": 2
     },
     "GaoOeN7hjTRPk8euSJLs": {
       "status": "erro",
