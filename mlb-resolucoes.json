@@ -1,6 +1,13 @@
 {
-  "atualizadoEm": "2026-09-12T10:26:49.410Z",
+  "atualizadoEm": "2026-09-12T10:34:06.604Z",
   "resultados": {
+    "RoPCc1REyJsTJ2xZFSPz": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-eletrica-xroymexroy-eb5-max-para-adultos-com-motor-de-1000w-e-rodas-de-20/p/MLB66169196?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=3a79b923-358a-4894-9091-e3f262ec8837&position=8&tracking_id=7c4ef41a-1da5-4e72-a9cf-8646a0944d29&wid=MLB6250529372&sid=offers",
+      "resolvidoEm": "2026-09-12T10:34:06.596Z",
+      "tentativas": 1
+    },
     "E4P4rHYrgHObLiHVgmC8": {
       "status": "ok",
       "mlb": "MLB5795580586",
