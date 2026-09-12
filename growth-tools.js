@@ -1136,6 +1136,24 @@
     };
   }
 
+  function weeklyCardSummary(item) {
+    if (item.position === 1) {
+      return "Melhor equilíbrio geral — nota "
+        + Number(item.scoreTotal || 0).toFixed(1).replace(".", ",") + "/10.";
+    }
+    const labels = {
+      custoBeneficio: "custo-benefício",
+      avaliacao: "avaliação",
+      interesse: "interesse no site",
+      evidencia: "qualidade das informações"
+    };
+    const strongest = Object.entries(item.criterios || {})
+      .sort((a, b) => Number(b[1] || 0) - Number(a[1] || 0))[0];
+    if (!strongest) return "Uma das cinco melhores opções deste comparativo.";
+    return "Destaque em " + labels[strongest[0]] + " — "
+      + Number(strongest[1] || 0).toFixed(1).replace(".", ",") + "/10.";
+  }
+
   function weeklyRankingCard(item, highlights = []) {
     const displayedPrice = numberPrice(item.preco ?? item.price);
     const pros = item.pros.length ? item.pros : ["Pontos positivos específicos em revisão editorial."];
@@ -1156,6 +1174,9 @@
       + '<img src="' + escapeHtml(item.foto) + '" alt="' + escapeHtml(item.titulo) + '" loading="lazy" decoding="async">'
       + '<h3>' + escapeHtml(item.titulo) + '</h3>'
       + '<strong class="weekly-ranking-price">' + escapeHtml(displayedPrice > 0 ? brl.format(displayedPrice) : "Preço a confirmar") + '</strong>'
+      + '<p class="weekly-ranking-glance">' + escapeHtml(weeklyCardSummary(item)) + '</p>'
+      + '<a href="' + escapeHtml(item.productUrl) + '" data-weekly-ranking-product="' + escapeHtml(item.id) + '">Ver preço e análise</a>'
+      + '<details class="weekly-ranking-details"><summary>Mais informações</summary><div class="weekly-ranking-details-body">'
       + '<div class="weekly-ranking-score"><b>Nota comparativa ' + escapeHtml(Number(item.scoreTotal || 0).toFixed(1).replace(".", ",")) + '/10</b>'
       + '<span>Custo-benefício ' + escapeHtml(Number(criteria.custoBeneficio || 0).toFixed(1).replace(".", ",")) + '</span>'
       + '<span>Avaliação ' + escapeHtml(Number(criteria.avaliacao || 0).toFixed(1).replace(".", ",")) + '</span>'
@@ -1168,8 +1189,7 @@
       + pros.map(value => '<li>' + escapeHtml(value) + '</li>').join("")
       + '</ul></div><div><b>⚠ Pontos de atenção</b><ul>'
       + cons.map(value => '<li>' + escapeHtml(value) + '</li>').join("")
-      + '</ul></div></div>'
-      + '<a href="' + escapeHtml(item.productUrl) + '" data-weekly-ranking-product="' + escapeHtml(item.id) + '">Ver preço e análise</a>'
+      + '</ul></div></div></div></details>'
       + '</article>';
   }
 
@@ -1208,7 +1228,7 @@
       + '<p>' + escapeHtml(subtitle) + ' Confira preço, frete e estoque antes da compra.</p></div>'
       + '<a href="/como-avaliamos.html">Como classificamos</a></div>'
       + quickPicks
-      + (aiSummary ? '<div class="weekly-ai-summary"><b>Visão geral da IA editorial</b><p>' + escapeHtml(aiSummary) + '</p></div>' : "")
+      + (aiSummary ? '<details class="weekly-ai-summary"><summary>Resumo da análise editorial</summary><p>' + escapeHtml(aiSummary) + '</p></details>' : "")
       + '<div class="weekly-ranking-grid">' + products.map(item => weeklyRankingCard(item, highlights)).join("") + '</div>'
       + (aiSummary ? '<p class="weekly-ranking-sources"><b>Fontes consolidadas:</b> fichas públicas dos cinco produtos — ' + sourceLinks + '. Pesquisa gerada em ' + escapeHtml(dateBr.format(new Date(config.analiseIA?.geradaEm || Date.now()))) + '.</p>' : "")
       + '<p class="weekly-ranking-method"><b>Metodologia:</b> nota de 0 a 10 calculada com custo-benefício (35%), avaliação informada (30%), interesse observado nos últimos 7 dias (15%) e qualidade das evidências cadastradas (20%). Preço, frete, estoque e avaliações podem mudar; confira o anúncio antes da compra. A aprovação final é sempre feita pelo administrador.</p>';
@@ -1438,7 +1458,7 @@
     const style = document.createElement("style");
     style.id = "weekly-ranking-style";
     style.textContent = '.weekly-comparison{max-width:1180px;margin:28px auto;padding:24px;border:1px solid #b8d7ca;border-radius:22px;background:linear-gradient(145deg,#f4fff9,#fff);box-sizing:border-box}.weekly-comparison-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px}.weekly-comparison-head small{font-weight:900;letter-spacing:.08em;color:#08784f}.weekly-comparison-head h2{margin:5px 0 6px;font-size:clamp(1.45rem,3vw,2.2rem);color:#073b2b}.weekly-comparison-head p{margin:0;color:#405a50}.weekly-comparison-head>a{font-weight:800;color:#086e4a}.weekly-ranking-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.weekly-ranking-card{position:relative;display:flex;flex-direction:column;padding:13px;border:1px solid #cfe1d8;border-radius:15px;background:#fff;box-shadow:0 8px 24px rgba(5,74,51,.07)}.weekly-ranking-position{align-self:flex-start;margin-bottom:8px;padding:5px 9px;border-radius:999px;background:#0b7a53;color:#fff;font-size:.78rem;font-weight:900}.weekly-ranking-card:first-child{border:2px solid #e4ae18;background:linear-gradient(180deg,#fffbea,#fff)}.weekly-ranking-card:first-child .weekly-ranking-position{background:#a86d00}.weekly-ranking-card img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}.weekly-ranking-card h3{font-size:.98rem;line-height:1.28;margin:11px 0 7px;color:#10251e}.weekly-ranking-price{font-size:1.14rem;color:#08784f}.weekly-ranking-score{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:9px 0;padding:9px;border:1px solid #b9d7ca;border-radius:9px;background:#f4fbf7;font-size:.72rem;color:#31594a}.weekly-ranking-score b{grid-column:1/-1;color:#075f40;font-size:.86rem}.weekly-ranking-why{margin:8px 0 2px;font-size:.84rem;color:#173f31}.weekly-ranking-reason{font-size:.82rem;line-height:1.42;color:#465a52}.weekly-ranking-points{font-size:.78rem;line-height:1.35}.weekly-ranking-points b{display:block;color:#174c3a}.weekly-ranking-points ul{margin:4px 0 10px;padding-left:17px}.weekly-ranking-card>a{margin-top:auto;padding:10px;border-radius:9px;background:#1468d4;color:#fff;text-align:center;text-decoration:none;font-weight:900}.weekly-ranking-human{margin:10px 0;padding:10px;border-left:4px solid #6f42c1;border-radius:8px;background:#f7f3ff;font-size:.78rem;line-height:1.4;color:#3f315d}.weekly-ranking-human>b{color:#512b89}.weekly-ranking-human p{margin:5px 0 8px}.weekly-ranking-human dl{margin:0}.weekly-ranking-human dt{margin-top:6px;font-weight:900}.weekly-ranking-human dd{margin:1px 0 0}.weekly-ai-summary,.weekly-admin-ai{margin:0 0 16px;padding:14px;border:1px solid #cfc2ea;border-radius:12px;background:#faf7ff;color:#42325e}.weekly-ai-summary p,.weekly-admin-ai p{margin:6px 0 0;line-height:1.55}.weekly-ranking-sources{font-size:.76rem;line-height:1.5;color:#557066}.weekly-ranking-sources a{color:#075f40}.weekly-ranking-method{margin:16px 0 0;font-size:.78rem;color:#557066}.weekly-ranking-admin{margin-top:26px;padding-top:24px;border-top:2px solid #d7eadf}.weekly-admin-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}.weekly-admin-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.weekly-admin-actions button,.weekly-admin-actions a{border:1px solid #0a7850;border-radius:9px;padding:10px 12px;background:#fff;color:#075a3e;font-weight:800;text-decoration:none;cursor:pointer}.weekly-admin-actions button:nth-child(2),.weekly-admin-actions button:nth-child(3),.weekly-admin-actions button:nth-child(4){background:#087a52;color:#fff}.weekly-admin-actions button:disabled{opacity:.5;cursor:not-allowed}.weekly-ranking-status{font-weight:700;color:#285c49}.weekly-admin-draft{margin-top:14px;padding:14px;border-radius:12px;background:#f2faf6}.weekly-admin-draft h3{margin:0 0 5px}.weekly-admin-draft ol{padding-left:24px}.weekly-admin-draft li{margin:10px 0}.weekly-admin-draft li span{display:block;font-size:.85rem;color:#4c625a}@media(max-width:980px){.weekly-ranking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.weekly-comparison{margin:18px 10px;padding:16px}.weekly-comparison-head{display:block}.weekly-comparison-head>a{display:inline-block;margin-top:10px}.weekly-ranking-grid,.weekly-admin-grid{grid-template-columns:1fr}}';
-    style.textContent += '.weekly-quick-picks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 18px}.weekly-quick-picks>a{display:flex;align-items:flex-start;gap:10px;min-width:0;padding:12px;border:1px solid #c6dfd3;border-radius:13px;background:#fff;color:#173f31;text-decoration:none;box-shadow:0 5px 16px rgba(5,74,51,.06)}.weekly-quick-picks>a>span{font-size:1.35rem}.weekly-quick-picks a div{display:grid;min-width:0}.weekly-quick-picks small{color:#08784f;font-size:.69rem;font-weight:900;text-transform:uppercase;letter-spacing:.03em}.weekly-quick-picks b{margin:3px 0;font-size:.78rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.weekly-quick-picks em{color:#52695f;font-size:.7rem;font-style:normal}.weekly-ranking-badges{display:flex;flex-wrap:wrap;gap:5px;margin:-2px 0 8px}.weekly-ranking-badges span{padding:4px 7px;border-radius:999px;background:#e7f7ef;color:#075f40;font-size:.67rem;font-weight:900}.weekly-ranking-reason{margin-top:5px}.weekly-ranking-card>a:hover,.weekly-quick-picks>a:hover{filter:brightness(.97)}@media(max-width:980px){.weekly-quick-picks{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.weekly-quick-picks{grid-template-columns:1fr}.weekly-quick-picks b{white-space:normal}}';
+    style.textContent += '.weekly-quick-picks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 18px}.weekly-quick-picks>a{display:flex;align-items:flex-start;gap:10px;min-width:0;padding:12px;border:1px solid #c6dfd3;border-radius:13px;background:#fff;color:#173f31;text-decoration:none;box-shadow:0 5px 16px rgba(5,74,51,.06)}.weekly-quick-picks>a>span{font-size:1.35rem}.weekly-quick-picks a div{display:grid;min-width:0}.weekly-quick-picks small{color:#08784f;font-size:.69rem;font-weight:900;text-transform:uppercase;letter-spacing:.03em}.weekly-quick-picks b{margin:3px 0;font-size:.78rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.weekly-quick-picks em{color:#52695f;font-size:.7rem;font-style:normal}.weekly-ranking-badges{display:flex;flex-wrap:wrap;gap:5px;margin:-2px 0 8px}.weekly-ranking-badges span{padding:4px 7px;border-radius:999px;background:#e7f7ef;color:#075f40;font-size:.67rem;font-weight:900}.weekly-ranking-glance{min-height:2.5em;margin:8px 0;color:#31594a;font-size:.79rem;line-height:1.3;font-weight:750}.weekly-ranking-reason{margin-top:5px}.weekly-ranking-details{margin:9px 0 0}.weekly-ranking-details summary,.weekly-ai-summary summary{display:block;padding:9px;border:1px solid #0a7850;border-radius:9px;background:#fff;color:#075f40;text-align:center;font-size:.78rem;font-weight:900;cursor:pointer;list-style:none}.weekly-ranking-details summary::-webkit-details-marker,.weekly-ai-summary summary::-webkit-details-marker{display:none}.weekly-ranking-details summary:after,.weekly-ai-summary summary:after{content:" +"}.weekly-ranking-details[open] summary:after,.weekly-ai-summary[open] summary:after{content:" −"}.weekly-ranking-details-body{padding-top:4px}.weekly-ai-summary summary{max-width:300px}.weekly-ai-summary[open] summary{margin-bottom:8px}.weekly-ranking-card>a:hover,.weekly-quick-picks>a:hover,.weekly-ranking-details summary:hover,.weekly-ai-summary summary:hover{filter:brightness(.97)}@media(max-width:980px){.weekly-quick-picks{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.weekly-quick-picks{grid-template-columns:1fr}.weekly-quick-picks b{white-space:normal}.weekly-ranking-glance{min-height:0}.weekly-ai-summary summary{max-width:none}}';
     document.head.appendChild(style);
   }
 
@@ -1479,7 +1499,6 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();
-
 
 
 

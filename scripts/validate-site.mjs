@@ -19,7 +19,7 @@ has(homeHtml, /const rotaInicial=.*:homeComPromocoes\(\)/, "a vitrine inicial ai
 has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo histórico ausente", "index.html");
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
-has(homeHtml, /growth-tools\.js\?v=20260912-ranking1/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20260912-ranking2/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
 has(homeHtml, /fetch\(`\.\/search-index\.json\?v=/, "busca estática sem Firebase ausente", "index.html");
 const searchFunction = homeHtml.match(/async function search\(term\)\{[\s\S]*?\nconst formBusca=/)?.[0] || "";
 if (!searchFunction) fail("index.html: função de busca não foi localizada");
@@ -75,6 +75,10 @@ has(growthTools, /Melhor custo-benefício/, "destaque de custo-benefício ausent
 has(growthTools, /Mais barato/, "destaque de menor preço ausente", "growth-tools.js");
 has(growthTools, /Mais procurado no site/, "destaque de interesse comprovado ausente", "growth-tools.js");
 has(growthTools, /weekly-quick-picks/, "resumo visual dos destaques ausente", "growth-tools.js");
+has(growthTools, /function weeklyCardSummary\(/, "resumo objetivo dos cartões do comparativo ausente", "growth-tools.js");
+has(growthTools, /<details class="weekly-ranking-details"><summary>Mais informações<\/summary>/, "análises extensas não estão recolhidas atrás de Mais informações", "growth-tools.js");
+has(growthTools, /<details class="weekly-ai-summary"><summary>Resumo da análise editorial<\/summary>/, "resumo editorial extenso não está recolhido", "growth-tools.js");
+has(growthTools, /weekly-ranking-details summary/, "controle visual dos detalhes do comparativo ausente", "growth-tools.js");
 if (/label:\s*["']Mais vendido/i.test(growthTools)) fail("growth-tools.js: não afirmar produto mais vendido sem dados de vendas");
 has(growthTools, /id="weekly-ranking-ai"/, "botão de análise humanizada ausente", "growth-tools.js");
 has(growthTools, /function weeklyApplyAIAnalysis\(/, "validação local da análise por IA ausente", "growth-tools.js");
@@ -116,7 +120,7 @@ has(dashboardHtml, /id="central-foco"/, "Central de foco por categoria e produto
 has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Central de foco ausente", "dashboard.html");
 has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20260912-ranking1/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20260912-ranking2/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
 has(dashboardHtml, /Executar ou acompanhar o lote diário/, "atalho do lote diário ausente", "dashboard.html");
 has(dashboardHtml, /todos os produtos são conferidos juntos uma vez por dia/i, "explicação do lote diário ausente", "dashboard.html");
 if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
@@ -143,7 +147,7 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260912-ranking1"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260912-ranking2"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
 const growthToolsVersionPattern = /growth-tools\.js\?v=([^"'<>]+)/;
 const growthToolsVersions = [homeHtml, dashboardHtml, sitemapGenerator]
   .map((source) => source.match(growthToolsVersionPattern)?.[1] || "");
@@ -345,5 +349,4 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + sitemapProductUrls.size + " produtos públicos e metadados sociais completos.");
-
 
