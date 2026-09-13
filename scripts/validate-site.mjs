@@ -113,9 +113,9 @@ has(mobilePanelHtml, /Modo econômico ativo/, "modo econômico não está explic
 has(mobilePanelHtml, /focusMobileLeituraAutorizada\s*=\s*true/, "análise móvel não exige ação manual antes da leitura completa", "painel-celular.html");
 has(mobilePanelHtml, /actions\/workflows\/sync-mercadolivre\.yml/, "atalho móvel para a conferência em lote ausente", "painel-celular.html");
 has(mobilePanelHtml, /Todos os produtos são conferidos juntos uma vez por dia/, "explicação móvel do lote diário ausente", "painel-celular.html");
-has(mobilePanelHtml, /name="marketplace"[^>]+value="shopee"/, "opção Shopee ausente no painel celular", "painel-celular.html");
-has(mobilePanelHtml, /marketplace:\s*resultado\.marketplace/, "loja não é salva no cadastro móvel", "painel-celular.html");
-has(mobilePanelHtml, /if \(marketplace === "mercado_livre"\) \{[\s\S]{0,300}criarPedidoRobo/, "robô MLB não está isolado de produtos Shopee", "painel-celular.html");
+has(mobilePanelHtml, /id="link-shopee"/, "link opcional da Shopee ausente no painel celular", "painel-celular.html");
+has(mobilePanelHtml, /id="preco-shopee"/, "preço opcional da Shopee ausente no painel celular", "painel-celular.html");
+has(mobilePanelHtml, /linkShopee,\s*\n\s*precoShopee:/, "segunda oferta não é salva no mesmo cadastro móvel", "painel-celular.html");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
 has(dashboardHtml, /<h1 class="sr-only">Painel administrativo do Ranking da Compra<\/h1>/, "título principal acessível ausente", "dashboard.html");
@@ -123,13 +123,16 @@ has(dashboardHtml, /id="central-visualizacoes-semana"/, "contador de visualizaç
 has(dashboardHtml, /id="central-taxa-clique"/, "taxa de avanço ao Mercado Livre ausente", "dashboard.html");
 has(dashboardHtml, /Produtos vistos sem resultado/, "lista de produtos vistos sem resultado ausente", "dashboard.html");
 has(dashboardHtml, /window\.gerarAnaliseRankingIA/, "integração Gemini do ranking humanizado ausente", "dashboard.html");
-has(dashboardHtml, /<option value="shopee">/, "opção Shopee ausente no painel completo", "dashboard.html");
-has(dashboardHtml, /marketplace === 'mercado_livre' \? \(extrairIdMercadoLivreCadastro/, "código MLB pode ser gravado indevidamente em produto Shopee", "dashboard.html");
+has(dashboardHtml, /id="linkShopee"/, "link opcional da Shopee ausente no painel completo", "dashboard.html");
+has(dashboardHtml, /id="precoShopee"/, "preço opcional da Shopee ausente no painel completo", "dashboard.html");
+has(dashboardHtml, /linkShopee:\s*linkShopeeProduto/, "segunda oferta não é salva no mesmo cadastro completo", "dashboard.html");
 
 const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
 has(sitemapGenerator, /function productMarketplace\(product\)/, "identificação da loja ausente no gerador", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /Ver preço na Shopee/, "botão Shopee ausente nas páginas compartilháveis", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /affiliate:\$\{JSON\.stringify\(marketplace\)\}/, "métrica não diferencia Mercado Livre e Shopee", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /id="affiliate-offer-shopee"/, "segunda opção Shopee ausente nas páginas compartilháveis", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /product\.linkShopee/, "gerador não lê o link Shopee do cadastro existente", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /product\.precoShopee/, "gerador não lê o preço Shopee do cadastro existente", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /affiliate:'shopee'/, "métrica da segunda oferta Shopee ausente", "scripts/generate-sitemap.mjs");
 
 const mercadoLivreSync = await readFile(resolve("scripts/sync-mercadolivre.mjs"), "utf8");
 has(mercadoLivreSync, /products = allProducts\.filter\(isMercadoLivreProduct\)/, "robô de preços não exclui outras lojas", "scripts/sync-mercadolivre.mjs");
@@ -281,7 +284,7 @@ for (const url of urls) {
   const visibleH1 = (html.match(/<h1>([^<]+)<\/h1>/i)?.[1] || "")
     .replace(/&#\d+;|&[a-z]+;/gi, "x");
   if (visibleH1.length > 100) fail(relative + ": título visível maior que 100 caracteres");
-  has(html, /"offers":\{"@type":"Offer"/, "oferta estruturada ausente em página indexável", relative);
+  has(html, /"offers":(?:\{"@type":"Offer"|\[\{"@type":"Offer")/, "oferta estruturada ausente em página indexável", relative);
 
   for (const identity of productIdentityKeys(html)) {
     const previous = identities.get(identity);

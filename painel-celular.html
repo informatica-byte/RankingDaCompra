@@ -27,15 +27,13 @@
           <div class="etapa">Publicação expressa</div>
           <h1>Cole seu link de afiliado</h1>
           <p>Cole o link completo do produto para buscar os dados reais e o link de afiliado para o botão de compra.</p>
-          <label>1. Escolha a loja</label>
-          <div class="tipos">
-            <label class="tipo"><input name="marketplace" type="radio" value="mercado_livre" checked /><span>🟡 Mercado Livre</span></label
-            ><label class="tipo"><input name="marketplace" type="radio" value="shopee" /><span>🟠 Shopee</span></label>
-          </div>
-          <label id="link-produto-label">2. Link completo do produto no Mercado Livre</label><input id="link" class="campo" type="url" inputmode="url" placeholder="https://www.mercadolivre.com.br/..." required />
+          <label id="link-produto-label">1. Link completo do produto no Mercado Livre</label><input id="link" class="campo" type="url" inputmode="url" placeholder="https://www.mercadolivre.com.br/..." required />
           <div class="mini" id="link-produto-ajuda">Abra o produto no navegador e copie o endereço completo. Não use o link curto neste campo.</div>
-          <label>3. Link de afiliado</label><input id="link-afiliado" class="campo" type="url" inputmode="url" placeholder="https://meli.la/..." required />
+          <label>2. Link de afiliado do Mercado Livre</label><input id="link-afiliado" class="campo" type="url" inputmode="url" placeholder="https://meli.la/..." required />
           <div class="mini" id="link-afiliado-ajuda">Este será o endereço usado no botão Comprar.</div>
+          <label>3. Segunda opção na Shopee (opcional)</label><input id="link-shopee" class="campo" type="url" inputmode="url" placeholder="https://s.shopee.com.br/..." />
+          <label>Preço na Shopee (opcional)</label><input id="preco-shopee" class="campo" inputmode="decimal" placeholder="Ex.: 149,90" />
+          <div class="mini">Preencha os dois campos da Shopee juntos. O produto usará a mesma foto, análise e categoria já preparadas pelo Mercado Livre.</div>
           <label>Tipo</label>
           <div class="tipos">
             <label class="tipo"><input name="tipo" type="radio" value="promocao" checked /><span>🔥 Promoção do dia</span></label
@@ -399,7 +397,7 @@
       function atualizarMarketplaceMobile() {
         const marketplace = marketplaceAtual();
         const shopee = marketplace === "shopee";
-        $("link-produto-label").textContent = `2. Link completo do produto ${shopee ? "na" : "no"} ${nomeMarketplace(marketplace)}`;
+        $("link-produto-label").textContent = `1. Link completo do produto ${shopee ? "na" : "no"} ${nomeMarketplace(marketplace)}`;
         $("link").placeholder = shopee ? "https://shopee.com.br/..." : "https://www.mercadolivre.com.br/...";
         $("link-afiliado").placeholder = shopee ? "https://s.shopee.com.br/..." : "https://meli.la/...";
         $("link-produto-ajuda").textContent = shopee ? "Abra o produto na Shopee, toque em Compartilhar e copie o link completo." : "Abra o produto no navegador e copie o endereço completo. Não use o link curto neste campo.";
@@ -1322,6 +1320,8 @@
         if (!resultado) return;
         const atual = numero($("atual").value),
           anterior = numero($("anterior").value),
+          linkShopee = $("link-shopee").value.trim(),
+          precoShopee = numero($("preco-shopee").value),
           tipo = resultado.tipo,
           d = {
             categoria: $("categoria").value,
@@ -1330,6 +1330,8 @@
             linkAfiliado: resultado.linkAfiliado,
             marketplace: resultado.marketplace || marketplaceDoLink(resultado.link),
             mercadoLivreItemId: (resultado.marketplace || marketplaceDoLink(resultado.link)) === "mercado_livre" ? mlb(resultado.link) : "",
+            linkShopee,
+            precoShopee: precoShopee ? preco(precoShopee) : "",
             selo: $("selo").value,
             foto: $("foto").value.trim(),
             comentario: $("resumo").value.trim(),
@@ -1352,6 +1354,8 @@
             atualizadoEm: serverTimestamp(),
           };
         if (!atual || !anterior || atual >= anterior) return msg("pub-status", "O preço anterior precisa ser maior que o atual.", "erro");
+        if ((linkShopee && !precoShopee) || (!linkShopee && precoShopee)) return msg("pub-status", "Para oferecer a Shopee, informe o link e o preço juntos.", "erro");
+        if (linkShopee && !linkMarketplaceValido(linkShopee, "shopee")) return msg("pub-status", "Confira o link HTTPS da Shopee.", "erro");
         if (!/^https:\/\//.test(d.foto)) return msg("pub-status", "Confira a URL da foto.", "erro");
         if (d.comentario.length < 180 || d.pros.length < 60 || d.contras.length < 60 || d.dadosTecnicos.length < 70 || lista(d.dadosTecnicos).length < 3) return msg("pub-status", "A análise precisa de mais dados reais antes de publicar.", "erro");
         if (tipo === "relampago") {
@@ -1378,6 +1382,8 @@
         resultado = null;
         $("link").value = "";
         $("link-afiliado").value = "";
+        $("link-shopee").value = "";
+        $("preco-shopee").value = "";
         $("duracao").value = "";
         $("preview").reset();
         $("preview").style.display = "none";

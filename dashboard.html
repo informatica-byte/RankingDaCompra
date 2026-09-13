@@ -208,14 +208,7 @@
         <div class="painel">
             <h2>📦 Cadastro de Produto</h2>
             <form id="formProduto">
-                <div class="campo">
-                    <label for="marketplace">Loja:</label>
-                    <select id="marketplace" required>
-                        <option value="mercado_livre">🟡 Mercado Livre</option>
-                        <option value="shopee">🟠 Shopee</option>
-                    </select>
-                    <small id="ajuda-marketplace">O robô oficial de preços continuará sendo usado somente para produtos do Mercado Livre.</small>
-                </div>
+                <input type="hidden" id="marketplace" value="mercado_livre">
                 <div class="campo caixa-amarela">
                     <label for="link" id="label-link-produto">Link da fonte técnica do Mercado Livre:</label>
                     <input type="url" id="link" placeholder="Ex.: https://www.mercadolivre.com.br/..." required>
@@ -226,6 +219,14 @@
                     <label style="color:#2968c8;">🔗 <b>2. Link de Afiliado (MUITO IMPORTANTE):</b></label>
                     <input type="url" id="linkAfiliado" placeholder="Cole seu link de parceiro aqui. O cliente clicará nele!" required>
                     <span style="font-size:11px; color:#555;">Este é o link que vai para o botão "Ver Oferta" do site.</span>
+                </div>
+
+                <div class="campo" style="border:1px solid #f0a04b;background:#fff7ed;">
+                    <label for="linkShopee">🟠 Segunda opção na Shopee (opcional):</label>
+                    <input type="url" id="linkShopee" placeholder="Cole o link de afiliado da Shopee">
+                    <label for="precoShopee">Preço na Shopee (opcional):</label>
+                    <input type="text" id="precoShopee" inputmode="decimal" placeholder="Ex.: 149,90">
+                    <small id="ajuda-marketplace">Preencha link e preço juntos. A Shopee aproveitará a mesma imagem, análise, categoria e ficha do produto do Mercado Livre, sem criar outro cadastro.</small>
                 </div>
 
                 <div class="caixa-azul">
@@ -1787,7 +1788,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         }
 
         function atualizarMarketplaceCadastro() {
-            const marketplace = document.getElementById('marketplace').value || 'mercado_livre';
+            const marketplace = 'mercado_livre';
             const shopee = marketplace === 'shopee';
             document.getElementById('label-link-produto').textContent = shopee
                 ? 'Link da fonte técnica da Shopee:'
@@ -1798,9 +1799,6 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             document.getElementById('linkAfiliado').placeholder = shopee
                 ? 'Cole seu link de afiliado da Shopee aqui.'
                 : 'Cole seu link de parceiro do Mercado Livre aqui.';
-            document.getElementById('ajuda-marketplace').textContent = shopee
-                ? 'Na Shopee, cole o link do produto e o link personalizado de afiliado. Preço e estoque serão conferidos editorialmente.'
-                : 'O robô oficial de preços continuará sendo usado somente para produtos do Mercado Livre.';
         }
 
         document.getElementById('marketplace').addEventListener('change', atualizarMarketplaceCadastro);
@@ -1810,10 +1808,14 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             e.preventDefault();
             const linkProduto = document.getElementById('link').value.trim();
             const linkAfiliadoProduto = document.getElementById('linkAfiliado').value.trim();
-            const marketplace = document.getElementById('marketplace').value || 'mercado_livre';
+            const linkShopeeProduto = document.getElementById('linkShopee').value.trim();
+            const precoShopeeProduto = document.getElementById('precoShopee').value.trim();
+            const marketplace = 'mercado_livre';
             const nomeLoja = marketplace === 'shopee' ? 'Shopee' : 'Mercado Livre';
             if (!linkMarketplaceValidoCadastro(linkProduto, marketplace)) return alert(`Cole um link HTTPS válido do produto na ${nomeLoja}.`);
             if (!linkMarketplaceValidoCadastro(linkAfiliadoProduto, marketplace)) return alert(`Cole um link de afiliado HTTPS válido da ${nomeLoja}.`);
+            if ((linkShopeeProduto && !numeroPrecoPromocao(precoShopeeProduto)) || (!linkShopeeProduto && precoShopeeProduto)) return alert('Para oferecer a Shopee, informe o link e o preço juntos.');
+            if (linkShopeeProduto && !linkMarketplaceValidoCadastro(linkShopeeProduto, 'shopee')) return alert('Confira o link HTTPS da Shopee.');
             const ofertaRelampagoAtiva = document.getElementById('ofertaRelampagoAtiva').checked;
             const ofertaRelampagoDuracao = document.getElementById('ofertaRelampagoDuracao').value.trim();
             const dadosProduto = {
@@ -1823,6 +1825,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 linkAfiliado: linkAfiliadoProduto,
                 marketplace,
                 mercadoLivreItemId: marketplace === 'mercado_livre' ? (extrairIdMercadoLivreCadastro(linkProduto) || extrairIdMercadoLivreCadastro(linkAfiliadoProduto)) : '',
+                linkShopee: linkShopeeProduto,
+                precoShopee: precoShopeeProduto,
                 selo: document.getElementById('selo').value,
                 foto: document.getElementById('foto').value.trim(),
                 comentario: document.getElementById('comentario').value.trim(),
@@ -2693,10 +2697,12 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     const fimRelampago = new Date(prod.ofertaRelampagoTerminaEm || '');
                     const restanteRelampago = Number.isNaN(fimRelampago.getTime()) ? 0 : fimRelampago.getTime() - Date.now();
                     document.getElementById('ofertaRelampagoDuracao').value = restanteRelampago > 0 ? formatarDuracaoRelampago(restanteRelampago) : "";
-                    document.getElementById('marketplace').value = marketplaceProduto(prod);
+                    document.getElementById('marketplace').value = 'mercado_livre';
                     atualizarMarketplaceCadastro();
                     document.getElementById('link').value = prod.link;
                     document.getElementById('linkAfiliado').value = prod.linkAfiliado || ""; // PUXANDO LINK DE AFILIADO
+                    document.getElementById('linkShopee').value = prod.linkShopee || "";
+                    document.getElementById('precoShopee').value = prod.precoShopee || "";
                     document.getElementById('foto').value = prod.foto;
                     document.getElementById('comentario').value = prod.comentario;
                     document.getElementById('pros').value = prod.pros || "";
