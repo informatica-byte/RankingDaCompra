@@ -320,7 +320,7 @@ for (const url of urls) {
   has(html, /"offers":(?:\{"@type":"Offer"|\[\{"@type":"Offer")/, "oferta estruturada ausente em página indexável", relative);
   has(html, /data-mobile-product-buy/, "ordem móvel protegida ausente", relative);
   has(html, /id="mobile-affiliate-offer"/, "botão fixo de preço ausente no celular", relative);
-  has(html, /growth-tools\.js\?v=20260913-patinete1/, "versão visual antiga ainda carregada", relative);
+  has(html, /growth-tools\.js\?v=20260913-seo1/, "versão visual antiga ainda carregada", relative);
 
   for (const identity of productIdentityKeys(html)) {
     const previous = identities.get(identity);
