@@ -6,6 +6,8 @@ const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
 const SHARE_VERSION = "20260810-1";
+const GROWTH_TOOLS_VERSION = "20260913-patinete1";
+const MOBILE_PRODUCT_STYLE = '<style data-mobile-product-buy>.mobile-buy{display:none}@media(max-width:700px){body{padding-bottom:72px}.top>div{display:flex;flex-direction:column;order:-1}.top>div>.eyebrow{order:1}.top>div>h1{order:2}.top>div>.full-title{order:3}.top>div>.rating{order:4}.top>div>.offer{order:5;margin:8px 0 14px}.top>div>.summary{order:6}.top>div>.facts{order:7}.photo{order:2}.mobile-buy{position:fixed;z-index:1000;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 15px;border-radius:11px;background:#1769e0;color:#fff;text-decoration:none;font-weight:950;box-shadow:0 10px 30px rgba(0,0,0,.25)}}</style>';
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const RETRYABLE_HTTP_STATUS = new Set([429, 500, 502, 503, 504]);
 
@@ -482,6 +484,32 @@ function relatedSection(product, related, productUrls, categoryName) {
   return `<!-- discovery-related:start --><section class="related-discovery" style="margin-top:28px;padding:20px;border:1px solid #dfe7e2;border-radius:13px;background:#fafcfb"><h2 style="margin:0 0 9px;font-size:1.1rem">Compare também em ${escapeHtml(categoryName)}</h2>${links ? `<ul style="margin:0 0 12px;padding-left:20px">${links}</ul>` : ""}${guide}<a href="${SITE}analises.html#${escapeHtml(slug(product.categoria))}" style="color:#116149;font-weight:850">Ver todas as análises desta categoria →</a></section><!-- discovery-related:end -->`;
 }
 
+function upgradeProductExperience(html) {
+  let next = String(html || "").replace(
+    /growth-tools\.js\?v=[^"'<>]+/g,
+    `growth-tools.js?v=${GROWTH_TOOLS_VERSION}`,
+  );
+  if (!next.includes("data-mobile-product-buy")) {
+    next = next.replace(
+      /(<script defer src=["']\/growth-tools\.js\?v=[^"']+["']><\/script>)/,
+      `${MOBILE_PRODUCT_STYLE}\n  $1`,
+    );
+  }
+  if (!next.includes('id="mobile-affiliate-offer"')) {
+    const offer = next.match(/<a class="cta(?: [^"]*)?" id="affiliate-offer" href="([^"]+)"[^>]*>([^<]+)<\/a>/i);
+    if (offer) {
+      const marketplace = /shopee/i.test(`${offer[1]} ${offer[2]}`) ? "Shopee" : "Mercado Livre";
+      const mobileOffer = `<a class="mobile-buy" id="mobile-affiliate-offer" href="${offer[1]}" target="_blank" rel="sponsored noopener noreferrer">Ver preço na ${marketplace}</a>`;
+      next = next.replace("</main>", `</main>\n\n  ${mobileOffer}`);
+    }
+  }
+  if (next.includes('id="mobile-affiliate-offer"') && !next.includes("data-mobile-offer-track")) {
+    const tracking = '<script data-mobile-offer-track>document.getElementById("mobile-affiliate-offer")?.addEventListener("click",function(){if(typeof gtag==="function")gtag("event","select_item",{item_list_name:"pagina_produto_mobile"})});</script>';
+    next = next.replace("</body>", `  ${tracking}\n</body>`);
+  }
+  return next;
+}
+
 async function addRelatedLinks(products, productsByCategory, productUrls, categoryNames) {
   let updated = 0;
   for (const product of products) {
@@ -503,7 +531,7 @@ async function addRelatedLinks(products, productsByCategory, productUrls, catego
       .filter((item) => item.id !== product.id).sort(sortProducts).slice(0, 4);
     const section = relatedSection(product, related, productUrls, categoryNames.get(product.categoria) || "Produtos");
     const withoutOldSection = html.replace(/<!-- discovery-related:start -->[\s\S]*?<!-- discovery-related:end -->/g, "");
-    const next = withoutOldSection.replace("</article>", `${section}</article>`);
+    const next = upgradeProductExperience(withoutOldSection.replace("</article>", `${section}</article>`));
     if (next !== html) {
       await writeFile(filePath, next, "utf8");
       updated += 1;

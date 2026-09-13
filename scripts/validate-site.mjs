@@ -194,6 +194,9 @@ if (/flatMap\(\(part\) => part\.split\(","\)\)/.test(sitemapGenerator)) {
 
 const discoveryGenerator = await readFile(resolve("scripts/generate-discovery.mjs"), "utf8");
 has(discoveryGenerator, /DISCOVERY_USE_GENERATED/, "descoberta interna ainda pode duplicar centenas de leituras do Firebase", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /function upgradeProductExperience\(html\)/, "contingência visual das páginas existentes ausente", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /data-mobile-product-buy/, "contingência não protege a ordem das informações no celular", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /id=\\?"mobile-affiliate-offer\\?"/, "contingência não garante o botão móvel de preço", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /writeFile\([\s\S]{0,100}search-index\.json/, "geração preventiva do índice de busca ausente", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /function renderCategoryGuide\(/, "gerador automático de comparativos por categoria ausente", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /categoryProducts\.length < 3/, "comparativo pode ser criado sem opções suficientes", "scripts/generate-discovery.mjs");
@@ -297,6 +300,9 @@ for (const url of urls) {
     .replace(/&#\d+;|&[a-z]+;/gi, "x");
   if (visibleH1.length > 100) fail(relative + ": título visível maior que 100 caracteres");
   has(html, /"offers":(?:\{"@type":"Offer"|\[\{"@type":"Offer")/, "oferta estruturada ausente em página indexável", relative);
+  has(html, /data-mobile-product-buy/, "ordem móvel protegida ausente", relative);
+  has(html, /id="mobile-affiliate-offer"/, "botão fixo de preço ausente no celular", relative);
+  has(html, /growth-tools\.js\?v=20260913-patinete1/, "versão visual antiga ainda carregada", relative);
 
   for (const identity of productIdentityKeys(html)) {
     const previous = identities.get(identity);
