@@ -1280,11 +1280,15 @@
     }
     const choices = [...eligibleCounts].filter(([, count]) => count >= 5)
       .sort((a, b) => (categoryScores.get(b[0]) || 0) - (categoryScores.get(a[0]) || 0) || b[1] - a[1]);
-    const category = choices[0]?.[0] || "";
-    return { category, label: data.categories[category] || category };
+    const seo = window.RDC_SEO_PRIORITIES;
+    const priorityChoices = choices.filter(([id]) => seo?.find(id, data.categories[id] || id));
+    const category = (priorityChoices[0] || choices[0])?.[0] || "";
+    const label = data.categories[category] || category;
+    const plan = seo?.find(category, label) || null;
+    return { category, label, plan, seoTitle: seo?.headline(plan, 0) || "" };
   }
 
-  function weeklyBuildDraft(data, query, maxPrice) {
+  function weeklyBuildDraft(data, query, maxPrice, seoTitle = "") {
     const normalizedQuery = weeklyNormalize(query);
     const queryWords = normalizedQuery.split(/\s+/).filter(Boolean);
     const metricScores = new Map();
@@ -1321,8 +1325,9 @@
     const label = query || finalSelection[0].categoriaNome || "produtos";
     return {
       versao: 2, semana: weeklyMondayKey(), validoAte: weeklyValidUntil(weeklyMondayKey()),
-      titulo: "Top 5 " + String(label).trim() + (maxPrice > 0 ? " até " + brl.format(maxPrice) : ""),
+      titulo: String(seoTitle || "").trim() || ("Top 5 " + String(label).trim() + (maxPrice > 0 ? " até " + brl.format(maxPrice) : "")),
       termo: String(query || "").trim(), precoMaximo: maxPrice || 0, produtos: finalSelection,
+      intencaoBusca: String(seoTitle || "").trim(),
       metodologia: { custoBeneficio: 35, avaliacao: 30, interesse: 15, evidencia: 20 }
     };
   }
@@ -1347,10 +1352,12 @@
     section.id = "weekly-ranking-admin";
     section.innerHTML = '<h2>🏆 Ranking comparativo da semana</h2>'
       + '<p>Escolha um produto ou categoria e o preço máximo. O sistema usa procura, cliques e dados cadastrados para ordenar cinco opções. Nada vai para a vitrine sem sua aprovação.</p>'
-      + '<div class="weekly-admin-grid"><div><label for="weekly-ranking-query">Produto ou categoria</label>'
+      + '<div class="weekly-seo-priority" style="margin:12px 0;padding:13px;border:1px solid #b9dcca;border-radius:11px;background:#f2faf6"><b>🎯 Prioridade de conteúdo</b><p>Comece por uma intenção específica de quem está perto de comprar. O termo filtra os produtos; o título é escrito para a busca.</p><div id="weekly-seo-chips" style="display:flex;gap:7px;flex-wrap:wrap"></div></div>'
+      + '<div class="weekly-admin-grid"><div><label for="weekly-ranking-query">Produto ou categoria (filtro)</label>'
       + '<input id="weekly-ranking-query" type="text" placeholder="Ex.: celular, patinete, air fryer"></div>'
       + '<div><label for="weekly-ranking-price">Preço máximo (opcional)</label>'
       + '<input id="weekly-ranking-price" type="number" min="1" step="0.01" inputmode="decimal" placeholder="Ex.: 1000,00"></div></div>'
+      + '<label for="weekly-ranking-seo-title">Título focado na busca</label><input id="weekly-ranking-seo-title" type="text" maxlength="120" placeholder="Ex.: 5 melhores celulares até R$ 1.500: comparação e custo-benefício">'
       + '<div class="weekly-admin-actions"><button id="weekly-ranking-suggest" type="button">✨ Sugerir pelo interesse da semana</button>'
       + '<button id="weekly-ranking-prepare" type="button">Preparar comparação</button>'
       + '<button id="weekly-ranking-ai" type="button" disabled>🤖 Gerar análise humanizada</button>'
@@ -1361,12 +1368,34 @@
     container.appendChild(section);
     const query = section.querySelector("#weekly-ranking-query");
     const price = section.querySelector("#weekly-ranking-price");
+    const seoTitle = section.querySelector("#weekly-ranking-seo-title");
     const status = section.querySelector("#weekly-ranking-status");
     const review = section.querySelector("#weekly-ranking-review");
     const publish = section.querySelector("#weekly-ranking-publish");
     const aiButton = section.querySelector("#weekly-ranking-ai");
     let cachedData = null;
     const ensureData = async () => cachedData || (cachedData = await weeklyAdminData(status));
+    const seo = window.RDC_SEO_PRIORITIES;
+    const chips = section.querySelector("#weekly-seo-chips");
+    if (chips && seo?.priorities) {
+      chips.innerHTML = seo.priorities.slice(0, 6).map(plan => '<button type="button" style="padding:7px 9px;border:1px solid #79b99b;border-radius:999px;background:#fff;color:#075f42;font-weight:850;cursor:pointer" data-seo-priority="' + escapeHtml(plan.id) + '">' + escapeHtml(plan.label) + '</button>').join("");
+      chips.addEventListener("click", event => {
+        const button = event.target.closest("[data-seo-priority]");
+        if (!button) return;
+        const plan = seo.priorities.find(item => item.id === button.dataset.seoPriority);
+        if (!plan) return;
+        query.value = plan.aliases[0];
+        const selectedBudget = Number(price.value) || plan.budgets[1] || plan.budgets[0] || 0;
+        if (!price.value && selectedBudget) price.value = selectedBudget;
+        seoTitle.value = seo.headline(plan, selectedBudget);
+        status.textContent = "Pauta escolhida: " + seo.phrase(plan, selectedBudget) + ". Confira o limite e prepare a comparação.";
+      });
+    }
+    const refreshSeoTitle = () => {
+      const plan = seo?.find(query.value, query.value);
+      if (plan) seoTitle.value = seo.headline(plan, numberPrice(price.value));
+    };
+    price.addEventListener("change", refreshSeoTitle);
     section.querySelector("#weekly-ranking-suggest").addEventListener("click", async event => {
       const button = event.currentTarget;
       button.disabled = true;
@@ -1375,7 +1404,9 @@
         const suggestion = weeklyChooseTheme(data);
         if (!suggestion.category) throw new Error("Ainda não há uma categoria com cinco produtos válidos.");
         query.value = suggestion.label;
-        status.textContent = "Sugestão da semana: " + suggestion.label + ". Você pode ajustar o termo e o limite de preço.";
+        if (suggestion.plan && !price.value) price.value = suggestion.plan.budgets[1] || suggestion.plan.budgets[0] || "";
+        seoTitle.value = suggestion.plan ? seo.headline(suggestion.plan, numberPrice(price.value)) : suggestion.seoTitle;
+        status.textContent = "Sugestão da semana: " + (suggestion.plan ? seo.phrase(suggestion.plan, numberPrice(price.value)) : suggestion.label) + ". Você pode ajustar o termo e o limite de preço.";
       } catch (error) {
         status.textContent = "Não foi possível sugerir agora: " + error.message;
       } finally { button.disabled = false; }
@@ -1395,7 +1426,7 @@
           term = suggestion.label;
           query.value = term;
         }
-        weeklyRankingDraft = weeklyBuildDraft(data, term, maxPrice);
+        weeklyRankingDraft = weeklyBuildDraft(data, term, maxPrice, seoTitle.value);
         review.innerHTML = weeklyDraftMarkup(weeklyRankingDraft);
         aiButton.disabled = false;
         publish.disabled = false;

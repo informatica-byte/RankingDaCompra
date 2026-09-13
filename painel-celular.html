@@ -9,6 +9,7 @@
     <style>
       *{box-sizing:border-box}body{margin:0;background:#f2f7f4;color:#102b22;font:16px system-ui,-apple-system,Segoe UI,sans-serif}header{position:sticky;top:0;z-index:3;background:#07563f;color:white;padding:14px 16px}header div{max-width:680px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}header b{font-size:18px}header a{color:white;text-decoration:none;border:1px solid #ffffff77;border-radius:9px;padding:8px;font-size:12px;font-weight:800}main{max-width:680px;margin:auto;padding:14px}.card{background:white;border:1px solid #d5e5de;border-radius:18px;padding:17px;margin-bottom:14px;box-shadow:0 8px 25px #1232}h1,h2{margin:0 0 8px}h1{font-size:23px}h2{font-size:19px}p{color:#587066;line-height:1.45}.etapa{color:#08794d;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}label{display:block;font-weight:800;margin:13px 0 6px}.campo{width:100%;min-height:49px;border:1px solid #a9c1b7;border-radius:12px;padding:12px;background:white}textarea.campo{min-height:105px}.btn{width:100%;min-height:52px;border:0;border-radius:12px;margin-top:14px;padding:10px;font-weight:900}.verde{background:#0a8f5b;color:white}.azul{background:#246bdb;color:white}.claro{background:#edf4f1;color:#07563f}.btn:disabled{opacity:.55}.tipos,.grade{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tipo{position:relative}.tipo input{position:absolute;opacity:0}.tipo span{display:flex;min-height:52px;align-items:center;justify-content:center;border:2px solid #d5e5de;border-radius:12px;font-weight:900;text-align:center}.tipo input:checked+span{border-color:#0a8f5b;background:#e9f8f0}.largo{grid-column:1/-1}.status{display:none;margin-top:13px;padding:12px;border-radius:12px;background:#eef5ff;color:#174b91}.status.on{display:block}.status.erro{background:#fff0ee;color:#a61b12}.status.ok{background:#e8f8ef;color:#096b43}#app,#preview{display:none}#foto-previa{display:none;width:100%;max-height:250px;object-fit:contain;border:1px solid #d5e5de;border-radius:14px}.mini{font-size:12px;color:#61776e}@media(max-width:480px){.grade{grid-template-columns:1fr}.largo{grid-column:auto}} .ranking-mobile-actions{display:grid;gap:9px;margin-top:12px}.ranking-mobile-actions .btn{margin-top:0}.ranking-mobile-review{margin-top:12px}.ranking-mobile-review ol{padding-left:22px}.ranking-mobile-review li{margin:11px 0}.ranking-mobile-review span{display:block;margin-top:3px;color:#587066;font-size:13px;line-height:1.4}.ranking-mobile-link{display:block;margin-top:12px;text-align:center;color:#07563f;font-weight:800}.ranking-mobile-note{padding:10px;border-radius:10px;background:#f0f8f4;font-size:13px;color:#355b4b}.focus-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.focus-mobile-item{background:#f2faf6;border:1px solid #d6e9df;border-radius:11px;padding:11px}.focus-mobile-item small{display:block;color:#61776e;font-size:10px;font-weight:900;text-transform:uppercase}.focus-mobile-item strong{display:block;margin-top:5px;color:#086140;font-size:14px;line-height:1.25}.focus-mobile-rec{margin-top:11px;padding:11px;border-radius:10px;background:#e9f8f0;color:#145139;font-size:13px;line-height:1.4}.focus-mobile-list{margin:10px 0 0;padding-left:20px;color:#405f52;font-size:13px}.focus-mobile-list li{margin:6px 0}.focus-mobile-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.focus-mobile-links a{color:#07563f;font-size:12px;font-weight:800}
     </style>
+    <script defer src="/seo-priorities.js?v=20260913-1"></script>
   </head>
   <body>
     <header>
@@ -90,7 +91,10 @@
           <h2>🏆 Top 5 comparativo</h2>
           <p>Escolha o produto ou categoria e o preço máximo. O painel usa os dados cadastrados, visualizações e cliques dos últimos sete dias para preparar cinco colocados.</p>
           <div class="ranking-mobile-note">Nada será exibido na vitrine antes de você conferir e aprovar.</div>
-          <label>Produto ou categoria</label><input id="ranking-termo" class="campo" placeholder="Ex.: celular, patinete, air fryer" /><label>Preço máximo (opcional)</label><input id="ranking-preco" class="campo" type="number" min="1" step="0.01" inputmode="decimal" placeholder="Ex.: 1000,00" />
+          <label>Pauta prioritária</label><select id="ranking-prioridade" class="campo"><option value="">Escolher pela procura da semana</option><option value="celular">Celulares</option><option value="notebook">Notebooks</option><option value="air-fryer">Air fryers</option><option value="patinete-eletrico">Patinetes elétricos</option><option value="smart-tv">Smart TVs</option><option value="fone-bluetooth">Fones Bluetooth</option><option value="smartwatch">Smartwatches</option></select>
+          <div class="mini">A pauta preenche um filtro seguro e uma frase específica para os buscadores.</div>
+          <label>Produto ou categoria (filtro)</label><input id="ranking-termo" class="campo" placeholder="Ex.: celular, patinete, air fryer" /><label>Preço máximo (opcional)</label><input id="ranking-preco" class="campo" type="number" min="1" step="0.01" inputmode="decimal" placeholder="Ex.: 1000,00" />
+          <label>Título focado na busca</label><input id="ranking-titulo-seo" class="campo" maxlength="120" placeholder="Ex.: 5 melhores celulares até R$ 1.500: comparação e custo-benefício" />
           <div class="ranking-mobile-actions"><button id="ranking-sugerir" class="btn claro" type="button">✨ Sugerir pelo interesse da semana</button><button id="ranking-preparar" class="btn verde" type="button">Preparar comparação</button></div>
           <button id="ranking-ia" class="btn claro" type="button" disabled>🤖 Gerar análise humanizada</button>
           <div id="ranking-status" class="status"></div>
@@ -873,7 +877,10 @@
             c = String(p.categoria || "ofertas");
           if (peso) pontos.set(c, (pontos.get(c) || 0) + peso);
         });
-        const escolhido = [...contagem].filter(([, n]) => n >= 5).sort((a, b) => (pontos.get(b[0]) || 0) - (pontos.get(a[0]) || 0) || b[1] - a[1])[0]?.[0];
+        const opcoes = [...contagem].filter(([, n]) => n >= 5).sort((a, b) => (pontos.get(b[0]) || 0) - (pontos.get(a[0]) || 0) || b[1] - a[1]);
+        const seo = window.RDC_SEO_PRIORITIES;
+        const prioritarias = opcoes.filter(([id]) => seo?.find(id, rankingCategoriaNome(id)));
+        const escolhido = (prioritarias[0] || opcoes[0])?.[0];
         if (!escolhido) throw Error("Ainda não há uma categoria com cinco produtos válidos.");
         return rankingCategoriaNome(escolhido);
       }
@@ -944,7 +951,7 @@
           };
         });
       }
-      function rankingPreparar(dados, termo, teto) {
+      function rankingPreparar(dados, termo, teto, tituloSeo = "") {
         const palavras = rankingNorm(termo).split(/\s+/).filter(Boolean),
           sinais = new Map();
         dados.metricas.forEach((m) => {
@@ -993,9 +1000,10 @@
           versao: 2,
           semana,
           validoAte: rankingValidoAte(semana),
-          titulo: "Top 5 " + rotulo + (teto > 0 ? " até R$ " + preco(teto) : ""),
+          titulo: String(tituloSeo || "").trim() || ("Top 5 " + rotulo + (teto > 0 ? " até R$ " + preco(teto) : "")),
           termo: rotulo,
           precoMaximo: teto || 0,
+          intencaoBusca: String(tituloSeo || "").trim(),
           produtos,
           metodologia: { custoBeneficio: 35, avaliacao: 30, interesse: 15, evidencia: 20 },
         };
@@ -1118,6 +1126,23 @@
           msg("ranking-status", String(d.semana || "") === rankingSemana() ? "✓ O ranking desta semana já está publicado." : "O ranking publicado é da semana anterior. Prepare a nova seleção.", "ok");
         } catch {}
       }
+      function rankingAplicarPlanoSeo(plan) {
+        const seo = window.RDC_SEO_PRIORITIES;
+        if (!plan || !seo) return;
+        $("ranking-termo").value = plan.aliases[0];
+        const limite = numero($("ranking-preco").value) || plan.budgets[1] || plan.budgets[0] || 0;
+        if (!$("ranking-preco").value && limite) $("ranking-preco").value = limite;
+        $("ranking-titulo-seo").value = seo.headline(plan, limite);
+      }
+      $("ranking-prioridade").onchange = (e) => {
+        const seo = window.RDC_SEO_PRIORITIES;
+        rankingAplicarPlanoSeo(seo?.priorities.find((plan) => plan.id === e.target.value));
+      };
+      $("ranking-preco").onchange = () => {
+        const seo = window.RDC_SEO_PRIORITIES,
+          plan = seo?.find($("ranking-termo").value, $("ranking-termo").value);
+        if (plan) $("ranking-titulo-seo").value = seo.headline(plan, numero($("ranking-preco").value));
+      };
       $("ranking-sugerir").onclick = async (e) => {
         const b = e.currentTarget;
         b.disabled = true;
@@ -1125,7 +1150,11 @@
           const d = await rankingCarregarDados(),
             tema = rankingSugerirTema(d);
           $("ranking-termo").value = tema;
-          msg("ranking-status", "Sugestão da semana: " + tema + ". Você pode ajustar o termo e o preço.", "ok");
+          const seo = window.RDC_SEO_PRIORITIES,
+            plan = seo?.find(tema, tema);
+          rankingAplicarPlanoSeo(plan);
+          if (plan) $("ranking-prioridade").value = plan.id;
+          msg("ranking-status", "Sugestão da semana: " + (plan ? seo.phrase(plan, numero($("ranking-preco").value)) : tema) + ". Você pode ajustar o termo e o preço.", "ok");
         } catch (x) {
           msg("ranking-status", "Não foi possível sugerir: " + x.message, "erro");
         } finally {
@@ -1144,7 +1173,7 @@
             termo = rankingSugerirTema(d);
             $("ranking-termo").value = termo;
           }
-          rankingDraftMovel = rankingPreparar(d, termo, numero($("ranking-preco").value));
+          rankingDraftMovel = rankingPreparar(d, termo, numero($("ranking-preco").value), $("ranking-titulo-seo").value);
           rankingMostrarRevisao(rankingDraftMovel);
           $("ranking-publicar").disabled = false;
           $("ranking-ia").disabled = false;

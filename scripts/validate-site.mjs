@@ -21,7 +21,8 @@ has(homeHtml, /const rotaInicial=.*:homeComPromocoes\(\)/, "a vitrine inicial ai
 has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo histórico ausente", "index.html");
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
-has(homeHtml, /growth-tools\.js\?v=20260913-patinete1/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
+has(homeHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente da vitrine", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20260913-seo1/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
 has(homeHtml, /class="hero-search"[\s\S]{0,300}name="busca"/, "busca principal visível ausente da primeira tela", "index.html");
 has(homeHtml, /Ver todos os comparativos/, "atalho principal para comparativos ausente", "index.html");
 if (/`#\$\{i\} no ranking`/.test(homeHtml)) fail("index.html: resultado comum ainda recebe posição de ranking sem comparação aprovada");
@@ -34,6 +35,14 @@ has(homeHtml, /\.search-toggle\{[^}]*width:44px;height:44px/, "botão de busca m
 has(homeHtml, /\.share-card-button,\.share-deal-button\{min-height:44px/, "botões de compartilhamento menores que 44 pixels", "index.html");
 
 const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
+const seoPriorities = await readFile(resolve("seo-priorities.js"), "utf8");
+has(seoPriorities, /id:\s*"celular"/, "prioridade de celulares ausente", "seo-priorities.js");
+has(seoPriorities, /id:\s*"notebook"/, "prioridade de notebooks ausente", "seo-priorities.js");
+has(seoPriorities, /id:\s*"air-fryer"/, "prioridade de air fryers ausente", "seo-priorities.js");
+has(seoPriorities, /id:\s*"patinete-eletrico"/, "prioridade de patinetes ausente", "seo-priorities.js");
+has(seoPriorities, /melhor celular até \{price\}/, "pauta de cauda longa por preço ausente", "seo-priorities.js");
+has(growthTools, /id="weekly-ranking-seo-title"/, "título de busca separado do filtro ausente", "growth-tools.js");
+has(growthTools, /intencaoBusca:/, "intenção de busca não é preservada no ranking", "growth-tools.js");
 has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
 has(growthTools, /const isProductPage = \/\\\/produto\\\//, "tratamento específico da página de produto ausente", "growth-tools.js");
 has(growthTools, /\.product-detail-page \.club-floating\{display:none\}/, "WhatsApp flutuante ainda pode cobrir a compra no celular", "growth-tools.js");
@@ -102,6 +111,8 @@ const mobilePanelHtml = await readFile(resolve("painel-celular.html"), "utf8");
 has(mobilePanelHtml, /id="ranking-mobile"/, "painel do ranking comparativo ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /id="ranking-termo"/, "filtro por produto ou categoria ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /id="ranking-preco"/, "limite de preço do ranking ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /id="ranking-prioridade"/, "seletor de pauta SEO ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /id="ranking-titulo-seo"/, "título de busca separado do filtro ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /rankingSugerirTema/, "sugestão pelo interesse semanal ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /where\("dia",\s*">=",\s*chave\)/, "análise dos últimos sete dias ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /function rankingMetricaProdutoId\(/, "compatibilidade móvel com métricas históricas ausente", "painel-celular.html");
@@ -147,7 +158,8 @@ has(dashboardHtml, /id="central-foco"/, "Central de foco por categoria e produto
 has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Central de foco ausente", "dashboard.html");
 has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20260913-patinete1/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
+has(dashboardHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente do painel", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20260913-seo1/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
 has(dashboardHtml, /Executar ou acompanhar o lote diário/, "atalho do lote diário ausente", "dashboard.html");
 has(dashboardHtml, /todos os produtos são conferidos juntos uma vez por dia/i, "explicação do lote diário ausente", "dashboard.html");
 if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
@@ -173,7 +185,8 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260913-patinete1"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO ausente das novas páginas", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260913-seo1"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="mobile-affiliate-offer"/, "botão de compra fixo no celular ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /\.top>div\{display:flex;flex-direction:column;order:-1\}/, "informações principais ainda aparecem depois da foto no celular", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /contentType === "image\/webp" \? "webp"/, "imagens WebP do catálogo ainda podem bloquear a publicação", "scripts/generate-sitemap.mjs");
@@ -200,6 +213,8 @@ has(discoveryGenerator, /data-mobile-product-buy/, "contingência não protege a
 has(discoveryGenerator, /id=\\?"mobile-affiliate-offer\\?"/, "contingência não garante o botão móvel de preço", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /writeFile\([\s\S]{0,100}search-index\.json/, "geração preventiva do índice de busca ausente", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /function renderCategoryGuide\(/, "gerador automático de comparativos por categoria ausente", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /function categoryIntent\(/, "intenções de busca não orientam os comparativos", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /Dúvidas que este comparativo ajuda a responder/, "cauda longa não aparece nos guias prioritários", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /categoryProducts\.length < 3/, "comparativo pode ser criado sem opções suficientes", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /if \(!guidePages\.includes\(file\)\) await unlink/, "comparativo antigo pode permanecer publicado depois de perder opções suficientes", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /ranking:\s*0,/, "busca ainda pode herdar posições não aprovadas", "scripts/generate-discovery.mjs");

@@ -1,12 +1,13 @@
 import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import { correctProductData } from "./product-title-corrections.mjs";
+import SEO_PRIORITIES from "../seo-priorities.js";
 
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
 const SHARE_VERSION = "20260810-1";
-const GROWTH_TOOLS_VERSION = "20260913-patinete1";
+const GROWTH_TOOLS_VERSION = "20260913-seo1";
 const MOBILE_PRODUCT_STYLE = '<style data-mobile-product-buy>.mobile-buy{display:none}@media(max-width:700px){body{padding-bottom:72px}.top>div{display:flex;flex-direction:column;order:-1}.top>div>.eyebrow{order:1}.top>div>h1{order:2}.top>div>.full-title{order:3}.top>div>.rating{order:4}.top>div>.offer{order:5;margin:8px 0 14px}.top>div>.summary{order:6}.top>div>.facts{order:7}.photo{order:2}.mobile-buy{position:fixed;z-index:1000;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 15px;border-radius:11px;background:#1769e0;color:#fff;text-decoration:none;font-weight:950;box-shadow:0 10px 30px rgba(0,0,0,.25)}}</style>';
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const RETRYABLE_HTTP_STATUS = new Set([429, 500, 502, 503, 504]);
@@ -347,6 +348,19 @@ function guideFileName(categoryId) {
   return `melhores-${slug(categoryId)}.html`;
 }
 
+function categoryIntent(categoryId, categoryName) {
+  const plan = SEO_PRIORITIES.find(categoryId, categoryName);
+  if (!plan) return null;
+  const exampleBudget = plan.budgets[1] || plan.budgets[0] || 0;
+  return {
+    pageTitle: `Melhores ${plan.label.toLowerCase()} custo-benefício de 2026`,
+    heading: `Melhores ${plan.label.toLowerCase()} custo-benefício: {count} produtos comparados`,
+    description: `Compare ${plan.label.toLowerCase()} por preço, vantagens, limitações e perfil de uso para escolher com mais segurança.`,
+    phrases: plan.phrases.filter((phrase) => !phrase.includes("{model}"))
+      .map((phrase) => phrase.replace("{price}", money(exampleBudget))).slice(0, 3)
+  };
+}
+
 function categoryScore(product, minimumPrice, maximumPrice) {
   const price = numberPrice(product.precoPromocional || product.preco);
   const range = Math.max(maximumPrice - minimumPrice, 1);
@@ -387,11 +401,27 @@ function renderCategoryGuide(categoryId, categoryName, categoryProducts, product
     const why = `A posição resulta do preço ${relativePrice} da média da seleção, ${positives.length + attentions.length} evidências editoriais cadastradas${trustedRating(product.nota) ? ` e nota editorial de ${trustedRating(product.nota).toFixed(1)}/5` : " e ausência de nota confiável usada no cálculo"}. Pontuação comparativa: ${score.total.toFixed(1)} de 100.`;
     return `<article class="rank-card"><div class="rank-number">${index + 1}º lugar</div><img src="${escapeHtml(firstUrl(product.foto))}" alt="${escapeHtml(product.titulo)}" loading="lazy" width="260" height="210"><div><h2>${escapeHtml(product.titulo)}</h2><p class="why"><b>Por que está nesta posição:</b> ${escapeHtml(why)}</p><p><b>Indicado para:</b> ${escapeHtml(positives[0] || "Quem procura esta proposta e quer confirmar os detalhes diretamente no anúncio.")}</p><p><b>Não é a melhor escolha para:</b> ${escapeHtml(attentions[0] || "Quem depende de uma característica ainda não confirmada na ficha pública.")}</p><details><summary>Mais informações</summary><ul>${positives.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}${attentions.map((item) => `<li><b>Atenção:</b> ${escapeHtml(item)}</li>`).join("")}</ul></details><div class="card-foot"><strong>${escapeHtml(money(price))}</strong><a href="${escapeHtml(productUrls.get(product.id))}">Ver análise e preço atual</a></div></div></article>`;
   }).join("");
+  const pageTitle = categoryIntent(categoryId, categoryName)?.pageTitle || `Melhores opções de ${categoryName} em 2026`;
   const structuredData = JSON.stringify({ "@context": "https://schema.org", "@graph": [
     { "@type": "Organization", "@id": `${SITE}#organization`, name: "Ranking da Compra", url: SITE },
-    { "@type": "CollectionPage", "@id": `${guideUrl}#page`, name: `Melhores opções de ${categoryName} em 2026`, url: guideUrl, dateModified: lastModified, mainEntity: { "@type": "ItemList", itemListElement: ranked.map((product, index) => ({ "@type": "ListItem", position: index + 1, url: productUrls.get(product.id), name: product.titulo })) } },
+    { "@type": "CollectionPage", "@id": `${guideUrl}#page`, name: pageTitle, url: guideUrl, dateModified: lastModified, mainEntity: { "@type": "ItemList", itemListElement: ranked.map((product, index) => ({ "@type": "ListItem", position: index + 1, url: productUrls.get(product.id), name: product.titulo })) } },
   ] }).replace(/</g, "\\u003c");
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow,max-image-preview:large"><title>Melhores opções de ${escapeHtml(categoryName)} em 2026 | Ranking da Compra</title><meta name="description" content="Compare ${ranked.length} opções de ${escapeHtml(categoryName)} por preço, pontos positivos, limitações e evidências editoriais."><link rel="canonical" href="${guideUrl}"><meta property="og:type" content="article"><meta property="og:title" content="Melhores opções de ${escapeHtml(categoryName)} em 2026"><meta property="og:description" content="Comparação objetiva com melhor geral, custo-benefício e opção mais barata."><meta property="og:url" content="${guideUrl}"><meta property="og:image" content="${escapeHtml(firstUrl(winner.foto))}"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0f3d2e"><script type="application/ld+json">${structuredData}</script><style>:root{--green:#116149;--ink:#11221d;--muted:#607068;--line:#dfe7e2;--cream:#fbfaf5}*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.55}a{color:var(--green)}.wrap{width:min(1120px,calc(100% - 28px));margin:auto}header{background:#fff;border-bottom:1px solid var(--line)}header .wrap{min-height:66px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:950;text-decoration:none}.hero{padding:42px 0 24px}.eyebrow{color:var(--green);font-size:.73rem;font-weight:950;letter-spacing:.1em;text-transform:uppercase}h1{max-width:880px;margin:8px 0 12px;font-size:clamp(2rem,5vw,3.6rem);line-height:1.04;letter-spacing:-.05em}.hero p{max-width:850px;color:var(--muted)}.disclosure{padding:11px 13px;border-left:4px solid var(--green);background:#edf7f1;border-radius:8px;font-size:.84rem}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}.quick article{display:flex;flex-direction:column;gap:7px;padding:18px;background:#fff;border:1px solid var(--line);border-radius:14px}.quick span{font-weight:950;color:var(--green)}.quick b{font-size:1.15rem}.quick a,.card-foot a{margin-top:auto;padding:10px 12px;border-radius:8px;background:var(--green);color:#fff;text-align:center;text-decoration:none;font-weight:900}.table-wrap{overflow:auto;margin:30px 0;background:#fff;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:820px}caption{padding:16px;text-align:left;font-weight:950}th,td{padding:12px;border-top:1px solid var(--line);text-align:left;font-size:.84rem}.rank-card{position:relative;display:grid;grid-template-columns:230px 1fr;gap:24px;margin:18px 0;padding:23px;background:#fff;border:1px solid var(--line);border-radius:18px}.rank-card:first-of-type{border:2px solid #e0ad30;background:#fffdf5}.rank-card img{width:100%;height:215px;object-fit:contain;background:#fafcfb;border-radius:12px}.rank-number{position:absolute;top:12px;left:12px;padding:6px 9px;border-radius:999px;background:var(--green);color:#fff;font-size:.75rem;font-weight:950}.rank-card h2{margin:0 0 9px;line-height:1.2}.why{padding:12px;background:#f1f7f3;border-radius:10px}summary{color:var(--green);font-weight:900;cursor:pointer}.card-foot{display:flex;align-items:center;justify-content:space-between;gap:16px}.card-foot strong{color:#087a3d;font-size:1.25rem}.method{margin:36px 0;padding:20px;background:#fff;border:1px solid var(--line);border-radius:14px}footer{margin-top:42px;padding:28px 0;background:#10231c;color:#dfeae4;font-size:.82rem}footer a{color:#fff}@media(max-width:720px){header .wrap{gap:12px;font-size:.82rem}.hero{padding-top:27px}.quick{grid-template-columns:1fr}.rank-card{grid-template-columns:1fr;padding:18px}.rank-card img{height:205px}.rank-card h2{padding-right:58px}.card-foot{align-items:stretch;flex-direction:column}.card-foot a{min-height:48px;display:grid;place-items:center}}</style></head><body><header><div class="wrap"><a class="brand" href="${SITE}">Ranking da Compra</a><a href="${SITE}analises.html#${escapeHtml(slug(categoryId))}">Todas as análises</a></div></header><main class="wrap"><section class="hero"><span class="eyebrow">Guia de compra atualizado em 2026</span><h1>Melhores opções de ${escapeHtml(categoryName)}: ${ranked.length} produtos comparados</h1><p>Veja logo no início o melhor geral, o custo-benefício e a opção mais barata. Depois, confira por que cada produto ocupa sua posição.</p><p class="disclosure"><b>Transparência:</b> a classificação usa preço e informações públicas cadastradas. A equipe não afirma ter realizado teste prático. Confirme especificações, preço, estoque e garantia com o vendedor.</p></section><section class="quick" aria-label="Destaques rápidos">${quick}</section><div class="table-wrap"><table><caption>Comparação rápida</caption><thead><tr><th>Produto</th><th>Preço</th><th>Principal vantagem</th><th>Ponto de atenção</th></tr></thead><tbody>${rows}</tbody></table></div><section aria-label="Ranking detalhado">${cards}</section><section class="method"><h2>Como classificamos</h2><p>A pontuação de 0 a 100 considera custo-benefício (35%), avaliação editorial confiável (30%), qualidade dos pontos positivos e limitações cadastrados (20%) e presença de fatos técnicos mensuráveis (15%). Notas inconsistentes não são usadas.</p><a href="${SITE}como-avaliamos.html">Conheça a metodologia editorial completa →</a></section></main><footer><div class="wrap"><b>Ranking da Compra</b> — alguns links são de afiliados e podem gerar comissão sem custo adicional para você. <a href="${SITE}politica-afiliados.html">Política de afiliados</a>.</div></footer></body></html>\n`;
+}
+
+function applyCategorySearchIntent(html, categoryId, categoryName, productCount) {
+  const intent = categoryIntent(categoryId, categoryName);
+  if (!intent || !html) return html;
+  const pageTitle = intent.pageTitle;
+  const heading = intent.heading.replace("{count}", productCount);
+  const intentBlock = `<section class="method search-intents"><h2>Dúvidas que este comparativo ajuda a responder</h2><ul>${intent.phrases.map((phrase) => `<li>${escapeHtml(phrase)}</li>`).join("")}</ul><p>Essas frases representam intenções de compra. A seleção continua baseada apenas nos produtos e dados realmente cadastrados.</p></section>`;
+  return html
+    .replace(/<title>[^<]+<\/title>/i, `<title>${escapeHtml(pageTitle)} | Ranking da Compra</title>`)
+    .replace(/<meta name="description" content="[^"]*">/i, `<meta name="description" content="${escapeHtml(intent.description)}">`)
+    .replace(/<meta property="og:title" content="[^"]*">/i, `<meta property="og:title" content="${escapeHtml(pageTitle)}">`)
+    .replace(/<meta property="og:description" content="[^"]*">/i, `<meta property="og:description" content="${escapeHtml(intent.description)}">`)
+    .replace(/<h1>[^<]+<\/h1>/i, `<h1>${escapeHtml(heading)}</h1>`)
+    .replace('<section class="method"><h2>Como classificamos</h2>', `${intentBlock}<section class="method"><h2>Como classificamos</h2>`);
 }
 
 function extractSitemapLocations(xml) {
@@ -607,7 +637,9 @@ await writeFile(resolve("analises.html"), renderDirectoryPage(categories, produc
 const guidePages = [];
 for (const category of categories) {
   const fileName = guideFileName(category.id);
-  const guide = renderCategoryGuide(category.id, categoryNames.get(category.id) || category.id, productsByCategory.get(category.id) || [], productUrls, lastModified);
+  const categoryName = categoryNames.get(category.id) || category.id;
+  const categoryProducts = productsByCategory.get(category.id) || [];
+  const guide = applyCategorySearchIntent(renderCategoryGuide(category.id, categoryName, categoryProducts, productUrls, lastModified), category.id, categoryName, categoryProducts.length);
   if (!guide) continue;
   await writeFile(resolve(fileName), guide, "utf8");
   guidePages.push(fileName);
