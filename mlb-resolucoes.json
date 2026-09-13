@@ -1,6 +1,20 @@
 {
-  "atualizadoEm": "2026-09-13T16:08:48.842Z",
+  "atualizadoEm": "2026-09-13T18:49:44.760Z",
   "resultados": {
+    "qezf5Qc6ykm94UaqeHeH": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/ventilador-de-coluna-ventisol-turbo-6-pas-30cm-preto-8234/p/MLB18971071#polycard_client=search_best-seller&tracking_id=30565e66-500d-43c5-ad36-d5de57fff1db&wid=MLB4116164126&sid=search",
+      "resolvidoEm": "2026-09-13T18:49:44.759Z",
+      "tentativas": 2
+    },
+    "Ro6rqlC0f9925KQKewft": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/camera-de-seguranca-inteligente-intelbras-im3-c-branca/p/MLB18596028?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=f480117b-fc5f-4a2e-9ecc-a766df9a9ace&position=3&tracking_id=b8604059-b409-4ab4-8cf7-ccc43927634b&wid=MLB2634448552&sid=offers",
+      "resolvidoEm": "2026-09-13T18:49:27.312Z",
+      "tentativas": 3
+    },
     "tArf2E8YsNab15tWZivz": {
       "status": "ok",
       "mlb": "MLB3824682239",
@@ -108,20 +122,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/climatizador-portatil-16-litros-130w-ventisol-clin16-cor-cinza/p/MLB32974346#polycard_client=search_best-seller&tracking_id=54eadf76-093e-4a4b-a7f5-73ca237a66df&wid=MLB4722851223&sid=search",
       "resolvidoEm": "2026-09-13T16:08:43.831Z",
       "tentativas": 1
-    },
-    "qezf5Qc6ykm94UaqeHeH": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/ventilador-de-coluna-ventisol-turbo-6-pas-30cm-preto-8234/p/MLB18971071#polycard_client=search_best-seller&tracking_id=30565e66-500d-43c5-ad36-d5de57fff1db&wid=MLB4116164126&sid=search",
-      "resolvidoEm": "2026-09-13T16:08:42.304Z",
-      "tentativas": 1
-    },
-    "Ro6rqlC0f9925KQKewft": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/camera-de-seguranca-inteligente-intelbras-im3-c-branca/p/MLB18596028?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=f480117b-fc5f-4a2e-9ecc-a766df9a9ace&position=3&tracking_id=b8604059-b409-4ab4-8cf7-ccc43927634b&wid=MLB2634448552&sid=offers",
-      "resolvidoEm": "2026-09-13T16:08:24.528Z",
-      "tentativas": 2
     },
     "mIqmkiBzetSZq2MLZSEc": {
       "status": "ok",
