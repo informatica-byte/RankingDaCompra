@@ -873,14 +873,21 @@
           const p = produtos.get(rankingMetricaProdutoId(m));
           if (!p) return;
           const t = rankingTipoMetrica(m),
-            peso = t === "clique_oferta" ? 5 : t === "visualizacao_produto" ? 1 : 0,
+            peso = t === "clique_oferta" ? 5 : t === "compartilhamento" ? 2 : t === "visualizacao_produto" ? 1 : 0,
             c = String(p.categoria || "ofertas");
           if (peso) pontos.set(c, (pontos.get(c) || 0) + peso);
         });
         const opcoes = [...contagem].filter(([, n]) => n >= 5).sort((a, b) => (pontos.get(b[0]) || 0) - (pontos.get(a[0]) || 0) || b[1] - a[1]);
         const seo = window.RDC_SEO_PRIORITIES;
         const prioritarias = opcoes.filter(([id]) => seo?.find(id, rankingCategoriaNome(id)));
-        const escolhido = (prioritarias[0] || opcoes[0])?.[0];
+        let selecionada = prioritarias[0] || opcoes[0];
+        const geral = opcoes[0], prioritario = prioritarias[0];
+        if (geral && prioritario && geral[0] !== prioritario[0]) {
+          const pontosGeral = pontos.get(geral[0]) || 0,
+            pontosPrioridade = pontos.get(prioritario[0]) || 0;
+          if (pontosGeral >= Math.max(10, pontosPrioridade * 1.5)) selecionada = geral;
+        }
+        const escolhido = selecionada?.[0];
         if (!escolhido) throw Error("Ainda não há uma categoria com cinco produtos válidos.");
         return rankingCategoriaNome(escolhido);
       }

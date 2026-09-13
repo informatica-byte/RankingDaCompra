@@ -1268,7 +1268,7 @@
       const product = byId.get(weeklyMetricProductId(metric));
       if (!product) continue;
       const kind = weeklyMetricKind(metric);
-      const weight = kind === "clique_oferta" ? 5 : kind === "visualizacao_produto" ? 1 : 0;
+      const weight = kind === "clique_oferta" ? 5 : kind === "compartilhamento" ? 2 : kind === "visualizacao_produto" ? 1 : 0;
       if (!weight) continue;
       const category = String(product.categoria || "ofertas");
       categoryScores.set(category, (categoryScores.get(category) || 0) + weight);
@@ -1282,7 +1282,14 @@
       .sort((a, b) => (categoryScores.get(b[0]) || 0) - (categoryScores.get(a[0]) || 0) || b[1] - a[1]);
     const seo = window.RDC_SEO_PRIORITIES;
     const priorityChoices = choices.filter(([id]) => seo?.find(id, data.categories[id] || id));
-    const category = (priorityChoices[0] || choices[0])?.[0] || "";
+    let selected = priorityChoices[0] || choices[0];
+    const overall = choices[0], priority = priorityChoices[0];
+    if (overall && priority && overall[0] !== priority[0]) {
+      const overallScore = categoryScores.get(overall[0]) || 0;
+      const priorityScore = categoryScores.get(priority[0]) || 0;
+      if (overallScore >= Math.max(10, priorityScore * 1.5)) selected = overall;
+    }
+    const category = selected?.[0] || "";
     const label = data.categories[category] || category;
     const plan = seo?.find(category, label) || null;
     return { category, label, plan, seoTitle: seo?.headline(plan, 0) || "" };

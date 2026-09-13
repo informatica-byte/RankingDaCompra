@@ -43,6 +43,8 @@ has(seoPriorities, /id:\s*"patinete-eletrico"/, "prioridade de patinetes ausente
 has(seoPriorities, /melhor celular até \{price\}/, "pauta de cauda longa por preço ausente", "seo-priorities.js");
 has(growthTools, /id="weekly-ranking-seo-title"/, "título de busca separado do filtro ausente", "growth-tools.js");
 has(growthTools, /intencaoBusca:/, "intenção de busca não é preservada no ranking", "growth-tools.js");
+has(growthTools, /kind === "compartilhamento" \? 2/, "compartilhamentos não participam da sugestão semanal", "growth-tools.js");
+has(growthTools, /overallScore >= Math\.max\(10, priorityScore \* 1\.5\)/, "procura excepcional não consegue superar a pauta inicial", "growth-tools.js");
 has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
 has(growthTools, /const isProductPage = \/\\\/produto\\\//, "tratamento específico da página de produto ausente", "growth-tools.js");
 has(growthTools, /\.product-detail-page \.club-floating\{display:none\}/, "WhatsApp flutuante ainda pode cobrir a compra no celular", "growth-tools.js");
