@@ -59,7 +59,7 @@ jobs:
         id: publicar
         shell: bash
         run: |
-          if [[ -z "$(git status --porcelain -- sitemap.xml produto analises.html top5-semanal.json search-index.json)" ]]; then
+          if [[ -z "$(git status --porcelain -- sitemap.xml produto analises.html 'melhores-*.html' top5-semanal.json search-index.json)" ]]; then
             echo "O sitemap, as páginas sociais e o diretório de análises já estão atualizados."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -67,7 +67,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A sitemap.xml produto analises.html top5-semanal.json search-index.json
+          git add -A sitemap.xml produto analises.html 'melhores-*.html' top5-semanal.json search-index.json
           git commit -m "Atualiza sitemap, análises, busca e Top 6"
           git pull --rebase origin main
           git push origin HEAD:main

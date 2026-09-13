@@ -82,7 +82,7 @@ jobs:
       - name: Publicar somente quando houver mudança
         shell: bash
         run: |
-          if [[ -z "$(git status --porcelain -- mercadolivre-status.json sitemap.xml produto analises.html top5-semanal.json search-index.json .mercadolivre-token.enc)" ]]; then
+          if [[ -z "$(git status --porcelain -- mercadolivre-status.json sitemap.xml produto analises.html 'melhores-*.html' top5-semanal.json search-index.json .mercadolivre-token.enc)" ]]; then
             echo "Preços e disponibilidade continuam iguais."
             exit 0
           fi
@@ -90,7 +90,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A mercadolivre-status.json sitemap.xml produto analises.html top5-semanal.json search-index.json
+          git add -A mercadolivre-status.json sitemap.xml produto analises.html 'melhores-*.html' top5-semanal.json search-index.json
           if [[ -f .mercadolivre-token.enc ]]; then
             git add .mercadolivre-token.enc
           fi

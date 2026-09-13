@@ -81,6 +81,20 @@ const PRODUCT_CORRECTIONS = new Map([
       "Confirme no anúncio a compatibilidade de acessórios e a versão do sistema antes da compra.",
     ],
   }],
+  ["6kC1jJj7i4kRtYyp3SZr", {
+    incorrect: "Patinete Elétrico",
+    correct: "Patinete Elétrico Ydtech M187 Dobrável com Bluetooth",
+    suppressRating: true,
+    fileReplacements: [
+      ["Patinete Elétrico Ydtech M187 Dobrável com Bluetooth Ydtech M187 Dobrável com Bluetooth", "Patinete Elétrico Ydtech M187 Dobrável com Bluetooth"],
+      ["<span>Categoria</span>Patinete Elétrico Ydtech M187 Dobrável com Bluetooth", "<span>Categoria</span>Patinete Elétrico"],
+      ["\"position\":2,\"name\":\"Patinete Elétrico Ydtech M187 Dobrável com Bluetooth\",\"item\"", "\"position\":2,\"name\":\"Patinete Elétrico\",\"item\""],
+      ["\"category\":\"Patinete Elétrico Ydtech M187 Dobrável com Bluetooth\",\"url\"", "\"category\":\"Patinete Elétrico\",\"url\""],
+    ],
+  }],
+  ["VyYiww5HVcBRIH8SD5SD", {
+    suppressRating: true,
+  }],
 ]);
 
 export function correctProductData(product) {
@@ -96,6 +110,7 @@ export function correctProductData(product) {
     pros: applyReplacements(product?.pros),
     contras: applyReplacements(product?.contras),
     categoria: correction?.category || product?.categoria,
+    nota: correction?.suppressRating ? "" : product?.nota,
   };
 }
 
@@ -210,6 +225,23 @@ function applyEditorialOverrides(content, correction) {
   return content;
 }
 
+function suppressUnreliableRating(content) {
+  const withoutVisibleRating = content.replace(/<div\b[^>]*class=["'][^"']*rating[^"']*["'][^>]*>[\s\S]*?<\/div>/gi, "");
+  return withoutVisibleRating.replace(
+    /(<script\b[^>]*type=["']application\/ld\+json["'][^>]*>)([\s\S]*?)(<\/script>)/gi,
+    (full, start, source, end) => {
+      let payload;
+      try { payload = JSON.parse(source); } catch { return full; }
+      const nodes = Array.isArray(payload?.["@graph"]) ? payload["@graph"] : [payload];
+      const product = nodes.find((node) => node?.["@type"] === "Product");
+      const reviews = Array.isArray(product?.review) ? product.review : product?.review ? [product.review] : [];
+      if (!reviews.length) return full;
+      for (const review of reviews) delete review.reviewRating;
+      return start + JSON.stringify(payload).replace(/</g, "\\u003c") + end;
+    },
+  );
+}
+
 export async function correctGeneratedProductTitles(rootDirectory = process.cwd()) {
   const files = [resolve(rootDirectory, "analises.html"), resolve(rootDirectory, "top5-semanal.json")];
   const productDirectory = resolve(rootDirectory, "produto");
@@ -245,6 +277,7 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
         corrected = corrected.split(incorrect).join(correct);
       }
       corrected = applyEditorialOverrides(corrected, correction);
+      if (correction.suppressRating) corrected = suppressUnreliableRating(corrected);
     }
     if (fileName.endsWith(".html") && fileName !== "analises.html") {
       corrected = repairStructuredEditorialItems(corrected);

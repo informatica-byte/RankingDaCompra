@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const SITE = "https://rankingdacompra.com.br/";
@@ -21,7 +21,10 @@ has(homeHtml, /const rotaInicial=.*:homeComPromocoes\(\)/, "a vitrine inicial ai
 has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo histórico ausente", "index.html");
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
-has(homeHtml, /growth-tools\.js\?v=20260912-ranking2/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20260913-patinete1/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
+has(homeHtml, /class="hero-search"[\s\S]{0,300}name="busca"/, "busca principal visível ausente da primeira tela", "index.html");
+has(homeHtml, /Ver todos os comparativos/, "atalho principal para comparativos ausente", "index.html");
+if (/`#\$\{i\} no ranking`/.test(homeHtml)) fail("index.html: resultado comum ainda recebe posição de ranking sem comparação aprovada");
 has(homeHtml, /fetch\(`\.\/search-index\.json\?v=/, "busca estática sem Firebase ausente", "index.html");
 const searchFunction = homeHtml.match(/async function search\(term\)\{[\s\S]*?\nconst formBusca=/)?.[0] || "";
 if (!searchFunction) fail("index.html: função de busca não foi localizada");
@@ -32,6 +35,8 @@ has(homeHtml, /\.share-card-button,\.share-deal-button\{min-height:44px/, "botõ
 
 const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
 has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
+has(growthTools, /const isProductPage = \/\\\/produto\\\//, "tratamento específico da página de produto ausente", "growth-tools.js");
+has(growthTools, /\.product-detail-page \.club-floating\{display:none\}/, "WhatsApp flutuante ainda pode cobrir a compra no celular", "growth-tools.js");
 if (growthTools.includes("✓ Oferta comprovada pelo histórico")) fail("growth-tools.js: afirmação genérica de oferta comprovada ainda presente");
 const priceHistoryUpdater = await readFile(resolve("scripts/update-price-history.mjs"), "utf8");
 has(priceHistoryUpdater, /function productIdentity\(html\)/, "identidade MLB não é registrada no histórico", "scripts/update-price-history.mjs");
@@ -142,7 +147,7 @@ has(dashboardHtml, /id="central-foco"/, "Central de foco por categoria e produto
 has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Central de foco ausente", "dashboard.html");
 has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20260912-ranking2/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20260913-patinete1/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
 has(dashboardHtml, /Executar ou acompanhar o lote diário/, "atalho do lote diário ausente", "dashboard.html");
 has(dashboardHtml, /todos os produtos são conferidos juntos uma vez por dia/i, "explicação do lote diário ausente", "dashboard.html");
 if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
@@ -168,7 +173,9 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260912-ranking2"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260913-patinete1"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /id="mobile-affiliate-offer"/, "botão de compra fixo no celular ausente", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /\.top>div\{display:flex;flex-direction:column;order:-1\}/, "informações principais ainda aparecem depois da foto no celular", "scripts/generate-sitemap.mjs");
 const growthToolsVersionPattern = /growth-tools\.js\?v=([^"'<>]+)/;
 const growthToolsVersions = [homeHtml, dashboardHtml, sitemapGenerator]
   .map((source) => source.match(growthToolsVersionPattern)?.[1] || "");
@@ -188,11 +195,16 @@ if (/flatMap\(\(part\) => part\.split\(","\)\)/.test(sitemapGenerator)) {
 const discoveryGenerator = await readFile(resolve("scripts/generate-discovery.mjs"), "utf8");
 has(discoveryGenerator, /DISCOVERY_USE_GENERATED/, "descoberta interna ainda pode duplicar centenas de leituras do Firebase", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /writeFile\([\s\S]{0,100}search-index\.json/, "geração preventiva do índice de busca ausente", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /function renderCategoryGuide\(/, "gerador automático de comparativos por categoria ausente", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /categoryProducts\.length < 3/, "comparativo pode ser criado sem opções suficientes", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /if \(!guidePages\.includes\(file\)\) await unlink/, "comparativo antigo pode permanecer publicado depois de perder opções suficientes", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /ranking:\s*0,/, "busca ainda pode herdar posições não aprovadas", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /custo-benefício \(35%\)/, "pesos do comparativo automático não estão explicados", "scripts/generate-discovery.mjs");
 const updateWorkflow = await readFile(resolve(".github/workflows/update-sitemap.yml"), "utf8");
 has(updateWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "workflow ainda repete a leitura completa dos produtos", ".github/workflows/update-sitemap.yml");
 has(updateWorkflow, /cron:\s*["']17 13,16,19,22 \* \* \*["']/, "sitemap deve usar somente as quatro janelas econômicas diárias", ".github/workflows/update-sitemap.yml");
 if ((updateWorkflow.match(/\bcron:/g) || []).length !== 1) fail(".github/workflows/update-sitemap.yml: deve existir exatamente um agendamento econômico");
-has(updateWorkflow, /git add -A sitemap\.xml produto analises\.html top5-semanal\.json search-index\.json/, "índice de busca não está incluído na publicação", ".github/workflows/update-sitemap.yml");
+has(updateWorkflow, /git add -A sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "comparativos e índice de busca não estão incluídos na publicação", ".github/workflows/update-sitemap.yml");
 has(updateWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do sitemap ainda pode falhar por concorrência no GitHub", ".github/workflows/update-sitemap.yml");
 const priceWorkflow = await readFile(resolve(".github/workflows/sync-mercadolivre.yml"), "utf8");
 has(priceWorkflow, /workflow_dispatch:/, "atualização manual de todos os preços ausente", ".github/workflows/sync-mercadolivre.yml");
@@ -205,7 +217,7 @@ has(priceWorkflow, /RDC_BATCH_SKIP_MARKER:\s*\.price-sync-skipped/, "bloqueio in
 has(priceWorkflow, /-f "\$RDC_BATCH_SKIP_MARKER"[\s\S]{0,220}exit 0/, "gerador ainda pode reler produtos após lote diário já concluído", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /node --test scripts\/test-daily-price-batch\.mjs/, "teste preventivo do lote diário ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "lote diário não atualiza a busca estática", ".github/workflows/sync-mercadolivre.yml");
-has(priceWorkflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html top5-semanal\.json search-index\.json/, "lote diário não publica todos os arquivos gerados", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "lote diário não publica todos os arquivos gerados", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*true/, "execução manual do lote não força a conferência por padrão", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do lote diário ainda pode falhar por concorrência no GitHub", ".github/workflows/sync-mercadolivre.yml");
 const priceSync = await readFile(resolve("scripts/sync-mercadolivre.mjs"), "utf8");
@@ -318,8 +330,31 @@ for (const product of searchProducts) {
   if (String(product?.summary || "").trim().length < 180) fail("search-index.json: resumo editorial curto em " + (product?.id || "produto desconhecido"));
   if (!sitemapProductUrls.has(product?.url)) fail("search-index.json: endereço fora do sitemap: " + product?.url);
   if (searchUrls.has(product?.url)) fail("search-index.json: endereço duplicado: " + product?.url);
+  if (Number(product?.ranking) !== 0) fail("search-index.json: posição não aprovada exposta na busca: " + (product?.id || "produto desconhecido"));
   searchUrls.add(product?.url);
 }
+
+const guideFiles = (await readdir(resolve("."))).filter((file) => /^melhores-.+\.html$/.test(file));
+if (guideFiles.length < 1) fail("comparativos automáticos: nenhuma página foi gerada");
+for (const file of guideFiles) {
+  const html = await readFile(resolve(file), "utf8");
+  has(html, new RegExp(`<link rel="canonical" href="${SITE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}${file.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}">`), "endereço canônico incorreto", file);
+  has(html, /🏆 Melhor geral/, "destaque de melhor geral ausente", file);
+  has(html, /💚 Melhor custo-benefício/, "destaque de custo-benefício ausente", file);
+  has(html, /💰 Mais barato/, "destaque de menor preço ausente", file);
+  has(html, /Por que está nesta posição:/, "justificativa de posição ausente", file);
+  has(html, /Não é a melhor escolha para:/, "limitação prática ausente", file);
+  has(html, /<table>/, "tabela de comparação rápida ausente", file);
+  has(html, /<h2>Como classificamos<\/h2>/, "metodologia resumida ausente", file);
+  if (/\bNaN\b/.test(html)) fail(file + ": preço ou pontuação inválida aparece como NaN");
+  if (!urls.includes(SITE + file)) fail(file + ": comparativo ausente do sitemap");
+}
+
+const correctedScooter = await readFile(resolve("produto/6kC1jJj7i4kRtYyp3SZr-20260810-1.html"), "utf8");
+has(correctedScooter, /Patinete Elétrico Ydtech M187 Dobrável com Bluetooth/, "título genérico do patinete ainda aparece", "produto/6kC1jJj7i4kRtYyp3SZr-20260810-1.html");
+if (/1\.0 de 5/.test(correctedScooter)) fail("produto/6kC1jJj7i4kRtYyp3SZr-20260810-1.html: nota contraditória ainda aparece");
+const correctedScooterYoyo = await readFile(resolve("produto/VyYiww5HVcBRIH8SD5SD-20260810-1.html"), "utf8");
+if (/1\.0 de 5/.test(correctedScooterYoyo)) fail("produto/VyYiww5HVcBRIH8SD5SD-20260810-1.html: nota contraditória ainda aparece");
 for (const url of directoryUrls) {
   if (!sitemapProductUrls.has(url)) {
     fail("analises.html: produto fora do sitemap ou sem página publicada: " + url);

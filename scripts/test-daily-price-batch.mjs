@@ -53,7 +53,7 @@ test("reutiliza a mesma lista na geração e publica somente no final", () => {
 
 test("execução manual força o lote e publica todos os arquivos gerados", () => {
   assert.match(workflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*true/);
-  assert.match(workflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html top5-semanal\.json search-index\.json/);
+  assert.match(workflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/);
 });
 
 test("localizador reutiliza e renova a autorização criptografada", () => {
