@@ -588,7 +588,9 @@ function absoluteImage(value) {
 
 function imageMime(extension) {
 
-  return extension === "png" ? "image/png" : "image/jpeg";
+  if (extension === "png") return "image/png";
+  if (extension === "webp") return "image/webp";
+  return "image/jpeg";
 
 }
 
@@ -626,7 +628,7 @@ async function cacheProductImage(product, imageDirectory) {
 
   try {
 
-    const match = new URL(source).pathname.match(/\.(jpe?g|png)$/i);
+    const match = new URL(source).pathname.match(/\.(jpe?g|png|webp)$/i);
 
     if (match) extension = match[1].toLowerCase().replace("jpeg", "jpg");
 
@@ -648,7 +650,7 @@ async function cacheProductImage(product, imageDirectory) {
 
   if (!extension) {
 
-    for (const candidate of ["jpg", "png"]) {
+    for (const candidate of ["jpg", "png", "webp"]) {
 
       const candidateName = `${product.id}-${hash}.${candidate}`;
 
@@ -686,7 +688,9 @@ async function cacheProductImage(product, imageDirectory) {
 
       if (!contentType.startsWith("image/")) throw new Error(`tipo inválido: ${contentType || "desconhecido"}`);
 
-      const detectedExtension = contentType === "image/png" ? "png" : contentType === "image/jpeg" ? "jpg" : "";
+      const detectedExtension = contentType === "image/png" ? "png"
+        : contentType === "image/jpeg" ? "jpg"
+          : contentType === "image/webp" ? "webp" : "";
 
       if (!detectedExtension) throw new Error(`formato não compatível: ${contentType}`);
 

@@ -176,6 +176,7 @@ has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do títul
 has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260913-patinete1"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="mobile-affiliate-offer"/, "botão de compra fixo no celular ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /\.top>div\{display:flex;flex-direction:column;order:-1\}/, "informações principais ainda aparecem depois da foto no celular", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /contentType === "image\/webp" \? "webp"/, "imagens WebP do catálogo ainda podem bloquear a publicação", "scripts/generate-sitemap.mjs");
 const growthToolsVersionPattern = /growth-tools\.js\?v=([^"'<>]+)/;
 const growthToolsVersions = [homeHtml, dashboardHtml, sitemapGenerator]
   .map((source) => source.match(growthToolsVersionPattern)?.[1] || "");
