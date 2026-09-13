@@ -1,6 +1,13 @@
 {
-  "atualizadoEm": "2026-09-12T15:46:15.107Z",
+  "atualizadoEm": "2026-09-13T12:03:10.196Z",
   "resultados": {
+    "Ro6rqlC0f9925KQKewft": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/camera-de-seguranca-inteligente-intelbras-im3-c-branca/p/MLB18596028?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=f480117b-fc5f-4a2e-9ecc-a766df9a9ace&position=3&tracking_id=b8604059-b409-4ab4-8cf7-ccc43927634b&wid=MLB2634448552&sid=offers",
+      "resolvidoEm": "2026-09-13T12:03:10.188Z",
+      "tentativas": 1
+    },
     "mIqmkiBzetSZq2MLZSEc": {
       "status": "ok",
       "mlb": "MLB20949548",
