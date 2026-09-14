@@ -31,3 +31,14 @@ Exemplos: “melhor celular até R$ 1.500”, “notebook para estudar e trabalh
 ## Preservação
 
 Qualquer alteração futura deve conservar `seo-priorities.js`, os campos de título focado na busca dos dois painéis e as proteções de `scripts/validate-site.mjs`. Novas pautas devem ser adicionadas primeiro ao catálogo compartilhado, evitando regras diferentes entre computador, celular e gerador.
+
+## Central SEO de oportunidades
+
+Os dois painéis carregam `seo-opportunities.js`. A ferramenta recebe manualmente um CSV exportado das tabelas de Consultas ou Páginas do Google Search Console e prioriza termos com impressões, poucos cliques e posição aproveitável.
+
+- A importação deve acontecer somente quando o usuário escolher o arquivo.
+- O processamento e o histórico ficam no navegador (`localStorage`); nunca devem criar leituras ou gravações no Firebase.
+- Nenhuma sugestão altera ou publica páginas automaticamente.
+- “Usar como pauta” apenas preenche o formulário do ranking, que continua exigindo conferência e aprovação humana.
+- CSV em português ou inglês e separado por vírgula ou ponto e vírgula deve continuar aceito.
+- A Sara IA deve executar `node scripts/test-seo-opportunities.mjs` e `node scripts/validate-site.mjs` depois de qualquer alteração nesta central.

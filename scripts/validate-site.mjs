@@ -141,6 +141,8 @@ has(mobilePanelHtml, /Nenhuma conferência começa sozinha/, "proteção móvel 
 has(mobilePanelHtml, /id="link-shopee"/, "link opcional da Shopee ausente no painel celular", "painel-celular.html");
 has(mobilePanelHtml, /id="preco-shopee"/, "preço opcional da Shopee ausente no painel celular", "painel-celular.html");
 has(mobilePanelHtml, /linkShopee,\s*\n\s*precoShopee:/, "segunda oferta não é salva no mesmo cadastro móvel", "painel-celular.html");
+has(mobilePanelHtml, /id="seo-opportunities-mobile"/, "Central SEO de oportunidades ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /seo-opportunities\.js\?v=20260914-1/, "versão da Central SEO ausente no celular", "painel-celular.html");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
 has(dashboardHtml, /<h1 class="sr-only">Painel administrativo do Ranking da Compra<\/h1>/, "título principal acessível ausente", "dashboard.html");
@@ -151,6 +153,17 @@ has(dashboardHtml, /window\.gerarAnaliseRankingIA/, "integração Gemini do rank
 has(dashboardHtml, /id="linkShopee"/, "link opcional da Shopee ausente no painel completo", "dashboard.html");
 has(dashboardHtml, /id="precoShopee"/, "preço opcional da Shopee ausente no painel completo", "dashboard.html");
 has(dashboardHtml, /linkShopee:\s*linkShopeeProduto/, "segunda oferta não é salva no mesmo cadastro completo", "dashboard.html");
+has(dashboardHtml, /id="seo-opportunities-dashboard"/, "Central SEO de oportunidades ausente no painel completo", "dashboard.html");
+has(dashboardHtml, /seo-opportunities\.js\?v=20260914-1/, "versão da Central SEO ausente no painel completo", "dashboard.html");
+
+const seoOpportunities = await readFile(resolve("seo-opportunities.js"), "utf8");
+has(seoOpportunities, /function parseSearchConsoleCsv\(/, "leitor do CSV do Search Console ausente", "seo-opportunities.js");
+has(seoOpportunities, /function analyzeRows\(/, "priorização de impressões, CTR e posição ausente", "seo-opportunities.js");
+has(seoOpportunities, /rdc-search-console-opportunities-v1/, "histórico local da Central SEO ausente", "seo-opportunities.js");
+has(seoOpportunities, /Nenhuma alteração é publicada automaticamente/, "revisão humana da Central SEO não está explícita", "seo-opportunities.js");
+if (/db\.collection|firebase\.firestore|collection\(db/.test(seoOpportunities)) {
+  fail("seo-opportunities.js: a Central SEO não deve consumir o Firebase");
+}
 
 const sitemapGenerator = await readFile(resolve("scripts/generate-sitemap.mjs"), "utf8");
 has(sitemapGenerator, /function productMarketplace\(product\)/, "identificação da loja ausente no gerador", "scripts/generate-sitemap.mjs");
