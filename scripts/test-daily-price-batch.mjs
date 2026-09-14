@@ -7,11 +7,27 @@ const sync = await readFile("scripts/sync-mercadolivre.mjs", "utf8");
 const generator = await readFile("scripts/generate-sitemap.mjs", "utf8");
 const resolver = await readFile("scripts/resolve-affiliate-links.mjs", "utf8");
 const dashboard = await readFile("dashboard.html", "utf8");
+const mobile = await readFile("painel-celular.html", "utf8");
+const localizerWorkflow = await readFile(".github/workflows/localizar-mlb.yml", "utf8");
+const historyWorkflow = await readFile(".github/workflows/historico-precos.yml", "utf8");
 
-test("agenda somente um lote completo por dia", () => {
-  assert.equal((workflow.match(/\bcron:/g) || []).length, 1);
-  assert.match(workflow, /cron:\s*["']30 12 \* \* \*["']/);
+test("oferece somente o lote manual e nao inicia sozinho", () => {
+  assert.match(workflow, /workflow_dispatch:/);
+  assert.doesNotMatch(workflow, /^  schedule:/m);
+  assert.doesNotMatch(workflow, /^  push:/m);
   assert.match(workflow, /concurrency:[\s\S]*cancel-in-progress:\s*false/);
+  assert.match(dashboard, /Conferir todos os preços agora/);
+  assert.match(mobile, /Conferir todos os preços agora/);
+  assert.match(dashboard, /Nenhuma conferência começa sozinha/);
+  assert.match(mobile, /Nenhuma conferência começa sozinha/);
+});
+
+test("serializa todos os robos que publicam no GitHub", () => {
+  for (const writer of [workflow, localizerWorkflow, historyWorkflow]) {
+    assert.match(writer, /group:\s*rankingdacompra-publicacao/);
+    assert.match(writer, /cancel-in-progress:\s*false/);
+  }
+  assert.match(workflow, /for tentativa in 1 2 3 4; do[\s\S]*git pull --rebase origin main[\s\S]*git push origin HEAD:main/);
 });
 
 test("impede nova leitura integral no mesmo dia", () => {
@@ -51,8 +67,8 @@ test("reutiliza a mesma lista na geração e publica somente no final", () => {
   assert.equal((workflow.match(/git commit /g) || []).length, 1);
 });
 
-test("execução manual força o lote e publica todos os arquivos gerados", () => {
-  assert.match(workflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*true/);
+test("execução manual evita repetição e publica todos os arquivos gerados", () => {
+  assert.match(workflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*false/);
   assert.match(workflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/);
 });
 

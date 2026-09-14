@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: historico-precos
+  group: rankingdacompra-publicacao
   cancel-in-progress: false
 
 jobs:

@@ -2,23 +2,13 @@ name: Atualizar preços e disponibilidade
 
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/sync-mercadolivre.mjs"
-      - "scripts/test-sync-mercadolivre.mjs"
-      - "scripts/test-daily-price-batch.mjs"
-      - ".github/workflows/sync-mercadolivre.yml"
   workflow_dispatch:
     inputs:
       force:
         description: "Repetir mesmo se o lote de hoje já terminou"
         required: false
-        default: true
+        default: false
         type: boolean
-  schedule:
-    # Uma única conferência diária às 09:30 no horário de Brasília (12:30 UTC).
-    - cron: "30 12 * * *"
 
 
 permissions:
@@ -95,7 +85,16 @@ jobs:
             git add .mercadolivre-token.enc
           fi
           git commit -m "Atualiza preços e disponibilidade automaticamente"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for tentativa in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              echo "Conferência completa publicada com sucesso."
+              exit 0
+            fi
+            echo "::warning::Outra automação publicou ao mesmo tempo; nova tentativa $tentativa de 4."
+            sleep $((tentativa * 3))
+          done
+          echo "::error::Não foi possível publicar o lote após quatro tentativas seguras."
+          exit 1
 
 

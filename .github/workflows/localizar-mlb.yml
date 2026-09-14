@@ -15,7 +15,7 @@ permissions:
 
 
 concurrency:
-  group: rankingdacompra-localizador-mlb
+  group: rankingdacompra-publicacao
   cancel-in-progress: false
 
 
