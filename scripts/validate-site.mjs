@@ -27,6 +27,12 @@ has(homeHtml, /class="hero-search"[\s\S]{0,300}name="busca"/, "busca principal v
 has(homeHtml, /Ver todos os comparativos/, "atalho principal para comparativos ausente", "index.html");
 if (/`#\$\{i\} no ranking`/.test(homeHtml)) fail("index.html: resultado comum ainda recebe posição de ranking sem comparação aprovada");
 has(homeHtml, /fetch\(`\.\/search-index\.json\?v=/, "busca estática sem Firebase ausente", "index.html");
+has(homeHtml, /window\.RANKING_CATEGORY_GUIDES=\{/, "mapa preventivo de categorias antigas ausente", "index.html");
+has(homeHtml, /location\.replace\(new URL\(destino,/, "categorias antigas ainda podem gerar páginas duplicadas ou soft 404", "index.html");
+has(homeHtml, /"fonesdeouvido":"melhores-fones-de-ouvido\.html"/, "redirecionamento da categoria antiga de fones ausente", "index.html");
+has(homeHtml, /"fritadeiraairfrayereletrica":"melhores-fritadeira-air-fryer-eletrica\.html"/, "redirecionamento da categoria antiga de air fryer ausente", "index.html");
+has(homeHtml, /const urlCategoria=.*RANKING_CATEGORY_GUIDES/, "links internos ainda podem recriar categorias duplicadas", "index.html");
+if (/href="\?cat=\$\{encodeURIComponent\(catId\)\}"/.test(homeHtml)) fail("index.html: página de produto ainda aponta para filtro antigo de categoria");
 const searchFunction = homeHtml.match(/async function search\(term\)\{[\s\S]*?\nconst formBusca=/)?.[0] || "";
 if (!searchFunction) fail("index.html: função de busca não foi localizada");
 if (/db\.collection\(/.test(searchFunction)) fail("index.html: a busca ainda lê o Firebase diretamente");
