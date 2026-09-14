@@ -7,6 +7,9 @@ on:
       - "scripts/generate-sitemap.mjs"
       - "scripts/generate-discovery.mjs"
       - "scripts/validate-site.mjs"
+      - "scripts/validate-blueprint.mjs"
+      - "docs/PLANTA-MESTRA.md"
+      - "docs/planta-mestra.json"
       - "search-index.json"
       - ".github/workflows/update-sitemap.yml"
   schedule:

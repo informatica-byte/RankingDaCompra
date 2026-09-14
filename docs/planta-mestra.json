@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "snapshotDate": "2026-09-14",
+  "project": {
+    "name": "Ranking da Compra",
+    "repository": "informatica-byte/RankingDaCompra",
+    "branch": "main",
+    "domain": "https://rankingdacompra.com.br/",
+    "locale": "pt-BR",
+    "timezone": "America/Sao_Paulo",
+    "hosting": "GitHub Pages"
+  },
+  "sourceOfTruth": {
+    "code": "GitHub branch main",
+    "catalog": "Cloud Firestore collection produtos",
+    "rule": "Always fetch the current main branch before reading, changing or teaching Sara IA"
+  },
+  "architecture": {
+    "frontend": ["HTML", "CSS", "JavaScript"],
+    "backendServices": ["Firebase Authentication", "Cloud Firestore", "Firebase App Check", "Firebase AI Logic"],
+    "automation": ["GitHub Actions", "Node.js 24"],
+    "marketplaces": ["Mercado Livre", "Shopee"],
+    "searchAndAnalytics": ["Google Search Console", "Google Analytics", "IndexNow"]
+  },
+  "entrypoints": [
+    { "path": "index.html", "access": "public", "role": "storefront" },
+    { "path": "analises.html", "access": "public", "role": "analysis-directory" },
+    { "path": "como-avaliamos.html", "access": "public", "role": "methodology" },
+    { "path": "dashboard.html", "access": "authenticated", "role": "full-admin" },
+    { "path": "painel-celular.html", "access": "authenticated", "role": "mobile-admin" },
+    { "path": "oauth-mercadolivre.html", "access": "technical", "role": "mercado-livre-oauth-callback" },
+    { "path": "404.html", "access": "public-noindex", "role": "not-found" }
+  ],
+  "publicModules": [
+    "growth-tools.js",
+    "seo-priorities.js",
+    "seo-opportunities.js",
+    "search-index.json",
+    "top5-semanal.json",
+    "historico-precos.json",
+    "mercadolivre-status.json",
+    "site-config.json",
+    "sitemap.xml",
+    "robots.txt",
+    "CNAME"
+  ],
+  "generatedContent": {
+    "productPages": "produto/*.html",
+    "socialImages": "produto/imagens/*",
+    "categoryGuides": "melhores-*.html",
+    "directory": "analises.html",
+    "searchIndex": "search-index.json",
+    "weeklyTopSix": "top5-semanal.json"
+  },
+  "firestore": {
+    "collections": {
+      "produtos": {
+        "role": "master product catalog",
+        "specialDocuments": [".site-theme"],
+        "requiredCoreFields": ["categoria", "titulo", "link", "linkAfiliado", "preco", "foto", "comentario", "pros", "contras", "dadosTecnicos"]
+      },
+      "categorias": {
+        "role": "category registry",
+        "requiredCoreFields": ["nome", "icone", "imagem", "criadoEm"]
+      },
+      "visitas": {
+        "role": "rate-limited funnel events"
+      },
+      "mlbSolicitacoes": {
+        "role": "economic asynchronous Mercado Livre resolution queue"
+      },
+      "configuracoes": {
+        "role": "site and weekly ranking configuration",
+        "specialDocuments": ["site", "ranking-semanal"]
+      }
+    }
+  },
+  "workflows": [
+    {
+      "path": ".github/workflows/update-sitemap.yml",
+      "name": "Atualizar sitemap automaticamente",
+      "mode": ["push", "schedule", "manual"],
+      "role": "generate pages, directory, search, guides, top six, sitemap and IndexNow"
+    },
+    {
+      "path": ".github/workflows/localizar-mlb.yml",
+      "name": "Localizar produto e codigo MLB",
+      "mode": ["schedule", "manual"],
+      "role": "resolve recent pending Mercado Livre requests"
+    },
+    {
+      "path": ".github/workflows/sync-mercadolivre.yml",
+      "name": "Atualizar preços e disponibilidade",
+      "mode": ["manual"],
+      "role": "one consolidated daily price and availability batch"
+    },
+    {
+      "path": ".github/workflows/historico-precos.yml",
+      "name": "Atualizar historico de precos",
+      "mode": ["schedule", "manual"],
+      "role": "record price history and update generated pages"
+    }
+  ],
+  "automationScripts": [
+    "scripts/generate-sitemap.mjs",
+    "scripts/generate-discovery.mjs",
+    "scripts/product-title-corrections.mjs",
+    "scripts/sync-mercadolivre.mjs",
+    "scripts/resolve-affiliate-links.mjs",
+    "scripts/update-price-history.mjs",
+    "scripts/submit-indexnow.mjs",
+    "scripts/validate-site.mjs",
+    "scripts/validate-blueprint.mjs"
+  ],
+  "githubSecretNames": [
+    "MERCADO_LIVRE_ACCESS_TOKEN",
+    "MERCADO_LIVRE_CLIENT_ID",
+    "MERCADO_LIVRE_CLIENT_SECRET",
+    "MERCADO_LIVRE_TOKEN_KEY",
+    "MERCADO_LIVRE_AUTHORIZATION_CODE"
+  ],
+  "externalStateNotStoredInRepository": [
+    "Firestore documents",
+    "Firestore security rules and indexes",
+    "Firebase Authentication users and providers",
+    "App Check and reCAPTCHA Enterprise settings",
+    "GitHub secret values",
+    "Mercado Livre application settings",
+    "domain registrar and DNS access",
+    "Google Search Console ownership and reports",
+    "Google Analytics property access",
+    "affiliate account access"
+  ],
+  "invariants": [
+    "The latest GitHub main branch is the code source of truth",
+    "Never expose or commit secret values",
+    "Never delete catalog data because of a transient network or marketplace failure",
+    "Public search uses search-index.json instead of querying all Firestore products",
+    "Price availability checking runs as one manual daily batch unless force is explicit",
+    "top5-semanal.json contains exactly six distinct valid products despite its legacy filename",
+    "Weekly comparison contains exactly five comparable products and requires human approval",
+    "Shopee reuses the existing product record and does not duplicate catalog data",
+    "Generated pages, sitemap, analysis directory and search index must agree",
+    "Prices must never render as NaN",
+    "Architecture changes require updating both blueprint files"
+  ],
+  "validationCommands": [
+    "node scripts/test-seo-opportunities.mjs",
+    "node --test scripts/test-sync-mercadolivre.mjs",
+    "node --test scripts/test-daily-price-batch.mjs",
+    "node scripts/validate-blueprint.mjs",
+    "node scripts/validate-site.mjs"
+  ],
+  "recoveryOrder": [
+    "restore Git repository and main branch",
+    "restore GitHub Pages and custom domain",
+    "restore Firebase project, Firestore, Auth, rules, indexes and App Check",
+    "restore Mercado Livre application and GitHub secrets",
+    "restore DNS, Search Console and Analytics",
+    "run all validators",
+    "run sitemap workflow manually",
+    "test public, authenticated and mobile journeys",
+    "run one non-forced price batch"
+  ]
+}

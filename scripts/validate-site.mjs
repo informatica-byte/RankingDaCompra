@@ -1,5 +1,6 @@
 import { readFile, readdir } from "node:fs/promises";
 import { resolve } from "node:path";
+import "./validate-blueprint.mjs";
 
 const SITE = "https://rankingdacompra.com.br/";
 const errors = [];
