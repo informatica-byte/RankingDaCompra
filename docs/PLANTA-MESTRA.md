@@ -396,4 +396,3 @@ Regra para a Sara IA: toda alteração futura deve ser aprendida a partir do com
 Na data desta planta, o repositório continha 403 páginas de produto, 403 imagens sociais e 23 guias comparativos. Esses números mudam com o catálogo e não são invariantes. O validador deve calcular os totais atuais.
 
 As regras e índices do Firestore, a lista de usuários, os valores dos segredos, o DNS e as configurações de consoles externos não podem ser inferidos com segurança pelo código. Eles precisam ser exportados/documentados pelo proprietário sem colocar credenciais no Git.
-
