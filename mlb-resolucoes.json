@@ -1,6 +1,13 @@
 {
-  "atualizadoEm": "2026-09-14T18:51:36.499Z",
+  "atualizadoEm": "2026-09-15T09:42:05.801Z",
   "resultados": {
+    "0sIqujdU0DXe63n75IQk": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://produto.mercadolivre.com.br/MLB-1837525408-kit-com-10-cuecas-boxer-masculina-microfibra-original-_JM?searchVariation=79992653328#polycard_client=offers&deal_print_id=fc566c60-fb7d-4d8e-a979-9f8848490714&position=1&tracking_id=21c88de0-26f9-46ae-be7d-b2d692ea110a&sid=offers",
+      "resolvidoEm": "2026-09-15T09:42:05.794Z",
+      "tentativas": 1
+    },
     "RSc8ZpTuHeQFpaxACoiD": {
       "status": "ok",
       "mlb": "MLB7502238108",
