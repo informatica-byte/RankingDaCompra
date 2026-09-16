@@ -1,12 +1,12 @@
 {
-  "atualizadoEm": "2026-09-16T18:23:30.305Z",
+  "atualizadoEm": "2026-09-16T21:38:23.333Z",
   "resultados": {
     "8omxRt5rYf3OmkSfCdrP": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/roteador-wi-fi-tp-link-tl-wr840-n-wireless-300mbps/p/MLB15314118#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=24&type=product&tracking_id=2a48f511-5264-48da-a110-31d90dab0390&wid=MLB3858550725&sid=search",
-      "resolvidoEm": "2026-09-16T18:23:30.297Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-09-16T21:38:23.325Z",
+      "tentativas": 3
     },
     "tWMhvff9AQa5l3Q3iNLv": {
       "status": "ok",
