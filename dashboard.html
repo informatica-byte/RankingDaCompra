@@ -1279,8 +1279,9 @@ const botao=document.getElementById('btn-central-atualizar'),status=document.get
 if(botao){botao.disabled=true;botao.textContent='Atualizando relatório...'}
 if(status)status.textContent='Buscando cliques e compartilhamentos registrados...';
 try{
-const snapshot=await obterMetricasPainel(forcar===true),eventos=[];
-snapshot.forEach(doc=>{const evento=decodificarMetricaCentral(doc.data(),doc.id);if(evento)eventos.push(evento)});
+const snapshot=await obterMetricasPainel(forcar===true),eventosPorId=new Map();
+snapshot.forEach(doc=>{const evento=decodificarMetricaCentral(doc.data(),doc.id);if(evento&&!eventosPorId.has(doc.id))eventosPorId.set(doc.id,evento)});
+const eventos=[...eventosPorId.values()];
 eventos.sort((a,b)=>dataMsCentral(b.criadoEm)-dataMsCentral(a.criadoEm));
 metricasCentralAtual=eventos;
 renderizarRelatorioCentral();
@@ -2831,7 +2832,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script defer src="/seo-opportunities.js?v=20260914-1"></script>
-  <script defer src="/growth-tools.js?v=20260919-video-overlay1"></script>
+  <script defer src="/growth-tools.js?v=20260919-metrics-compat1"></script>
 </body>
 </html>
 

@@ -23,7 +23,7 @@ has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo históri
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
 has(homeHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente da vitrine", "index.html");
-has(homeHtml, /growth-tools\.js\?v=20260919-video-overlay1/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20260919-metrics-compat1/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
 has(homeHtml, /class="hero-search"[\s\S]{0,300}name="busca"/, "busca principal visível ausente da primeira tela", "index.html");
 has(homeHtml, /Ver todos os comparativos/, "atalho principal para comparativos ausente", "index.html");
 if (/`#\$\{i\} no ranking`/.test(homeHtml)) fail("index.html: resultado comum ainda recebe posição de ranking sem comparação aprovada");
@@ -93,6 +93,8 @@ has(seoPriorities, /melhor celular até \{price\}/, "pauta de cauda longa por pr
 has(growthTools, /id="weekly-ranking-seo-title"/, "título de busca separado do filtro ausente", "growth-tools.js");
 has(growthTools, /intencaoBusca:/, "intenção de busca não é preservada no ranking", "growth-tools.js");
 has(growthTools, /kind === "compartilhamento" \? 2/, "compartilhamentos não participam da sugestão semanal", "growth-tools.js");
+has(growthTools, /function weeklyUniqueMetrics\(metrics\)/, "métricas novas e legadas não são consolidadas antes do ranking", "growth-tools.js");
+has(growthTools, /metrics: weeklyUniqueMetrics\(metrics\)/, "ranking semanal ainda pode contar a mesma métrica duas vezes", "growth-tools.js");
 has(growthTools, /overallScore >= Math\.max\(10, priorityScore \* 1\.5\)/, "procura excepcional não consegue superar a pauta inicial", "growth-tools.js");
 has(growthTools, /Preço atual acima do menor valor recente/, "aviso honesto para preço acima do histórico ausente", "growth-tools.js");
 has(growthTools, /const isProductPage = \/\\\/produto\\\//, "tratamento específico da página de produto ausente", "growth-tools.js");
@@ -225,9 +227,11 @@ has(dashboardHtml, /visualizacao_produto/, "painel não reconhece visualizaçõe
 has(dashboardHtml, /id="central-foco"/, "Central de foco por categoria e produto ausente", "dashboard.html");
 has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Central de foco ausente", "dashboard.html");
 has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
+has(dashboardHtml, /eventosPorId=new Map\(\)/, "dashboard não protege a consolidação das métricas por documento", "dashboard.html");
+has(mobilePanelHtml, /function rankingMetricasUnicas\(metricas\)/, "painel móvel não consolida métricas novas e legadas", "painel-celular.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
 has(dashboardHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente do painel", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20260919-video-overlay1/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20260919-metrics-compat1/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
 has(dashboardHtml, /Conferir todos os preços agora/, "botão da conferência manual ausente", "dashboard.html");
 has(dashboardHtml, /Nenhuma conferência começa sozinha/, "proteção contra conferência automática ausente", "dashboard.html");
 if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
@@ -254,7 +258,7 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO ausente das novas páginas", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260919-video-overlay1"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260919-metrics-compat1"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="mobile-affiliate-offer"/, "botão de compra fixo no celular ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /\.top>div\{display:flex;flex-direction:column;order:-1\}/, "informações principais ainda aparecem depois da foto no celular", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /contentType === "image\/webp" \? "webp"/, "imagens WebP do catálogo ainda podem bloquear a publicação", "scripts/generate-sitemap.mjs");
@@ -389,7 +393,7 @@ for (const url of urls) {
   has(html, /"offers":(?:\{"@type":"Offer"|\[\{"@type":"Offer")/, "oferta estruturada ausente em página indexável", relative);
   has(html, /data-mobile-product-buy/, "ordem móvel protegida ausente", relative);
   has(html, /id="mobile-affiliate-offer"/, "botão fixo de preço ausente no celular", relative);
-  has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1|20260919-video-min3|20260919-video-fields1|20260919-title-fallback1|20260919-title-fallback2|20260919-video-overlay1)/, "versão visual desconhecida carregada", relative);
+  has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1|20260919-video-min3|20260919-video-fields1|20260919-title-fallback1|20260919-title-fallback2|20260919-video-overlay1|20260919-metrics-compat1)/, "versão visual desconhecida carregada", relative);
 
   for (const identity of productIdentityKeys(html)) {
     const previous = identities.get(identity);

@@ -1425,6 +1425,28 @@
     return legacy[0] === "evento" ? String(legacy[2] || "") : "";
   }
 
+  function weeklyMetricChannel(metric) {
+    const direct = String(metric?.canal || "");
+    if (direct) return direct.replace(/^view:/, "") || "direto";
+    const legacy = String(metric?.origem || "").split(":");
+    return legacy[0] === "evento" ? String(legacy[3] || "site") : "direto";
+  }
+
+  function weeklyUniqueMetrics(metrics) {
+    const unique = new Map();
+    metrics.forEach((metric, index) => {
+      const normalized = {
+        ...metric,
+        tipo: weeklyMetricKind(metric),
+        produtoId: weeklyMetricProductId(metric),
+        canal: weeklyMetricChannel(metric)
+      };
+      const identity = String(metric?.id || metric?.eventoId || metric?.eventId || `anonymous:${index}`);
+      if (!unique.has(identity)) unique.set(identity, normalized);
+    });
+    return [...unique.values()];
+  }
+
   function weeklyNormalize(value) {
     return repairPortugueseText(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       .toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
@@ -1683,7 +1705,7 @@
     productsSnapshot.forEach(doc => products.push({ id: doc.id, ...doc.data() }));
     const metrics = [];
     metricsSnapshot.forEach(doc => metrics.push({ id: doc.id, ...doc.data() }));
-    return { products: products.filter(weeklyProductEligible), categories, metrics, published: publishedSnapshot.exists ? publishedSnapshot.data() : null };
+    return { products: products.filter(weeklyProductEligible), categories, metrics: weeklyUniqueMetrics(metrics), published: publishedSnapshot.exists ? publishedSnapshot.data() : null };
   }
 
   function weeklyChooseTheme(data) {

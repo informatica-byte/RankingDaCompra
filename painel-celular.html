@@ -722,19 +722,33 @@
         if (t === "clique_secao" && c.startsWith("view:")) return "visualizacao_produto";
         if (["clique_oferta", "compartilhamento", "clique_secao", "visualizacao_produto"].includes(t)) return t;
         const p = String(m?.origem || "").split(":");
-        return p[0] === "evento" ? String(p[1] || "") : t;
+        return p[0]==="evento" ? String(p[1] || "") : t;
       }
       function rankingMetricaProdutoId(m) {
         const id = String(m?.produtoId || "");
         if (id) return id;
         const p = String(m?.origem || "").split(":");
-        return p[0] === "evento" ? String(p[2] || "") : "";
+        return p[0]==="evento" ? String(p[2] || "") : "";
       }
       function rankingMetricaCanal(m) {
         const canal = String(m?.canal || "");
         if (canal) return canal.replace(/^view:/, "");
         const p = String(m?.origem || "").split(":");
-        return p[0] === "evento" ? String(p[3] || "site") : "direto";
+        return p[0]==="evento" ? String(p[3] || "site") : "direto";
+      }
+      function rankingMetricasUnicas(metricas) {
+        const unicas = new Map();
+        metricas.forEach((metrica, indice) => {
+          const normalizada = {
+            ...metrica,
+            tipo: rankingTipoMetrica(metrica),
+            produtoId: rankingMetricaProdutoId(metrica),
+            canal: rankingMetricaCanal(metrica),
+          };
+          const identidade = String(metrica?.id || metrica?.eventoId || metrica?.eventId || `anonima:${indice}`);
+          if (!unicas.has(identidade)) unicas.set(identidade, normalizada);
+        });
+        return [...unicas.values()];
       }
       function rankingUrlProduto(p) {
         const u = String(p.productUrl || p.paginaUrl || "");
@@ -754,7 +768,7 @@
         const [ps, ms] = await Promise.all([getDocs(collection(db, "produtos")), getDocs(query(collection(db, "visitas"), where("dia", ">=", chave)))]);
         rankingDadosMovel = {
           produtos: ps.docs.map((d) => ({ id: d.id, ...d.data() })).filter(rankingElegivel),
-          metricas: ms.docs.map((d) => d.data()),
+          metricas: rankingMetricasUnicas(ms.docs.map((d) => ({ id: d.id, ...d.data() }))),
         };
         return rankingDadosMovel;
       }

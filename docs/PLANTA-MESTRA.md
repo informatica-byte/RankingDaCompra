@@ -178,7 +178,7 @@ Documento com ID igual ao slug. Campos: `nome`, `icone`, `imagem`, `criadoEm`. U
 
 ### Firestore: `visitas`
 
-Eventos do funil: visualização de seção/produto, clique de oferta e compartilhamento. Os eventos alimentam a Central de Foco e ajudam a sugerir o tema do comparativo semanal. Cliques não podem ser apresentados como vendas.
+Eventos do funil: visualização de seção/produto, clique de oferta e compartilhamento. Os eventos alimentam a Central de Foco e ajudam a sugerir o tema do comparativo semanal. Cliques não podem ser apresentados como vendas. Leitores aceitam tanto os campos estruturados `tipo`, `produtoId` e `canal` quanto o formato histórico `origem=evento:tipo:produto:canal`; cada documento é normalizado e contado uma única vez, sem apagar o histórico.
 
 ### Firestore: `mlbSolicitacoes`
 

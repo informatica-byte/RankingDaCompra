@@ -82,7 +82,10 @@
         "requiredCoreFields": ["nome", "icone", "imagem", "criadoEm"]
       },
       "visitas": {
-        "role": "rate-limited funnel events"
+        "role": "rate-limited funnel events",
+        "currentFields": ["tipo", "produtoId", "canal", "dia", "criadoEm"],
+        "legacyFormat": "origem=evento:tipo:produto:canal",
+        "deduplication": "one normalized event per Firestore document id"
       },
       "mlbSolicitacoes": {
         "role": "economic asynchronous Mercado Livre resolution queue"
