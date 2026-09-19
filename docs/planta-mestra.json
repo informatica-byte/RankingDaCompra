@@ -149,7 +149,7 @@
     "Prices must never render as NaN",
     "Ranki videos are kept in browser memory or YouTube, never Firebase Storage or Git",
     "YouTube upload requires human approval and stores only the video reference on the product",
-    "The public video showcase accepts 5 to 10 YouTube and Ranking product URL pairs and never stores the video file in Firebase",
+    "The public video showcase accepts 3 to 10 YouTube and Ranking product URL pairs and never stores the video file in Firebase",
     "Each public video has a clickable product card populated from search-index.json and synchronized with the current playlist item",
     "The promotion title must be human-approved, descriptive and between 20 and 75 characters",
     "AI promotion-title suggestions use only active offers already loaded by the dashboard and never trigger another full Firestore catalog read",

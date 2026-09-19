@@ -23,7 +23,7 @@ has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo históri
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
 has(homeHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente da vitrine", "index.html");
-has(homeHtml, /growth-tools\.js\?v=20260919-title-ai1/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20260919-video-min3/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
 has(homeHtml, /class="hero-search"[\s\S]{0,300}name="busca"/, "busca principal visível ausente da primeira tela", "index.html");
 has(homeHtml, /Ver todos os comparativos/, "atalho principal para comparativos ausente", "index.html");
 if (/`#\$\{i\} no ranking`/.test(homeHtml)) fail("index.html: resultado comum ainda recebe posição de ranking sem comparação aprovada");
@@ -60,9 +60,9 @@ has(growthTools, /youtubeShowcaseItems\(config\?\.youtubeShowcaseItems, config\?
 has(growthTools, /data-youtube-product-overlay/, "cartão clicável do produto sobre o vídeo ausente", "growth-tools.js");
 has(growthTools, /fetch\(`\/search-index\.json\?v=/, "cartão do vídeo não usa o índice estático econômico", "growth-tools.js");
 has(growthTools, /getVideoData\(\)\?\.video_id/, "cartão do produto não acompanha o vídeo atual", "growth-tools.js");
-has(growthTools, /links\.length < 5/, "mínimo de cinco vídeos não é protegido", "growth-tools.js");
+has(growthTools, /links\.length < 3/, "mínimo de três vídeos não é protegido", "growth-tools.js");
 has(growthTools, /const items = parseYoutubeShowcaseLines\(youtubeLinks\.value, 20\)/, "contagem completa dos vídeos e produtos ausente", "growth-tools.js");
-has(growthTools, /links\.length < 5 \|\| links\.length > 10/, "limite entre cinco e dez vídeos não é protegido", "growth-tools.js");
+has(growthTools, /links\.length < 3 \|\| links\.length > 10/, "limite entre três e dez vídeos não é protegido", "growth-tools.js");
 has(growthTools, /youtube-nocookie\.com\/embed/, "player privado do YouTube ausente", "growth-tools.js");
 has(growthTools, /playlist=\$\{encodeURIComponent\(ids\.join\(","\)\)\}/, "reprodução automática sequencial ausente", "growth-tools.js");
 has(growthTools, /Salvando sem enviar arquivos de vídeo ao Firebase/, "proteção de armazenamento dos vídeos não está explícita", "growth-tools.js");
@@ -216,7 +216,7 @@ has(dashboardHtml, /function renderizarFocoCentral\(/, "cálculo semanal da Cent
 has(dashboardHtml, /1 por visualização, 5 por clique em Comprar e 2 por compartilhamento/, "pesos transparentes da Central de foco ausentes", "dashboard.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
 has(dashboardHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente do painel", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20260919-title-ai1/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20260919-video-min3/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
 has(dashboardHtml, /Conferir todos os preços agora/, "botão da conferência manual ausente", "dashboard.html");
 has(dashboardHtml, /Nenhuma conferência começa sozinha/, "proteção contra conferência automática ausente", "dashboard.html");
 if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
@@ -243,7 +243,7 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO ausente das novas páginas", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260919-title-ai1"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20260919-video-min3"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="mobile-affiliate-offer"/, "botão de compra fixo no celular ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /\.top>div\{display:flex;flex-direction:column;order:-1\}/, "informações principais ainda aparecem depois da foto no celular", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /contentType === "image\/webp" \? "webp"/, "imagens WebP do catálogo ainda podem bloquear a publicação", "scripts/generate-sitemap.mjs");
@@ -378,7 +378,7 @@ for (const url of urls) {
   has(html, /"offers":(?:\{"@type":"Offer"|\[\{"@type":"Offer")/, "oferta estruturada ausente em página indexável", relative);
   has(html, /data-mobile-product-buy/, "ordem móvel protegida ausente", relative);
   has(html, /id="mobile-affiliate-offer"/, "botão fixo de preço ausente no celular", relative);
-  has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1)/, "versão visual desconhecida carregada", relative);
+  has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1|20260919-video-min3)/, "versão visual desconhecida carregada", relative);
 
   for (const identity of productIdentityKeys(html)) {
     const previous = identities.get(identity);

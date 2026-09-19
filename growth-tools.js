@@ -876,7 +876,7 @@
   async function renderVideoShowcase(config) {
     if (document.querySelector("[data-youtube-showcase]")) return;
     const items = youtubeShowcaseItems(config?.youtubeShowcaseItems, config?.youtubeShowcaseLinks);
-    if (config?.youtubeShowcaseEnabled !== true || items.length < 5) return;
+    if (config?.youtubeShowcaseEnabled !== true || items.length < 3) return;
     const promotion = document.getElementById("promocoes");
     if (!promotion?.parentNode) return;
     const ids = items.map(item => item.videoId);
@@ -1004,7 +1004,7 @@
         </div>
         <label for="growth-youtube-title">Título da pequena vitrine de vídeos</label>
         <input id="growth-youtube-title" type="text" maxlength="80" placeholder="Vídeos do Ranki: produtos em destaque">
-        <label for="growth-youtube-links">Vídeo e produto correspondente — uma dupla por linha (de 5 a 10)</label>
+        <label for="growth-youtube-links">Vídeo e produto correspondente — uma dupla por linha (de 3 a 10)</label>
         <p class="showcase-admin-help"><b>Formato:</b> link do YouTube <b>|</b> link da página do produto no Ranking da Compra. O cartão com foto, nome e preço será criado automaticamente sobre o vídeo.</p>
         <textarea id="growth-youtube-links" rows="9" placeholder="https://www.youtube.com/watch?v=... | https://rankingdacompra.com.br/produto/...html&#10;https://youtu.be/... | https://rankingdacompra.com.br/produto/...html"></textarea>
         <div class="growth-row"><label><input id="growth-youtube-enabled" type="checkbox"> Exibir e reproduzir a sequência automaticamente na vitrine</label></div>
@@ -1160,8 +1160,8 @@
         promotionTitle.focus();
         return;
       }
-      if (showVideos && (links.length < 5 || links.length > 10)) {
-        showcaseStatus.textContent = "Para ativar a vitrine, informe de 5 a 10 linhas com links válidos e diferentes do YouTube.";
+      if (showVideos && (links.length < 3 || links.length > 10)) {
+        showcaseStatus.textContent = "Para ativar a vitrine, informe de 3 a 10 linhas com links válidos e diferentes do YouTube.";
         youtubeLinks.focus();
         return;
       }
@@ -1195,7 +1195,7 @@
         youtubeLinks.value = youtubeShowcaseLines(items);
         showcaseStatus.textContent = showVideos
           ? `✓ Sequência com ${links.length} vídeos e cartões de produtos ativada. Nenhum arquivo foi armazenado no Firebase.`
-          : "✓ Título salvo. A vitrine de vídeos continua desativada até você informar e ativar de 5 a 10 links.";
+          : "✓ Título salvo. A vitrine de vídeos continua desativada até você informar e ativar de 3 a 10 links.";
       } catch (error) {
         console.error(error);
         showcaseStatus.textContent = String(error?.code || "").includes("permission-denied")
