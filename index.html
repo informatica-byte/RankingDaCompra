@@ -8,7 +8,7 @@
   <meta name="description" content="Promoções do dia, ofertas relâmpago e comparativos independentes, com preço e disponibilidade conferidos para ajudar você a comprar melhor.">
   <meta name="robots" content="index,follow">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Promoções do Dia | Ranking da Compra">
+  <meta property="og:title" content="Ofertas do dia: compare preços e produtos | Ranking da Compra">
   <meta property="og:description" content="Ofertas do dia selecionadas e conferidas para você comprar com mais segurança.">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://rankingdacompra.com.br/">
@@ -17,7 +17,7 @@
   <meta property="og:image:height" content="909">
   <meta property="og:image:alt" content="Ranking da Compra — escolhas mais claras para comprar melhor">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Promoções do Dia | Ranking da Compra">
+  <meta name="twitter:title" content="Ofertas do dia: compare preços e produtos | Ranking da Compra">
   <meta name="twitter:description" content="Ofertas do dia selecionadas e conferidas para você comprar com mais segurança.">
   <meta name="twitter:image" content="https://rankingdacompra.com.br/og-ranking-da-compra.png">
   <meta name="theme-color" content="#0f3d2e">
@@ -62,7 +62,7 @@
   </script>
   <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://api.mercadolibre.com" crossorigin>
-  <title>Promoções do Dia | Ranking da Compra</title>
+  <title>Ofertas do dia: compare preços e produtos | Ranking da Compra</title>
   <script id="structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://rankingdacompra.com.br/#organization","name":"Ranking da Compra","url":"https://rankingdacompra.com.br/"},{"@type":"WebSite","@id":"https://rankingdacompra.com.br/#website","url":"https://rankingdacompra.com.br/","name":"Ranking da Compra","publisher":{"@id":"https://rankingdacompra.com.br/#organization"},"inLanguage":"pt-BR"}]}</script>
   <style>
     :root{--ink:#11221d;--green:#116149;--lime:#d9f99d;--cream:#fbfaf5;--muted:#66746d;--line:#dfe7e2;--blue:#1769e0;--card:#fff;--shadow:0 15px 40px rgba(22,47,36,.09)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -282,9 +282,11 @@ function cartaoRadar(produto,lista){const id=String(produto.id),preco=precoAtual
 function configurarRadar(produtos){const secao=document.getElementById('radar'),form=document.getElementById('radar-form'),campo=document.getElementById('radar-input'),resultado=document.getElementById('radar-result'),seguidos=document.getElementById('radar-followed'),contador=document.getElementById('radar-count');if(!secao||!form||!campo||!resultado||!seguidos||!contador)return;const ordenados=produtos.slice().sort((a,b)=>Number(ofertaRelampagoValida(b))-Number(ofertaRelampagoValida(a))||Number(promocaoValida(b))-Number(promocaoValida(a))||String(a.titulo||'').localeCompare(String(b.titulo||''),'pt-BR')),porId=new Map(ordenados.map(produto=>[String(produto.id),produto]));let lista=carregarRadar();for(const[id,item]of Object.entries(lista)){const produto=porId.get(id);if(!produto){delete lista[id];continue}const preco=precoAtualRadar(produto);lista[id]={...item,id,titulo:produto.titulo,foto:produto.foto,ultimoPreco:preco,atualizadoEm:new Date().toISOString()};if(!(numeroPreco(lista[id].precoReferencia)>0)&&preco>0)lista[id].precoReferencia=preco}salvarRadar(lista);function renderLista(){const produtosSeguidos=Object.keys(lista).map(id=>porId.get(id)).filter(Boolean);contador.textContent=produtosSeguidos.length?`${produtosSeguidos.length} produto${produtosSeguidos.length===1?'':'s'} acompanhado${produtosSeguidos.length===1?'':'s'}`:'Nenhum produto acompanhado';seguidos.innerHTML=produtosSeguidos.length?produtosSeguidos.map(produto=>cartaoRadar(produto,lista)).join(''):'<div class="radar-empty">Ao acompanhar um produto, o preço atual fica salvo para comparação na próxima visita.</div>'}function pesquisar(){const termo=normalizarRadar(campo.value);if(termo.length<2){resultado.innerHTML='<div class="radar-empty">Digite pelo menos duas letras para consultar os produtos acompanhados pelo Ranking da Compra.</div>';return}const encontrados=ordenados.filter(produto=>normalizarRadar([produto.titulo,produto.categoria,produto.selo].join(' ')).includes(termo)).slice(0,4);resultado.innerHTML=encontrados.length?`<div class="radar-result-grid">${encontrados.map(produto=>cartaoRadar(produto,lista)).join('')}</div>`:`<div class="radar-empty">Não encontramos “${esc(campo.value)}” entre os produtos acompanhados. Tente outra palavra.</div>`}form.addEventListener('submit',evento=>{evento.preventDefault();registrarMetricaComercial('clique_secao',{id:'radar',titulo:'Radar de Promoção Real'},'site');pesquisar()});campo.addEventListener('input',()=>{if(normalizarRadar(campo.value).length>=2)pesquisar()});secao.addEventListener('click',evento=>{const analise=evento.target.closest('.radar-analysis');if(analise)registrarMetricaComercial('clique_secao',{id:'radar',titulo:'Radar de Promoção Real'},'site');const botao=evento.target.closest('[data-radar-track]');if(!botao)return;registrarMetricaComercial('clique_secao',{id:'radar',titulo:'Radar de Promoção Real'},'site');const id=String(botao.dataset.radarTrack||''),produto=porId.get(id);if(!produto)return;if(lista[id])delete lista[id];else{const preco=precoAtualRadar(produto);lista[id]={id,titulo:produto.titulo,foto:produto.foto,precoReferencia:preco,ultimoPreco:preco,iniciadoEm:new Date().toISOString(),atualizadoEm:new Date().toISOString()}}salvarRadar(lista);renderLista();if(normalizarRadar(campo.value).length>=2)pesquisar()});renderLista()}
 
 function configurarRadarSobDemanda(){const form=document.getElementById('radar-form'),campo=document.getElementById('radar-input'),resultado=document.getElementById('radar-result');if(!form||!campo||!resultado)return;let pronto=false,carregando=false;form.addEventListener('submit',async evento=>{if(pronto||carregando)return;evento.preventDefault();evento.stopImmediatePropagation();if(normalizarRadar(campo.value).length<2){resultado.innerHTML='<div class="radar-empty">Digite pelo menos duas letras para pesquisar.</div>';return}carregando=true;resultado.innerHTML='<div class="radar-empty">Consultando o Radar…</div>';try{const snapshot=await db.collection('produtos').get(),produtos=snapshot.docs.map(doc=>aplicarDadosMercadoLivre({id:doc.id,...doc.data()})).filter(produto=>produtoDisponivel(produto)&&conteudoEditorialValido(produto));pronto=true;configurarRadar(produtos);form.requestSubmit()}catch(erro){console.warn('Não foi possível consultar o Radar.',erro);resultado.innerHTML='<div class="radar-empty">O Radar está temporariamente indisponível. Tente novamente em alguns instantes.</div>'}finally{carregando=false}},true)}
+function tituloPromocoesPublicado(config){const valor=String(config?.promotionSeoTitle||'').replace(/[<>]/g,'').replace(/\s+/g,' ').trim();return valor.length>=20&&valor.length<=75&&/(oferta|promo[cç][aã]o|promo[cç][oõ]es|achado|pre[cç]o|desconto)/i.test(valor)?valor:'Ofertas do dia: compare preços e produtos'}
 async function homeComPromocoes(){
   await home();
   await mercadoLivreStatusPronto;
+  const siteConfigPromise = fetch('/site-config.json',{cache:'no-store'}).then(resposta=>resposta.ok?resposta.json():{}).catch(()=>({}));
   const top5PayloadPromise = carregarTop5Semanal();
   const historicoPromise = carregarHistoricoDaVitrine();
   let promocoes = [], relampagos = [], todos = [];
@@ -308,7 +310,8 @@ async function homeComPromocoes(){
     console.warn("Não foi possível carregar as promoções.", erro);
   }
 
-  const [top5Payload, historicoVitrine] = await Promise.all([top5PayloadPromise, historicoPromise]);
+  const [top5Payload, historicoVitrine, siteConfig] = await Promise.all([top5PayloadPromise, historicoPromise, siteConfigPromise]);
+  const tituloPromocoes = tituloPromocoesPublicado(siteConfig);
   const activeIds = new Set([...relampagos, ...promocoes].map((produto) => String(produto.id)));
   const top5Semanal = (top5Payload.products || [])
     .map((produto, ordemOriginal) => ({
@@ -338,7 +341,7 @@ async function homeComPromocoes(){
 
   secao.id = "promocoes";
   secao.className = "daily-deals";
-  secao.innerHTML = `<div class="section-head deals-heading"><div><div class="eyebrow">Seleção de hoje</div><h2>Promoções do Dia</h2><p>${esc(rotuloAtualizacao())}</p></div><span class="deal-count">${promocoes.length} oferta${promocoes.length === 1 ? "" : "s"} em destaque</span></div>${promocoes.length ? `<div class="deal-grid">${promocoes.map(promotionCard).join("")}</div>` : `<div class="empty">As promoções de hoje ainda não foram publicadas. O Top 6 da semana continua disponível abaixo.</div>`}<p class="deal-disclaimer"><b>Atenção:</b> o preço final, o frete e o estoque são confirmados na página do vendedor.</p>`;
+  secao.innerHTML = `<div class="section-head deals-heading"><div><div class="eyebrow">Seleção de hoje</div><h2 data-promotion-title>${esc(tituloPromocoes)}</h2><p>${esc(rotuloAtualizacao())}</p></div><span class="deal-count">${promocoes.length} oferta${promocoes.length === 1 ? "" : "s"} em destaque</span></div>${promocoes.length ? `<div class="deal-grid">${promocoes.map(promotionCard).join("")}</div>` : `<div class="empty">As promoções de hoje ainda não foram publicadas. O Top 6 da semana continua disponível abaixo.</div>`}<p class="deal-disclaimer"><b>Atenção:</b> o preço final, o frete e o estoque são confirmados na página do vendedor.</p>`;
   if (ancoraRadar) ancoraRadar.parentNode.insertBefore(secao, ancoraRadar);
   else app.querySelector("main")?.prepend(secao);
 
@@ -354,7 +357,7 @@ async function homeComPromocoes(){
   iniciarContadoresRelampago();
 
   setSeo(
-    "Promoções do Dia | Ranking da Compra",
+    `${tituloPromocoes} | Ranking da Compra`,
     "Ofertas do dia selecionadas, com preço e disponibilidade conferidos para você comprar melhor.",
     {
       "@context": "https://schema.org",
@@ -374,7 +377,7 @@ async function homeComPromocoes(){
         {
           "@type": "ItemList",
           "@id": SITE_URL + "#promocoes",
-          name: "Promoções do Dia",
+          name: tituloPromocoes,
           itemListElement: promocoes.map((produto, index) => ({
             "@type": "ListItem",
             position: index + 1,
@@ -401,7 +404,7 @@ async function homeComPromocoes(){
     const produto = promocoes.find((item) => String(item.id) === String(link.dataset.promoId))
       || { id: link.dataset.promoId, titulo: "Promoção do dia" };
     gtag("event", "select_promotion", {
-      promotion_name: "Promoções do Dia",
+      promotion_name: tituloPromocoes,
       items: [{ item_id: link.dataset.promoId }],
     });
     registrarMetricaComercial("clique_oferta", produto, origemCampanhaAtual());
@@ -445,6 +448,6 @@ let q=new URLSearchParams(location.search);const rotaInicial=q.get('produto')||q
 window.registrarMetricaComercial=async function(tipo,produto,canal){try{const id=crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);const limpo=valor=>String(valor||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9_-]/gi,'').slice(0,32);const origem=('evento:'+limpo(tipo)+':'+limpo(produto?.id)+':'+limpo(canal||origemCampanhaAtual())).slice(0,80);await db.collection('visitas').doc(id).set({criadoEm:firebase.firestore.FieldValue.serverTimestamp(),dia:dataBrasil(),origem})}catch(erro){console.warn('Não foi possível registrar a métrica comercial.',erro)}};
 </script>
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
-  <script defer src="/growth-tools.js?v=20260913-seo1"></script>
+  <script defer src="/growth-tools.js?v=20260919-video1"></script>
 </body></html>
 
