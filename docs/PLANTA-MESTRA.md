@@ -240,7 +240,8 @@ Esses arquivos são cache público/resultado de automação; o cadastro mestre c
 - o envio direto usa OAuth do Google, nunca Client Secret no navegador;
 - grava no produto apenas `youtubeVideoId`, `youtubeVideoUrl`, `youtubeTitulo`, `youtubePrivacidade` e `youtubePublicadoEm`;
 - a próxima geração da página incorpora o vídeo pelo domínio `youtube-nocookie.com` e cria dados estruturados `VideoObject`.
-- a vitrine pública aceita uma sequência de 5 a 10 links do YouTube, salva somente esses links em `configuracoes/site` e reproduz a playlist automaticamente em uma janela pequena;
+- a vitrine pública aceita uma sequência de 5 a 10 duplas `YouTube | página do produto`, salva somente essas referências em `configuracoes/site` e reproduz a playlist automaticamente em uma janela pequena;
+- cada vídeo mostra por cima do player um cartão clicável com foto, nome e preço vindos de `search-index.json`; ao trocar o vídeo, o cartão acompanha o produto e abre sua página no Ranking da Compra;
 - o painel completo permite ativar ou ocultar a sequência sem apagar os links e rejeita endereços inválidos ou repetidos;
 - o título das promoções pode ser alterado no mesmo painel, com sugestões e validação de 20 a 75 caracteres orientada a intenção de compra;
 - o título validado atualiza o cabeçalho visível, o `<title>`, Open Graph, Twitter Card e o nome da lista estruturada de promoções.
@@ -256,7 +257,7 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 - preço e disponibilidade são conferidos em um único lote diário/manual, nunca produto a produto ao abrir o painel;
 - o lote grava resultado consolidado e evita repetir o mesmo dia, salvo `force` explícito;
 - eventos de visita têm limite local para evitar gravações repetidas;
-- vídeos continuam hospedados no YouTube; o Firebase recebe apenas uma lista curta de links dentro do documento de configuração já consultado pela vitrine;
+- vídeos continuam hospedados no YouTube; o Firebase recebe apenas uma lista curta de links do vídeo e da página pública do produto dentro do documento de configuração já consultado pela vitrine;
 - qualquer nova função pública deve preferir arquivos gerados antes de criar uma consulta Firestore.
 
 ## 9. Fluxos operacionais
