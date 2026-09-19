@@ -20,7 +20,8 @@
     "backendServices": ["Firebase Authentication", "Cloud Firestore", "Firebase App Check", "Firebase AI Logic"],
     "automation": ["GitHub Actions", "Node.js 24"],
     "marketplaces": ["Mercado Livre", "Shopee"],
-    "searchAndAnalytics": ["Google Search Console", "Google Analytics", "IndexNow"]
+    "searchAndAnalytics": ["Google Search Console", "Google Analytics", "IndexNow"],
+    "video": ["Canvas 9:16", "MediaRecorder", "Gemini TTS", "YouTube Data API"]
   },
   "entrypoints": [
     { "path": "index.html", "access": "public", "role": "storefront" },
@@ -28,11 +29,13 @@
     { "path": "como-avaliamos.html", "access": "public", "role": "methodology" },
     { "path": "dashboard.html", "access": "authenticated", "role": "full-admin" },
     { "path": "painel-celular.html", "access": "authenticated", "role": "mobile-admin" },
+    { "path": "estudio-videos.html", "access": "authenticated-noindex", "role": "ranki-video-studio" },
     { "path": "oauth-mercadolivre.html", "access": "technical", "role": "mercado-livre-oauth-callback" },
     { "path": "404.html", "access": "public-noindex", "role": "not-found" }
   ],
   "publicModules": [
     "growth-tools.js",
+    "ranki-video-studio.js",
     "seo-priorities.js",
     "seo-opportunities.js",
     "search-index.json",
@@ -130,6 +133,7 @@
     "Google Search Console ownership and reports",
     "Google Analytics property access",
     "affiliate account access"
+    ,"YouTube channel, Data API and OAuth client configuration"
   ],
   "invariants": [
     "The latest GitHub main branch is the code source of truth",
@@ -142,6 +146,8 @@
     "Shopee reuses the existing product record and does not duplicate catalog data",
     "Generated pages, sitemap, analysis directory and search index must agree",
     "Prices must never render as NaN",
+    "Ranki videos are kept in browser memory or YouTube, never Firebase Storage or Git",
+    "YouTube upload requires human approval and stores only the video reference on the product",
     "Architecture changes require updating both blueprint files"
   ],
   "validationCommands": [

@@ -25,6 +25,7 @@ O Ranking da Compra é um portal brasileiro de descoberta, análise e comparaç�
 - busca estática rápida;
 - duas opções de compra no mesmo cadastro: Mercado Livre e, quando informado, Shopee;
 - compartilhamento, canal de ofertas no WhatsApp, temas sazonais e o mascote Ranki;
+- Estúdio do Ranki para vídeos verticais narrados e envio opcional ao YouTube;
 - administração pelo painel completo e pelo painel de celular.
 
 O site é estático na hospedagem, mas lê e grava dados operacionais no Firebase. O GitHub Actions transforma os dados do Firestore em páginas HTML, índices e arquivos JSON para reduzir leituras do Firebase, melhorar velocidade, compartilhamento e indexação.
@@ -88,6 +89,7 @@ Não há etapa de compilação. Os arquivos HTML e JavaScript da raiz são servi
 | `/404.html` | sim | Recuperação de URL inexistente; `noindex,follow` |
 | `/dashboard.html` | não | Painel administrativo completo, protegido por login |
 | `/painel-celular.html` | não | Publicação e revisão simplificadas para celular |
+| `/estudio-videos.html` | não | Geração de vídeo vertical narrado pelo Ranki e envio ao YouTube |
 | `/oauth-mercadolivre.html` | não | Retorno OAuth do Mercado Livre |
 | `/bot-precos.user.js` | não | Robô Tampermonkey auxiliar de conferência |
 | `/radar.html` | legado | Interface do radar sob demanda; não é fluxo prioritário |
@@ -113,6 +115,8 @@ Não há etapa de compilação. Os arquivos HTML e JavaScript da raiz são servi
 
 - `dashboard.html`: CRUD, categorias, promoções, preços, SEO, campanhas, temas e ranking.
 - `painel-celular.html`: criação assistida, revisão, aprovação e publicação móvel.
+- `estudio-videos.html`: fluxo protegido de escolha, roteiro, voz, vídeo e aprovação.
+- `ranki-video-studio.js`: catálogo estático, TTS, canvas, gravação e upload OAuth do YouTube.
 - `oauth-mercadolivre.html`: autorização da API.
 - `mlb-localizador.js`: cliente do localizador assíncrono.
 - `mlb-resolucoes.json`: respostas do robô para o painel.
@@ -224,6 +228,19 @@ Esses arquivos são cache público/resultado de automação; o cadastro mestre c
 - o painel móvel aceita a revisão técnica alinhada ao seu validador, mas o gerador final aplica as regras públicas completas;
 - preço, frete e estoque são apresentados como sujeitos a mudança no marketplace.
 
+### Estúdio do Ranki
+
+- lê `search-index.json` e a página pública escolhida; não varre o Firestore;
+- cria roteiro local com preço, um benefício e uma limitação já publicados;
+- exige revisão humana antes da narração e antes do envio;
+- usa `gemini-3.1-flash-tts-preview` somente quando o administrador toca em “Gerar voz natural”;
+- combina áudio PCM, canvas 9:16, imagem local do produto e roupa temática do Ranki;
+- prefere MP4 quando o navegador oferece o codec e usa WebM como alternativa aceita pelo YouTube;
+- mantém áudio e vídeo somente na memória do navegador até baixar ou enviar;
+- o envio direto usa OAuth do Google, nunca Client Secret no navegador;
+- grava no produto apenas `youtubeVideoId`, `youtubeVideoUrl`, `youtubeTitulo`, `youtubePrivacidade` e `youtubePublicadoEm`;
+- a próxima geração da página incorpora o vídeo pelo domínio `youtube-nocookie.com` e cria dados estruturados `VideoObject`.
+
 ### Temas e mascote
 
 Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnaval, Dia do Consumidor, Páscoa, Dia das Mães, Dia dos Namorados, festa junina, Dia dos Pais, Dia das Crianças, Black Friday e Natal. A roupa do Ranki acompanha o tema. Animações respeitam `prefers-reduced-motion`.
@@ -270,6 +287,18 @@ O horário de 09:30 é uma preferência operacional da interface/robô. A automa
 5. `submit-indexnow.mjs` avisa Bing, Yahoo e compatíveis.
 6. Google descobre pelo sitemap/Search Console; indexação não é instantânea nem garantida.
 
+### Criar e publicar um vídeo do Ranki
+
+1. Entrar em `/estudio-videos.html` com o mesmo login administrativo.
+2. Escolher um produto no índice publicado e selecionar o modelo e a roupa do Ranki.
+3. Preparar e revisar roteiro, título, descrição e hashtags.
+4. Ouvir a prévia simples; depois gerar a voz natural sob demanda.
+5. Criar o vídeo 9:16 e baixá-lo para conferência/TikTok/Reels.
+6. Para envio direto, informar um Client ID OAuth público com origem JavaScript autorizada no domínio oficial.
+7. Autorizar a conta Google, enviar primeiro como privado e revisar no YouTube Studio.
+8. O estúdio grava apenas a referência do YouTube no produto.
+9. Executar o workflow de páginas para incorporar o vídeo à análise.
+
 ## 10. Automações do GitHub
 
 | Workflow | Disparo | Resultado |
@@ -304,6 +333,7 @@ Nunca colocar os valores na planta, em issues, logs, HTML ou commit. `MERCADO_LI
 - repositório GitHub, GitHub Pages e segredos;
 - registrador do domínio e configuração DNS;
 - Google Analytics, Search Console e verificação;
+- projeto Google Cloud com YouTube Data API, Client ID OAuth e canal autorizado;
 - canal do WhatsApp e contas de afiliado Mercado Livre/Shopee.
 
 ## 12. Segurança e privacidade
@@ -314,6 +344,8 @@ Nunca colocar os valores na planta, em issues, logs, HTML ou commit. `MERCADO_LI
 - escapar conteúdo antes de inserir em HTML e validar protocolos de links;
 - links afiliados devem usar `rel="sponsored noopener noreferrer"` quando aplicável;
 - não publicar tokens, senhas, cookies, contas administrativas ou chaves privadas;
+- o Client ID OAuth pode ser público, mas Client Secret e token do YouTube nunca entram no site ou no Git;
+- iniciar vídeos como privados até a revisão; clientes de API não auditados podem ter publicação pública restringida;
 - a configuração pública do Firebase não substitui regras seguras do Firestore;
 - preservar páginas institucionais, transparência de afiliados e limites editoriais;
 - nunca remover dados por falha temporária de rede ou bloqueio do marketplace.
@@ -381,6 +413,7 @@ Aceite mínimo:
 - dashboard e painel móvel exigem login e não carregam todos os produtos sem ação;
 - lote de preços é único, manual e preserva dados em falhas;
 - página inicial, busca, compra, Shopee, compartilhamento e WhatsApp funcionam no celular;
+- o Estúdio do Ranki permanece `noindex`, exige login, não armazena vídeo no Firebase e não usa IA sem toque;
 - canônicos, dados estruturados, OG/Twitter, 404 e robots continuam corretos.
 
 ## 16. Procedimento obrigatório para qualquer IA

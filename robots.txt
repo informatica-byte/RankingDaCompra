@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /dashboard.html
+Disallow: /painel-celular.html
+Disallow: /estudio-videos.html
 Disallow: /oauth-mercadolivre.html
 Disallow: /bot-precos.user.js
 

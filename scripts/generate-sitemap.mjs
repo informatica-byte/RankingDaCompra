@@ -440,11 +440,13 @@ async function listPublishedProducts() {
     try {
       const html = await readFile(resolve(directory, entry.name), "utf8");
       let schema = null;
+      let videoSchema = null;
       for (const match of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
         try {
           const payload = JSON.parse(match[1]);
           const nodes = Array.isArray(payload?.["@graph"]) ? payload["@graph"] : [payload];
           schema = nodes.find((node) => node?.["@type"] === "Product");
+          videoSchema = nodes.find((node) => node?.["@type"] === "VideoObject") || videoSchema;
           if (schema) break;
         } catch {
           // Ignora um bloco inválido e tenta o próximo.
@@ -472,6 +474,10 @@ async function listPublishedProducts() {
         link: decodePublicHtml(sourceMatch?.[1] || offer.url || ""),
         linkAfiliado: String(offer.url || ""),
         nota: String(review?.reviewRating?.ratingValue || ""),
+        youtubeVideoId: String(videoSchema?.embedUrl || videoSchema?.contentUrl || "").match(/(?:embed\/|youtu\.be\/)([A-Za-z0-9_-]{11})/)?.[1] || "",
+        youtubeVideoUrl: String(videoSchema?.contentUrl || ""),
+        youtubeTitulo: repairPortugueseEncoding(videoSchema?.name || ""),
+        youtubePublicadoEm: String(videoSchema?.uploadDate || ""),
         atualizadoEm: "",
         dataCadastro: "",
       });
@@ -1349,11 +1355,32 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   const rating = Number(product.nota);
 
+  const youtubeVideoIdRaw = String(product.youtubeVideoId || "").trim();
+
+  const youtubeVideoId = /^[A-Za-z0-9_-]{11}$/.test(youtubeVideoIdRaw) ? youtubeVideoIdRaw : "";
+
+  const youtubeTitle = compactText(repairPortugueseEncoding(product.youtubeTitulo || `Ranki apresenta ${title}`), 100);
+
+  const youtubePublished = dateOnly(product.youtubePublicadoEm) || modified;
+
   const productSchema = { "@type": "Product", "@id": `${detailUrl}#product`, name: title, description: summary, image: [image], category: categoryName, url: detailUrl };
   const brand = repairPortugueseEncoding(product.marca || product.brand || "");
   const gtin = String(product.gtin13 || product.gtin14 || product.gtin || product.ean || "").replace(/\D/g, "");
   if (brand) productSchema.brand = { "@type": "Brand", name: brand };
   if ([8, 12, 13, 14].includes(gtin.length)) productSchema["gtin" + gtin.length] = gtin;
+
+  const videoSchema = youtubeVideoId ? {
+    "@type": "VideoObject",
+    "@id": `${detailUrl}#video`,
+    name: youtubeTitle,
+    description: compactText(`O mascote Ranki apresenta os pontos principais, o preço informado e as limitações de ${title}.`, 158),
+    thumbnailUrl: [image],
+    ...(youtubePublished ? { uploadDate: youtubePublished } : {}),
+    embedUrl: `https://www.youtube-nocookie.com/embed/${youtubeVideoId}`,
+    contentUrl: `https://youtu.be/${youtubeVideoId}`,
+  } : null;
+
+  if (videoSchema) productSchema.subjectOf = { "@id": videoSchema["@id"] };
 
   const structuredOffers = [];
   if (offerUrl !== "#" && currentPrice > 0) structuredOffers.push({ "@type": "Offer", url: offerUrl, priceCurrency: "BRL", price: currentPrice.toFixed(2), availability: "https://schema.org/InStock", seller: { "@type": "Organization", name: marketplaceName } });
@@ -1385,6 +1412,8 @@ function renderSharePage(product, socialImage, categoryNames) {
     ] },
 
     productSchema,
+
+    ...(videoSchema ? [videoSchema] : []),
 
   ] }).replace(/</g, "\\u003c");
 
@@ -1450,7 +1479,7 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   <script type="application/ld+json">${structuredData}</script>
 
-  <style>:root{--green:#116149;--ink:#11221d;--muted:#66746d;--line:#dfe7e2;--cream:#fbfaf5;--blue:#1769e0}*{box-sizing:border-box}body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--cream);color:var(--ink);margin:0;line-height:1.55}a{color:inherit}.wrap{width:min(1040px,calc(100% - 32px));margin:auto}header{background:#fff;border-bottom:1px solid var(--line)}header .wrap{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{color:var(--green);font-weight:900;text-decoration:none}.back{color:var(--green);font-weight:750;text-decoration:none;font-size:.9rem}main{padding:30px 0 56px}.crumb{color:var(--muted);font-size:.82rem;margin-bottom:16px}.crumb a{color:var(--green)}article{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,42px)}.top{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(0,1.15fr);gap:38px}.photo{width:100%;height:390px;object-fit:contain;background:#fafcfb;border-radius:14px}.eyebrow{color:var(--green);font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900}h1{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.12;letter-spacing:-.04em;margin:9px 0 12px}.full-title{margin:-3px 0 12px;color:var(--muted);font-size:.82rem}.full-title summary{color:var(--green);font-weight:800;cursor:pointer}.full-title p{margin:7px 0 0}.rating{color:#9b6000;font-weight:850}.summary{color:#43534b;font-size:1.03rem}.offer{background:#edf7f1;border:1px solid #cde4d5;border-radius:14px;padding:18px;margin-top:20px}.previous{display:block;color:#727b76;text-decoration:line-through;font-size:.86rem}.offer strong{display:block;color:#087a3d;font-size:1.25rem}.cta{display:flex;align-items:center;justify-content:center;margin-top:12px;background:var(--blue);color:#fff;padding:13px 17px;border-radius:9px;text-decoration:none;font-weight:900}.cta.shopee{background:#ee4d2d}.share-cta{width:100%;min-height:44px;border:1px solid #9ab9a7;background:#fff;color:var(--green);padding:11px 15px;border-radius:9px;font:inherit;font-weight:850;cursor:pointer;margin-top:9px}.share-status{min-height:1.1em;color:var(--green);font-weight:800}.fine{font-size:.78rem;color:var(--muted);margin:9px 0 0}.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.fact{border:1px solid var(--line);border-radius:10px;padding:12px}.fact span{display:block;color:var(--muted);font-size:.72rem;font-weight:850;text-transform:uppercase}.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}.panel{background:#fafcfb;border:1px solid var(--line);border-radius:13px;padding:20px}.panel h2{font-size:1.05rem;margin:0 0 8px}.positive h2{color:#267c31}.attention h2{color:#a94a16}.panel ul{padding-left:19px;margin:0}.source{margin-top:22px}.source a{color:var(--green)}footer{background:#10231c;color:#dfeae4;padding:30px 0;font-size:.82rem}footer a{color:#fff}@media(max-width:700px){.top,.panels{grid-template-columns:1fr}.photo{height:300px}.facts{grid-template-columns:1fr}header .wrap{padding:15px 0;align-items:flex-start}}</style>
+  <style>:root{--green:#116149;--ink:#11221d;--muted:#66746d;--line:#dfe7e2;--cream:#fbfaf5;--blue:#1769e0}*{box-sizing:border-box}body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--cream);color:var(--ink);margin:0;line-height:1.55}a{color:inherit}.wrap{width:min(1040px,calc(100% - 32px));margin:auto}header{background:#fff;border-bottom:1px solid var(--line)}header .wrap{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{color:var(--green);font-weight:900;text-decoration:none}.back{color:var(--green);font-weight:750;text-decoration:none;font-size:.9rem}main{padding:30px 0 56px}.crumb{color:var(--muted);font-size:.82rem;margin-bottom:16px}.crumb a{color:var(--green)}article{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,42px)}.top{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(0,1.15fr);gap:38px}.photo{width:100%;height:390px;object-fit:contain;background:#fafcfb;border-radius:14px}.eyebrow{color:var(--green);font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900}h1{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.12;letter-spacing:-.04em;margin:9px 0 12px}.full-title{margin:-3px 0 12px;color:var(--muted);font-size:.82rem}.full-title summary{color:var(--green);font-weight:800;cursor:pointer}.full-title p{margin:7px 0 0}.rating{color:#9b6000;font-weight:850}.summary{color:#43534b;font-size:1.03rem}.offer{background:#edf7f1;border:1px solid #cde4d5;border-radius:14px;padding:18px;margin-top:20px}.previous{display:block;color:#727b76;text-decoration:line-through;font-size:.86rem}.offer strong{display:block;color:#087a3d;font-size:1.25rem}.cta{display:flex;align-items:center;justify-content:center;margin-top:12px;background:var(--blue);color:#fff;padding:13px 17px;border-radius:9px;text-decoration:none;font-weight:900}.cta.shopee{background:#ee4d2d}.share-cta{width:100%;min-height:44px;border:1px solid #9ab9a7;background:#fff;color:var(--green);padding:11px 15px;border-radius:9px;font:inherit;font-weight:850;cursor:pointer;margin-top:9px}.share-status{min-height:1.1em;color:var(--green);font-weight:800}.fine{font-size:.78rem;color:var(--muted);margin:9px 0 0}.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.fact{border:1px solid var(--line);border-radius:10px;padding:12px}.fact span{display:block;color:var(--muted);font-size:.72rem;font-weight:850;text-transform:uppercase}.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}.panel{background:#fafcfb;border:1px solid var(--line);border-radius:13px;padding:20px}.panel h2{font-size:1.05rem;margin:0 0 8px}.positive h2{color:#267c31}.attention h2{color:#a94a16}.panel ul{padding-left:19px;margin:0}.video-review{margin-top:26px;padding:20px;border:1px solid var(--line);border-radius:14px;background:#f3faf6}.video-review h2{margin:0 0 10px;font-size:1.18rem}.video-frame{position:relative;width:min(100%,420px);aspect-ratio:9/16;margin:auto;border-radius:13px;overflow:hidden;background:#0b261d}.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.source{margin-top:22px}.source a{color:var(--green)}footer{background:#10231c;color:#dfeae4;padding:30px 0;font-size:.82rem}footer a{color:#fff}@media(max-width:700px){.top,.panels{grid-template-columns:1fr}.photo{height:300px}.facts{grid-template-columns:1fr}header .wrap{padding:15px 0;align-items:flex-start}}</style>
 
   <style>.mobile-buy{display:none}@media(max-width:700px){body{padding-bottom:72px}.top>div{display:flex;flex-direction:column;order:-1}.top>div>.eyebrow{order:1}.top>div>h1{order:2}.top>div>.full-title{order:3}.top>div>.rating{order:4}.top>div>.offer{order:5;margin:8px 0 14px}.top>div>.summary{order:6}.top>div>.facts{order:7}.photo{order:2}.mobile-buy{position:fixed;z-index:1000;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 15px;border-radius:11px;background:#1769e0;color:#fff;text-decoration:none;font-weight:950;box-shadow:0 10px 30px rgba(0,0,0,.25)}}</style>
 <script defer src="/seo-priorities.js?v=20260913-1"></script><script defer src="/growth-tools.js?v=20260913-seo1"></script>
@@ -1469,7 +1498,7 @@ function renderSharePage(product, socialImage, categoryNames) {
 
     <nav class="crumb" aria-label="Navegação estrutural"><a href="${SITE}">Início</a> / <a href="${SITE}?cat=${encodeURIComponent(product.categoria || "")}">${escapeHtml(categoryName)}</a> / ${escapeHtml(displayTitle)}</nav>
 
-    <article><div class="top"><img class="photo" src="${escapeHtml(image)}" width="480" height="390" alt="${escapeHtml(title)}"><div><div class="eyebrow">Análise para decidir melhor</div><h1>${escapeHtml(displayTitle)}</h1>${completeTitle}${editorial && Number.isFinite(rating) && rating >= 1 && rating <= 5 ? `<div class="rating">Custo-benefício editorial: ${"★".repeat(Math.round(rating))}${"☆".repeat(5 - Math.round(rating))} ${escapeHtml(rating.toFixed(1))} de 5 · <a href="${SITE}como-avaliamos.html">entenda a avaliação</a></div>` : ""}<p class="summary">${escapeHtml(summary)}</p><div class="offer">${priceHtml}${offerUrl !== "#" ? `<a class="cta" id="affiliate-offer" href="${escapeHtml(offerUrl)}" target="_blank" rel="sponsored noopener noreferrer">${offerLabel}</a>` : ""}${hasShopeeOffer ? `<a class="cta shopee" id="affiliate-offer-shopee" href="${escapeHtml(shopeeUrl)}" target="_blank" rel="sponsored noopener noreferrer">${escapeHtml(shopeeLabel)}</a>` : ""}<button class="share-cta" id="share-product" type="button">↗ Compartilhar produto</button><p class="fine share-status" id="share-status" aria-live="polite"></p><p class="fine">${modified ? `Informações atualizadas em ${escapeHtml(new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeZone: "America/Sao_Paulo" }).format(new Date(`${modified}T12:00:00-03:00`)))}. ` : ""}Preço, estoque, frete e condições finais são definidos pelo vendedor.</p></div><div class="facts"><div class="fact"><span>Categoria</span>${escapeHtml(categoryName)}</div><div class="fact"><span>Transparência</span>${hasShopeeOffer ? "Links de afiliado do Mercado Livre e da Shopee identificados" : `Link de afiliado da ${marketplaceName} identificado`}</div></div></div></div><div class="panels"><section class="panel positive"><h2>✓ Pontos positivos</h2><ul>${positiveHtml}</ul></section><section class="panel attention"><h2>! Pontos de atenção</h2><ul>${attentionHtml}</ul></section></div>${sourceUrl !== "#" ? `<p class="fine source">Fonte técnica consultada: <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="nofollow noopener noreferrer">anúncio do produto</a>. A equipe não afirma ter testado o item.</p>` : ""}</article>
+    <article><div class="top"><img class="photo" src="${escapeHtml(image)}" width="480" height="390" alt="${escapeHtml(title)}"><div><div class="eyebrow">Análise para decidir melhor</div><h1>${escapeHtml(displayTitle)}</h1>${completeTitle}${editorial && Number.isFinite(rating) && rating >= 1 && rating <= 5 ? `<div class="rating">Custo-benefício editorial: ${"★".repeat(Math.round(rating))}${"☆".repeat(5 - Math.round(rating))} ${escapeHtml(rating.toFixed(1))} de 5 · <a href="${SITE}como-avaliamos.html">entenda a avaliação</a></div>` : ""}<p class="summary">${escapeHtml(summary)}</p><div class="offer">${priceHtml}${offerUrl !== "#" ? `<a class="cta" id="affiliate-offer" href="${escapeHtml(offerUrl)}" target="_blank" rel="sponsored noopener noreferrer">${offerLabel}</a>` : ""}${hasShopeeOffer ? `<a class="cta shopee" id="affiliate-offer-shopee" href="${escapeHtml(shopeeUrl)}" target="_blank" rel="sponsored noopener noreferrer">${escapeHtml(shopeeLabel)}</a>` : ""}<button class="share-cta" id="share-product" type="button">↗ Compartilhar produto</button><p class="fine share-status" id="share-status" aria-live="polite"></p><p class="fine">${modified ? `Informações atualizadas em ${escapeHtml(new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeZone: "America/Sao_Paulo" }).format(new Date(`${modified}T12:00:00-03:00`)))}. ` : ""}Preço, estoque, frete e condições finais são definidos pelo vendedor.</p></div><div class="facts"><div class="fact"><span>Categoria</span>${escapeHtml(categoryName)}</div><div class="fact"><span>Transparência</span>${hasShopeeOffer ? "Links de afiliado do Mercado Livre e da Shopee identificados" : `Link de afiliado da ${marketplaceName} identificado`}</div></div></div></div><div class="panels"><section class="panel positive"><h2>✓ Pontos positivos</h2><ul>${positiveHtml}</ul></section><section class="panel attention"><h2>! Pontos de atenção</h2><ul>${attentionHtml}</ul></section></div>${videoSchema ? `<section class="video-review"><h2>🦊 Ranki apresenta este produto</h2><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/${youtubeVideoId}" title="${escapeHtml(youtubeTitle)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="fine">Vídeo publicado no canal do Ranking da Compra. Confirme as informações e o preço atual no anúncio antes de comprar.</p></section>` : ""}${sourceUrl !== "#" ? `<p class="fine source">Fonte técnica consultada: <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="nofollow noopener noreferrer">anúncio do produto</a>. A equipe não afirma ter testado o item.</p>` : ""}</article>
 
   </main>
 
