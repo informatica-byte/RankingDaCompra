@@ -152,6 +152,9 @@
     "The public video showcase accepts 5 to 10 YouTube and Ranking product URL pairs and never stores the video file in Firebase",
     "Each public video has a clickable product card populated from search-index.json and synchronized with the current playlist item",
     "The promotion title must be human-approved, descriptive and between 20 and 75 characters",
+    "AI promotion-title suggestions use only active offers already loaded by the dashboard and never trigger another full Firestore catalog read",
+    "Web-grounded title suggestions display their Google Search queries, sources and search widget and never claim popularity without evidence",
+    "AI promotion-title suggestions never save or publish automatically; a human must select, review and save the title",
     "Architecture changes require updating both blueprint files"
   ],
   "validationCommands": [

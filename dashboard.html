@@ -403,6 +403,10 @@
             model: "gemini-3.1-flash-lite",
             tools: [{ urlContext: {} }]
         });
+        const modelPesquisaTitulos = getGenerativeModel(ai, {
+            model: "gemini-3.5-flash-lite",
+            tools: [{ googleSearch: {} }]
+        });
 
         function mensagemDoErro(erro) {
             return String(erro?.message || erro || "").replace(/\s+/g, " ").trim();
@@ -903,6 +907,58 @@ Formato sem comprovação:
         };
     
         window.gerarTextoDivulgacaoIA = async function gerarTextoDivulgacaoIA({produto,desconto}){const prompt=`Crie um texto curto de divulgação em português do Brasil para uma oferta real. Use somente os dados fornecidos abaixo. Não invente características, porcentagens, garantias, estoque, frete, cupom ou benefícios. Escreva até 420 caracteres, com no máximo 2 emojis, tom claro e confiável. Inclua o preço anterior, o preço promocional, o desconto informado e termine convidando a conferir preço, frete e estoque. Retorne apenas o texto, sem markdown.\n\nProduto: ${produto.titulo}\nPreço anterior: ${produto.precoAnterior}\nPreço promocional: ${produto.precoPromocional}\nDesconto calculado: ${desconto}%\nDados técnicos: ${produto.dadosTecnicos||''}\nPontos positivos verificados: ${produto.pros||''}\nPontos de atenção: ${produto.contras||''}`;const result=await model.generateContent(prompt);const texto=String(result.response.text()||'').replace(/^```[a-z]*|```$/gi,'').trim();if(texto.length<80)throw new Error('A IA retornou um texto insuficiente.');return limitarTexto(texto,420)};
+
+        function metadadosPesquisaGoogle(resposta) {
+            const candidato = resposta?.candidates?.[0] || {};
+            const metadados = candidato.groundingMetadata || candidato.grounding_metadata || {};
+            const entrada = metadados.searchEntryPoint || metadados.search_entry_point || {};
+            const trechos = metadados.groundingChunks || metadados.grounding_chunks || [];
+            return {
+                consultas: metadados.webSearchQueries || metadados.web_search_queries || [],
+                pesquisaHtml: String(entrada.renderedContent || entrada.rendered_content || ''),
+                fontes: trechos.map(item => item?.web || item?.retrievedContext || item?.retrieved_context).filter(Boolean)
+                    .map(item => ({ titulo: String(item.title || item.uri || 'Fonte consultada'), url: String(item.uri || '') }))
+                    .filter(item => /^https:\/\//i.test(item.url)).slice(0, 6)
+            };
+        }
+
+        window.sugerirTitulosPromocaoIA = async function sugerirTitulosPromocaoIA(ofertas) {
+            const produtos = (Array.isArray(ofertas) ? ofertas : []).slice(0, 10).map(item => ({
+                titulo: String(item.titulo || '').replace(/\s+/g, ' ').trim().slice(0, 180),
+                categoria: String(item.categoria || '').replace(/\s+/g, ' ').trim().slice(0, 80),
+                preco: Number(item.preco || 0)
+            })).filter(item => item.titulo && item.preco > 0);
+            if (!produtos.length) throw new Error('Publique ao menos uma promoção válida antes de pedir sugestões.');
+            const prompt = `Pesquise no Google como consumidores brasileiros procuram pelos tipos de produtos abaixo e proponha 4 títulos úteis para a seção de ofertas do Ranking da Compra.
+
+PRODUTOS REALMENTE PUBLICADOS AGORA:
+${JSON.stringify(produtos)}
+
+REGRAS:
+- Use apenas categorias e faixas de preço sustentadas pelos produtos informados.
+- Priorize intenção de compra natural, como "melhores", tipo do produto, característica relevante e "até R$ X" quando isso representar todos os itens do título.
+- Não invente popularidade, volume de buscas, desconto, marca, frete, estoque ou qualidade.
+- Não diga "mais buscado", "mais vendido" ou "melhor da internet".
+- Cada título precisa ter entre 35 e 70 caracteres, começar com "Ofertas do dia:" ou "Promoções do dia:" e ser diferente dos demais.
+- Seja descritivo e conciso, sem repetição ou empilhamento de palavras-chave.
+- Retorne somente JSON válido, sem markdown.
+
+FORMATO:
+{"sugestoes":[{"titulo":"...","motivo":"explicação curta","consulta":"forma de busca considerada"}]}`;
+            const result = await modelPesquisaTitulos.generateContent(prompt);
+            const resposta = JSON.parse(limparJsonDaIA(result.response.text()));
+            const sugestoes = (Array.isArray(resposta?.sugestoes) ? resposta.sugestoes : []).map(item => ({
+                titulo: String(item?.titulo || '').replace(/[<>]/g, '').replace(/\s+/g, ' ').trim(),
+                motivo: String(item?.motivo || '').replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 180),
+                consulta: String(item?.consulta || '').replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 120)
+            })).filter(item => item.titulo.length >= 35 && item.titulo.length <= 70
+                && /^(ofertas|promo[cç][oõ]es) do dia:/i.test(item.titulo)
+                && !/(mais buscad[oa]|mais vendid[oa]|melhor da internet)/i.test(item.titulo))
+                .filter((item, indice, lista) => lista.findIndex(outro => outro.titulo.toLowerCase() === item.titulo.toLowerCase()) === indice)
+                .slice(0, 4);
+            if (sugestoes.length < 2) throw new Error('A IA não entregou títulos suficientemente claros. Tente novamente.');
+            return { sugestoes, ...metadadosPesquisaGoogle(result.response) };
+        };
     </script>
 
     <script>
@@ -1082,6 +1138,7 @@ function precoAtualCentral(produto){const status=statusMercadoLivreAdmin[String(
 function pontuacaoOfertaCentral(produto){return descontoCentral(produto)*3+(Number(produto?.nota)||0)*5+(linkAfiliadoValidoCentral(produto)?18:0)+(precoAtualCentral(produto)?15:0)+(relampagoAtivoCentral(produto)?35:0)-(statusMercadoLivreAdmin[String(produto?.id||'')]?.visible===false?1000:0)}
 
 function melhoresOfertasCentral(){return produtosCentralAtual.filter(campanhaValidaCentral).filter(produto=>statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).sort((a,b)=>pontuacaoOfertaCentral(b)-pontuacaoOfertaCentral(a)).slice(0,3)}
+window.obterOfertasAtivasParaTitulo=()=>produtosCentralAtual.filter(campanhaValidaCentral).filter(produto=>statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).map(produto=>({id:String(produto.id),titulo:String(produto.titulo||''),categoria:String(produto.categoria||''),preco:numeroPrecoPromocao(produto.precoPromocional||produto.preco)})).filter(produto=>produto.titulo&&produto.preco>0).slice(0,10);
 
 const SHARE_VERSION_CENTRAL='20260810-1';
 
@@ -2774,7 +2831,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script defer src="/seo-opportunities.js?v=20260914-1"></script>
-  <script defer src="/growth-tools.js?v=20260919-video2"></script>
+  <script defer src="/growth-tools.js?v=20260919-title-ai1"></script>
 </body>
 </html>
 

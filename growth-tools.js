@@ -602,7 +602,7 @@
       .growth-admin button,.growth-admin a{border:0;border-radius:8px;padding:10px 14px;font:inherit;font-weight:850;cursor:pointer;text-decoration:none}
       .growth-admin button{background:#087a3d;color:#fff}.growth-admin a{background:#fff;color:#0b5b39;border:1px solid #9dc6ae}
       .growth-admin-status{min-height:1.3em;margin-top:10px!important;font-weight:800!important;color:#0b6b3a!important}
-      .showcase-admin{margin-top:22px;padding-top:20px;border-top:1px solid #b9d8c5}.promotion-suggestions{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 14px}.promotion-suggestions button{padding:7px 9px!important;border:1px solid #b8cfe9!important;background:#f5f9ff!important;color:#174f83!important;font-size:.75rem!important;text-align:left}
+      .showcase-admin{margin-top:22px;padding-top:20px;border-top:1px solid #b9d8c5}.promotion-suggestions{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 14px}.promotion-suggestions button{padding:7px 9px!important;border:1px solid #b8cfe9!important;background:#f5f9ff!important;color:#174f83!important;font-size:.75rem!important;text-align:left}.promotion-ai-box{margin:10px 0 16px;padding:13px;border:1px solid #cbbce9;border-radius:12px;background:#faf7ff}.promotion-ai-box>p{margin:0 0 9px!important;font-size:.8rem!important}.promotion-ai-box>button{background:#6f42c1!important}.promotion-ai-results{display:grid;gap:8px;margin-top:10px}.promotion-ai-results button{display:grid!important;gap:3px;width:100%;border:1px solid #c9b8e8!important;background:#fff!important;color:#34234f!important;text-align:left!important}.promotion-ai-results button strong{font-size:.84rem}.promotion-ai-results button small{color:#64577a;font-size:.7rem;font-weight:600}.promotion-ai-sources{margin-top:10px;color:#615774;font-size:.7rem;line-height:1.45}.promotion-ai-sources a{display:inline!important;padding:0!important;border:0!important;background:transparent!important;color:#5f37a4!important;font-weight:800!important}.promotion-ai-google{margin-top:8px;overflow:auto}.promotion-ai-google:empty{display:none}
       .seasonal-admin{margin-top:22px;padding-top:20px;border-top:1px solid #b9d8c5}.seasonal-admin h2{display:flex;align-items:center;gap:8px}.seasonal-admin-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:12px}.seasonal-admin select,.seasonal-admin input[type=date]{width:100%;padding:11px;border:1px solid #afc9b9;border-radius:8px;background:#fff;font:inherit}.seasonal-preview{--season-a:#123c69;--season-b:#1f8a70;--season-accent:#ffd166;position:relative;overflow:hidden;display:grid;grid-template-columns:96px 1fr;align-items:center;gap:14px;margin-top:14px;padding:10px 17px;border-radius:14px;background:linear-gradient(120deg,var(--season-a),var(--season-b));color:#fff}.seasonal-preview img{display:block;width:96px;height:96px;object-fit:contain;filter:drop-shadow(0 7px 8px rgba(0,0,0,.2))}.seasonal-preview strong{display:block;font-size:1.08rem}.seasonal-preview span{display:block;margin-top:4px;color:rgba(255,255,255,.86);font-size:.82rem}.seasonal-admin-help{font-size:.78rem;color:#607068}.seasonal-admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.seasonal-admin-actions button{margin:0}.seasonal-status{min-height:1.3em;margin:9px 0 0!important;font-weight:850!important;color:#0b6b3a!important}
       @media(max-width:900px){.hero .wrap{padding-right:145px}.ranki-hero{right:2px;width:130px}}
       @media(max-width:700px){.hero .wrap{padding-right:0}.ranki-hero{right:-5px;bottom:-8px;width:88px;opacity:.94;filter:drop-shadow(0 8px 9px rgba(17,34,29,.16))}.ranki-hero[data-ranki-themed] img{width:100%;max-width:100%;margin-left:0}.ranki-caption{display:none}.ranki-help{left:10px;right:10px;bottom:10px;width:auto;max-height:calc(100vh - 20px);border-radius:17px}.ranki-actions{grid-template-columns:1fr 1fr}.club-whatsapp{grid-template-columns:1fr}.club-whatsapp a{width:100%}.club-floating{right:12px;bottom:12px;font-size:.82rem}.youtube-showcase{grid-template-columns:1fr;padding:14px}.youtube-showcase-player{grid-row:1}.youtube-product-overlay{left:7px;right:7px;bottom:42px;grid-template-columns:44px minmax(0,1fr);gap:7px;padding:7px}.youtube-product-overlay img{width:44px;height:44px}.youtube-product-overlay strong{font-size:.7rem}.youtube-product-overlay em{font-size:.72rem}.youtube-product-overlay b{display:none}.seasonal-banner-inner{grid-template-columns:auto 1fr;padding:17px;gap:12px}.seasonal-icon{width:52px;height:52px;border-radius:15px;font-size:1.65rem}.seasonal-cta{grid-column:1/-1;width:100%}.seasonal-copy p{font-size:.82rem}.seasonal-admin-grid{grid-template-columns:1fr}.seasonal-preview{grid-template-columns:76px 1fr}.seasonal-preview img{width:76px;height:76px}}
@@ -995,6 +995,13 @@
         <label for="growth-promotion-title">Título da seção de promoções</label>
         <input id="growth-promotion-title" type="text" maxlength="75" placeholder="${PROMOTION_TITLE_DEFAULT}">
         <div class="promotion-suggestions" aria-label="Sugestões de títulos">${PROMOTION_TITLE_SUGGESTIONS.map(title => `<button type="button" data-promotion-suggestion="${escapeHtml(title)}">${escapeHtml(title)}</button>`).join("")}</div>
+        <div class="promotion-ai-box">
+          <p><b>✨ Sugestão conforme as ofertas atuais</b><br>A IA pesquisa formas de busca relacionadas aos produtos que estão publicados e você escolhe o título antes de salvar.</p>
+          <button id="growth-promotion-ai" type="button">Pesquisar e sugerir títulos com IA</button>
+          <div class="promotion-ai-results" id="growth-promotion-ai-results"></div>
+          <div class="promotion-ai-sources" id="growth-promotion-ai-sources"></div>
+          <div class="promotion-ai-google" id="growth-promotion-ai-google"></div>
+        </div>
         <label for="growth-youtube-title">Título da pequena vitrine de vídeos</label>
         <input id="growth-youtube-title" type="text" maxlength="80" placeholder="Vídeos do Ranki: produtos em destaque">
         <label for="growth-youtube-links">Vídeo e produto correspondente — uma dupla por linha (de 5 a 10)</label>
@@ -1032,6 +1039,10 @@
     test.href = validWhatsAppUrl(input.value) ? input.value : "#";
     input.addEventListener("input", () => { test.href = validWhatsAppUrl(input.value) ? input.value : "#"; });
     const promotionTitle = container.querySelector("#growth-promotion-title");
+    const promotionAiButton = container.querySelector("#growth-promotion-ai");
+    const promotionAiResults = container.querySelector("#growth-promotion-ai-results");
+    const promotionAiSources = container.querySelector("#growth-promotion-ai-sources");
+    const promotionAiGoogle = container.querySelector("#growth-promotion-ai-google");
     const youtubeTitle = container.querySelector("#growth-youtube-title");
     const youtubeLinks = container.querySelector("#growth-youtube-links");
     const youtubeEnabled = container.querySelector("#growth-youtube-enabled");
@@ -1043,6 +1054,39 @@
     container.querySelectorAll("[data-promotion-suggestion]").forEach(button => button.addEventListener("click", () => {
       promotionTitle.value = button.dataset.promotionSuggestion || PROMOTION_TITLE_DEFAULT;
     }));
+    promotionAiResults.addEventListener("click", event => {
+      const button = event.target.closest("[data-ai-promotion-title]");
+      if (!button) return;
+      promotionTitle.value = button.dataset.aiPromotionTitle || PROMOTION_TITLE_DEFAULT;
+      promotionTitle.focus();
+      showcaseStatus.textContent = "✓ Sugestão escolhida. Revise e clique em Salvar vídeos e título SEO.";
+    });
+    promotionAiButton.addEventListener("click", async () => {
+      const original = promotionAiButton.textContent;
+      promotionAiButton.disabled = true;
+      promotionAiButton.textContent = "IA pesquisando no Google...";
+      promotionAiResults.innerHTML = "";
+      promotionAiSources.textContent = "";
+      promotionAiGoogle.innerHTML = "";
+      showcaseStatus.textContent = "Analisando somente as promoções ativas; nenhuma alteração será salva automaticamente.";
+      try {
+        const offers = typeof window.obterOfertasAtivasParaTitulo === "function" ? window.obterOfertasAtivasParaTitulo() : [];
+        if (!offers.length) throw new Error("Não há promoções válidas carregadas. Publique ou atualize as ofertas e tente novamente.");
+        if (typeof window.sugerirTitulosPromocaoIA !== "function") throw new Error("A IA ainda está carregando. Aguarde alguns segundos e tente novamente.");
+        const result = await window.sugerirTitulosPromocaoIA(offers);
+        promotionAiResults.innerHTML = result.sugestoes.map(item => `<button type="button" data-ai-promotion-title="${escapeHtml(item.titulo)}"><strong>${escapeHtml(item.titulo)}</strong><small>${escapeHtml(item.motivo || "Título alinhado às ofertas publicadas.")}${item.consulta ? ` · Busca considerada: ${escapeHtml(item.consulta)}` : ""}</small></button>`).join("");
+        const sources = Array.isArray(result.fontes) ? result.fontes : [];
+        promotionAiSources.innerHTML = sources.length ? `<b>Fontes da pesquisa:</b> ${sources.map(source => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.titulo)}</a>`).join(" · ")}` : "A IA analisou os produtos publicados e não retornou fontes externas nesta tentativa.";
+        if (result.pesquisaHtml) promotionAiGoogle.innerHTML = result.pesquisaHtml;
+        showcaseStatus.textContent = "✓ Sugestões prontas. Escolha uma, revise e salve. Nada foi publicado automaticamente.";
+      } catch (error) {
+        console.error(error);
+        showcaseStatus.textContent = `A IA não conseguiu sugerir agora: ${String(error?.message || error)} O título atual foi preservado.`;
+      } finally {
+        promotionAiButton.disabled = false;
+        promotionAiButton.textContent = original;
+      }
+    });
     const seasonalMode = container.querySelector("#seasonal-mode");
     const seasonalTheme = container.querySelector("#seasonal-theme");
     const seasonalStart = container.querySelector("#seasonal-start");

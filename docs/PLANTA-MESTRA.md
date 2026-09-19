@@ -244,6 +244,9 @@ Esses arquivos são cache público/resultado de automação; o cadastro mestre c
 - cada vídeo mostra por cima do player um cartão clicável com foto, nome e preço vindos de `search-index.json`; ao trocar o vídeo, o cartão acompanha o produto e abre sua página no Ranking da Compra;
 - o painel completo permite ativar ou ocultar a sequência sem apagar os links e rejeita endereços inválidos ou repetidos;
 - o título das promoções pode ser alterado no mesmo painel, com sugestões e validação de 20 a 75 caracteres orientada a intenção de compra;
+- o botão “Pesquisar e sugerir títulos com IA” usa somente as ofertas ativas que já foram carregadas pelo painel, sem fazer uma nova leitura do catálogo no Firestore;
+- a IA pesquisa termos relacionados na web com Google Search, devolve quatro sugestões naturais de 35 a 70 caracteres e mostra as consultas, as fontes e o componente de pesquisa retornado pelo Google;
+- a pesquisa não autoriza alegações como “mais buscado” ou “mais vendido” sem evidência. A IA não salva nem publica: o administrador escolhe uma sugestão, revisa e só então toca em salvar;
 - o título validado atualiza o cabeçalho visível, o `<title>`, Open Graph, Twitter Card e o nome da lista estruturada de promoções.
 
 ### Temas e mascote
