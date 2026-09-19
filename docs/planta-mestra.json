@@ -47,6 +47,14 @@
     "robots.txt",
     "CNAME"
   ],
+  "promotionTitle": {
+    "field": "configuracoes/site.promotionSeoTitle",
+    "manualEditing": true,
+    "aiSuggestions": "Gemini with Google Search grounding over active promotions already loaded in the admin panel",
+    "quotaFallback": "Local suggestions derived from the dominant active product type and the real maximum price; never saved automatically",
+    "approval": "Administrator selects, reviews and saves the title",
+    "publicTargets": ["visible offers heading", "document title", "Open Graph", "Twitter Card", "structured promotion list name"]
+  },
   "generatedContent": {
     "productPages": "produto/*.html",
     "socialImages": "produto/imagens/*",

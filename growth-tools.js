@@ -753,6 +753,64 @@
     return title;
   }
 
+  const PROMOTION_PRODUCT_GROUPS = [
+    { pattern: /\b(fone|headphone|headset|earbud|tws)\b/i, label: "fones de ouvido Bluetooth" },
+    { pattern: /\b(celular|smartphone|iphone|galaxy|redmi|motorola)\b/i, label: "celulares" },
+    { pattern: /\b(notebook|laptop|chromebook)\b/i, label: "notebooks" },
+    { pattern: /\b(air\s*fryer|fritadeira)\b/i, label: "air fryers" },
+    { pattern: /\b(patinete)\b/i, label: "patinetes elétricos" },
+    { pattern: /\b(smart\s*tv|televisor|televis[aã]o)\b/i, label: "Smart TVs" },
+    { pattern: /\b(c[aâ]mera|cftv|yoosee|icsee)\b/i, label: "câmeras de segurança" },
+    { pattern: /\b(perfume|col[oô]nia)\b/i, label: "perfumes" },
+    { pattern: /\b(smartwatch|rel[oó]gio)\b/i, label: "smartwatches" },
+    { pattern: /\b(impressora)\b/i, label: "impressoras" },
+    { pattern: /\b(roteador|wi-?fi)\b/i, label: "roteadores Wi-Fi" },
+    { pattern: /\b(bicicleta|bike)\b/i, label: "bicicletas" },
+    { pattern: /\b(caixa de som|speaker)\b/i, label: "caixas de som" },
+    { pattern: /\b(furadeira|parafusadeira|serra|ferramenta)\b/i, label: "ferramentas" }
+  ];
+
+  function promotionPriceCeiling(value) {
+    const price = Number(value || 0);
+    if (!(price > 0)) return 0;
+    const step = price <= 100 ? 10 : price <= 500 ? 50 : price <= 2000 ? 100 : 500;
+    return Math.ceil(price / step) * step;
+  }
+
+  function promotionFallbackSuggestions(offers) {
+    const products = (Array.isArray(offers) ? offers : []).map(item => ({
+      text: repairPortugueseText(`${item?.titulo || ""} ${item?.categoria || ""}`).toLowerCase(),
+      price: Number(item?.preco || 0)
+    })).filter(item => item.text.trim() && item.price > 0);
+    if (!products.length) return { sugestoes: [], fontes: [], pesquisaHtml: "", modo: "local" };
+    const groups = PROMOTION_PRODUCT_GROUPS.map(group => ({
+      ...group,
+      products: products.filter(item => group.pattern.test(item.text))
+    })).sort((a, b) => b.products.length - a.products.length);
+    const dominant = groups[0]?.products.length >= Math.max(2, Math.ceil(products.length * .5)) ? groups[0] : null;
+    const selected = dominant?.products || products;
+    const label = dominant?.label || "produtos selecionados";
+    const ceiling = promotionPriceCeiling(Math.max(...selected.map(item => item.price)));
+    const priceText = ceiling ? brl.format(ceiling).replace(/,00$/, "") : "";
+    const raw = [
+      `Ofertas do dia: ${label}${priceText ? ` até ${priceText}` : ""}`,
+      `Promoções do dia: compare ${label}${priceText ? ` até ${priceText}` : ""}`,
+      `Ofertas de hoje: ${label} em destaque para comparar`,
+      `Achados do dia: preços e opções de ${label} para escolher`
+    ];
+    const sugestoes = raw.map((title, index) => ({
+      titulo: safePromotionTitle(title),
+      motivo: index < 2
+        ? `Criado a partir dos produtos e preços que estão ativos agora (${selected.length} oferta${selected.length === 1 ? "" : "s"}).`
+        : "Alternativa clara e natural criada com base nas ofertas publicadas.",
+      consulta: priceText ? `${label} até ${priceText}` : label
+    })).filter(item => item.titulo)
+      .filter((item, index, list) => list.findIndex(other => other.titulo.toLowerCase() === item.titulo.toLowerCase()) === index)
+      .slice(0, 4);
+    return { sugestoes, fontes: [], pesquisaHtml: "", modo: "local" };
+  }
+  window.gerarTitulosPromocaoSemIA = promotionFallbackSuggestions;
+
   function youtubeVideoId(value) {
     try {
       const url = new URL(String(value || "").trim());
@@ -1096,8 +1154,15 @@
       promotionTitle.focus();
       showcaseStatus.textContent = "✓ Sugestão escolhida. Revise e clique em Salvar vídeos e título SEO.";
     });
+    const renderPromotionAiResult = result => {
+      promotionAiResults.innerHTML = result.sugestoes.map(item => `<button type="button" data-ai-promotion-title="${escapeHtml(item.titulo)}"><strong>${escapeHtml(item.titulo)}</strong><small>${escapeHtml(item.motivo || "Título alinhado às ofertas publicadas.")}${item.consulta ? ` · Busca considerada: ${escapeHtml(item.consulta)}` : ""}</small></button>`).join("");
+      const sources = Array.isArray(result.fontes) ? result.fontes : [];
+      promotionAiSources.innerHTML = sources.length ? `<b>Fontes da pesquisa:</b> ${sources.map(source => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.titulo)}</a>`).join(" · ")}` : (result.modo === "local" ? "Sugestões de segurança criadas somente com os produtos e preços publicados no site." : "A IA analisou os produtos publicados e não retornou fontes externas nesta tentativa.");
+      if (result.pesquisaHtml) promotionAiGoogle.innerHTML = result.pesquisaHtml;
+    };
     promotionAiButton.addEventListener("click", async () => {
       const original = promotionAiButton.textContent;
+      let offers = [];
       promotionAiButton.disabled = true;
       promotionAiButton.textContent = "IA pesquisando no Google...";
       promotionAiResults.innerHTML = "";
@@ -1105,18 +1170,21 @@
       promotionAiGoogle.innerHTML = "";
       showcaseStatus.textContent = "Analisando somente as promoções ativas; nenhuma alteração será salva automaticamente.";
       try {
-        const offers = typeof window.obterOfertasAtivasParaTitulo === "function" ? window.obterOfertasAtivasParaTitulo() : [];
+        offers = typeof window.obterOfertasAtivasParaTitulo === "function" ? window.obterOfertasAtivasParaTitulo() : [];
         if (!offers.length) throw new Error("Não há promoções válidas carregadas. Publique ou atualize as ofertas e tente novamente.");
         if (typeof window.sugerirTitulosPromocaoIA !== "function") throw new Error("A IA ainda está carregando. Aguarde alguns segundos e tente novamente.");
         const result = await window.sugerirTitulosPromocaoIA(offers);
-        promotionAiResults.innerHTML = result.sugestoes.map(item => `<button type="button" data-ai-promotion-title="${escapeHtml(item.titulo)}"><strong>${escapeHtml(item.titulo)}</strong><small>${escapeHtml(item.motivo || "Título alinhado às ofertas publicadas.")}${item.consulta ? ` · Busca considerada: ${escapeHtml(item.consulta)}` : ""}</small></button>`).join("");
-        const sources = Array.isArray(result.fontes) ? result.fontes : [];
-        promotionAiSources.innerHTML = sources.length ? `<b>Fontes da pesquisa:</b> ${sources.map(source => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.titulo)}</a>`).join(" · ")}` : "A IA analisou os produtos publicados e não retornou fontes externas nesta tentativa.";
-        if (result.pesquisaHtml) promotionAiGoogle.innerHTML = result.pesquisaHtml;
+        renderPromotionAiResult(result);
         showcaseStatus.textContent = "✓ Sugestões prontas. Escolha uma, revise e salve. Nada foi publicado automaticamente.";
       } catch (error) {
-        console.error(error);
-        showcaseStatus.textContent = `A IA não conseguiu sugerir agora: ${String(error?.message || error)} O título atual foi preservado.`;
+        console.warn("A pesquisa por IA ficou indisponível; usando sugestões locais seguras.", error);
+        const fallback = promotionFallbackSuggestions(offers);
+        if (fallback.sugestoes.length) {
+          renderPromotionAiResult(fallback);
+          showcaseStatus.textContent = "⚠ A pesquisa da IA atingiu o limite temporário. Preparei sugestões seguras com as ofertas ativas; escolha, revise e salve normalmente.";
+        } else {
+          showcaseStatus.textContent = "Não foi possível sugerir agora. O título atual foi preservado; confirme se existem promoções válidas publicadas.";
+        }
       } finally {
         promotionAiButton.disabled = false;
         promotionAiButton.textContent = original;
