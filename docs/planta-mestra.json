@@ -55,6 +55,13 @@
     "approval": "Administrator selects, reviews and saves the title",
     "publicTargets": ["visible offers heading", "document title", "Open Graph", "Twitter Card", "structured promotion list name"]
   },
+  "videoProductOverlay": {
+    "source": "search-index.json",
+    "desktop": "Compact semitransparent button up to 320px wide",
+    "smallPlayer": "Responsive button up to 230px wide with truncated title",
+    "behavior": "Tracks the active YouTube video and opens the corresponding Ranking da Compra product page",
+    "accessibility": "Dynamic aria-label identifies the corresponding product"
+  },
   "generatedContent": {
     "productPages": "produto/*.html",
     "socialImages": "produto/imagens/*",

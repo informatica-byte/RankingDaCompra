@@ -242,7 +242,7 @@ Esses arquivos são cache público/resultado de automação; o cadastro mestre c
 - a próxima geração da página incorpora o vídeo pelo domínio `youtube-nocookie.com` e cria dados estruturados `VideoObject`.
 - a vitrine pública aceita uma sequência de 3 a 10 duplas `YouTube | página do produto`, salva somente essas referências em `configuracoes/site` e reproduz a playlist automaticamente em uma janela pequena;
 - o painel apresenta cada dupla em dois campos próprios, “Link do YouTube” e “Link do produto”, preserva os registros já existentes e permite adicionar ou remover linhas sem alterar o formato salvo;
-- cada vídeo mostra por cima do player um cartão clicável com foto, nome e preço vindos de `search-index.json`; ao trocar o vídeo, o cartão acompanha o produto e abre sua página no Ranking da Compra;
+- cada vídeo mostra por cima do player um botão compacto, semitransparente e clicável com miniatura, nome resumido e preço vindos de `search-index.json`; em players menores ele reduz automaticamente para no máximo 230 pixels, evitando esconder o produto ou o conteúdo principal. Ao trocar o vídeo, o botão acompanha o produto e abre sua página no Ranking da Compra;
 - o painel completo permite ativar ou ocultar a sequência sem apagar os links e rejeita endereços inválidos ou repetidos;
 - o título das promoções pode ser alterado no mesmo painel, com sugestões e validação de 20 a 75 caracteres orientada a intenção de compra;
 - o botão “Pesquisar e sugerir títulos com IA” usa somente as ofertas ativas que já foram carregadas pelo painel, sem fazer uma nova leitura do catálogo no Firestore;
