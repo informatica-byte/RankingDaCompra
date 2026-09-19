@@ -585,7 +585,7 @@
       .club-whatsapp a{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 20px;border-radius:12px;background:#168a48;color:#fff;text-decoration:none;font-weight:900;box-shadow:0 8px 20px rgba(22,138,72,.2)}
       .club-whatsapp a:hover{background:#10733b}
       .club-floating{position:fixed;right:18px;bottom:18px;z-index:850;display:inline-flex;align-items:center;gap:7px;padding:12px 15px;border-radius:999px;background:#168a48;color:#fff;text-decoration:none;font-weight:900;box-shadow:0 12px 32px rgba(0,0,0,.22)}.product-detail-page .club-floating{display:none}
-      .youtube-showcase{width:min(1180px,calc(100% - 32px));margin:24px auto;padding:18px;border:1px solid #cbbce9;border-radius:20px;background:linear-gradient(135deg,#f8f4ff,#fff);display:grid;grid-template-columns:minmax(220px,.72fr) minmax(300px,1.28fr);gap:20px;align-items:center;box-sizing:border-box;box-shadow:0 12px 32px rgba(75,45,132,.08)}.youtube-showcase-copy>span{color:#6f42c1;font-size:.7rem;font-weight:950;letter-spacing:.1em}.youtube-showcase h2{margin:5px 0 7px;color:#2e1d53;font-size:clamp(1.25rem,2.8vw,1.9rem);line-height:1.15}.youtube-showcase p{margin:0 0 13px;color:#5b526b;line-height:1.45}.youtube-showcase-copy>a{display:inline-flex;padding:10px 13px;border-radius:9px;background:#6f42c1;color:#fff;text-decoration:none;font-weight:900}.youtube-showcase-player{position:relative;overflow:hidden;border-radius:15px;background:#130e1f;box-shadow:0 10px 28px rgba(35,18,68,.2);aspect-ratio:16/9}.youtube-showcase-player iframe{display:block;width:100%;height:100%;border:0}.youtube-product-overlay{position:absolute;z-index:3;left:12px;right:12px;bottom:48px;display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:10px;align-items:center;max-width:560px;padding:9px;border-radius:13px;background:rgba(255,255,255,.96);color:#17231f!important;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(5px);box-sizing:border-box}.youtube-product-overlay[hidden]{display:none}.youtube-product-overlay img{width:58px;height:58px;object-fit:contain;border-radius:9px;background:#fff}.youtube-product-overlay span{min-width:0}.youtube-product-overlay small{display:block;color:#08784f;font-size:.66rem;font-weight:950;text-transform:uppercase}.youtube-product-overlay strong{display:block;margin:2px 0;color:#18251f;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.youtube-product-overlay em{display:block;color:#08784f;font-size:.83rem;font-style:normal;font-weight:900}.youtube-product-overlay b{padding:8px 9px;border-radius:8px;background:#08784f;color:#fff;font-size:.72rem;white-space:nowrap}.showcase-admin-help{margin:-5px 0 9px!important;padding:9px 11px;border-radius:9px;background:#f4efff;color:#4a3a69!important;font-size:.78rem!important;line-height:1.45}
+      .youtube-showcase{width:min(1180px,calc(100% - 32px));margin:24px auto;padding:18px;border:1px solid #cbbce9;border-radius:20px;background:linear-gradient(135deg,#f8f4ff,#fff);display:grid;grid-template-columns:minmax(220px,.72fr) minmax(300px,1.28fr);gap:20px;align-items:center;box-sizing:border-box;box-shadow:0 12px 32px rgba(75,45,132,.08)}.youtube-showcase-copy>span{color:#6f42c1;font-size:.7rem;font-weight:950;letter-spacing:.1em}.youtube-showcase h2{margin:5px 0 7px;color:#2e1d53;font-size:clamp(1.25rem,2.8vw,1.9rem);line-height:1.15}.youtube-showcase p{margin:0 0 13px;color:#5b526b;line-height:1.45}.youtube-showcase-copy>a{display:inline-flex;padding:10px 13px;border-radius:9px;background:#6f42c1;color:#fff;text-decoration:none;font-weight:900}.youtube-showcase-player{position:relative;overflow:hidden;border-radius:15px;background:#130e1f;box-shadow:0 10px 28px rgba(35,18,68,.2);aspect-ratio:16/9}.youtube-showcase-player iframe{display:block;width:100%;height:100%;border:0}.youtube-product-overlay{position:absolute;z-index:3;left:12px;right:12px;bottom:48px;display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:10px;align-items:center;max-width:560px;padding:9px;border-radius:13px;background:rgba(255,255,255,.96);color:#17231f!important;text-decoration:none!important;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(5px);box-sizing:border-box}.youtube-product-overlay[hidden]{display:none}.youtube-product-overlay img{width:58px;height:58px;object-fit:contain;border-radius:9px;background:#fff}.youtube-product-overlay span{min-width:0}.youtube-product-overlay small{display:block;color:#08784f;font-size:.66rem;font-weight:950;text-transform:uppercase}.youtube-product-overlay strong{display:block;margin:2px 0;color:#18251f;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.youtube-product-overlay em{display:block;color:#08784f;font-size:.83rem;font-style:normal;font-weight:900}.youtube-product-overlay b{padding:8px 9px;border-radius:8px;background:#08784f;color:#fff;font-size:.72rem;white-space:nowrap}.showcase-admin-help{margin:-5px 0 9px!important;padding:9px 11px;border-radius:9px;background:#f4efff;color:#4a3a69!important;font-size:.78rem!important;line-height:1.45}.video-pair-list{display:grid;gap:10px}.video-pair-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 38px;gap:9px;align-items:end;padding:11px;border:1px solid #bfd8c9;border-radius:11px;background:#fff}.video-pair-row label{margin:0 0 5px;font-size:.75rem}.video-pair-remove{display:grid!important;place-items:center;width:38px;height:42px;padding:0!important;background:#fff0f0!important;color:#b3261e!important;border:1px solid #efb0ad!important;font-size:1.35rem!important}.video-pair-remove[hidden]{display:none!important}#growth-youtube-add{margin-top:10px;background:#fff!important;color:#0b6647!important;border:1px solid #9dc6ae!important}
       .hero .wrap{position:relative;padding-right:210px}.hero .wrap>:not(.ranki-hero){position:relative;z-index:1}.ranki-hero{position:absolute;z-index:2;right:3px;bottom:-31px;width:clamp(138px,17vw,194px);margin:0;filter:drop-shadow(0 17px 18px rgba(17,34,29,.18))}.ranki-trigger{position:relative;display:block;width:100%;margin:0;padding:0;border:0;background:transparent;color:inherit;cursor:pointer;transition:transform .18s ease}.ranki-trigger:hover{transform:translateY(-4px) scale(1.015)}.ranki-trigger:focus-visible{outline:3px solid #f6c85f;outline-offset:5px;border-radius:22px}.ranki-hero img{display:block;width:100%;height:auto}.ranki-hero[data-ranki-themed] img{width:145%;max-width:none;margin-left:-22.5%}.ranki-caption{position:absolute;right:50%;bottom:24px;transform:translateX(50%);min-width:132px;padding:7px 10px;border:1px solid rgba(17,97,73,.18);border-radius:999px;background:rgba(255,255,255,.94);color:#116149;text-align:center;box-shadow:0 8px 20px rgba(17,34,29,.12);backdrop-filter:blur(7px);pointer-events:none}.ranki-caption strong,.ranki-caption span{display:block;line-height:1.1}.ranki-caption strong{font-size:.82rem}.ranki-caption span{margin-top:2px;color:#52645b;font-size:.58rem;font-weight:800;letter-spacing:.035em;text-transform:uppercase}
       .ranki-help[hidden]{display:none!important}.ranki-help{position:fixed;z-index:1100;right:18px;bottom:78px;width:min(390px,calc(100vw - 28px));max-height:calc(100vh - 105px);overflow:auto;padding:18px;border:1px solid #a8cab8;border-radius:20px;background:#fff;color:#17251f;box-shadow:0 24px 70px rgba(12,45,34,.28)}.ranki-help-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}.ranki-help-head span{display:block;color:#0b7550;font-size:.66rem;font-weight:950;letter-spacing:.12em}.ranki-help-head h2{margin:3px 0 0;color:#123a2d;font-size:1.35rem}.ranki-help-head button{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;padding:0;border:1px solid #c8d9d0;border-radius:50%;background:#f5faf7;color:#24483b;font-size:1.45rem;cursor:pointer}.ranki-answer{margin:14px 0;padding:13px 14px;border-left:4px solid #129462;border-radius:11px;background:#eef9f3;color:#355b4c;line-height:1.48}.ranki-answer p{margin:0}.ranki-results{display:grid;gap:7px;margin-top:10px}.ranki-results a{display:block;padding:9px 10px;border:1px solid #b6d8c6;border-radius:9px;background:#fff;color:#0b6647;font-weight:800;text-decoration:none}.ranki-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ranki-actions button{min-height:44px;padding:9px;border:1px solid #b7d1c4;border-radius:10px;background:#fff;color:#24483b;font:inherit;font-size:.8rem;font-weight:850;cursor:pointer}.ranki-actions button:hover,.ranki-actions button:focus-visible{border-color:#0d8a5a;background:#effaf4}.ranki-actions button:last-child{grid-column:1/-1;background:#168a48;color:#fff;border-color:#168a48}.ranki-question{margin-top:14px}.ranki-question label{display:block;margin-bottom:6px;color:#274d3f;font-size:.76rem;font-weight:900}.ranki-question>div{display:grid;grid-template-columns:1fr auto}.ranki-question input{min-width:0;padding:11px;border:1px solid #afc9b9;border-radius:10px 0 0 10px;font:inherit}.ranki-question button{padding:10px 13px;border:0;border-radius:0 10px 10px 0;background:#0d7650;color:#fff;font:inherit;font-weight:900;cursor:pointer}.ranki-disclaimer{margin:11px 0 0;color:#66776f;font-size:.67rem;line-height:1.4}.ranki-help-open .club-floating{opacity:0;pointer-events:none}
       .seasonal-banner{--season-a:#123c69;--season-b:#1f8a70;--season-accent:#ffd166;position:relative;isolation:isolate;overflow:hidden;width:min(1180px,calc(100% - 32px));margin:22px auto 6px;border:1px solid color-mix(in srgb,var(--season-accent) 62%,transparent);border-radius:22px;background:linear-gradient(120deg,var(--season-a),var(--season-b));color:#fff;box-shadow:0 18px 45px color-mix(in srgb,var(--season-a) 28%,transparent)}
@@ -605,7 +605,7 @@
       .showcase-admin{margin-top:22px;padding-top:20px;border-top:1px solid #b9d8c5}.promotion-suggestions{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 14px}.promotion-suggestions button{padding:7px 9px!important;border:1px solid #b8cfe9!important;background:#f5f9ff!important;color:#174f83!important;font-size:.75rem!important;text-align:left}.promotion-ai-box{margin:10px 0 16px;padding:13px;border:1px solid #cbbce9;border-radius:12px;background:#faf7ff}.promotion-ai-box>p{margin:0 0 9px!important;font-size:.8rem!important}.promotion-ai-box>button{background:#6f42c1!important}.promotion-ai-results{display:grid;gap:8px;margin-top:10px}.promotion-ai-results button{display:grid!important;gap:3px;width:100%;border:1px solid #c9b8e8!important;background:#fff!important;color:#34234f!important;text-align:left!important}.promotion-ai-results button strong{font-size:.84rem}.promotion-ai-results button small{color:#64577a;font-size:.7rem;font-weight:600}.promotion-ai-sources{margin-top:10px;color:#615774;font-size:.7rem;line-height:1.45}.promotion-ai-sources a{display:inline!important;padding:0!important;border:0!important;background:transparent!important;color:#5f37a4!important;font-weight:800!important}.promotion-ai-google{margin-top:8px;overflow:auto}.promotion-ai-google:empty{display:none}
       .seasonal-admin{margin-top:22px;padding-top:20px;border-top:1px solid #b9d8c5}.seasonal-admin h2{display:flex;align-items:center;gap:8px}.seasonal-admin-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:12px}.seasonal-admin select,.seasonal-admin input[type=date]{width:100%;padding:11px;border:1px solid #afc9b9;border-radius:8px;background:#fff;font:inherit}.seasonal-preview{--season-a:#123c69;--season-b:#1f8a70;--season-accent:#ffd166;position:relative;overflow:hidden;display:grid;grid-template-columns:96px 1fr;align-items:center;gap:14px;margin-top:14px;padding:10px 17px;border-radius:14px;background:linear-gradient(120deg,var(--season-a),var(--season-b));color:#fff}.seasonal-preview img{display:block;width:96px;height:96px;object-fit:contain;filter:drop-shadow(0 7px 8px rgba(0,0,0,.2))}.seasonal-preview strong{display:block;font-size:1.08rem}.seasonal-preview span{display:block;margin-top:4px;color:rgba(255,255,255,.86);font-size:.82rem}.seasonal-admin-help{font-size:.78rem;color:#607068}.seasonal-admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.seasonal-admin-actions button{margin:0}.seasonal-status{min-height:1.3em;margin:9px 0 0!important;font-weight:850!important;color:#0b6b3a!important}
       @media(max-width:900px){.hero .wrap{padding-right:145px}.ranki-hero{right:2px;width:130px}}
-      @media(max-width:700px){.hero .wrap{padding-right:0}.ranki-hero{right:-5px;bottom:-8px;width:88px;opacity:.94;filter:drop-shadow(0 8px 9px rgba(17,34,29,.16))}.ranki-hero[data-ranki-themed] img{width:100%;max-width:100%;margin-left:0}.ranki-caption{display:none}.ranki-help{left:10px;right:10px;bottom:10px;width:auto;max-height:calc(100vh - 20px);border-radius:17px}.ranki-actions{grid-template-columns:1fr 1fr}.club-whatsapp{grid-template-columns:1fr}.club-whatsapp a{width:100%}.club-floating{right:12px;bottom:12px;font-size:.82rem}.youtube-showcase{grid-template-columns:1fr;padding:14px}.youtube-showcase-player{grid-row:1}.youtube-product-overlay{left:7px;right:7px;bottom:42px;grid-template-columns:44px minmax(0,1fr);gap:7px;padding:7px}.youtube-product-overlay img{width:44px;height:44px}.youtube-product-overlay strong{font-size:.7rem}.youtube-product-overlay em{font-size:.72rem}.youtube-product-overlay b{display:none}.seasonal-banner-inner{grid-template-columns:auto 1fr;padding:17px;gap:12px}.seasonal-icon{width:52px;height:52px;border-radius:15px;font-size:1.65rem}.seasonal-cta{grid-column:1/-1;width:100%}.seasonal-copy p{font-size:.82rem}.seasonal-admin-grid{grid-template-columns:1fr}.seasonal-preview{grid-template-columns:76px 1fr}.seasonal-preview img{width:76px;height:76px}}
+      @media(max-width:700px){.hero .wrap{padding-right:0}.ranki-hero{right:-5px;bottom:-8px;width:88px;opacity:.94;filter:drop-shadow(0 8px 9px rgba(17,34,29,.16))}.ranki-hero[data-ranki-themed] img{width:100%;max-width:100%;margin-left:0}.ranki-caption{display:none}.ranki-help{left:10px;right:10px;bottom:10px;width:auto;max-height:calc(100vh - 20px);border-radius:17px}.ranki-actions{grid-template-columns:1fr 1fr}.club-whatsapp{grid-template-columns:1fr}.club-whatsapp a{width:100%}.club-floating{right:12px;bottom:12px;font-size:.82rem}.youtube-showcase{grid-template-columns:1fr;padding:14px}.youtube-showcase-player{grid-row:1}.youtube-product-overlay{left:7px;right:7px;bottom:42px;grid-template-columns:44px minmax(0,1fr);gap:7px;padding:7px}.youtube-product-overlay img{width:44px;height:44px}.youtube-product-overlay strong{font-size:.7rem}.youtube-product-overlay em{font-size:.72rem}.youtube-product-overlay b{display:none}.video-pair-row{grid-template-columns:1fr}.video-pair-remove{width:100%;height:38px}.seasonal-banner-inner{grid-template-columns:auto 1fr;padding:17px;gap:12px}.seasonal-icon{width:52px;height:52px;border-radius:15px;font-size:1.65rem}.seasonal-cta{grid-column:1/-1;width:100%}.seasonal-copy p{font-size:.82rem}.seasonal-admin-grid{grid-template-columns:1fr}.seasonal-preview{grid-template-columns:76px 1fr}.seasonal-preview img{width:76px;height:76px}}
       @media(prefers-reduced-motion:reduce){.seasonal-banner::before,.seasonal-particle{animation:none!important}}
     `;
     document.head.appendChild(style);
@@ -802,16 +802,28 @@
     return [...unique.values()].slice(0, limit);
   }
 
-  function parseYoutubeShowcaseLines(value, limit = 10) {
-    const raw = String(value || "").split(/\r?\n/).map(line => line.trim()).filter(Boolean);
-    return youtubeShowcaseItems(raw.map(line => {
-      const [youtubeUrl, productUrl = ""] = line.split("|").map(part => part.trim());
-      return { youtubeUrl, productUrl };
-    }), [], limit);
+  function youtubePairRow(index, item = {}) {
+    const number = index + 1;
+    return `<div class="video-pair-row" data-youtube-pair>
+      <div><label for="growth-youtube-url-${number}">Vídeo ${number} — link do YouTube</label><input id="growth-youtube-url-${number}" type="url" inputmode="url" data-youtube-url placeholder="https://youtube.com/shorts/..." value="${escapeHtml(item.youtubeUrl || "")}"></div>
+      <div><label for="growth-product-url-${number}">Produto ${number} — link no Ranking da Compra</label><input id="growth-product-url-${number}" type="url" inputmode="url" data-product-url placeholder="https://rankingdacompra.com.br/produto/...html" value="${escapeHtml(item.productUrl || "")}"></div>
+      <button type="button" class="video-pair-remove" data-remove-youtube-pair aria-label="Remover vídeo ${number}" title="Remover esta dupla">×</button>
+    </div>`;
   }
 
-  function youtubeShowcaseLines(items) {
-    return items.map(item => `${item.youtubeUrl}${item.productUrl ? ` | ${item.productUrl}` : ""}`).join("\n");
+  function renderYoutubePairFields(host, items = []) {
+    const rows = (Array.isArray(items) ? items : []).slice(0, 10);
+    while (rows.length < 3) rows.push({ youtubeUrl: "", productUrl: "" });
+    host.innerHTML = rows.map((item, index) => youtubePairRow(index, item)).join("");
+    host.querySelectorAll("[data-remove-youtube-pair]").forEach(button => { button.hidden = rows.length <= 3; });
+  }
+
+  function youtubePairEntries(host) {
+    return [...host.querySelectorAll("[data-youtube-pair]")].map(row => ({
+      youtubeUrl: String(row.querySelector("[data-youtube-url]")?.value || "").trim(),
+      productUrl: String(row.querySelector("[data-product-url]")?.value || "").trim(),
+      row
+    })).filter(item => item.youtubeUrl || item.productUrl);
   }
 
   async function youtubeProductCatalog() {
@@ -1004,9 +1016,9 @@
         </div>
         <label for="growth-youtube-title">Título da pequena vitrine de vídeos</label>
         <input id="growth-youtube-title" type="text" maxlength="80" placeholder="Vídeos do Ranki: produtos em destaque">
-        <label for="growth-youtube-links">Vídeo e produto correspondente — uma dupla por linha (de 3 a 10)</label>
-        <p class="showcase-admin-help"><b>Formato:</b> link do YouTube <b>|</b> link da página do produto no Ranking da Compra. O cartão com foto, nome e preço será criado automaticamente sobre o vídeo.</p>
-        <textarea id="growth-youtube-links" rows="9" placeholder="https://www.youtube.com/watch?v=... | https://rankingdacompra.com.br/produto/...html&#10;https://youtu.be/... | https://rankingdacompra.com.br/produto/...html"></textarea>
+        <p class="showcase-admin-help"><b>Cadastre de 3 a 10 vídeos.</b> Em cada linha, cole o vídeo do YouTube e a página exata do produto correspondente. O cartão com foto, nome e preço será criado automaticamente sobre o vídeo.</p>
+        <div id="growth-youtube-items" class="video-pair-list" aria-label="Vídeos e produtos correspondentes"></div>
+        <button id="growth-youtube-add" type="button">+ Adicionar outro vídeo</button>
         <div class="growth-row"><label><input id="growth-youtube-enabled" type="checkbox"> Exibir e reproduzir a sequência automaticamente na vitrine</label></div>
         <div class="growth-row"><button id="growth-showcase-save" type="button">Salvar vídeos e título SEO</button><a href="/" target="_blank" rel="noopener noreferrer">Abrir a vitrine</a></div>
         <p class="growth-admin-status" id="growth-showcase-status" role="status" aria-live="polite"></p>
@@ -1044,13 +1056,36 @@
     const promotionAiSources = container.querySelector("#growth-promotion-ai-sources");
     const promotionAiGoogle = container.querySelector("#growth-promotion-ai-google");
     const youtubeTitle = container.querySelector("#growth-youtube-title");
-    const youtubeLinks = container.querySelector("#growth-youtube-links");
+    const youtubeItems = container.querySelector("#growth-youtube-items");
+    const youtubeAdd = container.querySelector("#growth-youtube-add");
     const youtubeEnabled = container.querySelector("#growth-youtube-enabled");
     const showcaseStatus = container.querySelector("#growth-showcase-status");
     promotionTitle.value = safePromotionTitle(config?.promotionSeoTitle) || PROMOTION_TITLE_DEFAULT;
     youtubeTitle.value = repairPortugueseText(config?.youtubeShowcaseTitle || "Vídeos do Ranki: produtos em destaque").slice(0, 80);
-    youtubeLinks.value = youtubeShowcaseLines(youtubeShowcaseItems(config?.youtubeShowcaseItems, config?.youtubeShowcaseLinks));
+    renderYoutubePairFields(youtubeItems, youtubeShowcaseItems(config?.youtubeShowcaseItems, config?.youtubeShowcaseLinks));
     youtubeEnabled.checked = config?.youtubeShowcaseEnabled === true;
+    youtubeAdd.addEventListener("click", () => {
+      const rows = youtubeItems.querySelectorAll("[data-youtube-pair]");
+      if (rows.length >= 10) {
+        showcaseStatus.textContent = "O limite da vitrine é de 10 vídeos.";
+        return;
+      }
+      youtubeItems.insertAdjacentHTML("beforeend", youtubePairRow(rows.length));
+      youtubeItems.querySelectorAll("[data-remove-youtube-pair]").forEach(button => { button.hidden = false; });
+      youtubeItems.querySelector("[data-youtube-pair]:last-child [data-youtube-url]")?.focus();
+    });
+    youtubeItems.addEventListener("click", event => {
+      const remove = event.target.closest("[data-remove-youtube-pair]");
+      if (!remove) return;
+      const rows = youtubeItems.querySelectorAll("[data-youtube-pair]");
+      if (rows.length <= 3) {
+        showcaseStatus.textContent = "Mantenha pelo menos três espaços para a vitrine.";
+        return;
+      }
+      const removedRow = remove.closest("[data-youtube-pair]");
+      const remaining = youtubePairEntries(youtubeItems).filter(item => item.row !== removedRow);
+      renderYoutubePairFields(youtubeItems, remaining.map(({ youtubeUrl, productUrl }) => ({ youtubeUrl, productUrl })));
+    });
     container.querySelectorAll("[data-promotion-suggestion]").forEach(button => button.addEventListener("click", () => {
       promotionTitle.value = button.dataset.promotionSuggestion || PROMOTION_TITLE_DEFAULT;
     }));
@@ -1150,8 +1185,8 @@
     container.querySelector("#growth-showcase-save").addEventListener("click", async event => {
       const button = event.currentTarget;
       const seoTitle = safePromotionTitle(promotionTitle.value);
-      const lines = String(youtubeLinks.value || "").split(/\r?\n/).map(line => line.trim()).filter(Boolean);
-      const items = parseYoutubeShowcaseLines(youtubeLinks.value, 20);
+      const entries = youtubePairEntries(youtubeItems);
+      const items = youtubeShowcaseItems(entries, [], 20);
       const links = items.map(item => item.youtubeUrl);
       const showVideos = youtubeEnabled.checked;
       const videosTitle = repairPortugueseText(youtubeTitle.value).replace(/[<>]/g, "").trim().slice(0, 80);
@@ -1160,19 +1195,20 @@
         promotionTitle.focus();
         return;
       }
-      if (showVideos && (links.length < 3 || links.length > 10)) {
+      if (showVideos && (entries.length < 3 || entries.length > 10)) {
         showcaseStatus.textContent = "Para ativar a vitrine, informe de 3 a 10 linhas com links válidos e diferentes do YouTube.";
-        youtubeLinks.focus();
+        (entries[0]?.row.querySelector("[data-youtube-url]") || youtubeItems.querySelector("[data-youtube-url]"))?.focus();
         return;
       }
-      if (showVideos && lines.length !== items.length) {
-        showcaseStatus.textContent = "Existe uma linha inválida ou um vídeo repetido. Use: link do YouTube | link do produto.";
-        youtubeLinks.focus();
+      if (showVideos && entries.some(item => !youtubeVideoId(item.youtubeUrl) || !rankingProductUrl(item.productUrl))) {
+        showcaseStatus.textContent = "Confira os campos: cada vídeo precisa de um link válido do YouTube e da página correspondente no Ranking da Compra.";
+        const invalid = entries.find(item => !youtubeVideoId(item.youtubeUrl) || !rankingProductUrl(item.productUrl));
+        (youtubeVideoId(invalid?.youtubeUrl) ? invalid?.row.querySelector("[data-product-url]") : invalid?.row.querySelector("[data-youtube-url]"))?.focus();
         return;
       }
-      if (showVideos && items.some(item => !item.productUrl)) {
-        showcaseStatus.textContent = "Cada vídeo precisa do link da página correspondente no Ranking da Compra, depois do sinal |.";
-        youtubeLinks.focus();
+      if (showVideos && entries.length !== items.length) {
+        showcaseStatus.textContent = "Existe um vídeo repetido. Cada link do YouTube pode aparecer somente uma vez.";
+        entries[0]?.row.querySelector("[data-youtube-url]")?.focus();
         return;
       }
       if (typeof db === "undefined" || (typeof auth !== "undefined" && !auth.currentUser)) {
@@ -1192,7 +1228,7 @@
         };
         await db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).set(settings, { merge: true });
         state.config = { ...(state.config || {}), ...settings };
-        youtubeLinks.value = youtubeShowcaseLines(items);
+        renderYoutubePairFields(youtubeItems, items);
         showcaseStatus.textContent = showVideos
           ? `✓ Sequência com ${links.length} vídeos e cartões de produtos ativada. Nenhum arquivo foi armazenado no Firebase.`
           : "✓ Título salvo. A vitrine de vídeos continua desativada até você informar e ativar de 3 a 10 links.";
