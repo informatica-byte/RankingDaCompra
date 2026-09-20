@@ -1,6 +1,47 @@
 {
-  "atualizadoEm": "2026-09-20T16:20:50.895Z",
+  "atualizadoEm": "2026-09-20T16:25:20.780Z",
   "resultados": {
+    "PresgFKjiNbLjCeIeosc": {
+      "status": "ok",
+      "mlb": "MLB4079715491",
+      "urlProduto": "https://www.mercadolivre.com.br/smartphone-motorola-moto-g35-5g-12gb-ram-boost-128g-cor-grafite/p/MLB63016702",
+      "titulo": "Smartphone Motorola Moto G35 5g 12gb Ram Boost 128g Cor Grafite",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_649586-MLA100448312516_122025-F.jpg",
+      "precoAtual": 946.3,
+      "precoAnterior": 1324.29,
+      "dadosTecnicos": [
+        "Memória RAM: 4 GB.",
+        "Dispositivo desbloqueado para que você escolha a companhia telefônica de sua preferência.",
+        "Compatível com redes 5G.",
+        "Tela de 6.5\".",
+        "Câmera frontal de 16Mpx.",
+        "Bateria de 5 Ah.",
+        "Memória interna de 128GB.",
+        "Com sensor de impressão digital.",
+        "Marca: Motorola",
+        "Código do catálogo: MLB63016702"
+      ],
+      "comentario": "Smartphone Motorola Moto G35 5g 12gb Ram Boost 128g Cor Grafite. Memória RAM: 4 GB. Dispositivo desbloqueado para que você escolha a companhia telefônica de sua preferência. Compatível com redes 5G. Tela de 6.5\". Câmera frontal de 16Mpx. Bateria de 5 Ah.. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "pros": "Smartphone Motorola Moto G35 5g 12gb Ram Boost 128g Cor Grafite. Características confirmadas no anúncio: Memória RAM: 4 GB. Dispositivo desbloqueado para que você escolha a companhia telefônica de sua preferência. Compatível com redes 5G. Tela de 6.5\". Câmera frontal de 16Mpx..",
+      "contras": "Confira voltagem quando aplicável, medidas, compatibilidade, garantia, vendedor, frete, prazo e estoque no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/smartphone-motorola-moto-g35-5g-12gb-ram-boost-128g-cor-grafite/p/MLB63016702?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=a1fdf669-3c65-4d98-934b-bfac80118711&position=6&tracking_id=c6ce0438-e235-4756-9bee-3217fd0d11d3&wid=MLB4079715491&sid=offers",
+      "resolvidoEm": "2026-09-20T16:25:20.779Z",
+      "tentativas": 1
+    },
+    "GvpiMDOJk4pnXTXjAGyb": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/samsung-galaxy-a07-128gb-4gb-ram-preto/p/MLB55034955?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=79d69855-a635-4a47-9261-4b480666eb96&position=2&tracking_id=f8e74f18-e0c4-488e-b2bc-6e093f79e8d6&wid=MLB6646376566&sid=offers",
+      "resolvidoEm": "2026-09-20T16:25:19.291Z",
+      "tentativas": 2
+    },
+    "Ui7GVKsUgHJS6fL7KUZ3": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/samsung-galaxy-a07-128gb-4gb-ram-preto/p/MLB55034955?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=79d69855-a635-4a47-9261-4b480666eb96&position=2&tracking_id=f8e74f18-e0c4-488e-b2bc-6e093f79e8d6&wid=MLB6646376566&sid=offers",
+      "resolvidoEm": "2026-09-20T16:25:01.830Z",
+      "tentativas": 3
+    },
     "dEeJmki0XrYWD5ZtWZ1I": {
       "status": "ok",
       "mlb": "MLB5249120331",
@@ -27,20 +68,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/smartphone-samsung-galaxy-a17-5g-128gb-4gb-super-amoled-67-camera-50mp-selfie-13-mp-5000-mah-nfc-dual-sim-recursos-ia-cinza/p/MLB55521828?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=8641d85b-19c2-4fa2-812f-4c4ffe94179c&position=4&tracking_id=df372fcc-cfa7-4a49-afd8-a9bd2bf55949&wid=MLB5249120331&sid=offers",
       "resolvidoEm": "2026-09-20T16:20:50.895Z",
       "tentativas": 1
-    },
-    "GvpiMDOJk4pnXTXjAGyb": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/samsung-galaxy-a07-128gb-4gb-ram-preto/p/MLB55034955?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=79d69855-a635-4a47-9261-4b480666eb96&position=2&tracking_id=f8e74f18-e0c4-488e-b2bc-6e093f79e8d6&wid=MLB6646376566&sid=offers",
-      "resolvidoEm": "2026-09-20T16:20:49.178Z",
-      "tentativas": 1
-    },
-    "Ui7GVKsUgHJS6fL7KUZ3": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/samsung-galaxy-a07-128gb-4gb-ram-preto/p/MLB55034955?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=79d69855-a635-4a47-9261-4b480666eb96&position=2&tracking_id=f8e74f18-e0c4-488e-b2bc-6e093f79e8d6&wid=MLB6646376566&sid=offers",
-      "resolvidoEm": "2026-09-20T16:20:31.535Z",
-      "tentativas": 2
     },
     "h0cs6vaF1lvf4pW3784v": {
       "status": "erro",
