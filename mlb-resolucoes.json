@@ -1,19 +1,26 @@
 {
-  "atualizadoEm": "2026-09-20T16:11:03.631Z",
+  "atualizadoEm": "2026-09-20T16:14:03.141Z",
   "resultados": {
+    "Ui7GVKsUgHJS6fL7KUZ3": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/samsung-galaxy-a07-128gb-4gb-ram-preto/p/MLB55034955?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=79d69855-a635-4a47-9261-4b480666eb96&position=2&tracking_id=f8e74f18-e0c4-488e-b2bc-6e093f79e8d6&wid=MLB6646376566&sid=offers",
+      "resolvidoEm": "2026-09-20T16:14:03.140Z",
+      "tentativas": 1
+    },
     "h0cs6vaF1lvf4pW3784v": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/samsung-galaxy-a07-128gb-4gb-ram-preto/p/MLB55034955?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=79d69855-a635-4a47-9261-4b480666eb96&position=2&tracking_id=f8e74f18-e0c4-488e-b2bc-6e093f79e8d6&wid=MLB6646376566&sid=offers",
-      "resolvidoEm": "2026-09-20T16:11:03.630Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-20T16:13:45.768Z",
+      "tentativas": 2
     },
     "R2AJJOfmXyqvulF4KmvM": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/samsung-galaxy-a07-128gb-4gb-ram-preto/p/MLB55034955?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=79d69855-a635-4a47-9261-4b480666eb96&position=2&tracking_id=f8e74f18-e0c4-488e-b2bc-6e093f79e8d6&wid=MLB6646376566&sid=offers",
-      "resolvidoEm": "2026-09-20T16:10:45.782Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-09-20T16:13:28.539Z",
+      "tentativas": 3
     },
     "4YUFzedPc8jKGiZ9DZlD": {
       "status": "ok",
