@@ -468,7 +468,10 @@ async function fetchJson(
 }
 
 export function bulkItemFromEntry(entry = {}) {
-  const status = Number(entry.status_code ?? entry.code ?? 502);
+  const rawStatus = entry.status_code ?? entry.code;
+  const status = rawStatus === undefined || rawStatus === null
+    ? (entry.body ? 200 : 502)
+    : Number(rawStatus);
   if (status === 200 && entry.body) return { item: entry.body, error: null };
   if (status === 404) return { item: null, error: null, notFound: true };
   const detail = String(
@@ -481,9 +484,12 @@ export function bulkItemFromEntry(entry = {}) {
 
 async function requestBulkItems(itemIds, authenticated) {
   const attributes = [
-    "id", "status", "available_quantity", "currency_id", "permalink", "price",
-    "original_price",
-  ].map((attribute) => `body.${attribute}`).join(",");
+    "id", "status_code",
+    ...[
+      "id", "status", "available_quantity", "currency_id", "permalink", "price",
+      "original_price",
+    ].map((attribute) => `body.${attribute}`),
+  ].join(",");
   const url = "https://api.mercadolibre.com/items/bulk?ids="
     + encodeURIComponent(itemIds.join(","))
     + "&attributes="

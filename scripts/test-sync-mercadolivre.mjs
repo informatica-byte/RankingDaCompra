@@ -19,6 +19,12 @@ test("interpreta a resposta oficial do novo endpoint bulk", () => {
     item: { id: "MLB1234567890", price: 199.9, status: "active" },
     error: null,
   });
+  assert.deepEqual(bulkItemFromEntry({
+    body: { id: "MLB1234567890", price: 199.9, status: "active" },
+  }), {
+    item: { id: "MLB1234567890", price: 199.9, status: "active" },
+    error: null,
+  }, "aceita o body válido quando a seleção de campos omite status_code");
   assert.deepEqual(bulkItemFromEntry({ status_code: 404 }), {
     item: null,
     error: null,
