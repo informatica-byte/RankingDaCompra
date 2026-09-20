@@ -459,9 +459,9 @@
   </url>
   <url>
     <loc>https://rankingdacompra.com.br/produto/asTGBkjkQIZ4mhlc7cxX-20260810-1.html</loc>
-    <lastmod>2026-09-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://rankingdacompra.com.br/produto/avV2oOE8xcX9ioG4GNnT-20260810-1.html</loc>
@@ -1092,6 +1092,12 @@
     <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/produto/jAeUyoF8uPTbRkSYuuY7-20260810-1.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://rankingdacompra.com.br/produto/jffyLJv2cImsjfarZ1pi-20260810-1.html</loc>
@@ -2378,7 +2384,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://rankingdacompra.com.br/melhores-beleza-cuidados-e-saude.html</loc>
+    <loc>https://rankingdacompra.com.br/melhores-belezaecuidados.html</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -2390,13 +2396,13 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://rankingdacompra.com.br/melhores-caixa-de-som.html</loc>
+    <loc>https://rankingdacompra.com.br/melhores-caixadesom.html</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://rankingdacompra.com.br/melhores-cameras-de-seguranca.html</loc>
+    <loc>https://rankingdacompra.com.br/melhores-camerasdeseguranca.html</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -2432,13 +2438,13 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://rankingdacompra.com.br/melhores-fones-de-ouvido.html</loc>
+    <loc>https://rankingdacompra.com.br/melhores-fonesdeouvido.html</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://rankingdacompra.com.br/melhores-fritadeira-air-fryer-eletrica.html</loc>
+    <loc>https://rankingdacompra.com.br/melhores-fritadeiraairfrayereletrica.html</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -2456,7 +2462,13 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://rankingdacompra.com.br/melhores-kit-teclado-e-mouse-sem-fio.html</loc>
+    <loc>https://rankingdacompra.com.br/melhores-kitbodysplashmasculino.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/melhores-kittecladoemousesemfio.html</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -2469,12 +2481,6 @@
   </url>
   <url>
     <loc>https://rankingdacompra.com.br/melhores-patinetes-eletricos.html</loc>
-    <lastmod>2026-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://rankingdacompra.com.br/melhores-perfumes.html</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -2498,7 +2504,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://rankingdacompra.com.br/melhores-smart-tv.html</loc>
+    <loc>https://rankingdacompra.com.br/melhores-smarttv.html</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
