@@ -1,6 +1,13 @@
 {
-  "atualizadoEm": "2026-09-20T07:42:38.915Z",
+  "atualizadoEm": "2026-09-20T16:09:08.209Z",
   "resultados": {
+    "R2AJJOfmXyqvulF4KmvM": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/samsung-galaxy-a07-128gb-4gb-ram-preto/p/MLB55034955?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=79d69855-a635-4a47-9261-4b480666eb96&position=2&tracking_id=f8e74f18-e0c4-488e-b2bc-6e093f79e8d6&wid=MLB6646376566&sid=offers",
+      "resolvidoEm": "2026-09-20T16:09:08.200Z",
+      "tentativas": 1
+    },
     "4YUFzedPc8jKGiZ9DZlD": {
       "status": "ok",
       "mlb": "MLB5117726760",
