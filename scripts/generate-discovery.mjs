@@ -423,11 +423,17 @@ function applyCategorySearchIntent(html, categoryId, categoryName, productCount)
   const intent = categoryIntent(categoryId, categoryName);
   if (!html) return html;
   if (!intent) {
-    return html.replace(/<title>([^<]+)<\/title>/i, (_, title) =>
-      `<title>${escapeHtml(compactText(decodeHtml(title), 65))}</title>`);
+    return html.replace(/<title>([^<]+)<\/title>/i, (_, title) => {
+      const decoded = decodeHtml(title);
+      const base = decoded.replace(/\s*\|\s*Ranking da Compra\s*$/i, "");
+      const seoTitle = /Ranking da Compra/i.test(decoded)
+        ? `${compactText(base, 44)} | Ranking da Compra`
+        : compactText(decoded, 65);
+      return `<title>${escapeHtml(seoTitle)}</title>`;
+    });
   }
   const pageTitle = intent.pageTitle;
-  const seoTitle = compactText(`${pageTitle} | Ranking da Compra`, 65);
+  const seoTitle = `${compactText(pageTitle, 44)} | Ranking da Compra`;
   const heading = intent.heading.replace("{count}", productCount);
   const intentBlock = `<section class="method search-intents"><h2>Dúvidas que este comparativo ajuda a responder</h2><ul>${intent.phrases.map((phrase) => `<li>${escapeHtml(phrase)}</li>`).join("")}</ul><p>Essas frases representam intenções de compra. A seleção continua baseada apenas nos produtos e dados realmente cadastrados.</p></section>`;
   return html
