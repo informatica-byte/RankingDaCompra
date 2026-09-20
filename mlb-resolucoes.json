@@ -1,6 +1,40 @@
 {
-  "atualizadoEm": "2026-09-20T16:25:20.780Z",
+  "atualizadoEm": "2026-09-20T16:28:53.239Z",
   "resultados": {
+    "AQphF5VSY4xm2s8MgNPi": {
+      "status": "ok",
+      "mlb": "MLB6420227790",
+      "urlProduto": "https://www.mercadolivre.com.br/smartphone-motorola-moto-g17-4g-128gb-12gb-4gb-ram-8gb-ram-boost-camera-50mp-sony-lytia-600-tela-fhd-60hz-bateria-5200-mah-rosa/p/MLB65041643",
+      "titulo": "Smartphone Motorola Moto G17 4g - 128gb 12gb (4gb Ram + 8gb Ram Boost), Camera 50mp Sony Lytia 600, Tela Fhd+ 60hz, Bateria 5200 Mah - Rosa",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_826897-MLA105493148208_012026-F.jpg",
+      "precoAtual": 799,
+      "precoAnterior": 1599,
+      "dadosTecnicos": [
+        "Memória interna de 128GB.",
+        "Selfies incríveis na melhor câmera frontal da categoria​* 32 MP Selfie",
+        "Câmera principal 50 MP Sony LYTIA 600",
+        "Melhor qualidade de imagem e som imersivos em suas mãos​* Full HD+",
+        "HDR",
+        "1050 Nits de brilho",
+        "Som Dolby Atmos",
+        "Design irresistível e resistente​* IP64",
+        "Corning Gorilla Glass 3",
+        "Cores com curadoria Pantone"
+      ],
+      "comentario": "Smartphone Motorola Moto G17 4g - 128gb 12gb (4gb Ram + 8gb Ram Boost), Camera 50mp Sony Lytia 600, Tela Fhd+ 60hz, Bateria 5200 Mah - Rosa. Memória interna de 128GB. Selfies incríveis na melhor câmera frontal da categoria​* 32 MP Selfie; Câmera principal 50 MP Sony LYTIA 600; Melhor qualidade de imagem e som imersivos em suas mãos​* Full HD+; HDR; 1050 Nits de brilho. Informações consultadas no anúncio oficial do Mercado Livre.",
+      "pros": "Smartphone Motorola Moto G17 4g - 128gb 12gb (4gb Ram + 8gb Ram Boost), Camera 50mp Sony Lytia 600, Tela Fhd+ 60hz, Bateria 5200 Mah - Rosa. Características confirmadas no anúncio: Memória interna de 128GB.",
+      "contras": "Confira voltagem quando aplicável, medidas, compatibilidade, garantia, vendedor, frete, prazo e estoque no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/smartphone-motorola-moto-g17-4g-128gb-12gb-4gb-ram-8gb-ram-boost-camera-50mp-sony-lytia-600-tela-fhd-60hz-bateria-5200-mah-rosa/p/MLB65041643?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=c3864851-f211-4893-9130-293ea02a0a6e&position=10&tracking_id=429f209e-2295-4978-abac-8429c27c3aec&wid=MLB6420227790&sid=offers",
+      "resolvidoEm": "2026-09-20T16:28:53.238Z",
+      "tentativas": 1
+    },
+    "GvpiMDOJk4pnXTXjAGyb": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/samsung-galaxy-a07-128gb-4gb-ram-preto/p/MLB55034955?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=79d69855-a635-4a47-9261-4b480666eb96&position=2&tracking_id=f8e74f18-e0c4-488e-b2bc-6e093f79e8d6&wid=MLB6646376566&sid=offers",
+      "resolvidoEm": "2026-09-20T16:28:51.965Z",
+      "tentativas": 3
+    },
     "PresgFKjiNbLjCeIeosc": {
       "status": "ok",
       "mlb": "MLB4079715491",
@@ -27,13 +61,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/smartphone-motorola-moto-g35-5g-12gb-ram-boost-128g-cor-grafite/p/MLB63016702?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=a1fdf669-3c65-4d98-934b-bfac80118711&position=6&tracking_id=c6ce0438-e235-4756-9bee-3217fd0d11d3&wid=MLB4079715491&sid=offers",
       "resolvidoEm": "2026-09-20T16:25:20.779Z",
       "tentativas": 1
-    },
-    "GvpiMDOJk4pnXTXjAGyb": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/samsung-galaxy-a07-128gb-4gb-ram-preto/p/MLB55034955?pdp_filters=deal%3AMLB1782766-1#polycard_client=offers&deal_print_id=79d69855-a635-4a47-9261-4b480666eb96&position=2&tracking_id=f8e74f18-e0c4-488e-b2bc-6e093f79e8d6&wid=MLB6646376566&sid=offers",
-      "resolvidoEm": "2026-09-20T16:25:19.291Z",
-      "tentativas": 2
     },
     "Ui7GVKsUgHJS6fL7KUZ3": {
       "status": "erro",
