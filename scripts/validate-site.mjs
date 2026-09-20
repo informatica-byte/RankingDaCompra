@@ -288,6 +288,8 @@ has(discoveryGenerator, /id=\\?"mobile-affiliate-offer\\?"/, "contingência não
 has(discoveryGenerator, /writeFile\([\s\S]{0,100}search-index\.json/, "geração preventiva do índice de busca ausente", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /function renderCategoryGuide\(/, "gerador automático de comparativos por categoria ausente", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /function categoryIntent\(/, "intenções de busca não orientam os comparativos", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /GUIDE_SLUGS_BY_LEGACY_ID/, "proteção dos endereços públicos de categorias antigas ausente", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /guideFileName\(category\.id, categoryName\)/, "gerador ainda pode publicar o identificador interno como URL", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /Dúvidas que este comparativo ajuda a responder/, "cauda longa não aparece nos guias prioritários", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /categoryProducts\.length < 3/, "comparativo pode ser criado sem opções suficientes", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /if \(!guidePages\.includes\(file\)\) await unlink/, "comparativo antigo pode permanecer publicado depois de perder opções suficientes", "scripts/generate-discovery.mjs");
@@ -376,6 +378,17 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[
 const uniqueUrls = new Set(urls);
 if (!urls.length) fail("sitemap.xml: nenhum endereço encontrado");
 if (uniqueUrls.size !== urls.length) fail("sitemap.xml: existem endereços duplicados");
+for (const expectedGuide of [
+  "melhores-fones-de-ouvido.html",
+  "melhores-cameras-de-seguranca.html",
+  "melhores-caixa-de-som.html",
+  "melhores-smart-tv.html",
+]) {
+  if (!uniqueUrls.has(SITE + expectedGuide)) fail("sitemap.xml: comparativo público desapareceu: " + expectedGuide);
+}
+if (urls.some((url) => /melhores-(?:fonesdeouvido|camerasdeseguranca|caixadesom|smarttv)\.html/.test(url))) {
+  fail("sitemap.xml: identificador interno sem hífens foi publicado como URL");
+}
 
 const identities = new Map();
 for (const url of urls) {
