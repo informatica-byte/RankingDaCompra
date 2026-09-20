@@ -988,6 +988,7 @@ FORMATO:
         let pausaCorrecaoSolicitada = false;
         let statusMercadoLivreAdmin = {};
         let statusMercadoLivreAtualizadoEm = '';
+        let resumoLoteMercadoLivre = null;
         let produtosCentralAtual = [];
         let metricasCentralAtual = [];
         const textosCampanhaCentral = {};
@@ -998,7 +999,8 @@ FORMATO:
             .then(resposta => resposta.ok ? resposta.json() : null)
             .then(dados => {
                 statusMercadoLivreAdmin = dados?.products && typeof dados.products === 'object' ? dados.products : {};
-                statusMercadoLivreAtualizadoEm = String(dados?.updatedAt || '');
+                resumoLoteMercadoLivre = dados?.batchSummary && typeof dados.batchSummary === 'object' ? dados.batchSummary : null;
+                statusMercadoLivreAtualizadoEm = String(dados?.lastBatchAttemptAt || dados?.updatedAt || '');
                 return statusMercadoLivreAdmin;
             })
             .catch(erro => {
@@ -2728,7 +2730,13 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     }
                     renderizarListasProdutosBusca();
                     const totalRelatorio = Object.keys(statusMercadoLivreAdmin).length;
-                    document.getElementById('resumo-precos').innerHTML = `<strong>Última tentativa automática:</strong> ${escapeHtml(formatarDataHoraPreco(statusMercadoLivreAtualizadoEm))}. <strong>Itens no relatório:</strong> ${totalRelatorio}. <strong>Preços realmente divergentes:</strong> ${precosDivergentes}. <strong>Verificações não concluídas:</strong> ${verificacoesNaoConcluidas}. Falhas temporárias preservam o último preço conhecido; ao salvar manualmente, o produto fica marcado como revisado por 24 horas.`;
+                    const loteCompleto = resumoLoteMercadoLivre?.complete === true;
+                    const estadoLote = resumoLoteMercadoLivre
+                        ? (loteCompleto
+                            ? `✅ Conferência completa: ${Number(resumoLoteMercadoLivre.confirmed || 0)} item(ns) confirmado(s)`
+                            : `⚠️ Conferência parcial: ${Number(resumoLoteMercadoLivre.confirmed || 0)} confirmado(s), ${Number(resumoLoteMercadoLivre.failed || 0)} com falha temporária e ${Number(resumoLoteMercadoLivre.unmanaged || 0)} sem código MLB`)
+                        : 'Relatório antigo — execute uma nova conferência para obter o resumo completo';
+                    document.getElementById('resumo-precos').innerHTML = `<strong>Última tentativa:</strong> ${escapeHtml(formatarDataHoraPreco(statusMercadoLivreAtualizadoEm))}. <strong>Estado:</strong> ${escapeHtml(estadoLote)}. <strong>Itens no relatório:</strong> ${totalRelatorio}. <strong>Preços realmente divergentes:</strong> ${precosDivergentes}. <strong>Verificações não concluídas:</strong> ${verificacoesNaoConcluidas}. Falhas temporárias preservam o último preço conhecido; ao salvar manualmente, o produto fica marcado como revisado por 24 horas.`;
                     ativarAbaProdutos(abaProdutosAtiva);
                 });
             }, error => {

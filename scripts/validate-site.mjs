@@ -42,6 +42,8 @@ has(homeHtml, /\.search-toggle\{[^}]*width:44px;height:44px/, "botão de busca m
 has(homeHtml, /\.share-card-button,\.share-deal-button\{min-height:44px/, "botões de compartilhamento menores que 44 pixels", "index.html");
 
 const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
+has(growthTools, /CONFIG_CACHE_TTL\s*=\s*12 \* 60 \* 60 \* 1000/, "cache econômico de configuração pública ausente", "growth-tools.js");
+has(growthTools, /Object\.keys\(cached\)\.length \? Promise\.resolve\(cached\)/, "configuração ainda pode reler o Firebase em cada página", "growth-tools.js");
 const siteConfig = JSON.parse(await readFile(resolve("site-config.json"), "utf8"));
 const videoStudioHtml = await readFile(resolve("estudio-videos.html"), "utf8");
 const videoStudioJs = await readFile(resolve("ranki-video-studio.js"), "utf8");
@@ -304,6 +306,7 @@ has(priceWorkflow, /node --test scripts\/test-sync-mercadolivre\.mjs/, "teste pr
 has(priceWorkflow, /group:\s*rankingdacompra-publicacao/, "lote manual não compartilha a trava dos robôs publicadores", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /RDC_PRODUCTS_SNAPSHOT:\s*\.price-sync-products\.json/, "snapshot para evitar releitura integral ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /RDC_BATCH_SKIP_MARKER:\s*\.price-sync-skipped/, "bloqueio integral de uma segunda execução diária ausente", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /RDC_BATCH_PARTIAL_MARKER:\s*\.price-sync-partial/, "marcador de lote parcial ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /-f "\$RDC_BATCH_SKIP_MARKER"[\s\S]{0,220}exit 0/, "gerador ainda pode reler produtos após lote diário já concluído", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /node --test scripts\/test-daily-price-batch\.mjs/, "teste preventivo do lote diário ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "lote diário não atualiza a busca estática", ".github/workflows/sync-mercadolivre.yml");
@@ -313,6 +316,7 @@ has(priceWorkflow, /for tentativa in 1 2 3 4; do[\s\S]*git pull --rebase origin 
 const localizerWorkflow = await readFile(resolve(".github/workflows/localizar-mlb.yml"), "utf8");
 const historyWorkflow = await readFile(resolve(".github/workflows/historico-precos.yml"), "utf8");
 has(localizerWorkflow, /group:\s*rankingdacompra-publicacao/, "localizador MLB não compartilha a trava dos robôs publicadores", ".github/workflows/localizar-mlb.yml");
+has(localizerWorkflow, /cron:\s*["']7,37 \* \* \* \*["']/, "localizador MLB ainda executa mais de duas vezes por hora", ".github/workflows/localizar-mlb.yml");
 has(historyWorkflow, /group:\s*rankingdacompra-publicacao/, "histórico de preços não compartilha a trava dos robôs publicadores", ".github/workflows/historico-precos.yml");
 const priceSync = await readFile(resolve("scripts/sync-mercadolivre.mjs"), "utf8");
 has(priceSync, /function saoPauloDay\(value\)[\s\S]{0,120}value === undefined[\s\S]{0,120}return ""/, "lastBatchAt ausente ainda pode bloquear o primeiro lote do dia", "scripts/sync-mercadolivre.mjs");
@@ -321,7 +325,10 @@ has(priceSync, /legacyRepair\.repaired[\s\S]{0,300}writeFile\(OUTPUT/, "reparo d
 has(priceSync, /shouldTrustStoredItemId/, "proteção contra código de catálogo tratado como anúncio ausente", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /const direct = extractItemIdFromUrl\(value\);[\s\S]{0,80}if \(direct\) return direct;/, "wid do anúncio não tem prioridade sobre o cadastro antigo", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /shouldSkipDailyBatch/, "bloqueio contra repetição do lote no mesmo dia ausente", "scripts/sync-mercadolivre.mjs");
-has(priceSync, /lastBatchAt:\s*checkedAt/, "registro da conclusão do lote diário ausente", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /lastBatchAt:\s*batchComplete\s*\?\s*checkedAt/, "lote parcial ainda pode ser registrado como concluído", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /lastBatchAttemptAt:\s*checkedAt/, "horário da tentativa de lote ausente", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /batchSummary:\s*\{[\s\S]{0,280}confirmed:[\s\S]{0,140}failed:/, "resumo verificável do lote ausente", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /checkedAt:\s*relevantPrevious\.checkedAt\s*\|\|\s*""[\s\S]{0,90}lastAttemptAt:\s*checkedAt/, "falha temporária ainda pode renovar falsamente a confirmação", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /PRODUCT_SNAPSHOT[\s\S]{0,240}writeFile/, "snapshot único de produtos ausente", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /rejectedAccessTokenRefreshPromise/, "lote de preços não compartilha a renovação de token recusado", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /\[401, 403\]\.includes\(error\.httpStatus\)[\s\S]{0,180}refreshRejectedAccessToken\(\)/, "lote de preços não renova a autorização recusada", "scripts/sync-mercadolivre.mjs");
@@ -361,6 +368,7 @@ has(dashboardHtml, /pendente:\s*tipo\s*===\s*['"]divergente['"]/, "painel ainda 
 has(dashboardHtml, /diagnostico\.tipo\s*===\s*['"]nao_confirmado['"][\s\S]{0,80}verificacoesNaoConcluidas\s*\+=\s*1/, "painel não contabiliza separadamente as consultas inconclusivas", "dashboard.html");
 has(dashboardHtml, /status\?\.itemId\s*\|\|\s*status\?\.catalogId/, "painel ignora o identificador oficial de catálogo", "dashboard.html");
 has(dashboardHtml, /Preços realmente divergentes:[\s\S]{0,220}Verificações não concluídas:/, "resumo de preços ainda mistura divergências com bloqueios temporários", "dashboard.html");
+has(dashboardHtml, /Conferência parcial:[\s\S]{0,220}falha temporária/, "painel não avisa quando o lote termina parcialmente", "dashboard.html");
 has(dashboardHtml, /\.item-admin\.item-preco\s*\{[^}]*display:\s*grid[^}]*grid-template-columns:\s*24px minmax\(0,\s*1fr\)/, "cartão de preço pode voltar a esmagar o título do produto", "dashboard.html");
 
 const sitemap = await readFile(resolve("sitemap.xml"), "utf8");

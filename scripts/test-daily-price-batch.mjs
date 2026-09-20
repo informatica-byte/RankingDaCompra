@@ -32,10 +32,19 @@ test("serializa todos os robos que publicam no GitHub", () => {
 
 test("impede nova leitura integral no mesmo dia", () => {
   assert.match(sync, /shouldSkipDailyBatch/);
-  assert.match(sync, /lastBatchAt:\s*checkedAt/);
+  assert.match(sync, /lastBatchAt:\s*batchComplete\s*\?\s*checkedAt/);
+  assert.match(sync, /lastBatchAttemptAt:\s*checkedAt/);
+  assert.match(sync, /batchSummary:/);
   assert.match(sync, /nenhuma leitura do Firebase foi realizada/);
   assert.match(workflow, /RDC_BATCH_SKIP_MARKER:\s*\.price-sync-skipped/);
+  assert.match(workflow, /RDC_BATCH_PARTIAL_MARKER:\s*\.price-sync-partial/);
   assert.match(workflow, /-f "\$RDC_BATCH_SKIP_MARKER"[\s\S]{0,220}exit 0/);
+});
+
+test("não registra falha temporária como preço confirmado", () => {
+  assert.match(sync, /lastError:[\s\S]{0,180}checkedAt:\s*relevantPrevious\.checkedAt\s*\|\|\s*""/);
+  assert.match(sync, /const batchComplete = failedChecks === 0/);
+  assert.match(dashboard, /Conferência parcial:/);
 });
 
 test("bloqueia de verdade uma segunda execução na mesma data de São Paulo", async () => {
@@ -85,6 +94,11 @@ test("localizador reutiliza e renova a autorização criptografada", () => {
   assert.match(sync, /rejectedAccessTokenRefreshPromise/);
   assert.match(sync, /fetchMarketplaceCatalog\(catalogId\)/);
   assert.match(sync, /\[401, 403\]\.includes\(error\.httpStatus\)[\s\S]{0,180}refreshRejectedAccessToken\(\)/);
+});
+
+test("localizador reduz leituras automáticas sem abandonar a fila", () => {
+  assert.match(localizerWorkflow, /cron:\s*["']7,37 \* \* \* \*["']/);
+  assert.doesNotMatch(localizerWorkflow, /7,22,37,52/);
 });
 
 test("painel separa preço divergente de consulta temporariamente bloqueada", () => {

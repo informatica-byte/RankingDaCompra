@@ -6,7 +6,9 @@ on:
     # Evita os minutos mais congestionados do GitHub Actions. O GitHub
     # documenta que execucoes agendadas podem atrasar ou ser descartadas
     # nos horarios de pico, principalmente no inicio de cada hora.
-    - cron: "7,22,37,52 * * * *"
+    # Duas conferências por hora são suficientes para a fila de até dez pedidos
+    # e reduzem pela metade as leituras automáticas do Firestore.
+    - cron: "7,37 * * * *"
   workflow_dispatch:
 
 

@@ -203,6 +203,16 @@ function escapeHtml(value) {
   })[character]);
 }
 
+function compactText(value, maxLength) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (text.length <= maxLength) return text;
+  const slice = text.slice(0, maxLength + 1);
+  const boundary = slice.lastIndexOf(" ");
+  return (boundary >= Math.floor(maxLength * 0.7) ? slice.slice(0, boundary) : text.slice(0, maxLength))
+    .replace(/[,;:\s-]+$/, "")
+    .trim();
+}
+
 function escapeXml(value) {
   return String(value).replace(/[&<>"']/g, (character) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;",
@@ -411,12 +421,17 @@ function renderCategoryGuide(categoryId, categoryName, categoryProducts, product
 
 function applyCategorySearchIntent(html, categoryId, categoryName, productCount) {
   const intent = categoryIntent(categoryId, categoryName);
-  if (!intent || !html) return html;
+  if (!html) return html;
+  if (!intent) {
+    return html.replace(/<title>([^<]+)<\/title>/i, (_, title) =>
+      `<title>${escapeHtml(compactText(decodeHtml(title), 65))}</title>`);
+  }
   const pageTitle = intent.pageTitle;
+  const seoTitle = compactText(`${pageTitle} | Ranking da Compra`, 65);
   const heading = intent.heading.replace("{count}", productCount);
   const intentBlock = `<section class="method search-intents"><h2>Dúvidas que este comparativo ajuda a responder</h2><ul>${intent.phrases.map((phrase) => `<li>${escapeHtml(phrase)}</li>`).join("")}</ul><p>Essas frases representam intenções de compra. A seleção continua baseada apenas nos produtos e dados realmente cadastrados.</p></section>`;
   return html
-    .replace(/<title>[^<]+<\/title>/i, `<title>${escapeHtml(pageTitle)} | Ranking da Compra</title>`)
+    .replace(/<title>[^<]+<\/title>/i, `<title>${escapeHtml(seoTitle)}</title>`)
     .replace(/<meta name="description" content="[^"]*">/i, `<meta name="description" content="${escapeHtml(intent.description)}">`)
     .replace(/<meta property="og:title" content="[^"]*">/i, `<meta property="og:title" content="${escapeHtml(pageTitle)}">`)
     .replace(/<meta property="og:description" content="[^"]*">/i, `<meta property="og:description" content="${escapeHtml(intent.description)}">`)

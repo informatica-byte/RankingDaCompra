@@ -23,10 +23,11 @@ concurrency:
 jobs:
   atualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     env:
       RDC_PRODUCTS_SNAPSHOT: .price-sync-products.json
       RDC_BATCH_SKIP_MARKER: .price-sync-skipped
+      RDC_BATCH_PARTIAL_MARKER: .price-sync-partial
       RDC_DAILY_BATCH: "true"
       RDC_FORCE_BATCH: ${{ github.event_name == 'workflow_dispatch' && inputs.force || false }}
     steps:
@@ -59,6 +60,11 @@ jobs:
         run: |
           if [[ -f "$RDC_BATCH_SKIP_MARKER" ]]; then
             echo "O lote de hoje já foi publicado; geração e novas leituras foram dispensadas."
+            exit 0
+          fi
+          if [[ -f "$RDC_BATCH_PARTIAL_MARKER" ]]; then
+            echo "::warning::A conferência foi parcial; páginas e preços publicados foram preservados."
+            rm -f "$RDC_PRODUCTS_SNAPSHOT"
             exit 0
           fi
           if ! node scripts/generate-sitemap.mjs; then
@@ -96,5 +102,14 @@ jobs:
           done
           echo "::error::Não foi possível publicar o lote após quatro tentativas seguras."
           exit 1
+
+      - name: Sinalizar conferência parcial
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f "$RDC_BATCH_PARTIAL_MARKER" ]]; then
+            echo "::error::A tentativa foi registrada, mas o Mercado Livre ou o Firebase não confirmou todos os itens gerenciados. O último preço válido foi preservado."
+            exit 1
+          fi
 
 

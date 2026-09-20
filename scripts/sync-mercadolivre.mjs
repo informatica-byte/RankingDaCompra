@@ -9,6 +9,7 @@ const OUTPUT = resolve("mercadolivre-status.json");
 const TOKEN_FILE = resolve(".mercadolivre-token.enc");
 const PRODUCT_SNAPSHOT = String(process.env.RDC_PRODUCTS_SNAPSHOT || "").trim();
 const BATCH_SKIP_MARKER = String(process.env.RDC_BATCH_SKIP_MARKER || "").trim();
+const BATCH_PARTIAL_MARKER = String(process.env.RDC_BATCH_PARTIAL_MARKER || "").trim();
 const DAILY_BATCH = String(process.env.RDC_DAILY_BATCH || "").toLowerCase() === "true";
 const FORCE_BATCH = String(process.env.RDC_FORCE_BATCH || "").toLowerCase() === "true";
 let accessToken = String(process.env.MERCADO_LIVRE_ACCESS_TOKEN || "").trim();
@@ -863,6 +864,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
       currencyId: result.currencyId,
       source: result.source || "api",
       checkedAt,
+      lastAttemptAt: checkedAt,
       ...lightningFields(result),
     };
   }
@@ -880,6 +882,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
     currencyId: result.currencyId,
     source: result.source || "api",
     checkedAt,
+    lastAttemptAt: checkedAt,
     ...lightningFields(result),
   };
 }
@@ -986,7 +989,8 @@ async function checkProduct(product, previousRecord, checkedAt) {
           available: null,
           visible: previousRecord.visible !== false,
           lastError: String(error?.message || "Falha temporária no catálogo").slice(0, 160),
-          checkedAt,
+          checkedAt: previousRecord.checkedAt || "",
+          lastAttemptAt: checkedAt,
         };
       }
     }
@@ -1002,6 +1006,7 @@ async function checkProduct(product, previousRecord, checkedAt) {
       regularPrice: null,
       currencyId: "BRL",
       checkedAt,
+      lastAttemptAt: checkedAt,
     };
   }
 
@@ -1016,7 +1021,8 @@ async function checkProduct(product, previousRecord, checkedAt) {
       managed: true,
       visible: relevantPrevious.visible !== false,
       lastError: String(error?.message || "Falha temporária").slice(0, 160),
-      checkedAt,
+      checkedAt: relevantPrevious.checkedAt || "",
+      lastAttemptAt: checkedAt,
     };
   }
 }
@@ -1045,6 +1051,7 @@ async function main() {
     return;
   }
 
+  const checkedAt = new Date().toISOString();
   let products;
   try {
     const allProducts = await listProducts();
@@ -1053,6 +1060,21 @@ async function main() {
     if (ignored > 0) console.log(`${ignored} produto(s) de outras lojas ignorado(s) pelo robô do Mercado Livre.`);
   } catch (error) {
     if (/Firestore: HTTP 429/.test(String(error?.message || error))) {
+      const payload = {
+        ...previous,
+        lastBatchAttemptAt: checkedAt,
+        batchSummary: {
+          complete: false,
+          reason: "firebase_quota",
+          total: 0,
+          confirmed: 0,
+          failed: 0,
+          unmanaged: 0,
+          attemptedAt: checkedAt,
+        },
+      };
+      await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+      if (BATCH_PARTIAL_MARKER) await writeFile(resolve(BATCH_PARTIAL_MARKER), "partial\n", "utf8");
       console.warn(
         "Autorização atualizada. O Firebase atingiu o limite temporário; tente novamente mais tarde.",
       );
@@ -1067,29 +1089,51 @@ async function main() {
       products,
     })}\n`, "utf8");
   }
-  const checkedAt = new Date().toISOString();
   const entries = await mapWithConcurrency(
     products,
     MAX_PARALLEL_REQUESTS,
     async (product) => {
       const oldRecord = previous.products?.[product.id] || {};
       const newRecord = await checkProduct(product, oldRecord, checkedAt);
-      if (sameBusinessState(oldRecord, newRecord)) {
-        newRecord.checkedAt = oldRecord.checkedAt || checkedAt;
-      }
       return [product.id, newRecord];
     },
   );
 
   const nextProducts = Object.fromEntries(entries);
   const changed = JSON.stringify(previous.products || {}) !== JSON.stringify(nextProducts);
+  const successfulChecks = entries.reduce(
+    (total, [, record]) => total + (record.managed === true && !record.lastError ? 1 : 0),
+    0,
+  );
+  const failedChecks = entries.reduce(
+    (total, [, record]) => total + (record.managed === true && Boolean(record.lastError) ? 1 : 0),
+    0,
+  );
+  const unmanagedChecks = entries.reduce(
+    (total, [, record]) => total + (record.managed !== true ? 1 : 0),
+    0,
+  );
+  const batchComplete = failedChecks === 0;
   const payload = {
     version: 1,
     updatedAt: changed ? checkedAt : (previous.updatedAt || checkedAt),
-    lastBatchAt: checkedAt,
+    lastBatchAt: batchComplete ? checkedAt : (previous.lastBatchAt || ""),
+    lastBatchAttemptAt: checkedAt,
+    batchSummary: {
+      complete: batchComplete,
+      reason: batchComplete ? "complete" : "temporary_failures",
+      total: products.length,
+      confirmed: successfulChecks,
+      failed: failedChecks,
+      unmanaged: unmanagedChecks,
+      attemptedAt: checkedAt,
+    },
     products: nextProducts,
   };
   await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+  if (!batchComplete && BATCH_PARTIAL_MARKER) {
+    await writeFile(resolve(BATCH_PARTIAL_MARKER), "partial\n", "utf8");
+  }
 
   const counts = Object.values(nextProducts).reduce((summary, record) => {
     if (record.lastError) summary.errors++;
@@ -1108,24 +1152,19 @@ async function main() {
     + `e ${counts.errors} com falha temporária.`,
   );
 
-  const successfulChecks = entries.reduce(
-    (total, [, record]) =>
-      total + (record.managed === true && !record.lastError ? 1 : 0),
-    0,
-  );
   console.log(
     "Preços efetivamente confirmados nesta execução: " + successfulChecks + ".",
   );
-  if (products.length > 0 && successfulChecks === 0) {
+  if (!batchComplete) {
     entries
       .filter(([, record]) => record.lastError)
       .slice(0, 3)
       .forEach(([productId, record]) => {
         console.error("Falha em " + productId + ": " + record.lastError);
       });
-    throw new Error(
-      "Sincronização inválida: nenhum preço foi confirmado. "
-      + "O relatório foi gerado, mas a execução será marcada como falha.",
+    console.warn(
+      `Conferência parcial: ${failedChecks} item(ns) gerenciado(s) não foram confirmados. `
+      + "O relatório será publicado, os preços válidos serão preservados e a execução será sinalizada.",
     );
   }
 }

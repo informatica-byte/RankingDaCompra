@@ -698,35 +698,40 @@
 
   async function loadConfig() {
     if (state.config) return state.config;
-    const [published, remote, seasonal] = await Promise.all([
+    const CONFIG_CACHE_KEY = "ranking-da-compra-config-publica-v1";
+    const CONFIG_CACHE_TTL = 12 * 60 * 60 * 1000;
+    let cached = {};
+    try {
+      const parsed = JSON.parse(localStorage.getItem(CONFIG_CACHE_KEY) || "{}");
+      if (Number(parsed.savedAt || 0) > Date.now() - CONFIG_CACHE_TTL) cached = parsed.value || {};
+    } catch {}
+    const [published, remoteBundle] = await Promise.all([
       (async () => {
         try {
           const response = await fetch("/site-config.json", { cache: "no-store" });
           return response.ok ? await response.json() : {};
         } catch { return {}; }
       })(),
-      (async () => {
+      Object.keys(cached).length ? Promise.resolve(cached) : (async () => {
         try {
           if (typeof db === "undefined") return {};
-          const doc = await db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).get();
-          return doc.exists ? doc.data() : {};
+          const [configDoc, themeDoc] = await Promise.all([
+            db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).get(),
+            db.collection("produtos").doc(".site-theme").get(),
+          ]);
+          const value = {
+            ...(configDoc.exists ? configDoc.data() : {}),
+            ...(themeDoc.exists ? themeDoc.data() : {}),
+          };
+          try { localStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), value })); } catch {}
+          return value;
         } catch (error) {
-          console.warn("Não foi possível ler a configuração do Clube de Ofertas.", error);
-          return {};
-        }
-      })(),
-      (async () => {
-        try {
-          if (typeof db === "undefined") return {};
-          const doc = await db.collection("produtos").doc(".site-theme").get();
-          return doc.exists ? doc.data() : {};
-        } catch (error) {
-          console.warn("Não foi possível ler o tema sazonal da vitrine.", error);
+          console.warn("Não foi possível ler a configuração pública; usando a versão publicada.", error);
           return {};
         }
       })()
     ]);
-    const config = { ...published, ...remote, ...seasonal };
+    const config = { ...published, ...remoteBundle };
     state.config = config;
     return state.config;
   }
