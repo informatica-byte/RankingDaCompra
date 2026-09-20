@@ -1,19 +1,26 @@
 {
-  "atualizadoEm": "2026-09-20T16:40:50.310Z",
+  "atualizadoEm": "2026-09-20T16:47:35.358Z",
   "resultados": {
+    "5NqQnq2RJkCKF6wi1qfO": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/xiaomi-redmi-15c-dual-sim-128gb-4gb-ram-cor-azul/p/MLB61420274?pdp_filters=price%3A*-1000.0%7Cdeal%3AMLB1782766-1#polycard_client=offers&deal_print_id=d55ee7b5-8962-4557-8e57-e6c954895b1c&position=29&tracking_id=ff5a8727-eb91-4b61-a906-62de358e7e40&wid=MLB4865311465&sid=offers",
+      "resolvidoEm": "2026-09-20T16:47:35.358Z",
+      "tentativas": 1
+    },
     "Z2EU92cl2TMNAiSARaEj": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/xiaomi-redmi-15c-dual-sim-128gb-4gb-ram-cor-azul/p/MLB61420274?pdp_filters=price%3A*-1000.0%7Cdeal%3AMLB1782766-1#polycard_client=offers&deal_print_id=d55ee7b5-8962-4557-8e57-e6c954895b1c&position=29&tracking_id=ff5a8727-eb91-4b61-a906-62de358e7e40&wid=MLB4865311465&sid=offers",
-      "resolvidoEm": "2026-09-20T16:40:50.309Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-20T16:47:17.492Z",
+      "tentativas": 2
     },
     "37ryVspyDR7RaneEgz8O": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/xiaomi-redmi-15c-dual-sim-128gb-4gb-ram-cor-azul/p/MLB61420274?pdp_filters=price%3A*-1000.0%7Cdeal%3AMLB1782766-1#polycard_client=offers&deal_print_id=d55ee7b5-8962-4557-8e57-e6c954895b1c&position=29&tracking_id=ff5a8727-eb91-4b61-a906-62de358e7e40&wid=MLB4865311465&sid=offers",
-      "resolvidoEm": "2026-09-20T16:40:32.853Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-09-20T16:46:59.699Z",
+      "tentativas": 3
     },
     "dRKJvCgLrESdLz5TnMyi": {
       "status": "ok",
