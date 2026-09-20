@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-20T18:03:12.653Z",
+  "updatedAt": "2026-09-20T20:19:05.466Z",
   "lastBatchAt": "2026-09-19T12:45:04.483Z",
-  "lastBatchAttemptAt": "2026-09-20T18:03:12.653Z",
+  "lastBatchAttemptAt": "2026-09-20T20:19:05.466Z",
   "batchSummary": {
     "complete": false,
     "reason": "temporary_failures",
@@ -10,7 +10,7 @@
     "confirmed": 63,
     "failed": 346,
     "unmanaged": 93,
-    "attemptedAt": "2026-09-20T18:03:12.653Z"
+    "attemptedAt": "2026-09-20T20:19:05.466Z"
   },
   "products": {
     ".site-theme": {
@@ -24,8 +24,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "05S6aRd5qQ8i4L37P6qN": {
       "itemId": "MLB2171368181",
@@ -47,7 +47,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "0MzqtvnTj41vpR7pwL1G": {
       "itemId": "MLB5556558810",
@@ -55,7 +55,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-05T17:56:40.772Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "0TQPS3z5Mj1mWyEjdcjd": {
       "itemId": "MLB4866380917",
@@ -63,7 +63,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "0UsruHJ405ImvUXyhYgW": {
       "itemId": "MLB4031566272",
@@ -71,7 +71,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "0ZlMlzbCo5Rh41J5oUjj": {
       "itemId": "MLB4291609113",
@@ -93,7 +93,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "0o2cubZBfwlgcwFokAWY": {
       "itemId": "MLB779362",
@@ -101,14 +101,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -137,7 +137,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "0vNEHjhD3cm0iTyBCZRe": {
       "itemId": "MLB779362",
@@ -145,14 +145,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -167,7 +167,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-18T09:46:53.734Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "1Iyoc1zKTUsDEQGbvIM3": {
       "itemId": "",
@@ -180,8 +180,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "1OfMg1pRePuvTqXaLiV6": {
       "itemId": "MLB6367837476",
@@ -189,7 +189,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "1WM5CLqoLFN2yEUguuVY": {
       "itemId": "MLB5761677016",
@@ -197,7 +197,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "1c9dmLesD1G0pPTCYrjt": {
       "itemId": "",
@@ -210,8 +210,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "1tIzUpXs4udqZOZwpQX7": {
       "itemId": "MLB6660301362",
@@ -219,7 +219,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "289lp7FlTI7iBiUkftG7": {
       "itemId": "",
@@ -232,8 +232,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "2CwDkIClWXzNIUFxZVVo": {
       "itemId": "MLB6768230622",
@@ -241,7 +241,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "2V7q6nC2mg54DN9anaYi": {
       "itemId": "MLB5980069984",
@@ -249,7 +249,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-16T13:43:00.426Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "2bvf1eThLNTx4TSWmm6j": {
       "itemId": "MLB5363320228",
@@ -257,7 +257,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "2e2m7sDdRyGHq1Tzj8ra": {
       "itemId": "MLB7658866062",
@@ -265,7 +265,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "2hCKUJ8VSblNDYJYgPph": {
       "itemId": "MLB4592608548",
@@ -273,7 +273,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "2vFXQV4acjGHUTy8Lsk1": {
       "itemId": "",
@@ -286,8 +286,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "2xZTVc7GrelQ26EYu2xv": {
       "itemId": "MLB4555189589",
@@ -295,7 +295,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "31Lco0eFCDaomsks3iM3": {
       "itemId": "",
@@ -308,8 +308,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "347WUiAlueVscYKR7Emm": {
       "itemId": "MLB6968682598",
@@ -332,7 +332,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "35hImqo3QJm6moaV4OzO": {
       "itemId": "MLB6161516742",
@@ -340,7 +340,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "37zRkLVqUxzOjxBLGhO1": {
       "itemId": "MLB4731987477",
@@ -348,7 +348,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "3AiculsXxRCfEkCx7Qin": {
       "itemId": "MLB5084785712",
@@ -356,7 +356,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "3LvfME6IDi9pD4RgvTBd": {
       "itemId": "MLB6974647044",
@@ -364,7 +364,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-07T11:11:10.754Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "3hr9hL0VA6MpH502d4rF": {
       "itemId": "MLB4374486439",
@@ -387,7 +387,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "3tpMBWlCt02voCdZE7nN": {
       "itemId": "MLB7118107422",
@@ -410,7 +410,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "3yIHMxCIF9QgqjNOrSXC": {
       "itemId": "MLB2171368181",
@@ -433,7 +433,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "41xTWhFAFp82XNFL5V87": {
       "itemId": "MLB4742623935",
@@ -441,7 +441,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "4DLJoHbBXNFffpz3DNcv": {
       "itemId": "",
@@ -454,8 +454,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "4FX7Gso8kz2bxeL8MKdU": {
       "itemId": "MLB779362",
@@ -463,14 +463,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -485,7 +485,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "4Md1JdJwRlvNfEYXxyEC": {
       "itemId": "MLB4035471677",
@@ -493,7 +493,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "4eal5Q0HLTcrspjkUwee": {
       "itemId": "MLB5096586835",
@@ -501,7 +501,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "4jC1Qsk9fyxycEyS6INY": {
       "itemId": "MLB4699336817",
@@ -509,7 +509,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "4oci5e7Xmlhwmp8WiCOr": {
       "itemId": "MLB4688076761",
@@ -517,7 +517,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "51ek2WOgqwYGnIqBAEPP": {
       "itemId": "MLB6644496628",
@@ -525,7 +525,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5FMVdsnRQIuJYsUfNJU9": {
       "itemId": "MLB5049422013",
@@ -533,7 +533,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-04T10:35:00.227Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5FQyewGiYpron6Bn32d1": {
       "itemId": "",
@@ -546,8 +546,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5G8Rs89UnBehBYVatnan": {
       "itemId": "",
@@ -560,8 +560,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5Jy9PJCAxAAnAn8cDmxj": {
       "itemId": "",
@@ -574,8 +574,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5LA4CuIHLWigh48x3qaW": {
       "itemId": "",
@@ -588,8 +588,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5MGE98tYssH9nEfBeHoW": {
       "itemId": "",
@@ -602,8 +602,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5Nr0nOkBvYhG9KXxeyZL": {
       "itemId": "",
@@ -616,8 +616,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5bQKU9inL3pq14yE8K4L": {
       "itemId": "MLB5410758826",
@@ -625,7 +625,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5eAXaJha93EuQsvd2SJn": {
       "itemId": "MLB5864818802",
@@ -648,7 +648,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5ohGMLIwCSUjFKcWyWyy": {
       "itemId": "MLB4188994271",
@@ -671,7 +671,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5p5PX3eUAVuV5MNEeDe4": {
       "itemId": "MLB4155165971",
@@ -693,7 +693,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "5paJasEjP2KUh4VffUAn": {
       "itemId": "MLB6099857432",
@@ -701,7 +701,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "695lD8JQZNl8YW6RkFiF": {
       "itemId": "MLB5534474346",
@@ -709,7 +709,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6CiOb7YKL9YmF8Sqg1wT": {
       "itemId": "MLB6630725010",
@@ -717,7 +717,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6Di2evTNS0Fx5mXD9bfY": {
       "itemId": "MLB6692315302",
@@ -725,7 +725,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6EOWZI8QKv96Lup7RVIe": {
       "itemId": "MLB7238415970",
@@ -733,7 +733,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-18T09:46:53.734Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6NYYO2l4QTGUagl47PKh": {
       "itemId": "",
@@ -746,8 +746,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6V6XLL6R0ANUSaDHDcPa": {
       "itemId": "MLB4504257005",
@@ -755,7 +755,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6kC1jJj7i4kRtYyp3SZr": {
       "itemId": "MLB3449174039",
@@ -778,7 +778,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6l6oYkxxsrdu1M3y00MD": {
       "itemId": "MLB2766771378",
@@ -786,7 +786,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6mTC2ilqUMIpviykSWpA": {
       "itemId": "",
@@ -799,8 +799,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6mZ1ahzme9kUH1UdSkJw": {
       "itemId": "MLB779362",
@@ -808,14 +808,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -830,7 +830,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6rPnzKJkUk5676DoZ9ng": {
       "itemId": "MLB4162108123",
@@ -838,7 +838,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "6tvLptYK5kpEu3H8wQXJ": {
       "itemId": "MLB5534460646",
@@ -846,7 +846,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "75GfcnvvnS8nJk8t781L": {
       "itemId": "MLB5275428302",
@@ -854,7 +854,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "7CSQkSXeUHn9yzYR29hF": {
       "itemId": "MLB7513712862",
@@ -862,7 +862,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-11T15:18:54.364Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "7EgFgcD6NyeoMB8KW4Pp": {
       "itemId": "MLB1784299",
@@ -870,14 +870,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -892,7 +892,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "7m4toROPHx9QFdjcgYK4": {
       "itemId": "MLB6080424808",
@@ -900,7 +900,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "7rePUShpSdwOYQTR3OUy": {
       "itemId": "MLB5041220911",
@@ -914,8 +914,8 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -935,8 +935,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "8Ev3SqnWdRQQbhEBsO8n": {
       "itemId": "",
@@ -949,8 +949,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "8P4JsNc8f2qxP1F6iJEj": {
       "itemId": "MLB5212569427",
@@ -958,7 +958,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "8RopqzkV8UyasWEZxMB8": {
       "itemId": "MLB3946172085",
@@ -966,7 +966,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "8oHSkf32jY7LKS2WSv36": {
       "itemId": "MLB4188994271",
@@ -974,7 +974,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "8sDa6bmYd25zEEKRnQJn": {
       "itemId": "MLB4583723537",
@@ -982,7 +982,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "96Pf23TdUYjzKH9stEXS": {
       "itemId": "MLB6433211634",
@@ -990,7 +990,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "98SABYq2yUWEDUxLKmRA": {
       "itemId": "",
@@ -1003,8 +1003,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "9M0ixrhS8WT32klrBuji": {
       "itemId": "",
@@ -1017,8 +1017,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "9MH0XlaLQuIqWe1dlAHz": {
       "itemId": "MLB5872060016",
@@ -1026,7 +1026,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "9XyRhvHb9nBlCsGOM4pj": {
       "itemId": "",
@@ -1039,8 +1039,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "9f1hVbVlztzH6hRON9RJ": {
       "itemId": "",
@@ -1053,8 +1053,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "9mrh9VQEs49ewAlruh38": {
       "itemId": "MLB3909103951",
@@ -1062,7 +1062,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "A40YHbcTUSIxI3ennE1a": {
       "itemId": "",
@@ -1075,8 +1075,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "AC8pOvLAO9VLZSUhfYfh": {
       "itemId": "",
@@ -1089,8 +1089,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "AF2AykzSppuQzGXdmvlT": {
       "itemId": "MLB1578289",
@@ -1098,14 +1098,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1120,14 +1120,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1157,7 +1157,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "AhbvEgzfMuC19ltrB2WN": {
       "itemId": "MLB4856710463",
@@ -1165,7 +1165,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "AweCTxq7vwVQ7VmN4IIg": {
       "itemId": "MLB4466469885",
@@ -1173,7 +1173,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "B3HTtYZQAYonACif4tW1": {
       "itemId": "MLB5157546240",
@@ -1181,7 +1181,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "B7gTVm7VI6kwbKD5VFTm": {
       "itemId": "MLB1782770",
@@ -1189,14 +1189,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "visible": true,
+      "unavailableChecks": 1,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1211,7 +1211,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "BZdWuWJ4c71PUMLZXbbx": {
       "itemId": "MLB779362",
@@ -1219,14 +1219,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1241,7 +1241,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Bf3ccSwSiVkLw1Z8k2Hu": {
       "itemId": "MLB4297760749",
@@ -1249,7 +1249,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "BfbQg5xZZO8bsTlObKHe": {
       "itemId": "MLB7143036282",
@@ -1257,7 +1257,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Bp4dNosktHQXiSy3r9S0": {
       "itemId": "MLB5307438878",
@@ -1265,7 +1265,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-07T11:11:10.754Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "C4xoZSEE5SvXjFtI5zxA": {
       "itemId": "MLB779362",
@@ -1273,14 +1273,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "visible": true,
+      "unavailableChecks": 1,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1295,7 +1295,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "C8VXX9MfKS8ULwDiDWXn": {
       "itemId": "MLB3905003519",
@@ -1303,7 +1303,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "CFEyN1hdeMSM6BS89h5o": {
       "itemId": "MLB3817089255",
@@ -1326,7 +1326,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "CGZgScZiyGFqGQvCuF7C": {
       "itemId": "",
@@ -1337,7 +1337,7 @@
       "catalogId": "MLB77577169",
       "status": "catalog_unavailable",
       "available": null,
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "CO1tCKBzr6q79BOpdBZW": {
       "itemId": "MLB5532075156",
@@ -1345,7 +1345,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-08T11:55:37.614Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "CXMWhCkfWah2EmRBTFtF": {
       "itemId": "MLB5275589650",
@@ -1353,7 +1353,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "CZAZX35Ebh26vPndxl4I": {
       "itemId": "",
@@ -1366,8 +1366,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "CqcFkZIu8ozeDLwRHAEG": {
       "itemId": "MLB779362",
@@ -1375,14 +1375,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1397,7 +1397,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "D5FI7Z4OhbJsHiE7wOmc": {
       "itemId": "",
@@ -1410,8 +1410,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "DIab1xDgULuHRH3qhVng": {
       "itemId": "MLB5299097242",
@@ -1419,7 +1419,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "DNqszoYPu5LLhotuYNKp": {
       "itemId": "MLB779362",
@@ -1427,14 +1427,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1454,8 +1454,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "DlFv98xnrCPIAeFfbRFv": {
       "itemId": "",
@@ -1468,8 +1468,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "DrtEH7UwR0UyKkiUTQEw": {
       "itemId": "MLB779362",
@@ -1477,14 +1477,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1499,7 +1499,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "E4L1IqNlovRGggmaVOHW": {
       "itemId": "MLB5885455180",
@@ -1507,7 +1507,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "E4SDe0v0L4ztydHzIbRw": {
       "itemId": "",
@@ -1520,8 +1520,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "EMkRJbRaAkESLs4ejPvT": {
       "itemId": "MLB1784299",
@@ -1529,14 +1529,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1551,7 +1551,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "EdXwh6B1zkESrUZtnNXQ": {
       "itemId": "",
@@ -1564,8 +1564,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "EmrdwlcDgCCM5suoz8dB": {
       "itemId": "MLB4030613465",
@@ -1573,7 +1573,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "EqohVCbzvQYEWPnsDLVE": {
       "itemId": "",
@@ -1586,8 +1586,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Exr5iz41Fk5XQLKaQdB7": {
       "itemId": "MLB779362",
@@ -1595,14 +1595,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1620,7 +1620,7 @@
       "catalogId": "MLB58523311",
       "status": "catalog_unavailable",
       "available": null,
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "FEBxkePUbUdVGDJK7CQJ": {
       "itemId": "MLB5222250670",
@@ -1628,7 +1628,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "FWRyLtto1bKeKurNikKq": {
       "itemId": "MLB4840111509",
@@ -1636,7 +1636,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "FeYsjVKPd6nzosN6U8QB": {
       "itemId": "MLB1784299",
@@ -1644,14 +1644,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1666,14 +1666,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1688,7 +1688,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "G6HUKfBXKEFnrqRtUluo": {
       "itemId": "MLB5724876880",
@@ -1696,7 +1696,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "GPORGqPOixfgh38bVrXX": {
       "itemId": "MLB6760902576",
@@ -1704,7 +1704,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "GQiP9vBIhECa4I5CuzkB": {
       "itemId": "MLB3806655487",
@@ -1712,7 +1712,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-08T11:55:37.614Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "GT9gxxxsfkbjOfDG2uIM": {
       "itemId": "",
@@ -1725,8 +1725,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Gcz9OSyGgHGMKYfG87IS": {
       "itemId": "MLB6361515378",
@@ -1734,7 +1734,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "GhxvMZYaZM60wLsGuNdw": {
       "itemId": "",
@@ -1747,8 +1747,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "GpoXj5YCjA93hBDg5L0v": {
       "itemId": "MLB4585516185",
@@ -1756,7 +1756,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "GzjyGVKcBkoiKgQEo4p9": {
       "itemId": "MLB3556275459",
@@ -1778,7 +1778,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "H0bw2eYqi6yqdyBF1Ufl": {
       "itemId": "",
@@ -1791,8 +1791,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "H17ykC6IlHMpWBEMnEQ7": {
       "itemId": "",
@@ -1805,8 +1805,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "HJcpaZe94VZRnomC2hH1": {
       "itemId": "MLB1813860579",
@@ -1814,7 +1814,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-14T14:17:02.450Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "HRJ09W5cRlt8lCXiVFL8": {
       "itemId": "MLB6434829478",
@@ -1822,7 +1822,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "HaNX0t4d6yM4n5xblHHm": {
       "itemId": "MLB5312423928",
@@ -1830,7 +1830,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ICxKGrUEwJIcuNHBKQ6z": {
       "itemId": "MLB779362",
@@ -1838,14 +1838,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1860,7 +1860,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "IIyCFOzd5pJPAYsrFAVi": {
       "itemId": "MLB6760718206",
@@ -1868,7 +1868,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "IQP6np7muXjwAQ6aN20M": {
       "itemId": "MLB1782766",
@@ -1876,14 +1876,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -1898,7 +1898,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "J6WCPaTR5KOqjsAC1nM7": {
       "itemId": "MLB6513365616",
@@ -1906,7 +1906,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "JRAFxivVt0j9tJHdlF8W": {
       "itemId": "",
@@ -1919,8 +1919,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "JVDncuqPSaALHaMclmSD": {
       "itemId": "MLB4172159511",
@@ -1928,7 +1928,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-07T11:11:10.754Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "JWp7l6fsqNkkSsBCAosW": {
       "itemId": "MLB5652036470",
@@ -1936,7 +1936,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "JY36kE95u7uCT7UJWvpt": {
       "itemId": "MLB5761715520",
@@ -1944,7 +1944,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "JaEIKKAz742WyLDV6Oqr": {
       "itemId": "MLB6156594588",
@@ -1952,7 +1952,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Jh08YEZhEmt2fiB9V0wG": {
       "itemId": "MLB4208012055",
@@ -1975,7 +1975,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "JuAHGHFVvs5JNZhbmpJk": {
       "itemId": "MLB4445173579",
@@ -1983,7 +1983,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "JuHTAByi0pSeuxzlBCy4": {
       "itemId": "MLB4587377807",
@@ -1991,7 +1991,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "K4CLnALXaJBTQgtUcTX3": {
       "itemId": "MLB4181104889",
@@ -1999,7 +1999,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-14T14:17:02.450Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "K8hXvUkqAAnbt0Om6wRj": {
       "itemId": "MLB6609986264",
@@ -2007,7 +2007,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "KHQKsjwv2MzJGObyoZkd": {
       "itemId": "",
@@ -2020,8 +2020,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "KMiiTKAtWzXLuHi0Lcad": {
       "itemId": "MLB779362",
@@ -2029,14 +2029,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2056,8 +2056,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "KtvIJ0CLFVYesONQSS8I": {
       "itemId": "MLB4477083023",
@@ -2065,7 +2065,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-17T11:01:50.984Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "L4YCGgXLxp4E2TdJg5LH": {
       "itemId": "",
@@ -2078,8 +2078,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "L7O3i93VZRAebbsssgJd": {
       "itemId": "MLB6551495854",
@@ -2087,7 +2087,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "LAPIX3Gs1DA6iyK26qTM": {
       "itemId": "",
@@ -2100,8 +2100,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "LASwiEy13CerUN6q3pKn": {
       "itemId": "MLB7020693556",
@@ -2109,7 +2109,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "LDzmbLcaHUVNztsXyp52": {
       "itemId": "MLB779362",
@@ -2117,14 +2117,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2139,7 +2139,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "LQlk1zFvUwGZrSBdJfGQ": {
       "itemId": "MLB779362",
@@ -2147,14 +2147,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "visible": true,
+      "unavailableChecks": 1,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2174,8 +2174,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "LTP36WU7dq7wkJFBZRC4": {
       "itemId": "MLB7259208488",
@@ -2183,7 +2183,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "LUsq533hX6lTuHwnZbhz": {
       "itemId": "MLB5619172918",
@@ -2191,7 +2191,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "LXdin9t4iNArNhi4BTDD": {
       "itemId": "MLB7021490670",
@@ -2199,7 +2199,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "LrJn9p8N4KF5HhsvGNL2": {
       "itemId": "MLB4228627923",
@@ -2221,7 +2221,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "M9arBHEFyVVMelHK70ml": {
       "itemId": "MLB916440",
@@ -2229,14 +2229,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2251,7 +2251,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "MEkEjNiiDdi5MpmlP07R": {
       "itemId": "",
@@ -2264,8 +2264,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "MHUka27wtlYZaI8FiHWi": {
       "itemId": "MLB4200316101",
@@ -2273,7 +2273,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "MN4E2frVjIqIDK1GfbuX": {
       "itemId": "MLB6404871036",
@@ -2281,7 +2281,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "MWjfkNgY4oXJD8NhCOQn": {
       "itemId": "MLB4888474966",
@@ -2289,7 +2289,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "MbHUcSnjO3yOTMLtvaHh": {
       "itemId": "MLB4516670993",
@@ -2297,7 +2297,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Mdyju6zRmHsKRpOYqz51": {
       "itemId": "MLB6043042334",
@@ -2305,7 +2305,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "MgDXTGUyMBcJUtTahZIY": {
       "itemId": "MLB5085157465",
@@ -2313,7 +2313,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "N3JYVELP3Zqr7KuZYA3n": {
       "itemId": "MLB3634111858",
@@ -2321,7 +2321,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "N6932yKNTXnAJ98cz9Eo": {
       "itemId": "",
@@ -2334,8 +2334,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "NJipazuMXMzOH9YZbxwu": {
       "itemId": "MLB4587377807",
@@ -2343,7 +2343,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "NQAtVQKwZQtKxXtEn21Q": {
       "itemId": "MLB5814842486",
@@ -2351,7 +2351,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "NQyo56LcUgwwA2tz8YCF": {
       "itemId": "MLB6972825884",
@@ -2359,7 +2359,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-17T11:01:50.984Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "NUNROG3VOfMVViIW5Rtk": {
       "itemId": "MLB916440",
@@ -2367,14 +2367,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2389,7 +2389,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "NzjV5XgJazvytVp805A3": {
       "itemId": "MLB779362",
@@ -2397,14 +2397,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2434,7 +2434,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "O8vB8vB9Kw6NpVqHMt8A": {
       "itemId": "MLB1782766",
@@ -2442,14 +2442,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2469,8 +2469,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "OJulxennkkhusiTWA3Wt": {
       "itemId": "MLB5761444412",
@@ -2478,7 +2478,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "OOVD3lkaaSXJTSAAdywm": {
       "itemId": "MLB3575203379",
@@ -2486,7 +2486,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-07T11:11:10.754Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "OoiX2KUtndnLft7W5teS": {
       "itemId": "",
@@ -2499,8 +2499,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "OwXKuXw3ZMFmcvx7jF4v": {
       "itemId": "MLB4705243893",
@@ -2508,7 +2508,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "P2XcvZpq3TaHobnex6nN": {
       "itemId": "MLB5534474346",
@@ -2516,7 +2516,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "P5uw3Q0IjbFoD0of4CSu": {
       "itemId": "MLB779362",
@@ -2524,14 +2524,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2561,7 +2561,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "PP8JorVbOJNMg5FXOr47": {
       "itemId": "MLB4337879731",
@@ -2569,7 +2569,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T18:08:13.091Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Pcye5MBHzWVlBIhtSnXX": {
       "itemId": "MLB5724593344",
@@ -2577,7 +2577,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "PdIYZ9X5RhTbhmKJyZRw": {
       "itemId": "MLB2629291215",
@@ -2585,7 +2585,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-18T09:46:53.734Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "PfU3x9udsDbmj7DXjaCk": {
       "itemId": "MLB4448570816",
@@ -2608,7 +2608,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Q8DBpY2NmhVcQxfbHhrK": {
       "itemId": "MLB5899077506",
@@ -2616,7 +2616,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Q9UWVUsXl8sIvWyM1hKt": {
       "itemId": "",
@@ -2629,8 +2629,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "QHCeO6rxelawGpcolRX1": {
       "itemId": "MLB1298579",
@@ -2638,14 +2638,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2660,7 +2660,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "QNzmR100ehzO5NSBLhTw": {
       "itemId": "MLB779362",
@@ -2668,14 +2668,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2690,7 +2690,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "QUKhd39js4LdwLXNbh0u": {
       "itemId": "MLB4592320910",
@@ -2698,7 +2698,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "QV00w4vTmt2SwgU8xisL": {
       "itemId": "MLB3605484231",
@@ -2706,7 +2706,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Ql4iYvaqcH2l6SPpBDsi": {
       "itemId": "MLB3800842215",
@@ -2714,7 +2714,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "QpEN96fYjYkEyW9QITuG": {
       "itemId": "MLB5312623578",
@@ -2722,7 +2722,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Qwej9VDipQviT3wfRoxl": {
       "itemId": "",
@@ -2735,8 +2735,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "R1ZoQbG2PXeGXmYHQITH": {
       "itemId": "MLB5198704110",
@@ -2744,7 +2744,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "RBLyylh5JdXN5idQJx7a": {
       "itemId": "MLB4096635423",
@@ -2752,7 +2752,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ROi9CBPuf7ShFF2BoZiU": {
       "itemId": "MLB6970014088",
@@ -2760,7 +2760,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "RiCj7wC1QDBSMgPUQWD1": {
       "itemId": "MLB6781687878",
@@ -2768,7 +2768,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-10T10:40:47.959Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "RkG7ChkGaSnGLttQOCOC": {
       "itemId": "MLB7062541988",
@@ -2776,7 +2776,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "SEqRg2PsdNDdUJEB4T3W": {
       "itemId": "",
@@ -2789,8 +2789,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "SJRf3jhIFlr1BQadDNnH": {
       "itemId": "MLB4516309629",
@@ -2798,7 +2798,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "SUBPibuHNUsgB6zVTL5r": {
       "itemId": "MLB3982225645",
@@ -2806,7 +2806,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Scnb3umRqlUnVZT4kIQ5": {
       "itemId": "",
@@ -2819,8 +2819,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "SctMie0hqocPmrWupQLO": {
       "itemId": "MLB5254673406",
@@ -2828,7 +2828,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "SnMMDq9bDXiMWX0IXYdO": {
       "itemId": "MLB1793491599",
@@ -2836,7 +2836,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "SrygX7sIaaQGH9HRAUul": {
       "itemId": "MLB6657396330",
@@ -2844,7 +2844,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "SygHpzKu3GjwmNMqKljJ": {
       "itemId": "MLB6434829478",
@@ -2852,7 +2852,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "TEaC0vVXmdvp4s8QMqpn": {
       "itemId": "MLB6225112300",
@@ -2860,7 +2860,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "TEq7tHMr54vb5Gx3KqXy": {
       "itemId": "MLB4278606427",
@@ -2868,7 +2868,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "TJk9BUtlZ9v02ETWQRuG": {
       "itemId": "MLB3269837602",
@@ -2876,7 +2876,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "TLWfr8q21DK8xDKMh01u": {
       "itemId": "MLB6242762384",
@@ -2884,7 +2884,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Th1cm6hi9QYlLqUWQKgq": {
       "itemId": "MLB3371578831",
@@ -2906,7 +2906,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "U52A4gBWWLEmfCzONtHb": {
       "itemId": "MLB6538432578",
@@ -2914,7 +2914,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "U8EEJPFO1yIxvsZftPdk": {
       "itemId": "MLB779362",
@@ -2922,14 +2922,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "visible": true,
+      "unavailableChecks": 1,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2959,7 +2959,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "UNQtBcYJ9obcCPWURmeq": {
       "itemId": "MLB1782766",
@@ -2967,14 +2967,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -2989,7 +2989,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Uh8jBpd9D8uEtK4Q3X43": {
       "itemId": "MLB4307126823",
@@ -2997,7 +2997,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "UlgA45nNx2rsEykMbv67": {
       "itemId": "",
@@ -3010,8 +3010,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "UnTwhXqatX5MyoPnl6DN": {
       "itemId": "MLB2723576006",
@@ -3019,7 +3019,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "UqO48Rj9I0f8SpOqabpv": {
       "itemId": "",
@@ -3032,8 +3032,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "UqiDgQqIGUW5AWzaZg8i": {
       "itemId": "MLB4291609113",
@@ -3041,7 +3041,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "UwYGeOO2ABtDN07iR9ch": {
       "itemId": "MLB4169895537",
@@ -3049,7 +3049,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "VJ0UNCYoJYS4gSEKpZKQ": {
       "itemId": "MLB4181577977",
@@ -3057,7 +3057,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "VaxspecNzGrFQjieZlq0": {
       "itemId": "MLB4035471677",
@@ -3065,7 +3065,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "VfMW16M9t5lgB6JcDJYp": {
       "itemId": "",
@@ -3078,8 +3078,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "VgdT8EtzIO0zWeDyEz7E": {
       "itemId": "MLB5000118226",
@@ -3087,7 +3087,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Vgm0UKQmBdAvSbO683Yj": {
       "itemId": "MLB4418866933",
@@ -3095,7 +3095,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "VmHOC0IhW5yPtAhwDFly": {
       "itemId": "MLB4136027339",
@@ -3103,7 +3103,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "VxAQJWjW19TX8tv7XdqE": {
       "itemId": "MLB3392296475",
@@ -3111,7 +3111,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "VyYiww5HVcBRIH8SD5SD": {
       "itemId": "MLB6563286992",
@@ -3119,7 +3119,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-06T03:45:04.415Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "VzQgxGhowdzlfNshI3ZC": {
       "itemId": "MLB6756757832",
@@ -3142,7 +3142,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "W1AVC9x7OoPeSbT374St": {
       "itemId": "MLB5344006946",
@@ -3150,7 +3150,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "W2fwS2jLu4yjKnRTww98": {
       "itemId": "MLB1837525408",
@@ -3158,7 +3158,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "WO6BdDxEWWCCjBVJ0ygB": {
       "itemId": "MLB7213068268",
@@ -3166,7 +3166,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "WOserRLJ8a5xgPNXykgB": {
       "itemId": "MLB5619172918",
@@ -3174,7 +3174,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "WZIrFRxgOFZ1skyzk5SS": {
       "itemId": "",
@@ -3187,8 +3187,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "WcV6iy1IS12dL74uflws": {
       "itemId": "MLB779362",
@@ -3196,14 +3196,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -3218,7 +3218,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Wny29umvm2bXCrY9WGqg": {
       "itemId": "MLB6160472112",
@@ -3226,7 +3226,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "WpCGzZDy0ND4DZmvKbwj": {
       "itemId": "MLB6538432578",
@@ -3234,7 +3234,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "X1sO1Bfcr5qpROxhGltE": {
       "itemId": "MLB5275428302",
@@ -3242,7 +3242,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "X5Db7W76m6omfkAtOePL": {
       "itemId": "MLB4224584697",
@@ -3250,7 +3250,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-07T13:24:05.240Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "XABgPdyXFaOvxvzo4g1M": {
       "itemId": "MLB3225819794",
@@ -3258,7 +3258,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "XCp2wV9P76JfBz2zuUTX": {
       "itemId": "MLB5758565582",
@@ -3266,7 +3266,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "XDnd73z0ZIkihILVyQhX": {
       "itemId": "MLB6142924384",
@@ -3289,7 +3289,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "XGM5P52X6EJc7X55vC8Y": {
       "itemId": "MLB1578289",
@@ -3297,14 +3297,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -3319,7 +3319,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "XVNxx76dZLNlt2MWMphX": {
       "itemId": "MLB3797986470",
@@ -3327,7 +3327,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "XWXtgVSsCBCwOtcMCdO3": {
       "itemId": "MLB6798371404",
@@ -3335,7 +3335,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "XXQfkSFgQfT2yD1mVrsP": {
       "itemId": "",
@@ -3348,8 +3348,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "XlYYzB2czJey8XhtVWll": {
       "itemId": "MLB4435378771",
@@ -3364,7 +3364,7 @@
       "currencyId": "BRL",
       "source": "public_page",
       "checkedAt": "2026-09-20T17:36:08.690Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -3385,8 +3385,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Y24mOOvhl7Aw9njOBuYI": {
       "itemId": "",
@@ -3399,8 +3399,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Y2LaqRfUnmllTmesIOpB": {
       "itemId": "MLB5758653414",
@@ -3408,7 +3408,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Y3nY0i2DwQy2lKfasjdf": {
       "itemId": "MLB7295863340",
@@ -3416,7 +3416,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-18T09:46:53.734Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Y50ZvW7bI3HJBgSiQEfp": {
       "itemId": "MLB5373623226",
@@ -3439,7 +3439,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "YKSSWNPjLAaUeRSLtVWT": {
       "itemId": "MLB5400923188",
@@ -3447,7 +3447,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "YQ2jG9GgNpoRO7ocIocJ": {
       "itemId": "MLB3621404839",
@@ -3455,7 +3455,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "YXqPx6O5Gl3YRR4I8w9a": {
       "itemId": "MLB5402372302",
@@ -3477,7 +3477,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "YZvcITogQcf1bnnARlRx": {
       "itemId": "MLB5775901318",
@@ -3500,7 +3500,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "YaGCD9XOgSyrEx4w58jn": {
       "itemId": "MLB3900167827",
@@ -3508,7 +3508,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "YjBx88JtH59SEx1zCZIB": {
       "itemId": "MLB5532075156",
@@ -3516,7 +3516,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-17T11:01:50.984Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "YprAHdwDVV8lFBm4b77k": {
       "itemId": "",
@@ -3529,8 +3529,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "YuOWci2UixF5GuQE6IYS": {
       "itemId": "MLB4516715979",
@@ -3538,7 +3538,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-16T13:43:00.426Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "YvHQQREIes8QpSf3sV7G": {
       "itemId": "MLB4481471232",
@@ -3561,7 +3561,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Z4BxOInHt44ImemttzRQ": {
       "itemId": "MLB6674392266",
@@ -3569,7 +3569,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Z7iMVBFxNAT5eyiMYxwH": {
       "itemId": "MLB4289660541",
@@ -3577,7 +3577,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ZGxs2yoDgmpnMApDWyHn": {
       "itemId": "",
@@ -3590,8 +3590,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ZPUz3OrnXV1F2NJVK6tO": {
       "itemId": "MLB6611309972",
@@ -3599,7 +3599,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ZcFzy9nXCVEZCsuz9SB3": {
       "itemId": "",
@@ -3612,8 +3612,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Zdn2bdtuTZGcOZIQSpRK": {
       "itemId": "MLB3247058920",
@@ -3621,7 +3621,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "Zo8ybuHaQjV6HlCbCWqf": {
       "itemId": "MLB1578289",
@@ -3629,14 +3629,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -3651,14 +3651,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -3673,7 +3673,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T18:08:13.091Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "aozkBGONt1bYjzktRNP7": {
       "itemId": "MLB4049279695",
@@ -3681,7 +3681,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "aqN9d0IKYi8X1yUcyFy9": {
       "itemId": "",
@@ -3694,8 +3694,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "asTGBkjkQIZ4mhlc7cxX": {
       "itemId": "MLB6194539818",
@@ -3703,7 +3703,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "avV2oOE8xcX9ioG4GNnT": {
       "itemId": "MLB5300250366",
@@ -3711,7 +3711,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "b052WcTAD3j2UDZHQiXY": {
       "itemId": "MLB5919534142",
@@ -3719,7 +3719,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-14T14:17:02.450Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "b2ejp8pkiWYOgBAdeXto": {
       "itemId": "MLB6501275666",
@@ -3727,7 +3727,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "b5s8jSx2KsXwtlFXlB6X": {
       "itemId": "MLB5578006340",
@@ -3735,7 +3735,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "bDJsZK6vaK3JUwpln5mk": {
       "itemId": "MLB779362",
@@ -3743,14 +3743,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": false,
-      "unavailableChecks": 2,
+      "visible": true,
+      "unavailableChecks": 1,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -3780,7 +3780,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "bl7H9O18KchH8c7oHfWk": {
       "itemId": "",
@@ -3793,8 +3793,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "bph7kTU7Wbhpd8DogGrO": {
       "itemId": "",
@@ -3807,8 +3807,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "bufeMWJJrnyiM5TBcKXW": {
       "itemId": "MLB4116164126",
@@ -3816,7 +3816,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-13T14:28:49.670Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "c1R3iVzduEndTWAhxXvO": {
       "itemId": "MLB4470192989",
@@ -3839,7 +3839,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "c3K3tq0esVOpmKeSLd9a": {
       "itemId": "MLB4150270587",
@@ -3847,7 +3847,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "c9hb1oe40g3K1dP4dAsy": {
       "itemId": "MLB4590134133",
@@ -3855,7 +3855,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "cAmK53w6q0aU08IngBas": {
       "itemId": "MLB7063589602",
@@ -3878,7 +3878,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "cRVdkjWSED5sBpQ3JMXd": {
       "itemId": "MLB779362",
@@ -3886,14 +3886,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -3908,7 +3908,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-11T15:18:54.364Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ce1jz7DMAA0uEuKCvzKC": {
       "itemId": "",
@@ -3921,8 +3921,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "chnyJc48QiheioZWb1db": {
       "itemId": "MLB4521037951",
@@ -3930,7 +3930,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "cq6GYICiBnjXrygHzhaO": {
       "itemId": "MLB6469666782",
@@ -3953,7 +3953,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "d31e9yty1t0dekViXbAi": {
       "itemId": "",
@@ -3966,8 +3966,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "d6VCoNciFGrUwOkaNoDU": {
       "itemId": "MLB5457263268",
@@ -3975,7 +3975,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "dBaly9C7BwpAEsZ5mShK": {
       "itemId": "MLB3751699033",
@@ -3983,7 +3983,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "dMbluI9x5kQ0Gwxg8fOU": {
       "itemId": "",
@@ -3996,8 +3996,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "dNFcgW7f0gXpuucpEemY": {
       "itemId": "MLB7276126962",
@@ -4005,7 +4005,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-13T14:28:49.670Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "dPkuf5jPRpAiyE2I268Y": {
       "itemId": "",
@@ -4018,8 +4018,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "dTI0FRm0I6ka01aA024J": {
       "itemId": "MLB1230533155",
@@ -4042,7 +4042,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "dVcHtGhQTqXzldhTAOVv": {
       "itemId": "MLB1784299",
@@ -4050,14 +4050,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -4077,8 +4077,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "dizaA3sHR2l5OOukkoYq": {
       "itemId": "MLB6175281792",
@@ -4086,7 +4086,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-10T10:40:47.959Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "dqU9GQrXu07xjSTYZ4bx": {
       "itemId": "MLB3941733035",
@@ -4094,7 +4094,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "dvJusdTpbTVn5ID62YpK": {
       "itemId": "MLB4702726821",
@@ -4117,7 +4117,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "dx5wMfuCrvsIeGN0QJOp": {
       "itemId": "MLB4620567101",
@@ -4125,7 +4125,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "e2xjzhLqo2TSHdOKUEaB": {
       "itemId": "MLB1784299",
@@ -4133,14 +4133,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -4160,8 +4160,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "eKOpb53Du4BEkZQpC4Jn": {
       "itemId": "MLB3964141405",
@@ -4169,7 +4169,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "eTB1rffOxFexqoubCObQ": {
       "itemId": "MLB1782766",
@@ -4177,14 +4177,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -4199,7 +4199,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "eb6zL5KD6hGwH5SdE6Ua": {
       "itemId": "MLB6797156948",
@@ -4207,7 +4207,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ecDxPnWwx6onVvbgLYjN": {
       "itemId": "MLB4835953283",
@@ -4230,7 +4230,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "elvNcaWSZ5ed34Pmj8SV": {
       "itemId": "MLB4108132843",
@@ -4238,7 +4238,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ewk5CGhlvT9Lmom62F8A": {
       "itemId": "MLB7514007684",
@@ -4261,7 +4261,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "f0T2GaYrpjP00DEYQGRI": {
       "itemId": "MLB5955152608",
@@ -4269,7 +4269,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "f3MOXgokgTifrolFYOhc": {
       "itemId": "MLB3848948895",
@@ -4277,7 +4277,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "f4GF7ry1ExQ2hUfIdbet": {
       "itemId": "",
@@ -4290,8 +4290,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "f9oPhNSAdi4gqtwPJbJh": {
       "itemId": "MLB779362",
@@ -4299,14 +4299,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -4321,7 +4321,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "fIfthy35XMTtNbHT0FXH": {
       "itemId": "MLB7438379216",
@@ -4329,7 +4329,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "fMwDJ0aYUKjwcpHFiRus": {
       "itemId": "",
@@ -4342,8 +4342,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "fOI4O124KZd2vLCx8Fmj": {
       "itemId": "MLB779362",
@@ -4351,14 +4351,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -4373,7 +4373,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "fQAJIJDeSjtSvdevGCQm": {
       "itemId": "MLB4248865607",
@@ -4381,7 +4381,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-11T15:18:54.364Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "fcoVcV8SVJHJ0cQoQvXe": {
       "itemId": "MLB4035471677",
@@ -4389,7 +4389,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "fui9uff5MTKnVydSsaIR": {
       "itemId": "MLB4812143184",
@@ -4412,7 +4412,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "g3QWQpsMAD73Kg7gMUzm": {
       "itemId": "MLB3954862383",
@@ -4427,7 +4427,7 @@
       "currencyId": "BRL",
       "source": "public_page",
       "checkedAt": "2026-09-20T17:22:16.194Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -4443,7 +4443,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "gNcq5nSqWbfqYi1M9c23": {
       "itemId": "MLB6191335498",
@@ -4451,7 +4451,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "gdzQLBaIl5ADZ7qdesva": {
       "itemId": "",
@@ -4464,8 +4464,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "goH2juydLAa3JYXzctkH": {
       "itemId": "MLB6587035878",
@@ -4473,7 +4473,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "h0a3vchlbGQbAnHdbujA": {
       "itemId": "MLB4539764247",
@@ -4481,7 +4481,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "hAuFZAOhcg72qH7L1lSz": {
       "itemId": "",
@@ -4494,8 +4494,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "hVTGYQmARQt2fyDqPZDa": {
       "itemId": "MLB6427849264",
@@ -4503,7 +4503,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "hrVMdybD738SpffBFQIq": {
       "itemId": "MLB7023811646",
@@ -4511,7 +4511,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "htLzwGXLZpkVa0eXWdkr": {
       "itemId": "MLB3705389546",
@@ -4534,7 +4534,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "hvEYsBQVyORk8vWbQCNU": {
       "itemId": "MLB4077829432",
@@ -4542,7 +4542,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "hxfdbsGD41bgGROlz0Ta": {
       "itemId": "",
@@ -4555,8 +4555,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "iAFknp54AGEJMCkVkbtP": {
       "itemId": "MLB4873923933",
@@ -4564,7 +4564,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "iEXAHv7Lvrd0qvzDXiMA": {
       "itemId": "MLB3651421579",
@@ -4572,7 +4572,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "iItFRxNZH02gsEssFVwm": {
       "itemId": "MLB3705221476",
@@ -4580,7 +4580,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "iSyPxYQcVUDjHvjIHLhS": {
       "itemId": "MLB6519291232",
@@ -4588,7 +4588,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "iXzsMyqf9ilSKwbLDtk7": {
       "itemId": "MLB7105555314",
@@ -4611,7 +4611,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "igMwZNRSji3ZZZ9IbjYn": {
       "itemId": "MLB4867225937",
@@ -4619,7 +4619,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ik7zBiCAAqDLqr9Di5Ue": {
       "itemId": "MLB5605758720",
@@ -4627,7 +4627,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "j2RopnrAsyzF80erYjUv": {
       "itemId": "MLB4762588677",
@@ -4635,7 +4635,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-11T15:18:54.364Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "j8z58qFPJKTUJogf5HTM": {
       "itemId": "MLB1782766",
@@ -4643,14 +4643,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -4665,7 +4665,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "jAeUyoF8uPTbRkSYuuY7": {
       "itemId": "MLB5298166742",
@@ -4673,7 +4673,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "jffyLJv2cImsjfarZ1pi": {
       "itemId": "MLB3824682239",
@@ -4681,7 +4681,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "jpfsQDwQMrok9k3UQ66e": {
       "itemId": "MLB1578289",
@@ -4689,14 +4689,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -4711,14 +4711,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -4733,7 +4733,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "k82L2iy2Q6giFdCHVbSg": {
       "itemId": "MLB6889668614",
@@ -4741,7 +4741,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "kBNzedVW81R1oLmPJeGv": {
       "itemId": "MLB5744392274",
@@ -4749,7 +4749,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "kNmf4r3kzbgWX6Fz3Y0x": {
       "itemId": "MLB4213547319",
@@ -4757,7 +4757,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "kYzXt8BeErDzXsC6BlwB": {
       "itemId": "MLB3949019849",
@@ -4765,7 +4765,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-07T11:11:10.754Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "kfLnRJzsg88rUfJxMtb6": {
       "itemId": "",
@@ -4778,8 +4778,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "kgJU0gjx7ezuQO3lDtl4": {
       "itemId": "MLB5410730324",
@@ -4787,7 +4787,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "kkADU0pbN4LUhcYR1HMH": {
       "itemId": "MLB5554213538",
@@ -4795,7 +4795,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ks3O1tyqJfeskTkVNaJ3": {
       "itemId": "",
@@ -4808,8 +4808,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ktLgUaRFWM2t8c9HRwLx": {
       "itemId": "MLB4481471232",
@@ -4817,7 +4817,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T18:08:13.091Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "kyK4G9Uov6eBaFnNVED7": {
       "itemId": "MLB5011962698",
@@ -4825,7 +4825,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "l74bHt4unPmSKnza5N7m": {
       "itemId": "MLB6230997792",
@@ -4847,7 +4847,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "l7Z9wjqB0dHSHYJ6IVMA": {
       "itemId": "MLB4108132843",
@@ -4855,7 +4855,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "lBNuqOAaKBimLnMTsaN6": {
       "itemId": "",
@@ -4868,8 +4868,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "lPcaSjRN7lMTPPP8QL4a": {
       "itemId": "MLB4645102377",
@@ -4877,7 +4877,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "lfGwhT6zO5b7LOPvqkuL": {
       "itemId": "MLB5363840668",
@@ -4885,7 +4885,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "liYhKi9ZlLnwNTT1uvBl": {
       "itemId": "MLB2645813318",
@@ -4908,7 +4908,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "lqUgNmaegZ1hAiP3iMOU": {
       "itemId": "MLB1813853926",
@@ -4916,7 +4916,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-11T15:18:54.364Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "mGfjcGRX5FvusGGZMYJL": {
       "itemId": "MLB4596924785",
@@ -4924,7 +4924,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "mMWeLANeahGbxGFHmpie": {
       "itemId": "MLB3954862383",
@@ -4932,7 +4932,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "mWdbAKSL36ZpIPwUTbdv": {
       "itemId": "MLB1298579",
@@ -4940,14 +4940,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -4962,7 +4962,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "mudVRd1YUQgKwHRcq3iD": {
       "itemId": "",
@@ -4975,8 +4975,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "n4IIyDvWZZGMKhBisDSq": {
       "itemId": "MLB6842727330",
@@ -4984,7 +4984,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "nkjwnOorKUJttBrERNIm": {
       "itemId": "MLB5264419644",
@@ -4992,7 +4992,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "nsOTlMwVIdo8dNOdpShY": {
       "itemId": "MLB5477424248",
@@ -5000,7 +5000,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T18:08:13.091Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "o6oq1IPOS41xUDtF3TG7": {
       "itemId": "MLB5832558364",
@@ -5008,7 +5008,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "oE4gHinZ6CfelSwfLDWk": {
       "itemId": "",
@@ -5021,8 +5021,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "oH64t9Zq6tGqwpIqRgpX": {
       "itemId": "MLB779362",
@@ -5030,14 +5030,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5052,7 +5052,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "of7SzAJ9klKkySvWpSsO": {
       "itemId": "MLB1768877",
@@ -5060,14 +5060,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5097,7 +5097,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "p9csD1mVQKKLvmFbV1VX": {
       "itemId": "MLB6549158890",
@@ -5105,7 +5105,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "pEi4Fha8WRKARN8mI5Wn": {
       "itemId": "MLB5958307590",
@@ -5113,7 +5113,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "pGWith3ABAHWNTRZG3fM": {
       "itemId": "",
@@ -5126,8 +5126,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "pGivvc5MFfmrUp4KPdxQ": {
       "itemId": "MLB4115626971",
@@ -5135,7 +5135,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "pLR3sGHZfroFDK4s0SFd": {
       "itemId": "",
@@ -5148,8 +5148,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "pNwNrsWTQMEyOC4qwff1": {
       "itemId": "MLB1784299",
@@ -5157,14 +5157,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5184,8 +5184,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "pkxU80EMbnHaYkuHdexW": {
       "itemId": "MLB5980069984",
@@ -5193,7 +5193,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-16T13:43:00.426Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ppQhZEUfZDuGcIZRmFB5": {
       "itemId": "MLB4037910198",
@@ -5201,7 +5201,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "q4XshIAfttQBQ9Bwz7uB": {
       "itemId": "MLB4550389799",
@@ -5209,7 +5209,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "q8wxWRl86XmL7Gglikg7": {
       "itemId": "MLB779362",
@@ -5217,14 +5217,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5239,14 +5239,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5261,7 +5261,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "qmQDbj5nJH3h5CPtZdHp": {
       "itemId": "MLB6487643856",
@@ -5269,7 +5269,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "r3FSTFORXo77XwAiWk3Y": {
       "itemId": "MLB779362",
@@ -5277,14 +5277,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5299,7 +5299,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-15T11:00:05.804Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "rERcfIbgG1c0uUdNlQ4o": {
       "itemId": "MLB5239832115",
@@ -5307,7 +5307,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "rJhe4VyyDiFudQmQmXCV": {
       "itemId": "MLB5847406884",
@@ -5315,7 +5315,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-16T13:43:00.426Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "rL4T2UGKrNxcJGZoJVpX": {
       "itemId": "MLB4593220957",
@@ -5323,7 +5323,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "rU7UcX061CZ05ak66N16": {
       "itemId": "MLB3806655487",
@@ -5331,7 +5331,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-07T13:24:05.240Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "rcwXY2aQWUN6dbCVzvsB": {
       "itemId": "",
@@ -5344,8 +5344,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "rfym6WivFVhxpwn2WF6r": {
       "itemId": "MLB5046495691",
@@ -5359,8 +5359,8 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5375,7 +5375,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "rjkXSj5wDd3i4spfoHet": {
       "itemId": "MLB5041220911",
@@ -5389,8 +5389,8 @@
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5405,7 +5405,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-18T09:46:53.734Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "rrtpCXXyFAXB9Htjmf5O": {
       "itemId": "",
@@ -5418,8 +5418,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "sCCEJZohlc5e7c4yVrl4": {
       "itemId": "MLB4918003479",
@@ -5427,7 +5427,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "sHEb67lHKhApfbREU1O0": {
       "itemId": "MLB6739561262",
@@ -5435,7 +5435,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-10T10:40:47.959Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "sIeDtT4BuRsDRnKrSUMR": {
       "itemId": "",
@@ -5448,8 +5448,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "sMCnNBstxTrJqaF6jp2O": {
       "itemId": "MLB5214505536",
@@ -5457,7 +5457,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "sX3K2gzcggu9lkVSke0Q": {
       "itemId": "",
@@ -5470,8 +5470,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "scKXtqgNmOYETwmXi4EP": {
       "itemId": "MLB4722851223",
@@ -5479,7 +5479,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-13T14:28:49.670Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "sfV5mG9A2qmqdyJhbQc0": {
       "itemId": "MLB779362",
@@ -5487,14 +5487,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5509,7 +5509,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "t4cAWb59UILzYeRHO0qk": {
       "itemId": "MLB779362",
@@ -5517,14 +5517,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5539,7 +5539,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "tXFA7nfMsVTOUweO3Twi": {
       "itemId": "MLB6882501546",
@@ -5547,7 +5547,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-17T11:01:50.984Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "tb7c733uByymDrSRjT5f": {
       "itemId": "MLB5687309408",
@@ -5555,7 +5555,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "tnKe3LKzV8Y8vgQRZ3cH": {
       "itemId": "MLB5822444248",
@@ -5563,7 +5563,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-11T15:18:54.364Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "toYU186xhSXh1xeYShZw": {
       "itemId": "",
@@ -5576,8 +5576,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "tqUaLEFDAafDWemxheMX": {
       "itemId": "MLB5015828935",
@@ -5585,7 +5585,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-11T15:18:54.364Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "tvmAXcLVslrks9nZlnoa": {
       "itemId": "",
@@ -5598,8 +5598,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "u9P6kD78JZexijimIjHN": {
       "itemId": "MLB1894079521",
@@ -5607,7 +5607,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "uEPKmoYfnPWU58f3MKdf": {
       "itemId": "",
@@ -5618,7 +5618,7 @@
       "catalogId": "MLB54987753",
       "status": "catalog_unavailable",
       "available": null,
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "uIZQISdVd0NEyClG29Qv": {
       "itemId": "MLB6131160828",
@@ -5626,7 +5626,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-16T13:43:00.426Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "uN0To7b1oG7xjWib5gLN": {
       "itemId": "MLB1298579",
@@ -5634,14 +5634,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5656,7 +5656,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "uRfZSbUKT8yjArcSlGPL": {
       "itemId": "MLB4228627923",
@@ -5664,7 +5664,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "uUKUID2oq9qQLbntifWk": {
       "itemId": "MLB5264261326",
@@ -5672,7 +5672,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "uV26AV1iY1DMOTH0TJtx": {
       "itemId": "",
@@ -5685,8 +5685,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "uVSddfqWEhUv6l94yiMK": {
       "itemId": "MLB4839435111",
@@ -5694,7 +5694,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ucknzxk5UJWl0GnOXadP": {
       "itemId": "MLB779362",
@@ -5702,14 +5702,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5724,14 +5724,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5746,7 +5746,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "unUG8jaH8nxlQhMgdqKf": {
       "itemId": "MLB4598461891",
@@ -5754,7 +5754,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "utSoKgSklj5q1SAS7Wjl": {
       "itemId": "MLB5983100078",
@@ -5762,7 +5762,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "uvlx1EGGFowAjO3EBgrw": {
       "itemId": "MLB5800224038",
@@ -5770,7 +5770,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "vEHXKQ4q4UbcFfjPhtTa": {
       "itemId": "",
@@ -5783,8 +5783,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "vMno2u6iDC5eZJug2sOH": {
       "itemId": "",
@@ -5795,7 +5795,7 @@
       "catalogId": "MLB10001444",
       "status": "catalog_unavailable",
       "available": null,
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "vP33ptkgz0hzzvmaqx1a": {
       "itemId": "",
@@ -5808,8 +5808,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "vdgdhBrdL4pb4rL1YK0x": {
       "itemId": "MLB4190456415",
@@ -5817,7 +5817,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "vfoOrRV7xpu2EgJ8aIUy": {
       "itemId": "",
@@ -5830,8 +5830,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "visu8XqPlr740f0W0So0": {
       "itemId": "MLB1782766",
@@ -5839,14 +5839,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5868,7 +5868,7 @@
       "currencyId": "BRL",
       "source": "public_page",
       "checkedAt": "2026-09-20T17:36:08.690Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -5884,7 +5884,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "vr2uogxbiKqrQx1MYdD9": {
       "itemId": "",
@@ -5897,8 +5897,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "w7DR6QTHjF5FdGZyQTYX": {
       "itemId": "MLB2631867798",
@@ -5906,7 +5906,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "wAsxhijcNyAq9AblyLkN": {
       "itemId": "MLB3873397755",
@@ -5914,7 +5914,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T18:08:13.091Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "wYxgVNIJeeWmGhcToFLP": {
       "itemId": "MLB7502238108",
@@ -5922,7 +5922,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-16T13:43:00.426Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "wiLibtvJlFYtSbDWLtcv": {
       "itemId": "MLB5477527702",
@@ -5930,7 +5930,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-17T11:01:50.984Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "wyofwkDoOxUtpmtG9uhf": {
       "itemId": "MLB2212309325",
@@ -5938,7 +5938,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "x75GETnbI3P4zycAKwOI": {
       "itemId": "MLB5107773742",
@@ -5946,7 +5946,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "xLxOtmzGQ48dLjjnJ9g4": {
       "itemId": "MLB4903101001",
@@ -5954,7 +5954,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "xVGfXmEfGgdAUb4ygcMy": {
       "itemId": "MLB3817190966",
@@ -5962,7 +5962,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "xl3Lu9wu6NJqDUpGmBsV": {
       "itemId": "",
@@ -5975,8 +5975,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "xq3BIapk5fun5CkIrwc1": {
       "itemId": "MLB3756676515",
@@ -5984,7 +5984,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "xuLgVJzZlvDAalnCtsZE": {
       "itemId": "MLB3855257363",
@@ -5992,7 +5992,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-13T14:28:49.670Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "xx8WNgdzcfFZiiBErwpe": {
       "itemId": "MLB779362",
@@ -6000,14 +6000,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -6022,7 +6022,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "y3sJNKuSXBHScRkQ0wMN": {
       "itemId": "MLB6722998868",
@@ -6030,7 +6030,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-17T11:01:50.984Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "yCg6fJ5uioPKguwGIkEX": {
       "itemId": "MLB4676470149",
@@ -6038,7 +6038,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-29T12:55:25.403Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "yJAghLjqy4ystXibSU2F": {
       "itemId": "MLB2625252574",
@@ -6046,7 +6046,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-19T12:45:04.483Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "ypj5xGtjDkHWV6xVFgfd": {
       "itemId": "MLB5321704950",
@@ -6054,7 +6054,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-06T09:26:14.442Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "yxqaNbV9fYlB5zQKWLqj": {
       "itemId": "MLB3767918194",
@@ -6062,7 +6062,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-08-04T10:58:58.004Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "z3tHbOuX0kaa90FEyIvS": {
       "itemId": "MLB6774216912",
@@ -6070,7 +6070,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-03T10:04:53.575Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "z507ObVuMlSEBSnK40Uc": {
       "itemId": "MLB6549129000",
@@ -6078,7 +6078,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "zb4ZDbdfJGUurcSXtVaa": {
       "itemId": "",
@@ -6091,8 +6091,8 @@
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "zdgHJ1hvNj2NYd3q7YHW": {
       "itemId": "MLB779362",
@@ -6100,14 +6100,14 @@
       "managed": true,
       "status": "not_found",
       "available": false,
-      "visible": true,
-      "unavailableChecks": 1,
+      "visible": false,
+      "unavailableChecks": 2,
       "price": null,
       "regularPrice": null,
       "currencyId": "BRL",
       "source": "bulk_api",
-      "checkedAt": "2026-09-20T18:03:12.653Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z",
+      "checkedAt": "2026-09-20T20:19:05.466Z",
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z",
       "lightningChecked": false,
       "lightningActive": false,
       "lightningPromotionId": "",
@@ -6137,7 +6137,7 @@
       "lightningPrice": null,
       "lightningSource": "",
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     },
     "zuvOrERyR2wVRA9ZmYGe": {
       "itemId": "MLB4814270857",
@@ -6145,7 +6145,7 @@
       "visible": true,
       "lastError": "Mercado Livre Bulk: HTTP 403 - resposta inválida",
       "checkedAt": "2026-09-07T13:24:05.240Z",
-      "lastAttemptAt": "2026-09-20T18:03:12.653Z"
+      "lastAttemptAt": "2026-09-20T20:19:05.466Z"
     }
   }
 }
