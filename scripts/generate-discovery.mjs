@@ -364,6 +364,23 @@ const GUIDE_SLUGS_BY_LEGACY_ID = {
   smarttv: "smart-tv",
 };
 
+const CATEGORY_LABELS_BY_LEGACY_ID = {
+  belezaecuidados: "Beleza, cuidados e saúde",
+  caixadesom: "Caixas de som",
+  camerasdeseguranca: "Câmeras de segurança",
+  fonesdeouvido: "Fones de ouvido",
+  fritadeiraairfrayereletrica: "Fritadeiras Air Fryer elétricas",
+  kitbodysplashmasculino: "Kits body splash masculino",
+  kittecladoemousesemfio: "Kits de teclado e mouse sem fio",
+  smarttv: "Smart TVs",
+};
+
+function publicCategoryName(categoryId, categoryName = "") {
+  const legacyKey = slug(categoryId).replace(/-/g, "");
+  return CATEGORY_LABELS_BY_LEGACY_ID[legacyKey]
+    || String(categoryName || categoryId).replace(/air\s+frayer/gi, "Air Fryer");
+}
+
 function guideFileName(categoryId, categoryName = "") {
   const legacyKey = slug(categoryId).replace(/-/g, "");
   const publicSlug = GUIDE_SLUGS_BY_LEGACY_ID[legacyKey] || slug(categoryName || categoryId);
@@ -662,7 +679,7 @@ const knownCategoryIds = new Set(categories.map((category) => category.id));
 for (const categoryId of productsByCategory.keys()) {
   if (!knownCategoryIds.has(categoryId)) categories.push({ id: categoryId, nome: categoryId });
 }
-const categoryNames = new Map(categories.map((category) => [category.id, String(category.nome || category.id).replace(/air\s+frayer/gi, "Air Fryer")]));
+const categoryNames = new Map(categories.map((category) => [category.id, publicCategoryName(category.id, category.nome)]));
 const lastModified = newestDate([
   ...products.flatMap((product) => [product.atualizadoEm, product.dataCadastro]),
   ...categories.map((category) => category.criadoEm),

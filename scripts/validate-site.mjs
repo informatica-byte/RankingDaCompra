@@ -289,6 +289,8 @@ has(discoveryGenerator, /writeFile\([\s\S]{0,100}search-index\.json/, "geração
 has(discoveryGenerator, /function renderCategoryGuide\(/, "gerador automático de comparativos por categoria ausente", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /function categoryIntent\(/, "intenções de busca não orientam os comparativos", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /GUIDE_SLUGS_BY_LEGACY_ID/, "proteção dos endereços públicos de categorias antigas ausente", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /CATEGORY_LABELS_BY_LEGACY_ID/, "proteção dos nomes públicos de categorias antigas ausente", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /publicCategoryName\(category\.id, category\.nome\)/, "gerador ainda pode exibir o identificador interno como título", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /guideFileName\(category\.id, categoryName\)/, "gerador ainda pode publicar o identificador interno como URL", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /Dúvidas que este comparativo ajuda a responder/, "cauda longa não aparece nos guias prioritários", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /categoryProducts\.length < 3/, "comparativo pode ser criado sem opções suficientes", "scripts/generate-discovery.mjs");
