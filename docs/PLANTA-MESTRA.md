@@ -260,7 +260,7 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 - a busca e a maior parte da leitura pública usam arquivos JSON estáticos;
 - a Central de Foco só faz leitura ampla após ação manual;
 - preço e disponibilidade são conferidos em um único lote diário/manual, nunca produto a produto ao abrir o painel;
-- o lote usa o endpoint oficial `/items/bulk`, em grupos de até 20 anúncios, com no máximo duas tarefas simultâneas, intervalo mínimo entre chamadas e backoff exponencial com jitter para HTTP 429/5xx;
+- o lote usa o endpoint oficial `/items/bulk`, em grupos de até 20 anúncios; o filtro `attributes` envia somente campos `body.*`, pois `id` e `status_code` pertencem ao envelope da resposta e são devolvidos automaticamente; há no máximo duas tarefas simultâneas, intervalo mínimo entre chamadas e backoff exponencial com jitter para HTTP 429/5xx;
 - a mesma sessão OAuth pode ser renovada apenas uma vez por execução; recusas 401/403 preservam o último preço confirmado e nunca disparam uma tempestade de tentativas;
 - códigos já confirmados são reutilizados de `mercadolivre-status.json` e `mlb-resolucoes.json`; a localização profunda fica no robô localizador e não é repetida pelo lote de preços;
 - o preço atual e o preço anterior vêm da resposta bulk; o lote não faz chamadas individuais de preço e promoção para cada produto;

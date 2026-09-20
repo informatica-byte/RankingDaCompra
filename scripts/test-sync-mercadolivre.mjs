@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  bulkItemAttributes,
   bulkItemFromEntry,
   catalogRecordFromPayload,
   extractCatalogIdFromUrl,
@@ -9,6 +10,14 @@ import {
   repairLegacyHiddenRecords,
   shouldTrustStoredItemId,
 } from "./sync-mercadolivre.mjs";
+
+test("solicita somente campos body no filtro oficial do endpoint bulk", () => {
+  const attributes = bulkItemAttributes().split(",");
+  assert.equal(attributes.length, 7);
+  assert.equal(attributes.every((attribute) => attribute.startsWith("body.")), true);
+  assert.equal(attributes.includes("id"), false);
+  assert.equal(attributes.includes("status_code"), false);
+});
 
 test("interpreta a resposta oficial do novo endpoint bulk", () => {
   assert.deepEqual(bulkItemFromEntry({

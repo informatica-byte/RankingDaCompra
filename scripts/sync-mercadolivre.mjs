@@ -482,14 +482,18 @@ export function bulkItemFromEntry(entry = {}) {
   return { item: null, error };
 }
 
+export function bulkItemAttributes() {
+  return [
+    "id", "status", "available_quantity", "currency_id", "permalink", "price",
+    "original_price",
+  ].map((attribute) => `body.${attribute}`).join(",");
+}
+
 async function requestBulkItems(itemIds, authenticated) {
-  const attributes = [
-    "id", "status_code",
-    ...[
-      "id", "status", "available_quantity", "currency_id", "permalink", "price",
-      "original_price",
-    ].map((attribute) => `body.${attribute}`),
-  ].join(",");
+  // No endpoint /items/bulk, id e status_code pertencem ao envelope e já são
+  // devolvidos automaticamente. O filtro aceita somente campos de body.*;
+  // enviar campos do envelope nele faz alguns lotes retornarem 403 por item.
+  const attributes = bulkItemAttributes();
   const url = "https://api.mercadolibre.com/items/bulk?ids="
     + encodeURIComponent(itemIds.join(","))
     + "&attributes="
@@ -817,18 +821,15 @@ async function fetchMarketplaceItem(itemId, product = {}, prefetchedOutcome = nu
   const requestBatchItem = async (authenticated) => {
     const batch = await fetchJson(batchUrl, { authenticated });
     const entry = Array.isArray(batch) ? batch[0] : null;
-    if (!entry || Number(entry.status_code ?? entry.code) !== 200 || !entry.body) {
-      const status = Number(entry?.status_code ?? entry?.code ?? 502);
-      const detail = String(
-        entry?.body?.message || entry?.body?.error || "resposta inválida",
-      ).trim();
-      const requestError = new Error(
-        "Mercado Livre Multiget: HTTP " + status + " - " + detail,
-      );
-      requestError.httpStatus = status;
-      throw requestError;
+    if (!entry) throw new Error("Mercado Livre Multiget: resposta inválida");
+    const outcome = bulkItemFromEntry(entry);
+    if (outcome.item) return outcome.item;
+    if (outcome.notFound) {
+      const notFound = new Error("Mercado Livre Multiget: anúncio não encontrado");
+      notFound.httpStatus = 404;
+      throw notFound;
     }
-    return entry.body;
+    throw outcome.error;
   };
 
   if (prefetchedOutcome?.notFound) {
