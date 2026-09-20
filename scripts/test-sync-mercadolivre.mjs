@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  bulkItemFromEntry,
   catalogRecordFromPayload,
   extractCatalogIdFromUrl,
   extractItemIdFromUrl,
@@ -8,6 +9,25 @@ import {
   repairLegacyHiddenRecords,
   shouldTrustStoredItemId,
 } from "./sync-mercadolivre.mjs";
+
+test("interpreta a resposta oficial do novo endpoint bulk", () => {
+  assert.deepEqual(bulkItemFromEntry({
+    id: "MLB1234567890",
+    status_code: 200,
+    body: { id: "MLB1234567890", price: 199.9, status: "active" },
+  }), {
+    item: { id: "MLB1234567890", price: 199.9, status: "active" },
+    error: null,
+  });
+  assert.deepEqual(bulkItemFromEntry({ status_code: 404 }), {
+    item: null,
+    error: null,
+    notFound: true,
+  });
+  const denied = bulkItemFromEntry({ status_code: 403, body: { message: "forbidden" } });
+  assert.equal(denied.item, null);
+  assert.equal(denied.error.httpStatus, 403);
+});
 
 test("mantem produtos antigos no lote MLB e ignora produtos Shopee", () => {
   assert.equal(isMercadoLivreProduct({ link: "https://www.mercadolivre.com.br/produto" }), true);

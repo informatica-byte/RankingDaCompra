@@ -260,6 +260,10 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 - a busca e a maior parte da leitura pública usam arquivos JSON estáticos;
 - a Central de Foco só faz leitura ampla após ação manual;
 - preço e disponibilidade são conferidos em um único lote diário/manual, nunca produto a produto ao abrir o painel;
+- o lote usa o endpoint oficial `/items/bulk`, em grupos de até 20 anúncios, com no máximo duas tarefas simultâneas, intervalo mínimo entre chamadas e backoff exponencial com jitter para HTTP 429/5xx;
+- a mesma sessão OAuth pode ser renovada apenas uma vez por execução; recusas 401/403 preservam o último preço confirmado e nunca disparam uma tempestade de tentativas;
+- códigos já confirmados são reutilizados de `mercadolivre-status.json` e `mlb-resolucoes.json`; a localização profunda fica no robô localizador e não é repetida pelo lote de preços;
+- o preço atual e o preço anterior vêm da resposta bulk; o lote não faz chamadas individuais de preço e promoção para cada produto;
 - o lote grava resultado consolidado e evita repetir o mesmo dia, salvo `force` explícito;
 - eventos de visita têm limite local para evitar gravações repetidas;
 - vídeos continuam hospedados no YouTube; o Firebase recebe apenas uma lista curta de links do vídeo e da página pública do produto dentro do documento de configuração já consultado pela vitrine;
@@ -282,10 +286,12 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 ### Conferir preços e disponibilidade
 
 1. Após terminar as novas publicações, executar manualmente o workflow “Atualizar preços e disponibilidade”.
-2. O script faz um único lote, usa a API do Mercado Livre e reaproveita um retrato dos produtos.
-3. O lote do mesmo dia é ignorado, salvo uso consciente de `force`.
-4. Gera `mercadolivre-status.json`, páginas e índices atualizados.
-5. Falha temporária não apaga preços nem produtos existentes.
+2. O script faz um único lote, uma única leitura paginada do Firebase e reaproveita um retrato dos produtos.
+3. Os anúncios são consultados no endpoint oficial `/items/bulk`, até 20 por requisição. O robô limita a concorrência, espaça chamadas e aplica backoff com jitter.
+4. Os códigos MLB vêm primeiro do cadastro, do resultado anterior e de `mlb-resolucoes.json`; produtos ainda sem código ficam como não gerenciados até o localizador resolvê-los.
+5. O lote do mesmo dia é ignorado, salvo uso consciente de `force`.
+6. Gera `mercadolivre-status.json`, páginas e índices atualizados.
+7. Falha temporária não apaga preços nem produtos existentes.
 
 O horário de 09:30 é uma preferência operacional da interface/robô. A automação de sincronização no GitHub está deliberadamente manual no estado atual; não confundir com o cron de histórico às 09:35 UTC.
 

@@ -76,6 +76,21 @@ test("reutiliza a mesma lista na geração e publica somente no final", () => {
   assert.equal((workflow.match(/git commit /g) || []).length, 1);
 });
 
+test("consulta preços em blocos oficiais com ritmo econômico", () => {
+  assert.match(sync, /MAX_BULK_ITEMS\s*=\s*20/);
+  assert.match(sync, /api\.mercadolibre\.com\/items\/bulk\?ids=/);
+  assert.match(sync, /body\.\$\{attribute\}/);
+  assert.match(sync, /RDC_ML_PARALLEL_REQUESTS\s*\|\|\s*2/);
+  assert.match(sync, /RDC_ML_REQUEST_INTERVAL_MS\s*\|\|\s*350/);
+  assert.match(sync, /response\.status\s*===\s*429[\s\S]{0,500}2\s*\*\*\s*attempt/);
+  assert.doesNotMatch(sync, /"\/sale_price"/);
+  assert.match(sync, /previousItemId[\s\S]{0,120}shouldTrustStoredItemId/);
+  assert.match(sync, /MLB_RESOLUTIONS_FILE\s*=\s*resolve\("mlb-resolucoes\.json"\)/);
+  assert.match(sync, /cachedResolution\.status\s*===\s*"ok"/);
+  assert.match(sync, /resolveItemId\([\s\S]{0,300}oldRecord,[\s\S]{0,80}false/);
+  assert.match(sync, /resolvedItemId\s*!==\s*null/);
+});
+
 test("execução manual evita repetição e publica todos os arquivos gerados", () => {
   assert.match(workflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*false/);
   assert.match(workflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/);

@@ -7,6 +7,7 @@ const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const OUTPUT = resolve("mercadolivre-status.json");
 const TOKEN_FILE = resolve(".mercadolivre-token.enc");
+const MLB_RESOLUTIONS_FILE = resolve("mlb-resolucoes.json");
 const PRODUCT_SNAPSHOT = String(process.env.RDC_PRODUCTS_SNAPSHOT || "").trim();
 const BATCH_SKIP_MARKER = String(process.env.RDC_BATCH_SKIP_MARKER || "").trim();
 const BATCH_PARTIAL_MARKER = String(process.env.RDC_BATCH_PARTIAL_MARKER || "").trim();
@@ -21,8 +22,27 @@ const REDIRECT_URI = String(
   process.env.MERCADO_LIVRE_REDIRECT_URI
   || "https://rankingdacompra.com.br/oauth-mercadolivre.html",
 ).trim();
-const MAX_PARALLEL_REQUESTS = 5;
+const MAX_PARALLEL_REQUESTS = Math.max(
+  1,
+  Math.min(2, Number(process.env.RDC_ML_PARALLEL_REQUESTS || 2)),
+);
+const MAX_BULK_ITEMS = 20;
+const MARKETPLACE_REQUEST_INTERVAL_MS = Math.max(
+  200,
+  Number(process.env.RDC_ML_REQUEST_INTERVAL_MS || 350),
+);
+const MARKETPLACE_REQUEST_RETRIES = 4;
 const CONFIRMATIONS_TO_HIDE = 2;
+
+const wait = (milliseconds) => new Promise((resolveWait) => setTimeout(resolveWait, milliseconds));
+let nextMarketplaceRequestAt = 0;
+
+async function throttleMarketplaceRequest() {
+  const now = Date.now();
+  const delay = Math.max(0, nextMarketplaceRequestAt - now);
+  nextMarketplaceRequestAt = Math.max(now, nextMarketplaceRequestAt) + MARKETPLACE_REQUEST_INTERVAL_MS;
+  if (delay > 0) await wait(delay);
+}
 
 function fieldValue(field) {
   if (!field) return "";
@@ -157,10 +177,13 @@ async function prepareAccessToken() {
 }
 
 let rejectedAccessTokenRefreshPromise = null;
+let rejectedAccessTokenRefreshUsed = false;
 
 async function refreshRejectedAccessToken() {
   if (!CLIENT_ID || !CLIENT_SECRET || !TOKEN_KEY) return false;
+  if (rejectedAccessTokenRefreshUsed) return false;
   if (rejectedAccessTokenRefreshPromise) return rejectedAccessTokenRefreshPromise;
+  rejectedAccessTokenRefreshUsed = true;
   rejectedAccessTokenRefreshPromise = (async () => {
     const stored = await readTokenSession();
     if (!stored?.refreshToken) return false;
@@ -213,6 +236,17 @@ async function listProducts() {
     pageToken = payload.nextPageToken || "";
   } while (pageToken);
   return products;
+}
+
+async function readMlbResolutions() {
+  try {
+    const payload = JSON.parse(await readFile(MLB_RESOLUTIONS_FILE, "utf8"));
+    return payload?.resultados && typeof payload.resultados === "object"
+      ? payload.resultados
+      : {};
+  } catch {
+    return {};
+  }
 }
 
 export function isMercadoLivreProduct(product) {
@@ -355,7 +389,7 @@ async function itemFromRedirect(value) {
   return "";
 }
 
-async function resolveItemId(product) {
+async function resolveItemId(product, previousRecord = {}, allowNetworkLookup = true) {
   const explicit = extractItemIdFromText(product.mercadoLivreItemId);
   const urls = [product.link, product.linkAfiliado].filter(Boolean);
 
@@ -367,6 +401,15 @@ async function resolveItemId(product) {
   }
 
   if (shouldTrustStoredItemId(explicit, product)) return explicit;
+
+  // O relatório da execução anterior já contém o item_id confirmado. Reutilizá-lo
+  // evita redirecionamentos e buscas repetidas em todos os lotes seguintes.
+  const previousItemId = extractItemIdFromText(previousRecord.itemId);
+  if (shouldTrustStoredItemId(previousItemId, product)) return previousItemId;
+
+  // A localização profunda pertence ao robô localizador. O lote diário usa o
+  // arquivo produzido por ele e não multiplica buscas, redirects e leituras.
+  if (!allowNetworkLookup) return "";
 
   for (const value of urls) {
 
@@ -386,11 +429,29 @@ function requestHeaders() {
   return accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
 }
 
-async function fetchJson(url, { allowMissing = false, authenticated = true } = {}) {
+async function fetchJson(
+  url,
+  { allowMissing = false, authenticated = true } = {},
+  attempt = 0,
+) {
+  await throttleMarketplaceRequest();
   const response = await fetch(url, {
     headers: authenticated ? requestHeaders() : {},
     signal: AbortSignal.timeout(15_000),
   });
+  const retryable = response.status === 429 || response.status >= 500;
+  if (retryable && attempt < MARKETPLACE_REQUEST_RETRIES) {
+    const retryAfter = Number(response.headers.get("retry-after") || 0) * 1000;
+    const exponential = 1200 * (2 ** attempt);
+    const jitter = Math.floor(Math.random() * 600);
+    const delay = Math.max(retryAfter, exponential + jitter);
+    console.warn(
+      `Mercado Livre respondeu HTTP ${response.status}; nova tentativa em ${delay} ms.`,
+    );
+    if (response.body) await response.body.cancel().catch(() => {});
+    await wait(delay);
+    return fetchJson(url, { allowMissing, authenticated }, attempt + 1);
+  }
   if (allowMissing && [401, 403, 404].includes(response.status)) return null;
   if (!response.ok) {
     const payload = await response.json().catch(() => ({}));
@@ -404,6 +465,93 @@ async function fetchJson(url, { allowMissing = false, authenticated = true } = {
     throw error;
   }
   return response.json();
+}
+
+export function bulkItemFromEntry(entry = {}) {
+  const status = Number(entry.status_code ?? entry.code ?? 502);
+  if (status === 200 && entry.body) return { item: entry.body, error: null };
+  if (status === 404) return { item: null, error: null, notFound: true };
+  const detail = String(
+    entry?.body?.message || entry?.body?.error || entry?.message || "resposta inválida",
+  ).trim();
+  const error = new Error(`Mercado Livre Bulk: HTTP ${status} - ${detail}`);
+  error.httpStatus = status;
+  return { item: null, error };
+}
+
+async function requestBulkItems(itemIds, authenticated) {
+  const attributes = [
+    "id", "status", "available_quantity", "currency_id", "permalink", "price",
+    "original_price",
+  ].map((attribute) => `body.${attribute}`).join(",");
+  const url = "https://api.mercadolibre.com/items/bulk?ids="
+    + encodeURIComponent(itemIds.join(","))
+    + "&attributes="
+    + attributes;
+  const payload = await fetchJson(url, { authenticated });
+  if (!Array.isArray(payload)) {
+    throw new Error("Mercado Livre Bulk: resposta inválida");
+  }
+  return new Map(payload.map((entry, index) => {
+    const id = extractItemIdFromText(entry?.id || entry?.body?.id || itemIds[index]);
+    return [id || itemIds[index], bulkItemFromEntry(entry)];
+  }));
+}
+
+async function fetchMarketplaceItemsBulk(itemIds) {
+  const uniqueIds = [...new Set(itemIds.filter(Boolean))];
+  const outcomes = new Map();
+  for (let index = 0; index < uniqueIds.length; index += MAX_BULK_ITEMS) {
+    const group = uniqueIds.slice(index, index + MAX_BULK_ITEMS);
+    let groupOutcomes;
+    let lastError;
+    const authenticatedAttempts = accessToken ? [true, false] : [false];
+    for (const authenticated of authenticatedAttempts) {
+      try {
+        groupOutcomes = await requestBulkItems(group, authenticated);
+        let deniedIds = group.filter((id) => (
+          [401, 403].includes(groupOutcomes.get(id)?.error?.httpStatus)
+        ));
+        if (authenticated && deniedIds.length && await refreshRejectedAccessToken()) {
+          const refreshed = await requestBulkItems(deniedIds, true);
+          for (const [id, outcome] of refreshed) groupOutcomes.set(id, outcome);
+          deniedIds = deniedIds.filter((id) => (
+            [401, 403].includes(groupOutcomes.get(id)?.error?.httpStatus)
+          ));
+        }
+        if (authenticated && deniedIds.length) {
+          const publicOutcomes = await requestBulkItems(deniedIds, false);
+          for (const [id, outcome] of publicOutcomes) groupOutcomes.set(id, outcome);
+        }
+        break;
+      } catch (error) {
+        lastError = error;
+        if (authenticated && [401, 403].includes(error.httpStatus)) {
+          if (await refreshRejectedAccessToken()) {
+            try {
+              groupOutcomes = await requestBulkItems(group, true);
+              break;
+            } catch (refreshedError) {
+              lastError = refreshedError;
+            }
+          }
+          continue;
+        }
+        break;
+      }
+    }
+    if (!groupOutcomes) {
+      for (const id of group) outcomes.set(id, { item: null, error: lastError });
+      continue;
+    }
+    for (const id of group) {
+      outcomes.set(id, groupOutcomes.get(id) || {
+        item: null,
+        error: new Error("Mercado Livre Bulk: item ausente na resposta"),
+      });
+    }
+  }
+  return outcomes;
 }
 
 export function catalogRecordFromPayload(catalogId, payload = {}) {
@@ -648,23 +796,23 @@ async function fetchMarketplacePublicPage(itemId, productUrls = []) {
   throw lastError;
 }
 
-async function fetchMarketplaceItem(itemId, product = {}) {
+async function fetchMarketplaceItem(itemId, product = {}, prefetchedOutcome = null) {
   let item;
   let itemError = null;
   const attributes =
     "id,status,available_quantity,currency_id,permalink,price,original_price";
   const batchUrl =
-    "https://api.mercadolibre.com/items?ids="
+    "https://api.mercadolibre.com/items/bulk?ids="
     + encodeURIComponent(itemId)
     + "&attributes="
-    + attributes;
+    + attributes.split(",").map((attribute) => `body.${attribute}`).join(",");
   const authenticationAttempts = accessToken ? [true, false] : [false];
 
   const requestBatchItem = async (authenticated) => {
     const batch = await fetchJson(batchUrl, { authenticated });
     const entry = Array.isArray(batch) ? batch[0] : null;
-    if (!entry || Number(entry.code) !== 200 || !entry.body) {
-      const status = Number(entry?.code || 502);
+    if (!entry || Number(entry.status_code ?? entry.code) !== 200 || !entry.body) {
+      const status = Number(entry?.status_code ?? entry?.code ?? 502);
       const detail = String(
         entry?.body?.message || entry?.body?.error || "resposta inválida",
       ).trim();
@@ -677,7 +825,21 @@ async function fetchMarketplaceItem(itemId, product = {}) {
     return entry.body;
   };
 
-  for (const authenticated of authenticationAttempts) {
+  if (prefetchedOutcome?.notFound) {
+    return {
+      itemId,
+      status: "not_found",
+      available: false,
+      price: null,
+      regularPrice: null,
+      currencyId: "BRL",
+      source: "bulk_api",
+    };
+  }
+  if (prefetchedOutcome?.item) item = prefetchedOutcome.item;
+  else if (prefetchedOutcome?.error) throw prefetchedOutcome.error;
+
+  for (const authenticated of item || itemError ? [] : authenticationAttempts) {
     try {
       item = await requestBatchItem(authenticated);
       break;
@@ -806,17 +968,11 @@ async function fetchMarketplaceItem(itemId, product = {}) {
     throw error;
   }
 
-  let salePrice = null;
-  if (accessToken) {
-    salePrice = await fetchJson(
-      "https://api.mercadolibre.com/items/" + itemId + "/sale_price",
-      { allowMissing: true },
-    );
-  }
-  const lightning = await fetchLightningPromotion(itemId);
-
-  const amount = Number(salePrice?.amount ?? item?.price);
-  const regularAmount = Number(salePrice?.regular_amount ?? item?.original_price);
+  // O endpoint bulk já traz o preço atual e o preço anterior. Evitamos aqui
+  // duas requisições adicionais por produto (/sale_price e promoções), que eram
+  // a principal fonte de picos e bloqueios no lote diário.
+  const amount = Number(item?.price);
+  const regularAmount = Number(item?.original_price);
   const status = String(item?.status || "unknown");
   const quantity = Number(item?.available_quantity);
 
@@ -826,13 +982,29 @@ async function fetchMarketplaceItem(itemId, product = {}) {
     available: status === "active" && (!Number.isFinite(quantity) || quantity > 0),
     price: Number.isFinite(amount) && amount > 0 ? amount : null,
     regularPrice: Number.isFinite(regularAmount) && regularAmount > amount ? regularAmount : null,
-    currencyId: String(salePrice?.currency_id || item?.currency_id || "BRL"),
-    source: itemError ? "public_api" : "api",
-    lightning,
+    currencyId: String(item?.currency_id || "BRL"),
+    source: itemError ? "public_api" : "bulk_api",
   };
 }
 
-function lightningFields(result = {}) {
+function lightningFields(result = {}, previous = {}) {
+  if (!Object.hasOwn(result, "lightning")) {
+    const endsAt = String(previous.lightningEndsAt || "");
+    const stillActive = previous.lightningActive === true
+      && Number.isFinite(Date.parse(endsAt))
+      && Date.parse(endsAt) > Date.now();
+    return {
+      lightningChecked: previous.lightningChecked === true,
+      lightningActive: stillActive,
+      lightningPromotionId: String(previous.lightningPromotionId || ""),
+      lightningStartsAt: String(previous.lightningStartsAt || ""),
+      lightningEndsAt: endsAt,
+      lightningPrice: stillActive && Number(previous.lightningPrice) > 0
+        ? Number(previous.lightningPrice)
+        : null,
+      lightningSource: String(previous.lightningSource || ""),
+    };
+  }
   const promotion = result.lightning || {};
   return {
     lightningChecked: promotion.checked === true,
@@ -865,7 +1037,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
       source: result.source || "api",
       checkedAt,
       lastAttemptAt: checkedAt,
-      ...lightningFields(result),
+      ...lightningFields(result, previous),
     };
   }
 
@@ -883,7 +1055,7 @@ export function deriveRecord(previous = {}, result, checkedAt) {
     source: result.source || "api",
     checkedAt,
     lastAttemptAt: checkedAt,
-    ...lightningFields(result),
+    ...lightningFields(result, previous),
   };
 }
 
@@ -969,8 +1141,16 @@ async function mapWithConcurrency(items, limit, worker) {
   return results;
 }
 
-async function checkProduct(product, previousRecord, checkedAt) {
-  const itemId = await resolveItemId(product);
+async function checkProduct(
+  product,
+  previousRecord,
+  checkedAt,
+  resolvedItemId = null,
+  prefetchedOutcome = null,
+) {
+  const itemId = resolvedItemId !== null
+    ? resolvedItemId
+    : await resolveItemId(product, previousRecord);
   const catalogId = [product.link, product.linkAfiliado]
     .map(extractCatalogIdFromUrl)
     .find(Boolean) || "";
@@ -1012,7 +1192,7 @@ async function checkProduct(product, previousRecord, checkedAt) {
 
   const relevantPrevious = previousRecord.itemId === itemId ? previousRecord : {};
   try {
-    const result = await fetchMarketplaceItem(itemId, product);
+    const result = await fetchMarketplaceItem(itemId, product, prefetchedOutcome);
     return deriveRecord(relevantPrevious, { ...result, catalogId }, checkedAt);
   } catch (error) {
     return {
@@ -1053,6 +1233,7 @@ async function main() {
 
   const checkedAt = new Date().toISOString();
   let products;
+  const mlbResolutions = await readMlbResolutions();
   try {
     const allProducts = await listProducts();
     products = allProducts.filter(isMercadoLivreProduct);
@@ -1089,12 +1270,42 @@ async function main() {
       products,
     })}\n`, "utf8");
   }
-  const entries = await mapWithConcurrency(
+  const resolvedProducts = await mapWithConcurrency(
     products,
     MAX_PARALLEL_REQUESTS,
     async (product) => {
       const oldRecord = previous.products?.[product.id] || {};
-      const newRecord = await checkProduct(product, oldRecord, checkedAt);
+      const cachedResolution = mlbResolutions[product.id] || {};
+      const cachedItemId = cachedResolution.status === "ok"
+        ? extractItemIdFromText(cachedResolution.mlb)
+        : "";
+      const itemId = await resolveItemId(
+        cachedItemId
+          ? { ...product, mercadoLivreItemId: product.mercadoLivreItemId || cachedItemId }
+          : product,
+        oldRecord,
+        false,
+      );
+      return { product, oldRecord, itemId };
+    },
+  );
+  const bulkOutcomes = await fetchMarketplaceItemsBulk(
+    resolvedProducts.map(({ itemId }) => itemId),
+  );
+  console.log(
+    `Consulta agrupada: ${bulkOutcomes.size} anúncio(s) em blocos de até ${MAX_BULK_ITEMS}.`,
+  );
+  const entries = await mapWithConcurrency(
+    resolvedProducts,
+    MAX_PARALLEL_REQUESTS,
+    async ({ product, oldRecord, itemId }) => {
+      const newRecord = await checkProduct(
+        product,
+        oldRecord,
+        checkedAt,
+        itemId,
+        itemId ? bulkOutcomes.get(itemId) : null,
+      );
       return [product.id, newRecord];
     },
   );
