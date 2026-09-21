@@ -343,6 +343,10 @@ has(priceSync, /rejectedAccessTokenRefreshPromise/, "lote de preços não compar
 has(priceSync, /\[401, 403\]\.includes\(error\.httpStatus\)[\s\S]{0,180}refreshRejectedAccessToken\(\)/, "lote de preços não renova a autorização recusada", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /fetchMarketplaceCatalog\(catalogId\)/, "lote de preços não tenta o catálogo oficial quando o anúncio é bloqueado", "scripts/sync-mercadolivre.mjs");
 has(priceSync, /catalogRecordFromPayload/, "lote de preços não interpreta o preço oficial do catálogo", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /recoverRetryableBulkOutcomes/, "lote de preços não recupera falhas temporárias do endpoint bulk", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /pending\.slice\(index, index \+ 5\)/, "contingência do Mercado Livre não reduz o lote temporariamente bloqueado", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /requestSingleMarketplaceItem/, "contingência individual oficial do Mercado Livre ausente", "scripts/sync-mercadolivre.mjs");
+has(priceSync, /maxRetries:\s*1/, "contingência individual pode repetir chamadas excessivamente", "scripts/sync-mercadolivre.mjs");
 has(sitemapGenerator, /readProductSnapshot/, "gerador ainda pode reler todos os produtos no mesmo lote", "scripts/generate-sitemap.mjs");
 const affiliateResolver = await readFile(resolve("scripts/resolve-affiliate-links.mjs"), "utf8");
 has(affiliateResolver, /documents:runQuery|\$\{FIRESTORE\}:runQuery/, "localizador ainda pode ler toda a fila MLB", "scripts/resolve-affiliate-links.mjs");

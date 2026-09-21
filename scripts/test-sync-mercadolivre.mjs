@@ -8,6 +8,7 @@ import {
   extractItemIdFromUrl,
   isMercadoLivreProduct,
   repairLegacyHiddenRecords,
+  shouldRetryBulkOutcome,
   shouldTrustStoredItemId,
 } from "./sync-mercadolivre.mjs";
 
@@ -42,6 +43,20 @@ test("interpreta a resposta oficial do novo endpoint bulk", () => {
   const denied = bulkItemFromEntry({ status_code: 403, body: { message: "forbidden" } });
   assert.equal(denied.item, null);
   assert.equal(denied.error.httpStatus, 403);
+});
+
+test("recupera somente falhas temporarias do endpoint bulk", () => {
+  const badGateway = bulkItemFromEntry({
+    id: "MLB1234567890",
+    status_code: 502,
+    body: { message: "bad_gateway" },
+  });
+  const limited = bulkItemFromEntry({ status_code: 429 });
+  const forbidden = bulkItemFromEntry({ status_code: 403 });
+  assert.equal(shouldRetryBulkOutcome(badGateway), true);
+  assert.equal(shouldRetryBulkOutcome(limited), true);
+  assert.equal(shouldRetryBulkOutcome(forbidden), false);
+  assert.equal(shouldRetryBulkOutcome({ item: { id: "MLB1234567890" }, error: null }), false);
 });
 
 test("mantem produtos antigos no lote MLB e ignora produtos Shopee", () => {

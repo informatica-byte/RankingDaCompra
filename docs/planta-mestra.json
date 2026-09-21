@@ -115,7 +115,7 @@
       "path": ".github/workflows/sync-mercadolivre.yml",
       "name": "Atualizar preços e disponibilidade",
       "mode": ["manual"],
-      "role": "one consolidated daily price and availability batch"
+      "role": "one consolidated daily price and availability batch with targeted 429/5xx recovery in groups of five and official per-item fallback"
     },
     {
       "path": ".github/workflows/historico-precos.yml",

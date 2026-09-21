@@ -431,7 +431,11 @@ function requestHeaders() {
 
 async function fetchJson(
   url,
-  { allowMissing = false, authenticated = true } = {},
+  {
+    allowMissing = false,
+    authenticated = true,
+    maxRetries = MARKETPLACE_REQUEST_RETRIES,
+  } = {},
   attempt = 0,
 ) {
   await throttleMarketplaceRequest();
@@ -440,7 +444,7 @@ async function fetchJson(
     signal: AbortSignal.timeout(15_000),
   });
   const retryable = response.status === 429 || response.status >= 500;
-  if (retryable && attempt < MARKETPLACE_REQUEST_RETRIES) {
+  if (retryable && attempt < maxRetries) {
     const retryAfter = Number(response.headers.get("retry-after") || 0) * 1000;
     const exponential = 1200 * (2 ** attempt);
     const jitter = Math.floor(Math.random() * 600);
@@ -450,7 +454,11 @@ async function fetchJson(
     );
     if (response.body) await response.body.cancel().catch(() => {});
     await wait(delay);
-    return fetchJson(url, { allowMissing, authenticated }, attempt + 1);
+    return fetchJson(
+      url,
+      { allowMissing, authenticated, maxRetries },
+      attempt + 1,
+    );
   }
   if (allowMissing && [401, 403, 404].includes(response.status)) return null;
   if (!response.ok) {
@@ -489,6 +497,15 @@ export function bulkItemAttributes() {
   ].map((attribute) => `body.${attribute}`).join(",");
 }
 
+export function shouldRetryBulkOutcome(outcome = {}) {
+  if (!outcome?.error) return false;
+  const status = Number(outcome.error.httpStatus || 0);
+  if (status > 0) return status === 429 || status >= 500;
+  return /resposta inv[aá]lida|fetch failed|timeout|tempo esgotado/i.test(
+    String(outcome.error.message || outcome.error),
+  );
+}
+
 async function requestBulkItems(itemIds, authenticated) {
   // No endpoint /items/bulk, id e status_code pertencem ao envelope e já são
   // devolvidos automaticamente. O filtro aceita somente campos de body.*;
@@ -508,51 +525,131 @@ async function requestBulkItems(itemIds, authenticated) {
   }));
 }
 
+async function requestBulkGroup(itemIds) {
+  let groupOutcomes;
+  let lastError;
+  const authenticatedAttempts = accessToken ? [true, false] : [false];
+  for (const authenticated of authenticatedAttempts) {
+    try {
+      groupOutcomes = await requestBulkItems(itemIds, authenticated);
+      let deniedIds = itemIds.filter((id) => (
+        [401, 403].includes(groupOutcomes.get(id)?.error?.httpStatus)
+      ));
+      if (authenticated && deniedIds.length && await refreshRejectedAccessToken()) {
+        const refreshed = await requestBulkItems(deniedIds, true);
+        for (const [id, outcome] of refreshed) groupOutcomes.set(id, outcome);
+        deniedIds = deniedIds.filter((id) => (
+          [401, 403].includes(groupOutcomes.get(id)?.error?.httpStatus)
+        ));
+      }
+      if (authenticated && deniedIds.length) {
+        const publicOutcomes = await requestBulkItems(deniedIds, false);
+        for (const [id, outcome] of publicOutcomes) groupOutcomes.set(id, outcome);
+      }
+      return groupOutcomes;
+    } catch (error) {
+      lastError = error;
+      if (authenticated && [401, 403].includes(error.httpStatus)) {
+        if (await refreshRejectedAccessToken()) {
+          try {
+            return await requestBulkItems(itemIds, true);
+          } catch (refreshedError) {
+            lastError = refreshedError;
+          }
+        }
+        continue;
+      }
+      break;
+    }
+  }
+  throw lastError || new Error("Mercado Livre Bulk: consulta não concluída");
+}
+
+async function requestSingleMarketplaceItem(itemId) {
+  const attributes = bulkItemAttributes()
+    .split(",")
+    .map((attribute) => attribute.replace(/^body\./, ""))
+    .join(",");
+  const url = `https://api.mercadolibre.com/items/${encodeURIComponent(itemId)}`
+    + `?attributes=${encodeURIComponent(attributes)}`;
+  const authenticatedAttempts = accessToken ? [true, false] : [false];
+  let lastError;
+  for (const authenticated of authenticatedAttempts) {
+    try {
+      const item = await fetchJson(url, { authenticated, maxRetries: 1 });
+      if (!item || !extractItemIdFromText(item.id || itemId)) {
+        const invalid = new Error("Mercado Livre Item: resposta inválida");
+        invalid.httpStatus = 502;
+        throw invalid;
+      }
+      return { item, error: null };
+    } catch (error) {
+      lastError = error;
+      if (error.httpStatus === 404) return { item: null, error: null, notFound: true };
+      if (authenticated && [401, 403].includes(error.httpStatus)) {
+        if (await refreshRejectedAccessToken()) {
+          try {
+            const item = await fetchJson(url, {
+              authenticated: true,
+              maxRetries: 1,
+            });
+            if (item) return { item, error: null };
+          } catch (refreshedError) {
+            lastError = refreshedError;
+          }
+        }
+        continue;
+      }
+      break;
+    }
+  }
+  return { item: null, error: lastError };
+}
+
+async function recoverRetryableBulkOutcomes(groupOutcomes, itemIds) {
+  let pending = itemIds.filter((id) => shouldRetryBulkOutcome(groupOutcomes.get(id)));
+  if (!pending.length) return groupOutcomes;
+
+  console.warn(
+    `Mercado Livre devolveu erro temporário para ${pending.length} anúncio(s); `
+    + "repetindo somente os afetados em grupos menores.",
+  );
+  await wait(1200 + Math.floor(Math.random() * 600));
+  for (let index = 0; index < pending.length; index += 5) {
+    const smallGroup = pending.slice(index, index + 5);
+    try {
+      const recovered = await requestBulkGroup(smallGroup);
+      for (const [id, outcome] of recovered) groupOutcomes.set(id, outcome);
+    } catch (error) {
+      for (const id of smallGroup) groupOutcomes.set(id, { item: null, error });
+    }
+  }
+
+  pending = itemIds.filter((id) => shouldRetryBulkOutcome(groupOutcomes.get(id)));
+  if (!pending.length) return groupOutcomes;
+
+  console.warn(
+    `${pending.length} anúncio(s) ainda falharam no lote reduzido; `
+    + "usando a consulta oficial individual com ritmo controlado.",
+  );
+  for (const id of pending) {
+    groupOutcomes.set(id, await requestSingleMarketplaceItem(id));
+  }
+  return groupOutcomes;
+}
+
 async function fetchMarketplaceItemsBulk(itemIds) {
   const uniqueIds = [...new Set(itemIds.filter(Boolean))];
   const outcomes = new Map();
   for (let index = 0; index < uniqueIds.length; index += MAX_BULK_ITEMS) {
     const group = uniqueIds.slice(index, index + MAX_BULK_ITEMS);
     let groupOutcomes;
-    let lastError;
-    const authenticatedAttempts = accessToken ? [true, false] : [false];
-    for (const authenticated of authenticatedAttempts) {
-      try {
-        groupOutcomes = await requestBulkItems(group, authenticated);
-        let deniedIds = group.filter((id) => (
-          [401, 403].includes(groupOutcomes.get(id)?.error?.httpStatus)
-        ));
-        if (authenticated && deniedIds.length && await refreshRejectedAccessToken()) {
-          const refreshed = await requestBulkItems(deniedIds, true);
-          for (const [id, outcome] of refreshed) groupOutcomes.set(id, outcome);
-          deniedIds = deniedIds.filter((id) => (
-            [401, 403].includes(groupOutcomes.get(id)?.error?.httpStatus)
-          ));
-        }
-        if (authenticated && deniedIds.length) {
-          const publicOutcomes = await requestBulkItems(deniedIds, false);
-          for (const [id, outcome] of publicOutcomes) groupOutcomes.set(id, outcome);
-        }
-        break;
-      } catch (error) {
-        lastError = error;
-        if (authenticated && [401, 403].includes(error.httpStatus)) {
-          if (await refreshRejectedAccessToken()) {
-            try {
-              groupOutcomes = await requestBulkItems(group, true);
-              break;
-            } catch (refreshedError) {
-              lastError = refreshedError;
-            }
-          }
-          continue;
-        }
-        break;
-      }
-    }
-    if (!groupOutcomes) {
-      for (const id of group) outcomes.set(id, { item: null, error: lastError });
-      continue;
+    try {
+      groupOutcomes = await requestBulkGroup(group);
+      groupOutcomes = await recoverRetryableBulkOutcomes(groupOutcomes, group);
+    } catch (error) {
+      groupOutcomes = new Map(group.map((id) => [id, { item: null, error }]));
+      groupOutcomes = await recoverRetryableBulkOutcomes(groupOutcomes, group);
     }
     for (const id of group) {
       outcomes.set(id, groupOutcomes.get(id) || {

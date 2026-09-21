@@ -263,7 +263,7 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 - o lote usa o endpoint oficial `/items/bulk`, em grupos de até 20 anúncios; o filtro `attributes` envia somente campos `body.*`, pois `id` e `status_code` pertencem ao envelope da resposta e são devolvidos automaticamente; há no máximo duas tarefas simultâneas, intervalo mínimo entre chamadas e backoff exponencial com jitter para HTTP 429/5xx;
 - a mesma sessão OAuth pode ser renovada apenas uma vez por execução; recusas 401/403 preservam o último preço confirmado e nunca disparam uma tempestade de tentativas;
 - códigos já confirmados são reutilizados de `mercadolivre-status.json` e `mlb-resolucoes.json`; a localização profunda fica no robô localizador e não é repetida pelo lote de preços;
-- o preço atual e o preço anterior vêm da resposta bulk; o lote não faz chamadas individuais de preço e promoção para cada produto;
+- o preço atual e o preço anterior vêm prioritariamente da resposta bulk; respostas individuais HTTP 429/5xx são repetidas apenas para os anúncios afetados, primeiro em grupos de cinco e, se a instabilidade continuar, pelo endpoint oficial individual com no máximo uma repetição; essa contingência não relê o Firebase e não consulta novamente os itens que já deram certo;
 - o lote grava resultado consolidado e evita repetir o mesmo dia, salvo `force` explícito;
 - eventos de visita têm limite local para evitar gravações repetidas;
 - vídeos continuam hospedados no YouTube; o Firebase recebe apenas uma lista curta de links do vídeo e da página pública do produto dentro do documento de configuração já consultado pela vitrine;
@@ -287,7 +287,7 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 
 1. Após terminar as novas publicações, executar manualmente o workflow “Atualizar preços e disponibilidade”.
 2. O script faz um único lote, uma única leitura paginada do Firebase e reaproveita um retrato dos produtos.
-3. Os anúncios são consultados no endpoint oficial `/items/bulk`, até 20 por requisição. O robô limita a concorrência, espaça chamadas e aplica backoff com jitter.
+3. Os anúncios são consultados no endpoint oficial `/items/bulk`, até 20 por requisição. O robô limita a concorrência, espaça chamadas e aplica backoff com jitter. Se uma resposta individual do lote vier com HTTP 429/5xx, somente os anúncios afetados são repetidos em grupos de cinco; os remanescentes usam `GET /items/{item_id}` com ritmo controlado.
 4. Os códigos MLB vêm primeiro do cadastro, do resultado anterior e de `mlb-resolucoes.json`; produtos ainda sem código ficam como não gerenciados até o localizador resolvê-los.
 5. O lote do mesmo dia é ignorado, salvo uso consciente de `force`.
 6. Gera `mercadolivre-status.json`, páginas e índices atualizados.
