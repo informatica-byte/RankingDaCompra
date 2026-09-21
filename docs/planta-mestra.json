@@ -53,6 +53,7 @@
     "aiSuggestions": "Gemini with Google Search grounding over active promotions already loaded in the admin panel",
     "quotaFallback": "Local suggestions derived from the dominant active product type and the real maximum price; never saved automatically",
     "approval": "Administrator selects, reviews and saves the title",
+    "cacheSync": "A successful administrative save refreshes the shared versioned 12-hour browser cache immediately; a new tools version invalidates the old cache and performs only one updated Firebase read",
     "publicTargets": ["visible offers heading", "document title", "Open Graph", "Twitter Card", "structured promotion list name"]
   },
   "videoProductOverlay": {

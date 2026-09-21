@@ -108,7 +108,7 @@ Não há etapa de compilação. Os arquivos HTML e JavaScript da raiz são servi
 - `top5-semanal.json`: Top 6; o nome é legado e deve ser mantido por compatibilidade.
 - `historico-precos.json`: histórico consolidado por identidade do anúncio.
 - `mercadolivre-status.json`: último lote de preço e disponibilidade.
-- `site-config.json`: configuração pública do Clube de Ofertas.
+- `site-config.json`: base estática segura das configurações públicas. O painel mantém uma cópia econômica e versionada no navegador por 12 horas e, ao salvar Clube, vídeos, título SEO ou tema, atualiza imediatamente essa cópia para que a própria vitrine administrativa reflita a mudança sem uma nova leitura do Firebase. Uma nova versão das ferramentas invalida apenas o cache antigo e faz uma única leitura atualizada.
 - `sitemap.xml`, `robots.txt`, `CNAME`: descoberta, rastreamento e domínio.
 
 ### Administração

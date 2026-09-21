@@ -7,6 +7,8 @@
   const STYLE_ID = "ranking-growth-tools-style";
   const CONFIG_DOC = "site";
   const CONFIG_COLLECTION = "configuracoes";
+  const CONFIG_CACHE_KEY = "ranking-da-compra-config-publica-v2";
+  const CONFIG_CACHE_TTL = 12 * 60 * 60 * 1000;
   const HISTORY_CACHE_MS = 15 * 60 * 1000;
 
   const state = {
@@ -696,10 +698,20 @@
     document.querySelectorAll("article,.deal-card,.product-card-wrap").forEach(decorateProductCard);
   }
 
+  function persistConfigCache(value) {
+    try {
+      localStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), value: value || {} }));
+    } catch {}
+  }
+
+  function updateCachedConfig(partial) {
+    state.config = { ...(state.config || {}), ...(partial || {}) };
+    persistConfigCache(state.config);
+    return state.config;
+  }
+
   async function loadConfig() {
     if (state.config) return state.config;
-    const CONFIG_CACHE_KEY = "ranking-da-compra-config-publica-v1";
-    const CONFIG_CACHE_TTL = 12 * 60 * 60 * 1000;
     let cached = {};
     try {
       const parsed = JSON.parse(localStorage.getItem(CONFIG_CACHE_KEY) || "{}");
@@ -723,7 +735,7 @@
             ...(configDoc.exists ? configDoc.data() : {}),
             ...(themeDoc.exists ? themeDoc.data() : {}),
           };
-          try { localStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), value })); } catch {}
+          persistConfigCache(value);
           return value;
         } catch (error) {
           console.warn("Não foi possível ler a configuração pública; usando a versão publicada.", error);
@@ -733,6 +745,7 @@
     ]);
     const config = { ...published, ...remoteBundle };
     state.config = config;
+    persistConfigCache(config);
     return state.config;
   }
 
@@ -1239,13 +1252,13 @@
           whatsappClubEnabled: enabled.checked,
           whatsappClubUpdatedAt: typeof firebase !== "undefined" ? firebase.firestore.FieldValue.serverTimestamp() : new Date()
         }, { merge: true });
-        state.config = { ...(state.config || {}), whatsappClubUrl: value, whatsappClubEnabled: enabled.checked };
+        updateCachedConfig({ whatsappClubUrl: value, whatsappClubEnabled: enabled.checked });
         status.textContent = value ? "✓ Clube salvo. O convite já pode aparecer na vitrine." : "✓ Configuração salva. O convite ficará oculto até você informar um link.";
       } catch (error) {
         console.error(error);
         const publishedConfig = await loadPublishedConfig();
         if (sameClubConfig(publishedConfig, value, enabled.checked)) {
-          state.config = { ...(state.config || {}), ...publishedConfig };
+          updateCachedConfig(publishedConfig);
           status.textContent = "✓ Clube já está publicado e ativo na vitrine.";
         } else {
           const code = String(error?.code || "").replace(/^firestore\//, "");
@@ -1302,7 +1315,7 @@
           showcaseUpdatedAt: typeof firebase !== "undefined" ? firebase.firestore.FieldValue.serverTimestamp() : new Date()
         };
         await db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).set(settings, { merge: true });
-        state.config = { ...(state.config || {}), ...settings };
+        updateCachedConfig(settings);
         renderYoutubePairFields(youtubeItems, items);
         showcaseStatus.textContent = showVideos
           ? `✓ Sequência com ${links.length} vídeos e cartões de produtos ativada. Nenhum arquivo foi armazenado no Firebase.`
@@ -1343,7 +1356,7 @@
           sistema: true,
           tipo: "configuracao_tema"
         }, { merge: true });
-        state.config = { ...(state.config || {}), ...settings };
+        updateCachedConfig(settings);
         const activeId = configuredThemeId(state.config);
         seasonalStatus.textContent = mode === "off"
           ? "✓ Tema normal restaurado na vitrine."
