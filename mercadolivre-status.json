@@ -2,15 +2,15 @@
   "version": 1,
   "updatedAt": "2026-09-20T21:22:01.761Z",
   "lastBatchAt": "2026-09-19T12:45:04.483Z",
-  "lastBatchAttemptAt": "2026-09-20T21:22:01.761Z",
+  "lastBatchAttemptAt": "2026-09-21T02:10:41.383Z",
   "batchSummary": {
     "complete": false,
-    "reason": "temporary_failures",
-    "total": 502,
-    "confirmed": 3,
-    "failed": 406,
-    "unmanaged": 93,
-    "attemptedAt": "2026-09-20T21:22:01.761Z"
+    "reason": "firebase_quota",
+    "total": 0,
+    "confirmed": 0,
+    "failed": 0,
+    "unmanaged": 0,
+    "attemptedAt": "2026-09-21T02:10:41.383Z"
   },
   "products": {
     ".site-theme": {
