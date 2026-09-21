@@ -277,7 +277,7 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 2. Painel tenta obter dados pela IA com contexto de URL.
 3. Se o marketplace bloquear, cria pedido econômico em `mlbSolicitacoes`.
 4. `localizar-mlb.yml` resolve o pedido e grava `mlb-resolucoes.json`.
-5. O localizador testa a URL da imagem no CDN oficial, descarta a imagem temporária de processamento e tenta as demais fotos. O painel celular confirma novamente o carregamento real e bloqueia a publicação se a prévia falhar.
+5. O localizador testa a URL da imagem no CDN oficial, descarta a imagem temporária de processamento e tenta as demais fotos. O painel celular confirma novamente o carregamento real; se a foto trazida pela IA falhar, encaminha o pedido ao robô oficial e bloqueia a publicação até receber uma imagem válida.
 6. Administrador revisa categoria, preço, fatos, prós, contras, imagem e links.
 7. Painel grava o documento no Firestore.
 8. `update-sitemap.yml`, manualmente ou pelo gatilho, gera HTML, busca, sitemap, análises, comparativos e Top 6.

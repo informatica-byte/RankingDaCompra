@@ -65,7 +65,7 @@
   },
   "marketplaceImageValidation": {
     "server": "The resolver probes official mlstatic candidates, rejects processing placeholders and tries remaining pictures before returning a result",
-    "mobile": "The preview must finish a real browser image load before publication is allowed",
+    "mobile": "The preview must finish a real browser image load before publication is allowed; a failed AI image is handed to the official resolver automatically",
     "failure": "Keep product fields for review, show an explicit error and require a replacement image URL without writing Firestore"
   },
   "generatedContent": {

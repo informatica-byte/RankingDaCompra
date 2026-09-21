@@ -373,6 +373,7 @@ has(mobilePanelHtml, /idade\s*<\s*2\s*\*\s*60\s*\*\s*1000/, "painel celular aind
 has(mobilePanelHtml, /d\.dadosTecnicos\.length\s*<\s*70/, "validacao tecnica do painel celular esta desalinhada com o robo", "painel-celular.html");
 has(mobilePanelHtml, /function carregarFotoPrevia\(/, "painel celular não testa a foto antes da revisão", "painel-celular.html");
 has(mobilePanelHtml, /imagem\.onerror\s*=\s*\(\)\s*=>\s*concluir\(false\)/, "painel celular não reconhece imagem quebrada", "painel-celular.html");
+has(mobilePanelHtml, /if\s*\(!fotoOk\)\s*throw Error\("A IA encontrou o produto,[\s\S]{0,120}robô oficial/, "painel celular não encaminha a imagem quebrada ao robô oficial", "painel-celular.html");
 has(mobilePanelHtml, /if\s*\(!\(await carregarFotoPrevia\(d\.foto\)\)\)\s*return msg\("pub-status"/, "painel celular ainda pode publicar uma foto que não abriu", "painel-celular.html");
 
 if (/collection\(["']visitas["']\)\.get\(\)/.test(dashboardHtml)) {

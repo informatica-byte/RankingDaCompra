@@ -117,6 +117,7 @@ test("localizador e painel bloqueiam foto quebrada antes da publicação", () =>
   assert.match(resolver, /const verifiedPhoto = await selectLoadableMarketplaceImage/);
   assert.match(mobile, /function carregarFotoPrevia\(/);
   assert.match(mobile, /imagem\.onerror\s*=\s*\(\)\s*=>\s*concluir\(false\)/);
+  assert.match(mobile, /if\s*\(!fotoOk\)\s*throw Error\("A IA encontrou o produto,[\s\S]{0,120}robô oficial/);
   assert.match(mobile, /if\s*\(!\(await carregarFotoPrevia\(d\.foto\)\)\)\s*return msg\("pub-status"/);
 });
 

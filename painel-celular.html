@@ -1394,8 +1394,9 @@
           if (tipo === "relampago" && !$("duracao").value) $("duracao").value = String(d.duracaoRelampago || "");
           const fotoOk = await carregarFotoPrevia(d.foto);
           $("preview").style.display = "block";
+          if (!fotoOk) throw Error("A IA encontrou o produto, mas a imagem não abriu. O robô oficial vai procurar outra foto do anúncio.");
           iaConcluida = true;
-          msg("status", fotoOk ? "Pronto. Confira os dados antes de publicar." : "Os dados foram encontrados, mas a foto não abriu. Cole outra URL de foto antes de publicar.", fotoOk ? "ok" : "erro");
+          msg("status", "Pronto. Confira os dados antes de publicar.", "ok");
           $("preview").scrollIntoView({ behavior: "smooth" });
         } catch (x) {
           if (marketplace === "mercado_livre") {
