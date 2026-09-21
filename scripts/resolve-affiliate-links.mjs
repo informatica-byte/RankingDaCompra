@@ -2,6 +2,10 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { readFile, writeFile } from "node:fs/promises";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
+import {
+  marketplaceImageCandidates,
+  selectLoadableMarketplaceImage,
+} from "./marketplace-image.mjs";
 
 
 const execFileAsync = promisify(execFile);
@@ -271,13 +275,13 @@ async function officialCategory(categoryId, token) {
 }
 
 
-function catalogDetailsFromPayload(payload = {}, page = {}) {
+async function catalogDetailsFromPayload(payload = {}, page = {}) {
   const winner = payload?.buy_box_winner || payload?.buyBoxWinner || {};
   const title = plain(payload?.name || payload?.title || page?.titulo || "");
-  const picture = payload?.pictures?.[0] || {};
-  const photo = String(
-    picture.secure_url || picture.url || picture.source || page?.foto || "",
-  ).replace(/^http:/, "https:");
+  const photo = await selectLoadableMarketplaceImage(marketplaceImageCandidates(
+    payload?.pictures,
+    [winner?.thumbnail, winner?.secure_thumbnail, page?.foto],
+  ));
   const currentPrice = Number(winner.price ?? payload?.price ?? page?.precoAtual ?? 0);
   const originalPrice = Number(
     winner.original_price ?? payload?.original_price ?? page?.precoAnterior ?? 0,
@@ -325,7 +329,7 @@ async function officialCatalogDetails(catalogId, token, page = {}) {
     }
     if (token && [401, 403].includes(response.status)) response = await requestCatalog("");
     if (!response.ok) return page;
-    return catalogDetailsFromPayload(await response.json(), page);
+    return await catalogDetailsFromPayload(await response.json(), page);
   } catch {
     return page;
   }
@@ -370,10 +374,14 @@ async function officialDetails(itemId, html = "", catalogId = "") {
   const title = String(item.title || "").trim();
   const currentPrice = Number(item.price || 0);
   const originalPrice = Number(item.original_price || 0);
+  const photo = await selectLoadableMarketplaceImage(marketplaceImageCandidates(
+    item.pictures,
+    [item.secure_thumbnail, item.thumbnail, page?.foto],
+  ));
   const result = {
     ...page,
     titulo: title || page?.titulo || "",
-    foto: String(item.pictures?.[0]?.secure_url || item.thumbnail || page?.foto || "").replace(/^http:/, "https:"),
+    foto: photo,
     precoAtual: currentPrice || page?.precoAtual || 0,
     precoAnterior: originalPrice > currentPrice ? originalPrice : page?.precoAnterior || 0,
     dadosTecnicos: unique.length >= 3 ? unique : page?.dadosTecnicos || unique,
@@ -546,13 +554,15 @@ async function resolveRequest(request) {
     : htmlFound || (directId ? { mlb: directId, urlProduto: request.link, titulo: "" } : null);
   if (!found) throw new Error("O Mercado Livre não mostrou um anúncio identificável nesse link.");
   const details = await officialDetails(found.mlb, html, catalogId);
-  if (!details?.titulo || !details?.foto || !details?.precoAtual) {
+  const verifiedPhoto = await selectLoadableMarketplaceImage([details?.foto]);
+  if (!details?.titulo || !verifiedPhoto || !details?.precoAtual) {
     throw new Error("O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.");
   }
   return {
     status: "ok",
     ...found,
     ...details,
+    foto: verifiedPhoto,
     urlProduto: details.urlProduto || found.urlProduto,
     linkOriginal: request.link,
     resolvidoEm: new Date().toISOString(),

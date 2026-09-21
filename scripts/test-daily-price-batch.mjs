@@ -111,6 +111,15 @@ test("localizador reutiliza e renova a autorização criptografada", () => {
   assert.match(sync, /\[401, 403\]\.includes\(error\.httpStatus\)[\s\S]{0,180}refreshRejectedAccessToken\(\)/);
 });
 
+test("localizador e painel bloqueiam foto quebrada antes da publicação", () => {
+  assert.match(resolver, /selectLoadableMarketplaceImage/);
+  assert.match(resolver, /marketplaceImageCandidates\([\s\S]{0,180}item\.pictures/);
+  assert.match(resolver, /const verifiedPhoto = await selectLoadableMarketplaceImage/);
+  assert.match(mobile, /function carregarFotoPrevia\(/);
+  assert.match(mobile, /imagem\.onerror\s*=\s*\(\)\s*=>\s*concluir\(false\)/);
+  assert.match(mobile, /if\s*\(!\(await carregarFotoPrevia\(d\.foto\)\)\)\s*return msg\("pub-status"/);
+});
+
 test("localizador reduz leituras automáticas sem abandonar a fila", () => {
   assert.match(localizerWorkflow, /cron:\s*["']7,37 \* \* \* \*["']/);
   assert.doesNotMatch(localizerWorkflow, /7,22,37,52/);

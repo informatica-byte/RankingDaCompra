@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#07563f" />
     <title>Painel celular | Ranking da Compra</title>
     <style>
-      *{box-sizing:border-box}body{margin:0;background:#f2f7f4;color:#102b22;font:16px system-ui,-apple-system,Segoe UI,sans-serif}header{position:sticky;top:0;z-index:3;background:#07563f;color:white;padding:14px 16px}header div{max-width:680px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}header b{font-size:18px}header a{color:white;text-decoration:none;border:1px solid #ffffff77;border-radius:9px;padding:8px;font-size:12px;font-weight:800}main{max-width:680px;margin:auto;padding:14px}.card{background:white;border:1px solid #d5e5de;border-radius:18px;padding:17px;margin-bottom:14px;box-shadow:0 8px 25px #1232}h1,h2{margin:0 0 8px}h1{font-size:23px}h2{font-size:19px}p{color:#587066;line-height:1.45}.etapa{color:#08794d;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}label{display:block;font-weight:800;margin:13px 0 6px}.campo{width:100%;min-height:49px;border:1px solid #a9c1b7;border-radius:12px;padding:12px;background:white}textarea.campo{min-height:105px}.btn{width:100%;min-height:52px;border:0;border-radius:12px;margin-top:14px;padding:10px;font-weight:900}.verde{background:#0a8f5b;color:white}.azul{background:#246bdb;color:white}.claro{background:#edf4f1;color:#07563f}.btn:disabled{opacity:.55}.tipos,.grade{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tipo{position:relative}.tipo input{position:absolute;opacity:0}.tipo span{display:flex;min-height:52px;align-items:center;justify-content:center;border:2px solid #d5e5de;border-radius:12px;font-weight:900;text-align:center}.tipo input:checked+span{border-color:#0a8f5b;background:#e9f8f0}.largo{grid-column:1/-1}.status{display:none;margin-top:13px;padding:12px;border-radius:12px;background:#eef5ff;color:#174b91}.status.on{display:block}.status.erro{background:#fff0ee;color:#a61b12}.status.ok{background:#e8f8ef;color:#096b43}#app,#preview{display:none}#foto-previa{display:none;width:100%;max-height:250px;object-fit:contain;border:1px solid #d5e5de;border-radius:14px}.mini{font-size:12px;color:#61776e}@media(max-width:480px){.grade{grid-template-columns:1fr}.largo{grid-column:auto}} .ranking-mobile-actions{display:grid;gap:9px;margin-top:12px}.ranking-mobile-actions .btn{margin-top:0}.ranking-mobile-review{margin-top:12px}.ranking-mobile-review ol{padding-left:22px}.ranking-mobile-review li{margin:11px 0}.ranking-mobile-review span{display:block;margin-top:3px;color:#587066;font-size:13px;line-height:1.4}.ranking-mobile-link{display:block;margin-top:12px;text-align:center;color:#07563f;font-weight:800}.ranking-mobile-note{padding:10px;border-radius:10px;background:#f0f8f4;font-size:13px;color:#355b4b}.focus-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.focus-mobile-item{background:#f2faf6;border:1px solid #d6e9df;border-radius:11px;padding:11px}.focus-mobile-item small{display:block;color:#61776e;font-size:10px;font-weight:900;text-transform:uppercase}.focus-mobile-item strong{display:block;margin-top:5px;color:#086140;font-size:14px;line-height:1.25}.focus-mobile-rec{margin-top:11px;padding:11px;border-radius:10px;background:#e9f8f0;color:#145139;font-size:13px;line-height:1.4}.focus-mobile-list{margin:10px 0 0;padding-left:20px;color:#405f52;font-size:13px}.focus-mobile-list li{margin:6px 0}.focus-mobile-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.focus-mobile-links a{color:#07563f;font-size:12px;font-weight:800}
+      *{box-sizing:border-box}body{margin:0;background:#f2f7f4;color:#102b22;font:16px system-ui,-apple-system,Segoe UI,sans-serif}header{position:sticky;top:0;z-index:3;background:#07563f;color:white;padding:14px 16px}header div{max-width:680px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}header b{font-size:18px}header a{color:white;text-decoration:none;border:1px solid #ffffff77;border-radius:9px;padding:8px;font-size:12px;font-weight:800}main{max-width:680px;margin:auto;padding:14px}.card{background:white;border:1px solid #d5e5de;border-radius:18px;padding:17px;margin-bottom:14px;box-shadow:0 8px 25px #1232}h1,h2{margin:0 0 8px}h1{font-size:23px}h2{font-size:19px}p{color:#587066;line-height:1.45}.etapa{color:#08794d;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}label{display:block;font-weight:800;margin:13px 0 6px}.campo{width:100%;min-height:49px;border:1px solid #a9c1b7;border-radius:12px;padding:12px;background:white}textarea.campo{min-height:105px}.btn{width:100%;min-height:52px;border:0;border-radius:12px;margin-top:14px;padding:10px;font-weight:900}.verde{background:#0a8f5b;color:white}.azul{background:#246bdb;color:white}.claro{background:#edf4f1;color:#07563f}.btn:disabled{opacity:.55}.tipos,.grade{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tipo{position:relative}.tipo input{position:absolute;opacity:0}.tipo span{display:flex;min-height:52px;align-items:center;justify-content:center;border:2px solid #d5e5de;border-radius:12px;font-weight:900;text-align:center}.tipo input:checked+span{border-color:#0a8f5b;background:#e9f8f0}.largo{grid-column:1/-1}.status{display:none;margin-top:13px;padding:12px;border-radius:12px;background:#eef5ff;color:#174b91}.status.on{display:block}.status.erro{background:#fff0ee;color:#a61b12}.status.ok{background:#e8f8ef;color:#096b43}#app,#preview{display:none}#foto-previa{display:none;width:100%;max-height:250px;object-fit:contain;border:1px solid #d5e5de;border-radius:14px}.foto-erro{display:none;margin:0 0 10px;padding:11px;border:1px solid #efb0aa;border-radius:11px;background:#fff0ee;color:#9b2018;font-size:13px;font-weight:750;line-height:1.4}.foto-erro.on{display:block}.mini{font-size:12px;color:#61776e}@media(max-width:480px){.grade{grid-template-columns:1fr}.largo{grid-column:auto}} .ranking-mobile-actions{display:grid;gap:9px;margin-top:12px}.ranking-mobile-actions .btn{margin-top:0}.ranking-mobile-review{margin-top:12px}.ranking-mobile-review ol{padding-left:22px}.ranking-mobile-review li{margin:11px 0}.ranking-mobile-review span{display:block;margin-top:3px;color:#587066;font-size:13px;line-height:1.4}.ranking-mobile-link{display:block;margin-top:12px;text-align:center;color:#07563f;font-weight:800}.ranking-mobile-note{padding:10px;border-radius:10px;background:#f0f8f4;font-size:13px;color:#355b4b}.focus-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.focus-mobile-item{background:#f2faf6;border:1px solid #d6e9df;border-radius:11px;padding:11px}.focus-mobile-item small{display:block;color:#61776e;font-size:10px;font-weight:900;text-transform:uppercase}.focus-mobile-item strong{display:block;margin-top:5px;color:#086140;font-size:14px;line-height:1.25}.focus-mobile-rec{margin-top:11px;padding:11px;border-radius:10px;background:#e9f8f0;color:#145139;font-size:13px;line-height:1.4}.focus-mobile-list{margin:10px 0 0;padding-left:20px;color:#405f52;font-size:13px}.focus-mobile-list li{margin:6px 0}.focus-mobile-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.focus-mobile-links a{color:#07563f;font-size:12px;font-weight:800}
       .header-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
     </style>
     <script defer src="/seo-priorities.js?v=20260913-1"></script>
@@ -53,6 +53,7 @@
           <h2>Confira antes de publicar</h2>
           <p id="preview-ajuda">Verifique principalmente a foto, o produto e os preços. Se a loja bloquear a leitura automática, complete os campos abaixo.</p>
           <img id="foto-previa" alt="Foto do produto" />
+          <div id="foto-erro" class="foto-erro" role="alert">A imagem informada não abriu. Cole outra URL de foto antes de publicar.</div>
           <div class="grade">
             <div class="largo"><label>Produto</label><input id="titulo" class="campo" required /></div>
             <div>
@@ -194,8 +195,54 @@
         roboMonitorId = 0,
         ultimaConsultaResultadosApi = 0,
         cacheResultadosApi = {},
-        focusMobileLeituraAutorizada = false;
+        focusMobileLeituraAutorizada = false,
+        fotoPreviaTentativa = 0,
+        fotoPreviaTimer = 0,
+        fotoPreviaDebounce = 0;
       const RESULTADOS_API = "https://api.github.com/repos/informatica-byte/RankingDaCompra/contents/mlb-resolucoes.json?ref=main";
+
+      function limparFotoPrevia() {
+        fotoPreviaTentativa += 1;
+        clearTimeout(fotoPreviaTimer);
+        clearTimeout(fotoPreviaDebounce);
+        $("foto-previa").removeAttribute("src");
+        $("foto-previa").style.display = "none";
+        $("foto-erro").className = "foto-erro";
+      }
+
+      function carregarFotoPrevia(valor, avisar = true) {
+        const url = String(valor || "").trim(),
+          imagem = $("foto-previa"),
+          erro = $("foto-erro"),
+          tentativa = ++fotoPreviaTentativa;
+        clearTimeout(fotoPreviaTimer);
+        erro.className = "foto-erro";
+        imagem.removeAttribute("src");
+        imagem.style.display = "none";
+        if (!/^https:\/\//i.test(url)) {
+          if (avisar && url) erro.className = "foto-erro on";
+          return Promise.resolve(false);
+        }
+        return new Promise((resolve) => {
+          let finalizado = false;
+          const concluir = (valida) => {
+            if (finalizado) return;
+            finalizado = true;
+            if (tentativa !== fotoPreviaTentativa) return resolve(false);
+            clearTimeout(fotoPreviaTimer);
+            imagem.onload = null;
+            imagem.onerror = null;
+            imagem.style.display = valida ? "block" : "none";
+            erro.className = !valida && avisar ? "foto-erro on" : "foto-erro";
+            resolve(valida);
+          };
+          imagem.onload = () => concluir(imagem.naturalWidth > 1 && imagem.naturalHeight > 1);
+          imagem.onerror = () => concluir(false);
+          imagem.src = url;
+          imagem.style.display = "block";
+          fotoPreviaTimer = setTimeout(() => concluir(false), 10000);
+        });
+      }
 
       function instalarModoEconomicoMobile() {
         const alvo = $("focus-mobile-result"),
@@ -453,8 +500,7 @@
         $("resumo").value = "";
         $("pros").value = "";
         $("contras").value = "";
-        $("foto-previa").removeAttribute("src");
-        $("foto-previa").style.display = "none";
+        limparFotoPrevia();
         const existente = existentePronto || (await buscarProdutoExistente(link, linkAfiliado));
         if (existente) {
           $("titulo").value = String(existente.titulo || $("titulo").value);
@@ -468,8 +514,7 @@
           $("pros").value = String(existente.pros || "");
           $("contras").value = String(existente.contras || "");
           if (/^https:\/\//i.test($("foto").value)) {
-            $("foto-previa").src = $("foto").value;
-            $("foto-previa").style.display = "block";
+            await carregarFotoPrevia($("foto").value);
           }
           msg("status", "Produto já cadastrado encontrado. A foto e os dados anteriores foram reutilizados; confira principalmente o preço.", "ok");
         } else msg("status", `A ${nomeMarketplace(marketplace)} bloqueou o preenchimento automático e não encontrei este produto no cadastro. Complete os campos abaixo. ` + String(motivo || ""), "erro");
@@ -477,7 +522,7 @@
         $("preview").style.display = "block";
         $("preview").scrollIntoView({ behavior: "smooth" });
       }
-      function aplicarResultadoRobo(d, link, linkAfiliado, tipo) {
+      async function aplicarResultadoRobo(d, link, linkAfiliado, tipo) {
         const tecnicos = lista(d.dadosTecnicos);
         if (!d.titulo || !/^https:\/\//i.test(d.foto || "") || !numero(d.precoAtual) || tecnicos.length < 3) {
           throw Error("O robô localizou o anúncio, mas ainda faltam dados oficiais para publicar com segurança.");
@@ -501,11 +546,10 @@
         $("resumo").value = textoEditorial(d.comentario, 480);
         $("pros").value = textoEditorial(d.pros, 290);
         $("contras").value = atencaoEditorial(d.titulo, d.contras);
-        $("foto-previa").src = d.foto;
-        $("foto-previa").style.display = "block";
+        const fotoOk = await carregarFotoPrevia(d.foto);
         $("preview").style.display = "block";
         mostrarAtalhoRobo(false);
-        msg("status", "Pronto. O robô conferiu o anúncio na fonte oficial; revise e publique.", "ok");
+        msg("status", fotoOk ? "Pronto. O robô conferiu o anúncio na fonte oficial; revise e publique." : "O robô encontrou o produto, mas a foto devolvida pelo Mercado Livre não abriu. Cole outra URL de foto antes de publicar.", fotoOk ? "ok" : "erro");
         $("preview").scrollIntoView({ behavior: "smooth" });
       }
 
@@ -634,7 +678,7 @@
             return;
           }
           try {
-            aplicarResultadoRobo(encontrado, link, linkAfiliado, tipo);
+            await aplicarResultadoRobo(encontrado, link, linkAfiliado, tipo);
           } catch (e) {
             msg("status", String(e?.message || e), "erro");
           }
@@ -663,7 +707,7 @@
             localStorage.removeItem(chave);
           } catch {}
           if (encontrado.status === "erro") throw Error(encontrado.motivo || motivoInicial || "O anúncio não pôde ser comprovado.");
-          aplicarResultadoRobo(encontrado, link, linkAfiliado, tipo);
+          await aplicarResultadoRobo(encontrado, link, linkAfiliado, tipo);
           return;
         }
         monitorarRoboSegundoPlano(pedidoId, chave, link, linkAfiliado, tipo, monitorId);
@@ -1287,8 +1331,10 @@
       $("foto").oninput = () => {
         edicaoManual = true;
         const u = $("foto").value.trim();
-        $("foto-previa").src = u;
-        $("foto-previa").style.display = u ? "block" : "none";
+        fotoPreviaTentativa += 1;
+        clearTimeout(fotoPreviaTimer);
+        clearTimeout(fotoPreviaDebounce);
+        fotoPreviaDebounce = setTimeout(() => void carregarFotoPrevia(u), 450);
       };
       document.querySelectorAll("#preview input,#preview textarea,#preview select").forEach((el) =>
         el.addEventListener("input", () => {
@@ -1346,11 +1392,10 @@
           $("pros").value = p.slice(0, 3).join(", ");
           $("contras").value = c.slice(0, 2).join(", ");
           if (tipo === "relampago" && !$("duracao").value) $("duracao").value = String(d.duracaoRelampago || "");
-          $("foto-previa").src = d.foto;
-          $("foto-previa").style.display = "block";
+          const fotoOk = await carregarFotoPrevia(d.foto);
           $("preview").style.display = "block";
           iaConcluida = true;
-          msg("status", "Pronto. Confira os dados antes de publicar.", "ok");
+          msg("status", fotoOk ? "Pronto. Confira os dados antes de publicar." : "Os dados foram encontrados, mas a foto não abriu. Cole outra URL de foto antes de publicar.", fotoOk ? "ok" : "erro");
           $("preview").scrollIntoView({ behavior: "smooth" });
         } catch (x) {
           if (marketplace === "mercado_livre") {
@@ -1409,6 +1454,7 @@
         if ((linkShopee && !precoShopee) || (!linkShopee && precoShopee)) return msg("pub-status", "Para oferecer a Shopee, informe o link e o preço juntos.", "erro");
         if (linkShopee && !linkMarketplaceValido(linkShopee, "shopee")) return msg("pub-status", "Confira o link HTTPS da Shopee.", "erro");
         if (!/^https:\/\//.test(d.foto)) return msg("pub-status", "Confira a URL da foto.", "erro");
+        if (!(await carregarFotoPrevia(d.foto))) return msg("pub-status", "A foto não abriu. Cole uma URL de imagem válida antes de publicar.", "erro");
         if (d.comentario.length < 180 || d.pros.length < 60 || d.contras.length < 60 || d.dadosTecnicos.length < 70 || lista(d.dadosTecnicos).length < 3) return msg("pub-status", "A análise precisa de mais dados reais antes de publicar.", "erro");
         if (tipo === "relampago") {
           const s = seg($("duracao").value);
@@ -1439,7 +1485,7 @@
         $("duracao").value = "";
         $("preview").reset();
         $("preview").style.display = "none";
-        $("foto-previa").style.display = "none";
+        limparFotoPrevia();
         $("publicar").disabled = false;
         $("publicar").textContent = "🚀 Publicar na mesma vitrine";
         off("status");

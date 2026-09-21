@@ -3,7 +3,7 @@
 > Documento de arquitetura, continuidade e reconstrução do sistema.
 > Fonte oficial: `informatica-byte/RankingDaCompra`, branch `main`.
 > Domínio público: <https://rankingdacompra.com.br/>.
-> Data da fotografia técnica: 14/09/2026.
+> Data da fotografia técnica: 21/09/2026.
 
 ## 1. Para que serve esta planta
 
@@ -277,11 +277,12 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 2. Painel tenta obter dados pela IA com contexto de URL.
 3. Se o marketplace bloquear, cria pedido econômico em `mlbSolicitacoes`.
 4. `localizar-mlb.yml` resolve o pedido e grava `mlb-resolucoes.json`.
-5. Administrador revisa categoria, preço, fatos, prós, contras, imagem e links.
-6. Painel grava o documento no Firestore.
-7. `update-sitemap.yml`, manualmente ou pelo gatilho, gera HTML, busca, sitemap, análises, comparativos e Top 6.
-8. O validador precisa passar antes do commit automático.
-9. GitHub Pages publica a branch `main`.
+5. O localizador testa a URL da imagem no CDN oficial, descarta a imagem temporária de processamento e tenta as demais fotos. O painel celular confirma novamente o carregamento real e bloqueia a publicação se a prévia falhar.
+6. Administrador revisa categoria, preço, fatos, prós, contras, imagem e links.
+7. Painel grava o documento no Firestore.
+8. `update-sitemap.yml`, manualmente ou pelo gatilho, gera HTML, busca, sitemap, análises, comparativos e Top 6.
+9. O validador precisa passar antes do commit automático.
+10. GitHub Pages publica a branch `main`.
 
 ### Conferir preços e disponibilidade
 

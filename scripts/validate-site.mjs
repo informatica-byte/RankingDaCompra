@@ -349,6 +349,7 @@ has(priceSync, /requestSingleMarketplaceItem/, "contingência individual oficial
 has(priceSync, /maxRetries:\s*1/, "contingência individual pode repetir chamadas excessivamente", "scripts/sync-mercadolivre.mjs");
 has(sitemapGenerator, /readProductSnapshot/, "gerador ainda pode reler todos os produtos no mesmo lote", "scripts/generate-sitemap.mjs");
 const affiliateResolver = await readFile(resolve("scripts/resolve-affiliate-links.mjs"), "utf8");
+const marketplaceImage = await readFile(resolve("scripts/marketplace-image.mjs"), "utf8");
 has(affiliateResolver, /documents:runQuery|\$\{FIRESTORE\}:runQuery/, "localizador ainda pode ler toda a fila MLB", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /limit:\s*10/, "consulta limitada da fila MLB ausente", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /fieldPath:\s*"criadoEm"[\s\S]{0,120}direction:\s*"DESCENDING"/, "fila MLB nao prioriza os pedidos mais recentes", "scripts/resolve-affiliate-links.mjs");
@@ -362,9 +363,17 @@ has(affiliateResolver, /MAX_REQUEST_ATTEMPTS\s*=\s*3/, "localizador sem limite d
 has(affiliateResolver, /previous\.status\s*===\s*"erro"[\s\S]{0,160}previous\.tentativas[\s\S]{0,100}MAX_REQUEST_ATTEMPTS/, "localizador não recupera erro temporário com limite", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /tentativas:\s*previousAttempts\s*\+\s*1/, "localizador não registra o número de tentativas", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /officialCatalogDetails\(catalogId/, "localizador não usa o catálogo oficial como alternativa", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /selectLoadableMarketplaceImage/, "localizador não comprova o carregamento da imagem", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /marketplaceImageCandidates\([\s\S]{0,180}item\.pictures/, "localizador não tenta as demais fotos oficiais", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /const verifiedPhoto = await selectLoadableMarketplaceImage/, "resultado MLB ainda pode guardar foto quebrada", "scripts/resolve-affiliate-links.mjs");
+has(marketplaceImage, /contentType\.startsWith\("image\/"\)/, "verificação da foto não confirma o tipo de conteúdo", "scripts/marketplace-image.mjs");
+has(marketplaceImage, /processing-image/, "imagem temporária de processamento do Mercado Livre não é descartada", "scripts/marketplace-image.mjs");
 
 has(mobilePanelHtml, /idade\s*<\s*2\s*\*\s*60\s*\*\s*1000/, "painel celular ainda pode reutilizar pedido MLB antigo", "painel-celular.html");
 has(mobilePanelHtml, /d\.dadosTecnicos\.length\s*<\s*70/, "validacao tecnica do painel celular esta desalinhada com o robo", "painel-celular.html");
+has(mobilePanelHtml, /function carregarFotoPrevia\(/, "painel celular não testa a foto antes da revisão", "painel-celular.html");
+has(mobilePanelHtml, /imagem\.onerror\s*=\s*\(\)\s*=>\s*concluir\(false\)/, "painel celular não reconhece imagem quebrada", "painel-celular.html");
+has(mobilePanelHtml, /if\s*\(!\(await carregarFotoPrevia\(d\.foto\)\)\)\s*return msg\("pub-status"/, "painel celular ainda pode publicar uma foto que não abriu", "painel-celular.html");
 
 if (/collection\(["']visitas["']\)\.get\(\)/.test(dashboardHtml)) {
   fail("dashboard.html: leitura integral e ilimitada do histórico de visitas voltou a ser usada");

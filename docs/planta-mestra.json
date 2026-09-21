@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotDate": "2026-09-19",
+  "snapshotDate": "2026-09-21",
   "project": {
     "name": "Ranking da Compra",
     "repository": "informatica-byte/RankingDaCompra",
@@ -62,6 +62,11 @@
     "smallPlayer": "Responsive button up to 230px wide with truncated title",
     "behavior": "Tracks the active YouTube video and opens the corresponding Ranking da Compra product page",
     "accessibility": "Dynamic aria-label identifies the corresponding product"
+  },
+  "marketplaceImageValidation": {
+    "server": "The resolver probes official mlstatic candidates, rejects processing placeholders and tries remaining pictures before returning a result",
+    "mobile": "The preview must finish a real browser image load before publication is allowed",
+    "failure": "Keep product fields for review, show an explicit error and require a replacement image URL without writing Firestore"
   },
   "generatedContent": {
     "productPages": "produto/*.html",
