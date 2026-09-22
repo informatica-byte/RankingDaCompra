@@ -1,6 +1,33 @@
 {
-  "atualizadoEm": "2026-09-22T10:44:48.751Z",
+  "atualizadoEm": "2026-09-22T10:47:47.056Z",
   "resultados": {
+    "bmWX8Yt4XDsweE0YHUnm": {
+      "status": "ok",
+      "mlb": "MLB5091162310",
+      "urlProduto": "https://www.mercadolivre.com.br/climatizador-portatil-frio-ventisol-cli-100-pro-brancocinza/p/MLB15457950",
+      "titulo": "Climatizador portátil frio Ventisol CLI 100 PRO branco/cinza",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_838425-MLA99571491622_122025-F.jpg",
+      "precoAtual": 1849,
+      "precoAnterior": 0,
+      "dadosTecnicos": [
+        "Capacidade de 100 litros no reservatório que permite longos períodos de operação sem necessidade de reposição constante.",
+        "Vazão de ar de 7500 m³/h capaz de cobrir ambientes amplos de 30 a 90 m² com circulação contínua do fluxo.",
+        "Potência de 210 W que viabiliza o resfriamento e ventilação de grandes espaços com o uso de 3 velocidades ajustáveis.",
+        "Função de umidificação integrada ao reservatório de 100 litros que mantém a umidade do ar durante o funcionamento.",
+        "Estrutura com função de oscilação que distribui o ar de maneira uniforme por toda a área de alcance do aparelho.",
+        "Marca: Ventisol",
+        "Peso informado: 20.5 kg",
+        "Código do catálogo: MLB15457950",
+        "Condição informada: novo",
+        "Modelo: CLI 100 PRO"
+      ],
+      "comentario": "Climatizador portátil frio Ventisol CLI 100 PRO branco/cinza. Capacidade de 100 litros no reservatório que permite longos períodos de operação sem necessidade de reposição constante. Vazão de ar de 7500 m³/h capaz de cobrir ambientes amplos de 30 a 90 m² com circulação contínua do fluxo. Potência de 210 W que viabiliza o resfriamento e ventilação de grandes espaços com o uso de 3 velocidades ajustáveis.",
+      "pros": "Climatizador portátil frio Ventisol CLI 100 PRO branco/cinza. Características confirmadas no anúncio: Capacidade de 100 litros no reservatório que permite longos períodos de operação sem necessidade de reposição constante.",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/climatizador-portatil-frio-ventisol-cli-100-pro-brancocinza/p/MLB15457950?pdp_filters=item_id:MLB5091162310#is_advertising=true&searchVariation=MLB15457950&backend_model=search-backend&be_origin=backend&position=16&search_layout=grid&type=pad&tracking_id=b7903b29-a743-4446-a208-12b17f46a36a&ad_domain=VQCATCORE_LST&ad_position=16&ad_click_id=NTdlNzFkODAtODNiNi00ODdjLTgxM2ItNzBlMjBiOTBiMjE5",
+      "resolvidoEm": "2026-09-22T10:47:47.049Z",
+      "tentativas": 1
+    },
     "RoQrISz1rL72VKApNQ8u": {
       "status": "ok",
       "mlb": "MLB5054428609",
@@ -6397,12 +6424,6 @@
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/maquina-solda-inversora-mma-the-black-tools-preto-5060hz-voltagem/p/MLB21362130?pdp_filters=item_id%3AMLB3342376179&matt_tool=38524122&ua=p_jQWKPyUcfuyhUj8kOOOMEZonEFElrGi9-Btye5edmrHf0#origin=share&sid=share&wid=MLB3342376179&action=copy",
       "resolvidoEm": "2026-08-23T11:57:08.584Z"
-    },
-    "IHA2SzD8DHC3V0ZLSkXP": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/maquina-solda-inversora-mma-the-black-tools-preto-5060hz-voltagem/p/MLB21362130?pdp_filters=item_id%3AMLB3342376179&matt_tool=38524122&ua=p_jQWKPyUcfuyhUj8kOOOMEZonEFElrGi9-Btye5edmrHf0#origin=share&sid=share&wid=MLB3342376179&action=copy",
-      "resolvidoEm": "2026-08-23T11:50:36.776Z"
     }
   }
 }
