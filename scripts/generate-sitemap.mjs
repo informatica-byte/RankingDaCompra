@@ -2,6 +2,7 @@ import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promise
 
 import { createHash } from "node:crypto";
 import { correctProductData } from "./product-title-corrections.mjs";
+import { productAliasPage, selectCanonicalProducts, unavailableProductPage } from "./product-url-continuity.mjs";
 
 import { resolve } from "node:path";
 
@@ -1681,6 +1682,8 @@ function productSeoScore(product) {
   return (promotionIsValid(product) ? 1e16 : 0) + affiliate * 1e15 + image * 1e14 + updated;
 }
 
+const productAliasTargets = new Map();
+
 function deduplicateProducts(products) {
   const groups = new Set();
   const aliases = new Map();
@@ -1708,8 +1711,8 @@ function deduplicateProducts(products) {
       aliases.set(key, group);
     }
   }
-  const selected = [...groups].map((group) => group.products.reduce((best, product) =>
-    !best || productSeoScore(product) > productSeoScore(best) ? product : best, null));
+  const { selected, aliases: duplicateAliases } = selectCanonicalProducts(groups, productSeoScore);
+  for (const [id, target] of duplicateAliases) productAliasTargets.set(id, target);
   if (selected.length !== products.length) {
     console.warn(
       "SEO: " + (products.length - selected.length) +
@@ -1917,6 +1920,22 @@ for (const product of validProducts) {
   }
 }
 
+// Endereços já compartilhados de anúncios duplicados continuam acessíveis,
+// mas apontam para a análise escolhida como principal, sem preço antigo.
+for (const [oldId, canonicalProduct] of productAliasTargets) {
+  if (!/^[A-Za-z0-9_-]+$/.test(oldId) || !/^[A-Za-z0-9_-]+$/.test(canonicalProduct.id)) continue;
+  const fileName = `${oldId}-${SHARE_VERSION}.html`;
+  if (expectedPages.has(fileName)) continue;
+  expectedPages.add(fileName);
+  if (!partialProductSource) {
+    await writeFile(
+      resolve(productDirectory, fileName),
+      productAliasPage(canonicalProduct.titulo, productDetailUrl(canonicalProduct)),
+      "utf8",
+    );
+  }
+}
+
 if (partialProductSource) {
   console.warn("Páginas de produto anteriores preservadas; nenhuma página foi sobrescrita pela contingência.");
 }
@@ -1929,7 +1948,9 @@ if (!partialProductSource) {
 
     if (entry.isFile() && entry.name.endsWith(".html") && !expectedPages.has(entry.name)) {
 
-      await rm(resolve(productDirectory, entry.name), { force: true });
+      const path = resolve(productDirectory, entry.name);
+      const previousHtml = await readFile(path, "utf8");
+      await writeFile(path, unavailableProductPage(previousHtml), "utf8");
 
     }
 

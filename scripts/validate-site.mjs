@@ -280,6 +280,9 @@ has(sitemapGenerator, /allProducts = allProducts\.map\(correctProductData\)/, "c
 has(sitemapGenerator, /const separated = repairPortugueseEncoding\(value\)/, "separação segura dos fatos editoriais ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /const indexable = editorial && offerUrl !== "#" && currentPrice > 0/, "produto sem preço ou oferta ainda pode ser indexado", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /editorialProduct\(product\) && price > 0/, "produto sem preço ainda pode entrar no sitemap", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /selectCanonicalProducts\(groups, productSeoScore\)/, "URLs duplicadas não são ligadas à página principal", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /productAliasPage\(canonicalProduct\.titulo, productDetailUrl\(canonicalProduct\)\)/, "páginas antigas duplicadas ainda podem virar 404", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /unavailableProductPage\(previousHtml\)/, "páginas retiradas ainda podem virar 404", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /previousSitemapMetadata/, "modo de contingência pode apagar datas e prioridades do sitemap", "scripts/generate-sitemap.mjs");
 if (/flatMap\(\(part\) => part\.split\(","\)\)/.test(sitemapGenerator)) {
   fail("scripts/generate-sitemap.mjs: pontos editoriais ainda são quebrados em toda vírgula");
@@ -322,6 +325,7 @@ has(priceWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discover
 has(priceWorkflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "lote diário não publica todos os arquivos gerados", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*false/, "execução manual pode repetir o lote por engano", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /for tentativa in 1 2 3 4; do[\s\S]*git pull --rebase origin main[\s\S]*git push origin HEAD:main/, "publicação do lote manual não tenta novamente após concorrência no GitHub", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /name: Sinalizar conferência parcial[\s\S]*RDC_BATCH_PARTIAL_MARKER[\s\S]*exit 1/, "lote parcial ainda aparece como sucesso no GitHub", ".github/workflows/sync-mercadolivre.yml");
 const localizerWorkflow = await readFile(resolve(".github/workflows/localizar-mlb.yml"), "utf8");
 const historyWorkflow = await readFile(resolve(".github/workflows/historico-precos.yml"), "utf8");
 has(localizerWorkflow, /group:\s*rankingdacompra-publicacao/, "localizador MLB não compartilha a trava dos robôs publicadores", ".github/workflows/localizar-mlb.yml");
@@ -391,7 +395,7 @@ has(dashboardHtml, /pendente:\s*tipo\s*===\s*['"]divergente['"]/, "painel ainda 
 has(dashboardHtml, /diagnostico\.tipo\s*===\s*['"]nao_confirmado['"][\s\S]{0,80}verificacoesNaoConcluidas\s*\+=\s*1/, "painel não contabiliza separadamente as consultas inconclusivas", "dashboard.html");
 has(dashboardHtml, /status\?\.itemId\s*\|\|\s*status\?\.catalogId/, "painel ignora o identificador oficial de catálogo", "dashboard.html");
 has(dashboardHtml, /Preços realmente divergentes:[\s\S]{0,220}Verificações não concluídas:/, "resumo de preços ainda mistura divergências com bloqueios temporários", "dashboard.html");
-has(dashboardHtml, /Conferência parcial:[\s\S]{0,220}falha temporária/, "painel não avisa quando o lote termina parcialmente", "dashboard.html");
+has(dashboardHtml, /Conferência parcial:[\s\S]{0,300}bloqueio de acesso do Mercado Livre/, "painel não avisa quando o lote termina parcialmente", "dashboard.html");
 has(dashboardHtml, /\.item-admin\.item-preco\s*\{[^}]*display:\s*grid[^}]*grid-template-columns:\s*24px minmax\(0,\s*1fr\)/, "cartão de preço pode voltar a esmagar o título do produto", "dashboard.html");
 
 const sitemap = await readFile(resolve("sitemap.xml"), "utf8");

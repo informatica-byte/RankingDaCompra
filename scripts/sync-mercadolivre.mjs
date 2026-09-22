@@ -506,6 +506,22 @@ export function shouldRetryBulkOutcome(outcome = {}) {
   );
 }
 
+export function summarizeBatchChecks(entries = []) {
+  const summary = { confirmed: 0, failed: 0, unmanaged: 0, blocked: 0 };
+  for (const [, record] of entries) {
+    if (record.managed !== true) summary.unmanaged++;
+    else if (record.lastError) {
+      summary.failed++;
+      if (/HTTP\s+(?:401|403)\b/i.test(String(record.lastError))) summary.blocked++;
+    } else summary.confirmed++;
+  }
+  summary.complete = summary.failed === 0;
+  summary.reason = summary.complete
+    ? "complete"
+    : summary.blocked > 0 ? "marketplace_access_denied" : "temporary_failures";
+  return summary;
+}
+
 async function requestBulkItems(itemIds, authenticated) {
   // No endpoint /items/bulk, id e status_code pertencem ao envelope e já são
   // devolvidos automaticamente. O filtro aceita somente campos de body.*;
@@ -1416,19 +1432,8 @@ async function main() {
 
   const nextProducts = Object.fromEntries(entries);
   const changed = JSON.stringify(previous.products || {}) !== JSON.stringify(nextProducts);
-  const successfulChecks = entries.reduce(
-    (total, [, record]) => total + (record.managed === true && !record.lastError ? 1 : 0),
-    0,
-  );
-  const failedChecks = entries.reduce(
-    (total, [, record]) => total + (record.managed === true && Boolean(record.lastError) ? 1 : 0),
-    0,
-  );
-  const unmanagedChecks = entries.reduce(
-    (total, [, record]) => total + (record.managed !== true ? 1 : 0),
-    0,
-  );
-  const batchComplete = failedChecks === 0;
+  const checks = summarizeBatchChecks(entries);
+  const batchComplete = checks.complete;
   const payload = {
     version: 1,
     updatedAt: changed ? checkedAt : (previous.updatedAt || checkedAt),
@@ -1436,11 +1441,12 @@ async function main() {
     lastBatchAttemptAt: checkedAt,
     batchSummary: {
       complete: batchComplete,
-      reason: batchComplete ? "complete" : "temporary_failures",
+      reason: checks.reason,
       total: products.length,
-      confirmed: successfulChecks,
-      failed: failedChecks,
-      unmanaged: unmanagedChecks,
+      confirmed: checks.confirmed,
+      failed: checks.failed,
+      unmanaged: checks.unmanaged,
+      blocked: checks.blocked,
       attemptedAt: checkedAt,
     },
     products: nextProducts,
@@ -1468,7 +1474,7 @@ async function main() {
   );
 
   console.log(
-    "Preços efetivamente confirmados nesta execução: " + successfulChecks + ".",
+    "Preços efetivamente confirmados nesta execução: " + checks.confirmed + ".",
   );
   if (!batchComplete) {
     entries
@@ -1478,7 +1484,8 @@ async function main() {
         console.error("Falha em " + productId + ": " + record.lastError);
       });
     console.warn(
-      `Conferência parcial: ${failedChecks} item(ns) gerenciado(s) não foram confirmados. `
+      `Conferência parcial: ${checks.failed} item(ns) gerenciado(s) não foram confirmados; `
+      + `${checks.blocked} bloqueado(s) por autorização ou política do Mercado Livre. `
       + "O relatório será publicado, os preços válidos serão preservados e a execução será sinalizada.",
     );
   }

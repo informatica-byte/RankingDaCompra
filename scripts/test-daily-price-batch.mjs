@@ -43,7 +43,8 @@ test("impede nova leitura integral no mesmo dia", () => {
 
 test("não registra falha temporária como preço confirmado", () => {
   assert.match(sync, /lastError:[\s\S]{0,180}checkedAt:\s*relevantPrevious\.checkedAt\s*\|\|\s*""/);
-  assert.match(sync, /const batchComplete = failedChecks === 0/);
+  assert.match(sync, /const checks = summarizeBatchChecks\(entries\)/);
+  assert.match(sync, /const batchComplete = checks\.complete/);
   assert.match(dashboard, /Conferência parcial:/);
 });
 

@@ -9,6 +9,7 @@ import {
   isMercadoLivreProduct,
   repairLegacyHiddenRecords,
   shouldRetryBulkOutcome,
+  summarizeBatchChecks,
   shouldTrustStoredItemId,
 } from "./sync-mercadolivre.mjs";
 
@@ -57,6 +58,22 @@ test("recupera somente falhas temporarias do endpoint bulk", () => {
   assert.equal(shouldRetryBulkOutcome(limited), true);
   assert.equal(shouldRetryBulkOutcome(forbidden), false);
   assert.equal(shouldRetryBulkOutcome({ item: { id: "MLB1234567890" }, error: null }), false);
+});
+
+test("lote com bloqueio de acesso nunca aparece como conferência completa", () => {
+  const checks = summarizeBatchChecks([
+    ["ok", { managed: true, price: 100 }],
+    ["bloqueado", { managed: true, lastError: "Mercado Livre: HTTP 403 - policy UNAUTHORIZED" }],
+    ["semCodigo", { managed: false }],
+  ]);
+  assert.deepEqual(checks, {
+    confirmed: 1,
+    failed: 1,
+    unmanaged: 1,
+    blocked: 1,
+    complete: false,
+    reason: "marketplace_access_denied",
+  });
 });
 
 test("mantem produtos antigos no lote MLB e ignora produtos Shopee", () => {

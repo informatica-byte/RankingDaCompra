@@ -94,7 +94,11 @@ jobs:
           for tentativa in 1 2 3 4; do
             git pull --rebase origin main
             if git push origin HEAD:main; then
-              echo "Conferência completa publicada com sucesso."
+              if [[ -f "$RDC_BATCH_PARTIAL_MARKER" ]]; then
+                echo "Resultado parcial publicado; a conferência ainda não está completa."
+              else
+                echo "Conferência completa publicada com sucesso."
+              fi
               exit 0
             fi
             echo "::warning::Outra automação publicou ao mesmo tempo; nova tentativa $tentativa de 4."
@@ -108,8 +112,8 @@ jobs:
         shell: bash
         run: |
           if [[ -f "$RDC_BATCH_PARTIAL_MARKER" ]]; then
-           echo "::warning::A conferência foi parcial; o último preço válido foi preservado e os dados confirmados foram publicados."
-           exit 0
+           echo "::error::A conferência foi parcial; o último preço válido foi preservado, mas os produtos com erro ainda precisam de verificação."
+           exit 1
           fi
 
 
