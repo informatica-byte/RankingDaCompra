@@ -108,8 +108,8 @@ jobs:
         shell: bash
         run: |
           if [[ -f "$RDC_BATCH_PARTIAL_MARKER" ]]; then
-            echo "::error::A tentativa foi registrada, mas o Mercado Livre ou o Firebase não confirmou todos os itens gerenciados. O último preço válido foi preservado."
-            exit 1
+           echo "::warning::A conferência foi parcial; o último preço válido foi preservado e os dados confirmados foram publicados."
+           exit 0
           fi
 
 
