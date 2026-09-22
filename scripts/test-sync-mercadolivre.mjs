@@ -8,10 +8,21 @@ import {
   extractItemIdFromUrl,
   isMercadoLivreProduct,
   repairLegacyHiddenRecords,
+  selectPreflightItemIds,
   shouldRetryBulkOutcome,
   summarizeBatchChecks,
   shouldTrustStoredItemId,
 } from "./sync-mercadolivre.mjs";
+
+test("preflight usa somente anúncios antes bloqueados, sem repetir IDs", () => {
+  assert.deepEqual(selectPreflightItemIds({ products: {
+    a: { managed: true, itemId: "MLB1234567890", lastError: "Mercado Livre: HTTP 403" },
+    b: { managed: true, itemId: "MLB1234567890", lastError: "Mercado Livre: HTTP 401" },
+    c: { managed: true, itemId: "MLB2345678901", lastError: "Mercado Livre: HTTP 403" },
+    d: { managed: false, itemId: "MLB3456789012", lastError: "Mercado Livre: HTTP 403" },
+    e: { managed: true, itemId: "MLB4567890123", lastError: "" },
+  } }), ["MLB1234567890", "MLB2345678901"]);
+});
 
 test("solicita somente campos body no filtro oficial do endpoint bulk", () => {
   const attributes = bulkItemAttributes().split(",");

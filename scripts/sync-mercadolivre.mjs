@@ -13,6 +13,7 @@ const BATCH_SKIP_MARKER = String(process.env.RDC_BATCH_SKIP_MARKER || "").trim()
 const BATCH_PARTIAL_MARKER = String(process.env.RDC_BATCH_PARTIAL_MARKER || "").trim();
 const DAILY_BATCH = String(process.env.RDC_DAILY_BATCH || "").toLowerCase() === "true";
 const FORCE_BATCH = String(process.env.RDC_FORCE_BATCH || "").toLowerCase() === "true";
+const PREFLIGHT_ONLY = String(process.env.RDC_ML_PREFLIGHT_ONLY || "").toLowerCase() === "true";
 let accessToken = String(process.env.MERCADO_LIVRE_ACCESS_TOKEN || "").trim();
 const CLIENT_ID = String(process.env.MERCADO_LIVRE_CLIENT_ID || "").trim();
 const CLIENT_SECRET = String(process.env.MERCADO_LIVRE_CLIENT_SECRET || "").trim();
@@ -1198,6 +1199,56 @@ async function readPrevious() {
   }
 }
 
+export function selectPreflightItemIds(previous = {}, limit = 3) {
+  const ids = Object.values(previous.products || {})
+    .filter((record) => record?.managed === true && /HTTP\s+(?:401|403)\b/i.test(String(record.lastError || "")))
+    .map((record) => extractItemIdFromText(record.itemId))
+    .filter(Boolean);
+  return [...new Set(ids)].slice(0, limit);
+}
+
+async function checkMarketplaceAccess(previous) {
+  const ids = selectPreflightItemIds(previous);
+  if (!ids.length) {
+    if (PREFLIGHT_ONLY) throw new Error("Sem item de amostra para testar o acesso do Mercado Livre.");
+    console.log("Sem bloqueios anteriores para testar; seguindo com a conferência.");
+    return;
+  }
+  let confirmed = 0;
+  const failures = [];
+  for (const id of ids) {
+    try {
+      const item = await fetchJson(`https://api.mercadolibre.com/items/${id}`, {
+        maxRetries: 0,
+      });
+      if (extractItemIdFromText(item?.id) === id) confirmed++;
+      else failures.push(`${id}: resposta sem identificação`);
+    } catch (error) {
+      failures.push(`${id}: ${String(error?.message || error)}`);
+    }
+  }
+  if (!confirmed && failures.every((failure) => /HTTP\s+(?:401|403)\b/i.test(failure))) {
+    if (await refreshRejectedAccessToken()) {
+      try {
+        const item = await fetchJson(`https://api.mercadolibre.com/items/${ids[0]}`, {
+          maxRetries: 0,
+        });
+        if (extractItemIdFromText(item?.id) === ids[0]) confirmed++;
+      } catch (error) {
+        failures.push(`Após renovar token: ${String(error?.message || error)}`);
+      }
+    }
+  }
+  if (!confirmed) {
+    throw new Error(
+      "Mercado Livre ainda recusou as consultas de teste; lote interrompido antes de ler o Firebase. "
+      + failures.join(" | "),
+    );
+  }
+  console.log(`Teste de acesso: ${confirmed}/${ids.length} anúncio(s) consultado(s) sem ler o Firebase.`);
+  if (failures.length) console.warn(`Amostras ainda com erro: ${failures.join(" | ")}`);
+}
+
 export function repairLegacyHiddenRecords(previous = {}, repairedAt = new Date().toISOString()) {
   let repaired = 0;
   const products = Object.fromEntries(
@@ -1337,6 +1388,10 @@ async function main() {
   }
 
   let previous = await readPrevious();
+  if (PREFLIGHT_ONLY) {
+    await checkMarketplaceAccess(previous);
+    return;
+  }
   const legacyRepair = repairLegacyHiddenRecords(previous);
   if (legacyRepair.repaired > 0) {
     previous = legacyRepair.payload;
@@ -1350,6 +1405,8 @@ async function main() {
     console.log("Lote diário já concluído hoje; nenhuma leitura do Firebase foi realizada.");
     return;
   }
+
+  await checkMarketplaceAccess(previous);
 
   const checkedAt = new Date().toISOString();
   let products;

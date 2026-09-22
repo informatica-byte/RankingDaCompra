@@ -1,0 +1,34 @@
+name: Testar acesso Mercado Livre sem Firebase
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Baixar a versão atual
+        uses: actions/checkout@v5
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+
+      - name: Validar seleção da amostra
+        run: node --test scripts/test-sync-mercadolivre.mjs
+
+      - name: Consultar até três anúncios sem ler o Firebase
+        env:
+          RDC_ML_PREFLIGHT_ONLY: "true"
+          MERCADO_LIVRE_ACCESS_TOKEN: ${{ secrets.MERCADO_LIVRE_ACCESS_TOKEN }}
+          MERCADO_LIVRE_CLIENT_ID: ${{ secrets.MERCADO_LIVRE_CLIENT_ID }}
+          MERCADO_LIVRE_CLIENT_SECRET: ${{ secrets.MERCADO_LIVRE_CLIENT_SECRET }}
+          MERCADO_LIVRE_TOKEN_KEY: ${{ secrets.MERCADO_LIVRE_TOKEN_KEY }}
+          MERCADO_LIVRE_AUTHORIZATION_CODE: ${{ secrets.MERCADO_LIVRE_AUTHORIZATION_CODE }}
+          MERCADO_LIVRE_REDIRECT_URI: https://rankingdacompra.com.br/oauth-mercadolivre.html
+        run: node scripts/sync-mercadolivre.mjs
