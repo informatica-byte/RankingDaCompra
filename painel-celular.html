@@ -310,6 +310,18 @@
         }
         return "";
       }
+      function campoPrecoFila(produto) {
+        const validade = String(produto.promocaoValidaAte || "").slice(0, 10);
+        const promocaoValida = produto.promocaoAtiva === true
+          && numero(produto.precoAnterior) > numero(produto.precoPromocional)
+          && numero(produto.precoPromocional) > 0
+          && (!validade || validade >= hoje());
+        const relampagoValido = produto.ofertaRelampagoAtiva === true
+          && Date.parse(produto.ofertaRelampagoTerminaEm || "") > Date.now()
+          && numero(produto.precoAnterior) > numero(produto.precoPromocional)
+          && numero(produto.precoPromocional) > 0;
+        return promocaoValida || relampagoValido ? "precoPromocional" : "preco";
+      }
       function dadosFilaPrecosAssistida() {
         const visitas = new Map();
         for (const evento of filaPrecosDados?.metricas || []) {
@@ -354,7 +366,7 @@
         }
         const produto = fila.pendentes.find((item) => item.id === filaPrecosIdAtual) || fila.pendentes[0];
         filaPrecosIdAtual = produto.id;
-        const campo = produto.promocaoAtiva ? "precoPromocional" : "preco";
+        const campo = campoPrecoFila(produto);
         const valorSite = numero(produto[campo]);
         const ultimo = millisPrecoAssistido(produto.precoAtualizadoManualmenteEm);
         const link = linkPrecoAssistido(produto);
@@ -395,11 +407,11 @@
         if (filaPrecosSalvando || !filaPrecosDados) return;
         const produto = filaPrecosDados.todos.find((item) => item.id === filaPrecosIdAtual);
         if (!produto || !linkPrecoAssistido(produto)) return msg("precos-status", "Confira o link do anúncio antes de confirmar.", "erro");
-        const campo = produto.promocaoAtiva ? "precoPromocional" : "preco";
+        const campo = campoPrecoFila(produto);
         const valorAnterior = numero(produto[campo]);
         const valor = novoValor === null ? valorAnterior : numero(novoValor);
         if (!valor) return msg("precos-status", "Informe um preço válido, por exemplo 149,90.", "erro");
-        if (produto.promocaoAtiva && novoValor !== null && valor >= numero(produto.precoAnterior)) {
+        if (campo === "precoPromocional" && novoValor !== null && valor >= numero(produto.precoAnterior)) {
           return msg("precos-status", "O preço visto não é menor que o preço anterior da promoção. Corrija a promoção no painel completo antes de confirmá-la.", "erro");
         }
         const alterou = !valorAnterior || Math.abs(valor - valorAnterior) >= 0.01;
