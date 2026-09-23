@@ -4,7 +4,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: rankingdacompra-publicacao
+  cancel-in-progress: false
 
 jobs:
   testar:
@@ -32,3 +36,26 @@ jobs:
           MERCADO_LIVRE_AUTHORIZATION_CODE: ${{ secrets.MERCADO_LIVRE_AUTHORIZATION_CODE }}
           MERCADO_LIVRE_REDIRECT_URI: https://rankingdacompra.com.br/oauth-mercadolivre.html
         run: node scripts/sync-mercadolivre.mjs
+
+      - name: Preservar a autorização criptografada para o lote
+        if: always()
+        shell: bash
+        run: |
+          if [[ -z "$(git status --porcelain -- .mercadolivre-token.enc)" ]]; then
+            echo "Autorização criptografada sem mudança."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .mercadolivre-token.enc
+          git commit -m "Preserva autorizacao criptografada do teste Mercado Livre"
+          for tentativa in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              echo "Autorização criptografada preservada."
+              exit 0
+            fi
+            sleep $((tentativa * 3))
+          done
+          echo "::error::Não foi possível preservar a autorização criptografada."
+          exit 1
