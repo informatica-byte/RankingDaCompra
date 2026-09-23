@@ -22,12 +22,16 @@ const SITE = "https://rankingdacompra.com.br/";
 
 const SHARE_VERSION = "20260810-1";
 const PRODUCT_SNAPSHOT = String(process.env.RDC_PRODUCTS_SNAPSHOT || "").trim();
+const PARTIAL_GENERATION_MARKER = resolve(".ranking-generation-partial");
 
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 
 const execFileAsync = promisify(execFile);
 
 let partialProductSource = false;
+
+// Cada execução começa limpa; o marcador serve apenas para esta tentativa.
+await rm(PARTIAL_GENERATION_MARKER, { force: true });
 
 
 
@@ -1586,16 +1590,11 @@ if (snapshotProducts) {
 
   console.warn("Produtos: limite temporário do Firebase detectado. " + String(error?.message || error));
 
-  if (process.env.GITHUB_ACTIONS === "true") {
-    allProducts = await listPublishedProducts();
-  } else {
-    try {
-      allProducts = await listPublicOffers();
-    } catch (publicError) {
-      console.warn("Vitrine dinâmica indisponível: " + String(publicError?.message || publicError));
-      allProducts = await listPublishedProducts();
-    }
-  }
+  // A fonte parcial não permite distinguir produtos ausentes dos não lidos.
+  // Não regrave sitemap, páginas, busca ou Top 6 até existir uma lista completa.
+  await writeFile(PARTIAL_GENERATION_MARKER, "Fonte de produtos incompleta; arquivos publicados preservados.\n", "utf8");
+  console.warn("Geração adiada: sitemap, páginas e preços publicados foram preservados sem novas leituras.");
+  process.exit(0);
 
 }
 

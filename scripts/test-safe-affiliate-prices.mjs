@@ -5,6 +5,11 @@ import vm from "node:vm";
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const shared = await readFile(new URL("../growth-tools.js", import.meta.url), "utf8");
 const generator = await readFile(new URL("./generate-sitemap.mjs", import.meta.url), "utf8");
+const workflow = await readFile(new URL("../.github/workflows/update-sitemap.yml", import.meta.url), "utf8");
+assert.match(generator, /writeFile\(PARTIAL_GENERATION_MARKER,[^]*?process\.exit\(0\)/,
+  "falha na fonte de produtos deve preservar os arquivos publicados");
+assert.match(workflow, /if \[\[ -f \.ranking-generation-partial \]\]; then[^]*?exit 0/,
+  "o fluxo não pode reconstruir descoberta ou validar dados parciais");
 const names = ["statusMercadoLivre", "millisConferenciaManual", "precoManualProduto", "fontePrecoSeguro",
   "produtoDisponivel", "precoConfirmadoRecente", "registroPreco", "rotuloPrecoSeguro", "getPrice"];
 const source = names.map(name => {

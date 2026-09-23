@@ -54,6 +54,11 @@ jobs:
             echo "::error::O gerador principal falhou após três tentativas. A publicação foi bloqueada para preservar o site."
             exit 1
           fi
+          if [[ -f .ranking-generation-partial ]]; then
+            echo "::warning::Firebase indisponível: a publicação atual foi preservada; a geração completa será tentada na próxima janela."
+            echo "Firebase indisponível: sitemap, páginas, busca e Top 6 existentes foram preservados." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
           node scripts/product-title-corrections.mjs
           DISCOVERY_USE_GENERATED=true node scripts/generate-discovery.mjs
           node scripts/validate-site.mjs
