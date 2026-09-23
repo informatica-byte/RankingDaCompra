@@ -22,6 +22,7 @@
       .precos-fila-acoes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
       .precos-fila-acoes .btn{margin-top:8px}
       .precos-fila-acoes .largo{grid-column:1/-1}
+      .precos-fila-excluir{background:#fff2f0;color:#9b251b;border:1px solid #e7a49d}
       #precos-mobile details{margin-top:12px;font-size:13px}
       #precos-mobile summary{cursor:pointer;color:#07563f;font-weight:800}
       @media(max-width:480px){.precos-fila-pares{grid-template-columns:1fr}}
@@ -131,7 +132,7 @@
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
       import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
       import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
-      import { getFirestore, collection, getDocs, query, where, limit, orderBy, addDoc, serverTimestamp, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+      import { getFirestore, collection, getDocs, query, where, limit, orderBy, addDoc, serverTimestamp, doc, getDoc, setDoc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
       import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-ai.js";
       const cfg = {
           apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
@@ -370,7 +371,7 @@
         const valorSite = numero(produto[campo]);
         const ultimo = millisPrecoAssistido(produto.precoAtualizadoManualmenteEm);
         const link = linkPrecoAssistido(produto);
-        alvo.innerHTML = '<div class="precos-fila-item"><div class="etapa" id="precos-posicao"></div><h3 id="precos-titulo"></h3><div class="mini" id="precos-ultima"></div><div class="precos-fila-pares"><div><small>Preço registrado no Ranking</small><strong id="precos-valor-site"></strong></div><div><small>Visualizações em 7 dias</small><strong id="precos-visitas"></strong></div></div><a id="precos-abrir" class="precos-fila-link" target="_blank" rel="noopener noreferrer">Abrir anúncio no Mercado Livre ↗</a><p class="mini" id="precos-aviso-link"></p><label for="precos-valor-visto">Preço que você viu no anúncio</label><input id="precos-valor-visto" class="campo" inputmode="decimal" placeholder="Ex.: 149,90" /><div class="precos-fila-acoes"><button id="precos-igual" class="btn verde" type="button">✅ Preço igual</button><button id="precos-novo" class="btn azul" type="button">💾 Salvar novo preço</button><button id="precos-pular" class="btn claro largo" type="button">Deixar este para o fim</button></div></div>';
+        alvo.innerHTML = '<div class="precos-fila-item"><div class="etapa" id="precos-posicao"></div><h3 id="precos-titulo"></h3><div class="mini" id="precos-ultima"></div><div class="precos-fila-pares"><div><small>Preço registrado no Ranking</small><strong id="precos-valor-site"></strong></div><div><small>Visualizações em 7 dias</small><strong id="precos-visitas"></strong></div></div><a id="precos-abrir" class="precos-fila-link" target="_blank" rel="noopener noreferrer">Abrir anúncio no Mercado Livre ↗</a><p class="mini" id="precos-aviso-link"></p><label for="precos-valor-visto">Preço que você viu no anúncio</label><input id="precos-valor-visto" class="campo" inputmode="decimal" placeholder="Ex.: 149,90" /><div class="precos-fila-acoes"><button id="precos-igual" class="btn verde" type="button">✅ Preço igual</button><button id="precos-novo" class="btn azul" type="button">💾 Salvar novo preço</button><button id="precos-pular" class="btn claro largo" type="button">Deixar este para o fim</button><button id="precos-excluir" class="btn precos-fila-excluir largo" type="button">🗑 Excluir produto inexistente</button></div></div>';
         $("precos-posicao").textContent = "Produto " + (feitos + 1) + " de " + fila.todos.length;
         $("precos-titulo").textContent = produto.titulo;
         $("precos-ultima").textContent = ultimo ? "Última conferência manual: " + new Date(ultimo).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }) : "Sem conferência manual registrada.";
@@ -429,6 +430,7 @@
         $("precos-igual").disabled = true;
         $("precos-novo").disabled = true;
         $("precos-pular").disabled = true;
+        $("precos-excluir").disabled = true;
         msg("precos-status", "Salvando conferência...");
         try {
           await updateDoc(doc(db, "produtos", id), campos);
@@ -447,12 +449,45 @@
           filaPrecosSalvando = false;
         }
       }
+      async function excluirProdutoFilaPrecosAssistida() {
+        if (filaPrecosSalvando || !filaPrecosDados) return;
+        const produto = filaPrecosDados.todos.find((item) => item.id === filaPrecosIdAtual);
+        if (!produto) return;
+        const id = produto.id;
+        const confirmado = confirm(
+          "Excluir definitivamente \"" + produto.titulo + "\"?\n\n" +
+          "Use apenas se o anúncio não existir mais. O cadastro será apagado do Firebase; a página pública pode permanecer até uma geração do site com dados completos. Esta ação não pode ser desfeita."
+        );
+        if (!confirmado) return;
+        filaPrecosSalvando = true;
+        for (const botaoId of ["precos-igual", "precos-novo", "precos-pular", "precos-excluir"]) {
+          const botao = $(botaoId);
+          if (botao) botao.disabled = true;
+        }
+        msg("precos-status", "Excluindo produto...");
+        try {
+          await deleteDoc(doc(db, "produtos", id));
+          filaPrecosDados.todos = filaPrecosDados.todos.filter((item) => item.id !== id);
+          filaPrecosDados.produtos = filaPrecosDados.produtos.filter((item) => item.id !== id);
+          filaPrecosPulados.delete(id);
+          filaPrecosConferidos.delete(id);
+          filaPrecosIdAtual = "";
+          renderizarFilaPrecosAssistida();
+          msg("precos-status", "Produto excluído do cadastro. A página pública será atualizada quando a geração usar dados completos. Próximo item pronto.", "ok");
+        } catch (erro) {
+          renderizarFilaPrecosAssistida();
+          msg("precos-status", "Não foi possível excluir: " + String(erro?.message || erro), "erro");
+        } finally {
+          filaPrecosSalvando = false;
+        }
+      }
       $("precos-iniciar").addEventListener("click", carregarFilaPrecosAssistida);
       $("precos-item").addEventListener("click", (evento) => {
         if (filaPrecosSalvando) return;
         const id = evento.target?.id || "";
         if (id === "precos-igual") void salvarFilaPrecoAssistida(null);
         if (id === "precos-novo") void salvarFilaPrecoAssistida($("precos-valor-visto")?.value);
+        if (id === "precos-excluir") void excluirProdutoFilaPrecosAssistida();
         if (id === "precos-pular") {
           filaPrecosPulados.add(filaPrecosIdAtual);
           filaPrecosIdAtual = "";
