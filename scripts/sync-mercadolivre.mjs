@@ -1240,6 +1240,18 @@ async function checkMarketplaceAccess(previous) {
     }
   }
   if (!confirmed) {
+    try {
+      const item = await fetchJson(`https://api.mercadolibre.com/items/${ids[0]}`, {
+        authenticated: false,
+        maxRetries: 0,
+      });
+      if (extractItemIdFromText(item?.id) === ids[0]) confirmed++;
+      else failures.push("Consulta pública: resposta sem identificação");
+    } catch (error) {
+      failures.push(`Consulta pública: ${String(error?.message || error)}`);
+    }
+  }
+  if (!confirmed) {
     throw new Error(
       "Mercado Livre ainda recusou as consultas de teste; lote interrompido antes de ler o Firebase. "
       + failures.join(" | "),
