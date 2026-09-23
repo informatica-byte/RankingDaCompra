@@ -720,7 +720,9 @@ for (const category of categories) {
   const categoryName = categoryNames.get(category.id) || category.id;
   const fileName = guideFileName(category.id, categoryName);
   const categoryProducts = productsByCategory.get(category.id) || [];
-  const guide = applyCategorySearchIntent(renderCategoryGuide(category.id, categoryName, categoryProducts, productUrls, lastModified), category.id, categoryName, categoryProducts.length);
+  const rawGuide = renderCategoryGuide(category.id, categoryName, categoryProducts, productUrls, lastModified);
+  const guide = rawGuide.includes("data-price-unconfirmed-guide")
+    ? rawGuide : applyCategorySearchIntent(rawGuide, category.id, categoryName, categoryProducts.length);
   if (!guide) continue;
   await writeFile(resolve(fileName), guide, "utf8");
   guidePages.push(fileName);
