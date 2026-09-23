@@ -1,33 +1,33 @@
 {
-  "atualizadoEm": "2026-09-23T15:12:11.910Z",
+  "atualizadoEm": "2026-09-23T19:14:37.993Z",
   "resultados": {
     "VWlvGgAhsS7BqCACHaD9": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=d22e16f9-b06d-422b-9408-25739e882070&position=28&tracking_id=4ab19818-e088-4943-b7d9-b977f9cd346d&wid=MLB4129672747&sid=offers",
-      "resolvidoEm": "2026-09-23T15:12:11.909Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-23T19:14:37.992Z",
+      "tentativas": 2
     },
     "FLEl2O9K4b5IPt2OrAaP": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780",
-      "resolvidoEm": "2026-09-23T15:11:54.270Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-23T19:14:20.360Z",
+      "tentativas": 2
     },
     "QdgnKHawPOarSXnIJOXP": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780",
-      "resolvidoEm": "2026-09-23T15:11:37.094Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-09-23T19:14:02.466Z",
+      "tentativas": 3
     },
     "eFR2zU4OwW0I6r1KoOpH": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780",
-      "resolvidoEm": "2026-09-23T15:11:20.104Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-09-23T19:13:45.205Z",
+      "tentativas": 3
     },
     "1GnaAktk9hKe7HmQVQ1Q": {
       "status": "erro",
