@@ -438,7 +438,7 @@ function renderUnpricedCategoryGuide(categoryId, categoryName, categoryProducts,
 }
 
 function renderCategoryGuide(categoryId, categoryName, categoryProducts, productUrls, lastModified) {
-  if (!categoryProducts.length) return "";
+  if (categoryProducts.length < 3) return "";
   const pricedProducts = categoryProducts.filter((product) => numberPrice(product.precoPromocional || product.preco) > 0);
   if (pricedProducts.length < 3) return renderUnpricedCategoryGuide(categoryId, categoryName, categoryProducts, productUrls, lastModified);
   categoryProducts = pricedProducts;
@@ -572,7 +572,7 @@ function renderDirectoryPage(categories, productsByCategory, productUrls, catego
     ],
   }).replace(/</g, "\\u003c");
   const navigation = groups.map((group) => `<a href="#${escapeHtml(slug(group.id))}">${escapeHtml(group.name)} <span>${group.products.length}</span></a>`).join("");
-  const sections = groups.map((group) => `<section id="${escapeHtml(slug(group.id))}"><div class="section-head"><div><span class="eyebrow">Categoria</span><h2>${escapeHtml(group.name)}</h2>${group.products.length ? `<a class="read" href="${SITE}${guideFileName(group.id)}">Ver o comparativo desta categoria →</a>` : ""}</div><a href="#top">Voltar ao topo ↑</a></div><div class="products">${group.products.map((product) => {
+  const sections = groups.map((group) => `<section id="${escapeHtml(slug(group.id))}"><div class="section-head"><div><span class="eyebrow">Categoria</span><h2>${escapeHtml(group.name)}</h2>${group.products.length >= 3 ? `<a class="read" href="${SITE}${guideFileName(group.id)}">Ver o comparativo desta categoria →</a>` : ""}</div><a href="#top">Voltar ao topo ↑</a></div><div class="products">${group.products.map((product) => {
     const summary = String(product.comentario || "").replace(/\s+/g, " ").trim();
     const badge = promotionIsValid(product) ? '<span class="deal">Oferta do dia</span>' : "";
     return `<article><h3><a href="${escapeHtml(productUrls.get(product.id))}">${escapeHtml(product.titulo)}</a></h3><p>${escapeHtml(summary.slice(0, 190))}${summary.length > 190 ? "…" : ""}</p><div>${badge}<a class="read" href="${escapeHtml(productUrls.get(product.id))}">Ver preço, prós e contras →</a></div></article>`;
