@@ -535,7 +535,7 @@ function renderDirectoryPage(categories, productsByCategory, productUrls, catego
     "@type": "ListItem", position: index + 1, url: productUrls.get(product.id), name: product.titulo,
   }));
   const directoryTitle = "Análises de produtos, preços e ofertas | Ranking da Compra";
-  const directoryDescription = `Compare ${itemList.length} análises de produtos por categoria, com preço informado, pontos positivos, limitações e links para conferir a oferta atual.`;
+  const directoryDescription = `Compare ${itemList.length} análises de produtos por categoria, com preço confirmado quando disponível, pontos positivos, limitações e links para conferir a oferta atual.`;
   const structuredData = JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
@@ -544,7 +544,7 @@ function renderDirectoryPage(categories, productsByCategory, productUrls, catego
     ],
   }).replace(/</g, "\\u003c");
   const navigation = groups.map((group) => `<a href="#${escapeHtml(slug(group.id))}">${escapeHtml(group.name)} <span>${group.products.length}</span></a>`).join("");
-  const sections = groups.map((group) => `<section id="${escapeHtml(slug(group.id))}"><div class="section-head"><div><span class="eyebrow">Categoria</span><h2>${escapeHtml(group.name)}</h2>${group.products.length >= 3 ? `<a class="read" href="${SITE}${guideFileName(group.id)}">Ver o comparativo desta categoria →</a>` : ""}</div><a href="#top">Voltar ao topo ↑</a></div><div class="products">${group.products.map((product) => {
+  const sections = groups.map((group) => `<section id="${escapeHtml(slug(group.id))}"><div class="section-head"><div><span class="eyebrow">Categoria</span><h2>${escapeHtml(group.name)}</h2>${group.products.filter((product) => numberPrice(product.precoPromocional || product.preco) > 0).length >= 3 ? `<a class="read" href="${SITE}${guideFileName(group.id)}">Ver o comparativo desta categoria →</a>` : ""}</div><a href="#top">Voltar ao topo ↑</a></div><div class="products">${group.products.map((product) => {
     const summary = String(product.comentario || "").replace(/\s+/g, " ").trim();
     const badge = promotionIsValid(product) ? '<span class="deal">Oferta do dia</span>' : "";
     return `<article><h3><a href="${escapeHtml(productUrls.get(product.id))}">${escapeHtml(product.titulo)}</a></h3><p>${escapeHtml(summary.slice(0, 190))}${summary.length > 190 ? "…" : ""}</p><div>${badge}<a class="read" href="${escapeHtml(productUrls.get(product.id))}">Ver preço, prós e contras →</a></div></article>`;
@@ -646,7 +646,7 @@ function buildSearchIndex(categories, products, productUrls, categoryNames, last
     summary: String(product.comentario || "").replace(/\s+/g, " ").trim(),
     category: categoryNames.get(product.categoria) || product.categoria || "Produtos",
     image: firstUrl(product.foto),
-    price: numberPrice(product.precoPromocional || product.preco),
+    price: numberPrice(product.precoPromocional || product.preco) || null,
     rating: Number(product.nota) || 0,
     ranking: 0,
     url: productUrls.get(product.id),
@@ -657,7 +657,6 @@ function buildSearchIndex(categories, products, productUrls, categoryNames, last
 const [allCategories, allProducts, marketplaceProducts] = await loadData();
 const candidateProducts = allProducts.map(correctProductData)
   .filter(editorialProduct)
-  .filter((product) => numberPrice(product.precoPromocional || product.preco) > 0)
   .filter((product) => marketplaceProducts[product.id]?.visible !== false)
   .sort(sortProducts);
 let sitemapXml = await readFile(resolve("sitemap.xml"), "utf8");
@@ -692,7 +691,8 @@ const guidePages = [];
 for (const category of categories) {
   const categoryName = categoryNames.get(category.id) || category.id;
   const fileName = guideFileName(category.id, categoryName);
-  const categoryProducts = productsByCategory.get(category.id) || [];
+  const categoryProducts = (productsByCategory.get(category.id) || [])
+    .filter((product) => numberPrice(product.precoPromocional || product.preco) > 0);
   const guide = applyCategorySearchIntent(renderCategoryGuide(category.id, categoryName, categoryProducts, productUrls, lastModified), category.id, categoryName, categoryProducts.length);
   if (!guide) continue;
   await writeFile(resolve(fileName), guide, "utf8");
