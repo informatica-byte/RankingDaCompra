@@ -208,18 +208,29 @@
     } catch (error) {
       console.warn("Conferência de preço indisponível; link de indicação preservado.", error);
     }
-    const checkedAt = Date.parse(status?.checkedAt || "");
-    const recent = Number.isFinite(checkedAt) && Date.now() - checkedAt >= 0
-      && Date.now() - checkedAt <= 24 * 60 * 60 * 1000;
-    const confirmed = recent && status?.managed === true && status?.status === "active"
+    const apiCheckedAt = Date.parse(status?.checkedAt || "");
+    const apiRecent = Number.isFinite(apiCheckedAt) && Date.now() - apiCheckedAt >= 0
+      && Date.now() - apiCheckedAt <= 24 * 60 * 60 * 1000;
+    const apiConfirmed = apiRecent && status?.managed === true && status?.status === "active"
       && status?.available === true && Number(status?.price) > 0;
-    const dated = Number.isFinite(checkedAt) ? dateBr.format(checkedAt) : "";
+    const manualPrice = Number(document.querySelector('meta[name="rdc-manual-price"]')?.content);
+    const manualCheckedAt = Date.parse(document.querySelector('meta[name="rdc-manual-checked-at"]')?.content || "");
+    const manualRecent = Number.isFinite(manualCheckedAt) && Date.now() - manualCheckedAt >= 0
+      && Date.now() - manualCheckedAt <= 24 * 60 * 60 * 1000;
+    const manualConfirmed = manualRecent && manualPrice > 0;
+    const useManual = manualConfirmed && (!apiConfirmed || manualCheckedAt >= apiCheckedAt);
+    const confirmed = apiConfirmed || manualConfirmed;
+    const confirmedPrice = useManual ? manualPrice : Number(status?.price);
+    const confirmedAt = useManual ? manualCheckedAt : apiCheckedAt;
     const previous = document.querySelector(".offer .previous");
     if (previous && !confirmed) previous.hidden = true;
     if (confirmed) {
-      price.textContent = `Preço conferido em ${dated}: ${brl.format(Number(status.price))}`;
-    } else if (dated && Number(status?.price) > 0) {
-      price.textContent = `Último preço registrado em ${dated}: ${brl.format(Number(status.price))}`;
+      price.textContent = `Preço conferido em ${dateBr.format(confirmedAt)}: ${brl.format(confirmedPrice)}`;
+    } else if (Number.isFinite(manualCheckedAt) && manualPrice > 0
+      && (!Number.isFinite(apiCheckedAt) || manualCheckedAt >= apiCheckedAt)) {
+      price.textContent = `Último preço registrado em ${dateBr.format(manualCheckedAt)}: ${brl.format(manualPrice)}`;
+    } else if (Number.isFinite(apiCheckedAt) && Number(status?.price) > 0) {
+      price.textContent = `Último preço registrado em ${dateBr.format(apiCheckedAt)}: ${brl.format(Number(status.price))}`;
     } else {
       price.textContent = "Preço a confirmar no vendedor";
     }
