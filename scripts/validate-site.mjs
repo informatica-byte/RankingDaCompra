@@ -491,10 +491,16 @@ if (guideFiles.length < 1) fail("comparativos automáticos: nenhuma página foi 
 for (const file of guideFiles) {
   const html = await readFile(resolve(file), "utf8");
   has(html, new RegExp(`<link rel="canonical" href="${SITE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}${file.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}">`), "endereço canônico incorreto", file);
-  has(html, /🏆 Melhor geral/, "destaque de melhor geral ausente", file);
-  has(html, /💚 Melhor custo-benefício/, "destaque de custo-benefício ausente", file);
-  has(html, /💰 Mais barato/, "destaque de menor preço ausente", file);
-  has(html, /Por que está nesta posição:/, "justificativa de posição ausente", file);
+  if (html.includes("data-price-unconfirmed-guide")) {
+    has(html, /Preços a confirmar:/, "aviso de preços não confirmados ausente", file);
+    has(html, /ordem alfabética, sem ranking de preço/, "ordem do comparativo sem preço não foi explicada", file);
+    if (/R\$\s*0(?:[,.]00)?/.test(html)) fail(file + ": preço zero exibido ao visitante");
+  } else {
+    has(html, /🏆 Melhor geral/, "destaque de melhor geral ausente", file);
+    has(html, /💚 Melhor custo-benefício/, "destaque de custo-benefício ausente", file);
+    has(html, /💰 Mais barato/, "destaque de menor preço ausente", file);
+    has(html, /Por que está nesta posição:/, "justificativa de posição ausente", file);
+  }
   has(html, /Não é a melhor escolha para:/, "limitação prática ausente", file);
   has(html, /<table>/, "tabela de comparação rápida ausente", file);
   has(html, /<h2>Como classificamos<\/h2>/, "metodologia resumida ausente", file);

@@ -412,8 +412,36 @@ function categoryScore(product, minimumPrice, maximumPrice) {
   return { total: priceScore + ratingScore + evidenceScore + Math.min(technicalFacts * 3, 15), priceScore, ratingScore, evidenceScore, technicalFacts };
 }
 
+function renderUnpricedCategoryGuide(categoryId, categoryName, categoryProducts, productUrls, lastModified) {
+  const fileName = guideFileName(categoryId);
+  const title = `Compare ${categoryName}: análises e características | Ranking da Compra`;
+  const description = `Compare análises de ${categoryName} por características e limitações. Os preços ainda precisam ser confirmados diretamente nos vendedores.`;
+  const rows = [...categoryProducts].sort((a, b) => String(a.titulo || "").localeCompare(String(b.titulo || ""), "pt-BR"))
+    .map((product) => {
+      const positive = editorialItems(product.pros)[0] || "Confira as características na análise";
+      const attention = editorialItems(product.contras)[0] || "Confirme os detalhes no anúncio";
+      const url = escapeHtml(productUrls.get(product.id) || "#");
+      return `<tr><th scope="row"><a href="${url}">${escapeHtml(product.titulo)}</a></th><td>${escapeHtml(positive)}</td><td>${escapeHtml(attention)}</td><td>Preço a confirmar</td></tr>`;
+    }).join("");
+  return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-image-preview:large"><title>${escapeHtml(title)}</title>
+<meta name="description" content="${escapeHtml(description)}"><link rel="canonical" href="${SITE}${fileName}">
+<meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}">
+<meta property="og:url" content="${SITE}${fileName}">
+<style>body{font:16px/1.6 system-ui,sans-serif;color:#16312a;background:#f6faf8;margin:0}main{max-width:1040px;margin:auto;padding:24px}a{color:#075b49}h1{line-height:1.2}p{max-width:75ch}.notice{background:#fff8e4;border:1px solid #d6aa49;padding:14px;border-radius:10px}.table-wrap{overflow-x:auto;background:white;border:1px solid #d8e5de;border-radius:12px}table{border-collapse:collapse;width:100%;min-width:720px}th,td{text-align:left;padding:12px;border-bottom:1px solid #e3ece7;vertical-align:top}th{width:25%}tr:last-child th,tr:last-child td{border-bottom:0}</style>
+</head><body><main data-price-unconfirmed-guide><p><a href="${SITE}">← Ranking da Compra</a></p>
+<h1>${escapeHtml(title.replace(" | Ranking da Compra", ""))}</h1><p>${escapeHtml(description)}</p>
+<p class="notice"><strong>Preços a confirmar:</strong> não há preços recentes suficientes para classificar o mais barato ou o melhor custo-benefício com segurança. Confira preço, frete e estoque no vendedor antes de comprar.</p>
+<div class="table-wrap"><table><thead><tr><th>Produto e análise</th><th>Ponto a avaliar</th><th>Não é a melhor escolha para:</th><th>Preço</th></tr></thead><tbody>${rows}</tbody></table></div>
+<h2>Como classificamos</h2><p>Esta lista está em ordem alfabética, sem ranking de preço. As características vêm das análises publicadas; atualizaremos a classificação quando houver preços confirmados suficientes.</p>
+<p>Atualizado em ${escapeHtml(lastModified)}. <a href="${SITE}como-avaliamos.html">Leia nossa metodologia</a>.</p></main></body></html>`;
+}
+
 function renderCategoryGuide(categoryId, categoryName, categoryProducts, productUrls, lastModified) {
-  if (categoryProducts.length < 3) return "";
+  if (!categoryProducts.length) return "";
+  const pricedProducts = categoryProducts.filter((product) => numberPrice(product.precoPromocional || product.preco) > 0);
+  if (pricedProducts.length < 3) return renderUnpricedCategoryGuide(categoryId, categoryName, categoryProducts, productUrls, lastModified);
+  categoryProducts = pricedProducts;
   if (slug(categoryId).includes("patinete")) return renderScooterGuide(categoryProducts, productUrls, lastModified);
   const prices = categoryProducts.map((product) => numberPrice(product.precoPromocional || product.preco)).filter(Boolean);
   const minimumPrice = Math.min(...prices);
@@ -544,7 +572,7 @@ function renderDirectoryPage(categories, productsByCategory, productUrls, catego
     ],
   }).replace(/</g, "\\u003c");
   const navigation = groups.map((group) => `<a href="#${escapeHtml(slug(group.id))}">${escapeHtml(group.name)} <span>${group.products.length}</span></a>`).join("");
-  const sections = groups.map((group) => `<section id="${escapeHtml(slug(group.id))}"><div class="section-head"><div><span class="eyebrow">Categoria</span><h2>${escapeHtml(group.name)}</h2>${group.products.filter((product) => numberPrice(product.precoPromocional || product.preco) > 0).length >= 3 ? `<a class="read" href="${SITE}${guideFileName(group.id)}">Ver o comparativo desta categoria →</a>` : ""}</div><a href="#top">Voltar ao topo ↑</a></div><div class="products">${group.products.map((product) => {
+  const sections = groups.map((group) => `<section id="${escapeHtml(slug(group.id))}"><div class="section-head"><div><span class="eyebrow">Categoria</span><h2>${escapeHtml(group.name)}</h2>${group.products.length ? `<a class="read" href="${SITE}${guideFileName(group.id)}">Ver o comparativo desta categoria →</a>` : ""}</div><a href="#top">Voltar ao topo ↑</a></div><div class="products">${group.products.map((product) => {
     const summary = String(product.comentario || "").replace(/\s+/g, " ").trim();
     const badge = promotionIsValid(product) ? '<span class="deal">Oferta do dia</span>' : "";
     return `<article><h3><a href="${escapeHtml(productUrls.get(product.id))}">${escapeHtml(product.titulo)}</a></h3><p>${escapeHtml(summary.slice(0, 190))}${summary.length > 190 ? "…" : ""}</p><div>${badge}<a class="read" href="${escapeHtml(productUrls.get(product.id))}">Ver preço, prós e contras →</a></div></article>`;
@@ -691,8 +719,7 @@ const guidePages = [];
 for (const category of categories) {
   const categoryName = categoryNames.get(category.id) || category.id;
   const fileName = guideFileName(category.id, categoryName);
-  const categoryProducts = (productsByCategory.get(category.id) || [])
-    .filter((product) => numberPrice(product.precoPromocional || product.preco) > 0);
+  const categoryProducts = productsByCategory.get(category.id) || [];
   const guide = applyCategorySearchIntent(renderCategoryGuide(category.id, categoryName, categoryProducts, productUrls, lastModified), category.id, categoryName, categoryProducts.length);
   if (!guide) continue;
   await writeFile(resolve(fileName), guide, "utf8");
