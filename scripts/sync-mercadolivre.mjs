@@ -1207,28 +1207,68 @@ export function selectPreflightItemIds(previous = {}, limit = 3) {
   return [...new Set(ids)].slice(0, limit);
 }
 
+export function canProceedWithPriceBatch({ item = false, bulk = false, salePrice = false } = {}) {
+  return salePrice && (item || bulk);
+}
+
+async function diagnoseMarketplaceAccess(previous) {
+  const [id] = selectPreflightItemIds(previous, 1);
+  if (!id) throw new Error("Sem item de amostra para testar o acesso do Mercado Livre.");
+
+  try {
+    await fetchJson("https://api.mercadolibre.com/users/me", { maxRetries: 0 });
+  } catch (error) {
+    if (![401, 403].includes(error?.httpStatus) || !await refreshRejectedAccessToken()) {
+      throw new Error(`Teste de identidade recusado: ${String(error?.message || error)}`);
+    }
+    await fetchJson("https://api.mercadolibre.com/users/me", { maxRetries: 0 });
+  }
+  console.log("Conta autorizada: OK. Testando um anúncio sem ler o Firebase.");
+
+  const routes = {
+    item: {
+      url: `https://api.mercadolibre.com/items/${id}`,
+      valid: (payload) => extractItemIdFromText(payload?.id) === id,
+    },
+    bulk: {
+      url: `https://api.mercadolibre.com/items/bulk?ids=${encodeURIComponent(id)}`
+        + "&attributes=body.id,body.status,body.available_quantity",
+      valid: (payload) => Array.isArray(payload)
+        && extractItemIdFromText(bulkItemFromEntry(payload[0])?.item?.id) === id,
+    },
+    salePrice: {
+      url: `https://api.mercadolibre.com/items/${id}/sale_price?context=channel_marketplace`,
+      valid: (payload) => Number.isFinite(Number(payload?.amount))
+        && Number(payload.amount) > 0
+        && String(payload?.currency_id || "").toUpperCase() === "BRL",
+    },
+  };
+  const results = {};
+  for (const [name, route] of Object.entries(routes)) {
+    try {
+      const payload = await fetchJson(route.url, { maxRetries: 0 });
+      results[name] = route.valid(payload);
+      console.log(`${name}: ${results[name] ? "OK" : "resposta sem os dados esperados"}`);
+    } catch (error) {
+      results[name] = false;
+      console.log(`${name}: HTTP ${error?.httpStatus || "indisponível"}`);
+    }
+  }
+  if (!canProceedWithPriceBatch(results)) {
+    throw new Error(
+      "Diagnóstico incompleto: preço e disponibilidade não foram confirmados "
+      + "pelas rotas oficiais. Lote preservado; nenhuma leitura do Firebase.",
+    );
+  }
+  console.log("Preço e anúncio acessíveis no teste. Nenhum produto foi atualizado.");
+}
+
 async function checkMarketplaceAccess(previous) {
   const ids = selectPreflightItemIds(previous);
   if (!ids.length) {
     if (PREFLIGHT_ONLY) throw new Error("Sem item de amostra para testar o acesso do Mercado Livre.");
     console.log("Sem bloqueios anteriores para testar; seguindo com a conferência.");
     return;
-  }
-  if (PREFLIGHT_ONLY) {
-    try {
-      await fetchJson("https://api.mercadolibre.com/users/me", { maxRetries: 0 });
-      console.log("A conta autorizada respondeu à consulta de identidade.");
-    } catch (error) {
-      if (![401, 403].includes(error?.httpStatus) || !await refreshRejectedAccessToken()) {
-        throw new Error(`Teste de identidade recusado antes de consultar anúncios: ${String(error?.message || error)}`);
-      }
-      try {
-        await fetchJson("https://api.mercadolibre.com/users/me", { maxRetries: 0 });
-        console.log("A conta autorizada respondeu após renovar a sessão.");
-      } catch (retryError) {
-        throw new Error(`Teste de identidade recusado também após renovar a sessão: ${String(retryError?.message || retryError)}`);
-      }
-    }
   }
   let confirmed = 0;
   const failures = [];
@@ -1417,7 +1457,7 @@ async function main() {
 
   let previous = await readPrevious();
   if (PREFLIGHT_ONLY) {
-    await checkMarketplaceAccess(previous);
+    await diagnoseMarketplaceAccess(previous);
     return;
   }
   const legacyRepair = repairLegacyHiddenRecords(previous);
