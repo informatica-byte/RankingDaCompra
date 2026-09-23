@@ -1,26 +1,33 @@
 {
-  "atualizadoEm": "2026-09-23T10:33:50.391Z",
+  "atualizadoEm": "2026-09-23T10:37:51.746Z",
   "resultados": {
+    "1GnaAktk9hKe7HmQVQ1Q": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780",
+      "resolvidoEm": "2026-09-23T10:37:51.745Z",
+      "tentativas": 1
+    },
     "smAA64S5FCXqyfaEwip7": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780",
-      "resolvidoEm": "2026-09-23T10:33:50.390Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-23T10:37:34.615Z",
+      "tentativas": 2
     },
     "0IXazyyEnIWTy7W0Wt1A": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=d22e16f9-b06d-422b-9408-25739e882070&position=28&tracking_id=4ab19818-e088-4943-b7d9-b977f9cd346d&wid=MLB4129672747&sid=offers",
-      "resolvidoEm": "2026-09-23T10:33:33.390Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-23T10:37:17.587Z",
+      "tentativas": 2
     },
     "rJ7fhWT8lceJQajBfp0v": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=d22e16f9-b06d-422b-9408-25739e882070&position=28&tracking_id=4ab19818-e088-4943-b7d9-b977f9cd346d&wid=MLB4129672747&sid=offers",
-      "resolvidoEm": "2026-09-23T10:33:15.693Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-09-23T10:36:59.758Z",
+      "tentativas": 3
     },
     "RLh3u3uhB0F5hPSZmu6y": {
       "status": "erro",
@@ -6402,32 +6409,6 @@
       "contras": "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
       "linkOriginal": "https://www.mercadolivre.com.br/up/MLBU4705149870?pdp_filters=item_id:MLB5044931195#origin=share&sid=share&wid=MLB5044931195&action=copy",
       "resolvidoEm": "2026-08-25T11:00:10.449Z"
-    },
-    "Qwlp2Q3wtyJRrzUBlejg": {
-      "status": "ok",
-      "mlb": "MLB4620567101",
-      "urlProduto": "https://www.mercadolivre.com.br/smartphone-samsung-galaxy-a17-5g-128gb-4gb-super-amoled-67-camera-50mp-selfie-13-mp-5000-mah-nfc-dual-sim-recursos-ia-preto/p/MLB55027309",
-      "titulo": "Smartphone Samsung Galaxy A17 5G 128GB 4GB Super Amoled 6.7'' Câmera 50MP Selfie 13 MP 5000 mAh NFC Dual Sim Recursos IA - Preto",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_755351-MLA99597188918_122025-O.webp",
-      "precoAtual": 974.9,
-      "precoAnterior": 1855.71,
-      "dadosTecnicos": [
-        "Dispositivo desbloqueado para que você escolha a companhia telefônica de sua preferência.",
-        "Compatível com redes 5G.",
-        "Tela Super AMOLED de 6.7\".",
-        "Câmera traseira de 50Mpx.",
-        "Câmeras frontais de 13Mpx.",
-        "Memória interna de 128GB.",
-        "Resistente à água.",
-        "Com sensor de impressão digital.",
-        "Resistente à poeira.",
-        "Marca: Samsung"
-      ],
-      "comentario": "Smartphone Samsung Galaxy A17 5G 128GB 4GB Super Amoled 6.7'' Câmera 50MP Selfie 13 MP 5000 mAh NFC Dual Sim Recursos IA - Preto. Dispositivo desbloqueado para que você escolha a companhia telefônica de sua preferência.; Compatível com redes 5G.; Tela Super AMOLED de 6.7\".; Câmera traseira de 50Mpx.; Câmeras frontais de 13Mpx.; Memória interna de 128GB.. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Características reais do anúncio: Dispositivo desbloqueado para que você escolha a companhia telefônica de sua preferência.; Compatível com redes 5G.; Tela Super AMOLED de 6.7\".; Câmera traseira de 50Mpx..",
-      "contras": "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
-      "linkOriginal": "https://www.mercadolivre.com.br/p/MLB55027309?pdp_filters=item_id:MLB4620567101#origin=share&sid=share&wid=MLB4620567101&action=copy",
-      "resolvidoEm": "2026-08-25T10:27:40.655Z"
     }
   }
 }
