@@ -1,19 +1,26 @@
 {
-  "atualizadoEm": "2026-09-23T10:16:29.090Z",
+  "atualizadoEm": "2026-09-23T10:22:58.287Z",
   "resultados": {
+    "RLh3u3uhB0F5hPSZmu6y": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=d22e16f9-b06d-422b-9408-25739e882070&position=28&tracking_id=4ab19818-e088-4943-b7d9-b977f9cd346d&wid=MLB4129672747&sid=offers",
+      "resolvidoEm": "2026-09-23T10:22:58.286Z",
+      "tentativas": 1
+    },
     "ZHqllDfy81bpui8hnn3p": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=d22e16f9-b06d-422b-9408-25739e882070&position=28&tracking_id=4ab19818-e088-4943-b7d9-b977f9cd346d&wid=MLB4129672747&sid=offers",
-      "resolvidoEm": "2026-09-23T10:16:29.089Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-23T10:22:40.157Z",
+      "tentativas": 2
     },
     "1QELWkkmpCsVTkHkimpQ": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=d22e16f9-b06d-422b-9408-25739e882070&position=28&tracking_id=4ab19818-e088-4943-b7d9-b977f9cd346d&wid=MLB4129672747&sid=offers",
-      "resolvidoEm": "2026-09-23T10:16:11.128Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-09-23T10:22:22.372Z",
+      "tentativas": 3
     },
     "eYuUm92LDTCjzH7anUhI": {
       "status": "ok",
@@ -6477,32 +6484,6 @@
       "contras": "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-arno-mini-me-preta/p/MLB15154780?pdp_filters=item_id%3AMLB4129672747&matt_tool=38524122&ua=XSbbR0J9Ozsj4rBFCPE2M6-L7Qq6MVkoiWvFx-cdaKk9x58#origin=share&sid=share&wid=MLB4129672747&action=copy",
       "resolvidoEm": "2026-08-24T16:51:04.639Z"
-    },
-    "unrUhNgpZrIBaB4mWEA4": {
-      "status": "ok",
-      "mlb": "MLB5048226831",
-      "urlProduto": "https://www.mercadolivre.com.br/massageador-pescoco-maozinha-3d-recarregavel-eletrico-com-aquecimento-massagem-relaxante-liberacao-alivio-muscular-ombro-cervical-lombar-costas-tensao-dores-portatil-sem-fio-ajustavel-kateluo/p/MLB77168687",
-      "titulo": "Massageador Pescoço Mãozinha 3D Recarregável Elétrico Com Aquecimento Massagem Relaxante Liberação Alivio Muscular Ombro Cervical Lombar Costas Tensão Dores Portátil Sem Fio Ajustável Kateluo",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_931668-MLA114750899776_082026-O.webp",
-      "precoAtual": 94.17,
-      "precoAnterior": 219,
-      "dadosTecnicos": [
-        "Voltagem: 127/220V.",
-        "Bateria recarregável de 2000mAh permite o uso sem fios em diferentes locais durante as sessões de massagem.",
-        "Tecnologia 3D com massagem Shiatsu e movimento bidirecional que simula o toque das mãos em diversas partes do corpo.",
-        "Sistema de terapia de calor infravermelho com 2 níveis de intensidade para aplicação durante o uso do aparelho.",
-        "Alça ajustável de até 130 cm que fixa o massageador ao corpo permitindo a utilização sem auxílio das mãos.",
-        "Temporizador integrado com desligamento automático que interrompe o funcionamento após 10 minutos de uso.",
-        "Controle com 3 níveis de intensidade ajustáveis para configurar a pressão aplicada sobre a área desejada.",
-        "Marca: KATELUO",
-        "Cor: Verde",
-        "Peso informado: 760 g"
-      ],
-      "comentario": "Massageador Pescoço Mãozinha 3D Recarregável Elétrico Com Aquecimento Massagem Relaxante Liberação Alivio Muscular Ombro Cervical Lombar Costas Tensão Dores Portátil Sem Fio Ajustável Kateluo. Voltagem: 127/220V.; Bateria recarregável de 2000mAh permite o uso sem fios em diferentes locais durante as sessões de massagem.; Tecnologia 3D com massagem Shiatsu e movimento bidirecional que simula o toque das mãos em diversas partes do corpo.; Sistema de terapia de calor infravermel",
-      "pros": "Características reais do anúncio: Voltagem: 127/220V.; Bateria recarregável de 2000mAh permite o uso sem fios em diferentes locais durante as sessões de massagem.; Tecnologia 3D com massagem Shiatsu e movimento bidirecional que simula o toque das mãos em diversas partes do corpo.; Sistema ",
-      "contras": "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
-      "linkOriginal": "https://www.mercadolivre.com.br/massageador-pescoco-maozinha-3d-recarregavel-eletrico-com-aquecimento-massagem-relaxante-liberacao-alivio-muscular-ombro-cervical-lombar-costas-tensao-dores-portatil-sem-fio-ajustavel-kateluo/p/MLB77168687?pdp_filters=item_id%3AMLB5048226831&matt_tool=38524122&ua=KoTI6lrwspwK0qXAk6EirNwW1kMdBhEiYJeKcqSH3OmWsW0#origin=share&sid=share&wid=MLB5048226831&action=copy",
-      "resolvidoEm": "2026-08-24T16:03:38.565Z"
     }
   }
 }
