@@ -721,8 +721,12 @@
 
   function currentPriceFromCard(card) {
     const preferred = card.querySelector(".deal-price,.weekly-price,.offer strong");
-    if (preferred) return numberPrice(preferred.textContent);
-    const candidates = [...card.querySelectorAll("strong,.price")].map(el => numberPrice(el.textContent)).filter(Boolean);
+    const priceInText = text => {
+      const amounts = String(text || "").match(/R\$\s*[\d.,]+/g);
+      return amounts?.length ? numberPrice(amounts.at(-1)) : 0;
+    };
+    if (preferred) return priceInText(preferred.textContent);
+    const candidates = [...card.querySelectorAll("strong,.price")].map(el => priceInText(el.textContent)).filter(Boolean);
     return candidates.at(-1) || 0;
   }
 
@@ -1629,7 +1633,17 @@
         detail: Number(byDemand[0].clicks || 0) + " clique(s) e " + Number(byDemand[0].views || 0) + " visualização(ões)"
       });
     }
-    return highlights.filter(highlight => highlight.item);
+    const unique = new Map();
+    for (const highlight of highlights.filter(entry => entry.item)) {
+      const id = String(highlight.item.id);
+      const previous = unique.get(id);
+      if (previous) {
+        previous.detail += " · também: " + highlight.label.toLowerCase();
+      } else {
+        unique.set(id, { ...highlight });
+      }
+    }
+    return [...unique.values()];
   }
 
   function weeklyApplyAIAnalysis(draft, result) {
@@ -1742,8 +1756,10 @@
     section.dataset.weeklyComparison = config.semana || "ativo";
     const aiSummary = String(config.resumoIA || "").trim();
     const sourceLinks = products.map(item => '<a href="' + escapeHtml(item.productUrl) + '">' + escapeHtml(item.position + "º: " + item.titulo) + "</a>").join(" · ");
-    const subtitle = config.precoMaximo > 0
-      ? "Cinco opções comparadas até " + brl.format(numberPrice(config.precoMaximo)) + "."
+    const recordedPrices = products.map(item => numberPrice(item.preco)).filter(price => price > 0);
+    const subtitle = recordedPrices.length === 5
+      ? "Preços registrados nesta seleção: de " + brl.format(Math.min(...recordedPrices))
+        + " a " + brl.format(Math.max(...recordedPrices)) + "."
       : "Cinco opções da mesma categoria comparadas lado a lado.";
     const quickPicks = '<div class="weekly-quick-picks" aria-label="Destaques rápidos do comparativo">'
       + highlights.map(highlight => '<a href="' + escapeHtml(highlight.item.productUrl) + '"><span>' + highlight.icon + '</span><div><small>'

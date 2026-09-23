@@ -457,5 +457,5 @@ let q=new URLSearchParams(location.search);const rotaInicial=q.get('produto')||q
 window.registrarMetricaComercial=async function(tipo,produto,canal){try{const id=crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);const limpo=valor=>String(valor||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9_-]/gi,'').slice(0,32);const tipoLimpo=limpo(tipo),produtoId=limpo(produto?.id),canalLimpo=limpo(canal||origemCampanhaAtual()),origem=('evento:'+tipoLimpo+':'+produtoId+':'+canalLimpo).slice(0,80);await db.collection('visitas').doc(id).set({tipo:tipoLimpo,produtoId,titulo:String(produto?.titulo||'').slice(0,180),categoria:String(produto?.categoria||'').slice(0,100),canal:canalLimpo,campanha:'vitrine',criadoEm:firebase.firestore.FieldValue.serverTimestamp(),dia:dataBrasil(),origem})}catch(erro){console.warn('Não foi possível registrar a métrica comercial.',erro)}};
 </script>
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
-  <script defer src="/growth-tools.js?v=20260923-manual-price1"></script>
+  <script defer src="/growth-tools.js?v=20260923-audit-fix1"></script>
 </body></html>
