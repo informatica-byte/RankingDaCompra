@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   bulkItemAttributes,
   bulkItemFromEntry,
+  canProceedWithPriceBatch,
   catalogRecordFromPayload,
   extractCatalogIdFromUrl,
   extractItemIdFromUrl,
@@ -13,6 +14,14 @@ import {
   summarizeBatchChecks,
   shouldTrustStoredItemId,
 } from "./sync-mercadolivre.mjs";
+
+test("diagnóstico só libera confiança quando preço e anúncio são acessíveis", () => {
+  assert.equal(canProceedWithPriceBatch({ item: true, salePrice: true }), true);
+  assert.equal(canProceedWithPriceBatch({ bulk: true, salePrice: true }), true);
+  assert.equal(canProceedWithPriceBatch({ salePrice: true }), false);
+  assert.equal(canProceedWithPriceBatch({ item: true }), false);
+  assert.equal(canProceedWithPriceBatch({ bulk: true }), false);
+});
 
 test("preflight usa somente anúncios antes bloqueados, sem repetir IDs", () => {
   assert.deepEqual(selectPreflightItemIds({ products: {
