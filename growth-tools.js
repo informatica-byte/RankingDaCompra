@@ -195,6 +195,65 @@
     }
   }
 
+  async function protectAffiliateProductPrice() {
+    if (!/^\/produto\/[^/]+\.html$/i.test(location.pathname)) return;
+    const offer = document.getElementById("affiliate-offer");
+    const price = document.querySelector(".offer > strong");
+    if (!offer || !price) return;
+    const id = productIdFromUrl(location.href);
+    let status = null;
+    try {
+      const response = await fetch("/mercadolivre-status.json", { cache: "no-store" });
+      if (response.ok) status = (await response.json())?.products?.[id] || null;
+    } catch (error) {
+      console.warn("Conferência de preço indisponível; link de indicação preservado.", error);
+    }
+    const checkedAt = Date.parse(status?.checkedAt || "");
+    const recent = Number.isFinite(checkedAt) && Date.now() - checkedAt >= 0
+      && Date.now() - checkedAt <= 24 * 60 * 60 * 1000;
+    const confirmed = recent && status?.managed === true && status?.status === "active"
+      && status?.available === true && Number(status?.price) > 0;
+    const dated = Number.isFinite(checkedAt) ? dateBr.format(checkedAt) : "";
+    const previous = document.querySelector(".offer .previous");
+    if (previous && !confirmed) previous.hidden = true;
+    if (confirmed) {
+      price.textContent = `Preço conferido em ${dated}: ${brl.format(Number(status.price))}`;
+    } else if (dated && Number(status?.price) > 0) {
+      price.textContent = `Último preço registrado em ${dated}: ${brl.format(Number(status.price))}`;
+    } else {
+      price.textContent = "Preço a confirmar no vendedor";
+    }
+    offer.textContent = "Conferir preço atual no Mercado Livre";
+    const mobileOffer = document.getElementById("mobile-affiliate-offer");
+    if (mobileOffer) mobileOffer.textContent = "Conferir preço no Mercado Livre";
+    const shopeeOffer = document.getElementById("affiliate-offer-shopee");
+    if (shopeeOffer) shopeeOffer.textContent = "Conferir preço atual na Shopee";
+    if (confirmed) return;
+    const title = document.querySelector("article h1")?.textContent?.trim();
+    const summary = document.querySelector("article .summary")?.textContent?.trim();
+    if (title) {
+      document.title = `${title} | Ranking da Compra`;
+      for (const selector of ['meta[property="og:title"]', 'meta[name="twitter:title"]']) {
+        const meta = document.querySelector(selector);
+        if (meta) meta.content = document.title;
+      }
+    }
+    if (summary) {
+      for (const selector of ['meta[name="description"]', 'meta[property="og:description"]', 'meta[name="twitter:description"]']) {
+        const meta = document.querySelector(selector);
+        if (meta) meta.content = summary.slice(0, 155);
+      }
+    }
+    for (const script of document.querySelectorAll('script[type="application/ld+json"]')) {
+      try {
+        const data = JSON.parse(script.textContent);
+        const products = Array.isArray(data?.["@graph"]) ? data["@graph"] : [data];
+        for (const product of products) if (product?.["@type"] === "Product") delete product.offers;
+        script.textContent = JSON.stringify(data).replace(/</g, "\\u003c");
+      } catch {}
+    }
+  }
+
   function repairPortugueseText(value) {
     return String(value || "")
       .replace(/Informa\uFFFD+es/gi, "Informações")
@@ -659,20 +718,9 @@
   function proofMarkup(summary) {
     if (!summary.points.length && !summary.currentPrice) return "";
     const lastDate = summary.latest?.date;
-    const dateText = lastDate ? dateBr.format(new Date(`${lastDate}T12:00:00-03:00`)) : "hoje";
-    const enough = summary.points.length >= 2;
-    const ratio = summary.minimum > 0 && summary.currentPrice > 0 ? summary.currentPrice / summary.minimum : 0;
-    const atMinimum = enough && ratio > 0 && ratio <= 1.03;
-    const nearMinimum = enough && ratio > 1.03 && ratio <= 1.10;
-    const aboveMinimum = enough && ratio > 1.10;
-    const title = atMinimum
-      ? "✓ Oferta comprovada — perto do menor preço"
-      : nearMinimum
-        ? "✓ Preço competitivo no histórico recente"
-        : aboveMinimum
-          ? "⚠ Preço atual acima do menor valor recente"
-          : "Preço registrado — histórico iniciado";
-    const stateClass = atMinimum ? "is-good" : nearMinimum ? "is-near" : aboveMinimum ? "is-warning" : "is-learning";
+    const dateText = lastDate ? dateBr.format(new Date(`${lastDate}T12:00:00-03:00`)) : "data não disponível";
+    const title = "Histórico de preços registrados — não é cotação atual";
+    const stateClass = "is-learning";
     const detail = summary.minimum > 0
       ? `Menor preço em até ${HISTORY_DAYS} dias: ${brl.format(summary.minimum)}`
       : "Estamos formando o histórico deste produto.";
@@ -994,7 +1042,7 @@
       overlay.querySelector("img").src = String(product.image || "");
       overlay.querySelector("img").alt = String(product.title || "Produto em destaque");
       overlay.querySelector("strong").textContent = repairPortugueseText(product.title || "Ver produto no Ranking da Compra");
-      overlay.querySelector("em").textContent = Number(product.price) > 0 ? brl.format(Number(product.price)) : "Ver preço e análise";
+      overlay.querySelector("em").textContent = "Conferir preço atual na análise";
       overlay.setAttribute("aria-label", `Abrir ${repairPortugueseText(product.title || "produto")} no Ranking da Compra`);
       overlay.hidden = false;
     };
@@ -1562,7 +1610,7 @@
     const highlights = [
       { icon: "🏆", label: "Melhor geral", item: products[0], detail: "Nota " + Number(products[0].scoreTotal || 0).toFixed(1).replace(".", ",") + "/10" },
       { icon: "💚", label: "Melhor custo-benefício", item: byCostBenefit[0], detail: "Equilíbrio entre preço e qualidade" },
-      { icon: "💰", label: "Mais barato", item: byPrice[0], detail: byPrice[0] ? brl.format(numberPrice(byPrice[0].preco)) : "Preço a confirmar" }
+      { icon: "💰", label: "Menor preço registrado", item: byPrice[0], detail: byPrice[0] ? brl.format(numberPrice(byPrice[0].preco)) + " · confira o atual" : "Preço a confirmar" }
     ];
     if (byDemand[0] && demandValue(byDemand[0]) > 0) {
       highlights.push({
@@ -1640,7 +1688,7 @@
       + (badges ? '<div class="weekly-ranking-badges">' + badges + '</div>' : '')
       + '<img src="' + escapeHtml(item.foto) + '" alt="' + escapeHtml(item.titulo) + '" loading="lazy" decoding="async">'
       + '<h3>' + escapeHtml(item.titulo) + '</h3>'
-      + '<strong class="weekly-ranking-price">' + escapeHtml(displayedPrice > 0 ? brl.format(displayedPrice) : "Preço a confirmar") + '</strong>'
+      + '<strong class="weekly-ranking-price">' + escapeHtml(displayedPrice > 0 ? "Preço registrado: " + brl.format(displayedPrice) : "Preço a confirmar") + '</strong>'
       + '<p class="weekly-ranking-glance">' + escapeHtml(weeklyCardSummary(item)) + '</p>'
       + '<a href="' + escapeHtml(item.productUrl) + '" data-weekly-ranking-product="' + escapeHtml(item.id) + '">Ver preço e análise</a>'
       + '<details class="weekly-ranking-details"><summary>Mais informações</summary><div class="weekly-ranking-details-body">'
@@ -1970,6 +2018,7 @@
   async function init() {
     injectStyles();
     injectWeeklyRankingStyles();
+    void protectAffiliateProductPrice();
     repairVisibleEditorial();
     renderMascot();
     setupFunnelTracking();
@@ -2008,6 +2057,3 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();
-
-
-

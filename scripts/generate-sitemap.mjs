@@ -1268,7 +1268,7 @@ function editorialItems(value, productTitle = "") {
 
 
 
-function renderSharePage(product, socialImage, categoryNames) {
+function renderSharePage(product, socialImage, categoryNames, marketplaceStatus = null) {
 
   const title = repairPortugueseEncoding(product.titulo || "Produto recomendado");
 
@@ -1288,17 +1288,15 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   const shopeeUrl = safeExternalUrl(product.linkShopee);
 
-  const shopeePrice = numberPrice(product.precoShopee);
+  const hasShopeeOffer = shopeeUrl !== "#";
 
-  const hasShopeeOffer = shopeeUrl !== "#" && shopeePrice > 0;
-
-  const shopeeLabel = hasShopeeOffer ? `Ver na Shopee — ${money(shopeePrice)}` : "";
+  const shopeeLabel = hasShopeeOffer ? "Conferir preço atual na Shopee" : "";
 
   const marketplace = productMarketplace(product);
 
   const marketplaceName = marketplace === "shopee" ? "Shopee" : "Mercado Livre";
 
-  const offerLabel = marketplace === "shopee" ? "Ver preço na Shopee" : "Comprar agora no Mercado Livre";
+  const offerLabel = marketplace === "shopee" ? "Conferir preço atual na Shopee" : "Conferir preço atual no Mercado Livre";
 
   const categoryName = productCategoryName(product, categoryNames);
 
@@ -1308,11 +1306,18 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   const editorial = editorialProduct(product);
 
-  const promotional = promotionIsValid(product);
+  const checkedAt = Date.parse(marketplaceStatus?.checkedAt || "");
+  const confirmed = marketplaceStatus?.managed === true && marketplaceStatus?.status === "active"
+    && marketplaceStatus?.available === true && Number(marketplaceStatus?.price) > 0
+    && Number.isFinite(checkedAt) && Date.now() - checkedAt >= 0
+    && Date.now() - checkedAt <= 24 * 60 * 60 * 1000;
+  const priceDate = Number.isFinite(checkedAt)
+    ? new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo" }).format(checkedAt) : "";
+  const promotional = confirmed && promotionIsValid(product);
 
-  const currentPrice = promotional ? numberPrice(product.precoPromocional) : numberPrice(product.preco);
+  const currentPrice = numberPrice(marketplaceStatus?.price);
 
-  const indexable = editorial && offerUrl !== "#" && currentPrice > 0;
+  const indexable = editorial && offerUrl !== "#";
 
   const displayTitle = compactText(title, 96);
 
@@ -1328,7 +1333,7 @@ function renderSharePage(product, socialImage, categoryNames) {
 
     ? `${discount}% OFF por ${money(currentPrice)}`
 
-    : currentPrice > 0
+    : confirmed
 
       ? `${money(currentPrice)}: vale a pena?`
 
@@ -1344,7 +1349,7 @@ function renderSharePage(product, socialImage, categoryNames) {
 
     ? `Oferta informada: ${title} por ${money(currentPrice)} (${discount}% OFF).`
 
-    : currentPrice > 0
+    : confirmed
 
       ? `Preço informado de ${title}: ${money(currentPrice)}.`
 
@@ -1384,8 +1389,7 @@ function renderSharePage(product, socialImage, categoryNames) {
   if (videoSchema) productSchema.subjectOf = { "@id": videoSchema["@id"] };
 
   const structuredOffers = [];
-  if (offerUrl !== "#" && currentPrice > 0) structuredOffers.push({ "@type": "Offer", url: offerUrl, priceCurrency: "BRL", price: currentPrice.toFixed(2), availability: "https://schema.org/InStock", seller: { "@type": "Organization", name: marketplaceName } });
-  if (hasShopeeOffer) structuredOffers.push({ "@type": "Offer", url: shopeeUrl, priceCurrency: "BRL", price: shopeePrice.toFixed(2), availability: "https://schema.org/InStock", seller: { "@type": "Organization", name: "Shopee" } });
+  if (offerUrl !== "#" && confirmed) structuredOffers.push({ "@type": "Offer", url: offerUrl, priceCurrency: "BRL", price: currentPrice.toFixed(2), availability: "https://schema.org/InStock", seller: { "@type": "Organization", name: marketplaceName } });
   if (structuredOffers.length) productSchema.offers = structuredOffers.length === 1 ? structuredOffers[0] : structuredOffers;
 
   if (editorial && Number.isFinite(rating) && rating >= 1 && rating <= 5) {
@@ -1422,11 +1426,11 @@ function renderSharePage(product, socialImage, categoryNames) {
 
   const attentionHtml = attention.length ? attention.map((item) => `<li>${escapeHtml(item)}</li>`).join("") : "<li>Confirme compatibilidade, garantia, frete e vendedor antes da compra.</li>";
 
-  const priceHtml = currentPrice > 0
-
-    ? `${previousPrice > currentPrice ? `<span class="previous">De ${escapeHtml(money(previousPrice))}</span>` : ""}<strong>${promotional ? "Oferta informada: " : "Preço informado: "}${escapeHtml(money(currentPrice))}</strong>`
-
-    : "<strong>Consulte o preço atual no vendedor</strong>";
+  const priceHtml = confirmed
+    ? `${previousPrice > currentPrice ? `<span class="previous">De ${escapeHtml(money(previousPrice))}</span>` : ""}<strong>Preço conferido em ${escapeHtml(priceDate)}: ${escapeHtml(money(currentPrice))}</strong>`
+    : currentPrice > 0 && priceDate
+      ? `<strong>Último preço registrado em ${escapeHtml(priceDate)}: ${escapeHtml(money(currentPrice))}</strong>`
+      : "<strong>Preço a confirmar no vendedor</strong>";
 
 
 
@@ -1483,7 +1487,7 @@ function renderSharePage(product, socialImage, categoryNames) {
   <style>:root{--green:#116149;--ink:#11221d;--muted:#66746d;--line:#dfe7e2;--cream:#fbfaf5;--blue:#1769e0}*{box-sizing:border-box}body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--cream);color:var(--ink);margin:0;line-height:1.55}a{color:inherit}.wrap{width:min(1040px,calc(100% - 32px));margin:auto}header{background:#fff;border-bottom:1px solid var(--line)}header .wrap{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{color:var(--green);font-weight:900;text-decoration:none}.back{color:var(--green);font-weight:750;text-decoration:none;font-size:.9rem}main{padding:30px 0 56px}.crumb{color:var(--muted);font-size:.82rem;margin-bottom:16px}.crumb a{color:var(--green)}article{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,42px)}.top{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(0,1.15fr);gap:38px}.photo{width:100%;height:390px;object-fit:contain;background:#fafcfb;border-radius:14px}.eyebrow{color:var(--green);font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900}h1{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.12;letter-spacing:-.04em;margin:9px 0 12px}.full-title{margin:-3px 0 12px;color:var(--muted);font-size:.82rem}.full-title summary{color:var(--green);font-weight:800;cursor:pointer}.full-title p{margin:7px 0 0}.rating{color:#9b6000;font-weight:850}.summary{color:#43534b;font-size:1.03rem}.offer{background:#edf7f1;border:1px solid #cde4d5;border-radius:14px;padding:18px;margin-top:20px}.previous{display:block;color:#727b76;text-decoration:line-through;font-size:.86rem}.offer strong{display:block;color:#087a3d;font-size:1.25rem}.cta{display:flex;align-items:center;justify-content:center;margin-top:12px;background:var(--blue);color:#fff;padding:13px 17px;border-radius:9px;text-decoration:none;font-weight:900}.cta.shopee{background:#ee4d2d}.share-cta{width:100%;min-height:44px;border:1px solid #9ab9a7;background:#fff;color:var(--green);padding:11px 15px;border-radius:9px;font:inherit;font-weight:850;cursor:pointer;margin-top:9px}.share-status{min-height:1.1em;color:var(--green);font-weight:800}.fine{font-size:.78rem;color:var(--muted);margin:9px 0 0}.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.fact{border:1px solid var(--line);border-radius:10px;padding:12px}.fact span{display:block;color:var(--muted);font-size:.72rem;font-weight:850;text-transform:uppercase}.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}.panel{background:#fafcfb;border:1px solid var(--line);border-radius:13px;padding:20px}.panel h2{font-size:1.05rem;margin:0 0 8px}.positive h2{color:#267c31}.attention h2{color:#a94a16}.panel ul{padding-left:19px;margin:0}.video-review{margin-top:26px;padding:20px;border:1px solid var(--line);border-radius:14px;background:#f3faf6}.video-review h2{margin:0 0 10px;font-size:1.18rem}.video-frame{position:relative;width:min(100%,420px);aspect-ratio:9/16;margin:auto;border-radius:13px;overflow:hidden;background:#0b261d}.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.source{margin-top:22px}.source a{color:var(--green)}footer{background:#10231c;color:#dfeae4;padding:30px 0;font-size:.82rem}footer a{color:#fff}@media(max-width:700px){.top,.panels{grid-template-columns:1fr}.photo{height:300px}.facts{grid-template-columns:1fr}header .wrap{padding:15px 0;align-items:flex-start}}</style>
 
   <style>.mobile-buy{display:none}@media(max-width:700px){body{padding-bottom:72px}.top>div{display:flex;flex-direction:column;order:-1}.top>div>.eyebrow{order:1}.top>div>h1{order:2}.top>div>.full-title{order:3}.top>div>.rating{order:4}.top>div>.offer{order:5;margin:8px 0 14px}.top>div>.summary{order:6}.top>div>.facts{order:7}.photo{order:2}.mobile-buy{position:fixed;z-index:1000;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 15px;border-radius:11px;background:#1769e0;color:#fff;text-decoration:none;font-weight:950;box-shadow:0 10px 30px rgba(0,0,0,.25)}}</style>
-<script defer src="/seo-priorities.js?v=20260913-1"></script><script defer src="/growth-tools.js?v=20260920-config-sync1"></script>
+<script defer src="/seo-priorities.js?v=20260913-1"></script><script defer src="/growth-tools.js?v=20260922-price-trust1"></script>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBKRX8TTR6"></script>
 
@@ -1914,7 +1918,7 @@ for (const product of validProducts) {
   if (!partialProductSource) {
     await writeFile(
       resolve(productDirectory, fileName),
-      renderSharePage(product, socialImages.get(product.id), categoryNames),
+      renderSharePage(product, socialImages.get(product.id), categoryNames, marketplaceProducts[product.id]),
       "utf8",
     );
   }
