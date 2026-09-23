@@ -1214,6 +1214,22 @@ async function checkMarketplaceAccess(previous) {
     console.log("Sem bloqueios anteriores para testar; seguindo com a conferência.");
     return;
   }
+  if (PREFLIGHT_ONLY) {
+    try {
+      await fetchJson("https://api.mercadolibre.com/users/me", { maxRetries: 0 });
+      console.log("A conta autorizada respondeu à consulta de identidade.");
+    } catch (error) {
+      if (![401, 403].includes(error?.httpStatus) || !await refreshRejectedAccessToken()) {
+        throw new Error(`Teste de identidade recusado antes de consultar anúncios: ${String(error?.message || error)}`);
+      }
+      try {
+        await fetchJson("https://api.mercadolibre.com/users/me", { maxRetries: 0 });
+        console.log("A conta autorizada respondeu após renovar a sessão.");
+      } catch (retryError) {
+        throw new Error(`Teste de identidade recusado também após renovar a sessão: ${String(retryError?.message || retryError)}`);
+      }
+    }
+  }
   let confirmed = 0;
   const failures = [];
   for (const id of ids) {
