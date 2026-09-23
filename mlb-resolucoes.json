@@ -1,12 +1,19 @@
 {
-  "atualizadoEm": "2026-09-23T10:00:27.744Z",
+  "atualizadoEm": "2026-09-23T10:16:29.090Z",
   "resultados": {
+    "ZHqllDfy81bpui8hnn3p": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=d22e16f9-b06d-422b-9408-25739e882070&position=28&tracking_id=4ab19818-e088-4943-b7d9-b977f9cd346d&wid=MLB4129672747&sid=offers",
+      "resolvidoEm": "2026-09-23T10:16:29.089Z",
+      "tentativas": 1
+    },
     "1QELWkkmpCsVTkHkimpQ": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cafeteira-nescafe-dolce-gusto-mini-me-preta/p/MLB15154780?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=d22e16f9-b06d-422b-9408-25739e882070&position=28&tracking_id=4ab19818-e088-4943-b7d9-b977f9cd346d&wid=MLB4129672747&sid=offers",
-      "resolvidoEm": "2026-09-23T10:00:27.738Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-23T10:16:11.128Z",
+      "tentativas": 2
     },
     "eYuUm92LDTCjzH7anUhI": {
       "status": "ok",
@@ -6496,30 +6503,6 @@
       "contras": "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
       "linkOriginal": "https://www.mercadolivre.com.br/massageador-pescoco-maozinha-3d-recarregavel-eletrico-com-aquecimento-massagem-relaxante-liberacao-alivio-muscular-ombro-cervical-lombar-costas-tensao-dores-portatil-sem-fio-ajustavel-kateluo/p/MLB77168687?pdp_filters=item_id%3AMLB5048226831&matt_tool=38524122&ua=KoTI6lrwspwK0qXAk6EirNwW1kMdBhEiYJeKcqSH3OmWsW0#origin=share&sid=share&wid=MLB5048226831&action=copy",
       "resolvidoEm": "2026-08-24T16:03:38.565Z"
-    },
-    "Y2cYFdOkO6uXAhdZPINe": {
-      "status": "ok",
-      "mlb": "MLB7095915892",
-      "urlProduto": "https://www.mercadolivre.com.br/perfume-love-lily-eau-de-parfum-o-boticario-75ml/p/MLB16323086",
-      "titulo": "Perfume Love Lily Eau de Parfum O Boticário - 75ml",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_690251-MLA84852077857_052025-O.webp",
-      "precoAtual": 241.29,
-      "precoAnterior": 0,
-      "dadosTecnicos": [
-        "Volume da unidade: 75 mL.",
-        "Composição floriental com notas de almíscar e sândalo que permite identificar a presença marcante das rosas na aplicação.",
-        "Classificação técnica Eau de Parfum que mantém a percepção olfativa da fragrância na pele por até 4 horas consecutivas.",
-        "Frasco composto de vidro com design estruturado que possibilita o manuseio e a aplicação manual do produto.",
-        "Sistema de borrifador integrado que libera a fragrância de forma contínua durante o acionamento da válvula.",
-        "Marca: O Boticário",
-        "Código do catálogo: MLB16323086",
-        "Condição informada: novo"
-      ],
-      "comentario": "Perfume Love Lily Eau de Parfum O Boticário - 75ml. Volume da unidade: 75 mL.; Composição floriental com notas de almíscar e sândalo que permite identificar a presença marcante das rosas na aplicação.; Classificação técnica Eau de Parfum que mantém a percepção olfativa da fragrância na pele por até 4 horas consecutivas.; Frasco composto de vidro com design estruturado que possibilita o manuseio e a aplicação manual do produto.; Sistema de borrifador integrado que libera a fra",
-      "pros": "Características reais do anúncio: Volume da unidade: 75 mL.; Composição floriental com notas de almíscar e sândalo que permite identificar a presença marcante das rosas na aplicação.; Classificação técnica Eau de Parfum que mantém a percepção olfativa da fragrância na pele por até 4 horas ",
-      "contras": "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
-      "linkOriginal": "https://www.mercadolivre.com.br/perfume-love-lily-eau-de-parfum-o-boticario-75ml/p/MLB16323086?pdp_filters=item_id%3AMLB7095915892&matt_tool=38524122&ua=joY5aQ4UEYM0YVNMOww3vpBLRyOtXb862krkNIVw6Bt7w4M#origin=share&sid=share&wid=MLB7095915892&action=copy",
-      "resolvidoEm": "2026-08-24T13:06:18.670Z"
     }
   }
 }
