@@ -961,6 +961,7 @@ FORMATO:
         };
     </script>
 
+    <script src="/metricas-resumo.js?v=20260923-1"></script>
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
@@ -1056,10 +1057,12 @@ FORMATO:
         }
 
         const JANELA_METRICAS_PAINEL_DIAS = 14;
-        const CACHE_METRICAS_PAINEL_MS = 5 * 60 * 1000;
+        const CACHE_METRICAS_PAINEL_MS = 30 * 60 * 1000;
         const CACHE_MINIMO_ATUALIZACAO_MS = 60 * 1000;
+        const CHAVE_RESUMO_METRICAS = 'ranking-metricas-painel-resumo-v1';
         let metricasPainelCache = null;
         let metricasPainelCacheEm = 0;
+        let metricasPainelCacheDia = '';
         let metricasPainelPromise = null;
 
         function inicioMetricasPainel() {
@@ -1071,16 +1074,45 @@ FORMATO:
         async function obterMetricasPainel(forcar = false) {
             if (metricasPainelPromise) return metricasPainelPromise;
             const idadeCache = Date.now() - metricasPainelCacheEm;
-            const cacheValido = metricasPainelCache && idadeCache < CACHE_METRICAS_PAINEL_MS;
+            const cacheValido = metricasPainelCache && metricasPainelCacheDia === dataBrasil()
+                && idadeCache < CACHE_METRICAS_PAINEL_MS;
             const atualizacaoMuitoRecente = metricasPainelCache && idadeCache < CACHE_MINIMO_ATUALIZACAO_MS;
             if (cacheValido && (!forcar || atualizacaoMuitoRecente)) return metricasPainelCache;
 
-            const inicio = inicioMetricasPainel();
-            metricasPainelPromise = db.collection('visitas').where('dia', '>=', inicio).get()
+            const inicio = inicioMetricasPainel(), hoje = dataBrasil();
+            let resumo = null;
+            try {
+                const salvo = JSON.parse(localStorage.getItem(CHAVE_RESUMO_METRICAS) || 'null');
+                if (salvo?.versao === RankingMetricasResumo.VERSION && Array.isArray(salvo.registros)
+                    && /^\d{4}-\d{2}-\d{2}$/.test(String(salvo.ultimoDia || ''))
+                    && salvo.ultimoDia >= inicio && salvo.ultimoDia <= hoje) resumo = salvo;
+            } catch (erro) { console.warn('Resumo local de métricas indisponível.', erro); }
+            if (resumo && resumo.ultimoDia === hoje && !forcar
+                && Date.now() - Number(resumo.atualizadoEm || 0) < CACHE_METRICAS_PAINEL_MS) {
+                metricasPainelCache = RankingMetricasResumo.instantaneo(resumo, true);
+                metricasPainelCacheEm = Number(resumo.atualizadoEm || 0);
+                metricasPainelCacheDia = hoje;
+                return metricasPainelCache;
+            }
+            const desde = resumo ? (resumo.ultimoDia < inicio ? inicio : resumo.ultimoDia) : inicio;
+            metricasPainelPromise = db.collection('visitas').where('dia', '>=', desde).get()
                 .then(snapshot => {
-                    metricasPainelCache = snapshot;
+                    const registros = RankingMetricasResumo.resumirDocumentos(snapshot.docs, decodificarMetricaCentral);
+                    const atualizado = RankingMetricasResumo.combinar(resumo, registros, desde, inicio, hoje, Date.now());
+                    try { localStorage.setItem(CHAVE_RESUMO_METRICAS, JSON.stringify(atualizado)); }
+                    catch (erro) { console.warn('Não foi possível guardar o resumo local das métricas.', erro); }
+                    metricasPainelCache = RankingMetricasResumo.instantaneo(atualizado);
+                    metricasPainelCacheEm = atualizado.atualizadoEm;
+                    metricasPainelCacheDia = hoje;
+                    return metricasPainelCache;
+                })
+                .catch(erro => {
+                    if (!resumo) throw erro;
+                    console.warn('Usando o último resumo preservado; o Firebase não respondeu.', erro);
+                    metricasPainelCache = RankingMetricasResumo.instantaneo(resumo, true);
                     metricasPainelCacheEm = Date.now();
-                    return snapshot;
+                    metricasPainelCacheDia = hoje;
+                    return metricasPainelCache;
                 })
                 .finally(() => { metricasPainelPromise = null; });
             return metricasPainelPromise;
@@ -1100,10 +1132,11 @@ FORMATO:
                 snapshot.forEach(doc => {
                     const dadosVisita = doc.data();
                     if ((dadosVisita.tipo && dadosVisita.tipo !== 'visita') || String(dadosVisita.origem || '').startsWith('evento:')) return;
-                    visitasQuatorzeDias++;
+                    const quantidade = RankingMetricasResumo.quantidade(dadosVisita);
+                    visitasQuatorzeDias += quantidade;
                     const dia = dadosVisita.dia || '';
-                    if (dia === hoje) visitasHoje++;
-                    if (dia >= inicio && dia <= hoje) visitasSeteDias++;
+                    if (dia === hoje) visitasHoje += quantidade;
+                    if (dia >= inicio && dia <= hoje) visitasSeteDias += quantidade;
                 });
                 document.getElementById('visitas-total').textContent = visitasQuatorzeDias.toLocaleString('pt-BR');
                 document.getElementById('visitas-hoje').textContent = visitasHoje.toLocaleString('pt-BR');

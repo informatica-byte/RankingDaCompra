@@ -321,7 +321,7 @@ O horário de 09:30 é uma preferência operacional da interface/robô. A automa
 
 | Workflow | Disparo | Resultado |
 |---|---|---|
-| `update-sitemap.yml` | push seletivo, manual e 10:17/13:17/16:17/19:17 Brasília | páginas, análises, busca, Top 6, sitemap e IndexNow |
+| `update-sitemap.yml` | push seletivo, execução manual após as publicações e segurança diária às 19:17 Brasília | páginas, análises, busca, Top 6, sitemap e IndexNow |
 | `localizar-mlb.yml` | manual e minutos 07/22/37/52 | resolve fila MLB e publica respostas |
 | `sync-mercadolivre.yml` | manual | lote único de preço/disponibilidade |
 | `historico-precos.yml` | manual e 09:35 UTC | registra histórico e atualiza páginas |

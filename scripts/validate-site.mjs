@@ -309,8 +309,9 @@ has(discoveryGenerator, /ranking:\s*0,/, "busca ainda pode herdar posições nã
 has(discoveryGenerator, /custo-benefício \(35%\)/, "pesos do comparativo automático não estão explicados", "scripts/generate-discovery.mjs");
 const updateWorkflow = await readFile(resolve(".github/workflows/update-sitemap.yml"), "utf8");
 has(updateWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "workflow ainda repete a leitura completa dos produtos", ".github/workflows/update-sitemap.yml");
-has(updateWorkflow, /cron:\s*["']17 13,16,19,22 \* \* \*["']/, "sitemap deve usar somente as quatro janelas econômicas diárias", ".github/workflows/update-sitemap.yml");
+has(updateWorkflow, /cron:\s*["']17 22 \* \* \*["']/, "sitemap deve ter uma única janela diária de segurança", ".github/workflows/update-sitemap.yml");
 if ((updateWorkflow.match(/\bcron:/g) || []).length !== 1) fail(".github/workflows/update-sitemap.yml: deve existir exatamente um agendamento econômico");
+has(updateWorkflow, /workflow_dispatch:/, "a publicação manual após novos produtos não pode ser removida", ".github/workflows/update-sitemap.yml");
 has(updateWorkflow, /git add -A sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "comparativos e índice de busca não estão incluídos na publicação", ".github/workflows/update-sitemap.yml");
 has(updateWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do sitemap ainda pode falhar por concorrência no GitHub", ".github/workflows/update-sitemap.yml");
 const priceWorkflow = await readFile(resolve(".github/workflows/sync-mercadolivre.yml"), "utf8");
@@ -385,7 +386,11 @@ has(mobilePanelHtml, /if\s*\(!\(await carregarFotoPrevia\(d\.foto\)\)\)\s*return
 if (/collection\(["']visitas["']\)\.get\(\)/.test(dashboardHtml)) {
   fail("dashboard.html: leitura integral e ilimitada do histórico de visitas voltou a ser usada");
 }
-has(dashboardHtml, /obterMetricasPainel[\s\S]{0,1200}collection\(["']visitas["']\)\.where\(["']dia["'],\s*["']>=["']/, "consulta econômica compartilhada das métricas ausente", "dashboard.html");
+has(dashboardHtml, /collection\(['"]visitas['"]\)\.where\(['"]dia['"],\s*['"]>=['"],\s*desde\)\.get\(\)/, "consulta incremental das métricas ausente", "dashboard.html");
+has(dashboardHtml, /resumirDocumentos\(snapshot\.docs, decodificarMetricaCentral\)/, "resumo compatível com métricas novas e antigas ausente", "dashboard.html");
+has(dashboardHtml, /localStorage\.setItem\(CHAVE_RESUMO_METRICAS, JSON\.stringify\(atualizado\)\)/, "resumo local não é preservado entre visitas ao painel", "dashboard.html");
+const metricasResumoJs = await readFile(resolve("metricas-resumo.js"), "utf8");
+has(metricasResumoJs, /function combinar\(cache, registros, desde, inicio, hoje, atualizadoEm\)/, "proteção contra duplicação do histórico ausente", "metricas-resumo.js");
 const consultasRecentesVisitas = dashboardHtml.match(/collection\(["']visitas["']\)\.where\(["']dia["'],\s*["']>=["']/g) || [];
 if (consultasRecentesVisitas.length !== 1) {
   fail("dashboard.html: deve existir exatamente uma consulta compartilhada do histórico recente de visitas");
