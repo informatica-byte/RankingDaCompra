@@ -9,12 +9,28 @@
     <style>
       *{box-sizing:border-box}body{margin:0;background:#f2f7f4;color:#102b22;font:16px system-ui,-apple-system,Segoe UI,sans-serif}header{position:sticky;top:0;z-index:3;background:#07563f;color:white;padding:14px 16px}header div{max-width:680px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}header b{font-size:18px}header a{color:white;text-decoration:none;border:1px solid #ffffff77;border-radius:9px;padding:8px;font-size:12px;font-weight:800}main{max-width:680px;margin:auto;padding:14px}.card{background:white;border:1px solid #d5e5de;border-radius:18px;padding:17px;margin-bottom:14px;box-shadow:0 8px 25px #1232}h1,h2{margin:0 0 8px}h1{font-size:23px}h2{font-size:19px}p{color:#587066;line-height:1.45}.etapa{color:#08794d;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}label{display:block;font-weight:800;margin:13px 0 6px}.campo{width:100%;min-height:49px;border:1px solid #a9c1b7;border-radius:12px;padding:12px;background:white}textarea.campo{min-height:105px}.btn{width:100%;min-height:52px;border:0;border-radius:12px;margin-top:14px;padding:10px;font-weight:900}.verde{background:#0a8f5b;color:white}.azul{background:#246bdb;color:white}.claro{background:#edf4f1;color:#07563f}.btn:disabled{opacity:.55}.tipos,.grade{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tipo{position:relative}.tipo input{position:absolute;opacity:0}.tipo span{display:flex;min-height:52px;align-items:center;justify-content:center;border:2px solid #d5e5de;border-radius:12px;font-weight:900;text-align:center}.tipo input:checked+span{border-color:#0a8f5b;background:#e9f8f0}.largo{grid-column:1/-1}.status{display:none;margin-top:13px;padding:12px;border-radius:12px;background:#eef5ff;color:#174b91}.status.on{display:block}.status.erro{background:#fff0ee;color:#a61b12}.status.ok{background:#e8f8ef;color:#096b43}#app,#preview{display:none}#foto-previa{display:none;width:100%;max-height:250px;object-fit:contain;border:1px solid #d5e5de;border-radius:14px}.foto-erro{display:none;margin:0 0 10px;padding:11px;border:1px solid #efb0aa;border-radius:11px;background:#fff0ee;color:#9b2018;font-size:13px;font-weight:750;line-height:1.4}.foto-erro.on{display:block}.mini{font-size:12px;color:#61776e}@media(max-width:480px){.grade{grid-template-columns:1fr}.largo{grid-column:auto}} .ranking-mobile-actions{display:grid;gap:9px;margin-top:12px}.ranking-mobile-actions .btn{margin-top:0}.ranking-mobile-review{margin-top:12px}.ranking-mobile-review ol{padding-left:22px}.ranking-mobile-review li{margin:11px 0}.ranking-mobile-review span{display:block;margin-top:3px;color:#587066;font-size:13px;line-height:1.4}.ranking-mobile-link{display:block;margin-top:12px;text-align:center;color:#07563f;font-weight:800}.ranking-mobile-note{padding:10px;border-radius:10px;background:#f0f8f4;font-size:13px;color:#355b4b}.focus-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.focus-mobile-item{background:#f2faf6;border:1px solid #d6e9df;border-radius:11px;padding:11px}.focus-mobile-item small{display:block;color:#61776e;font-size:10px;font-weight:900;text-transform:uppercase}.focus-mobile-item strong{display:block;margin-top:5px;color:#086140;font-size:14px;line-height:1.25}.focus-mobile-rec{margin-top:11px;padding:11px;border-radius:10px;background:#e9f8f0;color:#145139;font-size:13px;line-height:1.4}.focus-mobile-list{margin:10px 0 0;padding-left:20px;color:#405f52;font-size:13px}.focus-mobile-list li{margin:6px 0}.focus-mobile-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.focus-mobile-links a{color:#07563f;font-size:12px;font-weight:800}
       .header-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+      #precos-mobile{scroll-margin-top:78px}
+      .precos-fila-resumo{padding:11px;border-radius:10px;background:#edf4ff;color:#174b91;font-size:13px;font-weight:800;line-height:1.4}
+      .precos-fila-item{margin-top:12px;padding:13px;border:1px solid #d5e5de;border-radius:12px;background:#fbfdfc}
+      .precos-fila-item h3{margin:0 0 8px;font-size:17px;line-height:1.3;overflow-wrap:anywhere}
+      .precos-fila-pares{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}
+      .precos-fila-pares div{padding:10px;border-radius:10px;background:#eef7f2}
+      .precos-fila-pares small{display:block;color:#587066}
+      .precos-fila-pares strong{display:block;margin-top:3px;color:#07563f;font-size:18px}
+      .precos-fila-link{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:11px;background:#246bdb;color:white;text-decoration:none;font-weight:900;margin-top:11px}
+      .precos-fila-link[hidden]{display:none}
+      .precos-fila-acoes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+      .precos-fila-acoes .btn{margin-top:8px}
+      .precos-fila-acoes .largo{grid-column:1/-1}
+      #precos-mobile details{margin-top:12px;font-size:13px}
+      #precos-mobile summary{cursor:pointer;color:#07563f;font-weight:800}
+      @media(max-width:480px){.precos-fila-pares{grid-template-columns:1fr}}
     </style>
     <script defer src="/seo-priorities.js?v=20260913-1"></script>
   </head>
   <body>
     <header>
-      <div><b>📱 Painel móvel</b><span class="header-actions"><a href="estudio-videos.html">🎬 Ranki</a><a href="dashboard.html">Painel completo</a></span></div>
+      <div><b>📱 Painel móvel</b><span class="header-actions"><a href="#precos-mobile">💰 Preços</a><a href="estudio-videos.html">🎬 Ranki</a><a href="dashboard.html">Painel completo</a></span></div>
     </header>
     <main>
       <section id="login" class="card">
@@ -115,7 +131,7 @@
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
       import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
       import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
-      import { getFirestore, collection, getDocs, query, where, limit, orderBy, addDoc, serverTimestamp, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+      import { getFirestore, collection, getDocs, query, where, limit, orderBy, addDoc, serverTimestamp, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
       import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-ai.js";
       const cfg = {
           apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
@@ -254,10 +270,184 @@
         const card = document.createElement("div");
         card.className = "card";
         card.id = "precos-mobile";
-        card.innerHTML = '<div class="etapa">Economia de Firebase</div><h2>💰 Conferência manual de preços</h2><p>Termine primeiro as novas publicações e aguarde as páginas ficarem prontas. Depois confira todos os produtos juntos em um único lote.</p><a class="btn azul" style="display:flex;align-items:center;justify-content:center;text-decoration:none" href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">💰 Conferir todos os preços agora</a><div class="mini" style="margin-top:9px">No GitHub, use “Run workflow”. Nenhuma conferência começa sozinha. Uma segunda execução no mesmo dia é bloqueada; marque “force” somente em uma necessidade excepcional.</div>';
-        sincronizado.before(card);
+        card.innerHTML = '<div class="etapa">Conferência assistida</div><h2>💰 Confira um produto por vez</h2><p>Primeiro os mais visualizados nos últimos sete dias; depois, os há mais tempo sem conferência manual. Abra o anúncio, veja o preço e confirme. Nada é lido automaticamente do Mercado Livre.</p><button id="precos-iniciar" class="btn verde" type="button">Carregar fila de hoje</button><div id="precos-progresso" class="precos-fila-resumo" style="margin-top:12px">A fila só lê produtos e visitas quando você tocar no botão.</div><div id="precos-item"></div><div id="precos-status" class="status" role="status" aria-live="polite"></div><details><summary>Conferência automática pelo GitHub (opcional)</summary><p>A API do Mercado Livre pode negar acesso. Use apenas depois de resolver a permissão. Nenhuma conferência começa sozinha.</p><a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">Conferir todos os preços agora (GitHub)</a></details>';
+        $("focus-mobile").before(card);
       }
       instalarModoEconomicoMobile();
+
+
+      let filaPrecosDados = null;
+      let filaPrecosIdAtual = "";
+      let filaPrecosDia = hoje();
+      let filaPrecosSalvando = false;
+      const filaPrecosPulados = new Set();
+      const filaPrecosConferidos = new Set();
+
+      function millisPrecoAssistido(valor) {
+        if (!valor) return 0;
+        if (typeof valor.toMillis === "function") return valor.toMillis();
+        if (typeof valor.seconds === "number") return valor.seconds * 1000;
+        const data = Date.parse(valor);
+        return Number.isFinite(data) ? data : 0;
+      }
+      function diaPrecoAssistido(ms) {
+        if (!ms) return "";
+        const partes = new Intl.DateTimeFormat("en-CA", {
+          timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit",
+        }).formatToParts(new Date(ms));
+        const valores = {};
+        partes.forEach((parte) => (valores[parte.type] = parte.value));
+        return valores.year + "-" + valores.month + "-" + valores.day;
+      }
+      function linkPrecoAssistido(produto) {
+        for (const valor of [produto.link, produto.linkAfiliado]) {
+          try {
+            const url = new URL(String(valor || ""));
+            const host = url.hostname.toLowerCase();
+            const dominios = ["mercadolivre.com.br", "mercadolivre.com", "mercadolibre.com", "meli.la"];
+            if (url.protocol === "https:" && dominios.some((dominio) => host === dominio || host.endsWith("." + dominio))) return url.href;
+          } catch {}
+        }
+        return "";
+      }
+      function dadosFilaPrecosAssistida() {
+        const visitas = new Map();
+        for (const evento of filaPrecosDados?.metricas || []) {
+          if (rankingTipoMetrica(evento) !== "visualizacao_produto") continue;
+          const id = rankingMetricaProdutoId(evento);
+          if (id) visitas.set(id, (visitas.get(id) || 0) + 1);
+        }
+        const todos = filaPrecosDados?.todos || [];
+        const pendentes = todos.filter((produto) => {
+          const confirmadoEm = millisPrecoAssistido(produto.precoAtualizadoManualmenteEm);
+          return !filaPrecosConferidos.has(produto.id) && diaPrecoAssistido(confirmadoEm) !== hoje();
+        });
+        pendentes.sort((a, b) => {
+          const pulado = Number(filaPrecosPulados.has(a.id)) - Number(filaPrecosPulados.has(b.id));
+          if (pulado) return pulado;
+          const procura = (visitas.get(b.id) || 0) - (visitas.get(a.id) || 0);
+          if (procura) return procura;
+          const idade = millisPrecoAssistido(a.precoAtualizadoManualmenteEm) - millisPrecoAssistido(b.precoAtualizadoManualmenteEm);
+          if (idade) return idade;
+          const cadastro = millisPrecoAssistido(a.dataCadastro) - millisPrecoAssistido(b.dataCadastro);
+          return cadastro || String(a.titulo).localeCompare(String(b.titulo), "pt-BR");
+        });
+        return { todos, pendentes, visitas };
+      }
+      function renderizarFilaPrecosAssistida() {
+        const resumo = $("precos-progresso");
+        const alvo = $("precos-item");
+        if (!filaPrecosDados) return;
+        if (filaPrecosDia !== hoje()) {
+          filaPrecosDia = hoje();
+          filaPrecosConferidos.clear();
+          filaPrecosPulados.clear();
+          filaPrecosIdAtual = "";
+        }
+        const fila = dadosFilaPrecosAssistida();
+        const feitos = fila.todos.length - fila.pendentes.length;
+        resumo.textContent = feitos + " de " + fila.todos.length + " conferidos hoje · " + fila.pendentes.length + " restantes. A ordem usa visualizações dos últimos 7 dias e depois a conferência mais antiga.";
+        if (!fila.pendentes.length) {
+          filaPrecosIdAtual = "";
+          alvo.innerHTML = '<div class="precos-fila-item"><strong>✅ Fila de hoje concluída.</strong><p>Os produtos sem mudança foram apenas marcados como conferidos; os preços alterados foram salvos individualmente.</p></div>';
+          return;
+        }
+        const produto = fila.pendentes.find((item) => item.id === filaPrecosIdAtual) || fila.pendentes[0];
+        filaPrecosIdAtual = produto.id;
+        const campo = produto.promocaoAtiva ? "precoPromocional" : "preco";
+        const valorSite = numero(produto[campo]);
+        const ultimo = millisPrecoAssistido(produto.precoAtualizadoManualmenteEm);
+        const link = linkPrecoAssistido(produto);
+        alvo.innerHTML = '<div class="precos-fila-item"><div class="etapa" id="precos-posicao"></div><h3 id="precos-titulo"></h3><div class="mini" id="precos-ultima"></div><div class="precos-fila-pares"><div><small>Preço registrado no Ranking</small><strong id="precos-valor-site"></strong></div><div><small>Visualizações em 7 dias</small><strong id="precos-visitas"></strong></div></div><a id="precos-abrir" class="precos-fila-link" target="_blank" rel="noopener noreferrer">Abrir anúncio no Mercado Livre ↗</a><p class="mini" id="precos-aviso-link"></p><label for="precos-valor-visto">Preço que você viu no anúncio</label><input id="precos-valor-visto" class="campo" inputmode="decimal" placeholder="Ex.: 149,90" /><div class="precos-fila-acoes"><button id="precos-igual" class="btn verde" type="button">✅ Preço igual</button><button id="precos-novo" class="btn azul" type="button">💾 Salvar novo preço</button><button id="precos-pular" class="btn claro largo" type="button">Deixar este para o fim</button></div></div>';
+        $("precos-posicao").textContent = "Produto " + (feitos + 1) + " de " + fila.todos.length;
+        $("precos-titulo").textContent = produto.titulo;
+        $("precos-ultima").textContent = ultimo ? "Última conferência manual: " + new Date(ultimo).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }) : "Sem conferência manual registrada.";
+        $("precos-valor-site").textContent = valorSite ? "R$ " + preco(valorSite) : "Sem preço válido";
+        $("precos-visitas").textContent = String(fila.visitas.get(produto.id) || 0);
+        $("precos-abrir").hidden = !link;
+        if (link) $("precos-abrir").href = link;
+        $("precos-aviso-link").textContent = link
+          ? "O anúncio abre em outra aba; volte aqui depois de olhar o valor. Este painel não lê a página automaticamente."
+          : "Sem link válido do Mercado Livre. Corrija o cadastro antes de confirmar este produto.";
+        $("precos-igual").disabled = !link || !valorSite;
+        $("precos-novo").disabled = !link;
+      }
+      async function carregarFilaPrecosAssistida() {
+        if (filaPrecosSalvando) return;
+        const botao = $("precos-iniciar");
+        botao.disabled = true;
+        botao.textContent = "Carregando produtos e visitas...";
+        off("precos-status");
+        try {
+          if (filaPrecosDados) rankingDadosMovel = null;
+          filaPrecosDados = await rankingCarregarDados(true);
+          filaPrecosIdAtual = "";
+          renderizarFilaPrecosAssistida();
+          if (!filaPrecosDados.todos.length) msg("precos-status", "Nenhum produto cadastrado foi encontrado.", "erro");
+        } catch (erro) {
+          msg("precos-status", "Não foi possível carregar a fila: " + String(erro?.message || erro), "erro");
+        } finally {
+          botao.disabled = false;
+          botao.textContent = "↻ Atualizar fila";
+        }
+      }
+      async function salvarFilaPrecoAssistida(novoValor) {
+        if (filaPrecosSalvando || !filaPrecosDados) return;
+        const produto = filaPrecosDados.todos.find((item) => item.id === filaPrecosIdAtual);
+        if (!produto || !linkPrecoAssistido(produto)) return msg("precos-status", "Confira o link do anúncio antes de confirmar.", "erro");
+        const campo = produto.promocaoAtiva ? "precoPromocional" : "preco";
+        const valorAnterior = numero(produto[campo]);
+        const valor = novoValor === null ? valorAnterior : numero(novoValor);
+        if (!valor) return msg("precos-status", "Informe um preço válido, por exemplo 149,90.", "erro");
+        if (produto.promocaoAtiva && novoValor !== null && valor >= numero(produto.precoAnterior)) {
+          return msg("precos-status", "O preço visto não é menor que o preço anterior da promoção. Corrija a promoção no painel completo antes de confirmá-la.", "erro");
+        }
+        const alterou = !valorAnterior || Math.abs(valor - valorAnterior) >= 0.01;
+        const campos = {
+          precoAtualizadoManualmente: true,
+          precoAtualizadoManualmenteEm: serverTimestamp(),
+        };
+        if (alterou) {
+          campos[campo] = preco(valor);
+          campos.atualizadoEm = serverTimestamp();
+        }
+        const id = produto.id;
+        filaPrecosSalvando = true;
+        filaPrecosConferidos.add(id);
+        $("precos-igual").disabled = true;
+        $("precos-novo").disabled = true;
+        $("precos-pular").disabled = true;
+        msg("precos-status", "Salvando conferência...");
+        try {
+          await updateDoc(doc(db, "produtos", id), campos);
+          produto.precoAtualizadoManualmenteEm = new Date();
+          if (alterou) produto[campo] = preco(valor);
+          filaPrecosPulados.delete(id);
+          filaPrecosIdAtual = "";
+          renderizarFilaPrecosAssistida();
+          msg("precos-status", alterou ? "Novo preço salvo. Próximo produto pronto." : "Preço confirmado sem mudança. Próximo produto pronto.", "ok");
+          $("precos-mobile").scrollIntoView({ behavior: "smooth", block: "start" });
+        } catch (erro) {
+          filaPrecosConferidos.delete(id);
+          renderizarFilaPrecosAssistida();
+          msg("precos-status", "Não foi possível salvar: " + String(erro?.message || erro), "erro");
+        } finally {
+          filaPrecosSalvando = false;
+        }
+      }
+      $("precos-iniciar").addEventListener("click", carregarFilaPrecosAssistida);
+      $("precos-item").addEventListener("click", (evento) => {
+        if (filaPrecosSalvando) return;
+        const id = evento.target?.id || "";
+        if (id === "precos-igual") void salvarFilaPrecoAssistida(null);
+        if (id === "precos-novo") void salvarFilaPrecoAssistida($("precos-valor-visto")?.value);
+        if (id === "precos-pular") {
+          filaPrecosPulados.add(filaPrecosIdAtual);
+          filaPrecosIdAtual = "";
+          renderizarFilaPrecosAssistida();
+          off("precos-status");
+        }
+      });
 
       function textoNormalizado(valor) {
         return String(valor || "")
@@ -798,9 +988,9 @@
         const u = String(p.productUrl || p.paginaUrl || "");
         return /^https:\/\/rankingdacompra\.com\.br\/produto\//i.test(u) ? u : "https://rankingdacompra.com.br/produto/" + encodeURIComponent(String(p.id)) + "-20260810-1.html";
       }
-      async function rankingCarregarDados() {
+      async function rankingCarregarDados(somentePrecos = false) {
         if (rankingDadosMovel) return rankingDadosMovel;
-        msg("ranking-status", "Carregando produtos e interesse dos últimos sete dias...");
+        if (!somentePrecos) msg("ranking-status", "Carregando produtos e interesse dos últimos sete dias...");
         const inicio = new Date();
         inicio.setDate(inicio.getDate() - 6);
         const chave = new Intl.DateTimeFormat("en-CA", {
@@ -811,6 +1001,7 @@
         }).format(inicio);
         const [ps, ms] = await Promise.all([getDocs(collection(db, "produtos")), getDocs(query(collection(db, "visitas"), where("dia", ">=", chave)))]);
         rankingDadosMovel = {
+          todos: ps.docs.map((d) => ({ id: d.id, ...d.data() })).filter((p) => p.sistema !== true && String(p.titulo || "").trim()),
           produtos: ps.docs.map((d) => ({ id: d.id, ...d.data() })).filter(rankingElegivel),
           metricas: rankingMetricasUnicas(ms.docs.map((d) => ({ id: d.id, ...d.data() }))),
         };
