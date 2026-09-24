@@ -1,6 +1,20 @@
 {
-  "atualizadoEm": "2026-09-24T22:03:31.077Z",
+  "atualizadoEm": "2026-09-24T23:52:18.418Z",
   "resultados": {
+    "WbWMqLfh2nOHxPsQKSWn": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/playstation-5-edicao-digital-825-gb-slim-cfi-2114b-novo-lacrado/p/MLB35925111?pdp_filters=item_id:MLB7485753064#is_advertising=true&searchVariation=MLB35925111&backend_model=search-backend&be_origin=backend&position=1&search_layout=grid&type=pad&tracking_id=ac8a6d95-67f9-4b76-ab44-9fb6671bc1e5&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=NzZiMGRhMTctZjAyYi00NzgwLWEwNWMtNjJjMmNmNmQzZmVl",
+      "resolvidoEm": "2026-09-24T23:52:18.417Z",
+      "tentativas": 2
+    },
+    "x3K9RWLnoMWd4fv3ZlMp": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/playstation-5-edicao-digital-825-gb-slim-cfi-2114b-novo-lacrado/p/MLB35925111?pdp_filters=item_id:MLB7485753064#is_advertising=true&searchVariation=MLB35925111&backend_model=search-backend&be_origin=backend&position=1&search_layout=grid&type=pad&tracking_id=ac8a6d95-67f9-4b76-ab44-9fb6671bc1e5&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=NzZiMGRhMTctZjAyYi00NzgwLWEwNWMtNjJjMmNmNmQzZmVl",
+      "resolvidoEm": "2026-09-24T23:52:01.133Z",
+      "tentativas": 3
+    },
     "QsBvIlIGCCvni9WBLiaw": {
       "status": "ok",
       "mlb": "MLB7413456100",
@@ -27,20 +41,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/grand-theft-auto-vi-playstation-5/p/MLB74108173#polycard_client=search_best-seller&tracking_id=f05eea84-0af3-45ba-9206-5fb620b73381&wid=MLB7413456100&sid=search",
       "resolvidoEm": "2026-09-24T22:03:31.076Z",
       "tentativas": 1
-    },
-    "WbWMqLfh2nOHxPsQKSWn": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/playstation-5-edicao-digital-825-gb-slim-cfi-2114b-novo-lacrado/p/MLB35925111?pdp_filters=item_id:MLB7485753064#is_advertising=true&searchVariation=MLB35925111&backend_model=search-backend&be_origin=backend&position=1&search_layout=grid&type=pad&tracking_id=ac8a6d95-67f9-4b76-ab44-9fb6671bc1e5&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=NzZiMGRhMTctZjAyYi00NzgwLWEwNWMtNjJjMmNmNmQzZmVl",
-      "resolvidoEm": "2026-09-24T22:03:29.511Z",
-      "tentativas": 1
-    },
-    "x3K9RWLnoMWd4fv3ZlMp": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/playstation-5-edicao-digital-825-gb-slim-cfi-2114b-novo-lacrado/p/MLB35925111?pdp_filters=item_id:MLB7485753064#is_advertising=true&searchVariation=MLB35925111&backend_model=search-backend&be_origin=backend&position=1&search_layout=grid&type=pad&tracking_id=ac8a6d95-67f9-4b76-ab44-9fb6671bc1e5&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=NzZiMGRhMTctZjAyYi00NzgwLWEwNWMtNjJjMmNmNmQzZmVl",
-      "resolvidoEm": "2026-09-24T22:03:12.321Z",
-      "tentativas": 2
     },
     "ad5MkmlPpA5FI3BlP2bx": {
       "status": "erro",
