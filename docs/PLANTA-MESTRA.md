@@ -257,6 +257,9 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 
 ### Economia do Firebase
 
+- o painel administrativo privado inclui um medidor de leituras com ponteiro. Ele consulta, somente após clique e autorização Google, as métricas oficiais de leitura, gravação e exclusão do Cloud Monitoring; não faz nenhuma leitura Firestore. O número restante é uma **estimativa da cota gratuita** (50 mil leituras, 20 mil gravações e 20 mil exclusões por dia), não um saldo global do Firebase nem a cobrança final;
+- para ativar o medidor, usar um Client ID OAuth **web** do projeto, com a origem `https://rankingdacompra.com.br` autorizada, Cloud Monitoring API habilitada e conta Google com permissão de leitura de métricas. Pode ser o Client ID público já usado no Estúdio do Ranki. O botão solicita apenas `monitoring.read`; o token fica somente na memória e expira. O Client ID pode ficar no armazenamento local deste aparelho, nunca o Client Secret;
+- o período diário do mostrador segue `America/Los_Angeles` e as métricas podem atrasar alguns minutos. Sem acesso, sem dados ou com erro, o ponteiro e o saldo ficam ocultos; o administrador pode abrir o console oficial pelo link no painel. Após conexão, a tela atualiza a cada 15 minutos enquanto o token estiver válido;
 - a busca e a maior parte da leitura pública usam arquivos JSON estáticos;
 - a Central de Foco só faz leitura ampla após ação manual;
 - preço e disponibilidade são conferidos em um único lote diário/manual, nunca produto a produto ao abrir o painel;

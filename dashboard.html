@@ -29,6 +29,32 @@
         .metrica-visita span { color: #555; font-size: 12px; font-weight: 600; }
         .ajuda-metrica { color: #666; font-size: 12px; line-height: 1.45; }
         @media (max-width: 520px) { .metricas-visitas { grid-template-columns: 1fr; } }
+        .painel-consumo { max-width: 760px; border: 1px solid #dbe6e0; background: linear-gradient(145deg, #fff, #f5faf7); }
+        .painel-consumo h2 { text-align: left; border: 0; padding: 0; margin-bottom: 5px; color: #174532; }
+        .consumo-subtitulo { color: #597064; font-size: 13px; margin: 0 0 15px; line-height: 1.4; }
+        .consumo-layout { display: grid; grid-template-columns: minmax(210px, 270px) 1fr; gap: 20px; align-items: center; }
+        .consumo-medidor { text-align: center; min-width: 0; }
+        .consumo-medidor svg { display: block; width: 100%; max-width: 260px; margin: auto; }
+        .consumo-ponteiro { stroke: #203b31; stroke-width: 5; stroke-linecap: round; visibility: hidden; transition: transform .7s ease; }
+        .consumo-medidor strong { display: block; margin-top: -10px; font-size: 28px; line-height: 1.1; color: #173f30; font-variant-numeric: tabular-nums; }
+        .consumo-medidor span { display: block; margin-top: 4px; color: #607166; font-size: 12px; font-weight: 700; }
+        .consumo-status { display: inline-block; padding: 6px 10px; border-radius: 999px; background: #ecf1ed; color: #445d4e; font-size: 12px; font-weight: 800; }
+        .consumo-status.atencao { background: #fff1c2; color: #765000; }
+        .consumo-status.critico { background: #ffe5e2; color: #a0271b; }
+        .consumo-leituras { margin: 13px 0 8px; color: #163d2d; font-size: 20px; font-weight: 900; font-variant-numeric: tabular-nums; }
+        .consumo-secundarias { display: flex; gap: 10px; flex-wrap: wrap; margin: 9px 0; }
+        .consumo-secundarias span { border: 1px solid #dce8df; background: white; border-radius: 8px; padding: 7px 9px; color: #3d5145; font-size: 12px; }
+        .consumo-hora { color: #5e7064; font-size: 11px; line-height: 1.4; }
+        .consumo-acoes { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; margin-top: 14px; }
+        .consumo-acoes button { border: 0; border-radius: 8px; padding: 10px 13px; background: #0b7950; color: white; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+        .consumo-acoes button:disabled { opacity: .6; cursor: wait; }
+        .consumo-acoes a { color: #145c44; font-size: 12px; font-weight: 800; }
+        .consumo-config { margin-top: 12px; border-top: 1px solid #dce8df; padding-top: 10px; color: #3d5145; font-size: 12px; }
+        .consumo-config summary { cursor: pointer; font-weight: 800; }
+        .consumo-config label { margin-top: 10px; }
+        .consumo-config input { max-width: 470px; }
+        .consumo-config button { margin-top: 8px; border: 1px solid #9ec4ad; border-radius: 7px; padding: 8px 11px; background: white; color: #11583c; font-weight: 800; cursor: pointer; }
+        @media (max-width: 620px) { .consumo-layout { grid-template-columns: 1fr; gap: 4px; } .consumo-medidor svg { max-width: 230px; } }
         
         /* Botão Magico do ML */
         .btn-magico { background-color: #ffe600; color: #2d3277; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 5px; display: inline-block; width: 100%;}
@@ -157,6 +183,42 @@
 
     <!-- DASHBOARD -->
     <div id="admin-content">
+
+        <section class="painel painel-consumo" aria-labelledby="consumo-titulo">
+            <h2 id="consumo-titulo">⛽ Tanque de leituras do Firestore</h2>
+            <p class="consumo-subtitulo">O ponteiro mostra uma estimativa da cota diária gratuita. Não é o saldo de todos os serviços do Firebase.</p>
+            <div class="consumo-layout">
+                <div class="consumo-medidor" id="consumo-medidor" role="img" aria-label="Consumo ainda não medido">
+                    <svg viewBox="0 0 240 139" aria-hidden="true" focusable="false">
+                        <path d="M 28 119 A 92 92 0 0 1 53 57" fill="none" stroke="#dc4e3b" stroke-width="18" stroke-linecap="round"/>
+                        <path d="M 59 51 A 92 92 0 0 1 112 27" fill="none" stroke="#e3a925" stroke-width="18" stroke-linecap="round"/>
+                        <path d="M 128 27 A 92 92 0 0 1 181 51" fill="none" stroke="#4ab979" stroke-width="18" stroke-linecap="round"/>
+                        <path d="M 187 57 A 92 92 0 0 1 212 119" fill="none" stroke="#198858" stroke-width="18" stroke-linecap="round"/>
+                        <line id="consumo-ponteiro" class="consumo-ponteiro" x1="120" y1="119" x2="198" y2="119"/>
+                        <circle cx="120" cy="119" r="9" fill="#203b31"/>
+                    </svg>
+                    <strong id="consumo-restante">—</strong>
+                    <span>leituras restantes (estimativa)</span>
+                </div>
+                <div>
+                    <span id="consumo-status" class="consumo-status" role="status">Sem medição</span>
+                    <p id="consumo-leituras" class="consumo-leituras">— / 50.000 leituras</p>
+                    <div class="consumo-secundarias"><span id="consumo-gravacoes">Gravações: — / 20.000</span><span id="consumo-exclusoes">Exclusões: — / 20.000</span></div>
+                    <p id="consumo-hora" class="consumo-hora">A medição é privada e só começa após sua autorização do Google.</p>
+                </div>
+            </div>
+            <div class="consumo-acoes">
+                <button type="button" id="btn-consumo-google">Conectar Google e medir</button>
+                <a href="https://console.firebase.google.com/project/rankingdacompra/firestore/usage" target="_blank" rel="noopener noreferrer">Ver consumo oficial no Firebase ↗</a>
+            </div>
+            <details class="consumo-config"><summary>Configurar acesso de leitura (uma vez neste aparelho)</summary>
+                <label for="consumo-client-id">Client ID OAuth web do Google</label>
+                <input type="text" id="consumo-client-id" placeholder="...apps.googleusercontent.com" autocomplete="off" spellcheck="false">
+                <button type="button" id="btn-consumo-client-id">Salvar Client ID neste aparelho</button>
+                <p>Você pode usar o Client ID do Estúdio do Ranki. Ele não é uma senha. A permissão solicitada será somente para ler métricas do Cloud Monitoring; nenhum token é salvo.</p>
+            </details>
+            <p class="ajuda-metrica">Fonte: Cloud Monitoring, com alguns minutos de atraso. A cobrança oficial pode diferir. A cota reinicia por volta da meia-noite no horário do Pacífico. Este mostrador não faz leituras do Firestore.</p>
+        </section>
 
         <div class="painel">
             <h2>📈 Visitas da vitrine</h2>
@@ -2877,6 +2939,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script defer src="/seo-opportunities.js?v=20260914-1"></script>
   <script defer src="/growth-tools.js?v=20260923-audit-fix1"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script defer src="/firebase-consumo.js?v=20260923-1"></script>
 </body>
 </html>
 
