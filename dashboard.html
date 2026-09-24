@@ -2451,7 +2451,17 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         }
 
         function campoPrecoExibido(produto) {
-            return produto.promocaoAtiva ? 'precoPromocional' : 'preco';
+            const anterior = numeroPreco(produto.precoAnterior);
+            const promocional = numeroPreco(produto.precoPromocional);
+            const temDesconto = anterior && promocional && anterior > promocional;
+            const validade = String(produto.promocaoValidaAte || '').slice(0, 10);
+            const fimPromocao = validade ? Date.parse(`${validade}T23:59:59-03:00`) : null;
+            const promocaoValida = produto.promocaoAtiva === true && temDesconto
+                && (!validade || (Number.isFinite(fimPromocao) && fimPromocao >= Date.now()));
+            const fimRelampago = Date.parse(produto.ofertaRelampagoTerminaEm || '');
+            const relampagoValido = produto.ofertaRelampagoAtiva === true && temDesconto
+                && Number.isFinite(fimRelampago) && fimRelampago > Date.now();
+            return promocaoValida || relampagoValido ? 'precoPromocional' : 'preco';
         }
 
         function millisDataFirebase(valor) {
@@ -2475,8 +2485,17 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const precoSite = numeroPreco(produto[campo]);
             const precoAutomatico = Number(status?.price) > 0 ? Number(status.price) : null;
             const revisaoManualEm = millisDataFirebase(produto.precoAtualizadoManualmenteEm);
-            const manualRecente = revisaoManualEm > Date.now() - (24 * 60 * 60 * 1000);
-            const consultaEm = Date.parse(status?.checkedAt || statusMercadoLivreAtualizadoEm || '');
+            const agora = Date.now();
+            const manualRecente = produto.precoAtualizadoManualmente === true
+                && revisaoManualEm > 0 && revisaoManualEm <= agora
+                && agora - revisaoManualEm <= 24 * 60 * 60 * 1000;
+            // checkedAt pertence ao produto; a data global é apenas da tentativa do lote.
+            const consultaEm = Date.parse(status?.checkedAt || '');
+            const automaticoConfiavel = Boolean(precoAutomatico && status?.managed === true
+                && status?.status === 'active' && status?.available === true && !status?.lastError
+                && Number.isFinite(consultaEm) && consultaEm > 0 && consultaEm <= agora
+                && agora - consultaEm <= 4 * 60 * 60 * 1000);
+            const automaticoMaisNovo = automaticoConfiavel && consultaEm > revisaoManualEm;
             const motivos = [];
             let tipo = '';
 
@@ -2484,7 +2503,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 tipo = 'divergente';
                 motivos.push('O preço exibido no site está vazio ou inválido.');
             }
-            if (precoAutomatico && (!precoSite || Math.abs(precoAutomatico - precoSite) >= 0.01)) {
+            if (automaticoMaisNovo && precoSite && Math.abs(precoAutomatico - precoSite) >= 0.01) {
                 tipo = 'divergente';
                 motivos.push(`Diferença encontrada: site R$ ${precoSite ? formatarPrecoCampo(precoSite) : 'sem preço'}; Mercado Livre R$ ${formatarPrecoCampo(precoAutomatico)}.`);
             } else if (!manualRecente) {
@@ -2504,13 +2523,14 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 }
             }
 
-            return { pendente: tipo === 'divergente', tipo, motivos, campo, precoSite, precoAutomatico, consultaEm, revisaoManualEm, manualRecente };
+            return { pendente: tipo === 'divergente', tipo, motivos, campo, precoSite, precoAutomatico, automaticoMaisNovo, consultaEm, revisaoManualEm, manualRecente };
         }
 
         function cartaoProdutoPreco(doc) {
             const produto = doc.data();
             const diagnostico = diagnosticoPreco(doc);
-            const valorSugerido = diagnostico.precoAutomatico || diagnostico.precoSite || '';
+            const valorSugerido = (diagnostico.automaticoMaisNovo && diagnostico.precoAutomatico)
+                || diagnostico.precoSite || '';
             const rotuloCampo = diagnostico.campo === 'precoPromocional' ? 'Preço promocional correto' : 'Preço correto';
             const precoSite = diagnostico.precoSite ? `R$ ${formatarPrecoCampo(diagnostico.precoSite)}` : 'não informado';
             const precoMercadoLivre = diagnostico.precoAutomatico ? `R$ ${formatarPrecoCampo(diagnostico.precoAutomatico)}` : 'não confirmado';
@@ -2526,10 +2546,10 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     <div class="item-admin-conteudo">
                         <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(produto.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(produto.titulo || 'Produto sem título')}</span></div>
                         <span class="status-preco${naoConfirmado ? ' status-preco-nao-confirmado' : ''}">${escapeHtml(rotuloStatus)}</span>
-                        <p class="detalhe-preco">Preço no site: <strong>${escapeHtml(precoSite)}</strong> · Consulta automática: <strong>${escapeHtml(precoMercadoLivre)}</strong></p>
+                        <p class="detalhe-preco">Preço cadastrado: <strong>${escapeHtml(precoSite)}</strong> · Último preço registrado pelo robô: <strong>${escapeHtml(precoMercadoLivre)}</strong></p>
                         <ul class="lista-problemas">${diagnostico.motivos.map(motivo => `<li>${escapeHtml(motivo)}</li>`).join('')}</ul>
                         <p class="detalhe-preco">${escapeHtml(explicacaoStatus)}</p>
-                        <p class="detalhe-preco">Última confirmação automática: ${escapeHtml(formatarDataHoraPreco(diagnostico.consultaEm))}. A correção manual vale como conferida por 24 horas.</p>
+                        <p class="detalhe-preco">Última confirmação automática deste produto: ${escapeHtml(formatarDataHoraPreco(diagnostico.consultaEm))}. A conferência manual vale por 24 horas e prevalece sobre uma consulta automática anterior.</p>
                         ${linkOferta ? `<a href="${escapeHtml(linkOferta)}" target="_blank" rel="noopener noreferrer">Abrir oferta para conferir</a>` : ''}
                     </div>
                     <div class="correcao-preco">
@@ -2830,7 +2850,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                             ? `✅ Conferência completa: ${Number(resumoLoteMercadoLivre.confirmed || 0)} item(ns) confirmado(s)`
                             : `⚠️ Conferência parcial: ${Number(resumoLoteMercadoLivre.confirmed || 0)} confirmado(s), ${Number(resumoLoteMercadoLivre.failed || 0)} sem confirmação (${bloqueiosLote} por bloqueio de acesso do Mercado Livre) e ${Number(resumoLoteMercadoLivre.unmanaged || 0)} sem código MLB`)
                         : 'Relatório antigo — execute uma nova conferência para obter o resumo completo';
-                    document.getElementById('resumo-precos').innerHTML = `<strong>Última tentativa:</strong> ${escapeHtml(formatarDataHoraPreco(statusMercadoLivreAtualizadoEm))}. <strong>Estado:</strong> ${escapeHtml(estadoLote)}. <strong>Itens no relatório:</strong> ${totalRelatorio}. <strong>Preços realmente divergentes:</strong> ${precosDivergentes}. <strong>Verificações não concluídas:</strong> ${verificacoesNaoConcluidas}. Falhas temporárias preservam o último preço conhecido; ao salvar manualmente, o produto fica marcado como revisado por 24 horas.`;
+                    document.getElementById('resumo-precos').innerHTML = `<strong>Última tentativa automática:</strong> ${escapeHtml(formatarDataHoraPreco(statusMercadoLivreAtualizadoEm))}. <strong>Estado daquele lote:</strong> ${escapeHtml(estadoLote)}. <strong>Itens no relatório automático:</strong> ${totalRelatorio}. <strong>Preços realmente divergentes:</strong> ${precosDivergentes} no momento. <strong>Verificações não concluídas:</strong> ${verificacoesNaoConcluidas} pela automação. O resumo do lote não inclui as conferências manuais feitas depois. Falhas temporárias preservam o último preço conhecido; a conferência manual vale por 24 horas.`;
                     ativarAbaProdutos(abaProdutosAtiva);
                 });
             }, error => {
