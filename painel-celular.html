@@ -276,7 +276,7 @@
         const card = document.createElement("div");
         card.className = "card";
         card.id = "precos-mobile";
-        card.innerHTML = '<div class="etapa">Conferência assistida</div><h2>💰 Confira um produto por vez</h2><p>Primeiro os mais visualizados nos últimos sete dias; depois, os há mais tempo sem conferência manual. Abra o anúncio, veja o preço e confirme. Nada é lido automaticamente do Mercado Livre.</p><button id="precos-iniciar" class="btn verde" type="button">Carregar fila de hoje</button><div id="precos-progresso" class="precos-fila-resumo" style="margin-top:12px">A fila só lê produtos e visitas quando você tocar no botão.</div><div id="precos-item"></div><div id="precos-status" class="status" role="status" aria-live="polite"></div><details><summary>Conferência automática pelo GitHub (opcional)</summary><p>A API do Mercado Livre pode negar acesso. Use apenas depois de resolver a permissão. Nenhuma conferência começa sozinha.</p><a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">Conferir todos os preços agora (GitHub)</a></details>';
+        card.innerHTML = '<div class="etapa">Conferência assistida</div><h2>💰 Confira um produto por vez</h2><p>Primeiro os mais visualizados nos últimos sete dias; depois, os há mais tempo sem conferência manual. O anúncio abre sem tirar você da fila: no computador, em uma janela reutilizável; no celular, em uma aba reutilizável quando o navegador permitir. Veja o preço e volte para confirmar. Nada é lido automaticamente do Mercado Livre.</p><button id="precos-iniciar" class="btn verde" type="button">Carregar fila de hoje</button><div id="precos-progresso" class="precos-fila-resumo" style="margin-top:12px">A fila só lê produtos e visitas quando você tocar no botão.</div><div id="precos-item"></div><div id="precos-status" class="status" role="status" aria-live="polite"></div><details><summary>Conferência automática pelo GitHub (opcional)</summary><p>A API do Mercado Livre pode negar acesso. Use apenas depois de resolver a permissão. Nenhuma conferência começa sozinha.</p><a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">Conferir todos os preços agora (GitHub)</a></details>';
         $("focus-mobile").before(card);
       }
       instalarModoEconomicoMobile();
@@ -315,6 +315,44 @@
           } catch {}
         }
         return "";
+      }
+      let janelaAnuncioConferencia = null;
+      function abrirAnuncioConferencia(evento) {
+        const produto = filaPrecosDados?.todos.find((item) => item.id === filaPrecosIdAtual);
+        const url = produto && linkPrecoAssistido(produto);
+        if (!url) {
+          evento.preventDefault();
+          msg("precos-status", "Corrija o link do anúncio antes de abrir este produto.", "erro");
+          return;
+        }
+        if (janelaAnuncioConferencia && !janelaAnuncioConferencia.closed) {
+          try {
+            janelaAnuncioConferencia.location.href = url;
+            evento.preventDefault();
+            try { janelaAnuncioConferencia.focus(); } catch {}
+            return;
+          } catch { janelaAnuncioConferencia = null; }
+        }
+        const janelaLateral = window.innerWidth >= 900 && !window.matchMedia("(pointer: coarse)").matches;
+        const largura = Math.min(620, Math.max(360, Math.round(screen.availWidth * 0.44)));
+        const altura = Math.min(850, Math.max(500, screen.availHeight - 60));
+        const opcoes = janelaLateral
+          ? `popup=yes,width=${largura},height=${altura},left=${Math.max(0, screen.availWidth - largura - 12)},top=20`
+          : "";
+        let janela;
+        try {
+          // Abrir em resposta direta ao clique evita bloqueio; a aba comum do link é o plano B.
+          janela = window.open("about:blank", "ranking_conferencia_mercado_livre", opcoes);
+          if (!janela) return;
+          janela.opener = null;
+          janela.location.href = url;
+          janelaAnuncioConferencia = janela;
+          evento.preventDefault();
+          try { janela.focus(); } catch {}
+        } catch {
+          try { janela?.close(); } catch {}
+          // Sem preventDefault, o navegador ainda pode abrir o link seguro normalmente.
+        }
       }
       function campoPrecoFila(produto) {
         const validade = String(produto.promocaoValidaAte || "").slice(0, 10);
@@ -377,7 +415,7 @@
         const ultimo = millisPrecoAssistido(produto.precoAtualizadoManualmenteEm);
         const link = linkPrecoAssistido(produto);
         const editorHtml = `<form id="precos-editor" class="precos-editor" hidden><div class="etapa">Corrigir cadastro</div><p class="mini">Altere só o que estiver errado. Os outros dados serão preservados. Para confirmar o preço atual do anúncio, use os botões de conferência acima.</p><label for="precos-ed-titulo">Nome do produto</label><input id="precos-ed-titulo" class="campo" maxlength="180" required /><label for="precos-ed-categoria">Categoria</label><select id="precos-ed-categoria" class="campo"></select><label for="precos-ed-selo">Selo</label><select id="precos-ed-selo" class="campo"><option value="">Sem selo</option><option>🔥 Mais Vendido</option><option>💰 Custo-Benefício</option><option>👑 Melhor Escolha</option></select><label for="precos-ed-anterior">Preço anterior (se houver)</label><input id="precos-ed-anterior" class="campo" inputmode="decimal" placeholder="Ex.: 199,90" /><label for="precos-ed-link">Link completo do anúncio no Mercado Livre</label><input id="precos-ed-link" class="campo" type="url" inputmode="url" /><label for="precos-ed-afiliado">Link de afiliado do Mercado Livre</label><input id="precos-ed-afiliado" class="campo" type="url" inputmode="url" /><label for="precos-ed-foto">URL da foto</label><input id="precos-ed-foto" class="campo" type="url" inputmode="url" /><details><summary>Descrição, dados técnicos e Shopee</summary><label for="precos-ed-shopee">Link da Shopee (opcional)</label><input id="precos-ed-shopee" class="campo" type="url" inputmode="url" /><label for="precos-ed-preco-shopee">Preço na Shopee (opcional)</label><input id="precos-ed-preco-shopee" class="campo" inputmode="decimal" /><label for="precos-ed-dados">Dados técnicos reais</label><textarea id="precos-ed-dados" class="campo"></textarea><label for="precos-ed-resumo">Resumo</label><textarea id="precos-ed-resumo" class="campo"></textarea><label for="precos-ed-pros">Pontos positivos</label><textarea id="precos-ed-pros" class="campo"></textarea><label for="precos-ed-contras">Pontos de atenção</label><textarea id="precos-ed-contras" class="campo"></textarea></details><button id="precos-ed-salvar" class="btn verde" type="submit">💾 Salvar correções</button><button id="precos-ed-cancelar" class="btn claro" type="button">Cancelar edição</button><div id="precos-ed-status" class="status" role="status" aria-live="polite"></div></form>`;
-        alvo.innerHTML = '<div class="precos-fila-item"><div class="etapa" id="precos-posicao"></div><h3 id="precos-titulo"></h3><div class="mini" id="precos-ultima"></div><div class="precos-fila-pares"><div><small>Preço registrado no Ranking</small><strong id="precos-valor-site"></strong></div><div><small>Visualizações em 7 dias</small><strong id="precos-visitas"></strong></div></div><a id="precos-abrir" class="precos-fila-link" target="_blank" rel="noopener noreferrer">Abrir anúncio no Mercado Livre ↗</a><p class="mini" id="precos-aviso-link"></p><label for="precos-valor-visto">Preço que você viu no anúncio</label><input id="precos-valor-visto" class="campo" inputmode="decimal" placeholder="Ex.: 149,90" /><div class="precos-fila-acoes" id="precos-acoes"><button id="precos-igual" class="btn verde" type="button">✅ Preço igual</button><button id="precos-novo" class="btn azul" type="button">💾 Salvar novo preço</button><button id="precos-pular" class="btn claro largo" type="button">Deixar este para o fim</button><button id="precos-editar" class="btn claro largo" type="button">✏️ Editar produto</button><button id="precos-excluir" class="btn precos-fila-excluir largo" type="button">🗑 Excluir produto inexistente</button></div>' + editorHtml + '</div>';
+        alvo.innerHTML = '<div class="precos-fila-item"><div class="etapa" id="precos-posicao"></div><h3 id="precos-titulo"></h3><div class="mini" id="precos-ultima"></div><div class="precos-fila-pares"><div><small>Preço registrado no Ranking</small><strong id="precos-valor-site"></strong></div><div><small>Visualizações em 7 dias</small><strong id="precos-visitas"></strong></div></div><a id="precos-abrir" class="precos-fila-link" target="_blank" rel="noopener noreferrer">Abrir anúncio sem sair da fila ↗</a><p class="mini" id="precos-aviso-link"></p><label for="precos-valor-visto">Preço que você viu no anúncio</label><input id="precos-valor-visto" class="campo" inputmode="decimal" placeholder="Ex.: 149,90" /><div class="precos-fila-acoes" id="precos-acoes"><button id="precos-igual" class="btn verde" type="button">✅ Preço igual</button><button id="precos-novo" class="btn azul" type="button">💾 Salvar novo preço</button><button id="precos-pular" class="btn claro largo" type="button">Deixar este para o fim</button><button id="precos-editar" class="btn claro largo" type="button">✏️ Editar produto</button><button id="precos-excluir" class="btn precos-fila-excluir largo" type="button">🗑 Excluir produto inexistente</button></div>' + editorHtml + '</div>';
         $("precos-posicao").textContent = "Produto " + (feitos + 1) + " de " + fila.todos.length;
         $("precos-titulo").textContent = produto.titulo;
         $("precos-ultima").textContent = ultimo ? "Última conferência manual: " + new Date(ultimo).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }) : "Sem conferência manual registrada.";
@@ -386,7 +424,7 @@
         $("precos-abrir").hidden = !link;
         if (link) $("precos-abrir").href = link;
         $("precos-aviso-link").textContent = link
-          ? "O anúncio abre em outra aba; volte aqui depois de olhar o valor. Este painel não lê a página automaticamente."
+          ? "A mesma janela ou aba do anúncio será reaproveitada. Volte aqui para confirmar; o painel não lê o preço automaticamente."
           : "Sem link válido do Mercado Livre. Corrija o cadastro antes de confirmar este produto.";
         $("precos-igual").disabled = !link || !valorSite;
         $("precos-novo").disabled = !link;
@@ -631,6 +669,7 @@
       $("precos-item").addEventListener("click", (evento) => {
         if (filaPrecosSalvando) return;
         const id = evento.target?.id || "";
+        if (id === "precos-abrir") return abrirAnuncioConferencia(evento);
         if (id === "precos-igual") void salvarFilaPrecoAssistida(null);
         if (id === "precos-novo") void salvarFilaPrecoAssistida($("precos-valor-visto")?.value);
         if (id === "precos-editar") abrirEdicaoProdutoFilaPrecosAssistida();
