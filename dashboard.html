@@ -49,11 +49,9 @@
         .consumo-acoes button { border: 0; border-radius: 8px; padding: 10px 13px; background: #0b7950; color: white; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
         .consumo-acoes button:disabled { opacity: .6; cursor: wait; }
         .consumo-acoes a { color: #145c44; font-size: 12px; font-weight: 800; }
-        .consumo-config { margin-top: 12px; border-top: 1px solid #dce8df; padding-top: 10px; color: #3d5145; font-size: 12px; }
-        .consumo-config summary { cursor: pointer; font-weight: 800; }
-        .consumo-config label { margin-top: 10px; }
-        .consumo-config input { max-width: 470px; }
-        .consumo-config button { margin-top: 8px; border: 1px solid #9ec4ad; border-radius: 7px; padding: 8px 11px; background: white; color: #11583c; font-weight: 800; cursor: pointer; }
+        .consumo-form { display: flex; flex-wrap: wrap; gap: 9px; align-items: end; margin-top: 14px; }
+        .consumo-form label { display: grid; gap: 5px; color: #3d5145; font-size: 12px; font-weight: 800; }
+        .consumo-form input { width: 175px; max-width: 100%; padding: 9px; border: 1px solid #aac5b6; border-radius: 7px; font: inherit; }
         @media (max-width: 620px) { .consumo-layout { grid-template-columns: 1fr; gap: 4px; } .consumo-medidor svg { max-width: 230px; } }
         
         /* Botão Magico do ML */
@@ -186,7 +184,7 @@
 
         <section class="painel painel-consumo" aria-labelledby="consumo-titulo">
             <h2 id="consumo-titulo">⛽ Tanque de leituras do Firestore</h2>
-            <p class="consumo-subtitulo">O ponteiro mostra uma estimativa da cota diária gratuita. Não é o saldo de todos os serviços do Firebase.</p>
+            <p class="consumo-subtitulo">Estimativa gratuita a partir do número que você informar. Não consulta a API paga nem representa o consumo em tempo real.</p>
             <div class="consumo-layout">
                 <div class="consumo-medidor" id="consumo-medidor" role="img" aria-label="Consumo ainda não medido">
                     <svg viewBox="0 0 240 139" aria-hidden="true" focusable="false">
@@ -198,26 +196,24 @@
                         <circle cx="120" cy="119" r="9" fill="#203b31"/>
                     </svg>
                     <strong id="consumo-restante">—</strong>
-                    <span>leituras restantes (estimativa)</span>
+                    <span>leituras restantes no momento anotado</span>
                 </div>
                 <div>
-                    <span id="consumo-status" class="consumo-status" role="status">Sem medição</span>
+                    <span id="consumo-status" class="consumo-status" role="status">Aguardando registro de hoje</span>
                     <p id="consumo-leituras" class="consumo-leituras">— / 50.000 leituras</p>
-                    <div class="consumo-secundarias"><span id="consumo-gravacoes">Gravações: — / 20.000</span><span id="consumo-exclusoes">Exclusões: — / 20.000</span></div>
-                    <p id="consumo-hora" class="consumo-hora">A medição é privada e só começa após sua autorização do Google.</p>
+                    <p id="consumo-hora" class="consumo-hora">Abra o consumo oficial do Firebase e informe as leituras de hoje.</p>
                 </div>
             </div>
+            <form id="consumo-form" class="consumo-form">
+                <label for="consumo-leituras-informadas">Leituras de hoje no Firebase
+                    <input type="number" id="consumo-leituras-informadas" min="0" step="1" inputmode="numeric" placeholder="Ex.: 12500" required disabled>
+                </label>
+                <div class="consumo-acoes"><button type="submit" id="btn-consumo-salvar" disabled>Atualizar ponteiro</button></div>
+            </form>
             <div class="consumo-acoes">
-                <button type="button" id="btn-consumo-google">Conectar Google e medir</button>
                 <a href="https://console.firebase.google.com/project/rankingdacompra/firestore/usage" target="_blank" rel="noopener noreferrer">Ver consumo oficial no Firebase ↗</a>
             </div>
-            <details class="consumo-config"><summary>Configurar acesso de leitura (uma vez neste aparelho)</summary>
-                <label for="consumo-client-id">Client ID OAuth web do Google</label>
-                <input type="text" id="consumo-client-id" placeholder="...apps.googleusercontent.com" autocomplete="off" spellcheck="false">
-                <button type="button" id="btn-consumo-client-id">Salvar Client ID neste aparelho</button>
-                <p>Você pode usar o Client ID do Estúdio do Ranki. Ele não é uma senha. A permissão solicitada será somente para ler métricas do Cloud Monitoring; nenhum token é salvo.</p>
-            </details>
-            <p class="ajuda-metrica">Fonte: Cloud Monitoring, com alguns minutos de atraso. A cobrança oficial pode diferir. A cota reinicia por volta da meia-noite no horário do Pacífico. Este mostrador não faz leituras do Firestore.</p>
+            <p class="ajuda-metrica">Copie apenas o total de leituras do painel oficial. O valor fica salvo somente neste navegador e é descartado pelo mostrador no próximo dia da cota (horário do Pacífico). O ponteiro não soma o consumo posterior e não faz leituras extras do Firestore. Gravações e exclusões devem ser conferidas no Firebase.</p>
         </section>
 
         <div class="painel">
@@ -2940,7 +2936,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
   <script defer src="/seo-opportunities.js?v=20260914-1"></script>
   <script defer src="/growth-tools.js?v=20260923-audit-fix1"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script defer src="/firebase-consumo.js?v=20260923-1"></script>
+  <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
 </body>
 </html>
 
