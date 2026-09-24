@@ -1,6 +1,13 @@
 {
-  "atualizadoEm": "2026-09-24T10:54:06.884Z",
+  "atualizadoEm": "2026-09-24T21:36:42.882Z",
   "resultados": {
+    "3vsPkZTgJD0EWYnBO8vX": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/playstation-5-edicao-digital-825-gb-slim-cfi-2114b-novo-lacrado/p/MLB35925111?pdp_filters=item_id:MLB7485753064#is_advertising=true&searchVariation=MLB35925111&backend_model=search-backend&be_origin=backend&position=1&search_layout=grid&type=pad&tracking_id=bd0ff153-cb24-4b44-8432-b0011c94f22f&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=YWI5NDYxZjktYTQwNi00NWI1LTg0YmQtZWViNzY0MmUwOWRh",
+      "resolvidoEm": "2026-09-24T21:36:42.875Z",
+      "tentativas": 1
+    },
     "vRzKgRJG9JYHiq6SQvv5": {
       "status": "ok",
       "mlb": "MLB6224452468",
@@ -6283,32 +6290,6 @@
       "contras": "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
       "linkOriginal": "https://www.mercadolivre.com.br/p/MLB66275098?pdp_filters=item_id:MLB7021497438#origin=share&sid=share&wid=MLB7021497438&action=copy",
       "resolvidoEm": "2026-08-28T14:37:53.305Z"
-    },
-    "jJJCCF4HwESGhlRkaejd": {
-      "status": "ok",
-      "mlb": "MLB7021497438",
-      "urlProduto": "https://www.mercadolivre.com.br/philco-paf15c-fritadeira-air-fryer-oven-15-litros-revestimento-redstone-porta-removivel-luz-interna-10-funcoes-220v-preta/p/MLB66275098",
-      "titulo": "Philco PAF15C Fritadeira Air Fryer Oven 15 Litros Revestimento Redstone Porta Removível Luz Interna 10 Funções 220v Preta",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_744614-MLA113587573149_062026-O.webp",
-      "precoAtual": 419,
-      "precoAnterior": 827.14,
-      "dadosTecnicos": [
-        "Capacidade total de 15 litros que permite assar alimentos inteiros ou grandes porções para toda a família de uma vez.",
-        "Potência de 2 kW que atinge temperaturas de 80°C a 200°C para selar e dourar diferentes tipos de preparos rapidamente.",
-        "Janela transparente com luz interna que possibilita monitorar o ponto do alimento sem precisar abrir a porta do forno.",
-        "Revestimento antiaderente Redstone que impede a aderência de resíduos facilitando a remoção de restos após o uso.",
-        "Painel digital com timer de 60 minutos e desligamento automático que interrompe o aquecimento ao finalizar o tempo.",
-        "Acompanha assadeiras e coletor de gordura removíveis que podem ser lavados em máquinas de lavar louças.",
-        "Marca: Philco",
-        "Cor: Preto",
-        "Peso informado: 6.83 kg",
-        "Código do catálogo: MLB66275098"
-      ],
-      "comentario": "Philco PAF15C Fritadeira Air Fryer Oven 15 Litros Revestimento Redstone Porta Removível Luz Interna 10 Funções 220v Preta. Capacidade total de 15 litros que permite assar alimentos inteiros ou grandes porções para toda a família de uma vez.; Potência de 2 kW que atinge temperaturas de 80°C a 200°C para selar e dourar diferentes tipos de preparos rapidamente.; Janela transparente com luz interna que possibilita monitorar o ponto do alimento sem precisar abrir a porta do forno.",
-      "pros": "Características reais do anúncio: Capacidade total de 15 litros que permite assar alimentos inteiros ou grandes porções para toda a família de uma vez.; Potência de 2 kW que atinge temperaturas de 80°C a 200°C para selar e dourar diferentes tipos de preparos rapidamente.; Janela transparen",
-      "contras": "Confirme voltagem, medidas, variações, compatibilidade, frete, prazo e estoque diretamente no anúncio antes de comprar.",
-      "linkOriginal": "https://www.mercadolivre.com.br/p/MLB66275098?pdp_filters=item_id:MLB7021497438#origin=share&sid=share&wid=MLB7021497438&action=copy",
-      "resolvidoEm": "2026-08-28T14:37:51.886Z"
     }
   }
 }
