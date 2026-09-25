@@ -800,7 +800,8 @@ async function createVideo() {
       recorder.onerror = (event) => reject(event.error || new Error("Falha ao gravar o vídeo."));
     });
     const startedAt = performance.now();
-    const duration = audioBuffer.duration + 0.45;
+    const tailSeconds = Math.min(0.45, Math.max(0, 20 - audioBuffer.duration));
+    const duration = audioBuffer.duration + tailSeconds;
     const animate = (now) => {
       const progress = Math.min(1, (now - startedAt) / (duration * 1000));
       drawFrame(progress);
@@ -809,7 +810,7 @@ async function createVideo() {
     recorder.start(500);
     source.start();
     state.drawing = requestAnimationFrame(animate);
-    source.onended = () => setTimeout(() => { if (recorder.state === "recording") recorder.stop(); }, 450);
+    source.onended = () => setTimeout(() => { if (recorder.state === "recording") recorder.stop(); }, Math.round(tailSeconds * 1000));
     await done;
     cancelAnimationFrame(state.drawing);
     if (state.videoUrl) URL.revokeObjectURL(state.videoUrl);
