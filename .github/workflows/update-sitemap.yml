@@ -3,15 +3,11 @@ name: Atualizar sitemap automaticamente
 on:
   push:
     branches: [main]
+    # Só alterações no gerador precisam reconstruir o site imediatamente.
+    # Índice gerado, documentação e validadores não devem reler todo o Firebase.
     paths:
       - "scripts/generate-sitemap.mjs"
       - "scripts/generate-discovery.mjs"
-      - "scripts/validate-site.mjs"
-      - "scripts/validate-blueprint.mjs"
-      - "docs/PLANTA-MESTRA.md"
-      - "docs/planta-mestra.json"
-      - "search-index.json"
-      - ".github/workflows/update-sitemap.yml"
   schedule:
     # Uma conferência de segurança às 19:17 em Brasília (22:17 UTC).
     # Após cadastrar produtos ou conferir preços, use Run workflow para publicar antes.

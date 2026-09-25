@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
 const workflow = await readFile(".github/workflows/sync-mercadolivre.yml", "utf8");
+const sitemapWorkflow = await readFile(".github/workflows/update-sitemap.yml", "utf8");
 const sync = await readFile("scripts/sync-mercadolivre.mjs", "utf8");
 const generator = await readFile("scripts/generate-sitemap.mjs", "utf8");
 const resolver = await readFile("scripts/resolve-affiliate-links.mjs", "utf8");
@@ -10,6 +11,18 @@ const dashboard = await readFile("dashboard.html", "utf8");
 const mobile = await readFile("painel-celular.html", "utf8");
 const localizerWorkflow = await readFile(".github/workflows/localizar-mlb.yml", "utf8");
 const historyWorkflow = await readFile(".github/workflows/historico-precos.yml", "utf8");
+
+test("sitemap mantém uma janela diária e não relê Firebase por artefatos ou documentação", () => {
+  assert.match(sitemapWorkflow, /cron:\s*["']17 22 \* \* \*["']/);
+  assert.equal((sitemapWorkflow.match(/\bcron:/g) || []).length, 1);
+  assert.match(sitemapWorkflow, /workflow_dispatch:/);
+  const pushTriggers = sitemapWorkflow.split(/^  schedule:/m)[0];
+  const paths = [...pushTriggers.matchAll(/^\s+-\s+"([^"]+)"\s*$/gm)].map(match => match[1]);
+  assert.deepEqual(paths, [
+    "scripts/generate-sitemap.mjs",
+    "scripts/generate-discovery.mjs",
+  ]);
+});
 
 test("oferece somente o lote manual e nao inicia sozinho", () => {
   assert.match(workflow, /workflow_dispatch:/);

@@ -321,6 +321,12 @@ has(updateWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discove
 has(updateWorkflow, /cron:\s*["']17 22 \* \* \*["']/, "sitemap deve ter uma única janela diária de segurança", ".github/workflows/update-sitemap.yml");
 if ((updateWorkflow.match(/\bcron:/g) || []).length !== 1) fail(".github/workflows/update-sitemap.yml: deve existir exatamente um agendamento econômico");
 has(updateWorkflow, /workflow_dispatch:/, "a publicação manual após novos produtos não pode ser removida", ".github/workflows/update-sitemap.yml");
+const sitemapPushTriggers = updateWorkflow.split(/^  schedule:/m)[0];
+for (const arquivo of ["search-index.json", "scripts/validate-site.mjs", "scripts/validate-blueprint.mjs", "docs/PLANTA-MESTRA.md", "docs/planta-mestra.json"]) {
+  if (sitemapPushTriggers.includes(`- "${arquivo}"`)) {
+    fail(`.github/workflows/update-sitemap.yml: ${arquivo} não deve iniciar releitura integral do Firebase`);
+  }
+}
 has(updateWorkflow, /git add -A sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "comparativos e índice de busca não estão incluídos na publicação", ".github/workflows/update-sitemap.yml");
 has(updateWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do sitemap ainda pode falhar por concorrência no GitHub", ".github/workflows/update-sitemap.yml");
 const priceWorkflow = await readFile(resolve(".github/workflows/sync-mercadolivre.yml"), "utf8");
