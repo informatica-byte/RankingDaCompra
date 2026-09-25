@@ -1,6 +1,45 @@
 {
-  "atualizadoEm": "2026-09-25T09:19:46.546Z",
+  "atualizadoEm": "2026-09-25T09:22:28.332Z",
   "resultados": {
+    "pVgjV7PbgQEt9FIYmKgF": {
+      "status": "ok",
+      "mlb": "MLB6849660990",
+      "urlProduto": "https://www.mercadolivre.com.br/baby-brink-boneca-1291--ana-castela-55cm-3/up/MLBU4022750372",
+      "titulo": "Baby Brink Boneca 1291  Ana Castela 55cm +3",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_868800-MLB111544360047_052026-O.webp",
+      "precoAtual": 140.55,
+      "precoAnterior": 274.9,
+      "dadosTecnicos": [
+        "Recomendado a partir dos 3 anos.",
+        "É articulada.",
+        "Inclui acessórios.",
+        "Tipo de materiais: plástico.",
+        "Marca: Baby Brink",
+        "Peso informado: 400 g",
+        "Código do catálogo: MLBU4022750372",
+        "Condição informada: novo"
+      ],
+      "comentario": "Baby Brink Boneca 1291 Ana Castela 55cm +3. Recomendado a partir dos 3 anos. É articulada. Inclui acessórios. Tipo de materiais: plástico. Marca: Baby Brink; Peso informado: 400 g. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "pros": "Baby Brink Boneca 1291 Ana Castela 55cm +3. Características confirmadas no anúncio: Recomendado a partir dos 3 anos. É articulada. Inclui acessórios. Tipo de materiais: plástico. Marca: Baby Brink.",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/baby-brink-boneca-1291--ana-castela-55cm-3/up/MLBU4022750372?pdp_filters=deal%3AMLB1567988-1#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=12&type=product&tracking_id=326ec434-b21c-4cef-b90b-539904e2580a&wid=MLB6849660990&sid=search",
+      "resolvidoEm": "2026-09-25T09:22:28.331Z",
+      "tentativas": 1
+    },
+    "RCgXYlJgB1zPr6Q4XzDe": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/brastoy-escavadeira-de-controle-remoto-veiculos-de-construcao-rc-dourado-liga-o-excavador-de-musica-2-x-baterias-presente-ideal-para-aniversario-e-dia-das-criancas/p/MLB68304768?pdp_filters=deal%3AMLB1567988-1#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=3&type=product&tracking_id=25376b5b-249a-46de-b000-9a19d6c5b990&wid=MLB6639676974&sid=search",
+      "resolvidoEm": "2026-09-25T09:22:26.728Z",
+      "tentativas": 2
+    },
+    "qVuE5J48dLKuN92yROeW": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/brastoy-escavadeira-de-controle-remoto-veiculos-de-construcao-rc-dourado-liga-o-excavador-de-musica-2-x-baterias-presente-ideal-para-aniversario-e-dia-das-criancas/p/MLB68304768?pdp_filters=deal%3AMLB1567988-1#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=3&type=product&tracking_id=25376b5b-249a-46de-b000-9a19d6c5b990&wid=MLB6639676974&sid=search",
+      "resolvidoEm": "2026-09-25T09:22:09.126Z",
+      "tentativas": 3
+    },
     "RhhkNTs0RUBa0NdDHySo": {
       "status": "ok",
       "mlb": "MLB4857733935",
@@ -27,20 +66,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/carrinho-controle-remoto-off-road-4x4-40kmh-116-competicao-k770/p/MLB66706566?pdp_filters=item_id:MLB4857733935|deal:MLB1567988-1#is_advertising=true&searchVariation=MLB66706566&backend_model=search-backend&be_origin=backend&position=8&search_layout=grid&type=pad&tracking_id=2fec8287-8907-4230-82b0-3f9a3a215bef&ad_domain=VQCATCORE_DEALS&ad_position=8&ad_click_id=YjI5ZmY1NTQtN2YzMS00NjE0LWI0NTYtYmQ3NjE4Yzc5ZWM4",
       "resolvidoEm": "2026-09-25T09:19:46.545Z",
       "tentativas": 1
-    },
-    "RCgXYlJgB1zPr6Q4XzDe": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/brastoy-escavadeira-de-controle-remoto-veiculos-de-construcao-rc-dourado-liga-o-excavador-de-musica-2-x-baterias-presente-ideal-para-aniversario-e-dia-das-criancas/p/MLB68304768?pdp_filters=deal%3AMLB1567988-1#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=3&type=product&tracking_id=25376b5b-249a-46de-b000-9a19d6c5b990&wid=MLB6639676974&sid=search",
-      "resolvidoEm": "2026-09-25T09:19:44.848Z",
-      "tentativas": 1
-    },
-    "qVuE5J48dLKuN92yROeW": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/brastoy-escavadeira-de-controle-remoto-veiculos-de-construcao-rc-dourado-liga-o-excavador-de-musica-2-x-baterias-presente-ideal-para-aniversario-e-dia-das-criancas/p/MLB68304768?pdp_filters=deal%3AMLB1567988-1#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=3&type=product&tracking_id=25376b5b-249a-46de-b000-9a19d6c5b990&wid=MLB6639676974&sid=search",
-      "resolvidoEm": "2026-09-25T09:19:27.429Z",
-      "tentativas": 2
     },
     "LoY2NegzypqZLdCvbTBQ": {
       "status": "erro",
@@ -6156,32 +6181,6 @@
       "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
       "linkOriginal": "https://www.mercadolivre.com.br/p/MLB27220634?pdp_filters=item_id:MLB4075040064#origin=share&sid=share&wid=MLB4075040064&action=copy",
       "resolvidoEm": "2026-08-30T10:12:57.220Z"
-    },
-    "4E4yobAQHql3dqdlHDfR": {
-      "status": "ok",
-      "mlb": "MLB4189368533",
-      "urlProduto": "https://www.mercadolivre.com.br/balanca-digital-bioimpedancia-profissional-smart-imc-180kg-bluetooth-corporal-aparelho-alta-capacidade-aplicativo-app-para-android-e-para-ios-balanca-de-banheiro-academia/p/MLB54514525",
-      "titulo": "Balança Digital Bioimpedância Profissional smart imc 180kg Bluetooth Corporal Aparelho Alta Capacidade aplicativo App para Android e para IOS Balança De Banheiro Academia",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_750371-MLA116617370667_082026-O.webp",
-      "precoAtual": 32,
-      "precoAnterior": 84.9,
-      "dadosTecnicos": [
-        "Plataforma de vidro temperado que suporta até 140 kg permitindo a pesagem com estabilidade e segurança.",
-        "Conexão Bluetooth sincroniza dados com aplicativo disponível em português para dispositivos Android e iOS.",
-        "Monitora métricas corporais como massa muscular, gordura visceral, massa óssea e metabolismo basal via sensor.",
-        "Memória programável para até 4 usuários permitindo o acompanhamento individualizado de dados por pessoa.",
-        "Sensores medem peso a partir de 3 kg com desligamento automático após o uso para conservar a energia das pilhas.",
-        "Plataforma com base antiderrapante que previne o deslizamento do equipamento sobre o piso do banheiro.",
-        "CONTROLE PELO APP: Tenha informações corporais organizadas no celular para facilitar o acompanhamento da sua rotina.",
-        "DESIGN MODERNO: Plataforma em vidro com visual elegante, compacto e perfeito para banheiro, quarto ou academia.",
-        "PARA TODA A FAMÍLIA: Uma solução inteligente para diferentes usuários acompanharem peso e composição corporal.",
-        "IDEAL PARA SEUS OBJETIVOS: Excelente aliada para acompanhar mudanças durante treinos, dietas e novos hábitos."
-      ],
-      "comentario": "Balança Digital Bioimpedância Profissional smart imc 180kg Bluetooth Corporal Aparelho Alta Capacidade aplicativo App para Android e para IOS Balança De Banheiro Academia. Plataforma de vidro temperado que suporta até 140 kg permitindo a pesagem com estabilidade e segurança. Conexão Bluetooth sincroniza dados com aplicativo disponível em português para dispositivos Android e iOS.",
-      "pros": "Balança Digital Bioimpedância Profissional smart imc 180kg Bluetooth Corporal Aparelho Alta Capacidade aplicativo App para Android e para IOS Balança De Banheiro Academia. Características confirmadas no anúncio: Plataforma de vidro temperado que suporta até 140 kg permitindo a pesagem com.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/p/MLB54514525?pdp_filters=item_id:MLB4189368533#origin=share&sid=share&wid=MLB4189368533&action=copy",
-      "resolvidoEm": "2026-08-29T16:03:17.615Z"
     }
   }
 }
