@@ -57,6 +57,11 @@ has(videoStudioJs, /onAuthStateChanged/, "proteção de login ausente no estúdi
 has(videoStudioJs, /fetch\(`\/search-index\.json/, "catálogo estático econômico ausente", "ranki-video-studio.js");
 has(videoStudioJs, /gemini-3\.1-flash-tts-preview/, "voz natural do Ranki ausente", "ranki-video-studio.js");
 has(videoStudioJs, /captureStream\(30\)/, "gravação vertical pelo navegador ausente", "ranki-video-studio.js");
+has(videoStudioHtml, /id="visual-style"[\s\S]{0,250}value="cinematic"/, "modelo animado do Ranki ausente", "estudio-videos.html");
+has(videoStudioHtml, /id="product-images"[^>]*multiple/, "fotos adicionais do produto ausentes", "estudio-videos.html");
+has(videoStudioHtml, /id="scene-video"[^>]*type="file"/, "cena 3D local opcional ausente", "estudio-videos.html");
+has(videoStudioJs, /function drawCinematicFrame\(/, "montagem com movimento e profundidade ausente", "ranki-video-studio.js");
+has(videoStudioJs, /audioBuffer\.duration < 10 \|\| audioBuffer\.duration > 20/, "limite de 10 a 20 segundos ausente", "ranki-video-studio.js");
 has(videoStudioJs, /youtube\.upload/, "autorização limitada ao envio para o YouTube ausente", "ranki-video-studio.js");
 has(videoStudioJs, /youtubeVideoId:[\s\S]{0,260}youtubePublicadoEm:/, "referência econômica do vídeo não é ligada ao produto", "ranki-video-studio.js");
 if (/firebase\.storage\(|getStorage\(|uploadBytes\(/.test(videoStudioJs)) fail("ranki-video-studio.js: o vídeo não deve ocupar Firebase Storage");

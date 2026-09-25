@@ -33,13 +33,16 @@
               <label for="product">Produto publicado</label><select id="product" class="field"><option value="">Carregando catálogo publicado...</option></select>
               <div id="product-summary" class="product-summary hidden"><img id="product-image-small" alt=""><div><b id="product-title-small"></b><small id="product-meta-small"></small></div></div>
               <div class="two"><div><label for="video-type">Modelo do vídeo</label><select id="video-type" class="field"><option value="oferta">Oferta rápida</option><option value="vale">Vale a pena?</option><option value="pros">Prós e contras</option></select></div><div><label for="ranki-theme">Roupa do Ranki</label><select id="ranki-theme" class="field"><option value="">Padrão</option><option value="ano-novo">Ano-Novo</option><option value="volta-aulas">Volta às aulas</option><option value="carnaval">Carnaval</option><option value="consumidor">Dia do Consumidor</option><option value="pascoa">Páscoa</option><option value="maes">Dia das Mães</option><option value="namorados">Dia dos Namorados</option><option value="festa-junina">Festa junina</option><option value="pais">Dia dos Pais</option><option value="criancas">Dia das Crianças</option><option value="black-friday">Black Friday</option><option value="natal">Natal</option></select></div></div>
+              <label for="visual-style">Visual do vídeo</label><select id="visual-style" class="field"><option value="cinematic">Cenas animadas com profundidade (novo)</option><option value="classic">Cartão clássico (anterior)</option></select>
+              <label for="product-images">Suas fotos do produto (opcional, até 4)</label><input id="product-images" class="field" type="file" accept="image/png,image/jpeg,image/webp" multiple><p class="fine">O Estúdio alterna essas imagens durante o vídeo. Sem fotos adicionais, usa a foto do produto já publicada. As imagens permanecem somente neste aparelho.</p><button id="clear-product-images" class="button secondary" type="button" hidden>Remover fotos adicionais</button>
+              <label for="scene-video">Cena 3D do Ranki em vídeo (opcional)</label><input id="scene-video" class="field" type="file" accept="video/mp4,video/webm"><p class="fine">Se você tiver um clipe do Ranki usando o produto, ele será a cena de fundo. Sem clipe, o Estúdio anima a imagem atual do Ranki e a foto real do produto. O arquivo fica somente neste aparelho; confira se a cena representa a mercadoria correta.</p><button id="clear-scene-video" class="button secondary" type="button" hidden>Remover cena 3D</button>
               <button id="prepare-script" class="button primary full" type="button" disabled>Preparar roteiro do Ranki</button>
               <div id="catalog-status" class="status" role="status"></div>
             </section>
 
             <section class="card">
               <div class="eyebrow">2. Revisão humana obrigatória</div><h2>Confira exatamente o que será falado</h2>
-              <label for="script">Roteiro</label><textarea id="script" class="field" maxlength="700" placeholder="Escolha um produto para preparar o roteiro."></textarea><div class="fine"><span id="script-count">0</span>/700 caracteres. Não publique afirmações como “mais vendido” sem comprovação.</div>
+              <label for="script">Roteiro</label><textarea id="script" class="field" maxlength="700" placeholder="Escolha um produto para preparar o roteiro."></textarea><div class="fine"><span id="script-count">0</span>/700 caracteres · duração estimada: <span id="script-duration">0</span> s. O áudio final deve ter de 10 a 20 segundos. Não publique afirmações como “mais vendido” sem comprovação.</div>
               <div class="two"><div><label for="voice">Voz do Ranki</label><select id="voice" class="field"><option value="Puck">Puck — animada</option><option value="Kore">Kore — firme</option><option value="Aoede">Aoede — leve</option></select></div><div><label for="video-title">Título do vídeo</label><input id="video-title" class="field" maxlength="100"></div></div>
               <label for="video-description">Descrição e hashtags</label><textarea id="video-description" class="field" maxlength="3000"></textarea>
               <div class="actions"><button id="browser-preview" class="button secondary" type="button">🔊 Ouvir prévia simples</button><button id="generate-voice" class="button dark" type="button" disabled>✨ Gerar voz natural</button></div>
@@ -61,13 +64,13 @@
           <aside class="card preview-card">
             <div class="eyebrow">3. Prévia vertical 9:16</div><h2>Como ficará o vídeo</h2>
             <div class="phone"><div class="phone-badge"></div><canvas id="video-canvas" width="1080" height="1920" aria-label="Prévia do vídeo vertical"></canvas></div>
-            <button id="create-video" class="button primary full" type="button" disabled>🎬 Criar vídeo com voz</button>
+            <div class="actions"><button id="preview-animation" class="button secondary" type="button">▶ Ver cenas em movimento</button><button id="create-video" class="button primary" type="button" disabled>🎬 Criar vídeo com voz</button></div>
             <div id="video-status" class="status" role="status"></div>
-            <p class="fine">O formato MP4 será usado quando o navegador oferecer suporte; caso contrário, será criado WebM, aceito pelo YouTube.</p>
+            <p class="fine">O formato MP4 será usado quando o navegador oferecer suporte; caso contrário, será criado WebM, aceito pelo YouTube. Cenas em profundidade não transformam a foto do produto em um modelo 3D real; para isso, adicione um clipe 3D revisado.</p>
           </aside>
         </div>
       </div>
     </main>
-    <script type="module" src="/ranki-video-studio.js?v=20260914-1"></script>
+    <script type="module" src="/ranki-video-studio.js?v=20260925-cinematic"></script>
   </body>
 </html>
