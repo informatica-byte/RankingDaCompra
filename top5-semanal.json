@@ -6,31 +6,8 @@
   "selectionRule": "precos-conferidos-nos-ultimos-14-dias",
   "products": [
     {
-      "id": "6l6oYkxxsrdu1M3y00MD",
-      "position": 1,
-      "titulo": "Creatina 1kg Suplemento Monohidratada em pó 100% Pura - Soldiers Nutrition",
-      "categoria": "belezaecuidados",
-      "selo": "👑 Melhor Escolha",
-      "foto": "https://rankingdacompra.com.br/produto/imagens/6l6oYkxxsrdu1M3y00MD-2391436c6c88.jpg?v=20260810-1",
-      "productUrl": "https://rankingdacompra.com.br/produto/6l6oYkxxsrdu1M3y00MD-20260810-1.html?v=20260925-1l2p17",
-      "linkAfiliado": "https://meli.la/2fWRDNd",
-      "preco": "68,90",
-      "precoAnterior": "239,90",
-      "precoPromocional": "68,90",
-      "desconto": 71,
-      "nota": "5",
-      "ranking": "10",
-      "comentario": "A Creatina 1kg Suplemento Monohidratada em pó 100% Pura - Soldiers Nutrition auxilia no desempenho físico de alta intensidade. Com 5g de aminoácidos por porção, ela oferece dissolução rápida e fórmula pura livre de glúten, lactose e adição de açúcar, ideal para o consumo diário e contínuo de atletas e praticantes de atividades físicas.",
-      "pros": "Oferece 5g de aminoácidos por porção para auxiliar no funcionamento muscular., Fórmula pura sem glúten, sem lactose e livre de adição de açúcar., Acompanha dosador na embalagem que garante uma dosagem mais precisa.",
-      "contras": "O protocolo de manutenção leva mais tempo para alcançar o mesmo resultado da saturação., O protocolo opcional de saturação exige a ingestão de 4 doses diárias de 5g durante 5 a 7 dias.",
-      "dadosTecnicos": "A Creatina Monohidratada Soldiers Nutrition foi desenvolvida para atletas e praticantes de atividade física que buscam melhorar a performance nos treinos de alta intensidade. Com fórmula em pó de dissolução rápida e 100% creatina monohidratada, ela auxilia no aumento da força e resistência muscular ao longo das sessões. Por que Creatina Monohidratada? A creatina monohidratada é a forma mais estudada e validada cientificamente entre todas as versões disponíveis no mercado. Sua eficácia é respaldada por décadas de pesquisa e aprovada pela Anvisa como alegação de suplemento para auxílio no desempenho em exercícios físicos de alta intensidade. O formato em pó oferece: • Dissolução rápida em água, suco ou shake • Sem sabor residual — pode ser misturada com outros suplementos • Dosagem precisa com o dosador incluso • Alta concentração por porção — sem excipientes desnecessários Benefícios Auxilia no desempenho em exercícios de alta intensidade Contribui para o funcionamento muscular normal Fonte de aminoácidos — 5g por porção Sem lactose Sem glúten Sem adição de açúcar . Para quem é indicado Adultos praticantes de atividade física que buscam suporte nutricional para treinos de força, hipertrofia, crossfit ou qualquer modalidade de alta intensidade. Indicado para uso contínuo, com protocolo de manutenção ou saturação. Modo de uso Protocolo de manutenção (mais comum): • Consumir 1 dose de 5g ao dia • Misturar em 200 a 300ml de água, suco ou com seu shake pós-treino • Pode ser consumida antes ou após o treino — o momento ideal é aquele que você vai manter consistentemente. Protocolo de saturação (opcional): • 4 doses de 5g ao dia durante 5 a 7 dias, depois manutenção com 5g/dia • Não obrigatório — o protocolo de manutenção chega ao mesmo resultado com mais tempo. Composição e ingredientes Ingrediente único: Creatina Monohidratada Não contém aromatizantes, corantes, adoçantes, conservantes ou glúten.",
-      "precoConferidoEm": "2026-09-25",
-      "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-09-25T11:57:10.567Z"
-    },
-    {
       "id": "YuOWci2UixF5GuQE6IYS",
-      "position": 2,
+      "position": 1,
       "titulo": "Roteador HUAWEI WiFi AX2S 5 GHz Wi-Fi 6 HarmonyOS Mesh+ EasyMeshVisualização de Diagnósticos do Wi-Fi Controle Parental Preto",
       "categoria": "roteador",
       "selo": "🔥 Mais Vendido",
@@ -53,7 +30,7 @@
     },
     {
       "id": "ecDxPnWwx6onVvbgLYjN",
-      "position": 3,
+      "position": 2,
       "titulo": "Mini Compressor de Ar Digital Portátil Recarregável USB-C Lumi para Pneus de Carro, Moto e Bicicleta Inflador Elétrico de Bolas e Infláveis Display LCD Alta Pressão Sem Fio Preto",
       "categoria": "esporte-e-lazer",
       "selo": "Escolha da semana",
@@ -76,7 +53,7 @@
     },
     {
       "id": "LDzmbLcaHUVNztsXyp52",
-      "position": 4,
+      "position": 3,
       "titulo": "Câmera de Segurança Wi-Fi iCSee/Yoosee A28B 4K Dupla Lente Visão Noturna Colorida Full Hd Externa Prova D'água Ip66 Sensor Movimento Woosh",
       "categoria": "câmerasdesegurança",
       "selo": "Escolha da semana",
@@ -99,7 +76,7 @@
     },
     {
       "id": "rfym6WivFVhxpwn2WF6r",
-      "position": 5,
+      "position": 4,
       "titulo": "Winleve Studio Otimizador Windows 10 E 11 Digital",
       "categoria": "informatica",
       "selo": "👑 Melhor Escolha",
@@ -122,7 +99,7 @@
     },
     {
       "id": "rjkXSj5wDd3i4spfoHet",
-      "position": 6,
+      "position": 5,
       "titulo": "Software Rede Manutenção Windows Titanium Tech Toolkit",
       "categoria": "informatica",
       "selo": "👑 Melhor Escolha",
@@ -139,9 +116,32 @@
       "pros": "Permite realizar a limpeza segura de cache em navegadores como Chrome, Edge, Brave, Firefox e Opera., Possui ferramentas de saúde do Windows que incluem criação de ponto de restauração e comandos DISM., Oferece diagnósticos de rede e recursos como o reset de Winsock e TCP/IP com confirmação.",
       "contras": "Não acompanha pendrive ou mídia física, sendo um produto distribuído de forma exclusivamente digital., O executável não possui certificado comercial Authenticode, o que pode acionar o Microsoft Defender SmartScreen.",
       "dadosTecnicos": "TITANIUM TECH TOOLKIT 2026 — CONEXÃO DIGITAL INFORMÁTICA Kit profissional para técnicos de informática, com limpeza segura, diagnóstico, manutenção do Windows, rede, impressoras e relatórios em um único aplicativo. PRODUTO DIGITAL Você recebe o Titanium Tech Toolkit v6.0.2, guia de uso e licença individual. Nenhum pendrive físico acompanha a compra. O arquivo pode ser executado diretamente de um pendrive ou instalado no computador. PAINEL E AÇÕES RÁPIDAS • Exibe Windows, arquitetura, memória RAM, espaço livre e tempo ligado. • Atalhos para limpeza, diagnóstico completo e teste de conectividade. LIMPEZA SEGURA • Pré-análise que mostra arquivos e espaço recuperável antes da exclusão. • Temporários do usuário, Windows, miniaturas, CrashDumps, cache DirectX e relatórios de erro. • Cache de Chrome, Edge, Brave, Firefox e Opera. • Preserva favoritos, senhas, cookies, histórico e documentos pessoais. • Arquivos bloqueados são ignorados. • Cache do Windows Update fica desmarcado por padrão. • Cada operação gera registro técnico. SAÚDE DO WINDOWS • Criação de ponto de restauração. • DISM ScanHealth e RestoreHealth. • SFC /scannow. • Limpeza segura do Component Store. • Otimização automática para SSD e HDD. • Manutenção semanal opcional no modo instalado. REDE E CONECTIVIDADE • Diagnóstico de IP, gateway, DNS, Internet e porta https. • Teste de host informado pelo técnico. • Limpeza do cache DNS. • Renovação DHCP. • Reset Winsock e TCP/IP com confirmação. • Acesso aos adaptadores de rede. IMPRESSORAS • Consulta impressoras instaladas, driver, porta e status. • Reinicia o spooler. • Limpa fila travada sem remover impressoras. • Imprime página de teste. • Abre o assistente para adicionar impressora. DIAGNÓSTICOS E RELATÓRIOS • Inventário de sistema, hardware, BIOS, discos, rede e softwares. • Saúde física dos discos, volumes, espaço e BitLocker. • Eventos críticos dos últimos 7 dias. • Localiza arquivos maiores que 100 MB sem excluir. • Relatório nativo de bateria. • Programas iniciados com o Windows. • Relatórios HTML identificados pela Conexão Digital Informática. FERRAMENTAS DO TÉCNICO Acesso rápido ao Gerenciador de Tarefas, Dispositivos, Discos, Serviços, Eventos, Programas e Recursos, Propriedades do Sistema, Conexões de Rede, Firewall, Área de Trabalho Remota, PowerShell e Prompt de Comando. COMPATIBILIDADE • Windows 10 e Windows 11, 32 ou 64 bits. • Requer .NET Framework 4.8. • Algumas funções exigem permissão de administrador. • Interface em português do Brasil. • Utiliza ferramentas nativas do Windows. LICENÇA E ENTREGA Licença individual para uso profissional pelo comprador. Não permite revenda, compartilhamento ou redistribuição do executável. A entrega é digital pelo método permitido pelo Mercado Livre após a confirmação da compra. IMPORTANTE O software auxilia o trabalho técnico, mas não substitui diagnóstico profissional, backup ou reparo de hardware. Algumas operações podem reiniciar serviços, interromper temporariamente a conexão ou exigir reinicialização do Windows. O aplicativo avisa e pede confirmação antes dessas ações. O executável ainda não possui certificado comercial Authenticode. O Microsoft Defender SmartScreen poderá apresentar aviso em alguns computadores por se tratar de um aplicativo novo. Desenvolvido por Conexão Digital Informática.",
-      "precoConferidoEm": "2026-09-24",
+      "precoConferidoEm": "2026-09-25",
       "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-09-24T16:17:51.442Z"
+      "precoAtualizadoManualmenteEm": "2026-09-25T16:52:12.914Z"
+    },
+    {
+      "id": "5ohGMLIwCSUjFKcWyWyy",
+      "position": 6,
+      "titulo": "Câmera Segurança Ip Externa Wifi A28 App Icsee À Prova Dágua",
+      "categoria": "câmerasdesegurança",
+      "selo": "🔥 Mais Vendido",
+      "foto": "https://rankingdacompra.com.br/produto/imagens/5ohGMLIwCSUjFKcWyWyy-96c3e26d0af1.jpg?v=20260810-1",
+      "productUrl": "https://rankingdacompra.com.br/produto/5ohGMLIwCSUjFKcWyWyy-20260810-1.html?v=20260925-15zd0vx",
+      "linkAfiliado": "https://meli.la/2yBAJwD",
+      "preco": "104,95",
+      "precoAnterior": "350,00",
+      "precoPromocional": "104,95",
+      "desconto": 70,
+      "nota": "4.8",
+      "ranking": "10",
+      "comentario": "A Câmera de Segurança A28B oferece monitoramento com dupla lente (uma fixa e uma rotativa de 360º) e resolução de 6MP. O modelo conta com rastreamento humanoide, áudio bidirecional e visão noturna colorida. O controle é feito via aplicativo iCSee com suporte a até 64 usuários, sendo compatível com protocolo ONVIF para integração com NVR.",
+      "pros": "Possui sistema de dupla lente com uma câmera fixa para visão geral e uma câmera rotativa de 360º., Permite o compartilhamento do acesso de visualização com até 64 usuários pelo aplicativo iCSee., Apresenta compatibilidade com o protocolo ONVIF para integração em sistemas NVR.",
+      "contras": "A câmera não é à prova d'água, sendo apenas resistente a respingos de acordo com as recomendações de fábrica., O aparelho não conta com nenhuma funcionalidade de zoom.",
+      "dadosTecnicos": "TEMOS CATALOGO COM VARIOS MODELOS DE CÂMERA DE SEGURANÇA E KITS COM CARTÃO DE MEMORIA, SEGUE LINK: https://www.mercadolivre.com.br/pagina/geraldamariag?item_id=MLB5016593184&category_id=MLB7073&seller_id=656447019&client=recoview-selleritems&recos_listing=true#origin=vip&component=sellerData&typeSeller=eshop LOJA OFICIAL SAFE HAVEN Câmera de Segurança A28B com Dupla Lente: Vigilância Completa e Robusta - NextGen Atenção: A Câmera A28B NÃO POSSUI ZOOM. Descrição: A Câmera de Segurança A28B oferece vigilância abrangente com duas câmeras em um único aparelho, combinando design robusto e materiais duráveis para resistir às condições climáticas. Ideal para monitorar áreas amplas com alta definição e recursos avançados. Recursos Destacados: Qualidade de Imagem 6MP: Imagens ainda mais nítidas e detalhadas para sua segurança. Armazenamento Flexível: Cartão de memória: Suporte para 32GB, 64GB ou 128GB. Nuvem: Serviço pago, verifique os valores com sua operadora de celular. Aplicativo iCSee: Aplicativo gratuito e fácil de usar. Visualização remota de qualquer lugar do mundo. Suporte para até 4 câmeras simultâneas no aplicativo. Adição de até 64 usuários para compartilhamento de visualização. Protocolo ONVIF: Compatível com NVR para integração em sistemas de monitoramento. Dupla Lente: Uma câmera fixa para visão geral. Uma câmera rotativa 360º para cobertura completa. Alta Definição: Imagens nítidas com resolução de 3MP/3MP. Visão Noturna Colorida: Monitore em ambientes com pouca luz com clareza. Alarme de Luz Policial: Alerta visual para dissuadir intrusos. Rastreamento Humanóide: Acompanha movimentos de pessoas automaticamente. Áudio Bidirecional: Comunique-se com pessoas próximas à câmera. Monitoramento Remoto: Acesse as imagens pelo celular (iOS e Android) com o aplicativo iCsee. Conexão Versátil: Conecte via Wi-Fi ou cabo Ethernet. IMPORTANTE: A câmera é resistente a respingos, mas não é à prova d'água. Recomenda-se proteção adicional em áreas totalmente expostas. A garantia não cobre danos por exposição excessiva à água. Especificações Técnicas: Quantidade de Antenas: 2 Visibilidade Noturna Infravermelho: 30 metros Bivolt (110V/220V) Itens Inclusos: 1 x Câmera IP 2 em 1 1 x Suporte de Fixação 2 x Parafusos e Buchas 1 x Fonte de Energia 1 x Cabo de Conexão (Internet e Energia)",
+      "precoConferidoEm": "2026-09-25",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-09-25T16:54:52.901Z"
     }
   ]
 }
