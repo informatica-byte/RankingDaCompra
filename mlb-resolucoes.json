@@ -1,6 +1,33 @@
 {
-  "atualizadoEm": "2026-09-26T09:52:08.945Z",
+  "atualizadoEm": "2026-09-26T09:54:22.324Z",
   "resultados": {
+    "7yHFByZlKHIm5KRMZ89H": {
+      "status": "ok",
+      "mlb": "MLB5217766945",
+      "urlProduto": "https://www.mercadolivre.com.br/patinete-triciclo-infantil-drift-eletrico-brinquedo-100kg/up/MLBU5170726474",
+      "titulo": "Patinete Triciclo Infantil Drift Elétrico Brinquedo 100kg",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_615130-MLB118248469039_092026-O.webp",
+      "precoAtual": 831.5,
+      "precoAnterior": 1499,
+      "dadosTecnicos": [
+        "Bateria de íon de lítio.",
+        "Tempo de carregamento: 5 h.",
+        "Potência do motor: 150W.",
+        "Velocidade máxima atingida: 15km/h.",
+        "Idade mínima recomendada: 6 anos.",
+        "Peso máximo suportado 80kg.",
+        "Autonomia: 15 km.",
+        "Com luz LED.",
+        "Com bluetooth.",
+        "Marca: bellaro prestige"
+      ],
+      "comentario": "Patinete Triciclo Infantil Drift Elétrico Brinquedo 100kg. Bateria de íon de lítio. Tempo de carregamento: 5 h. Potência do motor: 150W. Velocidade máxima atingida: 15km/h. Idade mínima recomendada: 6 anos. Peso máximo suportado 80kg.. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "pros": "Patinete Triciclo Infantil Drift Elétrico Brinquedo 100kg. Características confirmadas no anúncio: Bateria de íon de lítio. Tempo de carregamento: 5 h. Potência do motor: 150W. Velocidade máxima atingida: 15km/h. Idade mínima recomendada: 6 anos..",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/patinete-triciclo-infantil-drift-eletrico-brinquedo-100kg/up/MLBU5170726474?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=420a5a9b-8700-4e1d-9a3a-df32fc3493c2&position=7&tracking_id=54123396-c376-4869-a5e3-837eb9d8132f&wid=MLB5217766945&sid=offers",
+      "resolvidoEm": "2026-09-26T09:54:22.319Z",
+      "tentativas": 1
+    },
     "GXB49Obh9W7D6I7YPoqD": {
       "status": "ok",
       "mlb": "MLB7216247932",
@@ -6169,32 +6196,6 @@
       "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
       "linkOriginal": "https://www.mercadolivre.com.br/up/MLBU4367171795?pdp_filters=item_id:MLB7216680136#origin=share&sid=share&wid=MLB7216680136&action=copy",
       "resolvidoEm": "2026-08-30T10:50:44.618Z"
-    },
-    "qeEomk8cnKVlmYvz8X7T": {
-      "status": "ok",
-      "mlb": "MLB5085157465",
-      "urlProduto": "https://www.mercadolivre.com.br/patinete-eletrico-500w-autonomia-37km-dobravel-ipx4-app-10/up/MLBU4774408875",
-      "titulo": "Patinete Elétrico 500w Autonomia 37km Dobrável Ipx4 App 10",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_725587-MLB115333540220_082026-O.webp",
-      "precoAtual": 1066.46,
-      "precoAnterior": 1999,
-      "dadosTecnicos": [
-        "Bateria de íon de lítio.",
-        "Tempo de carregamento: 5 h.",
-        "Potência do motor: 500W.",
-        "Velocidade máxima atingida: 35km/h.",
-        "Idade mínima recomendada: 14 anos.",
-        "Peso máximo suportado 120kg.",
-        "Autonomia: 37 km.",
-        "Com luz LED.",
-        "Com bluetooth.",
-        "É dobrável."
-      ],
-      "comentario": "Patinete Elétrico 500w Autonomia 37km Dobrável Ipx4 App 10. Bateria de íon de lítio. Tempo de carregamento: 5 h. Potência do motor: 500W. Velocidade máxima atingida: 35km/h. Idade mínima recomendada: 14 anos. Peso máximo suportado 120kg.. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Patinete Elétrico 500w Autonomia 37km Dobrável Ipx4 App 10. Características confirmadas no anúncio: Bateria de íon de lítio. Tempo de carregamento: 5 h. Potência do motor: 500W. Velocidade máxima atingida: 35km/h. Idade mínima recomendada: 14 anos..",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/up/MLBU4774408875?pdp_filters=item_id:MLB5085157465#origin=share&sid=share&wid=MLB5085157465&action=copy",
-      "resolvidoEm": "2026-08-30T10:45:15.107Z"
     }
   }
 }
