@@ -193,6 +193,8 @@
     }
     if (clearButton) clearButton.hidden = false;
     const date = new Date(report.importedAt).toLocaleString("pt-BR");
+    const importedAge = Date.now() - Date.parse(report.importedAt);
+    const outdated = Number.isFinite(importedAge) && importedAge > 7 * 24 * 60 * 60 * 1000;
     const top = report.opportunities.slice(0, 10);
     const rows = top.map((item, index) => {
       const title = suggestedTitle(item);
@@ -200,7 +202,7 @@
       const priority = item.position <= 15 && item.ctr < 3 ? "Alta" : item.position <= 20 ? "Média" : "Analisar";
       return '<tr><td><span class="seo-rank">#' + (index + 1) + '</span><span class="seo-priority seo-priority-' + priority.toLowerCase().replace("é", "e") + '">' + priority + '</span></td><td><b>' + escapeHtml(shortLabel(item.label)) + '</b><small>' + escapeHtml(item.action) + '</small></td><td>' + formatNumber(item.impressions) + '</td><td>' + formatNumber(item.ctr, 1) + '%</td><td>' + formatNumber(item.position, 1) + '</td><td><button type="button" data-seo-use="' + value + '">' + (item.kind === "consulta" ? "Usar como pauta" : "Abrir página") + '</button></td></tr>';
     }).join("");
-    result.innerHTML = '<div class="seo-summary"><div><strong>' + formatNumber(report.impressions) + '</strong><span>Impressões no arquivo</span></div><div><strong>' + formatNumber(report.clicks) + '</strong><span>Cliques</span></div><div><strong>' + formatNumber(report.ctr, 1) + '%</strong><span>CTR calculado</span></div><div><strong>' + formatNumber(report.quickWins) + '</strong><span>Vitórias rápidas</span></div></div><div class="seo-recommendation"><b>Prioridade recomendada:</b> trabalhe primeiro nas linhas “Alta”. Elas já aparecem perto da primeira página, mas ainda recebem poucos cliques. Nenhuma alteração é publicada automaticamente.</div><div class="seo-table"><table><thead><tr><th>Prioridade</th><th>Consulta ou página</th><th>Impressões</th><th>CTR</th><th>Posição</th><th>Ação</th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="seo-date">Importado em ' + escapeHtml(date) + ' · ' + formatNumber(report.sourceRows) + ' linha(s) analisada(s). Pontuação combina impressões, CTR abaixo de 5% e posição atual.</p>';
+    result.innerHTML = (outdated ? '<div class="seo-recommendation"><b>Atualize o CSV:</b> esta análise foi importada há mais de sete dias. Exporte um período recente no Search Console antes de escolher as próximas páginas.</div>' : '') + '<div class="seo-summary"><div><strong>' + formatNumber(report.impressions) + '</strong><span>Impressões no arquivo</span></div><div><strong>' + formatNumber(report.clicks) + '</strong><span>Cliques</span></div><div><strong>' + formatNumber(report.ctr, 1) + '%</strong><span>CTR calculado</span></div><div><strong>' + formatNumber(report.quickWins) + '</strong><span>Vitórias rápidas</span></div></div><div class="seo-recommendation"><b>Prioridade recomendada:</b> trabalhe primeiro nas linhas “Alta”. Elas já aparecem perto da primeira página, mas ainda recebem poucos cliques. Nenhuma alteração é publicada automaticamente.</div><div class="seo-table"><table><thead><tr><th>Prioridade</th><th>Consulta ou página</th><th>Impressões</th><th>CTR</th><th>Posição</th><th>Ação</th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="seo-date">Importado em ' + escapeHtml(date) + ' · ' + formatNumber(report.sourceRows) + ' linha(s) analisada(s). Pontuação combina impressões, CTR abaixo de 5% e posição atual.</p>';
   }
 
   function useOpportunity(root, encoded) {

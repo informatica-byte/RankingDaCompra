@@ -199,7 +199,7 @@ has(mobilePanelHtml, /id="link-shopee"/, "link opcional da Shopee ausente no pai
 has(mobilePanelHtml, /id="preco-shopee"/, "preço opcional da Shopee ausente no painel celular", "painel-celular.html");
 has(mobilePanelHtml, /linkShopee,\s*\n\s*precoShopee:/, "segunda oferta não é salva no mesmo cadastro móvel", "painel-celular.html");
 has(mobilePanelHtml, /id="seo-opportunities-mobile"/, "Central SEO de oportunidades ausente no celular", "painel-celular.html");
-has(mobilePanelHtml, /seo-opportunities\.js\?v=20260914-1/, "versão da Central SEO ausente no celular", "painel-celular.html");
+has(mobilePanelHtml, /seo-opportunities\.js\?v=20\d{6}-\d+/, "versão da Central SEO ausente no celular", "painel-celular.html");
 
 const dashboardHtml = await readFile(resolve("dashboard.html"), "utf8");
 const firebaseGauge = await readFile(resolve("firebase-consumo.js"), "utf8");
@@ -223,7 +223,7 @@ has(dashboardHtml, /id="linkShopee"/, "link opcional da Shopee ausente no painel
 has(dashboardHtml, /id="precoShopee"/, "preço opcional da Shopee ausente no painel completo", "dashboard.html");
 has(dashboardHtml, /linkShopee:\s*linkShopeeProduto/, "segunda oferta não é salva no mesmo cadastro completo", "dashboard.html");
 has(dashboardHtml, /id="seo-opportunities-dashboard"/, "Central SEO de oportunidades ausente no painel completo", "dashboard.html");
-has(dashboardHtml, /seo-opportunities\.js\?v=20260914-1/, "versão da Central SEO ausente no painel completo", "dashboard.html");
+has(dashboardHtml, /seo-opportunities\.js\?v=20\d{6}-\d+/, "versão da Central SEO ausente no painel completo", "dashboard.html");
 
 const seoOpportunities = await readFile(resolve("seo-opportunities.js"), "utf8");
 has(seoOpportunities, /function parseSearchConsoleCsv\(/, "leitor do CSV do Search Console ausente", "seo-opportunities.js");

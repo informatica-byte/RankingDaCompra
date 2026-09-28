@@ -9,7 +9,8 @@ function setup(){
   filaPrecosDados:{todos:[{id:'a',titulo:'A'},{id:'b',titulo:'B'},{id:'c',titulo:'C'}],metricas:[{id:'a'},{id:'a'},{id:'b'}]},
   filaPrecosPulados:new Set(),filaPrecosConferidos:new Set(),
   millisPrecoAssistido:v=>v||0,diaPrecoAssistido:v=>v?'hoje':'antes',hoje:()=> 'hoje',
-  rankingTipoMetrica:()=> 'visualizacao_produto',rankingMetricaProdutoId:e=>e.id
+  rankingTipoMetrica:()=> 'visualizacao_produto',rankingMetricaProdutoId:e=>e.id,
+  guardarPosicaoFilaPrecos:()=>{}
  });vm.runInContext(source,context);return context;
 }
 const ids=c=>Array.from(c.dadosFilaPrecosAssistida().pendentes,p=>p.id);
@@ -26,4 +27,24 @@ test('adiar não marca preço como confirmado; conferidos realmente saem da fila
  const c=setup();c.filaPrecosPulados.add('a');assert.equal(ids(c).length,3);
  c.filaPrecosConferidos.add('b');c.filaPrecosDados.todos[2].precoAtualizadoManualmenteEm=1;
  assert.deepEqual(ids(c),['a']);
+});
+
+test('posição da fila volta no mesmo dia sem salvar falsa conferência',()=>{
+ const stateCode=html.slice(html.indexOf('let filaPrecosDados = null;'),html.indexOf('function millisPrecoAssistido('));
+ const values=new Map();
+ const localStorage={getItem:key=>values.get(key)||null,setItem:(key,value)=>values.set(key,value)};
+ const create=day=>{
+  const context=vm.createContext({localStorage,hoje:()=>day});
+  vm.runInContext(stateCode,context);
+  return context;
+ };
+ const first=create('2026-09-28');
+ vm.runInContext('filaPrecosIdAtual="produto-2";filaPrecosPulados.add("produto-1");guardarPosicaoFilaPrecos()',first);
+ const resumed=create('2026-09-28');
+ assert.equal(vm.runInContext('filaPrecosIdAtual',resumed),'produto-2');
+ assert.deepEqual(Array.from(vm.runInContext('filaPrecosPulados',resumed)),['produto-1']);
+ assert.equal(vm.runInContext('filaPrecosConferidos.size',resumed),0);
+ const tomorrow=create('2026-09-29');
+ assert.equal(vm.runInContext('filaPrecosIdAtual',tomorrow),'');
+ assert.equal(vm.runInContext('filaPrecosPulados.size',tomorrow),0);
 });

@@ -288,6 +288,31 @@
       let filaPrecosSalvando = false;
       const filaPrecosPulados = new Set();
       const filaPrecosConferidos = new Set();
+      const chaveFilaPrecos = "ranking-fila-precos-assistida-v1";
+
+      function guardarPosicaoFilaPrecos() {
+        try {
+          localStorage.setItem(chaveFilaPrecos, JSON.stringify({
+            dia: filaPrecosDia,
+            atual: filaPrecosIdAtual,
+            pulados: [...filaPrecosPulados],
+          }));
+        } catch {}
+      }
+
+      function recuperarPosicaoFilaPrecos() {
+        try {
+          const salvo = JSON.parse(localStorage.getItem(chaveFilaPrecos) || "null");
+          if (salvo?.dia !== hoje()) return;
+          filaPrecosIdAtual = typeof salvo.atual === "string" ? salvo.atual : "";
+          filaPrecosPulados.clear();
+          if (Array.isArray(salvo.pulados)) {
+            salvo.pulados.filter((id) => typeof id === "string").slice(-1000)
+              .forEach((id) => filaPrecosPulados.add(id));
+          }
+        } catch {}
+      }
+      recuperarPosicaoFilaPrecos();
 
       function millisPrecoAssistido(valor) {
         if (!valor) return 0;
@@ -401,6 +426,7 @@
           filaPrecosConferidos.clear();
           filaPrecosPulados.clear();
           filaPrecosIdAtual = "";
+          guardarPosicaoFilaPrecos();
         }
         const fila = dadosFilaPrecosAssistida();
         const feitos = fila.todos.length - fila.pendentes.length;
@@ -412,6 +438,7 @@
         }
         const produto = fila.pendentes.find((item) => item.id === filaPrecosIdAtual) || fila.pendentes[0];
         filaPrecosIdAtual = produto.id;
+        guardarPosicaoFilaPrecos();
         const campo = campoPrecoFila(produto);
         const valorSite = numero(produto[campo]);
         const ultimo = millisPrecoAssistido(produto.precoAtualizadoManualmenteEm);
@@ -440,7 +467,6 @@
         try {
           if (filaPrecosDados) rankingDadosMovel = null;
           filaPrecosDados = await rankingCarregarDados(true);
-          filaPrecosIdAtual = "";
           renderizarFilaPrecosAssistida();
           if (!filaPrecosDados.todos.length) msg("precos-status", "Nenhum produto cadastrado foi encontrado.", "erro");
         } catch (erro) {
@@ -484,6 +510,7 @@
           if (alterou) produto[campo] = preco(valor);
           filaPrecosPulados.delete(id);
           filaPrecosIdAtual = "";
+          guardarPosicaoFilaPrecos();
           renderizarFilaPrecosAssistida();
           msg("precos-status", alterou ? "Novo preço salvo. Próximo produto pronto." : "Preço confirmado sem mudança. Próximo produto pronto.", "ok");
           $("precos-mobile").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -653,6 +680,7 @@
           filaPrecosPulados.delete(id);
           filaPrecosConferidos.delete(id);
           filaPrecosIdAtual = "";
+          guardarPosicaoFilaPrecos();
           renderizarFilaPrecosAssistida();
           msg("precos-status", "Produto excluído do cadastro. A página pública será atualizada quando a geração usar dados completos. Próximo item pronto.", "ok");
         } catch (erro) {
@@ -681,6 +709,7 @@
           filaPrecosPulados.delete(filaPrecosIdAtual);
           filaPrecosPulados.add(filaPrecosIdAtual);
           filaPrecosIdAtual = "";
+          guardarPosicaoFilaPrecos();
           renderizarFilaPrecosAssistida();
           off("precos-status");
         }
@@ -1935,6 +1964,6 @@
         scrollTo({ top: 0, behavior: "smooth" });
       };
     </script>
-    <script defer src="/seo-opportunities.js?v=20260914-1"></script>
+    <script defer src="/seo-opportunities.js?v=20260928-2"></script>
   </body>
 </html>

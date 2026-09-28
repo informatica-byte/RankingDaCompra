@@ -216,6 +216,20 @@
             <p class="ajuda-metrica">Copie apenas o total de leituras do painel oficial. O valor fica salvo somente neste navegador e é descartado pelo mostrador no próximo dia da cota (horário do Pacífico). O ponteiro não soma o consumo posterior e não faz leituras extras do Firestore. Gravações e exclusões devem ser conferidas no Firebase.</p>
         </section>
 
+        <section class="painel" aria-labelledby="rotina-titulo">
+            <h2 id="rotina-titulo">📋 Resumo de hoje</h2>
+            <p class="ajuda-metrica">Atualizado com os produtos que este painel já carrega.</p>
+            <div class="metricas-visitas">
+                <div class="metrica-visita"><strong id="rotina-conferidos">—</strong><span>Preços conferidos hoje</span></div>
+                <div class="metrica-visita"><strong id="rotina-restantes">—</strong><span>Produtos sem conferência hoje</span></div>
+                <div class="metrica-visita"><strong id="rotina-vencidas">—</strong><span>Promoções marcadas e vencidas</span></div>
+            </div>
+            <p id="rotina-publicacao" class="ajuda-metrica" role="status">Aguardando produtos...</p>
+            <a class="btn-central-secundario" href="painel-celular.html#precos-mobile" style="display:inline-block;text-decoration:none">Abrir conferência assistida</a>
+            <button type="button" class="btn-central-secundario" id="btn-backup-ranking">Baixar cópia dos cadastros</button>
+            <span id="backup-ranking-status" class="ajuda-metrica" role="status" aria-live="polite"></span>
+        </section>
+
         <div class="painel">
             <h2>📈 Visitas da vitrine</h2>
             <div class="metricas-visitas">
@@ -1052,6 +1066,8 @@ FORMATO:
         let resumoLoteMercadoLivre = null;
         let produtosCentralAtual = [];
         let metricasCentralAtual = [];
+        let snapshotProdutosBackup = null;
+        let snapshotCategoriasBackup = null;
         const textosCampanhaCentral = {};
         const arquivosCampanhaCentral = new Map();
         const promessasArquivoCampanhaCentral = new Map();
@@ -1264,6 +1280,7 @@ function atualizarAvisoPublicacaoCentral(produto){
  const aviso=document.querySelector('[data-central-publicacao="'+CSS.escape(id)+'"]');
  if(!estado)return;
  atualizarInteratividadeCompartilhamentoCentral(produto);
+ atualizarPublicacaoRotina();
  if(!aviso)return;
  aviso.classList.remove('publicacao-pronta','publicacao-aguardando','publicacao-erro');
  if(estado.pronto){aviso.classList.add('publicacao-pronta');aviso.textContent='✅ Página com foto pronta para compartilhar';return}
@@ -1761,6 +1778,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         // público (index.html) enxergue exatamente as mesmas categorias.
         function carregarCategorias() {
             db.collection("categorias").orderBy("criadoEm", "asc").onSnapshot(snapshot => {
+                snapshotCategoriasBackup = snapshot;
                 const select = document.getElementById('categoria');
                 const listaCatAdmin = document.getElementById('lista-categorias-admin');
                 const categoriaSelecionada = select.value;
@@ -2846,8 +2864,100 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             }
         }
 
+        function diaBrasilRotina(valor) {
+            if (!valor) return '';
+            const data = valor?.toDate ? valor.toDate() : new Date(valor || 0);
+            if (Number.isNaN(data.getTime())) return '';
+            const partes = new Intl.DateTimeFormat('en-CA', {
+                timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit'
+            }).formatToParts(data);
+            const campos = Object.fromEntries(partes.map(parte => [parte.type, parte.value]));
+            return `${campos.year}-${campos.month}-${campos.day}`;
+        }
+
+        function atualizarResumoRotina(snapshot) {
+            const hojeBrasil = diaBrasilRotina(new Date());
+            let conferidos = 0;
+            let vencidas = 0;
+            snapshot.forEach(doc => {
+                const produto = doc.data();
+                if (diaBrasilRotina(produto.precoAtualizadoManualmenteEm) === hojeBrasil) conferidos += 1;
+                if (produto.promocaoAtiva === true && String(produto.promocaoValidaAte || '').slice(0, 10) < hojeBrasil) vencidas += 1;
+            });
+            document.getElementById('rotina-conferidos').textContent = String(conferidos);
+            document.getElementById('rotina-restantes').textContent = String(snapshot.size - conferidos);
+            document.getElementById('rotina-vencidas').textContent = String(vencidas);
+            atualizarPublicacaoRotina();
+        }
+
+        function atualizarPublicacaoRotina() {
+            const ofertas = melhoresOfertasCentral();
+            const avisos = produtosCentralAtual.filter(produto => campanhaValidaCentral(produto) && statusOfertaCentral(produto).length).length;
+            const pendentes = ofertas.filter(produto => !estadosPublicacaoCentral.get(String(produto.id))?.pronto).length;
+            const atrasadas = ofertas.filter(produto => {
+                const estado = estadosPublicacaoCentral.get(String(produto.id));
+                return estado && !estado.pronto && (estado.erro || Date.now() - estado.iniciadoEm >= LIMITE_ESPERA_PUBLICACAO_CENTRAL);
+            }).length;
+            document.getElementById('rotina-publicacao').textContent = ofertas.length
+                ? `Publicação das ${ofertas.length} ofertas em destaque: ${ofertas.length - pendentes} pronta(s), ${pendentes} aguardando (${atrasadas} com atraso ou falha). ${avisos} aviso(s) de cadastro.`
+                : 'Sem oferta válida em destaque no momento. Consulte os avisos na Central de Divulgação.';
+        }
+
+        function serializarValorBackup(valor) {
+            if (valor?.toMillis && typeof valor.seconds === 'number') {
+                return { __rdc_type: 'timestamp', seconds: valor.seconds, nanoseconds: valor.nanoseconds || 0 };
+            }
+            if (valor instanceof Date) return { __rdc_type: 'date', iso: valor.toISOString() };
+            if (Array.isArray(valor)) return valor.map(serializarValorBackup);
+            if (valor && typeof valor === 'object') {
+                return Object.fromEntries(Object.entries(valor).map(([chave, item]) => [chave, serializarValorBackup(item)]));
+            }
+            return valor;
+        }
+
+        async function baixarBackupRanking() {
+            const botao = document.getElementById('btn-backup-ranking');
+            const status = document.getElementById('backup-ranking-status');
+            if (!auth.currentUser || !snapshotProdutosBackup || !snapshotCategoriasBackup
+                || snapshotProdutosBackup.metadata.fromCache || snapshotCategoriasBackup.metadata.fromCache) {
+                status.textContent = 'Aguarde produtos e categorias serem confirmados pelo servidor antes de baixar.';
+                return;
+            }
+            botao.disabled = true;
+            status.textContent = 'Preparando cópia...';
+            try {
+                const resposta = await fetch('./site-config.json', { cache: 'no-store' });
+                if (!resposta.ok) throw new Error('Não foi possível incluir as configurações do site.');
+                const registros = snapshot => snapshot.docs.map(doc => ({ id: doc.id, data: serializarValorBackup(doc.data()) }));
+                const backup = {
+                    format: 'rankingdacompra-backup-v1',
+                    exportedAt: new Date().toISOString(),
+                    source: 'painel administrativo',
+                    products: registros(snapshotProdutosBackup),
+                    categories: registros(snapshotCategoriasBackup),
+                    siteConfig: await resposta.json(),
+                };
+                if (!backup.products.length || !backup.categories.length) throw new Error('A lista está incompleta. Tente novamente depois de carregar o painel.');
+                const conteudo = JSON.stringify(backup, null, 2);
+                const arquivo = new Blob([conteudo], { type: 'application/json' });
+                const url = URL.createObjectURL(arquivo);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `rankingdacompra-backup-${diaBrasilRotina(new Date())}.json`;
+                link.click();
+                setTimeout(() => URL.revokeObjectURL(url), 30000);
+                status.textContent = `Cópia baixada: ${backup.products.length} produtos e ${backup.categories.length} categorias. Guarde o arquivo em local seguro.`;
+            } catch (erro) {
+                status.textContent = 'Falha no download: ' + String(erro?.message || erro);
+            } finally {
+                botao.disabled = false;
+            }
+        }
+        document.getElementById('btn-backup-ranking').addEventListener('click', baixarBackupRanking);
+
         function carregarProdutos() {
             db.collection("produtos").orderBy("dataCadastro", "desc").onSnapshot(snapshot => {
+                snapshotProdutosBackup = snapshot;
                 statusMercadoLivreAdminPronto.then(() => {
                     try {
                         atualizarCentralComProdutos(snapshot);
@@ -2884,6 +2994,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     produtosRevisaoAtual = revisao.map(doc => ({ id: doc.id, ...doc.data() }));
                     produtosPrecoPendenteAtual = precosPendentes.map(doc => ({ id: doc.id, ...doc.data() }));
                     colecoesProdutosAtuais = { publicados, revisao, indisponiveis, precos: precosPendentes };
+                    atualizarResumoRotina(snapshot);
                     const botaoConferenciaIA = document.getElementById('btn-conferir-precos-ia');
                     if (botaoConferenciaIA && !conferenciaPrecoIAEmAndamento) {
                         botaoConferenciaIA.disabled = precosPendentes.length === 0;
@@ -3007,7 +3118,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 </script>
 
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
-  <script defer src="/seo-opportunities.js?v=20260914-1"></script>
+  <script defer src="/seo-opportunities.js?v=20260928-2"></script>
   <script defer src="/growth-tools.js?v=20260923-audit-fix1"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
