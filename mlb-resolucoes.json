@@ -1,19 +1,26 @@
 {
-  "atualizadoEm": "2026-09-28T16:42:30.044Z",
+  "atualizadoEm": "2026-09-28T16:47:15.978Z",
   "resultados": {
+    "ICgEVes81IwRcMSFHMUt": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/gerador-de-espuma-a-bateria-2l-lotus-74v-3-bar-lavagem-automotiva-branco/p/MLB57289720?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=ba985814-f1c8-43b5-b64c-696f84db24ee&position=12&tracking_id=8ad40f07-17ce-4579-950c-1efaed5a1d16&wid=MLB5296312807&sid=offers",
+      "resolvidoEm": "2026-09-28T16:47:15.978Z",
+      "tentativas": 1
+    },
     "mxq1VkQcPWlmj4poKotl": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/gerador-de-espuma-a-bateria-2l-lotus-74v-3-bar-lavagem-automotiva-branco/p/MLB57289720?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=ba985814-f1c8-43b5-b64c-696f84db24ee&position=12&tracking_id=8ad40f07-17ce-4579-950c-1efaed5a1d16&wid=MLB5296312807&sid=offers",
-      "resolvidoEm": "2026-09-28T16:42:30.043Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-28T16:46:58.457Z",
+      "tentativas": 2
     },
     "Fn2WNBypFNIL8GDfBmCx": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/celular-samsung-galaxy-a17-com-ia-128gb-4gb-ram-cam-de-50mp-tela-de-67-nfc-ip54-preto/p/MLB65114795?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=1c720211-ec4f-4bbd-b84a-a688c80e92ec&position=10&tracking_id=7c8aef31-5154-4827-a1df-1891bd8fe457&wid=MLB7293572044&sid=offers",
-      "resolvidoEm": "2026-09-28T16:42:12.109Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-09-28T16:46:40.366Z",
+      "tentativas": 3
     },
     "eIY5pjqP44ZBx5n1CaAb": {
       "status": "erro",
@@ -6053,32 +6060,6 @@
       "contras": "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.",
       "linkOriginal": "https://produto.mercadolivre.com.br/MLB-3392296475#origin=share&sid=share&action=copy",
       "resolvidoEm": "2026-09-02T10:02:01.280Z"
-    },
-    "pKz6d30IVSJsafiANqq7": {
-      "status": "ok",
-      "mlb": "MLB5501225568",
-      "urlProduto": "https://www.mercadolivre.com.br/o-boticario-insensatez-deo-colonia-100ml/p/MLB19803789",
-      "titulo": "O Boticário Insensatez Deo Colônia 100ml",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_906294-MLA84549494604_052025-O.webp",
-      "precoAtual": 86.9,
-      "precoAnterior": 174.9,
-      "dadosTecnicos": [
-        "É recarregável: Não.",
-        "Volume da unidade: 100 mL.",
-        "Apresenta formato de aplicação em spray que permite a distribuição uniforme da fragrância sobre a pele no uso diário.",
-        "Composição de família olfativa cítrica que proporciona uma percepção de frescor imediato durante a aplicação.",
-        "A formulação segue o padrão de Eau de cologne que possibilita a reaplicação ao longo do dia conforme a necessidade.",
-        "Combinação de notas de abacaxi, tangerina e flores que resulta em uma fragrância sem gênero para uso cotidiano.",
-        "Produzido com fórmula vegana que atende à preferência por itens fabricados sem insumos de origem animal.",
-        "Marca: O Boticário",
-        "Código do catálogo: MLB19803789",
-        "Condição informada: novo"
-      ],
-      "comentario": "O Boticário Insensatez Deo Colônia 100ml. É recarregável: Não. Volume da unidade: 100 mL. Apresenta formato de aplicação em spray que permite a distribuição uniforme da fragrância sobre a pele no uso diário. Composição de família olfativa cítrica que proporciona uma percepção de frescor imediato durante a aplicação. A formulação segue o padrão de Eau de cologne que possibilita a reaplicação ao longo do dia conforme a necessidade.",
-      "pros": "O Boticário Insensatez Deo Colônia 100ml. Características confirmadas no anúncio: É recarregável: Não. Volume da unidade: 100 mL. Apresenta formato de aplicação em spray que permite a distribuição uniforme da fragrância sobre a pele no uso diário.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/p/MLB19803789?pdp_filters=item_id:MLB5501225568#origin=share&sid=share&wid=MLB5501225568&action=copy",
-      "resolvidoEm": "2026-09-02T09:59:19.623Z"
     }
   }
 }
