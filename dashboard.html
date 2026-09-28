@@ -1037,6 +1037,8 @@ FORMATO:
         const loginContent = document.getElementById('login-content');
         const adminContent = document.getElementById('admin-content');
         let editProdId = null;
+        let produtoEdicaoOriginal = null;
+        let salvandoProduto = false;
         let editandoCatId = null;
         let produtosRevisaoAtual = [];
         let produtosPrecoPendenteAtual = [];
@@ -1955,18 +1957,56 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         document.getElementById('marketplace').addEventListener('change', atualizarMarketplaceCadastro);
         atualizarMarketplaceCadastro();
 
-        document.getElementById('formProduto').addEventListener('submit', (e) => {
+        function camposCadastroAlterados(dados, original, campos) {
+            return !original || campos.some(campo => {
+                const valor = item => typeof dados[campo] === 'boolean'
+                    ? item[campo] === true : String(item[campo] ?? '').trim();
+                return valor(dados) !== valor(original);
+            });
+        }
+
+        function validarAlteracaoCadastro(dados, original) {
+            if (!numeroPrecoPromocao(dados.preco)) return 'Informe um preço válido para o produto.';
+            const grupos = [
+                [['titulo', 'comentario', 'pros', 'contras', 'dadosTecnicos'], validarConteudoEditorial],
+                [['promocaoAtiva', 'precoAnterior', 'precoPromocional', 'promocaoValidaAte'], validarDadosPromocao],
+                [['ofertaRelampagoAtiva', 'ofertaRelampagoDuracao', 'precoAnterior', 'precoPromocional'], validarDadosRelampago]
+            ];
+            for (const [campos, validar] of grupos) {
+                if (camposCadastroAlterados(dados, original, campos)) {
+                    const erro = validar(dados);
+                    if (erro) return erro;
+                }
+            }
+            return '';
+        }
+
+        function informarStatusCadastro(texto, erro = false) {
+            let status = document.getElementById('status-cadastro-produto');
+            if (!status) {
+                status = document.createElement('p');
+                status.id = 'status-cadastro-produto';
+                status.setAttribute('role', 'status');
+                status.setAttribute('aria-live', 'polite');
+                document.getElementById('btn-submit-prod').after(status);
+            }
+            status.textContent = texto;
+            status.style.color = erro ? '#b91c1c' : '#087f5b';
+        }
+
+        document.getElementById('formProduto').addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (salvandoProduto) return;
             const linkProduto = document.getElementById('link').value.trim();
             const linkAfiliadoProduto = document.getElementById('linkAfiliado').value.trim();
             const linkShopeeProduto = document.getElementById('linkShopee').value.trim();
             const precoShopeeProduto = document.getElementById('precoShopee').value.trim();
             const marketplace = 'mercado_livre';
             const nomeLoja = marketplace === 'shopee' ? 'Shopee' : 'Mercado Livre';
-            if (!linkMarketplaceValidoCadastro(linkProduto, marketplace)) return alert(`Cole um link HTTPS válido do produto na ${nomeLoja}.`);
-            if (!linkMarketplaceValidoCadastro(linkAfiliadoProduto, marketplace)) return alert(`Cole um link de afiliado HTTPS válido da ${nomeLoja}.`);
-            if ((linkShopeeProduto && !numeroPrecoPromocao(precoShopeeProduto)) || (!linkShopeeProduto && precoShopeeProduto)) return alert('Para oferecer a Shopee, informe o link e o preço juntos.');
-            if (linkShopeeProduto && !linkMarketplaceValidoCadastro(linkShopeeProduto, 'shopee')) return alert('Confira o link HTTPS da Shopee.');
+            if (!linkMarketplaceValidoCadastro(linkProduto, marketplace)) return informarStatusCadastro(`Cole um link HTTPS válido do produto na ${nomeLoja}.`, true);
+            if (!linkMarketplaceValidoCadastro(linkAfiliadoProduto, marketplace)) return informarStatusCadastro(`Cole um link de afiliado HTTPS válido da ${nomeLoja}.`, true);
+            if ((linkShopeeProduto && !numeroPrecoPromocao(precoShopeeProduto)) || (!linkShopeeProduto && precoShopeeProduto)) return informarStatusCadastro('Para oferecer a Shopee, informe o link e o preço juntos.', true);
+            if (linkShopeeProduto && !linkMarketplaceValidoCadastro(linkShopeeProduto, 'shopee')) return informarStatusCadastro('Confira o link HTTPS da Shopee.', true);
             const ofertaRelampagoAtiva = document.getElementById('ofertaRelampagoAtiva').checked;
             const ofertaRelampagoDuracao = document.getElementById('ofertaRelampagoDuracao').value.trim();
             const dadosProduto = {
@@ -1998,23 +2038,34 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 atualizadoEm: firebase.firestore.FieldValue.serverTimestamp()
             };
 
-            const erroEditorial = validarConteudoEditorial(dadosProduto);
-            if (erroEditorial) return alert(erroEditorial);
-            const erroPromocao = validarDadosPromocao(dadosProduto);
-            if (erroPromocao) return alert(erroPromocao);
-            const erroRelampago = validarDadosRelampago(dadosProduto);
-            if (erroRelampago) return alert(erroRelampago);
+            const original = editProdId !== null ? produtoEdicaoOriginal : null;
+            if (original && !camposCadastroAlterados(dadosProduto, original, ['ofertaRelampagoAtiva', 'ofertaRelampagoDuracao'])) {
+                dadosProduto.ofertaRelampagoTerminaEm = original.ofertaRelampagoTerminaEm || '';
+            }
+            const erroCadastro = validarAlteracaoCadastro(dadosProduto, original);
+            if (erroCadastro) return informarStatusCadastro(erroCadastro, true);
             delete dadosProduto.ofertaRelampagoDuracao;
 
-            if (editProdId !== null) {
-                db.collection("produtos").doc(editProdId).update(dadosProduto)
-                    .then(() => { alert('Atualizado!'); resetarFormProduto(); })
-                    .catch(error => alert("Erro: " + error.message));
-            } else {
-                dadosProduto.dataCadastro = firebase.firestore.FieldValue.serverTimestamp();
-                db.collection("produtos").add(dadosProduto)
-                    .then(() => { alert('Salvo!'); resetarFormProduto(); })
-                    .catch(error => alert("Erro: " + error.message));
+            const botao = document.getElementById('btn-submit-prod');
+            const textoBotao = botao.innerText;
+            salvandoProduto = true;
+            botao.disabled = true;
+            informarStatusCadastro('Salvando produto...');
+            try {
+                if (editProdId !== null) {
+                    await db.collection("produtos").doc(editProdId).update(dadosProduto);
+                } else {
+                    dadosProduto.dataCadastro = firebase.firestore.FieldValue.serverTimestamp();
+                    await db.collection("produtos").add(dadosProduto);
+                }
+                resetarFormProduto();
+                informarStatusCadastro('Produto salvo. Para registrar a conferência de hoje, use a conferência assistida.');
+            } catch (error) {
+                botao.innerText = textoBotao;
+                informarStatusCadastro('Não foi possível salvar: ' + error.message, true);
+            } finally {
+                salvandoProduto = false;
+                botao.disabled = false;
             }
         });
 
@@ -2026,6 +2077,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             document.getElementById('texto-ia-paste').value = '';
             document.getElementById('texto-ia-paste').style.borderColor = "#3483fa";
             editProdId = null;
+            produtoEdicaoOriginal = null;
             document.getElementById('btn-submit-prod').innerText = "🚀 Salvar na Nuvem";
         }
 
@@ -2891,6 +2943,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     document.getElementById('texto-ia-paste').value = '';
 
                     editProdId = id;
+                    produtoEdicaoOriginal = { ...prod, ofertaRelampagoDuracao: document.getElementById('ofertaRelampagoDuracao').value };
+                    informarStatusCadastro('Editando produto. Promoções vencidas continuam encerradas, mesmo após salvar outros campos.');
                     document.getElementById('btn-submit-prod').innerText = "💾 Salvar Edição";
                     window.scrollTo(0, document.getElementById('formProduto').offsetTop - 20);
                 }

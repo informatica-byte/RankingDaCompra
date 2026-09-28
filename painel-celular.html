@@ -378,9 +378,11 @@
           const confirmadoEm = millisPrecoAssistido(produto.precoAtualizadoManualmenteEm);
           return !filaPrecosConferidos.has(produto.id) && diaPrecoAssistido(confirmadoEm) !== hoje();
         });
+        const ordemPulados = new Map([...filaPrecosPulados].map((id, indice) => [id, indice]));
         pendentes.sort((a, b) => {
           const pulado = Number(filaPrecosPulados.has(a.id)) - Number(filaPrecosPulados.has(b.id));
           if (pulado) return pulado;
+          if (ordemPulados.has(a.id) && ordemPulados.has(b.id)) return ordemPulados.get(a.id) - ordemPulados.get(b.id);
           const procura = (visitas.get(b.id) || 0) - (visitas.get(a.id) || 0);
           if (procura) return procura;
           const idade = millisPrecoAssistido(a.precoAtualizadoManualmenteEm) - millisPrecoAssistido(b.precoAtualizadoManualmenteEm);
@@ -676,6 +678,7 @@
         if (id === "precos-ed-cancelar") fecharEdicaoProdutoFilaPrecosAssistida();
         if (id === "precos-excluir") void excluirProdutoFilaPrecosAssistida();
         if (id === "precos-pular") {
+          filaPrecosPulados.delete(filaPrecosIdAtual);
           filaPrecosPulados.add(filaPrecosIdAtual);
           filaPrecosIdAtual = "";
           renderizarFilaPrecosAssistida();
