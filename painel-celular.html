@@ -1140,7 +1140,8 @@
       }
 
       let rankingDraftMovel = null,
-        rankingDadosMovel = null;
+        rankingDadosMovel = null,
+        rankingCandidataMovel = null;
       function rankingEsc(v) {
         return String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" })[c]);
       }
@@ -1566,23 +1567,26 @@
 
       FORMATO:
       ${formato}`;
-        let candidata,
-          fonte = "dados_consolidados";
-        try {
-          const urls = produtos.map((p) => p.paginaPublica).filter((u) => /^https:\/\//i.test(u)),
-            resp = await comPrazo(
-              modelRapido.generateContent(`Abra estas páginas quando estiverem acessíveis:
+        let candidata = rankingCandidataMovel?.ranking === r ? rankingCandidataMovel.candidata : null,
+          origem = rankingCandidataMovel?.ranking === r ? rankingCandidataMovel.fonte : "dados_consolidados";
+        if (!candidata) {
+          try {
+            const urls = produtos.map((p) => p.paginaPublica).filter((u) => /^https:\/\//i.test(u)),
+              resp = await comPrazo(
+                modelRapido.generateContent(`Abra estas páginas quando estiverem acessíveis:
       ${urls.join("\n")}
 
       ${regras}`),
-              20000,
-              "A IA analista",
-            );
-          candidata = JSON.parse(json(resp.response.text()));
-          if (fonte(resp.response)) fonte = "paginas_publicas_e_dados_consolidados";
-        } catch (e) {
-          const resp = await comPrazo(modelRapido.generateContent(regras), 15000, "A IA analista");
-          candidata = JSON.parse(json(resp.response.text()));
+                20000,
+                "A IA analista",
+              );
+            candidata = JSON.parse(json(resp.response.text()));
+            if (fonte(resp.response)) origem = "paginas_publicas_e_dados_consolidados";
+          } catch (e) {
+            const resp = await comPrazo(modelRapido.generateContent(regras), 15000, "A IA analista");
+            candidata = JSON.parse(json(resp.response.text()));
+          }
+          rankingCandidataMovel = { ranking: r, candidata, fonte: origem };
         }
         const auditoria = `Você é a segunda revisora independente. Compare cada frase da análise candidata com os dados consolidados. Remova afirmações sem apoio, não acrescente conhecimento próprio, preserve IDs e ordem e mantenha texto humano. Retorne somente JSON no mesmo formato.
 
@@ -1594,9 +1598,9 @@
 
       FORMATO:
       ${formato}`;
-        const revisao = await comPrazo(modelReserva.generateContent(auditoria), 20000, "A IA revisora"),
+        const revisao = await comPrazo(modelReserva.generateContent(auditoria), 30000, "A IA revisora"),
           auditada = JSON.parse(json(revisao.response.text()));
-        return { ...auditada, fonte };
+        return { ...auditada, fonte: origem };
       }
       function rankingMostrarRevisao(r) {
         const itens = r.produtos
@@ -1658,6 +1662,8 @@
         b.disabled = true;
         $("ranking-publicar").disabled = true;
         $("ranking-ia").disabled = true;
+        rankingCandidataMovel = null;
+        $("ranking-ia").textContent = "🤖 Gerar análise humanizada";
         try {
           const d = await rankingCarregarDados();
           let termo = $("ranking-termo").value.trim();
@@ -1681,15 +1687,22 @@
       $("ranking-ia").onclick = async (e) => {
         if (!rankingDraftMovel) return;
         const b = e.currentTarget;
+        const somenteRevisao = rankingCandidataMovel?.ranking === rankingDraftMovel;
         b.disabled = true;
         $("ranking-publicar").disabled = true;
-        msg("ranking-status", "A primeira IA está redigindo e a segunda está auditando os cinco produtos...");
+        msg("ranking-status", somenteRevisao ? "A IA está retomando somente a revisão dos cinco produtos..." : "A primeira IA está redigindo e a segunda está auditando os cinco produtos...");
         try {
           rankingDraftMovel = rankingAplicarIA(rankingDraftMovel, await rankingGerarIA(rankingDraftMovel));
+          rankingCandidataMovel = null;
+          b.textContent = "🤖 Gerar análise humanizada";
           rankingMostrarRevisao(rankingDraftMovel);
           msg("ranking-status", "✓ Análise humanizada e auditada. Confira o texto antes de publicar.", "ok");
         } catch (x) {
-          msg("ranking-status", "A IA não concluiu: " + mensagemIA(x) + ". O ranking matemático foi preservado.", "erro");
+          const candidataSalva = rankingCandidataMovel?.ranking === rankingDraftMovel,
+            motivo = mensagemIA(x),
+            detalhe = /experiencing high demand|\[500\s*\]|demorou mais de/i.test(motivo) ? "O serviço de IA está lento ou com alta demanda." : motivo;
+          if (candidataSalva) b.textContent = "🔁 Tentar somente revisão";
+          msg("ranking-status", "A IA não concluiu: " + detalhe + (candidataSalva ? " A primeira análise foi preservada nesta tela; tente somente a revisão mais tarde." : "") + " O ranking matemático foi preservado.", "erro");
         } finally {
           b.disabled = false;
           $("ranking-publicar").disabled = false;
