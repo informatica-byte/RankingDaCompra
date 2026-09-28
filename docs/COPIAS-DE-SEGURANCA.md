@@ -10,4 +10,12 @@ node scripts/verify-backup.mjs caminho/do/rankingdacompra-backup-AAAA-MM-DD.json
 
 A verificação lê o arquivo e não grava dados. Antes de uma recuperação, compare os totais e confira uma amostra de IDs e títulos. A restauração deve preservar os IDs e converter os campos marcados como `__rdc_type: timestamp` em datas do Firestore. Faça primeiro um teste em projeto de homologação; use os dados atuais como referência antes de aplicar qualquer gravação em produção.
 
+O restaurador também começa em modo de simulação:
+
+```sh
+node scripts/restore-backup.mjs caminho/do/rankingdacompra-backup-AAAA-MM-DD.json
+```
+
+Após revisar a cópia e testar a recuperação em homologação, uma execução administrativa pode usar `--apply --project=rankingdacompra` com a variável `GOOGLE_APPLICATION_CREDENTIALS` configurada e o pacote `firebase-admin` instalado. Essa opção cria apenas IDs ausentes nas coleções `categorias` e `produtos`; os registros existentes são ignorados. A configuração pública `site-config.json` é mantida no GitHub e deve ser comparada com a cópia antes de qualquer restauração do código. Nunca envie o JSON de backup ou a credencial administrativa para o repositório.
+
 Esta cópia inclui somente as coleções `produtos` e `categorias` e a configuração pública do site. Não inclui contas do Firebase Authentication, regras de segurança, histórico de métricas, arquivos do GitHub nem segredos de integração. Para recuperar o site inteiro, guarde também um backup independente do repositório GitHub e das configurações administrativas no Firebase Console.

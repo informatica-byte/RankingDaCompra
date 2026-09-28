@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import { verifyBackup } from './verify-backup.mjs';
+import { restoreMissing } from './restore-backup.mjs';
 
 const sample=()=>({
   format:'rankingdacompra-backup-v1',exportedAt:'2026-09-28T12:00:00.000Z',
@@ -28,4 +29,16 @@ test('exportação preserva datas do Firestore em campos aninhados',()=>{
   const result=context.serializarValorBackup({preco:'99,00',historico:[{em:timestamp}]});
   assert.equal(result.preco,'99,00');
   assert.deepEqual(JSON.parse(JSON.stringify(result.historico[0].em)),{__rdc_type:'timestamp',seconds:1790000000,nanoseconds:42});
+});
+test('recuperação simulada cria só registros ausentes e preserva os existentes',async()=>{
+  const records=new Map([['produtos/a',{titulo:'Já cadastrado',preco:'120,00'}]]);
+  const firestore={collection:name=>({doc:id=>({
+    get:async()=>({exists:records.has(`${name}/${id}`)}),
+    set:async data=>{records.set(`${name}/${id}`,data);}
+  })})};
+  class Timestamp { constructor(seconds,nanoseconds){this.seconds=seconds;this.nanoseconds=nanoseconds;} }
+  const result=await restoreMissing(firestore,sample(),Timestamp);
+  assert.deepEqual(result,{categoriesCreated:1,productsCreated:0,existingSkipped:1});
+  assert.equal(records.get('produtos/a').preco,'120,00');
+  assert.equal(records.get('categorias/c').nome,'Categoria');
 });
