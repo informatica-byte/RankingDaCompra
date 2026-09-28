@@ -1,19 +1,26 @@
 {
-  "atualizadoEm": "2026-09-28T11:11:54.289Z",
+  "atualizadoEm": "2026-09-28T11:14:24.175Z",
   "resultados": {
+    "eIY5pjqP44ZBx5n1CaAb": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/celular-samsung-galaxy-a17-com-ia-128gb-4gb-ram-cam-de-50mp-tela-de-67-nfc-ip54-preto/p/MLB65114795?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=1c720211-ec4f-4bbd-b84a-a688c80e92ec&position=10&tracking_id=7c8aef31-5154-4827-a1df-1891bd8fe457&wid=MLB7293572044&sid=offers",
+      "resolvidoEm": "2026-09-28T11:14:24.174Z",
+      "tentativas": 1
+    },
     "FTdeqfzvxSNbNhtLfHzf": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/celular-samsung-galaxy-a17-com-ia-128gb-4gb-ram-cam-de-50mp-tela-de-67-nfc-ip54-preto/p/MLB65114795?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=1c720211-ec4f-4bbd-b84a-a688c80e92ec&position=10&tracking_id=7c8aef31-5154-4827-a1df-1891bd8fe457&wid=MLB7293572044&sid=offers",
-      "resolvidoEm": "2026-09-28T11:11:54.288Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-28T11:14:06.553Z",
+      "tentativas": 2
     },
     "mHzJ31W1zZIZlbz3JOWj": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/fone-de-ouvido-bluetooth-54-soundcore-p30i-da-anker-cancelamento-de-ruido-adaptativo-graves-poderosos-45h-de-reproducao-estojo-2-em-1-com-suporte-para-celular-ip54-fone-sem-fio-tws-preto/p/MLB38176139?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=715f0ffb-bd6a-470e-b6a9-ab0f6df20abd&position=41&tracking_id=9c33a21e-7faf-47af-8a88-e55279830885&wid=MLB5410636044&sid=offers",
-      "resolvidoEm": "2026-09-28T11:11:36.689Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-09-28T11:13:49.156Z",
+      "tentativas": 3
     },
     "ZweA4TQk00KQmP3lljdM": {
       "status": "ok",
@@ -6094,31 +6101,6 @@
       "contras": "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.",
       "linkOriginal": "https://www.mercadolivre.com.br/up/MLBU4169639917?pdp_filters=item_id:MLB4826585465#origin=share&sid=share&wid=MLB4826585465&action=copy",
       "resolvidoEm": "2026-09-01T11:46:42.033Z"
-    },
-    "FCdlvYnIsRKsLW6CDem3": {
-      "status": "ok",
-      "mlb": "MLB7118107422",
-      "urlProduto": "https://www.mercadolivre.com.br/soprador-de-folhas-aspirador-eletrico-com-2-baterias-48vprem/up/MLBU4234496757",
-      "titulo": "Soprador De Folhas Aspirador Elétrico Com 2 Baterias 48vprem",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_886941-MLB114251897487_072026-O.webp",
-      "precoAtual": 125.55,
-      "precoAnterior": 299,
-      "dadosTecnicos": [
-        "Voltagem: 110V/220V",
-        "Com função de aspirador de pó.",
-        "Trabalha com uma frequência de 50hz/60hz.",
-        "Ideal para limpar ambientes de folhas e poeira.",
-        "Marca: K NAKASAKI",
-        "Cor: Amarelo",
-        "Peso informado: 1 kg",
-        "Código do catálogo: MLBU4234496757",
-        "Condição informada: novo"
-      ],
-      "comentario": "Soprador De Folhas Aspirador Elétrico Com 2 Baterias 48vprem. Voltagem: 110V/220V; Com função de aspirador de pó. Trabalha com uma frequência de 50hz/60hz. Ideal para limpar ambientes de folhas e poeira. Marca: K NAKASAKI; Cor: Amarelo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Soprador De Folhas Aspirador Elétrico Com 2 Baterias 48vprem. Características confirmadas no anúncio: Voltagem: 110V/220V; Com função de aspirador de pó. Trabalha com uma frequência de 50hz/60hz. Ideal para limpar ambientes de folhas e poeira. Marca: K NAKASAKI.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/up/MLBU4234496757?pdp_filters=item_id:MLB7118107422#origin=share&sid=share&wid=MLB7118107422&action=copy",
-      "resolvidoEm": "2026-09-01T11:43:56.639Z"
     }
   }
 }
