@@ -21,6 +21,7 @@ test("sitemap mantém uma janela diária e não relê Firebase por artefatos ou 
   assert.deepEqual(paths, [
     "scripts/generate-sitemap.mjs",
     "scripts/generate-discovery.mjs",
+    "scripts/generate-home-static.mjs",
   ]);
 });
 
@@ -107,7 +108,7 @@ test("consulta preços em blocos oficiais com ritmo econômico", () => {
 
 test("execução manual evita repetição e publica todos os arquivos gerados", () => {
   assert.match(workflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*false/);
-  assert.match(workflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/);
+  assert.match(workflow, /git add -A index\.html mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/);
 });
 
 test("localizador reutiliza e renova a autorização criptografada", () => {
@@ -150,4 +151,5 @@ test("painel separa preço divergente de consulta temporariamente bloqueada", ()
   assert.match(dashboard, /Verificações não concluídas:/);
   assert.match(dashboard, /grid-template-columns:\s*24px minmax\(0, 1fr\)/);
 });
+
 

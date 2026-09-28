@@ -72,13 +72,14 @@ jobs:
             git restore --worktree -- sitemap.xml produto
           fi
           DISCOVERY_USE_GENERATED=true node scripts/generate-discovery.mjs
+          node scripts/generate-home-static.mjs
           rm -f "$RDC_PRODUCTS_SNAPSHOT"
 
 
       - name: Publicar somente quando houver mudança
         shell: bash
         run: |
-          if [[ -z "$(git status --porcelain -- mercadolivre-status.json sitemap.xml produto analises.html 'melhores-*.html' top5-semanal.json search-index.json .mercadolivre-token.enc)" ]]; then
+          if [[ -z "$(git status --porcelain -- index.html mercadolivre-status.json sitemap.xml produto analises.html 'melhores-*.html' top5-semanal.json search-index.json .mercadolivre-token.enc)" ]]; then
             echo "Preços e disponibilidade continuam iguais."
             exit 0
           fi
@@ -86,7 +87,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A mercadolivre-status.json sitemap.xml produto analises.html 'melhores-*.html' top5-semanal.json search-index.json
+          git add -A index.html mercadolivre-status.json sitemap.xml produto analises.html 'melhores-*.html' top5-semanal.json search-index.json
           if [[ -f .mercadolivre-token.enc ]]; then
             git add .mercadolivre-token.enc
           fi
@@ -115,5 +116,6 @@ jobs:
            echo "::error::A conferência foi parcial; o último preço válido foi preservado, mas os produtos com erro ainda precisam de verificação."
            exit 1
           fi
+
 
 

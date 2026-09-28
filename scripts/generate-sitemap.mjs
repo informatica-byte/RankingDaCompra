@@ -1429,7 +1429,7 @@ function renderSharePage(product, socialImage, categoryNames, marketplaceStatus 
 
   if (editorial && Number.isFinite(rating) && rating >= 1 && rating <= 5) {
 
-    productSchema.review = { "@type": "Review", name: `Análise editorial de ${title}`, author: { "@type": "Organization", name: "Equipe editorial Ranking da Compra" }, publisher: { "@id": `${SITE}#organization` }, reviewBody: summary, reviewRating: { "@type": "Rating", ratingValue: rating, bestRating: 5, worstRating: 1 } };
+    productSchema.review = { "@type": "Review", name: `Análise editorial de ${title}`, author: { "@type": "Organization", name: "Equipe editorial Ranking da Compra", url: `${SITE}sobre.html` }, publisher: { "@id": `${SITE}#organization` }, reviewBody: summary, reviewRating: { "@type": "Rating", ratingValue: rating, bestRating: 5, worstRating: 1 } };
 
     if (positive.length) productSchema.review.positiveNotes = { "@type": "ItemList", itemListElement: positive.map((name, index) => ({ "@type": "ListItem", position: index + 1, name })) };
 
@@ -1439,7 +1439,7 @@ function renderSharePage(product, socialImage, categoryNames, marketplaceStatus 
 
   const structuredData = JSON.stringify({ "@context": "https://schema.org", "@graph": [
 
-    { "@type": "Organization", "@id": `${SITE}#organization`, name: "Ranking da Compra", url: SITE },
+    { "@type": "Organization", "@id": `${SITE}#organization`, name: "Ranking da Compra", url: SITE, publishingPrinciples: `${SITE}como-avaliamos.html` },
 
     { "@type": "BreadcrumbList", itemListElement: [
 
@@ -2023,5 +2023,6 @@ console.log(
   `Sitemap e páginas sociais atualizados: ${urls.length} URLs (${products.length} produtos, ${categories.length} categorias e ${locallyHostedImages} fotos locais).`,
 
 );
+
 
 

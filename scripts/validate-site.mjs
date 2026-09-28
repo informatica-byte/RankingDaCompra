@@ -26,6 +26,11 @@ has(homeHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado a
 has(homeHtml, /growth-tools\.js\?v=20260923-audit-fix1/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
 has(homeHtml, /class="hero-search"[\s\S]{0,300}name="busca"/, "busca principal visível ausente da primeira tela", "index.html");
 has(homeHtml, /Ver todos os comparativos/, "atalho principal para comparativos ausente", "index.html");
+has(homeHtml, /name="robots" content="index,follow,max-image-preview:large"/, "prévia de imagem grande ausente da página inicial", "index.html");
+has(homeHtml, /static-home-products:start/, "produtos estáticos rastreáveis ausentes da página inicial", "index.html");
+has(homeHtml, /class="static-product-grid"/, "grade estática de produtos ausente da página inicial", "index.html");
+has(homeHtml, /Três comparativos para consultar nesta semana/, "prioridades semanais de comparativos ausentes", "index.html");
+has(homeHtml, /class="static-guide-grid"/, "links internos dos comparativos prioritários ausentes", "index.html");
 if (/`#\$\{i\} no ranking`/.test(homeHtml)) fail("index.html: resultado comum ainda recebe posição de ranking sem comparação aprovada");
 has(homeHtml, /fetch\(`\.\/search-index\.json\?v=/, "busca estática sem Firebase ausente", "index.html");
 has(homeHtml, /window\.RANKING_CATEGORY_GUIDES=\{/, "mapa preventivo de categorias antigas ausente", "index.html");
@@ -332,7 +337,7 @@ for (const arquivo of ["search-index.json", "scripts/validate-site.mjs", "script
     fail(`.github/workflows/update-sitemap.yml: ${arquivo} não deve iniciar releitura integral do Firebase`);
   }
 }
-has(updateWorkflow, /git add -A sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "comparativos e índice de busca não estão incluídos na publicação", ".github/workflows/update-sitemap.yml");
+has(updateWorkflow, /git add -A index\.html sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "página inicial, comparativos e índice de busca não estão incluídos na publicação", ".github/workflows/update-sitemap.yml");
 has(updateWorkflow, /git pull --rebase origin main[\s\S]{0,100}git push origin HEAD:main/, "publicação do sitemap ainda pode falhar por concorrência no GitHub", ".github/workflows/update-sitemap.yml");
 const priceWorkflow = await readFile(resolve(".github/workflows/sync-mercadolivre.yml"), "utf8");
 has(priceWorkflow, /workflow_dispatch:/, "atualização manual de todos os preços ausente", ".github/workflows/sync-mercadolivre.yml");
@@ -345,7 +350,7 @@ has(priceWorkflow, /RDC_BATCH_PARTIAL_MARKER:\s*\.price-sync-partial/, "marcador
 has(priceWorkflow, /-f "\$RDC_BATCH_SKIP_MARKER"[\s\S]{0,220}exit 0/, "gerador ainda pode reler produtos após lote diário já concluído", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /node --test scripts\/test-daily-price-batch\.mjs/, "teste preventivo do lote diário ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "lote diário não atualiza a busca estática", ".github/workflows/sync-mercadolivre.yml");
-has(priceWorkflow, /git add -A mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "lote diário não publica todos os arquivos gerados", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /git add -A index\.html mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "lote diário não publica todos os arquivos gerados", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*false/, "execução manual pode repetir o lote por engano", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /for tentativa in 1 2 3 4; do[\s\S]*git pull --rebase origin main[\s\S]*git push origin HEAD:main/, "publicação do lote manual não tenta novamente após concorrência no GitHub", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /name: Sinalizar conferência parcial[\s\S]*RDC_BATCH_PARTIAL_MARKER[\s\S]*exit 1/, "lote parcial ainda aparece como sucesso no GitHub", ".github/workflows/sync-mercadolivre.yml");
@@ -602,4 +607,5 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + sitemapProductUrls.size + " produtos públicos e metadados sociais completos.");
+
 
