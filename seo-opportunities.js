@@ -3,6 +3,27 @@
 
   const STORAGE_KEY = "rdc-search-console-opportunities-v1";
   const SEARCH_CONSOLE_URL = "https://search.google.com/search-console/performance/search-analytics?resource_id=sc-domain%3Arankingdacompra.com.br";
+  let internalFunnel = new Map();
+
+  function productIdFromPage(value) {
+    try {
+      const pathname = new URL(String(value || ""), "https://rankingdacompra.com.br/").pathname;
+      return decodeURIComponent((pathname.match(/\/produto\/([A-Za-z0-9]+)-\d{8}-\d+\.html$/) || [])[1] || "");
+    } catch {
+      return "";
+    }
+  }
+
+  function setInternalFunnel(items) {
+    internalFunnel = new Map((Array.isArray(items) ? items : []).map(item => [String(item?.id || ""), {
+      views: Math.max(0, Number(item?.views || 0)),
+      clicks: Math.max(0, Number(item?.cliques ?? item?.clicks ?? 0)),
+    }]).filter(([id]) => id));
+    const report = storageRead();
+    if (report && typeof document !== "undefined") {
+      document.querySelectorAll("#seo-opportunities-dashboard,#seo-opportunities-mobile").forEach(root => renderReport(root, report));
+    }
+  }
 
   function normalizeHeader(value) {
     return String(value || "")
@@ -200,9 +221,18 @@
       const title = suggestedTitle(item);
       const value = encodeURIComponent(JSON.stringify({ label: item.label, title }));
       const priority = item.position <= 15 && item.ctr < 3 ? "Alta" : item.position <= 20 ? "Média" : "Analisar";
-      return '<tr><td><span class="seo-rank">#' + (index + 1) + '</span><span class="seo-priority seo-priority-' + priority.toLowerCase().replace("é", "e") + '">' + priority + '</span></td><td><b>' + escapeHtml(shortLabel(item.label)) + '</b><small>' + escapeHtml(item.action) + '</small></td><td>' + formatNumber(item.impressions) + '</td><td>' + formatNumber(item.ctr, 1) + '%</td><td>' + formatNumber(item.position, 1) + '</td><td><button type="button" data-seo-use="' + value + '">' + (item.kind === "consulta" ? "Usar como pauta" : "Abrir página") + '</button></td></tr>';
+      const productId = item.kind === "pagina" ? productIdFromPage(item.label) : "";
+      const funnel = productId ? internalFunnel.get(productId) : null;
+      const advance = funnel?.views ? Math.min(100, funnel.clicks / funnel.views * 100) : null;
+      const funnelText = funnel
+        ? '<b>' + formatNumber(funnel.clicks) + ' Comprar</b><small>' + formatNumber(funnel.views) + ' visita(s) · ' + (advance === null ? 'taxa —' : formatNumber(advance, 1) + '% avançaram') + '</small>'
+        : '<span aria-label="Sem correspondência com página de produto">—</span>';
+      const action = funnel?.views >= 3 && funnel.clicks === 0
+        ? item.action + ' A página recebeu visitas no site, mas nenhum avanço para a oferta nos últimos 7 dias.'
+        : item.action;
+      return '<tr><td><span class="seo-rank">#' + (index + 1) + '</span><span class="seo-priority seo-priority-' + priority.toLowerCase().replace("é", "e") + '">' + priority + '</span></td><td><b>' + escapeHtml(shortLabel(item.label)) + '</b><small>' + escapeHtml(action) + '</small></td><td>' + formatNumber(item.impressions) + '</td><td>' + formatNumber(item.ctr, 1) + '%</td><td>' + formatNumber(item.position, 1) + '</td><td class="seo-funnel">' + funnelText + '</td><td><button type="button" data-seo-use="' + value + '">' + (item.kind === "consulta" ? "Usar como pauta" : "Abrir página") + '</button></td></tr>';
     }).join("");
-    result.innerHTML = (outdated ? '<div class="seo-recommendation"><b>Atualize o CSV:</b> esta análise foi importada há mais de sete dias. Exporte um período recente no Search Console antes de escolher as próximas páginas.</div>' : '') + '<div class="seo-summary"><div><strong>' + formatNumber(report.impressions) + '</strong><span>Impressões no arquivo</span></div><div><strong>' + formatNumber(report.clicks) + '</strong><span>Cliques</span></div><div><strong>' + formatNumber(report.ctr, 1) + '%</strong><span>CTR calculado</span></div><div><strong>' + formatNumber(report.quickWins) + '</strong><span>Vitórias rápidas</span></div></div><div class="seo-recommendation"><b>Prioridade recomendada:</b> trabalhe primeiro nas linhas “Alta”. Elas já aparecem perto da primeira página, mas ainda recebem poucos cliques. Nenhuma alteração é publicada automaticamente.</div><div class="seo-table"><table><thead><tr><th>Prioridade</th><th>Consulta ou página</th><th>Impressões</th><th>CTR</th><th>Posição</th><th>Ação</th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="seo-date">Importado em ' + escapeHtml(date) + ' · ' + formatNumber(report.sourceRows) + ' linha(s) analisada(s). Pontuação combina impressões, CTR abaixo de 5% e posição atual.</p>';
+    result.innerHTML = (outdated ? '<div class="seo-recommendation"><b>Atualize o CSV:</b> esta análise foi importada há mais de sete dias. Exporte um período recente no Search Console antes de escolher as próximas páginas.</div>' : '') + '<div class="seo-summary"><div><strong>' + formatNumber(report.impressions) + '</strong><span>Impressões no arquivo</span></div><div><strong>' + formatNumber(report.clicks) + '</strong><span>Cliques</span></div><div><strong>' + formatNumber(report.ctr, 1) + '%</strong><span>CTR calculado</span></div><div><strong>' + formatNumber(report.quickWins) + '</strong><span>Vitórias rápidas</span></div></div><div class="seo-recommendation"><b>Prioridade recomendada:</b> trabalhe primeiro nas linhas “Alta”. Para páginas de produto, a coluna “Resultado no Ranking” combina o CSV com as métricas de sete dias já carregadas no painel. Nenhuma alteração é publicada automaticamente.</div><div class="seo-table"><table><thead><tr><th>Prioridade</th><th>Consulta ou página</th><th>Impressões</th><th>CTR</th><th>Posição</th><th>Resultado no Ranking</th><th>Ação</th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="seo-date">Importado em ' + escapeHtml(date) + ' · ' + formatNumber(report.sourceRows) + ' linha(s) analisada(s). Pontuação combina impressões, CTR abaixo de 5% e posição atual. O resultado interno considera eventos dos últimos 7 dias e pode ficar vazio para consultas e páginas gerais.</p>';
   }
 
   function useOpportunity(root, encoded) {
@@ -226,7 +256,7 @@
     if (document.getElementById("rdc-seo-opportunities-style")) return;
     const style = document.createElement("style");
     style.id = "rdc-seo-opportunities-style";
-    style.textContent = '.seo-opportunities{color:#173e2f}.seo-opportunities h3,.seo-opportunities h2{margin:0 0 6px}.seo-opportunities p{margin:0 0 12px;color:#62736b;line-height:1.45}.seo-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.seo-toolbar a,.seo-toolbar label,.seo-toolbar button,.seo-table button{display:inline-flex;align-items:center;justify-content:center;border:1px solid #9dcbb6;border-radius:8px;padding:10px 12px;background:#fff;color:#075f42;font:800 12px inherit;text-decoration:none;cursor:pointer}.seo-toolbar label{background:#087a4d;color:#fff;border-color:#087a4d}.seo-toolbar input{position:absolute;inline-size:1px;block-size:1px;opacity:0}.seo-status{min-height:18px;color:#075f42;font-size:12px;font-weight:800}.seo-empty{padding:14px;background:#f0f8f4;border-radius:10px}.seo-empty span{display:block;margin-top:4px;color:#62736b;font-size:12px}.seo-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0}.seo-summary div{padding:12px;background:#f3faf6;border:1px solid #d7e9df;border-radius:10px}.seo-summary strong{display:block;color:#087a4d;font-size:22px}.seo-summary span{display:block;margin-top:4px;color:#64756d;font-size:10px;font-weight:800}.seo-recommendation{padding:12px;border-left:5px solid #d49a00;border-radius:9px;background:#fff6df;color:#664f0a;font-size:12px;line-height:1.45}.seo-table{overflow:auto;margin-top:12px}.seo-table table{width:100%;min-width:760px;border-collapse:collapse;background:#fff}.seo-table th,.seo-table td{padding:8px 7px;border-bottom:1px solid #e6eee9;text-align:left;font-size:11px;vertical-align:top}.seo-table th{background:#f3f7f5;color:#5c6c64}.seo-table td small{display:block;margin-top:4px;color:#63736b;line-height:1.35}.seo-rank{font-weight:900;margin-right:5px}.seo-priority{display:inline-block;border-radius:999px;padding:3px 6px;font-size:9px;font-weight:900}.seo-priority-alta{background:#fee2e2;color:#991b1b}.seo-priority-media{background:#fef3c7;color:#7c5700}.seo-priority-analisar{background:#e8f1ff;color:#24528d}.seo-date{margin-top:8px!important;font-size:10px!important}.card .seo-toolbar>*{flex:1;min-height:44px}.card .seo-summary{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:650px){.seo-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.seo-toolbar>*{flex:1 1 145px}}';
+    style.textContent = '.seo-opportunities{color:#173e2f}.seo-opportunities h3,.seo-opportunities h2{margin:0 0 6px}.seo-opportunities p{margin:0 0 12px;color:#62736b;line-height:1.45}.seo-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.seo-toolbar a,.seo-toolbar label,.seo-toolbar button,.seo-table button{display:inline-flex;align-items:center;justify-content:center;border:1px solid #9dcbb6;border-radius:8px;padding:10px 12px;background:#fff;color:#075f42;font:800 12px inherit;text-decoration:none;cursor:pointer}.seo-toolbar label{background:#087a4d;color:#fff;border-color:#087a4d}.seo-toolbar input{position:absolute;inline-size:1px;block-size:1px;opacity:0}.seo-status{min-height:18px;color:#075f42;font-size:12px;font-weight:800}.seo-empty{padding:14px;background:#f0f8f4;border-radius:10px}.seo-empty span{display:block;margin-top:4px;color:#62736b;font-size:12px}.seo-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0}.seo-summary div{padding:12px;background:#f3faf6;border:1px solid #d7e9df;border-radius:10px}.seo-summary strong{display:block;color:#087a4d;font-size:22px}.seo-summary span{display:block;margin-top:4px;color:#64756d;font-size:10px;font-weight:800}.seo-recommendation{padding:12px;border-left:5px solid #d49a00;border-radius:9px;background:#fff6df;color:#664f0a;font-size:12px;line-height:1.45}.seo-table{overflow:auto;margin-top:12px}.seo-table table{width:100%;min-width:900px;border-collapse:collapse;background:#fff}.seo-table th,.seo-table td{padding:8px 7px;border-bottom:1px solid #e6eee9;text-align:left;font-size:11px;vertical-align:top}.seo-table th{background:#f3f7f5;color:#5c6c64}.seo-table td small{display:block;margin-top:4px;color:#63736b;line-height:1.35}.seo-funnel b{color:#087a4d;white-space:nowrap}.seo-rank{font-weight:900;margin-right:5px}.seo-priority{display:inline-block;border-radius:999px;padding:3px 6px;font-size:9px;font-weight:900}.seo-priority-alta{background:#fee2e2;color:#991b1b}.seo-priority-media{background:#fef3c7;color:#7c5700}.seo-priority-analisar{background:#e8f1ff;color:#24528d}.seo-date{margin-top:8px!important;font-size:10px!important}.card .seo-toolbar>*{flex:1;min-height:44px}.card .seo-summary{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:650px){.seo-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.seo-toolbar>*{flex:1 1 145px}}';
     document.head.appendChild(style);
   }
 
@@ -272,14 +302,16 @@
     });
   }
 
-  const api = { parseSearchConsoleCsv, analyzeRows, opportunityAction };
+  const api = { parseSearchConsoleCsv, analyzeRows, opportunityAction, productIdFromPage, setInternalFunnel };
   if (typeof window !== "undefined") window.RankingSEOOpportunities = api;
   if (typeof document !== "undefined") {
     const start = () => {
       injectStyles();
+      if (Array.isArray(window.RankingInternalFunnel)) setInternalFunnel(window.RankingInternalFunnel);
       [document.getElementById("seo-opportunities-dashboard"), document.getElementById("seo-opportunities-mobile")].forEach(mount);
     };
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
     else start();
   }
 })();
+

@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 
 const source = await readFile(new URL("../seo-opportunities.js", import.meta.url), "utf8");
-const sandbox = { window: {}, console };
+const sandbox = { window: {}, console, URL };
 vm.createContext(sandbox);
 vm.runInContext(source, sandbox, { filename: "seo-opportunities.js" });
 
@@ -30,6 +30,18 @@ const rowsEn = api.parseSearchConsoleCsv(english);
 assert.equal(rowsEn[0].kind, "pagina");
 assert.equal(rowsEn[0].clicks, 3);
 
+assert.equal(
+  api.productIdFromPage("https://rankingdacompra.com.br/produto/ABC123-20260810-1.html?utm_source=google"),
+  "ABC123"
+);
+assert.equal(api.productIdFromPage("https://rankingdacompra.com.br/melhores-notebook.html"), "");
+
+api.setInternalFunnel([
+  { id: "ABC123", views: 12, cliques: 3 },
+  { id: "", views: 99, cliques: 99 },
+  { id: "INVALID", views: "x", cliques: -5 }
+]);
+
 const report = api.analyzeRows([...rowsPt, ...rowsEn]);
 assert.equal(report.sourceRows, 3);
 assert.equal(report.impressions, 415);
@@ -38,3 +50,4 @@ assert.ok(report.opportunities.length >= 2);
 assert.equal(report.opportunities[0].label, "https://rankingdacompra.com.br/melhores-notebook.html");
 
 console.log("Central SEO: CSV em português/inglês, cálculo e prioridades validados.");
+

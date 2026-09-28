@@ -1371,6 +1371,8 @@ diagnostico.textContent=!visualizacoesSemana.length?'A coleta das páginas de pr
 }
 const porProduto=new Map();
 [...visualizacoesSemana,...cliquesSemana,...sharesSemana].forEach(item=>{const id=String(item.produtoId||'sem-id'),produto=produtosCentralAtual.find(p=>String(p.id)===id),atual=porProduto.get(id)||{id,titulo:item.titulo||produto?.titulo||'Produto',views:0,cliques:0,shares:0};if(item.tipo==='visualizacao_produto')atual.views++;else if(item.tipo==='clique_oferta')atual.cliques++;else atual.shares++;porProduto.set(id,atual)});
+window.RankingInternalFunnel=[...porProduto.values()].map(item=>({id:item.id,views:item.views,cliques:item.cliques}));
+window.RankingSEOOpportunities?.setInternalFunnel(window.RankingInternalFunnel);
 const ranking=[...porProduto.values()].filter(item=>item.views||item.cliques).sort((a,b)=>b.cliques-a.cliques||b.views-a.views||b.shares-a.shares).slice(0,10);
 const semResultado=[...porProduto.values()].filter(item=>item.views>0&&item.cliques===0).sort((a,b)=>b.views-a.views).slice(0,10);
 const origemBase=visualizacoesSemana.length?visualizacoesSemana:cliquesSemana;
@@ -3118,7 +3120,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 </script>
 
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
-  <script defer src="/seo-opportunities.js?v=20260928-2"></script>
+  <script defer src="/seo-opportunities.js?v=20260928-3"></script>
   <script defer src="/growth-tools.js?v=20260923-audit-fix1"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
@@ -3126,4 +3128,5 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 </html>
 
 <script src="indexacao-dashboard.js?v=20260814-1" defer></script>
+
 
