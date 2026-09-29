@@ -1,6 +1,27 @@
 {
-  "atualizadoEm": "2026-09-29T15:22:53.759Z",
+  "atualizadoEm": "2026-09-29T15:44:57.236Z",
   "resultados": {
+    "kmHmlRFvT2B63lz4WgR4": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/bolsa-termica-marmita-lancheira-alca-transversal-ajustavel-removivel-2-compartimentos-organiza-conserva-seus-alimentos-quente-ou-frio-cor-preto-tche-amo/p/MLB28726333#polycard_client=search_best-seller-categories&tracking_id=75d91a38-2f87-45d4-907c-f614b4fad82a&wid=MLB3966563925&sid=search",
+      "resolvidoEm": "2026-09-29T15:44:57.236Z",
+      "tentativas": 2
+    },
+    "Nj0NvAHJCisERhTVyEnE": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/fogareiro-portatil-usd-camping-acendimento-automatico-com-maleta/p/MLB51139997",
+      "resolvidoEm": "2026-09-29T15:44:39.753Z",
+      "tentativas": 2
+    },
+    "jGwxvZ3YVczUOlRNJTaz": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/fogareiro-portatil-usd-camping-acendimento-automatico-com-maleta/p/MLB51139997",
+      "resolvidoEm": "2026-09-29T15:44:22.826Z",
+      "tentativas": 3
+    },
     "Bl6M306roi3Th1HrcO3L": {
       "status": "ok",
       "mlb": "MLB7185672396",
@@ -20,27 +41,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/3-kit-controle-remoto-eletronico-433mhz-alarme-universal/up/MLBU4325325013#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=6&type=product&tracking_id=7671a4af-ba15-4300-ac0f-58f5574ff542&wid=MLB7185672396&sid=search",
       "resolvidoEm": "2026-09-29T15:22:53.758Z",
       "tentativas": 1
-    },
-    "kmHmlRFvT2B63lz4WgR4": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/bolsa-termica-marmita-lancheira-alca-transversal-ajustavel-removivel-2-compartimentos-organiza-conserva-seus-alimentos-quente-ou-frio-cor-preto-tche-amo/p/MLB28726333#polycard_client=search_best-seller-categories&tracking_id=75d91a38-2f87-45d4-907c-f614b4fad82a&wid=MLB3966563925&sid=search",
-      "resolvidoEm": "2026-09-29T15:22:51.949Z",
-      "tentativas": 1
-    },
-    "Nj0NvAHJCisERhTVyEnE": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/fogareiro-portatil-usd-camping-acendimento-automatico-com-maleta/p/MLB51139997",
-      "resolvidoEm": "2026-09-29T15:22:33.650Z",
-      "tentativas": 1
-    },
-    "jGwxvZ3YVczUOlRNJTaz": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/fogareiro-portatil-usd-camping-acendimento-automatico-com-maleta/p/MLB51139997",
-      "resolvidoEm": "2026-09-29T15:22:16.592Z",
-      "tentativas": 2
     },
     "IbfszIpZHVnC3wveaPFG": {
       "status": "erro",
