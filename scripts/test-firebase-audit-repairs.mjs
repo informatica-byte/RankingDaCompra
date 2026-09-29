@@ -26,6 +26,8 @@ test("promoção vencida desativa só a marcação, preservando cadastro e preç
   assert.equal(expired({ promocaoAtiva: true, promocaoValidaAte: "" }), false);
   assert.match(dashboard, /lote\.update\(doc\.ref, \{ promocaoAtiva: false \}\)/);
   assert.match(dashboard, /vencidas\.slice\(inicio, inicio \+ 400\)/);
+  assert.match(dashboard, /botao\.dataset\.confirmando !== String\(vencidas\.length\)/);
+  assert.doesNotMatch(dashboard, /if \(!confirm\(`Encerrar/);
 });
 
 test("App Check é preparado em todos os clientes sem ativar enforcement", () => {
