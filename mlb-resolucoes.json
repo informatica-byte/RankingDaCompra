@@ -1,6 +1,54 @@
 {
-  "atualizadoEm": "2026-09-29T09:40:32.965Z",
+  "atualizadoEm": "2026-09-29T09:43:40.130Z",
   "resultados": {
+    "Rtn5mLzOUyaXsvjmHMVa": {
+      "status": "ok",
+      "mlb": "MLB6485157848",
+      "urlProduto": "https://www.mercadolivre.com.br/new-hawaii-mochila-de-pesca-50l-bolsa-pesca-mochila-backpack-verde-escuro/p/MLB66854435",
+      "titulo": "New Hawaii Mochila De Pesca 50l Bolsa Pesca Mochila Backpack Verde-escuro",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_719956-MLA115715396024_092026-F.jpg",
+      "precoAtual": 161.91,
+      "precoAnterior": 269.9,
+      "dadosTecnicos": [
+        "16 bolsos integrados permitem organizar varas, iscas e acessórios para fácil acesso durante a pesca.",
+        "Design ergonômico com espuma de alta densidade alivia a pressão nos ombros em uso prolongado.",
+        "Alças ajustáveis oferecem múltiplas formas de transporte, adaptando-se a diferentes cenários de pesca.",
+        "Estrutura reforçada minimiza oscilações e evita danos aos equipamentos durante o transporte.",
+        "Versatilidade para pesca, camping e trilhas torna-se essencial para atividades ao ar livre.",
+        "Material poliéster 900d que protege seus equipamentos de pesca da chuva e umidade.",
+        "Marca: New Hawaii",
+        "Cor: Verde",
+        "Peso informado: 1.24 kg",
+        "Código do catálogo: MLB66854435"
+      ],
+      "comentario": "New Hawaii Mochila De Pesca 50l Bolsa Pesca Mochila Backpack Verde-escuro. 16 bolsos integrados permitem organizar varas, iscas e acessórios para fácil acesso durante a pesca. Design ergonômico com espuma de alta densidade alivia a pressão nos ombros em uso prolongado. Alças ajustáveis oferecem múltiplas formas de transporte, adaptando-se a diferentes cenários de pesca. Estrutura reforçada minimiza oscilações e evita danos aos equipamentos durante o transporte.",
+      "pros": "New Hawaii Mochila De Pesca 50l Bolsa Pesca Mochila Backpack Verde-escuro. Características confirmadas no anúncio: 16 bolsos integrados permitem organizar varas, iscas e acessórios para fácil acesso durante a pesca.",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/new-hawaii-mochila-de-pesca-50l-bolsa-pesca-mochila-backpack-verde-escuro/p/MLB66854435?pdp_filters=item_id:MLB6485157848#is_advertising=true&searchVariation=MLB66854435&backend_model=search-backend&be_origin=backend&position=26&search_layout=grid&type=pad&tracking_id=1beead14-ead2-41e0-9167-9f263b0ebb29&ad_domain=VQCATCORE_LST&ad_position=26&ad_click_id=OWQwZDdhYmItNWQ5Zi00NmYxLTg1YjYtNGMwOGQyNGI2MWQ5",
+      "resolvidoEm": "2026-09-29T09:43:40.129Z",
+      "tentativas": 1
+    },
+    "n6Mqnvh9HBq5kW1VQGri": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/cadeira-dobravel-camping-pesca-com-porta-copo-bolsa-portatil-resistente-ate-120kg-para-praia-jardim-e-lazer/p/MLB23531945",
+      "resolvidoEm": "2026-09-29T09:43:38.233Z",
+      "tentativas": 2
+    },
+    "OQ1bbfdrDPDjUWfRycMn": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/barraca-de-acampamento-camping-grande-para-45-pessoas-noveve-210x210x145cm/p/MLB42378386?pdp_filters=item_id:MLB5855813640#is_advertising=true&searchVariation=MLB42378386&backend_model=search-backend&be_origin=backend&position=3&search_layout=grid&type=pad&tracking_id=8299b5d6-e293-4685-a6bb-9ab4cebaa818&ad_domain=VQCATCORE_LST&ad_position=3&ad_click_id=OTM3OWMzYjAtMzdiNy00YmFjLThmNTYtMDgyY2U4ZDhjYzE1",
+      "resolvidoEm": "2026-09-29T09:43:20.801Z",
+      "tentativas": 2
+    },
+    "xRxkTmBux3eCu58wbWNb": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/barraca-de-acampamento-camping-grande-para-45-pessoas-noveve-210x210x145cm/p/MLB42378386?pdp_filters=item_id:MLB5855813640#is_advertising=true&searchVariation=MLB42378386&backend_model=search-backend&be_origin=backend&position=3&search_layout=grid&type=pad&tracking_id=8299b5d6-e293-4685-a6bb-9ab4cebaa818&ad_domain=VQCATCORE_LST&ad_position=3&ad_click_id=OTM3OWMzYjAtMzdiNy00YmFjLThmNTYtMDgyY2U4ZDhjYzE1",
+      "resolvidoEm": "2026-09-29T09:43:03.284Z",
+      "tentativas": 3
+    },
     "I9T2ZeZeEnB9ye2HQ1lM": {
       "status": "ok",
       "mlb": "MLB4655530173",
@@ -27,27 +75,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/colchonete-camping-camuflado-colchao-dobravel-saco-de-dormir-hezzo-hometech-pesca-acampamento-retiro-trilha-c-saco-de-transporte-mochila/p/MLB68897341#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=18&type=product&tracking_id=428873df-6546-4ae6-8683-5df08a200479&wid=MLB4655530173&sid=search",
       "resolvidoEm": "2026-09-29T09:40:32.964Z",
       "tentativas": 1
-    },
-    "n6Mqnvh9HBq5kW1VQGri": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/cadeira-dobravel-camping-pesca-com-porta-copo-bolsa-portatil-resistente-ate-120kg-para-praia-jardim-e-lazer/p/MLB23531945",
-      "resolvidoEm": "2026-09-29T09:40:31.169Z",
-      "tentativas": 1
-    },
-    "OQ1bbfdrDPDjUWfRycMn": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/barraca-de-acampamento-camping-grande-para-45-pessoas-noveve-210x210x145cm/p/MLB42378386?pdp_filters=item_id:MLB5855813640#is_advertising=true&searchVariation=MLB42378386&backend_model=search-backend&be_origin=backend&position=3&search_layout=grid&type=pad&tracking_id=8299b5d6-e293-4685-a6bb-9ab4cebaa818&ad_domain=VQCATCORE_LST&ad_position=3&ad_click_id=OTM3OWMzYjAtMzdiNy00YmFjLThmNTYtMDgyY2U4ZDhjYzE1",
-      "resolvidoEm": "2026-09-29T09:40:14.323Z",
-      "tentativas": 1
-    },
-    "xRxkTmBux3eCu58wbWNb": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/barraca-de-acampamento-camping-grande-para-45-pessoas-noveve-210x210x145cm/p/MLB42378386?pdp_filters=item_id:MLB5855813640#is_advertising=true&searchVariation=MLB42378386&backend_model=search-backend&be_origin=backend&position=3&search_layout=grid&type=pad&tracking_id=8299b5d6-e293-4685-a6bb-9ab4cebaa818&ad_domain=VQCATCORE_LST&ad_position=3&ad_click_id=OTM3OWMzYjAtMzdiNy00YmFjLThmNTYtMDgyY2U4ZDhjYzE1",
-      "resolvidoEm": "2026-09-29T09:39:56.773Z",
-      "tentativas": 2
     },
     "4V5uSg7qAjuXDdEpWhau": {
       "status": "erro",
@@ -5994,12 +6021,6 @@
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://produto.mercadolivre.com.br/MLB-5049422013-tenis-caminhada-academia-skate-suede-couro-xl-envio-ja-_JM?searchVariation=206325258011#is_advertising=true&searchVariation=206325258011&backend_model=search-backend&be_origin=backend&position=1&search_layout=grid&type=pad&tracking_id=917e5371-bc32-4102-b3fe-bd6c8b23ccda&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=YTg3NjZlNjAtMDlkNi00MzhhLTkxYjgtNzdkZjlkOWU2YWQ2",
       "resolvidoEm": "2026-09-03T10:08:56.328Z"
-    },
-    "4t6zndmgkVmXsxdjlVxc": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://produto.mercadolivre.com.br/MLB-5049422013-tenis-caminhada-academia-skate-suede-couro-xl-envio-ja-_JM?searchVariation=206325258011#is_advertising=true&searchVariation=206325258011&backend_model=search-backend&be_origin=backend&position=1&search_layout=grid&type=pad&tracking_id=917e5371-bc32-4102-b3fe-bd6c8b23ccda&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=YTg3NjZlNjAtMDlkNi00MzhhLTkxYjgtNzdkZjlkOWU2YWQ2",
-      "resolvidoEm": "2026-09-03T10:07:05.929Z"
     }
   }
 }
