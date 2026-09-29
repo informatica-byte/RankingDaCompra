@@ -1,12 +1,19 @@
 {
-  "atualizadoEm": "2026-09-29T09:31:14.223Z",
+  "atualizadoEm": "2026-09-29T09:33:56.471Z",
   "resultados": {
+    "xRxkTmBux3eCu58wbWNb": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/barraca-de-acampamento-camping-grande-para-45-pessoas-noveve-210x210x145cm/p/MLB42378386?pdp_filters=item_id:MLB5855813640#is_advertising=true&searchVariation=MLB42378386&backend_model=search-backend&be_origin=backend&position=3&search_layout=grid&type=pad&tracking_id=8299b5d6-e293-4685-a6bb-9ab4cebaa818&ad_domain=VQCATCORE_LST&ad_position=3&ad_click_id=OTM3OWMzYjAtMzdiNy00YmFjLThmNTYtMDgyY2U4ZDhjYzE1",
+      "resolvidoEm": "2026-09-29T09:33:56.471Z",
+      "tentativas": 1
+    },
     "4V5uSg7qAjuXDdEpWhau": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/barraca-de-acampamento-camping-grande-para-45-pessoas-noveve-210x210x145cm/p/MLB42378386?pdp_filters=item_id:MLB5855813640#is_advertising=true&searchVariation=MLB42378386&backend_model=search-backend&be_origin=backend&position=3&search_layout=grid&type=pad&tracking_id=8299b5d6-e293-4685-a6bb-9ab4cebaa818&ad_domain=VQCATCORE_LST&ad_position=3&ad_click_id=OTM3OWMzYjAtMzdiNy00YmFjLThmNTYtMDgyY2U4ZDhjYzE1",
-      "resolvidoEm": "2026-09-29T09:31:14.222Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-09-29T09:33:39.174Z",
+      "tentativas": 2
     },
     "yC0vUBm8Zofocwy2Sh1z": {
       "status": "ok",
@@ -6001,12 +6008,6 @@
       "contras": "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.",
       "linkOriginal": "https://produto.mercadolivre.com.br/MLB-4803090739-tnis-mizuno-wave-creation-20-original-academia-treino-_JM?searchVariation=206805159249#is_advertising=true&searchVariation=206805159249&backend_model=search-backend&be_origin=backend&position=28&search_layout=grid&type=pad&tracking_id=4bcc1fe7-6b14-4386-9394-b3538721b90c&ad_domain=VQCATCORE_LST&ad_position=28&ad_click_id=ZDU1NzYzODktMzkxOC00ZGU1LTkyNWUtYTNiYzExNThhNjBh",
       "resolvidoEm": "2026-09-03T09:59:02.226Z"
-    },
-    "vqpNlDK5S0J66MbgR47p": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://produto.mercadolivre.com.br/MLB-4803090739-tnis-mizuno-wave-creation-20-original-academia-treino-_JM?searchVariation=206805159249#is_advertising=true&searchVariation=206805159249&backend_model=search-backend&be_origin=backend&position=28&search_layout=grid&type=pad&tracking_id=4bcc1fe7-6b14-4386-9394-b3538721b90c&ad_domain=VQCATCORE_LST&ad_position=28&ad_click_id=ZDU1NzYzODktMzkxOC00ZGU1LTkyNWUtYTNiYzExNThhNjBh",
-      "resolvidoEm": "2026-09-03T09:57:27.869Z"
     }
   }
 }
