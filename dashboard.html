@@ -226,6 +226,8 @@
             </div>
             <p id="rotina-publicacao" class="ajuda-metrica" role="status">Aguardando produtos...</p>
             <a class="btn-central-secundario" href="painel-celular.html#precos-mobile" style="display:inline-block;text-decoration:none">Abrir conferência assistida</a>
+            <button type="button" class="btn-central-secundario" id="btn-encerrar-promocoes-vencidas" disabled>Encerrar promoções vencidas</button>
+            <span id="encerrar-promocoes-status" class="ajuda-metrica" role="status" aria-live="polite"></span>
             <button type="button" class="btn-central-secundario" id="btn-backup-ranking">Baixar cópia dos cadastros</button>
             <span id="backup-ranking-status" class="ajuda-metrica" role="status" aria-live="polite"></span>
         </section>
@@ -444,6 +446,7 @@
     <!-- SDKs do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app-check.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <!-- Firebase AI Logic + App Check: a chave do Gemini fica protegida no Firebase. -->
@@ -1045,6 +1048,14 @@ FORMATO:
             measurementId: "G-NBKRX8TTR6"
         };
         firebase.initializeApp(firebaseConfig);
+        if (firebase.appCheck?.ReCaptchaEnterpriseProvider) {
+            try {
+                firebase.appCheck().activate(new firebase.appCheck.ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"), true);
+                window.rankingAppCheckReady = true;
+            } catch (erro) {
+                console.warn('App Check em monitoramento indisponível; o painel continuará funcionando.', erro);
+            }
+        }
         const auth = firebase.auth();
         const db = firebase.firestore();
 
@@ -1133,7 +1144,9 @@ FORMATO:
         }
 
         const JANELA_METRICAS_PAINEL_DIAS = 14;
-        const CACHE_METRICAS_PAINEL_MS = 30 * 60 * 1000;
+        // Métricas detalhadas não precisam reler eventos a cada abertura do painel.
+        // O botão "Atualizar contagem" continua disponível para uma leitura imediata.
+        const CACHE_METRICAS_PAINEL_MS = 4 * 60 * 60 * 1000;
         const CACHE_MINIMO_ATUALIZACAO_MS = 60 * 1000;
         const CHAVE_RESUMO_METRICAS = 'ranking-metricas-painel-resumo-v1';
         let metricasPainelCache = null;
@@ -2877,6 +2890,13 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             return `${campos.year}-${campos.month}-${campos.day}`;
         }
 
+        function promocaoVencida(produto, hojeBrasil = diaBrasilRotina(new Date())) {
+            const validade = String(produto?.promocaoValidaAte || '').slice(0, 10);
+            return produto?.promocaoAtiva === true
+                && /^\d{4}-\d{2}-\d{2}$/.test(validade)
+                && validade < hojeBrasil;
+        }
+
         function atualizarResumoRotina(snapshot) {
             const hojeBrasil = diaBrasilRotina(new Date());
             let conferidos = 0;
@@ -2884,13 +2904,45 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             snapshot.forEach(doc => {
                 const produto = doc.data();
                 if (diaBrasilRotina(produto.precoAtualizadoManualmenteEm) === hojeBrasil) conferidos += 1;
-                if (produto.promocaoAtiva === true && String(produto.promocaoValidaAte || '').slice(0, 10) < hojeBrasil) vencidas += 1;
+                if (promocaoVencida(produto, hojeBrasil)) vencidas += 1;
             });
             document.getElementById('rotina-conferidos').textContent = String(conferidos);
             document.getElementById('rotina-restantes').textContent = String(snapshot.size - conferidos);
             document.getElementById('rotina-vencidas').textContent = String(vencidas);
+            const botaoEncerrar = document.getElementById('btn-encerrar-promocoes-vencidas');
+            if (botaoEncerrar && !botaoEncerrar.dataset.salvando) botaoEncerrar.disabled = vencidas === 0;
             atualizarPublicacaoRotina();
         }
+
+        async function encerrarPromocoesVencidas() {
+            const snapshot = snapshotProdutosBackup;
+            if (!snapshot) return;
+            const vencidas = snapshot.docs.filter(doc => promocaoVencida(doc.data()));
+            if (!vencidas.length) return;
+            if (!confirm(`Encerrar ${vencidas.length} promoção(ões) vencida(s)? Os produtos, preços e datas serão preservados; apenas a marcação de promoção ativa será desligada.`)) return;
+            const botao = document.getElementById('btn-encerrar-promocoes-vencidas');
+            const status = document.getElementById('encerrar-promocoes-status');
+            botao.dataset.salvando = '1';
+            botao.disabled = true;
+            let encerradas = 0;
+            try {
+                for (let inicio = 0; inicio < vencidas.length; inicio += 400) {
+                    const lote = db.batch();
+                    const grupo = vencidas.slice(inicio, inicio + 400);
+                    grupo.forEach(doc => lote.update(doc.ref, { promocaoAtiva: false }));
+                    await lote.commit();
+                    encerradas += grupo.length;
+                    status.textContent = `${encerradas} de ${vencidas.length} promoções vencidas encerradas.`;
+                }
+                status.textContent = `${encerradas} promoções vencidas encerradas. Os cadastros e preços foram preservados.`;
+            } catch (erro) {
+                status.textContent = `Foram encerradas ${encerradas} promoções; o restante não foi alterado: ${String(erro?.message || erro)}`;
+            } finally {
+                delete botao.dataset.salvando;
+                botao.disabled = !snapshotProdutosBackup?.docs.some(doc => promocaoVencida(doc.data()));
+            }
+        }
+        document.getElementById('btn-encerrar-promocoes-vencidas').addEventListener('click', encerrarPromocoesVencidas);
 
         function atualizarPublicacaoRotina() {
             const ofertas = melhoresOfertasCentral();
@@ -3121,7 +3173,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script defer src="/seo-opportunities.js?v=20260928-3"></script>
-  <script defer src="/growth-tools.js?v=20260929-video-max20"></script>
+  <script defer src="/growth-tools.js?v=20260929-firebase-precos"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
 </body>

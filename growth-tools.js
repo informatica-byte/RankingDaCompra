@@ -59,6 +59,7 @@
     messagingSenderId: "300637600463",
     appId: "1:300637600463:web:671c78dc47d5f8b39f15ba"
   };
+  const APP_CHECK_SITE_KEY = "6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp";
   const METRICS_VIEW_INTERVAL_MS = 30 * 60 * 1000;
   let metricsDbPromise = null;
 
@@ -88,11 +89,27 @@
         "https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js",
         () => Boolean(window.firebase)
       );
+      try {
+        await loadMetricsScript(
+          "https://www.gstatic.com/firebasejs/8.10.1/firebase-app-check.js",
+          () => Boolean(window.firebase?.appCheck)
+        );
+      } catch (error) {
+        console.warn("App Check em monitoramento indisponível; métricas serão mantidas.", error);
+      }
       await loadMetricsScript(
         "https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js",
         () => Boolean(window.firebase?.firestore)
       );
       if (!window.firebase.apps.length) window.firebase.initializeApp(METRICS_FIREBASE_CONFIG);
+      if (!window.rankingAppCheckReady && firebase.appCheck?.ReCaptchaEnterpriseProvider) {
+        try {
+          firebase.appCheck().activate(new firebase.appCheck.ReCaptchaEnterpriseProvider(APP_CHECK_SITE_KEY), true);
+          window.rankingAppCheckReady = true;
+        } catch (error) {
+          console.warn("App Check em monitoramento indisponível; métricas serão mantidas.", error);
+        }
+      }
       return window.firebase.firestore();
     })().catch(error => {
       metricsDbPromise = null;
@@ -730,16 +747,18 @@
     return candidates.at(-1) || 0;
   }
 
-  function proofMarkup(summary) {
+  function proofMarkup(summary, priceCheckedAbove = false) {
     if (!summary.points.length && !summary.currentPrice) return "";
     const lastDate = summary.latest?.date;
     const dateText = lastDate ? dateBr.format(new Date(`${lastDate}T12:00:00-03:00`)) : "data não disponível";
-    const title = "Histórico de preços registrados — não é cotação atual";
+    const title = priceCheckedAbove
+      ? "Histórico para comparar com o preço conferido acima"
+      : "Histórico de preços registrados — não é cotação atual";
     const stateClass = "is-learning";
     const detail = summary.minimum > 0
       ? `Menor preço em até ${HISTORY_DAYS} dias: ${brl.format(summary.minimum)}`
       : "Estamos formando o histórico deste produto.";
-    return `<div class="offer-proof ${stateClass}" data-offer-proof data-price-history-state="${stateClass}"><strong>${escapeHtml(title)}</strong>${escapeHtml(detail)}<small>Último registro: ${escapeHtml(dateText)} · confirme o valor final no Mercado Livre.</small></div>`;
+    return `<div class="offer-proof ${stateClass}" data-offer-proof data-price-history-state="${stateClass}"><strong>${escapeHtml(title)}</strong>${escapeHtml(detail)}<small>Último registro no histórico: ${escapeHtml(dateText)} · confirme o valor final no vendedor.</small></div>`;
   }
 
   function decorateProductCard(card) {
@@ -748,7 +767,7 @@
     const id = productIdFromUrl(link?.href || location.href);
     if (!id || !state.history?.products?.[id]) return;
     const summary = historySummary(id, currentPriceFromCard(card));
-    const markup = proofMarkup(summary);
+    const markup = proofMarkup(summary, /Preço conferido em/i.test(card.querySelector(".deal-validity")?.textContent || ""));
     if (!markup) return;
     const target = card.querySelector(".deal-prices,.flash-timer,.offer") || card.querySelector("h3,h1");
     if (!target) return;

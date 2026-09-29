@@ -161,6 +161,10 @@
         provider: new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"),
         isTokenAutoRefreshEnabled: true,
       });
+      initializeAppCheck(app, {
+        provider: new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"),
+        isTokenAutoRefreshEnabled: true,
+      });
       const auth = getAuth(app),
         db = getFirestore(app),
         mobileAI = getAI(aiApp, { backend: new GoogleAIBackend() }),
