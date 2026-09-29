@@ -907,7 +907,7 @@
     } catch { return ""; }
   }
 
-  function youtubeShowcaseLinks(value, limit = 10) {
+  function youtubeShowcaseLinks(value, limit = 20) {
     const raw = Array.isArray(value) ? value : String(value || "").split(/\r?\n/);
     const unique = new Map();
     for (const item of raw) {
@@ -926,7 +926,7 @@
     } catch { return ""; }
   }
 
-  function youtubeShowcaseItems(value, legacyLinks = [], limit = 10) {
+  function youtubeShowcaseItems(value, legacyLinks = [], limit = 20) {
     const raw = Array.isArray(value) && value.length ? value : youtubeShowcaseLinks(legacyLinks, limit);
     const unique = new Map();
     for (const entry of raw) {
@@ -952,7 +952,7 @@
   }
 
   function renderYoutubePairFields(host, items = []) {
-    const rows = (Array.isArray(items) ? items : []).slice(0, 10);
+    const rows = (Array.isArray(items) ? items : []).slice(0, 20);
     while (rows.length < 3) rows.push({ youtubeUrl: "", productUrl: "" });
     host.innerHTML = rows.map((item, index) => youtubePairRow(index, item)).join("");
     host.querySelectorAll("[data-remove-youtube-pair]").forEach(button => { button.hidden = rows.length <= 3; });
@@ -1157,7 +1157,7 @@
         </div>
         <label for="growth-youtube-title">Título da pequena vitrine de vídeos</label>
         <input id="growth-youtube-title" type="text" maxlength="80" placeholder="Vídeos do Ranki: produtos em destaque">
-        <p class="showcase-admin-help"><b>Cadastre de 3 a 10 vídeos.</b> Em cada linha, cole o vídeo do YouTube e a página exata do produto correspondente. O cartão com foto, nome e preço será criado automaticamente sobre o vídeo.</p>
+        <p class="showcase-admin-help"><b>Cadastre de 3 a 20 vídeos.</b> Em cada linha, cole o vídeo do YouTube e a página exata do produto correspondente. O cartão com foto, nome e preço será criado automaticamente sobre o vídeo.</p>
         <div id="growth-youtube-items" class="video-pair-list" aria-label="Vídeos e produtos correspondentes"></div>
         <button id="growth-youtube-add" type="button">+ Adicionar outro vídeo</button>
         <div class="growth-row"><label><input id="growth-youtube-enabled" type="checkbox"> Exibir e reproduzir a sequência automaticamente na vitrine</label></div>
@@ -1207,8 +1207,8 @@
     youtubeEnabled.checked = config?.youtubeShowcaseEnabled === true;
     youtubeAdd.addEventListener("click", () => {
       const rows = youtubeItems.querySelectorAll("[data-youtube-pair]");
-      if (rows.length >= 10) {
-        showcaseStatus.textContent = "O limite da vitrine é de 10 vídeos.";
+      if (rows.length >= 20) {
+        showcaseStatus.textContent = "O limite da vitrine é de 20 vídeos.";
         return;
       }
       youtubeItems.insertAdjacentHTML("beforeend", youtubePairRow(rows.length));
@@ -1346,8 +1346,8 @@
         promotionTitle.focus();
         return;
       }
-      if (showVideos && (entries.length < 3 || entries.length > 10)) {
-        showcaseStatus.textContent = "Para ativar a vitrine, informe de 3 a 10 linhas com links válidos e diferentes do YouTube.";
+      if (showVideos && (entries.length < 3 || entries.length > 20)) {
+        showcaseStatus.textContent = "Para ativar a vitrine, informe de 3 a 20 linhas com links válidos e diferentes do YouTube.";
         (entries[0]?.row.querySelector("[data-youtube-url]") || youtubeItems.querySelector("[data-youtube-url]"))?.focus();
         return;
       }
@@ -1382,7 +1382,7 @@
         renderYoutubePairFields(youtubeItems, items);
         showcaseStatus.textContent = showVideos
           ? `✓ Sequência com ${links.length} vídeos e cartões de produtos ativada. Nenhum arquivo foi armazenado no Firebase.`
-          : "✓ Título salvo. A vitrine de vídeos continua desativada até você informar e ativar de 3 a 10 links.";
+          : "✓ Título salvo. A vitrine de vídeos continua desativada até você informar e ativar de 3 a 20 links.";
       } catch (error) {
         console.error(error);
         showcaseStatus.textContent = String(error?.code || "").includes("permission-denied")
