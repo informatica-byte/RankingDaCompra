@@ -32,6 +32,84 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://rankingdacompra.com.br/presentes/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/dia-das-criancas.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/natal.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/dia-das-maes.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/dia-dos-pais.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/dia-dos-namorados.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/pascoa.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/volta-as-aulas.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/dia-do-consumidor.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/festa-junina.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/carnaval.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/black-friday.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/presentes/ano-novo.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://rankingdacompra.com.br/produto/0MzqtvnTj41vpR7pwL1G-20260810-1.html</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2677,17 +2755,4 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url><loc>https://rankingdacompra.com.br/presentes/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/dia-das-criancas.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/natal.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/dia-das-maes.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/dia-dos-pais.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/dia-dos-namorados.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/pascoa.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/volta-as-aulas.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/dia-do-consumidor.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/festa-junina.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/carnaval.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/black-friday.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://rankingdacompra.com.br/presentes/ano-novo.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>
