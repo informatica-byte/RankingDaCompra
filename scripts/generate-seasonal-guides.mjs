@@ -37,12 +37,17 @@ const priceDate = value => {
   return Number.isNaN(date.getTime()) ? null : date;
 };
 export function confirmedPrice(product, now = new Date()) {
+  const recorded = recordedPrice(product, now);
+  return recorded?.fresh ? { amount: recorded.amount, date: recorded.date } : null;
+}
+
+export function recordedPrice(product, now = new Date()) {
   if (product.precoAtualizadoManualmente !== true) return null;
   const date = priceDate(product.precoAtualizadoManualmenteEm);
-  if (!date || now.getTime() - date.getTime() < 0 || now.getTime() - date.getTime() > 24 * 60 * 60 * 1000) return null;
+  if (!date || date.getTime() > now.getTime()) return null;
   const validPromo = product.promocaoAtiva === true && String(product.promocaoValidaAte || "").slice(0, 10) >= now.toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" });
   const amount = priceNumber(validPromo ? product.precoPromocional : product.preco);
-  return amount > 0 ? { amount, date } : null;
+  return amount > 0 ? { amount, date, fresh: now.getTime() - date.getTime() <= 24 * 60 * 60 * 1000 } : null;
 }
 
 function productUrl(product) {
@@ -61,7 +66,8 @@ export function selectGuideProducts(products, theme, now = new Date()) {
     const url = productUrl(product);
     const image = String(product.foto || product.image || "");
     const confirmed = confirmedPrice(product, now);
-    return { product, title, category, summary, url, image, confirmed, score: Number(categoryMatch) * 10 + Number(termMatch) * 4 + Number(Boolean(confirmed)) * 2 + Math.min(Number(product.nota || product.rating || 0), 5) };
+    const recorded = recordedPrice(product, now);
+    return { product, title, category, summary, url, image, confirmed, recorded, score: Number(categoryMatch) * 10 + Number(termMatch) * 4 + Number(Boolean(confirmed)) * 2 + Math.min(Number(product.nota || product.rating || 0), 5) };
   }).filter(item => item.product.id && item.summary.length >= 80 && item.image.startsWith("https://") && item.url.startsWith(`${SITE}produto/`) && item.score >= 10)
     .sort((a, b) => b.score - a.score || (a.confirmed?.amount || Infinity) - (b.confirmed?.amount || Infinity) || a.title.localeCompare(b.title, "pt-BR"))
     .slice(0, 30);
@@ -81,9 +87,11 @@ export function guideTitle(theme, configuredTitle, selected) {
 
 function card(item) {
   const product = item.product;
-  const price = item.confirmed
-    ? `<p class="price">${escapeHtml(BRL.format(item.confirmed.amount))}</p><p class="checked">Conferido em ${escapeHtml(item.confirmed.date.toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" }))}; confirme o valor final no vendedor.</p>`
-    : `<p class="checked">Preço sujeito a alteração. Veja o valor atual na análise.</p>`;
+  const recorded = item.recorded || item.confirmed;
+  const checkedOn = recorded?.date.toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
+  const price = recorded
+    ? `<span class="category">${item.confirmed ? "Preço conferido" : "Último preço registrado"}</span><p class="price">${escapeHtml(BRL.format(recorded.amount))}</p><p class="checked">${item.confirmed ? "Conferido" : "Registrado"} em ${escapeHtml(checkedOn)}; confirme o valor final no vendedor.</p>`
+    : `<p class="checked">Sem preço conferido. Veja o valor atual na análise.</p>`;
   return `<article class="product"><a href="${escapeHtml(item.url)}"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(product.titulo || product.title)}" loading="lazy" width="320" height="240"></a><div class="product-copy"><span class="category">${escapeHtml(product.categoriaNome || product.category || product.categoria || "Produto")}</span><h3><a href="${escapeHtml(item.url)}">${escapeHtml(product.titulo || product.title)}</a></h3><p>${escapeHtml(item.summary.slice(0, 190))}${item.summary.length > 190 ? "…" : ""}</p>${price}<a class="product-cta" href="${escapeHtml(item.url)}">Ver análise e oferta</a></div></article>`;
 }
 
