@@ -1,6 +1,13 @@
 {
-  "atualizadoEm": "2026-09-30T11:33:51.366Z",
+  "atualizadoEm": "2026-09-30T12:28:21.844Z",
   "resultados": {
+    "WwwF3IgLK5sG2BcxHdhQ": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://meli.la/2A4NF1j",
+      "resolvidoEm": "2026-09-30T12:28:21.835Z",
+      "tentativas": 3
+    },
     "rx4nk3KgzZYIlVlgAGjO": {
       "status": "ok",
       "mlb": "MLB5205043413",
@@ -21,13 +28,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/kit-parafusadeira-mini-motosserra-2-baterias-maleta-nakasaki/up/MLBU5147267812?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=e2d9bb93-d103-49eb-bf9f-62ae0c3ca262&position=38&tracking_id=8d04d178-e150-43fa-91db-5e9925a9f829&wid=MLB5205043413&sid=offers",
       "resolvidoEm": "2026-09-30T11:33:51.365Z",
       "tentativas": 1
-    },
-    "WwwF3IgLK5sG2BcxHdhQ": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://meli.la/2A4NF1j",
-      "resolvidoEm": "2026-09-30T11:33:49.857Z",
-      "tentativas": 2
     },
     "qTY3jWDy5Z7TG8t19ZH1": {
       "status": "erro",
