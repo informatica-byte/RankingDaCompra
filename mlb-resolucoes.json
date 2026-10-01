@@ -1,12 +1,19 @@
 {
-  "atualizadoEm": "2026-10-01T16:32:29.298Z",
+  "atualizadoEm": "2026-10-01T20:29:58.244Z",
   "resultados": {
+    "XtEN1ApJcaNY6j6ws4Q1": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/moto-g6-play-dual-sim-32-gb-indigo-escuro-3-gb-ram/p/MLB9413724?pdp_filters=item_id%3AMLB5188154041#origin=share&sid=share&wid=MLB5188154041",
+      "resolvidoEm": "2026-10-01T20:29:58.243Z",
+      "tentativas": 1
+    },
     "yCvA6LYNIJMQ2kxQRXgU": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/moto-g6-play-dual-sim-32-gb-indigo-escuro-3-gb-ram/p/MLB9413724?pdp_filters=item_id%3AMLB5188154041#origin=share&sid=share&wid=MLB5188154041",
-      "resolvidoEm": "2026-10-01T16:32:29.290Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-10-01T20:29:40.557Z",
+      "tentativas": 2
     },
     "x3lLPgfO0BTguBXOiBxX": {
       "status": "ok",
@@ -5866,32 +5873,6 @@
       "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
       "linkOriginal": "https://www.mercadolivre.com.br/auxiliar-partida-bateria-portatil-rapido-para-carro-moto/up/MLBU3445868101?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=3c10c04f-bb7f-44bf-ba83-a865fea19a09&position=36&tracking_id=f46c262a-c68a-4546-8567-888ff230b136&wid=MLB4225542625&sid=offers",
       "resolvidoEm": "2026-09-05T12:53:45.463Z"
-    },
-    "GXjP6rFa4JKEvOeog67b": {
-      "status": "ok",
-      "mlb": "MLB1942049788",
-      "urlProduto": "https://www.mercadolivre.com.br/liquidificador-philco-1200w-3l-12-velocidades-preto-ph900/p/MLB15578941",
-      "titulo": "Liquidificador Philco 1200W 3L 12 Velocidades Preto PH900",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_766837-MLA98259429221_112025-O.webp",
-      "precoAtual": 135.79,
-      "precoAnterior": 265,
-      "dadosTecnicos": [
-        "Material da jarra: Acrílico.",
-        "12 velocidades + pulsar: Versatilidade para preparar vitaminas, molhos, sopas e muito mais com praticidade.",
-        "Função Ice: Tritura gelo com facilidade e rapidez, garantindo bebidas sempre geladas e bem preparadas.",
-        "Acompanha filtro: Separa sementes e bagaço, garantindo sucos mais puros e agradáveis.",
-        "Tampa com sobretampa e orifício: Adicione ingredientes durante o preparo sem interromper o uso.",
-        "Copo de acrílico super-resistente: Alta durabilidade e capacidade total de até 3 litros.",
-        "Base antiderrapante: Mais estabilidade e segurança durante o uso do liquidificador.",
-        "Marca: Philco",
-        "Cor: Preto",
-        "Peso informado: 2.01 kg"
-      ],
-      "comentario": "Liquidificador Philco 1200W 3L 12 Velocidades Preto PH900. Material da jarra: Acrílico. 12 velocidades + pulsar: Versatilidade para preparar vitaminas, molhos, sopas e muito mais com praticidade. Função Ice: Tritura gelo com facilidade e rapidez, garantindo bebidas sempre geladas e bem preparadas. Acompanha filtro: Separa sementes e bagaço, garantindo sucos mais puros e agradáveis. Tampa com sobretampa e orifício: Adicione ingredientes durante o preparo sem interromper o uso.",
-      "pros": "Liquidificador Philco 1200W 3L 12 Velocidades Preto PH900. Características confirmadas no anúncio: Material da jarra: Acrílico. 12 velocidades + pulsar: Versatilidade para preparar vitaminas, molhos, sopas e muito mais com praticidade.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/liquidificador-philco-1200w-3l-12-velocidades-preto-ph900/p/MLB15578941?pdp_filters=deal%3AMLB1578289-1&extra_comm=false&brand_comm=false#polycard_client=affiliates&wid=MLB1942049788&sid=affiliates",
-      "resolvidoEm": "2026-09-05T12:47:11.785Z"
     }
   }
 }
