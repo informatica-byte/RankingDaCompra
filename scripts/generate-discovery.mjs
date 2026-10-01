@@ -2,6 +2,7 @@ import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import { correctProductData } from "./product-title-corrections.mjs";
 import SEO_PRIORITIES from "../seo-priorities.js";
+import { routerCapabilities, renderPracticalSection, practicalProfile, EDITORIAL_REVIEWED_AT, FOCUSED_GUIDES, focusedProducts, renderFocusedGuide } from "./discovery-editorial.mjs";
 
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
@@ -469,17 +470,6 @@ function comparableCategoryProducts(categoryId, categoryName, products) {
   });
 }
 
-function routerCapabilities(product) {
-  const text = productEvidence(product);
-  return [
-    /wi.?fi\s*6|802\.11ax|\bax\d{3,4}\b/i.test(text) && "Wi-Fi 6",
-    /dual.?band|duas bandas|5\s*ghz/i.test(text) && "banda de 5 GHz",
-    /gigabit/i.test(text) && "portas Gigabit",
-    /\bmesh\b|easymesh/i.test(text) && "rede Mesh",
-    /\bax(?:1[89]\d\d|[2-9]\d{3})\b/i.test(text) && "classe AX1800 ou superior",
-  ].filter(Boolean);
-}
-
 function technicalFactCount(product) {
   const text = productEvidence(product);
   return (text.match(/\b\d+(?:[.,]\d+)?\s*(?:w|kw|v|mah|gb|tb|hz|ghz|mbps|gbps|l|ml|kg|cm|mm|km|mp)\b/gi) || []).length
@@ -852,6 +842,7 @@ for (const category of categories) {
   const guideModified = newestDate([
     ...guideProducts.flatMap((product) => [product.atualizadoEm, product.dataCadastro]),
     category.criadoEm,
+    practicalProfile(`${category.id} ${categoryName}`) ? EDITORIAL_REVIEWED_AT : "",
   ]);
   const rawGuide = broad || comparableProducts.length < 3
     ? renderUnrankedCategoryGuide(category.id, categoryName, guideProducts, productUrls, guideModified)
@@ -871,13 +862,30 @@ for (const category of categories) {
       "A pontuação de 0 a 100 considera preço relativo (5%), avaliação editorial confiável (30%), pontos positivos e limitações específicos (20%), fatos técnicos mensuráveis (15%) e recursos de rede anunciados como Wi-Fi 6, banda de 5 GHz e portas Gigabit (30%). Recursos não informados não recebem pontos; isso não substitui um teste prático.",
     );
   }
-  const guide = honestGuide.includes("data-price-unconfirmed-guide") || honestGuide.includes("data-unranked-guide") || noValue
+  let guide = honestGuide.includes("data-price-unconfirmed-guide") || honestGuide.includes("data-unranked-guide") || noValue
     ? honestGuide : applyCategorySearchIntent(honestGuide, category.id, categoryName, guideProducts.length);
   if (!guide) continue;
+  const practical = renderPracticalSection(`${category.id} ${categoryName}`, comparableProducts, productUrls);
+  const focused = FOCUSED_GUIDES.filter((config) => config.category.test(`${category.id} ${categoryName}`));
+  const focusedLinks = focused.length ? `<section class="method"><h2>Guias para uma necessidade específica</h2><ul>${focused.map((config) => `<li><a href="${SITE}${config.file}">${escapeHtml(config.title)}</a></li>`).join("")}</ul></section>` : "";
+  guide = guide.includes('<section aria-label="Ranking detalhado">')
+    ? guide.replace('<section aria-label="Ranking detalhado">', `${practical}${focusedLinks}<section aria-label="Ranking detalhado">`)
+    : guide.replace("</main>", `${practical}${focusedLinks}</main>`);
+  for (const config of focused) {
+    const price = (product) => numberPrice(product.precoPromocional || product.preco);
+    const selected = focusedProducts(config, comparableProducts, price);
+    await writeFile(resolve(config.file), renderFocusedGuide(config, selected, productUrls, fileName, guideModified, SITE, price, money), "utf8");
+    guidePages.push(config.file);
+    guideModifiedDates.set(config.file, guideModified);
+  }
   await writeFile(resolve(fileName), guide, "utf8");
   guidePages.push(fileName);
   guideModifiedDates.set(fileName, guideModified);
 }
+const focusedDirectoryLinks = `<section class="method" data-focused-links><h2>Encontre pelo seu orçamento e uso</h2><ul>${FOCUSED_GUIDES.filter((config) => guidePages.includes(config.file)).map((config) => `<li><a href="${SITE}${config.file}">${escapeHtml(config.title)}</a></li>`).join("")}</ul></section>`;
+const directoryPath = resolve("analises.html");
+const directoryHtml = await readFile(directoryPath, "utf8");
+await writeFile(directoryPath, directoryHtml.replace("</main>", `${focusedDirectoryLinks}</main>`), "utf8");
 for (const file of (await readdir(resolve("."))).filter((name) => /^melhores-.+\.html$/.test(name))) {
   if (!guidePages.includes(file)) await unlink(resolve(file));
 }

@@ -71,8 +71,21 @@ try {
   assert.match(house, /data-unranked-guide/);
   assert.doesNotMatch(house, /Melhor custo-benefício/);
   assert.doesNotMatch(router, /Recurso técnico confirmado no anúncio/);
-  assert.match(sitemap, /melhores-roteador\.html<\/loc>\s*<lastmod>2026-09-12<\/lastmod>/);
-  assert.match(sitemap, /melhores-relogio-smartwatch\.html<\/loc>\s*<lastmod>2026-09-10<\/lastmod>/);
+  assert.match(sitemap, /melhores-roteador\.html<\/loc>\s*<lastmod>2026-10-01<\/lastmod>/);
+  assert.match(sitemap, /melhores-relogio-smartwatch\.html<\/loc>\s*<lastmod>2026-10-01<\/lastmod>/);
+  assert.match(sitemap, /melhores-casa\.html<\/loc>\s*<lastmod>2026-09-06<\/lastmod>/);
+  for (const [file, parent] of [['melhores-fones-bluetooth-ate-100.html',fones], ['melhores-roteadores-wifi-6-apartamento.html',router], ['melhores-smartwatches-caminhada.html',watch]]) {
+    const focused = await readFile(join(directory, file), 'utf8');
+    assert.match(focused, /data-focused-guide/);
+    assert.match(focused, /data-practical-guide/);
+    assert.ok(parent.includes(file));
+    assert.ok(sitemap.includes(file));
+  }
+  const budget = await readFile(join(directory, 'melhores-fones-bluetooth-ate-100.html'), 'utf8');
+  assert.match(budget, /Redmi Buds 6/);
+  assert.doesNotMatch(budget, /QCY T13|JBL Tune/);
+  assert.match(router, /data-practical-guide/);
+  assert.match(watch, /GPS próprio/);
   console.log("Guias SEO: produtos comparáveis, títulos completos, selo calculado e datas por categoria validados.");
 } finally {
   await rm(directory, { recursive: true, force: true });
