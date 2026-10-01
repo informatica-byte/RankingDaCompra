@@ -1,26 +1,40 @@
 {
-  "atualizadoEm": "2026-10-01T22:04:19.389Z",
+  "atualizadoEm": "2026-10-01T22:16:44.115Z",
   "resultados": {
+    "DHqbagAqqQBInwJPFnda": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
+      "resolvidoEm": "2026-10-01T22:16:44.114Z",
+      "tentativas": 1
+    },
+    "kstTuekL9gtR85cs3MLq": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
+      "resolvidoEm": "2026-10-01T22:16:26.965Z",
+      "tentativas": 1
+    },
     "iwTQJYvUiyPmCe2QWVaR": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
-      "resolvidoEm": "2026-10-01T22:04:19.388Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-10-01T22:16:09.907Z",
+      "tentativas": 2
     },
     "eWoSFPw84czbDj32rEQZ": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
-      "resolvidoEm": "2026-10-01T22:04:02.217Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-10-01T22:15:52.369Z",
+      "tentativas": 3
     },
     "QADpgDyyuOMFqZQGLqgG": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
-      "resolvidoEm": "2026-10-01T22:03:44.977Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-10-01T22:15:35.241Z",
+      "tentativas": 3
     },
     "0aIVxuUt78ACsEoK6BF0": {
       "status": "erro",
@@ -5759,58 +5773,6 @@
       "contras": "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.",
       "linkOriginal": "https://produto.mercadolivre.com.br/MLB-5321704950-tnis-barreda-decode-adidas-_JM?searchVariation=187250704409#polycard_client=offers&deal_print_id=e8649b75-b35f-4589-a8a3-e894d6a3ee36&position=4&tracking_id=9a1b110c-3a0d-4272-8d0b-662717fe7c29&sid=offers",
       "resolvidoEm": "2026-09-06T09:49:39.193Z"
-    },
-    "cquGjPTrS6ySdRuDnNqP": {
-      "status": "ok",
-      "mlb": "MLB63233122",
-      "urlProduto": "https://www.mercadolivre.com.br/cortador-fatiador-ralador-de-legumes-frutas-vegetais-triturador-picador-manual-16-pecas-para-cozinha-mandolin-inox-solar/p/MLB63233122",
-      "titulo": "Cortador Fatiador Ralador De Legumes Frutas Vegetais Triturador Picador Manual 16 Peças para Cozinha Mandolin Inox Sólar",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_894077-MLA115247245255_072026-O.webp",
-      "precoAtual": 39.77,
-      "precoAnterior": 59.9,
-      "dadosTecnicos": [
-        "Ideal para Diversos Alimentos – Perfeito para legumes, verduras, frutas firmes, cebola, batata, tomate, pepino, cenoura.",
-        "16 Peças Multifuncionais – Diversas lâminas para cortar, fatiar, ralar e picar alimentos com praticidade.",
-        "Lâminas em Aço Inoxidável – Cortes precisos, rápidos e com excelente durabilidade.",
-        "Recipiente Coletor com Tampa – Mantém a bancada limpa e armazena os alimentos durante o preparo.",
-        "Acompanha Acessórios – Inclui protetor de mãos, cesto para lavagem e drenagem, separador de ovos e demais acessórios.",
-        "Limpeza Prática – Peças desmontáveis, fáceis de higienizar e compatíveis com lava-louças.",
-        "Material Resistente e Seguro – Fabricado em plástico de uso alimentar e aço inox de alta qualidade.",
-        "Marca: SóLar Variedades Utensílios",
-        "Código do catálogo: MLB63233122",
-        "Condição informada: novo"
-      ],
-      "comentario": "Cortador Fatiador Ralador De Legumes Frutas Vegetais Triturador Picador Manual 16 Peças para Cozinha Mandolin Inox Sólar. Ideal para Diversos Alimentos – Perfeito para legumes, verduras, frutas firmes, cebola, batata, tomate, pepino, cenoura. 16 Peças Multifuncionais – Diversas lâminas para cortar, fatiar, ralar e picar alimentos com praticidade. Lâminas em Aço Inoxidável – Cortes precisos, rápidos e com excelente durabilidade.",
-      "pros": "Cortador Fatiador Ralador De Legumes Frutas Vegetais Triturador Picador Manual 16 Peças para Cozinha Mandolin Inox Sólar. Características confirmadas no anúncio: Ideal para Diversos Alimentos – Perfeito para legumes, verduras, frutas firmes, cebola, batata, tomate, pepino, cenoura.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/cortador-fatiador-ralador-de-legumes-frutas-vegetais-triturador-picador-manual-16-pecas-para-cozinha-mandolin-inox-solar/p/MLB63233122",
-      "resolvidoEm": "2026-09-06T09:49:38.375Z"
-    },
-    "JZkIJ9td9uO18URAVSt0": {
-      "status": "ok",
-      "mlb": "MLB6040210176",
-      "urlProduto": "https://www.mercadolivre.com.br/maquininha-de-cartao-pro-3-mercado-pago-point-amarela-claro-4gwifinfc/p/MLB50744234",
-      "titulo": "Maquininha De Cartão Pro 3 Mercado Pago Point Amarela Claro 4g/Wifi/Nfc",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_809495-MLA115240270263_072026-O.webp",
-      "precoAtual": 116.9,
-      "precoAnterior": 259.99,
-      "dadosTecnicos": [
-        "Voltagem: 127/220V.",
-        "Tela touch de 4 polegadas que permite visualizar transações e gerenciar vendas diretamente no dispositivo.",
-        "Impressão de comprovantes na hora que atende exigências de clientes com reposição contínua de bobinas.",
-        "Conexão Wi-Fi e rede móvel 4G que permite processar pagamentos sem depender de fios ou cabos de rede.",
-        "Bateria com autonomia de 2 dias que possibilita o uso contínuo em balcões ou durante entregas externas.",
-        "Aceita pagamentos por aproximação NFC, Pix, QR Code, chip e tarja magnética para diversificar modalidades de venda.",
-        "Dimensões de 7.5 cm de profundidade que facilitam o manuseio e o transporte para vendas em diferentes locais.",
-        "Marca: Mercado Pago",
-        "Peso informado: 375 g",
-        "Código do catálogo: MLB50744234"
-      ],
-      "comentario": "Maquininha De Cartão Pro 3 Mercado Pago Point Amarela Claro 4g/Wifi/Nfc. Voltagem: 127/220V. Tela touch de 4 polegadas que permite visualizar transações e gerenciar vendas diretamente no dispositivo. Impressão de comprovantes na hora que atende exigências de clientes com reposição contínua de bobinas. Conexão Wi-Fi e rede móvel 4G que permite processar pagamentos sem depender de fios ou cabos de rede.",
-      "pros": "Maquininha De Cartão Pro 3 Mercado Pago Point Amarela Claro 4g/Wifi/Nfc. Características confirmadas no anúncio: Voltagem: 127/220V. Tela touch de 4 polegadas que permite visualizar transações e gerenciar vendas diretamente no dispositivo.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/maquininha-de-cartao-pro-3-mercado-pago-point-amarela-claro-4gwifinfc/p/MLB50744234?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=4da264b8-34c7-46cc-8b07-d5511caa698c&position=21&tracking_id=e82382f6-ea5f-4140-8825-41edb407d1ed&wid=MLB6040210176&sid=offers",
-      "resolvidoEm": "2026-09-06T09:49:37.517Z"
     }
   }
 }
