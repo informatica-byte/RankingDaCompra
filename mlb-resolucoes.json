@@ -1,6 +1,41 @@
 {
-  "atualizadoEm": "2026-10-01T09:47:25.967Z",
+  "atualizadoEm": "2026-10-01T09:51:56.855Z",
   "resultados": {
+    "A443snyNXyLlvVS7xYns": {
+      "status": "ok",
+      "mlb": "MLB5906265712",
+      "urlProduto": "https://produto.mercadolivre.com.br/MLB-5906265712-patinete-infantil-3-rodas-com-luz-led-menino-menina-40-kg-_JM",
+      "titulo": "Patinete Infantil 3 Rodas Com Luz Led Menino Menina 40 Kg",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_691131-MLB97408297449_112025-O-patinete-infantil-3-rodas-com-luz-led-menino-menina-40-kg.webp",
+      "precoAtual": 156,
+      "precoAnterior": 289.99,
+      "dadosTecnicos": [
+        "Marca: Genérica",
+        "Peso informado: 3.08 kg",
+        "Código do catálogo: MLB5906265712",
+        "Condição informada: novo"
+      ],
+      "comentario": "Patinete Infantil 3 Rodas Com Luz Led Menino Menina 40 Kg. Marca: Genérica; Peso informado: 3.08 kg; Código do catálogo: MLB5906265712; Condição informada: novo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "pros": "Patinete Infantil 3 Rodas Com Luz Led Menino Menina 40 Kg. Características confirmadas no anúncio: Marca: Genérica; Peso informado: 3.08 kg; Código do catálogo: MLB5906265712; Condição informada: novo.",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://produto.mercadolivre.com.br/MLB-5906265712-patinete-infantil-3-rodas-com-luz-led-menino-menina-40-kg-_JM?searchVariation=186848321938#polycard_client=offers&deal_print_id=388cf9f7-e50d-454e-ad32-453692cc039c&position=8&tracking_id=9ced46ef-a97c-4279-b895-7a78933303f3&sid=offers",
+      "resolvidoEm": "2026-10-01T09:51:56.854Z",
+      "tentativas": 1
+    },
+    "lLu90RlMa9qUEQVXbJZY": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/jbl-caixa-de-som-go-4-black-prova-dagua-jblgo4blk-cor-preto/p/MLB36386053",
+      "resolvidoEm": "2026-10-01T09:51:54.873Z",
+      "tentativas": 2
+    },
+    "8GJ4pazP5c28Yvr8qnRA": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/camera-inteligente-full-hd-im5-sc-com-microsd-32gb-branca-intelbras/p/MLB23772724",
+      "resolvidoEm": "2026-10-01T09:51:36.720Z",
+      "tentativas": 2
+    },
     "pH14PI3kinysgzizUYiL": {
       "status": "ok",
       "mlb": "MLB4247892213",
@@ -28,13 +63,6 @@
       "resolvidoEm": "2026-10-01T09:47:25.966Z",
       "tentativas": 1
     },
-    "lLu90RlMa9qUEQVXbJZY": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/jbl-caixa-de-som-go-4-black-prova-dagua-jblgo4blk-cor-preto/p/MLB36386053",
-      "resolvidoEm": "2026-10-01T09:47:24.625Z",
-      "tentativas": 1
-    },
     "Coyweyoi0pre94OsEzeC": {
       "status": "ok",
       "mlb": "MLB1307284888",
@@ -54,13 +82,6 @@
       "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
       "linkOriginal": "https://produto.mercadolivre.com.br/MLB-1307284888-fritadeira-eletrica-sem-oleo-air-fryer-mondial-1500w-_JM",
       "resolvidoEm": "2026-10-01T09:47:07.121Z",
-      "tentativas": 1
-    },
-    "8GJ4pazP5c28Yvr8qnRA": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/camera-inteligente-full-hd-im5-sc-com-microsd-32gb-branca-intelbras/p/MLB23772724",
-      "resolvidoEm": "2026-10-01T09:47:05.625Z",
       "tentativas": 1
     },
     "2g0A3R2e2bzELhi0Zb5G": {
@@ -5887,29 +5908,6 @@
       "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
       "linkOriginal": "https://www.mercadolivre.com.br/mini-mixer-eletrico-misturador-de-bebidas-2-em-1-portatil/up/MLBU3691469201?pdp_filters=item_id:MLB6094894186#polycard_client=recommendations_pdp-pads-up&wid=MLB6094894186&sid=recos&reco_backend=recomm_platform_base_pads_rfa_MERGE&reco_model=search_recos_backend_merge&reco_client=pdp-pads-up&reco_item_pos=0&reco_backend_type=low_level&reco_id=adb3bad1-f7a5-49d4-bd1c-c8a8847828ec&is_advertising=true&ad_domain=PDPDESKTOP_UP&ad_position=1&ad_click_id=MGIxMWVlYTEtNDgyZi00OTQ0LWJmNTMtOGE2MDA5MjVhMjVl",
       "resolvidoEm": "2026-09-05T12:35:39.218Z"
-    },
-    "VW8FwOeNbLcnTyXRNM3v": {
-      "status": "ok",
-      "mlb": "MLB5765699174",
-      "urlProduto": "https://www.mercadolivre.com.br/jarra-vidro-borossilicato-14l-tampa-inox-resistente-cor-transparente/p/MLB34703973",
-      "titulo": "Jarra Vidro Borossilicato 1.4L Tampa Inox Resistente Cor Transparente",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_736707-MLA114020612866_072026-O.webp",
-      "precoAtual": 40.89,
-      "precoAnterior": 59,
-      "dadosTecnicos": [
-        "Material de vidro borossilicato transparente e resistente.",
-        "Tampa em inox com vedação perfeita.",
-        "Design elegante que enriquece sua mesa.",
-        "Alça para fácil manuseio durante o serviço.",
-        "Marca: Class Home",
-        "Código do catálogo: MLB34703973",
-        "Condição informada: novo"
-      ],
-      "comentario": "Jarra Vidro Borossilicato 1.4L Tampa Inox Resistente Cor Transparente. Material de vidro borossilicato transparente e resistente. Tampa em inox com vedação perfeita. Design elegante que enriquece sua mesa. Alça para fácil manuseio durante o serviço. Marca: Class Home; Código do catálogo: MLB34703973. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Jarra Vidro Borossilicato 1.4L Tampa Inox Resistente Cor Transparente. Características confirmadas no anúncio: Material de vidro borossilicato transparente e resistente. Tampa em inox com vedação perfeita. Design elegante que enriquece sua mesa. Alça para fácil manuseio durante o serviço.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/jarra-vidro-borossilicato-14l-tampa-inox-resistente-cor-transparente/p/MLB34703973?pdp_filters=deal%3AMLB1578289-1&extra_comm=false&brand_comm=false#polycard_client=affiliates&wid=MLB5765699174&sid=affiliates",
-      "resolvidoEm": "2026-09-05T11:49:50.283Z"
     }
   }
 }
