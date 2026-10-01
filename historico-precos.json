@@ -1,7 +1,7 @@
 {
   "version": 1,
   "days": 30,
-  "updatedAt": "2026-09-30T16:03:24.523Z",
+  "updatedAt": "2026-10-01T16:39:07.796Z",
   "products": {
     "05S6aRd5qQ8i4L37P6qN": {
       "title": "Colchão Casal Emma Original 138x188cm",
@@ -102,10 +102,6 @@
       "identity": "MLB5556558810",
       "points": [
         [
-          "2026-09-01",
-          139
-        ],
-        [
           "2026-09-02",
           139
         ],
@@ -204,6 +200,10 @@
         [
           "2026-09-29",
           206.36
+        ],
+        [
+          "2026-10-01",
+          205.9
         ]
       ]
     },
@@ -211,10 +211,6 @@
       "title": "Fogareiro P/ Camping Pesca Fogão A Gás Portátil 1 Boca",
       "identity": "MLB4031566272",
       "points": [
-        [
-          "2026-09-01",
-          73.47
-        ],
         [
           "2026-09-02",
           73.47
@@ -318,6 +314,10 @@
         [
           "2026-09-29",
           79.1
+        ],
+        [
+          "2026-10-01",
+          79.1
         ]
       ]
     },
@@ -343,10 +343,6 @@
       "title": "Monitor Gamer Samsung Odyssey G40 27 , 240 Hz, 1ms, Ajuste De Altura, Gsync, Freesync,hdmi, Dp, Fhd, Preto",
       "identity": "MLB54143222",
       "points": [
-        [
-          "2026-09-01",
-          1124.23
-        ],
         [
           "2026-09-02",
           1124.23
@@ -437,10 +433,6 @@
       "title": "Xiaomi Redmi Note 15 Pro 5g 512gb 8gb Ram Lançamento 2026",
       "points": [
         [
-          "2026-09-01",
-          1258
-        ],
-        [
           "2026-09-02",
           1479
         ],
@@ -454,10 +446,6 @@
       "title": "Inalador Nebulizador Aero Tech Portátil Tec. Mesh Relaxmedic",
       "identity": "MLB4435213175",
       "points": [
-        [
-          "2026-09-01",
-          178.87
-        ],
         [
           "2026-09-02",
           178.87
@@ -561,6 +549,10 @@
         [
           "2026-09-29",
           199.96
+        ],
+        [
+          "2026-10-01",
+          179.82
         ]
       ]
     },
@@ -568,10 +560,6 @@
       "title": "Batedeira Prática, Mondial, 400W - B-44-W",
       "identity": "MLB16016319",
       "points": [
-        [
-          "2026-09-01",
-          160.71
-        ],
         [
           "2026-09-02",
           160.71
@@ -675,6 +663,10 @@
         [
           "2026-09-29",
           189.07
+        ],
+        [
+          "2026-10-01",
+          93.53
         ]
       ]
     },
@@ -781,6 +773,10 @@
         [
           "2026-09-29",
           56.77
+        ],
+        [
+          "2026-10-01",
+          56.77
         ]
       ]
     },
@@ -788,10 +784,6 @@
       "title": "Kit 2 Suporte Porta Shampoo Sabonete Prateleira Banheiro Adesivo Parede Sem Furar Box Luxo Cor Preto Homeroarte",
       "identity": "MLB60049155",
       "points": [
-        [
-          "2026-09-01",
-          37.9
-        ],
         [
           "2026-09-02",
           37.9
@@ -895,16 +887,16 @@
         [
           "2026-09-29",
           38.9
+        ],
+        [
+          "2026-10-01",
+          38.9
         ]
       ]
     },
     "289lp7FlTI7iBiUkftG7": {
       "title": "Cadeirinha infantil para carro Litet Mass 0-36kg Preta - BB456",
       "points": [
-        [
-          "2026-09-01",
-          512.05
-        ],
         [
           "2026-09-02",
           512.05
@@ -996,10 +988,6 @@
       "identity": "MLB5363320228",
       "points": [
         [
-          "2026-09-01",
-          2199
-        ],
-        [
           "2026-09-02",
           2199
         ],
@@ -1102,16 +1090,16 @@
         [
           "2026-09-29",
           2199
+        ],
+        [
+          "2026-10-01",
+          2199
         ]
       ]
     },
     "2vFXQV4acjGHUTy8Lsk1": {
       "title": "Câmera Veicular Ddpai N1 Dual 1296p+1080p 135° Nightvis App",
       "points": [
-        [
-          "2026-09-01",
-          498.01
-        ],
         [
           "2026-09-02",
           498.01
@@ -1173,10 +1161,6 @@
       "identity": "MLB62021470",
       "points": [
         [
-          "2026-09-01",
-          200.61
-        ],
-        [
           "2026-09-02",
           200.61
         ],
@@ -1279,6 +1263,10 @@
         [
           "2026-09-29",
           223.83
+        ],
+        [
+          "2026-10-01",
+          235.61
         ]
       ]
     },
@@ -1286,10 +1274,6 @@
       "title": "Robô Aspirador De Piscina Automático Redroad S1 Área 102 M2",
       "identity": "MLB6968682598",
       "points": [
-        [
-          "2026-09-01",
-          1019.99
-        ],
         [
           "2026-09-02",
           1499
@@ -1393,6 +1377,10 @@
         [
           "2026-09-29",
           1019.99
+        ],
+        [
+          "2026-10-01",
+          1019.32
         ]
       ]
     },
@@ -1400,10 +1388,6 @@
       "title": "Celular Samsung Galaxy A56 5g 256gb 8gb Ram Cinza",
       "identity": "MLB47114363",
       "points": [
-        [
-          "2026-09-01",
-          2198.1
-        ],
         [
           "2026-09-02",
           2198.1
@@ -1507,6 +1491,10 @@
         [
           "2026-09-29",
           2463.12
+        ],
+        [
+          "2026-10-01",
+          2612.5
         ]
       ]
     },
@@ -1514,10 +1502,6 @@
       "title": "Câmera Inteligente Resistente a Chuva e Poeira iM7 S Branca Intelbras",
       "identity": "MLB40230034",
       "points": [
-        [
-          "2026-09-01",
-          305.91
-        ],
         [
           "2026-09-02",
           305.91
@@ -1625,6 +1609,10 @@
         [
           "2026-09-29",
           331.44
+        ],
+        [
+          "2026-10-01",
+          331.44
         ]
       ]
     },
@@ -1632,10 +1620,6 @@
       "title": "Furadeira De Impacto 13mm 750w Profissional Com Kit Brocas Buchas E Bits 300 Peças The Black Tools",
       "identity": "MLB41168545",
       "points": [
-        [
-          "2026-09-01",
-          199.9
-        ],
         [
           "2026-09-02",
           199.9
@@ -1739,6 +1723,10 @@
         [
           "2026-09-29",
           224.99
+        ],
+        [
+          "2026-10-01",
+          224.99
         ]
       ]
     },
@@ -1746,10 +1734,6 @@
       "title": "Smartwatch FoxBox MBW0256 Preto com Pulseira de Aço e de Silicone",
       "identity": "MLB64060082",
       "points": [
-        [
-          "2026-09-01",
-          169.44
-        ],
         [
           "2026-09-02",
           169.44
@@ -1853,10 +1837,6 @@
       "identity": "MLB4374486439",
       "points": [
         [
-          "2026-09-01",
-          176.63
-        ],
-        [
           "2026-09-02",
           176.63
         ],
@@ -1959,6 +1939,10 @@
         [
           "2026-09-29",
           164.95
+        ],
+        [
+          "2026-10-01",
+          298
         ]
       ]
     },
@@ -1966,10 +1950,6 @@
       "title": "Colchão Casal Emma Original 138x188cm 3 Camadas de Espuma, Embalado à Vácuo, Suporte para Coluna, Alta Respirabilidade, Capa Lavável",
       "identity": "MLB18724648",
       "points": [
-        [
-          "2026-09-01",
-          2045.9
-        ],
         [
           "2026-09-24",
           2559
@@ -1989,6 +1969,10 @@
         [
           "2026-09-29",
           2559
+        ],
+        [
+          "2026-10-01",
+          2559
         ]
       ]
     },
@@ -1996,10 +1980,6 @@
       "title": "Rastreador GPS Veicular 4G com App em Tempo Real | Ideal para Frotas, Carro, Moto, Caminhão e Veículos Elétricos",
       "identity": "MLB63990262",
       "points": [
-        [
-          "2026-09-01",
-          84.31
-        ],
         [
           "2026-09-02",
           84.31
@@ -2103,6 +2083,10 @@
         [
           "2026-09-29",
           80.67
+        ],
+        [
+          "2026-10-01",
+          80.67
         ]
       ]
     },
@@ -2110,10 +2094,6 @@
       "title": "Kit 10 Pote De Vidro Marmita Hermético 640ml Freezer Fitness Rishon",
       "identity": "MLB63904966",
       "points": [
-        [
-          "2026-09-01",
-          118
-        ],
         [
           "2026-09-02",
           117.9
@@ -2217,6 +2197,10 @@
         [
           "2026-09-29",
           97.62
+        ],
+        [
+          "2026-10-01",
+          89.81
         ]
       ]
     },
@@ -2224,10 +2208,6 @@
       "title": "Notebook Lenovo IdeaPad Slim 3 15IRH10 Intel Core i5-13420H 8GB 512GB SSD Windows 11 15.3\" - 83NS0002BR Luna Grey",
       "identity": "MLB51233304",
       "points": [
-        [
-          "2026-09-01",
-          3817.05
-        ],
         [
           "2026-09-02",
           3793.13
@@ -2310,10 +2290,6 @@
       "title": "TP-Link Tapo C500 Câmera de Segurança Wifi 1080P 360° Colorida IP65",
       "identity": "MLB23037572",
       "points": [
-        [
-          "2026-09-01",
-          269.91
-        ],
         [
           "2026-09-02",
           269.91
@@ -2408,10 +2384,6 @@
       "title": "Redmi Buds 6 Play Fone De Ouvido Bluetooth Sem Fio Cor Azul",
       "identity": "MLB75637724",
       "points": [
-        [
-          "2026-09-01",
-          79.15
-        ],
         [
           "2026-09-02",
           79.15
@@ -2515,6 +2487,10 @@
         [
           "2026-09-29",
           99.9
+        ],
+        [
+          "2026-10-01",
+          77
         ]
       ]
     },
@@ -2522,10 +2498,6 @@
       "title": "Tablet Android 15 Hancdon Tab Kit Completo Ram 16gb 512gb 12,8'' Hd Tela Apoia Wifi 2,4/4g/5g Dual Sim Bateria 8800mah Com Caneta+teclado E Mouse Profissional Estudo Trabalho Jogos 2 Em 1 Tablets Pc",
       "identity": "MLB58364566",
       "points": [
-        [
-          "2026-09-01",
-          949
-        ],
         [
           "2026-09-02",
           1124
@@ -2617,10 +2589,6 @@
       "identity": "MLB47712045",
       "points": [
         [
-          "2026-09-01",
-          3080
-        ],
-        [
           "2026-09-02",
           3080
         ],
@@ -2662,10 +2630,6 @@
       "title": "Parafusadeira Furadeira De Impacto The Black Tools Com Maleta + Kit Acessórios 147 Peças 2 Baterias Profissional Tbkit17",
       "identity": "MLB68028763",
       "points": [
-        [
-          "2026-09-01",
-          350.07
-        ],
         [
           "2026-09-02",
           350.07
@@ -2769,6 +2733,10 @@
         [
           "2026-09-29",
           359.1
+        ],
+        [
+          "2026-10-01",
+          359.1
         ]
       ]
     },
@@ -2776,10 +2744,6 @@
       "title": "Kit 9 Pares Meias Puma Sapatilha Soquete Invisível Original",
       "identity": "MLB3240424598",
       "points": [
-        [
-          "2026-09-01",
-          78.99
-        ],
         [
           "2026-09-02",
           77.99
@@ -2883,16 +2847,16 @@
         [
           "2026-09-29",
           68.99
+        ],
+        [
+          "2026-10-01",
+          68.96
         ]
       ]
     },
     "5Jy9PJCAxAAnAn8cDmxj": {
       "title": "Tênis Masculino Feminino Kappa Park 2.0 Original",
       "points": [
-        [
-          "2026-09-01",
-          77.89
-        ],
         [
           "2026-09-02",
           77.89
@@ -2951,10 +2915,6 @@
       "title": "Chuveiro elétrico de parede Lorenzetti Futura Multitemperaturas branco 6800W",
       "identity": "MLB15480890",
       "points": [
-        [
-          "2026-09-01",
-          154.7
-        ],
         [
           "2026-09-02",
           119
@@ -3058,6 +3018,10 @@
         [
           "2026-09-29",
           135.24
+        ],
+        [
+          "2026-10-01",
+          147
         ]
       ]
     },
@@ -3065,10 +3029,6 @@
       "title": "Smartwatch HUAWEI WATCH FIT 5 AMOLED de 182\" Design Leve Mini Treino Bateria com Até 10 Dias 64 GB Gerenciamento Avançado da Saúde Monitor do Sono SpO2 GPS Compatível com iOS e Android Preto",
       "identity": "MLB67714386",
       "points": [
-        [
-          "2026-09-01",
-          699
-        ],
         [
           "2026-09-02",
           699
@@ -3172,6 +3132,10 @@
         [
           "2026-09-29",
           790.22
+        ],
+        [
+          "2026-10-01",
+          859
         ]
       ]
     },
@@ -3179,10 +3143,6 @@
       "title": "Kit Wella Brilliance Sh 250ml + Cond 200ml + Másc 150ml",
       "identity": "MLB37818093",
       "points": [
-        [
-          "2026-09-01",
-          168.87
-        ],
         [
           "2026-09-02",
           168.87
@@ -3286,6 +3246,10 @@
         [
           "2026-09-29",
           244
+        ],
+        [
+          "2026-10-01",
+          283.5
         ]
       ]
     },
@@ -3293,10 +3257,6 @@
       "title": "Fone de Ouvido Bluetooth 5.4 soundcore P30i da Anker, Cancelamento de Ruído Adaptativo, Graves Poderosos, 45H de Reprodução, Estojo 2-em-1 com Suporte para Celular, IP54, Fone sem fio TWS, Verde",
       "identity": "MLB42490968",
       "points": [
-        [
-          "2026-09-01",
-          196.6
-        ],
         [
           "2026-09-02",
           196.6
@@ -3400,16 +3360,16 @@
         [
           "2026-09-29",
           196.6
+        ],
+        [
+          "2026-10-01",
+          196.6
         ]
       ]
     },
     "5mErcSQoxlQYCUo82lDG": {
       "title": "Xiaomi Poco X8 Pro 512gb 12gb Ram Lançamento 2026 Com Nfc",
       "points": [
-        [
-          "2026-09-01",
-          3299.45
-        ],
         [
           "2026-09-02",
           3299.45
@@ -3510,10 +3470,6 @@
       "title": "Parafusadeira Furadeira Sem Fio Gradiente Gpb12v-ac 3/8 12v Bivolt Para Madeira Metal Com Maleta E Acessórios",
       "identity": "MLB68849992",
       "points": [
-        [
-          "2026-09-01",
-          96
-        ],
         [
           "2026-09-02",
           96
@@ -3617,6 +3573,10 @@
         [
           "2026-09-29",
           139.9
+        ],
+        [
+          "2026-10-01",
+          359.1
         ]
       ]
     },
@@ -3624,10 +3584,6 @@
       "title": "Prancha Lizze Profissional 480 Extreme",
       "identity": "MLB24086423",
       "points": [
-        [
-          "2026-09-01",
-          348.68
-        ],
         [
           "2026-09-02",
           348.68
@@ -3731,6 +3687,10 @@
         [
           "2026-09-29",
           359.1
+        ],
+        [
+          "2026-10-01",
+          399
         ]
       ]
     },
@@ -3738,10 +3698,6 @@
       "title": "Secador de Cabelos Philco Motor BLDC 6 acessórios Fast Dry 1450W PSD16A 127v",
       "identity": "MLB65038397",
       "points": [
-        [
-          "2026-09-01",
-          396
-        ],
         [
           "2026-09-02",
           396
@@ -3832,10 +3788,6 @@
       "title": "Patinete Elétrico Ydtech M187 Dobrável com Bluetooth",
       "identity": "MLB23909241",
       "points": [
-        [
-          "2026-09-01",
-          1469.99
-        ],
         [
           "2026-09-02",
           1469.99
@@ -3943,6 +3895,10 @@
         [
           "2026-09-29",
           1469.99
+        ],
+        [
+          "2026-10-01",
+          1469.99
         ]
       ]
     },
@@ -3950,10 +3906,6 @@
       "title": "Creatina 1kg Suplemento Monohidratada em pó 100% Pura - Soldiers Nutrition",
       "identity": "MLB18725310",
       "points": [
-        [
-          "2026-09-01",
-          67.9
-        ],
         [
           "2026-09-02",
           67.9
@@ -4003,10 +3955,6 @@
     "6mTC2ilqUMIpviykSWpA": {
       "title": "Eps-25p Conjunto faqueiro 25 Peças Porta Talher Jogo De Talheres Preto",
       "points": [
-        [
-          "2026-09-01",
-          19.99
-        ],
         [
           "2026-09-02",
           19.99
@@ -4097,10 +4045,6 @@
       "title": "Cortina 3,00x2,80 Metros Blackout Blecaute Gelo Corta Luz Em Tecido Grosso Para Quarto E Sala Casa Laura Enxovais",
       "identity": "MLB29614964",
       "points": [
-        [
-          "2026-09-01",
-          72.9
-        ],
         [
           "2026-09-02",
           72.9
@@ -4204,6 +4148,10 @@
         [
           "2026-09-29",
           75.9
+        ],
+        [
+          "2026-10-01",
+          75.9
         ]
       ]
     },
@@ -4211,10 +4159,6 @@
       "title": "Câmera de Segurança IP Wi-Fi Lâmpada E27 HW 360° Full HD com Visão Noturna e Áudio - HW",
       "identity": "MLB50368081",
       "points": [
-        [
-          "2026-09-01",
-          60.39
-        ],
         [
           "2026-09-02",
           51.33
@@ -4318,6 +4262,10 @@
         [
           "2026-09-29",
           60.39
+        ],
+        [
+          "2026-10-01",
+          60.39
         ]
       ]
     },
@@ -4325,10 +4273,6 @@
       "title": "Smartphone Samsung Galaxy A36 5G 128GB 6GB RAM",
       "identity": "MLB47109375",
       "points": [
-        [
-          "2026-09-01",
-          1294.9
-        ],
         [
           "2026-09-02",
           1294.9
@@ -4372,6 +4316,10 @@
         [
           "2026-09-29",
           1459.9
+        ],
+        [
+          "2026-10-01",
+          1443.33
         ]
       ]
     },
@@ -4470,10 +4418,6 @@
       "identity": "MLB70040749",
       "points": [
         [
-          "2026-09-01",
-          3845.97
-        ],
-        [
           "2026-09-02",
           3845.97
         ],
@@ -4576,6 +4520,10 @@
         [
           "2026-09-29",
           4500
+        ],
+        [
+          "2026-10-01",
+          4500
         ]
       ]
     },
@@ -4583,10 +4531,6 @@
       "title": "Fritadeira Elétrica Air Fryer Wap Wafg2s 5 Litros Com Revestimento Antiaderente 1500w 220v",
       "identity": "MLB53767795",
       "points": [
-        [
-          "2026-09-01",
-          219
-        ],
         [
           "2026-09-02",
           276.85
@@ -4678,10 +4622,6 @@
       "identity": "MLB18725310",
       "points": [
         [
-          "2026-09-01",
-          68.9
-        ],
-        [
           "2026-09-02",
           68.9
         ],
@@ -4764,6 +4704,10 @@
         [
           "2026-09-29",
           68.9
+        ],
+        [
+          "2026-10-01",
+          68.9
         ]
       ]
     },
@@ -4771,10 +4715,6 @@
       "title": "Perfume Lattafa Asad 100ml Eau De Parfum Original Árabe Original Com Nota Fiscal E Selo Original Lataffa",
       "identity": "MLB3946172085",
       "points": [
-        [
-          "2026-09-01",
-          169.15
-        ],
         [
           "2026-09-02",
           169.15
@@ -4878,6 +4818,10 @@
         [
           "2026-09-29",
           177.65
+        ],
+        [
+          "2026-10-01",
+          177.65
         ]
       ]
     },
@@ -4885,10 +4829,6 @@
       "title": "Celular Samsung Galaxy A17",
       "identity": "MLB55254425",
       "points": [
-        [
-          "2026-09-01",
-          1223.1
-        ],
         [
           "2026-09-02",
           1223.1
@@ -4992,6 +4932,10 @@
         [
           "2026-09-29",
           1163.7
+        ],
+        [
+          "2026-10-01",
+          1099
         ]
       ]
     },
@@ -4999,10 +4943,6 @@
       "title": "Impressora Multifuncional Brother DCP-T436W Tanque de Tinta, Colorida, Wi-Fi, USB, Bivolt",
       "identity": "MLB48882879",
       "points": [
-        [
-          "2026-09-01",
-          809.91
-        ],
         [
           "2026-09-02",
           899.1
@@ -5102,10 +5042,6 @@
       "identity": "MLB46189259",
       "points": [
         [
-          "2026-09-01",
-          154.91
-        ],
-        [
           "2026-09-02",
           191.37
         ],
@@ -5146,10 +5082,6 @@
     "9M0ixrhS8WT32klrBuji": {
       "title": "Máscara Kérastase Nutritive Masquintense Riche 200ml",
       "points": [
-        [
-          "2026-09-01",
-          225.9
-        ],
         [
           "2026-09-02",
           225.9
@@ -5240,10 +5172,6 @@
       "title": "Creatina Monohidratada 250g Growth Supplements - Sem sabor em Pó 100%",
       "identity": "MLB19603205",
       "points": [
-        [
-          "2026-09-01",
-          42.9
-        ],
         [
           "2026-09-02",
           42.9
@@ -5351,16 +5279,16 @@
         [
           "2026-09-29",
           35.91
+        ],
+        [
+          "2026-10-01",
+          39.9
         ]
       ]
     },
     "9XyRhvHb9nBlCsGOM4pj": {
       "title": "Afiador Amolador De Facas Tesouras Profissional 3 Em 1 Portátil Marca Homeroarte",
       "points": [
-        [
-          "2026-09-01",
-          18
-        ],
         [
           "2026-09-02",
           18
@@ -5451,10 +5379,6 @@
       "title": "Panela De Pressão 4,5l Tramontina Vancouver Effect 20591-720 Cor Vermelho",
       "points": [
         [
-          "2026-09-01",
-          182.7
-        ],
-        [
           "2026-09-02",
           177.22
         ],
@@ -5544,10 +5468,6 @@
       "title": "COLÁGENO TIPO 2 com 45mg - Fórmula Exclusiva para a Articulação com Máxima Concentração e Biodisponibilidade - 60 Cápsulas",
       "identity": "MLB43057072",
       "points": [
-        [
-          "2026-09-01",
-          41.77
-        ],
         [
           "2026-09-02",
           41.77
@@ -5651,6 +5571,10 @@
         [
           "2026-09-29",
           41
+        ],
+        [
+          "2026-10-01",
+          41.77
         ]
       ]
     },
@@ -5658,10 +5582,6 @@
       "title": "Drone DJI Neo Ultra Leve 4K - Compacto, Inteligente e Fácil de Voar - DJI050",
       "identity": "MLB40399215",
       "points": [
-        [
-          "2026-09-01",
-          2589
-        ],
         [
           "2026-09-02",
           2589
@@ -5703,10 +5623,6 @@
     "A40YHbcTUSIxI3ennE1a": {
       "title": "Tablet Lenovo Idea Tab Pro 8GB RAM 256GB 13” Android 16 Com Caneta + Folio - ZAHD0680BR",
       "points": [
-        [
-          "2026-09-01",
-          3419
-        ],
         [
           "2026-09-02",
           3419
@@ -5797,10 +5713,6 @@
       "title": "Aspirador de Pó Vertical e Portátil WAP High Speed Plus 1350W 3 em 1",
       "identity": "MLB22511808",
       "points": [
-        [
-          "2026-09-01",
-          191.52
-        ],
         [
           "2026-09-02",
           195.51
@@ -5904,6 +5816,10 @@
         [
           "2026-09-29",
           156.74
+        ],
+        [
+          "2026-10-01",
+          162.54
         ]
       ]
     },
@@ -5911,10 +5827,6 @@
       "title": "Air Fryer Oven Philco 11L 8 Funções Visor 1800W PAF11B",
       "identity": "MLB56550237",
       "points": [
-        [
-          "2026-09-01",
-          354.2
-        ],
         [
           "2026-09-02",
           354.2
@@ -6018,6 +5930,10 @@
         [
           "2026-09-29",
           402.5
+        ],
+        [
+          "2026-10-01",
+          397.49
         ]
       ]
     },
@@ -6079,10 +5995,6 @@
       "title": "Roteador Mercusys Mr80x V4 Ax3000 Dual Band Wifi6",
       "identity": "MLB47097785",
       "points": [
-        [
-          "2026-09-01",
-          209
-        ],
         [
           "2026-09-02",
           223.75
@@ -6186,6 +6098,10 @@
         [
           "2026-09-29",
           188.04
+        ],
+        [
+          "2026-10-01",
+          213.46
         ]
       ]
     },
@@ -6193,10 +6109,6 @@
       "title": "Lanterna De Cabeça Led Sensor Movimento 12 Modos Recarregável Power Bank Usb Alta Potência Ciclismo Camping Pesca Reparo Noturna Zoom Ajustável Ipx4 Resistente Mãos Livres Frontal 100000 Lumens",
       "identity": "MLB63116023",
       "points": [
-        [
-          "2026-09-01",
-          123.5
-        ],
         [
           "2026-09-02",
           123.5
@@ -6300,6 +6212,10 @@
         [
           "2026-09-29",
           123.4
+        ],
+        [
+          "2026-10-01",
+          127.9
         ]
       ]
     },
@@ -6307,10 +6223,6 @@
       "title": "Conjunto Panelas Antiaderente 10 Peças Teflon Várias Cores",
       "identity": "MLB7143036282",
       "points": [
-        [
-          "2026-09-01",
-          189.9
-        ],
         [
           "2026-09-02",
           189.9
@@ -6341,10 +6253,6 @@
       "title": "apete Decorativo Felpudo 2,00x1,50 Sala Quarto Escritório Cor Cinza Liso Pelo Alto Casa Laura Enxovais",
       "identity": "MLB46020977",
       "points": [
-        [
-          "2026-09-01",
-          59.9
-        ],
         [
           "2026-09-02",
           59.9
@@ -6448,6 +6356,10 @@
         [
           "2026-09-29",
           59.84
+        ],
+        [
+          "2026-10-01",
+          59.99
         ]
       ]
     },
@@ -6455,10 +6367,6 @@
       "title": "Power Bank Basike 20000mAh",
       "identity": "MLB50592250",
       "points": [
-        [
-          "2026-09-01",
-          124.06
-        ],
         [
           "2026-09-02",
           124.06
@@ -6562,6 +6470,10 @@
         [
           "2026-09-29",
           130.04
+        ],
+        [
+          "2026-10-01",
+          136.88
         ]
       ]
     },
@@ -6569,10 +6481,6 @@
       "title": "Collagen Renew Sabor Laranja - Nutrify 300g",
       "identity": "MLB23059264",
       "points": [
-        [
-          "2026-09-01",
-          79.83
-        ],
         [
           "2026-09-02",
           79.83
@@ -6676,15 +6584,10 @@
         [
           "2026-09-29",
           80.9
-        ]
-      ]
-    },
-    "CBswVNfcCG0MRGj8SPsa": {
-      "title": "Mochila jiesipote À Prova D'água Reforçada Expansível Cor Preto",
-      "points": [
+        ],
         [
-          "2026-09-01",
-          86
+          "2026-10-01",
+          77.5
         ]
       ]
     },
@@ -6795,6 +6698,10 @@
         [
           "2026-09-29",
           39.9
+        ],
+        [
+          "2026-10-01",
+          39.9
         ]
       ]
     },
@@ -6802,10 +6709,6 @@
       "title": "Attracione Men perfume Masculino Com Feromônios Ativados 25 mL",
       "identity": "MLB45617876",
       "points": [
-        [
-          "2026-09-01",
-          59
-        ],
         [
           "2026-09-02",
           59
@@ -6909,6 +6812,10 @@
         [
           "2026-09-29",
           59
+        ],
+        [
+          "2026-10-01",
+          56.05
         ]
       ]
     },
@@ -6916,10 +6823,6 @@
       "title": "Macbook Air 13 Polegadas M5 10cpu 8gpu 16gb 512gb Estelar",
       "identity": "MLB6698161682",
       "points": [
-        [
-          "2026-09-01",
-          10199
-        ],
         [
           "2026-09-02",
           10199
@@ -7010,10 +6913,6 @@
       "title": "Tablet Samsung Galaxy Tab A11+, 128gb, 6gb Ram, Tela De 11 , Câmera Traseira 8mp, Wifi, Android 16",
       "identity": "MLB64090053",
       "points": [
-        [
-          "2026-09-01",
-          1452.55
-        ],
         [
           "2026-09-02",
           1425.61
@@ -7117,16 +7016,16 @@
         [
           "2026-09-29",
           1400.41
+        ],
+        [
+          "2026-10-01",
+          1563.9
         ]
       ]
     },
     "D5FI7Z4OhbJsHiE7wOmc": {
       "title": "Capa Máquina Lavar Roupas Ziper 10 11 12 13 14 15 16 17 18kg",
       "points": [
-        [
-          "2026-09-01",
-          46.52
-        ],
         [
           "2026-09-02",
           46.52
@@ -7218,10 +7117,6 @@
       "identity": "MLB56245248",
       "points": [
         [
-          "2026-09-01",
-          59.99
-        ],
-        [
           "2026-09-02",
           59.99
         ],
@@ -7267,10 +7162,6 @@
       "title": "Roteador Mesh Sem Fio Wifi 6 1200mb Intelbras Twibi Force Ax Cor Branco",
       "identity": "MLB24783336",
       "points": [
-        [
-          "2026-09-01",
-          243.76
-        ],
         [
           "2026-09-02",
           229.5
@@ -7332,10 +7223,6 @@
     "DgfiI7KzKzTsjOEl1Ez1": {
       "title": "Smart Tv Philco 40'' Full Hd Roku Tv Hdr10 Dolby Áudio P40cra",
       "points": [
-        [
-          "2026-09-01",
-          1386
-        ],
         [
           "2026-09-02",
           1529
@@ -7427,10 +7314,6 @@
       "identity": "MLB58519492",
       "points": [
         [
-          "2026-09-01",
-          45
-        ],
-        [
           "2026-09-02",
           45.76
         ],
@@ -7532,6 +7415,10 @@
         ],
         [
           "2026-09-29",
+          45.76
+        ],
+        [
+          "2026-10-01",
           45.76
         ]
       ]
@@ -7541,10 +7428,6 @@
       "identity": "MLB69116953",
       "points": [
         [
-          "2026-09-01",
-          3780
-        ],
-        [
           "2026-09-02",
           3850
         ],
@@ -7647,6 +7530,10 @@
         [
           "2026-09-29",
           3850
+        ],
+        [
+          "2026-10-01",
+          7650.89
         ]
       ]
     },
@@ -7654,10 +7541,6 @@
       "title": "Mochila Trekking 40l Usb Impermeável Trilha Camp Viagem",
       "identity": "MLB6905143892",
       "points": [
-        [
-          "2026-09-01",
-          154.85
-        ],
         [
           "2026-09-02",
           154.85
@@ -7713,10 +7596,6 @@
       "identity": "MLB52057267",
       "points": [
         [
-          "2026-09-01",
-          237.4
-        ],
-        [
           "2026-09-02",
           237.4
         ],
@@ -7750,10 +7629,6 @@
       "title": "Chuveiro Ducha Lorenzetti Loren Shower Eletrônico Branco 6800w 220V",
       "identity": "MLB19765518",
       "points": [
-        [
-          "2026-09-01",
-          128.56
-        ],
         [
           "2026-09-02",
           116.9
@@ -7857,6 +7732,10 @@
         [
           "2026-09-29",
           124.7
+        ],
+        [
+          "2026-10-01",
+          124.7
         ]
       ]
     },
@@ -7864,10 +7743,6 @@
       "title": "Tripé Inteligente 1.8m com Rastreamento Facial AI Estável 360° para Celular、Câmera、Vlog E Gopro, Basike Tripé Celular Profissional Universal Bastão Selfie Com Controle Remoto Bluetooth",
       "identity": "MLB54097914",
       "points": [
-        [
-          "2026-09-01",
-          212.74
-        ],
         [
           "2026-09-02",
           212.74
@@ -7971,6 +7846,10 @@
         [
           "2026-09-29",
           168.94
+        ],
+        [
+          "2026-10-01",
+          198.75
         ]
       ]
     },
@@ -7978,10 +7857,6 @@
       "title": "Calça Balão Jeans Masculina Marmorizada Streetwear Larga Bag",
       "identity": "MLB5721390972",
       "points": [
-        [
-          "2026-09-01",
-          71.37
-        ],
         [
           "2026-09-02",
           71.37
@@ -8085,6 +7960,10 @@
         [
           "2026-09-29",
           75.99
+        ],
+        [
+          "2026-10-01",
+          64
         ]
       ]
     },
@@ -8092,10 +7971,6 @@
       "title": "Impressora 3x1 Multifuncional Epson Ecotank L3250 Wifi Bivol Preto",
       "identity": "MLB53866444",
       "points": [
-        [
-          "2026-09-01",
-          1045.44
-        ],
         [
           "2026-09-02",
           1045.44
@@ -8199,6 +8074,10 @@
         [
           "2026-09-29",
           1100.53
+        ],
+        [
+          "2026-10-01",
+          1069.36
         ]
       ]
     },
@@ -8206,10 +8085,6 @@
       "title": "Parafusadeira Furadeira C/ 2 Baterias Maleta Kit Completo Led Eixo Flexível Vários Níveis Torque Simake",
       "identity": "MLB50181290",
       "points": [
-        [
-          "2026-09-01",
-          123.96
-        ],
         [
           "2026-09-02",
           123.96
@@ -8251,10 +8126,6 @@
     "EqohVCbzvQYEWPnsDLVE": {
       "title": "Estante Armário Prateleira de Aço 6 Bandejas Organizador Galvanizada Suporta 150kg 190cm x 90cm x 28cm",
       "points": [
-        [
-          "2026-09-01",
-          164
-        ],
         [
           "2026-09-02",
           176.93
@@ -8345,10 +8216,6 @@
       "title": "FORESTORY Fone de Ouvido Bluetooth 5.4 OWS TWS Sem Fio X5 Open Ear Esportivo com Gancho Display LED HD Microfone Grave Potente para Academia Corrida Compatível iPhone Samsung Xiaomi Motorola Android",
       "identity": "MLB68085605",
       "points": [
-        [
-          "2026-09-01",
-          64.34
-        ],
         [
           "2026-09-02",
           64.34
@@ -8452,6 +8319,10 @@
         [
           "2026-09-29",
           60.9
+        ],
+        [
+          "2026-10-01",
+          60.9
         ]
       ]
     },
@@ -8459,10 +8330,6 @@
       "title": "Galaxy Buds Core Preto",
       "identity": "MLB58315694",
       "points": [
-        [
-          "2026-09-01",
-          249.9
-        ],
         [
           "2026-09-02",
           249.9
@@ -8566,6 +8433,10 @@
         [
           "2026-09-29",
           236.61
+        ],
+        [
+          "2026-10-01",
+          239.9
         ]
       ]
     },
@@ -8573,10 +8444,6 @@
       "title": "Eudora Club 6 Voyage Deo-colônia 95ml para masculino",
       "identity": "MLB21360271",
       "points": [
-        [
-          "2026-09-01",
-          119
-        ],
         [
           "2026-09-02",
           112
@@ -8680,6 +8547,10 @@
         [
           "2026-09-29",
           109.99
+        ],
+        [
+          "2026-10-01",
+          109.99
         ]
       ]
     },
@@ -8687,10 +8558,6 @@
       "title": "Perfume Vf Bloom Virginia Fonseca 75ml - Wepink Volume da unidade 75 mL",
       "identity": "MLB35506412",
       "points": [
-        [
-          "2026-09-01",
-          144.57
-        ],
         [
           "2026-09-02",
           144.57
@@ -8794,6 +8661,10 @@
         [
           "2026-09-29",
           151.99
+        ],
+        [
+          "2026-10-01",
+          151.99
         ]
       ]
     },
@@ -8801,10 +8672,6 @@
       "title": "Principia Kit Gel de Limpeza GL-01 + Protetor Solar Facial PS-01 FPS 60",
       "identity": "MLB43186410",
       "points": [
-        [
-          "2026-09-01",
-          59.99
-        ],
         [
           "2026-09-02",
           59.99
@@ -8852,10 +8719,6 @@
       "identity": "MLB19969083",
       "points": [
         [
-          "2026-09-01",
-          147.43
-        ],
-        [
           "2026-09-02",
           147.43
         ],
@@ -8958,6 +8821,10 @@
         [
           "2026-09-29",
           147.43
+        ],
+        [
+          "2026-10-01",
+          155.19
         ]
       ]
     },
@@ -8965,10 +8832,6 @@
       "title": "Barraca Para Até 4 Pessoas Camping Iglu Homefy",
       "identity": "MLB51716412",
       "points": [
-        [
-          "2026-09-01",
-          109.99
-        ],
         [
           "2026-09-02",
           109.99
@@ -9072,6 +8935,10 @@
         [
           "2026-09-29",
           79.04
+        ],
+        [
+          "2026-10-01",
+          85.49
         ]
       ]
     },
@@ -9079,10 +8946,6 @@
       "title": "Shampoo Redutor de Grisalhos Grecin Control GX Para Todas os Tons Cabelo 118ml",
       "identity": "MLB25708528",
       "points": [
-        [
-          "2026-09-01",
-          61.42
-        ],
         [
           "2026-09-02",
           61.42
@@ -9113,10 +8976,6 @@
       "title": "Smart Tv Samsung 32 Ls32h5000fgxzd Hd Led Wifi Hdmi 110/220v",
       "identity": "MLB66191173",
       "points": [
-        [
-          "2026-09-01",
-          1007
-        ],
         [
           "2026-09-02",
           1007
@@ -9204,6 +9063,10 @@
         [
           "2026-09-28",
           1118.48
+        ],
+        [
+          "2026-10-01",
+          2044.32
         ]
       ]
     },
@@ -9211,10 +9074,6 @@
       "title": "Mala De Viagem 10kg Promoção Rodas 360° Miami Com Frasqueira",
       "identity": "MLB5598192528",
       "points": [
-        [
-          "2026-09-01",
-          254.92
-        ],
         [
           "2026-09-02",
           365.08
@@ -9318,6 +9177,10 @@
         [
           "2026-09-29",
           339.99
+        ],
+        [
+          "2026-10-01",
+          339.99
         ]
       ]
     },
@@ -9325,10 +9188,6 @@
       "title": "Enssu Aparador De Pelos Corporais Masculino Com Base Cor Preto",
       "identity": "MLB64782697",
       "points": [
-        [
-          "2026-09-01",
-          140.94
-        ],
         [
           "2026-09-02",
           162
@@ -9419,10 +9278,6 @@
       "title": "Lixeira Inteligente 16l Sensor Automático Tampa Touch Casa",
       "identity": "MLB4439306401",
       "points": [
-        [
-          "2026-09-01",
-          72
-        ],
         [
           "2026-09-02",
           72
@@ -9526,6 +9381,10 @@
         [
           "2026-09-29",
           69.9
+        ],
+        [
+          "2026-10-01",
+          69.9
         ]
       ]
     },
@@ -9533,10 +9392,6 @@
       "title": "Smart Tv H5000f Hd 32 Polegadas 2025 Preto Samsung Bivolt",
       "identity": "MLB48954912",
       "points": [
-        [
-          "2026-09-01",
-          959.4
-        ],
         [
           "2026-09-02",
           959.4
@@ -9628,10 +9483,6 @@
       "identity": "MLB18927374",
       "points": [
         [
-          "2026-09-01",
-          103.17
-        ],
-        [
           "2026-09-02",
           103.17
         ],
@@ -9721,10 +9572,6 @@
       "title": "Lampada Led Solar Recarregável Camping Usb Pesca Jardim Lampiao Viagem Several",
       "identity": "MLB67146235",
       "points": [
-        [
-          "2026-09-01",
-          30.9
-        ],
         [
           "2026-09-02",
           30.9
@@ -9832,16 +9679,16 @@
         [
           "2026-09-29",
           28.9
+        ],
+        [
+          "2026-10-01",
+          28.9
         ]
       ]
     },
     "JRAFxivVt0j9tJHdlF8W": {
       "title": "Smart TV TCL 50 Polegadas QLED 4K P7K WiFi Bluetooth Google TV HDR10+ Dolby Atmos Dolby Vision 50P7K",
       "points": [
-        [
-          "2026-09-01",
-          2133
-        ],
         [
           "2026-09-02",
           2245
@@ -9932,10 +9779,6 @@
       "title": "Jogo De Toalhas 4 Pçs Fio Cardado 100% Algodão Bosco Karsten",
       "identity": "MLB54076558",
       "points": [
-        [
-          "2026-09-01",
-          131.91
-        ],
         [
           "2026-09-02",
           131.91
@@ -10031,10 +9874,6 @@
       "identity": "MLB51986596",
       "points": [
         [
-          "2026-09-01",
-          146.93
-        ],
-        [
           "2026-09-02",
           146.93
         ],
@@ -10092,10 +9931,6 @@
       "title": "Esmerilhadeira Lixadeira Angular 4.1/2 Profissional Com Kit De Soquetes Catraca Reversível 40 Peças The Black Tools",
       "identity": "MLB64896376",
       "points": [
-        [
-          "2026-09-01",
-          179.9
-        ],
         [
           "2026-09-02",
           179.9
@@ -10198,10 +10033,6 @@
       "title": "Xiaomi Redmi Note 15 Pro 5g 512gb 12gb Ram ( Global ) C/ Nfc",
       "points": [
         [
-          "2026-09-01",
-          2792.9
-        ],
-        [
           "2026-09-02",
           2792.9
         ]
@@ -10211,10 +10042,6 @@
       "title": "Fritadeira Air Fryer Philco 16 Litros Paf16c Preto",
       "identity": "MLB66787599",
       "points": [
-        [
-          "2026-09-01",
-          670.44
-        ],
         [
           "2026-09-02",
           449
@@ -10318,6 +10145,10 @@
         [
           "2026-09-29",
           449
+        ],
+        [
+          "2026-10-01",
+          227
         ]
       ]
     },
@@ -10325,10 +10156,6 @@
       "title": "Perfume Carolina Herrera Very Good Girl Glam Parfum 50ml feminino",
       "identity": "MLB28355516",
       "points": [
-        [
-          "2026-09-01",
-          685
-        ],
         [
           "2026-09-02",
           685
@@ -10432,6 +10259,10 @@
         [
           "2026-09-29",
           669
+        ],
+        [
+          "2026-10-01",
+          669
         ]
       ]
     },
@@ -10439,10 +10270,6 @@
       "title": "Kit Principia para Rotina de Skincare Pele Sensível com Protetor Solar FPS 60",
       "identity": "MLB53618239",
       "points": [
-        [
-          "2026-09-01",
-          94.31
-        ],
         [
           "2026-09-02",
           85.36
@@ -10542,6 +10369,10 @@
         [
           "2026-09-29",
           92.47
+        ],
+        [
+          "2026-10-01",
+          93.27
         ]
       ]
     },
@@ -10549,10 +10380,6 @@
       "title": "Câmera Inteligente Intelbras Ime 360 3mp Visão 360 Wi-fi Cor Branco",
       "identity": "MLB53403093",
       "points": [
-        [
-          "2026-09-01",
-          191.61
-        ],
         [
           "2026-09-02",
           191.61
@@ -10652,6 +10479,10 @@
         [
           "2026-09-29",
           200.45
+        ],
+        [
+          "2026-10-01",
+          184.49
         ]
       ]
     },
@@ -10659,10 +10490,6 @@
       "title": "Cadeira De Escritorio Ergonomica Nr17 Glorious Marqs Home Giratoria Resistente Reforçada 180kg Confortavel Reuniao Mesh Preta",
       "identity": "MLB67278068",
       "points": [
-        [
-          "2026-09-01",
-          341.2
-        ],
         [
           "2026-09-02",
           341.2
@@ -10766,6 +10593,10 @@
         [
           "2026-09-29",
           459.9
+        ],
+        [
+          "2026-10-01",
+          588.27
         ]
       ]
     },
@@ -10773,10 +10604,6 @@
       "title": "Kit 6 Cuecas Lupo Boxer Box Sem Costura Basic Microfibra",
       "identity": "MLB1010954920",
       "points": [
-        [
-          "2026-09-01",
-          112.24
-        ],
         [
           "2026-09-02",
           134.76
@@ -10880,6 +10707,10 @@
         [
           "2026-09-29",
           131.12
+        ],
+        [
+          "2026-10-01",
+          131.12
         ]
       ]
     },
@@ -10887,10 +10718,6 @@
       "title": "Volante Gamer Logitech G29 Driving Force para PlayStation e PC",
       "identity": "MLB22307702",
       "points": [
-        [
-          "2026-09-01",
-          1469
-        ],
         [
           "2026-09-02",
           1469
@@ -10993,6 +10820,10 @@
         ],
         [
           "2026-09-29",
+          1999.9
+        ],
+        [
+          "2026-10-01",
           1999.9
         ]
       ]
@@ -11002,10 +10833,6 @@
       "identity": "MLB19055866",
       "points": [
         [
-          "2026-09-01",
-          3324.99
-        ],
-        [
           "2026-09-02",
           3324.99
         ],
@@ -11108,6 +10935,10 @@
         [
           "2026-09-29",
           3514.05
+        ],
+        [
+          "2026-10-01",
+          3699
         ]
       ]
     },
@@ -11115,10 +10946,6 @@
       "title": "Motorola Moto G56 5G 256GB 8GB RAM",
       "identity": "MLB50302985",
       "points": [
-        [
-          "2026-09-01",
-          1376.19
-        ],
         [
           "2026-09-02",
           1376.19
@@ -11304,6 +11131,10 @@
         [
           "2026-09-23",
           699
+        ],
+        [
+          "2026-10-01",
+          889.96
         ]
       ]
     },
@@ -11311,10 +11142,6 @@
       "title": "Cafeteira Espresso Dolce Crema 20 Bar Mondial Preto/Inox 1200W C-21-E-CNP",
       "identity": "MLB65923840",
       "points": [
-        [
-          "2026-09-01",
-          499
-        ],
         [
           "2026-09-02",
           499
@@ -11418,6 +11245,10 @@
         [
           "2026-09-29",
           463.38
+        ],
+        [
+          "2026-10-01",
+          531.93
         ]
       ]
     },
@@ -11425,10 +11256,6 @@
       "title": "Garrafa térmica Termolar Lúmina Bomba de Pressão 1L",
       "identity": "MLB9989931",
       "points": [
-        [
-          "2026-09-01",
-          78.9
-        ],
         [
           "2026-09-02",
           78.9
@@ -11532,6 +11359,10 @@
         [
           "2026-09-29",
           94.89
+        ],
+        [
+          "2026-10-01",
+          94.89
         ]
       ]
     },
@@ -11539,10 +11370,6 @@
       "title": "Phone 17 Pro Max 256GB - Laranja-cósmico - Distribuidor Autorizado",
       "identity": "MLB1055308620",
       "points": [
-        [
-          "2026-09-01",
-          9539.1
-        ],
         [
           "2026-09-02",
           9539.1
@@ -11646,6 +11473,10 @@
         [
           "2026-09-29",
           8813.42
+        ],
+        [
+          "2026-10-01",
+          9792.69
         ]
       ]
     },
@@ -11653,10 +11484,6 @@
       "title": "Câmera De Segurança Wifi Icsee Externa Mini Dome Full Hd Infravermelho Prova D'água Kateluo",
       "identity": "MLB66141391",
       "points": [
-        [
-          "2026-09-01",
-          151.8
-        ],
         [
           "2026-09-02",
           151.8
@@ -11747,10 +11574,6 @@
       "title": "angueira Jardim 20m Metros Com Esguicho Trançada Reforçada Flexível 7/16 Anti Dobra Irrigação Quintal Poço Lavagem Durável Marqs Home",
       "identity": "MLB38207832",
       "points": [
-        [
-          "2026-09-01",
-          31.99
-        ],
         [
           "2026-09-02",
           31.99
@@ -11854,6 +11677,10 @@
         [
           "2026-09-29",
           39.9
+        ],
+        [
+          "2026-10-01",
+          39.9
         ]
       ]
     },
@@ -11861,10 +11688,6 @@
       "title": "Liquidificador Portátil Wap Blender Move 500ml Sem Fio",
       "identity": "MLB63237593",
       "points": [
-        [
-          "2026-09-01",
-          193.9
-        ],
         [
           "2026-09-02",
           193.9
@@ -11955,10 +11778,6 @@
       "title": "40hrs Fone De Ouvido Gancho Bluetooth Sem Fio Esportivo,inova Cases Fone De Ouvido Gancho Gamer Com Microfone Para iPhone Samsung Xiaomi Lenovo Motorola Celular Cor Preto",
       "identity": "MLB63064167",
       "points": [
-        [
-          "2026-09-01",
-          75.18
-        ],
         [
           "2026-09-02",
           75.18
@@ -12062,6 +11881,10 @@
         [
           "2026-09-29",
           76.51
+        ],
+        [
+          "2026-10-01",
+          78.88
         ]
       ]
     },
@@ -12069,10 +11892,6 @@
       "title": "Extratora e Higienizadora Portátil WAP Spot Cleaner W2 1600W - Pulveriza, Esfrega e Extrai",
       "identity": "MLB22511802",
       "points": [
-        [
-          "2026-09-01",
-          579.51
-        ],
         [
           "2026-09-02",
           579.51
@@ -12176,6 +11995,10 @@
         [
           "2026-09-29",
           617.4
+        ],
+        [
+          "2026-10-01",
+          592.39
         ]
       ]
     },
@@ -12183,10 +12006,6 @@
       "title": "TUD Kit 11 Potes Vidro Herméticos Tampa Bambu 200ml a 2L Armazenamento",
       "identity": "MLB41256184",
       "points": [
-        [
-          "2026-09-01",
-          125.93
-        ],
         [
           "2026-09-02",
           118.73
@@ -12290,6 +12109,10 @@
         [
           "2026-09-29",
           279.99
+        ],
+        [
+          "2026-10-01",
+          279.99
         ]
       ]
     },
@@ -12297,10 +12120,6 @@
       "title": "Fone De Ouvido Headphone Dapon H02D Bluetooth 5.1 Over-ear 22h Preto",
       "identity": "MLB24117280",
       "points": [
-        [
-          "2026-09-01",
-          66.78
-        ],
         [
           "2026-09-02",
           66.78
@@ -12395,10 +12214,6 @@
       "title": "Xiaomi Poco X7 Pro 5g 12gb Ram 512gb Global Nfc Dual Sim",
       "identity": "MLB47314852",
       "points": [
-        [
-          "2026-09-01",
-          2518.99
-        ],
         [
           "2026-09-02",
           2518.99
@@ -12502,6 +12317,10 @@
         [
           "2026-09-29",
           3100
+        ],
+        [
+          "2026-10-01",
+          2429
         ]
       ]
     },
@@ -12509,10 +12328,6 @@
       "title": "Câmera Inteligente iM3 C Black Intelbras",
       "identity": "MLB18596029",
       "points": [
-        [
-          "2026-09-01",
-          151.99
-        ],
         [
           "2026-09-02",
           171.15
@@ -12616,6 +12431,10 @@
         [
           "2026-09-29",
           159.96
+        ],
+        [
+          "2026-10-01",
+          172
         ]
       ]
     },
@@ -12702,6 +12521,10 @@
         [
           "2026-09-29",
           128.75
+        ],
+        [
+          "2026-10-01",
+          115.2
         ]
       ]
     },
@@ -12709,10 +12532,6 @@
       "title": "Smart Tv Roku Tv 50 7045 4k Uhd Aoc Bivolt",
       "identity": "MLB51202548",
       "points": [
-        [
-          "2026-09-01",
-          2463
-        ],
         [
           "2026-09-02",
           1859
@@ -12816,6 +12635,10 @@
         [
           "2026-09-29",
           2022.55
+        ],
+        [
+          "2026-10-01",
+          2199.19
         ]
       ]
     },
@@ -12823,10 +12646,6 @@
       "title": "Panela De Pressão Philco Ppp02pi Inox Multifuncional 5l Cor Preto",
       "identity": "MLB16162795",
       "points": [
-        [
-          "2026-09-01",
-          344.66
-        ],
         [
           "2026-09-02",
           344.66
@@ -12930,6 +12749,10 @@
         [
           "2026-09-29",
           399.9
+        ],
+        [
+          "2026-10-01",
+          399.9
         ]
       ]
     },
@@ -12937,10 +12760,6 @@
       "title": "Notebook ASUS Vivobook 15 M1502, AMD Ryzen 7, 8 GB RAM, 512 GB SSD, KeepOS Linux, Cool Silver - M1502YA-NJ611",
       "identity": "MLB49089309",
       "points": [
-        [
-          "2026-09-01",
-          3090.28
-        ],
         [
           "2026-09-02",
           3090.28
@@ -12996,10 +12815,6 @@
       "identity": "MLB3994439565",
       "points": [
         [
-          "2026-09-01",
-          118.15
-        ],
-        [
           "2026-09-02",
           118.15
         ],
@@ -13033,10 +12848,6 @@
       "title": "Conjunto Panelas Antiaderente 10 Peças Teflon Várias Cores",
       "identity": "MLB7143036282",
       "points": [
-        [
-          "2026-09-01",
-          199.9
-        ],
         [
           "2026-09-02",
           178.41
@@ -13136,6 +12947,10 @@
         [
           "2026-09-29",
           199.9
+        ],
+        [
+          "2026-10-01",
+          299
         ]
       ]
     },
@@ -13143,10 +12958,6 @@
       "title": "Compressor Calibrador De Pneus Calibrador B&G Portátil Mini Digital Carro Bike Sem Fio Cor Preto",
       "identity": "MLB21163160",
       "points": [
-        [
-          "2026-09-01",
-          62
-        ],
         [
           "2026-09-02",
           78.99
@@ -13250,15 +13061,10 @@
         [
           "2026-09-29",
           58.45
-        ]
-      ]
-    },
-    "P2XcvZpq3TaHobnex6nN": {
-      "title": "Smartphone Samsung Galaxy A36 5g 128gb 6gb Ram Câmera Tripla De Até 50mp Selfie De 12mp Ip67 Super Amoled 6.7'' Nfc Recursos Ai Android E Segurança Snapdragon - Preto",
-      "points": [
+        ],
         [
-          "2026-09-01",
-          1319
+          "2026-10-01",
+          58.45
         ]
       ]
     },
@@ -13266,10 +13072,6 @@
       "title": "Ddpai N1 Dual Câmera Veicular 1296p+1080p Uber Nightvis App",
       "identity": "MLB5010641270",
       "points": [
-        [
-          "2026-09-01",
-          417.33
-        ],
         [
           "2026-09-02",
           417.33
@@ -13357,6 +13159,10 @@
         [
           "2026-09-29",
           475.01
+        ],
+        [
+          "2026-10-01",
+          486.19
         ]
       ]
     },
@@ -13364,10 +13170,6 @@
       "title": "Esteira Elétrica Ergométrica Dobrável 12km C/tela Led Bivolt",
       "identity": "MLB4337879731",
       "points": [
-        [
-          "2026-09-01",
-          1319.96
-        ],
         [
           "2026-09-02",
           1319.96
@@ -13471,16 +13273,16 @@
         [
           "2026-09-29",
           1059.95
+        ],
+        [
+          "2026-10-01",
+          1059.95
         ]
       ]
     },
     "PmRGdMRk6Cq2Ul1dF5Lo": {
       "title": "Relógio Inteligente Smartwatch Aurafit G6 Preto Com 5atm Gps Preto Sport Preto Verde Exército Preto",
       "points": [
-        [
-          "2026-09-01",
-          300.7
-        ],
         [
           "2026-09-02",
           300.7
@@ -13499,10 +13301,6 @@
       "title": "Lixeira Metal Aramado Telada Cesto De Lixo Escritório 12l Cor Preto",
       "identity": "MLB28230278",
       "points": [
-        [
-          "2026-09-01",
-          26.9
-        ],
         [
           "2026-09-02",
           26.9
@@ -13606,6 +13404,10 @@
         [
           "2026-09-29",
           24.9
+        ],
+        [
+          "2026-10-01",
+          24.9
         ]
       ]
     },
@@ -13614,10 +13416,6 @@
       "identity": "MLB54964804",
       "points": [
         [
-          "2026-09-01",
-          967.02
-        ],
-        [
           "2026-09-02",
           967.02
         ],
@@ -13720,6 +13518,10 @@
         [
           "2026-09-29",
           913.75
+        ],
+        [
+          "2026-10-01",
+          1010
         ]
       ]
     },
@@ -13728,10 +13530,6 @@
       "identity": "MLB23487354",
       "points": [
         [
-          "2026-09-01",
-          125
-        ],
-        [
           "2026-09-02",
           125
         ],
@@ -13834,6 +13632,10 @@
         [
           "2026-09-29",
           133.9
+        ],
+        [
+          "2026-10-01",
+          120.56
         ]
       ]
     },
@@ -13841,10 +13643,6 @@
       "title": "Mesa Dobrável Praia Camping Alumínio 60x45cm Vira Maleta Cor Branco e Prateado The Black Tools",
       "identity": "MLB29196551",
       "points": [
-        [
-          "2026-09-01",
-          99.95
-        ],
         [
           "2026-09-02",
           99.95
@@ -13936,10 +13734,6 @@
       "identity": "MLB49652036",
       "points": [
         [
-          "2026-09-01",
-          399
-        ],
-        [
           "2026-09-02",
           399
         ],
@@ -14042,6 +13836,10 @@
         [
           "2026-09-29",
           439
+        ],
+        [
+          "2026-10-01",
+          403.75
         ]
       ]
     },
@@ -14050,10 +13848,6 @@
       "identity": "MLB5198704110",
       "points": [
         [
-          "2026-09-01",
-          362.97
-        ],
-        [
           "2026-09-02",
           362.97
         ],
@@ -14156,6 +13950,10 @@
         [
           "2026-09-29",
           387.97
+        ],
+        [
+          "2026-10-01",
+          442.98
         ]
       ]
     },
@@ -14163,10 +13961,6 @@
       "title": "Celular Samsung Galaxy A57 5G 128GB, 8GB RAM, Recursos AI",
       "identity": "MLB67410010",
       "points": [
-        [
-          "2026-09-01",
-          1899
-        ],
         [
           "2026-09-02",
           1870.03
@@ -14270,6 +14064,10 @@
         [
           "2026-09-29",
           1709.1
+        ],
+        [
+          "2026-10-01",
+          1563.9
         ]
       ]
     },
@@ -14277,10 +14075,6 @@
       "title": "Kit Teclado E Mouse Sem Fio Dell Km3322w - Abnt2 - 1000dpi",
       "identity": "MLB48594221",
       "points": [
-        [
-          "2026-09-01",
-          148.2
-        ],
         [
           "2026-09-02",
           148.2
@@ -14372,10 +14166,6 @@
       "identity": "MLB3621404839",
       "points": [
         [
-          "2026-09-01",
-          99.87
-        ],
-        [
           "2026-09-02",
           99.87
         ],
@@ -14462,6 +14252,10 @@
         [
           "2026-09-29",
           99.36
+        ],
+        [
+          "2026-10-01",
+          93.65
         ]
       ]
     },
@@ -14469,10 +14263,6 @@
       "title": "Notebook Gamer Lenovo LOQ 15IRX9 Intel Core i5-13450HX RTX 3050 8GB 512GB SSD windows 11",
       "identity": "MLB45574031",
       "points": [
-        [
-          "2026-09-01",
-          6934.05
-        ],
         [
           "2026-09-02",
           5699.05
@@ -14576,16 +14366,16 @@
         [
           "2026-09-29",
           6999
+        ],
+        [
+          "2026-10-01",
+          7650.89
         ]
       ]
     },
     "Scnb3umRqlUnVZT4kIQ5": {
       "title": "Jogo De Toalhas Buddemeyer Brisa Banho 4 Cor Grafite",
       "points": [
-        [
-          "2026-09-01",
-          189.9
-        ],
         [
           "2026-09-02",
           181.35
@@ -14677,10 +14467,6 @@
       "identity": "MLB32396130",
       "points": [
         [
-          "2026-09-01",
-          579.51
-        ],
-        [
           "2026-09-02",
           579.51
         ],
@@ -14783,6 +14569,10 @@
         [
           "2026-09-29",
           668.73
+        ],
+        [
+          "2026-10-01",
+          158.9
         ]
       ]
     },
@@ -14791,10 +14581,6 @@
       "identity": "MLB15578948",
       "points": [
         [
-          "2026-09-01",
-          85.88
-        ],
-        [
           "2026-09-02",
           85.88
         ],
@@ -14897,6 +14683,10 @@
         [
           "2026-09-29",
           110.99
+        ],
+        [
+          "2026-10-01",
+          111.91
         ]
       ]
     },
@@ -14926,10 +14716,6 @@
       "title": "Parafusadeira Furadeira 48v Profissional 2 Baterias Sem Fio",
       "identity": "MLB4317803385",
       "points": [
-        [
-          "2026-09-01",
-          123.28
-        ],
         [
           "2026-09-02",
           123.28
@@ -14972,10 +14758,6 @@
       "title": "Notebook Acer Aspire 5 A515-45-R2A3 AMD Ryzen 5 Windows 11 Home 8GB 512GB SSD 15,6' Full HD",
       "identity": "MLB22246671",
       "points": [
-        [
-          "2026-09-01",
-          3281.4
-        ],
         [
           "2026-09-02",
           3281.4
@@ -15079,6 +14861,10 @@
         [
           "2026-09-29",
           3266
+        ],
+        [
+          "2026-10-01",
+          3599.9
         ]
       ]
     },
@@ -15086,10 +14872,6 @@
       "title": "Whey Protein Concentrado 1kg Growth Supplements - Leite em Pó",
       "identity": "MLB19140327",
       "points": [
-        [
-          "2026-09-01",
-          189.9
-        ],
         [
           "2026-09-02",
           189.9
@@ -15193,6 +14975,10 @@
         [
           "2026-09-29",
           237.4
+        ],
+        [
+          "2026-10-01",
+          249.9
         ]
       ]
     },
@@ -15200,10 +14986,6 @@
       "title": "Celimax Retinal Shot Tightening Booster 15 ml para Todos os Tipos de Pele",
       "identity": "MLB6242762384",
       "points": [
-        [
-          "2026-09-01",
-          148
-        ],
         [
           "2026-09-02",
           148
@@ -15306,6 +15088,10 @@
         ],
         [
           "2026-09-29",
+          136
+        ],
+        [
+          "2026-10-01",
           136
         ]
       ]
@@ -15315,10 +15101,6 @@
       "identity": "MLB24076624",
       "points": [
         [
-          "2026-09-01",
-          71.15
-        ],
-        [
           "2026-09-05",
           66.4
         ],
@@ -15401,6 +15183,10 @@
         [
           "2026-09-29",
           66.4
+        ],
+        [
+          "2026-10-01",
+          69.9
         ]
       ]
     },
@@ -15408,10 +15194,6 @@
       "title": "Caixa de Som Boombox Waaw by Alok Hyperboom 1000 Bluetooth À Prova d'Água 180W RMS Até 12h de Autonomia",
       "identity": "MLB41578499",
       "points": [
-        [
-          "2026-09-01",
-          1508.8
-        ],
         [
           "2026-09-02",
           1508.8
@@ -15515,6 +15297,10 @@
         [
           "2026-09-29",
           1380
+        ],
+        [
+          "2026-10-01",
+          1288
         ]
       ]
     },
@@ -15522,10 +15308,6 @@
       "title": "Mochila Impermeável Faculdade Alça Reforçada Notebook",
       "identity": "MLB4455905847",
       "points": [
-        [
-          "2026-09-01",
-          127.46
-        ],
         [
           "2026-09-02",
           127.46
@@ -15581,10 +15363,6 @@
       "identity": "MLB67471826",
       "points": [
         [
-          "2026-09-01",
-          62.9
-        ],
-        [
           "2026-09-02",
           62.9
         ],
@@ -15687,6 +15465,10 @@
         [
           "2026-09-29",
           69.9
+        ],
+        [
+          "2026-10-01",
+          62.9
         ]
       ]
     },
@@ -15694,10 +15476,6 @@
       "title": "Smart Tv U8600f Crystal Uhd 4k 50 2025 Preto Samsung",
       "identity": "MLB50114846",
       "points": [
-        [
-          "2026-09-01",
-          2525
-        ],
         [
           "2026-09-02",
           2279
@@ -15801,6 +15579,10 @@
         [
           "2026-09-29",
           2453
+        ],
+        [
+          "2026-10-01",
+          2449
         ]
       ]
     },
@@ -15808,10 +15590,6 @@
       "title": "Parafusadeira Furadeira Sem Fio 12V WAP BPF 12K3 Kit Maleta",
       "identity": "MLB19141467",
       "points": [
-        [
-          "2026-09-01",
-          148.41
-        ],
         [
           "2026-09-02",
           148.41
@@ -15915,6 +15693,10 @@
         [
           "2026-09-29",
           168.27
+        ],
+        [
+          "2026-10-01",
+          182.9
         ]
       ]
     },
@@ -15922,10 +15704,6 @@
       "title": "Tênis Masculino Casual Aramis Daily Slip Confortável Moderno",
       "identity": "MLB4359093019",
       "points": [
-        [
-          "2026-09-01",
-          210.89
-        ],
         [
           "2026-09-02",
           183.99
@@ -16029,6 +15807,10 @@
         [
           "2026-09-29",
           209.99
+        ],
+        [
+          "2026-10-01",
+          209.99
         ]
       ]
     },
@@ -16036,10 +15818,6 @@
       "title": "Carregador Portátil Power Bank Turbo 20000mah universal para iphone samsung motorola xiaomi 20w Com Display Digital DTimp",
       "identity": "MLB54026101",
       "points": [
-        [
-          "2026-09-01",
-          109.9
-        ],
         [
           "2026-09-02",
           113.39
@@ -16143,6 +15921,10 @@
         [
           "2026-09-29",
           98.91
+        ],
+        [
+          "2026-10-01",
+          98.91
         ]
       ]
     },
@@ -16150,10 +15932,6 @@
       "title": "Smartphone Realme C75 5G 256Gb 8Gb Ram Storm Black Rmx3963",
       "identity": "MLB63907804",
       "points": [
-        [
-          "2026-09-01",
-          1424.05
-        ],
         [
           "2026-09-02",
           1424.05
@@ -16257,6 +16035,10 @@
         [
           "2026-09-29",
           1424.99
+        ],
+        [
+          "2026-10-01",
+          1499.99
         ]
       ]
     },
@@ -16264,10 +16046,6 @@
       "title": "Bicicleta Ergométrica Spinning 20kg Wct Fitness Cor Preto/Verde",
       "identity": "MLB27935510",
       "points": [
-        [
-          "2026-09-01",
-          1358
-        ],
         [
           "2026-09-02",
           1358
@@ -16375,6 +16153,10 @@
         [
           "2026-09-29",
           1634.5
+        ],
+        [
+          "2026-10-01",
+          1634.5
         ]
       ]
     },
@@ -16382,10 +16164,6 @@
       "title": "Carrinho Rodinhas Organizador Multiuso Acrílico 3 Andares",
       "identity": "MLB4418866933",
       "points": [
-        [
-          "2026-09-01",
-          65.99
-        ],
         [
           "2026-09-02",
           65.99
@@ -16489,6 +16267,10 @@
         [
           "2026-09-29",
           49.39
+        ],
+        [
+          "2026-10-01",
+          52.13
         ]
       ]
     },
@@ -16496,10 +16278,6 @@
       "title": "Mochila masculina, impermeável, reforçada, com capacidade ampliada de 30-42L, adequada para portátil, viagens diárias, cor preta",
       "identity": "MLB75625924",
       "points": [
-        [
-          "2026-09-01",
-          90.29
-        ],
         [
           "2026-09-02",
           90.29
@@ -16555,10 +16333,6 @@
       "identity": "MLB60390574",
       "points": [
         [
-          "2026-09-01",
-          1529
-        ],
-        [
           "2026-09-05",
           1529
         ],
@@ -16580,10 +16354,6 @@
       "title": "Patinete Elétrico V01premium 500w7.8a Amortecedor Hidráulico",
       "identity": "MLB6563286992",
       "points": [
-        [
-          "2026-09-01",
-          1648.9
-        ],
         [
           "2026-09-02",
           1648.9
@@ -16687,6 +16457,10 @@
         [
           "2026-09-29",
           1639.59
+        ],
+        [
+          "2026-10-01",
+          1639.59
         ]
       ]
     },
@@ -16694,10 +16468,6 @@
       "title": "Carregador Portátil Power Bank Turbo 20000mah 22.5w Universal Para iPhone Samsung Motorola Xiaomi Com Display Digital Preto ou Branco- Hardline",
       "identity": "MLB65588451",
       "points": [
-        [
-          "2026-09-01",
-          64
-        ],
         [
           "2026-09-02",
           64
@@ -16785,6 +16555,10 @@
         [
           "2026-09-29",
           69.99
+        ],
+        [
+          "2026-10-01",
+          109.99
         ]
       ]
     },
@@ -16792,10 +16566,6 @@
       "title": "Lavadora De Alta Pressão 1400w 1300psi 300l/h Wap Ágil 1800",
       "identity": "MLB15296536",
       "points": [
-        [
-          "2026-09-01",
-          345.36
-        ],
         [
           "2026-09-02",
           572.98
@@ -16887,10 +16657,6 @@
       "identity": "MLB49278422",
       "points": [
         [
-          "2026-09-01",
-          308.65
-        ],
-        [
           "2026-09-02",
           308.65
         ],
@@ -16965,6 +16731,10 @@
         [
           "2026-09-29",
           276.16
+        ],
+        [
+          "2026-10-01",
+          269.9
         ]
       ]
     },
@@ -16972,10 +16742,6 @@
       "title": "Combo Siàge Nutri Diamond Shampoo, Condicionador E Máscara",
       "identity": "MLB74646505",
       "points": [
-        [
-          "2026-09-01",
-          154.85
-        ],
         [
           "2026-09-02",
           154.85
@@ -17079,6 +16845,10 @@
         [
           "2026-09-29",
           158.37
+        ],
+        [
+          "2026-10-01",
+          161.99
         ]
       ]
     },
@@ -17086,10 +16856,6 @@
       "title": "Mercusys MC510 Câmera Segurança Wifi 2K 360° Externo por TP-Link",
       "identity": "MLB64083531",
       "points": [
-        [
-          "2026-09-01",
-          197.1
-        ],
         [
           "2026-09-02",
           197.1
@@ -17193,6 +16959,10 @@
         [
           "2026-09-29",
           154.42
+        ],
+        [
+          "2026-10-01",
+          164.25
         ]
       ]
     },
@@ -17299,10 +17069,6 @@
       "identity": "MLB21814751",
       "points": [
         [
-          "2026-09-01",
-          109.95
-        ],
-        [
           "2026-09-02",
           113.66
         ],
@@ -17375,6 +17141,10 @@
         [
           "2026-09-29",
           4003.12
+        ],
+        [
+          "2026-10-01",
+          3999
         ]
       ]
     },
@@ -17383,10 +17153,6 @@
       "identity": "MLB62870034",
       "points": [
         [
-          "2026-09-01",
-          2099
-        ],
-        [
           "2026-09-02",
           2099
         ],
@@ -17489,6 +17255,10 @@
         [
           "2026-09-29",
           1812.57
+        ],
+        [
+          "2026-10-01",
+          2265
         ]
       ]
     },
@@ -17497,10 +17267,6 @@
       "identity": "MLB57490176",
       "points": [
         [
-          "2026-09-01",
-          43.77
-        ],
-        [
           "2026-09-02",
           43.77
         ],
@@ -17603,6 +17369,10 @@
         [
           "2026-09-29",
           43.77
+        ],
+        [
+          "2026-10-01",
+          49.99
         ]
       ]
     },
@@ -17611,10 +17381,6 @@
       "identity": "MLB69960293",
       "points": [
         [
-          "2026-09-01",
-          359
-        ],
-        [
           "2026-09-02",
           359
         ],
@@ -17717,6 +17483,10 @@
         [
           "2026-09-29",
           323.1
+        ],
+        [
+          "2026-10-01",
+          359
         ]
       ]
     },
@@ -17724,10 +17494,6 @@
       "title": "Campainha Sem Fio Intelbras CIB 101 Preta",
       "identity": "MLB24896740",
       "points": [
-        [
-          "2026-09-01",
-          66.68
-        ],
         [
           "2026-09-02",
           68.74
@@ -17831,6 +17597,10 @@
         [
           "2026-09-29",
           69.9
+        ],
+        [
+          "2026-10-01",
+          69.9
         ]
       ]
     },
@@ -17838,10 +17608,6 @@
       "title": "Ducha Loren Shower Ultra Eletrônica 127V 5500W Lorenzetti",
       "identity": "MLB19590091",
       "points": [
-        [
-          "2026-09-01",
-          99.75
-        ],
         [
           "2026-09-02",
           99.75
@@ -17945,16 +17711,16 @@
         [
           "2026-09-29",
           146.9
+        ],
+        [
+          "2026-10-01",
+          136.16
         ]
       ]
     },
     "Y24mOOvhl7Aw9njOBuYI": {
       "title": "Papel Higiênico Supra Folha Tripla 24 Rolos",
       "points": [
-        [
-          "2026-09-01",
-          29.9
-        ],
         [
           "2026-09-02",
           29.9
@@ -18046,10 +17812,6 @@
       "identity": "MLB47111905",
       "points": [
         [
-          "2026-09-01",
-          1698.9
-        ],
-        [
           "2026-09-02",
           1698.9
         ],
@@ -18152,6 +17914,10 @@
         [
           "2026-09-29",
           1889.1
+        ],
+        [
+          "2026-10-01",
+          2054.44
         ]
       ]
     },
@@ -18160,10 +17926,6 @@
       "identity": "MLB47163373",
       "points": [
         [
-          "2026-09-01",
-          1099.9
-        ],
-        [
           "2026-09-02",
           1099.9
         ],
@@ -18266,6 +18028,10 @@
         [
           "2026-09-29",
           1099.9
+        ],
+        [
+          "2026-10-01",
+          1199.9
         ]
       ]
     },
@@ -18273,10 +18039,6 @@
       "title": "TP-Link Tapo C200 Câmera de Segurança Wifi 1080P 360° Pan/Tilt",
       "identity": "MLB18593981",
       "points": [
-        [
-          "2026-09-01",
-          139.31
-        ],
         [
           "2026-09-02",
           139.31
@@ -18380,16 +18142,16 @@
         [
           "2026-09-29",
           122.32
+        ],
+        [
+          "2026-10-01",
+          152.9
         ]
       ]
     },
     "YXWzi1lwQq9gJaRPmst9": {
       "title": "Whey Isolate Protein Fuse 900g Dark Lab Sabor Chocolate",
       "points": [
-        [
-          "2026-09-01",
-          78.9
-        ],
         [
           "2026-09-02",
           78.9
@@ -18400,10 +18162,6 @@
       "title": "Smartphone Motorola Moto G56",
       "identity": "MLB50301060",
       "points": [
-        [
-          "2026-09-01",
-          1250.1
-        ],
         [
           "2026-09-02",
           1250.1
@@ -18511,6 +18269,10 @@
         [
           "2026-09-29",
           1384.2
+        ],
+        [
+          "2026-10-01",
+          1429.9
         ]
       ]
     },
@@ -18518,10 +18280,6 @@
       "title": "Furadeira Parafusadeira De Impacto 2 Baterias 21v + 46 Peças",
       "identity": "MLB5775901318",
       "points": [
-        [
-          "2026-09-01",
-          180.4
-        ],
         [
           "2026-09-02",
           180.4
@@ -18625,6 +18383,10 @@
         [
           "2026-09-29",
           239.9
+        ],
+        [
+          "2026-10-01",
+          196.9
         ]
       ]
     },
@@ -18632,10 +18394,6 @@
       "title": "Perfume Nautica Voyage Eau De Toilette Masculino 100ml",
       "identity": "MLB8729164",
       "points": [
-        [
-          "2026-09-01",
-          99.99
-        ],
         [
           "2026-09-02",
           99.99
@@ -18727,10 +18485,6 @@
       "identity": "MLB43009734",
       "points": [
         [
-          "2026-09-01",
-          2536.2
-        ],
-        [
           "2026-09-02",
           2378.99
         ],
@@ -18764,10 +18518,6 @@
       "title": "Wella Kit Nutri Enrich Shampoo 1l+condicionador 1l",
       "identity": "MLB25991751",
       "points": [
-        [
-          "2026-09-01",
-          368.75
-        ],
         [
           "2026-09-02",
           368.75
@@ -18871,6 +18621,10 @@
         [
           "2026-09-29",
           368.75
+        ],
+        [
+          "2026-10-01",
+          281
         ]
       ]
     },
@@ -18878,10 +18632,6 @@
       "title": "Honeywhale M2 Pro Patinete Eletrico Adulto, 500w Motor-max, 32 Km/h Velocidade Máxima, 22 Km De Autonomia, Honey Whale Scooter Elétrica Com App Bluetooth (36v 7.8ah)",
       "identity": "MLB51383620",
       "points": [
-        [
-          "2026-09-01",
-          1839
-        ],
         [
           "2026-09-02",
           1839
@@ -18985,6 +18735,10 @@
         [
           "2026-09-29",
           1655.08
+        ],
+        [
+          "2026-10-01",
+          1799
         ]
       ]
     },
@@ -18992,10 +18746,6 @@
       "title": "Carregador Fonte Iphone Original 20w Apple Tipo C Turbo",
       "identity": "MLB5800919092",
       "points": [
-        [
-          "2026-09-01",
-          87.9
-        ],
         [
           "2026-09-02",
           87.9
@@ -19099,6 +18849,10 @@
         [
           "2026-09-29",
           85
+        ],
+        [
+          "2026-10-01",
+          118
         ]
       ]
     },
@@ -19106,10 +18860,6 @@
       "title": "Interruptor Touch Inteligente 3 Teclas Eiw 1003 Intelbras Branco",
       "identity": "MLB64675857",
       "points": [
-        [
-          "2026-09-01",
-          81.96
-        ],
         [
           "2026-09-02",
           95.28
@@ -19200,10 +18950,6 @@
       "title": "Auxiliar Partida Portátil Veicular Compressor Ar Emergência",
       "identity": "MLB5745919794",
       "points": [
-        [
-          "2026-09-01",
-          179.4
-        ],
         [
           "2026-09-02",
           179.4
@@ -19307,6 +19053,10 @@
         [
           "2026-09-29",
           189
+        ],
+        [
+          "2026-10-01",
+          189
         ]
       ]
     },
@@ -19314,10 +19064,6 @@
       "title": "Smart TV Profissional LG 32\" LED HD - 32RL601CBSA",
       "identity": "MLB55927567",
       "points": [
-        [
-          "2026-09-01",
-          1164
-        ],
         [
           "2026-09-02",
           1164
@@ -19421,6 +19167,10 @@
         [
           "2026-09-29",
           1247.9
+        ],
+        [
+          "2026-10-01",
+          1299.9
         ]
       ]
     },
@@ -19428,10 +19178,6 @@
       "title": "Eudora Kit Siàge Liso Intenso (4 Itens)",
       "identity": "MLB28575419",
       "points": [
-        [
-          "2026-09-01",
-          176.24
-        ],
         [
           "2026-09-02",
           176.24
@@ -19535,6 +19281,10 @@
         [
           "2026-09-29",
           169.99
+        ],
+        [
+          "2026-10-01",
+          169.99
         ]
       ]
     },
@@ -19542,10 +19292,6 @@
       "title": "Fritadeira Air Fryer Oven Britânia 11 Litros 8 Funções 1800W BAF11A",
       "identity": "MLB62391404",
       "points": [
-        [
-          "2026-09-01",
-          349
-        ],
         [
           "2026-09-02",
           349
@@ -19653,6 +19399,10 @@
         [
           "2026-09-29",
           369
+        ],
+        [
+          "2026-10-01",
+          403.09
         ]
       ]
     },
@@ -19660,10 +19410,6 @@
       "title": "Bicicleta Aro 29 Gts Alumínio Rdx 24v Freio A Disco Cor Branco/preto Tamanho Do Quadro 19",
       "identity": "MLB46448058",
       "points": [
-        [
-          "2026-09-01",
-          689.99
-        ],
         [
           "2026-09-02",
           806.68
@@ -19767,6 +19513,10 @@
         [
           "2026-09-29",
           775.82
+        ],
+        [
+          "2026-10-01",
+          969
         ]
       ]
     },
@@ -19774,10 +19524,6 @@
       "title": "Celular Samsung Galaxy S26 5G, 256GB, 12GB RAM, Galaxy AI, Câmera Tripla de 50+12+10, Tela de 6.3\" Preto",
       "identity": "MLB65560106",
       "points": [
-        [
-          "2026-09-01",
-          4299.3
-        ],
         [
           "2026-09-02",
           4299.3
@@ -19881,6 +19627,10 @@
         [
           "2026-09-29",
           4297.5
+        ],
+        [
+          "2026-10-01",
+          2105
         ]
       ]
     },
@@ -19888,10 +19638,6 @@
       "title": "Tablet Positivo Vision Tab 10 4GB Ram 128GB Armazenamento, Octa-Core, 13MP + Selfie 5MP, Bateria 6000mAh, Tela 10.1 HD, Wi-Fi AC E 4G, Full Lamination",
       "identity": "MLB42191536",
       "points": [
-        [
-          "2026-09-01",
-          1008.89
-        ],
         [
           "2026-09-02",
           1008.88
@@ -19982,10 +19728,6 @@
       "title": "NAC 600mg - Fórmula Exclusiva com Máxima Concentração e Pureza - N",
       "identity": "MLB58579835",
       "points": [
-        [
-          "2026-09-01",
-          45.31
-        ],
         [
           "2026-09-02",
           45.31
@@ -20097,10 +19839,6 @@
       "identity": "MLB66055148",
       "points": [
         [
-          "2026-09-01",
-          934.27
-        ],
-        [
           "2026-09-02",
           999
         ],
@@ -20199,6 +19937,10 @@
         [
           "2026-09-29",
           999
+        ],
+        [
+          "2026-10-01",
+          2199.19
         ]
       ]
     },
@@ -20206,10 +19948,6 @@
       "title": "Kit Chave Catraca Soquete 46 Peças Indufer em Cromo Vanádio, para Manutenção de Carros e Motos",
       "identity": "MLB54095569",
       "points": [
-        [
-          "2026-09-01",
-          27.15
-        ],
         [
           "2026-09-02",
           27.15
@@ -20313,6 +20051,10 @@
         [
           "2026-09-29",
           28.99
+        ],
+        [
+          "2026-10-01",
+          49.99
         ]
       ]
     },
@@ -20320,10 +20062,6 @@
       "title": "Torneira Elétrica De Parede - Loren Easy Lorenzetti Acabamento Branco Cor Branco 220v 5.5KW",
       "identity": "MLB32229073",
       "points": [
-        [
-          "2026-09-01",
-          188
-        ],
         [
           "2026-09-02",
           229.59
@@ -20427,6 +20165,10 @@
         [
           "2026-09-29",
           279.99
+        ],
+        [
+          "2026-10-01",
+          161.5
         ]
       ]
     },
@@ -20434,10 +20176,6 @@
       "title": "Fritadeira Elétrica Air Fryer Quad Fry 4,2 L,1400w Preto Elgi",
       "identity": "MLB52868715",
       "points": [
-        [
-          "2026-09-01",
-          262.26
-        ],
         [
           "2026-09-02",
           262.26
@@ -20541,16 +20279,16 @@
         [
           "2026-09-29",
           262.26
+        ],
+        [
+          "2026-10-01",
+          227
         ]
       ]
     },
     "ce1jz7DMAA0uEuKCvzKC": {
       "title": "Camiseta Core Insider",
       "points": [
-        [
-          "2026-09-01",
-          179.55
-        ],
         [
           "2026-09-02",
           103.55
@@ -20727,10 +20465,6 @@
       "title": "Tênis Kappa Pulse Rx Unissex Corrida Conforto",
       "points": [
         [
-          "2026-09-01",
-          139.9
-        ],
-        [
           "2026-09-02",
           139.9
         ],
@@ -20760,10 +20494,6 @@
       "title": "Smart TV LG 43\"Full HD, Processador A5 Ger6, AI, Alexa e webOS 23 - 43LR6700PSA",
       "identity": "MLB39205913",
       "points": [
-        [
-          "2026-09-01",
-          1582
-        ],
         [
           "2026-09-02",
           1838
@@ -20867,16 +20597,16 @@
         [
           "2026-09-29",
           1619.1
+        ],
+        [
+          "2026-10-01",
+          1599
         ]
       ]
     },
     "dPkuf5jPRpAiyE2I268Y": {
       "title": "Smartphone Samsung Galaxy A36 5G 128GB 6GB RAM Câmera Tripla de até 50MP Selfie de 12MP IP67 Super AMOLED 6.7'' NFC Recursos AI Android e Segurança Snapdragon - Branco",
       "points": [
-        [
-          "2026-09-01",
-          1275.12
-        ],
         [
           "2026-09-02",
           1275.12
@@ -20962,10 +20692,6 @@
     "daGq7fKoqOEBFAra9JOX": {
       "title": "Cooktop 5 Bocas Atlas Agile Up Preto Com Mesa de Vidro e Mega Chama",
       "points": [
-        [
-          "2026-09-01",
-          1474
-        ],
         [
           "2026-09-02",
           384.66
@@ -21057,10 +20783,6 @@
       "identity": "MLB45070708",
       "points": [
         [
-          "2026-09-01",
-          505.9
-        ],
-        [
           "2026-09-02",
           504.3
         ],
@@ -21150,10 +20872,6 @@
       "title": "Caixa De Som Basike Ba-RAD207 80W Rádio FM Bluetooth 5.3 TWS RGB Bass Boost 9000mAh",
       "identity": "MLB79166445",
       "points": [
-        [
-          "2026-09-01",
-          379
-        ],
         [
           "2026-09-02",
           379
@@ -21257,6 +20975,10 @@
         [
           "2026-09-29",
           379.1
+        ],
+        [
+          "2026-10-01",
+          359
         ]
       ]
     },
@@ -21264,10 +20986,6 @@
       "title": "Tablet VAIO TL10 8GB 128GB Octa-Core, Tela 10.4” 2K, 4G WiFi, Câmera 8MP + Selfie 5MP, 7000mAh, Android 13, com Teclado de Conexão Inteligente – Preto",
       "identity": "MLB23612880",
       "points": [
-        [
-          "2026-09-01",
-          1612.33
-        ],
         [
           "2026-09-02",
           1612.33
@@ -21457,6 +21175,10 @@
         [
           "2026-09-29",
           829
+        ],
+        [
+          "2026-10-01",
+          829
         ]
       ]
     },
@@ -21464,10 +21186,6 @@
       "title": "Celular Samsung Galaxy A36 5g 256gb 8gb Ram Branco",
       "identity": "MLB47106610",
       "points": [
-        [
-          "2026-09-01",
-          1759.02
-        ],
         [
           "2026-09-02",
           1759.02
@@ -21498,10 +21216,6 @@
       "title": "Cafeteira Nescafé Dolce Gusto Arno Genio S Plus Dgs2 Preta Cor Preto",
       "identity": "MLB17003267",
       "points": [
-        [
-          "2026-09-01",
-          559.9
-        ],
         [
           "2026-09-02",
           559.9
@@ -21592,10 +21306,6 @@
       "title": "Politriz Eletrica Roto Orbital 15mm 5 E 6 Pol 950w PRO950 The Black Tools",
       "identity": "MLB40611772",
       "points": [
-        [
-          "2026-09-01",
-          389
-        ],
         [
           "2026-09-02",
           389
@@ -21699,6 +21409,10 @@
         [
           "2026-09-29",
           519.99
+        ],
+        [
+          "2026-10-01",
+          519.99
         ]
       ]
     },
@@ -21706,10 +21420,6 @@
       "title": "Notebook Lenovo IdeaPad Slim 3 15IRH10 Intel Core i5-13420H 8GB 512GB SSD Windows 11 15.3\" - 83NS0002BR Luna Grey",
       "identity": "MLB51233304",
       "points": [
-        [
-          "2026-09-01",
-          3680.1
-        ],
         [
           "2026-09-02",
           3680.1
@@ -21736,10 +21446,6 @@
       "title": "Controle Gamesir Nova Lite 2 Sem Fio Pc Switch Celular Hall - Branco",
       "identity": "MLB49838346",
       "points": [
-        [
-          "2026-09-01",
-          196.54
-        ],
         [
           "2026-09-02",
           196.54
@@ -21843,6 +21549,10 @@
         [
           "2026-09-29",
           168.94
+        ],
+        [
+          "2026-10-01",
+          198.75
         ]
       ]
     },
@@ -21850,10 +21560,6 @@
       "title": "Kit 50 Cabide Adulto Preto Reforçado Organizador Combate",
       "identity": "MLB47770588",
       "points": [
-        [
-          "2026-09-01",
-          27.64
-        ],
         [
           "2026-09-02",
           25.43
@@ -21957,6 +21663,10 @@
         [
           "2026-09-29",
           29.99
+        ],
+        [
+          "2026-10-01",
+          29.99
         ]
       ]
     },
@@ -22019,6 +21729,10 @@
         [
           "2026-09-29",
           3826.11
+        ],
+        [
+          "2026-10-01",
+          3651.48
         ]
       ]
     },
@@ -22026,10 +21740,6 @@
       "title": "Parafusadeira Furadeira De Impacto A Bateria 21V 3/8” Bivolt 1400 Rpm Com Acessórios E Maleta TB-21PZW The Black Tools",
       "identity": "MLB60012839",
       "points": [
-        [
-          "2026-09-01",
-          119.9
-        ],
         [
           "2026-09-02",
           119.9
@@ -22133,6 +21843,10 @@
         [
           "2026-09-29",
           139.9
+        ],
+        [
+          "2026-10-01",
+          341.1
         ]
       ]
     },
@@ -22158,23 +21872,10 @@
         ]
       ]
     },
-    "gAEWW6a25mIMXGwgzhTZ": {
-      "title": "Impressora multifuncional cor Epson EcoTank L3250",
-      "points": [
-        [
-          "2026-09-01",
-          1079
-        ]
-      ]
-    },
     "gNcq5nSqWbfqYi1M9c23": {
       "title": "Lanterna Mais Forte Do Mundo Recarregável Tática Potente Led Apfer",
       "identity": "MLB65530475",
       "points": [
-        [
-          "2026-09-01",
-          46.88
-        ],
         [
           "2026-09-02",
           46.88
@@ -22278,16 +21979,16 @@
         [
           "2026-09-29",
           48.9
+        ],
+        [
+          "2026-10-01",
+          48.5
         ]
       ]
     },
     "gbPrK7d1XCPts0DfWYdI": {
       "title": "Lixeira Inteligente Automática Branca Universal Com Sensor Recarregável Earman Company Anti Odor 16l Recarregável Usb",
       "points": [
-        [
-          "2026-09-01",
-          73.45
-        ],
         [
           "2026-09-02",
           73.45
@@ -22306,10 +22007,6 @@
       "title": "Massageador Pistola Elétrica Profissional Muscular Portátil Aparelho Fisioterapia Corporal 6 Velocidades 4 Cabeças De Massagem Alívio Dores Relaxamento Liberação Recuperação Muscular Nixzen",
       "identity": "MLB69323884",
       "points": [
-        [
-          "2026-09-01",
-          33.9
-        ],
         [
           "2026-09-02",
           33.9
@@ -22413,6 +22110,10 @@
         [
           "2026-09-29",
           34.9
+        ],
+        [
+          "2026-10-01",
+          70
         ]
       ]
     },
@@ -22420,10 +22121,6 @@
       "title": "Notebook Acer Aspire Go 15 Intel Core I3 1215u 8gb 256gb Ssd Linux Prateado",
       "identity": "MLB66357303",
       "points": [
-        [
-          "2026-09-01",
-          2999.9
-        ],
         [
           "2026-09-02",
           2999.9
@@ -22531,6 +22228,10 @@
         [
           "2026-09-29",
           3099.9
+        ],
+        [
+          "2026-10-01",
+          3199.9
         ]
       ]
     },
@@ -22538,10 +22239,6 @@
       "title": "shampoo Redutor de Grisalhos Grecin Control GX Para Todas os Tons Cabelo 118ml",
       "identity": "MLB25708528",
       "points": [
-        [
-          "2026-09-01",
-          79.72
-        ],
         [
           "2026-09-02",
           79.72
@@ -22641,6 +22338,10 @@
         [
           "2026-09-29",
           71.67
+        ],
+        [
+          "2026-10-01",
+          77.21
         ]
       ]
     },
@@ -22648,10 +22349,6 @@
       "title": "Garrafa Térmica 800 ml em Aço Inox para Academia — Quente e Frio",
       "identity": "MLB7023811646",
       "points": [
-        [
-          "2026-09-01",
-          31.96
-        ],
         [
           "2026-09-02",
           31.96
@@ -22706,10 +22403,6 @@
       "title": "Câmera De Vídeo Wi-Fi Intelbras IM3 C MicroSD 32GB Branco",
       "identity": "MLB23409605",
       "points": [
-        [
-          "2026-09-01",
-          206.32
-        ],
         [
           "2026-09-02",
           206.32
@@ -22813,6 +22506,10 @@
         [
           "2026-09-29",
           311.14
+        ],
+        [
+          "2026-10-01",
+          306
         ]
       ]
     },
@@ -22820,10 +22517,6 @@
       "title": "Creme Hidratante Corporal e facial para Pele Seca a Extra Seca Sem Perfume 454g CeraVe",
       "identity": "MLB19309318",
       "points": [
-        [
-          "2026-09-01",
-          85.41
-        ],
         [
           "2026-09-02",
           116.16
@@ -22922,10 +22615,6 @@
       "title": "Kit 2x Creatina 300g Creatina Monohidratada Max Titanium Sem Sabor Alta Pureza",
       "points": [
         [
-          "2026-09-01",
-          82.9
-        ],
-        [
           "2026-09-02",
           82.9
         ],
@@ -22955,10 +22644,6 @@
       "title": "Auxiliar Partida Bateria Compressor Ar Automotivo Vigomot",
       "identity": "MLB4873923933",
       "points": [
-        [
-          "2026-09-01",
-          179.4
-        ],
         [
           "2026-09-02",
           179.4
@@ -23062,6 +22747,10 @@
         [
           "2026-09-29",
           197.34
+        ],
+        [
+          "2026-10-01",
+          197.34
         ]
       ]
     },
@@ -23069,10 +22758,6 @@
       "title": "TP-Link Tapo C320WS Câmera de Segurança Wifi 2K QHD Colorida IP66",
       "identity": "MLB19693785",
       "points": [
-        [
-          "2026-09-01",
-          320.66
-        ],
         [
           "2026-09-02",
           320.66
@@ -23176,6 +22861,10 @@
         [
           "2026-09-29",
           234.32
+        ],
+        [
+          "2026-10-01",
+          289.9
         ]
       ]
     },
@@ -23183,10 +22872,6 @@
       "title": "Microondas Panasonic Nn-st66nbru Black Glass 34L Dupla Refeição",
       "identity": "MLB22491295",
       "points": [
-        [
-          "2026-09-01",
-          648.93
-        ],
         [
           "2026-09-02",
           648.93
@@ -23277,10 +22962,6 @@
       "title": "Mini Mixer Misturador De Bebidas Elétrico 2 Em 1 Portátil Recarregável Mexedor De Ovos Whey Leite Café Espuma Shake Drinks Capuccino Suco Comica",
       "identity": "MLB67146264",
       "points": [
-        [
-          "2026-09-01",
-          21.33
-        ],
         [
           "2026-09-02",
           21.33
@@ -23384,6 +23065,10 @@
         [
           "2026-09-29",
           19.88
+        ],
+        [
+          "2026-10-01",
+          19.88
         ]
       ]
     },
@@ -23391,10 +23076,6 @@
       "title": "Mini Teclado Wireless com Touchpad i8 LED para Smart TV, PC e Android, em Preto",
       "identity": "MLB29499643",
       "points": [
-        [
-          "2026-09-01",
-          59.9
-        ],
         [
           "2026-09-02",
           59.9
@@ -23485,10 +23166,6 @@
       "title": "Roku Streaming Stick 2025 Para Tv Hd/fhd Controle Por Voz Preto De Voz 3ª geração 3840BR",
       "identity": "MLB54014512",
       "points": [
-        [
-          "2026-09-01",
-          206.91
-        ],
         [
           "2026-09-02",
           206.91
@@ -23592,6 +23269,10 @@
         [
           "2026-09-29",
           275
+        ],
+        [
+          "2026-10-01",
+          278.68
         ]
       ]
     },
@@ -23599,10 +23280,6 @@
       "title": "Creatina Monohidratada Pura 500g Dark Lab Unidade",
       "identity": "MLB26796581",
       "points": [
-        [
-          "2026-09-01",
-          44.9
-        ],
         [
           "2026-09-02",
           44.9
@@ -23702,10 +23379,6 @@
       "identity": "MLB54357967",
       "points": [
         [
-          "2026-09-01",
-          39.98
-        ],
-        [
           "2026-09-02",
           39.98
         ],
@@ -23795,10 +23468,6 @@
       "title": "Fritadeira Elétrica Air Fryer WAP Barbecue Heat WC AB1030",
       "identity": "MLB55253153",
       "points": [
-        [
-          "2026-09-01",
-          593.89
-        ],
         [
           "2026-09-02",
           593.89
@@ -23902,6 +23571,10 @@
         [
           "2026-09-29",
           629.1
+        ],
+        [
+          "2026-10-01",
+          666.56
         ]
       ]
     },
@@ -23909,10 +23582,6 @@
       "title": "Micro Retifica Profissional Aitoolzo 600w 202 Peças+suporte",
       "identity": "MLB5744392274",
       "points": [
-        [
-          "2026-09-01",
-          247.53
-        ],
         [
           "2026-09-02",
           247.53
@@ -24003,10 +23672,6 @@
       "title": "Fone De Ouvido Sem Fio Havit Tw982 Enc Bluetooth 5.4 Cor Preto",
       "identity": "MLB44616858",
       "points": [
-        [
-          "2026-09-01",
-          64.51
-        ],
         [
           "2026-09-02",
           64.51
@@ -24110,6 +23775,10 @@
         [
           "2026-09-29",
           78.9
+        ],
+        [
+          "2026-10-01",
+          78.9
         ]
       ]
     },
@@ -24117,10 +23786,6 @@
       "title": "Secador de Cabelos Mondial Preto 2000W SCN-01",
       "identity": "MLB18638651",
       "points": [
-        [
-          "2026-09-01",
-          102.88
-        ],
         [
           "2026-09-02",
           102.88
@@ -24224,6 +23889,10 @@
         [
           "2026-09-29",
           98.65
+        ],
+        [
+          "2026-10-01",
+          109
         ]
       ]
     },
@@ -24231,10 +23900,6 @@
       "title": "Suporte Articulado Para Monitor 13 a 32 Pistão a Gás Ajustável Zinnia Nimbo 110 Preto",
       "identity": "MLB50722875",
       "points": [
-        [
-          "2026-09-01",
-          85.05
-        ],
         [
           "2026-09-02",
           85.05
@@ -24324,10 +23989,6 @@
     "ks3O1tyqJfeskTkVNaJ3": {
       "title": "Creatina Monohidratada Pura 1kg Dark Lab Unidade Sem sabor",
       "points": [
-        [
-          "2026-09-01",
-          78.9
-        ],
         [
           "2026-09-02",
           78.9
@@ -24465,10 +24126,6 @@
       "identity": "MLB6230997792",
       "points": [
         [
-          "2026-09-01",
-          215.05
-        ],
-        [
           "2026-09-02",
           215.05
         ],
@@ -24558,10 +24215,6 @@
       "title": "Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml",
       "identity": "MLB68104527",
       "points": [
-        [
-          "2026-09-01",
-          85.41
-        ],
         [
           "2026-09-02",
           93.41
@@ -24665,6 +24318,10 @@
         [
           "2026-09-29",
           93.41
+        ],
+        [
+          "2026-10-01",
+          119
         ]
       ]
     },
@@ -24672,10 +24329,6 @@
       "title": "Smartphone Motorola Edge 60 5g - 512gb 12gb Ram+12gb Ram",
       "identity": "MLB48930797",
       "points": [
-        [
-          "2026-09-01",
-          2124.15
-        ],
         [
           "2026-09-02",
           2124.15
@@ -24779,6 +24432,10 @@
         [
           "2026-09-29",
           1999.75
+        ],
+        [
+          "2026-10-01",
+          2105
         ]
       ]
     },
@@ -24786,10 +24443,6 @@
       "title": "Bicicleta Spinning Com Roda De Inércia De 13kg Wct Fitness Cor Preto",
       "identity": "MLB34219371",
       "points": [
-        [
-          "2026-09-01",
-          1158.97
-        ],
         [
           "2026-09-02",
           1158.97
@@ -24897,6 +24550,10 @@
         [
           "2026-09-29",
           1329.99
+        ],
+        [
+          "2026-10-01",
+          519.99
         ]
       ]
     },
@@ -24904,10 +24561,6 @@
       "title": "Torneira Gourmet Luxo Flexível Cozinha Parede 2 Jatos Pia Metal Cor Aço Inox e Preto- Marca Camperluz",
       "identity": "MLB45553868",
       "points": [
-        [
-          "2026-09-01",
-          35.98
-        ],
         [
           "2026-09-05",
           26.98
@@ -24965,10 +24618,6 @@
       "identity": "MLB51986596",
       "points": [
         [
-          "2026-09-01",
-          139.58
-        ],
-        [
           "2026-09-02",
           139.58
         ],
@@ -25027,6 +24676,10 @@
         [
           "2026-09-29",
           145.5
+        ],
+        [
+          "2026-10-01",
+          139.49
         ]
       ]
     },
@@ -25034,10 +24687,6 @@
       "title": "Lavadora De Alta Pressão Profissional Wap 4100 W2 420l/h Motor De Indução 1650psi 1500w 127V",
       "identity": "MLB69473763",
       "points": [
-        [
-          "2026-09-01",
-          1399.9
-        ],
         [
           "2026-09-02",
           1399.9
@@ -25145,16 +24794,16 @@
         [
           "2026-09-29",
           1549.9
+        ],
+        [
+          "2026-10-01",
+          1499.9
         ]
       ]
     },
     "ng6QEHZclCsBhfUzpTvm": {
       "title": "Esmerilhadeira Angular Brushless Com Discos E Acessórios",
       "points": [
-        [
-          "2026-09-01",
-          274.55
-        ],
         [
           "2026-09-02",
           274.55
@@ -25173,10 +24822,6 @@
       "title": "Samsung Galaxy S25 5G, 256GB, 12GB, Câmera Tripla - Prata",
       "identity": "MLB45520367",
       "points": [
-        [
-          "2026-09-01",
-          3581.1
-        ],
         [
           "2026-09-02",
           3581.1
@@ -25272,10 +24917,6 @@
       "identity": "MLB30144703",
       "points": [
         [
-          "2026-09-01",
-          150
-        ],
-        [
           "2026-09-02",
           150
         ],
@@ -25317,10 +24958,6 @@
       "title": "Fritadeira Air Fryer Forno Oven 12L, Mondial, 2200W - AFON-12L-BI",
       "identity": "MLB34722310",
       "points": [
-        [
-          "2026-09-01",
-          474.7
-        ],
         [
           "2026-09-02",
           474.7
@@ -25424,6 +25061,10 @@
         [
           "2026-09-29",
           533.51
+        ],
+        [
+          "2026-10-01",
+          619.9
         ]
       ]
     },
@@ -25431,10 +25072,6 @@
       "title": "Varal Aço Inox Suspenso Roupa Íntima 40 Prendedor Calcinha",
       "identity": "MLB5832558364",
       "points": [
-        [
-          "2026-09-01",
-          34.42
-        ],
         [
           "2026-09-02",
           34.42
@@ -25538,6 +25175,10 @@
         [
           "2026-09-29",
           34.22
+        ],
+        [
+          "2026-10-01",
+          34.22
         ]
       ]
     },
@@ -25545,10 +25186,6 @@
       "title": "Micro-ondas Electrolux de bancada Branco com Função Tira Odor e Manter Aquecido 34L MEO44",
       "identity": "MLB8742310",
       "points": [
-        [
-          "2026-09-01",
-          569.05
-        ],
         [
           "2026-09-02",
           569.05
@@ -25652,6 +25289,10 @@
         [
           "2026-09-29",
           597.55
+        ],
+        [
+          "2026-10-01",
+          659.25
         ]
       ]
     },
@@ -25659,10 +25300,6 @@
       "title": "Carregador Fonte Apple Ipad Iphone Turbo Original Usb-c 20w",
       "identity": "MLB4883864997",
       "points": [
-        [
-          "2026-09-01",
-          82.77
-        ],
         [
           "2026-09-02",
           82.77
@@ -25766,6 +25403,10 @@
         [
           "2026-09-29",
           102.22
+        ],
+        [
+          "2026-10-01",
+          117.49
         ]
       ]
     },
@@ -25773,10 +25414,6 @@
       "title": "Mini Ventilador Soprador Ar Turbo 130000RPM Sem Fio Recarregável USB 3 Níveis Jato Forte Portátil Multiuso Limpeza Teclado Carro Acende Churrasqueira Simake",
       "identity": "MLB67463325",
       "points": [
-        [
-          "2026-09-01",
-          52.47
-        ],
         [
           "2026-09-02",
           52.47
@@ -25880,6 +25517,10 @@
         [
           "2026-09-29",
           55.47
+        ],
+        [
+          "2026-10-01",
+          55.47
         ]
       ]
     },
@@ -25887,10 +25528,6 @@
       "title": "Smart Tv Aoc Dled 32 Wi-fi Roku Tv Quad Core 32s5155/78g",
       "identity": "MLB60728265",
       "points": [
-        [
-          "2026-09-01",
-          778.5
-        ],
         [
           "2026-09-02",
           778.5
@@ -25981,10 +25618,6 @@
       "title": "PENTA MAGNÉSIO - Bisglicinato + Dimalato + Citrato + Taurato + Óxido de Magnésio - A Combinação Perfeita de 5 Magnésios com Máxima Pureza e Biodisponibilidade - 60 Cápsulas",
       "identity": "MLB61669343",
       "points": [
-        [
-          "2026-09-01",
-          54.77
-        ],
         [
           "2026-09-02",
           54.77
@@ -26096,10 +25729,6 @@
       "identity": "MLB43419974",
       "points": [
         [
-          "2026-09-01",
-          557.01
-        ],
-        [
           "2026-09-02",
           557.01
         ],
@@ -26202,6 +25831,10 @@
         [
           "2026-09-29",
           530.1
+        ],
+        [
+          "2026-10-01",
+          558
         ]
       ]
     },
@@ -26210,10 +25843,6 @@
       "identity": "MLB58890133",
       "points": [
         [
-          "2026-09-01",
-          499.9
-        ],
-        [
           "2026-09-02",
           499.9
         ],
@@ -26316,16 +25945,16 @@
         [
           "2026-09-29",
           579.9
+        ],
+        [
+          "2026-10-01",
+          579.9
         ]
       ]
     },
     "pdHLCjya0u2obU1KNUcL": {
       "title": "Organizador Vertical Para Guarda Roupa Closet 5 Divisórias Cor Branco",
       "points": [
-        [
-          "2026-09-01",
-          54.81
-        ],
         [
           "2026-09-02",
           54.81
@@ -26416,10 +26045,6 @@
       "title": "Serra Tico Tico Profissional 500w 3000 Gpm Lâmina E Protetor Bst500 The Black Tools",
       "identity": "MLB26715512",
       "points": [
-        [
-          "2026-09-01",
-          142.4
-        ],
         [
           "2026-09-02",
           142.4
@@ -26523,6 +26148,10 @@
         [
           "2026-09-29",
           150.95
+        ],
+        [
+          "2026-10-01",
+          158.9
         ]
       ]
     },
@@ -26530,10 +26159,6 @@
       "title": "Relógio Casio Masculino G-shock Digital Preto Dw-5600bb-1dr",
       "identity": "MLB2765715868",
       "points": [
-        [
-          "2026-09-01",
-          253.8
-        ],
         [
           "2026-09-02",
           253.8
@@ -26637,6 +26262,10 @@
         [
           "2026-09-29",
           281
+        ],
+        [
+          "2026-10-01",
+          272.65
         ]
       ]
     },
@@ -26644,10 +26273,6 @@
       "title": "Tenda Sanfonada Proteção Uv 3x3m Gazebo Ajustável C/ Bolsa",
       "identity": "MLB6487643856",
       "points": [
-        [
-          "2026-09-01",
-          359.95
-        ],
         [
           "2026-09-02",
           359.95
@@ -26739,10 +26364,6 @@
       "identity": "MLB5046495691",
       "points": [
         [
-          "2026-09-01",
-          29.99
-        ],
-        [
           "2026-09-02",
           29.99
         ],
@@ -26796,10 +26417,6 @@
       "title": "Densifique Masque Densité Máscara 200ml | Kérastase",
       "identity": "MLB19769630",
       "points": [
-        [
-          "2026-09-01",
-          238.99
-        ],
         [
           "2026-09-02",
           238.99
@@ -26903,6 +26520,10 @@
         [
           "2026-09-29",
           339.88
+        ],
+        [
+          "2026-10-01",
+          316.09
         ]
       ]
     },
@@ -26910,10 +26531,6 @@
       "title": "Impressora Multifuncional L4360 Wi-fi Ecotank Epson",
       "identity": "MLB65436824",
       "points": [
-        [
-          "2026-09-01",
-          1463
-        ],
         [
           "2026-09-02",
           1445
@@ -27017,6 +26634,10 @@
         [
           "2026-09-29",
           1535
+        ],
+        [
+          "2026-10-01",
+          1535
         ]
       ]
     },
@@ -27083,6 +26704,10 @@
         [
           "2026-09-29",
           29.99
+        ],
+        [
+          "2026-10-01",
+          29.99
         ]
       ]
     },
@@ -27090,10 +26715,6 @@
       "title": "Kit 3 Bandejas De Bambu Retangular Para Cozinha 20x10cm Peti Lyor Hire",
       "identity": "MLB30063507",
       "points": [
-        [
-          "2026-09-01",
-          26.14
-        ],
         [
           "2026-09-02",
           24.5
@@ -27185,10 +26806,6 @@
       "identity": "MLB5041220911",
       "points": [
         [
-          "2026-09-01",
-          29.99
-        ],
-        [
           "2026-09-02",
           29.99
         ],
@@ -27295,6 +26912,10 @@
         [
           "2026-09-29",
           29.99
+        ],
+        [
+          "2026-10-01",
+          29.99
         ]
       ]
     },
@@ -27302,10 +26923,6 @@
       "title": "Jogo De Toalhas Karsten 100% Algodão Floral Grossa 4 Peças",
       "identity": "MLB4091845807",
       "points": [
-        [
-          "2026-09-01",
-          133.97
-        ],
         [
           "2026-09-02",
           133.97
@@ -27405,10 +27022,6 @@
       "identity": "MLB75686249",
       "points": [
         [
-          "2026-09-01",
-          72.59
-        ],
-        [
           "2026-09-02",
           72.59
         ],
@@ -27511,6 +27124,10 @@
         [
           "2026-09-29",
           72.59
+        ],
+        [
+          "2026-10-01",
+          78.9
         ]
       ]
     },
@@ -27518,10 +27135,6 @@
       "title": "NIVEA SUN Protetor Solar Facial Toque Seco Antissinais FPS70 40ml, Alta Proteção UVA/UVB, Controla a Oleosidade, Previne Envelhecimento, Textura Leve",
       "identity": "MLB20741622",
       "points": [
-        [
-          "2026-09-01",
-          38.38
-        ],
         [
           "2026-09-02",
           43.49
@@ -27625,6 +27238,10 @@
         [
           "2026-09-29",
           38.85
+        ],
+        [
+          "2026-10-01",
+          39.08
         ]
       ]
     },
@@ -27632,10 +27249,6 @@
       "title": "Heaven Extraordinary Collection 100ml - Wepink",
       "identity": "MLB63650193",
       "points": [
-        [
-          "2026-09-01",
-          150.76
-        ],
         [
           "2026-09-02",
           421
@@ -27739,6 +27352,10 @@
         [
           "2026-09-29",
           159.9
+        ],
+        [
+          "2026-10-01",
+          149.9
         ]
       ]
     },
@@ -27746,10 +27363,6 @@
       "title": "Celular Samsung Galaxy A56 5g 256gb 8gb Ram Rosa",
       "identity": "MLB47112282",
       "points": [
-        [
-          "2026-09-01",
-          2298.1
-        ],
         [
           "2026-09-02",
           2298.1
@@ -27840,10 +27453,6 @@
       "title": "iPhone 17 Pro Max 256GB - Prateado - Distribuidor Autorizado",
       "identity": "MLB1055308605",
       "points": [
-        [
-          "2026-09-01",
-          9539.99
-        ],
         [
           "2026-09-02",
           9539.99
@@ -27947,6 +27556,10 @@
         [
           "2026-09-29",
           8781.4
+        ],
+        [
+          "2026-10-01",
+          9757.11
         ]
       ]
     },
@@ -27954,10 +27567,6 @@
       "title": "Escorredor De Louça Pratos Organizador De Pia Cozinha",
       "identity": "MLB5822444248",
       "points": [
-        [
-          "2026-09-01",
-          152.98
-        ],
         [
           "2026-09-02",
           152.98
@@ -28048,10 +27657,6 @@
       "title": "Creatina Monohidratada 500g Growth Supplements - Sem Sabor em Pó",
       "identity": "MLB66637233",
       "points": [
-        [
-          "2026-09-01",
-          78.9
-        ],
         [
           "2026-09-02",
           74.9
@@ -28151,10 +27756,6 @@
       "identity": "MLB47106610",
       "points": [
         [
-          "2026-09-01",
-          1759.02
-        ],
-        [
           "2026-09-02",
           1759.02
         ],
@@ -28253,6 +27854,10 @@
         [
           "2026-09-29",
           1847.12
+        ],
+        [
+          "2026-10-01",
+          2044.32
         ]
       ]
     },
@@ -28260,10 +27865,6 @@
       "title": "Purificador de Água Gelada Fria e Natural Eletrônico Placa Compacto Electrolux PE12P com Filtro Carvão 6 meses ou 3000L Painel Touch Preto Bivolt",
       "identity": "MLB46943735",
       "points": [
-        [
-          "2026-09-01",
-          626
-        ],
         [
           "2026-09-02",
           626
@@ -28355,10 +27956,6 @@
       "identity": "MLB58353028",
       "points": [
         [
-          "2026-09-01",
-          719.1
-        ],
-        [
           "2026-09-02",
           719.1
         ],
@@ -28400,10 +27997,6 @@
       "title": "Camera Wifi 360° Im7 S Full Color Intelbras + Cartão 128gb",
       "identity": "MLB5264261326",
       "points": [
-        [
-          "2026-09-01",
-          568.42
-        ],
         [
           "2026-09-02",
           568.42
@@ -28494,10 +28087,6 @@
       "title": "Caixa de Som Boombox Plus AIWA BBS-01-LBL 200W Bluetooth 30H IP66 USB RGB",
       "identity": "MLB38520699",
       "points": [
-        [
-          "2026-09-01",
-          1278
-        ],
         [
           "2026-09-02",
           1307
@@ -28601,6 +28190,10 @@
         [
           "2026-09-29",
           1228.5
+        ],
+        [
+          "2026-10-01",
+          359
         ]
       ]
     },
@@ -28608,10 +28201,6 @@
       "title": "Creatina Monohidratada 500g Growth Supplements - Sem Sabor em Pó",
       "identity": "MLB66637233",
       "points": [
-        [
-          "2026-09-01",
-          76.53
-        ],
         [
           "2026-09-26",
           78.9
@@ -28623,6 +28212,10 @@
         [
           "2026-09-29",
           78.9
+        ],
+        [
+          "2026-10-01",
+          78.9
         ]
       ]
     },
@@ -28630,10 +28223,6 @@
       "title": "Repetidor Expansor Tp-link Wi-fi Network 300mbps Tl-wa850re",
       "identity": "MLB31040602",
       "points": [
-        [
-          "2026-09-01",
-          139.9
-        ],
         [
           "2026-09-02",
           154.9
@@ -28737,6 +28326,10 @@
         [
           "2026-09-29",
           132.9
+        ],
+        [
+          "2026-10-01",
+          102
         ]
       ]
     },
@@ -28744,10 +28337,6 @@
       "title": "Churrasqueira Portátil Camping Praia Compacta Galvanizada",
       "identity": "MLB5800224038",
       "points": [
-        [
-          "2026-09-01",
-          61.62
-        ],
         [
           "2026-09-02",
           61.62
@@ -28851,6 +28440,10 @@
         [
           "2026-09-29",
           56.46
+        ],
+        [
+          "2026-10-01",
+          56.46
         ]
       ]
     },
@@ -28859,10 +28452,6 @@
       "identity": "MLB53878745",
       "points": [
         [
-          "2026-09-01",
-          1079
-        ],
-        [
           "2026-09-02",
           1079
         ],
@@ -28965,6 +28554,10 @@
         [
           "2026-09-29",
           1025.05
+        ],
+        [
+          "2026-10-01",
+          359
         ]
       ]
     },
@@ -28973,10 +28566,6 @@
       "identity": "MLB47945119",
       "points": [
         [
-          "2026-09-01",
-          279
-        ],
-        [
           "2026-09-02",
           279
         ],
@@ -29079,6 +28668,10 @@
         [
           "2026-09-29",
           341.1
+        ],
+        [
+          "2026-10-01",
+          341.1
         ]
       ]
     },
@@ -29086,10 +28679,6 @@
       "title": "Cooktop 4 Bocas a Gás Electrolux Mesa de Vidro Efficient Grade de Aço Fosco (KE4GR) Bivolt",
       "identity": "MLB50661985",
       "points": [
-        [
-          "2026-09-01",
-          502.55
-        ],
         [
           "2026-09-02",
           502.55
@@ -29193,6 +28782,10 @@
         [
           "2026-09-29",
           513.5
+        ],
+        [
+          "2026-10-01",
+          520
         ]
       ]
     },
@@ -29200,10 +28793,6 @@
       "title": "Celular Samsung Galaxy S25 Fe 5g, 128gb, 8gb Ram, Câmera Tripla De 50+12+8, Tela Grande De 6.7 Azul Marinho",
       "identity": "MLB61655019",
       "points": [
-        [
-          "2026-09-01",
-          2999
-        ],
         [
           "2026-09-02",
           2973
@@ -29307,6 +28896,10 @@
         [
           "2026-09-29",
           2943.9
+        ],
+        [
+          "2026-10-01",
+          3271
         ]
       ]
     },
@@ -29314,10 +28907,6 @@
       "title": "Kit3 Lâmpada De Led Recarregável Usb Acampamento Pesca Bulbo",
       "identity": "MLB7001593224",
       "points": [
-        [
-          "2026-09-01",
-          99
-        ],
         [
           "2026-09-02",
           99
@@ -29400,10 +28989,6 @@
       "title": "Smartphone Motorola Moto g35 5G - 128GB 12GB (4GB RAM+8GB Ram Boost) e Camera 50MP com AI NFC Tela 6.7\" com Superbrilho - Verde - Vegan Leather",
       "identity": "MLB41541670",
       "points": [
-        [
-          "2026-09-01",
-          889
-        ],
         [
           "2026-09-02",
           889
@@ -29507,6 +29092,10 @@
         [
           "2026-09-29",
           1119
+        ],
+        [
+          "2026-10-01",
+          1092.49
         ]
       ]
     },
@@ -29515,10 +29104,6 @@
       "identity": "MLB8923630",
       "points": [
         [
-          "2026-09-01",
-          228.6
-        ],
-        [
           "2026-09-02",
           228.6
         ],
@@ -29621,6 +29206,10 @@
         [
           "2026-09-29",
           260.91
+        ],
+        [
+          "2026-10-01",
+          264.9
         ]
       ]
     },
@@ -29629,10 +29218,6 @@
       "identity": "MLB27050983",
       "points": [
         [
-          "2026-09-01",
-          169
-        ],
-        [
           "2026-09-02",
           169
         ],
@@ -29735,6 +29320,10 @@
         [
           "2026-09-29",
           253.64
+        ],
+        [
+          "2026-10-01",
+          194.99
         ]
       ]
     },
@@ -29743,10 +29332,6 @@
       "identity": "MLB3821589",
       "points": [
         [
-          "2026-09-01",
-          209.1
-        ],
-        [
           "2026-09-02",
           209.1
         ],
@@ -29849,6 +29434,10 @@
         [
           "2026-09-29",
           299.99
+        ],
+        [
+          "2026-10-01",
+          255
         ]
       ]
     },
@@ -29856,10 +29445,6 @@
       "title": "Egeo Spicy Vibe Colônia 90ml",
       "identity": "MLB22376161",
       "points": [
-        [
-          "2026-09-01",
-          118
-        ],
         [
           "2026-09-02",
           107.99
@@ -29950,10 +29535,6 @@
       "title": "Calça Social Alfaiataria Masculina Malha Elastano Stretch",
       "identity": "MLB4071078446",
       "points": [
-        [
-          "2026-09-01",
-          139
-        ],
         [
           "2026-09-02",
           152.91
@@ -30057,6 +29638,10 @@
         [
           "2026-09-29",
           139
+        ],
+        [
+          "2026-10-01",
+          64
         ]
       ]
     },
@@ -30064,10 +29649,6 @@
       "title": "Lavadora De Alta Pressão Philco 1750psi 12 Mpa 1500w Plp2300 220V",
       "identity": "MLB36098154",
       "points": [
-        [
-          "2026-09-01",
-          449
-        ],
         [
           "2026-09-02",
           449
@@ -30171,6 +29752,10 @@
         [
           "2026-09-29",
           417.57
+        ],
+        [
+          "2026-10-01",
+          299
         ]
       ]
     },
@@ -30178,10 +29763,6 @@
       "title": "Fone De Ouvido Sem Fio Kaidi Kd771 Bluetooth 5.1 Cor Preto",
       "identity": "MLB64329157",
       "points": [
-        [
-          "2026-09-01",
-          40.15
-        ],
         [
           "2026-09-02",
           40.15
@@ -30272,10 +29853,6 @@
       "title": "Air Fryer Forno 5 em 1 12L 1700W Digital Espeto Giratório 2 Bandejas Antiaderentes 10 funções 7 Receitas aviso sonoro Fritadeira Elétrica sem Óleo Forno Bancada Electrolux EAF90 Grafite",
       "identity": "MLB23011944",
       "points": [
-        [
-          "2026-09-01",
-          808.97
-        ],
         [
           "2026-09-02",
           808.97
@@ -30379,16 +29956,16 @@
         [
           "2026-09-29",
           799.91
+        ],
+        [
+          "2026-10-01",
+          799.91
         ]
       ]
     },
     "zb4ZDbdfJGUurcSXtVaa": {
       "title": "Creatina 500g Suplemento Monohidratada em pó 100% Pura - Soldiers Nutrition",
       "points": [
-        [
-          "2026-09-01",
-          38.9
-        ],
         [
           "2026-09-02",
           38.9
@@ -30479,10 +30056,6 @@
       "title": "Câmera Segurança Ip Externa Wifi A28 App Icsee À Prova Dágua",
       "identity": "MLB4188994271",
       "points": [
-        [
-          "2026-09-01",
-          113.82
-        ],
         [
           "2026-09-02",
           113.82
@@ -30585,10 +30158,6 @@
       "title": "Mini Aspirador De Pó Portátil Recarregável Chrome Technology Soprador Usb Automotivo 3em1 Sem Fio Premium Vácuo Limpeza Carro Multifuncional Casa",
       "identity": "MLB44701480",
       "points": [
-        [
-          "2026-09-01",
-          39.99
-        ],
         [
           "2026-09-02",
           39.99
@@ -30696,6 +30265,10 @@
         [
           "2026-09-29",
           37.23
+        ],
+        [
+          "2026-10-01",
+          39.98
         ]
       ]
     },
@@ -30703,10 +30276,6 @@
       "title": "Boné Ess No.1 Logo Baseball Puma",
       "identity": "MLB56108046",
       "points": [
-        [
-          "2026-09-01",
-          79.99
-        ],
         [
           "2026-09-02",
           79.99
@@ -30801,10 +30370,6 @@
       "title": "Liquidificador Turbo Power Mondial 550W - L-99 FB",
       "identity": "MLB15578949",
       "points": [
-        [
-          "2026-09-01",
-          76.9
-        ],
         [
           "2026-09-02",
           76.9
@@ -30908,6 +30473,10 @@
         [
           "2026-09-29",
           119.07
+        ],
+        [
+          "2026-10-01",
+          137
         ]
       ]
     },
@@ -30915,10 +30484,6 @@
       "title": "Massageador Pescoço Mãozinha 3D Recarregável Elétrico Com Aquecimento Massagem Relaxante Liberação Alivio Muscular Ombro Cervical Lombar Costas Tensão Dores Portátil Sem Fio Ajustável Kateluo",
       "identity": "MLB77168687",
       "points": [
-        [
-          "2026-09-01",
-          93.98
-        ],
         [
           "2026-09-02",
           93.98
@@ -30961,10 +30526,6 @@
       "title": "Batedeira Prática Mondial 400W - B-44-B",
       "identity": "MLB16016316",
       "points": [
-        [
-          "2026-09-01",
-          77.6
-        ],
         [
           "2026-09-02",
           77.6
@@ -31068,6 +30629,10 @@
         [
           "2026-09-29",
           104.4
+        ],
+        [
+          "2026-10-01",
+          104.25
         ]
       ]
     },
@@ -31075,10 +30640,6 @@
       "title": "Micro-ondas Britânia Bmo23 De Preto 20l Branco",
       "identity": "MLB47290441",
       "points": [
-        [
-          "2026-09-01",
-          599
-        ],
         [
           "2026-09-02",
           599
@@ -31169,10 +30730,6 @@
       "title": "Chave De Impacto 800n.m 48v Brushless Com 2 Baterias Sem Fio",
       "identity": "MLB6657396330",
       "points": [
-        [
-          "2026-09-01",
-          214.89
-        ],
         [
           "2026-09-02",
           214.89
@@ -31280,6 +30837,10 @@
         [
           "2026-09-29",
           220.95
+        ],
+        [
+          "2026-10-01",
+          220.95
         ]
       ]
     },
@@ -31287,10 +30848,6 @@
       "title": "Carregador Compativel Com iPhone 8 X Xr 11 12 13 14 Pro Max Turbo Fonte Tipo C Boyu Cell",
       "identity": "MLB43351618",
       "points": [
-        [
-          "2026-09-01",
-          28
-        ],
         [
           "2026-09-02",
           28
@@ -31382,10 +30939,6 @@
       "identity": "MLB3621404839",
       "points": [
         [
-          "2026-09-01",
-          91.55
-        ],
-        [
           "2026-09-02",
           91.55
         ],
@@ -31427,10 +30980,6 @@
       "title": "Chuveiro Lorenzetti Bella Ducha 4T Ultra para Parede",
       "identity": "MLB49609713",
       "points": [
-        [
-          "2026-09-01",
-          75.7
-        ],
         [
           "2026-09-02",
           75.7
@@ -31534,16 +31083,16 @@
         [
           "2026-09-29",
           88.65
+        ],
+        [
+          "2026-10-01",
+          101.9
         ]
       ]
     },
     "nkiU71IDc1QBKfGQpKN2": {
       "title": "Conjunto Panelas Antiaderente 10 Peças Tampas Vidro Coffe",
       "points": [
-        [
-          "2026-09-01",
-          180.49
-        ],
         [
           "2026-09-02",
           184.29
@@ -31558,10 +31107,6 @@
       "title": "Principia Kit Trio Limpeza Facial Personalizada",
       "identity": "MLB74862155",
       "points": [
-        [
-          "2026-09-01",
-          97.75
-        ],
         [
           "2026-09-02",
           97.75
@@ -31665,6 +31210,10 @@
         [
           "2026-09-29",
           102.44
+        ],
+        [
+          "2026-10-01",
+          102.44
         ]
       ]
     },
@@ -31672,10 +31221,6 @@
       "title": "Auxiliar de Partida e Compressor de Ar Portátil 6 em 1 Inteligente para Carro, Moto e Bicicleta com Lanterna e Power Bank",
       "identity": "MLB75836344",
       "points": [
-        [
-          "2026-09-01",
-          186.14
-        ],
         [
           "2026-09-02",
           186.14
@@ -31779,6 +31324,10 @@
         [
           "2026-09-29",
           156.6
+        ],
+        [
+          "2026-10-01",
+          165.6
         ]
       ]
     },
@@ -31786,10 +31335,6 @@
       "title": "Principia Kit Protetor Solar Facial Ps-01 Fps60",
       "identity": "MLB54456751",
       "points": [
-        [
-          "2026-09-01",
-          79.38
-        ],
         [
           "2026-09-02",
           79.38
@@ -31897,16 +31442,16 @@
         [
           "2026-09-29",
           73.2
+        ],
+        [
+          "2026-10-01",
+          74.83
         ]
       ]
     },
     "0m3HpX03EE3qzYLzgLnm": {
       "title": "TESTO ESSENCIAL - Fórmula Exclusiva com Feno Grego + Boro + Arginina + ZMA + Vitamina B6 - 60 cápsulas - Precursor da Testosterona",
       "points": [
-        [
-          "2026-09-01",
-          56.77
-        ],
         [
           "2026-09-02",
           56.77
@@ -31917,10 +31462,6 @@
       "title": "Máscara Capilar de Hidratação Intensa Anti-Frizz com Proteção Térmica até 230ºC para Cabelos Secos e Indisciplinados, Discipline Oléo-Relax, Kérastase 200ml",
       "identity": "MLB20678514",
       "points": [
-        [
-          "2026-09-01",
-          271.13
-        ],
         [
           "2026-09-02",
           271.13
@@ -32019,10 +31560,6 @@
       "title": "Cacheador Britânia 25mm Revestimento Cerâmico BECE01",
       "points": [
         [
-          "2026-09-01",
-          125.9
-        ],
-        [
           "2026-09-02",
           125.9
         ],
@@ -32036,10 +31573,6 @@
       "title": "Câmera Inteligente Intelbras Ime 360 3mp Visão 360 Wi-fi Cor Branco",
       "identity": "MLB53403093",
       "points": [
-        [
-          "2026-09-01",
-          185.53
-        ],
         [
           "2026-09-02",
           185.53
@@ -32074,10 +31607,6 @@
       "title": "Campainha Sem Fio Cib 101 Intelbras Alcance Até 100 Metros Cor Preto",
       "identity": "MLB39943684",
       "points": [
-        [
-          "2026-09-01",
-          55.61
-        ],
         [
           "2026-09-02",
           55.61
@@ -32165,10 +31694,6 @@
       "identity": "MLB21361292",
       "points": [
         [
-          "2026-09-01",
-          88.55
-        ],
-        [
           "2026-09-02",
           88.55
         ],
@@ -32275,6 +31800,10 @@
         [
           "2026-09-29",
           90.92
+        ],
+        [
+          "2026-10-01",
+          94.02
         ]
       ]
     },
@@ -32283,10 +31812,6 @@
       "identity": "MLB6140723",
       "points": [
         [
-          "2026-09-01",
-          669.99
-        ],
-        [
           "2026-09-02",
           669.99
         ],
@@ -32393,16 +31918,16 @@
         [
           "2026-09-29",
           617.49
+        ],
+        [
+          "2026-10-01",
+          649.99
         ]
       ]
     },
     "mPixDp8GCOfE75yK2vcc": {
       "title": "Bicicleta Aro 29 Gts Dexter 24 Marchas Freio A Disco Cor Grafite Com Preto Tamanho Do Quadro 21",
       "points": [
-        [
-          "2026-09-01",
-          799
-        ],
         [
           "2026-09-02",
           799
@@ -32414,10 +31939,6 @@
       "identity": "MLB54058680",
       "points": [
         [
-          "2026-09-01",
-          275.4
-        ],
-        [
           "2026-09-02",
           275.4
         ],
@@ -32524,6 +32045,10 @@
         [
           "2026-09-29",
           299.9
+        ],
+        [
+          "2026-10-01",
+          284.99
         ]
       ]
     },
@@ -32532,10 +32057,6 @@
       "identity": "MLB55829716",
       "points": [
         [
-          "2026-09-01",
-          90
-        ],
-        [
           "2026-09-02",
           90
         ],
@@ -32641,6 +32162,10 @@
         ],
         [
           "2026-09-29",
+          112.02
+        ],
+        [
+          "2026-10-01",
           112.02
         ]
       ]
@@ -32650,10 +32175,6 @@
       "identity": "MLB62162205",
       "points": [
         [
-          "2026-09-01",
-          48.28
-        ],
-        [
           "2026-09-02",
           48.28
         ],
@@ -32760,6 +32281,10 @@
         [
           "2026-09-29",
           48.28
+        ],
+        [
+          "2026-10-01",
+          48.28
         ]
       ]
     },
@@ -32768,12 +32293,12 @@
       "identity": "MLB61669343",
       "points": [
         [
-          "2026-09-01",
-          56.2
-        ],
-        [
           "2026-09-23",
           55.63
+        ],
+        [
+          "2026-10-01",
+          48.28
         ]
       ]
     },
@@ -32781,10 +32306,6 @@
       "title": "Camiseta Nike Dri-fit Legend Masculina",
       "identity": "MLB3797986470",
       "points": [
-        [
-          "2026-09-01",
-          89.99
-        ],
         [
           "2026-09-02",
           89.99
@@ -32876,10 +32397,6 @@
       "identity": "MLB25371983",
       "points": [
         [
-          "2026-09-01",
-          245.18
-        ],
-        [
           "2026-09-12",
           245.18
         ],
@@ -32941,10 +32458,6 @@
       "title": "Cafeteira Nescafé Dolce Gusto Arno Mini Me Preta",
       "points": [
         [
-          "2026-09-01",
-          388.55
-        ],
-        [
           "2026-09-02",
           388.55
         ],
@@ -32958,10 +32471,6 @@
       "title": "Robô Aspirador Xiaomi S40 Pro Alexa E Google Branco BIVOLT",
       "identity": "MLB64251864",
       "points": [
-        [
-          "2026-09-01",
-          3949
-        ],
         [
           "2026-09-02",
           3949
@@ -33053,10 +32562,6 @@
       "identity": "MLB53618239",
       "points": [
         [
-          "2026-09-01",
-          74.31
-        ],
-        [
           "2026-09-02",
           74.31
         ],
@@ -33090,10 +32595,6 @@
       "title": "Espelho Orgânico Capela Led 44x64 Para Sala Quarto Banheiro Moldura Capela Led Frio",
       "identity": "MLB61965929",
       "points": [
-        [
-          "2026-09-01",
-          74.9
-        ],
         [
           "2026-09-02",
           74.9
@@ -33201,6 +32702,10 @@
         [
           "2026-09-29",
           70.5
+        ],
+        [
+          "2026-10-01",
+          72.65
         ]
       ]
     },
@@ -33208,10 +32713,6 @@
       "title": "Lixeira Inteligente Automática Cinza Universal Com Sensor Recarregável Earman Company Anti Odor 16l Recarregável Usb",
       "identity": "MLB54545450",
       "points": [
-        [
-          "2026-09-01",
-          76.39
-        ],
         [
           "2026-09-02",
           76.39
@@ -33311,10 +32812,6 @@
       "identity": "MLB66191173",
       "points": [
         [
-          "2026-09-01",
-          827.98
-        ],
-        [
           "2026-09-02",
           827.98
         ],
@@ -33360,10 +32857,6 @@
       "title": "Balança De Bioimpedância 8 Sensores Relaxmedic Digital Preto",
       "identity": "MLB64134227",
       "points": [
-        [
-          "2026-09-01",
-          379.81
-        ],
         [
           "2026-09-02",
           379.81
@@ -33471,6 +32964,10 @@
         [
           "2026-09-29",
           388
+        ],
+        [
+          "2026-10-01",
+          389.84
         ]
       ]
     },
@@ -33478,10 +32975,6 @@
       "title": "Tablet HUAWEI MatePad SE 11 Wifi 6+128GB Tela HUAWEI FullView de 11\" para Conforto Visual, Superbateria de 7700 mAh 225W Câmera Traseira 8 MP, Câmera Frontal 5 MP Cinza Nebula",
       "identity": "MLB43534397",
       "points": [
-        [
-          "2026-09-01",
-          979
-        ],
         [
           "2026-09-02",
           979
@@ -33573,10 +33066,6 @@
       "identity": "MLB55027309",
       "points": [
         [
-          "2026-09-01",
-          974.9
-        ],
-        [
           "2026-09-02",
           974.9
         ],
@@ -33666,10 +33155,6 @@
       "title": "Soprador de folhas lateral Fak260S 2T 26Cc 0,90Hp Carbon Fak cor laranja profissional a gasolina",
       "identity": "MLB23851475",
       "points": [
-        [
-          "2026-09-01",
-          339
-        ],
         [
           "2026-09-02",
           339
@@ -33773,16 +33258,16 @@
         [
           "2026-09-29",
           379.9
+        ],
+        [
+          "2026-10-01",
+          360.3
         ]
       ]
     },
     "4w4LORDgVwdEfsGV9G36": {
       "title": "Carregador De Bateria Inteligente Reparador Automotivo Kateluo 12v 6a Recupera Baterias 4ah A 100ah Carro Moto Lancha Jetski Caminhão Proteção Contra Curto",
       "points": [
-        [
-          "2026-09-01",
-          51.17
-        ],
         [
           "2026-09-02",
           51.17
@@ -33793,10 +33278,6 @@
       "title": "Rádio Am Fm Retrô Antigo Bluetooth Recarregável Bivolt Azul",
       "identity": "MLB64535898",
       "points": [
-        [
-          "2026-09-01",
-          61.1
-        ],
         [
           "2026-09-02",
           61.1
@@ -33904,16 +33385,16 @@
         [
           "2026-09-29",
           66.99
+        ],
+        [
+          "2026-10-01",
+          59.99
         ]
       ]
     },
     "L9Vdxx2fNGSSaTR0d7Iu": {
       "title": "Creatina Monohidratada em Pote 300g 100% Pura Dark Lab",
       "points": [
-        [
-          "2026-09-01",
-          42.9
-        ],
         [
           "2026-09-02",
           42.9
@@ -33924,10 +33405,6 @@
       "title": "Ventilador de Mesa 30cm Super Power Mondial 60W VSP-30-B",
       "identity": "MLB18932156",
       "points": [
-        [
-          "2026-09-01",
-          109.9
-        ],
         [
           "2026-09-03",
           109.9
@@ -33991,6 +33468,10 @@
         [
           "2026-09-29",
           117.81
+        ],
+        [
+          "2026-10-01",
+          130.9
         ]
       ]
     },
@@ -33998,10 +33479,6 @@
       "title": "Umidificador De Ar Ultrassônico Umi Pop Health 2,3l Dellamed Cor Branco Bivolt",
       "identity": "MLB26908451",
       "points": [
-        [
-          "2026-09-01",
-          69.9
-        ],
         [
           "2026-09-02",
           69.9
@@ -34109,6 +33586,10 @@
         [
           "2026-09-29",
           98
+        ],
+        [
+          "2026-10-01",
+          118
         ]
       ]
     },
@@ -34116,10 +33597,6 @@
       "title": "Grill Sanduicheira Cadence SAN400 Elétrica Chapa Misteira Tostex Tostequeira Hambúrguer Click",
       "identity": "MLB25850957",
       "points": [
-        [
-          "2026-09-01",
-          89.9
-        ],
         [
           "2026-09-02",
           89.9
@@ -34221,6 +33698,10 @@
         [
           "2026-09-29",
           49.9
+        ],
+        [
+          "2026-10-01",
+          49.9
         ]
       ]
     },
@@ -34228,10 +33709,6 @@
       "title": "Fone de Ouvido Bluetooth 5.4 TWS com Ear Clip e Gancho, Som HiFi Graves Potentes e 3D, 50h Bateria e Carga Rápida, ENC Cancelamento de Ruído, IPX6 à Prova d'Água – Ideal para Academia e Corrida Basike",
       "identity": "MLB67513507",
       "points": [
-        [
-          "2026-09-01",
-          73
-        ],
         [
           "2026-09-02",
           73
@@ -34339,16 +33816,16 @@
         [
           "2026-09-29",
           139.89
+        ],
+        [
+          "2026-10-01",
+          139.89
         ]
       ]
     },
     "hKnDa7Px57sw5YzW1s6V": {
       "title": "Mop Escova Elétrica Rotatória 9 Em 1 Recarregável Multiuso Limpeza Banheiro Cozinha E Piso",
       "points": [
-        [
-          "2026-09-01",
-          77.99
-        ],
         [
           "2026-09-02",
           87.5
@@ -34363,10 +33840,6 @@
       "title": "Carrinho Controle Remoto Recarregável Grande Off Road Cross Azul",
       "identity": "MLB66986360",
       "points": [
-        [
-          "2026-09-01",
-          182.9
-        ],
         [
           "2026-09-02",
           182.9
@@ -34474,6 +33947,10 @@
         [
           "2026-09-29",
           155.39
+        ],
+        [
+          "2026-10-01",
+          138.61
         ]
       ]
     },
@@ -34481,10 +33958,6 @@
       "title": "Espremedor Turbo Citrus, Mondial, 25W - E-01",
       "identity": "MLB15490392",
       "points": [
-        [
-          "2026-09-01",
-          67.33
-        ],
         [
           "2026-09-02",
           67.33
@@ -34592,6 +34065,10 @@
         [
           "2026-09-29",
           77.03
+        ],
+        [
+          "2026-10-01",
+          62.61
         ]
       ]
     },
@@ -34599,10 +34076,6 @@
       "title": "Ômega 3 Epa Dha 120 Cápsulas Dark Lab",
       "identity": "MLB60940040",
       "points": [
-        [
-          "2026-09-01",
-          64.9
-        ],
         [
           "2026-09-02",
           64.9
@@ -34710,6 +34183,10 @@
         [
           "2026-09-29",
           58.41
+        ],
+        [
+          "2026-10-01",
+          64.9
         ]
       ]
     },
@@ -34728,6 +34205,10 @@
         [
           "2026-09-29",
           111.35
+        ],
+        [
+          "2026-10-01",
+          104.95
         ]
       ]
     },
@@ -34736,10 +34217,6 @@
       "identity": "MLB60968045",
       "points": [
         [
-          "2026-09-01",
-          108
-        ],
-        [
           "2026-09-02",
           108
         ],
@@ -34846,6 +34323,10 @@
         [
           "2026-09-29",
           142.42
+        ],
+        [
+          "2026-10-01",
+          135.66
         ]
       ]
     },
@@ -34854,10 +34335,6 @@
       "identity": "MLB5222250670",
       "points": [
         [
-          "2026-09-01",
-          327.19
-        ],
-        [
           "2026-09-02",
           327.19
         ],
@@ -34964,25 +34441,16 @@
         [
           "2026-09-29",
           358.39
-        ]
-      ]
-    },
-    "Th0eGSWOwV4uTPn9bEUF": {
-      "title": "Fone Ouvido Bluetooth Compatível Com Iphone X Xr 11 12 13 14 15 16 17 Xs Pro Max Plus Samsung S20 S23 S24 Xiaomi Motorola Android Ios Sem Fio Prova DAgua Wireless Tipo Light Cancelamento Ruido Celular",
-      "points": [
+        ],
         [
-          "2026-09-01",
-          40.24
+          "2026-10-01",
+          358.39
         ]
       ]
     },
     "0Q5DTdleixACi5nzWOVy": {
       "title": "Perfume Masculino Aromático Cítrico Fresco e Energizante, Eau de Toilette Polo Sport Ralph Lauren 100ml",
       "points": [
-        [
-          "2026-09-01",
-          197.99
-        ],
         [
           "2026-09-02",
           197.99
@@ -34996,10 +34464,6 @@
     "FucssnV5ibR0KiYHIgYP": {
       "title": "Perfume Rabanne Invictus Victory Eau De Parfum 200 Ml Masculino",
       "points": [
-        [
-          "2026-09-01",
-          680
-        ],
         [
           "2026-09-02",
           680
@@ -35017,16 +34481,16 @@
         [
           "2026-09-23",
           72.59
+        ],
+        [
+          "2026-10-01",
+          74
         ]
       ]
     },
     "U48dOJf8c7jF4d39r908": {
       "title": "Perfume Masculino Eau de Parfum Azzaro The Most Wanted Intense 100 ml",
       "points": [
-        [
-          "2026-09-01",
-          482.37
-        ],
         [
           "2026-09-02",
           482.37
@@ -35041,10 +34505,6 @@
       "title": "Perfume Jean Paul Gaultier Le Male Le Parfum Eau de Parfum Intense 200 ml Masculino",
       "points": [
         [
-          "2026-09-01",
-          686.89
-        ],
-        [
           "2026-09-02",
           686.89
         ],
@@ -35058,10 +34518,6 @@
       "title": "Perfume Carolina Herrera 212 VIP Men Eau de Toilette 200ml masculino",
       "points": [
         [
-          "2026-09-01",
-          531.99
-        ],
-        [
           "2026-09-02",
           531.99
         ],
@@ -35074,10 +34530,6 @@
     "8g27yEEww0Nhr3kWEJ0b": {
       "title": "Britânia Escova Secadora Bec02pr 4 Em 1 1300w Cor Preto e Rosa",
       "points": [
-        [
-          "2026-09-01",
-          87.65
-        ],
         [
           "2026-09-02",
           87.65
@@ -35096,10 +34548,6 @@
       "title": "Mini Localizador Rastreador Smart Tag Gps Com Cordão Chaveiro Cor Preto Compatível Com Android Samsung Motorola Xiaomi Chrome Technology",
       "points": [
         [
-          "2026-09-01",
-          36.9
-        ],
-        [
           "2026-09-02",
           38.06
         ],
@@ -35116,10 +34564,6 @@
     "JSYXd4Jw2gWrjWMgLdGr": {
       "title": "Balança Digital Bioimpedância Profissional smart imc 180kg Bluetooth Corporal Aparelho Alta Capacidade aplicativo App para Android e para IOS Balança De Banheiro Academia",
       "points": [
-        [
-          "2026-09-01",
-          32
-        ],
         [
           "2026-09-02",
           32
@@ -35138,10 +34582,6 @@
       "title": "Patinete Elétrico 500w Autonomia 37km Dobrável Ipx4 App 10",
       "identity": "MLB5085157465",
       "points": [
-        [
-          "2026-09-01",
-          1699.15
-        ],
         [
           "2026-09-02",
           1699.15
@@ -35249,16 +34689,16 @@
         [
           "2026-09-29",
           1699.15
+        ],
+        [
+          "2026-10-01",
+          1699.15
         ]
       ]
     },
     "O0XGuAqLprjiqA4yVMIV": {
       "title": "Kit Teclado e Mouse Sem Fio Slim Multilaser - Design Elegante e Silencioso - TC270",
       "points": [
-        [
-          "2026-09-01",
-          61.55
-        ],
         [
           "2026-09-02",
           61.55
@@ -35273,22 +34713,9 @@
         ]
       ]
     },
-    "OKZMFBNBq49X7a4ohLpp": {
-      "title": "Hidrabene Protetor facial Solar FPS 70 Toque Seco Antissinais Clareia a pele 50g",
-      "points": [
-        [
-          "2026-09-01",
-          39.8
-        ]
-      ]
-    },
     "n9gt0ANeFobk2vYPpZnN": {
       "title": "Aspirador De Pó Vertical 2 Em 1 1400w Philco Pas1550c Cor Cinza",
       "points": [
-        [
-          "2026-09-01",
-          170.11
-        ],
         [
           "2026-09-02",
           170.11
@@ -35307,10 +34734,6 @@
       "title": "Mixer Bmx360 2 Em 1 350w Com Lâminas Pro Maxx Preto Britânia",
       "points": [
         [
-          "2026-09-01",
-          121.4
-        ],
-        [
           "2026-09-02",
           121.4
         ],
@@ -35328,10 +34751,6 @@
       "title": "Pulverizador De Espuma Eletrico Alta Pressão Snow Foam",
       "identity": "MLB7216680136",
       "points": [
-        [
-          "2026-09-01",
-          115.22
-        ],
         [
           "2026-09-02",
           115.22
@@ -35439,16 +34858,16 @@
         [
           "2026-09-29",
           161.49
+        ],
+        [
+          "2026-10-01",
+          169.99
         ]
       ]
     },
     "wUvS6Kc7XiNgiC1MPNI3": {
       "title": "Camera de Segurança P11 Wifi 6 Mp 4k Lente Dupla Vigilância YOOSEE",
       "points": [
-        [
-          "2026-09-01",
-          145
-        ],
         [
           "2026-09-02",
           161.19
@@ -35467,10 +34886,6 @@
       "title": "Kit Teclado Mouse Celular Android Mobilador Jogo Freefire Nf",
       "identity": "MLB4641066796",
       "points": [
-        [
-          "2026-09-01",
-          103.7
-        ],
         [
           "2026-09-02",
           103.7
@@ -35574,6 +34989,10 @@
         [
           "2026-09-29",
           100.59
+        ],
+        [
+          "2026-10-01",
+          100.59
         ]
       ]
     },
@@ -35594,10 +35013,6 @@
       "title": "Kit Starlink MINI Internet Via Satélite",
       "points": [
         [
-          "2026-09-01",
-          559
-        ],
-        [
           "2026-09-02",
           559
         ],
@@ -35615,10 +35030,6 @@
       "title": "Fone de Ouvido Bluetooth 5.3 Tws Sem Fio Esportivo Compatível Com iPhone Samsung Xiaomi Motorola Com Gancho Premium KAPBOM Preto",
       "points": [
         [
-          "2026-09-01",
-          45.54
-        ],
-        [
           "2026-09-02",
           47.3
         ],
@@ -35632,22 +35043,9 @@
         ]
       ]
     },
-    "OC3QqRMuesc9ywDV71cG": {
-      "title": "Climatizador Ar Frio Portátil Evaporativo 16 Litros Umidificador Ventisol Clin 16",
-      "points": [
-        [
-          "2026-09-01",
-          387.01
-        ]
-      ]
-    },
     "WVUhbwswEypbsPx0tX58": {
       "title": "Pulverizador De Espuma À Elétrico Recarregável Alta Pressão Snow Foam",
       "points": [
-        [
-          "2026-09-01",
-          100.8
-        ],
         [
           "2026-09-02",
           105.5
@@ -35666,10 +35064,6 @@
       "title": "Purificador De Água Philco Branco/Cinza Ppu11b",
       "points": [
         [
-          "2026-09-01",
-          369.9
-        ],
-        [
           "2026-09-02",
           369.9
         ],
@@ -35687,10 +35081,6 @@
       "title": "Mini Compressor de Ar Digital Portátil Recarregável USB-C Lumi para Pneus de Carro, Moto e Bicicleta Inflador Elétrico de Bolas e Infláveis Display LCD Alta Pressão Sem Fio Preto",
       "identity": "MLB66484377",
       "points": [
-        [
-          "2026-09-01",
-          62
-        ],
         [
           "2026-09-02",
           62
@@ -35892,16 +35282,16 @@
         [
           "2026-09-29",
           35.98
+        ],
+        [
+          "2026-10-01",
+          34.97
         ]
       ]
     },
     "rtwm3Xv7CQVuLdlEU5mh": {
       "title": "Kit C/ 3 Controles Remoto Universal C/ 4 Botões 433mhz Rf Compatível C/ Dispositivo Para Mega Controle Portão Eletrônico Automático Garagem Alarme Porta Residencial Cerca Elétrica Pro Phone See",
       "points": [
-        [
-          "2026-09-01",
-          38.55
-        ],
         [
           "2026-09-02",
           42.81
@@ -35920,10 +35310,6 @@
       "title": "Soprador De Folhas Aspirador Elétrico Com 2 Baterias 48vprem",
       "identity": "MLB7118107422",
       "points": [
-        [
-          "2026-09-01",
-          128.25
-        ],
         [
           "2026-09-02",
           128.25
@@ -36027,6 +35413,10 @@
         [
           "2026-09-29",
           144.12
+        ],
+        [
+          "2026-10-01",
+          155.15
         ]
       ]
     },
@@ -36034,10 +35424,6 @@
       "title": "Kit Par 2 Radio Baofeng 777s Walk Talk Comunicador 16 Canais",
       "identity": "MLB3436930873",
       "points": [
-        [
-          "2026-09-01",
-          99.98
-        ],
         [
           "2026-09-02",
           99.98
@@ -36145,6 +35531,10 @@
         [
           "2026-09-29",
           109.97
+        ],
+        [
+          "2026-10-01",
+          109.97
         ]
       ]
     },
@@ -36152,10 +35542,6 @@
       "title": "Kit 5 Sacos Vácuo 60x80cm Bomba Elétrica Antimofo Roupas",
       "identity": "MLB4826585465",
       "points": [
-        [
-          "2026-09-01",
-          59.18
-        ],
         [
           "2026-09-02",
           59.18
@@ -36230,10 +35616,6 @@
       "title": "Body Splash My Sweet Delight E Very Sexy Barbour's 200ml",
       "points": [
         [
-          "2026-09-01",
-          63.08
-        ],
-        [
           "2026-09-02",
           63.08
         ],
@@ -36250,10 +35632,6 @@
     "Z519yQtQBvLcIIhoGVmJ": {
       "title": "Chuveiro Eletrônico Loren Shower Lorenzetti",
       "points": [
-        [
-          "2026-09-01",
-          117
-        ],
         [
           "2026-09-02",
           117
@@ -36272,10 +35650,6 @@
       "title": "Câmera de Segurança Wi-Fi iCSee/Yoosee A28B 4K Dupla Lente Visão Noturna Colorida Full Hd Externa Prova D'água Ip66 Sensor Movimento Woosh",
       "points": [
         [
-          "2026-09-01",
-          124.71
-        ],
-        [
           "2026-09-02",
           124.71
         ],
@@ -36292,10 +35666,6 @@
     "kzPGkQRRQEZwBQmjDsmP": {
       "title": "Fogão Cooktop Elétrico Elgin 2 Bocas Preto",
       "points": [
-        [
-          "2026-09-01",
-          99.99
-        ],
         [
           "2026-09-02",
           99.99
@@ -36314,10 +35684,6 @@
       "title": "Fritadeira Air Fryer Elgin Facilita Fry 3,5l Potência 1400w Cor Preto",
       "identity": "MLB66308260",
       "points": [
-        [
-          "2026-09-01",
-          190
-        ],
         [
           "2026-09-02",
           190
@@ -36421,16 +35787,16 @@
         [
           "2026-09-29",
           191
+        ],
+        [
+          "2026-10-01",
+          191
         ]
       ]
     },
     "r3L4heX8V5240rDRkJzw": {
       "title": "Ventilador De Coluna Light Turbo Silencioso 5 Pás Altura Ajustavel 3 Velocidades 40cm Preto",
       "points": [
-        [
-          "2026-09-01",
-          149.99
-        ],
         [
           "2026-09-02",
           149.99
@@ -36463,6 +35829,10 @@
         ],
         [
           "2026-09-29",
+          44.97
+        ],
+        [
+          "2026-10-01",
           44.97
         ]
       ]
@@ -36573,6 +35943,10 @@
         ],
         [
           "2026-09-29",
+          63.9
+        ],
+        [
+          "2026-10-01",
           63.9
         ]
       ]
@@ -36885,6 +36259,10 @@
         [
           "2026-09-29",
           94.91
+        ],
+        [
+          "2026-10-01",
+          94.91
         ]
       ]
     },
@@ -36995,6 +36373,10 @@
         [
           "2026-09-29",
           114
+        ],
+        [
+          "2026-10-01",
+          126.67
         ]
       ]
     },
@@ -37104,6 +36486,10 @@
         ],
         [
           "2026-09-29",
+          104.9
+        ],
+        [
+          "2026-10-01",
           104.9
         ]
       ]
@@ -37215,6 +36601,10 @@
         [
           "2026-09-29",
           99.89
+        ],
+        [
+          "2026-10-01",
+          99.9
         ]
       ]
     },
@@ -37383,6 +36773,10 @@
         [
           "2026-09-29",
           52.43
+        ],
+        [
+          "2026-10-01",
+          56.99
         ]
       ]
     },
@@ -37489,6 +36883,10 @@
         [
           "2026-09-29",
           399.1
+        ],
+        [
+          "2026-10-01",
+          399.1
         ]
       ]
     },
@@ -37594,6 +36992,10 @@
         ],
         [
           "2026-09-29",
+          167.07
+        ],
+        [
+          "2026-10-01",
           167.07
         ]
       ]
@@ -37764,6 +37166,10 @@
         [
           "2026-09-29",
           64.9
+        ],
+        [
+          "2026-10-01",
+          64.9
         ]
       ]
     },
@@ -37869,6 +37275,10 @@
         [
           "2026-09-29",
           379.99
+        ],
+        [
+          "2026-10-01",
+          399.99
         ]
       ]
     },
@@ -37954,6 +37364,10 @@
         ],
         [
           "2026-09-29",
+          29.91
+        ],
+        [
+          "2026-10-01",
           29.91
         ]
       ]
@@ -38045,6 +37459,10 @@
         ],
         [
           "2026-09-29",
+          199.9
+        ],
+        [
+          "2026-10-01",
           199.9
         ]
       ]
@@ -38170,6 +37588,10 @@
         [
           "2026-09-29",
           39.31
+        ],
+        [
+          "2026-10-01",
+          38.74
         ]
       ]
     },
@@ -38260,6 +37682,10 @@
         [
           "2026-09-29",
           183
+        ],
+        [
+          "2026-10-01",
+          157
         ]
       ]
     },
@@ -38347,6 +37773,10 @@
         [
           "2026-09-29",
           56.14
+        ],
+        [
+          "2026-10-01",
+          61.02
         ]
       ]
     },
@@ -38425,6 +37855,10 @@
         [
           "2026-09-29",
           74.1
+        ],
+        [
+          "2026-10-01",
+          74.1
         ]
       ]
     },
@@ -38459,6 +37893,10 @@
         [
           "2026-09-29",
           74.99
+        ],
+        [
+          "2026-10-01",
+          78.9
         ]
       ]
     },
@@ -38623,6 +38061,10 @@
         [
           "2026-09-29",
           57.9
+        ],
+        [
+          "2026-10-01",
+          57.9
         ]
       ]
     },
@@ -38701,6 +38143,10 @@
         [
           "2026-09-29",
           78.9
+        ],
+        [
+          "2026-10-01",
+          119.9
         ]
       ]
     },
@@ -38801,6 +38247,10 @@
         [
           "2026-09-29",
           167.44
+        ],
+        [
+          "2026-10-01",
+          167.44
         ]
       ]
     },
@@ -38879,6 +38329,10 @@
         [
           "2026-09-29",
           25.34
+        ],
+        [
+          "2026-10-01",
+          30
         ]
       ]
     },
@@ -38956,6 +38410,10 @@
         ],
         [
           "2026-09-29",
+          129.9
+        ],
+        [
+          "2026-10-01",
           129.9
         ]
       ]
@@ -39067,6 +38525,10 @@
         [
           "2026-09-29",
           188.99
+        ],
+        [
+          "2026-10-01",
+          199.98
         ]
       ]
     },
@@ -39161,6 +38623,10 @@
         [
           "2026-09-29",
           999
+        ],
+        [
+          "2026-10-01",
+          938.89
         ]
       ]
     },
@@ -39239,6 +38705,10 @@
         [
           "2026-09-29",
           58.73
+        ],
+        [
+          "2026-10-01",
+          58.73
         ]
       ]
     },
@@ -39312,6 +38782,10 @@
         ],
         [
           "2026-09-29",
+          119.9
+        ],
+        [
+          "2026-10-01",
           119.9
         ]
       ]
@@ -39406,6 +38880,10 @@
         ],
         [
           "2026-09-29",
+          159.99
+        ],
+        [
+          "2026-10-01",
           159.99
         ]
       ]
@@ -39569,6 +39047,10 @@
         [
           "2026-09-29",
           489
+        ],
+        [
+          "2026-10-01",
+          548
         ]
       ]
     },
@@ -39662,6 +39144,10 @@
         ],
         [
           "2026-09-29",
+          427.49
+        ],
+        [
+          "2026-10-01",
           427.49
         ]
       ]
@@ -39889,6 +39375,10 @@
         [
           "2026-09-29",
           299.99
+        ],
+        [
+          "2026-10-01",
+          315.78
         ]
       ]
     },
@@ -39991,6 +39481,10 @@
         [
           "2026-09-29",
           797.92
+        ],
+        [
+          "2026-10-01",
+          777
         ]
       ]
     },
@@ -40024,6 +39518,10 @@
         ],
         [
           "2026-09-29",
+          208.25
+        ],
+        [
+          "2026-10-01",
           208.25
         ]
       ]
@@ -40095,6 +39593,10 @@
         [
           "2026-09-29",
           139.55
+        ],
+        [
+          "2026-10-01",
+          130
         ]
       ]
     },
@@ -40165,6 +39667,10 @@
         [
           "2026-09-29",
           113.9
+        ],
+        [
+          "2026-10-01",
+          119.9
         ]
       ]
     },
@@ -40235,6 +39741,10 @@
         [
           "2026-09-29",
           89.8
+        ],
+        [
+          "2026-10-01",
+          130
         ]
       ]
     },
@@ -40305,6 +39815,10 @@
         [
           "2026-09-29",
           127.8
+        ],
+        [
+          "2026-10-01",
+          130
         ]
       ]
     },
@@ -40433,6 +39947,10 @@
         [
           "2026-09-24",
           135.99
+        ],
+        [
+          "2026-10-01",
+          132.99
         ]
       ]
     },
@@ -40462,6 +39980,10 @@
         ],
         [
           "2026-09-29",
+          208.99
+        ],
+        [
+          "2026-10-01",
           208.99
         ]
       ]
@@ -40533,6 +40055,10 @@
         [
           "2026-09-29",
           128.22
+        ],
+        [
+          "2026-10-01",
+          124.71
         ]
       ]
     },
@@ -40603,6 +40129,10 @@
         [
           "2026-09-29",
           3060.71
+        ],
+        [
+          "2026-10-01",
+          3274.28
         ]
       ]
     },
@@ -40687,6 +40217,10 @@
         [
           "2026-09-29",
           340.31
+        ],
+        [
+          "2026-10-01",
+          369.9
         ]
       ]
     },
@@ -40757,6 +40291,10 @@
         [
           "2026-09-29",
           112
+        ],
+        [
+          "2026-10-01",
+          92
         ]
       ]
     },
@@ -40834,6 +40372,10 @@
         ],
         [
           "2026-09-29",
+          37.9
+        ],
+        [
+          "2026-10-01",
           37.9
         ]
       ]
@@ -40975,6 +40517,10 @@
         [
           "2026-09-29",
           69.29
+        ],
+        [
+          "2026-10-01",
+          69.29
         ]
       ]
     },
@@ -41079,6 +40625,10 @@
         [
           "2026-09-29",
           51.9
+        ],
+        [
+          "2026-10-01",
+          46.9
         ]
       ]
     },
@@ -41239,6 +40789,10 @@
         [
           "2026-09-29",
           278.91
+        ],
+        [
+          "2026-10-01",
+          271.92
         ]
       ]
     },
@@ -41325,6 +40879,10 @@
         [
           "2026-09-29",
           47
+        ],
+        [
+          "2026-10-01",
+          51.9
         ]
       ]
     },
@@ -41411,6 +40969,10 @@
         [
           "2026-09-29",
           48.99
+        ],
+        [
+          "2026-10-01",
+          48.99
         ]
       ]
     },
@@ -41480,6 +41042,10 @@
         ],
         [
           "2026-09-29",
+          78.99
+        ],
+        [
+          "2026-10-01",
           78.99
         ]
       ]
@@ -41563,6 +41129,10 @@
         [
           "2026-09-29",
           44.39
+        ],
+        [
+          "2026-10-01",
+          44.39
         ]
       ]
     },
@@ -41633,6 +41203,10 @@
         [
           "2026-09-29",
           55.09
+        ],
+        [
+          "2026-10-01",
+          57.99
         ]
       ]
     },
@@ -41703,6 +41277,10 @@
         [
           "2026-09-29",
           145.89
+        ],
+        [
+          "2026-10-01",
+          141.67
         ]
       ]
     },
@@ -41772,6 +41350,10 @@
         ],
         [
           "2026-09-29",
+          189.9
+        ],
+        [
+          "2026-10-01",
           189.9
         ]
       ]
@@ -41901,6 +41483,10 @@
         [
           "2026-09-29",
           165
+        ],
+        [
+          "2026-10-01",
+          139
         ]
       ]
     },
@@ -41971,6 +41557,10 @@
         [
           "2026-09-29",
           322.43
+        ],
+        [
+          "2026-10-01",
+          299
         ]
       ]
     },
@@ -42115,6 +41705,10 @@
         [
           "2026-09-29",
           50.43
+        ],
+        [
+          "2026-10-01",
+          51.99
         ]
       ]
     },
@@ -42219,6 +41813,10 @@
         [
           "2026-09-29",
           261.88
+        ],
+        [
+          "2026-10-01",
+          261.88
         ]
       ]
     },
@@ -42296,6 +41894,10 @@
         ],
         [
           "2026-09-29",
+          79.9
+        ],
+        [
+          "2026-10-01",
           79.9
         ]
       ]
@@ -42375,6 +41977,10 @@
         [
           "2026-09-29",
           39.1
+        ],
+        [
+          "2026-10-01",
+          38.89
         ]
       ]
     },
@@ -42452,6 +42058,10 @@
         ],
         [
           "2026-09-29",
+          88.01
+        ],
+        [
+          "2026-10-01",
           88.01
         ]
       ]
@@ -42585,6 +42195,10 @@
         [
           "2026-09-29",
           3329.1
+        ],
+        [
+          "2026-10-01",
+          3496
         ]
       ]
     },
@@ -42681,6 +42295,10 @@
         [
           "2026-09-29",
           199
+        ],
+        [
+          "2026-10-01",
+          199
         ]
       ]
     },
@@ -42754,6 +42372,10 @@
         ],
         [
           "2026-09-29",
+          24.99
+        ],
+        [
+          "2026-10-01",
           24.99
         ]
       ]
@@ -42914,6 +42536,10 @@
         [
           "2026-09-29",
           198
+        ],
+        [
+          "2026-10-01",
+          192
         ]
       ]
     },
@@ -42975,6 +42601,10 @@
         ],
         [
           "2026-09-29",
+          34.99
+        ],
+        [
+          "2026-10-01",
           34.99
         ]
       ]
@@ -43038,6 +42668,10 @@
         [
           "2026-09-29",
           19.62
+        ],
+        [
+          "2026-10-01",
+          19.62
         ]
       ]
     },
@@ -43092,6 +42726,10 @@
         [
           "2026-09-29",
           69.9
+        ],
+        [
+          "2026-10-01",
+          75.12
         ]
       ]
     },
@@ -43157,6 +42795,10 @@
         ],
         [
           "2026-09-29",
+          243.24
+        ],
+        [
+          "2026-10-01",
           243.24
         ]
       ]
@@ -43224,6 +42866,10 @@
         [
           "2026-09-29",
           99.9
+        ],
+        [
+          "2026-10-01",
+          99.9
         ]
       ]
     },
@@ -43290,6 +42936,10 @@
         [
           "2026-09-29",
           169.9
+        ],
+        [
+          "2026-10-01",
+          173
         ]
       ]
     },
@@ -43356,6 +43006,10 @@
         [
           "2026-09-29",
           228.8
+        ],
+        [
+          "2026-10-01",
+          173
         ]
       ]
     },
@@ -43421,6 +43075,10 @@
         ],
         [
           "2026-09-29",
+          549
+        ],
+        [
+          "2026-10-01",
           549
         ]
       ]
@@ -43534,6 +43192,10 @@
         [
           "2026-09-29",
           199
+        ],
+        [
+          "2026-10-01",
+          243.24
         ]
       ]
     },
@@ -43634,6 +43296,10 @@
         [
           "2026-09-29",
           141.17
+        ],
+        [
+          "2026-10-01",
+          190.36
         ]
       ]
     },
@@ -43706,6 +43372,10 @@
         [
           "2026-09-29",
           29.9
+        ],
+        [
+          "2026-10-01",
+          49.9
         ]
       ]
     },
@@ -43763,6 +43433,10 @@
         ],
         [
           "2026-09-29",
+          36.98
+        ],
+        [
+          "2026-10-01",
           36.98
         ]
       ]
@@ -43826,6 +43500,10 @@
         [
           "2026-09-29",
           99
+        ],
+        [
+          "2026-10-01",
+          103.99
         ]
       ]
     },
@@ -43888,6 +43566,10 @@
         [
           "2026-09-29",
           39.9
+        ],
+        [
+          "2026-10-01",
+          69
         ]
       ]
     },
@@ -43949,6 +43631,10 @@
         ],
         [
           "2026-09-29",
+          190.36
+        ],
+        [
+          "2026-10-01",
           190.36
         ]
       ]
@@ -44012,6 +43698,10 @@
         [
           "2026-09-29",
           72.52
+        ],
+        [
+          "2026-10-01",
+          71.92
         ]
       ]
     },
@@ -44074,6 +43764,10 @@
         [
           "2026-09-29",
           169.88
+        ],
+        [
+          "2026-10-01",
+          136.99
         ]
       ]
     },
@@ -44166,6 +43860,10 @@
         [
           "2026-09-29",
           79
+        ],
+        [
+          "2026-10-01",
+          88
         ]
       ]
     },
@@ -44224,6 +43922,10 @@
         [
           "2026-09-29",
           59.9
+        ],
+        [
+          "2026-10-01",
+          57.9
         ]
       ]
     },
@@ -44282,6 +43984,10 @@
         [
           "2026-09-29",
           94.05
+        ],
+        [
+          "2026-10-01",
+          99
         ]
       ]
     },
@@ -44328,6 +44034,10 @@
         [
           "2026-09-29",
           472.15
+        ],
+        [
+          "2026-10-01",
+          499
         ]
       ]
     },
@@ -44424,6 +44134,10 @@
         [
           "2026-09-29",
           159
+        ],
+        [
+          "2026-10-01",
+          159
         ]
       ]
     },
@@ -44482,6 +44196,10 @@
         [
           "2026-09-29",
           237.59
+        ],
+        [
+          "2026-10-01",
+          230
         ]
       ]
     },
@@ -44540,6 +44258,10 @@
         [
           "2026-09-29",
           346
+        ],
+        [
+          "2026-10-01",
+          379.05
         ]
       ]
     },
@@ -44594,6 +44316,10 @@
         [
           "2026-09-29",
           351.49
+        ],
+        [
+          "2026-10-01",
+          248.89
         ]
       ]
     },
@@ -44647,6 +44373,10 @@
         ],
         [
           "2026-09-29",
+          276.44
+        ],
+        [
+          "2026-10-01",
           276.44
         ]
       ]
@@ -44732,6 +44462,10 @@
         [
           "2026-09-29",
           359.99
+        ],
+        [
+          "2026-10-01",
+          248.89
         ]
       ]
     },
@@ -44786,6 +44520,10 @@
         [
           "2026-09-29",
           108.47
+        ],
+        [
+          "2026-10-01",
+          110.88
         ]
       ]
     },
@@ -44836,6 +44574,10 @@
         [
           "2026-09-29",
           282.14
+        ],
+        [
+          "2026-10-01",
+          248.89
         ]
       ]
     },
@@ -44938,6 +44680,10 @@
         [
           "2026-09-29",
           899
+        ],
+        [
+          "2026-10-01",
+          899
         ]
       ]
     },
@@ -44983,6 +44729,10 @@
         ],
         [
           "2026-09-29",
+          359.29
+        ],
+        [
+          "2026-10-01",
           359.29
         ]
       ]
@@ -45034,6 +44784,10 @@
         [
           "2026-09-29",
           72.9
+        ],
+        [
+          "2026-10-01",
+          74.9
         ]
       ]
     },
@@ -45124,6 +44878,10 @@
         [
           "2026-09-29",
           135
+        ],
+        [
+          "2026-10-01",
+          135
         ]
       ]
     },
@@ -45174,6 +44932,10 @@
         [
           "2026-09-29",
           73.9
+        ],
+        [
+          "2026-10-01",
+          74.9
         ]
       ]
     },
@@ -45249,6 +45011,10 @@
         ],
         [
           "2026-09-29",
+          103.39
+        ],
+        [
+          "2026-10-01",
           103.39
         ]
       ]
@@ -45384,6 +45150,10 @@
         [
           "2026-09-29",
           75.5
+        ],
+        [
+          "2026-10-01",
+          69.17
         ]
       ]
     },
@@ -45452,6 +45222,10 @@
         [
           "2026-09-29",
           86.13
+        ],
+        [
+          "2026-10-01",
+          89.1
         ]
       ]
     },
@@ -45498,6 +45272,10 @@
         [
           "2026-09-29",
           69.17
+        ],
+        [
+          "2026-10-01",
+          69.17
         ]
       ]
     },
@@ -45540,6 +45318,10 @@
         [
           "2026-09-29",
           469.79
+        ],
+        [
+          "2026-10-01",
+          519.99
         ]
       ]
     },
@@ -45578,6 +45360,10 @@
         [
           "2026-09-29",
           299.99
+        ],
+        [
+          "2026-10-01",
+          349.99
         ]
       ]
     },
@@ -45607,6 +45393,10 @@
         ],
         [
           "2026-09-29",
+          1199.99
+        ],
+        [
+          "2026-10-01",
           1199.99
         ]
       ]
@@ -45688,6 +45478,10 @@
         [
           "2026-09-29",
           799
+        ],
+        [
+          "2026-10-01",
+          932
         ]
       ]
     },
@@ -45729,6 +45523,10 @@
         ],
         [
           "2026-09-29",
+          64.99
+        ],
+        [
+          "2026-10-01",
           64.99
         ]
       ]
@@ -45790,6 +45588,10 @@
         [
           "2026-09-29",
           911.05
+        ],
+        [
+          "2026-10-01",
+          1199.99
         ]
       ]
     },
@@ -45832,6 +45634,10 @@
         [
           "2026-09-29",
           854.1
+        ],
+        [
+          "2026-10-01",
+          957.85
         ]
       ]
     },
@@ -45874,6 +45680,10 @@
         [
           "2026-09-29",
           1199.99
+        ],
+        [
+          "2026-10-01",
+          1199.99
         ]
       ]
     },
@@ -45911,6 +45721,10 @@
         ],
         [
           "2026-09-29",
+          66.39
+        ],
+        [
+          "2026-10-01",
           66.39
         ]
       ]
@@ -45998,6 +45812,10 @@
         [
           "2026-09-29",
           89.99
+        ],
+        [
+          "2026-10-01",
+          99.99
         ]
       ]
     },
@@ -46036,6 +45854,10 @@
         [
           "2026-09-29",
           19.17
+        ],
+        [
+          "2026-10-01",
+          59.9
         ]
       ]
     },
@@ -46073,6 +45895,10 @@
         ],
         [
           "2026-09-29",
+          23.99
+        ],
+        [
+          "2026-10-01",
           23.99
         ]
       ]
@@ -46138,6 +45964,10 @@
         [
           "2026-09-29",
           28.49
+        ],
+        [
+          "2026-10-01",
+          28.49
         ]
       ]
     },
@@ -46176,6 +46006,10 @@
         [
           "2026-09-29",
           24.39
+        ],
+        [
+          "2026-10-01",
+          55
         ]
       ]
     },
@@ -46246,6 +46080,10 @@
         [
           "2026-09-29",
           162.9
+        ],
+        [
+          "2026-10-01",
+          162.9
         ]
       ]
     },
@@ -46280,6 +46118,10 @@
         [
           "2026-09-29",
           619
+        ],
+        [
+          "2026-10-01",
+          799.99
         ]
       ]
     },
@@ -46362,6 +46204,10 @@
         [
           "2026-09-29",
           2063.42
+        ],
+        [
+          "2026-10-01",
+          2161.46
         ]
       ]
     },
@@ -46396,6 +46242,10 @@
         [
           "2026-09-29",
           289
+        ],
+        [
+          "2026-10-01",
+          314.9
         ]
       ]
     },
@@ -46448,6 +46298,10 @@
         [
           "2026-09-29",
           232.22
+        ],
+        [
+          "2026-10-01",
+          314.9
         ]
       ]
     },
@@ -46478,6 +46332,10 @@
         [
           "2026-09-29",
           368.1
+        ],
+        [
+          "2026-10-01",
+          529
         ]
       ]
     },
@@ -46508,6 +46366,10 @@
         [
           "2026-09-29",
           423.7
+        ],
+        [
+          "2026-10-01",
+          442.04
         ]
       ]
     },
@@ -46538,6 +46400,10 @@
         [
           "2026-09-29",
           449
+        ],
+        [
+          "2026-10-01",
+          623.96
         ]
       ]
     },
@@ -46590,6 +46456,10 @@
         [
           "2026-09-29",
           378.47
+        ],
+        [
+          "2026-10-01",
+          571.97
         ]
       ]
     },
@@ -46620,6 +46490,10 @@
         [
           "2026-09-29",
           561.11
+        ],
+        [
+          "2026-10-01",
+          623.9
         ]
       ]
     },
@@ -46646,6 +46520,10 @@
         [
           "2026-09-29",
           40.9
+        ],
+        [
+          "2026-10-01",
+          38.85
         ]
       ]
     },
@@ -46676,6 +46554,10 @@
         [
           "2026-09-29",
           481.45
+        ],
+        [
+          "2026-10-01",
+          762
         ]
       ]
     },
@@ -46728,6 +46610,10 @@
         [
           "2026-09-29",
           367.08
+        ],
+        [
+          "2026-10-01",
+          399.9
         ]
       ]
     },
@@ -46757,6 +46643,10 @@
         ],
         [
           "2026-09-29",
+          78.9
+        ],
+        [
+          "2026-10-01",
           78.9
         ]
       ]
@@ -46788,6 +46678,10 @@
         [
           "2026-09-29",
           178.95
+        ],
+        [
+          "2026-10-01",
+          188.37
         ]
       ]
     },
@@ -46814,6 +46708,10 @@
         [
           "2026-09-29",
           141.59
+        ],
+        [
+          "2026-10-01",
+          144.57
         ]
       ]
     },
@@ -46840,6 +46738,10 @@
         [
           "2026-09-29",
           597.08
+        ],
+        [
+          "2026-10-01",
+          639
         ]
       ]
     },
@@ -46891,6 +46793,10 @@
         [
           "2026-09-29",
           205.9
+        ],
+        [
+          "2026-10-01",
+          205.9
         ]
       ]
     },
@@ -46923,6 +46829,10 @@
         [
           "2026-09-29",
           401.21
+        ],
+        [
+          "2026-10-01",
+          401.21
         ]
       ]
     },
@@ -46944,6 +46854,10 @@
         ],
         [
           "2026-09-29",
+          100.2
+        ],
+        [
+          "2026-10-01",
           100.2
         ]
       ]
@@ -46967,6 +46881,10 @@
         [
           "2026-09-29",
           551.08
+        ],
+        [
+          "2026-10-01",
+          599
         ]
       ]
     },
@@ -46989,6 +46907,10 @@
         [
           "2026-09-29",
           275.91
+        ],
+        [
+          "2026-10-01",
+          299.9
         ]
       ]
     },
@@ -47011,6 +46933,10 @@
         [
           "2026-09-29",
           4654.05
+        ],
+        [
+          "2026-10-01",
+          4569.99
         ]
       ]
     },
@@ -47032,6 +46958,10 @@
         ],
         [
           "2026-09-29",
+          180
+        ],
+        [
+          "2026-10-01",
           180
         ]
       ]
@@ -47079,6 +47009,10 @@
         [
           "2026-09-29",
           418.41
+        ],
+        [
+          "2026-10-01",
+          418.41
         ]
       ]
     },
@@ -47101,6 +47035,10 @@
         [
           "2026-09-29",
           240.07
+        ],
+        [
+          "2026-10-01",
+          237.62
         ]
       ]
     },
@@ -47119,6 +47057,10 @@
         [
           "2026-09-29",
           214.4
+        ],
+        [
+          "2026-10-01",
+          268
         ]
       ]
     },
@@ -47140,6 +47082,10 @@
         ],
         [
           "2026-09-29",
+          399
+        ],
+        [
+          "2026-10-01",
           399
         ]
       ]
@@ -47163,6 +47109,10 @@
         [
           "2026-09-29",
           140.55
+        ],
+        [
+          "2026-10-01",
+          140.55
         ]
       ]
     },
@@ -47184,6 +47134,10 @@
         ],
         [
           "2026-09-29",
+          92.15
+        ],
+        [
+          "2026-10-01",
           92.15
         ]
       ]
@@ -47207,6 +47161,10 @@
         [
           "2026-09-29",
           150.88
+        ],
+        [
+          "2026-10-01",
+          175
         ]
       ]
     },
@@ -47228,6 +47186,10 @@
         ],
         [
           "2026-09-29",
+          113.62
+        ],
+        [
+          "2026-10-01",
           113.62
         ]
       ]
@@ -47251,6 +47213,10 @@
         [
           "2026-09-29",
           2649
+        ],
+        [
+          "2026-10-01",
+          2649
         ]
       ]
     },
@@ -47272,6 +47238,10 @@
         ],
         [
           "2026-09-29",
+          126
+        ],
+        [
+          "2026-10-01",
           126
         ]
       ]
@@ -47295,6 +47265,10 @@
         [
           "2026-09-29",
           273.23
+        ],
+        [
+          "2026-10-01",
+          296.99
         ]
       ]
     },
@@ -47312,6 +47286,10 @@
         ],
         [
           "2026-09-29",
+          69.9
+        ],
+        [
+          "2026-10-01",
           69.9
         ]
       ]
@@ -47335,6 +47313,10 @@
         [
           "2026-09-29",
           82.43
+        ],
+        [
+          "2026-10-01",
+          82.43
         ]
       ]
     },
@@ -47353,6 +47335,10 @@
         [
           "2026-09-29",
           1216
+        ],
+        [
+          "2026-10-01",
+          1410
         ]
       ]
     },
@@ -47399,6 +47385,10 @@
         [
           "2026-09-29",
           459.82
+        ],
+        [
+          "2026-10-01",
+          459.82
         ]
       ]
     },
@@ -47435,6 +47425,10 @@
         [
           "2026-09-29",
           149
+        ],
+        [
+          "2026-10-01",
+          179
         ]
       ]
     },
@@ -47459,6 +47453,10 @@
         [
           "2026-09-29",
           2649
+        ],
+        [
+          "2026-10-01",
+          2765.88
         ]
       ]
     },
@@ -47473,6 +47471,10 @@
         [
           "2026-09-29",
           169.59
+        ],
+        [
+          "2026-10-01",
+          164
         ]
       ]
     },
@@ -47486,6 +47488,10 @@
         ],
         [
           "2026-09-29",
+          92.14
+        ],
+        [
+          "2026-10-01",
           92.14
         ]
       ]
@@ -47501,6 +47507,10 @@
         [
           "2026-09-29",
           583.11
+        ],
+        [
+          "2026-10-01",
+          583.11
         ]
       ]
     },
@@ -47515,6 +47525,10 @@
         [
           "2026-09-29",
           1025
+        ],
+        [
+          "2026-10-01",
+          1190
         ]
       ]
     },
@@ -47529,6 +47543,10 @@
         [
           "2026-09-29",
           845.1
+        ],
+        [
+          "2026-10-01",
+          829
         ]
       ]
     },
@@ -47557,6 +47575,10 @@
         [
           "2026-09-29",
           196.59
+        ],
+        [
+          "2026-10-01",
+          196.59
         ]
       ]
     },
@@ -47571,6 +47593,10 @@
         [
           "2026-09-29",
           1167.92
+        ],
+        [
+          "2026-10-01",
+          1299
         ]
       ]
     },
@@ -47584,6 +47610,10 @@
         ],
         [
           "2026-09-29",
+          611
+        ],
+        [
+          "2026-10-01",
           611
         ]
       ]
@@ -47613,6 +47643,10 @@
         [
           "2026-09-29",
           62.72
+        ],
+        [
+          "2026-10-01",
+          60
         ]
       ]
     },
@@ -47627,6 +47661,10 @@
         [
           "2026-09-30",
           31.99
+        ],
+        [
+          "2026-10-01",
+          31.99
         ]
       ]
     },
@@ -47636,6 +47674,10 @@
       "points": [
         [
           "2026-09-29",
+          78.11
+        ],
+        [
+          "2026-10-01",
           78.11
         ]
       ]
@@ -47647,6 +47689,10 @@
         [
           "2026-09-29",
           19.99
+        ],
+        [
+          "2026-10-01",
+          19.99
         ]
       ]
     },
@@ -47657,6 +47703,10 @@
         [
           "2026-09-29",
           58.99
+        ],
+        [
+          "2026-10-01",
+          79.99
         ]
       ]
     },
@@ -47666,6 +47716,10 @@
       "points": [
         [
           "2026-09-29",
+          161.91
+        ],
+        [
+          "2026-10-01",
           161.91
         ]
       ]
@@ -47695,6 +47749,10 @@
         [
           "2026-09-30",
           30.95
+        ],
+        [
+          "2026-10-01",
+          31.91
         ]
       ]
     },
@@ -47705,6 +47763,10 @@
         [
           "2026-09-29",
           220.41
+        ],
+        [
+          "2026-10-01",
+          219.9
         ]
       ]
     },
@@ -47715,6 +47777,10 @@
         [
           "2026-09-29",
           72.9
+        ],
+        [
+          "2026-10-01",
+          75.9
         ]
       ]
     },
@@ -47725,6 +47791,10 @@
         [
           "2026-09-29",
           44.96
+        ],
+        [
+          "2026-10-01",
+          52.9
         ]
       ]
     },
@@ -47735,6 +47805,10 @@
         [
           "2026-09-29",
           48.41
+        ],
+        [
+          "2026-10-01",
+          53
         ]
       ]
     },
@@ -47745,6 +47819,150 @@
         [
           "2026-09-29",
           47.35
+        ],
+        [
+          "2026-10-01",
+          79.97
+        ]
+      ]
+    },
+    "JY36kE95u7uCT7UJWvpt": {
+      "title": "NAC 600mg - Fórmula Exclusiva com Máxima Concentração e Pureza - N-Acetil L-Cisteína - 60 Cápsulas",
+      "identity": "MLB58579835",
+      "points": [
+        [
+          "2026-10-01",
+          48.28
+        ]
+      ]
+    },
+    "L6r4zuqqN2t7yWZsQUxo": {
+      "title": "Ventilador De Acampamento Recarregável Portátil Com Led Luz Cor Laranja",
+      "identity": "MLB65802852",
+      "points": [
+        [
+          "2026-10-01",
+          135.17
+        ]
+      ]
+    },
+    "Oelq1fEuR41tSXxHj8cp": {
+      "title": "Extensão Elétrica Tomadas Usb Type-c Bivolt 2m Chave Liga",
+      "identity": "MLB4890245591",
+      "points": [
+        [
+          "2026-10-01",
+          39
+        ]
+      ]
+    },
+    "Ped2JwDkTqMRNcZ0BhTf": {
+      "title": "Skatenete Max Led Ajustável Patinete 120kg Bandeirante",
+      "identity": "MLB3894608627",
+      "points": [
+        [
+          "2026-10-01",
+          499.9
+        ]
+      ]
+    },
+    "Q8XN2tGmsU12afIbz1Am": {
+      "title": "Fritadeira Elétrica Sem Óleo Air Fryer Mondial 1500w",
+      "identity": "MLB1307284888",
+      "points": [
+        [
+          "2026-10-01",
+          440.99
+        ]
+      ]
+    },
+    "UxB7AJhrBhm36FCTachh": {
+      "title": "Patinete Infantil 3 Rodas Com Luz Led Menino Menina 40 Kg",
+      "identity": "MLB5906265712",
+      "points": [
+        [
+          "2026-10-01",
+          156
+        ]
+      ]
+    },
+    "eFH6DoZM48JWTDwQIImg": {
+      "title": "Kit 2 Refil Ntk Gás Butano + Maçarico Camping Fogareiro 227g",
+      "identity": "MLB7502475232",
+      "points": [
+        [
+          "2026-10-01",
+          37.9
+        ]
+      ]
+    },
+    "i1ii8KV1IYFAeAN3SPWH": {
+      "title": "Kit Parafusadeira Mini Motosserra 2 Baterias Maleta Nakasaki",
+      "identity": "MLB5205043413",
+      "points": [
+        [
+          "2026-10-01",
+          129
+        ]
+      ]
+    },
+    "jXr2Y2GPpfN57sjqnpfV": {
+      "title": "JBL Caixa De Som Go 4 Black À Prova D'água Cor Preto",
+      "identity": "MLB36386053",
+      "points": [
+        [
+          "2026-10-01",
+          289
+        ]
+      ]
+    },
+    "pO6CZCNo99YwtpIW0UB8": {
+      "title": "Principia Kit Limpeza E Hidratação Ch-01 + Ol-01 + Gl-02 Todo Tipo De Pele Dia/noite",
+      "identity": "MLB59774342",
+      "points": [
+        [
+          "2026-10-01",
+          74.04
+        ]
+      ]
+    },
+    "wt4YdZZonq6ijfzWcYRB": {
+      "title": "Câmera Dupla Segurança Ip Wifi Externa Lente 6mp App Yoosee",
+      "identity": "MLB4104172797",
+      "points": [
+        [
+          "2026-10-01",
+          116.98
+        ]
+      ]
+    },
+    "yGygA3k1h886kEa7LOqh": {
+      "title": "Coleção Primeira Biblioteca Volume 01 - Box com 10 Livrinhos - On Line Editora - Capa Dura",
+      "identity": "MLB43805582",
+      "points": [
+        [
+          "2026-10-01",
+          39.6
+        ]
+      ]
+    },
+    "yKB6RcYlSxOOCG31HXN2": {
+      "title": "Câmera Inteligente Full HD iM5 SC com MicroSD 32GB Branca Intelbras",
+      "identity": "MLB23772724",
+      "points": [
+        [
+          "2026-10-01",
+          359.81
+        ]
+      ]
+    },
+    "zLqKcRRYNyzrP6t1Erhh": {
+      "title": "Relógio Digital A Prova D`água Masculino Original Esportivo",
+      "identity": "MLB3620687217",
+      "points": [
+        [
+          "2026-10-01",
+          45.97
         ]
       ]
     }
