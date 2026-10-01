@@ -267,6 +267,15 @@ function editorialItems(value) {
   return String(value || "").split(/\s*;\s*|\n+/).map((item) => item.trim()).filter(Boolean);
 }
 
+function usefulEditorialItems(product, field) {
+  const title = slug(product.titulo);
+  return editorialItems(product[field]).filter((item) => {
+    const normalized = slug(item);
+    if (normalized.length < 18 || normalized === title || normalized.startsWith(`${title}-`)) return false;
+    return !/(caracter[ií]sticas confirmadas no an[uú]ncio|c[oó]digo do cat[aá]logo|confira medidas|confira ficha t[eé]cnica|verificar garantia|conferir condi[cç][oõ]es de garantia|verifique (?:pre[cç]o|garantia|estoque)|excelente rela[cç][aã]o custo.benef[ií]cio|produto identificado no an[uú]ncio|recurso t[eé]cnico confirmado|compatibilidade informada|uso adequado [aà] categoria)/i.test(item);
+  });
+}
+
 function productEvidence(product) {
   return [product.titulo, product.comentario, product.pros, product.contras, product.dadosTecnicos]
     .filter(Boolean).join(". ").replace(/\s+/g, " ");
@@ -424,21 +433,103 @@ function comparableCategoryProducts(categoryId, categoryName, products) {
     } else if (/fone/.test(category) && categoryIntent(categoryId, categoryName)) {
       comparable = /bluetooth|sem fio|wireless|tws|\bbuds\b/i.test(title)
         && !/capacete|intercomunicador|\bcom fio\b|\b100m2\b/i.test(title);
+    } else if (/notebook/.test(category)) {
+      comparable = /notebook|laptop|macbook|chromebook/i.test(title)
+        && !/suporte|capa|carregador|bolsa|base refrigerada/i.test(title);
+    } else if (/celular/.test(category)) {
+      comparable = /smartphone|celular|iphone|galaxy|motorola|redmi|poco\b/i.test(title)
+        && !/capa|pel[ií]cula|carregador|suporte|fone/i.test(title);
+    } else if (/smart.tv/.test(category)) {
+      comparable = /\btv\b|televis[aã]o|televisor/i.test(title)
+        && !/tv box|tv stick|suporte|controle remoto|antena/i.test(title);
+    } else if (/fritadeira|air.fryer/.test(category)) {
+      comparable = /fritadeira|air\s*fryer/i.test(title)
+        && !/forma|papel|cesto avulso|acess[oó]rio/i.test(title);
+    } else if (/caixa.de.som/.test(category)) {
+      comparable = /caixa de som|speaker|boombox/i.test(title)
+        && !/soundbar|amplificador|microfone avulso/i.test(title);
+    } else if (/camera.*seguranca/.test(category)) {
+      comparable = /c[aâ]mera|camera/i.test(title)
+        && !/dvr|sensor avulso|cart[aã]o de mem[oó]ria|suporte avulso/i.test(title);
+    } else if (/patinete/.test(category)) {
+      comparable = /patinete/i.test(title) && /el[eé]tric|motor|\bw\b/i.test(title)
+        && !/capacete|acess[oó]rio|pneu avulso/i.test(title);
+    } else if (/impressora/.test(category)) {
+      comparable = /impressora/i.test(title) && !/cartucho|toner|refil|papel avulso/i.test(title);
+    } else if (/tablet/.test(category)) {
+      comparable = /tablet|ipad/i.test(title) && !/capa|pel[ií]cula|caneta avulsa|suporte/i.test(title);
+    } else if (/parafusadeira/.test(category)) {
+      comparable = /parafusadeira/i.test(title) && !/broca avulsa|ponta avulsa|bit avulso/i.test(title);
+    } else if (/kit.*teclado.*mouse/.test(category)) {
+      comparable = /teclado/i.test(title) && /mouse/i.test(title) && !/mousepad avulso/i.test(title);
     }
     if (comparable) seen.add(normalized);
     return comparable;
   });
 }
 
-function categoryScore(product, minimumPrice, maximumPrice) {
+function routerCapabilities(product) {
+  const text = productEvidence(product);
+  return [
+    /wi.?fi\s*6|802\.11ax|\bax\d{3,4}\b/i.test(text) && "Wi-Fi 6",
+    /dual.?band|duas bandas|5\s*ghz/i.test(text) && "banda de 5 GHz",
+    /gigabit/i.test(text) && "portas Gigabit",
+    /\bmesh\b|easymesh/i.test(text) && "rede Mesh",
+    /\bax(?:1[89]\d\d|[2-9]\d{3})\b/i.test(text) && "classe AX1800 ou superior",
+  ].filter(Boolean);
+}
+
+function technicalFactCount(product) {
+  const text = productEvidence(product);
+  return (text.match(/\b\d+(?:[.,]\d+)?\s*(?:w|kw|v|mah|gb|tb|hz|ghz|mbps|gbps|l|ml|kg|cm|mm|km|mp)\b/gi) || []).length
+    + (text.match(/\b(?:ax\d{4}|wi.?fi\s*6|bluetooth\s*\d+(?:[.,]\d+)?)\b/gi) || []).length;
+}
+
+function categoryScore(product, minimumPrice, maximumPrice, categoryId = "") {
   const price = numberPrice(product.precoPromocional || product.preco);
   const range = Math.max(maximumPrice - minimumPrice, 1);
-  const priceScore = price ? ((maximumPrice - price) / range) * 35 : 0;
+  const router = /roteador/.test(slug(categoryId));
+  const priceScore = price ? ((maximumPrice - price) / range) * (router ? 5 : 35) : 0;
   const ratingScore = trustedRating(product.nota) ? (trustedRating(product.nota) / 5) * 30 : 0;
-  const evidence = editorialItems(product.pros).length + editorialItems(product.contras).length;
+  const evidence = usefulEditorialItems(product, "pros").length + usefulEditorialItems(product, "contras").length;
   const evidenceScore = Math.min(evidence * 4, 20);
-  const technicalFacts = (productEvidence(product).match(/\b\d+(?:[.,]\d+)?\s*(?:w|kw|v|mah|gb|tb|hz|l|ml|kg|cm|mm|km|mp)\b/gi) || []).length;
-  return { total: priceScore + ratingScore + evidenceScore + Math.min(technicalFacts * 3, 15), priceScore, ratingScore, evidenceScore, technicalFacts };
+  const technicalFacts = technicalFactCount(product);
+  const routerFeatures = routerCapabilities(product);
+  const routerWeights = { "Wi-Fi 6": 9, "banda de 5 GHz": 7, "portas Gigabit": 7, "rede Mesh": 4, "classe AX1800 ou superior": 3 };
+  const featureScore = router ? routerFeatures.reduce((sum, feature) => sum + routerWeights[feature], 0) : 0;
+  return { total: priceScore + ratingScore + evidenceScore + Math.min(technicalFacts * 3, 15) + featureScore, priceScore, ratingScore, evidenceScore, technicalFacts, featureScore };
+}
+
+function chooseValueProduct(ranked, winner, cheapest, minimumPrice, maximumPrice, categoryId) {
+  const quality = (product) => {
+    const score = categoryScore(product, minimumPrice, maximumPrice, categoryId);
+    return score.ratingScore + score.evidenceScore + Math.min(score.technicalFacts * 3, 15) + score.featureScore;
+  };
+  const minimumQuality = quality(winner) * 0.6;
+  return ranked.filter((product) => product.id !== winner.id && product.id !== cheapest.id)
+    .filter((product) => usefulEditorialItems(product, "pros").length
+      && usefulEditorialItems(product, "contras").length
+      && categoryScore(product, minimumPrice, maximumPrice, categoryId).technicalFacts
+      && quality(product) >= minimumQuality)
+    .sort((a, b) => quality(b) / numberPrice(b.precoPromocional || b.preco)
+      - quality(a) / numberPrice(a.precoPromocional || a.preco))[0] || null;
+}
+
+function isBroadCategory(categoryId, categoryName) {
+  return /(?:^|\b)(?:casa|carro|moto|super|mercado|informatica|brinquedos|ferramentas|bicicletas|perfumes|beleza|saude|roupas|calcados|malas|bolsas|esporte|lazer)(?:\b|$)/.test(slug(`${categoryId} ${categoryName}`).replace(/-/g, " "));
+}
+
+function renderUnrankedCategoryGuide(categoryId, categoryName, products, productUrls, lastModified) {
+  const fileName = guideFileName(categoryId, categoryName);
+  const title = `Compare produtos de ${categoryName} | Ranking da Compra`;
+  const rows = [...products].sort((a, b) => String(a.titulo || "").localeCompare(String(b.titulo || ""), "pt-BR"))
+    .map((product) => {
+      const positive = usefulEditorialItems(product, "pros")[0] || "Detalhe ainda não confirmado";
+      const attention = usefulEditorialItems(product, "contras")[0] || "Verifique especificações e condições com o vendedor";
+      const price = numberPrice(product.precoPromocional || product.preco);
+      return `<tr><th scope="row"><a href="${escapeHtml(productUrls.get(product.id) || "#")}">${escapeHtml(product.titulo)}</a></th><td>${escapeHtml(positive)}</td><td>${escapeHtml(attention)}</td><td>${price ? escapeHtml(money(price)) : "Preço a confirmar"}</td></tr>`;
+    }).join("");
+  return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow,max-image-preview:large"><title>${escapeHtml(title)}</title><meta name="description" content="Veja produtos de ${escapeHtml(categoryName)} por características, limitações e preço informado. Escolha primeiro o tipo certo para sua necessidade."><link rel="canonical" href="${SITE}${fileName}"><style>body{font:16px/1.6 system-ui,sans-serif;color:#16312a;background:#f6faf8;margin:0}main{max-width:1040px;margin:auto;padding:24px}a{color:#075b49}h1{line-height:1.2}p{max-width:75ch}.notice{background:#fff8e4;border:1px solid #d6aa49;padding:14px;border-radius:10px}.table-wrap{overflow-x:auto;background:white;border:1px solid #d8e5de;border-radius:12px}table{border-collapse:collapse;width:100%;min-width:720px}th,td{text-align:left;padding:12px;border-bottom:1px solid #e3ece7;vertical-align:top}th{width:25%}</style></head><body><main data-unranked-guide><p><a href="${SITE}">← Ranking da Compra</a></p><h1>Compare produtos de ${escapeHtml(categoryName)}</h1><p class="notice"><strong>Sem vencedor artificial:</strong> esta seleção reúne tipos ou usos diferentes, ou ainda não tem produtos comparáveis suficientes. Por isso, não atribuímos os selos “melhor geral”, “custo-benefício” e “mais barato”.</p><div class="table-wrap"><table><thead><tr><th>Produto e análise</th><th>Característica informada</th><th>Ponto a conferir</th><th>Preço informado</th></tr></thead><tbody>${rows}</tbody></table></div><p>Os preços e características vêm dos registros do Ranking da Compra; confirme o valor final, estoque e especificações com o vendedor. Atualizado em ${escapeHtml(lastModified)}.</p><a href="${SITE}como-avaliamos.html">Leia nossa metodologia</a>.</main></body></html>\n`;
 }
 
 function renderUnpricedCategoryGuide(categoryId, categoryName, categoryProducts, productUrls, lastModified) {
@@ -476,34 +567,28 @@ function renderCategoryGuide(categoryId, categoryName, categoryProducts, product
   const minimumPrice = Math.min(...prices);
   const maximumPrice = Math.max(...prices);
   const averagePrice = prices.reduce((sum, price) => sum + price, 0) / prices.length;
-  const ranked = [...categoryProducts].sort((a, b) => categoryScore(b, minimumPrice, maximumPrice).total - categoryScore(a, minimumPrice, maximumPrice).total
+  const ranked = [...categoryProducts].sort((a, b) => categoryScore(b, minimumPrice, maximumPrice, categoryId).total - categoryScore(a, minimumPrice, maximumPrice, categoryId).total
     || numberPrice(a.precoPromocional || a.preco) - numberPrice(b.precoPromocional || b.preco));
   const winner = ranked[0];
   const cheapest = [...ranked].sort((a, b) => numberPrice(a.precoPromocional || a.preco) - numberPrice(b.precoPromocional || b.preco))[0];
-  const valueCandidates = ranked.filter((product) => product.id !== winner.id && product.id !== cheapest.id);
-  const value = valueCandidates.sort((a, b) => {
-    const valueScore = (product) => {
-      const score = categoryScore(product, minimumPrice, maximumPrice);
-      const quality = score.ratingScore + score.evidenceScore + Math.min(score.technicalFacts * 3, 15);
-      return quality / numberPrice(product.precoPromocional || product.preco);
-    };
-    return valueScore(b) - valueScore(a);
-  })[0] || ranked.find((product) => product.id !== winner.id) || winner;
+  const value = chooseValueProduct(ranked, winner, cheapest, minimumPrice, maximumPrice, categoryId);
   const fileName = guideFileName(categoryId);
   const guideUrl = `${SITE}${fileName}`;
-  const quick = [["🏆 Melhor geral", winner], ["💚 Melhor custo-benefício", value], ["💰 Mais barato", cheapest]].map(([label, product]) => `<article><span>${label}</span><strong>${escapeHtml(product.titulo)}</strong><b>${escapeHtml(money(product.precoPromocional || product.preco))}</b>${label.includes("custo-benefício") ? "<small>Maior pontuação de qualidade por real entre as alternativas.</small>" : ""}<a href="${escapeHtml(productUrls.get(product.id))}">Ver análise e preço</a></article>`).join("");
+  const quick = [["🏆 Melhor geral", winner], ...(value ? [["💚 Melhor custo-benefício", value]] : []), ["💰 Mais barato", cheapest]].map(([label, product]) => `<article><span>${label}</span><strong>${escapeHtml(product.titulo)}</strong><b>${escapeHtml(money(product.precoPromocional || product.preco))}</b>${label.includes("custo-benefício") ? "<small>Maior pontuação de qualidade por real entre alternativas com vantagem, limitação e dado técnico verificáveis.</small>" : ""}<a href="${escapeHtml(productUrls.get(product.id))}">Ver análise e preço</a></article>`).join("") + (value ? "" : '<p class="disclosure">Custo-benefício: sem dados comparáveis suficientes para conceder este selo com segurança.</p>');
   const rows = ranked.map((product, index) => {
-    const positive = editorialItems(product.pros)[0] || "Informação positiva em revisão";
-    const attention = editorialItems(product.contras)[0] || "Confirme os detalhes no anúncio";
+    const positive = usefulEditorialItems(product, "pros")[0] || "Vantagem específica ainda não confirmada";
+    const attention = usefulEditorialItems(product, "contras")[0] || "Limitação específica ainda não confirmada";
     return `<tr><th scope="row">${index + 1}º ${escapeHtml(product.titulo)}</th><td>${escapeHtml(money(product.precoPromocional || product.preco))}</td><td>${escapeHtml(positive)}</td><td>${escapeHtml(attention)}</td></tr>`;
   }).join("");
   const cards = ranked.map((product, index) => {
     const price = numberPrice(product.precoPromocional || product.preco);
-    const score = categoryScore(product, minimumPrice, maximumPrice);
-    const positives = editorialItems(product.pros).slice(0, 3);
-    const attentions = editorialItems(product.contras).slice(0, 2);
+    const score = categoryScore(product, minimumPrice, maximumPrice, categoryId);
+    const positives = usefulEditorialItems(product, "pros").slice(0, 3);
+    const attentions = usefulEditorialItems(product, "contras").slice(0, 2);
     const relativePrice = price < averagePrice * 0.97 ? "abaixo" : price > averagePrice * 1.03 ? "acima" : "próximo";
-    const why = `A posição resulta do preço ${relativePrice} da média da seleção, ${positives.length + attentions.length} evidências editoriais cadastradas${trustedRating(product.nota) ? ` e nota editorial de ${trustedRating(product.nota).toFixed(1)}/5` : " e ausência de nota confiável usada no cálculo"}. Pontuação comparativa: ${score.total.toFixed(1)} de 100.`;
+    const routerDetail = /roteador/.test(slug(categoryId)) && routerCapabilities(product).length
+      ? ` Recursos anunciados: ${routerCapabilities(product).join(", ")}.` : "";
+    const why = `A posição resulta do preço ${relativePrice} da média da seleção, ${positives.length + attentions.length} pontos específicos cadastrados${trustedRating(product.nota) ? ` e nota editorial de ${trustedRating(product.nota).toFixed(1)}/5` : " e ausência de nota confiável usada no cálculo"}.${routerDetail} Pontuação comparativa: ${score.total.toFixed(1)} de 100.`;
     return `<article class="rank-card"><div class="rank-number">${index + 1}º lugar</div><img src="${escapeHtml(firstUrl(product.foto))}" alt="${escapeHtml(product.titulo)}" loading="lazy" width="260" height="210"><div><h2>${escapeHtml(product.titulo)}</h2><p class="why"><b>Por que está nesta posição:</b> ${escapeHtml(why)}</p><p><b>Indicado para:</b> ${escapeHtml(positives[0] || "Quem procura esta proposta e quer confirmar os detalhes diretamente no anúncio.")}</p><p><b>Não é a melhor escolha para:</b> ${escapeHtml(attentions[0] || "Quem depende de uma característica ainda não confirmada na ficha pública.")}</p><details><summary>Mais informações</summary><ul>${positives.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}${attentions.map((item) => `<li><b>Atenção:</b> ${escapeHtml(item)}</li>`).join("")}</ul></details><div class="card-foot"><strong>${escapeHtml(money(price))}</strong><a href="${escapeHtml(productUrls.get(product.id))}">Ver análise e preço atual</a></div></div></article>`;
   }).join("");
   const pageTitle = categoryIntent(categoryId, categoryName)?.pageTitle || `Melhores opções de ${categoryName} em 2026`;
@@ -761,17 +846,32 @@ for (const category of categories) {
   const fileName = guideFileName(category.id, categoryName);
   const categoryProducts = productsByCategory.get(category.id) || [];
   const comparableProducts = comparableCategoryProducts(category.id, categoryName, categoryProducts);
-  const guideProducts = comparableProducts.length >= 3 ? comparableProducts : categoryProducts;
-  if (comparableProducts.length < 3 && comparableProducts.length !== categoryProducts.length) {
-    console.warn(`${fileName}: seleção comparável insuficiente; o guia existente foi preservado até revisão editorial.`);
-  }
+  const broad = isBroadCategory(category.id, categoryName);
+  const guideProducts = broad || comparableProducts.length < 3 ? categoryProducts : comparableProducts;
   const guideModified = newestDate([
     ...guideProducts.flatMap((product) => [product.atualizadoEm, product.dataCadastro]),
     category.criadoEm,
   ]);
-  const rawGuide = renderCategoryGuide(category.id, categoryName, guideProducts, productUrls, guideModified);
-  const guide = rawGuide.includes("data-price-unconfirmed-guide")
-    ? rawGuide : applyCategorySearchIntent(rawGuide, category.id, categoryName, guideProducts.length);
+  const rawGuide = broad || comparableProducts.length < 3
+    ? renderUnrankedCategoryGuide(category.id, categoryName, guideProducts, productUrls, guideModified)
+    : renderCategoryGuide(category.id, categoryName, guideProducts, productUrls, guideModified);
+  const noValue = rawGuide.includes("Custo-benefício: sem dados comparáveis suficientes");
+  let honestGuide = noValue ? rawGuide
+    .replace("Comparação objetiva com melhor geral, custo-benefício e opção mais barata.", "Comparação objetiva por preço, vantagens e limitações; sem selo de custo-benefício quando faltam evidências.")
+    .replace("Veja logo no início o melhor geral, o custo-benefício e a opção mais barata.", "Veja o melhor geral e a opção mais barata; só destacamos custo-benefício quando há evidências suficientes.")
+    : rawGuide;
+  if (!honestGuide.includes("data-unranked-guide") && !/patinete/.test(slug(category.id))) {
+    honestGuide = honestGuide.replaceAll("<b>Indicado para:</b>", "<b>Ponto favorável informado:</b>")
+      .replaceAll("<b>Não é a melhor escolha para:</b>", "<b>Limitação ou dúvida:</b>");
+  }
+  if (/roteador/.test(slug(category.id))) {
+    honestGuide = honestGuide.replace(
+      "A pontuação de 0 a 100 considera custo-benefício (35%), avaliação editorial confiável (30%), qualidade dos pontos positivos e limitações cadastrados (20%) e presença de fatos técnicos mensuráveis (15%). Notas inconsistentes não são usadas.",
+      "A pontuação de 0 a 100 considera preço relativo (5%), avaliação editorial confiável (30%), pontos positivos e limitações específicos (20%), fatos técnicos mensuráveis (15%) e recursos de rede anunciados como Wi-Fi 6, banda de 5 GHz e portas Gigabit (30%). Recursos não informados não recebem pontos; isso não substitui um teste prático.",
+    );
+  }
+  const guide = honestGuide.includes("data-price-unconfirmed-guide") || honestGuide.includes("data-unranked-guide") || noValue
+    ? honestGuide : applyCategorySearchIntent(honestGuide, category.id, categoryName, guideProducts.length);
   if (!guide) continue;
   await writeFile(resolve(fileName), guide, "utf8");
   guidePages.push(fileName);

@@ -1265,7 +1265,7 @@ function compactText(value, maxLength) {
 function editorialItems(value, productTitle = "") {
 
   const titleWords = new Set(normalizedProductTitle({ titulo: productTitle }).split(" ").filter((word) => word.length > 2));
-  const generic = /informa[cç][oõ]es? (?:extra[ií]das?|obtidas?)|dados p[uú]blicos|confira (?:no|o) an[uú]ncio|recursos descritos|produto identificado|ficha (?:n[aã]o )?informa/i;
+  const generic = /informa[cç][oõ]es? (?:extra[ií]das?|obtidas?)|dados p[uú]blicos|confira (?:no|o) an[uú]ncio|recursos descritos|produto identificado|ficha (?:n[aã]o )?informa|caracter[ií]sticas confirmadas no an[uú]ncio|c[oó]digo do cat[aá]logo|confira (?:medidas|ficha t[eé]cnica)|verificar garantia|conferir condi[cç][oõ]es de garantia|recurso t[eé]cnico confirmado|compatibilidade informada|uso adequado [aà] categoria|excelente rela[cç][aã]o custo.benef[ií]cio/i;
   const normalized = (text) => String(text || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 
   // Vírgulas fazem parte de números (1,82), especificações e orações. Só criamos

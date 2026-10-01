@@ -11,6 +11,7 @@ const categories = [
   { id: "roteador", nome: "Roteador" },
   { id: "relogio-smartwatch", nome: "Relógio Smartwatch" },
   { id: "fones-de-ouvido", nome: "Fones de ouvido" },
+  { id: "casa", nome: "Casa" },
 ];
 const records = [
   ["router-a", "Roteador TP-Link AX1500 Wi-Fi 6", "roteador", 180, "2026-09-12"],
@@ -25,6 +26,9 @@ const records = [
   ["fone-b", "Fone de Ouvido Sem Fio QCY T13", "fones-de-ouvido", 130, "2026-09-08"],
   ["fone-c", "Fone Bluetooth JBL Tune 520BT", "fones-de-ouvido", 210, "2026-09-08"],
   ["wired", "Fone Gamer com Fio P2", "fones-de-ouvido", 70, "2026-09-08"],
+  ["clock", "Relógio de Parede", "casa", 40, "2026-09-06"],
+  ["sofa", "Sofá Retrátil", "casa", 1400, "2026-09-06"],
+  ["coffee", "Cafeteira Elétrica", "casa", 200, "2026-09-06"],
 ];
 
 try {
@@ -33,8 +37,8 @@ try {
     id, titulo, categoria, preco, atualizadoEm,
     comentario: `Comparação editorial de ${titulo}. Esta análise apresenta aplicações práticas, características verificáveis, limitações de uso e cuidados antes da compra para ajudar o leitor a escolher o modelo adequado às suas necessidades.`,
     nota: 4.5,
-    pros: "Recurso técnico confirmado no anúncio; Compatibilidade informada pelo fabricante; Uso adequado à categoria",
-    contras: "Conferir condições de garantia e disponibilidade",
+    pros: "Bateria de 300 mAh informada na ficha; Conexão de 5 GHz informada no anúncio",
+    contras: "Não informa resistência à água na ficha do vendedor",
     foto: `${site}assets/logo.png`,
     __productUrl: `${site}produto/${id}-20260810-1.html`,
   }));
@@ -55,6 +59,7 @@ try {
   const router = await readFile(join(directory, "melhores-roteador.html"), "utf8");
   const watch = await readFile(join(directory, "melhores-relogio-smartwatch.html"), "utf8");
   const fones = await readFile(join(directory, "melhores-fones-de-ouvido.html"), "utf8");
+  const house = await readFile(join(directory, "melhores-casa.html"), "utf8");
   const sitemap = await readFile(join(directory, "sitemap.xml"), "utf8");
   assert.doesNotMatch(router, /Repetidor TP-Link/);
   assert.doesNotMatch(watch, /Relógio Digital Casio/);
@@ -63,6 +68,9 @@ try {
   assert.match(fones, /<title>Melhores fones bluetooth custo-benefício de 2026 \| Ranking da Compra<\/title>/i);
   assert.match(watch, /<title>Melhores smartwatches custo-benefício de 2026 \| Ranking da Compra<\/title>/i);
   assert.match(router, /Maior pontuação de qualidade por real/);
+  assert.match(house, /data-unranked-guide/);
+  assert.doesNotMatch(house, /Melhor custo-benefício/);
+  assert.doesNotMatch(router, /Recurso técnico confirmado no anúncio/);
   assert.match(sitemap, /melhores-roteador\.html<\/loc>\s*<lastmod>2026-09-12<\/lastmod>/);
   assert.match(sitemap, /melhores-relogio-smartwatch\.html<\/loc>\s*<lastmod>2026-09-10<\/lastmod>/);
   console.log("Guias SEO: produtos comparáveis, títulos completos, selo calculado e datas por categoria validados.");

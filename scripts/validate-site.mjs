@@ -525,15 +525,21 @@ for (const file of guideFiles) {
     has(html, /Preços a confirmar:/, "aviso de preços não confirmados ausente", file);
     has(html, /ordem alfabética, sem ranking de preço/, "ordem do comparativo sem preço não foi explicada", file);
     if (/R\$\s*0(?:[,.]00)?/.test(html)) fail(file + ": preço zero exibido ao visitante");
+  } else if (html.includes("data-unranked-guide")) {
+    has(html, /Sem vencedor artificial:/, "explicação da lista sem ranking ausente", file);
+    if (/🏆 Melhor geral|💚 Melhor custo-benefício|💰 Mais barato/.test(html)) fail(file + ": seleção heterogênea não pode receber selo de vencedor");
   } else {
     has(html, /🏆 Melhor geral/, "destaque de melhor geral ausente", file);
-    has(html, /💚 Melhor custo-benefício/, "destaque de custo-benefício ausente", file);
+    if (!html.includes("Custo-benefício: sem dados comparáveis suficientes")) {
+      has(html, /💚 Melhor custo-benefício/, "destaque de custo-benefício ausente", file);
+    }
     has(html, /💰 Mais barato/, "destaque de menor preço ausente", file);
     has(html, /Por que está nesta posição:/, "justificativa de posição ausente", file);
   }
-  has(html, /Não é a melhor escolha para:/, "limitação prática ausente", file);
+  if (!html.includes("data-unranked-guide")) has(html, /Não é a melhor escolha para:|Limitação ou dúvida:/, "limitação prática ausente", file);
   has(html, /<table>/, "tabela de comparação rápida ausente", file);
-  has(html, /<h2>Como classificamos<\/h2>/, "metodologia resumida ausente", file);
+  if (html.includes("data-unranked-guide")) has(html, /Leia nossa metodologia/, "link da metodologia ausente", file);
+  else has(html, /<h2>Como classificamos<\/h2>/, "metodologia resumida ausente", file);
   if (/\bNaN\b/.test(html)) fail(file + ": preço ou pontuação inválida aparece como NaN");
   if (!urls.includes(SITE + file)) fail(file + ": comparativo ausente do sitemap");
 }
