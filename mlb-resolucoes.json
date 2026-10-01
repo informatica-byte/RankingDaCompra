@@ -1,6 +1,61 @@
 {
-  "atualizadoEm": "2026-10-01T22:23:29.778Z",
+  "atualizadoEm": "2026-10-01T22:29:10.910Z",
   "resultados": {
+    "VZ9sC2J2TNDN8FBiPGds": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-ergometrica-liftness-spinning-x11-cor-pretovermelho-liftness/p/MLB75685666",
+      "resolvidoEm": "2026-10-01T22:29:10.909Z",
+      "tentativas": 1
+    },
+    "E9Vr8RZlRFsVgy6vaQLB": {
+      "status": "ok",
+      "mlb": "MLB65735635",
+      "urlProduto": "https://www.mercadolivre.com.br/brastoy-escavadeira-de-controle-remoto-escala-120-amarelo-brinquedo-2x-baterias-d342/p/MLB65735635",
+      "titulo": "Brastoy Escavadeira De Controle Remoto Escala 1:20 Amarelo Brinquedo 2x Baterias-d342",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_786257-MLA106722499776_022026-F.jpg",
+      "precoAtual": 165.9,
+      "precoAnterior": 421.62,
+      "dadosTecnicos": [
+        "Personagem: Escavadeira telecontrolada.",
+        "Escala: 1:20.",
+        "Controle remoto de 2,4 GHz evita interferências e garante operação simultânea com múltiplos veículos.",
+        "Pá metálica e esteiras de borracha permitem escavar e mover areia solta como uma escavadeira real.",
+        "Cabine com rotação de 680 graus melhora a experiência de direção e simulação realista.",
+        "Fabricada em ABS, plásticos e ligas metálicas para maior durabilidade e resistência a quedas.",
+        "Tempo de funcionamento de até 40 minutos ideal para longas sessões de brincadeira ao ar livre.",
+        "Alcance de controle remoto de 50 m proporciona liberdade em brincadeiras ao ar livre.",
+        "Marca: Brastoy",
+        "Código do catálogo: MLB65735635"
+      ],
+      "comentario": "Brastoy Escavadeira De Controle Remoto Escala 1:20 Amarelo Brinquedo 2x Baterias-d342. Personagem: Escavadeira telecontrolada. Escala: 1:20. Controle remoto de 2,4 GHz evita interferências e garante operação simultânea com múltiplos veículos. Pá metálica e esteiras de borracha permitem escavar e mover areia solta como uma escavadeira real. Cabine com rotação de 680 graus melhora a experiência de direção e simulação realista.",
+      "pros": "Brastoy Escavadeira De Controle Remoto Escala 1:20 Amarelo Brinquedo 2x Baterias-d342. Características confirmadas no anúncio: Personagem: Escavadeira telecontrolada. Escala: 1:20. Controle remoto de 2,4 GHz evita interferências e garante operação simultânea com múltiplos veículos.",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/brastoy-escavadeira-de-controle-remoto-escala-120-amarelo-brinquedo-2x-baterias-d342/p/MLB65735635",
+      "resolvidoEm": "2026-10-01T22:28:52.381Z",
+      "tentativas": 1
+    },
+    "u7n2dng5SGdvmt7VGnSD": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
+      "resolvidoEm": "2026-10-01T22:28:50.967Z",
+      "tentativas": 2
+    },
+    "DHqbagAqqQBInwJPFnda": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
+      "resolvidoEm": "2026-10-01T22:28:33.812Z",
+      "tentativas": 3
+    },
+    "kstTuekL9gtR85cs3MLq": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
+      "resolvidoEm": "2026-10-01T22:28:16.521Z",
+      "tentativas": 3
+    },
     "bAJYKtD8q8IFNVbyEgEC": {
       "status": "ok",
       "mlb": "MLB65735635",
@@ -27,27 +82,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/brastoy-escavadeira-de-controle-remoto-escala-120-amarelo-brinquedo-2x-baterias-d342/p/MLB65735635",
       "resolvidoEm": "2026-10-01T22:23:29.778Z",
       "tentativas": 1
-    },
-    "u7n2dng5SGdvmt7VGnSD": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
-      "resolvidoEm": "2026-10-01T22:23:27.997Z",
-      "tentativas": 1
-    },
-    "DHqbagAqqQBInwJPFnda": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
-      "resolvidoEm": "2026-10-01T22:23:10.287Z",
-      "tentativas": 2
-    },
-    "kstTuekL9gtR85cs3MLq": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
-      "resolvidoEm": "2026-10-01T22:22:52.705Z",
-      "tentativas": 2
     },
     "iwTQJYvUiyPmCe2QWVaR": {
       "status": "erro",
@@ -5728,46 +5762,6 @@
       "contras": "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.",
       "linkOriginal": "https://produto.mercadolivre.com.br/MLB-3806655487-tnis-flyer-runner-mesh-bdp-puma-_JM?searchVariation=185930355975#polycard_client=offers&deal_print_id=e2e779ce-8212-42db-8136-ab1ae8c2d938&position=4&tracking_id=cf7e517e-dcac-4b6f-83e7-65c023150d40&sid=offers",
       "resolvidoEm": "2026-09-06T10:04:12.753Z"
-    },
-    "Tfi0HKBwgtkOHbmBn50k": {
-      "status": "ok",
-      "mlb": "MLB3806655487",
-      "urlProduto": "https://produto.mercadolivre.com.br/MLB-3806655487-tnis-flyer-runner-mesh-bdp-puma-_JM",
-      "titulo": "Tênis Flyer Runner Mesh Bdp Puma",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_730513-MLB80451340719_112024-O-tnis-flyer-runner-mesh-bdp-puma.webp",
-      "precoAtual": 207.57,
-      "precoAnterior": 329.99,
-      "dadosTecnicos": [
-        "Marca: Puma",
-        "Cor: Preto",
-        "Código do catálogo: MLB3806655487",
-        "Condição informada: novo"
-      ],
-      "comentario": "Tênis Flyer Runner Mesh Bdp Puma. Marca: Puma; Cor: Preto; Código do catálogo: MLB3806655487; Condição informada: novo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Tênis Flyer Runner Mesh Bdp Puma. Características confirmadas no anúncio: Marca: Puma; Cor: Preto; Código do catálogo: MLB3806655487; Condição informada: novo.",
-      "contras": "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.",
-      "linkOriginal": "https://produto.mercadolivre.com.br/MLB-3806655487-tnis-flyer-runner-mesh-bdp-puma-_JM?searchVariation=185930355975#polycard_client=offers&deal_print_id=e2e779ce-8212-42db-8136-ab1ae8c2d938&position=4&tracking_id=cf7e517e-dcac-4b6f-83e7-65c023150d40&sid=offers",
-      "resolvidoEm": "2026-09-06T10:01:27.467Z"
-    },
-    "Z8W2bG9jwNztG36HRNnq": {
-      "status": "ok",
-      "mlb": "MLB3806655487",
-      "urlProduto": "https://produto.mercadolivre.com.br/MLB-3806655487-tnis-flyer-runner-mesh-bdp-puma-_JM",
-      "titulo": "Tênis Flyer Runner Mesh Bdp Puma",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_730513-MLB80451340719_112024-O-tnis-flyer-runner-mesh-bdp-puma.webp",
-      "precoAtual": 207.57,
-      "precoAnterior": 329.99,
-      "dadosTecnicos": [
-        "Marca: Puma",
-        "Cor: Preto",
-        "Código do catálogo: MLB3806655487",
-        "Condição informada: novo"
-      ],
-      "comentario": "Tênis Flyer Runner Mesh Bdp Puma. Marca: Puma; Cor: Preto; Código do catálogo: MLB3806655487; Condição informada: novo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Tênis Flyer Runner Mesh Bdp Puma. Características confirmadas no anúncio: Marca: Puma; Cor: Preto; Código do catálogo: MLB3806655487; Condição informada: novo.",
-      "contras": "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.",
-      "linkOriginal": "https://produto.mercadolivre.com.br/MLB-3806655487-tnis-flyer-runner-mesh-bdp-puma-_JM?searchVariation=185930355975#polycard_client=offers&deal_print_id=e2e779ce-8212-42db-8136-ab1ae8c2d938&position=4&tracking_id=cf7e517e-dcac-4b6f-83e7-65c023150d40&sid=offers",
-      "resolvidoEm": "2026-09-06T09:49:41.203Z"
     }
   }
 }
