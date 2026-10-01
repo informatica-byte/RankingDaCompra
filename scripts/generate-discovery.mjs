@@ -175,7 +175,7 @@ async function loadGeneratedPages() {
       pros: noteNames(review.positiveNotes).join("; "),
       contras: noteNames(review.negativeNotes).join("; "),
       ranking,
-      atualizadoEm: new Date().toISOString(),
+      atualizadoEm: publishedProductDate(html),
       __productUrl: canonical,
     });
   }
@@ -191,6 +191,13 @@ function dateOnly(value) {
   if (!value) return "";
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? "" : date.toISOString().slice(0, 10);
+}
+
+function publishedProductDate(html) {
+  const match = String(html || "").match(/Informações atualizadas em\s+(\d{1,2}) de (janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro) de (\d{4})/i);
+  if (!match) return "";
+  const months = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+  return `${match[3]}-${String(months.indexOf(match[2].toLowerCase()) + 1).padStart(2, "0")}-${match[1].padStart(2, "0")}`;
 }
 
 function newestDate(values) {
@@ -401,6 +408,28 @@ function categoryIntent(categoryId, categoryName) {
   };
 }
 
+function comparableCategoryProducts(categoryId, categoryName, products) {
+  const category = slug(`${categoryId} ${categoryName}`);
+  const seen = new Set();
+  return products.filter((product) => {
+    const title = String(product.titulo || "");
+    const normalized = slug(title);
+    if (!normalized || seen.has(normalized)) return false;
+    let comparable = true;
+    if (/roteador/.test(category)) {
+      comparable = /roteador|router|deco|twibi/i.test(title)
+        && !/repetidor|extensor|access\s*point|starlink|sat[eé]lite|adaptador/i.test(title);
+    } else if (/smartwatch|relogio-smart/.test(category)) {
+      comparable = /smartwatch|smart\s*watch|rel[oó]gio inteligente|amazfit|galaxy watch|apple watch|watch fit/i.test(title);
+    } else if (/fone/.test(category) && categoryIntent(categoryId, categoryName)) {
+      comparable = /bluetooth|sem fio|wireless|tws|\bbuds\b/i.test(title)
+        && !/capacete|intercomunicador|\bcom fio\b|\b100m2\b/i.test(title);
+    }
+    if (comparable) seen.add(normalized);
+    return comparable;
+  });
+}
+
 function categoryScore(product, minimumPrice, maximumPrice) {
   const price = numberPrice(product.precoPromocional || product.preco);
   const range = Math.max(maximumPrice - minimumPrice, 1);
@@ -451,10 +480,18 @@ function renderCategoryGuide(categoryId, categoryName, categoryProducts, product
     || numberPrice(a.precoPromocional || a.preco) - numberPrice(b.precoPromocional || b.preco));
   const winner = ranked[0];
   const cheapest = [...ranked].sort((a, b) => numberPrice(a.precoPromocional || a.preco) - numberPrice(b.precoPromocional || b.preco))[0];
-  const value = ranked.find((product) => product.id !== winner.id && product.id !== cheapest.id) || ranked[1];
+  const valueCandidates = ranked.filter((product) => product.id !== winner.id && product.id !== cheapest.id);
+  const value = valueCandidates.sort((a, b) => {
+    const valueScore = (product) => {
+      const score = categoryScore(product, minimumPrice, maximumPrice);
+      const quality = score.ratingScore + score.evidenceScore + Math.min(score.technicalFacts * 3, 15);
+      return quality / numberPrice(product.precoPromocional || product.preco);
+    };
+    return valueScore(b) - valueScore(a);
+  })[0] || ranked.find((product) => product.id !== winner.id) || winner;
   const fileName = guideFileName(categoryId);
   const guideUrl = `${SITE}${fileName}`;
-  const quick = [["🏆 Melhor geral", winner], ["💚 Melhor custo-benefício", value], ["💰 Mais barato", cheapest]].map(([label, product]) => `<article><span>${label}</span><strong>${escapeHtml(product.titulo)}</strong><b>${escapeHtml(money(product.precoPromocional || product.preco))}</b><a href="${escapeHtml(productUrls.get(product.id))}">Ver análise e preço</a></article>`).join("");
+  const quick = [["🏆 Melhor geral", winner], ["💚 Melhor custo-benefício", value], ["💰 Mais barato", cheapest]].map(([label, product]) => `<article><span>${label}</span><strong>${escapeHtml(product.titulo)}</strong><b>${escapeHtml(money(product.precoPromocional || product.preco))}</b>${label.includes("custo-benefício") ? "<small>Maior pontuação de qualidade por real entre as alternativas.</small>" : ""}<a href="${escapeHtml(productUrls.get(product.id))}">Ver análise e preço</a></article>`).join("");
   const rows = ranked.map((product, index) => {
     const positive = editorialItems(product.pros)[0] || "Informação positiva em revisão";
     const attention = editorialItems(product.contras)[0] || "Confirme os detalhes no anúncio";
@@ -487,13 +524,13 @@ function applyCategorySearchIntent(html, categoryId, categoryName, productCount)
       const decoded = decodeHtml(title);
       const base = decoded.replace(/\s*\|\s*Ranking da Compra\s*$/i, "");
       const seoTitle = /Ranking da Compra/i.test(decoded)
-        ? `${compactText(base, 44)} | Ranking da Compra`
-        : compactText(decoded, 65);
+        ? `${base} | Ranking da Compra`
+        : decoded;
       return `<title>${escapeHtml(seoTitle)}</title>`;
     });
   }
   const pageTitle = intent.pageTitle;
-  const seoTitle = `${compactText(pageTitle, 44)} | Ranking da Compra`;
+  const seoTitle = `${pageTitle} | Ranking da Compra`;
   const heading = intent.heading.replace("{count}", productCount);
   const intentBlock = `<section class="method search-intents"><h2>Dúvidas que este comparativo ajuda a responder</h2><ul>${intent.phrases.map((phrase) => `<li>${escapeHtml(phrase)}</li>`).join("")}</ul><p>Essas frases representam intenções de compra. A seleção continua baseada apenas nos produtos e dados realmente cadastrados.</p></section>`;
   return html
@@ -654,14 +691,14 @@ async function addRelatedLinks(products, productsByCategory, productUrls, catego
   return updated;
 }
 
-function updateSitemap(xml, lastModified, guidePages) {
+function updateSitemap(xml, lastModified, guidePages, guideModifiedDates = new Map()) {
   const pages = [[`${SITE}analises.html`, "daily", "0.9"], ...guidePages.map((fileName) => [`${SITE}${fileName}`, "weekly", "0.9"])];
   let updated = xml;
   updated = updated.replace(/\s*<url>\s*<loc>https:\/\/rankingdacompra\.com\.br\/melhores-[^<]+\.html<\/loc>[\s\S]*?<\/url>/g, "");
   for (const [url] of pages) {
     updated = updated.replace(new RegExp(`\\s*<url>\\s*<loc>${url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}<\\/loc>[\\s\\S]*?<\\/url>`, "g"), "");
   }
-  const entries = pages.map(([url, frequency, priority]) => `  <url>\n    <loc>${escapeXml(url)}</loc>\n    <lastmod>${escapeXml(lastModified)}</lastmod>\n    <changefreq>${frequency}</changefreq>\n    <priority>${priority}</priority>\n  </url>\n`).join("");
+  const entries = pages.map(([url, frequency, priority]) => `  <url>\n    <loc>${escapeXml(url)}</loc>\n    <lastmod>${escapeXml(guideModifiedDates.get(basename(url)) || lastModified)}</lastmod>\n    <changefreq>${frequency}</changefreq>\n    <priority>${priority}</priority>\n  </url>\n`).join("");
   return updated.replace("</urlset>", `${entries}</urlset>`);
 }
 
@@ -718,16 +755,27 @@ const lastModified = newestDate([
 ]);
 await writeFile(resolve("analises.html"), renderDirectoryPage(categories, productsByCategory, productUrls, categoryNames, lastModified), "utf8");
 const guidePages = [];
+const guideModifiedDates = new Map();
 for (const category of categories) {
   const categoryName = categoryNames.get(category.id) || category.id;
   const fileName = guideFileName(category.id, categoryName);
   const categoryProducts = productsByCategory.get(category.id) || [];
-  const rawGuide = renderCategoryGuide(category.id, categoryName, categoryProducts, productUrls, lastModified);
+  const comparableProducts = comparableCategoryProducts(category.id, categoryName, categoryProducts);
+  const guideProducts = comparableProducts.length >= 3 ? comparableProducts : categoryProducts;
+  if (comparableProducts.length < 3 && comparableProducts.length !== categoryProducts.length) {
+    console.warn(`${fileName}: seleção comparável insuficiente; o guia existente foi preservado até revisão editorial.`);
+  }
+  const guideModified = newestDate([
+    ...guideProducts.flatMap((product) => [product.atualizadoEm, product.dataCadastro]),
+    category.criadoEm,
+  ]);
+  const rawGuide = renderCategoryGuide(category.id, categoryName, guideProducts, productUrls, guideModified);
   const guide = rawGuide.includes("data-price-unconfirmed-guide")
-    ? rawGuide : applyCategorySearchIntent(rawGuide, category.id, categoryName, categoryProducts.length);
+    ? rawGuide : applyCategorySearchIntent(rawGuide, category.id, categoryName, guideProducts.length);
   if (!guide) continue;
   await writeFile(resolve(fileName), guide, "utf8");
   guidePages.push(fileName);
+  guideModifiedDates.set(fileName, guideModified);
 }
 for (const file of (await readdir(resolve("."))).filter((name) => /^melhores-.+\.html$/.test(name))) {
   if (!guidePages.includes(file)) await unlink(resolve(file));
@@ -737,7 +785,7 @@ await writeFile(
   JSON.stringify(buildSearchIndex(categories, products, productUrls, categoryNames, lastModified), null, 2) + "\n",
   "utf8",
 );
-sitemapXml = updateSitemap(sitemapXml, lastModified, guidePages);
+sitemapXml = updateSitemap(sitemapXml, lastModified, guidePages, guideModifiedDates);
 await writeFile(resolve("sitemap.xml"), sitemapXml, "utf8");
 const relatedPages = await addRelatedLinks(products, productsByCategory, productUrls, categoryNames);
 

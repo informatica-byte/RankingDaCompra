@@ -1365,21 +1365,11 @@ function renderSharePage(product, socialImage, categoryNames, marketplaceStatus 
 
   const discount = previousPrice > currentPrice ? Math.round((1 - currentPrice / previousPrice) * 100) : 0;
 
-  const seoHook = promotional && discount >= 5
-
-    ? `${discount}% OFF por ${money(currentPrice)}`
-
-    : confirmed
-
-      ? `${money(currentPrice)}: vale a pena?`
-
-      : "vale a pena? prós e contras";
-
-  const seoProductName = compactText(title, Math.max(24, 64 - seoHook.length - 2));
-
-  const seoTitle = `${seoProductName}: ${seoHook}`;
-
-  const browserTitle = seoTitle.length <= 43 ? `${seoTitle} | Ranking da Compra` : seoTitle;
+  // O título identifica o modelo e permanece estável quando apenas o preço muda.
+  // Preço e promoção continuam visíveis no corpo e na descrição da página.
+  const seoProductName = compactText(title, 74).replace(/…$/, "").trim();
+  const browserTitle = `${seoProductName} | Ranking da Compra`;
+  const seoTitle = browserTitle;
 
   const descriptionLead = promotional && discount >= 5
 
