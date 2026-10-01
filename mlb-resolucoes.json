@@ -1,12 +1,26 @@
 {
-  "atualizadoEm": "2026-10-01T22:29:10.910Z",
+  "atualizadoEm": "2026-10-01T22:32:55.852Z",
   "resultados": {
+    "GoUoqNsio6kPplwTAx7M": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-ergometrica-liftness-spinning-x11-cor-pretovermelho-liftness/p/MLB75685666",
+      "resolvidoEm": "2026-10-01T22:32:55.851Z",
+      "tentativas": 1
+    },
     "VZ9sC2J2TNDN8FBiPGds": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-ergometrica-liftness-spinning-x11-cor-pretovermelho-liftness/p/MLB75685666",
-      "resolvidoEm": "2026-10-01T22:29:10.909Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-10-01T22:32:39.136Z",
+      "tentativas": 2
+    },
+    "u7n2dng5SGdvmt7VGnSD": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
+      "resolvidoEm": "2026-10-01T22:32:22.322Z",
+      "tentativas": 3
     },
     "E9Vr8RZlRFsVgy6vaQLB": {
       "status": "ok",
@@ -34,13 +48,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/brastoy-escavadeira-de-controle-remoto-escala-120-amarelo-brinquedo-2x-baterias-d342/p/MLB65735635",
       "resolvidoEm": "2026-10-01T22:28:52.381Z",
       "tentativas": 1
-    },
-    "u7n2dng5SGdvmt7VGnSD": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
-      "resolvidoEm": "2026-10-01T22:28:50.967Z",
-      "tentativas": 2
     },
     "DHqbagAqqQBInwJPFnda": {
       "status": "erro",
@@ -5742,26 +5749,6 @@
       "contras": "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.",
       "linkOriginal": "https://produto.mercadolivre.com.br/MLB-4224584697-tnis-fila-vector-masculino-confortavel-estilo-esportivo-_JM?searchVariation=191222432289#polycard_client=offers&deal_print_id=67e57ba8-42d5-43da-a7ef-e254bf57eba1&position=15&tracking_id=a6e50b1c-c8b9-4e56-8ef4-50dd265cc549&sid=offers",
       "resolvidoEm": "2026-09-06T10:08:37.621Z"
-    },
-    "ZlC2UqHao1S2KDuzIhGs": {
-      "status": "ok",
-      "mlb": "MLB3806655487",
-      "urlProduto": "https://produto.mercadolivre.com.br/MLB-3806655487-tnis-flyer-runner-mesh-bdp-puma-_JM",
-      "titulo": "Tênis Flyer Runner Mesh Bdp Puma",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_730513-MLB80451340719_112024-O-tnis-flyer-runner-mesh-bdp-puma.webp",
-      "precoAtual": 207.57,
-      "precoAnterior": 329.99,
-      "dadosTecnicos": [
-        "Marca: Puma",
-        "Cor: Preto",
-        "Código do catálogo: MLB3806655487",
-        "Condição informada: novo"
-      ],
-      "comentario": "Tênis Flyer Runner Mesh Bdp Puma. Marca: Puma; Cor: Preto; Código do catálogo: MLB3806655487; Condição informada: novo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Tênis Flyer Runner Mesh Bdp Puma. Características confirmadas no anúncio: Marca: Puma; Cor: Preto; Código do catálogo: MLB3806655487; Condição informada: novo.",
-      "contras": "Confira atentamente tamanho, medidas, material, cor, política de troca, frete, prazo e estoque no anúncio antes da compra.",
-      "linkOriginal": "https://produto.mercadolivre.com.br/MLB-3806655487-tnis-flyer-runner-mesh-bdp-puma-_JM?searchVariation=185930355975#polycard_client=offers&deal_print_id=e2e779ce-8212-42db-8136-ab1ae8c2d938&position=4&tracking_id=cf7e517e-dcac-4b6f-83e7-65c023150d40&sid=offers",
-      "resolvidoEm": "2026-09-06T10:04:12.753Z"
     }
   }
 }
