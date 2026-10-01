@@ -1,26 +1,33 @@
 {
-  "atualizadoEm": "2026-10-01T21:59:48.309Z",
+  "atualizadoEm": "2026-10-01T22:04:19.389Z",
   "resultados": {
+    "iwTQJYvUiyPmCe2QWVaR": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
+      "resolvidoEm": "2026-10-01T22:04:19.388Z",
+      "tentativas": 1
+    },
     "eWoSFPw84czbDj32rEQZ": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
-      "resolvidoEm": "2026-10-01T21:59:48.308Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-10-01T22:04:02.217Z",
+      "tentativas": 2
     },
     "QADpgDyyuOMFqZQGLqgG": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
-      "resolvidoEm": "2026-10-01T21:59:31.156Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-10-01T22:03:44.977Z",
+      "tentativas": 2
     },
     "0aIVxuUt78ACsEoK6BF0": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/carrinho-de-controle-remoto-inteligente-9-funcoes-rapido-360-cor-preto-toy-king/p/MLB34729028?pdp_filters=item_id%3AMLB5327527014#origin=share&sid=share&wid=MLB5327527014",
-      "resolvidoEm": "2026-10-01T21:59:13.790Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-10-01T22:03:27.727Z",
+      "tentativas": 3
     },
     "XtEN1ApJcaNY6j6ws4Q1": {
       "status": "erro",
@@ -5804,32 +5811,6 @@
       "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
       "linkOriginal": "https://www.mercadolivre.com.br/maquininha-de-cartao-pro-3-mercado-pago-point-amarela-claro-4gwifinfc/p/MLB50744234?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=4da264b8-34c7-46cc-8b07-d5511caa698c&position=21&tracking_id=e82382f6-ea5f-4140-8825-41edb407d1ed&wid=MLB6040210176&sid=offers",
       "resolvidoEm": "2026-09-06T09:49:37.517Z"
-    },
-    "8AyPtXvGo4sQuFLKu6Wv": {
-      "status": "ok",
-      "mlb": "MLB7159098736",
-      "urlProduto": "https://www.mercadolivre.com.br/wap-robo-w200-aspirador-robo-3-em-1-varre-aspira-passa-pano-bivolt/p/MLB64970204",
-      "titulo": "WAP Robô W200 Aspirador Robô 3 em 1 Varre Aspira Passa Pano Bivolt",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_638480-MLA111867123322_062026-O.webp",
-      "precoAtual": 559,
-      "precoAnterior": 699.9,
-      "dadosTecnicos": [
-        "Voltagem: 127/220V.",
-        "Com base carregadora, o robô volta sozinho quando a bateria está fraca e quando finaliza a limpeza.",
-        "3 em 1, ele varre, aspira e passa pano, economizando tempo e realizando uma limpeza completa.",
-        "Agende um horário para limpeza diária automática, mantendo a casa limpa sempre, sem esforço.",
-        "Com autonomia de 1 hora e 15 minutos, ele limpa uma área ampla com apenas uma carga.",
-        "Escolha entre os 3 modos de limpeza, espiral, cantos ou aleatória, que atende melhor sua necessidade.",
-        "Escova giratória lavável e de grande alcance, ideal para limpeza de cantos.",
-        "Recipiente coletor de pó lavável com capacidade de 275ml, facilita a limpeza e mantém a performance.",
-        "Sensores antiqueda e de impacto redirecionam o robô ao encontrar obstáculos ou locais de queda.",
-        "Marca: Wap"
-      ],
-      "comentario": "WAP Robô W200 Aspirador Robô 3 em 1 Varre Aspira Passa Pano Bivolt. Voltagem: 127/220V. Com base carregadora, o robô volta sozinho quando a bateria está fraca e quando finaliza a limpeza. 3 em 1, ele varre, aspira e passa pano, economizando tempo e realizando uma limpeza completa. Agende um horário para limpeza diária automática, mantendo a casa limpa sempre, sem esforço. Com autonomia de 1 hora e 15 minutos, ele limpa uma área ampla com apenas uma carga.",
-      "pros": "WAP Robô W200 Aspirador Robô 3 em 1 Varre Aspira Passa Pano Bivolt. Características confirmadas no anúncio: Voltagem: 127/220V. Com base carregadora, o robô volta sozinho quando a bateria está fraca e quando finaliza a limpeza.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/wap-robo-w200-aspirador-robo-3-em-1-varre-aspira-passa-pano-bivolt/p/MLB64970204?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=5f670432-e43d-48be-a8c4-bd2275eefece&position=1&tracking_id=0ea471a6-2234-4054-93b4-64d6a24fdc55&wid=MLB7159098736&sid=offers",
-      "resolvidoEm": "2026-09-06T09:49:36.581Z"
     }
   }
 }
