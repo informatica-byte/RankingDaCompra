@@ -146,7 +146,8 @@ async function loadGeneratedPages() {
     const robots = attribute(html, /<meta[^>]+name=["']robots["'][^>]*>/i, "content");
     if (/\bnoindex\b/i.test(robots)) continue;
     const schema = structuredProduct(html);
-    const title = textFromHtml(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]) || String(schema.name || "").trim();
+    const title = String(schema.name || "").trim()
+      || textFromHtml(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]);
     const summary = textFromHtml(html.match(/<p[^>]+class=["'][^"']*summary[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1]) || String(schema.description || "").trim();
     if (!title || summary.length < 180 || GENERIC_TEXT.test(summary)) continue;
     const categoryName = textFromHtml(html.match(/<div[^>]+class=["'][^"']*fact[^"']*["'][^>]*>\s*<span[^>]*>Categoria<\/span>([\s\S]*?)<\/div>/i)?.[1]) || String(schema.category || "Produtos").trim();
@@ -166,7 +167,7 @@ async function loadGeneratedPages() {
     categories.set(categoryId, { id: categoryId, nome: categoryName });
     products.push({
       id: productId,
-      titulo: title,
+      titulo: compactText(title, 96),
       categoria: categoryId,
       comentario: summary,
       foto: image,
