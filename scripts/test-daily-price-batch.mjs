@@ -21,6 +21,7 @@ test("sitemap mantém uma janela diária e não relê Firebase por artefatos ou 
   assert.deepEqual(paths, [
     "scripts/generate-sitemap.mjs",
     "scripts/generate-discovery.mjs",
+    "scripts/discovery-editorial.mjs",
     "scripts/generate-home-static.mjs",
     "scripts/generate-seasonal-guides.mjs",
   ]);
