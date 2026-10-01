@@ -1,6 +1,13 @@
 {
-  "atualizadoEm": "2026-10-01T09:55:37.867Z",
+  "atualizadoEm": "2026-10-01T16:32:29.298Z",
   "resultados": {
+    "yCvA6LYNIJMQ2kxQRXgU": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/moto-g6-play-dual-sim-32-gb-indigo-escuro-3-gb-ram/p/MLB9413724?pdp_filters=item_id%3AMLB5188154041#origin=share&sid=share&wid=MLB5188154041",
+      "resolvidoEm": "2026-10-01T16:32:29.290Z",
+      "tentativas": 1
+    },
     "x3lLPgfO0BTguBXOiBxX": {
       "status": "ok",
       "mlb": "MLB4104172797",
@@ -5885,28 +5892,6 @@
       "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
       "linkOriginal": "https://www.mercadolivre.com.br/liquidificador-philco-1200w-3l-12-velocidades-preto-ph900/p/MLB15578941?pdp_filters=deal%3AMLB1578289-1&extra_comm=false&brand_comm=false#polycard_client=affiliates&wid=MLB1942049788&sid=affiliates",
       "resolvidoEm": "2026-09-05T12:47:11.785Z"
-    },
-    "nnJzBhoYX3RpQzGHoN4V": {
-      "status": "ok",
-      "mlb": "MLB4709294547",
-      "urlProduto": "https://www.mercadolivre.com.br/conjunto-de-panelas-antiaderente-10-pecas-coffee-cappuccino-imperial/p/MLB62276281",
-      "titulo": "Conjunto de panelas antiaderente 10 peças Coffee cappuccino Imperial",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_881674-MLA106260237067_012026-O.webp",
-      "precoAtual": 184,
-      "precoAnterior": 299.99,
-      "dadosTecnicos": [
-        "Revestimento antiaderente para fácil limpeza e cozimento sem grudar.",
-        "Conjunto completo de 10 peças para diversas preparações culinárias.",
-        "Marca: Panelas Imperial",
-        "Cor: Branco",
-        "Código do catálogo: MLB62276281",
-        "Condição informada: novo"
-      ],
-      "comentario": "Conjunto de panelas antiaderente 10 peças Coffee cappuccino Imperial. Revestimento antiaderente para fácil limpeza e cozimento sem grudar. Conjunto completo de 10 peças para diversas preparações culinárias. Marca: Panelas Imperial; Cor: Branco; Código do catálogo: MLB62276281; Condição informada: novo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Conjunto de panelas antiaderente 10 peças Coffee cappuccino Imperial. Características confirmadas no anúncio: Revestimento antiaderente para fácil limpeza e cozimento sem grudar. Conjunto completo de 10 peças para diversas preparações culinárias.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/conjunto-de-panelas-antiaderente-10-pecas-coffee-cappuccino-imperial/p/MLB62276281?pdp_filters=deal%3AMLB1578289-1&extra_comm=false&brand_comm=false#polycard_client=affiliates&wid=MLB4709294547&sid=affiliates",
-      "resolvidoEm": "2026-09-05T12:37:40.657Z"
     }
   }
 }
