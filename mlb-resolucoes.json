@@ -1,6 +1,47 @@
 {
-  "atualizadoEm": "2026-10-02T10:29:10.220Z",
+  "atualizadoEm": "2026-10-02T10:34:19.396Z",
   "resultados": {
+    "i0CLAaJTO8IujkX5L536": {
+      "status": "ok",
+      "mlb": "MLB66100505",
+      "urlProduto": "https://www.mercadolivre.com.br/multimidia-7-polegadas-carplay-android-auto-sem-fio-mp5-rs-7007br-7-cor-preto/p/MLB66100505",
+      "titulo": "Multimídia 7 Polegadas Carplay Android auto sem fio Mp5 Rs-7007br 7 cor preto",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_676899-MLA114722344769_072026-F.jpg",
+      "precoAtual": 287.01,
+      "precoAnterior": 420.99,
+      "dadosTecnicos": [
+        "Tela de 7\" permite visualização clara de mapas e playlists, integrando CarPlay e Android Auto sem fio.",
+        "Bluetooth e entrada USB facilitam conexões rápidas, garantindo música e chamadas sem interferências.",
+        "Marca: Roadstar",
+        "Código do catálogo: MLB66100505",
+        "Condição informada: novo",
+        "Linha: RS-7007 BR",
+        "Modelo: RS-7007 BR",
+        "Cor: Preto",
+        "Tamanho da tela: 7 \"",
+        "Altura: 11 cm"
+      ],
+      "comentario": "Multimídia 7 Polegadas Carplay Android auto sem fio Mp5 Rs-7007br 7 cor preto. Tela de 7\" permite visualização clara de mapas e playlists, integrando CarPlay e Android Auto sem fio. Bluetooth e entrada USB facilitam conexões rápidas, garantindo música e chamadas sem interferências. Marca: Roadstar; Código do catálogo: MLB66100505; Condição informada: novo; Linha: RS-7007 BR. Informações consultadas no anúncio oficial do Mercado Livre.",
+      "pros": "Multimídia 7 Polegadas Carplay Android auto sem fio Mp5 Rs-7007br 7 cor preto. Características confirmadas no anúncio: Tela de 7\" permite visualização clara de mapas e playlists, integrando CarPlay e Android Auto sem fio.",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/multimidia-7-polegadas-carplay-android-auto-sem-fio-mp5-rs-7007br-7-cor-preto/p/MLB66100505",
+      "resolvidoEm": "2026-10-02T10:34:19.395Z",
+      "tentativas": 1
+    },
+    "nkQ3krHr1MjkKb5xl2Gy": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-ergometrica-liftness-spinning-x11-cor-pretovermelho-liftness/p/MLB75685666",
+      "resolvidoEm": "2026-10-02T10:34:18.413Z",
+      "tentativas": 2
+    },
+    "cyBD9Rf5JY6jbjx3EM9R": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/chaleira-eletrica-vidro-epsilon-eps-2906-esquentar-agua-leite-18l-jarra/p/MLB76591176?pdp_filters=price%3A0.0-100.0%7Cdeal%3AMLB779362-1#polycard_client=offers&deal_print_id=181f308e-5192-4d74-8570-abe047522c78&position=32&tracking_id=d741f6f6-03bd-441b-bf10-d5b45a4c21fe&wid=MLB5039509567&sid=offers",
+      "resolvidoEm": "2026-10-02T10:34:01.452Z",
+      "tentativas": 3
+    },
     "wbgRQ6JcqPvxlMTbwhBd": {
       "status": "ok",
       "mlb": "MLB54428983",
@@ -28,13 +69,6 @@
       "resolvidoEm": "2026-10-02T10:29:10.219Z",
       "tentativas": 1
     },
-    "nkQ3krHr1MjkKb5xl2Gy": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-ergometrica-liftness-spinning-x11-cor-pretovermelho-liftness/p/MLB75685666",
-      "resolvidoEm": "2026-10-02T10:29:09.059Z",
-      "tentativas": 1
-    },
     "66BqdhB00rVeGsC83nOR": {
       "status": "ok",
       "mlb": "MLB6091779718",
@@ -55,13 +89,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/aparelhos-academia-aparelho-abdominal-ab-circlecasa-dobravel/up/MLBU3690429243?pdp_filters=item_id%3AMLB6091779718#origin=share&sid=share&wid=MLB6091779718",
       "resolvidoEm": "2026-10-02T10:28:51.754Z",
       "tentativas": 1
-    },
-    "cyBD9Rf5JY6jbjx3EM9R": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/chaleira-eletrica-vidro-epsilon-eps-2906-esquentar-agua-leite-18l-jarra/p/MLB76591176?pdp_filters=price%3A0.0-100.0%7Cdeal%3AMLB779362-1#polycard_client=offers&deal_print_id=181f308e-5192-4d74-8570-abe047522c78&position=32&tracking_id=d741f6f6-03bd-441b-bf10-d5b45a4c21fe&wid=MLB5039509567&sid=offers",
-      "resolvidoEm": "2026-10-02T10:28:50.172Z",
-      "tentativas": 2
     },
     "yq7g0n01o0NDHaiU1KML": {
       "status": "erro",
@@ -5522,32 +5549,6 @@
       "contras": "Confira voltagem quando aplicável, medidas, compatibilidade, garantia, vendedor, frete, prazo e estoque no anúncio antes da compra.",
       "linkOriginal": "https://www.mercadolivre.com.br/pistola-fixacao-finca-pino-acao-direta-pregos-epi-maleta-pinador-pregador-grampeador-rebitador-de-prego-pressao-ferramenta-para-drywal-gesso-concreto-aco-parede/p/MLB77311415?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=740b4327-cdac-4ed4-ac73-4d654c19a38b&tracking_id=ca194cab-032d-4e0f-9e73-a1e32311b382&wid=MLB5075784673&sid=offers",
       "resolvidoEm": "2026-09-08T12:46:57.251Z"
-    },
-    "qKgjcXX8OcAxpg6SpKPr": {
-      "status": "ok",
-      "mlb": "MLB4604524838",
-      "urlProduto": "https://www.mercadolivre.com.br/notebook-asus-vivobook-go-15-amd-ryzen-5-7520u-8gb-512gb-ssd-keepos-tela-156-fhd-mixed-black-e1504fa-nj732/p/MLB35715045",
-      "titulo": "Notebook ASUS VivoBook Go 15 AMD Ryzen 5 7520U 8GB 512GB SSD KeepOS Tela 15,6\" FHD Mixed Black - E1504FA-NJ732",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_737034-MLU75570682760_042024-O.webp",
-      "precoAtual": 3025.88,
-      "precoAnterior": 3799,
-      "dadosTecnicos": [
-        "Modelo de placa gráfica integrada: Graphics.",
-        "Linha de placa gráfica integrada: Radeon.",
-        "Modelo do processador: 7520U.",
-        "Linha do processador: Ryzen 5.",
-        "Marca do processador: AMD.",
-        "Versão do sistema operacional: Keep OS.",
-        "Nome do sistema operacional: Linux.",
-        "Capacidade de disco SSD: 512 GB.",
-        "Capacidade total do módulo de memória RAM: 8 GB.",
-        "Com tela tátil: Não."
-      ],
-      "comentario": "Notebook ASUS VivoBook Go 15 AMD Ryzen 5 7520U 8GB 512GB SSD KeepOS Tela 15,6\" FHD Mixed Black - E1504FA-NJ732. Modelo de placa gráfica integrada: Graphics. Linha de placa gráfica integrada: Radeon. Modelo do processador: 7520U. Linha do processador: Ryzen 5. Marca do processador: AMD. Versão do sistema operacional: Keep OS.. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Notebook ASUS VivoBook Go 15 AMD Ryzen 5 7520U 8GB 512GB SSD KeepOS Tela 15,6\" FHD Mixed Black - E1504FA-NJ732. Características confirmadas no anúncio: Modelo de placa gráfica integrada: Graphics. Linha de placa gráfica integrada: Radeon. Modelo do processador: 7520U.",
-      "contras": "Confira voltagem quando aplicável, medidas, compatibilidade, garantia, vendedor, frete, prazo e estoque no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/notebook-asus-vivobook-go-15-amd-ryzen-5-7520u-8gb-512gb-ssd-keepos-tela-156-fhd-mixed-black-e1504fa-nj732/p/MLB35715045?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=99daf808-5d2d-46ae-aacd-24f24aedde2b&tracking_id=727264af-d036-4b74-aa40-ad2ff78ef6ca&wid=MLB4604524838&sid=offers",
-      "resolvidoEm": "2026-09-08T12:46:56.453Z"
     }
   }
 }
