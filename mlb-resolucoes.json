@@ -1,12 +1,19 @@
 {
-  "atualizadoEm": "2026-10-02T09:11:30.198Z",
+  "atualizadoEm": "2026-10-02T09:13:46.939Z",
   "resultados": {
+    "kNzwBztGzUcoc2W8FylI": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/extensao-eletrica-30-metros-reforcada-3-tomadas-cabo-resistente-10a-20a-bivolt-uso-profissional-residencial-obra-alta-durabilidade/p/MLB68929894?pdp_filters=price%3A0.0-100.0%7Cdeal%3AMLB779362-1#polycard_client=offers&deal_print_id=fd18f7a7-f67e-47e2-ab0a-8dc7b7b03cab&position=6&tracking_id=6a147219-3c13-4a29-add3-a829d9c3b694&wid=MLB4646190273&sid=offers",
+      "resolvidoEm": "2026-10-02T09:13:46.938Z",
+      "tentativas": 1
+    },
     "O18FJqIf1zFu2U3TmcK0": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/extensao-eletrica-30-metros-reforcada-3-tomadas-cabo-resistente-10a-20a-bivolt-uso-profissional-residencial-obra-alta-durabilidade/p/MLB68929894?pdp_filters=price%3A0.0-100.0%7Cdeal%3AMLB779362-1#polycard_client=offers&deal_print_id=fd18f7a7-f67e-47e2-ab0a-8dc7b7b03cab&position=6&tracking_id=6a147219-3c13-4a29-add3-a829d9c3b694&wid=MLB4646190273&sid=offers",
-      "resolvidoEm": "2026-10-02T09:11:30.191Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-10-02T09:13:29.821Z",
+      "tentativas": 2
     },
     "khvDvlvLcCvFsnjnSbzD": {
       "status": "erro",
@@ -5705,32 +5712,6 @@
       "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
       "linkOriginal": "https://www.mercadolivre.com.br/kit-2-tags-de-rastreamento-localizador-smarttag-android/up/MLBU3974705142?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=bb08fa98-4c1b-4b14-9a61-a31c09a69923&tracking_id=6a7c1cc1-f4b1-4e12-b058-8ee61f6a5c91&wid=MLB4680603973&sid=offers",
       "resolvidoEm": "2026-09-06T10:47:29.798Z"
-    },
-    "FgHRu9j6yuAsKVPauLZm": {
-      "status": "ok",
-      "mlb": "MLB4843882541",
-      "urlProduto": "https://www.mercadolivre.com.br/smartwatch-aurafit-g6-verde-militar-whatsapp-com-5atm-e-gps/up/MLBU4219992806",
-      "titulo": "Smartwatch Aurafit G6 Verde Militar Whatsapp Com 5atm E Gps",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_661995-MLB114103156395_072026-O.webp",
-      "precoAtual": 337,
-      "precoAnterior": 399,
-      "dadosTecnicos": [
-        "Material do bisel: Liga de zinco",
-        "Material da caixa do smartwatch: ABS",
-        "Material da pulseira: Silicone",
-        "Versão do smartwatch: Tactical",
-        "Cor do bisel: Verde Militar",
-        "Desenho da pulseira: Sport",
-        "Cor da pulseira: 2 pulseiras de relógio",
-        "Cor da caixa: Verde Militar",
-        "Com conectividade via Bluetooth.",
-        "Suporta até 50m debaixo d'água."
-      ],
-      "comentario": "Smartwatch Aurafit G6 Verde Militar Whatsapp Com 5atm E Gps. Material do bisel: Liga de zinco; Material da caixa do smartwatch: ABS; Material da pulseira: Silicone; Versão do smartwatch: Tactical; Cor do bisel: Verde Militar; Desenho da pulseira: Sport. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Smartwatch Aurafit G6 Verde Militar Whatsapp Com 5atm E Gps. Características confirmadas no anúncio: Material do bisel: Liga de zinco; Material da caixa do smartwatch: ABS; Material da pulseira: Silicone; Versão do smartwatch: Tactical; Cor do bisel: Verde Militar.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/smartwatch-aurafit-g6-verde-militar-whatsapp-com-5atm-e-gps/up/MLBU4219992806?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=36a0fc7c-585f-4cd0-bb91-cfabbbe7a3b9&position=42&tracking_id=4d30a188-8fcf-4835-b36d-03b5159bcd47&wid=MLB4843882541&sid=offers",
-      "resolvidoEm": "2026-09-06T10:41:28.216Z"
     }
   }
 }
