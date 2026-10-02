@@ -1270,7 +1270,8 @@
       function guardarResultadosRobo(resultados) {
         for (const [id, item] of Object.entries(resultados || {})) {
           const anterior = cacheResultadosApi[id];
-          if (!anterior || Date.parse(item?.resolvidoEm || 0) >= Date.parse(anterior.resolvidoEm || 0)) cacheResultadosApi[id] = item;
+          const dataNova = Date.parse(item?.resolvidoEm || ""), dataAnterior = Date.parse(anterior?.resolvidoEm || "");
+          if (!anterior || !Number.isFinite(dataAnterior) || dataNova >= dataAnterior) cacheResultadosApi[id] = item;
         }
       }
       async function atualizarResultadosApi(forcar = false) {
@@ -1298,17 +1299,17 @@
       async function lerResultadoRobo(pedidoId, forcarApi = false) {
         // Coalesce focus/visibility checks and polling; these files do not read Firestore.
         if (consultaResultadosEmAndamento) await consultaResultadosEmAndamento;
-        if (cacheResultadosApi[pedidoId]) return cacheResultadosApi[pedidoId];
+        if (!forcarApi && ["ok", "erro"].includes(cacheResultadosApi[pedidoId]?.status)) return cacheResultadosApi[pedidoId];
         const versao = Date.now();
         if (!forcarApi && versao - ultimaConsultaResultadosPublicos < 15000) return null;
         consultaResultadosEmAndamento = (async () => {
           ultimaConsultaResultadosPublicos = versao;
           await atualizarResultadosApi(forcarApi);
-          if (cacheResultadosApi[pedidoId]) return;
+          if (["ok", "erro"].includes(cacheResultadosApi[pedidoId]?.status)) return;
           const fontes = ["https://raw.githubusercontent.com/informatica-byte/RankingDaCompra/main/mlb-resolucoes.json?v=" + versao, "mlb-resolucoes.json?v=" + versao];
           for (const fonte of fontes) {
             guardarResultadosRobo(await lerJsonResultados(fonte));
-            if (cacheResultadosApi[pedidoId]) return;
+            if (["ok", "erro"].includes(cacheResultadosApi[pedidoId]?.status)) return;
           }
         })();
         try {

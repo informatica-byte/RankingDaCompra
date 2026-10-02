@@ -192,6 +192,20 @@ test("arquivo antigo não substitui resultado mais recente", () => {
   assert.equal(ctx.cacheResultadosApi.chaleira.status, "erro");
 });
 
+test("resultado pendente em cache pode evoluir para resultado final", async () => {
+  const { ctx } = setup();
+  ctx.cacheResultadosApi.chaleira = { status: "pendente" };
+  ctx.fetch = async () => ({ ok: true, json: async () => ({ resultados: { chaleira: { status: "erro", resolvidoEm: "2026-10-02T10:00:00Z" } } }) });
+  assert.equal((await ctx.lerResultadoRobo("chaleira")).status, "erro");
+});
+
+test("consulta forçada atualiza resultado anterior do mesmo pedido", async () => {
+  const { ctx } = setup();
+  ctx.cacheResultadosApi.chaleira = { status: "erro", resolvidoEm: "2026-10-02T09:00:00Z" };
+  ctx.fetch = async () => ({ ok: true, json: async () => ({ resultados: { chaleira: { status: "ok", resolvidoEm: "2026-10-02T10:00:00Z" } } }) });
+  assert.equal((await ctx.lerResultadoRobo("chaleira", true)).status, "ok");
+});
+
 test("requisição travada é abortada sem esperar indefinidamente", async () => {
   const { ctx } = setup();
   ctx.setTimeout = callback => { queueMicrotask(callback); return 1; };
