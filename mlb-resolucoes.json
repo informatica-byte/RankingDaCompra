@@ -1,33 +1,61 @@
 {
-  "atualizadoEm": "2026-10-02T10:13:07.487Z",
+  "atualizadoEm": "2026-10-02T10:19:44.336Z",
   "resultados": {
+    "mpy4lHciVDzp8henYuFJ": {
+      "status": "ok",
+      "mlb": "MLB6091779718",
+      "urlProduto": "https://www.mercadolivre.com.br/aparelhos-academia-aparelho-abdominal-ab-circlecasa-dobravel/up/MLBU3690429243",
+      "titulo": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_894340-MLB101825038376_122025-O.webp",
+      "precoAtual": 359,
+      "precoAnterior": 429,
+      "dadosTecnicos": [
+        "Capacidade máxima do usuário: 200kg.",
+        "Marca: Mancety",
+        "Código do catálogo: MLBU3690429243",
+        "Condição informada: novo"
+      ],
+      "comentario": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável. Capacidade máxima do usuário: 200kg. Marca: Mancety; Código do catálogo: MLBU3690429243; Condição informada: novo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "pros": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável. Características confirmadas no anúncio: Capacidade máxima do usuário: 200kg. Marca: Mancety; Código do catálogo: MLBU3690429243; Condição informada: novo.",
+      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
+      "linkOriginal": "https://www.mercadolivre.com.br/aparelhos-academia-aparelho-abdominal-ab-circlecasa-dobravel/up/MLBU3690429243?pdp_filters=item_id%3AMLB6091779718#origin=share&sid=share&wid=MLB6091779718",
+      "resolvidoEm": "2026-10-02T10:19:44.335Z",
+      "tentativas": 1
+    },
+    "cyBD9Rf5JY6jbjx3EM9R": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/chaleira-eletrica-vidro-epsilon-eps-2906-esquentar-agua-leite-18l-jarra/p/MLB76591176?pdp_filters=price%3A0.0-100.0%7Cdeal%3AMLB779362-1#polycard_client=offers&deal_print_id=181f308e-5192-4d74-8570-abe047522c78&position=32&tracking_id=d741f6f6-03bd-441b-bf10-d5b45a4c21fe&wid=MLB5039509567&sid=offers",
+      "resolvidoEm": "2026-10-02T10:19:43.084Z",
+      "tentativas": 1
+    },
     "yq7g0n01o0NDHaiU1KML": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/chaleira-eletrica-vidro-epsilon-eps-2906-esquentar-agua-leite-18l-jarra/p/MLB76591176?pdp_filters=price%3A0.0-100.0%7Cdeal%3AMLB779362-1#polycard_client=offers&deal_print_id=181f308e-5192-4d74-8570-abe047522c78&position=32&tracking_id=d741f6f6-03bd-441b-bf10-d5b45a4c21fe&wid=MLB5039509567&sid=offers",
-      "resolvidoEm": "2026-10-02T10:13:07.486Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-10-02T10:19:25.710Z",
+      "tentativas": 2
     },
     "TShFtJ3GlDscQ7zFyG83": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/chaleira-eletrica-vidro-epsilon-eps-2906-esquentar-agua-leite-18l-jarra/p/MLB76591176?pdp_filters=price%3A0.0-100.0%7Cdeal%3AMLB779362-1#polycard_client=offers&deal_print_id=181f308e-5192-4d74-8570-abe047522c78&position=32&tracking_id=d741f6f6-03bd-441b-bf10-d5b45a4c21fe&wid=MLB5039509567&sid=offers",
-      "resolvidoEm": "2026-10-02T10:12:49.766Z",
-      "tentativas": 1
+      "resolvidoEm": "2026-10-02T10:19:08.330Z",
+      "tentativas": 2
     },
     "lvRk5UG1BhSXfCTiOCvP": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/chaleira-eletrica-vidro-epsilon-eps-2906-esquentar-agua-leite-18l-jarra/p/MLB76591176?pdp_filters=price%3A0.0-100.0%7Cdeal%3AMLB779362-1#polycard_client=offers&deal_print_id=181f308e-5192-4d74-8570-abe047522c78&position=32&tracking_id=d741f6f6-03bd-441b-bf10-d5b45a4c21fe&wid=MLB5039509567&sid=offers",
-      "resolvidoEm": "2026-10-02T10:12:32.329Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-10-02T10:18:51.064Z",
+      "tentativas": 3
     },
     "4KGWkWcSVzM5QAMoTlqp": {
       "status": "erro",
       "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
       "linkOriginal": "https://www.mercadolivre.com.br/cozedor-de-ovos-eletrico-desligamento-automatico-a-vapor-portatil-cozinha-7-ovos-egg-fit-fitness-panela-eletrica-facil-limpeza-economico-ovo-cozido-legume-vyrox/p/MLB75760647?pdp_filters=price%3A0.0-100.0%7Cdeal%3AMLB779362-1#polycard_client=offers&deal_print_id=dfa1137c-a986-4e0c-b5be-e71471d9fddb&position=28&tracking_id=a197aa10-413d-4b6d-8a0f-c7642eacd848&wid=MLB7252810606&sid=offers",
-      "resolvidoEm": "2026-10-02T10:12:14.294Z",
-      "tentativas": 2
+      "resolvidoEm": "2026-10-02T10:18:33.923Z",
+      "tentativas": 3
     },
     "jAcPcFNNkyqacWuI0yNv": {
       "status": "erro",
@@ -5542,53 +5570,6 @@
       "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
       "linkOriginal": "https://www.mercadolivre.com.br/robo-aspirador-robot-w90-varre-aspira-e-passa-pano-30w-wap-cor-preto/p/MLB19731776",
       "resolvidoEm": "2026-09-07T19:24:42.331Z"
-    },
-    "33L2oDGdYhAkfHpbEiEU": {
-      "status": "ok",
-      "mlb": "MLB3822666395",
-      "urlProduto": "https://www.mercadolivre.com.br/rocadeira-gasolina-knakasaki-75cc-36hp-8-em-1-motopoda/up/MLBU2351996081",
-      "titulo": "Roçadeira Gasolina Knakasaki 75cc 3,6hp 8 Em 1 Motopoda",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_969765-MLB115394049872_082026-O.webp",
-      "precoAtual": 539.06,
-      "precoAnterior": 1299.99,
-      "dadosTecnicos": [
-        "Cilindrada de 75 cc.",
-        "Tem uma potência de 3.6 hp.",
-        "O tanque de combustível tem uma capacidade de 1.1 L.",
-        "Marca: KNakasaki",
-        "Código do catálogo: MLBU2351996081",
-        "Condição informada: novo"
-      ],
-      "comentario": "Roçadeira Gasolina Knakasaki 75cc 3,6hp 8 Em 1 Motopoda. Cilindrada de 75 cc. Tem uma potência de 3.6 hp. O tanque de combustível tem uma capacidade de 1.1 L. Marca: KNakasaki; Código do catálogo: MLBU2351996081; Condição informada: novo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Roçadeira Gasolina Knakasaki 75cc 3,6hp 8 Em 1 Motopoda. Características confirmadas no anúncio: Cilindrada de 75 cc. Tem uma potência de 3.6 hp. O tanque de combustível tem uma capacidade de 1.1 L. Marca: KNakasaki; Código do catálogo: MLBU2351996081.",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/rocadeira-gasolina-knakasaki-75cc-36hp-8-em-1-motopoda/up/MLBU2351996081?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=33bb1c4e-f9f2-453e-8cb8-2ec5104a3108&position=41&tracking_id=0ca9b9e0-84e0-4010-958b-7df9f2c98c27&wid=MLB3822666395&sid=offers",
-      "resolvidoEm": "2026-09-07T15:29:01.141Z"
-    },
-    "o3epUKQw0vcZj8M66Nsx": {
-      "status": "ok",
-      "mlb": "MLB4280998645",
-      "urlProduto": "https://www.mercadolivre.com.br/motosserra-eletrica-knakasaki-48v-1000w-com-extensor-3m/up/MLBU3522846135",
-      "titulo": "Motosserra Elétrica Knakasaki 48v 1000w Com Extensor 3m",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_664062-MLB117031136049_092026-O.webp",
-      "precoAtual": 362.59,
-      "precoAnterior": 599,
-      "dadosTecnicos": [
-        "Voltagem: 127/220V",
-        "Fonte de alimentação: bateria.",
-        "Largo da espada: 15cm.",
-        "Contém accesórios.",
-        "Facilita suas tarefas de corte e poda.",
-        "Marca: KNakasaki",
-        "Cor: Amarelo",
-        "Código do catálogo: MLBU3522846135",
-        "Condição informada: novo"
-      ],
-      "comentario": "Motosserra Elétrica Knakasaki 48v 1000w Com Extensor 3m. Voltagem: 127/220V; Fonte de alimentação: bateria. Largo da espada: 15cm. Contém accesórios. Facilita suas tarefas de corte e poda. Marca: KNakasaki. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
-      "pros": "Motosserra Elétrica Knakasaki 48v 1000w Com Extensor 3m. Características confirmadas no anúncio: Voltagem: 127/220V; Fonte de alimentação: bateria. Largo da espada: 15cm. Contém accesórios. Facilita suas tarefas de corte e poda..",
-      "contras": "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra.",
-      "linkOriginal": "https://www.mercadolivre.com.br/motosserra-eletrica-knakasaki-48v-1000w-com-extensor-3m/up/MLBU3522846135?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=68644b07-75ba-41db-8738-f38a11307f1c&position=30&tracking_id=df3ecc58-c383-4749-b453-02aa9c2574a7&wid=MLB4280998645&sid=offers",
-      "resolvidoEm": "2026-09-07T15:26:25.436Z"
     }
   }
 }
