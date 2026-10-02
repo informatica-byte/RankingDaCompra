@@ -1,6 +1,20 @@
 {
-  "atualizadoEm": "2026-10-01T22:44:33.921Z",
+  "atualizadoEm": "2026-10-02T00:11:49.682Z",
   "resultados": {
+    "khvDvlvLcCvFsnjnSbzD": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-ergometrica-liftness-spinning-x11-cor-pretovermelho-liftness/p/MLB75685666",
+      "resolvidoEm": "2026-10-02T00:11:49.682Z",
+      "tentativas": 2
+    },
+    "GoUoqNsio6kPplwTAx7M": {
+      "status": "erro",
+      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
+      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-ergometrica-liftness-spinning-x11-cor-pretovermelho-liftness/p/MLB75685666",
+      "resolvidoEm": "2026-10-02T00:11:32.161Z",
+      "tentativas": 3
+    },
     "h2exGuIV8Jbc9X7lVfZ1": {
       "status": "ok",
       "mlb": "MLB6786182738",
@@ -48,20 +62,6 @@
       "linkOriginal": "https://www.mercadolivre.com.br/central-multimidia-universal-mp5-1-din-7-espelha-dvd-cam/up/MLBU2975549211?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&deal_print_id=910b3c95-bd61-4412-8662-c99397e28bd8&position=7&tracking_id=69825fc2-c25e-480d-9150-0d7ed07d3d90&wid=MLB3959082353&sid=offers",
       "resolvidoEm": "2026-10-01T22:44:32.542Z",
       "tentativas": 1
-    },
-    "khvDvlvLcCvFsnjnSbzD": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-ergometrica-liftness-spinning-x11-cor-pretovermelho-liftness/p/MLB75685666",
-      "resolvidoEm": "2026-10-01T22:44:31.190Z",
-      "tentativas": 1
-    },
-    "GoUoqNsio6kPplwTAx7M": {
-      "status": "erro",
-      "motivo": "O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.",
-      "linkOriginal": "https://www.mercadolivre.com.br/bicicleta-ergometrica-liftness-spinning-x11-cor-pretovermelho-liftness/p/MLB75685666",
-      "resolvidoEm": "2026-10-01T22:44:14.501Z",
-      "tentativas": 2
     },
     "VZ9sC2J2TNDN8FBiPGds": {
       "status": "erro",
