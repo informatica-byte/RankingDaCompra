@@ -1997,7 +1997,7 @@
       async function carregar() {
         const s = await getDocs(query(collection(db, "categorias"), orderBy("criadoEm", "asc")));
         cats = s.docs.map((d) => ({ id: d.id, nome: d.data().nome || d.id }));
-        $("categoria").innerHTML = '<option value="" selected disabled>Selecione a categoria</option>' + cats.map((c) => '<option value="' + c.id + '">' + c.nome + "</option>").join("");
+        $("categoria").innerHTML = '<option value="" selected disabled>Selecione a categoria</option>' + cats.map((c) => '<option value="' + rankingEsc(c.id) + '">' + rankingEsc(c.nome) + "</option>").join("");
         if (!cats.length) throw Error("Nenhuma categoria cadastrada.");
       }
       onAuthStateChanged(auth, async (u) => {

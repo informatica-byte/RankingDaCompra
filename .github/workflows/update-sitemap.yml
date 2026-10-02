@@ -11,6 +11,7 @@ on:
       - "scripts/discovery-editorial.mjs"
       - "scripts/generate-home-static.mjs"
       - "scripts/generate-seasonal-guides.mjs"
+      - "scripts/product-seo-titles.mjs"
   schedule:
     # Uma conferência de segurança às 19:17 em Brasília (22:17 UTC).
     # Após cadastrar produtos ou conferir preços, use Run workflow para publicar antes.
@@ -61,6 +62,7 @@ jobs:
           node scripts/product-title-corrections.mjs
           DISCOVERY_USE_GENERATED=true node scripts/generate-discovery.mjs
           node scripts/generate-home-static.mjs
+          node --test scripts/test-audit-repairs.mjs
           node scripts/validate-site.mjs
 
       - name: Publicar sitemap e páginas sociais quando houver alteração
@@ -78,6 +80,7 @@ jobs:
           git add -A index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json
           git commit -m "Atualiza sitemap, análises, busca e Top 6"
           git pull --rebase origin main
+          node scripts/validate-site.mjs
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
 

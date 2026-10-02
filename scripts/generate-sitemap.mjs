@@ -2,6 +2,7 @@ import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promise
 
 import { createHash } from "node:crypto";
 import { correctProductData } from "./product-title-corrections.mjs";
+import { productSeoTitle } from "./product-seo-titles.mjs";
 import { productAliasPage, selectCanonicalProducts, unavailableProductPage } from "./product-url-continuity.mjs";
 import { generateSeasonalGuides, GUIDE_THEMES } from "./generate-seasonal-guides.mjs";
 
@@ -1367,8 +1368,7 @@ function renderSharePage(product, socialImage, categoryNames, marketplaceStatus 
 
   // O título identifica o modelo e permanece estável quando apenas o preço muda.
   // Preço e promoção continuam visíveis no corpo e na descrição da página.
-  const seoProductName = compactText(title, 74).replace(/…$/, "").trim();
-  const browserTitle = `${seoProductName} | Ranking da Compra`;
+  const browserTitle = productSeoTitle(title, product);
   const seoTitle = browserTitle;
 
   const descriptionLead = promotional && discount >= 5
@@ -1515,6 +1515,8 @@ function renderSharePage(product, socialImage, categoryNames, marketplaceStatus 
   <style>.mobile-buy{display:none}@media(max-width:700px){body{padding-bottom:72px}.top>div{display:flex;flex-direction:column;order:-1}.top>div>.eyebrow{order:1}.top>div>h1{order:2}.top>div>.full-title{order:3}.top>div>.rating{order:4}.top>div>.offer{order:5;margin:8px 0 14px}.top>div>.summary{order:6}.top>div>.facts{order:7}.photo{order:2}.mobile-buy{position:fixed;z-index:1000;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 15px;border-radius:11px;background:#1769e0;color:#fff;text-decoration:none;font-weight:950;box-shadow:0 10px 30px rgba(0,0,0,.25)}}</style>
 <script defer src="/seo-priorities.js?v=20260913-1"></script><script defer src="/growth-tools.js?v=20260929-presentes"></script>
 
+  <meta name="rdc-price-checked-at" content="${confirmed ? new Date(chosenCheckedAt).toISOString() : ""}">
+  <meta name="rdc-price-source" content="${confirmed ? useManual ? "manual" : "api" : ""}">
   <meta name="rdc-manual-price" content="${product.precoAtualizadoManualmente === true && manualPrice > 0 ? manualPrice : ""}">
   <meta name="rdc-manual-checked-at" content="${product.precoAtualizadoManualmente === true && Number.isFinite(manualCheckedAt) ? new Date(manualCheckedAt).toISOString() : ""}">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBKRX8TTR6"></script>

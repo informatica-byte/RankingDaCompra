@@ -14,6 +14,8 @@
   const state = {
     history: null,
     config: null,
+    configPromise: null,
+    configCache: { savedAt: 0, published: null, overrides: {} },
     decorated: new WeakSet(),
     videoCatalog: null,
     youtubeApiPromise: null
@@ -742,7 +744,7 @@
     const item = state.history?.products?.[id];
     const points = Array.isArray(item?.points) ? item.points
       .map(point => ({ date: String(point?.[0] || ""), price: numberPrice(point?.[1]) }))
-      .filter(point => point.date && point.price > 0)
+      .filter(point => point.date && point.price > 0 && Date.parse(`${point.date}T12:00:00-03:00`) >= Date.now() - HISTORY_DAYS * 86400000 && Date.parse(`${point.date}T00:00:00-03:00`) <= Date.now())
       .sort((a, b) => a.date.localeCompare(b.date)) : [];
     const prices = points.map(point => point.price);
     if (currentPrice > 0) prices.push(currentPrice);
@@ -797,23 +799,35 @@
 
   function persistConfigCache(value) {
     try {
-      localStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), value: value || {} }));
+      localStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify({ ...state.configCache, value: value || {} }));
     } catch {}
   }
 
   function updateCachedConfig(partial) {
     state.config = { ...(state.config || {}), ...(partial || {}) };
+    state.configCache.savedAt = Date.now();
+    state.configCache.overrides = { ...state.configCache.overrides, ...(partial || {}) };
     persistConfigCache(state.config);
     return state.config;
   }
 
   async function loadConfig() {
     if (state.config) return state.config;
+    if (state.configPromise) return state.configPromise;
+    state.configPromise = readConfig().finally(() => { state.configPromise = null; });
+    return state.configPromise;
+  }
+
+  async function readConfig() {
     let cached = {};
+    let fallback = {};
     try {
       const parsed = JSON.parse(localStorage.getItem(CONFIG_CACHE_KEY) || "{}");
-      if (Number(parsed.savedAt || 0) > Date.now() - CONFIG_CACHE_TTL) cached = parsed.value || {};
+      fallback = parsed.value || {};
+      state.configCache = { savedAt: Number(parsed.savedAt || 0), published: parsed.published || null, overrides: parsed.overrides || {} };
+      if (state.configCache.savedAt <= Date.now() && state.configCache.savedAt > Date.now() - CONFIG_CACHE_TTL) cached = parsed.value || {};
     } catch {}
+    let freshRemote = false;
     const [published, remoteBundle] = await Promise.all([
       (async () => {
         try {
@@ -821,9 +835,9 @@
           return response.ok ? await response.json() : {};
         } catch { return {}; }
       })(),
-      Object.keys(cached).length ? Promise.resolve(cached) : (async () => {
+      Object.keys(cached).length && state.configCache.published ? Promise.resolve(cached) : (async () => {
         try {
-          if (typeof db === "undefined") return {};
+          if (typeof db === "undefined") return state.configCache.published ? fallback : {};
           const [configDoc, themeDoc] = await Promise.all([
             db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).get(),
             db.collection("produtos").doc(".site-theme").get(),
@@ -832,15 +846,26 @@
             ...(configDoc.exists ? configDoc.data() : {}),
             ...(themeDoc.exists ? themeDoc.data() : {}),
           };
-          persistConfigCache(value);
+          freshRemote = true;
           return value;
         } catch (error) {
           console.warn("Não foi possível ler a configuração pública; usando a versão publicada.", error);
-          return {};
+          return fallback;
         }
       })()
     ]);
     const config = { ...published, ...remoteBundle };
+    // A publicação só invalida campos que mudaram desde a última versão vista.
+    // Valores remotos (ex.: os vídeos do painel) não são trocados por padrões.
+    if (!freshRemote && state.configCache.published) {
+      for (const [key, value] of Object.entries(published)) {
+        if (JSON.stringify(value) !== JSON.stringify(state.configCache.published[key])) config[key] = value;
+      }
+    }
+    if (!freshRemote) Object.assign(config, state.configCache.overrides);
+    else state.configCache.overrides = {};
+    if (freshRemote) state.configCache.savedAt = Date.now();
+    state.configCache.published = published;
     state.config = config;
     persistConfigCache(config);
     return state.config;

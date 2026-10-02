@@ -70,6 +70,12 @@ jobs:
           if ! node scripts/generate-sitemap.mjs; then
             echo "::warning::Firebase temporariamente indisponível; mantendo o sitemap e as páginas atuais."
             git restore --worktree -- sitemap.xml produto
+            exit 0
+          fi
+          if [[ -f .ranking-generation-partial ]]; then
+            echo "::warning::Fonte parcial; conteúdo publicado preservado."
+            rm -f "$RDC_PRODUCTS_SNAPSHOT"
+            exit 0
           fi
           DISCOVERY_USE_GENERATED=true node scripts/generate-discovery.mjs
           node scripts/generate-home-static.mjs
@@ -77,6 +83,11 @@ jobs:
 
 
       - name: Publicar somente quando houver mudança
+        run: |
+          node --test scripts/test-audit-repairs.mjs
+          node scripts/validate-site.mjs
+
+      - name: Publicar arquivos validados
         shell: bash
         run: |
           if [[ -z "$(git status --porcelain -- index.html mercadolivre-status.json sitemap.xml produto analises.html 'melhores-*.html' top5-semanal.json search-index.json .mercadolivre-token.enc)" ]]; then
@@ -87,13 +98,14 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A index.html mercadolivre-status.json sitemap.xml produto analises.html 'melhores-*.html' top5-semanal.json search-index.json
+          git add -A index.html mercadolivre-status.json sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json
           if [[ -f .mercadolivre-token.enc ]]; then
             git add .mercadolivre-token.enc
           fi
           git commit -m "Atualiza preços e disponibilidade automaticamente"
           for tentativa in 1 2 3 4; do
             git pull --rebase origin main
+            node scripts/validate-site.mjs
             if git push origin HEAD:main; then
               if [[ -f "$RDC_BATCH_PARTIAL_MARKER" ]]; then
                 echo "Resultado parcial publicado; a conferência ainda não está completa."

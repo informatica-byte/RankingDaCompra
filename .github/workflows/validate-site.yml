@@ -1,0 +1,22 @@
+name: Validar integridade do site
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - name: Testes de regressão sem serviços externos
+        run: node --test scripts/test-*.mjs
+      - name: Validar arquivos publicados sem ler o Firebase
+        run: node scripts/validate-site.mjs

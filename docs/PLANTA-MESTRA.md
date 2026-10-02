@@ -450,3 +450,7 @@ Regra para a Sara IA: toda alteração futura deve ser aprendida a partir do com
 Na data desta planta, o repositório continha 403 páginas de produto, 403 imagens sociais e 23 guias comparativos. Esses números mudam com o catálogo e não são invariantes. O validador deve calcular os totais atuais.
 
 As regras e índices do Firestore, a lista de usuários, os valores dos segredos, o DNS e as configurações de consoles externos não podem ser inferidos com segurança pelo código. Eles precisam ser exportados/documentados pelo proprietário sem colocar credenciais no Git.
+
+## 18. Atualização de integridade — 02/10/2026
+
+Consultar `docs/CORRECOES-AUDITORIA-20261002.md`. Histórico conserva pontos e origem/data real; a janela de 30 dias é filtrada na exibição. Cache público usa baseline publicada e overrides administrativos, sem TTL deslizante. Fila MLB paginada (até 20 documentos lidos e 10 processados por ciclo) mantém resultados e tentativas. Todos os workflows publicadores de páginas validam antes do push; há CI local em push/PR, sem leituras Firestore. `scripts/product-seo-titles.mjs` rege títulos completos e variantes comprovadas; `scripts/repair-product-metadata.mjs` permite reparo offline. Sara permite auditoria online integral com `max_pages=0`, indicando cobertura.

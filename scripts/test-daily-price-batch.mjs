@@ -24,6 +24,7 @@ test("sitemap mantém uma janela diária e não relê Firebase por artefatos ou 
     "scripts/discovery-editorial.mjs",
     "scripts/generate-home-static.mjs",
     "scripts/generate-seasonal-guides.mjs",
+    "scripts/product-seo-titles.mjs",
   ]);
 });
 
@@ -110,7 +111,7 @@ test("consulta preços em blocos oficiais com ritmo econômico", () => {
 
 test("execução manual evita repetição e publica todos os arquivos gerados", () => {
   assert.match(workflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*false/);
-  assert.match(workflow, /git add -A index\.html mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/);
+  assert.match(workflow, /git add -A index\.html mercadolivre-status\.json sitemap\.xml produto presentes analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/);
 });
 
 test("localizador reutiliza e renova a autorização criptografada", () => {
@@ -119,7 +120,7 @@ test("localizador reutiliza e renova a autorização criptografada", () => {
   assert.match(resolver, /async function accessToken\(forceRefresh = false\)/);
   assert.match(resolver, /\[401, 403\]\.includes\(response\.status\)[\s\S]{0,160}accessToken\(true\)/);
   assert.match(resolver, /MAX_REQUEST_ATTEMPTS\s*=\s*3/);
-  assert.match(resolver, /previous\.status\s*===\s*"erro"[\s\S]{0,160}previous\.tentativas[\s\S]{0,100}MAX_REQUEST_ATTEMPTS/);
+  assert.match(resolver, /pendingRequests\(head\.items, payload\.resultados, MAX_REQUEST_ATTEMPTS\)/);
   assert.match(resolver, /tentativas:\s*previousAttempts\s*\+\s*1/);
   assert.match(resolver, /officialCatalogDetails\(catalogId/);
   assert.match(resolver, /api\.mercadolibre\.com\/products\/[^\n]+catalogId/);

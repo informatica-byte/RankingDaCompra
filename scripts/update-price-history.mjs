@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { observationFromHtml, addObservation } from "./price-observation.mjs";
 
 const ROOT = process.cwd();
 const PRODUCT_DIR = path.join(ROOT, "produto");
@@ -83,17 +84,15 @@ function priceFrom(product) {
 async function readExisting() {
   try {
     const parsed = JSON.parse(await fs.readFile(OUTPUT, "utf8"));
-    return parsed && typeof parsed === "object" ? parsed : {};
-  } catch {
-    return {};
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed) || (parsed.products && (typeof parsed.products !== "object" || Array.isArray(parsed.products)))) throw new Error("Formato de histórico inválido");
+    return parsed;
+  } catch (error) {
+    if (error.code === "ENOENT") return {};
+    throw new Error(`Histórico existente não pôde ser lido; nenhum dado será substituído: ${error.message}`);
   }
 }
 
 async function main() {
-  const today = saoPauloDate();
-  const cutoffDate = new Date(`${today}T12:00:00-03:00`);
-  cutoffDate.setDate(cutoffDate.getDate() - (DAYS - 1));
-  const cutoff = saoPauloDate(cutoffDate);
   const history = await readExisting();
   const products = history.products && typeof history.products === "object" ? history.products : {};
   const files = (await fs.readdir(PRODUCT_DIR)).filter(name => name.endsWith(".html"));
@@ -121,32 +120,26 @@ async function main() {
     const identityChanged = Boolean(currentIdentity && identity && currentIdentity !== identity);
     const titleChanged = Boolean(current.title && !sameProductTitle(current.title, title));
     const resetHistory = identityChanged || (!currentIdentity && titleChanged);
-    const sourcePoints = resetHistory ? [] : current.points;
-    const points = Array.isArray(sourcePoints) ? sourcePoints.filter(point => Array.isArray(point) && String(point[0]) >= cutoff) : [];
-    const withoutToday = points.filter(point => String(point[0]) !== today);
-    withoutToday.push([today, price]);
-    withoutToday.sort((a, b) => String(a[0]).localeCompare(String(b[0])));
+    const observation = observationFromHtml(html, price);
+    if (!observation) continue;
+    const baseline = resetHistory ? { archives: [...(current.archives || []), { ...current, archives: undefined }] } : current;
     products[id] = {
+      ...addObservation(baseline, observation),
       title,
       ...(identity ? { identity } : {}),
-      points: withoutToday.slice(-DAYS)
     };
-    if (resetHistory) console.log(`Histórico reiniciado para ${id}: o produto do registro mudou.`);
+    if (resetHistory) console.log(`Histórico anterior arquivado para ${id}: o produto do registro mudou.`);
     recorded++;
   }
 
-  for (const [id, item] of Object.entries(products)) {
-    item.points = Array.isArray(item.points) ? item.points.filter(point => Array.isArray(point) && String(point[0]) >= cutoff).slice(-DAYS) : [];
-    if (!item.points.length) delete products[id];
-  }
-
   const output = {
+    ...history,
     version: 1,
     days: DAYS,
     updatedAt: new Date().toISOString(),
     products
   };
-  await fs.writeFile(OUTPUT, `${JSON.stringify(output, null, 2)}\n`, "utf8");
+  await fs.writeFile(OUTPUT, `${JSON.stringify(output)}\n`, "utf8");
   console.log(`Histórico atualizado: ${recorded} produto(s), janela de ${DAYS} dias.`);
 }
 

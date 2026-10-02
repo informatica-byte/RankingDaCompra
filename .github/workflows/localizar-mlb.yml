@@ -37,7 +37,7 @@ jobs:
 
 
       - name: Instalar navegador automatizado
-        run: npm install --no-save --ignore-scripts playwright-core
+        run: npm install --no-save --ignore-scripts playwright-core@1.59.1
 
 
       - name: Abrir links e identificar anuncios
@@ -45,7 +45,9 @@ jobs:
           MERCADO_LIVRE_CLIENT_ID: ${{ secrets.MERCADO_LIVRE_CLIENT_ID }}
           MERCADO_LIVRE_CLIENT_SECRET: ${{ secrets.MERCADO_LIVRE_CLIENT_SECRET }}
           MERCADO_LIVRE_TOKEN_KEY: ${{ secrets.MERCADO_LIVRE_TOKEN_KEY }}
-        run: xvfb-run -a node scripts/resolve-affiliate-links.mjs
+        run: |
+          node --test scripts/test-audit-repairs.mjs
+          xvfb-run -a node scripts/resolve-affiliate-links.mjs
 
 
       - name: Publicar novos resultados

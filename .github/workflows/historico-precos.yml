@@ -31,6 +31,12 @@ jobs:
         run: node scripts/update-price-history.mjs
 
       - name: Publicar somente se houver mudancas
+        # Nenhum publicador deve dispensar a validação local (sem Firestore).
+        run: |
+          node --test scripts/test-audit-repairs.mjs
+          node scripts/validate-site.mjs
+
+      - name: Publicar arquivos validados
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
@@ -42,4 +48,5 @@ jobs:
           fi
           git commit -m "Atualiza historico de precos e paginas"
           git pull --rebase origin main
+          node scripts/validate-site.mjs
           git push origin HEAD:main

@@ -48,7 +48,7 @@ has(homeHtml, /\.share-card-button,\.share-deal-button\{min-height:44px/, "botõ
 
 const growthTools = await readFile(resolve("growth-tools.js"), "utf8");
 has(growthTools, /CONFIG_CACHE_TTL\s*=\s*12 \* 60 \* 60 \* 1000/, "cache econômico de configuração pública ausente", "growth-tools.js");
-has(growthTools, /Object\.keys\(cached\)\.length \? Promise\.resolve\(cached\)/, "configuração ainda pode reler o Firebase em cada página", "growth-tools.js");
+has(growthTools, /Object\.keys\(cached\)\.length && state\.configCache\.published \? Promise\.resolve\(cached\)/, "configuração ainda pode reler o Firebase em cada página", "growth-tools.js");
 has(growthTools, /function persistConfigCache\(value\)/, "cache compartilhado da configuração pública ausente", "growth-tools.js");
 has(growthTools, /function updateCachedConfig\(partial\)/, "alterações administrativas não atualizam o cache público", "growth-tools.js");
 has(growthTools, /updateCachedConfig\(settings\)/, "título SEO salvo não fica disponível imediatamente na vitrine", "growth-tools.js");
@@ -120,7 +120,8 @@ if (growthTools.includes("✓ Oferta comprovada pelo histórico")) fail("growth-
 const priceHistoryUpdater = await readFile(resolve("scripts/update-price-history.mjs"), "utf8");
 has(priceHistoryUpdater, /function productIdentity\(html\)/, "identidade MLB não é registrada no histórico", "scripts/update-price-history.mjs");
 has(priceHistoryUpdater, /const resetHistory = identityChanged \|\| \(!currentIdentity && titleChanged\)/, "histórico antigo não é reiniciado quando o produto muda", "scripts/update-price-history.mjs");
-has(priceHistoryUpdater, /const sourcePoints = resetHistory \? \[\] : current\.points/, "pontos de outro produto ainda podem ser reaproveitados", "scripts/update-price-history.mjs");
+has(priceHistoryUpdater, /const baseline = resetHistory \? \{ archives:/, "identidade anterior não é arquivada separadamente", "scripts/update-price-history.mjs");
+has(priceHistoryUpdater, /observationFromHtml\(html, price\)/, "histórico ainda pode datar o preço pela execução", "scripts/update-price-history.mjs");
 has(growthTools, /const SEASONAL_THEMES = \{/, "catálogo de temas sazonais ausente", "growth-tools.js");
 has(growthTools, /seasonalThemeMode/, "controle manual e automático de temas ausente", "growth-tools.js");
 has(growthTools, /automaticThemeId/, "calendário automático de campanhas ausente", "growth-tools.js");
@@ -350,7 +351,7 @@ has(priceWorkflow, /RDC_BATCH_PARTIAL_MARKER:\s*\.price-sync-partial/, "marcador
 has(priceWorkflow, /-f "\$RDC_BATCH_SKIP_MARKER"[\s\S]{0,220}exit 0/, "gerador ainda pode reler produtos após lote diário já concluído", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /node --test scripts\/test-daily-price-batch\.mjs/, "teste preventivo do lote diário ausente", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /DISCOVERY_USE_GENERATED=true node scripts\/generate-discovery\.mjs/, "lote diário não atualiza a busca estática", ".github/workflows/sync-mercadolivre.yml");
-has(priceWorkflow, /git add -A index\.html mercadolivre-status\.json sitemap\.xml produto analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "lote diário não publica todos os arquivos gerados", ".github/workflows/sync-mercadolivre.yml");
+has(priceWorkflow, /git add -A index\.html mercadolivre-status\.json sitemap\.xml produto presentes analises\.html 'melhores-\*\.html' top5-semanal\.json search-index\.json/, "lote diário não publica todos os arquivos gerados", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /description:\s*["']Repetir mesmo se o lote de hoje já terminou["'][\s\S]{0,100}default:\s*false/, "execução manual pode repetir o lote por engano", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /for tentativa in 1 2 3 4; do[\s\S]*git pull --rebase origin main[\s\S]*git push origin HEAD:main/, "publicação do lote manual não tenta novamente após concorrência no GitHub", ".github/workflows/sync-mercadolivre.yml");
 has(priceWorkflow, /name: Sinalizar conferência parcial[\s\S]*RDC_BATCH_PARTIAL_MARKER[\s\S]*exit 1/, "lote parcial ainda aparece como sucesso no GitHub", ".github/workflows/sync-mercadolivre.yml");
@@ -383,8 +384,10 @@ has(sitemapGenerator, /readProductSnapshot/, "gerador ainda pode reler todos os 
 const affiliateResolver = await readFile(resolve("scripts/resolve-affiliate-links.mjs"), "utf8");
 const marketplaceImage = await readFile(resolve("scripts/marketplace-image.mjs"), "utf8");
 has(affiliateResolver, /documents:runQuery|\$\{FIRESTORE\}:runQuery/, "localizador ainda pode ler toda a fila MLB", "scripts/resolve-affiliate-links.mjs");
-has(affiliateResolver, /limit:\s*10/, "consulta limitada da fila MLB ausente", "scripts/resolve-affiliate-links.mjs");
-has(affiliateResolver, /fieldPath:\s*"criadoEm"[\s\S]{0,120}direction:\s*"DESCENDING"/, "fila MLB nao prioriza os pedidos mais recentes", "scripts/resolve-affiliate-links.mjs");
+const localizerQueue = await readFile(resolve("scripts/localizer-queue.mjs"), "utf8");
+has(localizerQueue, /PAGE_SIZE = 10/, "consulta limitada da fila MLB ausente", "scripts/localizer-queue.mjs");
+has(localizerQueue, /fieldPath: 'criadoEm'[\s\S]{0,120}direction: 'DESCENDING'/, "ordenação estável da fila ausente", "scripts/localizer-queue.mjs");
+has(localizerQueue, /startAt: \{ values: cursor, before: false \}/, "paginação dos pedidos antigos ausente", "scripts/localizer-queue.mjs");
 if (/\$\{FIRESTORE\}\/\$\{COLLECTION\}\?pageSize=300/.test(affiliateResolver)) {
   fail("scripts/resolve-affiliate-links.mjs: leitura integral de até 300 pedidos ainda está ativa");
 }
@@ -392,7 +395,8 @@ has(affiliateResolver, /session\?\.accessToken\s*\|\|\s*session\?\.access_token/
 has(affiliateResolver, /session\?\.refreshToken\s*\|\|\s*session\?\.refresh_token/, "localizador não reconhece o refresh token atual", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /\[401, 403\]\.includes\(response\.status\)[\s\S]{0,160}accessToken\(true\)/, "localizador não renova a autorização recusada", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /MAX_REQUEST_ATTEMPTS\s*=\s*3/, "localizador sem limite de novas tentativas", "scripts/resolve-affiliate-links.mjs");
-has(affiliateResolver, /previous\.status\s*===\s*"erro"[\s\S]{0,160}previous\.tentativas[\s\S]{0,100}MAX_REQUEST_ATTEMPTS/, "localizador não recupera erro temporário com limite", "scripts/resolve-affiliate-links.mjs");
+has(localizerQueue, /status === 'erro'[\s\S]{0,100}tentativas[\s\S]{0,40}< maxAttempts/, "localizador não recupera erro temporário com limite", "scripts/localizer-queue.mjs");
+has(affiliateResolver, /pendingRequests\(head\.items, payload\.resultados, MAX_REQUEST_ATTEMPTS\)/, "limite de tentativas não é aplicado à fila", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /tentativas:\s*previousAttempts\s*\+\s*1/, "localizador não registra o número de tentativas", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /officialCatalogDetails\(catalogId/, "localizador não usa o catálogo oficial como alternativa", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /selectLoadableMarketplaceImage/, "localizador não comprova o carregamento da imagem", "scripts/resolve-affiliate-links.mjs");

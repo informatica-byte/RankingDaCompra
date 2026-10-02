@@ -1,6 +1,7 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { readFile, writeFile } from "node:fs/promises";
+import { queueQuery, nextCursor, pendingRequests } from "./localizer-queue.mjs";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 import {
   marketplaceImageCandidates,
@@ -396,17 +397,8 @@ async function officialDetails(itemId, html = "", catalogId = "") {
 }
 
 
-async function requests() {
-  const structuredQuery = {
-    structuredQuery: {
-      from: [{ collectionId: COLLECTION }],
-      // Os documentos processados continuam na colecao. Buscar os dez mais
-      // recentes impede que pedidos antigos ocupem toda a fila sem aumentar
-      // o numero de leituras do Firebase.
-      orderBy: [{ field: { fieldPath: "criadoEm" }, direction: "DESCENDING" }],
-      limit: 10,
-    },
-  };
+async function requests(cursor = null) {
+  const structuredQuery = queueQuery(cursor);
   try {
     const response = await fetchFirebase(`${FIRESTORE}:runQuery`, "Fila Firebase", 3, {
       method: "POST",
@@ -414,15 +406,17 @@ async function requests() {
       body: JSON.stringify(structuredQuery),
     });
     const payload = await response.json();
-    return (Array.isArray(payload) ? payload : []).map((row) => row.document).filter(Boolean).map((document) => {
+    const documents = (Array.isArray(payload) ? payload : []).map((row) => row.document).filter(Boolean);
+    const items = documents.map((document) => {
       const data = { id: document.name.split("/").pop() };
       for (const [key, value] of Object.entries(document.fields || {})) data[key] = field(value);
       return data;
-    }).filter((item) => item.status === "pendente" && item.link);
+    });
+    return { items, cursor: nextCursor(documents), readSucceeded: true };
   } catch (error) {
     if (/HTTP 429|cota temporariamente esgotada/i.test(String(error?.message || error))) {
       console.warn("Fila Firebase: cota temporariamente esgotada; execução encerrada sem alterar resultados.");
-      return [];
+      return { items: [], cursor, readSucceeded: false };
     }
     throw error;
   }
@@ -571,23 +565,32 @@ async function resolveRequest(request) {
 
 
 let payload = { atualizadoEm: "", resultados: {} };
-try { payload = JSON.parse(await readFile(OUTPUT, "utf8")); } catch {}
+try { payload = JSON.parse(await readFile(OUTPUT, "utf8")); } catch (error) {
+  if (error.code !== 'ENOENT') throw new Error('Resultados existentes inválidos; a fila foi interrompida para preservar os dados.');
+}
+if (!payload || typeof payload !== 'object' || Array.isArray(payload) || (payload.resultados && (typeof payload.resultados !== 'object' || Array.isArray(payload.resultados)))) throw new Error('Formato de resultados inválido; dados preservados.');
 payload.resultados ||= {};
 
 
-const queue = (await requests())
-  .filter((request) => {
-    const previous = payload.resultados[request.id];
-    if (!previous) return true;
-    return previous.status === "erro"
-      && Number(previous.tentativas || 0) < MAX_REQUEST_ATTEMPTS;
-  })
-  .sort((a, b) => String(a.criadoEm).localeCompare(String(b.criadoEm)))
-  .slice(0, 10);
+const priorQueueState = JSON.stringify(payload.queueState || null);
+const head = await requests();
+let queue = pendingRequests(head.items, payload.resultados, MAX_REQUEST_ATTEMPTS);
+// Duas consultas limitadas, no máximo 20 documentos por execução. A segunda
+// avança a paginação antiga mesmo quando os dez recentes já foram resolvidos.
+if (head.readSucceeded) {
+  const cursor = payload.queueState?.cursor || head.cursor;
+  if (cursor) {
+    const older = await requests(cursor);
+    const backlog = pendingRequests(older.items, payload.resultados, MAX_REQUEST_ATTEMPTS);
+    const candidates = [...backlog.slice(0, 5), ...queue.slice(0, 5), ...backlog.slice(5), ...queue.slice(5)];
+    queue = [...new Map(candidates.map(request => [request.id, request])).values()].slice(0, 10);
+    if (older.readSucceeded) payload.queueState = { cursor: older.cursor };
+  } else payload.queueState = { cursor: null };
+}
 
 
 if (!queue.length) {
-  console.log("Nenhum pedido MLB pendente; nenhum arquivo foi alterado.");
+  console.log("Nenhum pedido MLB processável nesta janela; a paginação continua no próximo ciclo.");
 } else {
   for (const request of queue) {
     const previousAttempts = Number(payload.resultados[request.id]?.tentativas || 0);
@@ -608,10 +611,12 @@ if (!queue.length) {
       console.warn(`${request.id}: ${payload.resultados[request.id].motivo}`);
     }
   }
-  const entries = Object.entries(payload.resultados).sort((a, b) => String(b[1].resolvidoEm).localeCompare(String(a[1].resolvidoEm))).slice(0, 300);
+  const entries = Object.entries(payload.resultados).sort((a, b) => String(b[1].resolvidoEm).localeCompare(String(a[1].resolvidoEm)));
   payload.resultados = Object.fromEntries(entries);
   payload.atualizadoEm = new Date().toISOString();
-  await writeFile(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`);
+}
+if (queue.length || JSON.stringify(payload.queueState || null) !== priorQueueState) {
+  await writeFile(OUTPUT, `${JSON.stringify(payload)}\n`);
 }
 
 
