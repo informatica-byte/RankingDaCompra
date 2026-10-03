@@ -48,7 +48,12 @@ test('títulos não terminam em conectores; variantes e anúncios não são inve
   assert.doesNotMatch(productSeoTitle(title), /127V|220V|anúncio/);
 });
 
-test('fila tem paginação estável e encontra o 11º pedido; limites e tentativas preservados', () => {
+test('fila lê primeiro os dez pedidos mais recentes, filtra pendentes e pagina sem perder tentativas', () => {
+  const firstQuery = queueQuery().structuredQuery;
+  assert.equal(firstQuery.limit, 10);
+  assert.equal(firstQuery.orderBy[0].field.fieldPath, 'criadoEm');
+  assert.equal(firstQuery.orderBy[0].direction, 'DESCENDING');
+  assert.equal('startAt' in firstQuery, false);
   const documents = Array.from({ length: 10 }, (_, index) => ({ name: `projects/x/databases/(default)/documents/mlbSolicitacoes/${index}`, fields: { criadoEm: { timestampValue: `2026-10-02T10:0${index}:00Z` } } }));
   const cursor = nextCursor(documents);
   assert.equal(queueQuery(cursor).structuredQuery.limit, 10);
@@ -56,6 +61,8 @@ test('fila tem paginação estável e encontra o 11º pedido; limites e tentativ
   assert.equal(queueQuery(cursor).structuredQuery.startAt.before, false);
   assert.equal(nextCursor([]), null);
   const requests = Array.from({ length: 11 }, (_, index) => ({ id: String(index), criadoEm: String(index).padStart(2, '0'), status: 'pendente', link: 'https://meli.la/test' }));
+  requests[0].status = 'concluido';
+  requests[1].link = '';
   const results = Object.fromEntries(requests.slice(0, 10).map(item => [item.id, { status: 'ok' }]));
   assert.equal(pendingRequests(requests, results)[0].id, '10');
   results['10'] = { status: 'erro', tentativas: 3 };
