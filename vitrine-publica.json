@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-04T14:06:04.715Z",
+  "generatedAt": "2026-10-04T17:10:18.273Z",
   "products": [
     {
       "id": "0mCOpmOFDpWpd7yVGYOA",
@@ -1911,6 +1911,25 @@
       "ofertaRelampagoTerminaEm": "2026-09-25T12:27:15.879Z",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-04T11:31:30.631Z"
+    },
+    {
+      "id": "DjihMK3g3rkBHHTPbOwp",
+      "titulo": "Principia Kit Limpeza E Hidratação Ch-01 + Ol-01 + Gl-02 Todo Tipo De Pele Dia/noite",
+      "comentario": "Principia Kit Limpeza E Hidratação Ch-01 + Ol-01 + Gl-02 Todo Tipo De Pele Dia/noite. Momento de aplicação: Dia/Noite. Idade sugerida: +14. Quantidade de produtos: 3. Para pele todo tipo de pele. Com aplicação de dia/noite. Recomendado para pessoas com mais de 14 anos.. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "categoria": "belezaecuidados",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_609209-MLA94364515810_102025-F.jpg",
+      "preco": "74,04",
+      "precoAnterior": "110,25",
+      "precoPromocional": "74,04",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-04",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-05T03:56:05.223Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-04T17:09:14.037Z",
+      "precoConferenciaId": "5a0a176a-594f-4493-a182-61e23abc8d01"
     },
     {
       "id": "DlFv98xnrCPIAeFfbRFv",
@@ -4685,24 +4704,6 @@
       "precoAtualizadoManualmenteEm": "2026-10-04T11:14:04.556Z"
     },
     {
-      "id": "pO6CZCNo99YwtpIW0UB8",
-      "titulo": "Principia Kit Limpeza E Hidratação Ch-01 + Ol-01 + Gl-02 Todo Tipo De Pele Dia/noite",
-      "comentario": "Principia Kit Limpeza E Hidratação Ch-01 + Ol-01 + Gl-02 Todo Tipo De Pele Dia/noite. Momento de aplicação: Dia/Noite. Idade sugerida: +14. Quantidade de produtos: 3. Para pele todo tipo de pele. Com aplicação de dia/noite. Recomendado para pessoas com mais de 14 anos.. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
-      "categoria": "belezaecuidados",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_609209-MLA94364515810_102025-F.jpg",
-      "preco": "74,04",
-      "precoAnterior": "110,25",
-      "precoPromocional": "74,04",
-      "nota": 4.8,
-      "ranking": "10",
-      "promocaoAtiva": false,
-      "promocaoValidaAte": "2026-10-01",
-      "ofertaRelampagoAtiva": false,
-      "ofertaRelampagoTerminaEm": "",
-      "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-04T11:11:50.602Z"
-    },
-    {
       "id": "poypkDuJgaW37aCZlswN",
       "titulo": "Climatizador Ar Frio Portátil Evaporativo 16 Litros Umidificador Ventisol Clin 16",
       "comentario": "Climatizador Ar Frio Portátil Evaporativo 16 Litros Umidificador Ventisol Clin 16. 3 velocidades. Tem uma capacidade de 16 L. É umidificador. Ventila os ambientes. 130 W de potência. Marca: Ventisol. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
@@ -6555,6 +6556,25 @@
       "precoAtualizadoManualmenteEm": "2026-10-04T11:13:04.034Z"
     },
     {
+      "id": "W309Bngb9vy88pxNSAn5",
+      "titulo": "Kit 2 Desodorante Creme Rexona Clinical Classic 58g",
+      "comentario": "Este kit com dois desodorantes em creme Rexona Clinical Classic de 58g oferece alta proteção contra o suor e odores. Com fórmula dermatologicamente testada e sem álcool, garante cuidado diário para a pele, prevenindo resíduos nas roupas e mantendo a sensação de frescor.",
+      "categoria": "belezaecuidados",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_770663-MLA107693517974_032026-F.webp",
+      "preco": "72,10",
+      "precoAnterior": "75,90",
+      "precoPromocional": "72,10",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-04",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-05T03:52:59.134Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-04T17:09:11.816Z",
+      "precoConferenciaId": "af9c8669-ccdd-4aee-9acb-5fdebb07b08e"
+    },
+    {
       "id": "w7DR6QTHjF5FdGZyQTYX",
       "titulo": "Aspirador De Pó e Água Wap Gtw 10 Compacto 1400w 10 Litros Amarelo",
       "comentario": "O Aspirador De Pó e Água Wap Gtw 10 Compacto 1400w 10 Litros Amarelo possui motor de 1400W e reservatório com volume total de 10 litros. O modelo conta com bocal de sopro para infláveis ou limpeza externa, além de sistema de armazenamento para acessórios integrados ao design do produto.",
@@ -7457,6 +7477,25 @@
       "ofertaRelampagoTerminaEm": "",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-04T11:14:12.599Z"
+    },
+    {
+      "id": "zpNUAIiuFr5Eo0TbkaKm",
+      "titulo": "Sérum Ghk-cu + Colágeno Bioestimulação Facial Zencial 30ml",
+      "comentario": "Sérum Ghk-cu + Colágeno Bioestimulação Facial Zencial 30ml. Momento de aplicação: Dia/Noite; Quantidade de produtos: 1; Volume: 30 mL; Para pele todo tipo de pele. Sérum anti-idade com aplicação de dia/noite. Recomendado para pessoas com mais de Acima de 18 anos.. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "categoria": "belezaecuidados",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_789633-MLB111391830334_052026-O.webp",
+      "preco": "116,71",
+      "precoAnterior": "399,00",
+      "precoPromocional": "116,71",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-04",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-05T04:08:30.868Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-04T17:09:16.142Z",
+      "precoConferenciaId": "87ec86dd-9b8b-451a-bde0-a9badf54aec5"
     },
     {
       "id": "ZRkf5zIEicv1a47qGXXw",
