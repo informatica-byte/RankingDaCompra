@@ -143,6 +143,7 @@
         </div>
       </section>
     </main>
+    <script src="/price-publication.js?v=20261004-1"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
       import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
@@ -295,6 +296,7 @@
         card.id = "precos-mobile";
         card.innerHTML = '<div class="etapa">Conferência assistida</div><h2>💰 Confira um produto por vez</h2><p>Primeiro os mais visualizados nos últimos sete dias; depois, os há mais tempo sem conferência manual. Você pode conferir manualmente ou deixar a automação assistida percorrer a fila na página logada do Mercado Livre.</p><button id="precos-iniciar" class="btn verde" type="button">Carregar fila de hoje</button><div id="precos-auto" class="precos-auto"><b>🤖 Automação assistida</b><p class="mini">Reutiliza uma única aba do Mercado Livre, salva somente preços comprovados e pausa se aparecer CAPTCHA. Produtos indisponíveis ficam separados para sua decisão.</p><div class="precos-auto-acoes"><button id="precos-auto-iniciar" class="btn azul largo" type="button" disabled>▶ Conferir todos automaticamente</button><button id="precos-auto-continuar" class="btn verde largo" type="button" hidden>▶ Continuar após resolver o CAPTCHA</button><button id="precos-auto-parar" class="btn claro largo" type="button" hidden>⏹ Parar conferência</button></div><div id="precos-auto-resumo" class="precos-auto-resumo">Carregue a fila para começar. É necessário instalar ou atualizar o robô do Tampermonkey.</div><a class="mini" href="/bot-precos.user.js" target="_blank" rel="noopener">Instalar ou atualizar o robô de preços</a></div><div id="precos-progresso" class="precos-fila-resumo" style="margin-top:12px">A fila só lê produtos e visitas quando você tocar no botão.</div><div id="precos-item"></div><div id="precos-status" class="status" role="status" aria-live="polite"></div><details><summary>Conferência automática pelo GitHub (opcional)</summary><p>A API do Mercado Livre pode negar acesso. Use apenas depois de resolver a permissão. Nenhuma conferência começa sozinha.</p><a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">Conferir todos os preços agora (GitHub)</a></details>';
         $("focus-mobile").before(card);
+        window.RDCPricePublication.mount(card, () => filaPrecosDados?.todos || [], "price-publication-mobile");
       }
       instalarModoEconomicoMobile();
 
@@ -495,6 +497,7 @@
         }
         const fila = dadosFilaPrecosAssistida();
         const feitos = fila.todos.length - fila.pendentes.length;
+        window.RDCPricePublication.saved("price-publication-mobile", fila.pendentes.length === 0);
         resumo.textContent = feitos + " de " + fila.todos.length + " conferidos hoje · " + fila.pendentes.length + " restantes. A ordem usa visualizações dos últimos 7 dias e depois a conferência mais antiga.";
         atualizarControlesAutomacaoPrecos();
         if (!fila.pendentes.length) {
@@ -589,6 +592,7 @@
         msg("precos-status", "Salvando conferência...");
         try {
           await updateDoc(doc(db, "produtos", id), campos);
+          produto.precoAtualizadoManualmente = true;
           produto.precoAtualizadoManualmenteEm = new Date();
           if (alterou) produto[campo] = preco(valor);
           filaPrecosPulados.delete(id);

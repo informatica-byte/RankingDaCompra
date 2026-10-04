@@ -1057,6 +1057,7 @@ FORMATO:
         };
     </script>
 
+    <script src="/price-publication.js?v=20261004-1"></script>
     <script src="/metricas-resumo.js?v=20260923-1"></script>
     <script>
         const firebaseConfig = {
@@ -1097,6 +1098,7 @@ FORMATO:
         let statusMercadoLivreAtualizadoEm = '';
         let resumoLoteMercadoLivre = null;
         let produtosCentralAtual = [];
+        window.RDCPricePublication.mount(document.getElementById('painel-precos'), () => produtosCentralAtual, 'price-publication-dashboard');
         let metricasCentralAtual = [];
         let snapshotProdutosBackup = null;
         let snapshotCategoriasBackup = null;
