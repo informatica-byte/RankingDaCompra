@@ -134,7 +134,7 @@
     return "Avaliar uma pauta específica somente se a procura combinar com os produtos disponíveis.";
   }
 
-  function analyzeRows(rows) {
+  function analyzeRows(rows, metadata = {}) {
     const clicks = rows.reduce((total, row) => total + row.clicks, 0);
     const impressions = rows.reduce((total, row) => total + row.impressions, 0);
     const ctr = impressions ? clicks / impressions * 100 : 0;
@@ -149,6 +149,8 @@
       .slice(0, 50);
     return {
       importedAt: new Date().toISOString(),
+      sourceDate: /^\d{4}-\d{2}-\d{2}$/.test(metadata.sourceDate || '') && Number.isFinite(Date.parse(metadata.sourceDate)) && Date.parse(metadata.sourceDate) <= Date.now() ? metadata.sourceDate : null,
+      period: String(metadata.period || '').slice(0, 80) || 'Período não informado',
       sourceRows: rows.length,
       clicks,
       impressions,
@@ -178,8 +180,8 @@
     if (!query) return "";
     const prefix = query.charAt(0).toUpperCase() + query.slice(1);
     const suffix = /melhor|vale a pena|compar/i.test(prefix) ? "" : ": comparação e melhores opções";
-    const title = prefix + suffix + " em 2026";
-    return title.length <= 70 ? title : title.slice(0, 67).replace(/\s+\S*$/, "") + "…";
+    const title = prefix + suffix;
+    return title.length <= 70 ? title : title.slice(0, 70).replace(/\s+\S*$/, "").replace(/\s+(de|do|da|em|para|com|até)$/i, "");
   }
 
   function storageRead() {
@@ -214,7 +216,7 @@
     }
     if (clearButton) clearButton.hidden = false;
     const date = new Date(report.importedAt).toLocaleString("pt-BR");
-    const importedAge = Date.now() - Date.parse(report.importedAt);
+    const importedAge = Date.now() - Date.parse(report.sourceDate || report.importedAt);
     const outdated = Number.isFinite(importedAge) && importedAge > 7 * 24 * 60 * 60 * 1000;
     const top = report.opportunities.slice(0, 10);
     const rows = top.map((item, index) => {
@@ -223,22 +225,23 @@
       const priority = item.position <= 15 && item.ctr < 3 ? "Alta" : item.position <= 20 ? "Média" : "Analisar";
       const productId = item.kind === "pagina" ? productIdFromPage(item.label) : "";
       const funnel = productId ? internalFunnel.get(productId) : null;
-      const advance = funnel?.views ? Math.min(100, funnel.clicks / funnel.views * 100) : null;
+      const advance = funnel?.views ? funnel.clicks / funnel.views * 100 : null;
       const funnelText = funnel
-        ? '<b>' + formatNumber(funnel.clicks) + ' Comprar</b><small>' + formatNumber(funnel.views) + ' visita(s) · ' + (advance === null ? 'taxa —' : formatNumber(advance, 1) + '% avançaram') + '</small>'
+        ? '<b>' + formatNumber(funnel.clicks) + ' cliques para lojas</b><small>' + formatNumber(funnel.views) + ' visualização(ões) · ' + (advance === null ? 'relação —' : formatNumber(advance, 1) + ' cliques por 100 visualizações') + '</small>'
         : '<span aria-label="Sem correspondência com página de produto">—</span>';
       const action = funnel?.views >= 3 && funnel.clicks === 0
         ? item.action + ' A página recebeu visitas no site, mas nenhum avanço para a oferta nos últimos 7 dias.'
         : item.action;
       return '<tr><td><span class="seo-rank">#' + (index + 1) + '</span><span class="seo-priority seo-priority-' + priority.toLowerCase().replace("é", "e") + '">' + priority + '</span></td><td><b>' + escapeHtml(shortLabel(item.label)) + '</b><small>' + escapeHtml(action) + '</small></td><td>' + formatNumber(item.impressions) + '</td><td>' + formatNumber(item.ctr, 1) + '%</td><td>' + formatNumber(item.position, 1) + '</td><td class="seo-funnel">' + funnelText + '</td><td><button type="button" data-seo-use="' + value + '">' + (item.kind === "consulta" ? "Usar como pauta" : "Abrir página") + '</button></td></tr>';
     }).join("");
-    result.innerHTML = (outdated ? '<div class="seo-recommendation"><b>Atualize o CSV:</b> esta análise foi importada há mais de sete dias. Exporte um período recente no Search Console antes de escolher as próximas páginas.</div>' : '') + '<div class="seo-summary"><div><strong>' + formatNumber(report.impressions) + '</strong><span>Impressões no arquivo</span></div><div><strong>' + formatNumber(report.clicks) + '</strong><span>Cliques</span></div><div><strong>' + formatNumber(report.ctr, 1) + '%</strong><span>CTR calculado</span></div><div><strong>' + formatNumber(report.quickWins) + '</strong><span>Vitórias rápidas</span></div></div><div class="seo-recommendation"><b>Prioridade recomendada:</b> trabalhe primeiro nas linhas “Alta”. Para páginas de produto, a coluna “Resultado no Ranking” combina o CSV com as métricas de sete dias já carregadas no painel. Nenhuma alteração é publicada automaticamente.</div><div class="seo-table"><table><thead><tr><th>Prioridade</th><th>Consulta ou página</th><th>Impressões</th><th>CTR</th><th>Posição</th><th>Resultado no Ranking</th><th>Ação</th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="seo-date">Importado em ' + escapeHtml(date) + ' · ' + formatNumber(report.sourceRows) + ' linha(s) analisada(s). Pontuação combina impressões, CTR abaixo de 5% e posição atual. O resultado interno considera eventos dos últimos 7 dias e pode ficar vazio para consultas e páginas gerais.</p>';
+    result.innerHTML = (!report.sourceDate ? '<div class="seo-recommendation">Data da fonte desconhecida: não confunda importação recente com dados recentes. Informe a data ao importar um novo CSV.</div>' : '') + (outdated ? '<div class="seo-recommendation"><b>Atualize o CSV:</b> a fonte ou a importação deste CSV tem mais de sete dias. Exporte um período recente no Search Console antes de escolher as próximas páginas.</div>' : '') + '<div class="seo-summary"><div><strong>' + formatNumber(report.impressions) + '</strong><span>Impressões no arquivo</span></div><div><strong>' + formatNumber(report.clicks) + '</strong><span>Cliques</span></div><div><strong>' + formatNumber(report.ctr, 1) + '%</strong><span>CTR calculado</span></div><div><strong>' + formatNumber(report.quickWins) + '</strong><span>Vitórias rápidas</span></div></div><div class="seo-recommendation"><b>Prioridade recomendada:</b> trabalhe primeiro nas linhas “Alta”. Para páginas de produto, a coluna “Resultado no Ranking” combina o CSV com as métricas de sete dias já carregadas no painel. Nenhuma alteração é publicada automaticamente.</div><div class="seo-table"><table><thead><tr><th>Prioridade</th><th>Consulta ou página</th><th>Impressões</th><th>CTR</th><th>Posição</th><th>Resultado no Ranking</th><th>Ação</th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="seo-date">Exportação: ' + escapeHtml(report.sourceDate || 'não informada') + ' · Período: ' + escapeHtml(report.period || 'não informado') + ' · Importado em ' + escapeHtml(date) + ' · ' + formatNumber(report.sourceRows) + ' linha(s) analisada(s). Pontuação combina impressões, CTR abaixo de 5% e posição média no período do arquivo; não é a posição de hoje. Cliques para lojas não comprovam vendas. O resultado interno considera eventos dos últimos 7 dias e pode ficar vazio para consultas e páginas gerais.</p>';
   }
 
   function useOpportunity(root, encoded) {
     let item;
     try { item = JSON.parse(decodeURIComponent(encoded)); } catch { return; }
     if (/^https?:\/\//i.test(item.label)) {
+      try { if (new URL(item.label).origin !== 'https://rankingdacompra.com.br') return; } catch { return; }
       window.open(item.label, "_blank", "noopener,noreferrer");
       return;
     }
@@ -267,7 +270,7 @@
     const mobile = root.id.includes("mobile");
     root.innerHTML = (mobile ? '<div class="etapa">Visibilidade no Google</div><h2>🔎 Oportunidades SEO</h2>' : '<h3>🔎 Central SEO de oportunidades</h3>')
       + '<p>Importe o CSV de <b>Consultas</b> ou <b>Páginas</b> do Search Console. A central encontra impressões com poucos cliques e sugere onde agir primeiro.</p>'
-      + '<div class="seo-toolbar"><a href="' + SEARCH_CONSOLE_URL + '" target="_blank" rel="noopener noreferrer">1. Abrir Search Console</a><label>2. Escolher CSV<input type="file" accept=".csv,text/csv" data-seo-file></label><button type="button" data-seo-clear hidden>Limpar relatório</button></div>'
+      + '<div class="seo-toolbar"><label>Data da exportação<input type="date" data-seo-source-date></label><label>Período do relatório<input type="text" data-seo-period placeholder="Ex.: últimos 28 dias"></label><a href="' + SEARCH_CONSOLE_URL + '" target="_blank" rel="noopener noreferrer">1. Abrir Search Console</a><label>2. Escolher CSV<input type="file" accept=".csv,text/csv" data-seo-file></label><button type="button" data-seo-clear hidden>Limpar relatório</button></div>'
       + '<div class="seo-status" data-seo-status role="status" aria-live="polite">Nenhum dado é enviado ao Firebase.</div><div data-seo-result></div>';
     renderReport(root, storageRead());
     root.querySelector("[data-seo-file]")?.addEventListener("change", async (event) => {
@@ -280,7 +283,10 @@
       }
       try {
         if (status) status.textContent = "Analisando o arquivo neste aparelho...";
-        const report = analyzeRows(parseSearchConsoleCsv(await file.text()));
+        const report = analyzeRows(parseSearchConsoleCsv(await file.text()), {
+          sourceDate: root.querySelector('[data-seo-source-date]')?.value,
+          period: root.querySelector('[data-seo-period]')?.value
+        });
         storageWrite(report);
         document.querySelectorAll("#seo-opportunities-dashboard,#seo-opportunities-mobile").forEach((item) => renderReport(item, report));
         if (status) status.textContent = "Análise concluída. Revise as oportunidades antes de alterar ou publicar.";

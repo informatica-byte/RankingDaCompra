@@ -2,13 +2,14 @@ import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import { correctProductData } from "./product-title-corrections.mjs";
 import SEO_PRIORITIES from "../seo-priorities.js";
+import { renderProductDecision } from "./product-decision.mjs";
 import { routerCapabilities, renderPracticalSection, practicalProfile, EDITORIAL_REVIEWED_AT, FOCUSED_GUIDES, focusedProducts, renderFocusedGuide } from "./discovery-editorial.mjs";
 
 const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
 const SHARE_VERSION = "20260810-1";
-const GROWTH_TOOLS_VERSION = "20260929-presentes";
+const GROWTH_TOOLS_VERSION = "20261003-five";
 const MOBILE_PRODUCT_STYLE = '<style data-mobile-product-buy>.mobile-buy{display:none}@media(max-width:700px){body{padding-bottom:72px}.top>div{display:flex;flex-direction:column;order:-1}.top>div>.eyebrow{order:1}.top>div>h1{order:2}.top>div>.full-title{order:3}.top>div>.rating{order:4}.top>div>.offer{order:5;margin:8px 0 14px}.top>div>.summary{order:6}.top>div>.facts{order:7}.photo{order:2}.mobile-buy{position:fixed;z-index:1000;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 15px;border-radius:11px;background:#1769e0;color:#fff;text-decoration:none;font-weight:950;box-shadow:0 10px 30px rgba(0,0,0,.25)}}</style>';
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const RETRYABLE_HTTP_STATUS = new Set([429, 500, 502, 503, 504]);
@@ -178,6 +179,9 @@ async function loadGeneratedPages() {
       contras: noteNames(review.negativeNotes).join("; "),
       ranking,
       atualizadoEm: publishedProductDate(html),
+      __priceCheckedAt: attribute(html, /<meta[^>]+name=["']rdc-price-checked-at["'][^>]*>/i, "content"),
+      __manualCheckedAt: attribute(html, /<meta[^>]+name=["']rdc-manual-checked-at["'][^>]*>/i, "content"),
+      __manualPrice: attribute(html, /<meta[^>]+name=["']rdc-manual-price["'][^>]*>/i, "content"),
       __productUrl: canonical,
     });
   }
@@ -789,7 +793,9 @@ function buildSearchIndex(categories, products, productUrls, categoryNames, last
     summary: String(product.comentario || "").replace(/\s+/g, " ").trim(),
     category: categoryNames.get(product.categoria) || product.categoria || "Produtos",
     image: firstUrl(product.foto),
-    price: numberPrice(product.precoPromocional || product.preco) || null,
+    price: numberPrice(product.precoPromocional || product.preco) || numberPrice(product.__manualPrice) || null,
+    checkedAt: product.__priceCheckedAt || product.__manualCheckedAt || null,
+    recordedPrice: numberPrice(product.precoPromocional || product.preco) || numberPrice(product.__manualPrice) || null,
     rating: Number(product.nota) || 0,
     ranking: 0,
     url: productUrls.get(product.id),
@@ -897,6 +903,15 @@ await writeFile(
 sitemapXml = updateSitemap(sitemapXml, lastModified, guidePages, guideModifiedDates);
 await writeFile(resolve("sitemap.xml"), sitemapXml, "utf8");
 const relatedPages = await addRelatedLinks(products, productsByCategory, productUrls, categoryNames);
+
+// Visible HTML, indexable without JavaScript. Rebuild from registered facts, not invented tests.
+for (const product of products) {
+  const page = resolve("produto", basename(new URL(productUrls.get(product.id)).pathname));
+  let html = await readFile(page, "utf8");
+  html = html.replace(/<section class="panel" data-product-decision[\s\S]*?<\/section>/g, "");
+  html = html.replace("</article>", renderProductDecision(product) + "</article>");
+  await writeFile(page, html, "utf8");
+}
 
 console.log(`Descoberta interna atualizada: ${products.length} análises pesquisáveis sem Firebase, ${guidePages.length} comparativos e ${relatedPages} páginas com produtos relacionados.`);
 

@@ -71,7 +71,16 @@ const highlightedCategories = [...new Map(products.map((product) => {
   const slug = guideAliases.get(key) || category?.id || String(product.categoria || "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
   return [slug, { slug, name: category?.name || product.categoria }];
 })).values()].filter((category) => category.slug).slice(0, 3);
-const guides = highlightedCategories.map((category) => `<a href="melhores-${escapeHtml(category.slug)}.html"><b>Melhores opções de ${escapeHtml(category.name)}</b><span>Comparativo atualizado da categoria →</span></a>`).join("");
+let focus = null;
+try { focus = JSON.parse(await readFile(resolve("editorial-focus.json"), "utf8")); } catch {}
+const priorityGuides = [];
+for (const guide of focus?.guides || []) {
+  if (!/^melhores-[a-z0-9-]+\.html$/.test(guide.url)) continue;
+  try { await readFile(resolve(guide.url), "utf8"); priorityGuides.push(guide); } catch {}
+}
+const guides = priorityGuides.length
+  ? priorityGuides.slice(0, 3).map(guide => `<a href="${escapeHtml(guide.url)}"><b>${escapeHtml(guide.title)}</b><span>Confira diferenças e limitações →</span></a>`).join("")
+  : highlightedCategories.map((category) => `<a href="melhores-${escapeHtml(category.slug)}.html"><b>Melhores opções de ${escapeHtml(category.name)}</b><span>Comparativo atualizado da categoria →</span></a>`).join("");
 
 const block = `${START}<main class="wrap static-home" aria-label="Produtos e comparativos em destaque"><section><div class="section-head"><div><div class="eyebrow">Escolhas desta semana</div><h2>Produtos para comparar antes de comprar</h2><p>Compare preço, pontos positivos e limitações. Abra a análise para descobrir se o produto combina com o que você precisa.</p></div><a href="analises.html">Ver todos os comparativos</a></div><div class="static-product-grid">${cards}</div><h2 class="static-guides-title">Três comparativos para consultar nesta semana</h2><nav class="static-guide-grid" aria-label="Comparativos prioritários da semana">${guides}</nav><p class="static-method">Seleção da semana de ${escapeHtml(formatDate(weekly.weekStart || weekly.updatedAt) || "data recente")}; o registro de preço tem sua própria data. Revisão da <a href="sobre.html">Equipe Ranking da Compra</a>. <a href="como-avaliamos.html">Veja como classificamos os produtos</a>.</p></section></main>${END}`;
 

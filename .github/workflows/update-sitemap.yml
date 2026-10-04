@@ -12,6 +12,9 @@ on:
       - "scripts/generate-home-static.mjs"
       - "scripts/generate-seasonal-guides.mjs"
       - "scripts/product-seo-titles.mjs"
+      - "scripts/public-catalogue.mjs"
+      - "scripts/product-decision.mjs"
+      - "editorial-focus.json"
   schedule:
     # Uma conferência de segurança às 19:17 em Brasília (22:17 UTC).
     # Após cadastrar produtos ou conferir preços, use Run workflow para publicar antes.
@@ -71,7 +74,7 @@ jobs:
         id: publicar
         shell: bash
         run: |
-          if [[ -z "$(git status --porcelain -- index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json)" ]]; then
+          if [[ -z "$(git status --porcelain -- index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json vitrine-publica.json)" ]]; then
             echo "O sitemap, as páginas sociais e o diretório de análises já estão atualizados."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -79,7 +82,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json
+          git add -A index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json vitrine-publica.json
           git commit -m "Atualiza sitemap, análises, busca e Top 6"
           git pull --rebase origin main
           node scripts/validate-site.mjs
@@ -90,4 +93,3 @@ jobs:
         if: steps.publicar.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
         continue-on-error: true
         run: node scripts/submit-indexnow.mjs
-

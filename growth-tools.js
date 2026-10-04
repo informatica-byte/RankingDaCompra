@@ -727,6 +727,11 @@
 
   async function loadHistory() {
     if (state.history) return state.history;
+    if (window.RDCPublicData) {
+      try { state.history = await window.RDCPublicData.json("/historico-precos.json"); }
+      catch { return { products: {} }; }
+      return state.history;
+    }
     const cacheKey = "ranking-price-history-cache";
     try {
       const cached = JSON.parse(sessionStorage.getItem(cacheKey) || "null");
@@ -1040,9 +1045,13 @@
   async function youtubeProductCatalog() {
     if (state.videoCatalog) return state.videoCatalog;
     try {
-      const response = await fetch(`/search-index.json?v=${Date.now()}`, { cache: "no-store" });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
+      let data;
+      if (window.RDCPublicData) data = await window.RDCPublicData.json("/search-index.json");
+      else {
+        const response = await fetch(`/search-index.json?v=${Date.now()}`, { cache: "no-cache" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        data = await response.json();
+      }
       const products = Array.isArray(data?.products) ? data.products : [];
       state.videoCatalog = new Map(products.map(product => [rankingProductUrl(product.url), product]));
     } catch (error) {
@@ -1109,10 +1118,27 @@
     const title = repairPortugueseText(config?.youtubeShowcaseTitle).replace(/[<>]/g, "").trim().slice(0, 80)
       || "Vídeos do Ranki: produtos em destaque";
     const playerUrl = `https://www.youtube-nocookie.com/embed/${ids[0]}?playlist=${encodeURIComponent(ids.join(","))}&autoplay=1&mute=1&loop=1&playsinline=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(SITE)}`;
-    section.innerHTML = `<div class="youtube-showcase-copy"><span>🦊 RANKI EM VÍDEO</span><h2>${escapeHtml(title)}</h2><p>${ids.length} vídeos passam automaticamente. Toque no botão discreto sobre o vídeo para abrir a análise do produto.</p><a data-current-youtube href="${items[0].youtubeUrl}" target="_blank" rel="noopener noreferrer">Abrir no YouTube</a></div><div class="youtube-showcase-player"><iframe src="${playerUrl}" title="${escapeHtml(title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><a class="youtube-product-overlay" data-youtube-product-overlay hidden><img alt="" loading="lazy"><span><small>Produto deste vídeo</small><strong></strong><em></em></span><b>Ver produto</b></a></div>`;
+    section.innerHTML = `<div class="youtube-showcase-copy"><span>🦊 RANKI EM VÍDEO</span><h2>${escapeHtml(title)}</h2><p>${ids.length} vídeos passam automaticamente. Toque no botão discreto sobre o vídeo para abrir a análise do produto.</p><a data-current-youtube href="${items[0].youtubeUrl}" target="_blank" rel="noopener noreferrer">Abrir no YouTube</a></div><div class="youtube-showcase-player"><iframe data-src="${playerUrl}" title="${escapeHtml(title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><a class="youtube-product-overlay" data-youtube-product-overlay hidden><img alt="" loading="lazy"><span><small>Produto deste vídeo</small><strong></strong><em></em></span><b>Ver produto</b></a></div>`;
     promotion.insertAdjacentElement("afterend", section);
     const overlay = section.querySelector("[data-youtube-product-overlay]");
     const currentYoutube = section.querySelector("[data-current-youtube]");
+    // Defer catalogue and YouTube API until the visitor approaches the player.
+    await new Promise(resolve => {
+      if (!('IntersectionObserver' in window)) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = 'Reproduzir vídeos';
+        section.querySelector('.youtube-showcase-player').prepend(button);
+        button.addEventListener('click', () => { button.remove(); resolve(); }, { once: true });
+        return;
+      }
+      const observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) { observer.disconnect(); resolve(); }
+      }, { rootMargin: '150px' });
+      observer.observe(section);
+    });
+    if (!section.isConnected) return;
+    section.querySelector('iframe').src = playerUrl;
     const catalog = await youtubeProductCatalog();
     const byVideoId = new Map(items.map(item => [item.videoId, item]));
     const updateProductOverlay = videoId => {
@@ -1151,6 +1177,7 @@
 
   async function loadPublishedConfig() {
     try {
+      if (window.RDCPublicData) return await window.RDCPublicData.json("/site-config.json");
       const response = await fetch(`/site-config.json?v=${Date.now()}`, { cache: "no-store" });
       if (!response.ok) return null;
       const config = await response.json();
