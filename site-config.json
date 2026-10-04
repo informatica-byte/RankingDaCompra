@@ -1,9 +1,87 @@
 {
   "whatsappClubEnabled": true,
   "whatsappClubUrl": "https://whatsapp.com/channel/0029VbDGQ4AGJP88bmntk53D",
-  "promotionSeoTitle": "Ofertas do dia: compare preços e produtos",
-  "youtubeShowcaseEnabled": false,
+  "promotionSeoTitle": "Achados do dia: preços e opções de produtos selecionados para escolher",
+  "youtubeShowcaseEnabled": true,
   "youtubeShowcaseTitle": "Vídeos do Ranki: produtos em destaque",
-  "youtubeShowcaseLinks": [],
-  "youtubeShowcaseItems": []
+  "youtubeShowcaseLinks": [
+    "https://www.youtube.com/watch?v=QXMnKMMT-jo",
+    "https://www.youtube.com/watch?v=nzOv8It_lLE",
+    "https://www.youtube.com/watch?v=iOWLOdj0Muk",
+    "https://www.youtube.com/watch?v=rwKsuNVrOeI",
+    "https://www.youtube.com/watch?v=n_iII6awoFA",
+    "https://www.youtube.com/watch?v=aJjhjonk30E",
+    "https://www.youtube.com/watch?v=ciNXvKwnDtg",
+    "https://www.youtube.com/watch?v=FyJg_ghb3oU",
+    "https://www.youtube.com/watch?v=eLm6RpIsQ2w",
+    "https://www.youtube.com/watch?v=p3uuHSIZPXs",
+    "https://www.youtube.com/watch?v=ziudwsVbqpE",
+    "https://www.youtube.com/watch?v=R7IzxraW7jQ",
+    "https://www.youtube.com/watch?v=oJTuA5dCrb8",
+    "https://www.youtube.com/watch?v=yqWeI3HwtYM"
+  ],
+  "youtubeShowcaseItems": [
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=QXMnKMMT-jo",
+      "productUrl": "https://rankingdacompra.com.br/produto/NJipazuMXMzOH9YZbxwu-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=nzOv8It_lLE",
+      "productUrl": "https://rankingdacompra.com.br/produto/ucknzxk5UJWl0GnOXadP-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=iOWLOdj0Muk",
+      "productUrl": "https://rankingdacompra.com.br/produto/37zRkLVqUxzOjxBLGhO1-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=rwKsuNVrOeI",
+      "productUrl": "https://rankingdacompra.com.br/produto/scKXtqgNmOYETwmXi4EP-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=n_iII6awoFA",
+      "productUrl": "https://rankingdacompra.com.br/produto/asTGBkjkQIZ4mhlc7cxX-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=aJjhjonk30E",
+      "productUrl": "https://rankingdacompra.com.br/produto/jAeUyoF8uPTbRkSYuuY7-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=ciNXvKwnDtg",
+      "productUrl": "https://rankingdacompra.com.br/produto/N9EnpkbyJeTRuSriAhFn-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=FyJg_ghb3oU",
+      "productUrl": "https://rankingdacompra.com.br/produto/40SKVMiLnqTYwYcP2duQ-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=eLm6RpIsQ2w",
+      "productUrl": "https://rankingdacompra.com.br/produto/5Kojn8DcrLoydOBjq4vd-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=p3uuHSIZPXs",
+      "productUrl": "https://rankingdacompra.com.br/produto/N1cKmru7WcRrMBSj4ut7-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=ziudwsVbqpE",
+      "productUrl": "https://rankingdacompra.com.br/produto/XXf1jGItNH4xwlZ136z3-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=R7IzxraW7jQ",
+      "productUrl": "https://rankingdacompra.com.br/produto/gmzJCKnbLsVLIZilQGSe-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=oJTuA5dCrb8",
+      "productUrl": "https://rankingdacompra.com.br/produto/q4XshIAfttQBQ9Bwz7uB-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=yqWeI3HwtYM",
+      "productUrl": "https://rankingdacompra.com.br/produto/yGygA3k1h886kEa7LOqh-20260810-1.html"
+    }
+  ],
+  "seasonalThemeEnd": "2026-10-13",
+  "seasonalThemeMode": "manual",
+  "seasonalThemeStart": "2026-09-24",
+  "seasonalThemeId": "criancas",
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-04T14:06:04.554Z"
 }
