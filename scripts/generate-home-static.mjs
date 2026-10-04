@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { observationFromHtml } from "./price-observation.mjs";
 
 const HOME = resolve("index.html");
 const TOP = resolve("top5-semanal.json");
@@ -40,10 +41,23 @@ const products = (Array.isArray(weekly.products) ? weekly.products : [])
 
 if (!products.length) throw new Error("O Top semanal não contém produtos suficientes para a página inicial estática.");
 
-const cards = products.map((product, index) => {
+const cards = (await Promise.all(products.map(async (product, index) => {
   const price = String(product.precoPromocional || product.preco || "").trim();
-  return `<article class="static-product-card"><a href="${escapeHtml(productPath(product))}"><img src="${escapeHtml(product.foto)}" alt="${escapeHtml(product.titulo)}" width="220" height="180" loading="${index < 3 ? "eager" : "lazy"}" decoding="async"><span>${index + 1}º destaque da semana</span><h2>${escapeHtml(product.titulo)}</h2>${price ? `<strong>Preço informado: R$ ${escapeHtml(price)}</strong>` : ""}<small>Ver análise, pontos positivos e limitações →</small></a></article>`;
-}).join("");
+  const productFile = productPath(product).split("?")[0];
+  const html = /^produto\/[^/]+\.html$/.test(productFile)
+    ? await readFile(resolve(productFile), "utf8") : "";
+  const numericPrice = Number(price.replace(/\./g, "").replace(",", "."));
+  const observation = observationFromHtml(html, numericPrice);
+  const dateLabel = observation ? formatDate(observation.date) : "";
+  const recorded = dateLabel ? `<small>Registrado em ${escapeHtml(dateLabel)} · confirme o valor no vendedor.</small>` : "";
+  return `<article class="static-product-card"><a href="${escapeHtml(productPath(product))}"><img src="${escapeHtml(product.foto)}" alt="${escapeHtml(product.titulo)}" width="220" height="180" loading="${index < 3 ? "eager" : "lazy"}" decoding="async"><span>${index + 1}º destaque da semana</span><h2>${escapeHtml(product.titulo)}</h2>${price ? `<strong>Preço ${dateLabel ? "registrado" : "informado"}: R$ ${escapeHtml(price)}</strong>` : ""}${recorded}<small>Ver análise, pontos positivos e limitações →</small></a></article>`;
+}))).join("");
+
+function formatDate(value) {
+  const timestamp = Date.parse(String(value || "").slice(0, 10) + "T12:00:00-03:00");
+  return Number.isFinite(timestamp)
+    ? new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo" }).format(new Date(timestamp)) : "";
+}
 
 const normalize = (value) => String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "");
 const categories = new Map((search.categories || []).map((category) => [normalize(category.id), category]));
@@ -59,7 +73,7 @@ const highlightedCategories = [...new Map(products.map((product) => {
 })).values()].filter((category) => category.slug).slice(0, 3);
 const guides = highlightedCategories.map((category) => `<a href="melhores-${escapeHtml(category.slug)}.html"><b>Melhores opções de ${escapeHtml(category.name)}</b><span>Comparativo atualizado da categoria →</span></a>`).join("");
 
-const block = `${START}<main class="wrap static-home" aria-label="Produtos e comparativos em destaque"><section><div class="section-head"><div><div class="eyebrow">Seleção rastreável desta semana</div><h2>Produtos para comparar antes de comprar</h2><p>Conteúdo disponível diretamente no HTML, com análise, preço informado e limitações.</p></div><a href="analises.html">Ver todos os comparativos</a></div><div class="static-product-grid">${cards}</div><h2 class="static-guides-title">Três comparativos para consultar nesta semana</h2><nav class="static-guide-grid" aria-label="Comparativos prioritários da semana">${guides}</nav><p class="static-method">Seleção atualizada em ${escapeHtml(weekly.weekStart || weekly.updatedAt || "data recente")}. Revisão da <a href="sobre.html">Equipe Ranking da Compra</a>. <a href="como-avaliamos.html">Veja como classificamos os produtos</a>.</p></section></main>${END}`;
+const block = `${START}<main class="wrap static-home" aria-label="Produtos e comparativos em destaque"><section><div class="section-head"><div><div class="eyebrow">Escolhas desta semana</div><h2>Produtos para comparar antes de comprar</h2><p>Compare preço, pontos positivos e limitações. Abra a análise para descobrir se o produto combina com o que você precisa.</p></div><a href="analises.html">Ver todos os comparativos</a></div><div class="static-product-grid">${cards}</div><h2 class="static-guides-title">Três comparativos para consultar nesta semana</h2><nav class="static-guide-grid" aria-label="Comparativos prioritários da semana">${guides}</nav><p class="static-method">Seleção da semana de ${escapeHtml(formatDate(weekly.weekStart || weekly.updatedAt) || "data recente")}; o registro de preço tem sua própria data. Revisão da <a href="sobre.html">Equipe Ranking da Compra</a>. <a href="como-avaliamos.html">Veja como classificamos os produtos</a>.</p></section></main>${END}`;
 
 let output;
 if (home.includes(START) && home.includes(END)) {

@@ -678,6 +678,13 @@
       .offer-proof{margin:10px 0 3px;padding:10px 11px;border:1px solid #8fd0a9;background:#eefaf3;color:#164e35;border-radius:10px;font-size:.76rem;line-height:1.38}
       .offer-proof strong{display:block;color:#087a3d;font-size:.82rem;margin-bottom:2px}
       .offer-proof small{display:block;color:#557065;font-size:.69rem;margin-top:3px}
+      .deal-card .offer-proof{grid-column:1/-1;min-width:0}
+      .offer-proof summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;min-height:36px}
+      .offer-proof summary::-webkit-details-marker{display:none}
+      .offer-proof summary strong{margin:0;font-size:.76rem}
+      .offer-proof summary span{font-size:.69rem;white-space:nowrap;text-decoration:underline}
+      .offer-proof summary:focus-visible{outline:2px solid #116149;outline-offset:4px;border-radius:3px}
+      .offer-proof[open] summary{margin-bottom:7px}
       .offer-proof.is-learning{border-color:#dfcb7b;background:#fff9df;color:#6f5a0a}
       .offer-proof.is-learning strong{color:#725900}
       .offer-proof.is-near{border-color:#9dbdd8;background:#f2f8fd;color:#294f70}
@@ -775,7 +782,12 @@
     const detail = summary.minimum > 0
       ? `Menor preço em até ${HISTORY_DAYS} dias: ${brl.format(summary.minimum)}`
       : "Estamos formando o histórico deste produto.";
-    return `<div class="offer-proof ${stateClass}" data-offer-proof data-price-history-state="${stateClass}"><strong>${escapeHtml(title)}</strong>${escapeHtml(detail)}<small>Último registro no histórico: ${escapeHtml(dateText)} · confirme o valor final no vendedor.</small></div>`;
+    return `<details class="offer-proof ${stateClass}" data-offer-proof data-price-history-state="${stateClass}"><summary><strong>${escapeHtml(detail)}</strong><span>Histórico ▾</span></summary><strong>${escapeHtml(title)}</strong><small>Último registro no histórico: ${escapeHtml(dateText)} · confirme o valor final no vendedor.</small></details>`;
+  }
+
+  function cardHasConfirmedPrice(card) {
+    return [...card.querySelectorAll(".deal-validity,.deal-check,.offer > strong")]
+      .some(label => /Preço conferido (?:em \d{2}\/\d{2}\/\d{4}|recentemente)/i.test(label.textContent || ""));
   }
 
   function decorateProductCard(card) {
@@ -784,7 +796,7 @@
     const id = productIdFromUrl(link?.href || location.href);
     if (!id || !state.history?.products?.[id]) return;
     const summary = historySummary(id, currentPriceFromCard(card));
-    const markup = proofMarkup(summary, /Preço conferido em/i.test(card.querySelector(".deal-validity")?.textContent || ""));
+    const markup = proofMarkup(summary, cardHasConfirmedPrice(card));
     if (!markup) return;
     const target = card.querySelector(".deal-prices,.flash-timer,.offer") || card.querySelector("h3,h1");
     if (!target) return;

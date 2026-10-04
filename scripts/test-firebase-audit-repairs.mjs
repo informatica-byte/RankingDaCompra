@@ -41,7 +41,8 @@ test("App Check é preparado em todos os clientes sem ativar enforcement", () =>
 test("histórico fica identificado como comparação, sem contradizer preço conferido", () => {
   assert.match(growth, /Histórico para comparar com o preço conferido acima/);
   assert.match(growth, /Último registro no histórico:/);
-  assert.match(growth, /proofMarkup\(summary, \/Preço conferido em\/i\.test/);
+  assert.match(growth, /proofMarkup\(summary, cardHasConfirmedPrice\(card\)\)/);
+  assert.match(growth, /\.deal-validity,\.deal-check,\.offer > strong/);
 });
 
 test("scripts clássicos da página inicial e do painel continuam válidos", () => {
