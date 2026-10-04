@@ -836,6 +836,19 @@
   }
 
   async function readConfig() {
+    // Versão completa publicada: nenhuma leitura do Firestore por visitante.
+    // O painel mantém a prévia administrativa e o fluxo de salvamento existentes.
+    if (!/dashboard\.html$/i.test(location.pathname)) {
+      try {
+        const response = await fetch('/site-config.json', {cache:'no-store'});
+        const published = response.ok ? await response.json() : {};
+        if (published.schemaVersion >= 2) {
+          state.config = published;
+          return published;
+        }
+      } catch {}
+      // Compatibilidade enquanto a primeira versão completa ainda não foi publicada.
+    }
     let cached = {};
     let fallback = {};
     try {
@@ -945,7 +958,7 @@
       ...group,
       products: products.filter(item => group.pattern.test(item.text))
     })).sort((a, b) => b.products.length - a.products.length);
-    const dominant = groups[0]?.products.length >= Math.max(2, Math.ceil(products.length * .5)) ? groups[0] : null;
+    const dominant = groups[0]?.products.length === products.length ? groups[0] : null;
     const selected = dominant?.products || products;
     const label = dominant?.label || "produtos selecionados";
     const ceiling = promotionPriceCeiling(Math.max(...selected.map(item => item.price)));
@@ -962,7 +975,7 @@
         ? `Criado a partir dos produtos e preços que estão ativos agora (${selected.length} oferta${selected.length === 1 ? "" : "s"}).`
         : "Alternativa clara e natural criada com base nas ofertas publicadas.",
       consulta: priceText ? `${label} até ${priceText}` : label
-    })).filter(item => item.titulo)
+    })).filter(item => item.titulo && (!window.RDCPromotionTitle || window.RDCPromotionTitle.check(item.titulo, offers).valid))
       .filter((item, index, list) => list.findIndex(other => other.titulo.toLowerCase() === item.titulo.toLowerCase()) === index)
       .slice(0, 4);
     return { sugestoes, fontes: [], pesquisaHtml: "", modo: "local" };
@@ -1086,7 +1099,13 @@
   function applyPromotionTitle(config) {
     const params = new URLSearchParams(location.search);
     if (!/^\/(?:index\.html)?$/.test(location.pathname) || params.has("busca") || params.has("cat") || params.has("produto")) return;
-    const title = safePromotionTitle(config?.promotionSeoTitle) || PROMOTION_TITLE_DEFAULT;
+    const offers = [...document.querySelectorAll('#promocoes .deal-card')].map(card => ({
+      titulo: card.querySelector('h3')?.textContent || '',
+      preco: card.querySelector('.deal-price')?.textContent || '',
+    }));
+    const title = window.RDCPromotionTitle
+      ? window.RDCPromotionTitle.resolve(config?.promotionSeoTitle, offers)
+      : PROMOTION_TITLE_DEFAULT;
     const heading = document.querySelector("[data-promotion-title]");
     if (heading && heading.textContent !== title) heading.textContent = title;
     const pageTitle = `${title} | Ranking da Compra`;
@@ -1485,7 +1504,7 @@
           whatsappClubUpdatedAt: typeof firebase !== "undefined" ? firebase.firestore.FieldValue.serverTimestamp() : new Date()
         }, { merge: true });
         updateCachedConfig({ whatsappClubUrl: value, whatsappClubEnabled: enabled.checked });
-        status.textContent = value ? "✓ Clube salvo. O convite já pode aparecer na vitrine." : "✓ Configuração salva. O convite ficará oculto até você informar um link.";
+        status.textContent = value ? "✓ Clube salvo no painel. Use Criar páginas agora para publicar o convite na vitrine." : "✓ Configuração salva no painel. Publique a vitrine para atualizar o site.";
       } catch (error) {
         console.error(error);
         const publishedConfig = await loadPublishedConfig();
@@ -1512,6 +1531,13 @@
       const videosTitle = repairPortugueseText(youtubeTitle.value).replace(/[<>]/g, "").trim().slice(0, 80);
       if (!seoTitle) {
         showcaseStatus.textContent = "Use um título entre 20 e 75 caracteres contendo oferta, promoção, achado, preço ou desconto.";
+        promotionTitle.focus();
+        return;
+      }
+      const titleOffers = typeof window.obterOfertasAtivasParaTitulo === 'function' ? window.obterOfertasAtivasParaTitulo() : [];
+      const titleCheck = window.RDCPromotionTitle?.check(seoTitle, titleOffers);
+      if (titleCheck && !titleCheck.valid) {
+        showcaseStatus.textContent = titleCheck.reason + ' Escolha um título neutro ou ajuste a seleção. O título anterior foi preservado.';
         promotionTitle.focus();
         return;
       }
@@ -1550,8 +1576,8 @@
         updateCachedConfig(settings);
         renderYoutubePairFields(youtubeItems, items);
         showcaseStatus.textContent = showVideos
-          ? `✓ Sequência com ${links.length} vídeos e cartões de produtos ativada. Nenhum arquivo foi armazenado no Firebase.`
-          : "✓ Título salvo. A vitrine de vídeos continua desativada até você informar e ativar de 3 a 20 links.";
+          ? `✓ Sequência com ${links.length} vídeos salva no painel. Publique a vitrine para atualizar o site. Nenhum vídeo foi armazenado no Firebase.`
+          : "✓ Título salvo no painel. Publique a vitrine para atualizar o site. Os vídeos continuam desativados até informar e ativar de 3 a 20 links.";
       } catch (error) {
         console.error(error);
         showcaseStatus.textContent = String(error?.code || "").includes("permission-denied")
@@ -1595,6 +1621,7 @@
           : mode === "auto"
             ? `✓ Calendário automático ativado${activeId ? ` — ${SEASONAL_THEMES[activeId].name} está em exibição.` : ". Nenhuma campanha está na data de exibição hoje."}`
             : `✓ Tema ${SEASONAL_THEMES[themeId].name} salvo${activeId ? " e ativo na vitrine." : " para o período informado."}`;
+        seasonalStatus.textContent += ' Use Criar páginas agora para publicar o tema no site.';
       } catch (error) {
         console.error(error);
         seasonalStatus.textContent = String(error?.code || "").includes("permission-denied")

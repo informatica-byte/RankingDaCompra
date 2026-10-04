@@ -106,13 +106,12 @@
     const impressionsIndex = findColumn(headers, /^(impressao|impressoes|impression|impressions)$/);
     const ctrIndex = findColumn(headers, /^ctr$/);
     const positionIndex = findColumn(headers, /posicao|position/);
-    const metricIndexes = new Set([clicksIndex, impressionsIndex, ctrIndex, positionIndex]);
-    const dimensionIndex = headers.findIndex((header, index) => header && !metricIndexes.has(index));
+    const dimensionIndex = headers.findIndex(header => /\b(consulta|consultas|query|queries|pagina|paginas|page|pages)\b/.test(header));
     if ([clicksIndex, impressionsIndex, ctrIndex, positionIndex, dimensionIndex].some((index) => index < 0)) {
       throw new Error("Use o CSV exportado da tabela de Consultas ou Páginas do Search Console.");
     }
     const dimensionHeader = headers[dimensionIndex];
-    const kind = /consulta|query/.test(dimensionHeader) ? "consulta" : /pagina|page/.test(dimensionHeader) ? "pagina" : "item";
+    const kind = /consulta|query|queries/.test(dimensionHeader) ? "consulta" : "pagina";
     const rows = table.slice(1).map((columns) => {
       const label = String(columns[dimensionIndex] || "").trim();
       const clicks = Math.max(0, Math.round(localizedNumber(columns[clicksIndex], true)));
@@ -215,6 +214,12 @@
       return;
     }
     if (clearButton) clearButton.hidden = false;
+    if (!Array.isArray(report.opportunities) || report.opportunities.some(item => !['consulta', 'pagina'].includes(item.kind))) {
+      result.innerHTML = '<div class="seo-empty"><b>Este relatório não contém Consultas ou Páginas válidas.</b><span>O relatório anterior foi preservado neste navegador, mas suas recomendações não serão utilizadas. Reimporte Consultas.csv ou Páginas.csv. Gráfico.csv serve para evolução por data, não para escolher pautas.</span></div>';
+      return;
+    }
+    root.querySelector('[data-seo-source-date]').value = report.sourceDate || '';
+    root.querySelector('[data-seo-period]').value = report.period === 'Período não informado' ? '' : (report.period || '');
     const date = new Date(report.importedAt).toLocaleString("pt-BR");
     const importedAge = Date.now() - Date.parse(report.sourceDate || report.importedAt);
     const outdated = Number.isFinite(importedAge) && importedAge > 7 * 24 * 60 * 60 * 1000;
@@ -261,6 +266,9 @@
     style.id = "rdc-seo-opportunities-style";
     style.textContent = '.seo-opportunities{color:#173e2f}.seo-opportunities h3,.seo-opportunities h2{margin:0 0 6px}.seo-opportunities p{margin:0 0 12px;color:#62736b;line-height:1.45}.seo-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.seo-toolbar a,.seo-toolbar label,.seo-toolbar button,.seo-table button{display:inline-flex;align-items:center;justify-content:center;border:1px solid #9dcbb6;border-radius:8px;padding:10px 12px;background:#fff;color:#075f42;font:800 12px inherit;text-decoration:none;cursor:pointer}.seo-toolbar label{background:#087a4d;color:#fff;border-color:#087a4d}.seo-toolbar input{position:absolute;inline-size:1px;block-size:1px;opacity:0}.seo-status{min-height:18px;color:#075f42;font-size:12px;font-weight:800}.seo-empty{padding:14px;background:#f0f8f4;border-radius:10px}.seo-empty span{display:block;margin-top:4px;color:#62736b;font-size:12px}.seo-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0}.seo-summary div{padding:12px;background:#f3faf6;border:1px solid #d7e9df;border-radius:10px}.seo-summary strong{display:block;color:#087a4d;font-size:22px}.seo-summary span{display:block;margin-top:4px;color:#64756d;font-size:10px;font-weight:800}.seo-recommendation{padding:12px;border-left:5px solid #d49a00;border-radius:9px;background:#fff6df;color:#664f0a;font-size:12px;line-height:1.45}.seo-table{overflow:auto;margin-top:12px}.seo-table table{width:100%;min-width:900px;border-collapse:collapse;background:#fff}.seo-table th,.seo-table td{padding:8px 7px;border-bottom:1px solid #e6eee9;text-align:left;font-size:11px;vertical-align:top}.seo-table th{background:#f3f7f5;color:#5c6c64}.seo-table td small{display:block;margin-top:4px;color:#63736b;line-height:1.35}.seo-funnel b{color:#087a4d;white-space:nowrap}.seo-rank{font-weight:900;margin-right:5px}.seo-priority{display:inline-block;border-radius:999px;padding:3px 6px;font-size:9px;font-weight:900}.seo-priority-alta{background:#fee2e2;color:#991b1b}.seo-priority-media{background:#fef3c7;color:#7c5700}.seo-priority-analisar{background:#e8f1ff;color:#24528d}.seo-date{margin-top:8px!important;font-size:10px!important}.card .seo-toolbar>*{flex:1;min-height:44px}.card .seo-summary{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:650px){.seo-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.seo-toolbar>*{flex:1 1 145px}}';
     document.head.appendChild(style);
+    const controls = document.createElement('style');
+    controls.textContent = '.seo-toolbar input:not([type="file"]){position:static;inline-size:auto;block-size:auto;opacity:1;min-width:0;max-width:100%;padding:8px;border:1px solid #9dcbb6;border-radius:6px;background:white;color:#173e2f;font:inherit}.seo-toolbar label:has(input:not([type="file"])){display:flex;flex-direction:column;align-items:stretch;gap:6px;background:white;color:#075f42;flex:1 1 180px}';
+    document.head.appendChild(controls);
   }
 
   function mount(root) {

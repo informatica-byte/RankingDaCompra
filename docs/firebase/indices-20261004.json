@@ -1,0 +1,7 @@
+{
+  "snapshotDate": "2026-10-04",
+  "database": "(default)",
+  "manualCompositeIndexesObserved": [],
+  "singleFieldIndexes": "automatic-defaults-not-exported",
+  "deployment": "Snapshot documental. Não usar para substituir índices ativos. Reexportar o estado atual antes de qualquer implantação."
+}

@@ -1,0 +1,68 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Conteúdo público: visitantes podem ler rankings e produtos.
+    match /categorias/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /produtos/{id} { allow read: if true; allow write: if isAdmin(); }
+
+    // Configuração pública da vitrine; somente o administrador pode alterá-la.
+    match /configuracoes/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Visitas simples e eventos comerciais possuem formato e tamanho limitados.
+    match /visitas/{id} {
+      allow create: if isAdmin() || visitaSimples() || eventoComercial();
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Fila do localizador de MLB: somente o administrador cria pedidos.
+    match /mlbSolicitacoes/{id} {
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasOnly(['link', 'entradaOriginal', 'linkAfiliado', 'tipo', 'status', 'criadoEm'])
+        && request.resource.data.keys().hasAll(['link', 'status', 'criadoEm'])
+        && request.resource.data.link is string
+        && request.resource.data.link.size() <= 1000
+        && (!('entradaOriginal' in request.resource.data) || (request.resource.data.entradaOriginal is string && request.resource.data.entradaOriginal.size() <= 1000))
+        && (!('linkAfiliado' in request.resource.data) || (request.resource.data.linkAfiliado is string && request.resource.data.linkAfiliado.size() <= 1000))
+        && (!('tipo' in request.resource.data) || request.resource.data.tipo in ['promocao', 'relampago'])
+        && request.resource.data.status == 'pendente'
+        && request.resource.data.criadoEm == request.time;
+      allow read: if true;
+      allow update, delete: if false;
+    }
+
+    function visitaSimples() {
+      return request.resource.data.keys().hasOnly(['criadoEm', 'dia', 'origem'])
+        && request.resource.data.keys().hasAll(['criadoEm', 'dia', 'origem'])
+        && request.resource.data.criadoEm == request.time
+        && request.resource.data.dia is string
+        && request.resource.data.dia.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && request.resource.data.origem is string
+        && request.resource.data.origem.size() <= 80;
+    }
+
+    function eventoComercial() {
+      return request.resource.data.keys().hasOnly(['tipo', 'produtoId', 'titulo', 'categoria', 'canal', 'campanha', 'dia', 'origem', 'criadoEm'])
+        && request.resource.data.keys().hasAll(['tipo', 'produtoId', 'titulo', 'canal', 'dia', 'criadoEm'])
+        && request.resource.data.criadoEm == request.time
+        && request.resource.data.tipo in ['compartilhamento', 'clique_secao', 'clique_oferta', 'clique_clube_whatsapp']
+        && request.resource.data.produtoId is string
+        && request.resource.data.produtoId.size() <= 100
+        && request.resource.data.titulo is string
+        && request.resource.data.titulo.size() <= 180
+        && request.resource.data.canal is string
+        && request.resource.data.canal.size() <= 40
+        && request.resource.data.dia is string
+        && request.resource.data.dia.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && (!('categoria' in request.resource.data) || (request.resource.data.categoria is string && request.resource.data.categoria.size() <= 100))
+        && (!('campanha' in request.resource.data) || (request.resource.data.campanha is string && request.resource.data.campanha.size() <= 80))
+        && (!('origem' in request.resource.data) || (request.resource.data.origem is string && request.resource.data.origem.size() <= 80));
+    }
+
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'conexao_digital@hotmail.com.br';
+    }
+  }
+}

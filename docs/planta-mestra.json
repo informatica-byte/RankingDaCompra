@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotDate": "2026-09-21",
+  "snapshotDate": "2026-10-04",
   "project": {
     "name": "Ranking da Compra",
     "repository": "informatica-byte/RankingDaCompra",
@@ -27,6 +27,8 @@
     { "path": "index.html", "access": "public", "role": "storefront" },
     { "path": "analises.html", "access": "public", "role": "analysis-directory" },
     { "path": "como-avaliamos.html", "access": "public", "role": "methodology" },
+    { "path": "comparar.html", "access": "public", "role": "product-comparison" },
+    { "path": "presentes/index.html", "access": "public", "role": "seasonal-gift-guides" },
     { "path": "dashboard.html", "access": "authenticated", "role": "full-admin" },
     { "path": "painel-celular.html", "access": "authenticated", "role": "mobile-admin" },
     { "path": "estudio-videos.html", "access": "authenticated-noindex", "role": "ranki-video-studio" },
@@ -34,6 +36,11 @@
     { "path": "404.html", "access": "public-noindex", "role": "not-found" }
   ],
   "publicModules": [
+    "public-data.js",
+    "vitrine-publica.json",
+    "price-publication.js",
+    "promotion-title.js",
+    "buyer-tools.js",
     "growth-tools.js",
     "ranki-video-studio.js",
     "seo-priorities.js",
@@ -51,7 +58,7 @@
     "field": "configuracoes/site.promotionSeoTitle",
     "manualEditing": true,
     "aiSuggestions": "Gemini with Google Search grounding over active promotions already loaded in the admin panel",
-    "quotaFallback": "Local suggestions derived from the dominant active product type and the real maximum price; never saved automatically",
+    "quotaFallback": "Local suggestions match all six displayed offers and their real maximum price; mixed selection uses a neutral title; never saved automatically",
     "approval": "Administrator selects, reviews and saves the title",
     "cacheSync": "A successful administrative save refreshes the shared versioned 12-hour browser cache immediately; a new tools version invalidates the old cache and performs only one updated Firebase read",
     "publicTargets": ["visible offers heading", "document title", "Open Graph", "Twitter Card", "structured promotion list name"]
@@ -130,6 +137,9 @@
     }
   ],
   "automationScripts": [
+    "scripts/public-site-config.mjs",
+    "scripts/public-catalogue.mjs",
+    "scripts/restore-backup.mjs",
     "scripts/generate-sitemap.mjs",
     "scripts/generate-discovery.mjs",
     "scripts/product-title-corrections.mjs",

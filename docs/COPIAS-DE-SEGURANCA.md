@@ -19,3 +19,9 @@ node scripts/restore-backup.mjs caminho/do/rankingdacompra-backup-AAAA-MM-DD.jso
 Após revisar a cópia e testar a recuperação em homologação, uma execução administrativa pode usar `--apply --project=rankingdacompra` com a variável `GOOGLE_APPLICATION_CREDENTIALS` configurada e o pacote `firebase-admin` instalado. Essa opção cria apenas IDs ausentes nas coleções `categorias` e `produtos`; os registros existentes são ignorados. A configuração pública `site-config.json` é mantida no GitHub e deve ser comparada com a cópia antes de qualquer restauração do código. Nunca envie o JSON de backup ou a credencial administrativa para o repositório.
 
 Esta cópia inclui somente as coleções `produtos` e `categorias` e a configuração pública do site. Não inclui contas do Firebase Authentication, regras de segurança, histórico de métricas, arquivos do GitHub nem segredos de integração. Para recuperar o site inteiro, guarde também um backup independente do repositório GitHub e das configurações administrativas no Firebase Console.
+
+## Proteção contra concorrência (04/10/2026)
+
+O restaurador decodifica e valida todos os campos antes da primeira gravação. Usa `DocumentReference.create()`, cuja precondição atômica recusa qualquer ID já existente, inclusive criado por outro processo durante a recuperação. Somente o erro `ALREADY_EXISTS` é tratado como preservação; falhas de permissão ou conexão interrompem a execução e não são apresentadas como sucesso. Não usa a sequência insegura `get()` seguido de `set()`.
+
+A configuração pública pode aguardar a geração: consulte o painel administrativo para obter a versão mais recente. A cópia dos cadastros não restaura automaticamente `configuracoes/site`, Authentication, regras, índices, App Check, segredos ou DNS. Preserve esses componentes separadamente e nunca habilite faturamento como parte da recuperação.

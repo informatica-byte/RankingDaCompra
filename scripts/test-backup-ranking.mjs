@@ -33,12 +33,35 @@ test('exportação preserva datas do Firestore em campos aninhados',()=>{
 test('recuperação simulada cria só registros ausentes e preserva os existentes',async()=>{
   const records=new Map([['produtos/a',{titulo:'Já cadastrado',preco:'120,00'}]]);
   const firestore={collection:name=>({doc:id=>({
-    get:async()=>({exists:records.has(`${name}/${id}`)}),
-    set:async data=>{records.set(`${name}/${id}`,data);}
+    create:async data=>{if(records.has(`${name}/${id}`))throw Object.assign(new Error('Existe'),{code:6});records.set(`${name}/${id}`,data);}
   })})};
   class Timestamp { constructor(seconds,nanoseconds){this.seconds=seconds;this.nanoseconds=nanoseconds;} }
   const result=await restoreMissing(firestore,sample(),Timestamp);
   assert.deepEqual(result,{categoriesCreated:1,productsCreated:0,existingSkipped:1});
   assert.equal(records.get('produtos/a').preco,'120,00');
   assert.equal(records.get('categorias/c').nome,'Categoria');
+});
+
+test('criação concorrente nunca é substituída pela cópia antiga',async()=>{
+  const records=new Map();
+  const firestore={collection:name=>({doc:id=>({create:async data=>{
+    const key=`${name}/${id}`;
+    if(name==='produtos')records.set(key,{preco:'120,00'});
+    if(records.has(key))throw Object.assign(new Error('Já criado'),{code:6});
+    records.set(key,data);
+  }})})};
+  const result=await restoreMissing(firestore,sample(),class Timestamp{});
+  assert.equal(result.existingSkipped,1);
+  assert.equal(records.get('produtos/a').preco,'120,00');
+});
+test('toda a cópia é validada antes da primeira gravação',async()=>{
+  const backup=sample();backup.products[0].data.precoAtualizadoManualmenteEm.nanoseconds=-1;
+  let writes=0;
+  const firestore={collection:()=>({doc:()=>({create:async()=>{writes++;}})})};
+  await assert.rejects(restoreMissing(firestore,backup,class Timestamp{}),/Data do Firestore inválida/);
+  assert.equal(writes,0);
+});
+test('erro de permissão não é tratado como registro existente',async()=>{
+  const firestore={collection:()=>({doc:()=>({create:async()=>{throw Object.assign(new Error('Sem permissão'),{code:7});}})})};
+  await assert.rejects(restoreMissing(firestore,sample(),class Timestamp{}),/Sem permissão/);
 });

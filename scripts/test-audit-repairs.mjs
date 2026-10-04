@@ -69,12 +69,13 @@ test('fila lê primeiro os dez pedidos mais recentes, filtra pendentes e pagina 
   assert.equal(pendingRequests(requests, results).length, 0);
 });
 
-async function configFixture(record, published, remote = null) {
+async function configFixture(record, published, remote = null, pathname = '/dashboard.html') {
   const source = await fs.readFile('growth-tools.js', 'utf8');
   const start = source.indexOf('  function persistConfigCache(value)');
   const end = source.indexOf('  function validWhatsAppUrl(value)');
   let saved = JSON.stringify(record), reads = 0, fetches = 0;
   const context = { state: { config: null, configCache: { savedAt: 0, published: null, overrides: {} } }, CONFIG_CACHE_KEY: 'test', CONFIG_CACHE_TTL: 12 * 3600000, CONFIG_COLLECTION: 'configuracoes', CONFIG_DOC: 'site', Date, console,
+    location: {pathname},
     localStorage: { getItem: () => saved, setItem: (_, value) => { saved = value; } },
     fetch: async () => { fetches++; return { ok: true, json: async () => published }; },
   };
@@ -110,6 +111,13 @@ test('cache expirado não perde configuração remota durante falta de acesso ao
   const fixture = await configFixture({ savedAt, value: { youtubeShowcaseEnabled: true }, published: { youtubeShowcaseEnabled: false } }, { youtubeShowcaseEnabled: false });
   assert.equal(fixture.config.youtubeShowcaseEnabled, true);
   assert.equal(fixture.record.savedAt, savedAt);
+});
+
+test('configuração pública completa dispensa Firestore e overrides administrativos antigos',async()=>{
+ const fixture=await configFixture({savedAt:Date.now(),value:{youtubeShowcaseEnabled:false},overrides:{promotionSeoTitle:'Prévia antiga'}},{schemaVersion:2,promotionSeoTitle:'Publicado',youtubeShowcaseEnabled:true}, {promotionSeoTitle:'Não consultar'}, '/index.html');
+ assert.equal(fixture.reads,0);assert.equal(fixture.fetches,1);
+ assert.equal(fixture.config.promotionSeoTitle,'Publicado');
+ assert.equal(fixture.config.youtubeShowcaseEnabled,true);
 });
 
 test('todos os publicadores de páginas validam antes do push e categorias são escapadas', async () => {

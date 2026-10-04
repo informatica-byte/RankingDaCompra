@@ -3,7 +3,7 @@
 > Documento de arquitetura, continuidade e reconstrução do sistema.
 > Fonte oficial: `informatica-byte/RankingDaCompra`, branch `main`.
 > Domínio público: <https://rankingdacompra.com.br/>.
-> Data da fotografia técnica: 21/09/2026.
+> Data da fotografia técnica: 04/10/2026. Consulte também `CORRECOES-AUDITORIA-20261004.md` para o contrato de publicação e proteção gradual.
 
 ## 1. Para que serve esta planta
 
@@ -240,7 +240,7 @@ Esses arquivos são cache público/resultado de automação; o cadastro mestre c
 - o envio direto usa OAuth do Google, nunca Client Secret no navegador;
 - grava no produto apenas `youtubeVideoId`, `youtubeVideoUrl`, `youtubeTitulo`, `youtubePrivacidade` e `youtubePublicadoEm`;
 - a próxima geração da página incorpora o vídeo pelo domínio `youtube-nocookie.com` e cria dados estruturados `VideoObject`.
-- a vitrine pública aceita uma sequência de 3 a 10 duplas `YouTube | página do produto`, salva somente essas referências em `configuracoes/site` e reproduz a playlist automaticamente em uma janela pequena;
+- a vitrine pública aceita uma sequência de 3 a 20 duplas `YouTube | página do produto`, salva somente essas referências em `configuracoes/site` e reproduz a playlist automaticamente em uma janela pequena;
 - o painel apresenta cada dupla em dois campos próprios, “Link do YouTube” e “Link do produto”, preserva os registros já existentes e permite adicionar ou remover linhas sem alterar o formato salvo;
 - cada vídeo mostra por cima do player um botão compacto, semitransparente e clicável com miniatura, nome resumido e preço vindos de `search-index.json`; em players menores ele reduz automaticamente para no máximo 230 pixels, evitando esconder o produto ou o conteúdo principal. Ao trocar o vídeo, o botão acompanha o produto e abre sua página no Ranking da Compra;
 - o painel completo permite ativar ou ocultar a sequência sem apagar os links e rejeita endereços inválidos ou repetidos;
@@ -257,9 +257,9 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 
 ### Economia do Firebase
 
-- o painel administrativo privado inclui um medidor de leituras com ponteiro. Ele consulta, somente após clique e autorização Google, as métricas oficiais de leitura, gravação e exclusão do Cloud Monitoring; não faz nenhuma leitura Firestore. O número restante é uma **estimativa da cota gratuita** (50 mil leituras, 20 mil gravações e 20 mil exclusões por dia), não um saldo global do Firebase nem a cobrança final;
-- para ativar o medidor, usar um Client ID OAuth **web** do projeto, com a origem `https://rankingdacompra.com.br` autorizada, Cloud Monitoring API habilitada e conta Google com permissão de leitura de métricas. Pode ser o Client ID público já usado no Estúdio do Ranki. O botão solicita apenas `monitoring.read`; o token fica somente na memória e expira. O Client ID pode ficar no armazenamento local deste aparelho, nunca o Client Secret;
-- o período diário do mostrador segue `America/Los_Angeles` e as métricas podem atrasar alguns minutos. Sem acesso, sem dados ou com erro, o ponteiro e o saldo ficam ocultos; o administrador pode abrir o console oficial pelo link no painel. Após conexão, a tela atualiza a cada 15 minutos enquanto o token estiver válido;
+- o painel administrativo privado inclui um medidor de leituras com ponteiro, gratuito e **manual**: o administrador informa o total exibido no Firebase Console. `firebase-consumo.js` guarda o registro somente no aparelho; não usa Cloud Monitoring, OAuth ou leituras adicionais do Firestore;
+- a cota de referência é de 50 mil leituras/dia. O restante é uma estimativa derivada do número informado, não telemetria automática nem saldo global dos serviços Firebase. O plano Spark é preservado; não é preciso cadastrar faturamento;
+- o dia da cota segue `America/Los_Angeles`. O registro expira na virada da cota e o painel mostra quando o valor foi anotado. Consulte o console oficial para atualizar a estimativa;
 - a busca e a maior parte da leitura pública usam arquivos JSON estáticos;
 - a Central de Foco só faz leitura ampla após ação manual;
 - preço e disponibilidade são conferidos em um único lote diário/manual, nunca produto a produto ao abrir o painel;
@@ -325,7 +325,7 @@ O horário de 09:30 é uma preferência operacional da interface/robô. A automa
 | Workflow | Disparo | Resultado |
 |---|---|---|
 | `update-sitemap.yml` | push seletivo, execução manual após as publicações e segurança diária às 19:17 Brasília | páginas, análises, busca, Top 6, sitemap e IndexNow |
-| `localizar-mlb.yml` | manual e minutos 07/22/37/52 | resolve fila MLB e publica respostas |
+| `localizar-mlb.yml` | manual e minutos 07/37 | resolve fila MLB e publica respostas; primeiro os dez pedidos recentes |
 | `sync-mercadolivre.yml` | manual | lote único de preço/disponibilidade |
 | `historico-precos.yml` | manual e 09:35 UTC | registra histórico e atualiza páginas |
 

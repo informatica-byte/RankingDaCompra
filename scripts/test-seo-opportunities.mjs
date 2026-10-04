@@ -30,6 +30,12 @@ const rowsEn = api.parseSearchConsoleCsv(english);
 assert.equal(rowsEn[0].kind, "pagina");
 assert.equal(rowsEn[0].clicks, 3);
 
+for(const dimension of ['Data','Date','Dispositivos','Países','Aspecto da pesquisa']){
+  assert.throws(()=>api.parseSearchConsoleCsv(`${dimension},Cliques,Impressões,CTR,Posição\n2026-09-07,1,50,2%,9`),/Consultas|Páginas/);
+}
+assert.match(source,/input:not\(\[type="file"\]\)/);
+assert.match(source,/!\['consulta',\s*'pagina'\]\.includes\(item.kind\)/);
+
 assert.equal(
   api.productIdFromPage("https://rankingdacompra.com.br/produto/ABC123-20260810-1.html?utm_source=google"),
   "ABC123"

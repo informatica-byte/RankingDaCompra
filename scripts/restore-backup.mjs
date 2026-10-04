@@ -24,20 +24,24 @@ export function restoreValue(value, Timestamp) {
 
 export async function restoreMissing(firestore, backup, Timestamp) {
   verifyBackup(backup);
-  const summary = { categoriesCreated: 0, productsCreated: 0, existingSkipped: 0 };
-  for (const [collection, items, counter] of [
+  // Valide toda a cópia antes da primeira gravação: datas inválidas não deixam
+  // uma restauração parcial. create() tem precondição atômica de inexistência.
+  const prepared = [
     ['categorias', backup.categories, 'categoriesCreated'],
     ['produtos', backup.products, 'productsCreated'],
-  ]) {
+  ].map(([collection, items, counter]) => [collection,
+    items.map(item => ({ id: item.id, data: restoreValue(item.data, Timestamp) })), counter]);
+  const summary = { categoriesCreated: 0, productsCreated: 0, existingSkipped: 0 };
+  for (const [collection, items, counter] of prepared) {
     for (const item of items) {
       const reference = firestore.collection(collection).doc(item.id);
-      const current = await reference.get();
-      if (current.exists) {
+      try {
+        await reference.create(item.data);
+        summary[counter] += 1;
+      } catch (error) {
+        if (![6, '6', 'already-exists', 'ALREADY_EXISTS'].includes(error?.code)) throw error;
         summary.existingSkipped += 1;
-        continue;
       }
-      await reference.set(restoreValue(item.data, Timestamp));
-      summary[counter] += 1;
     }
   }
   return summary;

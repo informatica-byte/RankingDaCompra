@@ -30,8 +30,20 @@ test('unpublished products are separate and malformed snapshots fail closed', ()
   assert.equal(result.pending, 0); assert.equal(result.outside, 1);
   assert.throws(()=>state([product], {}, now));
 });
+test('mesma revisão publicada não depende da latência ou do relógio local',()=>{
+  const local={...product,precoConferenciaId:'revision-2',_rdcPendingConfirmationId:'revision-2',precoAtualizadoManualmenteEm:'2026-10-04T11:10:23.200Z'};
+  const published={...product,precoConferenciaId:'revision-2',precoAtualizadoManualmenteEm:'2026-10-04T11:10:22.968Z'};
+  assert.equal(state([local],{products:[published]},now).pending,0);
+  assert.equal(state([{...local,precoAtualizadoManualmenteEm:'2026-10-04T11:40:00Z'}],{products:[published]},now).pending,0);
+  assert.equal(state([{...local,precoAtualizadoManualmenteEm:'2026-10-04T12:30:00Z'}],{products:[published]},now).confirmed,1);
+  assert.equal(state([local],{products:[{...published,precoAtualizadoManualmenteEm:'2026-10-02T11:00:00Z'}]},now).confirmed,0);
+  assert.equal(state([local],{products:[{...published,precoConferenciaId:'revision-1'}]},now).pending,1);
+  assert.equal(state([local],{products:[{...published,preco:'99,99'}]},now).pending,1);
+  const loaded={...local};delete loaded._rdcPendingConfirmationId;
+  assert.equal(state([loaded],{products:[published]},now).pending,1);
+});
 test('panels reuse existing product reads; snapshot check never queries Firestore or auto-polls', () => {
   assert.doesNotMatch(source,/firestore\.|getDocs\(|getDoc\(|setInterval\(/);
   assert.match(source,/cache: 'no-store'/);
-  for (const file of ['dashboard.html','painel-celular.html']) assert.match(readFileSync(new URL('../'+file,import.meta.url),'utf8'), /price-publication\.js\?v=20261004-1/);
+  for (const file of ['dashboard.html','painel-celular.html']) assert.match(readFileSync(new URL('../'+file,import.meta.url),'utf8'), /price-publication\.js\?v=20261004-2/);
 });

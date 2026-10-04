@@ -1057,7 +1057,7 @@ FORMATO:
         };
     </script>
 
-    <script src="/price-publication.js?v=20261004-1"></script>
+    <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/metricas-resumo.js?v=20260923-1"></script>
     <script>
         const firebaseConfig = {
@@ -1285,7 +1285,7 @@ function precoAtualCentral(produto){const status=statusMercadoLivreAdmin[String(
 function pontuacaoOfertaCentral(produto){return descontoCentral(produto)*3+(Number(produto?.nota)||0)*5+(linkAfiliadoValidoCentral(produto)?18:0)+(precoAtualCentral(produto)?15:0)+(relampagoAtivoCentral(produto)?35:0)-(statusMercadoLivreAdmin[String(produto?.id||'')]?.visible===false?1000:0)}
 
 function melhoresOfertasCentral(){return produtosCentralAtual.filter(campanhaValidaCentral).filter(produto=>statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).sort((a,b)=>pontuacaoOfertaCentral(b)-pontuacaoOfertaCentral(a)).slice(0,3)}
-window.obterOfertasAtivasParaTitulo=()=>produtosCentralAtual.filter(campanhaValidaCentral).filter(produto=>statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).map(produto=>({id:String(produto.id),titulo:String(produto.titulo||''),categoria:String(produto.categoria||''),preco:numeroPrecoPromocao(produto.precoPromocional||produto.preco)})).filter(produto=>produto.titulo&&produto.preco>0).slice(0,10);
+window.obterOfertasAtivasParaTitulo=()=>produtosCentralAtual.filter(promocaoValidaCentral).filter(produto=>!relampagoAtivoCentral(produto)&&statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).sort((a,b)=>descontoCentral(b)-descontoCentral(a)).map(produto=>({id:String(produto.id),titulo:String(produto.titulo||''),categoria:String(produto.categoria||''),preco:numeroPrecoPromocao(produto.precoPromocional||produto.preco)})).filter(produto=>produto.titulo&&produto.preco>0).slice(0,6);
 window.obterProdutosParaGuia=(themeId)=>{
   const grupos={criancas:/brinqued/,natal:/brinqued|beleza|perfume|fone|casa|relogio|smartwatch/,maes:/beleza|perfume|casa|bolsa|smartwatch/,pais:/ferramenta|carro|esporte|fone|perfume|smartwatch/,namorados:/perfume|beleza|fone|smartwatch|bolsa/,pascoa:/brinqued|casa|super/,"volta-aulas":/informatica|notebook|tablet|impressora|bolsa/,consumidor:/casa|beleza|fone|celular|ferramenta/,"festa-junina":/casa|super|roupa/,carnaval:/beleza|roupa|caixa-de-som|bolsa/,"black-friday":/celular|notebook|smart-tv|casa|fone/,"ano-novo":/casa|esporte|beleza|informatica/};
   const normalizar=valor=>String(valor||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
@@ -3217,8 +3217,9 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 </script>
 
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
-  <script defer src="/seo-opportunities.js?v=20261003-5"></script>
-  <script defer src="/growth-tools.js?v=20261003-five"></script>
+  <script defer src="/seo-opportunities.js?v=20261004-2"></script>
+  <script src="/promotion-title.js?v=20261004-2"></script>
+  <script defer src="/growth-tools.js?v=20261004-repairs"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
 </body>

@@ -17,14 +17,18 @@
     if (!Array.isArray(products) || !Array.isArray(catalogue?.products)) throw new Error('Publicação não pôde ser verificada.');
     const published = new Map(catalogue.products.map(p => [String(p.id), p]));
     const confirmed = products.filter(p => {
-      const age = now - millis(p.precoAtualizadoManualmenteEm);
+      const publicProduct = published.get(String(p.id));
+      const sameRevision = p._rdcPendingConfirmationId && publicProduct?.precoConferenciaId === p._rdcPendingConfirmationId;
+      const age = now - millis(sameRevision ? publicProduct.precoAtualizadoManualmenteEm : p.precoAtualizadoManualmenteEm);
       return p.precoAtualizadoManualmente === true && age >= 0 && age <= 86400000;
     });
     const visible = confirmed.filter(p => published.has(String(p.id)));
     const pending = visible.filter(p => {
       const publicProduct = published.get(String(p.id));
       return publicProduct.precoAtualizadoManualmente !== true
-        || millis(publicProduct.precoAtualizadoManualmenteEm) < millis(p.precoAtualizadoManualmenteEm)
+        || (p._rdcPendingConfirmationId
+          ? publicProduct.precoConferenciaId !== p._rdcPendingConfirmationId
+          : millis(publicProduct.precoAtualizadoManualmenteEm) < millis(p.precoAtualizadoManualmenteEm))
         || ['preco', 'precoPromocional'].some(field => price(publicProduct[field]) !== price(p[field]));
     });
     return { confirmed: visible.length, pending: pending.length, outside: confirmed.length - visible.length, generatedAt: catalogue.generatedAt || '' };

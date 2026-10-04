@@ -143,7 +143,7 @@
         </div>
       </section>
     </main>
-    <script src="/price-publication.js?v=20261004-1"></script>
+    <script src="/price-publication.js?v=20261004-2"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
       import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
@@ -574,9 +574,11 @@
           return false;
         }
         const alterou = !valorAnterior || Math.abs(valor - valorAnterior) >= 0.01;
+        const confirmacaoId = crypto.randomUUID();
         const campos = {
           precoAtualizadoManualmente: true,
           precoAtualizadoManualmenteEm: serverTimestamp(),
+          precoConferenciaId: confirmacaoId,
         };
         if (alterou) {
           campos[campo] = preco(valor);
@@ -594,6 +596,9 @@
           await updateDoc(doc(db, "produtos", id), campos);
           produto.precoAtualizadoManualmente = true;
           produto.precoAtualizadoManualmenteEm = new Date();
+          produto.precoConferenciaId = confirmacaoId;
+          // Só esta sessão usa a revisão, sem comparar relógio local com servidor.
+          produto._rdcPendingConfirmationId = confirmacaoId;
           if (alterou) produto[campo] = preco(valor);
           filaPrecosPulados.delete(id);
           filaPrecosIdAtual = "";
@@ -2209,7 +2214,7 @@
       };
       $("publicacao-abrir-produto").onclick = (evento) => abrirProdutoAoLado(evento, { link: $("link").value.trim(), linkAfiliado: $("link-afiliado").value.trim() }, "status");
     </script>
-    <script defer src="/seo-opportunities.js?v=20261003-5"></script>
+    <script defer src="/seo-opportunities.js?v=20261004-2"></script>
   </body>
 </html>
 
