@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-04T01:19:46.318Z",
+  "generatedAt": "2026-10-04T11:04:55.065Z",
   "products": [
     {
       "id": "0mCOpmOFDpWpd7yVGYOA",
@@ -455,6 +455,22 @@
       "ofertaRelampagoTerminaEm": "2026-08-16T03:22:01.372Z",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-03T09:29:51.378Z"
+    },
+    {
+      "id": "48oRcQNlH00KgNLHkvsG",
+      "titulo": "Pulseira Inteligente Xiaomi Smart Band 9 Active Global",
+      "comentario": "A Xiaomi Smart Band 9 Active Global oferece monitoramento completo de saúde, incluindo frequência cardíaca, SpO2, sono e estresse. Com 50 modos de treino, design leve de apenas 16,5g e compatibilidade com Android e iOS, é uma opção prática para o dia a dia.",
+      "categoria": "relogio-smartwatch",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_719700-MLB114302740091_072026-F-pulseira-inteligente-xiaomi-smart-band-9-active-global.webp",
+      "preco": "199,00",
+      "precoAnterior": "299,00",
+      "precoPromocional": "199,00",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": true,
+      "promocaoValidaAte": "2026-10-04",
+      "ofertaRelampagoAtiva": false,
+      "ofertaRelampagoTerminaEm": ""
     },
     {
       "id": "4DLJoHbBXNFffpz3DNcv",
@@ -939,7 +955,7 @@
       "precoPromocional": "84,45",
       "nota": 4.8,
       "ranking": "10",
-      "promocaoAtiva": true,
+      "promocaoAtiva": false,
       "promocaoValidaAte": "2026-10-03",
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
@@ -1263,6 +1279,22 @@
       "ranking": "10",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-03T09:47:31.194Z"
+    },
+    {
+      "id": "ARscPKCMZs3D8k22qltl",
+      "titulo": "Fone de Ouvido Bluetooth Xiaomi Redmi Buds 6 Play M2420E1 Preto",
+      "comentario": "Fone de Ouvido Bluetooth Xiaomi Redmi Buds 6 Play M2420E1 Preto. Quantidade de pares: 1. Possui tecnologia True Wireless. Com estojo de carregamento. Inclui microfone. Resistente à água e à poeira. Sua classificação de IP é IPX4.. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "categoria": "fonesdeouvido",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_926937-MLA117575013847_092026-F.jpg",
+      "preco": "76,00",
+      "precoAnterior": "115,00",
+      "precoPromocional": "76,00",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": true,
+      "promocaoValidaAte": "2026-10-04",
+      "ofertaRelampagoAtiva": false,
+      "ofertaRelampagoTerminaEm": ""
     },
     {
       "id": "asTGBkjkQIZ4mhlc7cxX",
@@ -1701,6 +1733,22 @@
       "promocaoValidaAte": "2026-07-30",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-03T09:33:45.963Z"
+    },
+    {
+      "id": "chHtD78QqMtvwjDB3WCf",
+      "titulo": "TP-Link EX1500 Roteador Wi-Fi 6 AX1500 Dual Band, 4 portas gigabit, cobertura até 140 m2, 60 dispositivos, configuração em 3 etapas, EasyMesh, baixa latência",
+      "comentario": "TP-Link EX1500 Roteador Wi-Fi 6 AX1500 Dual Band, 4 portas gigabit, cobertura até 140 m2, 60 dispositivos, configuração em 3 etapas, EasyMesh, baixa latência. Quantidade de roteadores: 1. Conexão sem fio. Banda dupla de 2,4 GHz. Com firewall integrado. Suporta o protocolo de segurança IPv4. Dimensões: 21 cm de largura, 3 cm de altura, 11 cm de profundidade.. Informações consultadas no anúncio oficial do Mercado Livre.",
+      "categoria": "roteador",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_628878-MLA114426044122_082026-F.jpg",
+      "preco": "169,91",
+      "precoAnterior": "299,00",
+      "precoPromocional": "169,91",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": true,
+      "promocaoValidaAte": "2026-10-04",
+      "ofertaRelampagoAtiva": false,
+      "ofertaRelampagoTerminaEm": ""
     },
     {
       "id": "CO1tCKBzr6q79BOpdBZW",
@@ -2473,7 +2521,7 @@
       "precoPromocional": "94,90",
       "nota": 4.8,
       "ranking": "10",
-      "promocaoAtiva": true,
+      "promocaoAtiva": false,
       "promocaoValidaAte": "2026-10-03",
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
@@ -2539,6 +2587,22 @@
       "precoAtualizadoManualmenteEm": "2026-10-03T09:50:31.789Z"
     },
     {
+      "id": "GjHJtzdsIhbmSINvhPeX",
+      "titulo": "Fone de Ouvido JBL Tune 520BT Bluetooth 5.3 Preto",
+      "comentario": "Fone de Ouvido JBL Tune 520BT Bluetooth 5.3 Preto. Quantidade de pares: 1. Bluetooth 5.3 para conexão rápida e estável com dispositivos compatíveis. Resposta em frequência de 20 Hz - 20 kHz para áudio nítido. Duração da bateria de até 57 horas para uso prolongado. Cancelamento de ruído para uma experiência sonora imersiva. Microfone integrado com suporte a assistentes de voz como Alexa e Google Assistant.. Informações consultadas no anúncio oficial do Mercado Livre.",
+      "categoria": "fonesdeouvido",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_645297-MLA99992011927_112025-F.jpg",
+      "preco": "232,65",
+      "precoAnterior": "399,00",
+      "precoPromocional": "232,65",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": true,
+      "promocaoValidaAte": "2026-10-04",
+      "ofertaRelampagoAtiva": false,
+      "ofertaRelampagoTerminaEm": ""
+    },
+    {
       "id": "gNcq5nSqWbfqYi1M9c23",
       "titulo": "Lanterna Mais Forte Do Mundo Recarregável Tática Potente Led Apfer",
       "comentario": "A Lanterna Mais Forte Do Mundo Recarregável Tática Potente Led Apfer possui alcance de projeção de 500 m e potência de 29999 lm. Seu corpo é fabricado em alumínio resistente ao pó e conta com carregamento via USB Tipo C, apresentando cinco modos de luz ajustáveis conforme o anúncio.",
@@ -2585,7 +2649,7 @@
       "precoPromocional": "260,91",
       "nota": 4.8,
       "ranking": "10",
-      "promocaoAtiva": true,
+      "promocaoAtiva": false,
       "promocaoValidaAte": "2026-10-03",
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
@@ -3071,7 +3135,7 @@
       "precoPromocional": "331,19",
       "nota": 4.8,
       "ranking": "10",
-      "promocaoAtiva": true,
+      "promocaoAtiva": false,
       "promocaoValidaAte": "2026-10-03",
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
@@ -4211,6 +4275,22 @@
       "precoAtualizadoManualmenteEm": "2026-10-03T09:34:55.390Z"
     },
     {
+      "id": "O6e0R2WtiZfyyf2MJe5Y",
+      "titulo": "Notebook Asus Vivobook Go 15 Amd Ryzen 5 7520u 16gb 512ssd Mixed Black",
+      "comentario": "Notebook Asus Vivobook Go 15 Amd Ryzen 5 7520u 16gb 512ssd Mixed Black. Modelo de placa gráfica integrada: 610M. Linha de placa gráfica integrada: Radeon. Modelo do processador: 7520U. Linha do processador: Ryzen 5. Marca do processador: AMD. Versão do sistema operacional: Keep OS.. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "categoria": "notebook",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_722728-MLA110061030541_042026-F.jpg",
+      "preco": "3.309,94",
+      "precoAnterior": "4.099,00",
+      "precoPromocional": "3.309,94",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": true,
+      "promocaoValidaAte": "2026-10-04",
+      "ofertaRelampagoAtiva": false,
+      "ofertaRelampagoTerminaEm": ""
+    },
+    {
       "id": "o6oq1IPOS41xUDtF3TG7",
       "titulo": "Varal Aço Inox Suspenso Roupa Íntima 40 Prendedor Calcinha",
       "comentario": "Varal Aço Inox Suspenso Roupa Íntima 40 Prendedor Calcinha: estrutura em aço inox para maior durabilidade, capacidade para 40 peças simultâneas, design suspenso que economiza espaço útil. Pontos de atenção registrados: exige verificação da capacidade de suporte do local de instalação, o manuseio dos 40 prendedores demanda organização para evitar.",
@@ -4731,7 +4811,7 @@
       "precoPromocional": "331,19",
       "nota": 4.8,
       "ranking": "10",
-      "promocaoAtiva": true,
+      "promocaoAtiva": false,
       "promocaoValidaAte": "2026-10-03",
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
@@ -6119,6 +6199,22 @@
       "precoAtualizadoManualmenteEm": "2026-10-03T09:40:23.377Z"
     },
     {
+      "id": "UvxFn4gfaexb8TvcaT5e",
+      "titulo": "Mouse Logitech Sem Fio M170 Rc/nano C/pilha - Preto",
+      "comentario": "Mouse Logitech Sem Fio M170 Rc/nano C/pilha - Preto. A tecnologia wireless 2.4 GHz com receptor USB permite liberdade de movimento em um raio de até 10 metros. A bateria inclusa mantém o funcionamento por até 12 meses reduzindo a necessidade de trocas constantes. O sensor óptico de 1000 dpi oferece precisão no rastreamento de movimentos em diversas superfícies. A configuração plug and play dispensa a instalação de softwares para o uso imediato após conectar o receptor.",
+      "categoria": "informatica",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_881874-MLA110223362694_052026-F.jpg",
+      "preco": "81,10",
+      "precoAnterior": "187,00",
+      "precoPromocional": "81,10",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": true,
+      "promocaoValidaAte": "2026-10-04",
+      "ofertaRelampagoAtiva": false,
+      "ofertaRelampagoTerminaEm": ""
+    },
+    {
       "id": "UwYGeOO2ABtDN07iR9ch",
       "titulo": "Carregador Portátil Power Bank Turbo 20000mah universal para iphone samsung motorola xiaomi 20w Com Display Digital DTimp",
       "comentario": "O Carregador Portátil Power Bank Turbo 20000mah oferece capacidade de 20.000mAh e múltiplas opções de saída de energia, variando entre 10W, 20W e 22.5W. O acessório acompanha cabos USB, Micro USB, Tipo-C e Lightning para conectividade com diversos modelos de smartphones.",
@@ -6547,7 +6643,7 @@
       "precoPromocional": "122,70",
       "nota": 4.8,
       "ranking": "10",
-      "promocaoAtiva": true,
+      "promocaoAtiva": false,
       "promocaoValidaAte": "2026-10-03",
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
