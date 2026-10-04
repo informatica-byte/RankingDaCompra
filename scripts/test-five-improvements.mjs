@@ -9,6 +9,12 @@ const buyerContext = {window:{},URL,Intl,console};
 vm.createContext(buyerContext);
 vm.runInContext(await source('buyer-tools.js'), buyerContext);
 const buyer = buyerContext.window.RDCBuyerTools;
+test('published pages may retain the previous known asset version during generation, not arbitrary versions', async () => {
+  const validator = await source('scripts/validate-site.mjs');
+  const line = validator.split('\n').find(line => line.includes('versão visual desconhecida carregada'));
+  assert.ok(line.includes('|20260929-presentes|20261003-five)'));
+  assert.ok(!line.includes('unknown-version'));
+});
 test('public loader shares concurrent reads, caches success and retries errors without database fallback', async () => {
   let calls=0, fail=false;
   const context = {window:{},Map,Date,Promise,fetch:async()=>{calls++;return {ok:!fail,status:503,json:async()=>({products:[]})};}};
