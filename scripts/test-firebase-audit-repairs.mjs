@@ -8,12 +8,12 @@ const [home, dashboard, mobile, growth, generator] = await Promise.all([
   "../growth-tools.js", "./generate-sitemap.mjs"
 ].map(path => readFile(new URL(path, import.meta.url), "utf8")));
 
-test("vitrine consulta datas válidas sem reler todas as promoções vencidas", () => {
+test("vitrine permanente usa seleção publicada e mantém o prazo das ofertas relâmpago", () => {
   const publicHome = home.slice(home.indexOf('async function homeComPromocoes'), home.indexOf('async function home(){'));
   assert.match(publicHome, /RDCPublicData\.json\('\/vitrine-publica\.json'\)/);
   assert.doesNotMatch(publicHome, /db\.collection/);
   assert.match(publicHome, /todos\.filter\(ofertaRelampagoValida\)/);
-  assert.match(home, /todos\.filter\(\(produto\) => produto\.promocaoAtiva === true[^]*?promocaoValida\(produto\)\)/);
+  assert.match(publicHome, /RDCBestChoices\.selectProducts\(todos,siteConfig\)/);
   assert.match(dashboard, /CACHE_METRICAS_PAINEL_MS = 4 \* 60 \* 60 \* 1000/);
 });
 
@@ -37,7 +37,7 @@ test("App Check é preparado em todos os clientes sem ativar enforcement", () =>
   assert.match(dashboard, /firebase\.appCheck\(\)\.activate\(new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
   assert.match(mobile, /initializeAppCheck\(app, \{/);
   assert.match(growth, /firebase\.appCheck\(\)\.activate\(new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
-  assert.match(generator, /growth-tools\.js\?v=20261004-repairs/);
+  assert.match(generator, /growth-tools\.js\?v=20261005-choices/);
 });
 
 test("histórico fica identificado como comparação, sem contradizer preço conferido", () => {

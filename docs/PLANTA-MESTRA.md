@@ -454,3 +454,13 @@ As regras e índices do Firestore, a lista de usuários, os valores dos segredos
 ## 18. Atualização de integridade — 02/10/2026
 
 Consultar `docs/CORRECOES-AUDITORIA-20261002.md`. Histórico conserva pontos e origem/data real; a janela de 30 dias é filtrada na exibição. Cache público usa baseline publicada e overrides administrativos, sem TTL deslizante. Fila MLB paginada (até 20 documentos lidos e 10 processados por ciclo) mantém resultados e tentativas. Todos os workflows publicadores de páginas validam antes do push; há CI local em push/PR, sem leituras Firestore. `scripts/product-seo-titles.mjs` rege títulos completos e variantes comprovadas; `scripts/repair-product-metadata.mjs` permite reparo offline. Sara permite auditoria online integral com `max_pages=0`, indicando cobertura.
+
+## 19. Vitrine permanente — 05/10/2026
+
+A antiga área “Ofertas do dia” passa a “Melhores escolhas e rankings de produtos”. O endereço canônico permanente é `/melhores-escolhas.html`, também destacado no início. Produtos e guias não vencem com a promoção; a conferência de preço continua diária e o selo recente continua limitado a 24 horas. Ofertas relâmpago mantêm até três produtos. Top 6 semanal, presentes, vídeos, análises, links e dados existentes permanecem.
+
+No documento existente `configuracoes/site`, os campos de apresentação são `bestChoicesTitle`, `bestChoicesProductIds` (até 12 IDs em ordem) e `bestChoicesGuideUrls` (até 6 guias publicados). Os dois painéis permitem escolher, ordenar, retirar e salvar por merge; retirar não exclui produtos. A publicação expressa usa a opção Melhores escolhas sem descartar cadastros quando a seleção está cheia. A configuração anterior de promoção continua preservada como legado.
+
+`best-choices.js` centraliza seleção, preço e HTML; `best-choices-admin.js` serve ambos os painéis; `best-choices-page.js` atualiza o hub usando apenas snapshots públicos. `scripts/generate-best-choices.mjs` gera o hub, o manifesto `best-choices-guides.json`, o HTML inicial e o sitemap sem ler Firestore. Os publicadores de sitemap e de lote de preços o executam após gerar páginas, histórico e home. A migração inicial fixa seis IDs da seleção legada mais recente na configuração publicada; alterações posteriores de vencimento não substituem essa seleção.
+
+O hub tem HTML rastreável, CollectionPage/ItemLists, títulos permanentes e navegação para categorias. Ele não inventa testes, vencedor entre categorias ou popularidade medida. Títulos com categoria, Bluetooth e limite de preço são validados; teto de preço exige conferência recente. Não há garantia de posição ou indexação. Procedimento: painel > Melhores escolhas > Abrir seleção > escolher e salvar > Publicar vitrine. Ver `docs/MELHORES-ESCOLHAS.md`.

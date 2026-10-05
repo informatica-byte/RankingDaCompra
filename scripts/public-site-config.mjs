@@ -1,5 +1,5 @@
 // Somente configuração de apresentação pode sair do banco para o site público.
-export const PUBLIC_CONFIG_FIELDS = ['whatsappClubEnabled','whatsappClubUrl','promotionSeoTitle','youtubeShowcaseEnabled','youtubeShowcaseTitle','youtubeShowcaseLinks','youtubeShowcaseItems','seasonalThemeMode','seasonalThemeId','seasonalThemeStart','seasonalThemeEnd'];
+export const PUBLIC_CONFIG_FIELDS = ['whatsappClubEnabled','whatsappClubUrl','promotionSeoTitle','bestChoicesTitle','bestChoicesProductIds','bestChoicesGuideUrls','youtubeShowcaseEnabled','youtubeShowcaseTitle','youtubeShowcaseLinks','youtubeShowcaseItems','seasonalThemeMode','seasonalThemeId','seasonalThemeStart','seasonalThemeEnd'];
 export function decodeConfigValue(field) {
   if (!field) return null;
   if (field.arrayValue) return (field.arrayValue.values || []).map(decodeConfigValue);
@@ -14,10 +14,12 @@ export function publicSiteConfig(previous = {}, config = {}, theme = {}, generat
   const allowed = key => PUBLIC_CONFIG_FIELDS.includes(key) || /^giftGuideTitle_[a-z0-9_]+$/.test(key);
   const value = Object.fromEntries(Object.entries(merged).filter(([key])=>allowed(key)));
   for (const [key,item] of Object.entries(value)) {
-    const expected = key.endsWith('Enabled') ? 'boolean' : ['youtubeShowcaseLinks','youtubeShowcaseItems'].includes(key) ? 'array' : 'string';
+    const expected = key.endsWith('Enabled') ? 'boolean' : ['youtubeShowcaseLinks','youtubeShowcaseItems','bestChoicesProductIds','bestChoicesGuideUrls'].includes(key) ? 'array' : 'string';
     if (expected === 'array' ? !Array.isArray(item) : typeof item !== expected) throw new Error('Configuração pública inválida: ' + key + '. Publicação recusada sem substituir a versão existente.');
   }
   if (value.youtubeShowcaseLinks?.some(link=>typeof link !== 'string')) throw new Error('Link de vídeo inválido na configuração pública.');
+  if (value.bestChoicesProductIds && (value.bestChoicesProductIds.length>12 || value.bestChoicesProductIds.some(id=>typeof id!=='string'||!/^[A-Za-z0-9_-]+$/.test(id)))) throw new Error('Seleção permanente de produtos inválida.');
+  if (value.bestChoicesGuideUrls && (value.bestChoicesGuideUrls.length>6 || value.bestChoicesGuideUrls.some(url=>typeof url!=='string'||!/^melhores-[a-z0-9-]+\.html$/.test(url)||url==='melhores-escolhas.html'))) throw new Error('Seleção permanente de rankings inválida.');
   // Pares contêm apenas o link do vídeo e a página pública do produto.
   if (Array.isArray(value.youtubeShowcaseItems)) value.youtubeShowcaseItems=value.youtubeShowcaseItems.map(item=>({youtubeUrl:String(item.youtubeUrl||item.videoUrl||item.url||''),productUrl:String(item.productUrl||item.produtoUrl||'')}));
   return {...value,schemaVersion:2,generatedAt};

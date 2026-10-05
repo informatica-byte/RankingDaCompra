@@ -41,7 +41,11 @@
       @media(max-width:480px){.precos-fila-pares{grid-template-columns:1fr}}
     </style>
     <script defer src="/seo-priorities.js?v=20260913-1"></script>
-  </head>
+  <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
+<script src="/best-choices.js?v=20261005-1"></script>
+<script src="/promotion-title.js?v=20261005-1"></script>
+<script src="/best-choices-admin.js?v=20261005-1"></script>
+</head>
   <body>
     <header>
       <div><b>📱 Painel móvel</b><span class="header-actions"><a href="#precos-mobile">💰 Preços</a><a href="estudio-videos.html">🎬 Ranki</a><a href="dashboard.html">Painel completo</a></span></div>
@@ -55,6 +59,7 @@
         <div id="login-status" class="status"></div>
       </section>
       <section id="app">
+<div id="best-choices-mobile" class="card"></div>
         <div class="card">
           <div class="etapa">Publicação expressa</div>
           <h1>Cole seu link de afiliado</h1>
@@ -68,7 +73,7 @@
           <div class="mini">Preencha os dois campos da Shopee juntos. O produto usará a mesma foto, análise e categoria já preparadas pelo Mercado Livre.</div>
           <label>Tipo</label>
           <div class="tipos">
-            <label class="tipo"><input name="tipo" type="radio" value="promocao" checked /><span>🔥 Promoção do dia</span></label
+            <label class="tipo"><input name="tipo" type="radio" value="promocao" checked /><span>🏆 Melhores escolhas</span></label
             ><label class="tipo"><input name="tipo" type="radio" value="relampago" /><span>⚡ Oferta relâmpago</span></label>
           </div>
           <div id="duracao-box" hidden>
@@ -2009,6 +2014,12 @@
         $("categoria").innerHTML = '<option value="" selected disabled>Selecione a categoria</option>' + cats.map((c) => '<option value="' + rankingEsc(c.id) + '">' + rankingEsc(c.nome) + "</option>").join("");
         if (!cats.length) throw Error("Nenhuma categoria cadastrada.");
       }
+      window.RDCBestChoicesAdmin.mount($('best-choices-mobile'),async()=>{
+        if(!auth.currentUser)throw Error('Entre no painel administrativo.');
+        const config=await getDoc(doc(db,'configuracoes','site'));
+        return {config:config.exists()?config.data():{},products:filaPrecosDados?.todos || [],
+          saveConfig:settings=>{if(!auth.currentUser)throw Error('Sessão encerrada.');return setDoc(doc(db,'configuracoes','site'),settings,{merge:true});}};
+      });
       onAuthStateChanged(auth, async (u) => {
         $("login").style.display = u ? "none" : "block";
         $("app").style.display = u ? "block" : "none";
@@ -2183,8 +2194,20 @@
         b.disabled = true;
         b.textContent = "Publicando...";
         try {
-          await addDoc(collection(db, "produtos"), d);
-          msg("pub-status", "Publicado no mesmo banco do painel original! A página compartilhável será preparada automaticamente.", "ok");
+          const salvo = await addDoc(collection(db, "produtos"), d);
+          let avisoSelecao = '';
+          if (tipo === 'promocao') {
+            try {
+              const [siteDoc,published] = await Promise.all([getDoc(doc(db,'configuracoes','site')),fetch('/site-config.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Configuração indisponível');return r.json();})]);
+              const settings={...published,...(siteDoc.exists()?siteDoc.data():{})};
+              const ids=Array.isArray(settings.bestChoicesProductIds)?settings.bestChoicesProductIds:[];
+              if(ids.length<window.RDCBestChoices.MAX_PRODUCTS) {
+                await setDoc(doc(db,'configuracoes','site'),{bestChoicesProductIds:[...new Set([salvo.id,...ids])]},{merge:true});
+                avisoSelecao=' Incluído nas melhores escolhas, sem vencimento diário.';
+              } else avisoSelecao=' A seleção já tem 12 produtos; escolha quem substituir em Melhores escolhas. Nenhum destaque anterior foi retirado.';
+            } catch(error){console.warn(error);avisoSelecao=' Cadastro salvo, mas a seleção não pôde ser atualizada. Inclua o produto em Melhores escolhas; não publique o cadastro novamente.';}
+          }
+          msg("pub-status", "Produto cadastrado!"+avisoSelecao+" Use Publicar vitrine para atualizar as páginas. A conferência diária permanece igual.", "ok");
           b.textContent = "✅ Publicado";
         } catch (x) {
           msg("pub-status", "Erro: " + x.message, "erro");
@@ -2217,4 +2240,3 @@
     <script defer src="/seo-opportunities.js?v=20261004-2"></script>
   </body>
 </html>
-

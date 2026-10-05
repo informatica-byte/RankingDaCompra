@@ -27,6 +27,9 @@ test("sitemap mantém uma janela diária e não relê Firebase por artefatos ou 
     "scripts/product-seo-titles.mjs",
     "scripts/public-catalogue.mjs",
     "scripts/public-site-config.mjs",
+    "scripts/generate-best-choices.mjs",
+    "best-choices.js",
+    "promotion-title.js",
     "scripts/product-decision.mjs",
     "editorial-focus.json",
   ]);
@@ -158,5 +161,3 @@ test("painel separa preço divergente de consulta temporariamente bloqueada", ()
   assert.match(dashboard, /Verificações não concluídas:/);
   assert.match(dashboard, /grid-template-columns:\s*24px minmax\(0, 1fr\)/);
 });
-
-

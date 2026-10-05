@@ -83,5 +83,19 @@
   "seasonalThemeStart": "2026-09-24",
   "seasonalThemeId": "criancas",
   "schemaVersion": 2,
-  "generatedAt": "2026-10-05T01:00:45.366Z"
+  "generatedAt": "2026-10-05T01:00:45.366Z",
+  "bestChoicesTitle": "Melhores escolhas e rankings de produtos",
+  "bestChoicesProductIds": [
+    "48oRcQNlH00KgNLHkvsG",
+    "ARscPKCMZs3D8k22qltl",
+    "chHtD78QqMtvwjDB3WCf",
+    "GjHJtzdsIhbmSINvhPeX",
+    "O6e0R2WtiZfyyf2MJe5Y",
+    "UvxFn4gfaexb8TvcaT5e"
+  ],
+  "bestChoicesGuideUrls": [
+    "melhores-fones-de-ouvido.html",
+    "melhores-roteador.html",
+    "melhores-relogio-smartwatch.html"
+  ]
 }

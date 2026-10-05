@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotDate": "2026-10-04",
+  "snapshotDate": "2026-10-05",
   "project": {
     "name": "Ranking da Compra",
     "repository": "informatica-byte/RankingDaCompra",
@@ -25,6 +25,7 @@
   },
   "entrypoints": [
     { "path": "index.html", "access": "public", "role": "storefront" },
+    { "path": "melhores-escolhas.html", "access": "public", "role": "permanent-curation-hub" },
     { "path": "analises.html", "access": "public", "role": "analysis-directory" },
     { "path": "como-avaliamos.html", "access": "public", "role": "methodology" },
     { "path": "comparar.html", "access": "public", "role": "product-comparison" },
@@ -40,6 +41,11 @@
     "vitrine-publica.json",
     "price-publication.js",
     "promotion-title.js",
+    "best-choices.js",
+    "best-choices-admin.js",
+    "best-choices-page.js",
+    "best-choices.css",
+    "best-choices-guides.json",
     "buyer-tools.js",
     "growth-tools.js",
     "ranki-video-studio.js",
@@ -54,7 +60,19 @@
     "robots.txt",
     "CNAME"
   ],
+  "permanentBestChoices": {
+    "page": "melhores-escolhas.html",
+    "fields": ["configuracoes/site.bestChoicesTitle", "configuracoes/site.bestChoicesProductIds", "configuracoes/site.bestChoicesGuideUrls"],
+    "limits": {"products": 12, "guides": 6, "lightning": 3},
+    "editors": ["dashboard.html", "painel-celular.html"],
+    "migration": "Seed selection once from six latest legacy promotions without mutating product data; persist public config until administrator saves",
+    "publication": "generate-best-choices.mjs runs after home/history generation and never queries Firestore",
+    "price": "Recent means confirmed within 24 hours; stale prices remain labeled as last recorded. Selection has no daily expiry",
+    "seo": "Permanent canonical CollectionPage plus categorized guide links and selected analyses. Mixed categories have no winner badges",
+    "legacy": "promotionSeoTitle and promotion fields preserved; old heading editor hidden"
+  },
   "promotionTitle": {
+    "legacy": true,
     "field": "configuracoes/site.promotionSeoTitle",
     "manualEditing": true,
     "aiSuggestions": "Gemini with Google Search grounding over active promotions already loaded in the admin panel",
@@ -106,7 +124,7 @@
       "configuracoes": {
         "role": "site and weekly ranking configuration",
         "specialDocuments": ["site", "ranking-semanal"],
-        "siteFields": ["whatsappClubUrl", "promotionSeoTitle", "youtubeShowcaseEnabled", "youtubeShowcaseTitle", "youtubeShowcaseLinks", "youtubeShowcaseItems"]
+        "siteFields": ["whatsappClubUrl", "bestChoicesTitle", "bestChoicesProductIds", "bestChoicesGuideUrls", "promotionSeoTitle", "youtubeShowcaseEnabled", "youtubeShowcaseTitle", "youtubeShowcaseLinks", "youtubeShowcaseItems"]
       }
     }
   },
@@ -142,6 +160,7 @@
     "scripts/restore-backup.mjs",
     "scripts/generate-sitemap.mjs",
     "scripts/generate-discovery.mjs",
+    "scripts/generate-best-choices.mjs",
     "scripts/product-title-corrections.mjs",
     "scripts/sync-mercadolivre.mjs",
     "scripts/resolve-affiliate-links.mjs",
@@ -197,6 +216,7 @@
     "Architecture changes require updating both blueprint files"
   ],
   "validationCommands": [
+    "node --test scripts/test-*.mjs",
     "node scripts/test-seo-opportunities.mjs",
     "node --test scripts/test-sync-mercadolivre.mjs",
     "node --test scripts/test-daily-price-batch.mjs",

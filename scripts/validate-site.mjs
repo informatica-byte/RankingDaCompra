@@ -23,13 +23,13 @@ has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo históri
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
 has(homeHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente da vitrine", "index.html");
-has(homeHtml, /growth-tools\.js\?v=20261004-repairs/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20261005-choices/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
 has(homeHtml, /class="hero-search"[\s\S]{0,300}name="busca"/, "busca principal visível ausente da primeira tela", "index.html");
 has(homeHtml, /Ver todos os comparativos/, "atalho principal para comparativos ausente", "index.html");
 has(homeHtml, /name="robots" content="index,follow,max-image-preview:large"/, "prévia de imagem grande ausente da página inicial", "index.html");
 has(homeHtml, /static-home-products:start/, "produtos estáticos rastreáveis ausentes da página inicial", "index.html");
-has(homeHtml, /class="static-product-grid"/, "grade estática de produtos ausente da página inicial", "index.html");
-has(homeHtml, /Três comparativos para consultar nesta semana/, "prioridades semanais de comparativos ausentes", "index.html");
+has(homeHtml, /class="deal-grid" data-best-products/, "grade estática de produtos ausente da página inicial", "index.html");
+has(homeHtml, /aria-label="Comparativos prioritários"/, "prioridades semanais de comparativos ausentes", "index.html");
 has(homeHtml, /class="static-guide-grid"/, "links internos dos comparativos prioritários ausentes", "index.html");
 if (/`#\$\{i\} no ranking`/.test(homeHtml)) fail("index.html: resultado comum ainda recebe posição de ranking sem comparação aprovada");
 has(homeHtml, /RDCPublicData\.json\('\/search-index\.json'\)/, "busca estática sem Firebase ausente", "index.html");
@@ -53,7 +53,7 @@ has(growthTools, /function persistConfigCache\(value\)/, "cache compartilhado da
 has(growthTools, /function updateCachedConfig\(partial\)/, "alterações administrativas não atualizam o cache público", "growth-tools.js");
 has(growthTools, /updateCachedConfig\(settings\)/, "título SEO salvo não fica disponível imediatamente na vitrine", "growth-tools.js");
 has(growthTools, /ranking-da-compra-config-publica-v2/, "versão antiga do cache pode esconder o título SEO recém-salvo", "growth-tools.js");
-has(homeHtml, /growth-tools\.js\?v=20261004-repairs/, "a vitrine ainda pode usar a versão antiga das ferramentas de configuração", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20261005-choices/, "a vitrine ainda pode usar a versão antiga das ferramentas de configuração", "index.html");
 const siteConfig = JSON.parse(await readFile(resolve("site-config.json"), "utf8"));
 const videoStudioHtml = await readFile(resolve("estudio-videos.html"), "utf8");
 const videoStudioJs = await readFile(resolve("ranki-video-studio.js"), "utf8");
@@ -70,8 +70,8 @@ has(videoStudioJs, /audioBuffer\.duration < 10 \|\| audioBuffer\.duration > 20/,
 has(videoStudioJs, /youtube\.upload/, "autorização limitada ao envio para o YouTube ausente", "ranki-video-studio.js");
 has(videoStudioJs, /youtubeVideoId:[\s\S]{0,260}youtubePublicadoEm:/, "referência econômica do vídeo não é ligada ao produto", "ranki-video-studio.js");
 if (/firebase\.storage\(|getStorage\(|uploadBytes\(/.test(videoStudioJs)) fail("ranki-video-studio.js: o vídeo não deve ocupar Firebase Storage");
-has(homeHtml, /data-promotion-title/, "título editável das promoções ausente", "index.html");
-has(homeHtml, /tituloPromocoesPublicado\(siteConfig,promocoes\.map/, "título SEO não é validado contra as ofertas exibidas", "index.html");
+has(homeHtml, /data-best-title/, "título editável das promoções ausente", "index.html");
+has(homeHtml, /RDCBestChoices\.title\(siteConfig\.bestChoicesTitle/, "título SEO não é validado contra as ofertas exibidas", "index.html");
 has(growthTools, /function youtubeVideoId\(value\)/, "validação dos links do YouTube ausente", "growth-tools.js");
 has(growthTools, /youtubeShowcaseItems\(config\?\.youtubeShowcaseItems, config\?\.youtubeShowcaseLinks\)/, "relação entre vídeo e produto ausente", "growth-tools.js");
 has(growthTools, /data-youtube-product-overlay/, "cartão clicável do produto sobre o vídeo ausente", "growth-tools.js");
@@ -260,7 +260,7 @@ has(dashboardHtml, /eventosPorId=new Map\(\)/, "dashboard não protege a consoli
 has(mobilePanelHtml, /function rankingMetricasUnicas\(metricas\)/, "painel móvel não consolida métricas novas e legadas", "painel-celular.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
 has(dashboardHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente do painel", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20261004-repairs/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20261005-choices/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
 has(dashboardHtml, /Conferir todos os preços agora/, "botão da conferência manual ausente", "dashboard.html");
 has(dashboardHtml, /Nenhuma conferência começa sozinha/, "proteção contra conferência automática ausente", "dashboard.html");
 if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
@@ -287,7 +287,7 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO ausente das novas páginas", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20261004-repairs"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20261005-choices"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="mobile-affiliate-offer"/, "botão de compra fixo no celular ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /\.top>div\{display:flex;flex-direction:column;order:-1\}/, "informações principais ainda aparecem depois da foto no celular", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /contentType === "image\/webp" \? "webp"/, "imagens WebP do catálogo ainda podem bloquear a publicação", "scripts/generate-sitemap.mjs");
@@ -325,7 +325,7 @@ has(discoveryGenerator, /publicCategoryName\(category\.id, category\.nome\)/, "g
 has(discoveryGenerator, /guideFileName\(category\.id, categoryName\)/, "gerador ainda pode publicar o identificador interno como URL", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /Dúvidas que este comparativo ajuda a responder/, "cauda longa não aparece nos guias prioritários", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /categoryProducts\.length < 3/, "comparativo pode ser criado sem opções suficientes", "scripts/generate-discovery.mjs");
-has(discoveryGenerator, /if \(!guidePages\.includes\(file\)\) await unlink/, "comparativo antigo pode permanecer publicado depois de perder opções suficientes", "scripts/generate-discovery.mjs");
+has(discoveryGenerator, /if \(file !== "melhores-escolhas\.html" && !guidePages\.includes\(file\)\) await unlink/, "comparativo antigo pode permanecer publicado depois de perder opções suficientes", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /ranking:\s*0,/, "busca ainda pode herdar posições não aprovadas", "scripts/generate-discovery.mjs");
 has(discoveryGenerator, /custo-benefício \(35%\)/, "pesos do comparativo automático não estão explicados", "scripts/generate-discovery.mjs");
 const updateWorkflow = await readFile(resolve(".github/workflows/update-sitemap.yml"), "utf8");
@@ -483,7 +483,7 @@ for (const url of urls) {
   }
   has(html, /data-mobile-product-buy/, "ordem móvel protegida ausente", relative);
   has(html, /id="mobile-affiliate-offer"/, "botão fixo de preço ausente no celular", relative);
-  has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1|20260919-video-min3|20260919-video-fields1|20260919-title-fallback1|20260919-title-fallback2|20260919-video-overlay1|20260919-metrics-compat1|20260920-config-sync1|20260923-manual-price1|20260923-audit-fix1|20260929-video-max20|20260929-firebase-precos|20260929-presentes|20261003-five|20261004-repairs)/, "versão visual desconhecida carregada", relative);
+  has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1|20260919-video-min3|20260919-video-fields1|20260919-title-fallback1|20260919-title-fallback2|20260919-video-overlay1|20260919-metrics-compat1|20260920-config-sync1|20260923-manual-price1|20260923-audit-fix1|20260929-video-max20|20260929-firebase-precos|20260929-presentes|20261003-five|20261004-repairs|20261005-choices)/, "versão visual desconhecida carregada", relative);
 
   for (const identity of productIdentityKeys(html)) {
     const previous = identities.get(identity);
@@ -526,6 +526,18 @@ if (guideFiles.length < 1) fail("comparativos automáticos: nenhuma página foi 
 for (const file of guideFiles) {
   const html = await readFile(resolve(file), "utf8");
   has(html, new RegExp(`<link rel="canonical" href="${SITE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}${file.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}">`), "endereço canônico incorreto", file);
+  if (file === "melhores-escolhas.html") {
+    has(html, /data-best-choices="true"/, "seleção permanente ausente", file);
+    has(html, /<h1>[^<]+<\/h1>/, "título rastreável ausente", file);
+    has(html, /class="best-guide-grid"/, "navegação por categorias ausente", file);
+    has(html, /data-best-products/, "seleção estática de produtos ausente", file);
+    has(html, /como-avaliamos\.html/, "critérios editoriais ausentes", file);
+    has(html, /CollectionPage/, "dados estruturados da coleção ausentes", file);
+    has(html, /Seleção sem prazo de encerramento/, "permanência não explicada", file);
+    if (/🏆 Melhor geral|💚 Melhor custo-benefício|💰 Mais barato/.test(html)) fail(file + ": categorias diferentes não podem disputar o mesmo ranking");
+    if (!urls.includes(SITE + file)) fail(file + ": página permanente ausente do sitemap");
+    continue;
+  }
   if (html.includes("data-focused-guide")) {
     has(html, /sem vencedor artificial/, "guia específico não explica a ordem neutra", file);
     has(html, /data-practical-guide/, "critérios práticos do guia específico ausentes", file);
@@ -623,4 +635,3 @@ if (errors.length) {
 }
 
 console.log("Validação concluída: " + urls.length + " URLs, " + sitemapProductUrls.size + " produtos públicos e metadados sociais completos.");
-

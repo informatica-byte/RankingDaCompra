@@ -81,18 +81,19 @@ jobs:
           node scripts/generate-home-static.mjs
           # Registra somente observações confirmadas nas páginas, sem nova consulta.
           node scripts/update-price-history.mjs
+          node scripts/generate-best-choices.mjs
           rm -f "$RDC_PRODUCTS_SNAPSHOT"
 
 
       - name: Publicar somente quando houver mudança
         run: |
-          node --test scripts/test-audit-repairs.mjs scripts/test-price-presentation.mjs
+          node --test scripts/test-audit-repairs.mjs scripts/test-price-presentation.mjs scripts/test-best-choices.mjs
           node scripts/validate-site.mjs
 
       - name: Publicar arquivos validados
         shell: bash
         run: |
-          if [[ -z "$(git status --porcelain -- index.html mercadolivre-status.json sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json vitrine-publica.json site-config.json .mercadolivre-token.enc)" ]]; then
+          if [[ -z "$(git status --porcelain -- index.html mercadolivre-status.json sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json vitrine-publica.json site-config.json best-choices-guides.json .mercadolivre-token.enc)" ]]; then
             echo "Preços e disponibilidade continuam iguais."
             exit 0
           fi
@@ -100,7 +101,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A index.html mercadolivre-status.json sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json vitrine-publica.json site-config.json
+          git add -A index.html mercadolivre-status.json sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json vitrine-publica.json site-config.json best-choices-guides.json
           if [[ -f .mercadolivre-token.enc ]]; then
             git add .mercadolivre-token.enc
           fi
@@ -130,6 +131,5 @@ jobs:
            echo "::error::A conferência foi parcial; o último preço válido foi preservado, mas os produtos com erro ainda precisam de verificação."
            exit 1
           fi
-
 
 

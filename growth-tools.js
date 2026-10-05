@@ -1097,6 +1097,7 @@
   }
 
   function applyPromotionTitle(config) {
+    if (document.querySelector("[data-best-choices]")) return; // Título permanente resolvido com a seleção real.
     const params = new URLSearchParams(location.search);
     if (!/^\/(?:index\.html)?$/.test(location.pathname) || params.has("busca") || params.has("cat") || params.has("produto")) return;
     const offers = [...document.querySelectorAll('#promocoes .deal-card')].map(card => ({
@@ -1260,9 +1261,9 @@
       <div class="growth-row"><button id="growth-whatsapp-save" type="button">Salvar Clube de Ofertas</button><a id="growth-whatsapp-test" href="#" target="_blank" rel="noopener noreferrer">Testar link</a></div>
       <p class="growth-admin-status" id="growth-admin-status" role="status" aria-live="polite"></p>
       <div class="showcase-admin">
-        <h2>🎥 Vídeos no site e título das ofertas</h2>
+        <h2>🎥 Vídeos no site</h2>
         <p>Use somente links do YouTube. O site guarda os vídeos no YouTube e salva apenas os links, sem ocupar armazenamento do Firebase.</p>
-        <label for="growth-promotion-title">Título da seção de promoções</label>
+        <div hidden data-legacy-promotion-editor><label for="growth-promotion-title">Título da seção de promoções</label>
         <input id="growth-promotion-title" type="text" maxlength="75" placeholder="${PROMOTION_TITLE_DEFAULT}">
         <div class="promotion-suggestions" aria-label="Sugestões de títulos">${PROMOTION_TITLE_SUGGESTIONS.map(title => `<button type="button" data-promotion-suggestion="${escapeHtml(title)}">${escapeHtml(title)}</button>`).join("")}</div>
         <div class="promotion-ai-box">
@@ -1272,7 +1273,7 @@
           <div class="promotion-ai-sources" id="growth-promotion-ai-sources"></div>
           <div class="promotion-ai-google" id="growth-promotion-ai-google"></div>
         </div>
-        <label for="growth-youtube-title">Título da pequena vitrine de vídeos</label>
+        </div><p>Para escolher produtos, rankings e o título permanente, use <a href="#best-choices-dashboard">Melhores escolhas</a> na Central.</p><label for="growth-youtube-title">Título da pequena vitrine de vídeos</label>
         <input id="growth-youtube-title" type="text" maxlength="80" placeholder="Vídeos do Ranki: produtos em destaque">
         <p class="showcase-admin-help"><b>Cadastre de 3 a 20 vídeos.</b> Em cada linha, cole o vídeo do YouTube e a página exata do produto correspondente. O cartão com foto, nome e preço será criado automaticamente sobre o vídeo.</p>
         <div id="growth-youtube-items" class="video-pair-list" aria-label="Vídeos e produtos correspondentes"></div>
@@ -1529,14 +1530,14 @@
       const links = items.map(item => item.youtubeUrl);
       const showVideos = youtubeEnabled.checked;
       const videosTitle = repairPortugueseText(youtubeTitle.value).replace(/[<>]/g, "").trim().slice(0, 80);
-      if (!seoTitle) {
+      if (!seoTitle && !document.getElementById("best-choices-dashboard")) {
         showcaseStatus.textContent = "Use um título entre 20 e 75 caracteres contendo oferta, promoção, achado, preço ou desconto.";
         promotionTitle.focus();
         return;
       }
       const titleOffers = typeof window.obterOfertasAtivasParaTitulo === 'function' ? window.obterOfertasAtivasParaTitulo() : [];
       const titleCheck = window.RDCPromotionTitle?.check(seoTitle, titleOffers);
-      if (titleCheck && !titleCheck.valid) {
+      if (titleCheck && !titleCheck.valid && !document.getElementById("best-choices-dashboard")) {
         showcaseStatus.textContent = titleCheck.reason + ' Escolha um título neutro ou ajuste a seleção. O título anterior foi preservado.';
         promotionTitle.focus();
         return;
@@ -1565,7 +1566,7 @@
       showcaseStatus.textContent = "Salvando sem enviar arquivos de vídeo ao Firebase...";
       try {
         const settings = {
-          promotionSeoTitle: seoTitle,
+          ...(document.getElementById("best-choices-dashboard") ? {} : {promotionSeoTitle: seoTitle}),
           youtubeShowcaseTitle: videosTitle || "Vídeos do Ranki: produtos em destaque",
           youtubeShowcaseLinks: links,
           youtubeShowcaseItems: items.map(item => ({ youtubeUrl: item.youtubeUrl, productUrl: item.productUrl })),

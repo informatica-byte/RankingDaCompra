@@ -4,7 +4,7 @@
   // Public JSON only: shared by home, history and shopping tools. No database fallback.
   function json(path) {
     const key = String(path).split('?')[0];
-    if (!/^\/?(?:historico-precos|search-index|vitrine-publica|site-config|top5-semanal)\.json$/.test(key.replace(/^\.\//, ''))) return Promise.reject(new Error('Recurso público inválido'));
+    if (!/^\/?(?:historico-precos|search-index|vitrine-publica|site-config|top5-semanal|best-choices-guides|mercadolivre-status)\.json$/.test(key.replace(/^\.\//, ''))) return Promise.reject(new Error('Recurso público inválido'));
     const now = Date.now(), stored = memory.get(key);
     if (stored && now - stored.at >= 0 && now - stored.at < TTL) return Promise.resolve(stored.data);
     if (pending.has(key)) return pending.get(key);

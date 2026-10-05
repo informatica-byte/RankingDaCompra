@@ -12,7 +12,7 @@ const buyer = buyerContext.window.RDCBuyerTools;
 test('published pages may retain the previous known asset version during generation, not arbitrary versions', async () => {
   const validator = await source('scripts/validate-site.mjs');
   const line = validator.split('\n').find(line => line.includes('versão visual desconhecida carregada'));
-  assert.ok(line.includes('|20260929-presentes|20261003-five|20261004-repairs)'));
+  assert.ok(line.includes('|20260929-presentes|20261003-five|20261004-repairs|20261005-choices)'));
   assert.ok(!line.includes('unknown-version'));
 });
 test('public loader shares concurrent reads, caches success and retries errors without database fallback', async () => {
@@ -76,7 +76,7 @@ test('home uses published catalogue; video requests wait for intersection or exp
   const home=await source('index.html'),growth=await source('growth-tools.js');
   const fn=home.slice(home.indexOf('async function homeComPromocoes'),home.indexOf('async function home(){'));
   assert.doesNotMatch(fn,/db\.collection/);
-  assert.match(fn,/promocaoValida\(produto\)/);
+  assert.match(fn,/RDCBestChoices\.selectProducts\(todos,siteConfig\)/);
   const video=growth.slice(growth.indexOf('  async function renderVideoShowcase'),growth.indexOf('  async function loadPublishedConfig'));
   assert.match(video,/<iframe data-src=/);assert.doesNotMatch(video,/<iframe src=/);
   assert.ok(video.indexOf('new IntersectionObserver') < video.indexOf('loadYoutubePlayerApi().then'));
