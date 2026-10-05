@@ -82,8 +82,6 @@
   "seasonalThemeMode": "manual",
   "seasonalThemeStart": "2026-09-24",
   "seasonalThemeId": "criancas",
-  "schemaVersion": 2,
-  "generatedAt": "2026-10-05T01:00:45.366Z",
   "bestChoicesTitle": "Melhores escolhas e rankings de produtos",
   "bestChoicesProductIds": [
     "48oRcQNlH00KgNLHkvsG",
@@ -97,5 +95,7 @@
     "melhores-fones-de-ouvido.html",
     "melhores-roteador.html",
     "melhores-relogio-smartwatch.html"
-  ]
+  ],
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-05T15:28:34.255Z"
 }
