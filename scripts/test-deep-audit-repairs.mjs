@@ -129,6 +129,17 @@ test('patinete barato sem evidência não recebe selo de custo-benefício', () =
   assert.equal(ctx.chooseScooterValue([winner,cheapest,weak],winner,cheapest),null);
 });
 
+test('painel móvel não salva valor diferente do comprovado pelo robô', async () => {
+  const code=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida('),mobile.indexOf('function separarProdutoAutomacao('));
+  let writes=0;const messages=[];
+  const ctx=vm.createContext({filaPrecosSalvando:false,filaPrecosIdAtual:'a',filaPrecosDados:{todos:[{id:'a',titulo:'Produto',preco:100}]},
+    linkPrecoAssistido:()=> 'https://www.mercadolivre.com.br/p/MLB12345678',campoPrecoFila:()=> 'preco',numero:Number,
+    window:{RDCAssistedPriceSafety:{validate:()=>''}},msg:(_id,value)=>messages.push(value),updateDoc:async()=>{writes++;}});
+  vm.runInContext(code,ctx);
+  assert.equal(await ctx.salvarFilaPrecoAssistida(99,{automatico:true,produtoId:'a',resultado:{preco:100}}),false);
+  assert.equal(writes,0);assert.match(messages[0],/difere da prova/);
+});
+
 test('cota não entra no retry do gerador e há timeout para requisições', () => {
   const generator = read('scripts/generate-sitemap.mjs');
   assert.doesNotMatch(generator.match(/const RETRYABLE_HTTP_STATUS[^\n]+/)[0],/429/);
