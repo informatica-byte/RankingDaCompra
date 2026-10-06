@@ -1,0 +1,24 @@
+name: Testar identidade Firestore sem gravações
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - id: firestore-auth
+        uses: ./.github/actions/firestore-read-auth
+      - name: Conferir três recursos sem alterar dados
+        env:
+          RDC_FIRESTORE_ACCESS_TOKEN: ${{ steps.firestore-auth.outputs.access_token }}
+          RDC_FIRESTORE_AUTH_REQUIRED: "true"
+        run: node scripts/check-firestore-read-auth.mjs

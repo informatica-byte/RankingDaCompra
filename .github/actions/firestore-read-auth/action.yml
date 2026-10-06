@@ -1,0 +1,19 @@
+name: Identidade Firestore somente leitura
+description: Autentica os jobs autorizados por WIF, sem chave privada ou arquivo de credencial.
+outputs:
+  access_token:
+    description: Token temporário para o transporte Firestore dos jobs
+    value: ${{ steps.google-auth.outputs.access_token }}
+runs:
+  using: composite
+  steps:
+    - id: google-auth
+      uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3 verificada em 06/10/2026
+      with:
+        workload_identity_provider: projects/300637600463/locations/global/workloadIdentityPools/ranking-github-read/providers/ranking-github-main
+        service_account: ranking-publication-reader@rankingdacompra.iam.gserviceaccount.com
+        token_format: access_token
+        access_token_scopes: https://www.googleapis.com/auth/datastore
+        access_token_lifetime: 900s
+        create_credentials_file: false
+        export_environment_variables: false

@@ -333,6 +333,8 @@ Todos usam o grupo de concorrência `rankingdacompra-publicacao` para evitar pub
 
 ## 11. Integrações e segredos
 
+Os jobs de publicação e localização usam identidade federada de somente leitura, sem chave permanente. Preservar também a configuração externa documentada em [IDENTIDADE-FIRESTORE-JOBS.md](IDENTIDADE-FIRESTORE-JOBS.md); o repositório sozinho não recria as permissões IAM. Essa configuração não muda o plano gratuito nem comprova prontidão para enforcement do App Check.
+
 ### Segredos obrigatórios no GitHub
 
 ```text

@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { publicCatalogue } from "./public-catalogue.mjs";
 import { decodeConfigFields, publicSiteConfig } from "./public-site-config.mjs";
 import { correctProductData } from "./product-title-corrections.mjs";
+import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { productSeoTitle } from "./product-seo-titles.mjs";
 import { legacyProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage } from "./product-url-continuity.mjs";
 import { generateSeasonalGuides, GUIDE_THEMES } from "./generate-seasonal-guides.mjs";
@@ -77,7 +78,7 @@ async function fetchFirestore(url, collection, maxAttempts = 3) {
 
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
 
-    const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
+    const response = await fetchFirestoreRead(url, { signal: AbortSignal.timeout(15000) });
 
     if (response.ok) return response;
 
@@ -1803,7 +1804,7 @@ if (!partialProductSource) {
   let publishedConfig = {};
   try { publishedConfig = JSON.parse(await readFile(resolve("site-config.json"), "utf8")); } catch {}
   const themeConfig = allProducts.find((product) => product.id === ".site-theme") || {};
-  const configResponse = await fetch(FIRESTORE + '/configuracoes/site?key=' + FIREBASE_API_KEY);
+  const configResponse = await fetchFirestoreRead(FIRESTORE + '/configuracoes/site?key=' + FIREBASE_API_KEY, {signal: AbortSignal.timeout(15000)});
   if (!configResponse.ok && configResponse.status !== 404) throw new Error('Configuração pública: HTTP ' + configResponse.status + '; versão existente preservada, publicação bloqueada.');
   const remoteConfig = configResponse.ok ? decodeConfigFields((await configResponse.json()).fields) : {};
   publishedConfig = publicSiteConfig(publishedConfig, remoteConfig, themeConfig);

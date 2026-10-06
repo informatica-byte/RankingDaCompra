@@ -1,6 +1,7 @@
 import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import { correctProductData } from "./product-title-corrections.mjs";
+import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import SEO_PRIORITIES from "../seo-priorities.js";
 import { renderProductDecision } from "./product-decision.mjs";
 import { routerCapabilities, renderPracticalSection, practicalProfile, EDITORIAL_REVIEWED_AT, FOCUSED_GUIDES, focusedProducts, renderFocusedGuide } from "./discovery-editorial.mjs";
@@ -26,7 +27,7 @@ function fieldValue(field) {
 
 async function fetchFirestore(url, collection, maxAttempts = 3) {
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
-    const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
+    const response = await fetchFirestoreRead(url, { signal: AbortSignal.timeout(15000) });
     if (response.ok) return response;
     const retryable = RETRYABLE_HTTP_STATUS.has(response.status);
     if (!retryable || attempt === maxAttempts) {

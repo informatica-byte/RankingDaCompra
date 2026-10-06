@@ -1577,7 +1577,7 @@
     {
       "id": "c3K3tq0esVOpmKeSLd9a",
       "titulo": "Fritadeira Elétrica Air Fryer Quad Fry 4,2 L,1400w Preto Elgi",
-      "comentario": "Fritadeira Elétrica Air Fryer Quad Fry 4,2 L,1400w Preto Elgi: 2 litros, potência de 1400W para um aquecimento rápido. Características informadas no cadastro: Fritadeira Elétrica Air Fryer Quad Fry 4,2. Pontos de atenção registrados: capacidade limitada para preparos em grande escala. A ficha cadastrada não detalha outras limitações além das informações.",
+      "comentario": "A Elgin Quad Fry tem capacidade de 4,2 litros e potência de 1.400 W, conforme o fabricante. Compare o tamanho das porções e o espaço disponível na cozinha; a capacidade nominal não informa quantas pessoas cada preparo atende. Confirme a tensão da unidade escolhida e as orientações do manual. Não realizamos testes de tempo de preparo, consumo de energia ou resultado dos alimentos.",
       "categoria": "fritadeiraairfrayerelétrica",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_813389-MLA99520090726_112025-F.webp",
       "preco": "152,91",
@@ -1586,8 +1586,8 @@
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-06T13:51:50.433Z",
       "precoConferenciaId": "9b99dd5b-cd3f-4d3d-b73f-0fb771d02407",
-      "pros": "",
-      "contras": ""
+      "pros": "Capacidade nominal de 4,2 litros anunciada pela Elgin.\nPotência de 1.400 W informada pelo fabricante; não é medição de velocidade ou consumo.",
+      "contras": "Confira a tensão da unidade e as dimensões antes da compra.\nTempo de preparo, consumo real e resultado dos alimentos não foram medidos pela equipe."
     },
     {
       "id": "C5b5fKstKDUgNDUxnQkP",
@@ -2124,7 +2124,7 @@
     {
       "id": "EmrdwlcDgCCM5suoz8dB",
       "titulo": "Impressora 3x1 Multifuncional Epson Ecotank L3250 Wifi Bivol Preto",
-      "comentario": "A Impressora 3x1 Multifuncional Epson Ecotank L3250 é um modelo tanque de tinta que utiliza tecnologia Heat-Free MicroPiezo. O equipamento suporta conectividade via Wi-Fi Direct, além de oferecer controle remoto pelo aplicativo Smart Panel e compatibilidade com assistentes de voz como Alexa e Siri.",
+      "comentario": "A Epson EcoTank L3250 imprime, copia e digitaliza com tanque de tinta, USB, Wi-Fi e Wi-Fi Direct. A Epson anuncia até 4.500 páginas em preto ou 7.500 coloridas com tintas de reposição originais; o rendimento real varia com o documento e o uso. O aplicativo Epson Smart Panel permite configurar e operar a impressora. Compare o custo da tinta e a compatibilidade com seu sistema antes de comprar. Não medimos rendimento, velocidade ou qualidade de impressão; comandos de voz não foram confirmados nesta revisão.",
       "categoria": "impressoras",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_687160-MLA99453726600_112025-F.webp",
       "preco": "1.069,36",
@@ -2137,8 +2137,8 @@
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-06T13:44:39.250Z",
       "precoConferenciaId": "95c49361-9159-4bb2-a418-2b2b18b145cc",
-      "pros": "",
-      "contras": ""
+      "pros": "USB, Wi-Fi e Wi-Fi Direct informados pela Epson.\nAté 4.500 páginas em preto ou 7.500 coloridas anunciadas com tintas de reposição originais; o rendimento real varia.\nConfiguração e operação pelo Epson Smart Panel, conforme o fabricante.",
+      "contras": "Rendimento e qualidade de impressão não foram medidos pela equipe.\nConfirme custos de tinta, compatibilidade do sistema e os recursos necessários antes de comprar."
     },
     {
       "id": "eTB1rffOxFexqoubCObQ",
@@ -5164,7 +5164,7 @@
     {
       "id": "qZUWO8WSrcOKWVrAqTW7",
       "titulo": "Roteador Tp-link Ex1500 Wi-fi 6 Ax1500 Dual Band Gigabit",
-      "comentario": "O Roteador TP-Link EX1500 traz a tecnologia Wi-Fi 6 para otimizar conexões domésticas, oferecendo alta velocidade, menor latência e suporte a múltiplos dispositivos simultâneos com excelente estabilidade de sinal.",
+      "comentario": "O TP-Link EX1500 é um roteador AX1500 dual band com Wi-Fi 6, portas Gigabit e compatibilidade EasyMesh anunciados pela TP-Link. EasyMesh requer outros equipamentos compatíveis; um roteador sozinho não garante sinal em todos os cômodos. A classe AX1500 não equivale à velocidade medida em um único aparelho. Compare a posição do modem, paredes, portas e compatibilidade antes de comprar. Não medimos alcance, estabilidade ou latência.",
       "categoria": "roteador",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_877576-MLB111520091274_062026-F-roteador-tplink-ex1500-wifi-6-ax1500-dual-band-gigabit.webp",
       "preco": "205,90",
@@ -5178,7 +5178,9 @@
       "ofertaRelampagoTerminaEm": "2026-09-24T21:08:12.354Z",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-06T13:35:32.660Z",
-      "precoConferenciaId": "b0c78756-54eb-4b35-ad7a-f88b981d79be"
+      "precoConferenciaId": "b0c78756-54eb-4b35-ad7a-f88b981d79be",
+      "pros": "Wi-Fi 6 dual band e portas Gigabit informados pela TP-Link.\nCompatibilidade EasyMesh anunciada para uso com outros equipamentos compatíveis.",
+      "contras": "Cobertura, latência e estabilidade não foram medidas em teste próprio.\nA velocidade real depende do aparelho, posição, interferência e plano de internet; AX1500 não é velocidade garantida."
     },
     {
       "id": "R1ZoQbG2PXeGXmYHQITH",
@@ -5790,8 +5792,8 @@
     },
     {
       "id": "TLWfr8q21DK8xDKMh01u",
-      "titulo": "Celimax Retinal Shot Tightening Booster 15 ml para Todos os Tipos de Pele",
-      "comentario": "O Celimax Retinal Shot Tightening Booster é um sérum com retinol apresentado em embalagem de 15 ml, desenvolvido pela Celimax para todos os tipos de pele. O produto tem aplicação recomendada tanto para o período diurno quanto para o noturno e possui garantia do vendedor de 30 dias.",
+      "titulo": "Celimax Retinal Shot Tightening Booster 15 ml",
+      "comentario": "Este cadastro identifica o Celimax Retinal Shot Tightening Booster de 15 ml. A identidade, os ingredientes e as orientações de uso devem ser confirmados na embalagem original e nas instruções do fabricante. Não tratamos a expressão do anúncio como indicação para todos os tipos de pele, uso diurno ou garantia de resultado. Não realizamos teste dermatológico e esta página não substitui orientação profissional.",
       "categoria": "belezaecuidados",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_951810-MLB106531414672_022026-F-celimax-retinal-shot-tightening-booster-15ml-pele-corean.webp",
       "preco": "136,00",
@@ -5804,8 +5806,8 @@
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-06T13:46:48.242Z",
       "precoConferenciaId": "b1e3dfeb-b86b-4225-9e82-ef80ac3dfa63",
-      "pros": "",
-      "contras": ""
+      "pros": "O anúncio identifica o produto e a embalagem de 15 ml; confira a unidade recebida.",
+      "contras": "Adequação ao seu tipo de pele e instruções de uso não foram verificadas nesta revisão.\nResultados cosméticos e tolerância não foram testados pela equipe."
     },
     {
       "id": "tQpEIHL2QaiZ7xOWZ6py",

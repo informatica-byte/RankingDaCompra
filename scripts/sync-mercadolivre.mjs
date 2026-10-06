@@ -1,6 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
+import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 
 const PROJECT_ID = "rankingdacompra";
@@ -206,7 +207,7 @@ async function refreshRejectedAccessToken() {
 }
 
 async function fetchFirestorePage(url, attempt = 0) {
-  const response = await fetch(url);
+  const response = await fetchFirestoreRead(url, {signal: AbortSignal.timeout(20000)});
   if (response.ok) return response;
   const retryable = response.status === 429 || response.status >= 500;
   if (retryable && attempt < 4) {
@@ -444,7 +445,8 @@ async function fetchJson(
     headers: authenticated ? requestHeaders() : {},
     signal: AbortSignal.timeout(15_000),
   });
-  const retryable = response.status === 429 || response.status >= 500;
+  // A cota diária não melhora em segundos. Preserva o estado sem reler o lote.
+  const retryable = response.status >= 500;
   if (retryable && attempt < maxRetries) {
     const retryAfter = Number(response.headers.get("retry-after") || 0) * 1000;
     const exponential = 1200 * (2 ** attempt);

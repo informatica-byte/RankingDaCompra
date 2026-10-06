@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import vm from 'node:vm';
 import choices from '../best-choices.js';
-import { correctProductData, correctGeneratedProductTitles } from './product-title-corrections.mjs';
+import { correctProductData, correctGeneratedProductTitles, manufacturerEvidence } from './product-title-corrections.mjs';
 const source = f => readFile(new URL('../' + f, import.meta.url), 'utf8');
 const growth = await source('growth-tools.js');
 const decorator = growth.slice(growth.indexOf('  function decorateProductCard('), growth.indexOf('  function decorateVisibleProducts('));
@@ -39,10 +39,33 @@ test('MatePad SE 11 uses manufacturer screen and charging data, not another mode
 test('verified HTML corrections are repeatable, retain offer and expose sources',async()=>{
   const dir=await mkdtemp(join(tmpdir(),'rdc-editorial-'));try{
     await mkdir(join(dir,'produto'));const file=join(dir,'produto/GjHJtzdsIhbmSINvhPeX-20260810-1.html');
-    const html='<meta name="description" content="old"><script type="application/ld+json">'+JSON.stringify({'@type':'Product',description:'old',offers:{price:258},review:{reviewBody:'old'}})+'</script><p class="summary">old</p><p class="fine source">Anúncio</p>';
+    const html='<meta name="description" content="old"><script type="application/ld+json">'+JSON.stringify({'@type':'Product',name:'JBL Tune 520BT',description:'old',offers:{price:258},review:{reviewBody:'old'}})+'</script><p class="summary">old</p><p class="fine source">Anúncio</p>';
     await writeFile(file,html);assert.equal(await correctGeneratedProductTitles(dir),1);assert.equal(await correctGeneratedProductTitles(dir),0);
     const fixed=await readFile(file,'utf8');assert.match(fixed,/data-verified-manufacturer/);assert.match(fixed,/"price":258/);assert.doesNotMatch(fixed,/content="old"|reviewBody":"old/);
   }finally{await rm(dir,{recursive:true,force:true});}
+});
+test('old product ID does not apply manufacturer specifications to a different model',async()=>{
+  const changed={id:'GjHJtzdsIhbmSINvhPeX',titulo:'JBL Tune 770NC',comentario:'Texto cadastrado',preco:300};
+  assert.equal(correctProductData(changed).comentario,changed.comentario);
+  assert.equal(manufacturerEvidence(changed),null);
+  const dir=await mkdtemp(join(tmpdir(),'rdc-model-guard-'));try{
+    await mkdir(join(dir,'produto'));const file=join(dir,'produto/GjHJtzdsIhbmSINvhPeX-20260810-1.html');
+    const html='<h1>JBL Tune 770NC</h1><p class="summary">Texto cadastrado</p><p class="fine source">Anúncio</p>';
+    await writeFile(file,html);await correctGeneratedProductTitles(dir);assert.equal(await readFile(file,'utf8'),html);
+  }finally{await rm(dir,{recursive:true,force:true});}
+});
+test('Quad Fry and EX1500 use announced specifications, not measured performance claims',()=>{
+  const fryer=correctProductData({id:'c3K3tq0esVOpmKeSLd9a',titulo:'Air fryer Elgin Quad Fry',comentario:'2 litros para aquecimento rápido',preco:180});
+  assert.match(fryer.comentario,/4,2 litros/);assert.doesNotMatch(fryer.comentario,/(?<![\d,.])2 litros|aquecimento rápido/);assert.equal(fryer.preco,180);
+  const router=correctProductData({id:'qZUWO8WSrcOKWVrAqTW7',titulo:'Roteador EX1500',comentario:'Excelente estabilidade de sinal'});
+  assert.match(router.comentario,/Não medimos/);assert.match(router.pros,/EasyMesh/);assert.match(manufacturerEvidence(router).sourceUrl,/tp-link/);
+});
+test('Epson yield is qualified and unverified cosmetic claims do not receive a manufacturer seal',()=>{
+  const printer=correctProductData({id:'EmrdwlcDgCCM5suoz8dB',titulo:'Epson EcoTank L3250'});
+  assert.match(printer.pros,/rendimento real varia/);assert.doesNotMatch(printer.pros,/Alexa|Siri/);
+  const cosmetic=correctProductData({id:'TLWfr8q21DK8xDKMh01u',titulo:'Celimax Retinal Shot Tightening Booster 15 ml para Todos os Tipos de Pele'});
+  assert.equal(cosmetic.titulo,'Celimax Retinal Shot Tightening Booster 15 ml');assert.equal(manufacturerEvidence(cosmetic),null);
+  assert.match(cosmetic.comentario,/Não tratamos/);assert.deepEqual(correctProductData(cosmetic),cosmetic);
 });
 test('seasonal promotion and WhatsApp subscription do not precede buyer content',()=>{
   const seasonal=growth.slice(growth.indexOf('  function renderSeasonalTheme('),growth.indexOf('  function renderSeasonalTheme(')+2600);

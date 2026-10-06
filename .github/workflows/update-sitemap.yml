@@ -15,6 +15,7 @@ on:
       - "scripts/product-url-continuity.mjs"
       - "product-url-aliases.json"
       - "scripts/product-title-corrections.mjs"
+      - "scripts/firestore-read-auth.mjs"
       - "scripts/public-catalogue.mjs"
       - "scripts/public-site-config.mjs"
       - "scripts/generate-best-choices.mjs"
@@ -39,6 +40,9 @@ jobs:
   atualizar:
     runs-on: ubuntu-latest
     timeout-minutes: 8
+    permissions:
+      contents: write
+      id-token: write
 
     steps:
       - name: Baixar os arquivos do site
@@ -49,7 +53,14 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Autenticar leitura do Firestore sem chave permanente
+        id: firestore-auth
+        uses: ./.github/actions/firestore-read-auth
+
       - name: Gerar sitemap, páginas sociais e descoberta interna
+        env:
+          RDC_FIRESTORE_ACCESS_TOKEN: ${{ steps.firestore-auth.outputs.access_token }}
+          RDC_FIRESTORE_AUTH_REQUIRED: "true"
         run: |
           generated=false
           for attempt in 1 2 3; do

@@ -24,6 +24,9 @@ jobs:
   atualizar:
     runs-on: ubuntu-latest
     timeout-minutes: 12
+    permissions:
+      contents: write
+      id-token: write
     env:
       RDC_PRODUCTS_SNAPSHOT: .price-sync-products.json
       RDC_BATCH_SKIP_MARKER: .price-sync-skipped
@@ -40,9 +43,15 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Autenticar leitura do Firestore sem chave permanente
+        id: firestore-auth
+        uses: ./.github/actions/firestore-read-auth
+
 
       - name: Consultar preços e disponibilidade
         env:
+          RDC_FIRESTORE_ACCESS_TOKEN: ${{ steps.firestore-auth.outputs.access_token }}
+          RDC_FIRESTORE_AUTH_REQUIRED: "true"
           MERCADO_LIVRE_ACCESS_TOKEN: ${{ secrets.MERCADO_LIVRE_ACCESS_TOKEN }}
           MERCADO_LIVRE_CLIENT_ID: ${{ secrets.MERCADO_LIVRE_CLIENT_ID }}
           MERCADO_LIVRE_CLIENT_SECRET: ${{ secrets.MERCADO_LIVRE_CLIENT_SECRET }}
@@ -56,6 +65,9 @@ jobs:
 
 
       - name: Atualizar o sitemap e as páginas sociais
+        env:
+          RDC_FIRESTORE_ACCESS_TOKEN: ${{ steps.firestore-auth.outputs.access_token }}
+          RDC_FIRESTORE_AUTH_REQUIRED: "true"
         shell: bash
         run: |
           if [[ -f "$RDC_BATCH_SKIP_MARKER" ]]; then
@@ -131,5 +143,4 @@ jobs:
            echo "::error::A conferência foi parcial; o último preço válido foi preservado, mas os produtos com erro ainda precisam de verificação."
            exit 1
           fi
-
 

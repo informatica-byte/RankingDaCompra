@@ -4,6 +4,9 @@ import { pathToFileURL } from "node:url";
 
 const PRODUCT_CORRECTIONS = new Map([
   ["GjHJtzdsIhbmSINvhPeX", {
+    model: /\btune\s*520\s*bt\b/i,
+    sourceLabel: "JBL Tune 520BT",
+    metaSummary: "JBL Tune 520BT: fone on-ear Bluetooth 5.3, até 57 h anunciadas e sem ANC. Compare vantagens, limitações e preço com data de conferência.",
     summary: "O JBL Tune 520BT é um fone on-ear Bluetooth 5.3 para música e chamadas. O fabricante informa até 57 horas de bateria; a duração real varia com volume e uso. Não possui cancelamento ativo de ruído (ANC): o isolamento é passivo. Considere-o para uso cotidiano se você aceita o formato apoiado nas orelhas; para ambientes muito ruidosos, compare alternativas com ANC. Não realizamos testes de conforto ou de qualidade do microfone.",
     positiveNotes: ["Bluetooth 5.3 informado na ficha técnica da JBL.", "Autonomia anunciada de até 57 horas; resultado real depende do uso."],
     negativeNotes: ["Sem cancelamento ativo de ruído (ANC), conforme o fabricante.", "Formato on-ear apoiado nas orelhas: conforto após longos períodos não foi testado pela equipe."],
@@ -20,6 +23,7 @@ const PRODUCT_CORRECTIONS = new Map([
     ],
   }],
   ["dvJusdTpbTVn5ID62YpK", {
+    model: /\bmatepad\s*se\s*11\b/i,
     incorrect: "ablet HUAWEI MatePad SE 11 Wifi 6+128GB Tela HUAWEI FullView de 11\" para Conforto Visual, Superbateria de 7700 mAh 225W Câmera Traseira 8 MP, Câmera Frontal 5 MP Cinza Nebula",
     correct: "Tablet HUAWEI MatePad SE 11 Wifi 6+128GB Tela HUAWEI FullView de 11\" para Conforto Visual, Superbateria de 7700 mAh 225W Câmera Traseira 8 MP, Câmera Frontal 5 MP Cinza Nebula",
     replacements: [
@@ -39,22 +43,30 @@ const PRODUCT_CORRECTIONS = new Map([
     negativeNotes: ["Confirme a compatibilidade dos aplicativos e acessórios antes da compra.", "Desempenho e autonomia real não foram medidos pela equipe."],
   }],
   ["EmrdwlcDgCCM5suoz8dB", {
+    model: /\bepson\b.*\bl3250\b/i,
     incorrect: "mpressora 3x1 Multifuncional Epson Ecotank L3250 Wifi Bivol Preto",
     correct: "Impressora 3x1 Multifuncional Epson Ecotank L3250 Wifi Bivol Preto",
     replacements: [
       ["mpressora 3x1 Multifuncional Epson Ecotank L3250", "Impressora 3x1 Multifuncional Epson Ecotank L3250"],
     ],
-    positiveNotes: [
-      "Capacidade de rendimento de até 4.500 páginas em preto e 7.500 páginas coloridas.",
-      "Suporte a comandos de voz via Amazon Alexa, Google Home e atalhos Siri.",
-      "Resolução máxima de impressão de 5760 x 1440 dpi.",
-    ],
+    summary: "A Epson EcoTank L3250 imprime, copia e digitaliza com tanque de tinta, USB, Wi-Fi e Wi-Fi Direct. A Epson anuncia até 4.500 páginas em preto ou 7.500 coloridas com tintas de reposição originais; o rendimento real varia com o documento e o uso. O aplicativo Epson Smart Panel permite configurar e operar a impressora. Compare o custo da tinta e a compatibilidade com seu sistema antes de comprar. Não medimos rendimento, velocidade ou qualidade de impressão; comandos de voz não foram confirmados nesta revisão.",
+    metaSummary: "Epson EcoTank L3250: tanque de tinta, USB, Wi-Fi Direct e rendimento anunciado. Compare recursos, limitações e preço conferido.",
+    sourceUrl: "https://epson.com.br/Para-casa/Impressoras/Impressoras-jato-de-tinta/Impressora-Multifuncional-3-em-1-Epson-EcoTank%C2%AE-L3250/p/C11CJ67303",
+    sourceLabel: "Epson EcoTank L3250",
+    positiveNotes: ["USB, Wi-Fi e Wi-Fi Direct informados pela Epson.", "Até 4.500 páginas em preto ou 7.500 coloridas anunciadas com tintas de reposição originais; o rendimento real varia.", "Configuração e operação pelo Epson Smart Panel, conforme o fabricante."],
+    negativeNotes: ["Rendimento e qualidade de impressão não foram medidos pela equipe.", "Confirme custos de tinta, compatibilidade do sistema e os recursos necessários antes de comprar."],
   }],
   ["TLWfr8q21DK8xDKMh01u", {
+    model: /celimax.*retinal\s*shot/i,
+    summary: "Este cadastro identifica o Celimax Retinal Shot Tightening Booster de 15 ml. A identidade, os ingredientes e as orientações de uso devem ser confirmados na embalagem original e nas instruções do fabricante. Não tratamos a expressão do anúncio como indicação para todos os tipos de pele, uso diurno ou garantia de resultado. Não realizamos teste dermatológico e esta página não substitui orientação profissional.",
+    metaSummary: "Celimax Retinal Shot Tightening Booster 15 ml: confira identidade, embalagem original e instruções do fabricante antes de comprar.",
+    positiveNotes: ["O anúncio identifica o produto e a embalagem de 15 ml; confira a unidade recebida."],
+    negativeNotes: ["Adequação ao seu tipo de pele e instruções de uso não foram verificadas nesta revisão.", "Resultados cosméticos e tolerância não foram testados pela equipe."],
     incorrect: "Celimax Retinal Shot Tightening Booster 15ml Pele Corean clip-icon Celimax Retinal Shot Tightening Booster 15ml Pele Corean Celimax Retinal Shot Tightening Booster 15ml Pele CoreanCelimax Retinal Shot Tightening Booster 15ml Pele Corean Celimax Retinal Shot Tightening Booster 15ml Pele Corean Conferir mais produtos da marca Celimax Novo | +5 mil vendidos Celimax Retinal Shot Tightening Booster 15ml Pele Corean",
-    correct: "Celimax Retinal Shot Tightening Booster 15 ml para Todos os Tipos de Pele",
+    correct: "Celimax Retinal Shot Tightening Booster 15 ml",
     replacements: [
-      ["Celimax Retinal Shot Tightening Booster 15ml Pele Corean clip-icon Celimax Retinal Shot Tightening Booster 15ml Pele Corean Celimax Retinal Shot Tightening Booster 15ml Pele CoreanCelimax Retinal Shot Tightening Booster 15ml Pele Corean Celimax Retinal Shot Tightening Booster 15ml Pele Corean Conferir mais produtos da marca Celimax Novo | +5 mil vendidos Celimax Retinal Shot Tightening Booster 15ml Pele Corean", "Celimax Retinal Shot Tightening Booster 15 ml para Todos os Tipos de Pele"],
+      ["Celimax Retinal Shot Tightening Booster 15ml Pele Corean clip-icon Celimax Retinal Shot Tightening Booster 15ml Pele Corean Celimax Retinal Shot Tightening Booster 15ml Pele CoreanCelimax Retinal Shot Tightening Booster 15ml Pele Corean Celimax Retinal Shot Tightening Booster 15ml Pele Corean Conferir mais produtos da marca Celimax Novo | +5 mil vendidos Celimax Retinal Shot Tightening Booster 15ml Pele Corean", "Celimax Retinal Shot Tightening Booster 15 ml"],
+      ["Celimax Retinal Shot Tightening Booster 15 ml para Todos os Tipos de Pele", "Celimax Retinal Shot Tightening Booster 15 ml"],
     ],
   }],
   ["5MGE98tYssH9nEfBeHoW", {
@@ -72,16 +84,22 @@ const PRODUCT_CORRECTIONS = new Map([
     ],
   }],
   ["c3K3tq0esVOpmKeSLd9a", {
+    model: /\bquad\s*fry\b/i,
+    summary: "A Elgin Quad Fry tem capacidade de 4,2 litros e potência de 1.400 W, conforme o fabricante. Compare o tamanho das porções e o espaço disponível na cozinha; a capacidade nominal não informa quantas pessoas cada preparo atende. Confirme a tensão da unidade escolhida e as orientações do manual. Não realizamos testes de tempo de preparo, consumo de energia ou resultado dos alimentos.",
+    metaSummary: "Elgin Quad Fry: air fryer de 4,2 litros e 1.400 W anunciados. Confira tensão, espaço e limitações antes de comprar.",
+    sourceUrl: "https://www.elgin.com.br/Fritadeira-Air-fryer-Quad-Fry-1400W-42L-Preta-com-Tecnologia-Air-Circuit-360/p",
+    sourceLabel: "Elgin Quad Fry",
     fileReplacements: [
       ["potência de 1400W para um aquecimento rápido. Características informadas no cadastro: Fritadeira Elétrica Air Fryer Quad Fry 4", "Capacidade de 4,2 litros e potência de 1.400 W para aquecimento rápido."],
       ["capacidade limitada para preparos em grande escala. A ficha cadastrada não detalha outras limitações além das informações apresentadas", "A capacidade de 4,2 litros pode ser limitada para preparos em grande escala."],
     ],
     positiveNotes: [
-      "Capacidade de 4,2 litros para preparar porções pequenas e médias.",
-      "Potência informada de 1.400 W para aquecimento rápido.",
+      "Capacidade nominal de 4,2 litros anunciada pela Elgin.",
+      "Potência de 1.400 W informada pelo fabricante; não é medição de velocidade ou consumo.",
     ],
     negativeNotes: [
-      "A capacidade de 4,2 litros pode ser limitada para preparos em grande escala.",
+      "Confira a tensão da unidade e as dimensões antes da compra.",
+      "Tempo de preparo, consumo real e resultado dos alimentos não foram medidos pela equipe.",
     ],
   }],
   ["Ct4VSBOaVTJkcxhiAyGJ", {
@@ -110,10 +128,33 @@ const PRODUCT_CORRECTIONS = new Map([
   ["VyYiww5HVcBRIH8SD5SD", {
     suppressRating: true,
   }],
+  ["qZUWO8WSrcOKWVrAqTW7", {
+    model: /\bex\s*1500\b/i,
+    summary: "O TP-Link EX1500 é um roteador AX1500 dual band com Wi-Fi 6, portas Gigabit e compatibilidade EasyMesh anunciados pela TP-Link. EasyMesh requer outros equipamentos compatíveis; um roteador sozinho não garante sinal em todos os cômodos. A classe AX1500 não equivale à velocidade medida em um único aparelho. Compare a posição do modem, paredes, portas e compatibilidade antes de comprar. Não medimos alcance, estabilidade ou latência.",
+    metaSummary: "TP-Link EX1500: Wi-Fi 6, Gigabit e EasyMesh anunciados. Compare compatibilidade e limitações; cobertura real não foi medida.",
+    sourceUrl: "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/",
+    sourceLabel: "TP-Link EX1500",
+    positiveNotes: ["Wi-Fi 6 dual band e portas Gigabit informados pela TP-Link.", "Compatibilidade EasyMesh anunciada para uso com outros equipamentos compatíveis."],
+    negativeNotes: ["Cobertura, latência e estabilidade não foram medidas em teste próprio.", "A velocidade real depende do aparelho, posição, interferência e plano de internet; AX1500 não é velocidade garantida."],
+  }],
 ]);
 
-export function correctProductData(product) {
+function correctionFor(product) {
   const correction = PRODUCT_CORRECTIONS.get(String(product?.id || ""));
+  // Um cadastro pode ser reutilizado. Nunca aplicar a ficha do modelo anterior
+  // só porque o ID continua igual; a identidade atual precisa corresponder.
+  return correction?.model && !correction.model.test(String(product?.titulo || "")) ? undefined : correction;
+}
+
+export function manufacturerEvidence(product) {
+  const correction = correctionFor(product);
+  return correction?.summary && correction.sourceUrl
+    ? {sourceUrl: correction.sourceUrl, model: correction.sourceLabel, checkedAt: "2026-10-06", kind: "manufacturer-specification", independentTest: false}
+    : null;
+}
+
+export function correctProductData(product) {
+  const correction = correctionFor(product);
   const applyReplacements = (value) => (correction?.replacements || []).reduce(
     (current, [incorrect, correct]) => replaceKnownText(String(current || ""), incorrect, correct),
     String(value || ""),
@@ -299,6 +340,10 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
     const fileName = basename(file);
     for (const [productId, correction] of PRODUCT_CORRECTIONS) {
       if (!fileName.startsWith(productId + "-")) continue;
+      const heading = visibleText(corrected.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]
+        || corrected.match(/<title>([\s\S]*?)<\/title>/i)?.[1]
+        || (() => { try { const payload = JSON.parse(corrected.match(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i)?.[1] || '{}'); return (payload['@graph'] || [payload]).find(n => n['@type'] === 'Product')?.name || ''; } catch { return ''; } })());
+      if (correction.model && !correction.model.test(heading)) continue;
       for (const [incorrect, correct] of correction.categoryReplacements || []) {
         corrected = corrected.split(incorrect).join(correct);
       }
@@ -323,7 +368,7 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
 
 function applyVerifiedSummary(content, correction) {
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const short = correction.metaSummary || "JBL Tune 520BT: fone on-ear Bluetooth 5.3, até 57 h anunciadas e sem ANC. Compare vantagens, limitações e preço com data de conferência.";
+  const short = correction.metaSummary || correction.summary;
   content = content.replace(/(<p class="summary">)[\s\S]*?(<\/p>)/, (_, a, b) => a + esc(correction.summary) + b);
   content = content.replace(/(<meta (?:name="(?:description|twitter:description)"|property="og:description") content=")[^"]*(">)/g, (_, a, b) => a + esc(short) + b);
   content = content.replace(/(<script\b[^>]*type=["']application\/ld\+json["'][^>]*>)([\s\S]*?)(<\/script>)/gi, (full, a, source, b) => {
@@ -334,8 +379,10 @@ function applyVerifiedSummary(content, correction) {
     for (const review of Array.isArray(product.review) ? product.review : product.review ? [product.review] : []) review.reviewBody = correction.summary;
     return a + JSON.stringify(payload).replace(/</g, "\\u003c") + b;
   });
-  const source = `<p class="fine" data-verified-manufacturer>Fontes do fabricante: <a href="${esc(correction.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(correction.sourceLabel || "JBL — ausência de ANC")}</a> e <a href="${esc(correction.specUrl)}" target="_blank" rel="noopener noreferrer">ficha técnica oficial</a>. Especificações anunciadas, não medição independente.</p>`;
-  content = content.replace(/<p class="fine" data-verified-manufacturer>[\s\S]*?<\/p>/g, "");
+  const source = correction.sourceUrl
+    ? `<p class="fine" data-verified-manufacturer>Fonte do fabricante: <a href="${esc(correction.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(correction.sourceLabel)}</a>${correction.specUrl ? ` e <a href="${esc(correction.specUrl)}" target="_blank" rel="noopener noreferrer">ficha técnica oficial</a>` : ''}. Especificações anunciadas, não medição independente.</p>`
+    : `<p class="fine" data-editorial-limit>Esta revisão remove afirmações sem comprovação; não significa validação técnica ou teste do produto.</p>`;
+  content = content.replace(/<p class="fine" data-(?:verified-manufacturer|editorial-limit)>[\s\S]*?<\/p>/g, "");
   return content.replace(/(<p class="fine source">[\s\S]*?<\/p>)/, "$1" + source);
 }
 

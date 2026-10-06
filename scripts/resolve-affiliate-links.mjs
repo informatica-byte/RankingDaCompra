@@ -2,6 +2,7 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { readFile, writeFile } from "node:fs/promises";
 import { queueQuery, nextCursor, pendingRequests } from "./localizer-queue.mjs";
+import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 import {
   marketplaceImageCandidates,
@@ -33,7 +34,7 @@ async function fetchFirebase(url, label, maxAttempts = 6, options = {}) {
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     let response;
     try {
-      response = await fetch(url, { ...options, signal: AbortSignal.timeout(20000) });
+      response = await fetchFirestoreRead(url, { ...options, signal: AbortSignal.timeout(20000) });
     } catch (error) {
       if (attempt === maxAttempts) throw error;
       const delay = Math.min(1500 * (2 ** (attempt - 1)), 30000);
