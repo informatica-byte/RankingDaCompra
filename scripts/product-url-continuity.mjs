@@ -13,6 +13,25 @@ export function selectCanonicalProducts(groups, scoreProduct) {
   return { selected, aliases };
 }
 
+// Somente caminhos antigos observados e o mesmo cadastro (ou seu duplicado
+// comprovado). Um produto retirado nunca é redirecionado à vitrine genérica.
+export function legacyProductAliases(registry, validProducts, duplicateAliases = new Map()) {
+  if (!registry || typeof registry !== "object" || Array.isArray(registry)) {
+    throw new Error("Registro de endereços antigos inválido");
+  }
+  const byId = new Map(validProducts.map(product => [product.id, product]));
+  const aliases = new Map();
+  for (const [fileName, id] of Object.entries(registry)) {
+    if (!/^[A-Za-z0-9_-]+\.html$/.test(fileName) || typeof id !== "string" || !/^[A-Za-z0-9_-]+$/.test(id)) {
+      throw new Error("Endereço antigo ou cadastro inválido");
+    }
+    const candidate = byId.get(id) || duplicateAliases.get(id);
+    const target = candidate && byId.get(candidate.id);
+    if (target) aliases.set(fileName, target);
+  }
+  return aliases;
+}
+
 function escapeHtml(value) {
   return String(value || "")
     .replace(/&/g, "&amp;")

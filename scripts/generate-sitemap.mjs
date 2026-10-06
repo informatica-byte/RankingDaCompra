@@ -5,7 +5,7 @@ import { publicCatalogue } from "./public-catalogue.mjs";
 import { decodeConfigFields, publicSiteConfig } from "./public-site-config.mjs";
 import { correctProductData } from "./product-title-corrections.mjs";
 import { productSeoTitle } from "./product-seo-titles.mjs";
-import { productAliasPage, selectCanonicalProducts, unavailableProductPage } from "./product-url-continuity.mjs";
+import { legacyProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage } from "./product-url-continuity.mjs";
 import { generateSeasonalGuides, GUIDE_THEMES } from "./generate-seasonal-guides.mjs";
 
 import { resolve } from "node:path";
@@ -2006,6 +2006,16 @@ for (const [oldId, canonicalProduct] of productAliasTargets) {
       productAliasPage(canonicalProduct.titulo, productDetailUrl(canonicalProduct)),
       "utf8",
     );
+  }
+}
+
+const legacyRegistry = JSON.parse(await readFile(resolve("product-url-aliases.json"), "utf8"));
+for (const [fileName, canonicalProduct] of legacyProductAliases(legacyRegistry, validProducts, productAliasTargets)) {
+  if (expectedPages.has(fileName)) continue;
+  expectedPages.add(fileName);
+  if (!partialProductSource) {
+    await writeFile(resolve(productDirectory, fileName),
+      productAliasPage(canonicalProduct.titulo, productDetailUrl(canonicalProduct)), "utf8");
   }
 }
 
