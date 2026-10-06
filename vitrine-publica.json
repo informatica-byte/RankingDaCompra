@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-06T09:37:25.575Z",
+  "generatedAt": "2026-10-06T13:00:28.866Z",
   "products": [
     {
       "id": "0o2cubZBfwlgcwFokAWY",
@@ -422,8 +422,8 @@
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
       "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-06T08:59:12.058Z",
-      "precoConferenciaId": "fc3c84c8-ad19-4eb1-9a13-7f3a8922c8fb"
+      "precoAtualizadoManualmenteEm": "2026-10-06T11:54:11.567Z",
+      "precoConferenciaId": "8de715b9-3952-4517-800b-4ddb49eb88f6"
     },
     {
       "id": "4DLJoHbBXNFffpz3DNcv",
@@ -473,27 +473,8 @@
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
       "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-06T09:00:35.031Z",
-      "precoConferenciaId": "f3c222a2-f195-4f33-8c53-ad559fa6007c"
-    },
-    {
-      "id": "51cYaPGtvus2ayLrbFwH",
-      "titulo": "Kit Starlink MINI Internet Via Satélite",
-      "comentario": "O Kit Starlink Mini oferece internet via satélite portátil de alta performance para áreas remotas. Com design compacto e roteador integrado, garante conectividade estável onde redes tradicionais não alcançam, facilitando o trabalho e entretenimento em viagens ou locais isolados.",
-      "categoria": "roteador",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_607302-MLA110946584985_042026-F.webp",
-      "preco": "499,00",
-      "precoAnterior": "799,00",
-      "precoPromocional": "499,00",
-      "nota": 4.8,
-      "ranking": "10",
-      "promocaoAtiva": false,
-      "promocaoValidaAte": "2026-09-28",
-      "ofertaRelampagoAtiva": false,
-      "ofertaRelampagoTerminaEm": "",
-      "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-06T09:33:10.979Z",
-      "precoConferenciaId": "c3294976-5c2d-480c-a5b1-848a758df4dd"
+      "precoAtualizadoManualmenteEm": "2026-10-06T11:57:53.523Z",
+      "precoConferenciaId": "8e7401be-dee4-4eb3-93bc-c59a940162b6"
     },
     {
       "id": "51ek2WOgqwYGnIqBAEPP",
@@ -3015,8 +2996,8 @@
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
       "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-06T08:59:18.718Z",
-      "precoConferenciaId": "bd657d81-733a-4728-8117-5f4b53e192fd"
+      "precoAtualizadoManualmenteEm": "2026-10-06T11:54:20.166Z",
+      "precoConferenciaId": "4ba5d18e-08d7-401e-a2fd-77c6ff9bc0d0"
     },
     {
       "id": "iAFknp54AGEJMCkVkbtP",
@@ -3125,8 +3106,8 @@
       "ofertaRelampagoAtiva": true,
       "ofertaRelampagoTerminaEm": "2026-10-06T15:47:50.107Z",
       "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-06T08:59:33.056Z",
-      "precoConferenciaId": "74900011-057b-4757-ac01-b5192739ad2d"
+      "precoAtualizadoManualmenteEm": "2026-10-06T11:56:02.466Z",
+      "precoConferenciaId": "9860919b-bef8-40da-b702-b07ccc410c8f"
     },
     {
       "id": "ik7zBiCAAqDLqr9Di5Ue",
@@ -3995,8 +3976,8 @@
       "ofertaRelampagoAtiva": true,
       "ofertaRelampagoTerminaEm": "2026-10-06T15:52:15.856Z",
       "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-06T08:59:14.191Z",
-      "precoConferenciaId": "92d53b71-db94-49ba-95f7-4df9dd16ba7b"
+      "precoAtualizadoManualmenteEm": "2026-10-06T11:54:14.618Z",
+      "precoConferenciaId": "a5578875-298e-4b47-9ec9-fd58ccd3ca87"
     },
     {
       "id": "Mdyju6zRmHsKRpOYqz51",
@@ -6151,7 +6132,7 @@
       "comentario": "Portátil B&G Mini Compressor. Fase elétrica: Monofásica. Voltagem: 127/220V. Bomba de encher pneu de carro, bike e moto, portátil e mini, com alimentação USB e potência de 50W. Marca: B&G; Cor: Preto; Código do catálogo: MLB20562024. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
       "categoria": "carro",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_884639-MLA112856291753_062026-O.webp",
-      "preco": "56,50",
+      "preco": "53,67",
       "precoAnterior": "199,98",
       "precoPromocional": "60,47",
       "nota": 4.8,
@@ -6161,8 +6142,8 @@
       "ofertaRelampagoAtiva": true,
       "ofertaRelampagoTerminaEm": "2026-09-04T21:41:33.729Z",
       "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-06T08:59:35.240Z",
-      "precoConferenciaId": "16b85550-8c6d-49c8-9ccc-d2227b75f8b1"
+      "precoAtualizadoManualmenteEm": "2026-10-06T11:56:25.132Z",
+      "precoConferenciaId": "d3351bdf-3ba2-43f1-b3c3-320264bcd9b5"
     },
     {
       "id": "ufHw7Y6qN2oc8ePqgHkj",
@@ -6820,6 +6801,25 @@
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-06T09:25:10.790Z",
       "precoConferenciaId": "a52fc7eb-3cd1-4e8f-b480-bed6853fa0cf"
+    },
+    {
+      "id": "vyd0L1vgWAHSQvJ1p6En",
+      "titulo": "Kit Starlink MINI Internet Via Satélite",
+      "comentario": "O Kit Starlink Mini oferece internet via satélite portátil de alta performance para áreas remotas. Com design compacto e roteador integrado, garante conectividade estável onde redes tradicionais não alcançam, facilitando o trabalho e entretenimento em viagens ou locais isolados.",
+      "categoria": "roteador",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_607302-MLA110946584985_042026-F.webp",
+      "preco": "514,90",
+      "precoAnterior": "799,00",
+      "precoPromocional": "472,00",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-02",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-02T22:10:53.671Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-06T11:57:31.023Z",
+      "precoConferenciaId": "b3e93a61-6bc9-4d0b-99c3-40c3ce6f1ba0"
     },
     {
       "id": "VyYiww5HVcBRIH8SD5SD",
@@ -7827,8 +7827,8 @@
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
       "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-06T08:59:37.515Z",
-      "precoConferenciaId": "5fa95098-75c9-42dc-a6ab-d0bdfe2938f0"
+      "precoAtualizadoManualmenteEm": "2026-10-06T11:56:28.264Z",
+      "precoConferenciaId": "26557e1e-4fb5-45ca-9558-fe5dc290b87a"
     },
     {
       "id": "Zo8ybuHaQjV6HlCbCWqf",
