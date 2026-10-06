@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-05T16:34:11.222Z",
+  "generatedAt": "2026-10-06T01:15:01.743Z",
   "products": [
     {
       "id": "0o2cubZBfwlgcwFokAWY",
@@ -661,7 +661,9 @@
       "promocaoValidaAte": "2026-07-21",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-05T15:57:51.004Z",
-      "precoConferenciaId": "4eba2b0b-37b9-4011-9e23-39e8ddf9962a"
+      "precoConferenciaId": "4eba2b0b-37b9-4011-9e23-39e8ddf9962a",
+      "pros": "",
+      "contras": ""
     },
     {
       "id": "5Nr0nOkBvYhG9KXxeyZL",
@@ -782,7 +784,9 @@
       "ranking": "5",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-05T15:57:53.154Z",
-      "precoConferenciaId": "ba554f7c-5096-4f05-b432-6d0619023450"
+      "precoConferenciaId": "ba554f7c-5096-4f05-b432-6d0619023450",
+      "pros": "",
+      "contras": ""
     },
     {
       "id": "6NYYO2l4QTGUagl47PKh",
@@ -1375,7 +1379,9 @@
       "ofertaRelampagoTerminaEm": "2026-08-02T20:18:11.939Z",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-05T16:10:43.200Z",
-      "precoConferenciaId": "198eaa6d-59d1-4f89-96b1-5c444aa7a3a7"
+      "precoConferenciaId": "198eaa6d-59d1-4f89-96b1-5c444aa7a3a7",
+      "pros": "",
+      "contras": ""
     },
     {
       "id": "AweCTxq7vwVQ7VmN4IIg",
@@ -1634,7 +1640,9 @@
       "ranking": "10",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-05T16:18:45.523Z",
-      "precoConferenciaId": "068d655b-6de9-4888-90ba-1300311d3679"
+      "precoConferenciaId": "068d655b-6de9-4888-90ba-1300311d3679",
+      "pros": "",
+      "contras": ""
     },
     {
       "id": "C5b5fKstKDUgNDUxnQkP",
@@ -1858,7 +1866,9 @@
       "ofertaRelampagoTerminaEm": "",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-05T16:18:55.141Z",
-      "precoConferenciaId": "99cf3b32-2596-41a3-ac15-389e1a901ce4"
+      "precoConferenciaId": "99cf3b32-2596-41a3-ac15-389e1a901ce4",
+      "pros": "",
+      "contras": ""
     },
     {
       "id": "CvM3xyDY4t5BF7XdPjF6",
@@ -2276,7 +2286,9 @@
       "promocaoValidaAte": "2026-07-28",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-05T16:11:25.555Z",
-      "precoConferenciaId": "0ac0c12e-24a0-440a-87f5-cc210c62d108"
+      "precoConferenciaId": "0ac0c12e-24a0-440a-87f5-cc210c62d108",
+      "pros": "",
+      "contras": ""
     },
     {
       "id": "Evo4CPaNJPvGuj1ILt5u",
@@ -2652,7 +2664,7 @@
     {
       "id": "GjHJtzdsIhbmSINvhPeX",
       "titulo": "Fone de Ouvido JBL Tune 520BT Bluetooth 5.3 Preto",
-      "comentario": "Fone de Ouvido JBL Tune 520BT Bluetooth 5.3 Preto. Quantidade de pares: 1. Bluetooth 5.3 para conexão rápida e estável com dispositivos compatíveis. Resposta em frequência de 20 Hz - 20 kHz para áudio nítido. Duração da bateria de até 57 horas para uso prolongado. Cancelamento de ruído para uma experiência sonora imersiva. Microfone integrado com suporte a assistentes de voz como Alexa e Google Assistant.. Informações consultadas no anúncio oficial do Mercado Livre.",
+      "comentario": "O JBL Tune 520BT é um fone on-ear Bluetooth 5.3 para música e chamadas. O fabricante informa até 57 horas de bateria; a duração real varia com volume e uso. Não possui cancelamento ativo de ruído (ANC): o isolamento é passivo. Considere-o para uso cotidiano se você aceita o formato apoiado nas orelhas; para ambientes muito ruidosos, compare alternativas com ANC. Não realizamos testes de conforto ou de qualidade do microfone.",
       "categoria": "fonesdeouvido",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_645297-MLA99992011927_112025-F.jpg",
       "preco": "258,00",
@@ -2666,7 +2678,9 @@
       "ofertaRelampagoTerminaEm": "",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-05T15:55:13.289Z",
-      "precoConferenciaId": "4a3227df-5c8f-4b96-bda8-c29078c7f3df"
+      "precoConferenciaId": "4a3227df-5c8f-4b96-bda8-c29078c7f3df",
+      "pros": "Bluetooth 5.3 informado na ficha técnica da JBL.\nAutonomia anunciada de até 57 horas; resultado real depende do uso.",
+      "contras": "Sem cancelamento ativo de ruído (ANC), conforme o fabricante.\nFormato on-ear apoiado nas orelhas: conforto após longos períodos não foi testado pela equipe."
     },
     {
       "id": "gNcq5nSqWbfqYi1M9c23",
@@ -5971,7 +5985,9 @@
       "promocaoValidaAte": "",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-05T16:13:30.184Z",
-      "precoConferenciaId": "d2d550e2-4066-458e-8248-38703bb0dea4"
+      "precoConferenciaId": "d2d550e2-4066-458e-8248-38703bb0dea4",
+      "pros": "",
+      "contras": ""
     },
     {
       "id": "tQpEIHL2QaiZ7xOWZ6py",
@@ -6848,7 +6864,9 @@
       "ranking": "1",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-05T16:17:10.947Z",
-      "precoConferenciaId": "50b2ec25-08f3-4f3f-aef2-0840061cb6c0"
+      "precoConferenciaId": "50b2ec25-08f3-4f3f-aef2-0840061cb6c0",
+      "pros": "",
+      "contras": ""
     },
     {
       "id": "VzQgxGhowdzlfNshI3ZC",
