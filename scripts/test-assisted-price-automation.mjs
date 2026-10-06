@@ -12,9 +12,9 @@ test("robô atua no painel móvel e nas páginas logadas do Mercado Livre", () =
   assert.match(bot, /conferirPrecoNaAbaLocal/);
 });
 
-test("leitura prioriza dados estruturados e reconhece bloqueio e indisponibilidade", () => {
+test("leitura exige preço principal visível e reconhece bloqueio e indisponibilidade", () => {
   assert.match(bot, /extractStructuredPrice/);
-  assert.match(bot, /pagina_aria/);
+  assert.match(bot, /pagina_principal_visivel/);
   assert.match(bot, /status:\s*"security"/);
   assert.match(bot, /status:\s*"unavailable"/);
   assert.match(bot, /status:\s*"ok",\s*preco/);
@@ -37,6 +37,7 @@ test("automação separa indisponíveis sem excluir automaticamente", () => {
 });
 
 test("salvamento automático preserva o mesmo validador da conferência manual", () => {
-  assert.match(panel, /salvarFilaPrecoAssistida\(resultadoLocal\.preco, \{ automatico: true \}\)/);
+  assert.match(panel, /salvarFilaPrecoAssistida\(resultadoLocal\.preco, \{ automatico: true, produtoId: produto.id, resultado: resultadoLocal \}\)/);
+  assert.match(panel, /RDCAssistedPriceSafety.validate\(opcoes.resultado/);
   assert.match(panel, /preço anterior da promoção/i);
 });

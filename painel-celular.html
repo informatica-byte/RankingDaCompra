@@ -149,6 +149,7 @@
       </section>
     </main>
     <script src="/price-publication.js?v=20261004-2"></script>
+    <script src="/assisted-price-safety.js?v=20261006-1"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
       import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
@@ -299,7 +300,7 @@
         const card = document.createElement("div");
         card.className = "card";
         card.id = "precos-mobile";
-        card.innerHTML = '<div class="etapa">Conferência assistida</div><h2>💰 Confira um produto por vez</h2><p>Primeiro os mais visualizados nos últimos sete dias; depois, os há mais tempo sem conferência manual. Você pode conferir manualmente ou deixar a automação assistida percorrer a fila na página logada do Mercado Livre.</p><button id="precos-iniciar" class="btn verde" type="button">Carregar fila de hoje</button><div id="precos-auto" class="precos-auto"><b>🤖 Automação assistida</b><p class="mini">Reutiliza uma única aba do Mercado Livre, salva somente preços comprovados e pausa se aparecer CAPTCHA. Produtos indisponíveis ficam separados para sua decisão.</p><div class="precos-auto-acoes"><button id="precos-auto-iniciar" class="btn azul largo" type="button" disabled>▶ Conferir todos automaticamente</button><button id="precos-auto-continuar" class="btn verde largo" type="button" hidden>▶ Continuar após resolver o CAPTCHA</button><button id="precos-auto-parar" class="btn claro largo" type="button" hidden>⏹ Parar conferência</button></div><div id="precos-auto-resumo" class="precos-auto-resumo">Carregue a fila para começar. É necessário instalar ou atualizar o robô do Tampermonkey.</div><a class="mini" href="/bot-precos.user.js" target="_blank" rel="noopener">Instalar ou atualizar o robô de preços</a></div><div id="precos-progresso" class="precos-fila-resumo" style="margin-top:12px">A fila só lê produtos e visitas quando você tocar no botão.</div><div id="precos-item"></div><div id="precos-status" class="status" role="status" aria-live="polite"></div><details><summary>Conferência automática pelo GitHub (opcional)</summary><p>A API do Mercado Livre pode negar acesso. Use apenas depois de resolver a permissão. Nenhuma conferência começa sozinha.</p><a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">Conferir todos os preços agora (GitHub)</a></details>';
+        card.innerHTML = '<div class="etapa">Conferência assistida</div><h2>💰 Confira um produto por vez</h2><p>Primeiro os mais visualizados nos últimos sete dias; depois, os há mais tempo sem conferência manual. Você pode conferir manualmente ou deixar a automação assistida percorrer a fila na página logada do Mercado Livre.</p><button id="precos-iniciar" class="btn verde" type="button">Carregar fila de hoje</button><label class="mini"><input id="precos-reconferir-hoje" type="checkbox" /> Revisar também os preços já conferidos hoje</label><div id="precos-auto" class="precos-auto"><b>🤖 Automação assistida</b><p class="mini">Reutiliza uma única aba do Mercado Livre, salva somente preços comprovados e pausa se aparecer CAPTCHA. Produtos indisponíveis ficam separados para sua decisão.</p><div class="precos-auto-acoes"><button id="precos-auto-iniciar" class="btn azul largo" type="button" disabled>▶ Conferir todos automaticamente</button><button id="precos-auto-continuar" class="btn verde largo" type="button" hidden>▶ Continuar após resolver o CAPTCHA</button><button id="precos-auto-parar" class="btn claro largo" type="button" hidden>⏹ Parar conferência</button></div><div id="precos-auto-resumo" class="precos-auto-resumo">Carregue a fila para começar. É necessário instalar ou atualizar o robô do Tampermonkey.</div><a class="mini" href="/bot-precos.user.js" target="_blank" rel="noopener">Instalar ou atualizar o robô de preços</a></div><div id="precos-progresso" class="precos-fila-resumo" style="margin-top:12px">A fila só lê produtos e visitas quando você tocar no botão.</div><div id="precos-item"></div><div id="precos-status" class="status" role="status" aria-live="polite"></div><details><summary>Conferência automática pelo GitHub (opcional)</summary><p>A API do Mercado Livre pode negar acesso. Use apenas depois de resolver a permissão. Nenhuma conferência começa sozinha.</p><a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">Conferir todos os preços agora (GitHub)</a></details>';
         $("focus-mobile").before(card);
         window.RDCPricePublication.mount(card, () => filaPrecosDados?.todos || [], "price-publication-mobile");
       }
@@ -315,6 +316,7 @@
       const chaveFilaPrecos = "ranking-fila-precos-assistida-v1";
       let automacaoPrecosAtiva = false;
       let automacaoPrecosPausada = false;
+      let automacaoPrecosRodada = 0;
       const automacaoPrecosVisitados = new Set();
       const automacaoPrecosIndisponiveis = new Map();
       const automacaoPrecosFalhas = new Map();
@@ -337,18 +339,19 @@
       function atualizarControlesAutomacaoPrecos() {
         const iniciar = $("precos-auto-iniciar"), continuar = $("precos-auto-continuar"), parar = $("precos-auto-parar");
         if (!iniciar) return;
-        const roboPronto = typeof window.conferirPrecoNaAbaLocal === "function";
+        const roboPronto = typeof window.conferirPrecoNaAbaLocal === "function" && window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__);
         iniciar.disabled = !filaPrecosDados || automacaoPrecosAtiva || !roboPronto;
         iniciar.hidden = automacaoPrecosPausada;
         continuar.hidden = !automacaoPrecosPausada;
         parar.hidden = !automacaoPrecosAtiva;
+        $("precos-reconferir-hoje").disabled = automacaoPrecosAtiva || filaPrecosSalvando;
         if (automacaoPrecosAtiva) {
           for (const id of ["precos-igual", "precos-novo", "precos-pular", "precos-editar", "precos-excluir"]) {
             const botao = $(id);
             if (botao) botao.disabled = true;
           }
         }
-        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey e recarregue esta página para liberar o botão.");
+        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.1.0 ou superior e recarregue esta página. Versões anteriores não podem salvar automaticamente.");
       }
 
       function guardarPosicaoFilaPrecos() {
@@ -473,7 +476,7 @@
         const todos = filaPrecosDados?.todos || [];
         const pendentes = todos.filter((produto) => {
           const confirmadoEm = millisPrecoAssistido(produto.precoAtualizadoManualmenteEm);
-          return !filaPrecosConferidos.has(produto.id) && diaPrecoAssistido(confirmadoEm) !== hoje();
+          return !filaPrecosConferidos.has(produto.id) && (filaPrecosDados.reconferirHoje || diaPrecoAssistido(confirmadoEm) !== hoje());
         });
         const ordemPulados = new Map([...filaPrecosPulados].map((id, indice) => [id, indice]));
         pendentes.sort((a, b) => {
@@ -503,7 +506,7 @@
         const fila = dadosFilaPrecosAssistida();
         const feitos = fila.todos.length - fila.pendentes.length;
         window.RDCPricePublication.saved("price-publication-mobile", fila.pendentes.length === 0);
-        resumo.textContent = feitos + " de " + fila.todos.length + " conferidos hoje · " + fila.pendentes.length + " restantes. A ordem usa visualizações dos últimos 7 dias e depois a conferência mais antiga.";
+        resumo.textContent = feitos + " de " + fila.todos.length + (filaPrecosDados.reconferirHoje ? " revisados nesta rodada" : " conferidos hoje") + " · " + fila.pendentes.length + " restantes. A ordem usa visualizações dos últimos 7 dias e depois a conferência mais antiga.";
         atualizarControlesAutomacaoPrecos();
         if (!fila.pendentes.length) {
           filaPrecosIdAtual = "";
@@ -548,6 +551,8 @@
         try {
           if (filaPrecosDados) rankingDadosMovel = null;
           filaPrecosDados = await rankingCarregarDados(true);
+          filaPrecosDados.reconferirHoje = $("precos-reconferir-hoje").checked;
+          if (filaPrecosDados.reconferirHoje) { filaPrecosConferidos.clear(); filaPrecosPulados.clear(); filaPrecosIdAtual = ""; }
           renderizarFilaPrecosAssistida();
           atualizarControlesAutomacaoPrecos();
           if (typeof window.conferirPrecoNaAbaLocal === "function") resumoAutomacaoPrecos("Fila carregada. Toque em “Conferir todos automaticamente” para começar.");
@@ -570,6 +575,13 @@
         const campo = campoPrecoFila(produto);
         const valorAnterior = numero(produto[campo]);
         const valor = novoValor === null ? valorAnterior : numero(novoValor);
+        if (opcoes.automatico) {
+          const motivo = window.RDCAssistedPriceSafety.validate(opcoes.resultado, { produtoId: produto.id, url: linkPrecoAssistido(produto), previousPrice: valorAnterior });
+          if (motivo || produto.id !== opcoes.produtoId) {
+            msg("precos-status", motivo || "A fila mudou durante a consulta. Preço preservado.", "erro");
+            return false;
+          }
+        }
         if (!valor) {
           msg("precos-status", "Informe um preço válido, por exemplo 149,90.", "erro");
           return false;
@@ -585,6 +597,14 @@
           precoAtualizadoManualmenteEm: serverTimestamp(),
           precoConferenciaId: confirmacaoId,
         };
+        if (opcoes.automatico) {
+          campos.precoConferidoPor = "robo_assistido_2.1.0";
+          campos.precoConferenciaIAFonte = opcoes.resultado.fonteConsultada;
+          campos.precoConferenciaIAEvidencia = opcoes.resultado.evidencia;
+          campos.precoConferenciaIATitulo = opcoes.resultado.tituloEncontrado;
+        } else {
+          campos.precoConferidoPor = "manual";
+        }
         if (alterou) {
           campos[campo] = preco(valor);
           campos.atualizadoEm = serverTimestamp();
@@ -631,6 +651,7 @@
       }
 
       function pararAutomacaoPrecosAssistida(texto = "Conferência automática interrompida. Você pode continuar manualmente.") {
+        automacaoPrecosRodada += 1;
         automacaoPrecosAtiva = false;
         automacaoPrecosPausada = false;
         if (filaPrecosDados) renderizarFilaPrecosAssistida();
@@ -647,8 +668,8 @@
         atualizarControlesAutomacaoPrecos();
       }
 
-      async function executarAutomacaoPrecosAssistida() {
-        while (automacaoPrecosAtiva && !automacaoPrecosPausada) {
+      async function executarAutomacaoPrecosAssistida(rodada = automacaoPrecosRodada) {
+        while (rodada === automacaoPrecosRodada && automacaoPrecosAtiva && !automacaoPrecosPausada) {
           const fila = dadosFilaPrecosAssistida();
           if (!fila.pendentes.length) {
             pararAutomacaoPrecosAssistida("✅ Conferência automática concluída.");
@@ -670,7 +691,7 @@
           resumoAutomacaoPrecos("Consultando: <b>" + rankingEsc(produto.titulo) + "</b>");
           try {
             const resultadoLocal = await window.conferirPrecoNaAbaLocal({ produtoId: produto.id, titulo: produto.titulo, url: link });
-            if (!automacaoPrecosAtiva) return;
+            if (!automacaoPrecosAtiva || rodada !== automacaoPrecosRodada) return;
             if (resultadoLocal?.status === "security") {
               pausarAutomacaoPrecosAssistida(produto);
               return;
@@ -683,9 +704,15 @@
               separarProdutoAutomacao(produto, automacaoPrecosFalhas, resultadoLocal?.motivo || "Preço principal não comprovado.");
               continue;
             }
-            const salvo = await salvarFilaPrecoAssistida(resultadoLocal.preco, { automatico: true });
+            const motivo = window.RDCAssistedPriceSafety.validate(resultadoLocal, { produtoId: produto.id, url: link, previousPrice: numero(produto[campoPrecoFila(produto)]) });
+            if (motivo) {
+              separarProdutoAutomacao(produto, automacaoPrecosFalhas, motivo);
+              continue;
+            }
+            const salvo = await salvarFilaPrecoAssistida(resultadoLocal.preco, { automatico: true, produtoId: produto.id, resultado: resultadoLocal });
             if (!salvo) separarProdutoAutomacao(produto, automacaoPrecosFalhas, "O painel recusou o preço e preservou o cadastro.");
           } catch (erro) {
+            if (!automacaoPrecosAtiva || rodada !== automacaoPrecosRodada) return;
             const motivo = String(erro?.message || erro);
             if (/captcha|confirmação humana|verificação de segurança/i.test(motivo)) {
               pausarAutomacaoPrecosAssistida(produto);
@@ -699,7 +726,7 @@
 
       function iniciarAutomacaoPrecosAssistida({ continuar = false } = {}) {
         if (!filaPrecosDados) return msg("precos-status", "Carregue a fila de hoje antes de iniciar.", "erro");
-        if (typeof window.conferirPrecoNaAbaLocal !== "function") {
+        if (typeof window.conferirPrecoNaAbaLocal !== "function" || !window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__)) {
           atualizarControlesAutomacaoPrecos();
           return msg("precos-status", "Instale ou atualize o robô do Tampermonkey e recarregue esta página.", "erro");
         }
@@ -709,6 +736,7 @@
           automacaoPrecosFalhas.clear();
         }
         automacaoPrecosPausada = false;
+        automacaoPrecosRodada += 1;
         automacaoPrecosAtiva = true;
         off("precos-status");
         resumoAutomacaoPrecos(continuar ? "Retomando após a confirmação humana..." : "Iniciando a conferência. Mantenha a aba do Mercado Livre aberta.");
@@ -887,6 +915,14 @@
       $("precos-auto-iniciar").addEventListener("click", () => iniciarAutomacaoPrecosAssistida());
       $("precos-auto-continuar").addEventListener("click", () => iniciarAutomacaoPrecosAssistida({ continuar: true }));
       $("precos-auto-parar").addEventListener("click", () => pararAutomacaoPrecosAssistida());
+      $("precos-reconferir-hoje").addEventListener("change", () => {
+        if (!filaPrecosDados || automacaoPrecosAtiva || filaPrecosSalvando) return;
+        filaPrecosDados.reconferirHoje = $("precos-reconferir-hoje").checked;
+        filaPrecosConferidos.clear();
+        filaPrecosPulados.clear();
+        filaPrecosIdAtual = "";
+        renderizarFilaPrecosAssistida();
+      });
       atualizarControlesAutomacaoPrecos();
       $("precos-item").addEventListener("submit", (evento) => {
         if (evento.target?.id !== "precos-editor") return;

@@ -1062,6 +1062,7 @@ FORMATO:
     </script>
 
     <script src="/price-publication.js?v=20261004-2"></script>
+    <script src="/assisted-price-safety.js?v=20261006-1"></script>
     <script src="/metricas-resumo.js?v=20260923-1"></script>
     <script>
         const firebaseConfig = {
@@ -2696,7 +2697,11 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 const motor = motorConferenciaPrecoDisponivel();
                 if (!motor) throw new Error('O robô de preços ainda não está conectado. Instale-o pelo link na aba Preços e recarregue o painel.');
                 if (botao) botao.textContent = `⏳ ${motor.nome} conferindo...`;
-                const resultado = await motor.conferir({ titulo: produto.titulo || '', url });
+                const resultado = await motor.conferir({ produtoId: id, titulo: produto.titulo || '', url });
+                if (resultado.robotVersion || /^pagina_/.test(String(resultado.origem || ''))) {
+                    const motivo = window.RDCAssistedPriceSafety.validate(resultado, { produtoId: id, url });
+                    if (motivo) throw new Error(motivo);
+                }
                 const preco = numeroPreco(resultado.preco);
                 if (!preco) throw new Error('A conferência não retornou um preço válido.');
                 const campoEntrada = document.getElementById(`preco-manual-${id}`);
@@ -2732,6 +2737,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
         function motorConferenciaPrecoDisponivel() {
             if (typeof window.conferirPrecoPelaFonteLocal === 'function') {
+                if (!window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__)) return null;
                 return { nome: 'Robô local', intervalo: 3500, conferir: window.conferirPrecoPelaFonteLocal };
             }
             if (typeof window.conferirPrecoPelaFonteIA === 'function') {
@@ -2743,10 +2749,10 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         function atualizarStatusBotPrecosLocal() {
             const status = document.getElementById('status-bot-precos-local');
             if (!status) return;
-            const conectado = typeof window.conferirPrecoPelaFonteLocal === 'function';
+            const conectado = typeof window.conferirPrecoPelaFonteLocal === 'function' && window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__);
             status.classList.toggle('conectado', conectado);
             if (!conectado) {
-                status.textContent = '⚠️ Robô local ainda não conectado. A atualização em lote pelo GitHub continua disponível.';
+                status.textContent = '⚠️ Atualize o robô de preços para 2.1.0 ou superior e recarregue o painel. O robô antigo não pode salvar preços automaticamente.';
                 return;
             }
             status.textContent = '✅ Robô local conectado — ele só inicia quando você apertar o botão.';
@@ -2768,6 +2774,10 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const preco = numeroPreco(resultado.preco);
             if (!preco) throw new Error('A conferência não retornou um preço válido.');
             const campo = campoPrecoExibido(produto);
+            if (resultado.robotVersion || /^pagina_/.test(String(resultado.origem || ''))) {
+                const motivo = window.RDCAssistedPriceSafety.validate(resultado, { produtoId: id, url: urlConsultada, previousPrice: numeroPreco(produto[campo]) });
+                if (motivo) throw new Error(motivo);
+            }
             await db.collection('produtos').doc(id).update({
                 [campo]: formatarPrecoCampo(preco),
                 precoAtualizadoManualmente: true,
@@ -2835,6 +2845,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     try {
                         if (!urlConsultada) throw new Error('Produto sem link ou código MLB utilizável.');
                         const resultado = await motor.conferir({
+                            produtoId: produto.id,
                             titulo: produto.titulo || '',
                             url: urlConsultada
                         });

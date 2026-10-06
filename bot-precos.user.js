@@ -1,29 +1,24 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.0.0
+// @version      2.1.0
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
 // @match        https://*.mercadolivre.com.br/*
 // @match        https://mercadolivre.com.br/*
 // @grant        unsafeWindow
-// @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_addValueChangeListener
 // @grant        GM_removeValueChangeListener
-// @connect      mercadolivre.com.br
-// @connect      www.mercadolivre.com.br
-// @connect      produto.mercadolivre.com.br
-// @connect      meli.la
 // @run-at       document-start
 // ==/UserScript==
 
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.0.0";
+  const BOT_VERSION = "2.1.0";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -36,10 +31,10 @@
 
   function parsePrice(value) {
     if (typeof value === "number") return Number.isFinite(value) && value > 0 ? value : null;
-    const text = String(value || "").trim();
-    if (!text) return null;
-    const normalized = text.replace(/R\$/gi, "").replace(/\s/g, "")
-      .replace(/\.(?=\d{3}(?:\D|$))/g, "").replace(",", ".").replace(/[^\d.]/g, "");
+    const text = String(value || "").replace(/^\s*R\$\s*/i, "").replace(/\s/g, "");
+    // Não transformar parcelas, intervalos ou textos em um valor aparentemente válido.
+    if (!/^(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d{1,2})?$/.test(text) && !/^\d+\.\d{1,2}$/.test(text)) return null;
+    const normalized = text.includes(",") ? text.replace(/\./g, "").replace(",", ".") : text.replace(/\.(?=\d{3}(?:\.|$))/g, "");
     const parsed = Number(normalized);
     return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
   }
@@ -54,11 +49,29 @@
   }
 
   function matchingProduct(expectedTitle, foundTitle) {
-    const expectedWords = normalizeText(expectedTitle).split(" ").filter((word) => word.length >= 4);
-    const found = normalizeText(foundTitle);
+    const expectedWords = [...new Set(normalizeText(expectedTitle).split(" ").filter((word) => word.length >= 3 && !/^(com|sem|para|preto|branco|produto|original)$/.test(word)))];
+    const found = new Set(normalizeText(foundTitle).split(" "));
     if (!expectedWords.length || !found) return false;
-    const matches = expectedWords.filter((word) => found.includes(word)).length;
-    return matches >= Math.min(2, expectedWords.length);
+    const models = expectedWords.filter((word) => /\d/.test(word));
+    if (models.some((word) => !found.has(word))) return false;
+    const matches = expectedWords.filter((word) => found.has(word)).length;
+    return matches >= Math.min(3, expectedWords.length) && matches / expectedWords.length >= 0.6;
+  }
+
+  function offerIdentity(rawUrl) {
+    try {
+      const url = new URL(rawUrl);
+      if (url.protocol !== "https:" || !/(^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) return null;
+      const listing = (url.searchParams.get("pdp_filters") || "").match(/item_id:(MLB\d+)/i)?.[1]
+        || url.pathname.match(/(?:^|\/)MLB-(\d+)/i)?.[0]?.replace(/^\//, "").replace("-", "");
+      const catalog = url.pathname.match(/\/p\/(MLB\d+)/i)?.[1];
+      return { key: String(listing || catalog || url.hostname + url.pathname).toUpperCase(), variation: url.searchParams.get("searchVariation") || "" };
+    } catch { return null; }
+  }
+
+  function sameOffer(expectedUrl, actualUrl) {
+    const expected = offerIdentity(expectedUrl), actual = offerIdentity(actualUrl);
+    return !!expected && !!actual && expected.key === actual.key && (!expected.variation || expected.variation === actual.variation);
   }
 
   function securityCheck(source) {
@@ -69,110 +82,91 @@
     return /(este produto est[aá] indispon[ií]vel|an[uú]ncio pausado|an[uú]ncio finalizado|produto sem estoque|n[aã]o est[aá] dispon[ií]vel)/i.test(source);
   }
 
-  function extractStructuredPrice(documentHtml) {
+  function extractStructuredPrice(documentHtml, pageTitle, finalUrl) {
     const offers = [];
     for (const script of documentHtml.querySelectorAll('script[type="application/ld+json"]')) {
       try {
         const parsed = JSON.parse(script.textContent || "null");
         walkJson(parsed, (node) => {
-          if (String(node["@type"] || "").toLowerCase() !== "product") return;
+          if (![node["@type"]].flat().some((type) => String(type).toLowerCase() === "product")) return;
+          if (!matchingProduct(pageTitle, node.name)) return;
           const values = Array.isArray(node.offers) ? node.offers : [node.offers];
-          for (const offer of values.filter(Boolean)) offers.push(offer);
+          for (const offer of values.filter(Boolean)) {
+            // Um lowPrice ou uma recomendação nunca comprova a oferta selecionada.
+            if (String(offer["@type"] || "").toLowerCase() !== "offer" || offer.priceCurrency !== "BRL") continue;
+            if (!offer.url || offerIdentity(offer.url)?.key !== offerIdentity(finalUrl)?.key) continue;
+            offers.push(offer);
+          }
         });
       } catch {
         // Alguns anúncios possuem blocos auxiliares incompletos.
       }
     }
+    const prices = [];
     for (const offer of offers) {
       const availability = String(offer.availability || "").toLowerCase();
-      if (/outofstock|soldout|discontinued/.test(availability)) return { unavailable: true };
-      const price = parsePrice(offer.price ?? offer.lowPrice ?? offer.priceSpecification?.price);
-      if (price) return { price, origin: "pagina_json_ld" };
+      if (/outofstock|soldout|discontinued/.test(availability)) continue;
+      const price = parsePrice(offer.price);
+      if (price) prices.push(price);
     }
-    return {};
+    return { prices: [...new Set(prices)] };
   }
 
-  function extractDocumentOffer(documentHtml, expectedTitle, finalUrl) {
+  function extractMainPrice(documentHtml) {
+    const values = [];
+    for (const node of documentHtml.querySelectorAll('.ui-pdp-price__second-line .andes-money-amount')) {
+      if (node.closest('.andes-money-amount--previous, .ui-pdp-price__original-value, .ui-pdp-price__installments, .ui-pdp-promotions-pill-label, [hidden], [aria-hidden="true"]')) continue;
+      if (documentHtml.defaultView) {
+        const style = documentHtml.defaultView.getComputedStyle(node);
+        if (style.display === "none" || style.visibility === "hidden" || !node.getClientRects().length) continue;
+      }
+      const fraction = node.querySelector('.andes-money-amount__fraction')?.textContent;
+      const cents = node.querySelector('.andes-money-amount__cents')?.textContent || "00";
+      const currency = node.querySelector('.andes-money-amount__currency-symbol')?.textContent;
+      const label = node.getAttribute('aria-label') || "";
+      if (/antes|parcela|cashback|\d\s*x|a partir/i.test(label) || currency?.trim() !== "R$") continue;
+      const price = parsePrice(`${fraction},${cents.padStart(2, "0")}`);
+      if (price) values.push(price);
+    }
+    return [...new Set(values)];
+  }
+
+  function extractDocumentOffer(documentHtml, expectedTitle, finalUrl, requestedUrl = finalUrl) {
+    if (!sameOffer(requestedUrl, finalUrl)) return { status: "loading", motivo: "A aba ainda está em outro anúncio. Nenhum preço será aproveitado." };
     const source = String(documentHtml.body?.innerText || documentHtml.documentElement?.innerText || "");
     if (securityCheck(source)) return { status: "security", motivo: "O Mercado Livre pediu confirmação humana." };
     const pageTitle = String(
-      documentHtml.querySelector('meta[property="og:title"]')?.content ||
-      documentHtml.querySelector("h1")?.textContent || documentHtml.title || "",
+      documentHtml.querySelector("h1.ui-pdp-title")?.textContent ||
+      documentHtml.querySelector("h1")?.textContent || "",
     ).replace(/\s+/g, " ").trim();
     if (!matchingProduct(expectedTitle, pageTitle)) return { status: "loading", motivo: "A página ainda não confirmou o mesmo produto." };
-    if (unavailableCheck(source)) return { status: "unavailable", tituloEncontrado: pageTitle, fonteConsultada: finalUrl };
-    const structured = extractStructuredPrice(documentHtml);
-    if (structured.unavailable) return { status: "unavailable", tituloEncontrado: pageTitle, fonteConsultada: finalUrl };
-    if (structured.price) {
+    const mainPrices = extractMainPrice(documentHtml);
+    if (!mainPrices.length && unavailableCheck(documentHtml.querySelector('.ui-pdp-buybox')?.innerText || "")) return { status: "unavailable", tituloEncontrado: pageTitle, fonteConsultada: finalUrl };
+    if (!documentHtml.defaultView) return { status: "loading", motivo: "É necessário conferir a página renderizada na aba logada." };
+    const structured = extractStructuredPrice(documentHtml, pageTitle, finalUrl);
+    if (mainPrices.length !== 1) return { status: "loading", motivo: "Preço principal ausente ou ambíguo. Confira manualmente." };
+    const mainPrice = mainPrices[0];
+    if (structured.prices.some((price) => Math.abs(price - mainPrice) > 0.005)) return { status: "loading", motivo: "Preço visível diverge dos dados do anúncio. Confira manualmente." };
+    if (mainPrice) {
       return {
-        status: "ok", preco: structured.price,
-        evidencia: `Preço estruturado da página: R$ ${structured.price.toFixed(2).replace(".", ",")}`,
-        tituloEncontrado: pageTitle, fonteConsultada: finalUrl, origem: structured.origin,
-      };
-    }
-    const candidates = [
-      documentHtml.querySelector('meta[property="product:price:amount"]')?.content,
-      documentHtml.querySelector('[itemprop="price"]')?.getAttribute("content"),
-      documentHtml.querySelector('[itemprop="price"]')?.textContent,
-    ];
-    for (const candidate of candidates) {
-      const price = parsePrice(candidate);
-      if (price) {
-        return {
-          status: "ok", preco: price,
-          evidencia: `Preço principal da página: R$ ${price.toFixed(2).replace(".", ",")}`,
-          tituloEncontrado: pageTitle, fonteConsultada: finalUrl, origem: "pagina_meta",
-        };
-      }
-    }
-    const markup = String(documentHtml.documentElement?.innerHTML || "");
-    const ariaPrice = markup.match(/aria-label=["']Agora:\s*([\d.]+)\s*reais(?:\s+com\s+(\d+)\s+centavos)?/i);
-    const accessiblePrice = ariaPrice
-      ? parsePrice(`${ariaPrice[1]},${String(ariaPrice[2] || "00").padStart(2, "0")}`)
-      : null;
-    if (accessiblePrice) {
-      return {
-        status: "ok", preco: accessiblePrice,
-        evidencia: `Preço acessível da página: R$ ${accessiblePrice.toFixed(2).replace(".", ",")}`,
-        tituloEncontrado: pageTitle, fonteConsultada: finalUrl, origem: "pagina_aria",
+        status: "ok", preco: mainPrice,
+        evidencia: `Preço principal visível: R$ ${mainPrice.toFixed(2).replace(".", ",")}; anúncio ${offerIdentity(finalUrl).key}`,
+        tituloEncontrado: pageTitle, fonteConsultada: finalUrl, origem: "pagina_principal_visivel",
+        robotVersion: BOT_VERSION, proofVersion: 1, requestedUrl, offerKey: offerIdentity(finalUrl).key,
+        mainPrice, structuredPrices: structured.prices, currency: "BRL", priceSelector: ".ui-pdp-price__second-line .andes-money-amount",
       };
     }
     return { status: "loading", motivo: "O preço principal ainda não apareceu." };
   }
 
-  function extractOffer(html, expectedTitle, finalUrl) {
-    const source = String(html || "");
-    if (!source || source.length < 5000) throw new Error("A página retornou conteúdo insuficiente.");
-    if (securityCheck(source)) throw new Error("O Mercado Livre solicitou uma verificação de segurança. Abra a oferta manualmente e tente novamente depois.");
-    const documentHtml = new DOMParser().parseFromString(source, "text/html");
-    const result = extractDocumentOffer(documentHtml, expectedTitle, finalUrl);
-    if (result.status === "ok") return result;
-    if (result.status === "unavailable") throw new Error("O anúncio está sem estoque ou encerrado.");
-    throw new Error(result.motivo || "O bot não encontrou um preço principal que pudesse ser comprovado.");
-  }
-
-  function fetchOffer(url, expectedTitle) {
-    return new Promise((resolve, reject) => {
-      GM_xmlhttpRequest({
-        method: "GET", url, timeout: 25000,
-        headers: { Accept: "text/html,application/xhtml+xml", "Accept-Language": "pt-BR,pt;q=0.9" },
-        onload(response) {
-          if (response.status < 200 || response.status >= 400) return reject(new Error(`Mercado Livre respondeu HTTP ${response.status}.`));
-          try { resolve(extractOffer(response.responseText, expectedTitle, response.finalUrl || url)); }
-          catch (error) { reject(error); }
-        },
-        ontimeout() { reject(new Error("A página demorou demais para responder.")); },
-        onerror() { reject(new Error("Não foi possível abrir a página pelo navegador.")); },
-      });
-    });
-  }
 
   function installPanelBridge() {
     let offerWindow = null;
     unsafeWindow.__RDC_BOT_PRECOS_LOCAL__ = { version: BOT_VERSION, ready: true, assisted: true };
-    unsafeWindow.conferirPrecoPelaFonteLocal = async ({ titulo, url }) => {
-      if (!/^https?:\/\//i.test(String(url || ""))) throw new Error("O produto não possui um link público utilizável.");
-      return fetchOffer(String(url), String(titulo || ""));
+    unsafeWindow.conferirPrecoPelaFonteLocal = async (request) => {
+      const result = await unsafeWindow.conferirPrecoNaAbaLocal(request);
+      if (result.status !== "ok") throw new Error(result.motivo || "Preço principal não comprovado. Confira a aba do Mercado Livre.");
+      return result;
     };
     unsafeWindow.conferirPrecoNaAbaLocal = ({ produtoId, titulo, url }) => new Promise((resolve, reject) => {
       if (!/^https:\/\/(?:[^/]+\.)?mercadolivre\.com\.br\//i.test(String(url || ""))) {
@@ -182,7 +176,7 @@
       const requestId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       let timer = 0;
       const listener = GM_addValueChangeListener(RESULT_KEY, (_key, _oldValue, value) => {
-        if (!value || value.requestId !== requestId) return;
+        if (!value || value.requestId !== requestId || value.produtoId !== produtoId || value.requestedUrl !== url) return;
         clearTimeout(timer);
         GM_removeValueChangeListener(listener);
         resolve(value);
@@ -210,15 +204,27 @@
 
   async function publishCurrentPageResult(command) {
     if (!command?.requestId || !command?.titulo || Date.now() - Number(command.createdAt || 0) > 120000) return;
+    // A mudança da fila chega às abas antigas antes da navegação da janela reutilizada.
+    if (!sameOffer(command.url, location.href)) return;
     const deadline = Date.now() + 18000;
     let result = { status: "loading" };
+    let previousPrice = null;
+    let stable = false;
     while (Date.now() < deadline) {
-      result = extractDocumentOffer(document, command.titulo, location.href);
-      if (result.status !== "loading") break;
+      if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId || !sameOffer(command.url, location.href)) return;
+      result = extractDocumentOffer(document, command.titulo, location.href, command.url);
+      if (result.status === "ok") {
+        if (previousPrice === result.preco) { stable = true; break; }
+        previousPrice = result.preco;
+      } else {
+        previousPrice = null;
+        if (result.status !== "loading") break;
+      }
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
-    if (result.status === "loading") result = { status: "error", motivo: result.motivo || "O preço principal não apareceu." };
-    GM_setValue(RESULT_KEY, { ...result, requestId: command.requestId, produtoId: command.produtoId, checkedAt: Date.now() });
+    if (result.status === "loading" || (result.status === "ok" && !stable)) result = { status: "error", motivo: result.motivo || "O preço principal não estabilizou. Confira manualmente." };
+    if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId || !sameOffer(command.url, location.href)) return;
+    GM_setValue(RESULT_KEY, { ...result, robotVersion: BOT_VERSION, requestedUrl: command.url, requestId: command.requestId, produtoId: command.produtoId, checkedAt: Date.now() });
   }
 
   if (location.hostname === PANEL_HOST) {

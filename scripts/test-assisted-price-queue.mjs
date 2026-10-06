@@ -29,6 +29,14 @@ test('adiar não marca preço como confirmado; conferidos realmente saem da fila
  assert.deepEqual(ids(c),['a']);
 });
 
+test('reconferência inclui preços já confirmados sem falsificar a data ou reler o catálogo',()=>{
+ const c=setup();c.filaPrecosDados.todos[2].precoAtualizadoManualmenteEm=1;
+ c.filaPrecosDados.reconferirHoje=true;
+ assert.deepEqual(ids(c),['a','b','c']);
+ c.filaPrecosConferidos.add('a');assert.deepEqual(ids(c),['b','c']);
+ assert.equal(c.filaPrecosDados.todos[2].precoAtualizadoManualmenteEm,1);
+});
+
 test('posição da fila volta no mesmo dia sem salvar falsa conferência',()=>{
  const stateCode=html.slice(html.indexOf('let filaPrecosDados = null;'),html.indexOf('function millisPrecoAssistido('));
  const values=new Map();
