@@ -2,6 +2,7 @@ import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promise
 
 import { createHash } from "node:crypto";
 import { publicCatalogue } from "./public-catalogue.mjs";
+import offerReplacement from "../product-offer-replacement.js";
 import { decodeConfigFields, publicSiteConfig } from "./public-site-config.mjs";
 import { correctProductData } from "./product-title-corrections.mjs";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
@@ -1095,6 +1096,7 @@ function weeklyTopSnapshot(product, image, position) {
     // conferência manual recente quando o Top 6 aparece na vitrine.
     precoAtualizadoManualmente: product.precoAtualizadoManualmente === true,
     precoAtualizadoManualmenteEm: product.precoAtualizadoManualmenteEm || "",
+    anuncioSubstituidoEm: product.anuncioSubstituidoEm || "",
 
   };
 
@@ -1645,6 +1647,10 @@ try {
 // produto ativo. As regras editoriais continuam valendo somente para o sitemap.
 
 allProducts = allProducts.map(correctProductData);
+// Discard availability and price results belonging to a replaced seller's offer.
+for (const product of allProducts) {
+  if (marketplaceProducts[product.id] && !offerReplacement.statusFor(product, marketplaceProducts[product.id])) delete marketplaceProducts[product.id];
+}
 
 const rawShareProducts = allProducts
 

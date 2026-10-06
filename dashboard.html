@@ -1063,6 +1063,7 @@ FORMATO:
 
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261006-3"></script>
+    <script src="/product-offer-replacement.js?v=20261006-1"></script>
     <script src="/metricas-resumo.js?v=20260923-1"></script>
     <script>
         const firebaseConfig = {
@@ -2566,7 +2567,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                         <p class="detalhe-indisponivel">${escapeHtml(motivo)} Último preço consultado: ${escapeHtml(preco)}. O produto voltará à vitrine automaticamente se o anúncio ficar ativo novamente.</p>
                     </div>
                     <div class="acoes">
-                        <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')" aria-label="Alterar anúncio de ${escapeHtml(prod.titulo || 'produto')}">✎ Alterar link</button>
+                        <a class="btn-edit" href="painel-celular.html?substituirAnuncio=${encodeURIComponent(doc.id)}#precos-mobile">🔄 Substituir anúncio</a>
+                        <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')" aria-label="Alterar anúncio de ${escapeHtml(prod.titulo || 'produto')}">✎ Editar completo</button>
                         <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')" aria-label="Excluir ${escapeHtml(prod.titulo || 'produto')}">X</button>
                     </div>
                 </div>`;
@@ -3103,6 +3105,9 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             pararProdutosAdmin = db.collection("produtos").orderBy("dataCadastro", "desc").onSnapshot(snapshot => {
                 snapshotProdutosBackup = snapshot;
                 statusMercadoLivreAdminPronto.then(() => {
+                    snapshot.forEach(doc => {
+                        if (statusMercadoLivreAdmin[doc.id] && !window.RDCOfferReplacement.statusFor(doc.data(), statusMercadoLivreAdmin[doc.id])) delete statusMercadoLivreAdmin[doc.id];
+                    });
                     try {
                         atualizarCentralComProdutos(snapshot);
                     } catch (erroCentral) {

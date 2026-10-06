@@ -151,11 +151,12 @@
     </main>
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261006-3"></script>
+    <script src="/product-offer-replacement.js?v=20261006-1"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
       import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
       import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
-      import { getFirestore, collection, getDocs, query, where, limit, orderBy, addDoc, serverTimestamp, doc, getDoc, setDoc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+      import { getFirestore, collection, getDocs, query, where, limit, orderBy, addDoc, serverTimestamp, doc, getDoc, setDoc, updateDoc, deleteDoc, runTransaction, arrayUnion } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
       import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-ai.js";
       const cfg = {
           apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
@@ -336,7 +337,7 @@
         if (falhas) detalhes.push(falhas + " para revisão manual");
         const separados = [...automacaoPrecosIndisponiveis.values(), ...automacaoPrecosFalhas.values()];
         const listaSeparados = separados.length
-          ? '<details><summary>Ver todas as ' + separados.length + ' pendências</summary><ul class="precos-auto-lista">' + separados.map((item) => "<li>" + rankingEsc(item.titulo) + " — " + rankingEsc(item.motivo) + "</li>").join("") + "</ul></details>"
+          ? '<details><summary>Ver todas as ' + separados.length + ' pendências</summary><ul class="precos-auto-lista">' + separados.map((item) => "<li>" + rankingEsc(item.titulo) + " — " + rankingEsc(item.motivo) + '<button class="btn claro" type="button" data-substituir-anuncio="' + rankingEsc(item.id || "") + '">🔄 Substituir anúncio</button></li>').join("") + "</ul></details>"
           : "";
         alvo.innerHTML = (texto || "Automação pronta.") + (detalhes.length ? "<br><b>Separados:</b> " + detalhes.join(" · ") + "." + listaSeparados : "") + '<button id="precos-exportar-rodada" class="btn claro" type="button">Baixar relatório desta rodada</button>';
         $("precos-exportar-rodada").onclick = () => {
@@ -352,13 +353,15 @@
         const iniciar = $("precos-auto-iniciar"), continuar = $("precos-auto-continuar"), parar = $("precos-auto-parar");
         if (!iniciar) return;
         const roboPronto = typeof window.conferirPrecoNaAbaLocal === "function" && window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__);
-        iniciar.disabled = !filaPrecosDados || automacaoPrecosAtiva || !roboPronto;
+        const substituindo = Boolean($("precos-substituicao"));
+        iniciar.disabled = !filaPrecosDados || automacaoPrecosAtiva || filaPrecosSalvando || substituindo || !roboPronto;
+        continuar.disabled = filaPrecosSalvando || substituindo;
         iniciar.hidden = automacaoPrecosPausada;
         continuar.hidden = !automacaoPrecosPausada;
         parar.hidden = !automacaoPrecosAtiva;
-        $("precos-reconferir-hoje").disabled = automacaoPrecosAtiva || filaPrecosSalvando;
+        $("precos-reconferir-hoje").disabled = automacaoPrecosAtiva || filaPrecosSalvando || substituindo;
         if (automacaoPrecosAtiva) {
-          for (const id of ["precos-igual", "precos-novo", "precos-pular", "precos-editar", "precos-excluir"]) {
+          for (const id of ["precos-igual", "precos-novo", "precos-pular", "precos-editar", "precos-substituir", "precos-excluir"]) {
             const botao = $(id);
             if (botao) botao.disabled = true;
           }
@@ -399,7 +402,7 @@
           for (const id of (Array.isArray(salvo.conferidos) ? salvo.conferidos : []).slice(-2000)) if (typeof id === "string") filaPrecosConferidos.add(id);
           for (const [campo, destino] of [["falhas", automacaoPrecosFalhas], ["indisponiveis", automacaoPrecosIndisponiveis]]) {
             for (const item of (Array.isArray(salvo[campo]) ? salvo[campo] : []).slice(-2000)) {
-              if (Array.isArray(item) && typeof item[0] === "string" && item[1] && typeof item[1].motivo === "string") destino.set(item[0], item[1]);
+              if (Array.isArray(item) && typeof item[0] === "string" && item[1] && typeof item[1].motivo === "string") destino.set(item[0], { ...item[1], id: item[0] });
             }
           }
           filaPrecosIdAtual = typeof salvo.atual === "string" ? salvo.atual : "";
@@ -581,10 +584,16 @@
           : "Sem link válido do Mercado Livre. Corrija o cadastro antes de confirmar este produto.";
         $("precos-igual").disabled = !link || !valorSite;
         $("precos-novo").disabled = !link;
+        const substituir = document.createElement("button");
+        substituir.id = "precos-substituir";
+        substituir.type = "button";
+        substituir.className = "btn claro largo";
+        substituir.textContent = "🔄 Anúncio pausado ou encerrado? Substituir links";
+        $("precos-excluir").before(substituir);
         atualizarControlesAutomacaoPrecos();
       }
       async function carregarFilaPrecosAssistida() {
-        if (filaPrecosSalvando) return;
+        if (filaPrecosSalvando || $("precos-substituicao")) return;
         const botao = $("precos-iniciar");
         botao.disabled = true;
         botao.textContent = "Carregando produtos e visitas...";
@@ -604,10 +613,12 @@
           atualizarControlesAutomacaoPrecos();
           if (typeof window.conferirPrecoNaAbaLocal === "function") resumoAutomacaoPrecos("Fila carregada. Toque em “Conferir todos automaticamente” para começar.");
           if (!filaPrecosDados.todos.length) msg("precos-status", "Nenhum produto cadastrado foi encontrado.", "erro");
+          const indicado = new URLSearchParams(location.search).get("substituirAnuncio");
+          if (indicado) abrirSubstituicaoAnuncioFilaPrecosAssistida(indicado);
         } catch (erro) {
           msg("precos-status", "Não foi possível carregar a fila: " + String(erro?.message || erro), "erro");
         } finally {
-          botao.disabled = false;
+          botao.disabled = Boolean($("precos-substituicao"));
           botao.textContent = "↻ Atualizar fila";
           atualizarControlesAutomacaoPrecos();
         }
@@ -703,7 +714,7 @@
       }
 
       function separarProdutoAutomacao(produto, destino, motivo) {
-        destino.set(produto.id, { titulo: produto.titulo, motivo: String(motivo || "").trim(), tentativaEm: new Date().toISOString(), robotVersion: window.__RDC_BOT_PRECOS_LOCAL__?.version || "", url: linkPrecoAssistido(produto) });
+        destino.set(produto.id, { id: produto.id, titulo: produto.titulo, motivo: String(motivo || "").trim(), tentativaEm: new Date().toISOString(), robotVersion: window.__RDC_BOT_PRECOS_LOCAL__?.version || "", url: linkPrecoAssistido(produto) });
         filaPrecosPulados.add(produto.id);
         filaPrecosIdAtual = "";
         guardarPosicaoFilaPrecos();
@@ -786,6 +797,7 @@
       }
 
       function iniciarAutomacaoPrecosAssistida({ continuar = false } = {}) {
+        if (filaPrecosSalvando || $("precos-substituicao")) return;
         if (!filaPrecosDados) return msg("precos-status", "Carregue a fila de hoje antes de iniciar.", "erro");
         if (typeof window.conferirPrecoNaAbaLocal !== "function" || !window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__)) {
           atualizarControlesAutomacaoPrecos();
@@ -799,6 +811,82 @@
         resumoAutomacaoPrecos(continuar ? "Retomando após a confirmação humana..." : "Iniciando a conferência. Mantenha a aba do Mercado Livre aberta.");
         atualizarControlesAutomacaoPrecos();
         void executarAutomacaoPrecosAssistida();
+      }
+      function abrirSubstituicaoAnuncioFilaPrecosAssistida(produtoId = filaPrecosIdAtual) {
+        if (filaPrecosSalvando || automacaoPrecosAtiva || $("precos-substituicao") || !filaPrecosDados) return;
+        const produto = filaPrecosDados.todos.find(item => item.id === produtoId);
+        if (!produto) return msg("precos-status", "Produto não encontrado nesta fila. Atualize a fila ou confira o cadastro.", "erro");
+        const anteriorId = filaPrecosIdAtual;
+        filaPrecosIdAtual = produto.id;
+        $("precos-item").innerHTML = `<form id="precos-substituicao" class="precos-editor"><div class="etapa">🔄 Substituir anúncio sem excluir o produto</div><h3 id="precos-sub-titulo"></h3><p class="mini">Use quando o anúncio estiver pausado, encerrado ou sem estoque. A análise, o endereço da página e o histórico serão mantidos. Para um produto diferente, use Publicação expressa e crie um novo cadastro.</p><label for="precos-sub-link">Novo link completo do produto no Mercado Livre</label><input id="precos-sub-link" class="campo" type="url" inputmode="url" maxlength="1000" placeholder="https://produto.mercadolivre.com.br/MLB-..." required /><label for="precos-sub-afiliado">Novo link de afiliado correspondente</label><input id="precos-sub-afiliado" class="campo" type="url" inputmode="url" maxlength="1000" placeholder="Cole o link gerado pela sua conta de afiliado" required /><label class="mini"><input id="precos-sub-mesmo" type="checkbox" required /> Conferi: os dois links são do mesmo produto, modelo e versão deste cadastro.</label><p class="mini">O preço anterior será preservado como referência, não confirmado para o novo anúncio. Promoções antigas serão desativadas até você conferir e cadastrar a nova condição.</p><button id="precos-sub-salvar" class="btn verde" type="submit">💾 Salvar novos links</button><button id="precos-sub-cancelar" class="btn claro" type="button">Cancelar, manter anúncio atual</button><div id="precos-sub-status" class="status" role="status" aria-live="polite"></div></form>`;
+        const form = $("precos-substituicao");
+        form.dataset.produtoId = produto.id;
+        form.dataset.anteriorId = anteriorId;
+        form.dataset.linkOriginal = String(produto.link || "").trim();
+        form.dataset.afiliadoOriginal = String(produto.linkAfiliado || "").trim();
+        $("precos-sub-titulo").textContent = produto.titulo;
+        $("precos-iniciar").disabled = true;
+        $("precos-reconferir-hoje").disabled = true;
+        atualizarControlesAutomacaoPrecos();
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+        $("precos-sub-link").focus();
+      }
+      function cancelarSubstituicaoAnuncioFilaPrecosAssistida() {
+        if (filaPrecosSalvando) return;
+        filaPrecosIdAtual = $("precos-substituicao")?.dataset.anteriorId || "";
+        $("precos-substituicao")?.remove();
+        $("precos-iniciar").disabled = false;
+        renderizarFilaPrecosAssistida();
+      }
+      async function salvarSubstituicaoAnuncioFilaPrecosAssistida() {
+        if (filaPrecosSalvando || automacaoPrecosAtiva || !filaPrecosDados) return;
+        const form = $("precos-substituicao"), id = form?.dataset.produtoId;
+        const produto = filaPrecosDados.todos.find(item => item.id === id);
+        if (!produto || id !== filaPrecosIdAtual) return msg("precos-sub-status", "O produto mudou. Abra a substituição novamente.", "erro");
+        const input = { link: $("precos-sub-link").value.trim(), linkAfiliado: $("precos-sub-afiliado").value.trim(), sameProduct: $("precos-sub-mesmo").checked };
+        try { window.RDCOfferReplacement.validate(produto, input); }
+        catch (erro) { return msg("precos-sub-status", erro.message, "erro"); }
+        filaPrecosSalvando = true;
+        $("precos-sub-salvar").disabled = true;
+        $("precos-sub-cancelar").disabled = true;
+        atualizarControlesAutomacaoPrecos();
+        msg("precos-sub-status", "Salvando os novos links e preservando o anúncio anterior...");
+        try {
+          const ref = doc(db, "produtos", id);
+          // Read one current document on click; never overwrite a concurrent link change.
+          const campos = await runTransaction(db, async transaction => {
+            const snapshot = await transaction.get(ref);
+            if (!snapshot.exists()) throw new Error("O produto foi removido. Nenhum cadastro foi recriado.");
+            const atual = snapshot.data();
+            if (String(atual.link || "").trim() !== form.dataset.linkOriginal || String(atual.linkAfiliado || "").trim() !== form.dataset.afiliadoOriginal) {
+              throw new Error("Os links foram alterados em outro painel. Cancele e atualize a fila antes de substituir.");
+            }
+            const agora = serverTimestamp();
+            const patch = window.RDCOfferReplacement.buildPatch(atual, input, agora);
+            transaction.update(ref, { ...patch, atualizadoEm: agora,
+              historicoAnuncios: arrayUnion(window.RDCOfferReplacement.previousOffer(atual, new Date().toISOString())) });
+            return patch;
+          });
+          for (const listaProdutos of [filaPrecosDados.todos, filaPrecosDados.produtos]) {
+            const local = listaProdutos.find(item => item.id === id);
+            if (local) Object.assign(local, campos, { anuncioSubstituidoEm: new Date(), atualizadoEm: new Date(), _rdcPendingConfirmationId: "" });
+          }
+          filaPrecosConferidos.delete(id); filaPrecosPulados.delete(id); filaPrecosResultados.delete(id);
+          automacaoPrecosIndisponiveis.delete(id); automacaoPrecosFalhas.delete(id); automacaoPrecosVisitados.delete(id);
+          $("precos-substituicao").remove();
+          guardarPosicaoFilaPrecos();
+          renderizarFilaPrecosAssistida();
+          resumoAutomacaoPrecos("Novos links salvos. Confira o preço do novo anúncio antes de publicar.");
+          window.RDCPricePublication.saved("price-publication-mobile", false);
+          msg("precos-status", "✅ Anúncio substituído sem excluir a análise. Abra o novo anúncio e confirme o preço. Depois use Publicar vitrine para atualizar o site.", "ok");
+        } catch (erro) {
+          msg("precos-sub-status", "Não foi possível substituir: " + String(erro?.message || erro), "erro");
+        } finally {
+          filaPrecosSalvando = false;
+          for (const campoId of ["precos-sub-salvar", "precos-sub-cancelar"]) if ($(campoId)) $(campoId).disabled = false;
+          $("precos-iniciar").disabled = Boolean($("precos-substituicao"));
+          atualizarControlesAutomacaoPrecos();
+        }
       }
       const camposEdicaoFila = {
         titulo: "precos-ed-titulo", categoria: "precos-ed-categoria", selo: "precos-ed-selo",
@@ -982,6 +1070,11 @@
       });
       atualizarControlesAutomacaoPrecos();
       $("precos-item").addEventListener("submit", (evento) => {
+        if (evento.target?.id === "precos-substituicao") {
+          evento.preventDefault();
+          void salvarSubstituicaoAnuncioFilaPrecosAssistida();
+          return;
+        }
         if (evento.target?.id !== "precos-editor") return;
         evento.preventDefault();
         void salvarEdicaoProdutoFilaPrecosAssistida();
@@ -993,6 +1086,8 @@
         if (id === "precos-igual") void salvarFilaPrecoAssistida(null);
         if (id === "precos-novo") void salvarFilaPrecoAssistida($("precos-valor-visto")?.value);
         if (id === "precos-editar") abrirEdicaoProdutoFilaPrecosAssistida();
+        if (id === "precos-substituir") abrirSubstituicaoAnuncioFilaPrecosAssistida();
+        if (id === "precos-sub-cancelar") cancelarSubstituicaoAnuncioFilaPrecosAssistida();
         if (id === "precos-ed-cancelar") fecharEdicaoProdutoFilaPrecosAssistida();
         if (id === "precos-excluir") void excluirProdutoFilaPrecosAssistida();
         if (id === "precos-pular") {
@@ -1003,6 +1098,10 @@
           renderizarFilaPrecosAssistida();
           off("precos-status");
         }
+      });
+      $("precos-auto-resumo").addEventListener("click", evento => {
+        const botao = evento.target.closest?.("[data-substituir-anuncio]");
+        if (botao) abrirSubstituicaoAnuncioFilaPrecosAssistida(botao.dataset.substituirAnuncio);
       });
 
       function textoNormalizado(valor) {

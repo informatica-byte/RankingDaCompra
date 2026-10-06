@@ -1,6 +1,7 @@
 import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import { correctProductData } from "./product-title-corrections.mjs";
+import offerReplacement from "../product-offer-replacement.js";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import SEO_PRIORITIES from "../seo-priorities.js";
 import { renderProductDecision } from "./product-decision.mjs";
@@ -813,6 +814,9 @@ function buildSearchIndex(categories, products, productUrls, categoryNames, last
 }
 
 const [allCategories, allProducts, marketplaceProducts] = await loadData();
+for (const product of allProducts) {
+  if (marketplaceProducts[product.id] && !offerReplacement.statusFor(product, marketplaceProducts[product.id])) delete marketplaceProducts[product.id];
+}
 const candidateProducts = allProducts.map(correctProductData)
   .filter(editorialProduct)
   .filter((product) => marketplaceProducts[product.id]?.visible !== false)

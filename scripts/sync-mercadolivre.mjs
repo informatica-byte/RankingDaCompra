@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
+import offerReplacement from "../product-offer-replacement.js";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 
 const PROJECT_ID = "rankingdacompra";
@@ -1521,9 +1522,9 @@ async function main() {
     products,
     MAX_PARALLEL_REQUESTS,
     async (product) => {
-      const oldRecord = previous.products?.[product.id] || {};
+      const oldRecord = offerReplacement.statusFor(product, previous.products?.[product.id]) || {};
       const cachedResolution = mlbResolutions[product.id] || {};
-      const cachedItemId = cachedResolution.status === "ok"
+      const cachedItemId = cachedResolution.status === "ok" && !product.anuncioSubstituidoEm
         ? extractItemIdFromText(cachedResolution.mlb)
         : "";
       const itemId = await resolveItemId(

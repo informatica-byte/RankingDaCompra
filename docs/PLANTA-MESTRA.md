@@ -299,6 +299,14 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 
 O horário de 09:30 é uma preferência operacional da interface/robô. A automação de sincronização no GitHub está deliberadamente manual no estado atual; não confundir com o cron de histórico às 09:35 UTC.
 
+### Substituir anúncio pausado, encerrado ou sem estoque
+
+No painel móvel, a Conferência assistida oferece “Substituir links”, também acessível na lista de pendências do robô. No dashboard, o cartão de indisponível leva à mesma tela; tocar em Carregar fila abre o produto solicitado sem iniciar leituras automáticas.
+
+O administrador informa o novo link completo do Mercado Livre e seu link de afiliado correspondente, confirmando o mesmo produto, modelo e versão. Produto diferente exige novo cadastro. `product-offer-replacement.js` valida HTTPS/domínios, rejeita códigos MLB divergentes quando visíveis e não resolve links curtos nem verifica a titularidade da comissão: a confirmação humana é necessária.
+
+Uma transação lê somente o documento escolhido, recusa mudança concorrente dos links e grava apenas os campos da troca. A identidade, URL da análise, conteúdo, preços e histórico de preços permanecem; `historicoAnuncios` acrescenta os links e a prova anterior. A confirmação do preço anterior é invalidada e promoções antigas são desativadas, não apagadas. O produto volta à fila para conferência, depois deve-se usar Publicar vitrine. `anuncioSubstituidoEm` impede que resultados anteriores da API forneçam preço/disponibilidade ao novo anúncio nas vitrines e geradores. Não há exclusão nem consulta periódica adicional.
+
 ### Gerar e indexar
 
 1. `generate-sitemap.mjs` gera páginas e sitemap.

@@ -42,6 +42,7 @@
       bestChoicesGuideUrls: Array.isArray(config.bestChoicesGuideUrls) ? config.bestChoicesGuideUrls : guides.slice(0,3).map(g=>g.url)};
   }
   function priceState(product, status = {}, now = Date.now()) {
+    if (product.anuncioSubstituidoEm && !(millis(status?.checkedAt) > millis(product.anuncioSubstituidoEm))) status = {};
     status=status || {};
     const flash = product.ofertaRelampagoAtiva === true && Date.parse(product.ofertaRelampagoTerminaEm || '') > now;
     const end = product.promocaoValidaAte ? Date.parse(String(product.promocaoValidaAte).slice(0,10)+'T23:59:59-03:00') : Infinity;
