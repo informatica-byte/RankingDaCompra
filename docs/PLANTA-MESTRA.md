@@ -3,7 +3,7 @@
 > Documento de arquitetura, continuidade e reconstrução do sistema.
 > Fonte oficial: `informatica-byte/RankingDaCompra`, branch `main`.
 > Domínio público: <https://rankingdacompra.com.br/>.
-> Data da fotografia técnica: 04/10/2026. Consulte também `CORRECOES-AUDITORIA-20261004.md` para o contrato de publicação e proteção gradual.
+> Data da fotografia técnica: 06/10/2026. Consulte também `CORRECOES-AUDITORIA-20261004.md` para o contrato de publicação e proteção gradual.
 
 ## 1. Para que serve esta planta
 
@@ -486,3 +486,15 @@ A prova versão 3 mantém título solicitado/encontrado, valor e evidência. Nã
 A resposta inclui pedido, produto, URL solicitada/consultada, anúncio quando disponível, versão, hora, moeda e evidência. Abas antigas não respondem a pedidos de outro anúncio e pedidos substituídos não publicam respostas tardias. Ambos os painéis validam o resultado antes de escrever; o móvel revalida também o produto atual da fila. O limite percentual de 35% foi removido para permitir corrigir preços antigos errados quando o valor principal está comprovado. Dois blocos de preço/Pix no produto não devem levar à escolha do menor: usar a primeira cotação principal elegível na ordem da página.
 
 O painel móvel oferece “Revisar também os preços já conferidos hoje”. A opção reabre a fila sem falsificar datas nem escrever no banco; alternar depois de carregar reutiliza o catálogo em memória. Cada confirmação real mantém o fluxo manual existente e gera uma nova revisão. Preços errados já gravados e observações históricas não são apagados ou revertidos em massa: reconferir individualmente na fonte e depois publicar os dados atualizados. Não há CAPTCHA automático, nova chamada à API bloqueada, alteração de faturamento ou leituras periódicas adicionais do Firestore.
+
+## 22. Proteção e recuperação verificável — 06/10/2026
+
+Os clientes clássicos da home, dashboard e `growth-tools.js` usam Firebase 12.10.0 compat (app, auth quando necessário, app-check e firestore). O SDK 8.10.1 não disponibiliza o provider reCAPTCHA Enterprise utilizado e não deve ser reinserido. Painel móvel, Estúdio e AI Logic mantêm o SDK modular 12.10.0. App Check deve ser inicializado antes das chamadas protegidas; monitoramento e aplicação obrigatória são configurações do console, não do HTML. Confirmar cada serviço separadamente: AI Logic já teve aplicação básica verificada no console; isso não significa enforcement do Firestore ou Authentication.
+
+O botão de backup reutiliza os snapshots de produtos e categorias confirmados pelo servidor. Ao clicar, lê uma vez a coleção pequena `configuracoes` do servidor, incluindo `site` e ranking semanal quando existente. O formato `rankingdacompra-backup-v1` aceita o novo campo opcional `configurations` sem invalidar cópias antigas. `siteConfig` mantém a compatibilidade, mas nas novas cópias vem do documento privado atual, não do JSON público gerado. Se a configuração falhar, o download não é declarado completo. Não há leitura periódica extra.
+
+`scripts/restore-backup.mjs` valida todos os dados antes de gravar e usa criação atômica somente de documentos ausentes. Recupera produtos, categorias e configurações; nunca substitui registros atuais ou criados por outro processo. Cópias legadas recuperam apenas `siteConfig`, não o ranking semanal ausente. `scripts/verify-restoration-offline.mjs copia.json` simula a recuperação em memória, compara todos os campos e repete para provar ausência de sobrescrita, sem consultar ou gravar Firestore.
+
+O ZIP privado para pendrive deve conter código, dados, relatório da simulação e instruções, com SHA-256 e teste CRC. Não publicar esse ZIP no repositório. Ele não recupera senhas, Authentication, domínio, DNS, segredos, contas de afiliados, métricas de visitas nem fila MLB. Guardar uma segunda cópia externa é uma ação do proprietário; não declarar concluída enquanto o pendrive não for copiado.
+
+Revisões editoriais por produto e modelo removem garantias de desempenho, laudos sem prova, cotação fixa no resumo e compatibilidade universal não testada. WAP Power Speed Max e iPhone 17 Pro Max usam fontes oficiais; marcas sem fonte confirmada recebem limitações explícitas, não selo de fabricante. Preços, links, IDs e datas são preservados. Auditoria automatizada de todo o catálogo não equivale a ensaio físico ou validação técnica individual de todos os produtos. Registros históricos sem prova continuam preservados e fora das alegações comerciais de mínimo; não podem ser comprovados retroativamente apenas por reconferência atual.

@@ -23,6 +23,21 @@
     "searchAndAnalytics": ["Google Search Console", "Google Analytics", "IndexNow"],
     "video": ["Canvas 9:16", "MediaRecorder", "Gemini TTS", "YouTube Data API"]
   },
+  "clientProtection": {
+    "firebaseVersion": "12.10.0",
+    "classicClients": "index.html, dashboard.html and growth-tools.js use compat app/app-check/firestore plus auth on dashboard",
+    "enterpriseProvider": "Firebase 8.10.1 lacks the Enterprise provider used by these pages; do not restore that SDK",
+    "enforcement": "Verify console status separately per service; initialize client provider before protected requests; no billing upgrade"
+  },
+  "backupRecovery": {
+    "format": "rankingdacompra-backup-v1",
+    "newOptionalField": "configurations: server-confirmed configuration documents including site and weekly ranking",
+    "export": "Reuse server-confirmed product/category snapshots; read small configuration collection once on backup button only",
+    "restore": "Validate all data, create missing documents atomically, never overwrite existing records",
+    "offlineVerification": "scripts/verify-restoration-offline.mjs compares all fields and repeats without production writes",
+    "legacy": "Old exports only contain public siteConfig; do not claim private or weekly configuration recovery",
+    "excluded": ["Authentication", "secrets", "domain/DNS credentials", "visitas", "mlbSolicitacoes", "external accounts"]
+  },
   "entrypoints": [
     { "path": "index.html", "access": "public", "role": "storefront" },
     { "path": "melhores-escolhas.html", "access": "public", "role": "permanent-curation-hub" },
@@ -179,6 +194,8 @@
     "scripts/public-site-config.mjs",
     "scripts/public-catalogue.mjs",
     "scripts/restore-backup.mjs",
+    "scripts/verify-backup.mjs",
+    "scripts/verify-restoration-offline.mjs",
     "scripts/generate-sitemap.mjs",
     "scripts/generate-discovery.mjs",
     "scripts/generate-best-choices.mjs",

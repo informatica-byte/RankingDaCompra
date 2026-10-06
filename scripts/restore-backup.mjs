@@ -29,9 +29,10 @@ export async function restoreMissing(firestore, backup, Timestamp) {
   const prepared = [
     ['categorias', backup.categories, 'categoriesCreated'],
     ['produtos', backup.products, 'productsCreated'],
+    ['configuracoes', backup.configurations || [{ id: 'site', data: backup.siteConfig }], 'configurationsCreated'],
   ].map(([collection, items, counter]) => [collection,
     items.map(item => ({ id: item.id, data: restoreValue(item.data, Timestamp) })), counter]);
-  const summary = { categoriesCreated: 0, productsCreated: 0, existingSkipped: 0 };
+  const summary = { categoriesCreated: 0, productsCreated: 0, configurationsCreated: 0, existingSkipped: 0 };
   for (const [collection, items, counter] of prepared) {
     for (const item of items) {
       const reference = firestore.collection(collection).doc(item.id);
@@ -64,6 +65,6 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     const { getFirestore, Timestamp } = await import('firebase-admin/firestore');
     if (!admin.apps.length) admin.initializeApp({ credential: admin.credential.applicationDefault(), projectId: project });
     const result = await restoreMissing(getFirestore(), backup, Timestamp);
-    console.log(`Recuperação concluída: ${result.categoriesCreated} categorias e ${result.productsCreated} produtos criados; ${result.existingSkipped} registros existentes preservados.`);
+    console.log(`Recuperação concluída: ${result.categoriesCreated} categorias, ${result.productsCreated} produtos e ${result.configurationsCreated} configuração criados; ${result.existingSkipped} registros existentes preservados.`);
   }
 }

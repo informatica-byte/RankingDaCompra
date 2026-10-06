@@ -40,6 +40,16 @@ test("App Check é preparado em todos os clientes sem ativar enforcement", () =>
   assert.match(generator, /growth-tools\.js\?v=20261006-audit/);
 });
 
+test("clientes clássicos usam SDK compat com provider Enterprise disponível", () => {
+  for (const client of [home, dashboard, growth]) {
+    assert.doesNotMatch(client, /firebasejs\/8\.10\.1/);
+    assert.match(client, /firebasejs\/12\.10\.0\/firebase-app-compat\.js/);
+    assert.match(client, /firebasejs\/12\.10\.0\/firebase-app-check-compat\.js/);
+    assert.match(client, /firebasejs\/12\.10\.0\/firebase-firestore-compat\.js/);
+  }
+  assert.match(dashboard, /firebasejs\/12\.10\.0\/firebase-auth-compat\.js/);
+});
+
 test("histórico fica identificado como comparação, sem contradizer preço conferido", () => {
   assert.match(growth, /Histórico para comparar com o preço conferido acima/);
   assert.match(growth, /Último registro no histórico:/);

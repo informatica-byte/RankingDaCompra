@@ -448,10 +448,10 @@
     </div>
 
     <!-- SDKs do Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app-check.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.10.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.10.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore-compat.js"></script>
 
     <!-- Firebase AI Logic + App Check: a chave do Gemini fica protegida no Firebase. -->
     <script type="module">
@@ -3063,16 +3063,22 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             botao.disabled = true;
             status.textContent = 'Preparando cópia...';
             try {
-                const resposta = await fetch('./site-config.json', { cache: 'no-store' });
-                if (!resposta.ok) throw new Error('Não foi possível incluir as configurações do site.');
                 const registros = snapshot => snapshot.docs.map(doc => ({ id: doc.id, data: serializarValorBackup(doc.data()) }));
+                // Só ao clicar em backup: inclui a configuração privada atual e o
+                // ranking semanal, não apenas o snapshot público do site.
+                const configuracoes = await db.collection('configuracoes').get({ source: 'server' });
+                if (configuracoes.metadata.fromCache) throw new Error('As configurações precisam ser confirmadas pelo servidor.');
+                const configurationRecords = registros(configuracoes);
+                const site = configurationRecords.find(item => item.id === 'site');
+                if (!site) throw new Error('A configuração principal não foi encontrada; nenhuma cópia parcial foi baixada.');
                 const backup = {
                     format: 'rankingdacompra-backup-v1',
                     exportedAt: new Date().toISOString(),
                     source: 'painel administrativo',
                     products: registros(snapshotProdutosBackup),
                     categories: registros(snapshotCategoriasBackup),
-                    siteConfig: await resposta.json(),
+                    siteConfig: site.data,
+                    configurations: configurationRecords,
                 };
                 if (!backup.products.length || !backup.categories.length) throw new Error('A lista está incompleta. Tente novamente depois de carregar o painel.');
                 const conteudo = JSON.stringify(backup, null, 2);
@@ -3083,7 +3089,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 link.download = `rankingdacompra-backup-${diaBrasilRotina(new Date())}.json`;
                 link.click();
                 setTimeout(() => URL.revokeObjectURL(url), 30000);
-                status.textContent = `Cópia baixada: ${backup.products.length} produtos e ${backup.categories.length} categorias. Guarde o arquivo em local seguro.`;
+                status.textContent = `Cópia baixada: ${backup.products.length} produtos, ${backup.categories.length} categorias e ${backup.configurations.length} configurações. Guarde o arquivo em local seguro.`;
             } catch (erro) {
                 status.textContent = 'Falha no download: ' + String(erro?.message || erro);
             } finally {
