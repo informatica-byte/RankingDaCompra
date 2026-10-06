@@ -33,10 +33,10 @@ Fontes: [Nike MLB2926671021](https://produto.mercadolivre.com.br/MLB-2926671021-
 
 ## Como usar
 
-1. Atualizar o userscript já instalado em [bot-precos.user.js](https://rankingdacompra.com.br/bot-precos.user.js) no Tampermonkey; verificar 2.2.0 e recarregar o painel.
+1. Atualizar o userscript já instalado em [bot-precos.user.js](https://rankingdacompra.com.br/bot-precos.user.js) no Tampermonkey; verificar 2.3.0 e recarregar o painel.
 2. Entrar no painel móvel, abrir Conferência assistida e marcar “Revisar também os preços já conferidos hoje”.
 3. Carregar fila e iniciar com o robô novo. Manter a janela do anúncio aberta. CAPTCHA continua sendo resolvido pelo usuário.
-4. Conferir manualmente os casos separados, especialmente grandes diferenças. Não excluir produtos só porque a leitura falhou.
+4. Conferir manualmente os casos separados. Grandes diferenças comprovadas pelo robô 2.3.0 podem ser corrigidas automaticamente. Não excluir produtos só porque a leitura falhou.
 5. Ao concluir, publicar a vitrine pelo fluxo existente. Não repetir a API bloqueada como tentativa de reparar o robô.
 
 O reparo do código não corrige sozinho os preços já gravados. O painel estava sem login na sessão de trabalho; nenhum preço do Firestore foi alterado nesta preparação. História, datas anteriores, configurações, afiliados e produtos foram preservados. Observações históricas suspeitas não são apagadas sem auditoria e confirmação do valor real.
@@ -85,3 +85,20 @@ Regras adicionadas:
 8. `docs/ROBO-PRECOS-20261006.md`
 
 Não há migração do Firestore, exclusão de histórico, alteração de afiliados, geração de preços ou novas consultas periódicas. A reconferência do catálogo continua pendente; atualizar o software não corrige os registros antigos automaticamente. Os casos sem prova suficiente devem ser conferidos/ajustados manualmente e só então publicados na vitrine.
+
+## Complemento 2.3.0 — conferência simplificada solicitada pelo administrador
+
+Base oficial `df3ba2d86127fe4c94c16785c39319642e1b183c`. O administrador pediu conferir apenas o mesmo produto e seu valor. A rodada 2.2.0 foi interrompida com 9 confirmações e 16 separados; não é auditoria dos 475 produtos. A preparação ocorre em cópia isolada, com os oito arquivos de entrada conferidos por hash contra a árvore oficial.
+
+Falha real reproduzida no JBL Tune 520BT (catálogo MLB26833603): o seletor amplo capturava R$ 232,65 do preço principal e R$ 269,90 em “Outras opções de compra”. A presença de outra oferta provocava falsa ambiguidade. Ambos os valores foram observados na página renderizada em 06/10/2026; não são promessa de preço permanente.
+
+Regras atuais substituem as exigências mais restritivas da seção 2.2.0:
+
+- Excluir explicitamente `.ui-pdp-other-sellers` e `.ui-pdp-other-sellers-item`, além de parcelas, cashback, preço anterior, variantes e recomendações. Ler a primeira cotação principal elegível, nunca buscar a mais barata entre vendedores.
+- Título compatível (inclui diferenças de pontuação/formatação), URL correspondente e valor visível continuam necessários. Outro modelo identificável no título, resposta de outra aba/pedido, moeda diferente ou preço oculto ainda bloqueiam.
+- Ficha técnica incompleta, código de rodapé ausente e “Escolha” em um tamanho não especificado não bloqueiam mais. Não é confirmação de todas as variantes; continua necessário verificar a opção/preço final ao comprar. Contradição explícita de cor/tamanho/voltagem especificada no cadastro é outro produto e fica separada.
+- Não confrontar todos os códigos do título com cada campo “Modelo” da ficha (por exemplo, MP5 e RS-7007BR no mesmo produto); não exigir repetir a query da URL em controles da página. Campos técnicos coletados continuam na evidência.
+- JSON-LD divergente de Pix/promoção não bloqueia o valor principal. Limite de 35% removido: preços antigos errados precisam poder ser corrigidos.
+- Prova versão 3 e userscript mínimo 2.3.0; dois painéis continuam validando produto, pedido, URL, valor principal e data antes de salvar. Dois valores estáveis são obrigatórios. Histórico, afiliados, configurações e revisão manual preservados.
+
+Arquivos deste complemento: `bot-precos.user.js`, `assisted-price-safety.js`, `painel-celular.html`, `dashboard.html`, `scripts/test-assisted-price-safety.mjs`, `docs/PLANTA-MESTRA.md`, `docs/planta-mestra.json`, `docs/ROBO-PRECOS-20261006.md`.

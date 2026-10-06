@@ -48,7 +48,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.2.0');
+  assert.equal(result.robotVersion, '2.3.0');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -58,8 +58,11 @@ test('AggregateOffer lowPrice e metadados isolados nunca substituem o preço pri
   const { context: c } = setup(page({ prices: [], structured: [structuredOffer(85.40, title, url, 'AggregateOffer')] }));
   assert.equal(c.extractDocumentOffer(c.document, title, url).status, 'loading');
 });
-test('preço estruturado divergente, duas ofertas visíveis ou moeda diferente requerem revisão', () => {
-  for (const doc of [page({structured:[structuredOffer(85.40)]}), page({prices:[money(358.79),money(349.90)]}), page({prices:[money(358.79,{currency:'US$'})]})]) {
+test('preço principal tem prioridade sobre JSON-LD e cópias Pix, sem escolher o menor', () => {
+  for (const doc of [page({structured:[structuredOffer(85.40)]}), page({prices:[money(358.79),money(349.90)]})]) {
+    const { context: c } = setup(doc); assert.equal(c.extractDocumentOffer(doc, title, url).preco, 358.79);
+  }
+  for (const doc of [page({prices:[money(358.79,{currency:'US$'})]})]) {
     const { context: c } = setup(doc); assert.equal(c.extractDocumentOffer(doc, title, url).status, 'loading');
   }
 });
@@ -102,17 +105,17 @@ test('preço que oscila até o prazo acabar não é publicado como confirmado', 
   setCommand(command);await c.publishCurrentPageResult(command);
   assert.equal(writes.length,1);assert.equal(writes[0].status,'error');
 });
-test('validador recusa robô antigo, produto trocado, resposta antiga e queda ou aumento grande', async () => {
+test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo muito divergente', async () => {
   const {context:c,writes,setCommand}=setup();
   const command={requestId:'now',produtoId:'a',titulo:title,url,createdAt:Date.now()};
   setCommand(command); await c.publishCurrentPageResult(command);
-  for (const result of [{...writes[0],robotVersion:'2.1.0'},{...writes[0],produtoId:'b'},{...writes[0],requestedUrl:'https://example.com/'},{...writes[0],checkedAt:Date.now()-125000},{...writes[0],mainPrice:85.40}]) assert.ok(c.RDCAssistedPriceSafety.validate(result,{produtoId:'a',url,titulo:title,previousPrice:358.79}));
-  assert.match(c.RDCAssistedPriceSafety.validate(writes[0],{produtoId:'a',url,titulo:title,previousPrice:85.40}),/35%/);
+  for (const result of [{...writes[0],robotVersion:'2.2.0'},{...writes[0],produtoId:'b'},{...writes[0],requestedUrl:'https://example.com/'},{...writes[0],checkedAt:Date.now()-125000},{...writes[0],mainPrice:85.40}]) assert.ok(c.RDCAssistedPriceSafety.validate(result,{produtoId:'a',url,titulo:title,previousPrice:358.79}));
+  for(const previousPrice of [85.40,1500]) assert.equal(c.RDCAssistedPriceSafety.validate(writes[0],{produtoId:'a',url,titulo:title,previousPrice}), '');
 });
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261006-2/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261006-3/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
@@ -134,13 +137,15 @@ test('wid no fragmento/query fixa o vendedor; identificadores conflitantes são 
   }
 });
 
-test('regressão Lotus: título branco não prova cor branca nem vendedor do wid', () => {
+test('regressão Lotus: bloquear cor explicitamente diferente, não exigir código do rodapé', () => {
   const expected='Gerador De Espuma A Bateria 2l Lotus 7.4v 3 Bar Lavagem Automotiva Branco';
   const catalog='https://www.mercadolivre.com.br/gerador/p/MLB57289720';
   const doc=page({foundTitle:expected,listing:'7685968580',attributes:[{name:'Cor',value:'Bege'}],selected:[],prices:[money(139.49)]});
   const {context:c}=setup(doc);
-  assert.match(c.extractDocumentOffer(doc,expected,catalog+'#wid=MLB5296312807').motivo,/outro anúncio/);
+  assert.match(c.extractDocumentOffer(doc,expected,catalog+'#wid=MLB5296312807').motivo,/cor/);
   assert.match(c.extractDocumentOffer(doc,expected,catalog).motivo,/cor/);
+  const missingFooter=page({foundTitle:expected,listing:'',attributes:[],selected:[],prices:[money(139.49)]});
+  assert.equal(c.extractDocumentOffer(missingFooter,expected,catalog).preco,139.49);
 });
 
 test('preços dos chips de variantes não contam como preço principal', () => {
@@ -149,21 +154,24 @@ test('preços dos chips de variantes não contam como preço principal', () => {
   const {context:c}=setup(doc);assert.equal(c.extractMainPrice(doc).length,1);assert.equal(c.extractMainPrice(doc)[0],139.49);
 });
 
-test('variação na barra de endereço não dispensa tamanho escolhido no controle', () => {
+test('JBL: cotação de outros vendedores não bloqueia nem substitui o preço principal',()=>{
+  const otherSeller=value=>({...money(value),closest:selector=>selector.includes('.ui-pdp-other-sellers')?{}:null});
+  const doc=page({prices:[otherSeller(269.90),money(232.65),otherSeller(199.90)]});
+  const {context:c}=setup(doc);assert.equal(c.extractMainPrice(doc)[0],232.65);
+});
+
+test('mesmo produto e preço principal dispensam seletor obrigatório e repetição da query no controle', () => {
   for(const doc of [page({attributes:[{name:'Tamanho',value:'Escolha'}]}),page({selected:[]})]) {
-    const {context:c}=setup(doc);assert.equal(c.extractDocumentOffer(doc,title,url).status,'loading');
-    assert.match(c.extractDocumentOffer(doc,title,url).motivo,/Selecione|controle selecionado/);
+    const {context:c}=setup(doc);assert.equal(c.extractDocumentOffer(doc,title,url).preco,358.79);
   }
 });
 
-test('cor/tamanho/voltagem/modelo divergentes preservam o cadastro nos dois verificadores', () => {
+test('característica explícita diferente preserva cadastro; ausência da ficha não bloqueia', () => {
   const {context:c}=setup();
   const cases=[
     ['Fone JBL Tune 520BT Preto',[{name:'Cor',value:'Branco'}],/cor/],
-    ['Fone JBL Tune 520BT Preto',[],/cor/],
     ['Tênis Nike tamanho 34',[{name:'Tamanho',value:'39 BR'}],/tamanho/],
     ['Air fryer 220V',[{name:'Voltagem',value:'127V'}],/voltagem/],
-    ['Fone JBL Tune 520BT',[{name:'Modelo',value:'Tune 720BT'}],/modelo/],
   ];
   for(const [expected,attrs,reason] of cases) {
     assert.match(c.variantMismatch(expected,attrs),reason);assert.match(c.RDCAssistedPriceSafety.variantMismatch(expected,attrs),reason);
@@ -172,28 +180,44 @@ test('cor/tamanho/voltagem/modelo divergentes preservam o cadastro nos dois veri
     ['Fone JBL Tune 520BT Preto',[{name:'Cor',value:'Preta'},{name:'Modelo',value:'Tune 520BT'}]],
     ['Tênis Nike tamanho 34',[{name:'Tamanho',value:'34 BR'}]],
     ['Air fryer 220V',[{name:'Voltagem',value:'220 V'}]],
+    ['Fone JBL Tune 520BT Preto',[]],
+    ['Multimídia 7 Carplay Android Mp5 RS-7007BR',[{name:'Modelo',value:'RS-7007BR'}]],
+    ['Notebook Asus Vivobook Ryzen 5 7520u 16gb 512ssd',[{name:'Modelo',value:'E1504'}]],
   ]) {assert.equal(c.variantMismatch(expected,attrs),'');assert.equal(c.RDCAssistedPriceSafety.variantMismatch(expected,attrs),'');}
 });
 
-test('variante única aceita cor da ficha visível, mas seletor Escolha nunca é substituído pela ficha', () => {
+test('ficha e seletor incompletos não impedem preço principal do mesmo produto', () => {
   const expected='Fone JBL Tune 520BT Preto';const raw='https://produto.mercadolivre.com.br/MLB-2926671021-fone-_JM';
   const specs=[{name:'Cor',value:'Preto'},{name:'Modelo',value:'Tune 520BT'}];
   const doc=page({foundTitle:expected,selected:[],specs});const {context:c}=setup(doc);
   assert.equal(c.extractDocumentOffer(doc,expected,raw).status,'ok');
   const incomplete=page({foundTitle:expected,specs,attributes:[{name:'Cor',value:'Escolha'}]});
-  assert.equal(c.extractDocumentOffer(incomplete,expected,raw).status,'loading');
+  assert.equal(c.extractDocumentOffer(incomplete,expected,raw).status,'ok');
 });
 
-test('painel recusa prova antiga, ausente, anúncio/variação/título trocado ou atributo adulterado', async () => {
+test('painel recusa prova antiga, ausente, título de outro pedido ou produto diferente', async () => {
   const {context:c,writes,setCommand}=setup();
   const command={requestId:'variant',produtoId:'a',titulo:title,url,createdAt:Date.now()};setCommand(command);await c.publishCurrentPageResult(command);
-  const result=writes[0];assert.equal(result.proofVersion,2);
+  const result=writes[0];assert.equal(result.proofVersion,3);
   for(const invalid of [{...result,proofVersion:1},{...result,variantProof:null},
-    {...result,variantProof:{...result.variantProof,listingId:'MLB7685968580'}},
-    {...result,variantProof:{...result.variantProof,selectedVariation:'123456789'}},
-    {...result,variantProof:{...result.variantProof,expectedTitle:'Outro produto'}},
-    {...result,variantProof:{...result.variantProof,attributes:[{name:'Tamanho',value:'Escolha'}]}}]) {
+    {...result,proofVersion:2},{...result,tituloEncontrado:'Tênis Adidas Superstar Masculino'},
+    {...result,variantProof:{...result.variantProof,expectedTitle:'Outro produto'}}]) {
     assert.ok(c.RDCAssistedPriceSafety.validate(invalid,{produtoId:'a',url,titulo:title,previousPrice:358.79}));
+  }
+});
+
+test('comparação leve aceita formatação e ficha incompleta, não outro modelo no título',()=>{
+  const {context:c}=setup();
+  const same=[
+    ['Gerador De Espuma A Bateria 2l Lotus 74v 3 Bar Lavagem Automotiva Branco','Gerador de Espuma a Bateria 2L Lotus 7.4V 3 Bar Lavagem Automotiva Branco'],
+    ['Multimídia 7 Polegadas Carplay Android auto sem fio Mp5 Rs-7007br 7 cor preto','Multimídia 7 Polegadas Carplay Android Auto sem fio MP5 RS7007BR Preto'],
+    ['Notebook Asus Vivobook Go 15 Amd Ryzen 5 7520u 16gb 512ssd Mixed Black','Notebook Asus Vivobook Go 15 AMD Ryzen 5 7520U 16GB 512GB SSD Mixed Black'],
+  ];
+  for(const [expected,found] of same) {assert.equal(c.matchingProduct(expected,found),true);assert.equal(c.RDCAssistedPriceSafety.matchingProduct(expected,found),true);}
+  for(const [expected,found] of [['Fone JBL Tune 520BT Preto Bluetooth','Fone JBL Tune 720BT Preto Bluetooth'],['Notebook Asus Vivobook Ryzen 5','Impressora HP Laser 135A'],
+    ['Notebook Dell Inspiron Intel Core i5 Preto','Notebook Dell Inspiron Intel Core i7 Preto'],
+    ['Smartphone Samsung Galaxy A55 128GB Preto','Smartphone Samsung Galaxy A55 256GB Preto']]) {
+    assert.equal(c.matchingProduct(expected,found),false);assert.equal(c.RDCAssistedPriceSafety.matchingProduct(expected,found),false);
   }
 });
 
