@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.1.0
+// @version      2.2.0
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -18,7 +18,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.1.0";
+  const BOT_VERSION = "2.2.0";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -62,16 +62,91 @@
     try {
       const url = new URL(rawUrl);
       if (url.protocol !== "https:" || !/(^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) return null;
-      const listing = (url.searchParams.get("pdp_filters") || "").match(/item_id:(MLB\d+)/i)?.[1]
-        || url.pathname.match(/(?:^|\/)MLB-(\d+)/i)?.[0]?.replace(/^\//, "").replace("-", "");
-      const catalog = url.pathname.match(/\/p\/(MLB\d+)/i)?.[1];
-      return { key: String(listing || catalog || url.hostname + url.pathname).toUpperCase(), variation: url.searchParams.get("searchVariation") || "" };
+      const item = value => String(value || "").match(/^MLB-?(\d{6,})$/i)?.[1];
+      const hash = new URLSearchParams(url.hash.slice(1));
+      const ids = [(url.searchParams.get("pdp_filters") || "").match(/(?:^|[|,])item_id:(MLB-?\d+)/i)?.[1],
+        url.pathname.match(/(?:^|\/)(MLB-\d+)/i)?.[1], url.searchParams.get("wid"), hash.get("wid")]
+        .filter(Boolean).map(item);
+      if (ids.some(id => !id) || new Set(ids).size > 1) return null;
+      const listing = ids[0] ? "MLB" + ids[0] : "";
+      const catalog = url.pathname.match(/\/p\/(MLB\d+)/i)?.[1]?.toUpperCase() || "";
+      return { key: String(listing || catalog || url.hostname + url.pathname).toUpperCase(), listing, catalog,
+        variation: url.searchParams.get("searchVariation") || "", attributes: url.searchParams.get("attributes") || "" };
     } catch { return null; }
   }
 
   function sameOffer(expectedUrl, actualUrl) {
     const expected = offerIdentity(expectedUrl), actual = offerIdentity(actualUrl);
-    return !!expected && !!actual && expected.key === actual.key && (!expected.variation || expected.variation === actual.variation);
+    return !!expected && !!actual && expected.key === actual.key && (!expected.variation || expected.variation === actual.variation)
+      && (!expected.attributes || expected.attributes === actual.attributes);
+  }
+
+  function visibleNode(documentHtml, node) {
+    if (!node || node.closest('[hidden], [aria-hidden="true"]')) return false;
+    const view = documentHtml.defaultView;
+    if (!view) return false;
+    const style = view.getComputedStyle(node);
+    return style.display !== "none" && style.visibility !== "hidden" && node.getClientRects().length > 0;
+  }
+
+  function variantColors(value) {
+    const aliases = { branca: "branco", preta: "preto", vermelha: "vermelho", amarela: "amarelo", roxa: "roxo", dourada: "dourado" };
+    return [...new Set(normalizeText(value).split(/\s+/).map(word => aliases[word] || word)
+      .filter(word => /^(branco|preto|azul|vermelho|verde|amarelo|bege|cinza|prata|dourado|rosa|roxo|marrom|laranja|transparente)$/.test(word)))];
+  }
+
+  function variantMismatch(title, attributes) {
+    if (!Array.isArray(attributes) || attributes.some(a => !a || typeof a.name !== "string" || typeof a.value !== "string" || !a.value.trim() || /\b(escolha|selecione|selecionar)\b/.test(normalizeText(a.value)))) return "Selecione e confirme a variação no anúncio. Preço preservado.";
+    const color = attributes.filter(a => /^cor(?:es)?$/.test(normalizeText(a.name)));
+    const expectedColors = variantColors(title);
+    if (expectedColors.length && (!color.length || color.some(a => expectedColors.some(c => !variantColors(a.value).includes(c))))) return "A cor selecionada não corresponde ao cadastro ou não foi comprovada. Confira manualmente.";
+    const expectedSize = normalizeText(title).match(/\b(?:tamanho|tam|numero|numeracao)\s+(\d{1,3}|x{0,3}[pmg]{1,3})\b/)?.[1];
+    if (expectedSize && !attributes.some(a => /^tamanho|numeracao/.test(normalizeText(a.name)) && normalizeText(a.value).split(/\s+/).includes(expectedSize))) return "O tamanho selecionado não corresponde ao cadastro. Confira manualmente.";
+    const voltages = normalizeText(title).match(/\b(?:110|127|220|240)\s*v\b/g) || [];
+    const voltage = attributes.filter(a => /voltagem|tensao/.test(normalizeText(a.name)));
+    if (voltage.length && voltages.some(v => voltage.some(a => !normalizeText(a.value).replace(/\s/g, "").includes(v.replace(/\s/g, ""))))) return "A voltagem selecionada não corresponde ao cadastro. Confira manualmente.";
+    const modelCodes = normalizeText(title).split(/\s+/).filter(word => /[a-z]/.test(word) && /\d/.test(word)
+      && !/^\d+(?:v|w|kw|gb|tb|mb|mm|cm|ml|l|kg|g|cc|mah|ah|hz|khz|mhz|ghz|bar|psi|btus?|g)$/.test(word));
+    const models = attributes.filter(a => /^modelo(?: detalhado| alfanumerico)?$/.test(normalizeText(a.name)));
+    if (modelCodes.length && models.length && modelCodes.some(code => !models.some(a => normalizeText(a.value).split(/\s+/).includes(code)))) return "O modelo selecionado não corresponde ao cadastro. Confira manualmente.";
+    return "";
+  }
+
+  function extractVariantProof(documentHtml, expectedTitle, requestedUrl, finalUrl) {
+    const requested = offerIdentity(requestedUrl), actual = offerIdentity(finalUrl);
+    const listingIds = [...documentHtml.querySelectorAll('.ui-vpp-denounce__info, .ui-pdp-denounce__info')]
+      .filter(node => visibleNode(documentHtml, node)).map(node => String(node.textContent || "").match(/An[uú]ncio\s*#?\s*(?:MLB-?)?(\d{6,})/i)?.[1]).filter(Boolean);
+    const ids = [...new Set(listingIds)];
+    if (ids.length !== 1) return { motivo: "O código do anúncio visível não foi comprovado. Confira manualmente." };
+    const listingId = "MLB" + ids[0];
+    if ((requested.listing && requested.listing !== listingId) || (actual.listing && actual.listing !== listingId)) return { motivo: "O Mercado Livre abriu outro anúncio/vendedor. Preço preservado; confira o link do cadastro." };
+    const attributes = [];
+    for (const node of documentHtml.querySelectorAll('.ui-pdp-outside_variations__title, .ui-pdp-variations__title')) {
+      if (!visibleNode(documentHtml, node)) continue;
+      const text = String(node.textContent || "").replace(/\s+/g, " ").trim();
+      const separator = text.indexOf(":");
+      if (separator < 0) return { motivo: "O seletor de variação não foi reconhecido. Confira manualmente." };
+      attributes.push({ name: text.slice(0, separator).trim(), value: text.slice(separator + 1).trim() });
+    }
+    // Produtos de variante única podem comprovar cor/modelo na ficha visível.
+    for (const row of documentHtml.querySelectorAll('table tr')) {
+      if (!visibleNode(documentHtml, row) || row.closest('[class*="recommendations"], [class*="carousel"], [class*="review"]')) continue;
+      const cells = [...row.querySelectorAll('th, td')];
+      if (cells.length !== 2) continue;
+      const name = String(cells[0].textContent || "").trim(), value = String(cells[1].textContent || "").trim();
+      if (!/^(cor|cores|modelo(?: detalhado| alfanumerico)?|voltagem|tensao|tamanho|numeracao)$/.test(normalizeText(name))) continue;
+      if (!attributes.some(a => normalizeText(a.name) === normalizeText(name))) attributes.push({ name, value });
+    }
+    const mismatch = variantMismatch(expectedTitle, attributes);
+    if (mismatch) return { motivo: mismatch };
+    const selected = [...documentHtml.querySelectorAll('.ui-pdp-outside_variations__thumbnails__item--SELECTED[href], .ui-pdp-variations [aria-checked="true"][href]')]
+      .filter(node => visibleNode(documentHtml, node)).map(node => { try { return offerIdentity(new URL(node.getAttribute('href'), finalUrl)); } catch { return null; } }).filter(Boolean);
+    // A query da página pode continuar contendo uma variação que não está selecionada.
+    // Exigir evidência no controle selecionado, não apenas na barra de endereço.
+    const selectedVariation = selected.find(item => item.variation === requested.variation && item.listing === listingId)?.variation || "";
+    const selectedAttributes = selected.find(item => item.attributes === requested.attributes && item.listing === listingId)?.attributes || "";
+    if ((requested.variation && selectedVariation !== requested.variation) || (requested.attributes && selectedAttributes !== requested.attributes)) return { motivo: "A variação da URL não foi comprovada no controle selecionado. Confira manualmente." };
+    return { verified: true, listingId, expectedTitle, attributes, selectedVariation, selectedAttributes };
   }
 
   function securityCheck(source) {
@@ -115,7 +190,7 @@
   function extractMainPrice(documentHtml) {
     const values = [];
     for (const node of documentHtml.querySelectorAll('.ui-pdp-price__second-line .andes-money-amount')) {
-      if (node.closest('.andes-money-amount--previous, .ui-pdp-price__original-value, .ui-pdp-price__installments, .ui-pdp-promotions-pill-label, [hidden], [aria-hidden="true"]')) continue;
+      if (node.closest('.andes-money-amount--previous, .ui-pdp-price__original-value, .ui-pdp-price__installments, .ui-pdp-promotions-pill-label, [class*="variations"], [class*="recommendations"], [class*="carousel"], [hidden], [aria-hidden="true"]')) continue;
       if (documentHtml.defaultView) {
         const style = documentHtml.defaultView.getComputedStyle(node);
         if (style.display === "none" || style.visibility === "hidden" || !node.getClientRects().length) continue;
@@ -140,6 +215,9 @@
       documentHtml.querySelector("h1")?.textContent || "",
     ).replace(/\s+/g, " ").trim();
     if (!matchingProduct(expectedTitle, pageTitle)) return { status: "loading", motivo: "A página ainda não confirmou o mesmo produto." };
+    if (!documentHtml.defaultView) return { status: "loading", motivo: "É necessário conferir a página renderizada na aba logada." };
+    const variantProof = extractVariantProof(documentHtml, expectedTitle, requestedUrl, finalUrl);
+    if (!variantProof.verified) return { status: "loading", motivo: variantProof.motivo };
     const mainPrices = extractMainPrice(documentHtml);
     if (!mainPrices.length && unavailableCheck(documentHtml.querySelector('.ui-pdp-buybox')?.innerText || "")) return { status: "unavailable", tituloEncontrado: pageTitle, fonteConsultada: finalUrl };
     if (!documentHtml.defaultView) return { status: "loading", motivo: "É necessário conferir a página renderizada na aba logada." };
@@ -152,7 +230,7 @@
         status: "ok", preco: mainPrice,
         evidencia: `Preço principal visível: R$ ${mainPrice.toFixed(2).replace(".", ",")}; anúncio ${offerIdentity(finalUrl).key}`,
         tituloEncontrado: pageTitle, fonteConsultada: finalUrl, origem: "pagina_principal_visivel",
-        robotVersion: BOT_VERSION, proofVersion: 1, requestedUrl, offerKey: offerIdentity(finalUrl).key,
+        robotVersion: BOT_VERSION, proofVersion: 2, requestedUrl, offerKey: offerIdentity(finalUrl).key, variantProof,
         mainPrice, structuredPrices: structured.prices, currency: "BRL", priceSelector: ".ui-pdp-price__second-line .andes-money-amount",
       };
     }

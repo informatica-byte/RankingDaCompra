@@ -16,19 +16,27 @@ function money(value, options = {}) {
     querySelector: selector => ({ textContent: selector.endsWith('__fraction') ? fraction : selector.endsWith('__cents') ? cents || '00' : options.currency || 'R$' }),
   };
 }
-function page({ prices = [money(358.79)], structured = [], foundTitle = title, text = '' } = {}) {
+function visibleText(textContent, options = {}) {
+  return { textContent, closest: () => null, getClientRects: () => options.hidden ? [] : [{}], getAttribute: () => options.href || '' };
+}
+function page({ prices = [money(358.79)], structured = [], foundTitle = title, text = '', listing = '2926671021', attributes = [], selected = [url], specs = [] } = {}) {
   return {
     body: { innerText: text }, defaultView: { getComputedStyle: () => ({ display: 'inline', visibility: 'visible' }) },
     querySelector: selector => selector.startsWith('h1') ? { textContent: foundTitle } : null,
-    querySelectorAll: selector => selector.includes('ld+json') ? structured.map(value => ({ textContent: JSON.stringify(value) })) : selector.startsWith('.ui-pdp-price__second-line') ? prices : [],
+    querySelectorAll: selector => selector.includes('ld+json') ? structured.map(value => ({ textContent: JSON.stringify(value) }))
+      : selector.startsWith('.ui-pdp-price__second-line') ? prices
+      : selector.includes('denounce__info') ? (listing ? [visibleText('Anúncio #' + listing)] : [])
+      : selector.includes('variations__title') ? attributes.map(a => visibleText(a.name + ':' + a.value))
+      : selector.includes('--SELECTED') ? selected.map(href => visibleText('', {href}))
+      : selector === 'table tr' ? specs.map(a => ({...visibleText(''),querySelectorAll:()=>[{textContent:a.name},{textContent:a.value}]})) : [],
   };
 }
 function setup(doc = page()) {
   const writes = []; let current;
-  const context = vm.createContext({ URL, document: doc, location: { hostname: 'test.invalid', href: url }, unsafeWindow: {},
+  const context = vm.createContext({ URL, URLSearchParams, document: doc, location: { hostname: 'test.invalid', href: url }, unsafeWindow: {},
     Date, setTimeout: callback => queueMicrotask(callback), GM_setValue: (key, value) => writes.push(value), GM_getValue: () => current,
   });
-  vm.runInContext(bot.replace(/\}\)\(\);\s*$/, 'Object.assign(globalThis, {parsePrice, matchingProduct, sameOffer, extractDocumentOffer, publishCurrentPageResult}); })();'), context);
+  vm.runInContext(bot.replace(/\}\)\(\);\s*$/, 'Object.assign(globalThis, {parsePrice, matchingProduct, sameOffer, offerIdentity, extractMainPrice, variantMismatch, extractDocumentOffer, publishCurrentPageResult}); })();'), context);
   vm.runInContext(safetyCode, context);
   return { context, writes, setCommand: value => { current = value; } };
 }
@@ -40,7 +48,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.1.0');
+  assert.equal(result.robotVersion, '2.2.0');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -84,7 +92,7 @@ test('resultado estável carrega evidência, produto, pedido e URL para validaç
   const command={requestId:'now',produtoId:'a',titulo:title,url,createdAt:Date.now()};
   setCommand(command); await c.publishCurrentPageResult(command);
   assert.equal(writes.length,1);
-  assert.equal(c.RDCAssistedPriceSafety.validate(writes[0],{produtoId:'a',url,previousPrice:358.79}), '');
+  assert.equal(c.RDCAssistedPriceSafety.validate(writes[0],{produtoId:'a',url,titulo:title,previousPrice:358.79}), '');
 });
 test('preço que oscila até o prazo acabar não é publicado como confirmado', async () => {
   const doc=page();const {context:c,writes,setCommand}=setup(doc);
@@ -98,17 +106,102 @@ test('validador recusa robô antigo, produto trocado, resposta antiga e queda ou
   const {context:c,writes,setCommand}=setup();
   const command={requestId:'now',produtoId:'a',titulo:title,url,createdAt:Date.now()};
   setCommand(command); await c.publishCurrentPageResult(command);
-  for (const result of [{...writes[0],robotVersion:'2.0.0'},{...writes[0],produtoId:'b'},{...writes[0],requestedUrl:'https://example.com/'},{...writes[0],checkedAt:Date.now()-125000},{...writes[0],mainPrice:85.40}]) assert.ok(c.RDCAssistedPriceSafety.validate(result,{produtoId:'a',url,previousPrice:358.79}));
-  assert.match(c.RDCAssistedPriceSafety.validate(writes[0],{produtoId:'a',url,previousPrice:85.40}),/35%/);
+  for (const result of [{...writes[0],robotVersion:'2.1.0'},{...writes[0],produtoId:'b'},{...writes[0],requestedUrl:'https://example.com/'},{...writes[0],checkedAt:Date.now()-125000},{...writes[0],mainPrice:85.40}]) assert.ok(c.RDCAssistedPriceSafety.validate(result,{produtoId:'a',url,titulo:title,previousPrice:358.79}));
+  assert.match(c.RDCAssistedPriceSafety.validate(writes[0],{produtoId:'a',url,titulo:title,previousPrice:85.40}),/35%/);
 });
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261006-1/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261006-2/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
   assert.match(mobile,/if \(!automacaoPrecosAtiva \|\| rodada !== automacaoPrecosRodada\) return/);
   const batch=dashboard.slice(dashboard.indexOf('async function salvarPrecoConferidoEmLote'),dashboard.indexOf('async function iniciarConferenciaPrecosIAEmLote'));
   assert.ok(batch.indexOf('RDCAssistedPriceSafety.validate')<batch.indexOf("await db.collection"));
+});
+
+test('wid no fragmento/query fixa o vendedor; identificadores conflitantes são recusados', () => {
+  const {context:c}=setup();
+  const catalog='https://www.mercadolivre.com.br/gerador/p/MLB57289720';
+  for(const raw of [catalog+'?wid=MLB5296312807',catalog+'#position=12&wid=MLB5296312807',catalog+'?pdp_filters=item_id%3AMLB5296312807']) {
+    assert.equal(c.offerIdentity(raw).key,'MLB5296312807');
+    assert.equal(c.RDCAssistedPriceSafety.identity(raw).key,'MLB5296312807');
+    assert.equal(c.sameOffer(raw,catalog+'?wid=MLB7685968580'),false);
+  }
+  for(const raw of [catalog+'?wid=MLB5296312807#wid=MLB7685968580',catalog+'?wid=INVALID',url+'&wid=MLB7685968580']) {
+    assert.equal(c.offerIdentity(raw),null);assert.equal(c.RDCAssistedPriceSafety.identity(raw),null);
+  }
+});
+
+test('regressão Lotus: título branco não prova cor branca nem vendedor do wid', () => {
+  const expected='Gerador De Espuma A Bateria 2l Lotus 7.4v 3 Bar Lavagem Automotiva Branco';
+  const catalog='https://www.mercadolivre.com.br/gerador/p/MLB57289720';
+  const doc=page({foundTitle:expected,listing:'7685968580',attributes:[{name:'Cor',value:'Bege'}],selected:[],prices:[money(139.49)]});
+  const {context:c}=setup(doc);
+  assert.match(c.extractDocumentOffer(doc,expected,catalog+'#wid=MLB5296312807').motivo,/outro anúncio/);
+  assert.match(c.extractDocumentOffer(doc,expected,catalog).motivo,/cor/);
+});
+
+test('preços dos chips de variantes não contam como preço principal', () => {
+  const variationMoney=value=>({...money(value),closest:selector=>selector.includes('variations')?{}:null});
+  const doc=page({prices:[variationMoney(139.49),variationMoney(119.99),money(139.49)]});
+  const {context:c}=setup(doc);assert.equal(c.extractMainPrice(doc).length,1);assert.equal(c.extractMainPrice(doc)[0],139.49);
+});
+
+test('variação na barra de endereço não dispensa tamanho escolhido no controle', () => {
+  for(const doc of [page({attributes:[{name:'Tamanho',value:'Escolha'}]}),page({selected:[]})]) {
+    const {context:c}=setup(doc);assert.equal(c.extractDocumentOffer(doc,title,url).status,'loading');
+    assert.match(c.extractDocumentOffer(doc,title,url).motivo,/Selecione|controle selecionado/);
+  }
+});
+
+test('cor/tamanho/voltagem/modelo divergentes preservam o cadastro nos dois verificadores', () => {
+  const {context:c}=setup();
+  const cases=[
+    ['Fone JBL Tune 520BT Preto',[{name:'Cor',value:'Branco'}],/cor/],
+    ['Fone JBL Tune 520BT Preto',[],/cor/],
+    ['Tênis Nike tamanho 34',[{name:'Tamanho',value:'39 BR'}],/tamanho/],
+    ['Air fryer 220V',[{name:'Voltagem',value:'127V'}],/voltagem/],
+    ['Fone JBL Tune 520BT',[{name:'Modelo',value:'Tune 720BT'}],/modelo/],
+  ];
+  for(const [expected,attrs,reason] of cases) {
+    assert.match(c.variantMismatch(expected,attrs),reason);assert.match(c.RDCAssistedPriceSafety.variantMismatch(expected,attrs),reason);
+  }
+  for(const [expected,attrs] of [
+    ['Fone JBL Tune 520BT Preto',[{name:'Cor',value:'Preta'},{name:'Modelo',value:'Tune 520BT'}]],
+    ['Tênis Nike tamanho 34',[{name:'Tamanho',value:'34 BR'}]],
+    ['Air fryer 220V',[{name:'Voltagem',value:'220 V'}]],
+  ]) {assert.equal(c.variantMismatch(expected,attrs),'');assert.equal(c.RDCAssistedPriceSafety.variantMismatch(expected,attrs),'');}
+});
+
+test('variante única aceita cor da ficha visível, mas seletor Escolha nunca é substituído pela ficha', () => {
+  const expected='Fone JBL Tune 520BT Preto';const raw='https://produto.mercadolivre.com.br/MLB-2926671021-fone-_JM';
+  const specs=[{name:'Cor',value:'Preto'},{name:'Modelo',value:'Tune 520BT'}];
+  const doc=page({foundTitle:expected,selected:[],specs});const {context:c}=setup(doc);
+  assert.equal(c.extractDocumentOffer(doc,expected,raw).status,'ok');
+  const incomplete=page({foundTitle:expected,specs,attributes:[{name:'Cor',value:'Escolha'}]});
+  assert.equal(c.extractDocumentOffer(incomplete,expected,raw).status,'loading');
+});
+
+test('painel recusa prova antiga, ausente, anúncio/variação/título trocado ou atributo adulterado', async () => {
+  const {context:c,writes,setCommand}=setup();
+  const command={requestId:'variant',produtoId:'a',titulo:title,url,createdAt:Date.now()};setCommand(command);await c.publishCurrentPageResult(command);
+  const result=writes[0];assert.equal(result.proofVersion,2);
+  for(const invalid of [{...result,proofVersion:1},{...result,variantProof:null},
+    {...result,variantProof:{...result.variantProof,listingId:'MLB7685968580'}},
+    {...result,variantProof:{...result.variantProof,selectedVariation:'123456789'}},
+    {...result,variantProof:{...result.variantProof,expectedTitle:'Outro produto'}},
+    {...result,variantProof:{...result.variantProof,attributes:[{name:'Tamanho',value:'Escolha'}]}}]) {
+    assert.ok(c.RDCAssistedPriceSafety.validate(invalid,{produtoId:'a',url,titulo:title,previousPrice:358.79}));
+  }
+});
+
+test('dashboard mantém o link com searchVariation/attributes em vez de convertê-lo para genérico', () => {
+  const html=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
+  const code=html.slice(html.indexOf('function urlDiretaParaConferenciaIA'),html.indexOf('async function salvarPrecoConferidoEmLote'));
+  const {context:c}=setup();c.window=c;c.statusMercadoLivreAdmin={};vm.runInContext(code,c);
+  for(const raw of [url,url+'&attributes=SIZE:MzQgQlI=', 'https://www.mercadolivre.com.br/fone/p/MLB57289720#wid=MLB5296312807']) {
+    assert.equal(c.urlDiretaParaConferenciaIA({link:raw,mercadoLivreItemId:'MLB7685968580'},'a'),raw);
+  }
 });

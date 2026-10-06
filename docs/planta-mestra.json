@@ -63,10 +63,10 @@
   ],
   "assistedPriceSafety": {
     "report": "docs/ROBO-PRECOS-20261006.md",
-    "minimumRobotVersion": "2.1.0",
+    "minimumRobotVersion": "2.2.0",
     "validator": "assisted-price-safety.js",
-    "identity": "requestId, produtoId, requestedUrl, listing/catalog identity and requested variation; title model must match",
-    "price": "One visible principal BRL price, stable twice; never installments, cashback, previous price, related product or AggregateOffer.lowPrice",
+    "identity": "requestId, produtoId, requestedUrl, visible listing ID, wid in query/hash, selected variation and attributes; specified color/size/voltage/model must match; proofVersion 2",
+    "price": "One visible principal BRL price, stable twice; never installments, cashback, previous price, variation thumbnail price, related product or AggregateOffer.lowPrice",
     "writeGuard": "Validate evidence, request identity and freshness before Firestore; changes of 35 percent or more require manual confirmation",
     "rescan": "Mobile option includes products already confirmed today without resetting database dates or re-reading cached catalogue",
     "dataPreservation": "Existing prices and history are not blindly reverted or deleted; repair each value only after checking the actual source"

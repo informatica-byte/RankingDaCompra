@@ -149,7 +149,7 @@
       </section>
     </main>
     <script src="/price-publication.js?v=20261004-2"></script>
-    <script src="/assisted-price-safety.js?v=20261006-1"></script>
+    <script src="/assisted-price-safety.js?v=20261006-2"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
       import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
@@ -351,7 +351,7 @@
             if (botao) botao.disabled = true;
           }
         }
-        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.1.0 ou superior e recarregue esta página. Versões anteriores não podem salvar automaticamente.");
+        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.2.0 ou superior e recarregue esta página. Versões anteriores não podem salvar automaticamente.");
       }
 
       function guardarPosicaoFilaPrecos() {
@@ -576,7 +576,7 @@
         const valorAnterior = numero(produto[campo]);
         const valor = novoValor === null ? valorAnterior : numero(novoValor);
         if (opcoes.automatico) {
-          const motivo = window.RDCAssistedPriceSafety.validate(opcoes.resultado, { produtoId: produto.id, url: linkPrecoAssistido(produto), previousPrice: valorAnterior });
+          const motivo = window.RDCAssistedPriceSafety.validate(opcoes.resultado, { produtoId: produto.id, url: linkPrecoAssistido(produto), titulo: produto.titulo, previousPrice: valorAnterior });
           if (motivo || produto.id !== opcoes.produtoId) {
             msg("precos-status", motivo || "A fila mudou durante a consulta. Preço preservado.", "erro");
             return false;
@@ -598,7 +598,7 @@
           precoConferenciaId: confirmacaoId,
         };
         if (opcoes.automatico) {
-          campos.precoConferidoPor = "robo_assistido_2.1.0";
+          campos.precoConferidoPor = "robo_assistido_2.2.0";
           campos.precoConferenciaIAFonte = opcoes.resultado.fonteConsultada;
           campos.precoConferenciaIAEvidencia = opcoes.resultado.evidencia;
           campos.precoConferenciaIATitulo = opcoes.resultado.tituloEncontrado;
@@ -704,7 +704,7 @@
               separarProdutoAutomacao(produto, automacaoPrecosFalhas, resultadoLocal?.motivo || "Preço principal não comprovado.");
               continue;
             }
-            const motivo = window.RDCAssistedPriceSafety.validate(resultadoLocal, { produtoId: produto.id, url: link, previousPrice: numero(produto[campoPrecoFila(produto)]) });
+            const motivo = window.RDCAssistedPriceSafety.validate(resultadoLocal, { produtoId: produto.id, url: link, titulo: produto.titulo, previousPrice: numero(produto[campoPrecoFila(produto)]) });
             if (motivo) {
               separarProdutoAutomacao(produto, automacaoPrecosFalhas, motivo);
               continue;
