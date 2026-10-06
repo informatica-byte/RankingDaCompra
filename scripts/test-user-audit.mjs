@@ -57,6 +57,8 @@ test('old product ID does not apply manufacturer specifications to a different m
 test('Quad Fry and EX1500 use announced specifications, not measured performance claims',()=>{
   const fryer=correctProductData({id:'c3K3tq0esVOpmKeSLd9a',titulo:'Air fryer Elgin Quad Fry',comentario:'2 litros para aquecimento rápido',preco:180});
   assert.match(fryer.comentario,/4,2 litros/);assert.doesNotMatch(fryer.comentario,/(?<![\d,.])2 litros|aquecimento rápido/);assert.equal(fryer.preco,180);
+  assert.equal(fryer.titulo,'Air Fryer Elgin Quad Fry 4,2 L 1.400 W Preta');
+  assert.equal(correctProductData({id:'c3K3tq0esVOpmKeSLd9a',titulo:'Outro modelo sem identidade confirmada'}).titulo,'Outro modelo sem identidade confirmada');
   const router=correctProductData({id:'qZUWO8WSrcOKWVrAqTW7',titulo:'Roteador EX1500',comentario:'Excelente estabilidade de sinal'});
   assert.match(router.comentario,/Não medimos/);assert.match(router.pros,/EasyMesh/);assert.match(manufacturerEvidence(router).sourceUrl,/tp-link/);
 });
