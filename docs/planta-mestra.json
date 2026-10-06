@@ -60,6 +60,16 @@
     "robots.txt",
     "CNAME"
   ],
+  "buyerExperienceAudit": {
+    "date": "2026-10-05",
+    "report": "docs/AUDITORIA-USUARIO-20261005.md",
+    "priceHistoryIdentity": "product article: current page ID; listing: own product link; never related product",
+    "legacyRoutes": "search-index.json redirects product to static page; category to published guide or directory section; no public Firestore reads",
+    "adminSelection": "union of public snapshot and already-loaded admin products, live fields win",
+    "manufacturerCorrections": "scripts/product-title-corrections.mjs; price, affiliate links, IDs and confirmation dates preserved",
+    "methodology": "category comparison, weekly ranking and editorial selection have distinct criteria",
+    "regressionTests": "scripts/test-user-audit.mjs"
+  },
   "permanentBestChoices": {
     "page": "melhores-escolhas.html",
     "fields": ["configuracoes/site.bestChoicesTitle", "configuracoes/site.bestChoicesProductIds", "configuracoes/site.bestChoicesGuideUrls"],

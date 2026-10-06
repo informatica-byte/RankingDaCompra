@@ -12,7 +12,7 @@ const buyer = buyerContext.window.RDCBuyerTools;
 test('published pages may retain the previous known asset version during generation, not arbitrary versions', async () => {
   const validator = await source('scripts/validate-site.mjs');
   const line = validator.split('\n').find(line => line.includes('versão visual desconhecida carregada'));
-  assert.ok(line.includes('|20260929-presentes|20261003-five|20261004-repairs|20261005-choices)'));
+  assert.ok(line.includes('|20260929-presentes|20261003-five|20261004-repairs|20261005-choices|20261005-ux)'));
   assert.ok(!line.includes('unknown-version'));
 });
 test('public loader shares concurrent reads, caches success and retries errors without database fallback', async () => {

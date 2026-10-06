@@ -30,8 +30,7 @@
         categoryNames=new Map((index.categories||[]).map(c=>[c.id,c.name]));priceStatuses=priceStatus.products||{};
         if (!Array.isArray(catalogue.products)||!Array.isArray(manifest.guides)||typeof live.saveConfig!=='function') throw Error('Dados de seleção incompletos.');
         config={...published,...live.config}; saveConfig=live.saveConfig; guides=manifest.guides;
-        const local=new Map((live.products || []).map(p=>[String(p.id),p]));
-        products=catalogue.products.map(p=>({...p,...(local.get(String(p.id))||{})})).filter(api.eligible).sort((a,b)=>String(a.titulo).localeCompare(String(b.titulo),'pt-BR'));
+        products=api.mergeCatalogues(catalogue.products,live.products || []);
         products.forEach(p=>productById.set(String(p.id),p));
         const seeded=api.seedConfig(config,products,guides);
         selectedIds=[...new Set(seeded.bestChoicesProductIds.map(String))];

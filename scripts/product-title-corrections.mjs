@@ -3,6 +3,14 @@ import { basename, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const PRODUCT_CORRECTIONS = new Map([
+  ["GjHJtzdsIhbmSINvhPeX", {
+    summary: "O JBL Tune 520BT é um fone on-ear Bluetooth 5.3 para música e chamadas. O fabricante informa até 57 horas de bateria; a duração real varia com volume e uso. Não possui cancelamento ativo de ruído (ANC): o isolamento é passivo. Considere-o para uso cotidiano se você aceita o formato apoiado nas orelhas; para ambientes muito ruidosos, compare alternativas com ANC. Não realizamos testes de conforto ou de qualidade do microfone.",
+    positiveNotes: ["Bluetooth 5.3 informado na ficha técnica da JBL.", "Autonomia anunciada de até 57 horas; resultado real depende do uso."],
+    negativeNotes: ["Sem cancelamento ativo de ruído (ANC), conforme o fabricante.", "Formato on-ear apoiado nas orelhas: conforto após longos períodos não foi testado pela equipe."],
+    sourceUrl: "https://www.jbl.com.br/blog/comparativo-jbl-tune-530bt-e-520bt.html",
+    specUrl: "https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwbfd4b4ce/pdfs/JBL%20Tune%20520BT_%20Specsheet_PTBR.pdf",
+    fileReplacements: [["Cancelamento ativo de ruído — não confirmado", "Cancelamento ativo de ruído — ausente, conforme a JBL"]],
+  }],
   ["hrVMdybD738SpffBFQIq", {
     incorrect: "00mlgarrafa Térmica Água Squeeze Inox Academiaquente E Frio",
     correct: "Garrafa Térmica 800 ml em Aço Inox para Academia — Quente e Frio",
@@ -16,12 +24,19 @@ const PRODUCT_CORRECTIONS = new Map([
     correct: "Tablet HUAWEI MatePad SE 11 Wifi 6+128GB Tela HUAWEI FullView de 11\" para Conforto Visual, Superbateria de 7700 mAh 225W Câmera Traseira 8 MP, Câmera Frontal 5 MP Cinza Nebula",
     replacements: [
       ["ablet HUAWEI MatePad SE 11", "Tablet HUAWEI MatePad SE 11"],
+      ["7700 mAh 225W", "7700 mAh 22,5 W"],
     ],
+    summary: "O HUAWEI MatePad SE 11 tem tela de 11 polegadas com resolução de 1920 × 1200 e corpo em metal, conforme a ficha oficial. O fabricante informa bateria de 7.700 mAh e carregamento de até 22,5 W. Pode ser considerado para leitura e vídeos; confirme a compatibilidade dos aplicativos que você usa e a configuração de memória do anúncio. Não medimos desempenho, autonomia real ou conforto visual em testes próprios.",
+    metaSummary: "HUAWEI MatePad SE 11: tela de 11 polegadas, 1920 × 1200 e bateria de 7.700 mAh. Confira limitações e compatibilidade antes de comprar.",
+    sourceUrl: "https://consumer.huawei.com/br/tablets/matepad-se-11/",
+    specUrl: "https://consumer.huawei.com/br/tablets/matepad-se-11/specs/",
+    sourceLabel: "HUAWEI MatePad SE 11",
     positiveNotes: [
-      "Tela FullView de 11,5 polegadas com resolução 2,2K e taxa de atualização de 120 Hz.",
-      "Superbateria com capacidade de 7.700 mAh que aguenta até 10 horas contínuas de reprodução de vídeo.",
-      "Construção elegante com corpo de metal feito de uma única peça de liga de alumínio.",
+      "Tela de 11 polegadas e resolução de 1920 × 1200 informadas pela HUAWEI.",
+      "Bateria de 7.700 mAh e carregamento de até 22,5 W anunciados pelo fabricante.",
+      "Corpo em metal; peso anunciado de 475 g.",
     ],
+    negativeNotes: ["Confirme a compatibilidade dos aplicativos e acessórios antes da compra.", "Desempenho e autonomia real não foram medidos pela equipe."],
   }],
   ["EmrdwlcDgCCM5suoz8dB", {
     incorrect: "mpressora 3x1 Multifuncional Epson Ecotank L3250 Wifi Bivol Preto",
@@ -100,15 +115,15 @@ const PRODUCT_CORRECTIONS = new Map([
 export function correctProductData(product) {
   const correction = PRODUCT_CORRECTIONS.get(String(product?.id || ""));
   const applyReplacements = (value) => (correction?.replacements || []).reduce(
-    (current, [incorrect, correct]) => String(current || "").split(incorrect).join(correct),
+    (current, [incorrect, correct]) => replaceKnownText(String(current || ""), incorrect, correct),
     String(value || ""),
   );
   return {
     ...product,
-    titulo: correction?.correct || applyReplacements(product?.titulo).replace(/\s+/g, " ").trim(),
-    comentario: applyReplacements(product?.comentario),
-    pros: applyReplacements(product?.pros),
-    contras: applyReplacements(product?.contras),
+    titulo: applyReplacements(correction?.correct || product?.titulo).replace(/\s+/g, " ").trim(),
+    comentario: correction?.summary || applyReplacements(product?.comentario),
+    pros: correction?.summary ? correction.positiveNotes.join("\n") : applyReplacements(product?.pros),
+    contras: correction?.summary ? correction.negativeNotes.join("\n") : applyReplacements(product?.contras),
     categoria: correction?.category || product?.categoria,
     nota: correction?.suppressRating ? "" : product?.nota,
   };
@@ -254,6 +269,20 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
   }
 
   let updatedFiles = 0;
+  const catalogueFile = resolve(rootDirectory, "vitrine-publica.json");
+  try {
+    const catalogue = JSON.parse(await readFile(catalogueFile, "utf8"));
+    if (Array.isArray(catalogue.products)) {
+      const before = JSON.stringify(catalogue.products);
+      catalogue.products = catalogue.products.map(p => PRODUCT_CORRECTIONS.has(String(p.id)) ? correctProductData(p) : p);
+      if (JSON.stringify(catalogue.products) !== before) {
+        await writeFile(catalogueFile, JSON.stringify(catalogue, null, 2) + "\n", "utf8");
+        updatedFiles += 1;
+      }
+    }
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
   for (const file of files) {
     let content;
     try {
@@ -277,6 +306,7 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
         corrected = corrected.split(incorrect).join(correct);
       }
       corrected = applyEditorialOverrides(corrected, correction);
+      if (correction.summary) corrected = applyVerifiedSummary(corrected, correction);
       if (correction.suppressRating) corrected = suppressUnreliableRating(corrected);
     }
     if (fileName.endsWith(".html") && fileName !== "analises.html") {
@@ -289,6 +319,24 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
     }
   }
   return updatedFiles;
+}
+
+function applyVerifiedSummary(content, correction) {
+  const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const short = correction.metaSummary || "JBL Tune 520BT: fone on-ear Bluetooth 5.3, até 57 h anunciadas e sem ANC. Compare vantagens, limitações e preço com data de conferência.";
+  content = content.replace(/(<p class="summary">)[\s\S]*?(<\/p>)/, (_, a, b) => a + esc(correction.summary) + b);
+  content = content.replace(/(<meta (?:name="(?:description|twitter:description)"|property="og:description") content=")[^"]*(">)/g, (_, a, b) => a + esc(short) + b);
+  content = content.replace(/(<script\b[^>]*type=["']application\/ld\+json["'][^>]*>)([\s\S]*?)(<\/script>)/gi, (full, a, source, b) => {
+    let payload; try { payload = JSON.parse(source); } catch { return full; }
+    const nodes = payload['@graph'] || [payload], product = nodes.find(n => n['@type'] === 'Product');
+    if (!product) return full;
+    product.description = correction.summary;
+    for (const review of Array.isArray(product.review) ? product.review : product.review ? [product.review] : []) review.reviewBody = correction.summary;
+    return a + JSON.stringify(payload).replace(/</g, "\\u003c") + b;
+  });
+  const source = `<p class="fine" data-verified-manufacturer>Fontes do fabricante: <a href="${esc(correction.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(correction.sourceLabel || "JBL — ausência de ANC")}</a> e <a href="${esc(correction.specUrl)}" target="_blank" rel="noopener noreferrer">ficha técnica oficial</a>. Especificações anunciadas, não medição independente.</p>`;
+  content = content.replace(/<p class="fine" data-verified-manufacturer>[\s\S]*?<\/p>/g, "");
+  return content.replace(/(<p class="fine source">[\s\S]*?<\/p>)/, "$1" + source);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

@@ -441,9 +441,10 @@
     banner.style.setProperty("--season-b", theme.colors[1]);
     banner.style.setProperty("--season-accent", theme.colors[2]);
     banner.innerHTML = `<div class="seasonal-banner-inner"><div class="seasonal-icon" aria-hidden="true">${escapeHtml(theme.icon)}</div><div class="seasonal-copy"><small>${escapeHtml(theme.name)} no Ranking da Compra</small><h2>${escapeHtml(theme.title)}</h2><p>${escapeHtml(theme.message)}</p></div><a class="seasonal-cta" href="/presentes/">Ver guia da temporada</a></div>${theme.particles.map((particle) => `<span class="seasonal-particle" aria-hidden="true">${escapeHtml(particle)}</span>`).join("")}`;
-    const hero = document.querySelector(".hero");
-    if (hero) hero.insertAdjacentElement("afterend", banner);
-    else (document.querySelector("header") || document.body.firstElementChild)?.insertAdjacentElement("afterend", banner);
+    // Keep the buyer's content and H1 ahead of seasonal promotion.
+    const footer = document.querySelector("footer");
+    if (footer) footer.insertAdjacentElement("beforebegin", banner);
+    else document.body.appendChild(banner);
   }
 
   function updateMascotTheme(id = "") {
@@ -798,13 +799,18 @@
   function decorateProductCard(card) {
     if (!card || state.decorated.has(card) || card.querySelector("[data-offer-proof]")) return;
     const link = card.matches?.('a[href*="/produto/"]') ? card : card.querySelector('a[href*="/produto/"]');
-    const id = productIdFromUrl(link?.href || location.href);
+    // The article's first link can belong to a related product, not this page.
+    const isProductArticle = /^\/produto\/.+\.html$/.test(location.pathname) && !!card.querySelector("h1");
+    const id = productIdFromUrl(isProductArticle ? location.href : link?.href || location.href);
     if (!id || !state.history?.products?.[id]) return;
     const summary = historySummary(id, currentPriceFromCard(card));
-    const markup = proofMarkup(summary, cardHasConfirmedPrice(card));
+    const markup = proofMarkup(summary, cardHasConfirmedPrice(card)).replace("data-offer-proof", `data-offer-proof data-price-history-product="${escapeHtml(id)}"`);
     if (!markup) return;
-    const target = card.querySelector(".deal-prices,.flash-timer,.offer") || card.querySelector("h3,h1");
+    let target = card.querySelector(".deal-prices,.flash-timer,.offer") || card.querySelector("h3,h1");
     if (!target) return;
+    // A details control must not be nested in the card's navigation link.
+    const anchor = target.closest?.("a");
+    if (anchor && card.contains(anchor)) target = anchor;
     if (target.classList.contains("offer")) target.insertAdjacentHTML("beforeend", markup);
     else target.insertAdjacentHTML("afterend", markup);
     state.decorated.add(card);
@@ -1230,9 +1236,9 @@
     section.innerHTML = `<div><h2>💚 Clube de Ofertas no WhatsApp</h2><p>Receba somente as promoções mais fortes, cupons e ofertas relâmpago verificadas pelo Ranking da Compra.</p></div><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" data-club-place="section">Entrar gratuitamente</a>`;
     const isProductPage = /\/produto\//.test(location.pathname);
     if (isProductPage) document.body.classList.add("product-detail-page");
-    const hero = document.querySelector(".hero,header + section,main");
-    if (hero?.parentNode) hero.insertAdjacentElement(isProductPage || !hero.matches("main") ? "afterend" : "beforebegin", section);
-    else document.body.prepend(section);
+    const footer = document.querySelector("footer");
+    if (footer) footer.insertAdjacentElement("beforebegin", section);
+    else document.body.appendChild(section);
     const floating = document.createElement("a");
     floating.className = "club-floating";
     floating.dataset.whatsappClub = "floating";
@@ -1242,6 +1248,15 @@
     floating.rel = "noopener noreferrer";
     floating.textContent = "WhatsApp · receber ofertas";
     document.body.appendChild(floating);
+    const close = document.createElement("button");
+    close.type = "button";
+    close.className = "club-floating-close";
+    close.textContent = "×";
+    close.setAttribute("aria-label", "Ocultar atalho do WhatsApp nesta visita");
+    const hideFloating = () => { floating.hidden = true; close.hidden = true; };
+    try { if (sessionStorage.getItem("rdc-hide-whatsapp") === "1") hideFloating(); } catch {}
+    close.addEventListener("click", () => { hideFloating(); try { sessionStorage.setItem("rdc-hide-whatsapp", "1"); } catch {} });
+    document.body.appendChild(close);
     document.querySelectorAll("[data-club-place]").forEach(link => link.addEventListener("click", () => trackClubClick(link.dataset.clubPlace)));
   }
 
@@ -2241,6 +2256,9 @@
 
   async function init() {
     injectStyles();
+    const uxStyle = document.createElement("style");
+    uxStyle.textContent = ':focus-visible{outline:3px solid #1769e0;outline-offset:3px}.rdc-skip{position:fixed;left:12px;top:-100px;z-index:10000;padding:12px 18px;background:#fff;color:#116149;border:2px solid #116149;border-radius:8px}.rdc-skip:focus{top:12px}.club-floating{padding-right:52px;min-height:44px}.club-floating-close{position:fixed;right:18px;bottom:18px;z-index:851;width:44px;height:44px;border:0;background:transparent;color:#fff;font:28px system-ui;cursor:pointer}.club-floating[hidden],.club-floating-close[hidden],.product-detail-page .club-floating-close{display:none!important}.ranki-help-open .club-floating-close{opacity:0;pointer-events:none}@media(max-width:700px){.club-floating{font-size:.75rem;max-width:205px}.club-floating-close{right:12px;bottom:12px}.hero-actions{padding-right:0}.hero-actions .button.secondary{display:inline-flex;min-height:44px}.hero-proof{flex-wrap:wrap;overflow:visible}.ranki-hero{position:relative;right:auto;bottom:auto;width:64px;margin:12px 0 0 auto}}';
+    document.head.appendChild(uxStyle);
     injectWeeklyRankingStyles();
     void protectAffiliateProductPrice();
     repairVisibleEditorial();
@@ -2254,6 +2272,16 @@
       observer.observe(document.body, { childList: true, subtree: true });
       setTimeout(() => observer.disconnect(), 120000);
       return;
+    }
+    const main = document.querySelector("#app,main");
+    if (main && !document.querySelector(".rdc-skip")) {
+      if (!main.id) main.id = "conteudo-principal";
+      main.tabIndex = -1;
+      const skip = document.createElement("a");
+      skip.className = "rdc-skip";
+      skip.href = "#" + main.id;
+      skip.textContent = "Ir para o conteúdo";
+      document.body.prepend(skip);
     }
     if (new URLSearchParams(location.search).has("tema-preview")) renderSeasonalTheme({});
     await Promise.all([loadHistory(), loadConfig()]);

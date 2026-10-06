@@ -80,6 +80,11 @@
       return '<article class="deal-card best-product-card"><img loading="lazy" decoding="async" width="260" height="154" src="'+esc(p.foto)+'" alt="'+esc(p.titulo)+'"><div class="deal-check">'+(state.confirmed?'✓ Preço conferido recentemente':'Preço aguardando nova conferência')+'</div><h3>'+esc(p.titulo)+'</h3><p class="best-product-summary">'+esc(excerpt)+'</p><div class="deal-prices"><span class="deal-price">'+esc(label)+'</span></div><p class="deal-validity">'+esc(date?(state.confirmed?'Preço conferido em ':'Último registro em ')+date:'Confirme preço e disponibilidade no vendedor')+'</p><div class="deal-actions"><a class="button offer-button" href="'+productUrl(p)+'" data-promo-id="'+esc(p.id)+'" data-product-id="'+esc(p.id)+'" data-product-title="'+esc(p.titulo)+'" data-product-category="'+esc(p.categoria)+'">Ver análise e conferir preço</a><div class="deal-secondary-actions"><button class="share-deal-button" type="button" data-share-product="'+esc(p.id)+'" aria-label="Compartilhar análise de '+esc(p.titulo)+'">↗ Compartilhar</button></div></div></article>';
     }).join('');
   }
-  const api={DEFAULT_TITLE,PAGE,MAX_PRODUCTS,MAX_GUIDES,esc,normalize,money,eligible,legacyIds,selectProducts,selectGuides,seedConfig,priceState,title,productUrl,guideCards,productCards};
+  function mergeCatalogues(published = [], live = []) {
+    const combined = new Map(published.map(p => [String(p.id), {...p}]));
+    for (const p of live) combined.set(String(p.id), {...combined.get(String(p.id)), ...p});
+    return [...combined.values()].filter(eligible).sort((a, b) => String(a.titulo).localeCompare(String(b.titulo), 'pt-BR'));
+  }
+  const api={DEFAULT_TITLE,PAGE,MAX_PRODUCTS,MAX_GUIDES,esc,normalize,money,eligible,legacyIds,selectProducts,selectGuides,seedConfig,priceState,title,productUrl,guideCards,productCards,mergeCatalogues};
   if (typeof module!=='undefined'&&module.exports) module.exports=api; else window.RDCBestChoices=api;
 })();

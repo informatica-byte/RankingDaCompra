@@ -16,6 +16,7 @@
     if (/repetidor|access point|ponto de acesso|starlink|satelite/.test(title)) return '';
     if (/roteador/.test(title)) return 'Roteadores';
     if (/headset.*gamer|gamer.*headset/.test(title)) return 'Headsets gamer';
+    if (/on.?ear|supra.?auricular|jbl.*tune\s*520\s*bt/.test(title)) return /bluetooth|sem fio|520\s*bt/.test(title) ? 'Fones on-ear sem fio' : 'Fones on-ear com fio';
     if (/headphone|over.?ear/.test(title)) return /bluetooth|sem fio/.test(title) ? 'Headphones sem fio' : 'Headphones com fio';
     if (/fone/.test(title) && /ear.?clip|\bows\b/.test(title)) return 'Fones abertos';
     if (/fone/.test(title) && /in.?ear|intra.?auricular|\btws\b/.test(title)) return /bluetooth|sem fio|\btws\b/.test(title) ? 'Fones intra-auriculares sem fio' : 'Fones intra-auriculares com fio';
