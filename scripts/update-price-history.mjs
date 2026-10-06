@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { observationFromHtml, addObservation } from "./price-observation.mjs";
+import { historyIdentity } from "./history-identity.mjs";
 
 const ROOT = process.cwd();
 const PRODUCT_DIR = path.join(ROOT, "produto");
@@ -22,8 +23,7 @@ function productId(filename) {
 }
 
 function productIdentity(html) {
-  const match = String(html || "").match(/\bMLB[-_\s]?(\d{6,})\b/i);
-  return match ? `MLB${match[1]}` : "";
+  return historyIdentity(html);
 }
 
 function normalizedTitle(value) {
@@ -119,7 +119,7 @@ async function main() {
     const currentIdentity = String(current.identity || "");
     const identityChanged = Boolean(currentIdentity && identity && currentIdentity !== identity);
     const titleChanged = Boolean(current.title && !sameProductTitle(current.title, title));
-    const resetHistory = identityChanged || (!currentIdentity && titleChanged);
+    const resetHistory = identityChanged || titleChanged;
     const observation = observationFromHtml(html, price);
     if (!observation) continue;
     const baseline = resetHistory ? { archives: [...(current.archives || []), { ...current, archives: undefined }] } : current;

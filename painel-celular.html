@@ -42,9 +42,10 @@
     </style>
     <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
-<script src="/best-choices.js?v=20261005-ux"></script>
+<script src="/best-choices.js?v=20261006-audit"></script>
+<script src="/metricas-resumo.js?v=20260923-1"></script>
 <script src="/promotion-title.js?v=20261005-1"></script>
-<script src="/best-choices-admin.js?v=20261005-ux"></script>
+<script src="/best-choices-admin.js?v=20261006-audit"></script>
 </head>
   <body>
     <header>
@@ -313,6 +314,7 @@
       let filaPrecosSalvando = false;
       const filaPrecosPulados = new Set();
       const filaPrecosConferidos = new Set();
+      const filaPrecosResultados = new Map();
       const chaveFilaPrecos = "ranking-fila-precos-assistida-v1";
       let automacaoPrecosAtiva = false;
       let automacaoPrecosPausada = false;
@@ -320,6 +322,9 @@
       const automacaoPrecosVisitados = new Set();
       const automacaoPrecosIndisponiveis = new Map();
       const automacaoPrecosFalhas = new Map();
+      let filaPrecosRetomada = false;
+      let filaPrecosReconferirSalvo = false;
+      let filaPrecosRodadaId = new Date().toISOString();
 
       function resumoAutomacaoPrecos(texto = "") {
         const alvo = $("precos-auto-resumo");
@@ -331,9 +336,16 @@
         if (falhas) detalhes.push(falhas + " para revisão manual");
         const separados = [...automacaoPrecosIndisponiveis.values(), ...automacaoPrecosFalhas.values()];
         const listaSeparados = separados.length
-          ? '<ul class="precos-auto-lista">' + separados.slice(0, 10).map((item) => "<li>" + rankingEsc(item.titulo) + " — " + rankingEsc(item.motivo) + "</li>").join("") + "</ul>"
+          ? '<details><summary>Ver todas as ' + separados.length + ' pendências</summary><ul class="precos-auto-lista">' + separados.map((item) => "<li>" + rankingEsc(item.titulo) + " — " + rankingEsc(item.motivo) + "</li>").join("") + "</ul></details>"
           : "";
-        alvo.innerHTML = (texto || "Automação pronta.") + (detalhes.length ? "<br><b>Separados:</b> " + detalhes.join(" · ") + "." + listaSeparados : "");
+        alvo.innerHTML = (texto || "Automação pronta.") + (detalhes.length ? "<br><b>Separados:</b> " + detalhes.join(" · ") + "." + listaSeparados : "") + '<button id="precos-exportar-rodada" class="btn claro" type="button">Baixar relatório desta rodada</button>';
+        $("precos-exportar-rodada").onclick = () => {
+          guardarPosicaoFilaPrecos();
+          const dados = localStorage.getItem(chaveFilaPrecos) || "{}";
+          const url = URL.createObjectURL(new Blob([dados], { type: "application/json" }));
+          const link = document.createElement("a"); link.href = url; link.download = "conferencia-" + filaPrecosDia + ".json"; link.click();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+        };
       }
 
       function atualizarControlesAutomacaoPrecos() {
@@ -356,11 +368,21 @@
 
       function guardarPosicaoFilaPrecos() {
         try {
-          localStorage.setItem(chaveFilaPrecos, JSON.stringify({
+          const diario = JSON.stringify({
             dia: filaPrecosDia,
             atual: filaPrecosIdAtual,
             pulados: [...filaPrecosPulados],
-          }));
+            conferidos: [...filaPrecosConferidos],
+            resultados: [...filaPrecosResultados],
+            rodadaId: filaPrecosRodadaId,
+            falhas: [...automacaoPrecosFalhas],
+            indisponiveis: [...automacaoPrecosIndisponiveis],
+            reconferirHoje: Boolean(filaPrecosDados?.reconferirHoje ?? filaPrecosReconferirSalvo),
+            atualizadoEm: new Date().toISOString(),
+            versao: 2,
+          });
+          localStorage.setItem(chaveFilaPrecos, diario);
+          localStorage.setItem(chaveFilaPrecos + ":rodada:" + filaPrecosRodadaId, diario);
         } catch {}
       }
 
@@ -368,6 +390,18 @@
         try {
           const salvo = JSON.parse(localStorage.getItem(chaveFilaPrecos) || "null");
           if (salvo?.dia !== hoje()) return;
+          filaPrecosRetomada = true;
+          filaPrecosReconferirSalvo = salvo.reconferirHoje === true;
+          if (typeof salvo.rodadaId === "string" && Number.isFinite(Date.parse(salvo.rodadaId))) filaPrecosRodadaId = salvo.rodadaId;
+          for (const item of (Array.isArray(salvo.resultados) ? salvo.resultados : []).slice(-2000)) {
+            if (Array.isArray(item) && typeof item[0] === "string" && item[1]) filaPrecosResultados.set(item[0], item[1]);
+          }
+          for (const id of (Array.isArray(salvo.conferidos) ? salvo.conferidos : []).slice(-2000)) if (typeof id === "string") filaPrecosConferidos.add(id);
+          for (const [campo, destino] of [["falhas", automacaoPrecosFalhas], ["indisponiveis", automacaoPrecosIndisponiveis]]) {
+            for (const item of (Array.isArray(salvo[campo]) ? salvo[campo] : []).slice(-2000)) {
+              if (Array.isArray(item) && typeof item[0] === "string" && item[1] && typeof item[1].motivo === "string") destino.set(item[0], item[1]);
+            }
+          }
           filaPrecosIdAtual = typeof salvo.atual === "string" ? salvo.atual : "";
           filaPrecosPulados.clear();
           if (Array.isArray(salvo.pulados)) {
@@ -497,9 +531,16 @@
         const alvo = $("precos-item");
         if (!filaPrecosDados) return;
         if (filaPrecosDia !== hoje()) {
+          guardarPosicaoFilaPrecos();
           filaPrecosDia = hoje();
+          filaPrecosRodadaId = new Date().toISOString();
           filaPrecosConferidos.clear();
+          filaPrecosResultados.clear();
           filaPrecosPulados.clear();
+          automacaoPrecosFalhas.clear();
+          automacaoPrecosIndisponiveis.clear();
+          filaPrecosReconferirSalvo = false;
+          filaPrecosDados.reconferirHoje = false;
           filaPrecosIdAtual = "";
           guardarPosicaoFilaPrecos();
         }
@@ -551,8 +592,14 @@
         try {
           if (filaPrecosDados) rankingDadosMovel = null;
           filaPrecosDados = await rankingCarregarDados(true);
-          filaPrecosDados.reconferirHoje = $("precos-reconferir-hoje").checked;
-          if (filaPrecosDados.reconferirHoje) { filaPrecosConferidos.clear(); filaPrecosPulados.clear(); filaPrecosIdAtual = ""; }
+          filaPrecosDados.reconferirHoje = filaPrecosRetomada ? filaPrecosReconferirSalvo : $("precos-reconferir-hoje").checked;
+          if (filaPrecosDados.reconferirHoje && !filaPrecosRetomada) {
+            guardarPosicaoFilaPrecos();
+            filaPrecosRodadaId = new Date().toISOString();
+            filaPrecosConferidos.clear(); filaPrecosResultados.clear(); filaPrecosPulados.clear(); filaPrecosIdAtual = "";
+          }
+          filaPrecosRetomada = false;
+          $("precos-reconferir-hoje").checked = filaPrecosDados.reconferirHoje;
           renderizarFilaPrecosAssistida();
           atualizarControlesAutomacaoPrecos();
           if (typeof window.conferirPrecoNaAbaLocal === "function") resumoAutomacaoPrecos("Fila carregada. Toque em “Conferir todos automaticamente” para começar.");
@@ -599,11 +646,15 @@
         };
         if (opcoes.automatico) {
           campos.precoConferidoPor = "robo_assistido_2.3.0";
+          campos.precoProvaVersao = opcoes.resultado.proofVersion;
+          campos.precoProvaAnuncio = opcoes.resultado.offerKey;
           campos.precoConferenciaIAFonte = opcoes.resultado.fonteConsultada;
           campos.precoConferenciaIAEvidencia = opcoes.resultado.evidencia;
           campos.precoConferenciaIATitulo = opcoes.resultado.tituloEncontrado;
         } else {
           campos.precoConferidoPor = "manual";
+          campos.precoProvaVersao = 0;
+          campos.precoProvaAnuncio = "";
         }
         if (alterou) {
           campos[campo] = preco(valor);
@@ -619,6 +670,12 @@
         msg("precos-status", "Salvando conferência...");
         try {
           await updateDoc(doc(db, "produtos", id), campos);
+          filaPrecosResultados.set(id, {
+            titulo: produto.titulo, status: "confirmado", preco: valor, precoAnterior: valorAnterior,
+            fonte: linkPrecoAssistido(produto), confirmadoEm: new Date().toISOString(),
+            origem: campos.precoConferidoPor, proofVersion: campos.precoProvaVersao,
+            evidencia: opcoes.resultado?.evidencia || "Confirmação humana no painel", confirmacaoId,
+          });
           produto.precoAtualizadoManualmente = true;
           produto.precoAtualizadoManualmenteEm = new Date();
           produto.precoConferenciaId = confirmacaoId;
@@ -626,6 +683,8 @@
           produto._rdcPendingConfirmationId = confirmacaoId;
           if (alterou) produto[campo] = preco(valor);
           filaPrecosPulados.delete(id);
+          automacaoPrecosFalhas.delete(id);
+          automacaoPrecosIndisponiveis.delete(id);
           filaPrecosIdAtual = "";
           guardarPosicaoFilaPrecos();
           renderizarFilaPrecosAssistida();
@@ -643,11 +702,12 @@
       }
 
       function separarProdutoAutomacao(produto, destino, motivo) {
-        destino.set(produto.id, { titulo: produto.titulo, motivo: String(motivo || "").trim() });
+        destino.set(produto.id, { titulo: produto.titulo, motivo: String(motivo || "").trim(), tentativaEm: new Date().toISOString(), robotVersion: window.__RDC_BOT_PRECOS_LOCAL__?.version || "", url: linkPrecoAssistido(produto) });
         filaPrecosPulados.add(produto.id);
         filaPrecosIdAtual = "";
         guardarPosicaoFilaPrecos();
         renderizarFilaPrecosAssistida();
+        msg("precos-status", "Produto anterior separado para revisão: " + String(motivo || "Preço não comprovado."), "erro");
       }
 
       function pararAutomacaoPrecosAssistida(texto = "Conferência automática interrompida. Você pode continuar manualmente.") {
@@ -730,11 +790,7 @@
           atualizarControlesAutomacaoPrecos();
           return msg("precos-status", "Instale ou atualize o robô do Tampermonkey e recarregue esta página.", "erro");
         }
-        if (!continuar) {
-          automacaoPrecosVisitados.clear();
-          automacaoPrecosIndisponiveis.clear();
-          automacaoPrecosFalhas.clear();
-        }
+        if (!continuar) automacaoPrecosVisitados.clear();
         automacaoPrecosPausada = false;
         automacaoPrecosRodada += 1;
         automacaoPrecosAtiva = true;
@@ -1547,13 +1603,41 @@
           month: "2-digit",
           day: "2-digit",
         }).format(inicio);
-        const [ps, ms] = await Promise.all([getDocs(collection(db, "produtos")), getDocs(query(collection(db, "visitas"), where("dia", ">=", chave)))]);
+        const [ps, ms] = await Promise.all([getDocs(collection(db, "produtos")), obterMetricasMovel(chave)]);
         rankingDadosMovel = {
           todos: ps.docs.map((d) => ({ id: d.id, ...d.data() })).filter((p) => p.sistema !== true && String(p.titulo || "").trim()),
           produtos: ps.docs.map((d) => ({ id: d.id, ...d.data() })).filter(rankingElegivel),
           metricas: rankingMetricasUnicas(ms.docs.map((d) => ({ id: d.id, ...d.data() }))),
         };
         return rankingDadosMovel;
+      }
+      let metricasMovelPromise = null;
+      async function obterMetricasMovel(inicio) {
+        if (metricasMovelPromise) return metricasMovelPromise;
+        const cacheKey = "ranking-metricas-movel-resumo-v1", dia = hoje(), now = Date.now();
+        let resumo = null;
+        try {
+          const salvo = JSON.parse(localStorage.getItem(cacheKey) || "null");
+          if (salvo?.versao === window.RankingMetricasResumo.VERSION && Array.isArray(salvo.registros)
+            && salvo.ultimoDia >= inicio && salvo.ultimoDia <= dia) resumo = salvo;
+        } catch {}
+        if (resumo && resumo.ultimoDia === dia && now - resumo.atualizadoEm >= 0 && now - resumo.atualizadoEm < 4 * 60 * 60 * 1000) {
+          return window.RankingMetricasResumo.instantaneo(resumo, true);
+        }
+        const desde = resumo ? resumo.ultimoDia : inicio;
+        metricasMovelPromise = getDocs(query(collection(db, "visitas"), where("dia", ">=", desde))).then(ms => {
+          const registros = window.RankingMetricasResumo.resumirDocumentos(ms.docs, (data, id) => ({
+            ...data, id, tipo: rankingTipoMetrica(data), produtoId: rankingMetricaProdutoId(data), canal: rankingMetricaCanal(data),
+          }));
+          const atualizado = window.RankingMetricasResumo.combinar(resumo, registros, desde, inicio, dia, Date.now());
+          try { localStorage.setItem(cacheKey, JSON.stringify(atualizado)); } catch {}
+          return window.RankingMetricasResumo.instantaneo(atualizado);
+        }).catch(error => {
+          if (!resumo) throw error;
+          msg("precos-status", "Métricas em cache por indisponibilidade; preços continuam sendo conferidos individualmente.");
+          return window.RankingMetricasResumo.instantaneo(resumo, true);
+        }).finally(() => { metricasMovelPromise = null; });
+        return metricasMovelPromise;
       }
       function rankingCategoriaNome(id) {
         return cats.find((c) => String(c.id) === String(id))?.nome || String(id || "");

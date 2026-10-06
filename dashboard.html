@@ -166,8 +166,8 @@
         @media(max-width:900px){.central-ofertas{grid-template-columns:1fr}.central-metricas{grid-template-columns:repeat(2,1fr)}.central-relatorio-grid{grid-template-columns:1fr}.central-cabecalho{flex-direction:column}.central-cabecalho-acoes{justify-content:flex-start}.central-alerta-item{grid-template-columns:1fr}}
     </style>
 <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
-<script src="/best-choices.js?v=20261005-ux"></script>
-<script src="/best-choices-admin.js?v=20261005-ux"></script>
+<script src="/best-choices.js?v=20261006-audit"></script>
+<script src="/best-choices-admin.js?v=20261006-audit"></script>
 </head>
 <body>
     <h1 class="sr-only">Painel administrativo do Ranking da Compra</h1>
@@ -978,11 +978,11 @@ Formato sem comprovação:
             const tituloEncontrado = String(resposta.tituloEncontrado || '').replace(/\s+/g, ' ').trim();
             if (!Number.isFinite(preco) || preco <= 0) throw new Error('A IA não retornou um preço numérico válido.');
             if (!/R\$\s*\d/i.test(evidencia)) throw new Error('A IA não apresentou uma evidência literal contendo R$ e o preço.');
-            const palavrasCadastro = normalizarTextoValidacao(titulo).split(' ').filter(item => item.length >= 4);
-            const tituloFonte = normalizarTextoValidacao(tituloEncontrado);
-            const coincidencias = palavrasCadastro.filter(item => tituloFonte.includes(item)).length;
-            if (!tituloFonte || coincidencias < Math.min(2, palavrasCadastro.length)) throw new Error('A página recuperada não comprovou que se trata do mesmo produto.');
-            return { preco, evidencia, tituloEncontrado, fonteConsultada: url };
+            if (!window.RDCAssistedPriceSafety.matchingProduct(titulo, tituloEncontrado)) throw new Error('A página recuperada não comprovou o mesmo modelo e configuração.');
+            const valores = (evidencia.match(/R\$\s*[\d.,]+/g) || []).map(window.RDCBestChoices.money);
+            if (!valores.length || valores.some(valor => Math.abs(valor - preco) >= 0.005)) throw new Error('O valor da IA não corresponde ao preço escrito na evidência.');
+            // Texto produzido pela IA não é prova de leitura do preço principal no navegador.
+            return { preco, evidencia, tituloEncontrado, fonteConsultada: url, requiresManualConfirmation: true, automatic: false };
         };
     
         window.gerarTextoDivulgacaoIA = async function gerarTextoDivulgacaoIA({produto,desconto}){const prompt=`Crie um texto curto de divulgação em português do Brasil para uma oferta real. Use somente os dados fornecidos abaixo. Não invente características, porcentagens, garantias, estoque, frete, cupom ou benefícios. Escreva até 420 caracteres, com no máximo 2 emojis, tom claro e confiável. Inclua o preço anterior, o preço promocional, o desconto informado e termine convidando a conferir preço, frete e estoque. Retorne apenas o texto, sem markdown.\n\nProduto: ${produto.titulo}\nPreço anterior: ${produto.precoAnterior}\nPreço promocional: ${produto.precoPromocional}\nDesconto calculado: ${desconto}%\nDados técnicos: ${produto.dadosTecnicos||''}\nPontos positivos verificados: ${produto.pros||''}\nPontos de atenção: ${produto.contras||''}`;const result=await model.generateContent(prompt);const texto=String(result.response.text()||'').replace(/^```[a-z]*|```$/gi,'').trim();if(texto.length<80)throw new Error('A IA retornou um texto insuficiente.');return limitarTexto(texto,420)};
@@ -1136,6 +1136,17 @@ FORMATO:
                 .replace(/'/g, '&#039;');
         }
 
+        let pararProdutosAdmin = null, pararCategoriasAdmin = null, pausaAdminTimer = null;
+        function pausarListenersAdmin() {
+            if (pararProdutosAdmin) pararProdutosAdmin();
+            if (pararCategoriasAdmin) pararCategoriasAdmin();
+            pararProdutosAdmin = null; pararCategoriasAdmin = null;
+        }
+        document.addEventListener('visibilitychange', () => {
+            clearTimeout(pausaAdminTimer);
+            if (document.hidden) pausaAdminTimer = setTimeout(pausarListenersAdmin, 10 * 60 * 1000);
+            else if (auth.currentUser) { carregarCategorias(); carregarProdutos(); }
+        });
         auth.onAuthStateChanged(user => {
             if (user) {
                 loginContent.style.display = 'none';
@@ -1148,6 +1159,7 @@ FORMATO:
                     carregarMetricasCentral();
                 });
             } else {
+                pausarListenersAdmin();
                 loginContent.style.display = 'block';
                 adminContent.style.display = 'none';
             }
@@ -1285,7 +1297,7 @@ function linkMarketplaceValidoCadastro(valor,marketplace){try{const url=new URL(
 
 function linkAfiliadoValidoCentral(produto){try{const afiliado=new URL(String(produto?.linkAfiliado||'')),fonte=String(produto?.link||'').trim();return afiliado.href!==fonte&&linkMarketplaceValidoCadastro(afiliado.href,marketplaceProduto(produto))}catch{return false}}
 
-function precoAtualCentral(produto){const status=statusMercadoLivreAdmin[String(produto?.id||'')]||{};if(status.visible===false)return false;const atualizado=Math.max(dataMsCentral(status.checkedAt||status.updatedAt),dataMsCentral(produto?.precoAtualizadoManualmenteEm),dataMsCentral(statusMercadoLivreAtualizadoEm));return atualizado>0&&Date.now()-atualizado<=30*60*60*1000}
+function precoAtualCentral(produto){const status=statusMercadoLivreAdmin[String(produto?.id||'')]||{};return window.RDCBestChoices.priceState(produto,status).confirmed}
 
 function pontuacaoOfertaCentral(produto){return descontoCentral(produto)*3+(Number(produto?.nota)||0)*5+(linkAfiliadoValidoCentral(produto)?18:0)+(precoAtualCentral(produto)?15:0)+(relampagoAtivoCentral(produto)?35:0)-(statusMercadoLivreAdmin[String(produto?.id||'')]?.visible===false?1000:0)}
 
@@ -1828,7 +1840,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         // sendo usado como o próprio ID do documento. Isso garante que o site
         // público (index.html) enxergue exatamente as mesmas categorias.
         function carregarCategorias() {
-            db.collection("categorias").orderBy("criadoEm", "asc").onSnapshot(snapshot => {
+            if (pararCategoriasAdmin) return;
+            pararCategoriasAdmin = db.collection("categorias").orderBy("criadoEm", "asc").onSnapshot(snapshot => {
                 snapshotCategoriasBackup = snapshot;
                 const select = document.getElementById('categoria');
                 const listaCatAdmin = document.getElementById('lista-categorias-admin');
@@ -2698,16 +2711,15 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 if (!motor) throw new Error('O robô de preços ainda não está conectado. Instale-o pelo link na aba Preços e recarregue o painel.');
                 if (botao) botao.textContent = `⏳ ${motor.nome} conferindo...`;
                 const resultado = await motor.conferir({ produtoId: id, titulo: produto.titulo || '', url });
-                if (resultado.robotVersion || /^pagina_/.test(String(resultado.origem || ''))) {
-                    const motivo = window.RDCAssistedPriceSafety.validate(resultado, { produtoId: id, url, titulo: produto.titulo });
-                    if (motivo) throw new Error(motivo);
-                }
+                const motivo = window.RDCAssistedPriceSafety.validate(resultado, { produtoId: id, url, titulo: produto.titulo });
+                if (motivo) throw new Error(motivo);
                 const preco = numeroPreco(resultado.preco);
                 if (!preco) throw new Error('A conferência não retornou um preço válido.');
                 const campoEntrada = document.getElementById(`preco-manual-${id}`);
                 if (!campoEntrada) throw new Error('O campo de preço não está disponível.');
                 campoEntrada.value = formatarPrecoCampo(preco);
                 conferenciasPrecoIA[id] = {
+                    ...resultado,
                     preco,
                     evidencia: String(resultado.evidencia || '').slice(0, 500),
                     tituloEncontrado: String(resultado.tituloEncontrado || '').slice(0, 300),
@@ -2740,9 +2752,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 if (!window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__)) return null;
                 return { nome: 'Robô local', intervalo: 3500, conferir: window.conferirPrecoPelaFonteLocal };
             }
-            if (typeof window.conferirPrecoPelaFonteIA === 'function') {
-                return { nome: 'IA online', intervalo: 1400, conferir: window.conferirPrecoPelaFonteIA };
-            }
+            // Sem robô com prova, mantenha a edição manual. IA online não confirma lotes.
             return null;
         }
 
@@ -2776,16 +2786,16 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const preco = numeroPreco(resultado.preco);
             if (!preco) throw new Error('A conferência não retornou um preço válido.');
             const campo = campoPrecoExibido(produto);
-            if (resultado.robotVersion || /^pagina_/.test(String(resultado.origem || ''))) {
-                const motivo = window.RDCAssistedPriceSafety.validate(resultado, { produtoId: id, url: urlConsultada, titulo: produto.titulo, previousPrice: numeroPreco(produto[campo]) });
-                if (motivo) throw new Error(motivo);
-            }
+            const motivo = window.RDCAssistedPriceSafety.validate(resultado, { produtoId: id, url: urlConsultada, titulo: produto.titulo, previousPrice: numeroPreco(produto[campo]) });
+            if (motivo) throw new Error(motivo);
             await db.collection('produtos').doc(id).update({
                 [campo]: formatarPrecoCampo(preco),
                 precoAtualizadoManualmente: true,
                 precoAtualizadoManualmenteEm: firebase.firestore.FieldValue.serverTimestamp(),
                 precoConferidoPorIA: true,
                 precoConferidoPor: String(resultado.origem || 'ia_online').slice(0, 80),
+                precoProvaVersao: resultado.proofVersion,
+                precoProvaAnuncio: resultado.offerKey,
                 precoConferidoPorIAEm: firebase.firestore.FieldValue.serverTimestamp(),
                 precoConferenciaIAEvidencia: String(resultado.evidencia || '').slice(0, 500),
                 precoConferenciaIATitulo: String(resultado.tituloEncontrado || '').slice(0, 300),
@@ -2900,9 +2910,20 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 if (!documento.exists) throw new Error('Produto não encontrado.');
                 const produto = documento.data();
                 const campo = campoPrecoExibido(produto);
-                const verificacaoIA = conferenciasPrecoIA[id] || null;
+                const proposta = conferenciasPrecoIA[id];
+                const verificacaoIA = proposta && Math.abs(numeroPreco(proposta.preco) - numero) < 0.005 ? proposta : null;
+                if (verificacaoIA) {
+                    const motivo = window.RDCAssistedPriceSafety.validate(verificacaoIA, {
+                        produtoId: id, url: produto.link || produto.linkAfiliado || '', titulo: produto.titulo
+                    });
+                    if (motivo) throw new Error(motivo + ' Faça nova conferência antes de salvar como automático.');
+                }
                 const atualizacao = {
                     [campo]: formatarPrecoCampo(numero),
+                    precoConferidoPor: verificacaoIA ? 'robo_assistido_2.3.0' : 'manual',
+                    precoProvaVersao: verificacaoIA ? verificacaoIA.proofVersion : 0,
+                    precoProvaAnuncio: verificacaoIA ? verificacaoIA.offerKey : '',
+                    precoConferidoPorIA: Boolean(verificacaoIA),
                     precoAtualizadoManualmente: true,
                     precoAtualizadoManualmenteEm: firebase.firestore.FieldValue.serverTimestamp(),
                     atualizadoEm: firebase.firestore.FieldValue.serverTimestamp()
@@ -3072,7 +3093,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         document.getElementById('btn-backup-ranking').addEventListener('click', baixarBackupRanking);
 
         function carregarProdutos() {
-            db.collection("produtos").orderBy("dataCadastro", "desc").onSnapshot(snapshot => {
+            if (pararProdutosAdmin) return;
+            pararProdutosAdmin = db.collection("produtos").orderBy("dataCadastro", "desc").onSnapshot(snapshot => {
                 snapshotProdutosBackup = snapshot;
                 statusMercadoLivreAdminPronto.then(() => {
                     try {
@@ -3236,7 +3258,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script defer src="/seo-opportunities.js?v=20261004-2"></script>
   <script src="/promotion-title.js?v=20261005-1"></script>
-  <script defer src="/growth-tools.js?v=20261005-ux"></script>
+  <script defer src="/growth-tools.js?v=20261006-audit"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
 <script>

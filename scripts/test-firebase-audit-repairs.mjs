@@ -37,7 +37,7 @@ test("App Check é preparado em todos os clientes sem ativar enforcement", () =>
   assert.match(dashboard, /firebase\.appCheck\(\)\.activate\(new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
   assert.match(mobile, /initializeAppCheck\(app, \{/);
   assert.match(growth, /firebase\.appCheck\(\)\.activate\(new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
-  assert.match(generator, /growth-tools\.js\?v=20261005-ux/);
+  assert.match(generator, /growth-tools\.js\?v=20261006-audit/);
 });
 
 test("histórico fica identificado como comparação, sem contradizer preço conferido", () => {

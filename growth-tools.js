@@ -245,6 +245,7 @@
     const apiRecent = Number.isFinite(apiCheckedAt) && Date.now() - apiCheckedAt >= 0
       && Date.now() - apiCheckedAt <= 24 * 60 * 60 * 1000;
     const apiConfirmed = apiRecent && status?.managed === true && status?.status === "active"
+      && status?.visible !== false && !status?.lastError
       && status?.available === true && Number(status?.price) > 0;
     const manualPrice = Number(document.querySelector('meta[name="rdc-manual-price"]')?.content);
     const manualCheckedAt = Date.parse(document.querySelector('meta[name="rdc-manual-checked-at"]')?.content || "");
@@ -723,6 +724,8 @@
       .youtube-showcase-player{container-type:inline-size}.youtube-product-overlay{left:10px;right:auto;bottom:46px;width:min(320px,calc(100% - 82px));max-width:none;grid-template-columns:38px minmax(0,1fr);gap:7px;padding:6px 8px;border:1px solid rgba(255,255,255,.6);border-radius:11px;background:rgba(255,255,255,.8);box-shadow:0 4px 16px rgba(0,0,0,.2);backdrop-filter:blur(9px);opacity:.88;transition:opacity .18s ease,transform .18s ease}.youtube-product-overlay:hover,.youtube-product-overlay:focus-visible{background:rgba(255,255,255,.96);opacity:1;transform:translateY(-2px)}.youtube-product-overlay img{width:38px;height:38px;border-radius:7px}.youtube-product-overlay small{font-size:.55rem}.youtube-product-overlay strong{margin:1px 0;font-size:.69rem}.youtube-product-overlay em{font-size:.72rem}.youtube-product-overlay b{display:none}@container (max-width:700px){.youtube-product-overlay{left:7px;bottom:43px;width:min(230px,calc(100% - 72px));grid-template-columns:30px minmax(0,1fr);gap:5px;padding:5px 7px;border-radius:9px}.youtube-product-overlay img{width:30px;height:30px}.youtube-product-overlay small{display:none}.youtube-product-overlay strong{font-size:.62rem}.youtube-product-overlay em{font-size:.66rem}}
       @media(prefers-reduced-motion:reduce){.seasonal-banner::before,.seasonal-particle{animation:none!important}}
     `;
+    // Contenha a ilustração sazonal sem alterar player, produto ou mascote.
+    style.textContent += '\n.ranki-trigger{overflow:clip}.ranki-hero{max-width:calc(100vw - 32px)}';
     document.head.appendChild(style);
   }
 
@@ -759,11 +762,12 @@
       .map(point => ({ date: String(point?.[0] || ""), price: numberPrice(point?.[1]) }))
       .filter(point => point.date && point.price > 0 && Date.parse(`${point.date}T12:00:00-03:00`) >= Date.now() - HISTORY_DAYS * 86400000 && Date.parse(`${point.date}T00:00:00-03:00`) <= Date.now())
       .sort((a, b) => a.date.localeCompare(b.date)) : [];
-    const prices = points.map(point => point.price);
-    if (currentPrice > 0) prices.push(currentPrice);
+    // Legado fica visível no histórico, mas não comprova um menor preço comercial.
+    const verifiedPoints = points.filter(point => item.observations?.[point.date]?.verified === true);
+    const prices = verifiedPoints.map(point => point.price);
     const minimum = prices.length ? Math.min(...prices) : 0;
     const latest = points.at(-1) || null;
-    return { item, points, minimum, latest, currentPrice: currentPrice || latest?.price || 0 };
+    return { item, points, minimum, latest, verifiedPoints, pendingReview: points.length - verifiedPoints.length, currentPrice: currentPrice || latest?.price || 0 };
   }
 
   function currentPriceFromCard(card) {
@@ -787,7 +791,7 @@
     const stateClass = "is-learning";
     const detail = summary.minimum > 0
       ? `Menor preço em até ${HISTORY_DAYS} dias: ${brl.format(summary.minimum)}`
-      : "Estamos formando o histórico deste produto.";
+      : summary.pendingReview ? "Histórico antigo preservado — mínimo aguardando revisão" : "Estamos formando o histórico deste produto.";
     return `<details class="offer-proof ${stateClass}" data-offer-proof data-price-history-state="${stateClass}"><summary><strong>${escapeHtml(detail)}</strong><span>Histórico ▾</span></summary><strong>${escapeHtml(title)}</strong><small>Último registro no histórico: ${escapeHtml(dateText)} · confirme o valor final no vendedor.</small></details>`;
   }
 
@@ -2284,12 +2288,15 @@
       document.body.prepend(skip);
     }
     if (new URLSearchParams(location.search).has("tema-preview")) renderSeasonalTheme({});
-    await Promise.all([loadHistory(), loadConfig()]);
+    await loadConfig();
+    // O catálogo e os controles não aguardam a transferência do histórico completo.
+    const historyPending = loadHistory().then(decorateVisibleProducts);
     decorateVisibleProducts();
     renderClub(state.config);
     applyPromotionTitle(state.config);
     renderVideoShowcase(state.config);
     renderSeasonalTheme(state.config);
+    void historyPending;
     const routeParams = new URLSearchParams(location.search);
     if (/^\/(?:index\.html)?$/.test(location.pathname)
       && !routeParams.has("busca") && !routeParams.has("cat") && !routeParams.has("produto")) {

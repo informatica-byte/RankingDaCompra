@@ -9,10 +9,10 @@ const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
 const SHARE_VERSION = "20260810-1";
-const GROWTH_TOOLS_VERSION = "20261005-ux";
+const GROWTH_TOOLS_VERSION = "20261006-audit";
 const MOBILE_PRODUCT_STYLE = '<style data-mobile-product-buy>.mobile-buy{display:none}@media(max-width:700px){body{padding-bottom:72px}.top>div{display:flex;flex-direction:column;order:-1}.top>div>.eyebrow{order:1}.top>div>h1{order:2}.top>div>.full-title{order:3}.top>div>.rating{order:4}.top>div>.offer{order:5;margin:8px 0 14px}.top>div>.summary{order:6}.top>div>.facts{order:7}.photo{order:2}.mobile-buy{position:fixed;z-index:1000;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 15px;border-radius:11px;background:#1769e0;color:#fff;text-decoration:none;font-weight:950;box-shadow:0 10px 30px rgba(0,0,0,.25)}}</style>';
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
-const RETRYABLE_HTTP_STATUS = new Set([429, 500, 502, 503, 504]);
+const RETRYABLE_HTTP_STATUS = new Set([500, 502, 503, 504]);
 
 function wait(milliseconds) {
   return new Promise((resolvePromise) => setTimeout(resolvePromise, milliseconds));
@@ -24,9 +24,9 @@ function fieldValue(field) {
     ?? field.booleanValue ?? field.timestampValue ?? "";
 }
 
-async function fetchFirestore(url, collection, maxAttempts = 6) {
+async function fetchFirestore(url, collection, maxAttempts = 3) {
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
-    const response = await fetch(url);
+    const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
     if (response.ok) return response;
     const retryable = RETRYABLE_HTTP_STATUS.has(response.status);
     if (!retryable || attempt === maxAttempts) {
@@ -338,6 +338,16 @@ function scooterReason(product, position, averagePrice) {
   return `${lead}: ${facts.slice(0, 3).join(", ") || "ficha técnica identificada"} e ${priceContext}.`;
 }
 
+function chooseScooterValue(ranked, winner, cheapest) {
+  return ranked.filter(product => product.id !== winner.id && product.id !== cheapest.id)
+    .filter(product => numberPrice(product.precoPromocional || product.preco) > 0
+      && scooterScore(product) >= scooterScore(winner) * 0.6
+      && [scooterSpecs(product).power, scooterSpecs(product).range, scooterSpecs(product).load, scooterSpecs(product).weight].filter(Boolean).length >= 2
+      && usefulEditorialItems(product, "pros").length && usefulEditorialItems(product, "contras").length)
+    .sort((a, b) => scooterScore(b) / numberPrice(b.precoPromocional || b.preco)
+      - scooterScore(a) / numberPrice(a.precoPromocional || a.preco))[0] || null;
+}
+
 function renderScooterGuide(products, productUrls, lastModified) {
   const candidates = products.filter((product) => slug(product.categoria).includes("patinete"));
   if (candidates.length < 3) return "";
@@ -346,14 +356,12 @@ function renderScooterGuide(products, productUrls, lastModified) {
     || numberPrice(a.precoPromocional || a.preco) - numberPrice(b.precoPromocional || b.preco));
   const winner = ranked[0];
   const cheapest = [...ranked].sort((a, b) => numberPrice(a.precoPromocional || a.preco) - numberPrice(b.precoPromocional || b.preco))[0];
-  const value = [...ranked].filter((product) => product.id !== winner.id && product.id !== cheapest.id)
-    .sort((a, b) => numberPrice(a.precoPromocional || a.preco) - numberPrice(b.precoPromocional || b.preco)
-      || scooterScore(b) - scooterScore(a))[0] || ranked[1];
+  const value = chooseScooterValue(ranked, winner, cheapest);
   const quick = [
     ["🏆 Melhor geral", winner, "Conjunto técnico mais completo da seleção"],
-    ["💚 Melhor custo-benefício", value, "Boa relação entre recursos e preço informado"],
+    ["💚 Melhor custo-benefício", value, "Maior pontuação técnica por real; qualidade mínima de 60% do vencedor e limitações documentadas"],
     ["💰 Mais barato", cheapest, "Menor preço informado entre os comparados"],
-  ].map(([label, product, note]) => `<article><span>${label}</span><strong>${escapeHtml(product.titulo)}</strong><b>${escapeHtml(money(product.precoPromocional || product.preco))}</b><small>${note}</small><a href="${escapeHtml(productUrls.get(product.id))}">Ver análise e preço</a></article>`).join("");
+  ].filter(([, product]) => product).map(([label, product, note]) => `<article><span>${label}</span><strong>${escapeHtml(product.titulo)}</strong><b>${escapeHtml(money(product.precoPromocional || product.preco))}</b><small>${note}</small><a href="${escapeHtml(productUrls.get(product.id))}">Ver análise e preço</a></article>`).join("");
   const rows = ranked.map((product, index) => {
     const specs = scooterSpecs(product);
     return `<tr><th scope="row">${index + 1}º ${escapeHtml(product.titulo)}</th><td>${specs.power ? `${specs.power} W` : "Não informado"}</td><td>${specs.range ? `${specs.range} km` : "Não informada"}</td><td>${specs.weight ? `${String(specs.weight).replace(".", ",")} kg` : "Não informado"}</td><td>${escapeHtml(money(product.precoPromocional || product.preco))}</td></tr>`;

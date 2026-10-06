@@ -50,7 +50,7 @@
     const manualAt = millis(product.precoAtualizadoManualmenteEm), apiAt = millis(status.checkedAt), apiPrice = money(status.price);
     const recent = time => Number.isFinite(time) && now-time >= 0 && now-time <= 86400000;
     const manualOk = product.precoAtualizadoManualmente === true && manualPrice>0 && recent(manualAt);
-    const apiOk = status.managed === true && status.status === 'active' && status.available === true && apiPrice>0 && recent(apiAt);
+    const apiOk = status.managed === true && status.status === 'active' && status.available === true && status.visible !== false && !status.lastError && apiPrice>0 && recent(apiAt);
     if (manualOk && (!apiOk || manualAt>=apiAt)) return {value:manualPrice,at:manualAt,confirmed:true,source:'manual'};
     if (apiOk) return {value:apiPrice,at:apiAt,confirmed:true,source:'api'};
     if (product.precoAtualizadoManualmente === true && manualPrice>0 && Number.isFinite(manualAt) && manualAt<=now && (!Number.isFinite(apiAt)||manualAt>=apiAt))

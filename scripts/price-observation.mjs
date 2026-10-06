@@ -7,7 +7,10 @@ export function observationFromHtml(html, price, now = Date.now()) {
   const timestamp = Date.parse(checkedAt);
   if (!price || !Number.isFinite(timestamp) || timestamp > now) return null;
   const date = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(timestamp));
-  return { date, checkedAt: new Date(timestamp).toISOString(), source: selected ? meta('rdc-price-source') || 'confirmed' : 'manual', price };
+  const proofVersion = Number(meta('rdc-price-proof-version')) || 0;
+  const source = selected ? meta('rdc-price-source') || 'confirmed' : 'manual';
+  const verified = source === 'api' || proofVersion >= 3 || meta('rdc-price-reviewed') === 'true';
+  return { date, checkedAt: new Date(timestamp).toISOString(), source, price, proofVersion, verified, offerUrl: meta('rdc-offer-url') };
 }
 
 export function addObservation(current, observation) {
@@ -18,5 +21,5 @@ export function addObservation(current, observation) {
   const remaining = points.filter(point => String(point[0]) !== observation.date);
   remaining.push([observation.date, observation.price]);
   remaining.sort((a, b) => String(a[0]).localeCompare(String(b[0])));
-  return { ...current, points: remaining, observations: { ...(current.observations || {}), [observation.date]: { checkedAt: observation.checkedAt, source: observation.source } } };
+  return { ...current, points: remaining, observations: { ...(current.observations || {}), [observation.date]: { checkedAt: observation.checkedAt, source: observation.source, verified: observation.verified === true, proofVersion: observation.proofVersion || 0, offerUrl: observation.offerUrl || '' } } };
 }

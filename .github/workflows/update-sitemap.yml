@@ -51,7 +51,7 @@ jobs:
         run: |
           generated=false
           for attempt in 1 2 3; do
-            if timeout 240s node scripts/generate-sitemap.mjs; then
+            if timeout 100s node scripts/generate-sitemap.mjs; then
               generated=true
               break
             fi
