@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-07T16:42:28.793Z",
+  "generatedAt": "2026-10-07T19:49:52.532Z",
   "products": [
     {
       "id": "0o2cubZBfwlgcwFokAWY",
@@ -2996,6 +2996,25 @@
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-07T10:16:50.007Z",
       "precoConferenciaId": "5ff194f8-5029-43e9-b239-599d4ec225b7"
+    },
+    {
+      "id": "huCYMmOsGPKJ8jOiJ1gR",
+      "titulo": "Lavadora de Alta Pressão Compacta WAP WL 1800 1400W 1500PSI 360L/h 220V",
+      "comentario": "A Lavadora de Alta Pressão Compacta WAP WL 1800 220V destaca-se por sua potência de 1400W e pressão máxima de 1500PSI, sendo ideal para tarefas residenciais. Com design portátil de apenas 34cm de altura e alça ajustável, facilita o transporte e armazenamento. Conta ainda com o sistema Stop Total, que desliga o motor ao soltar o gatilho, gerando economia.",
+      "categoria": "casa",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_969245-MLA99639655414_122025-F.webp",
+      "preco": "299,00",
+      "precoAnterior": "575,00",
+      "precoPromocional": "299,00",
+      "nota": 4.8,
+      "ranking": "10",
+      "promocaoAtiva": true,
+      "promocaoValidaAte": "2026-10-07",
+      "ofertaRelampagoAtiva": false,
+      "ofertaRelampagoTerminaEm": "",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-07T19:48:53.085Z",
+      "precoConferenciaId": "77f4cdbc-8503-48f9-8659-f152b0847892"
     },
     {
       "id": "hvEYsBQVyORk8vWbQCNU",
