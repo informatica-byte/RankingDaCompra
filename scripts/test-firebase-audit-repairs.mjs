@@ -14,7 +14,7 @@ test("vitrine permanente usa seleção publicada e mantém o prazo das ofertas r
   assert.doesNotMatch(publicHome, /db\.collection/);
   assert.match(publicHome, /todos\.filter\(ofertaRelampagoValida\)/);
   assert.match(publicHome, /RDCBestChoices\.selectProducts\(todos,siteConfig\)/);
-  assert.match(dashboard, /CACHE_METRICAS_PAINEL_MS = 4 \* 60 \* 60 \* 1000/);
+  assert.match(dashboard, /RankingMetricasResumo\.criarLeitor/);
 });
 
 test("promoção vencida desativa só a marcação, preservando cadastro e preço", () => {
@@ -37,7 +37,7 @@ test("App Check é preparado em todos os clientes sem ativar enforcement", () =>
   assert.match(dashboard, /firebase\.appCheck\(\)\.activate\(new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
   assert.match(mobile, /initializeAppCheck\(app, \{/);
   assert.match(growth, /firebase\.appCheck\(\)\.activate\(new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
-  assert.match(generator, /growth-tools\.js\?v=20261006-audit/);
+  assert.match(generator, /growth-tools\.js\?v=20261007-counters/);
 });
 
 test("clientes clássicos usam SDK compat com provider Enterprise disponível", () => {

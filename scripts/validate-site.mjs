@@ -23,7 +23,7 @@ has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo históri
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
 has(homeHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente da vitrine", "index.html");
-has(homeHtml, /growth-tools\.js\?v=20261006-audit/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20261007-counters/, "versão nova das ferramentas da vitrine não foi ativada", "index.html");
 has(homeHtml, /class="hero-search"[\s\S]{0,300}name="busca"/, "busca principal visível ausente da primeira tela", "index.html");
 has(homeHtml, /Ver todos os comparativos/, "atalho principal para comparativos ausente", "index.html");
 has(homeHtml, /name="robots" content="index,follow,max-image-preview:large"/, "prévia de imagem grande ausente da página inicial", "index.html");
@@ -53,7 +53,7 @@ has(growthTools, /function persistConfigCache\(value\)/, "cache compartilhado da
 has(growthTools, /function updateCachedConfig\(partial\)/, "alterações administrativas não atualizam o cache público", "growth-tools.js");
 has(growthTools, /updateCachedConfig\(settings\)/, "título SEO salvo não fica disponível imediatamente na vitrine", "growth-tools.js");
 has(growthTools, /ranking-da-compra-config-publica-v2/, "versão antiga do cache pode esconder o título SEO recém-salvo", "growth-tools.js");
-has(homeHtml, /growth-tools\.js\?v=20261006-audit/, "a vitrine ainda pode usar a versão antiga das ferramentas de configuração", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20261007-counters/, "a vitrine ainda pode usar a versão antiga das ferramentas de configuração", "index.html");
 const siteConfig = JSON.parse(await readFile(resolve("site-config.json"), "utf8"));
 const videoStudioHtml = await readFile(resolve("estudio-videos.html"), "utf8");
 const videoStudioJs = await readFile(resolve("ranki-video-studio.js"), "utf8");
@@ -189,7 +189,7 @@ has(mobilePanelHtml, /id="ranking-titulo-seo"/, "título de busca separado do fi
 has(mobilePanelHtml, /rankingSugerirTema/, "sugestão pelo interesse semanal ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /obterMetricasMovel\(chave\)/, "análise dos últimos sete dias ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /where\("dia",\s*">=",\s*desde\)/, "consulta incremental de métricas ausente no celular", "painel-celular.html");
-has(mobilePanelHtml, /RankingMetricasResumo\.combinar/, "cache não preserva a janela de métricas", "painel-celular.html");
+has(mobilePanelHtml, /RankingMetricasResumo\.criarLeitor/, "painel móvel não reutiliza o leitor comum de métricas", "painel-celular.html");
 has(mobilePanelHtml, /function rankingMetricaProdutoId\(/, "compatibilidade móvel com métricas históricas ausente", "painel-celular.html");
 has(mobilePanelHtml, /Publicar após aprovação/, "aprovação obrigatória do ranking ausente no celular", "painel-celular.html");
 has(mobilePanelHtml, /doc\(db,\s*"configuracoes",\s*"ranking-semanal"\)/, "sincronização do ranking entre os painéis ausente", "painel-celular.html");
@@ -263,7 +263,7 @@ has(dashboardHtml, /eventosPorId=new Map\(\)/, "dashboard não protege a consoli
 has(mobilePanelHtml, /function rankingMetricasUnicas\(metricas\)/, "painel móvel não consolida métricas novas e legadas", "painel-celular.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
 has(dashboardHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente do painel", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20261006-audit/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20261007-counters/, "painel e vitrine usam versões diferentes das ferramentas", "dashboard.html");
 has(dashboardHtml, /Conferir todos os preços agora/, "botão da conferência manual ausente", "dashboard.html");
 has(dashboardHtml, /Nenhuma conferência começa sozinha/, "proteção contra conferência automática ausente", "dashboard.html");
 if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
@@ -290,7 +290,7 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO ausente das novas páginas", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20261006-audit"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20261007-counters"><\/script>/, "versão atual do corretor editorial não foi incluída nas novas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="mobile-affiliate-offer"/, "botão de compra fixo no celular ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /\.top>div\{display:flex;flex-direction:column;order:-1\}/, "informações principais ainda aparecem depois da foto no celular", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /contentType === "image\/webp" \? "webp"/, "imagens WebP do catálogo ainda podem bloquear a publicação", "scripts/generate-sitemap.mjs");
@@ -420,15 +420,18 @@ if (/collection\(["']visitas["']\)\.get\(\)/.test(dashboardHtml)) {
   fail("dashboard.html: leitura integral e ilimitada do histórico de visitas voltou a ser usada");
 }
 has(dashboardHtml, /collection\(['"]visitas['"]\)\.where\(['"]dia['"],\s*['"]>=['"],\s*desde\)\.get\(\)/, "consulta incremental das métricas ausente", "dashboard.html");
-has(dashboardHtml, /resumirDocumentos\(snapshot\.docs, decodificarMetricaCentral\)/, "resumo compatível com métricas novas e antigas ausente", "dashboard.html");
-has(dashboardHtml, /localStorage\.setItem\(CHAVE_RESUMO_METRICAS, JSON\.stringify\(atualizado\)\)/, "resumo local não é preservado entre visitas ao painel", "dashboard.html");
+has(dashboardHtml, /RankingMetricasResumo\.criarLeitor/, "dashboard não usa o leitor comum de métricas", "dashboard.html");
+has(dashboardHtml, /RankingMetricasResumo\.exibir\(snapshot\)/, "dashboard não usa os contadores comuns", "dashboard.html");
 const metricasResumoJs = await readFile(resolve("metricas-resumo.js"), "utf8");
+has(metricasResumoJs, /resumirDocumentos\(snapshot\.docs, decodificar\)/, "resumo compatível com métricas novas e antigas ausente", "metricas-resumo.js");
+has(metricasResumoJs, /armazenamento\.setItem\(CHAVE_CACHE, JSON\.stringify\(memoria\)\)/, "resumo local não é preservado entre visitas ao painel", "metricas-resumo.js");
+has(metricasResumoJs, /CACHE_MS = 4 \* 60 \* 60 \* 1000/, "cache de métricas não protege o consumo", "metricas-resumo.js");
 has(metricasResumoJs, /function combinar\(cache, registros, desde, inicio, hoje, atualizadoEm\)/, "proteção contra duplicação do histórico ausente", "metricas-resumo.js");
 const consultasRecentesVisitas = dashboardHtml.match(/collection\(["']visitas["']\)\.where\(["']dia["'],\s*["']>=["']/g) || [];
 if (consultasRecentesVisitas.length !== 1) {
   fail("dashboard.html: deve existir exatamente uma consulta compartilhada do histórico recente de visitas");
 }
-has(dashboardHtml, /JANELA_METRICAS_PAINEL_DIAS\s*=\s*14/, "janela de 14 dias necessária para a comparação semanal ausente", "dashboard.html");
+has(metricasResumoJs, /function inicio\(hoje = diaBrasil\(\), dias = 14\)/, "janela de 14 dias necessária para a comparação semanal ausente", "metricas-resumo.js");
 has(dashboardHtml, /tipo\s*=\s*['"]divergente['"]/, "painel não identifica divergência real de preço separadamente", "dashboard.html");
 has(dashboardHtml, /tipo\s*\|\|\s*['"]nao_confirmado['"]/, "painel não identifica verificação temporariamente inconclusiva", "dashboard.html");
 has(dashboardHtml, /pendente:\s*tipo\s*===\s*['"]divergente['"]/, "painel ainda inclui bloqueios temporários na fila de correções", "dashboard.html");
@@ -486,7 +489,7 @@ for (const url of urls) {
   }
   has(html, /data-mobile-product-buy/, "ordem móvel protegida ausente", relative);
   has(html, /id="mobile-affiliate-offer"/, "botão fixo de preço ausente no celular", relative);
-  has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1|20260919-video-min3|20260919-video-fields1|20260919-title-fallback1|20260919-title-fallback2|20260919-video-overlay1|20260919-metrics-compat1|20260920-config-sync1|20260923-manual-price1|20260923-audit-fix1|20260929-video-max20|20260929-firebase-precos|20260929-presentes|20261003-five|20261004-repairs|20261005-choices|20261005-ux|20261006-audit)/, "versão visual desconhecida carregada", relative);
+  has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1|20260919-video-min3|20260919-video-fields1|20260919-title-fallback1|20260919-title-fallback2|20260919-video-overlay1|20260919-metrics-compat1|20260920-config-sync1|20260923-manual-price1|20260923-audit-fix1|20260929-video-max20|20260929-firebase-precos|20260929-presentes|20261003-five|20261004-repairs|20261005-choices|20261005-ux|20261006-audit|20261007-counters)/, "versão visual desconhecida carregada", relative);
 
   for (const identity of productIdentityKeys(html)) {
     const previous = identities.get(identity);

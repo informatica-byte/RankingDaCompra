@@ -43,7 +43,7 @@
     <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
 <script src="/best-choices.js?v=20261006-audit"></script>
-<script src="/metricas-resumo.js?v=20260923-1"></script>
+<script src="/metricas-resumo.js?v=20261007-counters"></script>
 <script src="/promotion-title.js?v=20261005-1"></script>
 <script src="/best-choices-admin.js?v=20261006-audit"></script>
 </head>
@@ -118,6 +118,24 @@
           <button id="publicar" class="btn azul">🚀 Publicar na mesma vitrine</button><button id="limpar" class="btn claro" type="button">Começar outra publicação</button>
           <div id="pub-status" class="status"></div>
         </form>
+        <div class="card" id="metricas-mobile">
+          <h2>📊 Contagens do site</h2>
+          <p>Mesma base e critérios do dashboard. Produtos: últimos 7 dias; visitas: períodos indicados.</p>
+          <div class="focus-mobile-grid">
+            <div class="focus-mobile-item"><small>Visitas da vitrine — 14 dias</small><strong data-metrica="visitas14">—</strong></div>
+            <div class="focus-mobile-item"><small>Visitas da vitrine — hoje</small><strong data-metrica="visitasHoje">—</strong></div>
+            <div class="focus-mobile-item"><small>Visitas da vitrine — 7 dias</small><strong data-metrica="visitas7">—</strong></div>
+            <div class="focus-mobile-item"><small>Visualizações de produtos — 7 dias</small><strong data-metrica="visualizacoes7">—</strong></div>
+            <div class="focus-mobile-item"><small>Cliques em Comprar — 7 dias</small><strong data-metrica="cliques7">—</strong></div>
+            <div class="focus-mobile-item"><small>Cliques / visualizações — 7 dias</small><strong data-metrica="taxa">—</strong></div>
+            <div class="focus-mobile-item"><small>Produtos que receberam cliques — 7 dias</small><strong data-metrica="produtosClicados7">—</strong></div>
+            <div class="focus-mobile-item"><small>Cliques hoje</small><strong data-metrica="cliquesHoje">—</strong></div>
+            <div class="focus-mobile-item"><small>Ações de compartilhar/copiar — 7 dias</small><strong data-metrica="compartilhamentos7">—</strong></div>
+          </div>
+          <button id="metricas-mobile-refresh" class="btn claro" type="button">↻ Atualizar contagem</button>
+          <p class="mini" data-metricas-status role="status">Sem consulta automática ao abrir. Atualize a contagem ou reutilize a base do dashboard neste navegador.</p>
+          <p class="mini">Cliques incluem Mercado Livre e Shopee, não vendas. Visitas da vitrine e visualizações de produtos são medidas diferentes. A coleta pode ser limitada por bloqueadores ou falhas de conexão; não representa pessoas únicas.</p>
+        </div>
         <div class="card" id="focus-mobile">
           <div class="etapa">Decisão da semana</div>
           <h2>🧭 Onde focar agora</h2>
@@ -1707,35 +1725,22 @@
         rankingDadosMovel = {
           todos: ps.docs.map((d) => ({ id: d.id, ...d.data() })).filter((p) => p.sistema !== true && String(p.titulo || "").trim()),
           produtos: ps.docs.map((d) => ({ id: d.id, ...d.data() })).filter(rankingElegivel),
-          metricas: rankingMetricasUnicas(ms.docs.map((d) => ({ id: d.id, ...d.data() }))),
+          metricas: rankingMetricasUnicas(ms.docs.map((d) => ({ id: d.id, ...d.data() }))).filter(m => m.dia >= chave && m.dia <= hoje()),
         };
         return rankingDadosMovel;
       }
       let metricasMovelPromise = null;
-      async function obterMetricasMovel(inicio) {
+      let metricasMovelLeitor = null;
+      async function obterMetricasMovel(inicio, forcar = false) {
         if (metricasMovelPromise) return metricasMovelPromise;
-        const cacheKey = "ranking-metricas-movel-resumo-v1", dia = hoje(), now = Date.now();
-        let resumo = null;
-        try {
-          const salvo = JSON.parse(localStorage.getItem(cacheKey) || "null");
-          if (salvo?.versao === window.RankingMetricasResumo.VERSION && Array.isArray(salvo.registros)
-            && salvo.ultimoDia >= inicio && salvo.ultimoDia <= dia) resumo = salvo;
-        } catch {}
-        if (resumo && resumo.ultimoDia === dia && now - resumo.atualizadoEm >= 0 && now - resumo.atualizadoEm < 4 * 60 * 60 * 1000) {
-          return window.RankingMetricasResumo.instantaneo(resumo, true);
-        }
-        const desde = resumo ? resumo.ultimoDia : inicio;
-        metricasMovelPromise = getDocs(query(collection(db, "visitas"), where("dia", ">=", desde))).then(ms => {
-          const registros = window.RankingMetricasResumo.resumirDocumentos(ms.docs, (data, id) => ({
-            ...data, id, tipo: rankingTipoMetrica(data), produtoId: rankingMetricaProdutoId(data), canal: rankingMetricaCanal(data),
-          }));
-          const atualizado = window.RankingMetricasResumo.combinar(resumo, registros, desde, inicio, dia, Date.now());
-          try { localStorage.setItem(cacheKey, JSON.stringify(atualizado)); } catch {}
-          return window.RankingMetricasResumo.instantaneo(atualizado);
-        }).catch(error => {
-          if (!resumo) throw error;
-          msg("precos-status", "Métricas em cache por indisponibilidade; preços continuam sendo conferidos individualmente.");
-          return window.RankingMetricasResumo.instantaneo(resumo, true);
+        metricasMovelLeitor ||= window.RankingMetricasResumo.criarLeitor({
+          diaAtual: hoje,
+          armazenamento: localStorage,
+          lerDocumentos: desde => getDocs(query(collection(db, "visitas"), where("dia", ">=", desde))),
+        });
+        metricasMovelPromise = metricasMovelLeitor.ler(forcar).then(snapshot => {
+          window.RankingMetricasResumo.exibir(snapshot);
+          return snapshot;
         }).finally(() => { metricasMovelPromise = null; });
         return metricasMovelPromise;
       }
@@ -2223,7 +2228,22 @@
         }
       };
 
-      $("focus-mobile-refresh").onclick = () => {
+      $("metricas-mobile-refresh").onclick = async () => {
+        const botao = $("metricas-mobile-refresh");
+        botao.disabled = true;
+        try { await obterMetricasMovel(null, true); }
+        catch (erro) {
+          $("metricas-mobile").querySelector("[data-metricas-status]").textContent =
+            "Não foi possível consultar agora. Os dados anteriores foram preservados: " + erro.message;
+        } finally { botao.disabled = false; }
+      };
+      // Exibe apenas o cache já salvo: abrir o painel não faz outra consulta.
+      const resumoMetricasSalvo = window.RankingMetricasResumo.criarLeitor({ armazenamento: localStorage,
+        diaAtual: hoje, lerDocumentos: () => { throw Error("Use o botão Atualizar contagem."); } }).cache();
+      if (resumoMetricasSalvo) window.RankingMetricasResumo.exibir(window.RankingMetricasResumo.instantaneo(resumoMetricasSalvo, true));
+      $("focus-mobile-refresh").onclick = async () => {
+        try { await obterMetricasMovel(null, true); }
+        catch (erro) { msg("ranking-status", "Não foi possível atualizar as métricas: " + erro.message, "erro"); return; }
         rankingDadosMovel = null;
         focusMobileLeituraAutorizada = true;
         void focusMobileLoad();

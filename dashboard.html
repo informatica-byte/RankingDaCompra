@@ -238,11 +238,12 @@
         <div class="painel">
             <h2>📈 Visitas da vitrine</h2>
             <div class="metricas-visitas">
-                <div class="metrica-visita"><strong id="visitas-total">—</strong><span>Últimos 14 dias</span></div>
-                <div class="metrica-visita"><strong id="visitas-hoje">—</strong><span>Hoje</span></div>
-                <div class="metrica-visita"><strong id="visitas-7-dias">—</strong><span>Últimos 7 dias</span></div>
+                <div class="metrica-visita"><strong id="visitas-total" data-metrica="visitas14">—</strong><span>Últimos 14 dias</span></div>
+                <div class="metrica-visita"><strong id="visitas-hoje" data-metrica="visitasHoje">—</strong><span>Hoje</span></div>
+                <div class="metrica-visita"><strong id="visitas-7-dias" data-metrica="visitas7">—</strong><span>Últimos 7 dias</span></div>
             </div>
             <button type="button" class="btn-salvar btn-categoria" id="btn-atualizar-visitas">Atualizar contagem</button>
+            <p class="ajuda-metrica" data-metricas-status role="status"></p>
             <p class="ajuda-metrica">Contagem anônima da vitrine. O mesmo navegador é contado no máximo uma vez a cada 30 minutos; por isso, é uma estimativa e não substitui o Google Analytics.</p>
         </div>
 
@@ -254,14 +255,15 @@
                 <div class="central-cabecalho-acoes"><a class="btn-central-secundario" href="estudio-videos.html" style="text-decoration:none">🎬 Estúdio do Ranki</a><a class="btn-central-secundario" href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer" style="text-decoration:none" title="Abra a automação e clique em Run workflow">⚡ Criar páginas agora</a><button type="button" class="btn-central-secundario" id="btn-central-atualizar">↻ Atualizar relatório</button><button type="button" class="btn-salvar" id="btn-central-ia">✨ Gerar textos com IA para as 3</button></div>
             </div>
             <div class="central-metricas" aria-label="Funil de vendas dos últimos sete dias">
-                <div><strong id="central-visualizacoes-semana">0</strong><span>Visualizações de produtos</span></div>
-                <div><strong id="central-cliques-semana">0</strong><span>Cliques em Comprar</span></div>
-                <div><strong class="taxa-funil" id="central-taxa-clique">—</strong><span>Taxa de avanço ao Mercado Livre</span></div>
-                <div><strong id="central-produtos-clicados">0</strong><span>Produtos que receberam cliques</span></div>
-                <div><strong id="central-cliques-hoje">0</strong><span>Cliques hoje</span></div>
-                <div><strong id="central-compartilhamentos">0</strong><span>Compartilhamentos em 7 dias</span></div>
+                <div><strong id="central-visualizacoes-semana" data-metrica="visualizacoes7">—</strong><span>Visualizações de produtos — 7 dias</span></div>
+                <div><strong id="central-cliques-semana" data-metrica="cliques7">—</strong><span>Cliques em Comprar — 7 dias</span></div>
+                <div><strong class="taxa-funil" id="central-taxa-clique" data-metrica="taxa">—</strong><span>Cliques / visualizações — 7 dias</span></div>
+                <div><strong id="central-produtos-clicados" data-metrica="produtosClicados7">—</strong><span>Produtos que receberam cliques — 7 dias</span></div>
+                <div><strong id="central-cliques-hoje" data-metrica="cliquesHoje">—</strong><span>Cliques hoje</span></div>
+                <div><strong id="central-compartilhamentos" data-metrica="compartilhamentos7">—</strong><span>Ações de compartilhar/copiar — 7 dias</span></div>
             </div>
-            <p class="central-status" id="central-status">O histórico comercial começa a ser preenchido com os próximos cliques e compartilhamentos.</p>
+            <p class="central-status" id="central-status" data-metricas-status>Atualize o relatório para consultar a mesma base do painel móvel.</p>
+            <p class="ajuda-metrica">Cliques incluem Mercado Livre e Shopee. São eventos registrados, não pessoas únicas nem vendas confirmadas. Visitas da vitrine e visualizações de produtos medem ações diferentes.</p>
             <div class="funil-diagnostico" id="central-diagnostico">Aguardando dados para diagnosticar o caminho até a compra.</div>
             <section class="central-bloco"><div class="central-titulo"><div><h3>🏆 As 3 melhores ofertas de hoje</h3><p>Escolha a rede e use um único botão. O link receberá a identificação do produto, da campanha e do canal.</p></div></div><div class="central-ofertas" id="central-melhores"><div class="estado-lista">Carregando produtos...</div></div></section>
             <section class="central-bloco"><h3>🎯 O que o público mais acessa — 7 dias</h3><p class="central-ajuda">Compara cliques nas Melhores escolhas, Ofertas-relâmpago e Rankings. Os números começam a contar após esta atualização.</p><div id="central-secoes"><div class="estado-lista">Aguardando os primeiros acessos...</div></div></section><section class="central-bloco" id="central-foco-section"><h3>🧭 Central de foco — próximos 7 dias</h3><p class="central-ajuda">Mostra onde concentrar publicações usando visualizações, cliques em Comprar e compartilhamentos registrados pelo próprio site. Cliques valem mais porque indicam intenção comercial.</p><div id="central-foco"><div class="estado-lista">Calculando categorias e produtos em evidência...</div></div></section><section class="central-bloco" id="seo-opportunities-dashboard"></section><section class="central-bloco"><h3>📊 Relatório diário e semanal</h3><div id="central-relatorio"><div class="estado-lista">Carregando resultados...</div></div></section>
@@ -1064,7 +1066,7 @@ FORMATO:
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261006-3"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
-    <script src="/metricas-resumo.js?v=20260923-1"></script>
+    <script src="/metricas-resumo.js?v=20261007-counters"></script>
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
@@ -1184,68 +1186,15 @@ FORMATO:
             return `${valor.year}-${valor.month}-${valor.day}`;
         }
 
-        const JANELA_METRICAS_PAINEL_DIAS = 14;
-        // Métricas detalhadas não precisam reler eventos a cada abertura do painel.
-        // O botão "Atualizar contagem" continua disponível para uma leitura imediata.
-        const CACHE_METRICAS_PAINEL_MS = 4 * 60 * 60 * 1000;
-        const CACHE_MINIMO_ATUALIZACAO_MS = 60 * 1000;
-        const CHAVE_RESUMO_METRICAS = 'ranking-metricas-painel-resumo-v1';
-        let metricasPainelCache = null;
-        let metricasPainelCacheEm = 0;
-        let metricasPainelCacheDia = '';
-        let metricasPainelPromise = null;
-
-        function inicioMetricasPainel() {
-            const inicio = new Date();
-            inicio.setDate(inicio.getDate() - (JANELA_METRICAS_PAINEL_DIAS - 1));
-            return dataBrasil(inicio);
-        }
-
+        let metricasPainelLeitor = null;
         async function obterMetricasPainel(forcar = false) {
-            if (metricasPainelPromise) return metricasPainelPromise;
-            const idadeCache = Date.now() - metricasPainelCacheEm;
-            const cacheValido = metricasPainelCache && metricasPainelCacheDia === dataBrasil()
-                && idadeCache < CACHE_METRICAS_PAINEL_MS;
-            const atualizacaoMuitoRecente = metricasPainelCache && idadeCache < CACHE_MINIMO_ATUALIZACAO_MS;
-            if (cacheValido && (!forcar || atualizacaoMuitoRecente)) return metricasPainelCache;
-
-            const inicio = inicioMetricasPainel(), hoje = dataBrasil();
-            let resumo = null;
-            try {
-                const salvo = JSON.parse(localStorage.getItem(CHAVE_RESUMO_METRICAS) || 'null');
-                if (salvo?.versao === RankingMetricasResumo.VERSION && Array.isArray(salvo.registros)
-                    && /^\d{4}-\d{2}-\d{2}$/.test(String(salvo.ultimoDia || ''))
-                    && salvo.ultimoDia >= inicio && salvo.ultimoDia <= hoje) resumo = salvo;
-            } catch (erro) { console.warn('Resumo local de métricas indisponível.', erro); }
-            if (resumo && resumo.ultimoDia === hoje && !forcar
-                && Date.now() - Number(resumo.atualizadoEm || 0) < CACHE_METRICAS_PAINEL_MS) {
-                metricasPainelCache = RankingMetricasResumo.instantaneo(resumo, true);
-                metricasPainelCacheEm = Number(resumo.atualizadoEm || 0);
-                metricasPainelCacheDia = hoje;
-                return metricasPainelCache;
-            }
-            const desde = resumo ? (resumo.ultimoDia < inicio ? inicio : resumo.ultimoDia) : inicio;
-            metricasPainelPromise = db.collection('visitas').where('dia', '>=', desde).get()
-                .then(snapshot => {
-                    const registros = RankingMetricasResumo.resumirDocumentos(snapshot.docs, decodificarMetricaCentral);
-                    const atualizado = RankingMetricasResumo.combinar(resumo, registros, desde, inicio, hoje, Date.now());
-                    try { localStorage.setItem(CHAVE_RESUMO_METRICAS, JSON.stringify(atualizado)); }
-                    catch (erro) { console.warn('Não foi possível guardar o resumo local das métricas.', erro); }
-                    metricasPainelCache = RankingMetricasResumo.instantaneo(atualizado);
-                    metricasPainelCacheEm = atualizado.atualizadoEm;
-                    metricasPainelCacheDia = hoje;
-                    return metricasPainelCache;
-                })
-                .catch(erro => {
-                    if (!resumo) throw erro;
-                    console.warn('Usando o último resumo preservado; o Firebase não respondeu.', erro);
-                    metricasPainelCache = RankingMetricasResumo.instantaneo(resumo, true);
-                    metricasPainelCacheEm = Date.now();
-                    metricasPainelCacheDia = hoje;
-                    return metricasPainelCache;
-                })
-                .finally(() => { metricasPainelPromise = null; });
-            return metricasPainelPromise;
+            metricasPainelLeitor ||= RankingMetricasResumo.criarLeitor({
+                diaAtual: dataBrasil,
+                lerDocumentos: desde => db.collection('visitas').where('dia', '>=', desde).get()
+            });
+            const snapshot = await metricasPainelLeitor.ler(forcar);
+            RankingMetricasResumo.exibir(snapshot);
+            return snapshot;
         }
 
         async function carregarMetricasVisitas(forcar = false) {
@@ -1254,27 +1203,11 @@ FORMATO:
             botao.textContent = 'Atualizando...';
             try {
                 const snapshot = await obterMetricasPainel(forcar === true);
-                const hoje = dataBrasil();
-                const inicioSeteDias = new Date();
-                inicioSeteDias.setDate(inicioSeteDias.getDate() - 6);
-                const inicio = dataBrasil(inicioSeteDias);
-                let visitasQuatorzeDias = 0, visitasHoje = 0, visitasSeteDias = 0;
-                snapshot.forEach(doc => {
-                    const dadosVisita = doc.data();
-                    if ((dadosVisita.tipo && dadosVisita.tipo !== 'visita') || String(dadosVisita.origem || '').startsWith('evento:')) return;
-                    const quantidade = RankingMetricasResumo.quantidade(dadosVisita);
-                    visitasQuatorzeDias += quantidade;
-                    const dia = dadosVisita.dia || '';
-                    if (dia === hoje) visitasHoje += quantidade;
-                    if (dia >= inicio && dia <= hoje) visitasSeteDias += quantidade;
-                });
-                document.getElementById('visitas-total').textContent = visitasQuatorzeDias.toLocaleString('pt-BR');
-                document.getElementById('visitas-hoje').textContent = visitasHoje.toLocaleString('pt-BR');
-                document.getElementById('visitas-7-dias').textContent = visitasSeteDias.toLocaleString('pt-BR');
+                RankingMetricasResumo.exibir(snapshot);
             } catch (erro) {
                 console.error('Erro ao carregar visitas:', erro);
                 document.getElementById('visitas-total').textContent = 'Erro';
-                alert('Ainda falta publicar a regra de visitas no Firestore. Veja o arquivo firestore.rules.txt atualizado.');
+                alert('Não foi possível consultar as contagens agora. Verifique a conexão e o login e tente novamente. Nenhum dado foi alterado.');
             } finally {
                 botao.disabled = false;
                 botao.textContent = 'Atualizar contagem';
@@ -1386,7 +1319,7 @@ const aceitos=new Set(["visualizacao_produto","clique_oferta","compartilhamento"
 const atuais=metricasCentralAtual.filter(item=>aceitos.has(item.tipo)&&item.dia>=inicio&&item.dia<=fim);
 const anteriores=metricasCentralAtual.filter(item=>aceitos.has(item.tipo)&&item.dia>=inicioAnterior&&item.dia<=fimAnterior);
 const produtos=new Map(produtosCentralAtual.map(item=>[String(item.id),item]));
-function consolidar(eventos){const porProduto=new Map(),porCategoria=new Map();eventos.forEach(item=>{const id=String(item.produtoId||"");if(!id)return;const produto=produtos.get(id),categoria=String(produto?.categoria||item.categoria||"sem-categoria"),p=porProduto.get(id)||{id,titulo:item.titulo||produto?.titulo||id,categoria,views:0,cliques:0,shares:0};if(item.tipo==="visualizacao_produto")p.views++;if(item.tipo==="clique_oferta")p.cliques++;if(item.tipo==="compartilhamento")p.shares++;porProduto.set(id,p);const c=porCategoria.get(categoria)||{id:categoria,nome:nomeCategoriaFocoCentral(categoria),views:0,cliques:0,shares:0};if(item.tipo==="visualizacao_produto")c.views++;if(item.tipo==="clique_oferta")c.cliques++;if(item.tipo==="compartilhamento")c.shares++;porCategoria.set(categoria,c)});const finalizar=item=>({...item,score:item.views+item.cliques*5+item.shares*2,taxa:item.views?Math.min(100,item.cliques/item.views*100):item.cliques?100:0});return{produtos:[...porProduto.values()].map(finalizar),categorias:[...porCategoria.values()].map(finalizar)}}
+function consolidar(eventos){const porProduto=new Map(),porCategoria=new Map();eventos.forEach(item=>{const id=String(item.produtoId||"");if(!id)return;const produto=produtos.get(id),categoria=String(produto?.categoria||item.categoria||"sem-categoria"),p=porProduto.get(id)||{id,titulo:item.titulo||produto?.titulo||id,categoria,views:0,cliques:0,shares:0};if(item.tipo==="visualizacao_produto")p.views++;if(item.tipo==="clique_oferta")p.cliques++;if(item.tipo==="compartilhamento")p.shares++;porProduto.set(id,p);const c=porCategoria.get(categoria)||{id:categoria,nome:nomeCategoriaFocoCentral(categoria),views:0,cliques:0,shares:0};if(item.tipo==="visualizacao_produto")c.views++;if(item.tipo==="clique_oferta")c.cliques++;if(item.tipo==="compartilhamento")c.shares++;porCategoria.set(categoria,c)});const finalizar=item=>({...item,score:item.views+item.cliques*5+item.shares*2,taxa:item.views?(item.cliques/item.views*100):item.cliques?100:0});return{produtos:[...porProduto.values()].map(finalizar),categorias:[...porCategoria.values()].map(finalizar)}}
 const atual=consolidar(atuais),anterior=consolidar(anteriores),scoreAnterior=new Map(anterior.categorias.map(item=>[item.id,item.score]));
 const categorias=atual.categorias.sort((a,b)=>b.score-a.score||b.cliques-a.cliques||b.views-a.views);
 const listaProdutos=atual.produtos.sort((a,b)=>b.score-a.score||b.cliques-a.cliques||b.views-a.views);
@@ -1412,14 +1345,14 @@ alvo.innerHTML='<div class="central-foco-resumo">'+cards.map(item=>'<article cla
 
 function renderizarRelatorioCentral(){
 const alvo=document.getElementById('central-relatorio');if(!alvo)return;
-const hoje=dataBrasil(),inicioData=new Date();inicioData.setDate(inicioData.getDate()-6);const inicio=dataBrasil(inicioData);
+const hoje=dataBrasil(),inicio=RankingMetricasResumo.inicio(hoje,7);
 const visualizacoes=metricasCentralAtual.filter(item=>item.tipo==='visualizacao_produto');
 const cliques=metricasCentralAtual.filter(item=>item.tipo==='clique_oferta');
 const compartilhamentos=metricasCentralAtual.filter(item=>item.tipo==='compartilhamento');
 const visualizacoesSemana=visualizacoes.filter(item=>item.dia>=inicio&&item.dia<=hoje);
 const cliquesHoje=cliques.filter(item=>item.dia===hoje),cliquesSemana=cliques.filter(item=>item.dia>=inicio&&item.dia<=hoje),sharesSemana=compartilhamentos.filter(item=>item.dia>=inicio&&item.dia<=hoje);
 const produtosClicados=new Set(cliquesSemana.map(item=>String(item.produtoId||'')).filter(Boolean));
-const taxa=visualizacoesSemana.length?Math.min(100,cliquesSemana.length/visualizacoesSemana.length*100):null;
+const taxa=RankingMetricasResumo.contar(metricasCentralAtual,hoje).taxa;
 document.getElementById('central-visualizacoes-semana').textContent=visualizacoesSemana.length.toLocaleString('pt-BR');
 document.getElementById('central-cliques-semana').textContent=cliquesSemana.length.toLocaleString('pt-BR');
 document.getElementById('central-taxa-clique').textContent=taxa===null?'—':taxa.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
@@ -1448,7 +1381,11 @@ alvo.innerHTML='<div class="central-relatorio-grid"><div><h4>Páginas com melhor
 
 function renderizarSecoesCentral(){const alvo=document.getElementById('central-secoes');if(!alvo)return;const hoje=dataBrasil(),inicioData=new Date();inicioData.setDate(inicioData.getDate()-6);const inicio=dataBrasil(inicioData),rotulos={promocoes:'Melhores escolhas',relampagos:'Ofertas-relâmpago',rankings:'Rankings por categoria'},ordem=['promocoes','relampagos','rankings'],contagem=Object.fromEntries(ordem.map(chave=>[chave,0]));metricasCentralAtual.filter(item=>item.tipo==='clique_secao'&&item.dia>=inicio&&item.dia<=hoje).forEach(item=>{const chave=String(item.produtoId||'');if(chave in contagem)contagem[chave]++});const maior=Math.max(0,...Object.values(contagem)),vencedor=maior?ordem.find(chave=>contagem[chave]===maior):'';alvo.innerHTML='<div class="secoes-central">'+ordem.map(chave=>'<article class="secao-central-card '+(chave===vencedor?'vencedor':'')+'"><span>'+escapeHtml(rotulos[chave])+'</span><strong>'+contagem[chave].toLocaleString('pt-BR')+'</strong><small>'+(chave===vencedor&&maior?'Mais acessado':'cliques em 7 dias')+'</small><i style="--resultado:'+(maior?Math.max(5,Math.round(contagem[chave]/maior*100)):0)+'%"></i></article>').join('')+'</div>'+(maior?'':'<p class="estado-lista">Ainda não há cliques comerciais registrados nos últimos 7 dias. Os próximos acessos às promoções, ofertas-relâmpago e rankings aparecerão aqui automaticamente.</p>')}
 const renderizarRelatorioCentralBase=renderizarRelatorioCentral;renderizarRelatorioCentral=function(){renderizarRelatorioCentralBase();renderizarSecoesCentral();renderizarFocoCentral()};
-function decodificarMetricaCentral(dados,id){if(['clique_oferta','compartilhamento','clique_secao','visualizacao_produto'].includes(dados.tipo)){const evento={id,...dados};if(evento.tipo==='clique_secao'&&String(evento.canal||'').startsWith('view:')){evento.tipo='visualizacao_produto';evento.canal=String(evento.canal).slice(5)||'direto'}return evento}const origem=String(dados.origem||'');if(!origem.startsWith('evento:'))return null;const partes=origem.split(':');const tipo=partes[1]||'',produtoId=partes[2]||'',canal=partes[3]||'site';if(!['clique_oferta','compartilhamento','clique_secao','visualizacao_produto'].includes(tipo)||!produtoId)return null;const produto=produtosCentralAtual.find(item=>String(item.id)===String(produtoId));return{id,tipo,produtoId,titulo:produto?.titulo||produtoId,categoria:produto?.categoria||'',canal,campanha:'ofertas_do_dia',dia:dados.dia||'',criadoEm:dados.criadoEm,origem}}
+function decodificarMetricaCentral(dados,id){
+const evento=RankingMetricasResumo.decodificar(dados,id);if(!evento)return null;
+const produto=produtosCentralAtual.find(item=>String(item.id)===evento.produtoId);
+return {...evento,titulo:evento.titulo||produto?.titulo||evento.produtoId,categoria:evento.categoria||produto?.categoria||''};
+}
 
 async function carregarMetricasCentral(forcar=false){
 const botao=document.getElementById('btn-central-atualizar'),status=document.getElementById('central-status'),textoOriginal=botao?.textContent||'↻ Atualizar relatório';
@@ -1462,7 +1399,7 @@ eventos.sort((a,b)=>dataMsCentral(b.criadoEm)-dataMsCentral(a.criadoEm));
 metricasCentralAtual=eventos;
 renderizarRelatorioCentral();
 renderizarOfertasCentral();
-if(status)status.textContent=eventos.length?('Relatório atualizado: '+eventos.length.toLocaleString('pt-BR')+' evento(s) comercial(is) encontrado(s).'):'Ainda não há cliques ou compartilhamentos comerciais registrados. Os próximos eventos aparecerão automaticamente aqui.';
+RankingMetricasResumo.exibir(snapshot);
 }catch(erro){
 console.error('Não foi possível carregar o relatório comercial.',erro);
 metricasCentralAtual=[];
@@ -3269,7 +3206,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script defer src="/seo-opportunities.js?v=20261004-2"></script>
   <script src="/promotion-title.js?v=20261005-1"></script>
-  <script defer src="/growth-tools.js?v=20261006-audit"></script>
+  <script defer src="/growth-tools.js?v=20261007-counters"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
 <script>

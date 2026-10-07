@@ -171,7 +171,7 @@
       titulo: product.title,
       categoria: product.category,
       canal: String(channel || funnelSource()).slice(0, 40),
-      campanha: String(params.get("utm_campaign") || "site").slice(0, 80),
+      campanha: String((link.id === "affiliate-offer-shopee" ? "shopee:" : "") + (params.get("utm_campaign") || "site")).slice(0, 80),
       dia: todayKey(),
       origem: location.pathname.slice(0, 80),
       criadoEm: window.firebase.firestore.FieldValue.serverTimestamp()
@@ -181,8 +181,16 @@
   function setupFunnelTracking() {
     if (document.documentElement.dataset.funnelTrackingReady) return;
     document.documentElement.dataset.funnelTrackingReady = "true";
+    window.RankingProductMetrics = {
+      recordShare(channel) {
+        const offer = document.getElementById("affiliate-offer");
+        if (!offer) return Promise.resolve();
+        return recordFunnelMetric("compartilhamento", offer, channel).catch(error =>
+          console.warn("Não foi possível registrar o compartilhamento.", error));
+      }
+    };
     document.addEventListener("click", event => {
-      const offer = event.target.closest?.("#affiliate-offer");
+      const offer = event.target.closest?.("#affiliate-offer, #mobile-affiliate-offer, #affiliate-offer-shopee");
       if (!offer) return;
       void recordFunnelMetric("clique_oferta", offer).catch(error =>
         console.warn("Não foi possível registrar o clique comercial.", error)

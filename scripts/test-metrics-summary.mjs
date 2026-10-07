@@ -39,7 +39,7 @@ assert.equal(summary.total(nextDay.registros), 6,
 console.log("Resumo local de métricas: contagens e proteção contra duplicação OK");
 
 const dashboard = await readFile(new URL("../dashboard.html", import.meta.url), "utf8");
-assert.match(dashboard, /<script src="\/metricas-resumo\.js\?v=20260923-1"><\/script>[\s\S]*?<script>/,
+assert.match(dashboard, /<script src="\/metricas-resumo\.js\?v=20261007-counters"><\/script>[\s\S]*?<script>/,
   "o resumo precisa carregar antes do painel");
 for (const match of dashboard.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
   if (/\btype\s*=\s*["']module["']/i.test(match[1]) || !match[2].trim()) continue;
