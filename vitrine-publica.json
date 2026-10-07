@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-07T20:51:10.305Z",
+  "generatedAt": "2026-10-07T20:53:12.943Z",
   "products": [
     {
       "id": "0o2cubZBfwlgcwFokAWY",
@@ -4921,7 +4921,10 @@
       "promocaoAtiva": false,
       "promocaoValidaAte": "2026-10-07",
       "ofertaRelampagoAtiva": true,
-      "ofertaRelampagoTerminaEm": "2026-10-08T07:45:11.165Z"
+      "ofertaRelampagoTerminaEm": "2026-10-08T07:45:11.165Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-07T20:52:35.881Z",
+      "precoConferenciaId": "f30f733f-29b6-4f8a-bdd3-4d7d56c500f0"
     },
     {
       "id": "q4XshIAfttQBQ9Bwz7uB",
@@ -5605,7 +5608,10 @@
       "promocaoAtiva": false,
       "promocaoValidaAte": "2026-10-07",
       "ofertaRelampagoAtiva": true,
-      "ofertaRelampagoTerminaEm": "2026-10-08T07:49:46.046Z"
+      "ofertaRelampagoTerminaEm": "2026-10-08T07:49:46.046Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-07T20:52:38.662Z",
+      "precoConferenciaId": "b526f3da-dac8-400e-acf1-f44873969156"
     },
     {
       "id": "sfV5mG9A2qmqdyJhbQc0",
@@ -5833,7 +5839,10 @@
       "promocaoAtiva": false,
       "promocaoValidaAte": "2026-10-07",
       "ofertaRelampagoAtiva": true,
-      "ofertaRelampagoTerminaEm": "2026-10-08T07:37:39.862Z"
+      "ofertaRelampagoTerminaEm": "2026-10-08T07:37:39.862Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-07T20:52:33.265Z",
+      "precoConferenciaId": "e79899ca-6d4c-4980-acd9-4c4073b9d3e0"
     },
     {
       "id": "tb7c733uByymDrSRjT5f",
