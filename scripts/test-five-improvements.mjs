@@ -12,8 +12,11 @@ const buyer = buyerContext.window.RDCBuyerTools;
 test('published pages may retain the previous known asset version during generation, not arbitrary versions', async () => {
   const validator = await source('scripts/validate-site.mjs');
   const line = validator.split('\n').find(line => line.includes('versão visual desconhecida carregada'));
-  assert.ok(line.includes('|20260929-presentes|20261003-five|20261004-repairs|20261005-choices|20261005-ux|20261006-audit|20261007-counters)'));
-  assert.ok(!line.includes('unknown-version'));
+  const literal = line.match(/has\(html,\s*(\/growth-tools[^\n]+?\/),/)?.[1];
+  assert.ok(literal, 'regra de versões conhecida deve existir');
+  const rule = vm.runInNewContext(literal);
+  for (const version of ['20260929-presentes','20261007-counters','20261008-consent']) assert.match('growth-tools.js?v=' + version, rule);
+  assert.doesNotMatch('growth-tools.js?v=unknown-version', rule);
 });
 test('public loader shares concurrent reads, caches success and retries errors without database fallback', async () => {
   let calls=0, fail=false;

@@ -489,7 +489,7 @@ for (const url of urls) {
   }
   has(html, /data-mobile-product-buy/, "ordem móvel protegida ausente", relative);
   has(html, /id="mobile-affiliate-offer"/, "botão fixo de preço ausente no celular", relative);
-  has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1|20260919-video-min3|20260919-video-fields1|20260919-title-fallback1|20260919-title-fallback2|20260919-video-overlay1|20260919-metrics-compat1|20260920-config-sync1|20260923-manual-price1|20260923-audit-fix1|20260929-video-max20|20260929-firebase-precos|20260929-presentes|20261003-five|20261004-repairs|20261005-choices|20261005-ux|20261006-audit|20261007-counters)/, "versão visual desconhecida carregada", relative);
+  has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1|20260919-video-min3|20260919-video-fields1|20260919-title-fallback1|20260919-title-fallback2|20260919-video-overlay1|20260919-metrics-compat1|20260920-config-sync1|20260923-manual-price1|20260923-audit-fix1|20260929-video-max20|20260929-firebase-precos|20260929-presentes|20261003-five|20261004-repairs|20261005-choices|20261005-ux|20261006-audit|20261007-counters|20261008-consent)/, "versão visual desconhecida carregada", relative);
 
   for (const identity of productIdentityKeys(html)) {
     const previous = identities.get(identity);
@@ -559,7 +559,7 @@ for (const file of guideFiles) {
   } else {
     has(html, /🏆 Melhor geral/, "destaque de melhor geral ausente", file);
     if (!html.includes("Custo-benefício: sem dados comparáveis suficientes")) {
-      has(html, /💚 Melhor custo-benefício/, "destaque de custo-benefício ausente", file);
+      has(html, /💚 Melhor custo-benefício|data-cost-benefit-unavailable/, "selo de custo-benefício ou justificativa de evidência insuficiente ausente", file);
     }
     has(html, /💰 Mais barato/, "destaque de menor preço ausente", file);
     has(html, /Por que está nesta posição:/, "justificativa de posição ausente", file);

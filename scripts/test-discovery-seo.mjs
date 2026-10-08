@@ -12,6 +12,8 @@ const categories = [
   { id: "relogio-smartwatch", nome: "Relógio Smartwatch" },
   { id: "fones-de-ouvido", nome: "Fones de ouvido" },
   { id: "casa", nome: "Casa" },
+  { id: "smarttv", nome: "Smart TV" },
+  { id: "patinete-eletrico", nome: "Patinete elétrico" },
 ];
 const records = [
   ["router-a", "Roteador TP-Link AX1500 Wi-Fi 6", "roteador", 180, "2026-09-12"],
@@ -29,6 +31,15 @@ const records = [
   ["clock", "Relógio de Parede", "casa", 40, "2026-09-06"],
   ["sofa", "Sofá Retrátil", "casa", 1400, "2026-09-06"],
   ["coffee", "Cafeteira Elétrica", "casa", 200, "2026-09-06"],
+  ["tv-a", "Smart TV Samsung 43 polegadas", "smarttv", 1800, "2026-09-12"],
+  ["tv-b", "Smart TV LG 50 polegadas", "smarttv", 2200, "2026-09-12"],
+  ["tv-c", "Televisor TCL Smart TV 55 polegadas", "smarttv", 2400, "2026-09-12"],
+  ["roku", "Roku Streaming Stick 2025 Para Tv Full Hd", "smarttv", 200, "2026-09-12"],
+  ["box", "TV Box Android para TV", "smarttv", 100, "2026-09-12"],
+  ["projector", "Projetor com TV integrada", "smarttv", 800, "2026-09-12"],
+  ["scooter-a", "Patinete Elétrico Motor 500W", "patinete-eletrico", 1800, "2026-09-12"],
+  ["scooter-b", "Patinete Elétrico Motor 450W", "patinete-eletrico", 1600, "2026-09-12"],
+  ["scooter-c", "Patinete Elétrico Motor 350W", "patinete-eletrico", 1400, "2026-09-12"],
 ];
 
 try {
@@ -60,6 +71,12 @@ try {
   const watch = await readFile(join(directory, "melhores-relogio-smartwatch.html"), "utf8");
   const fones = await readFile(join(directory, "melhores-fones-de-ouvido.html"), "utf8");
   const house = await readFile(join(directory, "melhores-casa.html"), "utf8");
+  const tv = await readFile(join(directory, "melhores-smart-tv.html"), "utf8");
+  assert.match(tv, /3 produtos comparados/);
+  assert.doesNotMatch(tv, /Roku Streaming|TV Box Android|Projetor com TV/);
+  const scooter = await readFile(join(directory, 'melhores-patinetes-eletricos.html'), 'utf8');
+  assert.match(scooter, /data-cost-benefit-unavailable/);
+  assert.doesNotMatch(scooter, /💚 Melhor custo-benefício/);
   const sitemap = await readFile(join(directory, "sitemap.xml"), "utf8");
   assert.doesNotMatch(router, /Repetidor TP-Link/);
   assert.doesNotMatch(watch, /Relógio Digital Casio/);

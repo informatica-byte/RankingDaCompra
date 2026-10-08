@@ -3,6 +3,38 @@ import { basename, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const PRODUCT_CORRECTIONS = new Map([
+  ["JY36kE95u7uCT7UJWvpt", {
+    model: /\bnac\b|acetilciste[ií]na/i,
+    summary: "O cadastro identifica um suplemento NAC de 600 mg em embalagem de 60 cápsulas. Confira a composição, o fabricante, o lote, a procedência e as instruções da embalagem com o vendedor. Não verificamos a regularidade ou a autenticidade deste lote e não realizamos testes do produto. Esta página não comprova efeitos sobre imunidade, desintoxicação, respiração ou envelhecimento, não promete prevenção ou tratamento de doenças e não orienta dose. Para avaliar adequação individual, procure um profissional de saúde.",
+    positiveNotes: ["NAC de 600 mg e embalagem de 60 cápsulas identificados no cadastro; confirme o rótulo."],
+    negativeNotes: ["Regularidade, composição e autenticidade do lote não foram verificadas nesta revisão.", "Não há comprovação clínica ou teste independente nesta página; não usamos promessas de saúde como motivo de compra."],
+    suppressRating: true,
+  }],
+  ["dsddqlXmq1JumgBMwtm0", {
+    model: /brastoy/i,
+    correct: "Blocos Magnéticos de Montar Brastoy — Quantidade a confirmar",
+    replacements: [["Blocos de Montar Brastoy, Magnéticos, com 504 Peças | Bloco magnetico", "Blocos Magnéticos de Montar Brastoy — Quantidade a confirmar"]],
+    summary: "O cadastro identifica blocos magnéticos de montar Brastoy. A quantidade de peças está a confirmar: o título e o texto anteriores informavam quantidades diferentes, e a variante do anúncio ainda não foi verificada. Antes de comprar, confirme o conjunto selecionado, o número de peças, as dimensões, a faixa etária e as advertências na embalagem com o vendedor. Não testamos força dos ímãs, resistência ou segurança do conjunto e não comprovamos benefícios educacionais. Não escolha esta oferta apenas por uma quantidade ainda não confirmada.",
+    positiveNotes: ["Blocos magnéticos de montar identificados no cadastro; confirme o conjunto oferecido."],
+    negativeNotes: ["Quantidade de peças e variante do anúncio a confirmar.", "Resistência, ímãs, certificação e adequação à idade não foram verificados pela equipe."],
+    suppressRating: true,
+  }],
+  ["SUBPibuHNUsgB6zVTL5r", {
+    model: /webcam/i,
+    category: "informatica",
+    categoryReplacements: [["<span>Categoria</span>Notebook", "<span>Categoria</span>Informática"], ["\"category\":\"Notebook\"", "\"category\":\"Informática\""], ["\"name\":\"Notebook\",\"item\":\"https://rankingdacompra.com.br/melhores-notebook.html\"", "\"name\":\"Informática\",\"item\":\"https://rankingdacompra.com.br/analises.html#informatica\""], ["href=\"https://rankingdacompra.com.br/melhores-notebook.html\">Notebook</a>", "href=\"https://rankingdacompra.com.br/analises.html#informatica\">Informática</a>"]],
+  }],
+  ["ik7zBiCAAqDLqr9Di5Ue", {model: /roku.*streaming\s*stick/i, category: 'informatica'}],
+  ["6mZ1ahzme9kUH1UdSkJw", {model: /starlink/i, category: 'informatica'}],
+  ["uIZQISdVd0NEyClG29Qv", {model: /access\s*point.*grandstream/i, category: 'informatica'}],
+  ["HJcpaZe94VZRnomC2hH1", {
+    model: /(?:logitech.*m90|m90.*logitech)/i,
+    categoryReplacements: [["Kit Teclado e Mouse Sem Fio", "Teclados e mouses"], ["Kit teclado e mouse sem fio", "Teclados e mouses"]],
+  }],
+  ["vMno2u6iDC5eZJug2sOH", {
+    model: /logitech.*k120/i,
+    categoryReplacements: [["Kit Teclado e Mouse Sem Fio", "Teclados e mouses"], ["Kit teclado e mouse sem fio", "Teclados e mouses"]],
+  }],
   ["31Lco0eFCDaomsks3iM3", {
     model: /wap.*power\s*speed\s*max/i,
     summary: "O WAP Power Speed Max tem potência anunciada de 1.600 W, reservatório de 1,3 litro, filtro HEPA e cabo de 5 metros, conforme a WAP. Compare-o para limpeza de pisos e uso portátil com os acessórios indicados no manual. Confira a tensão e o tamanho do reservatório para sua rotina. Não medimos sucção, ruído ou retenção de partículas; a alegação do fabricante sobre filtragem não é prova de benefício clínico para quem tem alergias.",
@@ -220,8 +252,21 @@ export function correctProductData(product) {
     pros: correction?.summary ? correction.positiveNotes.join("\n") : applyReplacements(product?.pros),
     contras: correction?.summary ? correction.negativeNotes.join("\n") : applyReplacements(product?.contras),
     categoria: correction?.category || product?.categoria,
-    nota: correction?.suppressRating ? "" : product?.nota,
+    // Conservar a nota original para revisão, sem publicá-la como avaliação comprovada.
+    notaInformada: product?.notaInformada ?? product?.nota ?? "",
+    nota: !correction?.suppressRating && hasDocumentedEditorialRating(product) ? product?.nota : "",
   };
+}
+
+export function hasDocumentedEditorialRating(product) {
+  const evidence = product?.avaliacaoEditorial;
+  const rating = Number(product?.nota);
+  if (!Number.isFinite(rating) || rating < 1 || rating > 5 || !evidence) return false;
+  const reviewedAt = Date.parse(evidence.revisadoEm || '');
+  return typeof evidence.criterios === 'string' && evidence.criterios.trim().length >= 30
+    && typeof evidence.responsavel === 'string' && evidence.responsavel.trim().length > 2
+    && /^https?:\/\//.test(String(evidence.fonte || ''))
+    && Number.isFinite(reviewedAt) && reviewedAt <= Date.now();
 }
 
 export const correctProductTitle = correctProductData;
@@ -364,12 +409,24 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
   }
 
   let updatedFiles = 0;
+  const weeklyFile = resolve(rootDirectory, 'top5-semanal.json');
+  try {
+    const weekly = JSON.parse(await readFile(weeklyFile, 'utf8'));
+    if (Array.isArray(weekly.products)) {
+      const before = JSON.stringify(weekly.products);
+      weekly.products = weekly.products.map(correctProductData);
+      if (JSON.stringify(weekly.products) !== before) {
+        await writeFile(weeklyFile, JSON.stringify(weekly, null, 2) + '\n', 'utf8');
+        updatedFiles += 1;
+      }
+    }
+  } catch (error) { if (error.code !== 'ENOENT') throw error; }
   const catalogueFile = resolve(rootDirectory, "vitrine-publica.json");
   try {
     const catalogue = JSON.parse(await readFile(catalogueFile, "utf8"));
     if (Array.isArray(catalogue.products)) {
       const before = JSON.stringify(catalogue.products);
-      catalogue.products = catalogue.products.map(p => PRODUCT_CORRECTIONS.has(String(p.id)) ? correctProductData(p) : p);
+      catalogue.products = catalogue.products.map(correctProductData);
       if (JSON.stringify(catalogue.products) !== before) {
         await writeFile(catalogueFile, JSON.stringify(catalogue, null, 2) + "\n", "utf8");
         updatedFiles += 1;
@@ -398,6 +455,19 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
         || corrected.match(/<title>([\s\S]*?)<\/title>/i)?.[1]
         || (() => { try { const payload = JSON.parse(corrected.match(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i)?.[1] || '{}'); return (payload['@graph'] || [payload]).find(n => n['@type'] === 'Product')?.name || ''; } catch { return ''; } })());
       if (correction.model && !correction.model.test(heading)) continue;
+      if (correction.correct) corrected = applyVerifiedTitle(corrected, correction.correct);
+      if (correction.category === 'informatica') {
+        corrected = corrected.replace(/(<span>Categoria<\/span>)[^<]*(<\/div>)/, '$1Informática$2');
+        corrected = corrected.replace(/(<nav class="crumb"[^>]*>[\s\S]*?<\/a>\s*\/\s*)<a[^>]*>[^<]*<\/a>/, '$1<a href="https://rankingdacompra.com.br/analises.html#informatica">Informática</a>');
+        corrected = corrected.replace(/(<script\b[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/g, (full, a, source, b) => {
+          let payload; try { payload = JSON.parse(source); } catch { return full; }
+          for (const node of payload['@graph'] || [payload]) {
+            if (node['@type'] === 'Product') node.category = 'Informática';
+            if (node['@type'] === 'BreadcrumbList') for (const item of node.itemListElement || []) if (item.position === 2) {item.name = 'Informática'; item.item = 'https://rankingdacompra.com.br/analises.html#informatica';}
+          }
+          return a + JSON.stringify(payload).replace(/</g, '\\u003c') + b;
+        });
+      }
       for (const [incorrect, correct] of correction.categoryReplacements || []) {
         corrected = corrected.split(incorrect).join(correct);
       }
@@ -409,6 +479,15 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
       if (correction.suppressRating) corrected = suppressUnreliableRating(corrected);
     }
     if (fileName.endsWith(".html") && fileName !== "analises.html") {
+      // Páginas antigas não têm a documentação exigida para sustentar uma nota numérica.
+      if (!/<meta name="rdc-rating-documented" content="true">/.test(corrected)) {
+        const hadRating = /<div\b[^>]*class=["'][^"']*rating|"reviewRating"/.test(corrected);
+        corrected = suppressUnreliableRating(corrected);
+        if (hadRating && !corrected.includes('data-rating-provenance')) {
+          corrected = corrected.replace(/(<p class="summary">[\s\S]*?<\/p>)/,
+            '$1<p class="fine" data-rating-provenance>Sem nota numérica publicada: a origem e os critérios da nota antiga não estão documentados. Compare as características anunciadas e os limites desta análise; isto não é avaliação de compradores nem teste prático.</p>');
+        }
+      }
       corrected = repairStructuredEditorialItems(corrected);
       corrected = repairVisibleEditorialItems(corrected);
     }
@@ -418,6 +497,24 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
     }
   }
   return updatedFiles;
+}
+
+function applyVerifiedTitle(content, title) {
+  const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  content = content.replace(/<h1\b[^>]*>[\s\S]*?<\/h1>/, `<h1>${esc(title)}</h1>`)
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)} | Ranking da Compra</title>`)
+    .replace(/(<meta (?:name="twitter:title"|property="og:title") content=")[^"]*(">)/g, (_, a, b) => a + esc(title) + b)
+    .replace(/(<img class="photo"[^>]*alt=")[^"]*(")/, (_, a, b) => a + esc(title) + b);
+  content = content.replace(/<details class="full-title">[\s\S]*?<\/details>/, '')
+    .replace(/(<nav class="crumb"[^>]*>[\s\S]*<\/a>\s*\/\s*)[^<]*(<\/nav>)/, (_, a, b) => a + esc(title) + b);
+  return content.replace(/(<script\b[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/g, (full, a, source, b) => {
+    let payload; try { payload = JSON.parse(source); } catch { return full; }
+    for (const node of payload['@graph'] || [payload]) {
+      if (node['@type'] === 'Product') node.name = title;
+      if (node['@type'] === 'BreadcrumbList') for (const item of node.itemListElement || []) if (item.position === 3) item.name = title;
+    }
+    return a + JSON.stringify(payload).replace(/</g, '\\u003c') + b;
+  });
 }
 
 function applyVerifiedSummary(content, correction) {

@@ -51,4 +51,6 @@ const start='<!-- static-home-products:start -->',end='<!-- static-home-products
 const staticBlock=start+'<main class="wrap static-home" aria-label="Produtos e comparativos em destaque">'+content+'<a class="button secondary" href="/'+choices.PAGE+'">Ver página completa de melhores escolhas</a><nav class="static-guide-grid" aria-label="Comparativos prioritários">'+selectedGuides.map(g=>'<a href="/'+choices.esc(g.url)+'">'+choices.esc(g.title)+'</a>').join('')+'</nav></main>'+end;
 home=home.replace(new RegExp(start+'[\\s\\S]*?'+end),staticBlock);
 await writeFile('index.html',home);
+await protectGeneratedPublicPages();
 console.log('Melhores escolhas publicadas: '+products.length+' produtos e '+selectedGuides.length+' rankings, sem novas leituras do Firebase.');
+import { protectGeneratedPublicPages } from './public-privacy.mjs';

@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
+<head><script src="/privacy-controls.js?v=20261008-consent"></script>
   <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
   <script src="/best-choices.js?v=20261006-audit"></script>
   <meta name="msvalidate.01" content="E9995C648A88C729F81E3AF3221620C0" />
@@ -127,8 +127,7 @@
     @media(max-width:680px){.radar-section{margin:24px -4px 34px;padding:19px 16px;border-radius:16px}.radar-top{gap:18px}.radar-form{grid-template-columns:1fr}.radar-form .button{width:100%}.radar-benefits{gap:5px}.radar-card{grid-template-columns:68px minmax(0,1fr)}.radar-card img{width:68px;height:68px}.radar-followed-head{align-items:flex-start;flex-direction:column;gap:3px}}
 
   </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBKRX8TTR6"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-NBKRX8TTR6',{anonymize_ip:true});</script>
+  
 </head>
 <body>
 <header><div class="wrap bar"><a class="brand" href="./">Ranking da Compra</a><nav><form class="search-form" id="search-form" role="search" aria-hidden="true" inert><label for="search-input" class="sr-only">Buscar produto</label><input id="search-input" name="busca" type="search" placeholder="Buscar produto ou categoria" autocomplete="off"></form><button class="search-toggle" id="search-toggle" type="button" aria-label="Abrir busca" aria-expanded="false">⌕</button><a href="como-avaliamos.html">Como avaliamos</a><a href="presentes/">Presentes</a><a class="nav-cta" href="/melhores-escolhas.html">Melhores escolhas</a></nav></div></header>
@@ -139,10 +138,10 @@
 <script>
 const firebaseConfig={apiKey:'AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk',authDomain:'rankingdacompra.firebaseapp.com',projectId:'rankingdacompra',storageBucket:'rankingdacompra.firebasestorage.app',messagingSenderId:'300637600463',appId:'1:300637600463:web:671c78dc47d5f8b39f15ba'};firebase.initializeApp(firebaseConfig);if(firebase.appCheck?.ReCaptchaEnterpriseProvider){try{firebase.appCheck().activate(new firebase.appCheck.ReCaptchaEnterpriseProvider('6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp'),true);window.rankingAppCheckReady=true}catch(erro){console.warn('App Check em monitoramento indisponível; a vitrine continuará funcionando.',erro)}}const db=firebase.firestore(),app=document.getElementById('app');
 function dataBrasil(data=new Date()){const partes=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(data);const valor={};partes.forEach(p=>valor[p.type]=p.value);return `${valor.year}-${valor.month}-${valor.day}`}
-async function registrarVisita(){const chave='ranking-da-compra-ultima-visita',intervalo=30*60*1000,ultima=Number(localStorage.getItem(chave)||0);if(Date.now()-ultima<intervalo)return;try{const id=(crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(36).slice(2)}`);await db.collection('visitas').doc(id).set({criadoEm:firebase.firestore.FieldValue.serverTimestamp(),dia:dataBrasil(),origem:location.pathname.slice(0,80)});localStorage.setItem(chave,String(Date.now()))}catch(erro){console.warn('N\u00e3o foi poss\u00edvel registrar esta visita.',erro)}}
-registrarVisita();
+async function registrarVisita(){if(!window.RDCPrivacy?.analyticsAllowed())return;const chave='ranking-da-compra-ultima-visita',intervalo=30*60*1000,ultima=Number(localStorage.getItem(chave)||0);if(Date.now()-ultima<intervalo)return;try{const id=(crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(36).slice(2)}`);await db.collection('visitas').doc(id).set({criadoEm:firebase.firestore.FieldValue.serverTimestamp(),dia:dataBrasil(),origem:location.pathname.slice(0,80)});localStorage.setItem(chave,String(Date.now()))}catch(erro){console.warn('N\u00e3o foi poss\u00edvel registrar esta visita.',erro)}}
+window.RDCPrivacy?.whenAnalyticsAllowed(()=>registrarVisita());
 function origemCampanhaAtual(){const params=new URLSearchParams(location.search);return String(params.get('utm_source')||'site').slice(0,40)}
-async function registrarMetricaComercial(tipo,produto,canal){try{const id=crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(36).slice(2)}`;await db.collection('visitas').doc(id).set({tipo:String(tipo||'').slice(0,40),produtoId:String(produto?.id||'').slice(0,100),titulo:String(produto?.titulo||'').slice(0,180),categoria:String(produto?.categoria||'').slice(0,100),canal:String(canal||origemCampanhaAtual()).slice(0,40),campanha:String(new URLSearchParams(location.search).get('utm_campaign')||'site').slice(0,80),dia:dataBrasil(),origem:location.pathname.slice(0,80),criadoEm:firebase.firestore.FieldValue.serverTimestamp()})}catch(erro){console.warn('Não foi possível registrar a métrica comercial.',erro)}}
+async function registrarMetricaComercial(tipo,produto,canal){if(!window.RDCPrivacy?.analyticsAllowed())return;try{const id=crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(36).slice(2)}`;await db.collection('visitas').doc(id).set({tipo:String(tipo||'').slice(0,40),produtoId:String(produto?.id||'').slice(0,100),titulo:String(produto?.titulo||'').slice(0,180),categoria:String(produto?.categoria||'').slice(0,100),canal:String(canal||origemCampanhaAtual()).slice(0,40),campanha:String(new URLSearchParams(location.search).get('utm_campaign')||'site').slice(0,80),dia:dataBrasil(),origem:location.pathname.slice(0,80),criadoEm:firebase.firestore.FieldValue.serverTimestamp()})}catch(erro){console.warn('Não foi possível registrar a métrica comercial.',erro)}}
 const SITE_URL='https://rankingdacompra.com.br/';
 const SHARE_VERSION='20260810-1';
 const CATEGORY_ALIASES=new Map([['parafusadeira-eletrica','patineteelétrica'],['fritadeira-air-fryer-eletrica','fritadeiraairfrayerelétrica']]);
@@ -480,7 +479,7 @@ let q=new URLSearchParams(location.search);const rotaInicial=q.get('produto')||q
 </script>
 
 <script>
-window.registrarMetricaComercial=async function(tipo,produto,canal){try{const id=crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);const limpo=valor=>String(valor||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9_-]/gi,'').slice(0,32);const tipoLimpo=limpo(tipo),produtoId=limpo(produto?.id),canalLimpo=limpo(canal||origemCampanhaAtual()),origem=('evento:'+tipoLimpo+':'+produtoId+':'+canalLimpo).slice(0,80);await db.collection('visitas').doc(id).set({tipo:tipoLimpo,produtoId,titulo:String(produto?.titulo||'').slice(0,180),categoria:String(produto?.categoria||'').slice(0,100),canal:canalLimpo,campanha:'vitrine',criadoEm:firebase.firestore.FieldValue.serverTimestamp(),dia:dataBrasil(),origem})}catch(erro){console.warn('Não foi possível registrar a métrica comercial.',erro)}};
+window.registrarMetricaComercial=async function(tipo,produto,canal){if(!window.RDCPrivacy?.analyticsAllowed())return;try{const id=crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);const limpo=valor=>String(valor||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9_-]/gi,'').slice(0,32);const tipoLimpo=limpo(tipo),produtoId=limpo(produto?.id),canalLimpo=limpo(canal||origemCampanhaAtual()),origem=('evento:'+tipoLimpo+':'+produtoId+':'+canalLimpo).slice(0,80);await db.collection('visitas').doc(id).set({tipo:tipoLimpo,produtoId,titulo:String(produto?.titulo||'').slice(0,180),categoria:String(produto?.categoria||'').slice(0,100),canal:canalLimpo,campanha:'vitrine',criadoEm:firebase.firestore.FieldValue.serverTimestamp(),dia:dataBrasil(),origem})}catch(erro){console.warn('Não foi possível registrar a métrica comercial.',erro)}};
 </script>
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script src="/promotion-title.js?v=20261005-1"></script>

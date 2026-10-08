@@ -35,7 +35,7 @@ test('gerador preserva histórico inválido em vez de substituí-lo silenciosame
   await fs.writeFile(file, '{dados corrompidos');
   assert.throws(() => execFileSync(process.execPath, [path.resolve('scripts/update-price-history.mjs')], { cwd: root, stdio: 'pipe' }));
   assert.equal(await fs.readFile(file, 'utf8'), '{dados corrompidos');
-  assert.ok(path.resolve(await fs.realpath(root)).startsWith(path.resolve(os.tmpdir()) + path.sep));
+  assert.ok(path.resolve(realpathSync(root)).startsWith(path.resolve(os.tmpdir()) + path.sep));
   await fs.rm(root, { recursive: true }); // Caminho temporário resolvido e validado acima.
 });
 
@@ -140,3 +140,4 @@ test('aviso da vitrine reconhece revisão manual mesmo se o lote automático est
   assert.match(label, /2 manualmente/);
   assert.doesNotMatch(label, /aguardam|automático concluído/);
 });
+import { realpathSync } from 'node:fs';

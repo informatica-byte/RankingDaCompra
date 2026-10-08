@@ -59,7 +59,7 @@ test('home estática usa a data comprovada do preço, não a semana ou o dia da 
     assert.doesNotMatch(unknown, /Registrado em/);
   } finally {
     // Só remove o diretório temporário, após validar o destino absoluto.
-    assert.ok((await fs.realpath(root)).startsWith(path.resolve(os.tmpdir()) + path.sep));
+    assert.ok(realpathSync(root).startsWith(path.resolve(os.tmpdir()) + path.sep));
     await fs.rm(root, { recursive: true });
   }
 });
@@ -75,3 +75,4 @@ test('histórico reconhece confirmação na oferta diária, semanal e página in
   assert.equal(context.cardHasConfirmedPrice({ querySelectorAll: () => [{ textContent: 'Último preço registrado: R$ 58,73' }] }), false);
   assert.match(source, /\.deal-card \.offer-proof\{grid-column:1\/-1;min-width:0\}/);
 });
+import { realpathSync } from 'node:fs';

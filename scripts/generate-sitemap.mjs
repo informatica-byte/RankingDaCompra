@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import { publicCatalogue } from "./public-catalogue.mjs";
 import offerReplacement from "../product-offer-replacement.js";
 import { decodeConfigFields, publicSiteConfig } from "./public-site-config.mjs";
-import { correctProductData } from "./product-title-corrections.mjs";
+import { correctProductData, hasDocumentedEditorialRating } from "./product-title-corrections.mjs";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { productSeoTitle } from "./product-seo-titles.mjs";
 import { legacyProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage } from "./product-url-continuity.mjs";
@@ -1526,11 +1526,11 @@ function renderSharePage(product, socialImage, categoryNames, marketplaceStatus 
   <meta name="rdc-offer-url" content="${escapeHtml(product.link || product.urlProduto || product.linkAfiliado || '')}">
   <meta name="rdc-price-proof-version" content="${Number(product.precoProvaVersao) || 0}">
   <meta name="rdc-price-reviewed" content="${product.precoConferidoPor === 'manual' ? 'true' : 'false'}">
+  <meta name="rdc-rating-documented" content="${hasDocumentedEditorialRating(product) ? 'true' : 'false'}">
+  <meta name="rdc-rating-evidence" content="${hasDocumentedEditorialRating(product) ? escapeHtml(JSON.stringify(product.avaliacaoEditorial)) : ''}">
   <meta name="rdc-manual-price" content="${product.precoAtualizadoManualmente === true && manualPrice > 0 ? manualPrice : ""}">
   <meta name="rdc-manual-checked-at" content="${product.precoAtualizadoManualmente === true && Number.isFinite(manualCheckedAt) ? new Date(manualCheckedAt).toISOString() : ""}">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBKRX8TTR6"></script>
-
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-NBKRX8TTR6',{anonymize_ip:true});</script>
+  <script src="/privacy-controls.js?v=20261008-consent"></script>
 
 </head>
 

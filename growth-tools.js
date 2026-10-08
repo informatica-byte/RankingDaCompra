@@ -161,6 +161,8 @@
   }
 
   async function recordFunnelMetric(type, link, channel = "") {
+    // Métricas opcionais: não inicializar o banco nem enviar eventos sem escolha positiva.
+    if (!window.RDCPrivacy?.analyticsAllowed()) return false;
     const product = funnelProduct(link);
     if (!product.id) return;
     const params = new URLSearchParams(location.search);
@@ -176,6 +178,7 @@
       origem: location.pathname.slice(0, 80),
       criadoEm: window.firebase.firestore.FieldValue.serverTimestamp()
     });
+    return true;
   }
 
   function setupFunnelTracking() {
@@ -204,10 +207,12 @@
     try { lastView = Number(localStorage.getItem(storageKey) || 0); } catch {}
     if (Date.now() - lastView < METRICS_VIEW_INTERVAL_MS) return;
     const register = () => void recordFunnelMetric("clique_secao", offer, "view:" + funnelSource())
-      .then(() => { try { localStorage.setItem(storageKey, String(Date.now())); } catch {} })
+      .then(recorded => { if (recorded) try { localStorage.setItem(storageKey, String(Date.now())); } catch {} })
       .catch(error => console.warn("Não foi possível registrar a visualização comercial.", error));
-    if ("requestIdleCallback" in window) window.requestIdleCallback(register, { timeout: 2500 });
-    else setTimeout(register, 1200);
+    window.RDCPrivacy?.whenAnalyticsAllowed(() => {
+      if ("requestIdleCallback" in window) window.requestIdleCallback(register, { timeout: 2500 });
+      else setTimeout(register, 1200);
+    });
   }
 
   function escapeHtml(value) {

@@ -57,11 +57,6 @@
       "summary": "Veja produtos de Informática por características, limitações e preço informado. Escolha primeiro o tipo certo para sua necessidade."
     },
     {
-      "url": "melhores-kit-teclado-e-mouse-sem-fio.html",
-      "title": "Compare produtos de Kits de teclado e mouse sem fio",
-      "summary": "Veja produtos de Kits de teclado e mouse sem fio por características, limitações e preço informado. Escolha primeiro o tipo certo para sua necessidade."
-    },
-    {
       "url": "melhores-malas-e-bolsas.html",
       "title": "Compare produtos de Malas e Bolsas",
       "summary": "Veja produtos de Malas e Bolsas por características, limitações e preço informado. Escolha primeiro o tipo certo para sua necessidade."
@@ -90,6 +85,11 @@
       "url": "melhores-super-mercado.html",
       "title": "Compare produtos de Super Mercado",
       "summary": "Veja produtos de Super Mercado por características, limitações e preço informado. Escolha primeiro o tipo certo para sua necessidade."
+    },
+    {
+      "url": "melhores-kit-teclado-e-mouse-sem-fio.html",
+      "title": "Compare produtos de Teclados e mouses",
+      "summary": "Veja produtos de Teclados e mouses por características, limitações e preço informado. Escolha primeiro o tipo certo para sua necessidade."
     },
     {
       "url": "melhores-fones-bluetooth-ate-100.html",
@@ -127,14 +127,14 @@
       "summary": "Compare 3 opções de Impressoras por preço, pontos positivos, limitações e evidências editoriais."
     },
     {
+      "url": "melhores-smart-tv.html",
+      "title": "Melhores opções de Smart TVs: 6 produtos comparados",
+      "summary": "Compare 6 opções de Smart TVs por preço, pontos positivos, limitações e evidências editoriais."
+    },
+    {
       "url": "melhores-patinetes-eletricos.html",
       "title": "Melhores patinetes elétricos custo-benefício: 5 produtos comparados",
       "summary": "Compare patinetes elétricos por preço, vantagens, limitações e perfil de uso para escolher com mais segurança."
-    },
-    {
-      "url": "melhores-smart-tv.html",
-      "title": "Melhores smart tvs custo-benefício: 7 produtos comparados",
-      "summary": "Compare smart tvs por preço, vantagens, limitações e perfil de uso para escolher com mais segurança."
     },
     {
       "url": "melhores-roteadores-wifi-6-apartamento.html",
