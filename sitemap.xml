@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://rankingdacompra.com.br/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -153,6 +153,12 @@
   <url>
     <loc>https://rankingdacompra.com.br/produto/1OfMg1pRePuvTqXaLiV6-20260810-1.html</loc>
     <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rankingdacompra.com.br/produto/1RCE8RtBHkc6aVkKZ6xB-20260810-1.html</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -585,12 +591,6 @@
   <url>
     <loc>https://rankingdacompra.com.br/produto/b2ejp8pkiWYOgBAdeXto-20260810-1.html</loc>
     <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rankingdacompra.com.br/produto/B3HTtYZQAYonACif4tW1-20260810-1.html</loc>
-    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1119,8 +1119,8 @@
   <url>
     <loc>https://rankingdacompra.com.br/produto/huCYMmOsGPKJ8jOiJ1gR-20260810-1.html</loc>
     <lastmod>2026-10-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rankingdacompra.com.br/produto/hvEYsBQVyORk8vWbQCNU-20260810-1.html</loc>
@@ -2041,6 +2041,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://rankingdacompra.com.br/produto/sZGVRAGBdFaBYSOQbSO8-20260810-1.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html</loc>
     <lastmod>2026-09-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -2587,6 +2593,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://rankingdacompra.com.br/produto/YdPOVmrHVJ8EO7fmgyXu-20260810-1.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://rankingdacompra.com.br/produto/ye0EVvhX1qjcRDsb9Srw-20260810-1.html</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -2744,7 +2756,7 @@
   </url>
   <url>
     <loc>https://rankingdacompra.com.br/analises.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -2834,7 +2846,7 @@
   </url>
   <url>
     <loc>https://rankingdacompra.com.br/melhores-informatica.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -2906,7 +2918,7 @@
   </url>
   <url>
     <loc>https://rankingdacompra.com.br/melhores-roupas-e-calcados.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
