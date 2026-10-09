@@ -15,7 +15,7 @@ const firebaseConfig = {
   appId: "1:300637600463:web:671c78dc47d5f8b39f15ba"
 };
 
-const app = initializeApp(firebaseConfig, "ranki-video-studio");
+const app = initializeApp(firebaseConfig);
 initializeAppCheck(app, {
   provider: new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"),
   isTokenAutoRefreshEnabled: true

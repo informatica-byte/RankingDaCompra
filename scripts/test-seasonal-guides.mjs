@@ -3,7 +3,7 @@ import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
-import { confirmedPrice, generateSeasonalGuides, guideTitle, GUIDE_THEMES, recordedPrice, selectGuideProducts } from "./generate-seasonal-guides.mjs";
+import { confirmedPrice, generateSeasonalGuides, guideTitle, GUIDE_THEMES, recordedPrice, selectGuideProducts, suitableForGuide } from "./generate-seasonal-guides.mjs";
 
 const now = new Date("2026-09-29T12:00:00Z");
 const theme = GUIDE_THEMES.find(item => item.id === "criancas");
@@ -52,4 +52,19 @@ test("gera páginas independentes com metadados e links, sem alterar produtos", 
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("guia infantil exclui GTA e itens explicitamente adultos, preservando cadastro", () => {
+ const gta={...products[0],titulo:"Grand Theft Auto VI - PlayStation 5"};
+ assert.equal(suitableForGuide(gta,theme),false);
+ assert.equal(suitableForGuide({...products[0],titulo:"Carro RC para adultos"},theme),false);
+ assert.equal(suitableForGuide({...products[0],titulo:"GTA VI PS5"},theme),false);
+ assert.equal(suitableForGuide({...products[0],comentario:"Jogo classificado 17+"},theme),false);
+ assert.equal(suitableForGuide(products[0],theme),true);
+ assert.equal(selectGuideProducts([gta],theme,now).length,0);
+ assert.equal(suitableForGuide(gta,GUIDE_THEMES.find(t=>t.id==="natal")),true);
+});
+test("conferência e nota não tornam produto sem relação elegível ao tema",()=>{
+ const unrelated={...products[0],titulo:"Roteador AX1500",categoriaNome:"Roteadores",nota:5};
+ assert.equal(selectGuideProducts([unrelated],theme,now).length,0);
 });
