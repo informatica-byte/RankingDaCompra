@@ -22,3 +22,11 @@
 ## Limites
 
 Auditoria técnica não comprova todos os preços remotos, estoque, autenticidade, especificações ou resultados de SEO. Revisão editorial integral precisa de evidências por modelo; produtos sem ficha suficiente não devem receber alegações de teste. Não houve compras, exclusões ou cadastros fictícios. Login/edição/pausa reais exigem dados válidos; regressões testam persistência em ambiente simulado, sem alterar produção. Registro, estado de aplicação e métricas do App Check confirmados com acesso funcional ao console. A auditoria técnica não equivale a recuperação integral das contas externas ou revisão editorial de todos os anúncios.
+
+## Complemento de conferência no navegador
+
+- Domínio com www abre a vitrine e redireciona para a versão canônica sem www; não alterado DNS.
+- Search Console acessível, relatório de indexação com atualização em 03/10: 31 exemplos de 404 e 7 soft 404 (categorias antigas). Validação de soft 404 já iniciada em 07/10; não reiniciada. Entre os 31 caminhos, 14 existem na versão atual (páginas ativas, aliases ou aviso de análise não disponível); os 17 ausentes não têm referência local quebrada segundo auditoria de integridade. Não se recriam produtos eliminados nem se redireciona tudo indiscriminadamente para a home.
+- Guia de fones anunciava 17 enquanto comparava 16 produtos com preço: título passa a contar apenas os efetivamente comparados. Produto sem preço não entra no ranking por menor preço.
+- Destaque automático “melhor geral” passa a “maior pontuação da seleção”: a posição matemática por dados cadastrados não comprova superioridade em teste real. Selo de custo-benefício conserva a exigência existente de evidências específicas.
+- Roteiro do Estúdio não corta fatos com reticências; utiliza frases completas curtas ou orientação neutra. Nome longo fica completo no título visual e vira “este produto” na fala. Não há gravação de cadastro, alteração de preços ou envio ao YouTube nesses testes de regressão.
