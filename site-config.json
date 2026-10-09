@@ -18,7 +18,8 @@
     "https://www.youtube.com/watch?v=ziudwsVbqpE",
     "https://www.youtube.com/watch?v=R7IzxraW7jQ",
     "https://www.youtube.com/watch?v=oJTuA5dCrb8",
-    "https://www.youtube.com/watch?v=yqWeI3HwtYM"
+    "https://www.youtube.com/watch?v=yqWeI3HwtYM",
+    "https://www.youtube.com/watch?v=VQM24ucJtGw"
   ],
   "youtubeShowcaseItems": [
     {
@@ -76,6 +77,10 @@
     {
       "youtubeUrl": "https://www.youtube.com/watch?v=yqWeI3HwtYM",
       "productUrl": "https://rankingdacompra.com.br/produto/yGygA3k1h886kEa7LOqh-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=VQM24ucJtGw",
+      "productUrl": "https://rankingdacompra.com.br/produto/28xGyV66fEYlx6CnRxIq-20260810-1.html"
     }
   ],
   "seasonalThemeEnd": "2026-10-13",
@@ -98,5 +103,5 @@
     "melhores-relogio-smartwatch.html"
   ],
   "schemaVersion": 2,
-  "generatedAt": "2026-10-09T14:09:12.150Z"
+  "generatedAt": "2026-10-09T14:31:52.819Z"
 }
