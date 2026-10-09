@@ -1214,6 +1214,57 @@ export function canProceedWithPriceBatch({ item = false, bulk = false, salePrice
   return salePrice && (item || bulk);
 }
 
+
+export function sanitizeSupportPayload(value, secrets = []) {
+  const sensitiveKey = /(?:access.?token|refresh.?token|client.?secret|authorization|password|credential|token.?key)/i;
+  const cleanString = (text) => {
+    let result = String(text);
+    for (const secret of secrets.filter(Boolean)) result = result.split(String(secret)).join("[REDACTED]");
+    return result.replace(/Bearer\s+[^\s"<>]+/gi, "Bearer [REDACTED]");
+  };
+  if (Array.isArray(value)) return value.map((entry) => sanitizeSupportPayload(entry, secrets));
+  if (value && typeof value === "object") return Object.fromEntries(
+    Object.entries(value).map(([key, entry]) => [
+      key,
+      sensitiveKey.test(key) ? "[REDACTED]" : sanitizeSupportPayload(entry, secrets),
+    ]),
+  );
+  return typeof value === "string" ? cleanString(value) : value;
+}
+
+export async function diagnoseSupportItem(
+  itemId,
+  { request = fetch, headers = requestHeaders(), secrets = [] } = {},
+) {
+  if (!/^MLB\d{10,}$/.test(itemId)) throw new Error("Informe um código de anúncio MLB válido.");
+  const report = { itemId, executedAt: new Date().toISOString(), identity: {}, item: {} };
+  try {
+    const response = await request("https://api.mercadolibre.com/users/me", {
+      method: "GET", headers: { accept: "application/json", ...headers }, signal: AbortSignal.timeout(15000),
+    });
+    const payload = await response.json().catch(() => ({}));
+    report.identity = {
+      httpStatus: response.status,
+      user_id: response.ok && Number.isSafeInteger(Number(payload.id)) && Number(payload.id) > 0
+        ? Number(payload.id) : null,
+    };
+  } catch (error) {
+    report.identity = { httpStatus: null, user_id: null, error: sanitizeSupportPayload(String(error?.message || error), secrets) };
+  }
+  try {
+    const response = await request(`https://api.mercadolibre.com/items/${itemId}`, {
+      method: "GET", headers: { accept: "application/json", ...headers }, signal: AbortSignal.timeout(15000),
+    });
+    const body = await response.text();
+    let json;
+    try { json = JSON.parse(body); } catch { json = { nonJsonBody: body }; }
+    report.item = { httpStatus: response.status, json: sanitizeSupportPayload(json, secrets) };
+  } catch (error) {
+    report.item = { httpStatus: null, error: sanitizeSupportPayload(String(error?.message || error), secrets) };
+  }
+  return report;
+}
+
 async function diagnoseMarketplaceAccess(previous) {
   const [id] = selectPreflightItemIds(previous, 1);
   if (!id) throw new Error("Sem item de amostra para testar o acesso do Mercado Livre.");
@@ -1458,6 +1509,18 @@ async function main() {
     return;
   }
 
+  const supportItemId = String(process.env.RDC_ML_SUPPORT_ITEM_ID || "").trim().toUpperCase();
+  if (PREFLIGHT_ONLY && supportItemId) {
+    const stored = TOKEN_KEY ? await readTokenSession() : null;
+    const report = await diagnoseSupportItem(supportItemId, {
+      secrets: [accessToken, stored?.refreshToken, CLIENT_SECRET, TOKEN_KEY, AUTHORIZATION_CODE],
+    });
+    console.log("SUPPORT_DIAGNOSTIC_JSON_BEGIN");
+    console.log(JSON.stringify(report, null, 2));
+    console.log("SUPPORT_DIAGNOSTIC_JSON_END");
+    console.log("Diagnóstico pontual encerrado: uma chamada ao item, sem lote e sem Firebase.");
+    return;
+  }
   let previous = await readPrevious();
   if (PREFLIGHT_ONLY) {
     await diagnoseMarketplaceAccess(previous);
