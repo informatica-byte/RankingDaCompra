@@ -1519,7 +1519,7 @@ async function main() {
     })}\n`, "utf8");
   }
   const resolvedProducts = await mapWithConcurrency(
-    products,
+    products.filter(product => product.conferenciaPausada !== true),
     MAX_PARALLEL_REQUESTS,
     async (product) => {
       const oldRecord = offerReplacement.statusFor(product, previous.products?.[product.id]) || {};
@@ -1558,7 +1558,10 @@ async function main() {
     },
   );
 
-  const nextProducts = Object.fromEntries(entries);
+  // Preserve prior records of paused listings without consulting or refreshing them.
+  const pausedEntries = products.filter(product => product.conferenciaPausada === true && previous.products?.[product.id])
+    .map(product => [product.id, previous.products[product.id]]);
+  const nextProducts = Object.fromEntries([...pausedEntries, ...entries]);
   const changed = JSON.stringify(previous.products || {}) !== JSON.stringify(nextProducts);
   const checks = summarizeBatchChecks(entries);
   const batchComplete = checks.complete;
@@ -1570,7 +1573,7 @@ async function main() {
     batchSummary: {
       complete: batchComplete,
       reason: checks.reason,
-      total: products.length,
+      total: resolvedProducts.length,
       confirmed: checks.confirmed,
       failed: checks.failed,
       unmanaged: checks.unmanaged,

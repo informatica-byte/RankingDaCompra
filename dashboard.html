@@ -3060,7 +3060,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                         if (status?.visible === false) indisponiveis.push(doc);
                         else if (produtoOcultoNaVitrine(doc.data())) revisao.push(doc);
                         else publicados.push(doc);
-                        if (status?.visible !== false) {
+                        if (status?.visible !== false && doc.data().conferenciaPausada !== true) {
                             const diagnostico = diagnosticoPreco(doc);
                             if (diagnostico.pendente) precosPendentes.push(doc);
                             else if (diagnostico.tipo === 'nao_confirmado') verificacoesNaoConcluidas += 1;
