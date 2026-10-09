@@ -4,7 +4,7 @@ import { pathToFileURL } from "node:url";
 
 const PRODUCT_CORRECTIONS = new Map([
   ["UCDnByA5YaWN9eiyA5IM", {
-    model: /cama.*elastica.*3[,.]0?m/i,
+    model: /cama.*el[aá]stica.*3[,.]0?m/i,
     summary: "O cadastro identifica uma cama elástica infantil anunciada como 3,0 m com rede de proteção. A ficha anterior informava também diâmetro de 300 m, incompatível com o nome do produto; não publicamos essa medida como comprovada. Antes de comprar, confirme dimensões externas, espaço livre necessário, carga máxima, faixa etária, montagem e instruções de supervisão no manual e com o vendedor. Não testamos estrutura, molas, rede ou segurança deste conjunto.",
     positiveNotes: ["Cama elástica com rede de proteção identificada no cadastro; confirme o conjunto oferecido."],
     negativeNotes: ["Dimensões e carga máxima precisam de confirmação no manual; há medida inconsistente no cadastro.", "Rede não dispensa supervisão e não foi testada pela equipe."],
