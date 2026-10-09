@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  diagnoseSupportItem,
+  sanitizeSupportPayload,
   bulkItemAttributes,
   bulkItemFromEntry,
   canProceedWithPriceBatch,
@@ -177,3 +179,55 @@ test("reativa somente falsos indisponiveis antigos com codigo de catalogo", () =
   assert.deepEqual(payload.products.anuncioReal, previous.products.anuncioReal);
 });
 
+
+test("suporte faz apenas uma chamada ao item solicitado e uma à identidade, sem repetir 403", async () => {
+  const calls = [];
+  const payload = { message: "At least one policy returned UNAUTHORIZED.", error: "forbidden",
+    code: "PA_UNAUTHORIZED_RESULT_FROM_POLICIES", blocked_by: "PolicyAgent",
+    cause: [{ code: "denied", message: "keep complete" }], extra: { access_token: "secret", note: "echo secret" } };
+  const report = await diagnoseSupportItem("MLB2171368181", {
+    headers: { Authorization: "Bearer secret" }, secrets: ["secret"],
+    request: async (url, options) => {
+      calls.push({ url, options });
+      return url.endsWith("/users/me")
+        ? { status: 200, ok: true, json: async () => ({ id: 123456, email: "private@example.test" }) }
+        : { status: 403, ok: false, text: async () => JSON.stringify(payload) };
+    },
+  });
+  assert.equal(calls.length, 2);
+  assert.deepEqual(calls.map(c => c.url), ["https://api.mercadolibre.com/users/me", "https://api.mercadolibre.com/items/MLB2171368181"]);
+  assert.equal(calls.every(c => c.options.method === "GET"), true);
+  assert.deepEqual(report.identity, { httpStatus: 200, user_id: 123456 });
+  assert.equal(report.item.httpStatus, 403);
+  assert.deepEqual(report.item.json.cause, payload.cause);
+  assert.equal(report.item.json.extra.access_token, "[REDACTED]");
+  assert.equal(report.item.json.extra.note, "echo [REDACTED]");
+  assert.equal(JSON.stringify(report).includes("private@example.test"), false);
+  assert.equal(JSON.stringify(report).includes("secret"), false);
+});
+
+test("suporte preserva JSON inteiro e remove credenciais também em arrays e strings", () => {
+  assert.deepEqual(sanitizeSupportPayload({ cause: [{ message: "Bearer abc", refresh_token: "r" }], untouched: 42 }),
+    { cause: [{ message: "Bearer [REDACTED]", refresh_token: "[REDACTED]" }], untouched: 42 });
+});
+
+test("suporte não usa endpoint arbitrário nem repete chamada após falha de rede", async () => {
+  let calls = 0;
+  await assert.rejects(diagnoseSupportItem("https://evil.test", { request: async () => calls++ }));
+  assert.equal(calls, 0);
+  const report = await diagnoseSupportItem("MLB2171368181", {
+    request: async () => { calls++; throw new Error("network fail"); },
+  });
+  assert.equal(calls, 2);
+  assert.equal(report.item.httpStatus, null);
+});
+
+test("suporte mantém os campos de sucesso sem atualizar catálogo ou preços", async () => {
+  const report = await diagnoseSupportItem("MLB2171368181", {
+    request: async url => url.endsWith("/users/me")
+      ? { status: 403, ok: false, json: async () => ({ message: "denied", id: 1 }) }
+      : { status: 200, ok: true, text: async () => '{"id":"MLB2171368181","price":123,"status":"active"}' },
+  });
+  assert.equal(report.identity.user_id, null);
+  assert.deepEqual(report.item.json, { id: "MLB2171368181", price: 123, status: "active" });
+});
