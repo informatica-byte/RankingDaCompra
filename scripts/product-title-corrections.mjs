@@ -3,6 +3,21 @@ import { basename, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const PRODUCT_CORRECTIONS = new Map([
+  ["UCDnByA5YaWN9eiyA5IM", {
+    model: /cama.*elastica.*3[,.]0?m/i,
+    summary: "O cadastro identifica uma cama elástica infantil anunciada como 3,0 m com rede de proteção. A ficha anterior informava também diâmetro de 300 m, incompatível com o nome do produto; não publicamos essa medida como comprovada. Antes de comprar, confirme dimensões externas, espaço livre necessário, carga máxima, faixa etária, montagem e instruções de supervisão no manual e com o vendedor. Não testamos estrutura, molas, rede ou segurança deste conjunto.",
+    positiveNotes: ["Cama elástica com rede de proteção identificada no cadastro; confirme o conjunto oferecido."],
+    negativeNotes: ["Dimensões e carga máxima precisam de confirmação no manual; há medida inconsistente no cadastro.", "Rede não dispensa supervisão e não foi testada pela equipe."],
+    suppressRating: true,
+  }],
+  ["Kyw9WRrxRLj36DL50JfQ", {
+    model: /playstation\\s*5/i,
+    summary: "Este anúncio identifica um PlayStation 5 Edição Digital Slim CFI 2114B. A capacidade, os acessórios e a quantidade de controles deste kit devem ser conferidos diretamente na variante e na descrição do vendedor: a análise anterior não comprovava a inclusão de quatro controles. A edição digital não deve ser confundida com um pacote com leitor de discos. Confira modelo exato, procedência, garantia e conteúdo da caixa. Não realizamos testes deste aparelho.",
+    positiveNotes: ["Modelo PS5 Edição Digital Slim identificado no cadastro; confira o código da unidade."],
+    negativeNotes: ["Capacidade, quantidade de controles e conteúdo da caixa do kit não foram comprovados nesta revisão.", "Procedência, garantia e condição do aparelho precisam ser conferidas com o vendedor."],
+    suppressRating: true,
+  }],
+
   ["JY36kE95u7uCT7UJWvpt", {
     model: /\bnac\b|acetilciste[ií]na/i,
     summary: "O cadastro identifica um suplemento NAC de 600 mg em embalagem de 60 cápsulas. Confira a composição, o fabricante, o lote, a procedência e as instruções da embalagem com o vendedor. Não verificamos a regularidade ou a autenticidade deste lote e não realizamos testes do produto. Esta página não comprova efeitos sobre imunidade, desintoxicação, respiração ou envelhecimento, não promete prevenção ou tratamento de doenças e não orienta dose. Para avaliar adequação individual, procure um profissional de saúde.",

@@ -56,6 +56,14 @@ function productUrl(product) {
   return `${SITE}produto/${encodeURIComponent(product.id)}-20260810-1.html`;
 }
 
+export function suitableForGuide(product, theme) {
+  if (theme.id !== "criancas") return true;
+  const text = normalize([product.titulo || product.title, product.comentario || product.summary].join(" "));
+  // A categoria do vendedor não é prova de adequação infantil.
+  if (/grand theft auto|\\bgta\\b|para adultos|maiores de (?:1[6-9])|\\b(?:16|17|18)\\s*(?:\\+|anos)|conteudo adulto/.test(text)) return false;
+  return true;
+}
+
 export function selectGuideProducts(products, theme, now = new Date()) {
   return products.map(product => {
     const title = normalize(product.titulo || product.title);
@@ -67,8 +75,8 @@ export function selectGuideProducts(products, theme, now = new Date()) {
     const image = String(product.foto || product.image || "");
     const confirmed = confirmedPrice(product, now);
     const recorded = recordedPrice(product, now);
-    return { product, title, category, summary, url, image, confirmed, recorded, score: Number(categoryMatch) * 10 + Number(termMatch) * 4 + Number(Boolean(confirmed)) * 2 + Math.min(Number(product.nota || product.rating || 0), 5) };
-  }).filter(item => item.product.id && item.summary.length >= 80 && item.image.startsWith("https://") && item.url.startsWith(`${SITE}produto/`) && item.score >= 10)
+    return { product, title, category, summary, url, image, confirmed, recorded, relevant: categoryMatch || termMatch, score: Number(categoryMatch) * 10 + Number(termMatch) * 4 + Number(Boolean(confirmed)) * 2 + Math.min(Number(product.nota || product.rating || 0), 5) };
+  }).filter(item => item.product.id && item.summary.length >= 80 && item.image.startsWith("https://") && item.url.startsWith(`${SITE}produto/`) && item.relevant && suitableForGuide(item.product, theme) && item.score >= 10)
     .sort((a, b) => b.score - a.score || (a.confirmed?.amount || Infinity) - (b.confirmed?.amount || Infinity) || a.title.localeCompare(b.title, "pt-BR"))
     .slice(0, 30);
 }
@@ -106,7 +114,7 @@ function renderGuide(theme, selected, configuredTitle, now) {
   const budget = selected.filter(item => item.confirmed && item.confirmed.amount <= 100);
   const budgetSection = budget.length >= 3 ? `<section class="budget"><h2>Opções com preço conferido até R$ 100</h2><p>Esta seleção pode mudar. Confirme o preço final antes de comprar.</p><div class="mini-links">${budget.slice(0, 8).map(item => `<a href="${escapeHtml(item.url)}">${escapeHtml(item.product.titulo || item.product.title)} <strong>${escapeHtml(BRL.format(item.confirmed.amount))}</strong></a>`).join("")}</div></section>` : "";
   const description = `${theme.intro} Veja produtos cadastrados, pontos de atenção e o preço quando houver conferência recente.`;
-  const body = `<main id="conteudo"><div class="hero"><div class="hero-copy"><p class="eyebrow">Guia de ${escapeHtml(theme.name)}</p><h1>${escapeHtml(title)}</h1><p>${escapeHtml(theme.intro)}</p><a class="hero-cta" href="#escolhas">Ver ${selected.length} escolhas</a></div><img class="mascot" src="/assets/ranki/${theme.image}.png" alt="Ranki em tema de ${escapeHtml(theme.name)}" width="362" height="362"></div><div class="content"><nav class="crumb" aria-label="Você está aqui"><a href="/presentes/">Presentes</a> / ${escapeHtml(theme.name)}</nav><p class="updated">Catálogo gerado em ${escapeHtml(now.toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" }))}. ${escapeHtml(theme.tip)}</p>${budgetSection}<section id="escolhas"><div class="section-head"><div><p class="eyebrow">Escolhas para comparar</p><h2>Encontre uma opção adequada</h2></div><span>${selected.length} produtos</span></div><div class="grid">${selected.map(card).join("")}</div></section><aside class="method"><h2>Como escolher</h2><p>Reunimos produtos já cadastrados no Ranking da Compra e mostramos informações úteis para comparar. Não afirmamos ter testado pessoalmente itens que não testamos. Preços aparecem aqui apenas quando a conferência manual é recente; nos demais casos, consulte a análise e a loja.</p><a href="/como-avaliamos.html">Conheça a metodologia</a></aside></div></main>`;
+  const body = `<main id="conteudo"><div class="hero"><div class="hero-copy"><p class="eyebrow">Guia de ${escapeHtml(theme.name)}</p><h1>${escapeHtml(title)}</h1><p>${escapeHtml(theme.intro)}</p><a class="hero-cta" href="#escolhas">Ver ${selected.length} escolhas</a></div><img class="mascot" src="/assets/ranki/${theme.image}.png" alt="Ranki em tema de ${escapeHtml(theme.name)}" width="362" height="362"></div><div class="content"><nav class="crumb" aria-label="Você está aqui"><a href="/presentes/">Presentes</a> / ${escapeHtml(theme.name)}</nav><p class="updated">Catálogo gerado em ${escapeHtml(now.toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" }))}. ${escapeHtml(theme.tip)}</p>${budgetSection}<section id="escolhas"><div class="section-head"><div><p class="eyebrow">Escolhas para comparar</p><h2>Encontre uma opção adequada</h2></div><span>${selected.length} produtos</span></div><div class="grid">${selected.map(card).join("")}</div></section><aside class="method"><h2>Como escolher</h2><p>Reunimos produtos já cadastrados no Ranking da Compra e mostramos informações úteis para comparar. Não afirmamos ter testado pessoalmente itens que não testamos. Preços atuais só são identificados como conferidos quando a revisão manual é recente; registros antigos são rotulados com a data, sem garantia de cotação atual. Confirme o valor final na loja.</p><a href="/como-avaliamos.html">Conheça a metodologia</a></aside></div></main>`;
   return shell({ title, description, canonical, body, themeColor: theme.color });
 }
 
