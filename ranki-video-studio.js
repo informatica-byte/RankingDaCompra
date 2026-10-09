@@ -176,15 +176,18 @@ async function loadProduct(id) {
 }
 
 function primaryFact(items, fallback) {
-  return compact(items.find((item) => item.length >= 18) || fallback, 58).replace(/[.!?]+$/, "");
+  // A frase falada precisa ser inteira: cortar uma limitação pode inverter seu sentido.
+  const candidates = items.flatMap((item) => clean(item).split(/[.!?;]\s+(?!\d)/));
+  const complete = candidates.find((item) => item.length >= 18 && item.length <= 58 && !/…|\.\.\./.test(item));
+  return clean(complete || fallback).replace(/[.!?;]+$/, "");
 }
 
 function scriptForProduct() {
   const product = state.product;
-  const title = compact(product.title, 55);
-  const summaryFact = primaryFact(product.summary.split(/[.;]\s+/), `é uma opção da categoria ${product.category}`);
+  const title = clean(product.title).length <= 55 ? clean(product.title) : "este produto";
+  const summaryFact = primaryFact([product.summary], "consulte os recursos na análise do produto");
   const positive = primaryFact(product.pros, summaryFact);
-  const attention = primaryFact(product.cons, "confira medidas, garantia, frete e compatibilidade antes da compra");
+  const attention = primaryFact(product.cons, "confirme medidas, garantia e frete no vendedor");
   const type = $("video-type").value;
   if (type === "vale") return `Eu sou o Ranki. ${title} vale a pena? Destaque: ${positive}. Atenção: ${attention}. Veja a análise no Ranking da Compra e confirme o preço no vendedor.`;
   if (type === "pros") return `Eu sou o Ranki. Prós e contras de ${title}. Ponto positivo: ${positive}. Atenção: ${attention}. Confira a análise completa antes de decidir.`;
@@ -199,7 +202,7 @@ function descriptionForProduct() {
 
 function prepareScript() {
   if (!state.product) return;
-  $("script").value = compact(scriptForProduct(), 700);
+  $("script").value = scriptForProduct();
   $("video-title").value = compact(`${state.product.title}: vale a pena? | Ranki`, 100);
   $("video-description").value = descriptionForProduct();
   updateScriptCount();

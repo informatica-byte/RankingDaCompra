@@ -27,6 +27,7 @@ const records = [
   ["fone-a", "Fone Bluetooth Redmi Buds 6", "fones-de-ouvido", 100, "2026-09-08"],
   ["fone-b", "Fone de Ouvido Sem Fio QCY T13", "fones-de-ouvido", 130, "2026-09-08"],
   ["fone-c", "Fone Bluetooth JBL Tune 520BT", "fones-de-ouvido", 210, "2026-09-08"],
+  ["fone-no-price", "Fone Bluetooth sem preço confirmado", "fones-de-ouvido", 0, "2026-09-08"],
   ["wired", "Fone Gamer com Fio P2", "fones-de-ouvido", 70, "2026-09-08"],
   ["clock", "Relógio de Parede", "casa", 40, "2026-09-06"],
   ["sofa", "Sofá Retrátil", "casa", 1400, "2026-09-06"],
@@ -82,6 +83,11 @@ try {
   assert.doesNotMatch(watch, /Relógio Digital Casio/);
   assert.doesNotMatch(fones, /Fone Gamer com Fio/);
   assert.match(router, /3 produtos comparados/);
+  assert.match(fones, /3 produtos comparados/);
+  assert.doesNotMatch(fones, /4 produtos comparados/);
+  assert.match(fones, /🏆 Maior pontuação da seleção/);
+  assert.doesNotMatch(fones, /🏆 Melhor geral/);
+  assert.match(fones, /não um teste prático de qualidade/);
   assert.match(fones, /<title>Melhores fones bluetooth custo-benefício de 2026 \| Ranking da Compra<\/title>/i);
   assert.match(watch, /<title>Melhores smartwatches custo-benefício de 2026 \| Ranking da Compra<\/title>/i);
   assert.match(router, /Maior pontuação de qualidade por real/);
