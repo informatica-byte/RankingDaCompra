@@ -60,7 +60,7 @@ export function suitableForGuide(product, theme) {
   if (theme.id !== "criancas") return true;
   const text = normalize([product.titulo || product.title, product.comentario || product.summary].join(" "));
   // A categoria do vendedor não é prova de adequação infantil.
-  if (/grand theft auto|\\bgta\\b|para adultos|maiores de (?:1[6-9])|\\b(?:16|17|18)\\s*(?:\\+|anos)|conteudo adulto/.test(text)) return false;
+  if (/grand theft auto|\bgta\b|para adultos|maiores de (?:1[6-9])|\b(?:16|17|18)\s*(?:\+|anos)|conteudo adulto/.test(text)) return false;
   return true;
 }
 

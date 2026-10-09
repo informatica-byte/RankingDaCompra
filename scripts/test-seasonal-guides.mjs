@@ -58,6 +58,8 @@ test("guia infantil exclui GTA e itens explicitamente adultos, preservando cadas
  const gta={...products[0],titulo:"Grand Theft Auto VI - PlayStation 5"};
  assert.equal(suitableForGuide(gta,theme),false);
  assert.equal(suitableForGuide({...products[0],titulo:"Carro RC para adultos"},theme),false);
+ assert.equal(suitableForGuide({...products[0],titulo:"GTA VI PS5"},theme),false);
+ assert.equal(suitableForGuide({...products[0],comentario:"Jogo classificado 17+"},theme),false);
  assert.equal(suitableForGuide(products[0],theme),true);
  assert.equal(selectGuideProducts([gta],theme,now).length,0);
  assert.equal(suitableForGuide(gta,GUIDE_THEMES.find(t=>t.id==="natal")),true);
