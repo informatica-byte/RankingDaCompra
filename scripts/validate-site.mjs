@@ -7,6 +7,9 @@ const errors = [];
 
 function fail(message) { errors.push(message); }
 function has(html, pattern, label, file) { if (!pattern.test(html)) fail(file + ": " + label); }
+function hasPrimaryRankingHighlight(html) {
+  return /🏆 (?:Melhor geral|Maior pontuação da seleção)/.test(html);
+}
 function productIdentityKeys(html) {
   const mlbKeys = [...html.matchAll(/\bMLB[-_\s]?(\d{6,})\b/gi)]
     .map((match) => "mlb:" + match[1]);
@@ -540,7 +543,7 @@ for (const file of guideFiles) {
     has(html, /como-avaliamos\.html/, "critérios editoriais ausentes", file);
     has(html, /CollectionPage/, "dados estruturados da coleção ausentes", file);
     has(html, /Seleção sem prazo de encerramento/, "permanência não explicada", file);
-    if (/🏆 Melhor geral|💚 Melhor custo-benefício|💰 Mais barato/.test(html)) fail(file + ": categorias diferentes não podem disputar o mesmo ranking");
+    if (/🏆 (?:Melhor geral|Maior pontuação da seleção)|💚 Melhor custo-benefício|💰 Mais barato/.test(html)) fail(file + ": categorias diferentes não podem disputar o mesmo ranking");
     if (!urls.includes(SITE + file)) fail(file + ": página permanente ausente do sitemap");
     continue;
   }
@@ -548,16 +551,16 @@ for (const file of guideFiles) {
     has(html, /sem vencedor artificial/, "guia específico não explica a ordem neutra", file);
     has(html, /data-practical-guide/, "critérios práticos do guia específico ausentes", file);
     has(html, /Confirme preço final/, "guia específico não alerta sobre preço e frete", file);
-    if (/🏆 Melhor geral|💚 Melhor custo-benefício|💰 Mais barato/.test(html)) fail(file + ": guia neutro recebeu selo de ranking");
+    if (/🏆 (?:Melhor geral|Maior pontuação da seleção)|💚 Melhor custo-benefício|💰 Mais barato/.test(html)) fail(file + ": guia neutro recebeu selo de ranking");
   } else if (html.includes("data-price-unconfirmed-guide")) {
     has(html, /Preços a confirmar:/, "aviso de preços não confirmados ausente", file);
     has(html, /ordem alfabética, sem ranking de preço/, "ordem do comparativo sem preço não foi explicada", file);
     if (/R\$\s*0(?:[,.]00)?/.test(html)) fail(file + ": preço zero exibido ao visitante");
   } else if (html.includes("data-unranked-guide")) {
     has(html, /Sem vencedor artificial:/, "explicação da lista sem ranking ausente", file);
-    if (/🏆 Melhor geral|💚 Melhor custo-benefício|💰 Mais barato/.test(html)) fail(file + ": seleção heterogênea não pode receber selo de vencedor");
+    if (/🏆 (?:Melhor geral|Maior pontuação da seleção)|💚 Melhor custo-benefício|💰 Mais barato/.test(html)) fail(file + ": seleção heterogênea não pode receber selo de vencedor");
   } else {
-    has(html, /🏆 Melhor geral/, "destaque de melhor geral ausente", file);
+    if (!hasPrimaryRankingHighlight(html)) fail(file + ": destaque de pontuação do ranking ausente");
     if (!html.includes("Custo-benefício: sem dados comparáveis suficientes")) {
       has(html, /💚 Melhor custo-benefício|data-cost-benefit-unavailable/, "selo de custo-benefício ou justificativa de evidência insuficiente ausente", file);
     }
