@@ -387,7 +387,7 @@ Guardar em local seguro, com pelo menos duas cópias independentes:
 
 1. Espelho Git atualizado de `main`, incluindo todo o histórico.
 2. Exportação periódica das coleções Firestore: `produtos`, `categorias`, `visitas`, `mlbSolicitacoes` e `configuracoes`.
-3. Cópia das regras e índices do Firestore. Eles não estão versionados no repositório atual; esta é uma lacuna crítica a corrigir quando houver acesso ao Console/Firebase CLI.
+3. Cópia das regras e índices do Firestore. A baseline está versionada em `firestore.rules` e `firestore.indexes.json`; a configuração efetivamente implantada deve ser conferida e exportada do Console, sem presumir que coincide com os arquivos.
 4. Lista dos administradores e método de recuperação do Firebase Authentication. Não exportar senhas.
 5. Cópia segura dos nomes e valores dos segredos do GitHub em gerenciador de senhas.
 6. Dados da aplicação Mercado Livre, URI OAuth e chave usada para criptografia do token.
@@ -506,3 +506,10 @@ O botão de backup reutiliza os snapshots de produtos e categorias confirmados p
 O ZIP privado para pendrive deve conter código, dados, relatório da simulação e instruções, com SHA-256 e teste CRC. Não publicar esse ZIP no repositório. Ele não recupera senhas, Authentication, domínio, DNS, segredos, contas de afiliados, métricas de visitas nem fila MLB. Guardar uma segunda cópia externa é uma ação do proprietário; não declarar concluída enquanto o pendrive não for copiado.
 
 Revisões editoriais por produto e modelo removem garantias de desempenho, laudos sem prova, cotação fixa no resumo e compatibilidade universal não testada. WAP Power Speed Max e iPhone 17 Pro Max usam fontes oficiais; marcas sem fonte confirmada recebem limitações explícitas, não selo de fabricante. Preços, links, IDs e datas são preservados. Auditoria automatizada de todo o catálogo não equivale a ensaio físico ou validação técnica individual de todos os produtos. Registros históricos sem prova continuam preservados e fora das alegações comerciais de mínimo; não podem ser comprovados retroativamente apenas por reconferência atual.
+
+
+### Auditoria e fila diária — 09/10/2026
+
+`conference-pause.js` preserva os anúncios pausados e suas datas. Ambos os painéis excluem `conferenciaPausada: true` dos pendentes diários. A reativação posterior à confirmação exige reconferência. Após 30 dias a revisão/exclusão é manual; nada é apagado automaticamente. A semana é exibida como data civil de São Paulo, sem deslocamento UTC para o dia anterior.
+
+`scripts/audit-site-integrity.mjs` valida todos os HTML, scripts, JSON-LD e recursos locais. O workflow manual `.github/workflows/auditar-site.yml` verifica os endereços publicados com concorrência limitada e guarda o relatório por 14 dias; não consulta Firebase nem usa segredos. As contagens de métricas continuam estimativas com consentimento, não número exato de pessoas. A auditoria automatizada não substitui revisão técnica/editorial, verificação de estoque dos vendedores ou inspeção dos consoles externos.
