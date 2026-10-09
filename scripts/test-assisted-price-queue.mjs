@@ -56,3 +56,17 @@ test('posição da fila volta no mesmo dia sem salvar falsa conferência',()=>{
  assert.equal(vm.runInContext('filaPrecosIdAtual',tomorrow),'');
  assert.equal(vm.runInContext('filaPrecosPulados.size',tomorrow),0);
 });
+
+test('pausados não entram na fila nem são contados como conferidos, mesmo após 30 dias',()=>{
+ const c=setup();c.filaPrecosDados.todos[0].conferenciaPausada=true;
+ c.filaPrecosDados.todos[0].conferenciaPausadaEm='2020-01-01';
+ c.filaPrecosDados.reconferirHoje=true;
+ assert.deepEqual(ids(c),['b','c']);
+ assert.equal(c.dadosFilaPrecosAssistida().todos.length,2);
+ assert.equal(c.filaPrecosConferidos.size,0);
+});
+test('reativado volta para fila mesmo se foi conferido hoje antes da pausa',()=>{
+ const c=setup();const p=c.filaPrecosDados.todos[0];
+ p.precoAtualizadoManualmenteEm=1;p.conferenciaPausada=false;p.conferenciaReativadaEm=2;
+ assert.deepEqual(ids(c),['a','b','c']);
+});
