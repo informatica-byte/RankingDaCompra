@@ -1,0 +1,27 @@
+name: Auditar site publicado sem Firebase
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - name: Validadores e regressões sem Firebase
+        run: |
+          node --test scripts/test-*.mjs
+          node scripts/validate-site.mjs
+      - name: Verificar todas as páginas e recursos publicados
+        run: node scripts/audit-site-integrity.mjs --online
+      - name: Guardar relatório sem dados privados
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-site-publico
+          path: audit-output/integridade.json
+          retention-days: 14
