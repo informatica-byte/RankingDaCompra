@@ -2905,17 +2905,30 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 && validade < hojeBrasil;
         }
 
+        function millisRotina(valor) {
+            if (typeof valor?.toMillis === "function") return valor.toMillis();
+            if (typeof valor?.seconds === "number") return valor.seconds * 1000;
+            if (typeof valor === "number") return valor;
+            return Date.parse(valor || "");
+        }
+
         function atualizarResumoRotina(snapshot) {
             const hojeBrasil = diaBrasilRotina(new Date());
             let conferidos = 0;
+            let ativos = 0;
             let vencidas = 0;
             snapshot.forEach(doc => {
                 const produto = doc.data();
-                if (diaBrasilRotina(produto.precoAtualizadoManualmenteEm) === hojeBrasil) conferidos += 1;
+                if (produto.conferenciaPausada !== true) {
+                    ativos += 1;
+                    const confirmadoEm = millisRotina(produto.precoAtualizadoManualmenteEm);
+                    const reativadoEm = millisRotina(produto.conferenciaReativadaEm);
+                    if (diaBrasilRotina(produto.precoAtualizadoManualmenteEm) === hojeBrasil && !(reativadoEm > confirmadoEm)) conferidos += 1;
+                }
                 if (promocaoVencida(produto, hojeBrasil)) vencidas += 1;
             });
             document.getElementById('rotina-conferidos').textContent = String(conferidos);
-            document.getElementById('rotina-restantes').textContent = String(snapshot.size - conferidos);
+            document.getElementById('rotina-restantes').textContent = String(ativos - conferidos);
             document.getElementById('rotina-vencidas').textContent = String(vencidas);
             const botaoEncerrar = document.getElementById('btn-encerrar-promocoes-vencidas');
             if (botaoEncerrar && !botaoEncerrar.dataset.salvando) botaoEncerrar.disabled = vencidas === 0;
@@ -3166,9 +3179,9 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 (function(){
   function dataTop5(valor){
     if(!valor)return "";
-    const data=new Date(valor);
+    const data=new Date(/^\d{4}-\d{2}-\d{2}$/.test(String(valor)) ? valor + "T12:00:00Z" : valor);
     if(Number.isNaN(data.getTime()))return "";
-    return new Intl.DateTimeFormat("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric"}).format(data);
+    return new Intl.DateTimeFormat("pt-BR",{timeZone:"America/Sao_Paulo",day:"2-digit",month:"2-digit",year:"numeric"}).format(data);
   }
   function escaparTop5(valor){
     return String(valor||"").replace(/[&<>"']/g,function(caractere){
