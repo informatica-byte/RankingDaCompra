@@ -137,6 +137,7 @@ Não há etapa de compilação. Os arquivos HTML e JavaScript da raiz são servi
 - `scripts/product-title-corrections.mjs`: corrige títulos conhecidos sem alterar cadastro.
 - `scripts/sync-mercadolivre.mjs`: lote único de preço e disponibilidade.
 - `scripts/resolve-affiliate-links.mjs`: resolve pedidos da fila MLB.
+- `scripts/localizer-diagnostics.mjs`: diagnóstico seguro e reaproveitamento de consultas repetidas na mesma execução.
 - `scripts/update-price-history.mjs`: histórico de 30 dias e páginas relacionadas.
 - `scripts/submit-indexnow.mjs`: notificação aos buscadores compatíveis.
 - `scripts/validate-site.mjs`: bloqueio preventivo de regressões.
@@ -517,3 +518,9 @@ Revisões editoriais por produto e modelo removem garantias de desempenho, laudo
 ### Evidências e resultados reais — 10/10/2026
 
 Consultar `CORRECOES-AUDITORIA-20261010.md`. A descoberta recupera prós/contras da análise visível por `scripts/published-editorial.mjs`, independentemente de Review/nota no JSON-LD. Avisos de desempenho não negam recursos anunciados. Correções de título/medida inconsistente conservam preços, links, fotos, identidade e datas. Ambos os painéis avisam e bloqueiam novo salvamento de referências ausentes na seleção até revisão, sem apagar cadastros. O localizador publica resultados preservados e depois sinaliza falhas reais no workflow, mantendo o limite de três tentativas. App Check permanece no estado existente por serviço; métricas agregadas sem token requerem identificação da origem, não enforcement automático.
+
+### Diagnóstico e consultas duplicadas do localizador — 11/10/2026
+
+`scripts/localizer-diagnostics.mjs` registra somente etapa, HTTP, tipo seguro de falha, indício de verificação humana e campos obrigatórios ausentes. Não publica corpos de API, headers, mensagens arbitrárias de erro, tokens ou credenciais. O motivo mostrado pelos painéis e a tabela do Actions distinguem anúncio não identificado, falta de título/preço/imagem válida, status HTTP, timeout e formato inválido. Não atribuem falha ao App Check sem evidência.
+
+Cada link equivalente é consultado uma vez por execução; apenas parâmetros de rastreamento conhecidos são removidos da chave. Variante, vendedor, cupom, parâmetros desconhecidos e links curtos diferentes permanecem distintos. Tanto sucesso quanto falha são reaproveitados entre pedidos da mesma execução, mantendo ID, link original e tentativas de cada pedido; `reaproveitadoDe` identifica a origem, sem apagar solicitações. Não há cache de falhas entre execuções nem reinício das tentativas esgotadas. A fila conserva no máximo duas consultas limitadas ao Firestore por ciclo, histórico e sinalização de falhas depois de preservar os resultados. Preços do cadastro mestre, fotos, configurações e App Check não são alterados. Testes offline: `scripts/test-localizer-diagnostics.mjs`.

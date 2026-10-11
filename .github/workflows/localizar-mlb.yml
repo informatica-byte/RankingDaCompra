@@ -56,7 +56,7 @@ jobs:
           MERCADO_LIVRE_CLIENT_SECRET: ${{ secrets.MERCADO_LIVRE_CLIENT_SECRET }}
           MERCADO_LIVRE_TOKEN_KEY: ${{ secrets.MERCADO_LIVRE_TOKEN_KEY }}
         run: |
-          node --test scripts/test-audit-repairs.mjs
+          node --test scripts/test-audit-repairs.mjs scripts/test-localizer-diagnostics.mjs
           xvfb-run -a node scripts/resolve-affiliate-links.mjs
 
 

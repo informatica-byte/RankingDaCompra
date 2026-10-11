@@ -7,6 +7,7 @@ const sitemapWorkflow = await readFile(".github/workflows/update-sitemap.yml", "
 const sync = await readFile("scripts/sync-mercadolivre.mjs", "utf8");
 const generator = await readFile("scripts/generate-sitemap.mjs", "utf8");
 const resolver = await readFile("scripts/resolve-affiliate-links.mjs", "utf8");
+const localizerDiagnostics = await readFile("scripts/localizer-diagnostics.mjs", "utf8");
 const dashboard = await readFile("dashboard.html", "utf8");
 const mobile = await readFile("painel-celular.html", "utf8");
 const localizerWorkflow = await readFile(".github/workflows/localizar-mlb.yml", "utf8");
@@ -133,7 +134,9 @@ test("localizador reutiliza e renova a autorização criptografada", () => {
   assert.match(resolver, /\[401, 403\]\.includes\(response\.status\)[\s\S]{0,160}accessToken\(true\)/);
   assert.match(resolver, /MAX_REQUEST_ATTEMPTS\s*=\s*3/);
   assert.match(resolver, /pendingRequests\(head\.items, payload\.resultados, MAX_REQUEST_ATTEMPTS\)/);
-  assert.match(resolver, /tentativas:\s*previousAttempts\s*\+\s*1/);
+  assert.match(resolver, /resolveQueuedRequests\(queue, payload\.resultados, resolveRequest/);
+  assert.match(localizerDiagnostics, /previousAttempts = Number\(results\[request\.id\]\?\.tentativas \|\| 0\)/);
+  assert.match(localizerDiagnostics, /tentativas:\s*previousAttempts\s*\+\s*1/);
   assert.match(resolver, /officialCatalogDetails\(catalogId/);
   assert.match(resolver, /api\.mercadolibre\.com\/products\/[^\n]+catalogId/);
   assert.match(sync, /rejectedAccessTokenRefreshPromise/);
