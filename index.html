@@ -296,7 +296,19 @@ function configurarRadar(produtos){const secao=document.getElementById('radar'),
 
 function configurarRadarSobDemanda(){const form=document.getElementById('radar-form'),campo=document.getElementById('radar-input'),resultado=document.getElementById('radar-result');if(!form||!campo||!resultado)return;let pronto=false,carregando=false;form.addEventListener('submit',async evento=>{if(pronto||carregando)return;evento.preventDefault();evento.stopImmediatePropagation();if(normalizarRadar(campo.value).length<2){resultado.innerHTML='<div class="radar-empty">Digite pelo menos duas letras para pesquisar.</div>';return}carregando=true;resultado.innerHTML='<div class="radar-empty">Consultando o Radar…</div>';try{const snapshot=await window.RDCPublicData.json('/vitrine-publica.json');if(!Array.isArray(snapshot?.products))throw new Error('Catálogo público inválido');const produtos=snapshot.products.map(aplicarDadosMercadoLivre).filter(produto=>produtoDisponivel(produto)&&conteudoEditorialValido(produto));pronto=true;configurarRadar(produtos);form.requestSubmit()}catch(erro){console.warn('Não foi possível consultar o Radar.',erro);resultado.innerHTML='<div class="radar-empty">O Radar está temporariamente indisponível. Tente novamente em alguns instantes.</div>'}finally{carregando=false}},true)}
 function tituloPromocoesPublicado(config,ofertas){return window.RDCPromotionTitle?.resolve(config?.promotionSeoTitle,ofertas)||'Ofertas do dia: compare preços e produtos'}
+function restaurarSelecaoPublicada(selecao){
+  const main = app.querySelector('main');
+  if (!selecao || !main) return false;
+  const aviso = document.createElement('p');
+  aviso.className = 'static-method';
+  aviso.setAttribute('role', 'status');
+  aviso.textContent = 'Exibindo a última seleção publicada. Os preços e datas abaixo são registros; confirme preço e disponibilidade no vendedor.';
+  selecao.prepend(aviso);
+  main.replaceWith(selecao);
+  return true;
+}
 async function homeComPromocoes(){
+  const selecaoPublicada = document.querySelector('.static-home')?.cloneNode(true);
   const guiasPublicados = document.querySelector('.static-guide-grid')?.cloneNode(true);
   await home();
   if (guiasPublicados && app.querySelector('.featured-guide')) {
@@ -316,10 +328,11 @@ async function homeComPromocoes(){
   const guideManifestPromise = window.RDCPublicData.json('/best-choices-guides.json').catch(()=>({guides:[]}));
   const top5PayloadPromise = carregarTop5Semanal();
   const historicoPromise = carregarHistoricoDaVitrine();
-  let promocoes = [], relampagos = [], todos = [];
+  let promocoes = [], relampagos = [], todos = [], catalogoCarregado = false;
   try {
     const catalogo = await window.RDCPublicData.json('/vitrine-publica.json');
     if (!Array.isArray(catalogo?.products)) throw new Error('Catálogo público inválido');
+    catalogoCarregado = true;
     todos = catalogo.products.map(aplicarDadosMercadoLivre).filter((produto) => produtoDisponivel(produto) && conteudoEditorialValido(produto));
     relampagos = todos.filter(ofertaRelampagoValida)
       .sort((a, b) => fimOfertaRelampago(a) - fimOfertaRelampago(b) || descontoOfertaRelampago(b) - descontoOfertaRelampago(a))
@@ -328,6 +341,7 @@ async function homeComPromocoes(){
   } catch (erro) {
     console.warn("Não foi possível carregar as promoções.", erro);
   }
+  if (!catalogoCarregado && restaurarSelecaoPublicada(selecaoPublicada)) return;
 
   const [top5Payload, historicoVitrine, siteConfig, guideManifest] = await Promise.all([top5PayloadPromise, historicoPromise, siteConfigPromise, guideManifestPromise]);
   promocoes = window.RDCBestChoices.selectProducts(todos,siteConfig);

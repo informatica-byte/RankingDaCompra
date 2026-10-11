@@ -42,3 +42,39 @@ test('página retirada limita a largura inclusive de recursos inseridos', async 
   assert.match(source, /overflow-wrap:anywhere/);
   assert.match(source, /min-width:0;max-width:100%/);
 });
+
+const fallbackStart = home.indexOf('function restaurarSelecaoPublicada(selecao){');
+const fallbackEnd = home.indexOf('async function homeComPromocoes(){', fallbackStart);
+assert.ok(fallbackStart >= 0 && fallbackEnd > fallbackStart);
+const fallbackCode = home.slice(fallbackStart, fallbackEnd);
+
+test('falha de rede mantém a seleção publicada sem criar preços ou consultar Firebase', () => {
+  const snapshot = { prices: ['R$ 59,00 em 11/10/2026'], prepend(note) { this.note = note; } };
+  let restored;
+  const context = {
+    app: { querySelector: () => ({ replaceWith(node) { restored = node; } }) },
+    document: { createElement: () => ({ setAttribute(name, value) { this[name] = value; } }) },
+  };
+  vm.runInNewContext(fallbackCode, context);
+  assert.equal(context.restaurarSelecaoPublicada(snapshot), true);
+  assert.equal(restored, snapshot);
+  assert.deepEqual(snapshot.prices, ['R$ 59,00 em 11/10/2026']);
+  assert.equal(snapshot.note.role, 'status');
+  assert.match(snapshot.note.textContent, /preços e datas abaixo são registros/);
+  assert.doesNotMatch(fallbackCode, /fetch\(|RDCPublicData|db\./);
+});
+
+test('sem snapshot a recuperação não remove o conteúdo existente', () => {
+  let replaced = false;
+  const context = { app: { querySelector: () => ({ replaceWith() { replaced = true; } }) } };
+  vm.runInNewContext(fallbackCode, context);
+  assert.equal(context.restaurarSelecaoPublicada(null), false);
+  assert.equal(replaced, false);
+});
+
+test('snapshot é guardado antes da renderização e restaurado somente se o catálogo falhar', () => {
+  const body = home.slice(fallbackEnd);
+  assert.ok(body.indexOf("document.querySelector('.static-home')") < body.indexOf('await home();'));
+  assert.match(body, /catalogoCarregado = true;/);
+  assert.match(body, /if \(!catalogoCarregado && restaurarSelecaoPublicada\(selecaoPublicada\)\) return;/);
+});
