@@ -150,3 +150,73 @@ test("os dois painéis usam os mesmos campos e helper; ranking móvel continua c
   assert.doesNotMatch(growth.slice(growth.indexOf("async function recordFunnelMetric"), growth.indexOf("function setupFunnelTracking")),
     /marketplace\s*:/, "não adicionar campo rejeitado pelas regras do Firestore");
 });
+
+function dashboardReportContext(html, events) {
+  const start = html.indexOf("function renderizarRelatorioCentral(){");
+  const end = html.indexOf("function renderizarSecoesCentral()", start);
+  assert.ok(start >= 0 && end > start, "renderizador real do relatório encontrado");
+  const nodes = new Map();
+  const context = vm.createContext({
+    window: {},
+    document: { getElementById(id) {
+      if (!nodes.has(id)) nodes.set(id, { textContent: "", innerHTML: "", classList: { toggle() {} } });
+      return nodes.get(id);
+    } },
+    dataBrasil: () => "2026-10-11", RankingMetricasResumo: metrics,
+    metricasCentralAtual: events, produtosCentralAtual: [],
+    escapeHtml: value => String(value).replace(/[&<>"']/g, character => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[character]),
+  });
+  vm.runInContext(html.slice(start, end), context);
+  context.renderizarRelatorioCentral();
+  return nodes;
+}
+
+function productEvents(id, title, views, clicks, day = "2026-10-11") {
+  return [
+    ...Array.from({ length: views }, () => ({ tipo: "visualizacao_produto", produtoId: id, titulo: title, dia: day })),
+    ...Array.from({ length: clicks }, () => ({ tipo: "clique_oferta", produtoId: id, titulo: title, dia: day })),
+  ];
+}
+
+test("relatório real do dashboard mostra 150% e 200% por produto sem cortar eventos", async () => {
+  const dashboard = await read("dashboard.html");
+  const nodes = dashboardReportContext(dashboard, [
+    ...productEvents("notebook", "Notebook", 6, 9),
+    ...productEvents("wap", "WAP", 3, 6),
+    ...productEvents("restante", "Outros produtos", 165, 36),
+    ...productEvents("antigo", "Fora do período", 8, 8, "2026-10-04"),
+    ...productEvents("futuro", "Ainda não aconteceu", 2, 2, "2026-10-12"),
+  ]);
+  const report = nodes.get("central-relatorio").innerHTML;
+  assert.match(report, /Notebook<\/td><td>6<\/td><td>9<\/td><td>150%<\/td>/);
+  assert.match(report, /WAP<\/td><td>3<\/td><td>6<\/td><td>200%<\/td>/);
+  assert.doesNotMatch(report, /Fora do período|Ainda não aconteceu/);
+  assert.equal(nodes.get("central-visualizacoes-semana").textContent, "174");
+  assert.equal(nodes.get("central-cliques-semana").textContent, "51");
+  assert.equal(nodes.get("central-taxa-clique").textContent, "29,3%");
+  assert.match(report, /Cliques \/ visualizações/);
+  assert.match(report, /Pode superar 100%/);
+  assert.match(report, /Não mede vendas, conversões nem pessoas únicas/);
+});
+
+test("relatório por produto distingue denominador ausente de ausência de cliques", async () => {
+  const nodes = dashboardReportContext(await read("dashboard.html"), [
+    ...productEvents("so-cliques", "Somente cliques", 0, 3),
+    ...productEvents("sem-cliques", "Visto sem clique", 5, 0),
+  ]);
+  const report = nodes.get("central-relatorio").innerHTML;
+  assert.match(report, /Somente cliques<\/td><td>0<\/td><td>3<\/td><td>—<\/td>/);
+  assert.match(report, /Visto sem clique<\/td><td>5<\/td><td>0<\/td><td>0%<\/td>/);
+  assert.doesNotMatch(report, /Infinity|NaN/);
+});
+
+test("relatório real preserva escaping e não usa consultas para calcular a razão", async () => {
+  const dashboard = await read("dashboard.html");
+  const nodes = dashboardReportContext(dashboard, productEvents("p", '<img src=x onerror="alert(1)">', 4, 5));
+  const report = nodes.get("central-relatorio").innerHTML;
+  assert.match(report, /&lt;img src=x onerror=&quot;alert\(1\)&quot;&gt;/);
+  assert.match(report, /<td>125%<\/td>/);
+  assert.doesNotMatch(report, /<img src=x/);
+});
