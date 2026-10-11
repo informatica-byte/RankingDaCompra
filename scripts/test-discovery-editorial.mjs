@@ -24,3 +24,18 @@ test('guias específicos filtram teto de preço e Wi-Fi 6 sem usar dados incerto
   assert.match(html,/Para quem NÃO é indicado/);
   assert.doesNotMatch(html,/microfone testado/);
 });
+
+test('orientação sobre alternativa e limitação de teste não contradizem a própria ficha', () => {
+  const product = {titulo:'Fone Bluetooth',comentario:'Não possui cancelamento ativo de ruído (ANC). Para ambientes ruidosos, compare alternativas com ANC. Não realizamos testes de qualidade do microfone.'};
+  assert.equal(featureState(product, /\banc\b|cancelamento ativo/), 'no');
+  assert.equal(featureState(product, /microfone/), 'unknown');
+  assert.equal(featureState({titulo:'Fone',comentario:'Para quem precisa de ANC, procure outro modelo com ANC'}, /\banc\b/), 'unknown');
+  assert.equal(featureState({titulo:'Fone',comentario:'Possui microfone integrado'}, /microfone/), 'yes');
+  assert.equal(featureState({titulo:'Fone',comentario:'Tem ANC?'}, /\banc\b/), 'unknown');
+  assert.equal(featureState({titulo:'Fone com ANC',contras:'Não possui ANC'}, /\banc\b/), 'unknown');
+  assert.equal(featureState({titulo:'Fone',comentario:'ENC para chamadas; isolamento passivo'}, /\banc\b/), 'unknown');
+  assert.equal(featureState({titulo:'Roteador',pros:['Portas Gigabit anunciadas','EasyMesh para outros equipamentos compatíveis']}, /\bmesh\b|easymesh/), 'yes');
+  assert.equal(featureState({titulo:'Fone',contras:'Não possui ANC, compare alternativas com ANC'}, /\banc\b/), 'no');
+  assert.equal(featureState({titulo:'Fone',comentario:'Se tiver ANC, ajudará no ambiente ruidoso'}, /\banc\b/), 'unknown');
+  assert.equal(featureState({titulo:'Fone',comentario:'O modelo pode ter ANC dependendo da variante'}, /\banc\b/), 'unknown');
+});

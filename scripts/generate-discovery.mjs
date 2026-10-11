@@ -5,7 +5,7 @@ import { protectGeneratedPublicPages } from "./public-privacy.mjs";
 import offerReplacement from "../product-offer-replacement.js";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import SEO_PRIORITIES from "../seo-priorities.js";
-import { renderProductDecision } from "./product-decision.mjs";
+import { renderProductDecision, comparisonData } from "./product-decision.mjs";
 import { publishedEditorialNotes } from "./published-editorial.mjs";
 import { routerCapabilities, renderPracticalSection, practicalProfile, EDITORIAL_REVIEWED_AT, FOCUSED_GUIDES, focusedProducts, renderFocusedGuide } from "./discovery-editorial.mjs";
 
@@ -13,8 +13,8 @@ const PROJECT_ID = "rankingdacompra";
 const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 const SITE = "https://rankingdacompra.com.br/";
 const SHARE_VERSION = "20260810-1";
-const GROWTH_TOOLS_VERSION = "20261008-consent";
-const MOBILE_PRODUCT_STYLE = '<style data-mobile-product-buy>.mobile-buy{display:none}@media(max-width:700px){body{padding-bottom:72px}.top>div{display:flex;flex-direction:column;order:-1}.top>div>.eyebrow{order:1}.top>div>h1{order:2}.top>div>.full-title{order:3}.top>div>.rating{order:4}.top>div>.offer{order:5;margin:8px 0 14px}.top>div>.summary{order:6}.top>div>.facts{order:7}.photo{order:2}.mobile-buy{position:fixed;z-index:1000;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 15px;border-radius:11px;background:#1769e0;color:#fff;text-decoration:none;font-weight:950;box-shadow:0 10px 30px rgba(0,0,0,.25)}}</style>';
+const GROWTH_TOOLS_VERSION = "20261011-ux";
+const MOBILE_PRODUCT_STYLE = '<style data-mobile-product-buy>.mobile-buy{display:none}@media(max-width:700px){body{padding-bottom:72px}.top{gap:12px}.top>div:not(.photo){display:contents}.top .eyebrow{order:1}.top h1{order:2;margin:0}.top .full-title{order:3;margin:0}.top .rating{order:4}.top>.photo{order:5;height:220px}.top .summary{order:6;margin:0;line-height:1.55}.top .offer{order:7;margin:4px 0 8px}.top .facts{order:8}.mobile-buy{position:fixed;z-index:1000;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 15px;border-radius:11px;background:#1769e0;color:#fff;text-decoration:none;font-weight:950;box-shadow:0 10px 30px rgba(0,0,0,.25)}}</style>';
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
 const RETRYABLE_HTTP_STATUS = new Set([500, 502, 503, 504]);
 
@@ -724,17 +724,19 @@ function relatedSection(product, related, productUrls, categoryName) {
   const links = related.map((item) => `<li><a href="${escapeHtml(productUrls.get(item.id))}">${escapeHtml(item.titulo)}</a></li>`).join("");
   const guide = (related.length + 1) >= 3
     ? `<p><a href="${SITE}${guideFileName(product.categoria)}" style="display:inline-flex;padding:10px 13px;border-radius:8px;background:#116149;color:#fff;font-weight:900;text-decoration:none">Ver comparativo completo da categoria →</a></p>` : "";
-  return `<!-- discovery-related:start --><section class="related-discovery" style="margin-top:28px;padding:20px;border:1px solid #dfe7e2;border-radius:13px;background:#fafcfb"><h2 style="margin:0 0 9px;font-size:1.1rem">Compare também em ${escapeHtml(categoryName)}</h2>${links ? `<ul style="margin:0 0 12px;padding-left:20px">${links}</ul>` : ""}${guide}<a href="${SITE}analises.html#${escapeHtml(slug(product.categoria))}" style="color:#116149;font-weight:850">Ver todas as análises desta categoria →</a></section><!-- discovery-related:end -->`;
+  return `<!-- discovery-related:start --><section class="related-discovery" style="margin-top:28px;padding:20px;border:1px solid #dfe7e2;border-radius:13px;background:#fafcfb"><h2 style="margin:0 0 9px;font-size:1.1rem">Outras análises em ${escapeHtml(categoryName)}</h2><p>Itens da mesma categoria podem ter usos diferentes. Compare apenas produtos do mesmo tipo no comparador.</p>${links ? `<ul style="margin:0 0 12px;padding-left:20px">${links}</ul>` : ""}${guide}<a href="${SITE}analises.html#${escapeHtml(slug(product.categoria))}" style="color:#116149;font-weight:850">Ver todas as análises desta categoria →</a></section><!-- discovery-related:end -->`;
 }
 
 function upgradeProductExperience(html) {
   // Remove o listener suplementar antigo antes de decidir se falta um listener.
   // As páginas novas já registram o botão móvel no script principal.
-  let next = String(html || "").replace(/[ \t]*<script\b[^>]*data-mobile-offer-track[^>]*>[\s\S]*?<\/script>(?:\r?\n)?/gi, "").replace(
+  let next = String(html || "").replace(/<style>\.mobile-buy\{display:none\}[\s\S]*?<\/style>/gi, "").replace(/^[ \t]+(?=\r?$)/gm, "").replace(/[ \t]*<script\b[^>]*data-mobile-offer-track[^>]*>[\s\S]*?<\/script>(?:\r?\n)?/gi, "").replace(
     /growth-tools\.js\?v=[^"'<>]+/g,
     `growth-tools.js?v=${GROWTH_TOOLS_VERSION}`,
   );
-  if (!next.includes("data-mobile-product-buy")) {
+  if (next.includes("data-mobile-product-buy")) {
+    next = next.replace(/<style\b[^>]*data-mobile-product-buy[^>]*>[\s\S]*?<\/style>/gi, MOBILE_PRODUCT_STYLE);
+  } else {
     next = next.replace(
       /(<script defer src=["']\/growth-tools\.js\?v=[^"']+["']><\/script>)/,
       `${MOBILE_PRODUCT_STYLE}\n  $1`,
@@ -816,6 +818,7 @@ function buildSearchIndex(categories, products, productUrls, categoryNames, last
     recordedPrice: numberPrice(product.precoPromocional || product.preco) || numberPrice(product.__manualPrice) || null,
     rating: Number(product.nota) || 0,
     ranking: 0,
+    comparison: comparisonData(product),
     url: productUrls.get(product.id),
   })).filter((product) => product.title && product.summary.length >= 180 && product.url);
   return { version: 1, updatedAt: lastModified, categories: categoryPayload, products: productPayload };

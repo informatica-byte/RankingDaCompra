@@ -17,6 +17,11 @@
     <div class="code">ERRO 404</div>
     <h1>Esta oferta não está mais aqui.</h1>
     <p>O anúncio pode ter terminado ou a página pode ter sido substituída. Veja apenas produtos e análises que continuam publicados.</p>
+    <form action="/" method="get" role="search" style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;text-align:left">
+      <label for="recovery-search" style="flex-basis:100%;font-weight:800">Encontre outra análise por produto, marca ou modelo</label>
+      <input id="recovery-search" name="busca" type="search" required maxlength="120" placeholder="Ex.: roteador Wi-Fi 6" style="flex:1;min-width:150px;min-height:44px;padding:10px;border:1px solid #b7d0c3;border-radius:8px;font:inherit">
+      <button type="submit" style="min-height:44px;padding:10px 16px;border:0;border-radius:8px;background:#116149;color:white;font:inherit;font-weight:800">Buscar</button>
+    </form>
     <div class="actions">
       <a href="/">Ver ofertas atuais</a>
       <a href="/analises.html">Consultar todas as análises</a>

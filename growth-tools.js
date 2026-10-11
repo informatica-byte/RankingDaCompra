@@ -1263,7 +1263,8 @@
     floating.href = url;
     floating.target = "_blank";
     floating.rel = "noopener noreferrer";
-    floating.textContent = "WhatsApp · receber ofertas";
+    floating.setAttribute("aria-label", "WhatsApp: receber ofertas");
+    floating.innerHTML = '<span aria-hidden="true">WhatsApp</span><span class="club-floating-detail" aria-hidden="true"> · receber ofertas</span>';
     document.body.appendChild(floating);
     const close = document.createElement("button");
     close.type = "button";
@@ -2274,7 +2275,7 @@
   async function init() {
     injectStyles();
     const uxStyle = document.createElement("style");
-    uxStyle.textContent = ':focus-visible{outline:3px solid #1769e0;outline-offset:3px}.rdc-skip{position:fixed;left:12px;top:-100px;z-index:10000;padding:12px 18px;background:#fff;color:#116149;border:2px solid #116149;border-radius:8px}.rdc-skip:focus{top:12px}.club-floating{padding-right:52px;min-height:44px}.club-floating-close{position:fixed;right:18px;bottom:18px;z-index:851;width:44px;height:44px;border:0;background:transparent;color:#fff;font:28px system-ui;cursor:pointer}.club-floating[hidden],.club-floating-close[hidden],.product-detail-page .club-floating-close{display:none!important}.ranki-help-open .club-floating-close{opacity:0;pointer-events:none}@media(max-width:700px){.club-floating{font-size:.75rem;max-width:205px}.club-floating-close{right:12px;bottom:12px}.hero-actions{padding-right:0}.hero-actions .button.secondary{display:inline-flex;min-height:44px}.hero-proof{flex-wrap:wrap;overflow:visible}.ranki-hero{position:relative;right:auto;bottom:auto;width:64px;margin:12px 0 0 auto}}';
+    uxStyle.textContent = ':focus-visible{outline:3px solid #1769e0;outline-offset:3px}.rdc-skip{position:fixed;left:12px;top:-100px;z-index:10000;padding:12px 18px;background:#fff;color:#116149;border:2px solid #116149;border-radius:8px}.rdc-skip:focus{top:12px}.club-floating{padding-right:52px;min-height:44px}.club-floating-close{position:fixed;right:18px;bottom:18px;z-index:851;width:44px;height:44px;border:0;background:transparent;color:#fff;font:28px system-ui;cursor:pointer}.club-floating[hidden],.club-floating-close[hidden],.product-detail-page .club-floating-close{display:none!important}.ranki-help-open .club-floating-close{opacity:0;pointer-events:none}@media(max-width:700px){.club-floating{font-size:.75rem;max-width:144px;min-height:44px;padding:9px 46px 9px 12px}.club-floating-detail{display:none}.club-floating-close{right:12px;bottom:12px}.hero-actions{padding-right:0}.hero-actions .button.secondary{display:inline-flex;min-height:44px}.hero-proof{flex-wrap:wrap;overflow:visible}.ranki-hero{position:absolute;right:0;bottom:0;width:42px;margin:0;opacity:.85}.hero-proof{padding-right:46px}}';
     document.head.appendChild(uxStyle);
     injectWeeklyRankingStyles();
     void protectAffiliateProductPrice();
