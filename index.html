@@ -299,6 +299,10 @@ function tituloPromocoesPublicado(config,ofertas){return window.RDCPromotionTitl
 function restaurarSelecaoPublicada(selecao){
   const main = app.querySelector('main');
   if (!selecao || !main) return false;
+  selecao.querySelectorAll('.deal-check, [data-share-product]').forEach(node => node.remove());
+  selecao.querySelectorAll('.deal-validity').forEach(node => {
+    node.textContent = node.textContent.replace(/^Preço conferido em\s+/, 'Registro de preço de ');
+  });
   const aviso = document.createElement('p');
   aviso.className = 'static-method';
   aviso.setAttribute('role', 'status');

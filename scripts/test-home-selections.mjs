@@ -49,7 +49,7 @@ assert.ok(fallbackStart >= 0 && fallbackEnd > fallbackStart);
 const fallbackCode = home.slice(fallbackStart, fallbackEnd);
 
 test('falha de rede mantém a seleção publicada sem criar preços ou consultar Firebase', () => {
-  const snapshot = { prices: ['R$ 59,00 em 11/10/2026'], prepend(note) { this.note = note; } };
+  const snapshot = { prices: ['R$ 59,00 em 11/10/2026'], querySelectorAll() { return []; }, prepend(note) { this.note = note; } };
   let restored;
   const context = {
     app: { querySelector: () => ({ replaceWith(node) { restored = node; } }) },
@@ -70,6 +70,27 @@ test('sem snapshot a recuperação não remove o conteúdo existente', () => {
   vm.runInNewContext(fallbackCode, context);
   assert.equal(context.restaurarSelecaoPublicada(null), false);
   assert.equal(replaced, false);
+});
+
+test('reserva não mantém selo de preço recente ou compartilhamento incompleto', () => {
+  let removed = 0;
+  const date = { textContent: 'Preço conferido em 11/10/2026' };
+  const snapshot = {
+    querySelectorAll(selector) {
+      if (selector === '.deal-validity') return [date];
+      assert.equal(selector, '.deal-check, [data-share-product]');
+      return [{ remove() { removed++; } }, { remove() { removed++; } }];
+    },
+    prepend() {},
+  };
+  const context = {
+    app: { querySelector: () => ({ replaceWith() {} }) },
+    document: { createElement: () => ({ setAttribute() {} }) },
+  };
+  vm.runInNewContext(fallbackCode, context);
+  assert.equal(context.restaurarSelecaoPublicada(snapshot), true);
+  assert.equal(removed, 2);
+  assert.equal(date.textContent, 'Registro de preço de 11/10/2026');
 });
 
 test('snapshot é guardado antes da renderização e restaurado somente se o catálogo falhar', () => {
