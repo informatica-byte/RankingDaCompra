@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head><script src="/privacy-controls.js?v=20261008-consent"></script>
   <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
-  <script src="/best-choices.js?v=20261006-audit"></script>
+  <script src="/best-choices.js?v=20261011-2"></script>
   <meta name="msvalidate.01" content="E9995C648A88C729F81E3AF3221620C0" />
 
   <meta charset="utf-8">
@@ -366,10 +366,10 @@ async function homeComPromocoes(){
   secao.className = "daily-deals";
   secao.innerHTML = `<div class="section-head deals-heading"><div><div class="eyebrow">Seleção permanente</div><h2 data-best-title>${esc(tituloPromocoes)}</h2><p>Os destaques são editoriais. Compare pelo seu uso e veja os critérios dos rankings abaixo.</p><p>${esc(rotuloAtualizacao(promocoes))}</p></div><span class="deal-count">${promocoes.length} produtos selecionados</span></div><h3 class="best-products-heading">Produtos para analisar antes de comprar</h3>${promocoes.length ? `<div class="deal-grid" data-best-products>${window.RDCBestChoices.productCards(promocoes,mercadoLivreStatus)}</div>` : `<div class="empty">Consulte os rankings abaixo e todas as análises publicadas.</div>`}<h3 class="best-products-heading">Rankings por categoria</h3>${window.RDCBestChoices.guideCards(rankingsDestaque)}<a class="button secondary" href="/melhores-escolhas.html">Ver todos os destaques e rankings</a><p class="deal-disclaimer"><b>Como usar:</b> estes destaques não são um ranking entre categorias. Compare critérios e limitações na análise. A seleção permanece; os preços dependem da conferência diária.</p>`;
   if (ancoraRadar) ancoraRadar.parentNode.insertBefore(secao, ancoraRadar);
+  else app.querySelector("main")?.prepend(secao);
   // These guide links remain below the products; avoid a repeated full block
   // before shoppers can see any product on the first mobile screen.
   if (rankingsDestaque.length) app.querySelector('.featured-guide')?.remove();
-  else app.querySelector("main")?.prepend(secao);
 
   if (top5Semanal.length) {
     const top5Updated = formatarData(top5Payload.updatedAt);
