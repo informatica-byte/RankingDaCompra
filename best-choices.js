@@ -60,6 +60,8 @@
     return {value:money(product.preco),at:null,confirmed:false,source:'cadastro'};
   }
   function title(value, products = [], validator, statuses = {}, now = Date.now()) {
+    const requested = String(value || DEFAULT_TITLE).trim();
+    if (!requested || requested === DEFAULT_TITLE || /^(?:ofertas|achados|promo(?:ç|c)ões)\s+d[oa]\s+dia\b/i.test(requested)) return DEFAULT_TITLE;
     return validator?.checkChoices ? validator.checkChoices(value,products.map(p=>{
       const price=priceState(p,statuses[String(p.id)],now);
       return {titulo:p.titulo,preco:price.confirmed?price.value:0};
