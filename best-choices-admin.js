@@ -2,6 +2,10 @@
   'use strict';
   const api = window.RDCBestChoices;
   const loadedJson = async url => { const r=await fetch(url,{cache:'no-store'}); if(!r.ok)throw Error('Não foi possível carregar '+url);return r.json(); };
+  function missingSelectionIds(ids, products) {
+    const available=new Set(products.map(product=>String(product.id)));
+    return ids.map(String).filter(id=>!available.has(id));
+  }
   function mount(host, adapter) {
     if (!host || host.dataset.bestChoicesMounted) return;
     host.dataset.bestChoicesMounted='true'; host.classList.add('best-admin');
@@ -9,8 +13,10 @@
     const loadButton=host.querySelector('[data-best-load]'), form=host.querySelector('[data-best-form]'), status=host.querySelector('[data-best-status]');
     let config={}, products=[], guides=[], selectedIds=[], selectedUrls=[], saveConfig, pending=false, categoryNames=new Map(), priceStatuses={};
     const productById=new Map();
+    const missingIds=()=>missingSelectionIds(selectedIds,products);
     const showPicked=()=>{
-      form.querySelector('[data-best-count]').textContent=selectedIds.length+' de '+api.MAX_PRODUCTS+' produtos selecionados';
+      const missing=missingIds();
+      form.querySelector('[data-best-count]').textContent=selectedIds.length+' de '+api.MAX_PRODUCTS+' produtos selecionados'+(missing.length?' — '+missing.length+' ausente(s) no catálogo disponível; não aparecem na vitrine. Revise e retire somente da seleção, sem excluir o histórico.':'');
       form.querySelector('[data-best-picked]').innerHTML=selectedIds.map((id,index)=>{
         const p=productById.get(id);
         return '<li><span>'+api.esc(p?.titulo || 'Produto não publicado: '+id)+'<small>'+api.esc(categoryNames.get(p?.categoria) || p?.categoria || 'Revise a disponibilidade antes de remover')+'</small></span><button type="button" data-best-up="'+api.esc(id)+'" '+(!index?'disabled':'')+' aria-label="Subir '+api.esc(p?.titulo||id)+'">↑</button><button type="button" data-best-down="'+api.esc(id)+'" '+(index===selectedIds.length-1?'disabled':'')+' aria-label="Descer '+api.esc(p?.titulo||id)+'">↓</button><button type="button" data-best-remove="'+api.esc(id)+'" aria-label="Retirar '+api.esc(p?.titulo||id)+' da seleção">Retirar</button></li>';
@@ -72,6 +78,7 @@
           if(pending)return;
           const chosen=selectedIds.map(id=>productById.get(id)).filter(Boolean),check=window.RDCPromotionTitle.checkChoices(form.querySelector('[data-best-title]').value,chosen.map(p=>{const price=api.priceState(p,priceStatuses[String(p.id)]);return {...p,preco:price.confirmed?price.value:0};}));
           if(!check.valid){status.textContent=check.reason;return;}
+          if(missingIds().length){status.textContent='Há referências ausentes no catálogo disponível. Use Retirar nesses destaques ou carregue o cadastro no painel antes de salvar. Nenhum produto será excluído.';return;}
           if(selectedIds.length>api.MAX_PRODUCTS||selectedUrls.length>api.MAX_GUIDES){status.textContent='Seleção acima do limite. Revise antes de salvar.';return;}
           pending=true;form.querySelectorAll('button,input,select').forEach(el=>el.disabled=true);
           status.textContent='Salvando somente a seleção permanente…';
@@ -85,5 +92,5 @@
       finally{loadButton.disabled=false;}
     });
   }
-  window.RDCBestChoicesAdmin={mount};
+  window.RDCBestChoicesAdmin={mount,missingSelectionIds};
 })();

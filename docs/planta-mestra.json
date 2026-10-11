@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotDate": "2026-10-09",
+  "snapshotDate": "2026-10-10",
   "project": {
     "name": "Ranking da Compra",
     "repository": "informatica-byte/RankingDaCompra",
@@ -224,6 +224,7 @@
     "failure": "Keep product fields for review, show an explicit error and require a replacement image URL without writing Firestore"
   },
   "generatedContent": {
+    "editorialNotes": "scripts/published-editorial.mjs reads visible pros/cons independently of numeric Review JSON-LD; never invents ratings",
     "productPages": "produto/*.html",
     "socialImages": "produto/imagens/*",
     "categoryGuides": "melhores-*.html",

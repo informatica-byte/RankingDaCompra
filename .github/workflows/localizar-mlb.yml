@@ -48,6 +48,7 @@ jobs:
 
 
       - name: Abrir links e identificar anuncios
+        id: resolver
         env:
           RDC_FIRESTORE_ACCESS_TOKEN: ${{ steps.firestore-auth.outputs.access_token }}
           RDC_FIRESTORE_AUTH_REQUIRED: "true"
@@ -73,5 +74,11 @@ jobs:
           git commit -m "Atualiza localizador de codigos MLB"
           git pull --rebase origin main
           git push origin HEAD:main
+
+      - name: Sinalizar dados não obtidos após preservar os resultados
+        if: steps.resolver.outputs.incomplete == 'true'
+        run: |
+          echo "::error::O localizador não concluiu a obtenção dos dados. Falhas em pedidos: ${{ steps.resolver.outputs.failed_count }}. Consulte o resumo da consulta/fila. Resultados preservados; use revisão manual para pedidos sem dados."
+          exit 1
 
 

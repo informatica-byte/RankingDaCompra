@@ -1,5 +1,16 @@
 export const PAGE_SIZE = 10;
 
+export function resolutionSummary(ids, results, maxAttempts = 3) {
+  const current = ids.map(id => results[id]).filter(Boolean);
+  return {
+    processed: current.length,
+    succeeded: current.filter(result => result.status === 'ok').length,
+    failed: current.filter(result => result.status === 'erro').length,
+    exhausted: Object.values(results).filter(result => result.status === 'erro'
+      && Number(result.tentativas || 0) >= maxAttempts).length,
+  };
+}
+
 export function queueQuery(cursor = null) {
   return { structuredQuery: {
     from: [{ collectionId: 'mlbSolicitacoes' }],

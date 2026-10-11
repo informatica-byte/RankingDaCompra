@@ -1,7 +1,7 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { readFile, writeFile } from "node:fs/promises";
-import { queueQuery, nextCursor, pendingRequests } from "./localizer-queue.mjs";
+import { readFile, writeFile, appendFile } from "node:fs/promises";
+import { queueQuery, nextCursor, pendingRequests, resolutionSummary } from "./localizer-queue.mjs";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 import {
@@ -619,6 +619,15 @@ if (!queue.length) {
 if (queue.length || JSON.stringify(payload.queueState || null) !== priorQueueState) {
   await writeFile(OUTPUT, `${JSON.stringify(payload)}\n`);
 }
+
+// Encerrar o processo não significa ter conseguido consultar o Mercado Livre.
+// Os resultados devem ser publicados antes de sinalizar a conferência parcial.
+const summary = resolutionSummary(queue.map(request => request.id), payload.resultados, MAX_REQUEST_ATTEMPTS);
+console.log(`Localizador: ${summary.processed} processados; ${summary.succeeded} resolvidos; ${summary.failed} falhas nesta execução; ${summary.exhausted} pedidos com tentativas esgotadas no histórico.`);
+if (summary.failed) console.warn('::warning::Conferência parcial: dados indisponíveis no Mercado Livre. Os preços e cadastros existentes não foram alterados.');
+if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `failed_count=${summary.failed}\nincomplete=${summary.failed > 0 || !head.readSucceeded}\n`);
+if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY,
+  `## Resultado real do localizador\n\nProcessados: ${summary.processed}. Resolvidos: ${summary.succeeded}. Falhas nesta execução: ${summary.failed}. Pedidos com tentativas esgotadas no histórico: ${summary.exhausted}.\n\n${head.readSucceeded ? '' : 'A fila não pôde ser consultada; isto não confirma ausência de pedidos.\n\n'}Nenhum preço/cadastro foi alterado. Pedidos com três tentativas esgotadas precisam de revisão do link ou preenchimento manual no painel; não são repetidos indefinidamente.\n`);
 
 
 

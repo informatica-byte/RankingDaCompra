@@ -22,6 +22,7 @@ test("sitemap mantém uma janela diária e não relê Firebase por artefatos ou 
     "scripts/generate-sitemap.mjs",
     "scripts/generate-discovery.mjs",
     "scripts/discovery-editorial.mjs",
+    "scripts/published-editorial.mjs",
     "scripts/generate-home-static.mjs",
     "scripts/generate-seasonal-guides.mjs",
     "scripts/product-seo-titles.mjs",
