@@ -1,26 +1,49 @@
 // Evidências anunciadas, não resultados de teste. Nunca infere um recurso negado.
 const escape = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const text = (product) => [product.titulo, product.comentario, product.pros, product.contras, product.dadosTecnicos].filter(Boolean).join('; ');
-const clauses = (product) => text(product).split(/[;!?\n]|(?<!\d)\.(?!\d)|\bmas\b|\bpor[eé]m\b/i);
+// Keep the field and the local wording: a buying question or a specification of
+// an alternative must not become a specification of this product.
+export function evidenceClauses(product) {
+  return ['titulo', 'comentario', 'pros', 'contras', 'dadosTecnicos'].flatMap(field => {
+    const value = Array.isArray(product?.[field]) ? product[field].join('; ') : product?.[field];
+    if (typeof value !== 'string') return [];
+    return value.split(/(?<=\?)|[;!\n]|(?<!\d)\.|\.(?!\d)|\bmas\b|\bpor[eé]m\b|,?\s+(?=(?:confira|confirme|compare|procure|prefira|considere)\b)/i)
+      .map(clause => ({field, text: clause.trim()})).filter(clause => clause.text);
+  });
+}
+
+export function isAdviceClause(clause) {
+  return /^\s*(?:se|caso)\b|\b(?:compare|considere|procure|prefira|escolha|confira)\b|alternativas?\s+(?:com|sem)\b|outros?\s+(?:modelos?|produtos?|equipamentos?)\s+(?:com|sem)\b|para quem (?:precisa|busca|quer|depende)|se voc[eê] (?:precisa|busca|quer)/i.test(clause)
+    || /(?:n[aã]o\s+(?:realizamos?|testamos?|medimos?|verificamos?)|n[aã]o (?:foi|foram|[ée]) (?:testad|medid)|testes?\s+(?:de|pr[aá]tico)|qualidade (?:do|da|de)|conforto|estabilidade|lat[eê]ncia).{0,55}(?:microfone|bluetooth|autonomia|bateria)/i.test(clause)
+    || /(?:microfone|bluetooth|autonomia|bateria).{0,55}(?:n[aã]o (?:foi|foram|[ée]) (?:testad|medid)|n[aã]o (?:testamos?|medimos?))/i.test(clause);
+}
 export const EDITORIAL_REVIEWED_AT = '2026-10-01';
 
-export function featureState(product, pattern) {
-  let positive = false, absent = false, unknown = false;
-  for (const clause of clauses(product)) {
+export function featureEvidence(product, pattern) {
+  const positive = [], absent = [], unknown = [];
+  for (const evidence of evidenceClauses(product)) {
+    const clause = evidence.text;
     const match = new RegExp(pattern.source, 'i').exec(clause);
     if (!match) continue;
+    // Advice about a different model, test limitations and questions do not
+    // confirm or contradict an explicit specification of the current model.
+    if (isAdviceClause(clause)) continue;
     // “sem fio com microfone” não nega o microfone ou outro recurso seguinte.
     const before = clause.slice(Math.max(0, match.index - 65), match.index).replace(/\bsem fio\b/gi, 'wireless');
     const after = clause.slice(match.index + match[0].length, match.index + match[0].length + 45);
     if (/n[aã]o (?:informa|confirm|especific|menciona)|sem (?:confirma[cç][aã]o|informa[cç][aã]o)|a confirmar|verifi(?:que|car)|confir(?:me|mar)|incert|n[aã]o [ée] confirm/i.test(before + after)
-        || /n[aã]o (?:foi|foram) (?:confirmad|informad)/i.test(after)) unknown = true;
+        || /n[aã]o (?:foi|foram) (?:confirmad|informad)/i.test(after)) unknown.push(evidence);
     else if (/(?:\bsem|\bn[aã]o(?: possui| tem| suporta| conta com| inclui| oferece)?|aus[eê]ncia de|carece de|falta de)(?:\s+[\wÀ-ÿ-]+){0,4}\s*$/i.test(before)
-        || /^\s*(?:[:—-]\s*)?(?:ausente|indispon[ií]vel|inexistente|n[aã]o\s+(?:possui|tem|suporta|inclui|oferece|dispon[ií]vel|presente)|n[aã]o\s*[.;]?$)/i.test(after)) absent = true;
-    else positive = true;
+        || /^\s*(?:[:—-]\s*)?(?:ausente|indispon[ií]vel|inexistente|n[aã]o\s+(?:possui|tem|suporta|inclui|oferece|dispon[ií]vel|presente)|n[aã]o\s*[.;]?$)/i.test(after)) absent.push(evidence);
+    else if (/\?$|\b(?:talvez|seria|poderia ter|pode (?:ter|conter|incluir|possuir|oferecer)|opcional)\b/i.test(clause)) unknown.push(evidence);
+    else positive.push(evidence);
   }
   // Contradições e dúvidas do cadastro não viram bônus no ranking.
-  if (unknown || (absent && positive)) return 'unknown';
-  return absent ? 'no' : positive ? 'yes' : 'unknown';
+  if (unknown.length || (absent.length && positive.length)) return {state: 'unknown', evidence: []};
+  return absent.length ? {state: 'no', evidence: absent} : positive.length ? {state: 'yes', evidence: positive} : {state: 'unknown', evidence: []};
+}
+
+export function featureState(product, pattern) {
+  return featureEvidence(product, pattern).state;
 }
 
 export const ROUTER_FEATURES = [

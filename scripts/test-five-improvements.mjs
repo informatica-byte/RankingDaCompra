@@ -15,8 +15,35 @@ test('published pages may retain the previous known asset version during generat
   const literal = line.match(/has\(html,\s*(\/growth-tools[^\n]+?\/),/)?.[1];
   assert.ok(literal, 'regra de versões conhecida deve existir');
   const rule = vm.runInNewContext(literal);
-  for (const version of ['20260929-presentes','20261007-counters','20261008-consent']) assert.match('growth-tools.js?v=' + version, rule);
+  for (const version of ['20260929-presentes','20261007-counters','20261008-consent','20261011-ux']) assert.match('growth-tools.js?v=' + version, rule);
   assert.doesNotMatch('growth-tools.js?v=unknown-version', rule);
+  assert.doesNotMatch('growth-tools.js?v=20261011-ux-unknown', rule);
+  assert.doesNotMatch('growth-tools.js?v=20261007-counters-unknown', rule);
+});
+
+test('validator accepts a traceable h1 with a DOM marker without accepting an empty heading', async () => {
+  const validator=await source('scripts/validate-site.mjs');
+  const line=validator.split('\n').find(line=>line.includes('título rastreável ausente'));
+  const literal=line.match(/has\(html,\s*(\/<h1[^\n]+?\/i),/)?.[1];
+  assert.ok(literal,'regra de título rastreável deve existir');
+  const rule=vm.runInNewContext(literal);
+  assert.match('<h1 data-best-title>Melhores escolhas</h1>',rule);
+  assert.match('<h1>Melhores escolhas</h1>',rule);
+  assert.doesNotMatch('<h1 data-best-title></h1>',rule);
+  assert.doesNotMatch('<h2 data-best-title>Melhores escolhas</h2>',rule);
+});
+
+test('mobile validator requires title, photograph, summary and offer in decision order',async()=>{
+  const validator=await source('scripts/validate-site.mjs');
+  const helper=validator.match(/function hasBuyerFirstMobileOrder\(html\) \{[\s\S]*?\n\}/)?.[0];
+  assert.ok(helper,'a ordem móvel precisa de uma validação explícita');
+  const check=vm.runInNewContext(helper+'\nhasBuyerFirstMobileOrder');
+  const style='<style data-mobile-product-buy>.top>div:not(.photo){display:contents}.top h1{order:2}.top>.photo{order:5;height:220px}.top .summary{order:6}.top .offer{order:7}</style>';
+  assert.equal(check(style),true);
+  assert.equal(check(style.replace('order:5','order:9')),false,'foto não pode ficar depois da oferta');
+  assert.equal(check(style.replace('order:6','order:8')),false,'resumo deve vir antes da oferta');
+  assert.equal(check(style.replace('div:not(.photo)','div')),false,'a foto em um div não pode ser achatada como conteúdo');
+  assert.equal(check('<style data-mobile-product-buy>.top>div{display:flex;flex-direction:column;order:-1}</style>'),false);
 });
 test('public loader shares concurrent reads, caches success and retries errors without database fallback', async () => {
   let calls=0, fail=false;

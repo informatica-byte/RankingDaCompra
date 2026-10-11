@@ -32,6 +32,20 @@ export function legacyProductAliases(registry, validProducts, duplicateAliases =
   return aliases;
 }
 
+// Descobre somente versões que realmente existem no diretório publicado.
+// A alteração da versão de compartilhamento não deve aposentar a análise do
+// mesmo cadastro que continua publicável. IDs retirados continuam sem destino.
+export function observedProductAliases(fileNames, validProducts, duplicateAliases = new Map()) {
+  if (!Array.isArray(fileNames)) throw new Error("Lista de páginas antigas inválida");
+  const registry = {};
+  for (const fileName of fileNames) {
+    if (typeof fileName !== "string" || /[\\/]/.test(fileName)) throw new Error("Página antiga inválida");
+    const match = fileName.match(/^([A-Za-z0-9_-]+)-\d{8}-\d+\.html$/);
+    if (match) registry[fileName] = match[1];
+  }
+  return legacyProductAliases(registry, validProducts, duplicateAliases);
+}
+
 function escapeHtml(value) {
   return String(value || "")
     .replace(/&/g, "&amp;")
@@ -57,8 +71,8 @@ function pageShell(title, head, body) {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,follow">
   <title>${escapeHtml(title)} | Ranking da Compra</title>
-  ${head}
-  <style>body{font:16px/1.5 system-ui,sans-serif;background:#f7faf8;color:#12392d;margin:0}main{max-width:680px;margin:12vh auto;padding:28px;background:#fff;border:1px solid #d9e8df;border-radius:18px}a{color:#075a3b;font-weight:700}h1{line-height:1.2}</style>
+${head ? `  ${head}` : ""}
+  <style>body{font:16px/1.5 system-ui,sans-serif;background:#f7faf8;color:#12392d;margin:0}main{max-width:680px;margin:12vh auto;padding:28px;background:#fff;border:1px solid #d9e8df;border-radius:18px}a{color:#075a3b;font-weight:700}h1{line-height:1.2}form{display:grid;gap:10px;margin:24px 0}input,button{font:inherit;padding:12px;border:1px solid #b9cfc2;border-radius:8px;min-width:0}button{background:#075a3b;color:#fff;font-weight:700;cursor:pointer}input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #e2b63b;outline-offset:3px}@media(max-width:720px){main{margin:24px 12px;padding:22px}}</style>
 </head>
 <body><main>${body}</main></body>
 </html>
@@ -75,12 +89,43 @@ export function productAliasPage(title, canonicalUrl) {
   );
 }
 
+function decodeTitleEntities(value) {
+  const named = { amp: "&", quot: '"', apos: "'", lt: "<", gt: ">", nbsp: " " };
+  return String(value || "").replace(/&(?:#(\d+)|#x([a-f\d]+)|(amp|quot|apos|lt|gt|nbsp));/gi, (entity, decimal, hexadecimal, name) => {
+    if (name) return named[name.toLowerCase()];
+    const point = parseInt(decimal || hexadecimal, decimal ? 10 : 16);
+    return point > 0 && point <= 0x10ffff && !(point >= 0xd800 && point <= 0xdfff) ? String.fromCodePoint(point) : entity;
+  });
+}
+
+// Guarda somente o nome para a recuperação do visitante, nunca o anúncio,
+// preço ou detalhes comerciais. A próxima publicação pode reutilizar o stub
+// sem substituir esse nome pelo título genérico "Análise não disponível".
+export function retiredProductTitle(previousHtml) {
+  const html = String(previousHtml || "");
+  let savedTitle = "";
+  for (const tag of html.matchAll(/<meta\b[^>]*>/gi)) {
+    const attributes = new Map([...tag[0].matchAll(/([\w-]+)\s*=\s*(["'])([\s\S]*?)\2/g)].map(match => [match[1].toLowerCase(), match[3]]));
+    if (attributes.get("name") === "rdc-retired-product-title") {
+      savedTitle = attributes.get("content") || "";
+      break;
+    }
+  }
+  const oldTitle = savedTitle || html.match(/<title>([^<]*)<\/title>/i)?.[1] || "";
+  let title = decodeTitleEntities(oldTitle)
+    .replace(/\s*[|—-]\s*Ranking da Compra.*$/i, "")
+    .replace(/:\s*R\$[\s\S]*$/i, "")
+    .replace(/\s*R\$\s*[\d.,]+/gi, "")
+    .replace(/\s+/g, " ").trim();
+  if (/^(?:Análise não disponível|Esta análise não está disponível|Produto anteriormente analisado)$/i.test(title)) title = "";
+  return Array.from(title).slice(0, 200).join("");
+}
+
 export function unavailableProductPage(previousHtml) {
-  const oldTitle = String(previousHtml || "").match(/<title>([^<]*)<\/title>/i)?.[1] || "Produto anteriormente analisado";
-  const title = oldTitle.replace(/:\s*R\$[\s\S]*$/i, "").replace(/\s*[|—-]\s*Ranking da Compra.*$/i, "").trim();
+  const title = retiredProductTitle(previousHtml);
   return pageShell(
     "Análise não disponível",
-    `<link rel="canonical" href="${SITE}analises.html">`,
-    `<h1>Esta análise não está disponível</h1><p>${escapeHtml(title || "O produto consultado")} não consta na seleção atual. O preço e o anúncio antigos não são exibidos porque podem estar desatualizados.</p><p><a href="${SITE}analises.html">Ver análises e produtos atuais →</a></p>`,
+    title ? `<meta name="rdc-retired-product-title" content="${escapeHtml(title)}">` : "",
+    `<h1>Esta análise não está disponível</h1><p>${escapeHtml(title || "O produto consultado")} não consta na seleção atual. O preço e o anúncio antigos não são exibidos porque podem estar desatualizados.</p><p>Este endereço não representa uma oferta atual. Você pode pesquisar outro anúncio ou comparar opções disponíveis, sem assumir que são o mesmo produto.</p><form action="${SITE}" method="get"><label for="retired-product-search">Buscar produtos e análises atuais</label><input id="retired-product-search" name="busca" type="search" value="${escapeHtml(title)}" placeholder="Nome ou tipo de produto" maxlength="200"><button type="submit">Buscar opções atuais</button></form><p><a href="${SITE}analises.html">Ver todas as análises atuais →</a></p>`,
   );
 }

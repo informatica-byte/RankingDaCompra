@@ -105,7 +105,7 @@ test('publicadores reconstroem seleção estática após preços sem nova consul
 });
 test('página permanente tem HTML rastreável, canônico, categorias e sitemap sem Offer inventado',async()=>{
   const html=await readFile(choices.PAGE,'utf8'),sitemap=await readFile('sitemap.xml','utf8');
-  assert.match(html,/<h1>[^<]+<\/h1>/);assert.match(html,/data-best-choices="true"/);
+  assert.match(html,/<h1\b[^>]*>[^<]+<\/h1>/);assert.match(html,/data-best-choices="true"/);
   assert.match(html,/<link rel="canonical" href="https:\/\/rankingdacompra\.com\.br\/melhores-escolhas\.html">/);
   assert.match(html,/CollectionPage/);assert.doesNotMatch(html,/"@type":"Offer"/);assert.match(html,/best-guide-card/);assert.match(html,/og-ranking-da-compra\.png/);
   assert.equal((sitemap.match(/<loc>https:\/\/rankingdacompra\.com\.br\/melhores-escolhas\.html<\/loc>/g)||[]).length,1);
