@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotDate": "2026-10-10",
+  "snapshotDate": "2026-10-11",
   "project": {
     "name": "Ranking da Compra",
     "repository": "informatica-byte/RankingDaCompra",
@@ -339,6 +339,7 @@
     }
   ],
   "automationScripts": [
+    "scripts/localizer-diagnostics.mjs",
     "scripts/public-site-config.mjs",
     "scripts/public-catalogue.mjs",
     "scripts/restore-backup.mjs",
@@ -429,6 +430,14 @@
     ],
     "rule": "Paused ads are excluded from daily queue and dashboard pending count. Review after 30 days is manual, never automatic deletion. Resume requires reconference.",
     "helper": "conference-pause.js"
+  },
+  "localizerDiagnostics": {
+    "helper": "scripts/localizer-diagnostics.mjs",
+    "failureFields": "Safe stage/HTTP/network type, missing required fields and human-verification hint; no raw response bodies, headers or arbitrary error messages",
+    "deduplication": "One consultation per equivalent URL within a run, removing only known tracking parameters; preserve variant, seller, coupon, unknown parameters and distinct short links",
+    "preservation": "Keep each request ID, original link, attempt count and existing history; no catalogue writes or reset of exhausted attempts",
+    "limits": "Reuse both success and failure only within the current run; retain two bounded Firestore queue reads, no extra retries",
+    "test": "scripts/test-localizer-diagnostics.mjs"
   },
   "publicIntegrity": {
     "offline": "All HTML, scripts, JSON-LD and local references are validated during CI.",

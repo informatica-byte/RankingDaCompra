@@ -2,6 +2,7 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 import { queueQuery, nextCursor, pendingRequests, resolutionSummary } from "./localizer-queue.mjs";
+import { LocalizerError, recordResponse, recordNetworkFailure, recordPageChallenge, resolveQueuedRequests, diagnosticTable } from "./localizer-diagnostics.mjs";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 import {
@@ -277,13 +278,13 @@ async function officialCategory(categoryId, token) {
 }
 
 
-async function catalogDetailsFromPayload(payload = {}, page = {}) {
+async function catalogDetailsFromPayload(payload = {}, page = {}, diagnostic) {
   const winner = payload?.buy_box_winner || payload?.buyBoxWinner || {};
   const title = plain(payload?.name || payload?.title || page?.titulo || "");
   const photo = await selectLoadableMarketplaceImage(marketplaceImageCandidates(
     payload?.pictures,
     [winner?.thumbnail, winner?.secure_thumbnail, page?.foto],
-  ));
+  ), imageProbeOptions(diagnostic));
   const currentPrice = Number(winner.price ?? payload?.price ?? page?.precoAtual ?? 0);
   const originalPrice = Number(
     winner.original_price ?? payload?.original_price ?? page?.precoAnterior ?? 0,
@@ -311,7 +312,7 @@ async function catalogDetailsFromPayload(payload = {}, page = {}) {
 }
 
 
-async function officialCatalogDetails(catalogId, token, page = {}) {
+async function officialCatalogDetails(catalogId, token, page = {}, diagnostic) {
   if (!catalogId) return page;
   const requestCatalog = (candidateToken) => fetch(
     "https://api.mercadolibre.com/products/" + encodeURIComponent(catalogId),
@@ -322,25 +323,31 @@ async function officialCatalogDetails(catalogId, token, page = {}) {
   );
   try {
     let response = await requestCatalog(token);
+    recordResponse(diagnostic, 'catalogo', response);
     if (token && [401, 403].includes(response.status)) {
       const refreshed = await accessToken(true);
       if (refreshed) {
         token = refreshed;
         response = await requestCatalog(token);
+        recordResponse(diagnostic, 'catalogo', response);
       }
     }
-    if (token && [401, 403].includes(response.status)) response = await requestCatalog("");
+    if (token && [401, 403].includes(response.status)) {
+      response = await requestCatalog("");
+      recordResponse(diagnostic, 'catalogo', response);
+    }
     if (!response.ok) return page;
-    return await catalogDetailsFromPayload(await response.json(), page);
-  } catch {
+    return await catalogDetailsFromPayload(await response.json(), page, diagnostic);
+  } catch (error) {
+    recordNetworkFailure(diagnostic, 'catalogo', error);
     return page;
   }
 }
 
 
-async function officialDetails(itemId, html = "", catalogId = "") {
+async function officialDetails(itemId, html = "", catalogId = "", diagnostic) {
   const page = pageDetails(html);
-  if (!itemId) return officialCatalogDetails(catalogId, await accessToken(), page);
+  if (!itemId) return officialCatalogDetails(catalogId, await accessToken(), page, diagnostic);
   let token = await accessToken();
   let response;
   const requestItem = (candidateToken) => fetch("https://api.mercadolibre.com/items/" + itemId, {
@@ -349,18 +356,24 @@ async function officialDetails(itemId, html = "", catalogId = "") {
   });
   try {
     response = await requestItem(token);
+    recordResponse(diagnostic, 'anuncio', response);
     if (token && [401, 403].includes(response.status)) {
       const refreshed = await accessToken(true);
       if (refreshed) {
         token = refreshed;
         response = await requestItem(token);
+        recordResponse(diagnostic, 'anuncio', response);
       }
     }
-    if (token && [401, 403].includes(response.status)) response = await requestItem("");
-  } catch {
-    return officialCatalogDetails(catalogId, token, page);
+    if (token && [401, 403].includes(response.status)) {
+      response = await requestItem("");
+      recordResponse(diagnostic, 'anuncio', response);
+    }
+  } catch (error) {
+    recordNetworkFailure(diagnostic, 'anuncio', error);
+    return officialCatalogDetails(catalogId, token, page, diagnostic);
   }
-  if (!response.ok) return officialCatalogDetails(catalogId, token, page);
+  if (!response.ok) return officialCatalogDetails(catalogId, token, page, diagnostic);
   const item = await response.json();
   const category = await officialCategory(item.category_id, token);
   const attributes = (item.attributes || [])
@@ -379,7 +392,7 @@ async function officialDetails(itemId, html = "", catalogId = "") {
   const photo = await selectLoadableMarketplaceImage(marketplaceImageCandidates(
     item.pictures,
     [item.secure_thumbnail, item.thumbnail, page?.foto],
-  ));
+  ), imageProbeOptions(diagnostic));
   const result = {
     ...page,
     titulo: title || page?.titulo || "",
@@ -394,7 +407,7 @@ async function officialDetails(itemId, html = "", catalogId = "") {
     ...category,
   };
   if (result.titulo && result.foto && result.precoAtual) return result;
-  return officialCatalogDetails(catalogId, token, result);
+  return officialCatalogDetails(catalogId, token, result, diagnostic);
 }
 
 
@@ -426,7 +439,7 @@ async function requests(cursor = null) {
 
 
 
-async function dumpViaMirror(url) {
+async function dumpViaMirror(url, diagnostic) {
   try {
     const mirror = new URL(url);
     const host = mirror.hostname.toLowerCase();
@@ -442,16 +455,17 @@ async function dumpViaMirror(url) {
         "accept-language": "pt-BR,pt;q=0.9",
       },
     });
+    recordResponse(diagnostic, 'espelho', response);
     if (!response.ok) return "";
     const html = await response.text();
     if (html && html.length > 10000 && pageDetails(html)) return html;
   } catch (error) {
-    console.warn("Espelho público indisponível:", error?.message || error);
+    recordNetworkFailure(diagnostic, 'espelho', error);
   }
   return "";
 }
 
-async function dumpWithPlaywright(url) {
+async function dumpWithPlaywright(url, diagnostic) {
   let launched;
   try {
     const { chromium } = await import("playwright-core");
@@ -467,27 +481,27 @@ async function dumpWithPlaywright(url) {
       timezoneId: "America/Sao_Paulo",
     });
     const page = await context.newPage();
-    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+    const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+    recordResponse(diagnostic, 'pagina', { status: response?.status() });
     await page.waitForTimeout(15000);
     const html = await page.content();
     await launched.close();
     launched = null;
     if (html && html.length > 1000) return html;
   } catch (error) {
-    console.warn("Navegador completo indisponível:", error?.message || error);
+    recordNetworkFailure(diagnostic, 'navegador', error);
   } finally {
     if (launched) await launched.close().catch(() => {});
   }
   return "";
 }
 
-async function dump(url) {
-  const mirrored = await dumpViaMirror(url);
+async function dump(url, diagnostic) {
+  const mirrored = await dumpViaMirror(url, diagnostic);
   if (mirrored) return mirrored;
-  const rendered = await dumpWithPlaywright(url);
+  const rendered = await dumpWithPlaywright(url, diagnostic);
   if (rendered) return rendered;
   const executables = [process.env.CHROME_PATH, "google-chrome", "google-chrome-stable", "chromium", "chromium-browser"].filter(Boolean);
-  let lastError;
   for (const executable of executables) {
     try {
       const { stdout } = await execFileAsync(executable, [
@@ -498,10 +512,10 @@ async function dump(url) {
       ], { timeout: 50000, maxBuffer: 18 * 1024 * 1024 });
       if (stdout && stdout.length > 1000) return stdout;
     } catch (error) {
-      lastError = error;
+      recordNetworkFailure(diagnostic, 'navegador', error);
     }
   }
-  throw new Error(`O navegador não conseguiu abrir o link. ${lastError?.message || ""}`.trim());
+  throw new Error('O navegador não conseguiu abrir o link.');
 }
 
 
@@ -535,9 +549,18 @@ function fallback(html, link) {
 }
 
 
+function imageProbeOptions(diagnostic) {
+  return { fetchImpl: async (url, options) => {
+    try { const response = await fetch(url, options); recordResponse(diagnostic, 'imagem', response); return response; }
+    catch (error) { recordNetworkFailure(diagnostic, 'imagem', error); throw error; }
+  } };
+}
+
 async function resolveRequest(request) {
+  const diagnostic = { events: [], identified: false, missingFields: [] };
   let html = "";
-  try { html = await dump(request.link); } catch {}
+  try { html = await dump(request.link, diagnostic); } catch {}
+  recordPageChallenge(diagnostic, html);
   // Links de produto podem conter o código do catálogo e o código do anúncio.
   // Preço, foto e estoque pertencem ao anúncio (item_id/wid), então ele tem prioridade.
   const saleId = request.link.match(/(?:item_id(?:%3A|:)|[?&#]wid=)(MLB-?\d{6,})/i)?.[1]?.replace("-", "").toUpperCase();
@@ -547,11 +570,17 @@ async function resolveRequest(request) {
   const found = saleId
     ? { ...(htmlFound || {}), mlb: saleId, urlProduto: request.link, titulo: htmlFound?.titulo || "" }
     : htmlFound || (directId ? { mlb: directId, urlProduto: request.link, titulo: "" } : null);
-  if (!found) throw new Error("O Mercado Livre não mostrou um anúncio identificável nesse link.");
-  const details = await officialDetails(found.mlb, html, catalogId);
-  const verifiedPhoto = await selectLoadableMarketplaceImage([details?.foto]);
-  if (!details?.titulo || !verifiedPhoto || !details?.precoAtual) {
-    throw new Error("O anúncio foi localizado, mas os dados oficiais ainda não ficaram disponíveis.");
+  if (!found) throw new LocalizerError(diagnostic);
+  diagnostic.identified = true;
+  let details;
+  try { details = await officialDetails(found.mlb, html, catalogId, diagnostic); }
+  catch (error) { recordNetworkFailure(diagnostic, 'anuncio', error); }
+  const verifiedPhoto = await selectLoadableMarketplaceImage([details?.foto], imageProbeOptions(diagnostic));
+  if (!String(details?.titulo || '').trim()) diagnostic.missingFields.push('titulo');
+  if (!Number.isFinite(Number(details?.precoAtual)) || Number(details?.precoAtual) <= 0) diagnostic.missingFields.push('preco');
+  if (!verifiedPhoto) diagnostic.missingFields.push('imagem');
+  if (diagnostic.missingFields.length) {
+    throw new LocalizerError(diagnostic);
   }
   return {
     status: "ok",
@@ -593,25 +622,13 @@ if (head.readSucceeded) {
 if (!queue.length) {
   console.log("Nenhum pedido MLB processável nesta janela; a paginação continua no próximo ciclo.");
 } else {
-  for (const request of queue) {
-    const previousAttempts = Number(payload.resultados[request.id]?.tentativas || 0);
-    try {
-      payload.resultados[request.id] = {
-        ...(await resolveRequest(request)),
-        tentativas: previousAttempts + 1,
-      };
-      console.log(`${request.id}: ${payload.resultados[request.id].mlb}`);
-    } catch (error) {
-      payload.resultados[request.id] = {
-        status: "erro",
-        motivo: String(error?.message || error),
-        linkOriginal: request.link,
-        resolvidoEm: new Date().toISOString(),
-        tentativas: previousAttempts + 1,
-      };
-      console.warn(`${request.id}: ${payload.resultados[request.id].motivo}`);
-    }
-  }
+  const batch = await resolveQueuedRequests(queue, payload.resultados, resolveRequest, {
+    onResult: (request, result) => {
+      if (result.status === 'ok') console.log(`${request.id}: ${result.mlb}${result.reaproveitadoDe ? ' (resposta reaproveitada)' : ''}`);
+      else console.warn(`${request.id}: ${result.motivo}`);
+    },
+  });
+  console.log(`Consultas únicas ao anúncio: ${batch.uniqueQueries}. Pedidos com resposta reaproveitada: ${batch.reused}.`);
   const entries = Object.entries(payload.resultados).sort((a, b) => String(b[1].resolvidoEm).localeCompare(String(a[1].resolvidoEm)));
   payload.resultados = Object.fromEntries(entries);
   payload.atualizadoEm = new Date().toISOString();
@@ -627,7 +644,7 @@ console.log(`Localizador: ${summary.processed} processados; ${summary.succeeded}
 if (summary.failed) console.warn('::warning::Conferência parcial: dados indisponíveis no Mercado Livre. Os preços e cadastros existentes não foram alterados.');
 if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `failed_count=${summary.failed}\nincomplete=${summary.failed > 0 || !head.readSucceeded}\n`);
 if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY,
-  `## Resultado real do localizador\n\nProcessados: ${summary.processed}. Resolvidos: ${summary.succeeded}. Falhas nesta execução: ${summary.failed}. Pedidos com tentativas esgotadas no histórico: ${summary.exhausted}.\n\n${head.readSucceeded ? '' : 'A fila não pôde ser consultada; isto não confirma ausência de pedidos.\n\n'}Nenhum preço/cadastro foi alterado. Pedidos com três tentativas esgotadas precisam de revisão do link ou preenchimento manual no painel; não são repetidos indefinidamente.\n`);
+  `## Resultado real do localizador\n\nProcessados: ${summary.processed}. Resolvidos: ${summary.succeeded}. Falhas nesta execução: ${summary.failed}. Pedidos com tentativas esgotadas no histórico: ${summary.exhausted}.\n\n${head.readSucceeded ? '' : 'A fila não pôde ser consultada; isto não confirma ausência de pedidos.\n\n'}Nenhum preço/cadastro foi alterado. Pedidos com três tentativas esgotadas precisam de revisão do link ou preenchimento manual no painel; não são repetidos indefinidamente.\n\n${diagnosticTable(queue, payload.resultados)}`);
 
 
 

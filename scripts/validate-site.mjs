@@ -389,6 +389,7 @@ has(priceSync, /requestSingleMarketplaceItem/, "contingência individual oficial
 has(priceSync, /maxRetries:\s*1/, "contingência individual pode repetir chamadas excessivamente", "scripts/sync-mercadolivre.mjs");
 has(sitemapGenerator, /readProductSnapshot/, "gerador ainda pode reler todos os produtos no mesmo lote", "scripts/generate-sitemap.mjs");
 const affiliateResolver = await readFile(resolve("scripts/resolve-affiliate-links.mjs"), "utf8");
+const localizerDiagnostics = await readFile(resolve("scripts/localizer-diagnostics.mjs"), "utf8");
 const marketplaceImage = await readFile(resolve("scripts/marketplace-image.mjs"), "utf8");
 has(affiliateResolver, /documents:runQuery|\$\{FIRESTORE\}:runQuery/, "localizador ainda pode ler toda a fila MLB", "scripts/resolve-affiliate-links.mjs");
 const localizerQueue = await readFile(resolve("scripts/localizer-queue.mjs"), "utf8");
@@ -404,7 +405,9 @@ has(affiliateResolver, /\[401, 403\]\.includes\(response\.status\)[\s\S]{0,160}a
 has(affiliateResolver, /MAX_REQUEST_ATTEMPTS\s*=\s*3/, "localizador sem limite de novas tentativas", "scripts/resolve-affiliate-links.mjs");
 has(localizerQueue, /status === 'erro'[\s\S]{0,100}tentativas[\s\S]{0,40}< maxAttempts/, "localizador não recupera erro temporário com limite", "scripts/localizer-queue.mjs");
 has(affiliateResolver, /pendingRequests\(head\.items, payload\.resultados, MAX_REQUEST_ATTEMPTS\)/, "limite de tentativas não é aplicado à fila", "scripts/resolve-affiliate-links.mjs");
-has(affiliateResolver, /tentativas:\s*previousAttempts\s*\+\s*1/, "localizador não registra o número de tentativas", "scripts/resolve-affiliate-links.mjs");
+has(affiliateResolver, /resolveQueuedRequests\(queue, payload\.resultados, resolveRequest/, "localizador não aplica o processador que preserva as tentativas", "scripts/resolve-affiliate-links.mjs");
+has(localizerDiagnostics, /previousAttempts = Number\(results\[request\.id\]\?\.tentativas \|\| 0\)/, "localizador não lê as tentativas individuais anteriores", "scripts/localizer-diagnostics.mjs");
+has(localizerDiagnostics, /tentativas:\s*previousAttempts\s*\+\s*1/, "localizador não registra o número de tentativas", "scripts/localizer-diagnostics.mjs");
 has(affiliateResolver, /officialCatalogDetails\(catalogId/, "localizador não usa o catálogo oficial como alternativa", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /selectLoadableMarketplaceImage/, "localizador não comprova o carregamento da imagem", "scripts/resolve-affiliate-links.mjs");
 has(affiliateResolver, /marketplaceImageCandidates\([\s\S]{0,180}item\.pictures/, "localizador não tenta as demais fotos oficiais", "scripts/resolve-affiliate-links.mjs");
