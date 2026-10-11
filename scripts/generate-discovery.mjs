@@ -6,6 +6,7 @@ import offerReplacement from "../product-offer-replacement.js";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import SEO_PRIORITIES from "../seo-priorities.js";
 import { renderProductDecision } from "./product-decision.mjs";
+import { publishedEditorialNotes } from "./published-editorial.mjs";
 import { routerCapabilities, renderPracticalSection, practicalProfile, EDITORIAL_REVIEWED_AT, FOCUSED_GUIDES, focusedProducts, renderFocusedGuide } from "./discovery-editorial.mjs";
 
 const PROJECT_ID = "rankingdacompra";
@@ -161,8 +162,6 @@ async function loadGeneratedPages() {
       || `${SITE}produto/${encodeURIComponent(entry.name)}`;
     const offer = Array.isArray(schema.offers) ? schema.offers[0] : schema.offers || {};
     const review = Array.isArray(schema.review) ? schema.review[0] : schema.review || {};
-    const noteNames = (list) => (list?.itemListElement || [])
-      .map((item) => String(item?.name || "").trim()).filter(Boolean);
     const rating = Number(schema.aggregateRating?.ratingValue || review.reviewRating?.ratingValue || 0);
     let ratingEvidence = null;
     try { ratingEvidence = JSON.parse(attribute(html, /<meta[^>]+name=["']rdc-rating-evidence["'][^>]*>/i, "content") || 'null'); } catch {}
@@ -181,8 +180,8 @@ async function loadGeneratedPages() {
       preco: numberPrice(offer.price),
       nota: Number.isFinite(rating) ? rating : 0,
       avaliacaoEditorial: ratingEvidence,
-      pros: noteNames(review.positiveNotes).join("; "),
-      contras: noteNames(review.negativeNotes).join("; "),
+      pros: publishedEditorialNotes(html, "positive", review.positiveNotes).join("\n"),
+      contras: publishedEditorialNotes(html, "attention", review.negativeNotes).join("\n"),
       ranking,
       atualizadoEm: publishedProductDate(html),
       __priceCheckedAt: attribute(html, /<meta[^>]+name=["']rdc-price-checked-at["'][^>]*>/i, "content"),

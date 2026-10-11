@@ -3,6 +3,24 @@ import { basename, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const PRODUCT_CORRECTIONS = new Map([
+  ["Bp4dNosktHQXiSy3r9S0", {
+    model: /(?:t?apete).*Casa Laura/i,
+    replacements: [["apete Decorativo", "Tapete Decorativo"]],
+  }],
+  ["YuOWci2UixF5GuQE6IYS", {
+    model: /HUAWEI.*AX2S/i,
+    correct: "Roteador HUAWEI WiFi AX2S Wi-Fi 6 Preto",
+    replacements: [["EasyMeshVisualização de Diagnósticos do Wi-Fi", "EasyMesh; controle do Wi-Fi"]],
+  }],
+  ["uc5ynLQTGAPKkIMIyzQ2", {
+    model: /Lanterna.*Sabre.*Luz/i,
+    correct: "Lanterna Tática Farolete Sabre de Luz LED",
+    summary: "O cadastro identifica uma lanterna anunciada como Sabre de Luz, com alimentação por bateria e três modos de iluminação. A ficha anterior continha um valor de fluxo luminoso inconsistente e uma promessa de alcance de 2 km sem comprovação; essas alegações não são usadas nesta análise. Antes de comprar, confirme autonomia, tipo de bateria, carregador incluído, dimensões e fluxo luminoso documentado com o vendedor. Não medimos alcance, intensidade, resistência ou duração da bateria.",
+    positiveNotes: ["Alimentação por bateria e modos de iluminação anunciados no cadastro; confirme o conjunto oferecido."],
+    negativeNotes: ["Fluxo luminoso e alcance não comprovados; a medida anterior era inconsistente.", "Autonomia, resistência e conteúdo da caixa precisam de confirmação com o vendedor."],
+    suppressRating: true,
+    replacements: [["10000000000000000lm", "fluxo luminoso a confirmar"]],
+  }],
   ["UCDnByA5YaWN9eiyA5IM", {
     model: /cama.*el[aá]stica.*3[,.]0?m/i,
     summary: "O cadastro identifica uma cama elástica infantil anunciada como 3,0 m com rede de proteção. A ficha anterior informava também diâmetro de 300 m, incompatível com o nome do produto; não publicamos essa medida como comprovada. Antes de comprar, confirme dimensões externas, espaço livre necessário, carga máxima, faixa etária, montagem e instruções de supervisão no manual e com o vendedor. Não testamos estrutura, molas, rede ou segurança deste conjunto.",
@@ -266,6 +284,7 @@ export function correctProductData(product) {
     comentario: correction?.summary || applyReplacements(product?.comentario),
     pros: correction?.summary ? correction.positiveNotes.join("\n") : applyReplacements(product?.pros),
     contras: correction?.summary ? correction.negativeNotes.join("\n") : applyReplacements(product?.contras),
+    ...(typeof product?.dadosTecnicos === 'string' ? {dadosTecnicos: applyReplacements(product.dadosTecnicos)} : {}),
     categoria: correction?.category || product?.categoria,
     // Conservar a nota original para revisão, sem publicá-la como avaliação comprovada.
     notaInformada: product?.notaInformada ?? product?.nota ?? "",
