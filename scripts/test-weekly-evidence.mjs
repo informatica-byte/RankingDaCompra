@@ -41,11 +41,13 @@ test('nota exige fonte HTTPS, quantidade e verificação explícita', () => {
 });
 test('comparativo não usa preço promocional vencido ou inativo', () => {
   const now = Date.parse('2026-10-12T20:00:00Z');
-  const product = {preco: '109,00', precoPromocional: '99,73', promocaoValidaAte: '2026-09-16'};
+  const product = {preco: '109,00', precoAnterior: '109,00', precoPromocional: '99,73', promocaoValidaAte: '2026-09-16'};
   assert.equal(safety.productPrice(product, now), 109);
   assert.equal(safety.productPrice({...product, ofertaRelampagoAtiva: true}, now), 109);
   assert.equal(safety.productPrice({...product, ofertaRelampagoAtiva: true, ofertaRelampagoTerminaEm: '2026-10-13T20:00:00Z'}, now), 99.73);
   assert.equal(safety.productPrice({...product, ofertaRelampagoAtiva: true, ofertaRelampagoTerminaEm: '2026-10-13T20:00:00Z', ofertaRelampagoComecaEm: '2026-10-13T10:00:00Z'}, now), 109);
+  assert.equal(safety.productPrice({...product, promocaoAtiva: true, promocaoValidaAte: '2026-10-12'}, now), 99.73);
+  assert.equal(safety.productPrice({...product, promocaoAtiva: true, promocaoValidaAte: '2026-10-11'}, now), 109);
 });
 test('editorial recusa superlativos e promessas sem comprovação', () => {
   for (const text of ['Melhor geral', 'Melhor custo-benefício', 'Maior alcance', 'Excelente estabilidade', 'Nós testamos o produto']) {

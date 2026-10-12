@@ -23,14 +23,18 @@
   }
   function productPrice(product, now = Date.now()) {
     const discount = price(product?.precoPromocional);
-    const deadline = product?.ofertaRelampagoTerminaEm || product?.promocaoValidaAte;
+    const flash = product?.ofertaRelampagoAtiva === true;
+    const rawDeadline = flash ? product?.ofertaRelampagoTerminaEm : product?.promocaoValidaAte;
+    const deadline = typeof rawDeadline === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(rawDeadline)
+      ? rawDeadline + 'T23:59:59.999-03:00' : rawDeadline;
     const end = deadline && typeof deadline.toMillis === 'function' ? deadline.toMillis()
       : deadline && Number.isFinite(deadline.seconds) ? deadline.seconds * 1000 : Date.parse(deadline || '');
     const startValue = product?.ofertaRelampagoComecaEm;
     const start = startValue && typeof startValue.toMillis === 'function' ? startValue.toMillis()
       : startValue && Number.isFinite(startValue.seconds) ? startValue.seconds * 1000 : Date.parse(startValue || '');
-    const active = product?.ofertaRelampagoAtiva === true && end > now
-      && (!startValue || (Number.isFinite(start) && start <= now));
+    const active = (flash ? end > now && (!startValue || (Number.isFinite(start) && start <= now))
+      : product?.promocaoAtiva === true && (!deadline || end >= now))
+      && price(product?.precoAnterior) > discount;
     return active && discount > 0 ? discount : price(product?.preco) || price(product?.precoAtual);
   }
   function editorialTextAllowed(value) {
