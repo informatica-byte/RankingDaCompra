@@ -2117,9 +2117,9 @@
         categoria: String(product.categoria || ""), categoriaNome: label,
         preco: price, foto: weeklyProductImage(product), productUrl: weeklyProductUrl(product),
         linkAfiliado: String(product.linkAfiliado || product.link || ""), nota: rating,
-        avaliacaoVerificada: product.avaliacaoVerificada ?? product.ratingVerified,
-        avaliacaoFonte: product.avaliacaoFonte || product.notaFonte || product.ratingSource,
-        avaliacaoQuantidade: product.avaliacaoQuantidade ?? product.notaQuantidade ?? product.ratingCount ?? product.reviewCount,
+        avaliacaoVerificada: product.avaliacaoVerificada ?? product.ratingVerified ?? false,
+        avaliacaoFonte: product.avaliacaoFonte || product.notaFonte || product.ratingSource || "",
+        avaliacaoQuantidade: product.avaliacaoQuantidade ?? product.notaQuantidade ?? product.ratingCount ?? product.reviewCount ?? 0,
         pros: weeklyTextList(product.pros || product.pontosPositivos),
         cons: weeklyTextList(product.contras || product.pontosNegativos),
         clicks: signals.clicks, views: signals.views, match, withinBudget

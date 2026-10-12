@@ -89,6 +89,23 @@ test('móvel e dashboard usam a mesma pontuação e o mesmo preço efetivo', asy
   assert.equal(JSON.stringify(a), JSON.stringify(b));
   assert.equal(context.rankingPrecoProduto({preco: 109, precoPromocional: 99.73}), 109);
 });
+test('rascunho sem avaliações documentadas não contém undefined rejeitado pelo Firestore', () => {
+  const build = growth.match(/  function weeklyBuildDraft\([^]*?\n  \}/)[0];
+  weekly.weeklyNormalize = value => String(value || '').toLowerCase();
+  weekly.weeklyProductPrice = safety.productPrice;
+  weekly.weeklyProductImage = product => product.foto || '';
+  weekly.weeklyProductUrl = product => product.productUrl || '';
+  weekly.weeklyMondayKey = () => '2026-10-12';
+  weekly.weeklyValidUntil = () => '2026-10-18';
+  vm.runInContext(build, weekly);
+  const draft = weekly.weeklyBuildDraft({products: routers, metrics: [], categories: {}}, 'roteador', 300);
+  assert.equal(draft.produtos.length, 3);
+  JSON.stringify(draft, (_key, value) => {
+    assert.notEqual(value, undefined, 'campos ausentes devem ter valor seguro explícito');
+    return value;
+  });
+  assert.ok(draft.produtos.every(product => product.avaliacaoFonte === '' && product.avaliacaoQuantidade === 0));
+});
 test('notas cadastradas sem fonte não alteram pontuação ou desempate', () => {
   const baseline = weekly.weeklyScoreProducts(routers);
   const changed = weekly.weeklyScoreProducts(routers.map((product, index) => ({...product, nota: index + 1})));

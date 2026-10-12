@@ -147,7 +147,7 @@
         <div class="card" id="seo-opportunities-mobile"></div>
         <div class="card" id="ranking-mobile">
           <div class="etapa">Ranking inteligente semanal</div>
-          <h2>🏆 Top 5 comparativo</h2>
+          <h2>Comparativo por perfis</h2>
           <p>Escolha o produto ou categoria e o preço máximo. O painel usa os dados cadastrados, visualizações e cliques dos últimos sete dias para preparar três a cinco produtos equivalentes.</p>
           <div class="ranking-mobile-note">Nada será exibido na vitrine antes de você conferir e aprovar.</div>
           <label>Pauta prioritária</label><select id="ranking-prioridade" class="campo"><option value="">Escolher pela procura da semana</option><option value="celular">Celulares</option><option value="notebook">Notebooks</option><option value="air-fryer">Air fryers</option><option value="patinete-eletrico">Patinetes elétricos</option><option value="smart-tv">Smart TVs</option><option value="fone-bluetooth">Fones Bluetooth</option><option value="smartwatch">Smartwatches</option></select>
@@ -2200,7 +2200,7 @@
           })
           .join("");
         const resumo = r.resumoIA ? '<div class="ranking-mobile-note"><b>🤖 Visão geral auditada</b><br>' + rankingEsc(r.resumoIA) + "</div>" : "";
-        $("ranking-revisao").innerHTML = '<div class="ranking-mobile-note"><b>' + rankingEsc(r.titulo) + "</b><br>Confira a nota, os critérios e o motivo real de cada posição antes de publicar.</div>" + resumo + "<ol>" + itens + "</ol>";
+        $("ranking-revisao").innerHTML = '<div class="ranking-mobile-note"><b>' + rankingEsc(r.titulo) + "</b><br>Revise recursos, preço e limitações de cada opção antes de publicar. O índice cadastral não comprova qualidade.</div>" + resumo + "<ol>" + itens + "</ol>";
       }
       async function carregarStatusRankingMovel() {
         try {
