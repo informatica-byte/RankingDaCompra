@@ -108,7 +108,7 @@
     "termo": "Brinquedos",
     "resumoIA": "Esta seleção reúne cinco brinquedos distintos, variando de modelos com controle remoto a livros infantis e blocos didáticos. O destaque em interesse e custo-benefício fica para o carrinho off-road e o box de livros. Em contrapartida, a escavadeira de controle remoto e o caminhão pista exigem investimentos maiores, posicionando-se acima da média de preço deste grupo.",
     "publicado": true,
-    "precoMaximo": 0,
+    "precoMaximo": "0",
     "produtos": [
       {
         "id": "q4XshIAfttQBQ9Bwz7uB",
@@ -120,8 +120,6 @@
         "motivo": "É o vencedor porque teve a melhor combinação de preço, avaliação, procura no site e qualidade das informações. Preço: 15% abaixo da média dos cinco. Avaliação: nota informada de 4,8/5. Interesse recente: 2 clique(s) em Comprar e 4 visualização(ões) em 7 dias. Destaque: Corpo fabricado em metal que oferece maior resistência a impactos em terrenos irregulares., Bateria recarregável integrada que proporciona autonomia de até 1 hora de operação contínua., Rodas revestidas em borracha que garantem aderência para superar obstáculos.. Atenção: A ficha técnica do produto não informa o tempo necessário para a recarga completa da bateria., Não há especificações sobre o alcance máximo do sinal do controle remoto nas informações fornecidas..",
         "preco": 79.59,
         "scoreTotal": 8.8,
-        "clicks": 2,
-        "views": 4,
         "pros": [
           "Corpo fabricado em metal que oferece maior resistência a impactos em terrenos irregulares., Bateria recarregável integrada que proporciona autonomia de até 1 hora de operação contínua., Rodas revestidas em borracha que garantem aderência para superar obstáculos."
         ],
@@ -131,7 +129,6 @@
         "criterios": {
           "custoBeneficio": 8.6,
           "avaliacao": 9.6,
-          "interesse": 10,
           "evidencia": 6.9
         },
         "analiseHumana": {
@@ -151,8 +148,6 @@
         "motivo": "Ficou em 2º porque perdeu pontos principalmente em interesse observado e terminou 0,1 ponto(s) atrás do produto anterior. Preço: 58% abaixo da média dos cinco. Avaliação: nota informada de 4,8/5. Interesse recente: 0 clique(s) em Comprar e 2 visualização(ões) em 7 dias. Destaque: Páginas e capa dura resistentes, ideais para mãozinhas de bebês., Ilustrações vibrantes que estimulam o desenvolvimento cognitivo e sensorial., Excelente desconto de 60% aplicado no preço promocional atual.. Atenção: A caixa organizadora do box não acompanha tampa., Tamanho compacto dos livrinhos pode não agradar quem busca volumes grandes..",
         "preco": 39.6,
         "scoreTotal": 8.7,
-        "clicks": 0,
-        "views": 2,
         "pros": [
           "Páginas e capa dura resistentes, ideais para mãozinhas de bebês., Ilustrações vibrantes que estimulam o desenvolvimento cognitivo e sensorial., Excelente desconto de 60% aplicado no preço promocional atual."
         ],
@@ -160,9 +155,7 @@
           "A caixa organizadora do box não acompanha tampa., Tamanho compacto dos livrinhos pode não agradar quem busca volumes grandes."
         ],
         "criterios": {
-          "custoBeneficio": 10,
           "avaliacao": 9.6,
-          "interesse": 6,
           "evidencia": 6.9
         },
         "analiseHumana": {
@@ -177,13 +170,11 @@
         "titulo": "Numberblocks Brinquedo Educativo Cubos Matemáticos Didáticos",
         "categoria": "brinquedos",
         "categoriaNome": "Brinquedos",
+        "preco": "59",
         "foto": "https://http2.mlstatic.com/D_NQ_NP_674158-MLB89171902530_082025-O.webp",
         "productUrl": "https://rankingdacompra.com.br/produto/y8qOGP907Z3Bry3AI9cc-20260810-1.html",
         "motivo": "Ficou em 3º porque perdeu pontos principalmente em interesse observado e terminou 0,3 ponto(s) atrás do produto anterior. Preço: 37% abaixo da média dos cinco. Avaliação: nota informada de 4,8/5. Ainda há pouca interação no site para medir a procura. Destaque: Numberblocks Brinquedo Educativo Cubos Matemáticos Didáticos. Características confirmadas no anúncio: Versão do personagem: Numberblocks. Atenção: Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra..",
-        "preco": 59,
         "scoreTotal": 8.4,
-        "clicks": 0,
-        "views": 0,
         "pros": [
           "Numberblocks Brinquedo Educativo Cubos Matemáticos Didáticos. Características confirmadas no anúncio: Versão do personagem: Numberblocks",
           "Quantidade de peças: 100",
@@ -195,7 +186,6 @@
         "criterios": {
           "custoBeneficio": 9.3,
           "avaliacao": 9.6,
-          "interesse": 3,
           "evidencia": 9.3
         },
         "analiseHumana": {
@@ -215,8 +205,6 @@
         "motivo": "Ficou em 4º porque perdeu pontos principalmente em custo-benefício e terminou 0,7 ponto(s) atrás do produto anterior. Preço: 31% acima da média dos cinco. Avaliação: nota informada de 4,8/5. Ainda há pouca interação no site para medir a procura. Destaque: Caminhão Dinossauro Pista Com 8 Carrinhos Maleta Transporte. Características confirmadas no anúncio: Marca: Genérica. Atenção: Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra..",
         "preco": 122.14,
         "scoreTotal": 7.7,
-        "clicks": 0,
-        "views": 0,
         "pros": [
           "Caminhão Dinossauro Pista Com 8 Carrinhos Maleta Transporte. Características confirmadas no anúncio: Marca: Genérica",
           "Código do catálogo: MLBU3870021862",
@@ -228,7 +216,6 @@
         "criterios": {
           "custoBeneficio": 7.1,
           "avaliacao": 9.6,
-          "interesse": 3,
           "evidencia": 9.3
         },
         "analiseHumana": {
@@ -248,8 +235,6 @@
         "motivo": "Ficou em 5º porque perdeu pontos principalmente em qualidade das evidências e terminou 0,3 ponto(s) atrás do produto anterior. Preço: 78% acima da média dos cinco. Avaliação: nota informada de 4,8/5. Interesse recente: 0 clique(s) em Comprar e 5 visualização(ões) em 7 dias. Destaque: Controle remoto de 2,4 GHz que evita interferências, Acompanha 2 baterias recarregáveis, Cabine com rotação de 680 graus para movimentos realistas. Atenção: Caçamba pode apresentar fragilidade ao pegar areia pesada, Pilhas do controle remoto não inclusas.",
         "preco": 165.9,
         "scoreTotal": 7.4,
-        "clicks": 0,
-        "views": 5,
         "pros": [
           "Controle remoto de 2,4 GHz que evita interferências, Acompanha 2 baterias recarregáveis, Cabine com rotação de 680 graus para movimentos realistas"
         ],
@@ -275,13 +260,8 @@
       "metodo": "gemini_gerador_e_gemini_revisor",
       "fonte": "dados_consolidados"
     },
-    "metodologia": {
-      "custoBeneficio": 35,
-      "avaliacao": 30,
-      "interesse": 15,
-      "evidencia": 20
-    }
+    "metodologia": {}
   },
   "schemaVersion": 2,
-  "generatedAt": "2026-10-12T18:26:16.534Z"
+  "generatedAt": "2026-10-12T18:49:36.378Z"
 }
