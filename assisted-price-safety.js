@@ -1,11 +1,11 @@
 (function (root) {
   "use strict";
-  const MIN_VERSION = "2.3.0";
+  const MIN_VERSION = "2.4.0";
   function robotReady(info) {
     if (!/^\d+\.\d+\.\d+$/.test(String(info?.version || ""))) return false;
     const version = String(info.version).split(".").map(Number);
     return info?.ready === true && version.length === 3 && version.every(Number.isFinite)
-      && (version[0] > 2 || (version[0] === 2 && version[1] >= 3));
+      && (version[0] > 2 || (version[0] === 2 && version[1] >= 4));
   }
   function identity(raw) {
     try {
@@ -32,7 +32,32 @@
       .filter(word => /^(branco|preto|azul|vermelho|verde|amarelo|bege|cinza|prata|dourado|rosa|roxo|marrom|laranja|transparente)$/.test(word)))];
   }
   function matchingProduct(expectedTitle, foundTitle) {
-    const words = value => normalized(String(value || "").replace(/(?<=\d)[.,](?=\d)/g, "").replace(/([a-z0-9])[-/]([a-z0-9])/gi, "$1$2"))
+    // Mesmo contrato do userscript: bloquear contradição explícita, não ficha
+    // incompleta nem números de desconto/frete/prazo do texto promocional.
+    const numericFeatures = value => {
+      const text = String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/(?<=\d),(?=\d)/g, ".");
+      const features = new Map();
+      const add = (name, number) => {
+        if (!features.has(name)) features.set(name, new Set());
+        features.get(name).add(String(Number(number)));
+      };
+      for (const match of text.matchAll(/\b(\d+(?:\.\d+)?)\s*(?:polegadas?\b|pol\b|inch(?:es)?\b|["\u2033])/g)) add("tela", match[1]);
+      for (const match of text.matchAll(/\b(?:monitor|televisor|smart\s*tv|tv|tela)((?:\s+[a-z]+){0,4})\s+(\d{2}(?:\.\d+)?)(?![a-z0-9%])/g)) {
+        if (!/promocao|oferta|desconto|cupom|frete|prazo/.test(match[1])) add("tela", match[2]);
+      }
+      for (const match of text.matchAll(/\b(iphone|ipad|ryzen|instax|forerunner|fenix|hero|playstation|redmi\s+note|vivobook\s+go)\s+(\d+(?:\.\d+)?)(?![a-z0-9])/g)) add(match[1].replace(/\s+/g, " "), match[2]);
+      for (const match of text.matchAll(/\b(\d+)(?:a|o|\u00aa|\u00ba)?\s*(?:geracao|generation)\b/g)) add("geracao", match[1]);
+      for (const match of text.matchAll(/\b(\d+)\s*(?:gb\s*)?ssd\b(?!\s*(?:de\s+)?\d)|\bssd\s*(?:de\s+)?(\d+)\s*gb\b/g)) add("ssd", match[1] || match[2]);
+      return features;
+    };
+    const expectedFeatures = numericFeatures(expectedTitle), foundFeatures = numericFeatures(foundTitle);
+    for (const [name, values] of expectedFeatures) {
+      const actual = foundFeatures.get(name);
+      if (actual?.size && ![...values].some(value => actual.has(value))) return false;
+    }
+    const words = value => normalized(String(value || "").replace(/\b(?:em|at[eé])\s+\d{1,2}\s*x\b/gi, "").replace(/\b\d{1,2}\s*x\b/gi, "")
+      .replace(/(?<=\d)[.,](?=\d)/g, "").replace(/([a-z0-9])[-/]([a-z0-9])/gi, "$1$2"))
+      .replace(/\b(\d+)\s+(gb|tb|mb|ssd|hz|w|v)\b/g, "$1$2")
       .split(" ").filter(word => (word.length >= 3 || /[a-z]\d|\d[a-z]/.test(word)) && !/^(com|sem|para|preto|branco|produto|original|promocao)$/.test(word));
     const expected = [...new Set(words(expectedTitle))], found = new Set(words(foundTitle));
     if (!expected.length || !found.size) return false;
@@ -60,7 +85,7 @@
   }
   function validate(result, { produtoId, url, titulo, previousPrice = 0, now = Date.now() }) {
     const requested = identity(url), found = identity(result?.fonteConsultada);
-    if (!robotReady({ version: result?.robotVersion, ready: true }) || result?.proofVersion !== 3) return "Atualize o robô para a versão 2.3.0 ou superior e recarregue o painel.";
+    if (!robotReady({ version: result?.robotVersion, ready: true }) || result?.proofVersion !== 3) return "Atualize o robô para a versão " + MIN_VERSION + " ou superior e recarregue o painel.";
     if (result.status !== "ok" || result.produtoId !== produtoId || result.requestedUrl !== url || !result.requestId) return "Resposta não pertence a este produto ou pedido. Preço preservado.";
     if (!requested || !found || requested.key !== found.key || result.offerKey !== found.key || (requested.variation && requested.variation !== found.variation)
       || (requested.attributes && requested.attributes !== found.attributes)) return "O anúncio ou a variação não corresponde ao cadastro. Confira manualmente.";

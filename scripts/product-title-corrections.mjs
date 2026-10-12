@@ -3,6 +3,25 @@ import { basename, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const PRODUCT_CORRECTIONS = new Map([
+  ['SJ6VQZLSc4brIArHnkRW', {model:/piscina.*infl[aá]vel/i, category:'esporte-e-lazer'}],
+  ['gNcq5nSqWbfqYi1M9c23', {
+    model:/apfer|lanterna/i, correct:'Lanterna LED Apfer recarregável',
+    summary:'Lanterna LED Apfer identificada no cadastro. Os valores de fluxo luminoso, alcance e autonomia são alegações do anúncio, não medições da equipe. Não há comprovação de que seja a mais forte do mundo. Confirme modelo, bateria, carregador, modos e proteção contra água com o vendedor antes de comprar.',
+    positiveNotes:['Alimentação recarregável anunciada; confirme bateria e carregador do conjunto.'],
+    negativeNotes:['Fluxo luminoso, alcance e autonomia não foram verificados pela equipe.'], suppressRating:true,
+  }],
+  ['goH2juydLAa3JYXzctkH', {
+    model:/basike/i, correct:'Fone Bluetooth Basike Ear Clip com Gancho',
+    summary:'Fone Bluetooth Basike identificado no cadastro. Autonomia e modelo exato ainda precisam de confirmação. Latência de 0,0035 ms, redução de vazamento de 90% e promessa de impedir quedas são alegações do anúncio sem medição independente; não são usadas como vantagens comprovadas. Confira formato, bateria, encaixe e compatibilidade com o vendedor.',
+    positiveNotes:['Conexão Bluetooth anunciada; confirme versão e compatibilidade.'],
+    negativeNotes:['Autonomia, latência, vazamento de som e estabilidade do encaixe não foram medidos.'], suppressRating:true,
+  }],
+  ['YdPOVmrHVJ8EO7fmgyXu', {
+    model:/computador|intel|\bpc\b/i,
+    summary:'PC completo com Intel Core i5 de sexta geração, SSD de 240 GB e 8 GB de RAM anunciados no cadastro. O código exato do processador está a confirmar: “6” isolado não identifica o modelo nem comprova desempenho. Confira CPU completa, placa-mãe, memória, fonte, monitor e condições do conjunto com o vendedor. Não testamos desempenho ou durabilidade.',
+    positiveNotes:['SSD de 240 GB e 8 GB de RAM anunciados; confirme o conjunto escolhido.'],
+    negativeNotes:['Modelo exato do processador e componentes do conjunto a confirmar.'], suppressRating:true,
+  }],
   ["Bp4dNosktHQXiSy3r9S0", {
     model: /(?:t?apete).*Casa Laura/i,
     replacements: [["apete Decorativo", "Tapete Decorativo"]],

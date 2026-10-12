@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.3.0
+// @version      2.4.0
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -18,7 +18,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.3.0";
+  const BOT_VERSION = "2.4.0";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -49,7 +49,32 @@
   }
 
   function matchingProduct(expectedTitle, foundTitle) {
-    const words = value => normalizeText(String(value || "").replace(/(?<=\d)[.,](?=\d)/g, "").replace(/([a-z0-9])[-/]([a-z0-9])/gi, "$1$2"))
+    // Números só são identidade quando ligados a modelo/medida. Descontos,
+    // frete e prazo promocional não podem transformar o mesmo produto em outro.
+    const numericFeatures = value => {
+      const text = String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/(?<=\d),(?=\d)/g, ".");
+      const features = new Map();
+      const add = (name, number) => {
+        if (!features.has(name)) features.set(name, new Set());
+        features.get(name).add(String(Number(number)));
+      };
+      for (const match of text.matchAll(/\b(\d+(?:\.\d+)?)\s*(?:polegadas?\b|pol\b|inch(?:es)?\b|["\u2033])/g)) add("tela", match[1]);
+      for (const match of text.matchAll(/\b(?:monitor|televisor|smart\s*tv|tv|tela)((?:\s+[a-z]+){0,4})\s+(\d{2}(?:\.\d+)?)(?![a-z0-9%])/g)) {
+        if (!/promocao|oferta|desconto|cupom|frete|prazo/.test(match[1])) add("tela", match[2]);
+      }
+      for (const match of text.matchAll(/\b(iphone|ipad|ryzen|instax|forerunner|fenix|hero|playstation|redmi\s+note|vivobook\s+go)\s+(\d+(?:\.\d+)?)(?![a-z0-9])/g)) add(match[1].replace(/\s+/g, " "), match[2]);
+      for (const match of text.matchAll(/\b(\d+)(?:a|o|\u00aa|\u00ba)?\s*(?:geracao|generation)\b/g)) add("geracao", match[1]);
+      for (const match of text.matchAll(/\b(\d+)\s*(?:gb\s*)?ssd\b(?!\s*(?:de\s+)?\d)|\bssd\s*(?:de\s+)?(\d+)\s*gb\b/g)) add("ssd", match[1] || match[2]);
+      return features;
+    };
+    const expectedFeatures = numericFeatures(expectedTitle), foundFeatures = numericFeatures(foundTitle);
+    for (const [name, values] of expectedFeatures) {
+      const actual = foundFeatures.get(name);
+      if (actual?.size && ![...values].some(value => actual.has(value))) return false;
+    }
+    const words = value => normalizeText(String(value || "").replace(/\b(?:em|at[eé])\s+\d{1,2}\s*x\b/gi, "").replace(/\b\d{1,2}\s*x\b/gi, "")
+      .replace(/(?<=\d)[.,](?=\d)/g, "").replace(/([a-z0-9])[-/]([a-z0-9])/gi, "$1$2"))
+      .replace(/\b(\d+)\s+(gb|tb|mb|ssd|hz|w|v)\b/g, "$1$2")
       .split(" ").filter(word => (word.length >= 3 || /[a-z]\d|\d[a-z]/.test(word)) && !/^(com|sem|para|preto|branco|produto|original|promocao)$/.test(word));
     const expected = [...new Set(words(expectedTitle))], found = new Set(words(foundTitle));
     if (!expected.length || !found.size) return false;

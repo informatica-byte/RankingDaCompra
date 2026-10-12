@@ -1064,7 +1064,9 @@ FORMATO:
     </script>
 
     <script src="/price-publication.js?v=20261004-2"></script>
-    <script src="/assisted-price-safety.js?v=20261006-3"></script>
+    <script src="/assisted-price-safety.js?v=20261012-4"></script>
+    <script src="/flash-offer-safety.js?v=20261012-audit"></script>
+    <script src="/weekly-comparison-safety.js?v=20261012-audit"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
     <script src="/metricas-resumo.js?v=20261007-counters"></script>
     <script>
@@ -1412,6 +1414,37 @@ if(botao){botao.disabled=false;botao.textContent=textoOriginal}
 function atualizarCentralComProdutos(snapshot){produtosCentralAtual=snapshot.docs.map(doc=>{const produto={id:doc.id,...doc.data()},status=statusMercadoLivreAdmin[String(doc.id)]||{},atual=Number(status.lightningPrice)>0?Number(status.lightningPrice):Number(status.price),anterior=Number(status.regularPrice);if(status.lightningActive===true&&anterior>atual&&atual>0){produto.precoAnterior=anterior.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});produto.precoPromocional=atual.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}return produto});metricasCentralAtual=metricasCentralAtual.map(item=>{const produto=produtosCentralAtual.find(p=>String(p.id)===String(item.produtoId));return produto?{...item,titulo:produto.titulo||item.titulo,categoria:produto.categoria||item.categoria}:item});renderizarRelatorioCentral();renderizarOfertasCentral()}
 
 function produtoCentralPorId(id){return produtosCentralAtual.find(produto=>String(produto.id)===String(id))||null}
+
+// A conferência é condição de divulgação, não apenas de cadastro. Uma oferta
+// pendente continua na fila do administrador, mas não anuncia desconto/urgência.
+function ofertaSeguraCentral(produto){return window.RDCFlashOfferSafety?.evaluate(produto,statusMercadoLivreAdmin[String(produto?.id||'')]||null)}
+relampagoAtivoCentral=produto=>ofertaSeguraCentral(produto)?.eligible===true;
+campanhaValidaCentral=produto=>{const oferta=ofertaSeguraCentral(produto);return Boolean(oferta?.configured&&Date.parse(oferta.endsAt)>Date.now())||promocaoValidaCentral(produto)};
+statusOfertaCentral=produto=>{
+  const avisos=[]; const oferta=ofertaSeguraCentral(produto);
+  const confirmado=window.RDCFlashOfferSafety?.recentPrice(produto,statusMercadoLivreAdmin[String(produto?.id||'')]||null);
+  if(oferta?.configured&&!oferta.eligible) avisos.push('oferta aguardando conferência de preço e prazo');
+  else if(!confirmado?.confirmed||Math.abs(confirmado.price-numeroPrecoPromocao(produto.precoPromocional))>.011) avisos.push('preço promocional precisa de conferência recente');
+  if(!linkAfiliadoValidoCentral(produto)) avisos.push('link comum ou afiliado não identificado');
+  return avisos;
+};
+const textoConfirmadoCentral=textoPadraoCentral;
+textoPadraoCentral=produto=>statusOfertaCentral(produto).length?`${produto.titulo}\nPreço e disponibilidade aguardando conferência. Confira as condições no vendedor:`:textoConfirmadoCentral(produto);
+const cartaoConfirmadoCentral=cartaoOfertaCentral;
+cartaoOfertaCentral=(produto,indice)=>{
+  const avisos=statusOfertaCentral(produto);
+  if(!avisos.length) return cartaoConfirmadoCentral(produto,indice);
+  return `<article class="campanha-card"><h4>${escapeHtml(produto.titulo)}</h4><p class="campanha-status campanha-alerta">⚠️ ${escapeHtml(avisos.join(' · '))}</p><p>Cadastro preservado. Sem desconto ou urgência divulgados até nova conferência.</p><button type="button" data-central-editar="${escapeHtml(produto.id)}">Conferir produto</button></article>`;
+};
+const compartilharConfirmadoCentral=compartilharCampanhaCentral;
+compartilharCampanhaCentral=async(id,canal,botao,evento)=>{
+  if(statusOfertaCentral(produtoCentralPorId(id)||{}).length){evento?.preventDefault();alert('Confira o preço e o prazo desta oferta antes de compartilhar.');return}
+  return compartilharConfirmadoCentral(id,canal,botao,evento);
+};
+const imagemConfirmadaCentral=arquivoCampanhaCentral;
+arquivoCampanhaCentral=async produto=>{if(statusOfertaCentral(produto).length)throw Error('Oferta sem confirmação recente.');return imagemConfirmadaCentral(produto)};
+const iaConfirmadaCentral=gerarTextoCampanhaCentral;
+gerarTextoCampanhaCentral=async(id,botao)=>{if(statusOfertaCentral(produtoCentralPorId(id)||{}).length)return;return iaConfirmadaCentral(id,botao)};
 
 async function gerarTextoCampanhaCentral(id,botao){const produto=produtoCentralPorId(id);if(!produto)return;if(typeof window.gerarTextoDivulgacaoIA!=='function')return alert('A IA ainda está carregando. Tente novamente em alguns segundos.');const original=botao?.textContent;if(botao){botao.disabled=true;botao.textContent='IA escrevendo...'}try{const texto=await window.gerarTextoDivulgacaoIA({produto,desconto:descontoCentral(produto)});textosCampanhaCentral[id]=String(texto||textoPadraoCentral(produto)).trim();const campo=document.getElementById(`campanha-texto-${id}`);if(campo)campo.value=textosCampanhaCentral[id]}catch(erro){console.error(erro);alert('A IA não conseguiu gerar o texto agora. O texto seguro baseado nos dados reais foi mantido.')}finally{if(botao){botao.disabled=false;botao.textContent=original||'✨ Melhorar com IA'}}}
 
@@ -2701,7 +2734,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const conectado = typeof window.conferirPrecoPelaFonteLocal === 'function' && window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__);
             status.classList.toggle('conectado', conectado);
             if (!conectado) {
-                status.textContent = '⚠️ Atualize o robô de preços para 2.3.0 ou superior e recarregue o painel. Conferência simplificada: mesmo produto e preço principal visível.';
+                status.textContent = '⚠️ Atualize o robô de preços para 2.4.0 ou superior e recarregue o painel. Conferência simplificada: mesmo produto e preço principal visível.';
                 return;
             }
             status.textContent = '✅ Robô local conectado — ele só inicia quando você apertar o botão.';
@@ -2729,6 +2762,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             if (motivo) throw new Error(motivo);
             await db.collection('produtos').doc(id).update({
                 [campo]: formatarPrecoCampo(preco),
+                precoConferenciaCampo: campo,
+                precoConferenciaValor: preco,
                 precoAtualizadoManualmente: true,
                 precoAtualizadoManualmenteEm: firebase.firestore.FieldValue.serverTimestamp(),
                 precoConferidoPorIA: true,
@@ -2859,7 +2894,9 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 }
                 const atualizacao = {
                     [campo]: formatarPrecoCampo(numero),
-                    precoConferidoPor: verificacaoIA ? 'robo_assistido_2.3.0' : 'manual',
+                    precoConferenciaCampo: campo,
+                    precoConferenciaValor: numero,
+                    precoConferidoPor: verificacaoIA ? 'robo_assistido_2.4.0' : 'manual',
                     precoProvaVersao: verificacaoIA ? verificacaoIA.proofVersion : 0,
                     precoProvaAnuncio: verificacaoIA ? verificacaoIA.offerKey : '',
                     precoConferidoPorIA: Boolean(verificacaoIA),
@@ -2982,7 +3019,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         function atualizarPublicacaoRotina() {
             const ofertas = melhoresOfertasCentral();
             const avisos = produtosCentralAtual.filter(produto => campanhaValidaCentral(produto) && statusOfertaCentral(produto).length).length;
-            const pendentes = ofertas.filter(produto => !estadosPublicacaoCentral.get(String(produto.id))?.pronto).length;
+            const pendentes = ofertas.filter(produto => !ofertaSeguraCentral(produto).eligible || !estadosPublicacaoCentral.get(String(produto.id))?.pronto || !estadosPublicacaoCentral.get(String(produto.id))?.arquivoPronto).length;
             const atrasadas = ofertas.filter(produto => {
                 const estado = estadosPublicacaoCentral.get(String(produto.id));
                 return estado && !estado.pronto && (estado.erro || Date.now() - estado.iniciadoEm >= LIMITE_ESPERA_PUBLICACAO_CENTRAL);
@@ -3020,6 +3057,14 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 // ranking semanal, não apenas o snapshot público do site.
                 const configuracoes = await db.collection('configuracoes').get({ source: 'server' });
                 if (configuracoes.metadata.fromCache) throw new Error('As configurações precisam ser confirmadas pelo servidor.');
+                // orderBy(dataCadastro) não inclui .site-theme. Leia somente este
+                // documento adicional ao solicitar a cópia, sem alterar o banco.
+                const tema = await db.collection('produtos').doc('.site-theme').get({ source: 'server' });
+                if (tema.metadata?.fromCache) throw new Error('O tema precisa ser confirmado pelo servidor; nenhuma cópia parcial foi baixada.');
+                const productRecords = registros(snapshotProdutosBackup);
+                if (tema.exists && !productRecords.some(item => item.id === '.site-theme')) {
+                    productRecords.push({ id: '.site-theme', data: serializarValorBackup(tema.data()) });
+                }
                 const configurationRecords = registros(configuracoes);
                 const site = configurationRecords.find(item => item.id === 'site');
                 if (!site) throw new Error('A configuração principal não foi encontrada; nenhuma cópia parcial foi baixada.');
@@ -3027,7 +3072,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     format: 'rankingdacompra-backup-v1',
                     exportedAt: new Date().toISOString(),
                     source: 'painel administrativo',
-                    products: registros(snapshotProdutosBackup),
+                    products: productRecords,
                     categories: registros(snapshotCategoriasBackup),
                     siteConfig: site.data,
                     configurations: configurationRecords,
@@ -3219,7 +3264,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script defer src="/seo-opportunities.js?v=20261004-2"></script>
   <script src="/promotion-title.js?v=20261005-1"></script>
-  <script defer src="/growth-tools.js?v=20261011-ux"></script>
+  <script defer src="/growth-tools.js?v=20261012-audit"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
 <script>

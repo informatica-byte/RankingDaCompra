@@ -38,7 +38,7 @@ test("App Check é preparado em todos os clientes sem ativar enforcement", () =>
   assert.match(mobile, /initializeAppCheck\(app, \{/);
   assert.match(growth, /firebase\.appCheck\(\)\.activate\(new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
   // A nova etiqueta muda a apresentação, não a inicialização do App Check.
-  assert.match(generator, /growth-tools\.js\?v=(?:20261007-counters|20261011-ux)(?=$|["'&<>\s])/);
+  assert.match(generator, /growth-tools\.js\?v=20261012-audit(?=$|["'&<>\s])/);
 });
 
 test("clientes clássicos usam SDK compat com provider Enterprise disponível", () => {

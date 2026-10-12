@@ -6,6 +6,7 @@ import offerReplacement from "../product-offer-replacement.js";
 import { decodeConfigFields, publicSiteConfig } from "./public-site-config.mjs";
 import { correctProductData, hasDocumentedEditorialRating } from "./product-title-corrections.mjs";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
+import { publicationBackup } from "./publication-backup.mjs";
 import { productSeoTitle } from "./product-seo-titles.mjs";
 import { legacyProductAliases, observedProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage } from "./product-url-continuity.mjs";
 import { generateSeasonalGuides, GUIDE_THEMES } from "./generate-seasonal-guides.mjs";
@@ -28,6 +29,8 @@ const SITE = "https://rankingdacompra.com.br/";
 
 const SHARE_VERSION = "20260810-1";
 const PRODUCT_SNAPSHOT = String(process.env.RDC_PRODUCTS_SNAPSHOT || "").trim();
+const BACKUP_PATH = String(process.env.RDC_PUBLICATION_BACKUP || '').trim();
+const publicationInput = BACKUP_PATH ? publicationBackup(JSON.parse(await readFile(resolve(BACKUP_PATH), 'utf8'))) : null;
 const PARTIAL_GENERATION_MARKER = resolve(".ranking-generation-partial");
 
 const GENERIC_TEXT = /(chama aten[cç][aã]o por|recursos descritos no pr[oó]prio t[ií]tulo|informa[cç][oõ]es em atualiza[cç][aã]o|produto identificado no an[uú]ncio|oferta para comparar|conhe[cç]a este produto)/i;
@@ -1519,7 +1522,7 @@ function renderSharePage(product, socialImage, categoryNames, marketplaceStatus 
   <style>:root{--green:#116149;--ink:#11221d;--muted:#66746d;--line:#dfe7e2;--cream:#fbfaf5;--blue:#1769e0}*{box-sizing:border-box}body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--cream);color:var(--ink);margin:0;line-height:1.55}a{color:inherit}.wrap{width:min(1040px,calc(100% - 32px));margin:auto}header{background:#fff;border-bottom:1px solid var(--line)}header .wrap{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{color:var(--green);font-weight:900;text-decoration:none}.back{color:var(--green);font-weight:750;text-decoration:none;font-size:.9rem}main{padding:30px 0 56px}.crumb{color:var(--muted);font-size:.82rem;margin-bottom:16px}.crumb a{color:var(--green)}article{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,42px)}.top{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(0,1.15fr);gap:38px}.photo{width:100%;height:390px;object-fit:contain;background:#fafcfb;border-radius:14px}.eyebrow{color:var(--green);font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900}h1{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.12;letter-spacing:-.04em;margin:9px 0 12px}.full-title{margin:-3px 0 12px;color:var(--muted);font-size:.82rem}.full-title summary{color:var(--green);font-weight:800;cursor:pointer}.full-title p{margin:7px 0 0}.rating{color:#9b6000;font-weight:850}.summary{color:#43534b;font-size:1.03rem}.offer{background:#edf7f1;border:1px solid #cde4d5;border-radius:14px;padding:18px;margin-top:20px}.previous{display:block;color:#727b76;text-decoration:line-through;font-size:.86rem}.offer strong{display:block;color:#087a3d;font-size:1.25rem}.cta{display:flex;align-items:center;justify-content:center;margin-top:12px;background:var(--blue);color:#fff;padding:13px 17px;border-radius:9px;text-decoration:none;font-weight:900}.cta.shopee{background:#ee4d2d}.share-cta{width:100%;min-height:44px;border:1px solid #9ab9a7;background:#fff;color:var(--green);padding:11px 15px;border-radius:9px;font:inherit;font-weight:850;cursor:pointer;margin-top:9px}.share-status{min-height:1.1em;color:var(--green);font-weight:800}.fine{font-size:.78rem;color:var(--muted);margin:9px 0 0}.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.fact{border:1px solid var(--line);border-radius:10px;padding:12px}.fact span{display:block;color:var(--muted);font-size:.72rem;font-weight:850;text-transform:uppercase}.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}.panel{background:#fafcfb;border:1px solid var(--line);border-radius:13px;padding:20px}.panel h2{font-size:1.05rem;margin:0 0 8px}.positive h2{color:#267c31}.attention h2{color:#a94a16}.panel ul{padding-left:19px;margin:0}.video-review{margin-top:26px;padding:20px;border:1px solid var(--line);border-radius:14px;background:#f3faf6}.video-review h2{margin:0 0 10px;font-size:1.18rem}.video-frame{position:relative;width:min(100%,420px);aspect-ratio:9/16;margin:auto;border-radius:13px;overflow:hidden;background:#0b261d}.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.source{margin-top:22px}.source a{color:var(--green)}footer{background:#10231c;color:#dfeae4;padding:30px 0;font-size:.82rem}footer a{color:#fff}@media(max-width:700px){.top,.panels{grid-template-columns:1fr}.photo{height:300px}.facts{grid-template-columns:1fr}header .wrap{padding:15px 0;align-items:flex-start}}</style>
 
   <style data-mobile-product-buy>.mobile-buy{display:none}@media(max-width:700px){body{padding-bottom:72px}.top{gap:12px}.top>div:not(.photo){display:contents}.top .eyebrow{order:1}.top h1{order:2;margin:0}.top .full-title{order:3;margin:0}.top .rating{order:4}.top>.photo{order:5;height:220px}.top .summary{order:6;margin:0;line-height:1.55}.top .offer{order:7;margin:4px 0 8px}.top .facts{order:8}.mobile-buy{position:fixed;z-index:1000;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 15px;border-radius:11px;background:#1769e0;color:#fff;text-decoration:none;font-weight:950;box-shadow:0 10px 30px rgba(0,0,0,.25)}}</style>
-<script defer src="/seo-priorities.js?v=20260913-1"></script><script defer src="/growth-tools.js?v=20261011-ux"></script>
+<script defer src="/seo-priorities.js?v=20260913-1"></script><script defer src="/growth-tools.js?v=20261012-audit"></script>
 
   <meta name="rdc-price-checked-at" content="${confirmed ? new Date(chosenCheckedAt).toISOString() : ""}">
   <meta name="rdc-price-source" content="${confirmed ? useManual ? "manual" : "api" : ""}">
@@ -1576,7 +1579,7 @@ function renderUrl(entry) {
 // As páginas dos produtos são prioridade. Categorias nunca podem bloquear sua criação.
 
 let allProducts = [];
-const snapshotProducts = await readProductSnapshot().catch((error) => {
+const snapshotProducts = publicationInput?.products || await readProductSnapshot().catch((error) => {
   console.warn("Snapshot do lote indisponível: " + String(error?.message || error));
   return null;
 });
@@ -1610,7 +1613,7 @@ try {
 
   await wait(1500);
 
-  allCategories = await listCollection("categorias", 2);
+  allCategories = publicationInput?.categories || await listCollection("categorias", 2);
 
 } catch (error) {
 
@@ -1810,9 +1813,14 @@ if (!partialProductSource) {
   let publishedConfig = {};
   try { publishedConfig = JSON.parse(await readFile(resolve("site-config.json"), "utf8")); } catch {}
   const themeConfig = allProducts.find((product) => product.id === ".site-theme") || {};
-  const configResponse = await fetchFirestoreRead(FIRESTORE + '/configuracoes/site?key=' + FIREBASE_API_KEY, {signal: AbortSignal.timeout(15000)});
-  if (!configResponse.ok && configResponse.status !== 404) throw new Error('Configuração pública: HTTP ' + configResponse.status + '; versão existente preservada, publicação bloqueada.');
-  const remoteConfig = configResponse.ok ? decodeConfigFields((await configResponse.json()).fields) : {};
+  const configResponse = publicationInput ? null : await fetchFirestoreRead(FIRESTORE + '/configuracoes/site?key=' + FIREBASE_API_KEY, {signal: AbortSignal.timeout(15000)});
+  if (configResponse && !configResponse.ok && configResponse.status !== 404) throw new Error('Configuração pública: HTTP ' + configResponse.status + '; versão existente preservada, publicação bloqueada.');
+  const remoteConfig = publicationInput ? publicationInput.site : configResponse.ok ? decodeConfigFields((await configResponse.json()).fields) : {};
+  // Uma leitura por publicação substitui a consulta ao ranking em cada visita.
+  // Se a leitura falhar, não misturar uma configuração antiga com catálogo novo.
+  const weeklyResponse = publicationInput ? null : await fetchFirestoreRead(FIRESTORE + '/configuracoes/ranking-semanal?key=' + FIREBASE_API_KEY, {signal: AbortSignal.timeout(15000)});
+  if (weeklyResponse && !weeklyResponse.ok && weeklyResponse.status !== 404) throw new Error('Comparativo semanal: HTTP ' + weeklyResponse.status + '; publicação bloqueada para preservar dados.');
+  remoteConfig.weeklyComparison = publicationInput ? publicationInput.weekly : weeklyResponse.ok ? decodeConfigFields((await weeklyResponse.json()).fields) : {publicado:false,produtos:[]};
   publishedConfig = publicSiteConfig(publishedConfig, remoteConfig, themeConfig);
   await writeFile(resolve('site-config.json'), JSON.stringify(publishedConfig, null, 2) + '\n', 'utf8');
   guidePages = await generateSeasonalGuides(products.map((product) => ({
@@ -2069,7 +2077,8 @@ if (!partialProductSource) {
 
     if (entry.isFile() && !expectedImages.has(entry.name)) {
 
-      await rm(resolve(imageDirectory, entry.name), { force: true });
+      // Preserve previous image URLs already shared or referenced by retired pages.
+      // A transient download failure must never delete the last cached picture.
 
     }
 

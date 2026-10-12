@@ -83,12 +83,13 @@ try {
   assert.doesNotMatch(watch, /Relógio Digital Casio/);
   assert.doesNotMatch(fones, /Fone Gamer com Fio/);
   assert.match(router, /3 produtos comparados/);
-  assert.match(fones, /3 produtos comparados/);
-  assert.doesNotMatch(fones, /4 produtos comparados/);
-  assert.match(fones, /🏆 Maior pontuação da seleção/);
+  assert.match(fones, /Fones TWS e intra-auriculares/);
+  assert.match(fones, /Headphones e headsets/);
+  assert.doesNotMatch(fones, /produtos comparados|🏆 Maior pontuação da seleção/);
   assert.doesNotMatch(fones, /🏆 Melhor geral/);
-  assert.match(fones, /não um teste prático de qualidade/);
-  assert.match(fones, /<title>Melhores fones bluetooth custo-benefício de 2026 \| Ranking da Compra<\/title>/i);
+  assert.match(fones, /Não realizamos testes próprios/);
+  assert.doesNotMatch(fones, /R\$\s*(?:&nbsp;)?0,00/);
+  assert.match(fones, /<title>Fones de ouvido: TWS, headphones e abertos \| Ranking da Compra<\/title>/i);
   assert.match(watch, /<title>Melhores smartwatches custo-benefício de 2026 \| Ranking da Compra<\/title>/i);
   assert.match(router, /Maior pontuação de qualidade por real/);
   assert.match(house, /data-unranked-guide/);

@@ -64,5 +64,5 @@ test('workflow sinaliza consulta incompleta somente após preservar/publicar res
   assert.match(workflow,/steps\.resolver\.outputs\.incomplete == 'true'/);
   assert.ok(workflow.indexOf('Sinalizar dados não obtidos')>workflow.indexOf('git push origin HEAD:main'));
   const resolver=await readFile(new URL('./resolve-affiliate-links.mjs',import.meta.url),'utf8');
-  assert.match(resolver,/incomplete=\$\{summary\.failed > 0 \|\| !head\.readSucceeded\}/);
+  assert.match(resolver,/incomplete=\$\{summary\.failed > 0 \|\| !queueReadSucceeded\}/);
 });

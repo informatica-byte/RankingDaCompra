@@ -148,7 +148,7 @@
         <div class="card" id="ranking-mobile">
           <div class="etapa">Ranking inteligente semanal</div>
           <h2>🏆 Top 5 comparativo</h2>
-          <p>Escolha o produto ou categoria e o preço máximo. O painel usa os dados cadastrados, visualizações e cliques dos últimos sete dias para preparar cinco colocados.</p>
+          <p>Escolha o produto ou categoria e o preço máximo. O painel usa os dados cadastrados, visualizações e cliques dos últimos sete dias para preparar três a cinco produtos equivalentes.</p>
           <div class="ranking-mobile-note">Nada será exibido na vitrine antes de você conferir e aprovar.</div>
           <label>Pauta prioritária</label><select id="ranking-prioridade" class="campo"><option value="">Escolher pela procura da semana</option><option value="celular">Celulares</option><option value="notebook">Notebooks</option><option value="air-fryer">Air fryers</option><option value="patinete-eletrico">Patinetes elétricos</option><option value="smart-tv">Smart TVs</option><option value="fone-bluetooth">Fones Bluetooth</option><option value="smartwatch">Smartwatches</option></select>
           <div class="mini">A pauta preenche um filtro seguro e uma frase específica para os buscadores.</div>
@@ -168,7 +168,9 @@
       </section>
     </main>
     <script src="/price-publication.js?v=20261004-2"></script>
-    <script src="/assisted-price-safety.js?v=20261006-3"></script>
+    <script src="/assisted-price-safety.js?v=20261012-4"></script>
+    <script src="/flash-offer-safety.js?v=20261012-audit"></script>
+    <script src="/weekly-comparison-safety.js?v=20261012-audit"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
     <script type="module">
@@ -385,7 +387,7 @@
             if (botao) botao.disabled = true;
           }
         }
-        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.3.0 ou superior e recarregue esta página. Conferência simplificada: mesmo produto e preço principal visível.");
+        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.4.0 ou superior e recarregue esta página. Conferência simplificada: mesmo produto e preço principal visível.");
       }
 
       function guardarPosicaoFilaPrecos() {
@@ -740,12 +742,14 @@
         const alterou = !valorAnterior || Math.abs(valor - valorAnterior) >= 0.01;
         const confirmacaoId = crypto.randomUUID();
         const campos = {
+          precoConferenciaCampo: campo,
+          precoConferenciaValor: valor,
           precoAtualizadoManualmente: true,
           precoAtualizadoManualmenteEm: serverTimestamp(),
           precoConferenciaId: confirmacaoId,
         };
         if (opcoes.automatico) {
-          campos.precoConferidoPor = "robo_assistido_2.3.0";
+          campos.precoConferidoPor = "robo_assistido_2.4.0";
           campos.precoProvaVersao = opcoes.resultado.proofVersion;
           campos.precoProvaAnuncio = opcoes.resultado.offerKey;
           campos.precoConferenciaIAFonte = opcoes.resultado.fonteConsultada;
@@ -2004,7 +2008,7 @@
           const pos = i + 1,
             anterior = g[i - 1] || null,
             dif = media > 0 ? Math.round((Math.abs(x.valor - media) / media) * 100) : 0,
-            precoFato = x.valor <= media ? dif + "% abaixo da média dos cinco" : dif + "% acima da média dos cinco",
+            precoFato = x.valor <= media ? dif + "% abaixo da média da seleção" : dif + "% acima da média da seleção",
             notaFato = x.nota ? "nota informada de " + x.nota.toFixed(1).replace(".", ",") + "/5" : "sem nota disponível",
             demanda = x.cliques || x.visitas ? x.cliques + " clique(s) em Comprar e " + x.visitas + " visualização(ões) nos últimos 7 dias" : "ainda sem interação suficiente nos últimos 7 dias",
             vantagem = x.pros[0] || "ficha com os dados comparáveis disponíveis",
@@ -2064,8 +2068,9 @@
             };
           })
           .filter((x) => x.aceito);
-        if (candidatos.length < 5) throw Error("Encontrei somente " + candidatos.length + " produto(s) válido(s). Amplie o preço máximo ou use um termo mais geral.");
-        const produtos = rankingPontuar(rankingPontuar(candidatos).slice(0, 5)).map((x) => ({
+        const grupo = window.RDCWeeklyComparisonSafety?.groupCandidates(candidatos).find(g => g.family && g.products.length >= 3);
+        if (!grupo) throw Error('São necessários ao menos três produtos equivalentes. Ajuste o filtro; tipos diferentes não completam o ranking.');
+        const produtos = rankingPontuar(rankingPontuar(grupo.products).slice(0, 5)).map((x) => ({
           ...x,
           preco: x.valor,
           clicks: x.cliques,
@@ -2075,9 +2080,12 @@
           rotulo = String(termo || produtos[0].categoriaNome || "produtos").trim();
         return {
           versao: 2,
+          familiaComparavel: grupo.family,
+          assinaturaEditorial: window.RDCWeeklyComparisonSafety.signature(produtos),
+          comparabilidadeRevisada: true, revisadoEm: new Date().toISOString(),
           semana,
           validoAte: rankingValidoAte(semana),
-          titulo: String(tituloSeo || "").trim() || ("Top 5 " + rotulo + (teto > 0 ? " até R$ " + preco(teto) : "")),
+          titulo: String(tituloSeo || "").trim().replace(/\b5\b/, String(produtos.length)) || ("Top " + produtos.length + " " + grupo.label + (teto > 0 ? " até R$ " + preco(teto) : "")),
           termo: rotulo,
           precoMaximo: teto || 0,
           intencaoBusca: String(tituloSeo || "").trim(),
@@ -2092,7 +2100,7 @@
           analises = Array.isArray(resposta?.produtos) ? resposta.produtos : [],
           porId = new Map(analises.map((x) => [String(x?.id || ""), x])),
           proibido = /(nós testamos|testamos o produto|vendas comprovadas|o mais vendido|pesquisa em toda a internet|garante resultados)/i;
-        if (resumo.length < 120 || analises.length !== 5) throw Error("A IA não entregou a análise completa dos cinco produtos.");
+        if (resumo.length < 120 || analises.length !== r.produtos.length || new Set(analises.map(x=>String(x?.id||''))).size !== r.produtos.length) throw Error("A IA não entregou a análise completa de todos os produtos.");
         const produtos = r.produtos.map((p) => {
           const a = porId.get(String(p.id));
           if (!a) throw Error("A IA não analisou " + p.titulo + ".");
@@ -2142,7 +2150,7 @@
           paginaPublica: p.productUrl,
         }));
         const formato = '{"resumoGeral":"síntese de 250 a 550 caracteres","produtos":[{"id":"id recebido","veredito":"avaliação humana concreta","paraQuem":"perfil de comprador","comparacaoDireta":"diferença concreta para os concorrentes","limitePrincipal":"limitação real ou informação ausente"}]}';
-        const regras = `Você é a analista editorial brasileira do Ranking da Compra. Compare os cinco produtos de forma humana, clara e útil.
+        const regras = `Você é a analista editorial brasileira do Ranking da Compra. Compare os produtos da seleção de forma humana, clara e útil.
 
       Use SOMENTE os dados consolidados e as páginas públicas quando estiverem acessíveis. Não afirme testes físicos, vendas comprovadas ou pesquisa em toda a internet. Não invente garantia, durabilidade, reputação ou especificações. Diferencie a nota informada, a nota comparativa calculada e o interesse observado no próprio site. Preserve a ordem matemática. Para cada posição cite pelo menos duas diferenças concretas. Cada campo deve ter de 40 a 240 caracteres. Retorne os cinco IDs uma vez e somente JSON.
 
@@ -2274,7 +2282,7 @@
         const somenteRevisao = rankingCandidataMovel?.ranking === rankingDraftMovel;
         b.disabled = true;
         $("ranking-publicar").disabled = true;
-        msg("ranking-status", somenteRevisao ? "A IA está retomando somente a revisão dos cinco produtos..." : "A primeira IA está redigindo e a segunda está auditando os cinco produtos...");
+        msg("ranking-status", somenteRevisao ? "A IA está retomando somente a revisão dos produtos da seleção..." : "A primeira IA está redigindo e a segunda está auditando os produtos da seleção...");
         try {
           rankingDraftMovel = rankingAplicarIA(rankingDraftMovel, await rankingGerarIA(rankingDraftMovel));
           rankingCandidataMovel = null;

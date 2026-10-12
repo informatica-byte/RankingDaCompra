@@ -91,7 +91,6 @@
   "bestChoicesProductIds": [
     "48oRcQNlH00KgNLHkvsG",
     "ARscPKCMZs3D8k22qltl",
-    "chHtD78QqMtvwjDB3WCf",
     "GjHJtzdsIhbmSINvhPeX",
     "O6e0R2WtiZfyyf2MJe5Y",
     "UvxFn4gfaexb8TvcaT5e",
@@ -102,6 +101,187 @@
     "melhores-roteador.html",
     "melhores-relogio-smartwatch.html"
   ],
+  "weeklyComparison": {
+    "semana": "2026-09-28",
+    "validoAte": "2026-10-04",
+    "titulo": "Top 5 Brinquedos",
+    "termo": "Brinquedos",
+    "resumoIA": "Esta seleção reúne cinco brinquedos distintos, variando de modelos com controle remoto a livros infantis e blocos didáticos. O destaque em interesse e custo-benefício fica para o carrinho off-road e o box de livros. Em contrapartida, a escavadeira de controle remoto e o caminhão pista exigem investimentos maiores, posicionando-se acima da média de preço deste grupo.",
+    "publicado": true,
+    "precoMaximo": 0,
+    "produtos": [
+      {
+        "id": "q4XshIAfttQBQ9Bwz7uB",
+        "titulo": "Carrinho Controle Remoto Recarregável Grande Off Road Cross Azul",
+        "categoria": "brinquedos",
+        "categoriaNome": "Brinquedos",
+        "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_815455-MLA108426948268_032026-F.webp",
+        "productUrl": "https://rankingdacompra.com.br/produto/q4XshIAfttQBQ9Bwz7uB-20260810-1.html",
+        "motivo": "É o vencedor porque teve a melhor combinação de preço, avaliação, procura no site e qualidade das informações. Preço: 15% abaixo da média dos cinco. Avaliação: nota informada de 4,8/5. Interesse recente: 2 clique(s) em Comprar e 4 visualização(ões) em 7 dias. Destaque: Corpo fabricado em metal que oferece maior resistência a impactos em terrenos irregulares., Bateria recarregável integrada que proporciona autonomia de até 1 hora de operação contínua., Rodas revestidas em borracha que garantem aderência para superar obstáculos.. Atenção: A ficha técnica do produto não informa o tempo necessário para a recarga completa da bateria., Não há especificações sobre o alcance máximo do sinal do controle remoto nas informações fornecidas..",
+        "preco": 79.59,
+        "scoreTotal": 8.8,
+        "clicks": 2,
+        "views": 4,
+        "pros": [
+          "Corpo fabricado em metal que oferece maior resistência a impactos em terrenos irregulares., Bateria recarregável integrada que proporciona autonomia de até 1 hora de operação contínua., Rodas revestidas em borracha que garantem aderência para superar obstáculos."
+        ],
+        "cons": [
+          "A ficha técnica do produto não informa o tempo necessário para a recarga completa da bateria., Não há especificações sobre o alcance máximo do sinal do controle remoto nas informações fornecidas."
+        ],
+        "criterios": {
+          "custoBeneficio": 8.6,
+          "avaliacao": 9.6,
+          "interesse": 10,
+          "evidencia": 6.9
+        },
+        "analiseHumana": {
+          "veredito": "Carrinho off-road resistente construído em metal, com rodas de borracha e bateria integrada que rende até 1 hora de uso.",
+          "paraQuem": "Quem procura um veículo de controle remoto durável para enfrentar terrenos irregulares.",
+          "comparacaoDireta": "Custa R$ 79,59, sendo muito mais barato que o caminhão de R$ 122,14 e a escavadeira de R$ 165,90, além de ser o único do grupo com interesse máximo (nota 10).",
+          "limitePrincipal": "A ficha técnica omite o tempo necessário para a recarga completa da bateria e o alcance máximo do sinal do controle remoto."
+        }
+      },
+      {
+        "id": "yGygA3k1h886kEa7LOqh",
+        "titulo": "Coleção Primeira Biblioteca Volume 01 - Box com 10 Livrinhos - On Line Editora - Capa Dura",
+        "categoria": "brinquedos",
+        "categoriaNome": "Brinquedos",
+        "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_902757-MLA113308006485_062026-F.webp",
+        "productUrl": "https://rankingdacompra.com.br/produto/yGygA3k1h886kEa7LOqh-20260810-1.html",
+        "motivo": "Ficou em 2º porque perdeu pontos principalmente em interesse observado e terminou 0,1 ponto(s) atrás do produto anterior. Preço: 58% abaixo da média dos cinco. Avaliação: nota informada de 4,8/5. Interesse recente: 0 clique(s) em Comprar e 2 visualização(ões) em 7 dias. Destaque: Páginas e capa dura resistentes, ideais para mãozinhas de bebês., Ilustrações vibrantes que estimulam o desenvolvimento cognitivo e sensorial., Excelente desconto de 60% aplicado no preço promocional atual.. Atenção: A caixa organizadora do box não acompanha tampa., Tamanho compacto dos livrinhos pode não agradar quem busca volumes grandes..",
+        "preco": 39.6,
+        "scoreTotal": 8.7,
+        "clicks": 0,
+        "views": 2,
+        "pros": [
+          "Páginas e capa dura resistentes, ideais para mãozinhas de bebês., Ilustrações vibrantes que estimulam o desenvolvimento cognitivo e sensorial., Excelente desconto de 60% aplicado no preço promocional atual."
+        ],
+        "cons": [
+          "A caixa organizadora do box não acompanha tampa., Tamanho compacto dos livrinhos pode não agradar quem busca volumes grandes."
+        ],
+        "criterios": {
+          "custoBeneficio": 10,
+          "avaliacao": 9.6,
+          "interesse": 6,
+          "evidencia": 6.9
+        },
+        "analiseHumana": {
+          "veredito": "Um conjunto de 10 livrinhos de capa dura resistentes com ilustrações vibrantes e excelente desconto de 60% aplicado no preço atual.",
+          "paraQuem": "Responsáveis que buscam estimular o desenvolvimento cognitivo e sensorial de bebês com materiais duráveis.",
+          "comparacaoDireta": "É o item mais barato do ranking (R$ 39,60) e possui a pontuação máxima de custo-benefício (nota 10), superando todos os outros produtos nesse critério.",
+          "limitePrincipal": "A caixa organizadora inclusa não possui tampa e o tamanho compacto dos livros pode não agradar a quem prefere volumes maiores."
+        }
+      },
+      {
+        "id": "y8qOGP907Z3Bry3AI9cc",
+        "titulo": "Numberblocks Brinquedo Educativo Cubos Matemáticos Didáticos",
+        "categoria": "brinquedos",
+        "categoriaNome": "Brinquedos",
+        "foto": "https://http2.mlstatic.com/D_NQ_NP_674158-MLB89171902530_082025-O.webp",
+        "productUrl": "https://rankingdacompra.com.br/produto/y8qOGP907Z3Bry3AI9cc-20260810-1.html",
+        "motivo": "Ficou em 3º porque perdeu pontos principalmente em interesse observado e terminou 0,3 ponto(s) atrás do produto anterior. Preço: 37% abaixo da média dos cinco. Avaliação: nota informada de 4,8/5. Ainda há pouca interação no site para medir a procura. Destaque: Numberblocks Brinquedo Educativo Cubos Matemáticos Didáticos. Características confirmadas no anúncio: Versão do personagem: Numberblocks. Atenção: Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra..",
+        "preco": 59,
+        "scoreTotal": 8.4,
+        "clicks": 0,
+        "views": 0,
+        "pros": [
+          "Numberblocks Brinquedo Educativo Cubos Matemáticos Didáticos. Características confirmadas no anúncio: Versão do personagem: Numberblocks",
+          "Quantidade de peças: 100",
+          "Figura de Numberblocks incluída. O conjunto contém 100 peças de plástico. Recomendado a partir dos 3 anos.."
+        ],
+        "cons": [
+          "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra."
+        ],
+        "criterios": {
+          "custoBeneficio": 9.3,
+          "avaliacao": 9.6,
+          "interesse": 3,
+          "evidencia": 9.3
+        },
+        "analiseHumana": {
+          "veredito": "Brinquedo pedagógico composto por 100 cubos matemáticos de plástico e figura inclusa do personagem Numberblocks.",
+          "paraQuem": "Crianças a partir de 3 anos de idade que estejam desenvolvendo as primeiras noções matemáticas.",
+          "comparacaoDireta": "Com preço de R$ 59,00, é cerca de 37% mais barato que a média do grupo, custando mais que o box de livros (R$ 39,60), mas sendo bem mais acessível que o caminhão (R$ 122,14).",
+          "limitePrincipal": "Exige que o comprador consulte o anúncio para verificar medidas, vendedor, frete e estoque, pois tais detalhes não constam na ficha técnica."
+        }
+      },
+      {
+        "id": "qN6qOlF1Re6ltU5WRdaE",
+        "titulo": "Caminhão Dinossauro Pista Com 8 Carrinhos Maleta Transporte",
+        "categoria": "brinquedos",
+        "categoriaNome": "Brinquedos",
+        "foto": "https://http2.mlstatic.com/D_NQ_NP_972425-MLB116346469416_092026-O.webp",
+        "productUrl": "https://rankingdacompra.com.br/produto/qN6qOlF1Re6ltU5WRdaE-20260810-1.html",
+        "motivo": "Ficou em 4º porque perdeu pontos principalmente em custo-benefício e terminou 0,7 ponto(s) atrás do produto anterior. Preço: 31% acima da média dos cinco. Avaliação: nota informada de 4,8/5. Ainda há pouca interação no site para medir a procura. Destaque: Caminhão Dinossauro Pista Com 8 Carrinhos Maleta Transporte. Características confirmadas no anúncio: Marca: Genérica. Atenção: Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra..",
+        "preco": 122.14,
+        "scoreTotal": 7.7,
+        "clicks": 0,
+        "views": 0,
+        "pros": [
+          "Caminhão Dinossauro Pista Com 8 Carrinhos Maleta Transporte. Características confirmadas no anúncio: Marca: Genérica",
+          "Código do catálogo: MLBU3870021862",
+          "Condição informada: novo."
+        ],
+        "cons": [
+          "Confira medidas, variações, compatibilidade quando aplicável, vendedor, frete, prazo e estoque diretamente no anúncio antes da compra."
+        ],
+        "criterios": {
+          "custoBeneficio": 7.1,
+          "avaliacao": 9.6,
+          "interesse": 3,
+          "evidencia": 9.3
+        },
+        "analiseHumana": {
+          "veredito": "Um caminhão de marca genérica que funciona como pista de corrida, maleta de transporte e acompanha 8 carrinhos novos.",
+          "paraQuem": "Crianças interessadas em pistas temáticas de dinossauro que facilitem a organização e o transporte dos carrinhos.",
+          "comparacaoDireta": "Seu preço de R$ 122,14 é 31% superior à média do grupo, tornando-o significativamente mais caro do que o carrinho de controle remoto vencedor (R$ 79,59).",
+          "limitePrincipal": "O resumo não traz informações específicas sobre medidas, frete ou compatibilidade, sendo necessário checar o anúncio antes da compra."
+        }
+      },
+      {
+        "id": "NmI6KXBT8ibSc1r5Fwqy",
+        "titulo": "Brastoy Escavadeira De Controle Remoto Escala 1:20 Amarelo Brinquedo 2x Baterias-d342",
+        "categoria": "brinquedos",
+        "categoriaNome": "Brinquedos",
+        "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_786257-MLA106722499776_022026-F.webp",
+        "productUrl": "https://rankingdacompra.com.br/produto/NmI6KXBT8ibSc1r5Fwqy-20260810-1.html",
+        "motivo": "Ficou em 5º porque perdeu pontos principalmente em qualidade das evidências e terminou 0,3 ponto(s) atrás do produto anterior. Preço: 78% acima da média dos cinco. Avaliação: nota informada de 4,8/5. Interesse recente: 0 clique(s) em Comprar e 5 visualização(ões) em 7 dias. Destaque: Controle remoto de 2,4 GHz que evita interferências, Acompanha 2 baterias recarregáveis, Cabine com rotação de 680 graus para movimentos realistas. Atenção: Caçamba pode apresentar fragilidade ao pegar areia pesada, Pilhas do controle remoto não inclusas.",
+        "preco": 165.9,
+        "scoreTotal": 7.4,
+        "clicks": 0,
+        "views": 5,
+        "pros": [
+          "Controle remoto de 2,4 GHz que evita interferências, Acompanha 2 baterias recarregáveis, Cabine com rotação de 680 graus para movimentos realistas"
+        ],
+        "cons": [
+          "Caçamba pode apresentar fragilidade ao pegar areia pesada, Pilhas do controle remoto não inclusas"
+        ],
+        "criterios": {
+          "custoBeneficio": 5.5,
+          "avaliacao": 9.6,
+          "interesse": 7.9,
+          "evidencia": 6.9
+        },
+        "analiseHumana": {
+          "veredito": "Uma escavadeira com controle de 2.4 GHz livre de interferências, cabine com rotação de 680 graus e duas baterias recarregáveis inclusas.",
+          "paraQuem": "Quem prioriza movimentos realistas e maior tempo de uso em um brinquedo de controle remoto.",
+          "comparacaoDireta": "É o item mais caro deste comparativo (R$ 165,90, ou 78% acima da média), custando mais que o dobro do outro veículo de controle remoto do grupo (R$ 79,59).",
+          "limitePrincipal": "A caçamba pode apresentar fragilidade ao manusear areia pesada e as pilhas do controle remoto não estão inclusas."
+        }
+      }
+    ],
+    "analiseIA": {
+      "geradaEm": "2026-10-04T21:23:27.424Z",
+      "metodo": "gemini_gerador_e_gemini_revisor",
+      "fonte": "dados_consolidados"
+    },
+    "metodologia": {
+      "custoBeneficio": 35,
+      "avaliacao": 30,
+      "interesse": 15,
+      "evidencia": 20
+    }
+  },
   "schemaVersion": 2,
-  "generatedAt": "2026-10-12T18:09:13.893Z"
+  "generatedAt": "2026-10-12T18:26:16.534Z"
 }

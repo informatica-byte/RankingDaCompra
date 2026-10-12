@@ -429,7 +429,7 @@ async function requests(cursor = null) {
     return { items, cursor: nextCursor(documents), readSucceeded: true };
   } catch (error) {
     if (/HTTP 429|cota temporariamente esgotada/i.test(String(error?.message || error))) {
-      console.warn("Fila Firebase: cota temporariamente esgotada; execução encerrada sem alterar resultados.");
+      console.warn("Fila Firebase: cota temporariamente esgotada; esta parte da fila não pôde ser consultada. Resultados preservados.");
       return { items: [], cursor, readSucceeded: false };
     }
     throw error;
@@ -566,10 +566,15 @@ async function resolveRequest(request) {
   const saleId = request.link.match(/(?:item_id(?:%3A|:)|[?&#]wid=)(MLB-?\d{6,})/i)?.[1]?.replace("-", "").toUpperCase();
   const directId = request.link.match(/(?:\/|\b)(MLB-?\d{6,})(?:-|\/|\?|#|\b)/i)?.[1]?.replace("-", "").toUpperCase();
   const catalogId = request.link.match(/\/p\/(MLB\d{6,})/i)?.[1]?.toUpperCase() || "";
-  const htmlFound = candidates(html)[0] || fallback(html, request.link);
-  const found = saleId
-    ? { ...(htmlFound || {}), mlb: saleId, urlProduto: request.link, titulo: htmlFound?.titulo || "" }
-    : htmlFound || (directId ? { mlb: directId, urlProduto: request.link, titulo: "" } : null);
+  const explicitId = saleId || directId;
+  const htmlCandidates = candidates(html);
+  // Um carrossel/recomendação nunca pode substituir o código da URL solicitada.
+  // Sem código explícito, vários anúncios no HTML não comprovam qual é o produto.
+  const matchingCandidate = explicitId ? htmlCandidates.find(candidate => candidate.mlb === explicitId) : null;
+  const uniqueIds = new Set(htmlCandidates.map(candidate => candidate.mlb));
+  const found = explicitId
+    ? { ...(matchingCandidate || {}), mlb: explicitId, urlProduto: request.link, titulo: matchingCandidate?.titulo || "" }
+    : uniqueIds.size > 1 ? null : htmlCandidates[0] || fallback(html, request.link);
   if (!found) throw new LocalizerError(diagnostic);
   diagnostic.identified = true;
   let details;
@@ -604,6 +609,7 @@ payload.resultados ||= {};
 
 const priorQueueState = JSON.stringify(payload.queueState || null);
 const head = await requests();
+let queueReadSucceeded = head.readSucceeded;
 let queue = pendingRequests(head.items, payload.resultados, MAX_REQUEST_ATTEMPTS);
 // Duas consultas limitadas, no máximo 20 documentos por execução. A segunda
 // avança a paginação antiga mesmo quando os dez recentes já foram resolvidos.
@@ -611,6 +617,7 @@ if (head.readSucceeded) {
   const cursor = payload.queueState?.cursor || head.cursor;
   if (cursor) {
     const older = await requests(cursor);
+    queueReadSucceeded = queueReadSucceeded && older.readSucceeded;
     const backlog = pendingRequests(older.items, payload.resultados, MAX_REQUEST_ATTEMPTS);
     const candidates = [...backlog.slice(0, 5), ...queue.slice(0, 5), ...backlog.slice(5), ...queue.slice(5)];
     queue = [...new Map(candidates.map(request => [request.id, request])).values()].slice(0, 10);
@@ -642,9 +649,9 @@ if (queue.length || JSON.stringify(payload.queueState || null) !== priorQueueSta
 const summary = resolutionSummary(queue.map(request => request.id), payload.resultados, MAX_REQUEST_ATTEMPTS);
 console.log(`Localizador: ${summary.processed} processados; ${summary.succeeded} resolvidos; ${summary.failed} falhas nesta execução; ${summary.exhausted} pedidos com tentativas esgotadas no histórico.`);
 if (summary.failed) console.warn('::warning::Conferência parcial: dados indisponíveis no Mercado Livre. Os preços e cadastros existentes não foram alterados.');
-if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `failed_count=${summary.failed}\nincomplete=${summary.failed > 0 || !head.readSucceeded}\n`);
+if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `failed_count=${summary.failed}\nincomplete=${summary.failed > 0 || !queueReadSucceeded}\n`);
 if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY,
-  `## Resultado real do localizador\n\nProcessados: ${summary.processed}. Resolvidos: ${summary.succeeded}. Falhas nesta execução: ${summary.failed}. Pedidos com tentativas esgotadas no histórico: ${summary.exhausted}.\n\n${head.readSucceeded ? '' : 'A fila não pôde ser consultada; isto não confirma ausência de pedidos.\n\n'}Nenhum preço/cadastro foi alterado. Pedidos com três tentativas esgotadas precisam de revisão do link ou preenchimento manual no painel; não são repetidos indefinidamente.\n\n${diagnosticTable(queue, payload.resultados)}`);
+  `## Resultado real do localizador\n\nProcessados: ${summary.processed}. Resolvidos: ${summary.succeeded}. Falhas nesta execução: ${summary.failed}. Pedidos com tentativas esgotadas no histórico: ${summary.exhausted}.\n\n${queueReadSucceeded ? '' : 'A fila não pôde ser consultada por completo; isto não confirma ausência de pedidos.\n\n'}Nenhum preço/cadastro foi alterado. Pedidos com três tentativas esgotadas precisam de revisão do link ou preenchimento manual no painel; não são repetidos indefinidamente.\n\n${diagnosticTable(queue, payload.resultados)}`);
 
 
 

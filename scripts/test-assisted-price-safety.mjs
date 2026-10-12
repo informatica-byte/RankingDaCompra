@@ -48,7 +48,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.3.0');
+  assert.equal(result.robotVersion, '2.4.0');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -115,7 +115,7 @@ test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo 
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261006-3/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261012-4/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
@@ -228,4 +228,52 @@ test('dashboard mantém o link com searchVariation/attributes em vez de convert�
   for(const raw of [url,url+'&attributes=SIZE:MzQgQlI=', 'https://www.mercadolivre.com.br/fone/p/MLB57289720#wid=MLB5296312807']) {
     assert.equal(c.urlDiretaParaConferenciaIA({link:raw,mercadoLivreItemId:'MLB7685968580'},'a'),raw);
   }
+});
+
+test('identidade numérica bloqueia geração, polegadas e armazenamento contraditórios em ambos os validadores', () => {
+  const {context:c}=setup();
+  const cases=[
+    ['Monitor Samsung 24 Polegadas Full HD','Monitor Samsung 27 Polegadas Full HD'],
+    ['Monitor Samsung 24 Full HD','Monitor Samsung 27 Full HD'],
+    ['Smartphone Apple iPhone 14 128GB','Smartphone Apple iPhone 15 128GB'],
+    ['Smart TV LG 55" 4K','Smart TV LG 65" 4K'],
+    ['Notebook Asus Vivobook Go 15 Ryzen 5','Notebook Asus Vivobook Go 14 Ryzen 5'],
+    ['Tablet Lenovo 10ª Geração 128GB','Tablet Lenovo 11ª Geração 128GB'],
+    ['Notebook Dell 8GB SSD 256GB','Notebook Dell 8GB SSD 512GB'],
+    ['Smartphone Samsung Galaxy A55 128 GB','Smartphone Samsung Galaxy A55 256GB'],
+  ];
+  for(const [expected,found] of cases) {
+    assert.equal(c.matchingProduct(expected,found),false,expected+' / '+found);
+    assert.equal(c.RDCAssistedPriceSafety.matchingProduct(expected,found),false,expected+' / '+found);
+    const doc=page({foundTitle:found});
+    assert.equal(c.extractDocumentOffer(doc,expected,url).status,'loading');
+  }
+});
+
+test('descontos, prazos e ausência de informação continuam aceitos sem inventar variante', () => {
+  const {context:c}=setup();
+  const cases=[
+    ['Monitor Samsung 24 Polegadas Full HD','Monitor Samsung 24 inch Full HD'],
+    ['Monitor Samsung 24 Polegadas Full HD','Monitor Samsung Full HD'],
+    ['Monitor Samsung 24 Polegadas Full HD 10% desconto em 12x','Monitor Samsung 24 Polegadas Full HD 20% desconto em 6x'],
+    ['Monitor Samsung oferta 10% Full HD','Monitor Samsung oferta 20% Full HD'],
+    ['Smartphone Apple iPhone 14 128 GB 12 meses garantia','Smartphone Apple iPhone 14 128GB 6 meses garantia'],
+    ['Notebook Dell 8GB 256 SSD','Notebook Dell 8 GB SSD 256GB'],
+  ];
+  for(const [expected,found] of cases) {
+    assert.equal(c.matchingProduct(expected,found),true,expected+' / '+found);
+    assert.equal(c.RDCAssistedPriceSafety.matchingProduct(expected,found),true,expected+' / '+found);
+  }
+});
+
+test('prova completa de monitor com polegadas erradas não autoriza escrita, mesmo na mesma URL', async () => {
+  const expected='Monitor Samsung 24 Polegadas Full HD';
+  const {context:c,writes,setCommand}=setup(page({foundTitle:expected}));
+  const command={requestId:'monitor',produtoId:'a',titulo:expected,url,createdAt:Date.now()};
+  setCommand(command);await c.publishCurrentPageResult(command);
+  assert.equal(c.RDCAssistedPriceSafety.validate(writes[0],{produtoId:'a',url,titulo:expected}), '');
+  assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],tituloEncontrado:'Monitor Samsung 27 Polegadas Full HD'},
+    {produtoId:'a',url,titulo:expected}),/título não confirma/);
+  assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],robotVersion:'2.3.0'},
+    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.0/);
 });

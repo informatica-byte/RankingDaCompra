@@ -18,6 +18,7 @@
     configCache: { savedAt: 0, published: null, overrides: {} },
     decorated: new WeakSet(),
     videoCatalog: null,
+    videoAliasPromises: new Map(),
     youtubeApiPromise: null
   };
 
@@ -1033,7 +1034,7 @@
   function rankingProductUrl(value) {
     try {
       const url = new URL(String(value || "").trim(), SITE);
-      if (url.protocol !== "https:" || url.origin !== SITE || !/^\/produto\/[A-Za-z0-9_-]+-\d{8}-\d+\.html$/i.test(url.pathname)) return "";
+      if (url.protocol !== "https:" || url.origin !== SITE || !/^\/produto\/[A-Za-z0-9_-]+\.html$/i.test(url.pathname)) return "";
       return `${SITE}${url.pathname}`;
     } catch { return ""; }
   }
@@ -1076,6 +1077,38 @@
       productUrl: String(row.querySelector("[data-product-url]")?.value || "").trim(),
       row
     })).filter(item => item.youtubeUrl || item.productUrl);
+  }
+
+  function verifiedVideoAlias(html, sourceUrl, catalog) {
+    if (!rankingProductUrl(sourceUrl) || !/An[aá]lise atualizada\s*\|/i.test(String(html))) return null;
+    if (!/<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) return null;
+    const canonical = String(html).match(/<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)/i)?.[1] || "";
+    const refresh = String(html).match(/<meta\b[^>]*http-equiv=["']refresh["'][^>]*content=["']([^"']+)/i)?.[1] || "";
+    const target = refresh.match(/^\s*0\s*;\s*url=(.+)$/i)?.[1] || "";
+    const normalized = rankingProductUrl(canonical);
+    if (!normalized || rankingProductUrl(target) !== normalized) return null;
+    return catalog.get(normalized) || null;
+  }
+
+  async function youtubeProductForUrl(value, catalog) {
+    const url = rankingProductUrl(value);
+    if (!url) return null;
+    if (catalog.has(url)) return catalog.get(url);
+    const id = new URL(url).pathname.match(/^\/produto\/([A-Za-z0-9]+)(?:-\d{8}-\d+)?\.html$/)?.[1];
+    const sameProduct = [...catalog.values()].find(product => id && String(product.id) === id);
+    if (sameProduct) { catalog.set(url, sameProduct); return sameProduct; }
+    if (!state.videoAliasPromises.has(url)) {
+      state.videoAliasPromises.set(url, (async () => {
+        try {
+          const response = await fetch(url, { cache: "force-cache" });
+          if (!response.ok) return null;
+          const product = verifiedVideoAlias(await response.text(), url, catalog);
+          if (product) catalog.set(url, product);
+          return product;
+        } catch { return null; }
+      })());
+    }
+    return state.videoAliasPromises.get(url);
   }
 
   async function youtubeProductCatalog() {
@@ -1184,16 +1217,21 @@
     section.querySelector('iframe').src = playerUrl;
     const catalog = await youtubeProductCatalog();
     const byVideoId = new Map(items.map(item => [item.videoId, item]));
-    const updateProductOverlay = videoId => {
+    let overlayRequest = 0;
+    const updateProductOverlay = async videoId => {
+      const request = ++overlayRequest;
       const item = byVideoId.get(String(videoId || "")) || items[0];
       currentYoutube.href = item.youtubeUrl;
-      const product = item.productUrl ? catalog.get(item.productUrl) : null;
+      overlay.hidden = true;
+      overlay.removeAttribute("href");
+      const product = item.productUrl ? await youtubeProductForUrl(item.productUrl, catalog) : null;
+      if (request !== overlayRequest || !section.isConnected) return;
       if (!product) {
         overlay.hidden = true;
         overlay.removeAttribute("href");
         return;
       }
-      overlay.href = item.productUrl;
+      overlay.href = rankingProductUrl(product.url);
       overlay.querySelector("img").src = String(product.image || "");
       overlay.querySelector("img").alt = String(product.title || "Produto em destaque");
       overlay.querySelector("strong").textContent = repairPortugueseText(product.title || "Ver produto no Ranking da Compra");
@@ -1336,7 +1374,7 @@
           <div class="seasonal-admin-actions"><button id="gift-guide-ai" type="button">Sugerir títulos com IA</button><button id="gift-guide-save" type="button">Salvar título do guia</button><a id="gift-guide-open" href="/presentes/" target="_blank" rel="noopener noreferrer">Abrir guia</a></div>
           <div class="promotion-ai-results" id="gift-guide-suggestions"></div>
           <p class="seasonal-status" id="gift-guide-status" role="status" aria-live="polite"></p>
-          <p class="seasonal-admin-help">Depois de salvar, use <a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer">Criar páginas agora</a> para publicar a mudança. O título só incluirá uma faixa de preço quando houver ao menos cinco produtos conferidos dentro dela.</p>
+          <p class="seasonal-admin-help">Depois de salvar, use <a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer">Criar páginas agora</a> para publicar a mudança. O título só incluirá uma faixa de preço quando houver ao menos produtos da seleção conferidos dentro dela.</p>
         </div>
       </div>`;
     const anchor = logout?.closest("section,div") || document.querySelector("main") || document.body;
@@ -1816,7 +1854,7 @@
     const previous = context.previous;
     const difference = average > 0 ? Math.round(Math.abs(price - average) / average * 100) : 0;
     const priceFact = price > 0 && average > 0
-      ? (price <= average ? difference + "% abaixo da média dos cinco" : difference + "% acima da média dos cinco")
+      ? (price <= average ? difference + "% abaixo da média da seleção" : difference + "% acima da média da seleção")
       : "preço ainda sujeito a confirmação";
     const ratingFact = item.nota > 0 ? "nota informada de " + item.nota.toFixed(1).replace(".", ",") + "/5" : "sem nota disponível";
     const demandFact = item.clicks || item.views
@@ -1879,7 +1917,7 @@
   function weeklyApplyAIAnalysis(draft, result) {
     const summary = repairPortugueseText(String(result?.resumoGeral || "")).replace(/\s+/g, " ").trim();
     const analyses = Array.isArray(result?.produtos) ? result.produtos : [];
-    if (summary.length < 120 || analyses.length !== 5) throw new Error("A IA não entregou uma análise completa dos cinco produtos.");
+    if (summary.length < 120 || analyses.length !== draft.produtos.length || new Set(analyses.map(item=>String(item?.id||''))).size !== draft.produtos.length) throw new Error("A IA não entregou uma análise completa de todos os produtos.");
     const byId = new Map(analyses.map(item => [String(item?.id || ""), item]));
     const forbidden = /(nós testamos|testamos o produto|vendas comprovadas|o mais vendido|pesquisa em toda a internet|garante resultados)/i;
     const products = draft.produtos.map(product => {
@@ -1964,6 +2002,7 @@
   }
 
   async function loadWeeklyComparison() {
+    if (/^\/(?:index\.html)?$/.test(location.pathname)) return state.config.weeklyComparison || null;
     try {
       const database = typeof db !== "undefined" ? db : await metricsDb();
       const snapshot = await database.collection(CONFIG_COLLECTION).doc(WEEKLY_COMPARISON_DOC).get();
@@ -1974,11 +2013,23 @@
     }
   }
 
-  function renderWeeklyComparison(config) {
+  async function renderWeeklyComparison(config) {
     document.querySelector("[data-weekly-comparison]")?.remove();
     const storedProducts = Array.isArray(config?.produtos) ? config.produtos.slice(0, 5) : [];
-    if (config?.publicado !== true || storedProducts.length !== 5 || !/^\/(?:index\.html)?$/.test(location.pathname)) return;
-    const products = weeklyScoreProducts(storedProducts);
+    if (config?.publicado !== true || !storedProducts.length || !/^\/(?:index\.html)?$/.test(location.pathname)) return;
+    let index;
+    try {index = window.RDCPublicData ? await window.RDCPublicData.json('/search-index.json') : await (await fetch('/search-index.json', {cache:'no-cache'})).json();} catch {return;}
+    const reconciled = window.RDCWeeklyComparisonSafety?.reconcile(config, index);
+    if (!reconciled || !reconciled.products.length) return;
+    if (reconciled.needsReview) {
+      const section = document.createElement('section');
+      section.className = 'weekly-comparison'; section.id = 'ranking-da-semana'; section.dataset.weeklyComparison = 'em-revisao';
+      section.innerHTML = '<div class="weekly-comparison-head"><div><small>SELEÇÃO EM REVISÃO EDITORIAL</small><h2>Opções para conhecer — sem classificação</h2><p>A seleção anterior precisa de nova revisão. Produtos de propostas diferentes não disputam o mesmo ranking. Confira as análises e o preço no vendedor.</p></div></div><div class="weekly-ranking-grid">'
+        + reconciled.products.map(p => '<article class="weekly-ranking-card"><img loading="lazy" src="' + escapeHtml(p.foto) + '" alt="' + escapeHtml(p.titulo) + '"><h3>' + escapeHtml(p.titulo) + '</h3><strong>' + escapeHtml((p.precoConfirmado ? 'Preço conferido: ' : 'Último preço registrado: ') + (p.preco > 0 ? brl.format(p.preco) : 'a confirmar')) + '</strong><p>' + escapeHtml(p.precoConferidoEm ? 'Conferência: ' + dateBr.format(new Date(p.precoConferidoEm)) : 'Aguardando conferência') + '</p><a href="' + escapeHtml(p.productUrl) + '">Ver análise e conferir preço</a></article>').join('') + '</div>';
+      (document.getElementById('top5-semanal') || document.querySelector('main'))?.insertAdjacentElement('afterend', section);
+      return;
+    }
+    const products = weeklyScoreProducts(reconciled.products);
     const highlights = weeklyHighlights(products);
     const section = document.createElement("section");
     section.className = "weekly-comparison";
@@ -1987,22 +2038,22 @@
     const aiSummary = String(config.resumoIA || "").trim();
     const sourceLinks = products.map(item => '<a href="' + escapeHtml(item.productUrl) + '">' + escapeHtml(item.position + "º: " + item.titulo) + "</a>").join(" · ");
     const recordedPrices = products.map(item => numberPrice(item.preco)).filter(price => price > 0);
-    const subtitle = recordedPrices.length === 5
+    const subtitle = recordedPrices.length === products.length
       ? "Preços registrados nesta seleção: de " + brl.format(Math.min(...recordedPrices))
         + " a " + brl.format(Math.max(...recordedPrices)) + "."
-      : "Cinco opções da mesma categoria comparadas lado a lado.";
+      : "Opções do mesmo tipo comparadas lado a lado.";
     const quickPicks = '<div class="weekly-quick-picks" aria-label="Destaques rápidos do comparativo">'
       + highlights.map(highlight => '<a href="' + escapeHtml(highlight.item.productUrl) + '"><span>' + highlight.icon + '</span><div><small>'
         + escapeHtml(highlight.label) + '</small><b>' + escapeHtml(highlight.item.titulo) + '</b><em>' + escapeHtml(highlight.detail) + '</em></div></a>').join("")
       + '</div>';
-    section.innerHTML = '<div class="weekly-comparison-head"><div><small>COMPARATIVO EDITORIAL ATUALIZADO SEMANALMENTE</small>'
+    section.innerHTML = '<div class="weekly-comparison-head"><div><small>COMPARATIVO EDITORIAL · SEMANA DE ' + escapeHtml(config.semana) + '</small>'
       + '<h2>🏆 ' + escapeHtml(config.titulo || "Ranking da Semana") + '</h2>'
       + '<p>' + escapeHtml(subtitle) + ' Confira preço, frete e estoque antes da compra.</p></div>'
       + '<a href="/como-avaliamos.html">Como classificamos</a></div>'
       + quickPicks
       + (aiSummary ? '<details class="weekly-ai-summary"><summary>Resumo da análise editorial</summary><p>' + escapeHtml(aiSummary) + '</p></details>' : "")
       + '<div class="weekly-ranking-grid">' + products.map(item => weeklyRankingCard(item, highlights)).join("") + '</div>'
-      + (aiSummary ? '<p class="weekly-ranking-sources"><b>Fontes consolidadas:</b> fichas públicas dos cinco produtos — ' + sourceLinks + '. Pesquisa gerada em ' + escapeHtml(dateBr.format(new Date(config.analiseIA?.geradaEm || Date.now()))) + '.</p>' : "")
+      + (aiSummary ? '<p class="weekly-ranking-sources"><b>Fontes consolidadas:</b> fichas públicas dos produtos da seleção — ' + sourceLinks + '. Pesquisa gerada em ' + escapeHtml(dateBr.format(new Date(config.analiseIA?.geradaEm || Date.now()))) + '.</p>' : "")
       + '<p class="weekly-ranking-method"><b>Metodologia:</b> nota de 0 a 10 calculada com custo-benefício (35%), avaliação informada (30%), interesse observado nos últimos 7 dias (15%) e qualidade das evidências cadastradas (20%). Preço, frete, estoque e avaliações podem mudar; confira o anúncio antes da compra. A aprovação final é sempre feita pelo administrador.</p>';
     const anchor = document.getElementById("top5-semanal") || document.querySelector("#promocoes") || document.querySelector("main");
     if (anchor?.parentNode) anchor.insertAdjacentElement(anchor.matches("main") ? "afterbegin" : "afterend", section);
@@ -2096,13 +2147,16 @@
         clicks: signals.clicks, views: signals.views, match, withinBudget
       };
     }).filter(item => item.match && item.withinBudget);
-    if (candidates.length < 5) throw new Error("Encontrei somente " + candidates.length + " produto(s) válido(s) nesse filtro. Amplie o preço máximo ou use um termo mais geral.");
-    const selected = weeklyScoreProducts(candidates).slice(0, 5);
+    const group = window.RDCWeeklyComparisonSafety?.groupCandidates(candidates).find(g => g.family && g.products.length >= 3);
+    if (!group) throw new Error('São necessários ao menos três produtos equivalentes. Ajuste o filtro; não misturamos tipos diferentes para completar cinco.');
+    const selected = weeklyScoreProducts(group.products).slice(0, 5);
     const finalSelection = weeklyScoreProducts(selected);
     const label = query || finalSelection[0].categoriaNome || "produtos";
     return {
       versao: 2, semana: weeklyMondayKey(), validoAte: weeklyValidUntil(weeklyMondayKey()),
-      titulo: String(seoTitle || "").trim() || ("Top 5 " + String(label).trim() + (maxPrice > 0 ? " até " + brl.format(maxPrice) : "")),
+      titulo: String(seoTitle || "").trim().replace(/\b5\b/, String(finalSelection.length)) || ("Top " + finalSelection.length + " " + group.label + (maxPrice > 0 ? " até " + brl.format(maxPrice) : "")),
+      familiaComparavel: group.family, assinaturaEditorial: window.RDCWeeklyComparisonSafety.signature(finalSelection),
+      comparabilidadeRevisada: true, revisadoEm: new Date().toISOString(),
       termo: String(query || "").trim(), precoMaximo: maxPrice || 0, produtos: finalSelection,
       intencaoBusca: String(seoTitle || "").trim(),
       metodologia: { custoBeneficio: 35, avaliacao: 30, interesse: 15, evidencia: 20 }
@@ -2112,7 +2166,7 @@
   function weeklyDraftMarkup(draft) {
     const aiIntro = draft.resumoIA ? '<div class="weekly-admin-ai"><b>🤖 Visão geral auditada</b><p>' + escapeHtml(draft.resumoIA) + '</p></div>' : "";
     return '<div class="weekly-admin-draft"><h3>' + escapeHtml(draft.titulo) + '</h3><p>Semana de '
-      + escapeHtml(dateBr.format(new Date(draft.semana + "T12:00:00-03:00"))) + ' · revise os cinco colocados antes de publicar.</p>'
+      + escapeHtml(dateBr.format(new Date(draft.semana + "T12:00:00-03:00"))) + ' · revise os três a cinco produtos equivalentes antes de publicar.</p>'
       + aiIntro + '<ol>' + draft.produtos.map(item => {
         const human = item.analiseHumana;
         return '<li><strong>' + escapeHtml(item.position + "º — " + item.titulo)
@@ -2128,7 +2182,7 @@
     section.className = "weekly-ranking-admin";
     section.id = "weekly-ranking-admin";
     section.innerHTML = '<h2>🏆 Ranking comparativo da semana</h2>'
-      + '<p>Escolha um produto ou categoria e o preço máximo. O sistema usa procura, cliques e dados cadastrados para ordenar cinco opções. Nada vai para a vitrine sem sua aprovação.</p>'
+      + '<p>Escolha um produto ou categoria e o preço máximo. O sistema usa procura, cliques e dados cadastrados para ordenar três a cinco opções equivalentes. Nada vai para a vitrine sem sua aprovação.</p>'
       + '<div class="weekly-seo-priority" style="margin:12px 0;padding:13px;border:1px solid #b9dcca;border-radius:11px;background:#f2faf6"><b>🎯 Prioridade de conteúdo</b><p>Comece por uma intenção específica de quem está perto de comprar. O termo filtra os produtos; o título é escrito para a busca.</p><div id="weekly-seo-chips" style="display:flex;gap:7px;flex-wrap:wrap"></div></div>'
       + '<div class="weekly-admin-grid"><div><label for="weekly-ranking-query">Produto ou categoria (filtro)</label>'
       + '<input id="weekly-ranking-query" type="text" placeholder="Ex.: celular, patinete, air fryer"></div>'
@@ -2219,7 +2273,7 @@
       const button = event.currentTarget;
       button.disabled = true;
       publish.disabled = true;
-      status.textContent = "A primeira IA está redigindo e a segunda está auditando os cinco produtos...";
+      status.textContent = "A primeira IA está redigindo e a segunda está auditando os produtos da seleção...";
       try {
         if (typeof window.gerarAnaliseRankingIA !== "function") throw new Error("A IA editorial ainda não terminou de carregar. Aguarde alguns segundos.");
         const result = await window.gerarAnaliseRankingIA(weeklyRankingDraft);
@@ -2245,7 +2299,7 @@
           ...weeklyRankingDraft, publicado: true,
           atualizadoEm: window.firebase.firestore.FieldValue.serverTimestamp()
         });
-        status.textContent = "✓ Ranking aprovado e publicado. A vitrine já pode exibir os cinco colocados.";
+        status.textContent = "✓ Comparativo aprovado e salvo. Publique a vitrine para atualizar os produtos selecionados no site.";
         cachedData = null;
       } catch (error) {
         status.textContent = "Não foi possível publicar: " + error.message + " A versão anterior foi preservada.";
