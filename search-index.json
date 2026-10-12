@@ -3007,7 +3007,7 @@
     {
       "id": "2e2m7sDdRyGHq1Tzj8ra",
       "title": "Roteador Wi-fi Tp-Link TL- Wr840 N Wireless 300Mbps",
-      "summary": "O roteador TP-Link TL-WR840N opera em 2.4 GHz com 300Mbps de velocidade, sendo ideal para residências e pequenas empresas. Conta com duas antenas externas, portas LAN/WAN integradas, firewall de segurança e facilidade de configuração para otimizar o sinal Wi-Fi.",
+      "summary": "Opção básica para navegação e aparelhos de 2,4 GHz. Tem quatro portas LAN de 100 Mbps; não aproveita integralmente planos acima disso. Os 300 Mbps são taxa nominal do Wi-Fi, não velocidade garantida da internet. Comparação de ficha do fabricante, sem testes próprios. Confirme a revisão de hardware no anúncio.",
       "category": "Roteador",
       "image": "https://rankingdacompra.com.br/produto/imagens/2e2m7sDdRyGHq1Tzj8ra-a948fba8eef0.jpg?v=20260810-1",
       "price": 109,
@@ -3026,14 +3026,14 @@
           },
           {
             "label": "Banda de 5 GHz",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
+            "value": "Não possui, segundo a ficha",
+            "state": "no",
             "basis": "cadastro"
           },
           {
             "label": "Portas Gigabit",
-            "value": "Não possui, segundo a ficha",
-            "state": "no",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
             "basis": "cadastro"
           },
           {
@@ -4539,7 +4539,7 @@
     {
       "id": "AweCTxq7vwVQ7VmN4IIg",
       "title": "Roteador Mercusys Mr80x V4 Ax3000 Dual Band Wifi6",
-      "summary": "Roteador Mercusys Mr80x V4 Ax3000 Dual Band Wifi6: Tecnologia Wi-Fi 6 de alta performance, operação em banda dupla para melhor alcance. Pontos de atenção registrados: Configuração que exige atenção às diretrizes do fabricante, necessidade de verificar a compatibilidade dos dispositivos clientes.",
+      "summary": "Modelo V4 dual band AX3000 com portas Gigabit e canais de 160 MHz. As taxas nominais são 2402 Mbps em 5 GHz e 574 Mbps em 2,4 GHz. Interessante para dispositivos Wi-Fi 6 compatíveis; não significa internet de 3 Gbps. A WAN é Gigabit. Comparação de ficha oficial, sem testes próprios de cobertura ou estabilidade.",
       "category": "Roteador",
       "image": "https://rankingdacompra.com.br/produto/imagens/AweCTxq7vwVQ7VmN4IIg-2fd1ed9ee3e8.jpg?v=20260810-1",
       "price": 198.75,
@@ -4576,8 +4576,8 @@
           },
           {
             "label": "Rede Mesh",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
+            "value": "Informado",
+            "state": "yes",
             "basis": "cadastro"
           }
         ]

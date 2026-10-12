@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-12T19:06:46.767Z",
+  "generatedAt": "2026-10-12T23:07:14.063Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -369,7 +369,7 @@
     {
       "id": "2e2m7sDdRyGHq1Tzj8ra",
       "titulo": "Roteador Wi-fi Tp-Link TL- Wr840 N Wireless 300Mbps",
-      "comentario": "O roteador TP-Link TL-WR840N opera em 2.4 GHz com 300Mbps de velocidade, sendo ideal para residências e pequenas empresas. Conta com duas antenas externas, portas LAN/WAN integradas, firewall de segurança e facilidade de configuração para otimizar o sinal Wi-Fi.",
+      "comentario": "Opção básica para navegação e aparelhos de 2,4 GHz. Tem quatro portas LAN de 100 Mbps; não aproveita integralmente planos acima disso. Os 300 Mbps são taxa nominal do Wi-Fi, não velocidade garantida da internet. Comparação de ficha do fabricante, sem testes próprios. Confirme a revisão de hardware no anúncio.",
       "categoria": "roteador",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_834911-MLA113520035601_062026-F.webp",
       "preco": "109,00",
@@ -1727,12 +1727,18 @@
     {
       "id": "AweCTxq7vwVQ7VmN4IIg",
       "titulo": "Roteador Mercusys Mr80x V4 Ax3000 Dual Band Wifi6",
-      "comentario": "Roteador Mercusys Mr80x V4 Ax3000 Dual Band Wifi6: Tecnologia Wi-Fi 6 de alta performance, operação em banda dupla para melhor alcance. Pontos de atenção registrados: Configuração que exige atenção às diretrizes do fabricante, necessidade de verificar a compatibilidade dos dispositivos clientes.",
+      "comentario": "Modelo V4 dual band AX3000 com portas Gigabit e canais de 160 MHz. As taxas nominais são 2402 Mbps em 5 GHz e 574 Mbps em 2,4 GHz. Interessante para dispositivos Wi-Fi 6 compatíveis; não significa internet de 3 Gbps. A WAN é Gigabit. Comparação de ficha oficial, sem testes próprios de cobertura ou estabilidade.",
       "categoria": "roteador",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_682515-MLA106922089707_022026-F.webp",
       "preco": "198,75",
+      "precoAnterior": "",
+      "precoPromocional": "",
       "nota": "",
       "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "",
+      "ofertaRelampagoAtiva": false,
+      "ofertaRelampagoTerminaEm": "",
       "precoAtualizadoManualmente": true,
       "precoAtualizadoManualmenteEm": "2026-10-12T11:30:15.185Z",
       "precoConferenciaId": "0d1dad5e-e438-4c41-83f3-13356eba7918",
