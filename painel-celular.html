@@ -170,7 +170,7 @@
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261012-4"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
-    <script src="/weekly-comparison-safety.js?v=20261012-audit"></script>
+    <script src="/weekly-comparison-safety.js?v=20261012-audit-2"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
     <script type="module">
@@ -1975,8 +1975,8 @@
           nota: numero(x.nota ?? x.rating),
           cliques: Number(x.cliques ?? x.clicks) || 0,
           visitas: Number(x.visitas ?? x.views) || 0,
-          pros: rankingLista(x.pros),
-          cons: rankingLista(x.cons),
+          pros: window.RDCWeeklyComparisonSafety.specificEvidence(rankingLista(x.pros), x.titulo),
+          cons: window.RDCWeeklyComparisonSafety.specificEvidence(rankingLista(x.cons), x.titulo),
         }));
         const precos = normal.map((x) => x.valor).filter((x) => x > 0),
           menor = Math.min(...precos),
@@ -1989,8 +1989,8 @@
               custo = x.valor > 0 ? (faixa > 0 ? 100 - ((x.valor - menor) / faixa) * 45 : 100) : 0,
               avaliacao = x.nota > 0 ? rankingLimite((x.nota / 5) * 100) : 55,
               bruto = x.cliques * 4 + x.visitas,
-              interesse = demandaMax > 0 ? 30 + (Math.log1p(bruto) / Math.log1p(demandaMax)) * 70 : 60,
-              evidencia = rankingLimite(35 + x.pros.length * 12 + x.cons.length * 10 + (x.nota > 0 ? 12 : 0)),
+              interesse = window.RDCWeeklyComparisonSafety.demandScore(x.cliques, x.visitas, demandaMax),
+              evidencia = rankingLimite(x.pros.length * 12 + x.cons.length * 10),
               total = custo * 0.35 + avaliacao * 0.3 + interesse * 0.15 + evidencia * 0.2;
             return {
               ...x,

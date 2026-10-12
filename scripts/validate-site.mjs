@@ -37,7 +37,7 @@ has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato aus
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
 has(homeHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente da vitrine", "index.html");
 // A revisão visual preserva App Check e o protocolo dos contadores da versão anterior.
-has(homeHtml, /growth-tools\.js\?v=20261012-audit(?=$|["'&<>\s])/, "versão conhecida das ferramentas da vitrine ausente", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20261012-audit-2(?=$|["'&<>\s])/, "versão conhecida das ferramentas da vitrine ausente", "index.html");
 has(homeHtml, /class="hero-search"[\s\S]{0,300}name="busca"/, "busca principal visível ausente da primeira tela", "index.html");
 has(homeHtml, /<a\b[^>]*href=["']\/?analises\.html["'][^>]*>(?:Ver todos os comparativos|Ver guias de compra)<\/a>/, "atalho principal para comparativos ausente", "index.html");
 has(homeHtml, /name="robots" content="index,follow,max-image-preview:large"/, "prévia de imagem grande ausente da página inicial", "index.html");
@@ -67,7 +67,7 @@ has(growthTools, /function persistConfigCache\(value\)/, "cache compartilhado da
 has(growthTools, /function updateCachedConfig\(partial\)/, "alterações administrativas não atualizam o cache público", "growth-tools.js");
 has(growthTools, /updateCachedConfig\(settings\)/, "título SEO salvo não fica disponível imediatamente na vitrine", "growth-tools.js");
 has(growthTools, /ranking-da-compra-config-publica-v2/, "versão antiga do cache pode esconder o título SEO recém-salvo", "growth-tools.js");
-has(homeHtml, /growth-tools\.js\?v=20261012-audit(?=$|["'&<>\s])/, "versão conhecida das ferramentas de configuração ausente", "index.html");
+has(homeHtml, /growth-tools\.js\?v=20261012-audit-2(?=$|["'&<>\s])/, "versão conhecida das ferramentas de configuração ausente", "index.html");
 const siteConfig = JSON.parse(await readFile(resolve("site-config.json"), "utf8"));
 const videoStudioHtml = await readFile(resolve("estudio-videos.html"), "utf8");
 const videoStudioJs = await readFile(resolve("ranki-video-studio.js"), "utf8");
@@ -279,7 +279,7 @@ has(dashboardHtml, /eventosPorId=new Map\(\)/, "dashboard não protege a consoli
 has(mobilePanelHtml, /function rankingMetricasUnicas\(metricas\)/, "painel móvel não consolida métricas novas e legadas", "painel-celular.html");
 has(dashboardHtml, /data-central-foco-ranking/, "atalho da categoria em evidência para o ranking ausente", "dashboard.html");
 has(dashboardHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente do painel", "dashboard.html");
-has(dashboardHtml, /growth-tools\.js\?v=20261012-audit(?=$|["'&<>\s])/, "versão conhecida e compatível das ferramentas do painel ausente", "dashboard.html");
+has(dashboardHtml, /growth-tools\.js\?v=20261012-audit-2(?=$|["'&<>\s])/, "versão conhecida e compatível das ferramentas do painel ausente", "dashboard.html");
 has(dashboardHtml, /Conferir todos os preços agora/, "botão da conferência manual ausente", "dashboard.html");
 has(dashboardHtml, /Nenhuma conferência começa sozinha/, "proteção contra conferência automática ausente", "dashboard.html");
 if (/onclick="iniciarConferenciaPrecosIAEmLote\(\)"/.test(dashboardHtml)) {
@@ -306,7 +306,7 @@ if (rankiImage.length < 10000 || rankiImage[0] !== 0x89 || rankiImage.toString("
 has(sitemapGenerator, /Custo-benefício editorial:/, "explicação da avaliação editorial ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /overlap < 0\.8/, "filtro contra pontos copiados do título ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO ausente das novas páginas", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20261012-audit"><\/script>/, "versão conhecida do corretor editorial ausente das novas páginas de produto", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /<script defer src="\/growth-tools\.js\?v=20261012-audit-2"><\/script>/, "versão conhecida do corretor editorial ausente das novas páginas de produto", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /id="mobile-affiliate-offer"/, "botão de compra fixo no celular ausente", "scripts/generate-sitemap.mjs");
 if (!hasBuyerFirstMobileOrder(sitemapGenerator)) fail("scripts/generate-sitemap.mjs: título, foto, resumo e oferta perderam a sequência móvel de decisão");
 has(sitemapGenerator, /contentType === "image\/webp" \? "webp"/, "imagens WebP do catálogo ainda podem bloquear a publicação", "scripts/generate-sitemap.mjs");

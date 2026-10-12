@@ -57,6 +57,21 @@
     }
     return [...groups.values()].sort((a, b) => b.products.length - a.products.length || a.label.localeCompare(b.label, 'pt-BR'));
   }
+  function specificEvidence(values, title = '') {
+    const list = (Array.isArray(values) ? values : [values]).flatMap(value => String(value || '').split(/\n|;|,\s+|\.(?:\s+|$)/));
+    const productTitle = normalize(title);
+    return [...new Set(list.map(value => value.trim()).filter(value => {
+      const text = normalize(value);
+      if (text.length < 18 || text === productTitle) return false;
+      return !/(faltam|falta de|a confirmar|nao (?:traz|detalha|descreve)|ainda nao|sem (?:dados|informacao|evidencia)|confirm(?:e|ar)|verific(?:ar|que)|diretrizes do fabricante|compatibilidade dos dispositivos|custo.beneficio|alta performance|maior alcance|facil instalacao|excelente estabilidade)/.test(text);
+    }))];
+  }
+  function demandScore(clicks, views, maximum) {
+    const raw = Math.max(0, Number(clicks) || 0) * 4 + Math.max(0, Number(views) || 0);
+    // Sinais escassos são neutros: uma única visita não comprova procura.
+    if (!(maximum >= 20)) return 60;
+    return 60 + (Math.log1p(raw) / Math.log1p(maximum)) * Math.min(40, maximum);
+  }
   function signature(products) {
     const entries = (Array.isArray(products) ? products : []).map(product => [
       String(product.id || ''), family(product), normalize(product.titulo || product.title),
@@ -101,5 +116,5 @@
     if (String(config?.assinaturaEditorial || '') !== currentSignature) reasons.push('changed-editorial-basis');
     return { products, groups, missing, comparable, signature: currentSignature, needsReview: reasons.length > 0, reasons };
   }
-  return { family, groupCandidates, signature, reconcile, weekKey, price };
+  return { family, groupCandidates, specificEvidence, demandScore, signature, reconcile, weekKey, price };
 });

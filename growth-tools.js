@@ -1812,8 +1812,8 @@
       nota: numberPrice(item.nota ?? item.rating),
       clicks: Number(item.clicks ?? item.cliques) || 0,
       views: Number(item.views ?? item.visitas) || 0,
-      pros: weeklyTextList(item.pros || item.pontosPositivos),
-      cons: weeklyTextList(item.cons || item.pontosNegativos)
+      pros: window.RDCWeeklyComparisonSafety.specificEvidence(weeklyTextList(item.pros || item.pontosPositivos), item.titulo),
+      cons: window.RDCWeeklyComparisonSafety.specificEvidence(weeklyTextList(item.cons || item.pontosNegativos), item.titulo)
     }));
     const prices = normalized.map(item => item.preco).filter(value => value > 0);
     const minPrice = Math.min(...prices);
@@ -1827,8 +1827,8 @@
         : 0;
       const rating = item.nota > 0 ? weeklyClamp((item.nota / 5) * 100) : 55;
       const demandRaw = item.clicks * 4 + item.views;
-      const demand = maxDemand > 0 ? 30 + (Math.log1p(demandRaw) / Math.log1p(maxDemand)) * 70 : 60;
-      const evidence = weeklyClamp(35 + item.pros.length * 12 + item.cons.length * 10 + (item.nota > 0 ? 12 : 0));
+      const demand = window.RDCWeeklyComparisonSafety.demandScore(item.clicks, item.views, maxDemand);
+      const evidence = weeklyClamp(item.pros.length * 12 + item.cons.length * 10);
       const total = costBenefit * 0.35 + rating * 0.30 + demand * 0.15 + evidence * 0.20;
       return {
         ...item,
@@ -2233,7 +2233,7 @@
       try {
         const data = await ensureData();
         const suggestion = weeklyChooseTheme(data);
-        if (!suggestion.category) throw new Error("Ainda não há uma categoria com cinco produtos válidos.");
+        if (!suggestion.category) throw new Error("Ainda não há uma categoria com produtos equivalentes suficientes.");
         query.value = suggestion.label;
         if (suggestion.plan && !price.value) price.value = suggestion.plan.budgets[1] || suggestion.plan.budgets[0] || "";
         seoTitle.value = suggestion.plan ? seo.headline(suggestion.plan, numberPrice(price.value)) : suggestion.seoTitle;
