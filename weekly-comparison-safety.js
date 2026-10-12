@@ -21,6 +21,21 @@
     const parsed = Number(raw.includes(',') ? raw.replace(/\./g, '').replace(',', '.') : raw);
     return raw && Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
   }
+  function productPrice(product, now = Date.now()) {
+    const discount = price(product?.precoPromocional);
+    const deadline = product?.ofertaRelampagoTerminaEm || product?.promocaoValidaAte;
+    const end = deadline && typeof deadline.toMillis === 'function' ? deadline.toMillis()
+      : deadline && Number.isFinite(deadline.seconds) ? deadline.seconds * 1000 : Date.parse(deadline || '');
+    const startValue = product?.ofertaRelampagoComecaEm;
+    const start = startValue && typeof startValue.toMillis === 'function' ? startValue.toMillis()
+      : startValue && Number.isFinite(startValue.seconds) ? startValue.seconds * 1000 : Date.parse(startValue || '');
+    const active = product?.ofertaRelampagoAtiva === true && end > now
+      && (!startValue || (Number.isFinite(start) && start <= now));
+    return active && discount > 0 ? discount : price(product?.preco) || price(product?.precoAtual);
+  }
+  function editorialTextAllowed(value) {
+    return !/(n[oó]s testamos|testamos o produto|vendas comprovadas|o mais vendido|pesquisa em toda a internet|garante resultados|melhor geral|melhor custo[- ]benef[íi]cio|maior alcance|excelente estabilidade)/i.test(String(value || ''));
+  }
   function family(product) {
     // Só o tipo do próprio título decide a família. Uma ressalva mencionando
     // outro equipamento na descrição não muda a identidade deste produto.
@@ -66,11 +81,34 @@
       return !/(faltam|falta de|a confirmar|nao (?:traz|detalha|descreve)|ainda nao|sem (?:dados|informacao|evidencia)|confirm(?:e|ar)|verific(?:ar|que)|diretrizes do fabricante|compatibilidade dos dispositivos|custo.beneficio|alta performance|maior alcance|facil instalacao|excelente estabilidade)/.test(text);
     }))];
   }
-  function demandScore(clicks, views, maximum) {
-    const raw = Math.max(0, Number(clicks) || 0) * 4 + Math.max(0, Number(views) || 0);
+  function demandValue(product) {
+    const count = value => Number.isFinite(Number(value)) ? Math.max(0, Number(value)) : 0;
+    return count(product?.clicks ?? product?.cliques) * 4 + count(product?.views ?? product?.visitas);
+  }
+  function demandSample(products) {
+    return (Array.isArray(products) ? products : []).reduce((total, product) => total + demandValue(product), 0);
+  }
+  function demandScore(clicks, views, maximum, sample = maximum) {
+    const raw = demandValue({ clicks, views });
     // Sinais escassos são neutros: uma única visita não comprova procura.
-    if (!(maximum >= 20)) return 60;
-    return 60 + (Math.log1p(raw) / Math.log1p(maximum)) * Math.min(40, maximum);
+    // O quarto argumento considera o conjunto; chamadas antigas de três argumentos continuam válidas.
+    if (!(sample >= 20) || !(maximum > 0)) return 60;
+    return Math.min(100, 60 + (Math.log1p(raw) / Math.log1p(maximum)) * 40);
+  }
+  function ratingEvidence(product) {
+    const value = price(product?.nota ?? product?.rating ?? product?.avaliacao);
+    const source = String(product?.avaliacaoFonte || product?.notaFonte || product?.ratingSource || '').trim();
+    const count = Number(product?.avaliacaoQuantidade ?? product?.notaQuantidade ?? product?.ratingCount ?? product?.reviewCount);
+    let sourceValid = false;
+    try { sourceValid = new URL(source).protocol === 'https:'; } catch {}
+    const verified = (product?.avaliacaoVerificada === true || product?.ratingVerified === true)
+      && sourceValid && Number.isInteger(count) && count > 0 && value > 0 && value <= 5;
+    return { verified, value: verified ? value : 0, source: verified ? source : '', count: verified ? count : 0 };
+  }
+  function selectionTitle(value) {
+    return String(value || '').replace(/\bmelhores?\b/gi, 'opções de')
+      .replace(/custo[- ]benef[íi]cio/gi, 'preços e perfis')
+      .replace(/\b(?:ranking|top)\b/gi, 'Seleção').trim();
   }
   function signature(products) {
     const entries = (Array.isArray(products) ? products : []).map(product => [
@@ -116,5 +154,5 @@
     if (String(config?.assinaturaEditorial || '') !== currentSignature) reasons.push('changed-editorial-basis');
     return { products, groups, missing, comparable, signature: currentSignature, needsReview: reasons.length > 0, reasons };
   }
-  return { family, groupCandidates, specificEvidence, demandScore, signature, reconcile, weekKey, price };
+  return { family, groupCandidates, specificEvidence, demandValue, demandSample, demandScore, ratingEvidence, selectionTitle, signature, reconcile, weekKey, price, productPrice, editorialTextAllowed };
 });

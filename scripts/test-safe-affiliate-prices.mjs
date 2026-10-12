@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import vm from "node:vm";
+import { createRequire } from "node:module";
+const weeklySafety = createRequire(import.meta.url)("../weekly-comparison-safety.js");
 
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const shared = await readFile(new URL("../growth-tools.js", import.meta.url), "utf8");
@@ -64,6 +66,7 @@ assert.equal(extractCardPrice({
 const highlightsSource = shared.match(/  function weeklyHighlights\(products\) \{[^]*?\n  \}/)?.[0];
 assert.ok(highlightsSource, "destaques do comparativo ausentes");
 const highlights = vm.runInNewContext(highlightsSource + "\nweeklyHighlights", {
+  window: { RDCWeeklyComparisonSafety: weeklySafety },
   numberPrice: value => Number(value) || 0,
   brl: new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }),
 });
@@ -75,8 +78,9 @@ const comparison = [
 const highlighted = highlights(comparison);
 assert.equal(new Set(highlighted.map(entry => entry.item.id)).size, highlighted.length,
   "o mesmo produto não deve ocupar três destaques separados");
-assert.match(highlighted[0].detail, /custo-benefício.*menor preço/,
-  "os méritos acumulados do vencedor devem continuar visíveis");
+assert.equal(highlighted[0].label, "Menor preço registrado",
+  "preço deve ser apresentado como preço, não qualidade ou custo-benefício");
+assert.doesNotMatch(JSON.stringify(highlighted), /melhor geral|custo-benefício|equilíbrio entre preço e qualidade/i);
 assert.ok(!shared.includes('"Cinco opções comparadas até "'),
   "a descrição não deve repetir um teto cadastrado que contradiz os produtos");
 

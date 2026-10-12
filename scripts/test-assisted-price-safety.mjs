@@ -48,7 +48,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.4.0');
+  assert.equal(result.robotVersion, '2.4.1');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -115,7 +115,7 @@ test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo 
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261012-4/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261012-5/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
@@ -142,7 +142,7 @@ test('regressão Lotus: bloquear cor explicitamente diferente, não exigir códi
   const catalog='https://www.mercadolivre.com.br/gerador/p/MLB57289720';
   const doc=page({foundTitle:expected,listing:'7685968580',attributes:[{name:'Cor',value:'Bege'}],selected:[],prices:[money(139.49)]});
   const {context:c}=setup(doc);
-  assert.match(c.extractDocumentOffer(doc,expected,catalog+'#wid=MLB5296312807').motivo,/cor/);
+  assert.match(c.extractDocumentOffer(doc,expected,catalog+'#wid=MLB5296312807').motivo,/vendedor/);
   assert.match(c.extractDocumentOffer(doc,expected,catalog).motivo,/cor/);
   const missingFooter=page({foundTitle:expected,listing:'',attributes:[],selected:[],prices:[money(139.49)]});
   assert.equal(c.extractDocumentOffer(missingFooter,expected,catalog).preco,139.49);
@@ -275,5 +275,151 @@ test('prova completa de monitor com polegadas erradas não autoriza escrita, mes
   assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],tituloEncontrado:'Monitor Samsung 27 Polegadas Full HD'},
     {produtoId:'a',url,titulo:expected}),/título não confirma/);
   assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],robotVersion:'2.3.0'},
-    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.0/);
+    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.1/);
+});
+
+test('2.4.1 bloqueia modelos numéricos e edições Pro/Plus explicitamente diferentes', () => {
+  const {context:c}=setup();
+  const cases=[
+    ['Smartphone Xiaomi Redmi 13 128GB Preto','Smartphone Xiaomi Redmi 14 128GB Preto'],
+    ['Smartphone Xiaomi Redmi Note 13 128GB','Smartphone Xiaomi Redmi Note 14 128GB'],
+    ['Smartphone Apple iPhone 14 Pro 128GB','Smartphone Apple iPhone 14 128GB'],
+    ['Smartphone Apple iPhone 14 Plus 128GB','Smartphone Apple iPhone 14 Pro 128GB'],
+    ['Smartphone Apple iPhone 14 Pro Max 128GB','Smartphone Apple iPhone 14 Pro 128GB'],
+    ['Apple AirPods Pro 2ª Geração Branco','Apple AirPods 2ª Geração Branco'],
+    ['Apple AirPods 2 Pro Branco','Apple AirPods 2 Branco'],
+    ['Apple AirPods Pro 2 Branco','Apple AirPods Pro 3 Branco'],
+    ['Tablet Apple iPad Pro 11 128GB','Tablet Apple iPad 11 128GB'],
+    ['Tablet Apple iPad 11 Pro 128GB','Tablet Apple iPad 11 128GB'],
+    ['Tablet Apple iPad Pro 12.9 128GB','Tablet Apple iPad Pro 11 128GB'],
+    ['Smartphone Samsung Galaxy S24 Ultra 256GB','Smartphone Samsung Galaxy S24 256GB'],
+  ];
+  for(const [expected,found] of cases) {
+    for(const [left,right] of [[expected,found],[found,expected]]) {
+      assert.equal(c.matchingProduct(left,right),false,left+' / '+right);
+      assert.equal(c.RDCAssistedPriceSafety.matchingProduct(left,right),false,left+' / '+right);
+    }
+    assert.equal(c.extractDocumentOffer(page({foundTitle:found}),expected,url).status,'loading');
+  }
+  for(const [expected,found] of [
+    ['Smartphone Apple iPhone 14 Pro 128GB 10% desconto','Smartphone Apple iPhone 14 Pro 128GB 20% desconto'],
+    ['Smartphone Xiaomi Redmi 13 128GB','Smartphone Xiaomi Redmi 128GB'],
+    ['Apple AirPods Pro 2ª Geração Branco','Apple AirPods Pro Branco'],
+  ]) {
+    assert.equal(c.matchingProduct(expected,found),true);
+    assert.equal(c.RDCAssistedPriceSafety.matchingProduct(expected,found),true);
+  }
+});
+
+test('cor contraditória nos dois títulos bloqueia; cor ausente continua permitida', () => {
+  const {context:c}=setup();
+  for(const [expected,found] of [
+    ['Fone JBL Tune 520BT Preto','Fone JBL Tune 520BT Branco'],
+    ['Notebook Asus Vivobook Ryzen 5 16gb 512ssd Mixed Black','Notebook Asus Vivobook Ryzen 5 16gb 512ssd Branco'],
+  ]) {
+    assert.equal(c.matchingProduct(expected,found),false);
+    assert.equal(c.RDCAssistedPriceSafety.matchingProduct(expected,found),false);
+    assert.equal(c.extractDocumentOffer(page({foundTitle:found,attributes:[]}),expected,url).status,'loading');
+  }
+  for(const found of ['Fone JBL Tune 520BT Preta','Fone JBL Tune 520BT Black','Fone JBL Tune 520BT']) {
+    assert.equal(c.matchingProduct('Fone JBL Tune 520BT Preto',found),true);
+    assert.equal(c.RDCAssistedPriceSafety.matchingProduct('Fone JBL Tune 520BT Preto',found),true);
+  }
+});
+
+test('MLB explícito diferente no anúncio visível preserva preço mesmo com URL e título iguais', async () => {
+  const {context:c,writes,setCommand}=setup();
+  assert.match(c.extractDocumentOffer(page({listing:'1111111111'}),title,url).motivo,/vendedor/);
+  const catalog='https://www.mercadolivre.com.br/tenis/p/MLB57289720#wid=MLB2926671021';
+  assert.match(c.extractDocumentOffer(page({listing:'1111111111'}),title,catalog).motivo,/vendedor/);
+  assert.equal(c.extractDocumentOffer(page({listing:''}),title,url).status,'ok');
+  assert.equal(c.extractDocumentOffer(page({listing:'1111111111'}),title,catalog.split('#')[0]).status,'ok');
+  const command={requestId:'listing-proof',produtoId:'a',titulo:title,url,createdAt:Date.now()};
+  setCommand(command);await c.publishCurrentPageResult(command);
+  const result=writes[0];
+  assert.match(c.RDCAssistedPriceSafety.validate({...result,variantProof:{...result.variantProof,listingId:'MLB1111111111'}},
+    {produtoId:'a',url,titulo:title}),/vendedor/);
+  assert.equal(c.RDCAssistedPriceSafety.validate({...result,variantProof:{...result.variantProof,listingId:''}},
+    {produtoId:'a',url,titulo:title}),'');
+});
+
+test('mínimo 2.4.1 compara patch e não aceita robô 2.4.0', () => {
+  const {context:c}=setup();
+  for(const version of ['2.3.9','2.4.0','1.99.99','2.4','invalid']) {
+    assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),false,version);
+  }
+  for(const version of ['2.4.1','2.4.2','2.5.0','3.0.0']) {
+    assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),true,version);
+    assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:false}),false,version);
+  }
+});
+
+test('consulta individual cancelada restaura entrada, elimina prova e não chama salvamento', async () => {
+  const html=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
+  const source=html.slice(html.indexOf('async function conferirPrecoComIA'),html.indexOf('function aguardarConferenciaPrecoIA'));
+  const {context:c,writes,setCommand}=setup();
+  const command={requestId:'preview',produtoId:'a',titulo:title,url,createdAt:Date.now()};
+  setCommand(command);await c.publishCurrentPageResult(command);
+  let saves=0,reads=0,confirms=0;
+  const input={value:'199,99'};
+  Object.assign(c,{
+    window:c,
+    db:{collection:()=>({doc:()=>({get:async()=>{reads++;return {exists:true,data:()=>({titulo:title,link:url})};}})})},
+    document:{getElementById:()=>input},
+    motorConferenciaPrecoDisponivel:()=>({nome:'Robô local',conferir:async()=>writes[0]}),
+    numeroPreco:Number,formatarPrecoCampo:value=>Number(value).toFixed(2).replace('.',','),conferenciasPrecoIA:{},
+    confirm:()=>{confirms++;return false;},salvarPrecoManual:async()=>{saves++;},
+    alert:message=>assert.fail(message),console,
+  });
+  vm.runInContext(source,c);await c.conferirPrecoComIA('a',{textContent:'IA conferir'});
+  assert.equal(reads,1);assert.equal(confirms,1);assert.equal(saves,0);assert.equal(input.value,'199,99');
+  assert.equal(c.conferenciasPrecoIA.a,undefined);
+});
+
+test('teste puro no editor consulta e mostra resultado sem alterar preço, prova, cadastro ou salvar', async () => {
+  const html=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
+  const start=html.indexOf('async function testarRoboProdutoEdicao');
+  const end=html.indexOf('async function conferirPrecoComIA',start);
+  assert.ok(start>=0 && end>start,'teste puro do editor não encontrado');
+  assert.match(html,/<button type="button"[^>]*onclick="testarRoboProdutoEdicao\(this\)"/);
+  const source=html.slice(start,end);
+  const {context:base,writes,setCommand}=setup();
+  const command={requestId:'pure-editor',produtoId:'a',titulo:title,url,createdAt:Date.now()};
+  setCommand(command);await base.publishCurrentPageResult(command);
+  const result=writes[0];
+  for(const scenario of [
+    {name:'sucesso',result,requests:1,status:/Consulta sem gravação: R\$ 358,79/},
+    {name:'outro produto',result:{...result,produtoId:'b'},requests:1,status:/Teste não concluído:/},
+    {name:'outro título',result:{...result,tituloEncontrado:'Tênis Adidas Superstar Masculino'},requests:1,status:/Teste não concluído:/},
+    {name:'robô antigo',result:{...result,robotVersion:'2.4.0'},requests:1,status:/Teste não concluído:/},
+    {name:'falha da consulta',error:new Error('Mercado Livre indisponível'),requests:1,status:/Teste não concluído:/},
+    {name:'sem produto aberto',id:null,requests:0,status:/Teste não concluído:/},
+    {name:'sem link',link:'',requests:0,status:/Teste não concluído:/},
+    {name:'sem robô',motor:false,requests:0,status:/Teste não concluído:/},
+  ]) {
+    const fields={titulo:{value:title},link:{value:scenario.link ?? url},preco:{value:'199,99'},
+      precoAnterior:{value:'249,99'},precoPromocional:{value:'179,99'},'preco-manual-a':{value:'198,99'}};
+    const original=Object.freeze({id:'a',titulo:title,link:url,preco:'199,99',precoProvaAnuncio:'MLB1234567890',precoProvaVersao:2});
+    const proofCache=Object.freeze({a:Object.freeze({preco:198.99,evidencia:'prova anterior preservada'})});
+    const requests=[],messages=[],forbiddenCalls=[];
+    const forbidden=name=>(...args)=>{forbiddenCalls.push(name);throw new Error('Chamada proibida: '+name);};
+    const c=vm.createContext({
+      editProdId:Object.hasOwn(scenario,'id')?scenario.id:'a',produtoEdicaoOriginal:original,conferenciasPrecoIA:proofCache,
+      document:{getElementById:id=>fields[id]},window:{RDCAssistedPriceSafety:base.RDCAssistedPriceSafety},
+      motorConferenciaPrecoDisponivel:()=>scenario.motor===false?null:{conferir:async request=>{requests.push(JSON.parse(JSON.stringify(request)));if(scenario.error)throw scenario.error;return scenario.result;}},
+      formatarPrecoCampo:value=>Number(value).toFixed(2).replace('.',','),informarStatusCadastro:text=>messages.push(text),
+      db:{collection:forbidden('Firebase')},updateDoc:forbidden('updateDoc'),salvarPrecoManual:forbidden('salvarPrecoManual'),
+      salvarEdicaoProdutoFilaPrecosAssistida:forbidden('salvarEdicaoProduto'),salvarFilaPrecoAssistida:forbidden('salvarFilaPrecoAssistida'),
+      confirm:forbidden('confirm'),localStorage:{setItem:forbidden('localStorage')},console,
+    });
+    const snapshot=()=>JSON.stringify({fields,original:c.produtoEdicaoOriginal,proof:c.conferenciasPrecoIA,id:c.editProdId});
+    const before=snapshot();
+    const button={textContent:'Consultar com robô (não salva)',disabled:false};
+    vm.runInContext(source,c);await c.testarRoboProdutoEdicao(button);
+    assert.equal(requests.length,scenario.requests,scenario.name);
+    if(requests.length)assert.deepEqual(requests[0],{produtoId:'a',titulo:title,url},scenario.name);
+    assert.equal(messages.length,1,scenario.name);assert.match(messages[0],scenario.status,scenario.name);
+    assert.equal(snapshot(),before,scenario.name);assert.deepEqual(forbiddenCalls,[],scenario.name);
+    assert.equal(button.disabled,false,scenario.name);assert.equal(button.textContent,'Consultar com robô (não salva)',scenario.name);
+  }
 });

@@ -168,9 +168,9 @@
       </section>
     </main>
     <script src="/price-publication.js?v=20261004-2"></script>
-    <script src="/assisted-price-safety.js?v=20261012-4"></script>
+    <script src="/assisted-price-safety.js?v=20261012-5"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
-    <script src="/weekly-comparison-safety.js?v=20261012-audit-2"></script>
+    <script src="/weekly-comparison-safety.js?v=20261012-audit-3"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
     <script type="module">
@@ -387,7 +387,7 @@
             if (botao) botao.disabled = true;
           }
         }
-        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.4.0 ou superior e recarregue esta página. Conferência simplificada: mesmo produto e preço principal visível.");
+        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.4.1 ou superior e recarregue esta página. Conferência simplificada: mesmo produto e preço principal visível.");
       }
 
       function guardarPosicaoFilaPrecos() {
@@ -749,7 +749,7 @@
           precoConferenciaId: confirmacaoId,
         };
         if (opcoes.automatico) {
-          campos.precoConferidoPor = "robo_assistido_2.4.0";
+          campos.precoConferidoPor = "robo_assistido_2.4.1";
           campos.precoProvaVersao = opcoes.resultado.proofVersion;
           campos.precoProvaAnuncio = opcoes.resultado.offerKey;
           campos.precoConferenciaIAFonte = opcoes.resultado.fonteConsultada;
@@ -1738,7 +1738,7 @@
         return d.toISOString().slice(0, 10);
       }
       function rankingPrecoProduto(p) {
-        return numero(p.precoPromocional) || numero(p.preco) || numero(p.precoAtual);
+        return window.RDCWeeklyComparisonSafety.productPrice(p);
       }
       function rankingLista(v) {
         return lista(v)
@@ -1982,18 +1982,22 @@
           menor = Math.min(...precos),
           maior = Math.max(...precos),
           media = precos.reduce((a, b) => a + b, 0) / Math.max(1, precos.length),
-          demandaMax = Math.max(0, ...normal.map((x) => x.cliques * 4 + x.visitas));
+          demandaMax = Math.max(0, ...normal.map((x) => x.cliques * 4 + x.visitas)),
+          amostra = window.RDCWeeklyComparisonSafety.demandSample(normal);
         const ordenados = normal
           .map((x) => {
             const faixa = maior - menor,
               custo = x.valor > 0 ? (faixa > 0 ? 100 - ((x.valor - menor) / faixa) * 45 : 100) : 0,
-              avaliacao = x.nota > 0 ? rankingLimite((x.nota / 5) * 100) : 55,
+              rating = window.RDCWeeklyComparisonSafety.ratingEvidence(x),
+              avaliacao = rating.verified ? rankingLimite((rating.value / 5) * 100) : 55,
               bruto = x.cliques * 4 + x.visitas,
-              interesse = window.RDCWeeklyComparisonSafety.demandScore(x.cliques, x.visitas, demandaMax),
+              interesse = window.RDCWeeklyComparisonSafety.demandScore(x.cliques, x.visitas, demandaMax, amostra),
               evidencia = rankingLimite(x.pros.length * 12 + x.cons.length * 10),
               total = custo * 0.35 + avaliacao * 0.3 + interesse * 0.15 + evidencia * 0.2;
             return {
               ...x,
+              avaliacaoVerificada: rating.verified,
+              amostraInteresse: amostra,
               scoreTotal: Number((total / 10).toFixed(1)),
               criterios: {
                 custoBeneficio: Number((custo / 10).toFixed(1)),
@@ -2003,28 +2007,17 @@
               },
             };
           })
-          .sort((a, b) => b.scoreTotal - a.scoreTotal || b.nota - a.nota || a.valor - b.valor);
+          .sort((a, b) => b.scoreTotal - a.scoreTotal || a.valor - b.valor);
         return ordenados.map((x, i, g) => {
           const pos = i + 1,
             anterior = g[i - 1] || null,
             dif = media > 0 ? Math.round((Math.abs(x.valor - media) / media) * 100) : 0,
             precoFato = x.valor <= media ? dif + "% abaixo da média da seleção" : dif + "% acima da média da seleção",
-            notaFato = x.nota ? "nota informada de " + x.nota.toFixed(1).replace(".", ",") + "/5" : "sem nota disponível",
-            demanda = x.cliques || x.visitas ? x.cliques + " clique(s) em Comprar e " + x.visitas + " visualização(ões) nos últimos 7 dias" : "ainda sem interação suficiente nos últimos 7 dias",
+            notaFato = x.avaliacaoVerificada ? "avaliação com fonte e quantidade documentadas" : "sem fonte e quantidade documentadas; contribuição neutra no índice",
+            demanda = amostra >= 20 ? x.cliques + " clique(s) em Comprar e " + x.visitas + " visualização(ões) em 7 dias; não comprovam vendas" : "amostra inferior a 20 interações ponderadas; interesse neutro",
             vantagem = x.pros[0] || "ficha com os dados comparáveis disponíveis",
             limite = x.cons[0] || "faltam detalhes adicionais para uma conclusão mais ampla";
-          let colocacao = "Lidera porque obteve o melhor resultado ponderado entre custo-benefício, avaliação, interesse e evidências cadastradas.";
-          if (anterior) {
-            const gaps = [
-                ["custo-benefício", anterior.criterios.custoBeneficio - x.criterios.custoBeneficio],
-                ["avaliação", anterior.criterios.avaliacao - x.criterios.avaliacao],
-                ["interesse observado", anterior.criterios.interesse - x.criterios.interesse],
-                ["qualidade das evidências", anterior.criterios.evidencia - x.criterios.evidencia],
-              ].sort((a, b) => b[1] - a[1]),
-              decisivo = gaps[0][1] > 0.05 ? gaps[0][0] : "avaliação e preço",
-              diferenca = Math.max(0, anterior.scoreTotal - x.scoreTotal);
-            colocacao = diferenca < 0.1 ? "Ficou em " + pos + "º após empate técnico na nota final; o desempate considerou " + decisivo + "." : "Ficou atrás do " + (pos - 1) + "º colocado principalmente em " + decisivo + ", com diferença de " + diferenca.toFixed(1).replace(".", ",") + " ponto(s) na nota final.";
-          }
+          const colocacao = "Opção " + pos + " da seleção. A ordem usa um índice cadastral, não testes ou uma classificação de qualidade.";
           return {
             ...x,
             position: pos,
@@ -2060,6 +2053,9 @@
               productUrl: rankingUrlProduto(p),
               linkAfiliado: String(p.linkAfiliado || p.link || ""),
               nota: numero(p.nota || p.avaliacao),
+              avaliacaoVerificada: p.avaliacaoVerificada ?? p.ratingVerified,
+              avaliacaoFonte: p.avaliacaoFonte || p.notaFonte || p.ratingSource || "",
+              avaliacaoQuantidade: p.avaliacaoQuantidade ?? p.notaQuantidade ?? p.ratingCount ?? p.reviewCount ?? 0,
               pros: rankingLista(p.pros || p.pontosPositivos),
               cons: rankingLista(p.contras || p.pontosNegativos),
               cliques: s.cliques,
@@ -2079,13 +2075,13 @@
         const semana = rankingSemana(),
           rotulo = String(termo || produtos[0].categoriaNome || "produtos").trim();
         return {
-          versao: 2,
+          versao: 4,
           familiaComparavel: grupo.family,
           assinaturaEditorial: window.RDCWeeklyComparisonSafety.signature(produtos),
           comparabilidadeRevisada: true, revisadoEm: new Date().toISOString(),
           semana,
           validoAte: rankingValidoAte(semana),
-          titulo: String(tituloSeo || "").trim().replace(/\b5\b/, String(produtos.length)) || ("Top " + produtos.length + " " + grupo.label + (teto > 0 ? " até R$ " + preco(teto) : "")),
+          titulo: window.RDCWeeklyComparisonSafety.selectionTitle(String(tituloSeo || "").trim().replace(/\b5\b/, String(produtos.length))) || ("Seleção por perfis: " + grupo.label + (teto > 0 ? " até R$ " + preco(teto) : "")),
           termo: rotulo,
           precoMaximo: teto || 0,
           intencaoBusca: String(tituloSeo || "").trim(),
@@ -2100,7 +2096,7 @@
           analises = Array.isArray(resposta?.produtos) ? resposta.produtos : [],
           porId = new Map(analises.map((x) => [String(x?.id || ""), x])),
           proibido = /(nós testamos|testamos o produto|vendas comprovadas|o mais vendido|pesquisa em toda a internet|garante resultados)/i;
-        if (resumo.length < 120 || analises.length !== r.produtos.length || new Set(analises.map(x=>String(x?.id||''))).size !== r.produtos.length) throw Error("A IA não entregou a análise completa de todos os produtos.");
+        if (resumo.length < 120 || !window.RDCWeeklyComparisonSafety.editorialTextAllowed(resumo) || analises.length !== r.produtos.length || new Set(analises.map(x=>String(x?.id||''))).size !== r.produtos.length) throw Error("A IA não entregou a análise completa e verificável de todos os produtos.");
         const produtos = r.produtos.map((p) => {
           const a = porId.get(String(p.id));
           if (!a) throw Error("A IA não analisou " + p.titulo + ".");
@@ -2118,12 +2114,12 @@
               .replace(/\s+/g, " ")
               .trim(),
           };
-          if (Object.values(h).some((v) => v.length < 25 || proibido.test(v))) throw Error("A auditoria recusou uma afirmação sem comprovação em " + p.titulo + ".");
+          if (Object.values(h).some((v) => v.length < 25 || !window.RDCWeeklyComparisonSafety.editorialTextAllowed(v))) throw Error("A auditoria recusou uma afirmação sem comprovação em " + p.titulo + ".");
           return { ...p, analiseHumana: h };
         });
         return {
           ...r,
-          versao: 3,
+          versao: 4,
           produtos,
           resumoIA: resumo,
           analiseIA: {
@@ -2139,9 +2135,9 @@
           posicao: p.position,
           titulo: p.titulo,
           preco: p.preco,
-          notaComparativa: p.scoreTotal,
+          indiceCadastral: p.scoreTotal,
           criterios: p.criterios,
-          avaliacaoInformada: p.nota,
+          avaliacaoDocumentada: p.avaliacaoVerificada ? p.nota : null,
           cliques7Dias: p.clicks,
           visualizacoes7Dias: p.views,
           pontosPositivos: p.pros,
@@ -2152,7 +2148,7 @@
         const formato = '{"resumoGeral":"síntese de 250 a 550 caracteres","produtos":[{"id":"id recebido","veredito":"avaliação humana concreta","paraQuem":"perfil de comprador","comparacaoDireta":"diferença concreta para os concorrentes","limitePrincipal":"limitação real ou informação ausente"}]}';
         const regras = `Você é a analista editorial brasileira do Ranking da Compra. Compare os produtos da seleção de forma humana, clara e útil.
 
-      Use SOMENTE os dados consolidados e as páginas públicas quando estiverem acessíveis. Não afirme testes físicos, vendas comprovadas ou pesquisa em toda a internet. Não invente garantia, durabilidade, reputação ou especificações. Diferencie a nota informada, a nota comparativa calculada e o interesse observado no próprio site. Preserve a ordem matemática. Para cada posição cite pelo menos duas diferenças concretas. Cada campo deve ter de 40 a 240 caracteres. Retorne os cinco IDs uma vez e somente JSON.
+      Use SOMENTE os dados consolidados e as páginas públicas quando estiverem acessíveis. Não afirme testes físicos, vendas comprovadas, maior alcance, estabilidade superior, melhor geral ou melhor custo-benefício. Não invente garantia, durabilidade, reputação ou especificações. O índice cadastral apenas organiza opções; não é nota de qualidade. Avaliações sem documentação e amostras escassas são neutras. Preserve os IDs e a ordem, explicando perfil de uso, recursos e limitações comprováveis. Cada campo deve ter de 40 a 240 caracteres. Retorne todos os IDs recebidos uma vez e somente JSON.
 
       DADOS:
       ${JSON.stringify(produtos)}
@@ -2197,10 +2193,10 @@
       function rankingMostrarRevisao(r) {
         const itens = r.produtos
           .map((x) => {
-            const criterios = "Custo-benefício " + x.criterios.custoBeneficio + " · Avaliação " + x.criterios.avaliacao + " · Interesse " + x.criterios.interesse + " · Evidências " + x.criterios.evidencia,
+            const criterios = "Preço relativo " + x.criterios.custoBeneficio + " · Avaliação " + (x.avaliacaoVerificada ? "documentada" : "sem fonte: neutra") + " · Interesse " + (x.amostraInteresse >= 20 ? x.criterios.interesse : "amostra insuficiente: neutro") + " · Completude cadastral " + x.criterios.evidencia,
               h = x.analiseHumana;
             const ia = h ? "<br><b>🤖 Veredito:</b> " + rankingEsc(h.veredito) + "<br><b>Para quem:</b> " + rankingEsc(h.paraQuem) + "<br><b>Comparação:</b> " + rankingEsc(h.comparacaoDireta) + "<br><b>Ressalva:</b> " + rankingEsc(h.limitePrincipal) : "";
-            return "<li><b>" + rankingEsc(x.position + "º — " + x.titulo) + "</b><span>Nota comparativa " + rankingEsc(x.scoreTotal.toFixed(1).replace(".", ",")) + "/10 · R$ " + rankingEsc(preco(x.preco)) + "<br>" + rankingEsc(criterios) + "<br>" + rankingEsc(x.motivo) + ia + "</span></li>";
+            return "<li><b>" + rankingEsc("Opção " + x.position + " — " + x.titulo) + "</b><span>Índice cadastral (não teste) " + rankingEsc(x.scoreTotal.toFixed(1).replace(".", ",")) + "/10 · R$ " + rankingEsc(preco(x.preco)) + "<br>" + rankingEsc(criterios) + "<br>" + rankingEsc(x.motivo) + ia + "</span></li>";
           })
           .join("");
         const resumo = r.resumoIA ? '<div class="ranking-mobile-note"><b>🤖 Visão geral auditada</b><br>' + rankingEsc(r.resumoIA) + "</div>" : "";

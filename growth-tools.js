@@ -1733,7 +1733,7 @@
   }
 
   function weeklyProductPrice(product) {
-    return numberPrice(product.precoPromocional) || numberPrice(product.preco) || numberPrice(product.precoAtual);
+    return window.RDCWeeklyComparisonSafety.productPrice(product);
   }
 
   function weeklyProductUrl(product) {
@@ -1810,8 +1810,8 @@
       ...item,
       preco: numberPrice(item.preco ?? item.price),
       nota: numberPrice(item.nota ?? item.rating),
-      clicks: Number(item.clicks ?? item.cliques) || 0,
-      views: Number(item.views ?? item.visitas) || 0,
+      clicks: Math.max(0, Number(item.clicks ?? item.cliques) || 0),
+      views: Math.max(0, Number(item.views ?? item.visitas) || 0),
       pros: window.RDCWeeklyComparisonSafety.specificEvidence(weeklyTextList(item.pros || item.pontosPositivos), item.titulo),
       cons: window.RDCWeeklyComparisonSafety.specificEvidence(weeklyTextList(item.cons || item.pontosNegativos), item.titulo)
     }));
@@ -1819,28 +1819,32 @@
     const minPrice = Math.min(...prices);
     const maxPrice = Math.max(...prices);
     const averagePrice = prices.reduce((total, value) => total + value, 0) / Math.max(1, prices.length);
-    const maxDemand = Math.max(0, ...normalized.map(item => item.clicks * 4 + item.views));
+    const maxDemand = Math.max(0, ...normalized.map(item => window.RDCWeeklyComparisonSafety.demandValue(item)));
+    const demandSample = window.RDCWeeklyComparisonSafety.demandSample(normalized);
     const ranked = normalized.map(item => {
       const priceRange = maxPrice - minPrice;
-      const costBenefit = item.preco > 0
+      const relativePrice = item.preco > 0
         ? (priceRange > 0 ? 100 - ((item.preco - minPrice) / priceRange) * 45 : 100)
         : 0;
-      const rating = item.nota > 0 ? weeklyClamp((item.nota / 5) * 100) : 55;
-      const demandRaw = item.clicks * 4 + item.views;
-      const demand = window.RDCWeeklyComparisonSafety.demandScore(item.clicks, item.views, maxDemand);
+      const ratingEvidence = window.RDCWeeklyComparisonSafety.ratingEvidence(item);
+      const rating = ratingEvidence.verified ? weeklyClamp((ratingEvidence.value / 5) * 100) : 55;
+      const demand = window.RDCWeeklyComparisonSafety.demandScore(item.clicks, item.views, maxDemand, demandSample);
       const evidence = weeklyClamp(item.pros.length * 12 + item.cons.length * 10);
-      const total = costBenefit * 0.35 + rating * 0.30 + demand * 0.15 + evidence * 0.20;
+      // Índice de organização cadastral: preço não mede desempenho nem custo-benefício.
+      const total = relativePrice * 0.35 + rating * 0.30 + demand * 0.15 + evidence * 0.20;
       return {
         ...item,
+        avaliacaoVerificada: ratingEvidence.verified,
+        amostraInteresse: demandSample,
         scoreTotal: Number((total / 10).toFixed(1)),
         criterios: {
-          custoBeneficio: Number((costBenefit / 10).toFixed(1)),
+          custoBeneficio: Number((relativePrice / 10).toFixed(1)), // Alias legado de preço relativo.
           avaliacao: Number((rating / 10).toFixed(1)),
           interesse: Number((demand / 10).toFixed(1)),
           evidencia: Number((evidence / 10).toFixed(1))
         }
       };
-    }).sort((a, b) => b.scoreTotal - a.scoreTotal || b.nota - a.nota || a.preco - b.preco);
+    }).sort((a, b) => b.scoreTotal - a.scoreTotal || a.preco - b.preco);
     return ranked.map((item, index, group) => {
       const position = index + 1;
       const previous = group[index - 1] || null;
@@ -1851,53 +1855,36 @@
   function weeklyReason(item, position, context = {}) {
     const price = numberPrice(item.preco ?? item.price);
     const average = numberPrice(context.averagePrice);
-    const previous = context.previous;
     const difference = average > 0 ? Math.round(Math.abs(price - average) / average * 100) : 0;
     const priceFact = price > 0 && average > 0
       ? (price <= average ? difference + "% abaixo da média da seleção" : difference + "% acima da média da seleção")
       : "preço ainda sujeito a confirmação";
-    const ratingFact = item.nota > 0 ? "nota informada de " + item.nota.toFixed(1).replace(".", ",") + "/5" : "sem nota disponível";
-    const demandFact = item.clicks || item.views
-      ? "Interesse recente: " + item.clicks + " clique(s) em Comprar e " + item.views + " visualização(ões) em 7 dias"
-      : "Ainda há pouca interação no site para medir a procura";
+    const ratingFact = item.avaliacaoVerificada
+      ? "avaliação com fonte e quantidade documentadas"
+      : "sem fonte e quantidade documentadas; contribuição neutra no índice";
+    const demandFact = item.amostraInteresse >= 20
+      ? "Interações no site: " + item.clicks + " clique(s) em Comprar e " + item.views + " visualização(ões) em 7 dias; não comprovam vendas"
+      : "Amostra inferior a 20 interações ponderadas na seleção; interesse mantido neutro";
     const mainPro = item.pros[0] || "ficha com os dados comparáveis disponíveis";
     const mainCon = item.cons[0] || "faltam detalhes adicionais para uma conclusão mais ampla";
-    let placement = "É o vencedor porque teve a melhor combinação de preço, avaliação, procura no site e qualidade das informações.";
-    if (position > 1 && previous) {
-      const gaps = [
-        ["custo-benefício", previous.criterios.custoBeneficio - item.criterios.custoBeneficio],
-        ["avaliação", previous.criterios.avaliacao - item.criterios.avaliacao],
-        ["interesse observado", previous.criterios.interesse - item.criterios.interesse],
-        ["qualidade das evidências", previous.criterios.evidencia - item.criterios.evidencia]
-      ].sort((a, b) => b[1] - a[1]);
-      const decisive = gaps[0][1] > 0.05 ? gaps[0][0] : "avaliação e preço";
-      const scoreGap = Math.max(0, previous.scoreTotal - item.scoreTotal);
-      placement = scoreGap < 0.1
-        ? "Ficou em " + position + "º após um empate técnico; o desempate foi pelo critério de " + decisive + "."
-        : "Ficou em " + position + "º porque perdeu pontos principalmente em " + decisive
-          + " e terminou " + scoreGap.toFixed(1).replace(".", ",") + " ponto(s) atrás do produto anterior.";
-    }
+    const placement = "Opção " + position + " da seleção. A ordem usa um índice cadastral, não testes ou uma classificação de qualidade.";
     return placement + " Preço: " + priceFact + ". Avaliação: " + ratingFact + ". " + demandFact
       + ". Destaque: " + mainPro + ". Atenção: " + mainCon + ".";
   }
 
   function weeklyHighlights(products) {
     if (!products.length) return [];
-    const byCostBenefit = products.slice().sort((a, b) =>
-      Number(b.criterios?.custoBeneficio || 0) - Number(a.criterios?.custoBeneficio || 0)
-      || Number(b.scoreTotal || 0) - Number(a.scoreTotal || 0));
     const byPrice = products.filter(item => numberPrice(item.preco) > 0)
       .sort((a, b) => numberPrice(a.preco) - numberPrice(b.preco));
-    const demandValue = item => Number(item.clicks || 0) * 4 + Number(item.views || 0);
+    const demandValue = window.RDCWeeklyComparisonSafety.demandValue;
+    const demandSample = window.RDCWeeklyComparisonSafety.demandSample(products);
     const byDemand = products.slice().sort((a, b) => demandValue(b) - demandValue(a));
     const highlights = [
-      { icon: "🏆", label: "Melhor geral", item: products[0], detail: "Nota " + Number(products[0].scoreTotal || 0).toFixed(1).replace(".", ",") + "/10" },
-      { icon: "💚", label: "Melhor custo-benefício", item: byCostBenefit[0], detail: "Equilíbrio entre preço e qualidade" },
       { icon: "💰", label: "Menor preço registrado", item: byPrice[0], detail: byPrice[0] ? brl.format(numberPrice(byPrice[0].preco)) + " · confira o atual" : "Preço a confirmar" }
     ];
-    if (byDemand[0] && demandValue(byDemand[0]) > 0) {
+    if (demandSample >= 20 && byDemand[0] && demandValue(byDemand[0]) > 0) {
       highlights.push({
-        icon: "🔥", label: "Mais procurado no site", item: byDemand[0],
+        icon: "📊", label: "Mais interações nesta seleção", item: byDemand[0],
         detail: Number(byDemand[0].clicks || 0) + " clique(s) e " + Number(byDemand[0].views || 0) + " visualização(ões)"
       });
     }
@@ -1917,7 +1904,7 @@
   function weeklyApplyAIAnalysis(draft, result) {
     const summary = repairPortugueseText(String(result?.resumoGeral || "")).replace(/\s+/g, " ").trim();
     const analyses = Array.isArray(result?.produtos) ? result.produtos : [];
-    if (summary.length < 120 || analyses.length !== draft.produtos.length || new Set(analyses.map(item=>String(item?.id||''))).size !== draft.produtos.length) throw new Error("A IA não entregou uma análise completa de todos os produtos.");
+    if (summary.length < 120 || !window.RDCWeeklyComparisonSafety.editorialTextAllowed(summary) || analyses.length !== draft.produtos.length || new Set(analyses.map(item=>String(item?.id||''))).size !== draft.produtos.length) throw new Error("A IA não entregou uma análise completa e verificável de todos os produtos.");
     const byId = new Map(analyses.map(item => [String(item?.id || ""), item]));
     const forbidden = /(nós testamos|testamos o produto|vendas comprovadas|o mais vendido|pesquisa em toda a internet|garante resultados)/i;
     const products = draft.produtos.map(product => {
@@ -1929,13 +1916,13 @@
         comparacaoDireta: repairPortugueseText(String(analysis.comparacaoDireta || "")).replace(/\s+/g, " ").trim(),
         limitePrincipal: repairPortugueseText(String(analysis.limitePrincipal || "")).replace(/\s+/g, " ").trim()
       };
-      if (Object.values(fields).some(value => value.length < 25) || Object.values(fields).some(value => forbidden.test(value))) {
+      if (Object.values(fields).some(value => value.length < 25 || !window.RDCWeeklyComparisonSafety.editorialTextAllowed(value))) {
         throw new Error("A auditoria local recusou uma afirmação sem comprovação em " + product.titulo + ".");
       }
       return { ...product, analiseHumana: fields };
     });
     return {
-      ...draft, versao: 3, produtos: products, resumoIA: summary,
+      ...draft, versao: 4, produtos: products, resumoIA: summary,
       analiseIA: {
         metodo: String(result?.metodo || "gemini_com_auditoria"),
         fonte: String(result?.fonte || "dados_consolidados_e_paginas_publicas"),
@@ -1945,21 +1932,7 @@
   }
 
   function weeklyCardSummary(item) {
-    if (item.position === 1) {
-      return "Melhor equilíbrio geral — nota "
-        + Number(item.scoreTotal || 0).toFixed(1).replace(".", ",") + "/10.";
-    }
-    const labels = {
-      custoBeneficio: "custo-benefício",
-      avaliacao: "avaliação",
-      interesse: "interesse no site",
-      evidencia: "qualidade das informações"
-    };
-    const strongest = Object.entries(item.criterios || {})
-      .sort((a, b) => Number(b[1] || 0) - Number(a[1] || 0))[0];
-    if (!strongest) return "Uma das cinco melhores opções deste comparativo.";
-    return "Destaque em " + labels[strongest[0]] + " — "
-      + Number(strongest[1] || 0).toFixed(1).replace(".", ",") + "/10.";
+    return "Compare os recursos e limitações com seu perfil de uso. Não realizamos testes próprios.";
   }
 
   function weeklyRankingCard(item, highlights = []) {
@@ -1977,7 +1950,7 @@
         + '<dt>Principal ressalva</dt><dd>' + escapeHtml(human.limitePrincipal) + '</dd></dl></div>'
       : "";
     return '<article class="weekly-ranking-card">'
-      + '<div class="weekly-ranking-position">' + item.position + 'º lugar</div>'
+      + '<div class="weekly-ranking-position">Opção ' + item.position + '</div>'
       + (badges ? '<div class="weekly-ranking-badges">' + badges + '</div>' : '')
       + '<img src="' + escapeHtml(item.foto) + '" alt="' + escapeHtml(item.titulo) + '" loading="lazy" decoding="async">'
       + '<h3>' + escapeHtml(item.titulo) + '</h3>'
@@ -1985,12 +1958,12 @@
       + '<p class="weekly-ranking-glance">' + escapeHtml(weeklyCardSummary(item)) + '</p>'
       + '<a href="' + escapeHtml(item.productUrl) + '" data-weekly-ranking-product="' + escapeHtml(item.id) + '">Ver preço e análise</a>'
       + '<details class="weekly-ranking-details"><summary>Mais informações</summary><div class="weekly-ranking-details-body">'
-      + '<div class="weekly-ranking-score"><b>Nota comparativa ' + escapeHtml(Number(item.scoreTotal || 0).toFixed(1).replace(".", ",")) + '/10</b>'
-      + '<span>Custo-benefício ' + escapeHtml(Number(criteria.custoBeneficio || 0).toFixed(1).replace(".", ",")) + '</span>'
-      + '<span>Avaliação ' + escapeHtml(Number(criteria.avaliacao || 0).toFixed(1).replace(".", ",")) + '</span>'
-      + '<span>Interesse ' + escapeHtml(Number(criteria.interesse || 0).toFixed(1).replace(".", ",")) + '</span>'
-      + '<span>Evidências ' + escapeHtml(Number(criteria.evidencia || 0).toFixed(1).replace(".", ",")) + '</span></div>'
-      + '<h4 class="weekly-ranking-why">Por que está em ' + item.position + 'º?</h4>'
+      + '<div class="weekly-ranking-score"><b>Índice cadastral (não teste) ' + escapeHtml(Number(item.scoreTotal || 0).toFixed(1).replace(".", ",")) + '/10</b>'
+      + '<span>Preço relativo ' + escapeHtml(Number(criteria.custoBeneficio || 0).toFixed(1).replace(".", ",")) + '</span>'
+      + '<span>Avaliação ' + (item.avaliacaoVerificada ? 'documentada' : 'sem fonte: neutra') + '</span>'
+      + '<span>Interesse ' + (item.amostraInteresse >= 20 ? escapeHtml(Number(criteria.interesse || 0).toFixed(1).replace(".", ",")) : 'amostra insuficiente: neutro') + '</span>'
+      + '<span>Completude cadastral ' + escapeHtml(Number(criteria.evidencia || 0).toFixed(1).replace(".", ",")) + '</span></div>'
+      + '<h4 class="weekly-ranking-why">Como considerar esta opção</h4>'
       + '<p class="weekly-ranking-reason">' + escapeHtml(item.motivo) + '</p>'
       + humanMarkup
       + '<div class="weekly-ranking-points"><div><b>✓ Pontos positivos</b><ul>'
@@ -2029,14 +2002,16 @@
       (document.getElementById('top5-semanal') || document.querySelector('main'))?.insertAdjacentElement('afterend', section);
       return;
     }
-    const products = weeklyScoreProducts(reconciled.products);
+    const products = weeklyScoreProducts(reconciled.products).map(product => ({
+      ...product, analiseHumana: Number(config.versao) >= 4 && Object.values(product.analiseHumana || {}).every(window.RDCWeeklyComparisonSafety.editorialTextAllowed) ? product.analiseHumana : null
+    }));
     const highlights = weeklyHighlights(products);
     const section = document.createElement("section");
     section.className = "weekly-comparison";
     section.id = "ranking-da-semana";
     section.dataset.weeklyComparison = config.semana || "ativo";
-    const aiSummary = String(config.resumoIA || "").trim();
-    const sourceLinks = products.map(item => '<a href="' + escapeHtml(item.productUrl) + '">' + escapeHtml(item.position + "º: " + item.titulo) + "</a>").join(" · ");
+    const aiSummary = Number(config.versao) >= 4 && window.RDCWeeklyComparisonSafety.editorialTextAllowed(config.resumoIA) ? String(config.resumoIA || "").trim() : "";
+    const sourceLinks = products.map(item => '<a href="' + escapeHtml(item.productUrl) + '">' + escapeHtml("Opção " + item.position + ": " + item.titulo) + "</a>").join(" · ");
     const recordedPrices = products.map(item => numberPrice(item.preco)).filter(price => price > 0);
     const subtitle = recordedPrices.length === products.length
       ? "Preços registrados nesta seleção: de " + brl.format(Math.min(...recordedPrices))
@@ -2047,14 +2022,14 @@
         + escapeHtml(highlight.label) + '</small><b>' + escapeHtml(highlight.item.titulo) + '</b><em>' + escapeHtml(highlight.detail) + '</em></div></a>').join("")
       + '</div>';
     section.innerHTML = '<div class="weekly-comparison-head"><div><small>COMPARATIVO EDITORIAL · SEMANA DE ' + escapeHtml(config.semana) + '</small>'
-      + '<h2>🏆 ' + escapeHtml(config.titulo || "Ranking da Semana") + '</h2>'
+      + '<h2>' + escapeHtml(window.RDCWeeklyComparisonSafety.selectionTitle(config.titulo || "Seleção por perfis da semana")) + '</h2>'
       + '<p>' + escapeHtml(subtitle) + ' Confira preço, frete e estoque antes da compra.</p></div>'
       + '<a href="/como-avaliamos.html">Como classificamos</a></div>'
       + quickPicks
       + (aiSummary ? '<details class="weekly-ai-summary"><summary>Resumo da análise editorial</summary><p>' + escapeHtml(aiSummary) + '</p></details>' : "")
       + '<div class="weekly-ranking-grid">' + products.map(item => weeklyRankingCard(item, highlights)).join("") + '</div>'
       + (aiSummary ? '<p class="weekly-ranking-sources"><b>Fontes consolidadas:</b> fichas públicas dos produtos da seleção — ' + sourceLinks + '. Pesquisa gerada em ' + escapeHtml(dateBr.format(new Date(config.analiseIA?.geradaEm || Date.now()))) + '.</p>' : "")
-      + '<p class="weekly-ranking-method"><b>Metodologia:</b> nota de 0 a 10 calculada com custo-benefício (35%), avaliação informada (30%), interesse observado nos últimos 7 dias (15%) e qualidade das evidências cadastradas (20%). Preço, frete, estoque e avaliações podem mudar; confira o anúncio antes da compra. A aprovação final é sempre feita pelo administrador.</p>';
+      + '<p class="weekly-ranking-method"><b>Metodologia:</b> seleção para diferentes perfis, sem testes próprios. O índice cadastral organiza preço relativo (35%), avaliação documentada (30%), interações no site (15%) e completude cadastral (20%); não mede qualidade ou custo-benefício. Avaliações sem fonte e quantidade documentadas são neutras. Interesse é neutro com menos de 20 interações ponderadas no conjunto (clique × 4 + visualização). Preço, frete e estoque podem mudar; confira o vendedor.</p>';
     const anchor = document.getElementById("top5-semanal") || document.querySelector("#promocoes") || document.querySelector("main");
     if (anchor?.parentNode) anchor.insertAdjacentElement(anchor.matches("main") ? "afterbegin" : "afterend", section);
   }
@@ -2142,6 +2117,9 @@
         categoria: String(product.categoria || ""), categoriaNome: label,
         preco: price, foto: weeklyProductImage(product), productUrl: weeklyProductUrl(product),
         linkAfiliado: String(product.linkAfiliado || product.link || ""), nota: rating,
+        avaliacaoVerificada: product.avaliacaoVerificada ?? product.ratingVerified,
+        avaliacaoFonte: product.avaliacaoFonte || product.notaFonte || product.ratingSource,
+        avaliacaoQuantidade: product.avaliacaoQuantidade ?? product.notaQuantidade ?? product.ratingCount ?? product.reviewCount,
         pros: weeklyTextList(product.pros || product.pontosPositivos),
         cons: weeklyTextList(product.contras || product.pontosNegativos),
         clicks: signals.clicks, views: signals.views, match, withinBudget
@@ -2153,8 +2131,8 @@
     const finalSelection = weeklyScoreProducts(selected);
     const label = query || finalSelection[0].categoriaNome || "produtos";
     return {
-      versao: 2, semana: weeklyMondayKey(), validoAte: weeklyValidUntil(weeklyMondayKey()),
-      titulo: String(seoTitle || "").trim().replace(/\b5\b/, String(finalSelection.length)) || ("Top " + finalSelection.length + " " + group.label + (maxPrice > 0 ? " até " + brl.format(maxPrice) : "")),
+      versao: 4, semana: weeklyMondayKey(), validoAte: weeklyValidUntil(weeklyMondayKey()),
+      titulo: window.RDCWeeklyComparisonSafety.selectionTitle(String(seoTitle || "").trim().replace(/\b5\b/, String(finalSelection.length))) || ("Seleção por perfis: " + group.label + (maxPrice > 0 ? " até " + brl.format(maxPrice) : "")),
       familiaComparavel: group.family, assinaturaEditorial: window.RDCWeeklyComparisonSafety.signature(finalSelection),
       comparabilidadeRevisada: true, revisadoEm: new Date().toISOString(),
       termo: String(query || "").trim(), precoMaximo: maxPrice || 0, produtos: finalSelection,
@@ -2169,7 +2147,7 @@
       + escapeHtml(dateBr.format(new Date(draft.semana + "T12:00:00-03:00"))) + ' · revise os três a cinco produtos equivalentes antes de publicar.</p>'
       + aiIntro + '<ol>' + draft.produtos.map(item => {
         const human = item.analiseHumana;
-        return '<li><strong>' + escapeHtml(item.position + "º — " + item.titulo)
+        return '<li><strong>' + escapeHtml("Opção " + item.position + " — " + item.titulo)
           + '</strong><span>' + escapeHtml(brl.format(item.preco)) + ' · ' + escapeHtml(item.motivo)
           + (human ? '<br><b>IA:</b> ' + escapeHtml(human.veredito) + '<br><b>Para quem:</b> ' + escapeHtml(human.paraQuem)
             + '<br><b>Comparação:</b> ' + escapeHtml(human.comparacaoDireta) + '<br><b>Ressalva:</b> ' + escapeHtml(human.limitePrincipal) : "")
@@ -2181,14 +2159,14 @@
     const section = document.createElement("section");
     section.className = "weekly-ranking-admin";
     section.id = "weekly-ranking-admin";
-    section.innerHTML = '<h2>🏆 Ranking comparativo da semana</h2>'
-      + '<p>Escolha um produto ou categoria e o preço máximo. O sistema usa procura, cliques e dados cadastrados para ordenar três a cinco opções equivalentes. Nada vai para a vitrine sem sua aprovação.</p>'
+    section.innerHTML = '<h2>Seleção por perfis da semana</h2>'
+      + '<p>Escolha um produto ou categoria e o preço máximo. O índice cadastral organiza três a cinco opções equivalentes, mas não mede qualidade ou custo-benefício e não substitui testes. Revise o perfil de uso, os recursos e as limitações. Nada vai para a vitrine sem sua aprovação.</p>'
       + '<div class="weekly-seo-priority" style="margin:12px 0;padding:13px;border:1px solid #b9dcca;border-radius:11px;background:#f2faf6"><b>🎯 Prioridade de conteúdo</b><p>Comece por uma intenção específica de quem está perto de comprar. O termo filtra os produtos; o título é escrito para a busca.</p><div id="weekly-seo-chips" style="display:flex;gap:7px;flex-wrap:wrap"></div></div>'
       + '<div class="weekly-admin-grid"><div><label for="weekly-ranking-query">Produto ou categoria (filtro)</label>'
       + '<input id="weekly-ranking-query" type="text" placeholder="Ex.: celular, patinete, air fryer"></div>'
       + '<div><label for="weekly-ranking-price">Preço máximo (opcional)</label>'
       + '<input id="weekly-ranking-price" type="number" min="1" step="0.01" inputmode="decimal" placeholder="Ex.: 1000,00"></div></div>'
-      + '<label for="weekly-ranking-seo-title">Título focado na busca</label><input id="weekly-ranking-seo-title" type="text" maxlength="120" placeholder="Ex.: 5 melhores celulares até R$ 1.500: comparação e custo-benefício">'
+      + '<label for="weekly-ranking-seo-title">Título focado na busca</label><input id="weekly-ranking-seo-title" type="text" maxlength="120" placeholder="Ex.: Celulares até R$ 1.500: seleção por perfis">'
       + '<div class="weekly-admin-actions"><button id="weekly-ranking-suggest" type="button">✨ Sugerir pelo interesse da semana</button>'
       + '<button id="weekly-ranking-prepare" type="button">Preparar comparação</button>'
       + '<button id="weekly-ranking-ai" type="button" disabled>🤖 Gerar análise humanizada</button>'

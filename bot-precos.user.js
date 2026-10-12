@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.0
+// @version      2.4.1
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -18,7 +18,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.0";
+  const BOT_VERSION = "2.4.1";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -62,7 +62,8 @@
       for (const match of text.matchAll(/\b(?:monitor|televisor|smart\s*tv|tv|tela)((?:\s+[a-z]+){0,4})\s+(\d{2}(?:\.\d+)?)(?![a-z0-9%])/g)) {
         if (!/promocao|oferta|desconto|cupom|frete|prazo/.test(match[1])) add("tela", match[2]);
       }
-      for (const match of text.matchAll(/\b(iphone|ipad|ryzen|instax|forerunner|fenix|hero|playstation|redmi\s+note|vivobook\s+go)\s+(\d+(?:\.\d+)?)(?![a-z0-9])/g)) add(match[1].replace(/\s+/g, " "), match[2]);
+      for (const match of text.matchAll(/\b(iphone|ipad|airpods|ryzen|instax|forerunner|fenix|hero|playstation|redmi(?:\s+note)?|vivobook\s+go)\s+(\d+(?:\.\d+)?)(?![a-z0-9])/g)) add(match[1].replace(/\s+/g, " "), match[2]);
+      for (const match of text.matchAll(/\b(ipad|airpods)\s+(?:pro|max|mini|air)\s+(\d+(?:\.\d+)?)(?![a-z0-9])/g)) add(match[1], match[2]);
       for (const match of text.matchAll(/\b(\d+)(?:a|o|\u00aa|\u00ba)?\s*(?:geracao|generation)\b/g)) add("geracao", match[1]);
       for (const match of text.matchAll(/\b(\d+)\s*(?:gb\s*)?ssd\b(?!\s*(?:de\s+)?\d)|\bssd\s*(?:de\s+)?(\d+)\s*gb\b/g)) add("ssd", match[1] || match[2]);
       return features;
@@ -72,6 +73,25 @@
       const actual = foundFeatures.get(name);
       if (actual?.size && ![...values].some(value => actual.has(value))) return false;
     }
+    // Uma edição só é comparada quando ambos os títulos identificam a mesma
+    // família e geração. "Pro" de uma oferta promocional não é identidade.
+    const editions = value => {
+      const text = normalizeText(value), result = new Map();
+      for (const match of text.matchAll(/\b(iphone|ipad|airpods|redmi(?:\s+note)?|galaxy)\s+([a-z]?\d+[a-z]?)\b(?:\s+((?:pro|max|plus|mini|ultra|fe)(?:\s+(?:pro|max|plus|mini|ultra|fe))*))?/g)) {
+        result.set(match[1] + " " + match[2], match[3] || "base");
+      }
+      for (const match of text.matchAll(/\b(ipad|airpods)\s+(?:(pro|max|mini|air)\s+)?(\d+)\b/g)) {
+        const key = match[1] + " " + match[3];
+        if (match[2] || !result.has(key)) result.set(key, match[2] || "base");
+      }
+      return result;
+    };
+    const expectedEditions = editions(expectedTitle), foundEditions = editions(foundTitle);
+    for (const [model, edition] of expectedEditions) {
+      if (foundEditions.has(model) && foundEditions.get(model) !== edition) return false;
+    }
+    const expectedColors = variantColors(expectedTitle), foundColors = variantColors(foundTitle);
+    if (expectedColors.length && foundColors.length && !expectedColors.some(color => foundColors.includes(color))) return false;
     const words = value => normalizeText(String(value || "").replace(/\b(?:em|at[eé])\s+\d{1,2}\s*x\b/gi, "").replace(/\b\d{1,2}\s*x\b/gi, "")
       .replace(/(?<=\d)[.,](?=\d)/g, "").replace(/([a-z0-9])[-/]([a-z0-9])/gi, "$1$2"))
       .replace(/\b(\d+)\s+(gb|tb|mb|ssd|hz|w|v)\b/g, "$1$2")
@@ -121,7 +141,7 @@
   }
 
   function variantColors(value) {
-    const aliases = { branca: "branco", preta: "preto", vermelha: "vermelho", amarela: "amarelo", roxa: "roxo", dourada: "dourado" };
+    const aliases = { branca: "branco", preta: "preto", vermelha: "vermelho", amarela: "amarelo", roxa: "roxo", dourada: "dourado", black: "preto", white: "branco" };
     return [...new Set(normalizeText(value).split(/\s+/).map(word => aliases[word] || word)
       .filter(word => /^(branco|preto|azul|vermelho|verde|amarelo|bege|cinza|prata|dourado|rosa|roxo|marrom|laranja|transparente)$/.test(word)))];
   }
@@ -147,6 +167,10 @@
       .filter(node => visibleNode(documentHtml, node)).map(node => String(node.textContent || "").match(/An[uú]ncio\s*#?\s*(?:MLB-?)?(\d{6,})/i)?.[1]).filter(Boolean);
     const ids = [...new Set(listingIds)];
     const listingId = ids.length === 1 ? "MLB" + ids[0] : "";
+    const expectedListing = offerIdentity(requestedUrl)?.listing || offerIdentity(finalUrl)?.listing;
+    if (expectedListing && ids.some(id => "MLB" + id !== expectedListing)) {
+      return { motivo: "O anúncio visível não corresponde ao vendedor cadastrado. Confira manualmente." };
+    }
     const attributes = [];
     for (const node of documentHtml.querySelectorAll('.ui-pdp-outside_variations__title, .ui-pdp-variations__title')) {
       if (!visibleNode(documentHtml, node)) continue;

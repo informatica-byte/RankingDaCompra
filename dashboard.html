@@ -370,6 +370,7 @@
                     <div class="col campo"><label>Pontos de atenção (máximo de 300 caracteres):</label><textarea id="contras" rows="3" maxlength="300" required></textarea></div>
                 </div>
 
+                <button type="button" class="btn-edit" onclick="testarRoboProdutoEdicao(this)">Consultar com robô (não salva)</button>
                 <button type="submit" id="btn-submit-prod" class="btn-salvar">🚀 Salvar na Nuvem</button>
             </form>
 
@@ -793,9 +794,9 @@ Formato obrigatório:
                 posicao: Number(item.position),
                 titulo: String(item.titulo || ""),
                 preco: Number(item.preco || 0),
-                notaComparativa: Number(item.scoreTotal || 0),
+                indiceCadastral: Number(item.scoreTotal || 0),
                 criterios: item.criterios || {},
-                avaliacaoInformada: Number(item.nota || 0),
+                avaliacaoDocumentada: item.avaliacaoVerificada ? Number(item.nota || 0) : null,
                 cliques7Dias: Number(item.clicks || 0),
                 visualizacoes7Dias: Number(item.views || 0),
                 pontosPositivos: Array.isArray(item.pros) ? item.pros : [],
@@ -803,7 +804,7 @@ Formato obrigatório:
                 justificativaMatematica: String(item.motivo || ""),
                 paginaPublica: String(item.productUrl || "")
             }));
-            if (produtos.length !== 5) throw new Error("Prepare primeiro uma comparação válida com cinco produtos.");
+            if (produtos.length < 3 || produtos.length > 5) throw new Error("Prepare primeiro uma comparação válida com três a cinco produtos equivalentes.");
             const formato = `{
   "resumoGeral": "síntese de 250 a 550 caracteres",
   "produtos": [
@@ -816,18 +817,19 @@ Formato obrigatório:
     }
   ]
 }`;
-            const regras = `Você é a analista editorial brasileira do Ranking da Compra. Compare os cinco produtos como uma pessoa experiente explicaria a um comprador, com linguagem natural e sem frases publicitárias.
+            const regras = `Você é a analista editorial brasileira do Ranking da Compra. Compare os produtos recebidos por perfil de uso, com linguagem natural e sem frases publicitárias.
 
 REGRAS DE VERACIDADE:
-- Use exclusivamente os DADOS CONSOLIDADOS fornecidos e, quando a ferramenta conseguir abrir, as cinco PÁGINAS PÚBLICAS listadas.
+- Use exclusivamente os DADOS CONSOLIDADOS fornecidos e, quando a ferramenta conseguir abrir, as PÁGINAS PÚBLICAS listadas.
 - Não afirme que testou fisicamente, mediu desempenho, confirmou vendas ou pesquisou toda a internet.
 - Não invente garantia, durabilidade, reputação, quantidade vendida, qualidade de construção ou especificações.
-- Diferencie avaliação informada, nota comparativa calculada e interesse observado no próprio site.
-- Para cada posição, cite pelo menos duas diferenças concretas: preço, nota, critério, vantagem ou limitação.
+- O índice cadastral apenas organiza opções; não é nota de qualidade. Avaliações sem documentação e amostras escassas são neutras.
+- Não afirme melhor geral, melhor custo-benefício, maior alcance ou estabilidade superior.
+- Para cada opção, explique recursos, preço, perfil e limitações comprováveis.
 - Explique honestamente quando a ficha não permite concluir algo.
-- Preserve a ordem matemática recebida; você explica a ordem, não cria outra.
+- Preserve os IDs e a ordem recebidos, sem tratar as posições como qualidade comprovada.
 - Escreva veredito, paraQuem, comparacaoDireta e limitePrincipal com 40 a 240 caracteres cada.
-- Retorne os cinco IDs exatamente uma vez e somente JSON válido, sem markdown.
+- Retorne todos os IDs recebidos exatamente uma vez e somente JSON válido, sem markdown.
 
 DADOS CONSOLIDADOS:
 ${JSON.stringify(produtos)}
@@ -1064,9 +1066,9 @@ FORMATO:
     </script>
 
     <script src="/price-publication.js?v=20261004-2"></script>
-    <script src="/assisted-price-safety.js?v=20261012-4"></script>
+    <script src="/assisted-price-safety.js?v=20261012-5"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
-    <script src="/weekly-comparison-safety.js?v=20261012-audit-2"></script>
+    <script src="/weekly-comparison-safety.js?v=20261012-audit-3"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
     <script src="/metricas-resumo.js?v=20261007-counters"></script>
     <script>
@@ -2664,10 +2666,33 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                             <input type="text" inputmode="decimal" id="preco-manual-${doc.id}" value="${valorSugerido ? escapeHtml(formatarPrecoCampo(valorSugerido)) : ''}" placeholder="Ex.: 149,90">
                         </div>
                         <button type="button" class="btn-preco" onclick="salvarPrecoManual('${doc.id}')">Salvar preço</button>
+                        <button type="button" class="btn-edit" onclick="conferirPrecoComIA('${doc.id}', this)">Consultar com robô — confirmar antes de salvar</button>
                         <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')">Editar completo</button>
                         <button type="button" class="btn-del" onclick="deletarProduto('${doc.id}')" aria-label="Excluir ${escapeHtml(produto.titulo || 'produto')}">Excluir produto</button>
                     </div>
                 </div>`;
+        }
+
+        async function testarRoboProdutoEdicao(botao) {
+            const textoOriginal = botao.textContent;
+            botao.disabled = true;
+            try {
+                if (!editProdId) throw new Error('Abra um produto cadastrado em Editar antes do teste.');
+                const produto = { produtoId: editProdId, titulo: document.getElementById('titulo').value, url: document.getElementById('link').value };
+                if (!produto.url) throw new Error('O produto precisa de um link original antes do teste.');
+                const motor = motorConferenciaPrecoDisponivel();
+                if (!motor) throw new Error('Atualize o robô para 2.4.1 ou superior e recarregue o painel.');
+                botao.textContent = 'Consultando apenas este produto...';
+                const resultado = await motor.conferir(produto);
+                const motivo = window.RDCAssistedPriceSafety.validate(resultado, produto);
+                if (motivo) throw new Error(motivo);
+                informarStatusCadastro(`Consulta sem gravação: R$ ${formatarPrecoCampo(resultado.preco)}. Produto encontrado: ${String(resultado.tituloEncontrado || '').slice(0, 300)}. Nenhum preço ou data foi alterado.`);
+            } catch (erro) {
+                informarStatusCadastro(`Teste não concluído: ${String(erro?.message || erro).slice(0, 500)}. Nenhum preço ou data foi alterado.`);
+            } finally {
+                botao.disabled = false;
+                botao.textContent = textoOriginal;
+            }
         }
 
         async function conferirPrecoComIA(id, botao) {
@@ -2689,6 +2714,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 if (!preco) throw new Error('A conferência não retornou um preço válido.');
                 const campoEntrada = document.getElementById(`preco-manual-${id}`);
                 if (!campoEntrada) throw new Error('O campo de preço não está disponível.');
+                const valorAnterior = campoEntrada.value;
                 campoEntrada.value = formatarPrecoCampo(preco);
                 conferenciasPrecoIA[id] = {
                     ...resultado,
@@ -2698,7 +2724,12 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     fonteConsultada: String(resultado.fonteConsultada || url).slice(0, 1000)
                 };
                 const confirmado = confirm(`A IA encontrou R$ ${formatarPrecoCampo(preco)}.\n\nEvidência: ${conferenciasPrecoIA[id].evidencia}\n\nDeseja salvar esse preço no produto?`);
-                if (confirmado) await salvarPrecoManual(id);
+                if (!confirmado) {
+                    campoEntrada.value = valorAnterior;
+                    delete conferenciasPrecoIA[id];
+                    return;
+                }
+                await salvarPrecoManual(id);
             } catch (erro) {
                 console.error('Falha na conferência de preço por IA:', erro);
                 const mensagem = String(erro?.message || erro).replace(/\s+/g, ' ').trim();
@@ -2734,7 +2765,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const conectado = typeof window.conferirPrecoPelaFonteLocal === 'function' && window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__);
             status.classList.toggle('conectado', conectado);
             if (!conectado) {
-                status.textContent = '⚠️ Atualize o robô de preços para 2.4.0 ou superior e recarregue o painel. Conferência simplificada: mesmo produto e preço principal visível.';
+                status.textContent = '⚠️ Atualize o robô de preços para 2.4.1 ou superior e recarregue o painel. Conferência simplificada: mesmo produto e preço principal visível.';
                 return;
             }
             status.textContent = '✅ Robô local conectado — ele só inicia quando você apertar o botão.';
@@ -2896,7 +2927,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     [campo]: formatarPrecoCampo(numero),
                     precoConferenciaCampo: campo,
                     precoConferenciaValor: numero,
-                    precoConferidoPor: verificacaoIA ? 'robo_assistido_2.4.0' : 'manual',
+                    precoConferidoPor: verificacaoIA ? 'robo_assistido_2.4.1' : 'manual',
                     precoProvaVersao: verificacaoIA ? verificacaoIA.proofVersion : 0,
                     precoProvaAnuncio: verificacaoIA ? verificacaoIA.offerKey : '',
                     precoConferidoPorIA: Boolean(verificacaoIA),
@@ -3264,7 +3295,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script defer src="/seo-opportunities.js?v=20261004-2"></script>
   <script src="/promotion-title.js?v=20261005-1"></script>
-  <script defer src="/growth-tools.js?v=20261012-audit-2"></script>
+  <script defer src="/growth-tools.js?v=20261012-audit-3"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
 <script>

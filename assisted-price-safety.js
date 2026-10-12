@@ -1,11 +1,15 @@
 (function (root) {
   "use strict";
-  const MIN_VERSION = "2.4.0";
+  const MIN_VERSION = "2.4.1";
   function robotReady(info) {
     if (!/^\d+\.\d+\.\d+$/.test(String(info?.version || ""))) return false;
     const version = String(info.version).split(".").map(Number);
-    return info?.ready === true && version.length === 3 && version.every(Number.isFinite)
-      && (version[0] > 2 || (version[0] === 2 && version[1] >= 4));
+    const minimum = MIN_VERSION.split(".").map(Number);
+    if (info?.ready !== true || !version.every(Number.isFinite)) return false;
+    for (let index = 0; index < minimum.length; index++) {
+      if (version[index] !== minimum[index]) return version[index] > minimum[index];
+    }
+    return true;
   }
   function identity(raw) {
     try {
@@ -27,7 +31,7 @@
     return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
   }
   function colors(value) {
-    const aliases = { branca: "branco", preta: "preto", vermelha: "vermelho", amarela: "amarelo", roxa: "roxo", dourada: "dourado" };
+    const aliases = { branca: "branco", preta: "preto", vermelha: "vermelho", amarela: "amarelo", roxa: "roxo", dourada: "dourado", black: "preto", white: "branco" };
     return [...new Set(normalized(value).split(/\s+/).map(word => aliases[word] || word)
       .filter(word => /^(branco|preto|azul|vermelho|verde|amarelo|bege|cinza|prata|dourado|rosa|roxo|marrom|laranja|transparente)$/.test(word)))];
   }
@@ -45,7 +49,8 @@
       for (const match of text.matchAll(/\b(?:monitor|televisor|smart\s*tv|tv|tela)((?:\s+[a-z]+){0,4})\s+(\d{2}(?:\.\d+)?)(?![a-z0-9%])/g)) {
         if (!/promocao|oferta|desconto|cupom|frete|prazo/.test(match[1])) add("tela", match[2]);
       }
-      for (const match of text.matchAll(/\b(iphone|ipad|ryzen|instax|forerunner|fenix|hero|playstation|redmi\s+note|vivobook\s+go)\s+(\d+(?:\.\d+)?)(?![a-z0-9])/g)) add(match[1].replace(/\s+/g, " "), match[2]);
+      for (const match of text.matchAll(/\b(iphone|ipad|airpods|ryzen|instax|forerunner|fenix|hero|playstation|redmi(?:\s+note)?|vivobook\s+go)\s+(\d+(?:\.\d+)?)(?![a-z0-9])/g)) add(match[1].replace(/\s+/g, " "), match[2]);
+      for (const match of text.matchAll(/\b(ipad|airpods)\s+(?:pro|max|mini|air)\s+(\d+(?:\.\d+)?)(?![a-z0-9])/g)) add(match[1], match[2]);
       for (const match of text.matchAll(/\b(\d+)(?:a|o|\u00aa|\u00ba)?\s*(?:geracao|generation)\b/g)) add("geracao", match[1]);
       for (const match of text.matchAll(/\b(\d+)\s*(?:gb\s*)?ssd\b(?!\s*(?:de\s+)?\d)|\bssd\s*(?:de\s+)?(\d+)\s*gb\b/g)) add("ssd", match[1] || match[2]);
       return features;
@@ -55,6 +60,24 @@
       const actual = foundFeatures.get(name);
       if (actual?.size && ![...values].some(value => actual.has(value))) return false;
     }
+    // Mesmo contrato do userscript: edição vinculada a família/geração conhecida.
+    const editions = value => {
+      const text = normalized(value), result = new Map();
+      for (const match of text.matchAll(/\b(iphone|ipad|airpods|redmi(?:\s+note)?|galaxy)\s+([a-z]?\d+[a-z]?)\b(?:\s+((?:pro|max|plus|mini|ultra|fe)(?:\s+(?:pro|max|plus|mini|ultra|fe))*))?/g)) {
+        result.set(match[1] + " " + match[2], match[3] || "base");
+      }
+      for (const match of text.matchAll(/\b(ipad|airpods)\s+(?:(pro|max|mini|air)\s+)?(\d+)\b/g)) {
+        const key = match[1] + " " + match[3];
+        if (match[2] || !result.has(key)) result.set(key, match[2] || "base");
+      }
+      return result;
+    };
+    const expectedEditions = editions(expectedTitle), foundEditions = editions(foundTitle);
+    for (const [model, edition] of expectedEditions) {
+      if (foundEditions.has(model) && foundEditions.get(model) !== edition) return false;
+    }
+    const expectedColors = colors(expectedTitle), foundColors = colors(foundTitle);
+    if (expectedColors.length && foundColors.length && !expectedColors.some(color => foundColors.includes(color))) return false;
     const words = value => normalized(String(value || "").replace(/\b(?:em|at[eé])\s+\d{1,2}\s*x\b/gi, "").replace(/\b\d{1,2}\s*x\b/gi, "")
       .replace(/(?<=\d)[.,](?=\d)/g, "").replace(/([a-z0-9])[-/]([a-z0-9])/gi, "$1$2"))
       .replace(/\b(\d+)\s+(gb|tb|mb|ssd|hz|w|v)\b/g, "$1$2")
@@ -91,6 +114,8 @@
       || (requested.attributes && requested.attributes !== found.attributes)) return "O anúncio ou a variação não corresponde ao cadastro. Confira manualmente.";
     const proof = result.variantProof;
     if (!titulo || !proof || proof.expectedTitle !== titulo || proof.verified !== true || !matchingProduct(titulo, result.tituloEncontrado)) return "O título não confirma o mesmo produto. Preço preservado.";
+    const expectedListing = requested.listing || found.listing;
+    if (expectedListing && proof.listingId && proof.listingId !== expectedListing) return "O anúncio visível não corresponde ao vendedor cadastrado. Confira manualmente.";
     const mismatch = variantMismatch(titulo, proof.attributes);
     if (mismatch) return mismatch;
     const value = result.preco;
