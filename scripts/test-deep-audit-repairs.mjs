@@ -133,11 +133,16 @@ test('painel móvel não salva valor diferente do comprovado pelo robô', async 
   const code=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida('),mobile.indexOf('function separarProdutoAutomacao('));
   let writes=0;const messages=[];
   const ctx=vm.createContext({filaPrecosSalvando:false,filaPrecosIdAtual:'a',filaPrecosDados:{todos:[{id:'a',titulo:'Produto',preco:100}]},
+    automacaoPrecosAtiva:true,automacaoPrecosRodada:1,acompanhamentoPrecos:{vigente:(rodada,id)=>rodada===1&&id==='a'},
     linkPrecoAssistido:()=> 'https://www.mercadolivre.com.br/p/MLB12345678',campoPrecoFila:()=> 'preco',numero:Number,
     window:{RDCAssistedPriceSafety:{validate:()=>''}},msg:(_id,value)=>messages.push(value),updateDoc:async()=>{writes++;}});
   vm.runInContext(code,ctx);
-  assert.equal(await ctx.salvarFilaPrecoAssistida(99,{automatico:true,produtoId:'a',resultado:{preco:100}}),false);
+  assert.equal(await ctx.salvarFilaPrecoAssistida(99,{automatico:true,produtoId:'a',resultado:{preco:100},rodada:1}),false);
   assert.equal(writes,0);assert.match(messages[0],/difere da prova/);
+  assert.equal(await ctx.salvarFilaPrecoAssistida(100,{automatico:true,produtoId:'a',resultado:{preco:100},rodada:0}),false);
+  ctx.automacaoPrecosAtiva=false;
+  assert.equal(await ctx.salvarFilaPrecoAssistida(100,{automatico:true,produtoId:'a',resultado:{preco:100},rodada:1}),false);
+  assert.equal(writes,0,'rodada antiga ou encerrada não autoriza escrita');
 });
 
 test('cota não entra no retry do gerador e há timeout para requisições', () => {

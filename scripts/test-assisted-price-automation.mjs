@@ -37,7 +37,7 @@ test("automação separa indisponíveis sem excluir automaticamente", () => {
 });
 
 test("salvamento automático preserva o mesmo validador da conferência manual", () => {
-  assert.match(panel, /salvarFilaPrecoAssistida\(resultadoLocal\.preco, \{ automatico: true, produtoId: produto.id, resultado: resultadoLocal \}\)/);
+  assert.match(panel, /salvarFilaPrecoAssistida\(resultadoLocal\.preco, \{ automatico: true, produtoId: produto.id, resultado: resultadoLocal, rodada \}\)/);
   assert.match(panel, /RDCAssistedPriceSafety.validate\(opcoes.resultado/);
   assert.match(panel, /preço anterior da promoção/i);
 });
