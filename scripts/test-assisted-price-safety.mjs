@@ -48,7 +48,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.4.2');
+  assert.equal(result.robotVersion, '2.4.3');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -76,7 +76,7 @@ test('modelo diferente não passa por duas palavras genéricas em comum', () => 
   const { context:c }=setup();
   assert.equal(c.matchingProduct('Fone JBL Tune 520BT Preto Bluetooth','Fone JBL Tune 720BT Preto Bluetooth'),false);
   assert.equal(c.sameOffer(url,'https://produto.mercadolivre.com.br/MLB-1111111111-tenis-_JM'),false);
-  assert.equal(c.sameOffer(url,url.replace('175705466645','175705466646')),false);
+  assert.equal(c.sameOffer(url,url.replace('175705466645','175705466646')),true);
   assert.equal(c.sameOffer(url,'https://mercadolivre.com.br.evil.invalid/MLB-2926671021'),false);
 });
 test('aba antiga não responde a novo pedido mesmo com título idêntico', async () => {
@@ -115,7 +115,7 @@ test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo 
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261012-5/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261013-1/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
@@ -137,13 +137,13 @@ test('wid no fragmento/query fixa o vendedor; identificadores conflitantes são 
   }
 });
 
-test('regressão Lotus: bloquear cor explicitamente diferente, não exigir código do rodapé', () => {
+test('regressão Lotus: ignorar cor, manter identidade do anúncio e preço visível', () => {
   const expected='Gerador De Espuma A Bateria 2l Lotus 7.4v 3 Bar Lavagem Automotiva Branco';
   const catalog='https://www.mercadolivre.com.br/gerador/p/MLB57289720';
   const doc=page({foundTitle:expected,listing:'7685968580',attributes:[{name:'Cor',value:'Bege'}],selected:[],prices:[money(139.49)]});
   const {context:c}=setup(doc);
   assert.match(c.extractDocumentOffer(doc,expected,catalog+'#wid=MLB5296312807').motivo,/vendedor/);
-  assert.match(c.extractDocumentOffer(doc,expected,catalog).motivo,/cor/);
+  assert.equal(c.extractDocumentOffer(doc,expected,catalog).preco,139.49);
   const missingFooter=page({foundTitle:expected,listing:'',attributes:[],selected:[],prices:[money(139.49)]});
   assert.equal(c.extractDocumentOffer(missingFooter,expected,catalog).preco,139.49);
 });
@@ -166,7 +166,7 @@ test('mesmo produto e preço principal dispensam seletor obrigatório e repetiç
   }
 });
 
-test('característica explícita diferente preserva cadastro; ausência da ficha não bloqueia', () => {
+test('cor, tamanho e voltagem não bloqueiam a conferência de nome e preço', () => {
   const {context:c}=setup();
   const cases=[
     ['Fone JBL Tune 520BT Preto',[{name:'Cor',value:'Branco'}],/cor/],
@@ -174,7 +174,8 @@ test('característica explícita diferente preserva cadastro; ausência da ficha
     ['Air fryer 220V',[{name:'Voltagem',value:'127V'}],/voltagem/],
   ];
   for(const [expected,attrs,reason] of cases) {
-    assert.match(c.variantMismatch(expected,attrs),reason);assert.match(c.RDCAssistedPriceSafety.variantMismatch(expected,attrs),reason);
+    assert.equal(c.variantMismatch(expected,attrs),'');assert.equal(c.RDCAssistedPriceSafety.variantMismatch(expected,attrs),'');
+    assert.equal(c.extractDocumentOffer(page({foundTitle:expected,attributes:attrs}),expected,url).status,'ok');
   }
   for(const [expected,attrs] of [
     ['Fone JBL Tune 520BT Preto',[{name:'Cor',value:'Preta'},{name:'Modelo',value:'Tune 520BT'}]],
@@ -230,13 +231,10 @@ test('dashboard mantém o link com searchVariation/attributes em vez de convert�
   }
 });
 
-test('identidade numérica bloqueia geração, polegadas e armazenamento contraditórios em ambos os validadores', () => {
+test('identidade do nome mantém geração e armazenamento, sem bloquear pelo tamanho', () => {
   const {context:c}=setup();
   const cases=[
-    ['Monitor Samsung 24 Polegadas Full HD','Monitor Samsung 27 Polegadas Full HD'],
-    ['Monitor Samsung 24 Full HD','Monitor Samsung 27 Full HD'],
     ['Smartphone Apple iPhone 14 128GB','Smartphone Apple iPhone 15 128GB'],
-    ['Smart TV LG 55" 4K','Smart TV LG 65" 4K'],
     ['Notebook Asus Vivobook Go 15 Ryzen 5','Notebook Asus Vivobook Go 14 Ryzen 5'],
     ['Tablet Lenovo 10ª Geração 128GB','Tablet Lenovo 11ª Geração 128GB'],
     ['Notebook Dell 8GB SSD 256GB','Notebook Dell 8GB SSD 512GB'],
@@ -266,16 +264,18 @@ test('descontos, prazos e ausência de informação continuam aceitos sem invent
   }
 });
 
-test('prova completa de monitor com polegadas erradas não autoriza escrita, mesmo na mesma URL', async () => {
+test('prova de preço do mesmo monitor não é bloqueada por tamanho, mas outro produto é recusado', async () => {
   const expected='Monitor Samsung 24 Polegadas Full HD';
   const {context:c,writes,setCommand}=setup(page({foundTitle:expected}));
   const command={requestId:'monitor',produtoId:'a',titulo:expected,url,createdAt:Date.now()};
   setCommand(command);await c.publishCurrentPageResult(command);
   assert.equal(c.RDCAssistedPriceSafety.validate(writes[0],{produtoId:'a',url,titulo:expected}), '');
-  assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],tituloEncontrado:'Monitor Samsung 27 Polegadas Full HD'},
+  assert.equal(c.RDCAssistedPriceSafety.validate({...writes[0],tituloEncontrado:'Monitor Samsung 27 Polegadas Full HD'},
+    {produtoId:'a',url,titulo:expected}), '');
+  assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],tituloEncontrado:'Impressora HP Laser 135A'},
     {produtoId:'a',url,titulo:expected}),/título não confirma/);
   assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],robotVersion:'2.3.0'},
-    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.1/);
+    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.3/);
 });
 
 test('2.4.1 bloqueia modelos numéricos e edições Pro/Plus explicitamente diferentes', () => {
@@ -311,20 +311,49 @@ test('2.4.1 bloqueia modelos numéricos e edições Pro/Plus explicitamente dife
   }
 });
 
-test('cor contraditória nos dois títulos bloqueia; cor ausente continua permitida', () => {
+test('nome e preço ignoram cor diferente nos títulos', () => {
   const {context:c}=setup();
   for(const [expected,found] of [
     ['Fone JBL Tune 520BT Preto','Fone JBL Tune 520BT Branco'],
     ['Notebook Asus Vivobook Ryzen 5 16gb 512ssd Mixed Black','Notebook Asus Vivobook Ryzen 5 16gb 512ssd Branco'],
   ]) {
-    assert.equal(c.matchingProduct(expected,found),false);
-    assert.equal(c.RDCAssistedPriceSafety.matchingProduct(expected,found),false);
-    assert.equal(c.extractDocumentOffer(page({foundTitle:found,attributes:[]}),expected,url).status,'loading');
+    assert.equal(c.matchingProduct(expected,found),true);
+    assert.equal(c.RDCAssistedPriceSafety.matchingProduct(expected,found),true);
+    assert.equal(c.extractDocumentOffer(page({foundTitle:found,attributes:[]}),expected,url).status,'ok');
   }
   for(const found of ['Fone JBL Tune 520BT Preta','Fone JBL Tune 520BT Black','Fone JBL Tune 520BT']) {
     assert.equal(c.matchingProduct('Fone JBL Tune 520BT Preto',found),true);
     assert.equal(c.RDCAssistedPriceSafety.matchingProduct('Fone JBL Tune 520BT Preto',found),true);
   }
+});
+
+test('nome e preço ignoram tamanho e voltagem nos títulos sem aceitar outro modelo', async () => {
+  const {context:c,writes,setCommand}=setup();
+  for(const [expected,found] of [
+    ['Tênis Nike Court tamanho 34 Preto','Tênis Nike Court tamanho 39 Branco'],
+    ['Tênis Nike Court 34 BR','Tênis Nike Court 39 BR'],
+    ['Air fryer Mondial 220V Preto','Air fryer Mondial 127 V Branco'],
+    ['Fone JBL Tune 520BT cor Azul','Fone JBL Tune 520BT Branco'],
+    ['Gerador de Espuma Lotus 7.4V','Gerador de Espuma Lotus 12V'],
+    ['Monitor Samsung 24 Polegadas Full HD','Monitor Samsung 27 Polegadas Full HD'],
+    ['Monitor Samsung 24 Full HD','Monitor Samsung 27 Full HD'],
+    ['Smart TV LG 55" 4K','Smart TV LG 65" 4K'],
+    ['Escorredor de louça 85cm','Escorredor de louça 90cm'],
+  ]) {
+    assert.equal(c.matchingProduct(expected,found),true);
+    assert.equal(c.RDCAssistedPriceSafety.matchingProduct(expected,found),true);
+    const result=c.extractDocumentOffer(page({foundTitle:found}),expected,url);
+    assert.equal(result.status,'ok');
+    assert.equal(c.RDCAssistedPriceSafety.validate({...result,produtoId:'a',requestId:'name-price',checkedAt:Date.now()},
+      {produtoId:'a',url,titulo:expected}), '');
+  }
+  const command={requestId:'variant-query',produtoId:'a',titulo:title,url,createdAt:Date.now()};
+  setCommand(command);await c.publishCurrentPageResult(command);
+  const result=writes[0];
+  assert.equal(c.RDCAssistedPriceSafety.validate({...result,fonteConsultada:url.replace('175705466645','175705466646')},
+    {produtoId:'a',url,titulo:title}), '');
+  assert.match(c.RDCAssistedPriceSafety.validate({...result,requestedUrl:url.replace('175705466645','175705466646')},
+    {produtoId:'a',url,titulo:title}), /pedido/);
 });
 
 test('MLB explícito diferente no anúncio visível preserva preço mesmo com URL e título iguais', async () => {
@@ -343,12 +372,12 @@ test('MLB explícito diferente no anúncio visível preserva preço mesmo com UR
     {produtoId:'a',url,titulo:title}),'');
 });
 
-test('mínimo 2.4.1 compara patch e não aceita robô 2.4.0', () => {
+test('mínimo 2.4.3 exige robô com os critérios atuais', () => {
   const {context:c}=setup();
-  for(const version of ['2.3.9','2.4.0','1.99.99','2.4','invalid']) {
+  for(const version of ['2.3.9','2.4.0','2.4.1','2.4.2','1.99.99','2.4','invalid']) {
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),false,version);
   }
-  for(const version of ['2.4.1','2.4.2','2.5.0','3.0.0']) {
+  for(const version of ['2.4.3','2.4.4','2.5.0','3.0.0']) {
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),true,version);
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:false}),false,version);
   }

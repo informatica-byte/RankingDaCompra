@@ -1,6 +1,6 @@
 (function (root) {
   "use strict";
-  const MIN_VERSION = "2.4.1";
+  const MIN_VERSION = "2.4.3";
   function robotReady(info) {
     if (!/^\d+\.\d+\.\d+$/.test(String(info?.version || ""))) return false;
     const version = String(info.version).split(".").map(Number);
@@ -35,7 +35,18 @@
     return [...new Set(normalized(value).split(/\s+/).map(word => aliases[word] || word)
       .filter(word => /^(branco|preto|azul|vermelho|verde|amarelo|bege|cinza|prata|dourado|rosa|roxo|marrom|laranja|transparente)$/.test(word)))];
   }
+  // A conferência verifica nome/modelo e preço, não uma variante específica.
+  function nameForPrice(value) {
+    return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/\b(?:(?:cor|cores)\s*:?\s*)?(?:mixed\s+black|branc[oa]|pret[oa]|azul|vermelh[oa]|verde|amarel[oa]|bege|cinza|prata|dourad[oa]|rosa|rox[oa]|marrom|laranja|transparente|black|white)\b/gi, " ")
+      .replace(/\b\d+(?:[.,]\d+)?\s*(?:v|volts?)\b|\bbivolt\b/gi, " ")
+      .replace(/\b\d+(?:[.,]\d+)?\s*(?:polegadas?\b|pol\b|inch(?:es)?\b|["\u2033]|mm\b|cm\b|m\b)/gi, " ")
+      .replace(/\b(?:tamanho|tam|numero|numeracao)\s*[:#]?\s*(?:\d{1,3}\s*(?:br|eu|us)?|x{0,3}[pmg]{1,3}|xs|xl|xxl)\b/gi, " ")
+      .replace(/\b\d{1,3}\s*(?:br|eu|us)\b/gi, " ");
+  }
   function matchingProduct(expectedTitle, foundTitle) {
+    expectedTitle = nameForPrice(expectedTitle);
+    foundTitle = nameForPrice(foundTitle);
     // Mesmo contrato do userscript: bloquear contradição explícita, não ficha
     // incompleta nem números de desconto/frete/prazo do texto promocional.
     const numericFeatures = value => {
@@ -57,6 +68,7 @@
     };
     const expectedFeatures = numericFeatures(expectedTitle), foundFeatures = numericFeatures(foundTitle);
     for (const [name, values] of expectedFeatures) {
+      if (name === "tela") continue; // Tamanho não é um bloqueio nesta conferência.
       const actual = foundFeatures.get(name);
       if (actual?.size && ![...values].some(value => actual.has(value))) return false;
     }
@@ -93,25 +105,15 @@
     const matches = expected.filter(word => found.has(word)).length;
     return matches >= Math.min(3, expected.length) && matches / expected.length >= 0.5;
   }
-  function variantMismatch(title, attributes) {
-    const selected = (Array.isArray(attributes) ? attributes : []).filter(a => a && typeof a.name === "string" && typeof a.value === "string" && a.value.trim() && !/\b(escolha|selecione|selecionar)\b/.test(normalized(a.value)));
-    const color = selected.filter(a => /^cor(?:es)?$/.test(normalized(a.name)));
-    const expectedColors = colors(title);
-    if (expectedColors.length && color.some(a => colors(a.value).length && expectedColors.some(c => !colors(a.value).includes(c)))) return "A cor selecionada é diferente da indicada no produto. Confira manualmente.";
-    const expectedSize = normalized(title).match(/\b(?:tamanho|tam|numero|numeracao)\s+(\d{1,3}|x{0,3}[pmg]{1,3})\b/)?.[1];
-    const sizes = selected.filter(a => /^tamanho|numeracao/.test(normalized(a.name)));
-    if (expectedSize && sizes.length && !sizes.some(a => normalized(a.value).split(/\s+/).includes(expectedSize))) return "O tamanho selecionado não corresponde ao cadastro. Confira manualmente.";
-    const voltages = normalized(title).match(/\b(?:110|127|220|240)\s*v\b/g) || [];
-    const voltage = selected.filter(a => /voltagem|tensao/.test(normalized(a.name)));
-    if (voltage.length && voltages.some(v => voltage.some(a => !normalized(a.value).replace(/\s/g, "").includes(v.replace(/\s/g, ""))))) return "A voltagem selecionada não corresponde ao cadastro. Confira manualmente.";
+  function variantMismatch(_title, _attributes) {
+    // Preferência do responsável: conferir nome e preço, sem validar variantes.
     return "";
   }
   function validate(result, { produtoId, url, titulo, previousPrice = 0, now = Date.now() }) {
     const requested = identity(url), found = identity(result?.fonteConsultada);
-    if (!robotReady({ version: result?.robotVersion, ready: true }) || result?.proofVersion !== 3) return "Atualize o robô para a versão " + MIN_VERSION + " ou superior e recarregue o painel.";
+    if (!robotReady({ version: result?.robotVersion, ready: true }) || result?.proofVersion !== 3 || result?.comparisonPolicy !== "name_price") return "Atualize o robô para a versão " + MIN_VERSION + " ou superior e recarregue o painel.";
     if (result.status !== "ok" || result.produtoId !== produtoId || result.requestedUrl !== url || !result.requestId) return "Resposta não pertence a este produto ou pedido. Preço preservado.";
-    if (!requested || !found || requested.key !== found.key || result.offerKey !== found.key || (requested.variation && requested.variation !== found.variation)
-      || (requested.attributes && requested.attributes !== found.attributes)) return "O anúncio ou a variação não corresponde ao cadastro. Confira manualmente.";
+    if (!requested || !found || requested.key !== found.key || result.offerKey !== found.key) return "O anúncio não corresponde ao produto solicitado. Confira manualmente.";
     const proof = result.variantProof;
     if (!titulo || !proof || proof.expectedTitle !== titulo || proof.verified !== true || !matchingProduct(titulo, result.tituloEncontrado)) return "O título não confirma o mesmo produto. Preço preservado.";
     const expectedListing = requested.listing || found.listing;

@@ -1066,7 +1066,7 @@ FORMATO:
     </script>
 
     <script src="/price-publication.js?v=20261004-2"></script>
-    <script src="/assisted-price-safety.js?v=20261012-5"></script>
+    <script src="/assisted-price-safety.js?v=20261013-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/weekly-comparison-safety.js?v=20261012-audit-4"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
@@ -2681,7 +2681,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 const produto = { produtoId: editProdId, titulo: document.getElementById('titulo').value, url: document.getElementById('link').value };
                 if (!produto.url) throw new Error('O produto precisa de um link original antes do teste.');
                 const motor = motorConferenciaPrecoDisponivel();
-                if (!motor) throw new Error('Atualize o robô para 2.4.1 ou superior e recarregue o painel.');
+                if (!motor) throw new Error('Atualize o robô para 2.4.3 ou superior e recarregue o painel.');
                 botao.textContent = 'Consultando apenas este produto...';
                 const resultado = await motor.conferir(produto);
                 const motivo = window.RDCAssistedPriceSafety.validate(resultado, produto);
@@ -2765,10 +2765,10 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const conectado = typeof window.conferirPrecoPelaFonteLocal === 'function' && window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__);
             status.classList.toggle('conectado', conectado);
             if (!conectado) {
-                status.textContent = '⚠️ Atualize o robô de preços para 2.4.1 ou superior e recarregue o painel. Conferência simplificada: mesmo produto e preço principal visível.';
+                status.textContent = '⚠️ Atualize o robô de preços para 2.4.3 ou superior e recarregue o painel. Conferência: nome/modelo e preço principal, sem validar cor, tamanho ou voltagem.';
                 return;
             }
-            status.textContent = '✅ Robô local conectado — ele só inicia quando você apertar o botão.';
+            status.textContent = '✅ Robô local conectado — confere nome/modelo e preço, sem validar cor, tamanho ou voltagem. Só inicia quando você apertar o botão.';
         }
 
         window.setTimeout(atualizarStatusBotPrecosLocal, 700);
@@ -2927,7 +2927,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     [campo]: formatarPrecoCampo(numero),
                     precoConferenciaCampo: campo,
                     precoConferenciaValor: numero,
-                    precoConferidoPor: verificacaoIA ? 'robo_assistido_2.4.1' : 'manual',
+                    precoConferidoPor: verificacaoIA ? ('robo_assistido_' + String(verificacaoIA.robotVersion)) : 'manual',
                     precoProvaVersao: verificacaoIA ? verificacaoIA.proofVersion : 0,
                     precoProvaAnuncio: verificacaoIA ? verificacaoIA.offerKey : '',
                     precoConferidoPorIA: Boolean(verificacaoIA),
