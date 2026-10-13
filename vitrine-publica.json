@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-13T16:39:17.286Z",
+  "generatedAt": "2026-10-13T16:43:52.427Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -3315,6 +3315,11 @@
       "promocaoValidaAte": "2026-10-13",
       "ofertaRelampagoAtiva": true,
       "ofertaRelampagoTerminaEm": "2026-10-14T03:32:52.233Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-13T16:40:15.011Z",
+      "precoConferenciaId": "256c0c7b-c926-493b-bd8c-b4304d71e108",
+      "precoConferenciaCampo": "precoPromocional",
+      "precoConferenciaValor": "88",
       "pros": "",
       "contras": "",
       "notaInformada": ""
@@ -5710,6 +5715,11 @@
       "promocaoValidaAte": "2026-10-13",
       "ofertaRelampagoAtiva": true,
       "ofertaRelampagoTerminaEm": "2026-10-14T03:38:06.486Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-13T16:40:17.100Z",
+      "precoConferenciaId": "03610973-ce45-45c0-9770-a8e9726d71be",
+      "precoConferenciaCampo": "precoPromocional",
+      "precoConferenciaValor": 301.14,
       "pros": "",
       "contras": "",
       "notaInformada": ""
@@ -10130,6 +10140,11 @@
       "promocaoValidaAte": "2026-10-13",
       "ofertaRelampagoAtiva": true,
       "ofertaRelampagoTerminaEm": "2026-10-14T03:25:50.487Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-13T16:40:09.528Z",
+      "precoConferenciaId": "6f869a83-9595-42d3-bc94-7f2deb3b028d",
+      "precoConferenciaCampo": "precoPromocional",
+      "precoConferenciaValor": 130.13,
       "pros": "",
       "contras": "",
       "notaInformada": ""
