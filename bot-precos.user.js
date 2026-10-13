@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.1
+// @version      2.4.2
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -18,7 +18,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.1";
+  const BOT_VERSION = "2.4.2";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -314,8 +314,9 @@
         ? `popup=yes,width=620,height=850,left=${Math.max(0, unsafeWindow.screen.availWidth - 632)},top=20`
         : "";
       try {
-        if (!offerWindow || offerWindow.closed) offerWindow = unsafeWindow.open(url, "ranking_conferencia_mercado_livre", features);
-        else offerWindow.location.href = url;
+        // O navegador reutiliza a janela pelo nome. Não navegar por um handle
+        // cross-origin antigo: ele pode não acompanhar a aba do anúncio.
+        offerWindow = unsafeWindow.open(url, "ranking_conferencia_mercado_livre", features);
         if (!offerWindow) throw new Error("O navegador bloqueou a janela do anúncio. Permita pop-ups para o Ranking da Compra.");
         try { offerWindow.focus(); } catch {}
       } catch (error) {

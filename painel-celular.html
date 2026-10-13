@@ -804,7 +804,7 @@
           precoConferenciaId: confirmacaoId,
         };
         if (opcoes.automatico) {
-          campos.precoConferidoPor = "robo_assistido_2.4.1";
+          campos.precoConferidoPor = "robo_assistido_" + String(opcoes.resultado.robotVersion || "2.4.1");
           campos.precoProvaVersao = opcoes.resultado.proofVersion;
           campos.precoProvaAnuncio = opcoes.resultado.offerKey;
           campos.precoConferenciaIAFonte = opcoes.resultado.fonteConsultada;
