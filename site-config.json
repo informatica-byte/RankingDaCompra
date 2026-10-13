@@ -83,9 +83,9 @@
       "productUrl": "https://rankingdacompra.com.br/produto/28xGyV66fEYlx6CnRxIq-20260810-1.html"
     }
   ],
-  "seasonalThemeEnd": "2026-10-13",
-  "seasonalThemeMode": "manual",
-  "seasonalThemeStart": "2026-09-24",
+  "seasonalThemeEnd": "",
+  "seasonalThemeMode": "auto",
+  "seasonalThemeStart": "",
   "seasonalThemeId": "criancas",
   "bestChoicesTitle": "Melhores escolhas e rankings de produtos",
   "bestChoicesProductIds": [
@@ -190,5 +190,5 @@
     "metodologia": {}
   },
   "schemaVersion": 2,
-  "generatedAt": "2026-10-13T03:04:16.098Z"
+  "generatedAt": "2026-10-13T13:00:01.272Z"
 }
