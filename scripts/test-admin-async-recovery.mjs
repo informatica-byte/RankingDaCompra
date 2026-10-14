@@ -6,7 +6,7 @@ import vm from 'node:vm';
 const safetyContext = vm.createContext({ URL });
 vm.runInContext(readFileSync(new URL('../product-save-safety.js', import.meta.url), 'utf8'), safetyContext);
 
-const html = readFileSync(new URL('../painel-celular.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('../painel-celular.html', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
 const section = (start, end) => {
   const first = html.indexOf(start), last = html.indexOf(end, first);
   assert.ok(first >= 0 && last > first, `real panel source: ${start}`);
@@ -122,6 +122,33 @@ for (const fail of [false, true]) {
     assert.equal(s.writes.length, fail ? 0 : 1);
   });
 }
+
+const editSource = section('async function salvarEdicaoProdutoFilaPrecosAssistida()', 'async function excluirProdutoFilaPrecosAssistida(');
+const editFinally = editSource.match(/} finally {([\s\S]*?)\n        }\n      }\s*$/)?.[1];
+assert.ok(editFinally, 'real editor recovery block');
+
+for (const fail of [false, true]) {
+  test(`product editor restores all queue controls after ${fail ? 'failure' : 'success'}`, () => {
+    const s = queue(false);
+    s.context.filaPrecosSalvando = true;
+    const ids = ['precos-iniciar', 'precos-reconferir-hoje', 'precos-auto-limite', 'precos-auto-revisar', 'precos-ed-salvar', 'precos-ed-cancelar'];
+    for (const id of ids) s.field(id).disabled = true;
+    vm.runInContext(`try { ${fail ? 'throw Error("offline");' : ''} } catch (_) {} finally { ${editFinally} }`, s.context);
+    assert.equal(s.context.filaPrecosSalvando, false);
+    for (const id of ids) assert.equal(s.field(id).disabled, false, id);
+  });
+}
+
+test('editor recovery does not unlock queue options while automation is active', () => {
+  const s = queue(false);
+  s.context.filaPrecosSalvando = true;
+  s.context.automacaoPrecosAtiva = true;
+  vm.runInContext(`try {} finally { ${editFinally} }`, s.context);
+  assert.equal(s.context.filaPrecosSalvando, false);
+  for (const id of ['precos-iniciar', 'precos-reconferir-hoje', 'precos-auto-limite', 'precos-auto-revisar']) {
+    assert.equal(s.field(id).disabled, true, id);
+  }
+});
 
 const publishSource = section('$("preview").onsubmit =', '$("limpar").onclick =');
 const resetSource = section('$("limpar").onclick =', '$("publicacao-abrir-produto").onclick =');

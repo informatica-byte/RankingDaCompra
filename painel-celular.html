@@ -1213,6 +1213,7 @@
           const salvar = $("precos-ed-salvar"), cancelar = $("precos-ed-cancelar");
           if (salvar) salvar.disabled = false;
           if (cancelar) cancelar.disabled = false;
+          atualizarControlesAutomacaoPrecos();
         }
       }
       async function excluirProdutoFilaPrecosAssistida(produtoId = filaPrecosIdAtual) {
