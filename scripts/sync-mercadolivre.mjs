@@ -1540,8 +1540,16 @@ export async function diagnoseSupportApplication(getJson, expectedOwnerId = "131
     report.consultas.permissoesAplicacao = { status: appGrants?.status };
     if (appGrants?.ok && Array.isArray(appGrants.data?.grants)) {
       const grant = appGrants.data.grants.find(row => String(row?.user_id || "") === expectedOwnerId
-        && String(row?.app_id || "") === appId);
+        && (row?.app_id == null || String(row.app_id) === appId));
       report.scopes = readScopes(grant);
+      report.consultas.permissoesAplicacao.autorizacoes = appGrants.data.grants.length;
+      report.consultas.permissoesAplicacao.contaEncontrada = Boolean(grant);
+      report.consultas.permissoesAplicacao.formatoScopes = Array.isArray(grant?.scopes) ? "array" : typeof (grant?.scopes ?? grant?.scope);
+    }
+    if (report.scopes === null) {
+      report.consultas.permissoesAplicacao.formatoResposta = Array.isArray(appGrants?.data) ? "array" : typeof appGrants?.data;
+      report.consultas.permissoesAplicacao.camposEstruturais = Object.keys(appGrants?.data || {})
+        .filter(key => ["grants","applications","results","paging","scopes","scope"].includes(key));
     }
   }
   return report;

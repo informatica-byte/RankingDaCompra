@@ -87,3 +87,13 @@ test("aceita scopes textuais documentados sem publicar campos extras", async () 
   assert.deepEqual(report.scopes,["read","offline_access"]);
   assert.ok(!JSON.stringify(report).includes("SEGREDO"));
 });
+test("grants da rota específica podem omitir app_id sem perder a seleção da conta", async () => {
+  const rows=[
+    {ok:true,status:200,data:{id:131527439}},
+    {ok:true,status:200,data:{active:true,sandbox_mode:false,certification_status:"not_certified"}},
+    {ok:true,status:200,data:[]},
+    {ok:true,status:200,data:{grants:[{user_id:131527439,scopes:["read","write","offline_access"]}]}},
+  ];
+  const report=await diagnose(async () => rows.shift());
+  assert.deepEqual(report.scopes,["read","write","offline_access"]);
+});
