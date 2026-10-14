@@ -1521,13 +1521,27 @@ export async function diagnoseSupportApplication(getJson, expectedOwnerId = "131
       report.certification_status = certification;
     }
   }
+  function readScopes(grant) {
+    let scopes = grant?.scopes ?? grant?.scope;
+    if (typeof scopes === "string") scopes = scopes.trim().split(/\s+/);
+    if (!Array.isArray(scopes) || !scopes.every(scope => typeof scope === "string"
+      && (["read", "write", "offline_access"].includes(scope) || /^urn:(ml|mp):[a-z0-9:._/-]{1,100}$/i.test(scope)))) return null;
+    return [...new Set(scopes)];
+  }
   const grants = await getJson("https://api.mercadolibre.com/users/" + expectedOwnerId + "/applications");
   report.consultas.permissoes = { status: grants.status };
-  if (grants.ok && Array.isArray(grants.data)) {
-    const grant = grants.data.find(row => String(row?.app_id || "") === appId);
-    if (Array.isArray(grant?.scopes) && grant.scopes.every(scope => typeof scope === "string"
-      && (["read", "write", "offline_access"].includes(scope) || /^urn:(ml|mp):[a-z0-9:._/-]{1,100}$/i.test(scope)))) {
-      report.scopes = [...new Set(grant.scopes)];
+  const rows = Array.isArray(grants.data) ? grants.data : grants.data?.applications;
+  if (grants.ok && Array.isArray(rows)) {
+    const grant = rows.find(row => String(row?.app_id ?? row?.application_id ?? row?.id ?? "") === appId);
+    report.scopes = readScopes(grant);
+  }
+  if (report.scopes === null) {
+    const appGrants = await getJson("https://api.mercadolibre.com/applications/" + appId + "/grants");
+    report.consultas.permissoesAplicacao = { status: appGrants?.status };
+    if (appGrants?.ok && Array.isArray(appGrants.data?.grants)) {
+      const grant = appGrants.data.grants.find(row => String(row?.user_id || "") === expectedOwnerId
+        && String(row?.app_id || "") === appId);
+      report.scopes = readScopes(grant);
     }
   }
   return report;

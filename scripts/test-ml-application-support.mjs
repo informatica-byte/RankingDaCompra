@@ -61,3 +61,29 @@ test("modo isolado vem antes da leitura de produtos", () => {
   assert.ok(!block.includes("fetchFirestore"));
   assert.ok(block.includes("return;"));
 });
+test("consulta grants da aplicação quando lista da conta não informa scopes", async () => {
+  const rows=[
+    {ok:true,status:200,data:{id:131527439}},
+    {ok:true,status:200,data:{active:true,sandbox_mode:false,certification_status:"not_certified"}},
+    {ok:true,status:200,data:[]},
+    {ok:true,status:200,data:{grants:[
+      {user_id:7,app_id:3720917002139194,scopes:["write"]},
+      {user_id:131527439,app_id:3720917002139194,scopes:["read","offline_access"]},
+    ]}},
+  ];
+  const calls=[];
+  const report=await diagnose(async url => {calls.push(url);return rows.shift();});
+  assert.equal(calls.length,4);
+  assert.ok(calls[3].endsWith("/applications/3720917002139194/grants"));
+  assert.deepEqual(report.scopes,["read","offline_access"]);
+});
+test("aceita scopes textuais documentados sem publicar campos extras", async () => {
+  const rows=[
+    {ok:true,status:200,data:{id:131527439}},
+    {ok:true,status:200,data:{active:true,sandbox_mode:false,certification_status:"not_certified"}},
+    {ok:true,status:200,data:{applications:[{id:3720917002139194,scope:"read offline_access",access_token:"SEGREDO"}]}},
+  ];
+  const report=await diagnose(async () => rows.shift());
+  assert.deepEqual(report.scopes,["read","offline_access"]);
+  assert.ok(!JSON.stringify(report).includes("SEGREDO"));
+});
