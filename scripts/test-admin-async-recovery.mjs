@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
+const safetyContext = vm.createContext({ URL });
+vm.runInContext(readFileSync(new URL('../product-save-safety.js', import.meta.url), 'utf8'), safetyContext);
+
 const html = readFileSync(new URL('../painel-celular.html', import.meta.url), 'utf8');
 const section = (start, end) => {
   const first = html.indexOf(start), last = html.indexOf(end, first);
@@ -135,7 +138,7 @@ function publication({ validPhoto = true, failWrite = false } = {}) {
   };
   const context = vm.createContext({
     resultado: { link: 'https://example.test/p', linkAfiliado: 'https://example.test/a', tipo: 'relampago', marketplace: 'mercado_livre', evidencia: 'manual' },
-    publicacaoExpressaEmAndamento: false, $: field, db: {}, window: {}, console,
+    publicacaoExpressaEmAndamento: false, $: field, db: {}, window: { RDCProductSaveSafety: safetyContext.RDCProductSaveSafety }, console,
     numero: v => Number(String(v).replace(',', '.')), preco: v => String(v), hoje: () => '2026-10-14',
     mlb: () => 'MLB1234567', seg: () => 60, lista: v => v.split('\n'), serverTimestamp: () => 'SERVER_TIMESTAMP',
     collection: (_db, name) => name, msg: (...args) => messages.push(args),

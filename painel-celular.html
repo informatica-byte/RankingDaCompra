@@ -167,6 +167,7 @@
         </div>
       </section>
     </main>
+    <script src="/product-save-safety.js?v=20261014-1"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261014-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
@@ -1112,6 +1113,7 @@
         const form = $("precos-editor");
         form.dataset.produtoId = produto.id;
         form.dataset.original = JSON.stringify(original);
+        form.dataset.baseConcorrencia = JSON.stringify(window.RDCProductSaveSafety.capture(produto));
         $("precos-acoes").hidden = true;
         $("precos-iniciar").disabled = true;
         form.hidden = false;
@@ -1124,6 +1126,7 @@
         form.hidden = true;
         form.dataset.produtoId = "";
         form.dataset.original = "";
+        form.dataset.baseConcorrencia = "";
         $("precos-acoes").hidden = false;
         $("precos-iniciar").disabled = false;
       }
@@ -1143,6 +1146,7 @@
         const produto = filaPrecosDados.todos.find((item) => item.id === id);
         if (!produto || id !== filaPrecosIdAtual) return msg("precos-ed-status", "O item da fila mudou. Abra a edição novamente.", "erro");
         const original = JSON.parse(form.dataset.original || "{}");
+        const baseConcorrencia = form.dataset.baseConcorrencia ? JSON.parse(form.dataset.baseConcorrencia) : null;
         const valores = {};
         for (const [campo, campoId] of Object.entries(camposEdicaoFila)) valores[campo] = $(campoId).value.trim();
         for (const campo of ["precoAnterior", "precoShopee"]) {
@@ -1187,7 +1191,12 @@
         $("precos-ed-cancelar").disabled = true;
         msg("precos-ed-status", "Salvando correções...");
         try {
-          await updateDoc(doc(db, "produtos", id), alterados);
+          const ref = doc(db, "produtos", id);
+          await runTransaction(db, async transaction => {
+            const atual = await transaction.get(ref);
+            window.RDCProductSaveSafety.assertUnchanged(atual.exists() ? atual.data() : null, baseConcorrencia, alterados);
+            transaction.update(ref, alterados);
+          });
           const locais = [filaPrecosDados.todos, filaPrecosDados.produtos];
           for (const listaProdutos of locais) {
             const local = listaProdutos.find((item) => item.id === id);
@@ -2647,7 +2656,18 @@
             d.ofertaRelampagoTerminaEm = new Date(Date.now() + s * 1000).toISOString();
           }
           b.textContent = "Publicando...";
-          const salvo = await addDoc(collection(db, "produtos"), d);
+          const idNovo = window.RDCProductSaveSafety.creationId(d);
+          let salvo;
+          if (idNovo) {
+            const anteriores = await Promise.all(window.RDCProductSaveSafety.duplicateLookups(d)
+              .map(([campo, valor]) => getDocs(query(collection(db, "produtos"), where(campo, "==", valor), limit(1)))));
+            if (anteriores.some(resposta => !resposta.empty)) throw Error("Este anúncio já está cadastrado. Recarregue a lista e edite o cadastro existente.");
+            salvo = doc(db, "produtos", idNovo);
+            await runTransaction(db, async transaction => {
+              window.RDCProductSaveSafety.assertNew(await transaction.get(salvo));
+              transaction.set(salvo, d);
+            });
+          } else salvo = await addDoc(collection(db, "produtos"), d);
           publicado = true;
           let avisoSelecao = '';
           if (tipo === 'promocao') {

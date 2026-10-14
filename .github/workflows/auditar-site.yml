@@ -20,7 +20,7 @@ jobs:
         run: node scripts/audit-site-integrity.mjs --online
       - name: Guardar relatório sem dados privados
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: auditoria-site-publico
           path: audit-output/integridade.json
