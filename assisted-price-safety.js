@@ -1,6 +1,6 @@
 (function (root) {
   "use strict";
-  const MIN_VERSION = "2.4.3";
+  const MIN_VERSION = "2.4.4";
   function robotReady(info) {
     if (!/^\d+\.\d+\.\d+$/.test(String(info?.version || ""))) return false;
     const version = String(info.version).split(".").map(Number);
@@ -26,6 +26,11 @@
       return { key: String(listing || catalog || url.hostname + url.pathname).toUpperCase(), listing, catalog,
         variation: url.searchParams.get("searchVariation") || "", attributes: url.searchParams.get("attributes") || "" };
     } catch { return null; }
+  }
+  function sameProductSource(expectedUrl, actualUrl) {
+    const expected = identity(expectedUrl), actual = identity(actualUrl);
+    return !!expected && !!actual && (expected.key === actual.key
+      || Boolean(expected.catalog && actual.catalog && expected.catalog === actual.catalog));
   }
   function normalized(value) {
     return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
@@ -113,17 +118,20 @@
     const requested = identity(url), found = identity(result?.fonteConsultada);
     if (!robotReady({ version: result?.robotVersion, ready: true }) || result?.proofVersion !== 3 || result?.comparisonPolicy !== "name_price") return "Atualize o robô para a versão " + MIN_VERSION + " ou superior e recarregue o painel.";
     if (result.status !== "ok" || result.produtoId !== produtoId || result.requestedUrl !== url || !result.requestId) return "Resposta não pertence a este produto ou pedido. Preço preservado.";
-    if (!requested || !found || requested.key !== found.key || result.offerKey !== found.key) return "O anúncio não corresponde ao produto solicitado. Confira manualmente.";
+    if (!requested || !found || !sameProductSource(url, result?.fonteConsultada)) return "O anúncio não corresponde ao produto solicitado. Confira manualmente.";
     const proof = result.variantProof;
     if (!titulo || !proof || proof.expectedTitle !== titulo || proof.verified !== true || !matchingProduct(titulo, result.tituloEncontrado)) return "O título não confirma o mesmo produto. Preço preservado.";
+    const sameCatalog = requested.catalog && requested.catalog === found.catalog;
     const expectedListing = requested.listing || found.listing;
-    if (expectedListing && proof.listingId && proof.listingId !== expectedListing) return "O anúncio visível não corresponde ao vendedor cadastrado. Confira manualmente.";
+    const highlightedKey = proof.listingId || found.key;
+    if (result.offerKey !== highlightedKey || (proof.listingId && !/^MLB\d{6,}$/.test(proof.listingId))) return "Oferta em destaque sem comprovação. Preço preservado.";
+    if (!sameCatalog && expectedListing && proof.listingId && proof.listingId !== expectedListing) return "O anúncio visível não corresponde ao vendedor cadastrado. Confira manualmente.";
     const mismatch = variantMismatch(titulo, proof.attributes);
     if (mismatch) return mismatch;
     const value = result.preco;
-    if (typeof value !== "number" || !Number.isFinite(value) || value <= 0 || result.mainPrice !== value || result.currency !== "BRL" || result.priceSelector !== ".ui-pdp-price__second-line .andes-money-amount" || !result.evidencia) return "Preço principal sem comprovação. Confira manualmente.";
+    if (typeof value !== "number" || !Number.isFinite(value) || value <= 0 || result.mainPrice !== value || result.priceBasis !== "highlighted_total" || result.currency !== "BRL" || result.priceSelector !== ".ui-pdp-price__second-line .andes-money-amount" || !result.evidencia) return "Preço principal sem comprovação. Confira manualmente.";
     if (!Number.isFinite(result.checkedAt) || result.checkedAt > now + 5000 || now - result.checkedAt > 120000) return "Resposta antiga: o preço não foi salvo. Consulte novamente.";
     return "";
   }
-  root.RDCAssistedPriceSafety = { MIN_VERSION, robotReady, identity, matchingProduct, variantMismatch, validate };
+  root.RDCAssistedPriceSafety = { MIN_VERSION, robotReady, identity, sameProductSource, matchingProduct, variantMismatch, validate };
 })(typeof window !== "undefined" ? window : globalThis);

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.3
+// @version      2.4.4
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -18,7 +18,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.3";
+  const BOT_VERSION = "2.4.4";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -140,7 +140,8 @@
 
   function sameOffer(expectedUrl, actualUrl) {
     const expected = offerIdentity(expectedUrl), actual = offerIdentity(actualUrl);
-    return !!expected && !!actual && expected.key === actual.key;
+    return !!expected && !!actual && (expected.key === actual.key
+      || Boolean(expected.catalog && actual.catalog && expected.catalog === actual.catalog));
   }
 
   function visibleNode(documentHtml, node) {
@@ -167,7 +168,8 @@
     const ids = [...new Set(listingIds)];
     const listingId = ids.length === 1 ? "MLB" + ids[0] : "";
     const expectedListing = offerIdentity(requestedUrl)?.listing || offerIdentity(finalUrl)?.listing;
-    if (expectedListing && ids.some(id => "MLB" + id !== expectedListing)) {
+    const sameCatalog = offerIdentity(requestedUrl)?.catalog && offerIdentity(requestedUrl).catalog === offerIdentity(finalUrl)?.catalog;
+    if (!sameCatalog && expectedListing && ids.some(id => "MLB" + id !== expectedListing)) {
       return { motivo: "O anúncio visível não corresponde ao vendedor cadastrado. Confira manualmente." };
     }
     return { verified: true, listingId, expectedTitle, attributes: [] };
@@ -212,23 +214,34 @@
   }
 
   function extractMainPrice(documentHtml) {
-    // Ordem do bloco principal, nunca o menor preço entre opções. As cópias de
-    // preço/Pix podem coexistir; a primeira cotação principal visível é a do anúncio.
+    // A forma de pagamento não decide o preço: usa o total principal em destaque.
+    // Valores de parcela, preço antigo, cashback e recomendações continuam excluídos.
+    const candidates = [];
     for (const node of documentHtml.querySelectorAll('.ui-pdp-price__second-line .andes-money-amount')) {
       if (node.closest('.andes-money-amount--previous, .ui-pdp-price__original-value, .ui-pdp-price__installments, .ui-pdp-promotions-pill-label, .ui-pdp-outside_variations, .ui-pdp-variations, .ui-pdp-other-sellers, .ui-pdp-other-sellers-item, .ui-pdp-recommendations, [class*="recommendations"], [class*="carousel"], [hidden], [aria-hidden="true"]')) continue;
       if (documentHtml.defaultView) {
         const style = documentHtml.defaultView.getComputedStyle(node);
         if (style.display === "none" || style.visibility === "hidden" || !node.getClientRects().length) continue;
       }
-      const fraction = node.querySelector('.andes-money-amount__fraction')?.textContent;
+      const fractionNode = node.querySelector('.andes-money-amount__fraction');
+      const fraction = fractionNode?.textContent;
       const cents = node.querySelector('.andes-money-amount__cents')?.textContent || "00";
       const currency = node.querySelector('.andes-money-amount__currency-symbol')?.textContent;
       const label = node.getAttribute('aria-label') || "";
-      if (/antes|parcela|cashback|\d\s*x|a partir/i.test(label) || currency?.trim() !== "R$") continue;
+      const installment = /\bparcelas?\b|\b\d{1,2}\s*(?:x|vezes)\b/i.test(label);
+      if (/\bantes\b|cashback|a partir/i.test(label) || (installment && !/\btotal\b/i.test(label)) || currency?.trim() !== "R$") continue;
       const price = parsePrice(`${fraction},${cents.padStart(2, "0")}`);
-      if (price) return [price];
+      if (!price) continue;
+      let fontSize = 0;
+      try { fontSize = parseFloat(documentHtml.defaultView?.getComputedStyle(fractionNode || node)?.fontSize) || 0; } catch {}
+      candidates.push({ price, fontSize, index: candidates.length });
     }
-    return [];
+    // Só compara destaque quando o navegador fornece medidas para todos os totais.
+    // Sem essa informação, preserva a ordem do bloco principal; nunca escolhe o menor.
+    if (candidates.length > 1 && candidates.every(candidate => candidate.fontSize > 0)) {
+      candidates.sort((left, right) => right.fontSize - left.fontSize || left.index - right.index);
+    }
+    return candidates.length ? [candidates[0].price] : [];
   }
 
   function extractDocumentOffer(documentHtml, expectedTitle, finalUrl, requestedUrl = finalUrl) {
@@ -249,14 +262,15 @@
     const structured = extractStructuredPrice(documentHtml, pageTitle, finalUrl);
     if (mainPrices.length !== 1) return { status: "loading", motivo: "Preço principal ausente ou ambíguo. Confira manualmente." };
     const mainPrice = mainPrices[0];
+    const highlightedOfferKey = variantProof.listingId || offerIdentity(finalUrl).key;
     // JSON-LD pode trazer preço padrão enquanto a tela mostra Pix/promoção.
     // É registrado para diagnóstico, não substitui nem veta o valor visível.
     if (mainPrice) {
       return {
-        status: "ok", preco: mainPrice, comparisonPolicy: "name_price",
-        evidencia: `Preço principal visível: R$ ${mainPrice.toFixed(2).replace(".", ",")}; anúncio ${offerIdentity(finalUrl).key}`,
+        status: "ok", preco: mainPrice, comparisonPolicy: "name_price", priceBasis: "highlighted_total",
+        evidencia: `Preço total em destaque: R$ ${mainPrice.toFixed(2).replace(".", ",")}; anúncio visível ${highlightedOfferKey}`,
         tituloEncontrado: pageTitle, fonteConsultada: finalUrl, origem: "pagina_principal_visivel",
-        robotVersion: BOT_VERSION, proofVersion: 3, requestedUrl, offerKey: offerIdentity(finalUrl).key, variantProof,
+        robotVersion: BOT_VERSION, proofVersion: 3, requestedUrl, offerKey: highlightedOfferKey, variantProof,
         mainPrice, structuredPrices: structured.prices, currency: "BRL", priceSelector: ".ui-pdp-price__second-line .andes-money-amount",
       };
     }

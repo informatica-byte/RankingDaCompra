@@ -8,7 +8,7 @@ const safetyCode = readFileSync(new URL('../assisted-price-safety.js', import.me
 const url = 'https://produto.mercadolivre.com.br/MLB-2926671021-tenis-_JM?searchVariation=175705466645';
 const title = 'Tênis Nike Court Legacy Lift Feminino';
 function money(value, options = {}) {
-  const [fraction, cents] = String(value).split('.');
+  const [fraction, cents] = (typeof value === 'number' ? value.toFixed(2) : String(value)).split('.');
   return {
     closest: () => options.excluded ? {} : null,
     getClientRects: () => options.hidden ? [] : [{}],
@@ -48,7 +48,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.4.3');
+  assert.equal(result.robotVersion, '2.4.4');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -115,7 +115,7 @@ test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo 
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261013-1/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261014-1/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
@@ -124,13 +124,13 @@ test('os dois painéis validam antes de escrever no Firebase e preservam confer�
   assert.ok(batch.indexOf('RDCAssistedPriceSafety.validate')<batch.indexOf("await db.collection"));
 });
 
-test('wid no fragmento/query fixa o vendedor; identificadores conflitantes são recusados', () => {
+test('catálogo mantém identidade do produto ao trocar vendedor; identificadores conflitantes são recusados', () => {
   const {context:c}=setup();
   const catalog='https://www.mercadolivre.com.br/gerador/p/MLB57289720';
   for(const raw of [catalog+'?wid=MLB5296312807',catalog+'#position=12&wid=MLB5296312807',catalog+'?pdp_filters=item_id%3AMLB5296312807']) {
     assert.equal(c.offerIdentity(raw).key,'MLB5296312807');
     assert.equal(c.RDCAssistedPriceSafety.identity(raw).key,'MLB5296312807');
-    assert.equal(c.sameOffer(raw,catalog+'?wid=MLB7685968580'),false);
+    assert.equal(c.sameOffer(raw,catalog+'?wid=MLB7685968580'),true);
   }
   for(const raw of [catalog+'?wid=MLB5296312807#wid=MLB7685968580',catalog+'?wid=INVALID',url+'&wid=MLB7685968580']) {
     assert.equal(c.offerIdentity(raw),null);assert.equal(c.RDCAssistedPriceSafety.identity(raw),null);
@@ -142,7 +142,7 @@ test('regressão Lotus: ignorar cor, manter identidade do anúncio e preço vis�
   const catalog='https://www.mercadolivre.com.br/gerador/p/MLB57289720';
   const doc=page({foundTitle:expected,listing:'7685968580',attributes:[{name:'Cor',value:'Bege'}],selected:[],prices:[money(139.49)]});
   const {context:c}=setup(doc);
-  assert.match(c.extractDocumentOffer(doc,expected,catalog+'#wid=MLB5296312807').motivo,/vendedor/);
+  assert.equal(c.extractDocumentOffer(doc,expected,catalog+'#wid=MLB5296312807').preco,139.49);
   assert.equal(c.extractDocumentOffer(doc,expected,catalog).preco,139.49);
   const missingFooter=page({foundTitle:expected,listing:'',attributes:[],selected:[],prices:[money(139.49)]});
   assert.equal(c.extractDocumentOffer(missingFooter,expected,catalog).preco,139.49);
@@ -275,7 +275,7 @@ test('prova de preço do mesmo monitor não é bloqueada por tamanho, mas outro 
   assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],tituloEncontrado:'Impressora HP Laser 135A'},
     {produtoId:'a',url,titulo:expected}),/título não confirma/);
   assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],robotVersion:'2.3.0'},
-    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.3/);
+    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.4/);
 });
 
 test('2.4.1 bloqueia modelos numéricos e edições Pro/Plus explicitamente diferentes', () => {
@@ -360,24 +360,24 @@ test('MLB explícito diferente no anúncio visível preserva preço mesmo com UR
   const {context:c,writes,setCommand}=setup();
   assert.match(c.extractDocumentOffer(page({listing:'1111111111'}),title,url).motivo,/vendedor/);
   const catalog='https://www.mercadolivre.com.br/tenis/p/MLB57289720#wid=MLB2926671021';
-  assert.match(c.extractDocumentOffer(page({listing:'1111111111'}),title,catalog).motivo,/vendedor/);
+  assert.equal(c.extractDocumentOffer(page({listing:'1111111111'}),title,catalog).status,'ok');
   assert.equal(c.extractDocumentOffer(page({listing:''}),title,url).status,'ok');
   assert.equal(c.extractDocumentOffer(page({listing:'1111111111'}),title,catalog.split('#')[0]).status,'ok');
   const command={requestId:'listing-proof',produtoId:'a',titulo:title,url,createdAt:Date.now()};
   setCommand(command);await c.publishCurrentPageResult(command);
   const result=writes[0];
   assert.match(c.RDCAssistedPriceSafety.validate({...result,variantProof:{...result.variantProof,listingId:'MLB1111111111'}},
-    {produtoId:'a',url,titulo:title}),/vendedor/);
+    {produtoId:'a',url,titulo:title}),/vendedor|Oferta em destaque/);
   assert.equal(c.RDCAssistedPriceSafety.validate({...result,variantProof:{...result.variantProof,listingId:''}},
     {produtoId:'a',url,titulo:title}),'');
 });
 
-test('mínimo 2.4.3 exige robô com os critérios atuais', () => {
+test('mínimo 2.4.4 exige robô com os critérios atuais', () => {
   const {context:c}=setup();
-  for(const version of ['2.3.9','2.4.0','2.4.1','2.4.2','1.99.99','2.4','invalid']) {
+  for(const version of ['2.3.9','2.4.0','2.4.1','2.4.2','2.4.3','1.99.99','2.4','invalid']) {
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),false,version);
   }
-  for(const version of ['2.4.3','2.4.4','2.5.0','3.0.0']) {
+  for(const version of ['2.4.4','2.4.5','2.5.0','3.0.0']) {
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),true,version);
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:false}),false,version);
   }
@@ -451,4 +451,40 @@ test('teste puro no editor consulta e mostra resultado sem alterar preço, prova
     assert.equal(snapshot(),before,scenario.name);assert.deepEqual(forbiddenCalls,[],scenario.name);
     assert.equal(button.disabled,false,scenario.name);assert.equal(button.textContent,'Consultar com robô (não salva)',scenario.name);
   }
+});
+
+test('total principal aceita Pix, à vista ou parcelado, nunca o valor da parcela', () => {
+  for(const label of ['R$ 199,90 à vista','R$ 199,90 no Pix','Preço total parcelado no cartão R$ 199,90']) {
+    const doc=page({prices:[money(199.90,{label})]});const {context:c}=setup(doc);
+    const result=c.extractDocumentOffer(doc,title,url);
+    assert.equal(result.preco,199.90,label);
+    assert.equal(result.priceBasis,'highlighted_total');
+  }
+  for(const label of ['10x de R$ 19,99','12 parcelas de R$ 19,99','6 vezes de R$ 19,99']) {
+    const doc=page({prices:[money(19.99,{label})]});const {context:c}=setup(doc);
+    assert.equal(c.extractDocumentOffer(doc,title,url).status,'loading',label);
+  }
+});
+test('destaque visual no bloco principal vale mais que ordem e não escolhe o menor preço', () => {
+  for(const totals of [[{value:199.90,size:22},{value:219.90,size:36}],[{value:219.90,size:22},{value:199.90,size:36}]]) {
+    const nodes=totals.map(total=>{const node=money(total.value);node.fontSize=total.size;const query=node.querySelector;node.querySelector=selector=>({...query(selector),fontSize:total.size});return node;});
+    const doc=page({prices:nodes});
+    doc.defaultView.getComputedStyle=node=>({display:'inline',visibility:'visible',fontSize:String(node.fontSize)+'px'});
+    const {context:c}=setup(doc);
+    assert.equal(c.extractDocumentOffer(doc,title,url).preco,totals[1].value);
+  }
+});
+test('mesmo catálogo pode exibir outra oferta; título/modelo e identidade do catálogo continuam exigidos', () => {
+  const catalog='https://www.mercadolivre.com.br/fone/p/MLB57289720';
+  const requested=catalog+'?wid=MLB2926671021',found=catalog+'?wid=MLB1111111111';
+  const expected='Fone JBL Tune 520BT Preto',doc=page({foundTitle:'Fone JBL Tune 520BT Branco',listing:'1111111111',prices:[money(227.05)]});
+  const {context:c}=setup(doc);
+  const result=c.extractDocumentOffer(doc,expected,found,requested);
+  assert.equal(result.status,'ok');assert.equal(result.offerKey,'MLB1111111111');
+  const proof={...result,produtoId:'a',requestId:'catalog-main',checkedAt:Date.now()};
+  assert.equal(c.RDCAssistedPriceSafety.validate(proof,{produtoId:'a',url:requested,titulo:expected}),'');
+  assert.equal(c.sameOffer(requested,catalog.replace('57289720','98765432')+'?wid=MLB1111111111'),false);
+  assert.equal(c.extractDocumentOffer(page({foundTitle:'Fone JBL Tune 720BT Branco',listing:'1111111111'}),expected,found,requested).status,'loading');
+  assert.ok(c.RDCAssistedPriceSafety.validate({...proof,priceBasis:'installment'},{produtoId:'a',url:requested,titulo:expected}));
+  assert.ok(c.RDCAssistedPriceSafety.validate({...proof,offerKey:'MLB9999999999'},{produtoId:'a',url:requested,titulo:expected}));
 });

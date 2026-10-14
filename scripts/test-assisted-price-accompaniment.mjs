@@ -39,11 +39,11 @@ function setup({ count = 55, limit = 50, review = false, query } = {}) {
     validProof: true,
   });
   c.window = {
-    __RDC_BOT_PRECOS_LOCAL__: { version: '2.4.3' },
+    __RDC_BOT_PRECOS_LOCAL__: { version: '2.4.4' },
     RDCAssistedPriceSafety: { validate: (result, expected) => { validations.push({ result, expected }); return c.validProof ? '' : 'Resposta antiga: preço preservado.'; } },
     conferirPrecoNaAbaLocal: async request => {
       requests.push(request);
-      return query ? query(request, requests.length) : { status: 'ok', preco: 125, fonteConsultada: request.url, evidencia: 'Preço principal', proofVersion: 3, robotVersion: '2.4.3' };
+      return query ? query(request, requests.length) : { status: 'ok', preco: 125, fonteConsultada: request.url, evidencia: 'Preço principal', proofVersion: 3, robotVersion: '2.4.4' };
     },
   };
   c.dadosFilaPrecosAssistida = () => ({ pendentes: products.filter(product => !c.filaPrecosConferidos.has(product.id)).sort((a, b) => Number(c.filaPrecosPulados.has(a.id)) - Number(c.filaPrecosPulados.has(b.id))) });
@@ -85,9 +85,9 @@ test('accompanied loop waits without writes; explicit approval saves proof value
   await running;
   assert.equal(writes.length, 1);
   assert.equal(writes[0].patch.preco, 125);
-  assert.equal(writes[0].patch.precoConferidoPor, 'robo_assistido_2.4.3');
+  assert.equal(writes[0].patch.precoConferidoPor, 'robo_assistido_2.4.4');
   assert.equal(c.filaPrecosResultados.get(product.id).status, 'confirmado');
-  assert.equal(c.filaPrecosResultados.get(product.id).origem, 'robo_assistido_2.4.3');
+  assert.equal(c.filaPrecosResultados.get(product.id).origem, 'robo_assistido_2.4.4');
 });
 
 test('skip keeps product pending and records outcome without any Firebase write', async () => {
