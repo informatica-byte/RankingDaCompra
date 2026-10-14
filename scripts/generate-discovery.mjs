@@ -6,6 +6,7 @@ import offerReplacement from "../product-offer-replacement.js";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import SEO_PRIORITIES from "../seo-priorities.js";
 import { renderProductDecision, comparisonData } from "./product-decision.mjs";
+import { renderBuyingAdvice, renderGuideChecklist } from "./buying-advice.mjs";
 import { publishedEditorialNotes, editorialItems, usefulEditorialItems } from "./published-editorial.mjs";
 import { headphoneFormat, headphoneFormats } from './headphone-formats.mjs';
 import { routerCapabilities, renderPracticalSection, practicalProfile, EDITORIAL_REVIEWED_AT, FOCUSED_GUIDES, focusedProducts, renderFocusedGuide } from "./discovery-editorial.mjs";
@@ -896,7 +897,7 @@ for (const category of categories) {
   let guide = honestGuide.includes("data-price-unconfirmed-guide") || honestGuide.includes("data-unranked-guide") || noValue
     ? honestGuide : applyCategorySearchIntent(honestGuide, category.id, categoryName, guideProducts.filter((product) => numberPrice(product.precoPromocional || product.preco) > 0).length);
   if (!guide) continue;
-  const practical = renderPracticalSection(`${category.id} ${categoryName}`, comparableProducts, productUrls);
+  const practical = renderGuideChecklist(`${category.id} ${categoryName}`) + renderPracticalSection(`${category.id} ${categoryName}`, comparableProducts, productUrls);
   const focused = FOCUSED_GUIDES.filter((config) => config.category.test(`${category.id} ${categoryName}`));
   const focusedLinks = focused.length ? `<section class="method"><h2>Guias para uma necessidade específica</h2><ul>${focused.map((config) => `<li><a href="${SITE}${config.file}">${escapeHtml(config.title)}</a></li>`).join("")}</ul></section>` : "";
   guide = guide.includes('<section aria-label="Ranking detalhado">')
@@ -935,7 +936,8 @@ for (const product of products) {
   let html = await readFile(page, "utf8");
   html = html.replace(/Ver promoções do dia/g, "Ver melhores escolhas");
   html = html.replace(/<section class="panel" data-product-decision[\s\S]*?<\/section>/g, "");
-  html = html.replace("</article>", renderProductDecision(product) + "</article>");
+  html = html.replace(/<section class="panel" data-buying-advice[\s\S]*?<\/section>/g, "");
+  html = html.replace("</article>", renderBuyingAdvice(product) + renderProductDecision(product) + "</article>");
   await writeFile(page, html, "utf8");
 }
 

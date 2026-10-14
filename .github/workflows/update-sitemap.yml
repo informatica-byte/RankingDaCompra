@@ -23,6 +23,7 @@ on:
       - "best-choices.js"
       - "promotion-title.js"
       - "scripts/product-decision.mjs"
+      - "scripts/buying-advice.mjs"
       - "editorial-focus.json"
   schedule:
     # Uma conferência de segurança às 19:17 em Brasília (22:17 UTC).
