@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-14T21:43:52.951Z",
+  "generatedAt": "2026-10-14T22:17:23.474Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -5503,6 +5503,30 @@
       "precoConferenciaId": "57479121-5e52-4211-83e4-85bcec1e579e",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 54.99,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB7776080994",
+      "titulo": "Tênis Fila Academia Corrida Caminhada Macio Treino Couro Lev",
+      "comentario": "Tênis Fila Academia Corrida Caminhada Macio Treino Couro Lev. Marca: Fila; Código do catálogo: MLB7776080994; Condição informada: novo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "categoria": "roupas-e-calcados",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_842160-MLB119021804587_102026-O-tnis-fila-academia-corrida-caminhada-macio-treino-couro-lev.webp",
+      "preco": "110,00",
+      "precoAnterior": "333,00",
+      "precoPromocional": "110,00",
+      "nota": "",
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-14",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-15T02:52:17.501Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-14T22:16:53.707Z",
+      "precoConferenciaId": "c4155554-dd80-4418-bc89-c4673388991f",
+      "precoConferenciaCampo": "precoPromocional",
+      "precoConferenciaValor": "110",
       "pros": "",
       "contras": "",
       "notaInformada": ""
