@@ -3,6 +3,11 @@ name: Testar acesso Mercado Livre sem Firebase
 on:
   workflow_dispatch:
     inputs:
+      application_details:
+        description: "Consultar estado e scopes da aplicação para suporte, sem produtos ou Firebase"
+        required: false
+        type: boolean
+        default: false
       support_item_id:
         description: "Anúncio MLB solicitado pelo suporte (vazio mantém diagnóstico padrão)"
         required: false
@@ -30,11 +35,12 @@ jobs:
           node-version: "24"
 
       - name: Validar seleção da amostra
-        run: node --test scripts/test-sync-mercadolivre.mjs
+        run: node --test scripts/test-sync-mercadolivre.mjs scripts/test-ml-application-support.mjs
 
       - name: Executar diagnóstico pontual sem ler o Firebase
         env:
           RDC_ML_PREFLIGHT_ONLY: "true"
+          RDC_ML_SUPPORT_APPLICATION_DETAILS: ${{ inputs.application_details }}
           RDC_ML_SUPPORT_ITEM_ID: ${{ inputs.support_item_id }}
           MERCADO_LIVRE_ACCESS_TOKEN: ${{ secrets.MERCADO_LIVRE_ACCESS_TOKEN }}
           MERCADO_LIVRE_CLIENT_ID: ${{ secrets.MERCADO_LIVRE_CLIENT_ID }}

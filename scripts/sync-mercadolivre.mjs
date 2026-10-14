@@ -1500,6 +1500,40 @@ async function checkProduct(
   }
 }
 
+// Application support diagnostic: strict output allowlist, no product/Firebase access.
+export async function diagnoseSupportApplication(getJson, expectedOwnerId = "131527439") {
+  const appId = "3720917002139194";
+  const report = { active: null, certification_status: null, sandbox_mode: null, scopes: null, consultas: {} };
+  const me = await getJson("https://api.mercadolibre.com/users/me");
+  report.consultas.conta = { status: me.status };
+  if (!me.ok || String(me.data?.id || "") !== expectedOwnerId) {
+    report.consultas.conta.proprietariaConfirmada = false;
+    return report;
+  }
+  report.consultas.conta.proprietariaConfirmada = true;
+  const app = await getJson("https://api.mercadolibre.com/applications/" + appId);
+  report.consultas.aplicacao = { status: app.status };
+  if (app.ok) {
+    if (typeof app.data?.active === "boolean") report.active = app.data.active;
+    if (typeof app.data?.sandbox_mode === "boolean") report.sandbox_mode = app.data.sandbox_mode;
+    const certification = app.data?.certification_status;
+    if (["certified", "not_certified", "pending", "in_progress", "rejected"].includes(certification)) {
+      report.certification_status = certification;
+    }
+  }
+  const grants = await getJson("https://api.mercadolibre.com/users/" + expectedOwnerId + "/applications");
+  report.consultas.permissoes = { status: grants.status };
+  if (grants.ok && Array.isArray(grants.data)) {
+    const grant = grants.data.find(row => String(row?.app_id || "") === appId);
+    if (Array.isArray(grant?.scopes) && grant.scopes.every(scope => typeof scope === "string"
+      && (["read", "write", "offline_access"].includes(scope) || /^urn:(ml|mp):[a-z0-9:._/-]{1,100}$/i.test(scope)))) {
+      report.scopes = [...new Set(grant.scopes)];
+    }
+  }
+  return report;
+}
+// End application support diagnostic
+
 async function main() {
   const authorization = await prepareAccessToken();
   if (authorization === "not_configured") {
@@ -1509,6 +1543,19 @@ async function main() {
     return;
   }
 
+  if (PREFLIGHT_ONLY && String(process.env.RDC_ML_SUPPORT_APPLICATION_DETAILS || "").toLowerCase() === "true") {
+    if (CLIENT_ID && CLIENT_ID !== "3720917002139194") throw new Error("Aplicação configurada difere da solicitada pelo suporte.");
+    const report = await diagnoseSupportApplication(async (url) => {
+      const response = await fetch(url, { headers: requestHeaders(), signal: AbortSignal.timeout(20_000) });
+      const data = await response.json().catch(() => null);
+      return { ok: response.ok, status: response.status, data };
+    });
+    console.log("APPLICATION_SUPPORT_JSON_BEGIN");
+    console.log(JSON.stringify(report, null, 2));
+    console.log("APPLICATION_SUPPORT_JSON_END");
+    console.log("Consulta da aplicação encerrada: sem lote, produtos ou Firebase; credenciais não incluídas.");
+    return;
+  }
   const supportItemId = String(process.env.RDC_ML_SUPPORT_ITEM_ID || "").trim().toUpperCase();
   if (PREFLIGHT_ONLY && supportItemId) {
     const stored = TOKEN_KEY ? await readTokenSession() : null;
