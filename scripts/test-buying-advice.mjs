@@ -32,7 +32,8 @@ test('guides explain different needs without inventing a winner', () => {
 test('generation removes old advisory block before adding the current one', async () => {
   const source = await readFile(new URL('./generate-discovery.mjs',import.meta.url),'utf8');
   assert.match(source,/html = html\.replace\(\/<section class="panel" data-buying-advice/);
-  assert.match(source,/renderBuyingAdvice\(product\) \+ renderProductDecision\(product\)/);
+  assert.match(source,/const advice = renderBuyingAdvice\(product\)/);
+  assert.match(source,/html\.replace\('<div class="panels">', advice \+ '<div class="panels">'\)/);
   assert.match(source,/renderGuideChecklist\(`/);
 });
 test('uncertain sales claims are qualified without changing price or offer identity', () => {

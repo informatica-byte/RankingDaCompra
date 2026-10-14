@@ -937,7 +937,11 @@ for (const product of products) {
   html = html.replace(/Ver promoções do dia/g, "Ver melhores escolhas");
   html = html.replace(/<section class="panel" data-product-decision[\s\S]*?<\/section>/g, "");
   html = html.replace(/<section class="panel" data-buying-advice[\s\S]*?<\/section>/g, "");
-  html = html.replace("</article>", renderBuyingAdvice(product) + renderProductDecision(product) + "</article>");
+  const advice = renderBuyingAdvice(product);
+  html = html.includes('<div class="panels">')
+    ? html.replace('<div class="panels">', advice + '<div class="panels">')
+    : html.replace("</article>", advice + "</article>");
+  html = html.replace("</article>", renderProductDecision(product) + "</article>");
   await writeFile(page, html, "utf8");
 }
 
