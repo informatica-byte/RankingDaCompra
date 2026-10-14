@@ -4,6 +4,15 @@ import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 import {protectPublicHtml} from './public-privacy.mjs';
 
+test('publicadores incluem páginas institucionais normalizadas sem incluir configurações', async () => {
+  for (const name of ['update-sitemap.yml', 'sync-mercadolivre.yml']) {
+    const workflow = await readFile(new URL('../.github/workflows/' + name, import.meta.url), 'utf8');
+    assert.match(workflow, /git status --porcelain -- [^\n]*':\(top,glob\)\*\.html'/);
+    assert.match(workflow, /git add -A [^\n]*':\(top,glob\)\*\.html'/);
+    assert.ok(!workflow.includes('git add -A .\n'));
+  }
+});
+
 test('geração renova somente a referência do controle de privacidade existente', () => {
   const html = '<html><head><script defer src="/privacy-controls.js?v=antiga"></script><script src="/public-data.js?v=preservada"></script></head></html>';
   const fixed = protectPublicHtml(html);
