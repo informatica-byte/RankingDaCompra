@@ -2948,7 +2948,8 @@
             "label": "Microfone",
             "value": "Informado",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/"
           },
           {
             "label": "Autonomia no fone",
