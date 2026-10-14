@@ -31,7 +31,7 @@ function proof(c, command) {
   };
 }
 
-test('2.4.4 asks browser to reuse named worker for every product, never old cross-origin handle', async () => {
+test('current bot asks browser to reuse named worker for every product, never old cross-origin handle', async () => {
   const s = setup();
   const requests = [
     { produtoId: 'notebook', titulo: 'Notebook Asus Vivobook Go Ryzen 5', url: 'https://www.mercadolivre.com.br/notebook/p/MLB43417665?wid=MLB3914161563' },
@@ -54,7 +54,7 @@ test('2.4.4 asks browser to reuse named worker for every product, never old cros
   assert.equal(new Set(s.calls.map(call => call.features)).size, 1);
   assert.match(s.calls[0].features, /popup=yes/);
   assert.equal(s.forbiddenHandleReads(), 0);
-  assert.equal(s.panel.__RDC_BOT_PRECOS_LOCAL__.version, '2.4.4');
+  assert.equal(s.panel.__RDC_BOT_PRECOS_LOCAL__.version, '2.4.5');
 });
 
 test('reused worker ignores old request, different product and altered requested variant', async () => {

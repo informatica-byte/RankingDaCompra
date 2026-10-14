@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.4
+// @version      2.4.5
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -18,7 +18,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.4";
+  const BOT_VERSION = "2.4.5";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -257,7 +257,19 @@
     const variantProof = extractVariantProof(documentHtml, expectedTitle, requestedUrl, finalUrl);
     if (!variantProof.verified) return { status: "loading", motivo: variantProof.motivo };
     const mainPrices = extractMainPrice(documentHtml);
-    if (!mainPrices.length && unavailableCheck(documentHtml.querySelector('.ui-pdp-buybox')?.innerText || "")) return { status: "unavailable", tituloEncontrado: pageTitle, fonteConsultada: finalUrl };
+    if (!mainPrices.length) {
+      // O catálogo pode mostrar falta de estoque fora do buybox, junto às variações.
+      // Só aceita avisos visíveis do produto, nunca mensagens das recomendações.
+      const unavailableMessages = [...documentHtml.querySelectorAll('.ui-pdp-buybox, .ui-pdp-shipping-message__text')]
+        .filter(node => visibleNode(documentHtml, node) && !node.closest('.ui-pdp-other-sellers, .ui-pdp-other-sellers-item, .ui-pdp-recommendations, [class*="recommendations"], [class*="carousel"]'))
+        .map(node => node.innerText || node.textContent || "").join(" ");
+      if (unavailableCheck(unavailableMessages)) return {
+        status: "unavailable", tituloEncontrado: pageTitle, fonteConsultada: finalUrl,
+        motivo: /escolha outra varia[cç][aã]o/i.test(unavailableMessages)
+          ? "A opção aberta está indisponível. Preço preservado; confira outra opção do mesmo produto."
+          : "O anúncio aberto está indisponível ou sem estoque. Preço preservado.",
+      };
+    }
     if (!documentHtml.defaultView) return { status: "loading", motivo: "É necessário conferir a página renderizada na aba logada." };
     const structured = extractStructuredPrice(documentHtml, pageTitle, finalUrl);
     if (mainPrices.length !== 1) return { status: "loading", motivo: "Preço principal ausente ou ambíguo. Confira manualmente." };

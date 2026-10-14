@@ -17,14 +17,15 @@ function money(value, options = {}) {
   };
 }
 function visibleText(textContent, options = {}) {
-  return { textContent, closest: () => null, getClientRects: () => options.hidden ? [] : [{}], getAttribute: () => options.href || '' };
+  return { textContent, closest: () => options.excluded ? {} : null, getClientRects: () => options.hidden ? [] : [{}], getAttribute: () => options.href || '' };
 }
-function page({ prices = [money(358.79)], structured = [], foundTitle = title, text = '', listing = '2926671021', attributes = [], selected = [url], specs = [] } = {}) {
+function page({ prices = [money(358.79)], structured = [], foundTitle = title, text = '', listing = '2926671021', attributes = [], selected = [url], specs = [], unavailable = [] } = {}) {
   return {
     body: { innerText: text }, defaultView: { getComputedStyle: () => ({ display: 'inline', visibility: 'visible' }) },
     querySelector: selector => selector.startsWith('h1') ? { textContent: foundTitle } : null,
     querySelectorAll: selector => selector.includes('ld+json') ? structured.map(value => ({ textContent: JSON.stringify(value) }))
       : selector.startsWith('.ui-pdp-price__second-line') ? prices
+      : selector === '.ui-pdp-buybox, .ui-pdp-shipping-message__text' ? unavailable
       : selector.includes('denounce__info') ? (listing ? [visibleText('Anúncio #' + listing)] : [])
       : selector.includes('variations__title') ? attributes.map(a => visibleText(a.name + ':' + a.value))
       : selector.includes('--SELECTED') ? selected.map(href => visibleText('', {href}))
@@ -48,7 +49,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.4.4');
+  assert.equal(result.robotVersion, '2.4.5');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -57,6 +58,44 @@ test('números monetários rejeitam parcelas e intervalos em vez de concatená-l
 test('AggregateOffer lowPrice e metadados isolados nunca substituem o preço principal', () => {
   const { context: c } = setup(page({ prices: [], structured: [structuredOffer(85.40, title, url, 'AggregateOffer')] }));
   assert.equal(c.extractDocumentOffer(c.document, title, url).status, 'loading');
+});
+
+test('catálogo sem preço reconhece aviso visível de opção indisponível fora do buybox', () => {
+  const doc = page({ prices: [], unavailable: [visibleText('Este produto está indisponível. Por favor, escolha outra variação.')] });
+  const { context: c } = setup(doc);
+  const result = c.extractDocumentOffer(doc, title, url);
+  assert.equal(result.status, 'unavailable');
+  assert.match(result.motivo, /opção aberta está indisponível/);
+  assert.equal(result.preco, undefined);
+  assert.equal(result.tituloEncontrado, title);
+});
+
+test('aviso oculto, recomendação indisponível e texto solto não classificam o produto como indisponível', () => {
+  for (const doc of [
+    page({ prices: [], unavailable: [visibleText('Este produto está indisponível', { hidden: true })] }),
+    page({ prices: [], unavailable: [visibleText('Este produto está indisponível', { excluded: true })] }),
+    page({ prices: [], text: 'Este produto está indisponível' }),
+  ]) {
+    const { context: c } = setup(doc);
+    assert.equal(c.extractDocumentOffer(doc, title, url).status, 'loading');
+  }
+});
+
+test('aviso de estoque não sobrepõe preço principal nem autoriza outro produto', () => {
+  const message = visibleText('Este produto está indisponível');
+  const doc = page({ unavailable: [message] });
+  const { context: c } = setup(doc);
+  assert.equal(c.extractDocumentOffer(doc, title, url).preco, 358.79);
+  assert.equal(c.extractDocumentOffer(page({ prices: [], foundTitle: 'Tênis Adidas Superstar', unavailable: [message] }), title, url).status, 'loading');
+});
+
+test('anúncio pausado sem preço é separado sem inventar valor ou consultar metadados', () => {
+  const doc = page({ prices: [], unavailable: [visibleText('Anúncio pausado')], structured: [structuredOffer(99.90)] });
+  const { context: c } = setup(doc);
+  const result = c.extractDocumentOffer(doc, title, url);
+  assert.equal(result.status, 'unavailable');
+  assert.equal(result.preco, undefined);
+  assert.match(result.motivo, /sem estoque/);
 });
 test('preço principal tem prioridade sobre JSON-LD e cópias Pix, sem escolher o menor', () => {
   for (const doc of [page({structured:[structuredOffer(85.40)]}), page({prices:[money(358.79),money(349.90)]})]) {
