@@ -1525,7 +1525,8 @@ export async function diagnoseSupportApplication(getJson, expectedOwnerId = "131
     let scopes = grant?.scopes ?? grant?.scope;
     if (typeof scopes === "string") scopes = scopes.trim().split(/\s+/);
     if (!Array.isArray(scopes) || !scopes.every(scope => typeof scope === "string"
-      && (["read", "write", "offline_access"].includes(scope) || /^urn:(ml|mp):[a-z0-9:._/-]{1,100}$/i.test(scope)))) return null;
+      && /^[a-z][a-z0-9_:./*-]{0,199}$/i.test(scope)
+      && !/^(APP_USR|TG-|Bearer)/i.test(scope))) return null;
     return [...new Set(scopes)];
   }
   const grants = await getJson("https://api.mercadolibre.com/users/" + expectedOwnerId + "/applications");
@@ -1572,8 +1573,10 @@ async function main() {
       const data = await response.json().catch(() => null);
       return { ok: response.ok, status: response.status, data };
     });
+    const session = TOKEN_KEY ? await readTokenSession() : null;
+    const safeReport = sanitizeSupportPayload(report, [accessToken, session?.refreshToken, CLIENT_SECRET, TOKEN_KEY, AUTHORIZATION_CODE]);
     console.log("APPLICATION_SUPPORT_JSON_BEGIN");
-    console.log(JSON.stringify(report, null, 2));
+    console.log(JSON.stringify(safeReport, null, 2));
     console.log("APPLICATION_SUPPORT_JSON_END");
     console.log("Consulta da aplicação encerrada: sem lote, produtos ou Firebase; credenciais não incluídas.");
     return;

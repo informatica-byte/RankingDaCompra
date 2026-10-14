@@ -97,3 +97,13 @@ test("grants da rota específica podem omitir app_id sem perder a seleção da c
   const report=await diagnose(async () => rows.shift());
   assert.deepEqual(report.scopes,["read","write","offline_access"]);
 });
+test("scopes funcionais e curingas são preservados sem aceitar credenciais", async () => {
+  const rows=[
+    {ok:true,status:200,data:{id:131527439}},
+    {ok:true,status:200,data:{active:true,sandbox_mode:false,certification_status:"not_certified"}},
+    {ok:true,status:200,data:[{app_id:3720917002139194,scopes:["read","offline_access","urn:ml:mktp:*"]}]},
+  ];
+  const report=await diagnose(async () => rows.shift());
+  assert.deepEqual(report.scopes,["read","offline_access","urn:ml:mktp:*"]);
+  assert.ok(source.includes("JSON.stringify(safeReport, null, 2)"));
+});
