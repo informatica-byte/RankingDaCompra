@@ -88,37 +88,88 @@ export async function auditOffline(root = process.cwd()) {
   return { checkedAt: new Date().toISOString(), counts: { htmlPages, links, inlineScripts, jsonLd, modules }, errors, warnings, targets: [...targets].sort(), html };
 }
 
-export async function auditOnline(offline, { request = fetch, concurrency = 3 } = {}) {
+const TEMPORARY_HTTP = new Set([429, 502, 503, 504]);
+const pause = milliseconds => new Promise(done => setTimeout(done, milliseconds));
+function temporaryNetworkError(error) {
+  return /^(?:AbortError|TimeoutError)$/.test(error?.name || "")
+    || /fetch failed|network|timed?\s*out|timeout|socket|ECONNRESET|ECONNREFUSED|ETIMEDOUT|ENOTFOUND|EAI_AGAIN/i
+      .test(String(error?.message || "") + " " + String(error?.cause?.code || error?.code || ""));
+}
+async function releaseBody(response) {
+  try { await response?.body?.cancel(); } catch { /* A closed or interrupted body needs no further read. */ }
+}
+
+export async function auditOnline(offline, { request = fetch, concurrency = 3, wait = pause, maxRetries = 2 } = {}) {
   const paths = offline.targets;
-  const rows = [], errors = []; let cursor = 0;
+  const rows = [], errors = [], warnings = []; let cursor = 0;
+  const retries = Math.max(0, Math.min(2, Math.floor(Number(maxRetries) || 0)));
+  async function inspect(file, url, isHtml) {
+    const attempts = [];
+    for (let attempt = 1; attempt <= retries + 1; attempt++) {
+      let response;
+      try {
+        response = await request(url, {method:"GET",signal:AbortSignal.timeout(15000),redirect:"follow"});
+        const observation = {attempt,status:response.status,url:response.url || url};
+        attempts.push(observation);
+        if (TEMPORARY_HTTP.has(response.status) && attempt <= retries) {
+          observation.retryScheduled = true;
+          await releaseBody(response);
+        } else {
+          const body = isHtml && response.ok ? await response.text() : "";
+          if (!isHtml || !response.ok) await releaseBody(response);
+          return {row:{file,status:response.status,url:response.url || url,attempts},body,ok:response.ok};
+        }
+      } catch (error) {
+        await releaseBody(response);
+        let observation = attempts.at(-1);
+        if (observation?.attempt !== attempt) {
+          observation = {attempt,status:response?.status ?? null,url:response?.url || url};
+          attempts.push(observation);
+        }
+        observation.problem = String(error.message || error);
+        if (!temporaryNetworkError(error) || attempt > retries) {
+          return {row:{file,status:observation.status,url:observation.url,attempts},problem:"Consulta indisponível: " + observation.problem};
+        }
+        observation.retryScheduled = true;
+      }
+      await wait(250 * attempt);
+    }
+  }
+  function recovered(row) {
+    if (row.attempts.length > 1) warnings.push({...row,recovered:true,problem:"Disponibilidade recuperada após falha temporária"});
+  }
   await Promise.all(Array.from({length: concurrency},async () => {
     while (cursor < paths.length) {
       const file = paths[cursor++];
       const url = SITE + "/" + (file === "index.html" ? "" : file);
-      try {
-        const response = await request(url,{method:"GET",signal:AbortSignal.timeout(15000),redirect:"follow"});
-        const isHtml = /\.html$/.test(file);
-        const body = isHtml ? await response.text() : "";
-        if (!isHtml) await response.body?.cancel();
-        const row = {file,status:response.status,url:response.url};
-        rows.push(row);
-        if (!response.ok) errors.push({...row,problem:"HTTP não disponível"});
-        else if (isHtml && (!body.includes("<") || !/<!doctype\s+html/i.test(body))) errors.push({...row,problem:"Resposta não é a página HTML esperada"});
-        else if (isHtml && file !== "404.html") {
+      const isHtml = /\.html$/.test(file);
+      const {row,body,ok,problem} = await inspect(file,url,isHtml);
+      rows.push(row);
+      if (problem) errors.push({...row,problem});
+      else if (!ok) errors.push({...row,problem:"HTTP não disponível"});
+      else if (isHtml && (!body.includes("<") || !/<!doctype\s+html/i.test(body))) errors.push({...row,problem:"Resposta não é a página HTML esperada"});
+      else {
+        let mismatch = false;
+        if (isHtml && file !== "404.html") {
           const expected = offline.html.get(file)?.match(/<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1];
           const actual = body.match(/<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1];
-          if (expected && actual !== expected) errors.push({...row,problem:"Canônico publicado diferente do arquivo",expected,actual});
+          if (expected && actual !== expected) {
+            mismatch = true;
+            errors.push({...row,problem:"Canônico publicado diferente do arquivo",expected,actual});
+          }
         }
-      } catch(error) { errors.push({file,problem:"Consulta indisponível: " + error.message}); }
+        if (!mismatch) recovered(row);
+      }
     }
   }));
   const probe = SITE + "/auditoria-url-inexistente-20261009.html";
-  try {
-    const response = await request(probe,{signal:AbortSignal.timeout(15000)});
-    if(response.status !== 404) errors.push({file:probe,problem:"URL inexistente não respondeu 404",status:response.status});
-    await response.body?.cancel();
-  } catch(error) { errors.push({file:probe,problem:error.message}); }
-  return { checkedAt: new Date().toISOString(), checked: rows.length, errors, rows: rows.sort((a,b)=>a.file.localeCompare(b.file)) };
+  const probeResult = await inspect(probe,probe,false);
+  if (probeResult.problem) errors.push({...probeResult.row,problem:probeResult.problem});
+  else if (probeResult.row.status !== 404) errors.push({...probeResult.row,problem:"URL inexistente não respondeu 404"});
+  else recovered(probeResult.row);
+  return { checkedAt: new Date().toISOString(), checked: rows.length,
+    requests:rows.reduce((sum,row)=>sum+row.attempts.length,probeResult.row.attempts.length),
+    errors, warnings, probe:probeResult.row, rows: rows.sort((a,b)=>a.file.localeCompare(b.file)) };
 }
 
 if(process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
@@ -130,6 +181,6 @@ if(process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]
   console.log("AUDIT_COUNTS " + JSON.stringify(offline.counts));
   console.log("AUDIT_OFFLINE_ERRORS " + JSON.stringify(offline.errors));
   console.log("AUDIT_WARNINGS " + JSON.stringify(offline.warnings));
-  if(online) console.log("AUDIT_ONLINE " + JSON.stringify({checked:online.checked,errors:online.errors}));
+  if(online) console.log("AUDIT_ONLINE " + JSON.stringify({checked:online.checked,requests:online.requests,errors:online.errors,warnings:online.warnings}));
   if(offline.errors.length || online?.errors.length) process.exitCode=1;
 }

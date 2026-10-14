@@ -31,6 +31,7 @@ jobs:
       RDC_PRODUCTS_SNAPSHOT: .price-sync-products.json
       RDC_BATCH_SKIP_MARKER: .price-sync-skipped
       RDC_BATCH_PARTIAL_MARKER: .price-sync-partial
+      RDC_OAUTH_PRESERVATION_MARKER: .price-sync-oauth-refreshed
       RDC_DAILY_BATCH: "true"
       RDC_FORCE_BATCH: ${{ github.event_name == 'workflow_dispatch' && inputs.force || false }}
     steps:
@@ -49,6 +50,7 @@ jobs:
 
 
       - name: Consultar preços e disponibilidade
+        id: marketplace-query
         env:
           RDC_FIRESTORE_ACCESS_TOKEN: ${{ steps.firestore-auth.outputs.access_token }}
           RDC_FIRESTORE_AUTH_REQUIRED: "true"
@@ -133,6 +135,49 @@ jobs:
             sleep $((tentativa * 3))
           done
           echo "::error::Não foi possível publicar o lote após quatro tentativas seguras."
+          exit 1
+
+      # Um refresh pode ocorrer antes de o preflight/Firebase/validador falhar.
+      # Preserva só a autorização nova, nunca os artefatos não validados.
+      - name: Preservar autorização criptografada após falha posterior
+        if: always() && steps.marketplace-query.outcome != 'skipped' && steps.marketplace-query.outcome != ''
+        shell: bash
+        run: |
+          if [[ ! -f "$RDC_OAUTH_PRESERVATION_MARKER" || ! -f .mercadolivre-token.enc ]]; then
+            echo "Autorização criptografada sem mudança a preservar."
+            exit 0
+          fi
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          import { isEncryptedTokenEnvelope } from './scripts/sync-mercadolivre.mjs';
+          let valid = false;
+          try { valid = isEncryptedTokenEnvelope(JSON.parse(await readFile('.mercadolivre-token.enc', 'utf8'))); } catch {}
+          if (!valid) throw new Error('Autorização criptografada inválida; preservação bloqueada.');
+          NODE
+          git fetch origin main
+          if git diff --quiet origin/main -- .mercadolivre-token.enc; then
+            echo "A autorização renovada já está preservada no repositório."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Checkout isolado: nenhum commit/arquivo de uma publicação interrompida
+          # acompanha a autorização, mesmo se o checkout principal estiver em rebase.
+          oauth_worktree=$(mktemp -d)
+          git worktree add --detach "$oauth_worktree" origin/main
+          trap 'git worktree remove --force "$oauth_worktree"' EXIT
+          cp -- .mercadolivre-token.enc "$oauth_worktree/.mercadolivre-token.enc"
+          git -C "$oauth_worktree" add -- .mercadolivre-token.enc
+          git -C "$oauth_worktree" commit --only -m "Preserva autorizacao criptografada apos interrupcao do lote" -- .mercadolivre-token.enc
+          for tentativa in 1 2 3 4; do
+            git -C "$oauth_worktree" pull --rebase origin main
+            if git -C "$oauth_worktree" push origin HEAD:main; then
+              echo "Autorização criptografada preservada; o resultado da conferência continua sinalizado separadamente."
+              exit 0
+            fi
+            sleep $((tentativa * 3))
+          done
+          echo "::error::Não foi possível preservar a autorização criptografada."
           exit 1
 
       - name: Sinalizar conferência parcial

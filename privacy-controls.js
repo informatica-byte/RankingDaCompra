@@ -45,7 +45,11 @@
     try { localStorage.setItem(KEY, JSON.stringify(memory)); } catch {}
     apply();
     const banner = document.getElementById('rdc-privacy-banner');
-    if (banner) banner.hidden = true;
+    if (banner) {
+      const restoreFocus = banner.contains(document.activeElement);
+      banner.hidden = true;
+      if (restoreFocus) document.querySelector('.rdc-privacy-settings')?.focus();
+    }
     window.dispatchEvent(new CustomEvent('rdc-privacy-change', {detail: {analytics: analyticsAllowed()}}));
   }
   function whenAnalyticsAllowed(callback) {

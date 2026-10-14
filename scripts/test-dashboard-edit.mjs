@@ -7,6 +7,32 @@ const validators=html.slice(html.indexOf('function validarConteudoEditorial('),h
 const edit=html.slice(html.indexOf('function camposCadastroAlterados('),html.indexOf('function informarStatusCadastro('));
 const c=vm.createContext({Date});vm.runInContext(validators+'\n'+edit,c);
 const old={titulo:'Teclado',preco:'88,01',comentario:'Descrição antiga',pros:'Antigo',contras:'Antigo',dadosTecnicos:'Ficha antiga.',promocaoAtiva:true,precoAnterior:'199,00',precoPromocional:'78,90',promocaoValidaAte:'2020-01-01',ofertaRelampagoAtiva:false,ofertaRelampagoDuracao:''};
+
+test('edição editorial preserva preço, promoção e links atualizados em outra sessão',()=>{
+ const original={...old,link:'https://www.mercadolivre.com.br/p/MLB12345678',linkAfiliado:'https://meli.la/original',mercadoLivreItemId:'MLB12345678'};
+ const patch=c.camposCadastroParaAtualizar({...original,comentario:'Resumo corrigido',atualizadoEm:{}},original);
+ assert.deepEqual(JSON.parse(JSON.stringify(patch)),{comentario:'Resumo corrigido'});
+ const atual={...original,preco:'70,00',precoPromocional:'60,00',linkAfiliado:'https://meli.la/novo',precoAtualizadoManualmenteEm:'2026-10-14T12:00:00Z'};
+ const salvo={...atual,...patch};
+ assert.equal(salvo.preco,'70,00');
+ assert.equal(salvo.precoPromocional,'60,00');
+ assert.equal(salvo.linkAfiliado,'https://meli.la/novo');
+ assert.equal(salvo.precoAtualizadoManualmenteEm,atual.precoAtualizadoManualmenteEm);
+});
+
+test('patch omite campos vazios legados, undefined, autor e objetos equivalentes',()=>{
+ const original={...old,metadados:{b:2,a:[1,{x:true}]}},dados={...original,linkShopee:'',precoShopee:'',outro:undefined,autor:'Padrão',metadados:{a:[1,{x:true}],b:2}};
+ assert.deepEqual(JSON.parse(JSON.stringify(c.camposCadastroParaAtualizar(dados,original))),{});
+});
+
+test('preço e identidade entram no patch somente quando o responsável os altera',()=>{
+ const original={...old,link:'https://www.mercadolivre.com.br/p/MLB12345678',linkAfiliado:'https://meli.la/original',mercadoLivreItemId:'MLB12345678',marketplace:'mercado_livre'};
+ const preco=c.camposCadastroParaAtualizar({...original,preco:'80,00'},original);
+ assert.deepEqual(JSON.parse(JSON.stringify(preco)),{preco:'80,00'});
+ const link=c.camposCadastroParaAtualizar({...original,link:'https://www.mercadolivre.com.br/p/MLB87654321',mercadoLivreItemId:'MLB87654321'},original);
+ assert.equal(link.mercadoLivreItemId,'MLB87654321');
+ assert.equal(link.preco,undefined);
+});
 test('edição só do preço preserva conteúdo legado e promoção vencida sem reativar',()=>{
  const data={...old,preco:'65,90'};
  assert.equal(c.validarAlteracaoCadastro(data,old),'');

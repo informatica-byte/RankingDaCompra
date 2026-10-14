@@ -1070,7 +1070,7 @@ FORMATO:
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/weekly-comparison-safety.js?v=20261012-audit-4"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
-    <script src="/metricas-resumo.js?v=20261007-counters"></script>
+    <script src="/metricas-resumo.js?v=20261014-audit"></script>
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
@@ -2020,6 +2020,35 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             });
         }
 
+        function camposCadastroParaAtualizar(dados, original) {
+            const canonico = valor => {
+                if (Array.isArray(valor)) return valor.map(canonico);
+                if (valor && typeof valor === 'object') {
+                    if (typeof valor.toJSON === 'function') return canonico(valor.toJSON());
+                    return Object.fromEntries(Object.keys(valor).sort().filter(chave => valor[chave] !== undefined)
+                        .map(chave => [chave, canonico(valor[chave])]));
+                }
+                return valor;
+            };
+            const alterados = {};
+            for (const [campo, valor] of Object.entries(dados)) {
+                if (campo === 'atualizadoEm' || valor === undefined) continue;
+                const anterior = original?.[campo];
+                const igual = typeof valor === 'boolean' ? valor === (anterior === true)
+                    : typeof valor === 'string' ? valor.trim() === String(anterior ?? '').trim()
+                    : typeof valor === 'number' ? Object.is(valor, Number(anterior))
+                    : JSON.stringify(canonico(valor)) === JSON.stringify(canonico(anterior));
+                if (!igual) alterados[campo] = valor;
+            }
+            // Estes metadados são derivados do link, não campos editáveis.
+            if (!camposCadastroAlterados(dados, original, ['link', 'linkAfiliado'])) {
+                delete alterados.marketplace;
+                delete alterados.mercadoLivreItemId;
+            }
+            delete alterados.autor;
+            return alterados;
+        }
+
         function validarAlteracaoCadastro(dados, original) {
             if (!numeroPrecoPromocao(dados.preco)) return 'Informe um preço válido para o produto.';
             const grupos = [
@@ -2094,12 +2123,15 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             };
 
             const original = editProdId !== null ? produtoEdicaoOriginal : null;
+            if (editProdId !== null && !original) return informarStatusCadastro('Abra a edição do produto novamente antes de salvar.', true);
             if (original && !camposCadastroAlterados(dadosProduto, original, ['ofertaRelampagoAtiva', 'ofertaRelampagoDuracao'])) {
                 dadosProduto.ofertaRelampagoTerminaEm = original.ofertaRelampagoTerminaEm || '';
             }
             const erroCadastro = validarAlteracaoCadastro(dadosProduto, original);
             if (erroCadastro) return informarStatusCadastro(erroCadastro, true);
             delete dadosProduto.ofertaRelampagoDuracao;
+            const camposEdicao = original ? camposCadastroParaAtualizar(dadosProduto, original) : null;
+            if (camposEdicao && !Object.keys(camposEdicao).length) return informarStatusCadastro('Nenhuma alteração para salvar.');
 
             const botao = document.getElementById('btn-submit-prod');
             const textoBotao = botao.innerText;
@@ -2108,7 +2140,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             informarStatusCadastro('Salvando produto...');
             try {
                 if (editProdId !== null) {
-                    await db.collection("produtos").doc(editProdId).update(dadosProduto);
+                    // Só envia o que o responsável mudou; preserva alterações paralelas nos outros campos.
+                    await db.collection("produtos").doc(editProdId).update({ ...camposEdicao, atualizadoEm: dadosProduto.atualizadoEm });
                 } else {
                     dadosProduto.dataCadastro = firebase.firestore.FieldValue.serverTimestamp();
                     await db.collection("produtos").add(dadosProduto);
@@ -3229,7 +3262,9 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     document.getElementById('texto-ia-paste').value = '';
 
                     editProdId = id;
-                    produtoEdicaoOriginal = { ...prod, ofertaRelampagoDuracao: document.getElementById('ofertaRelampagoDuracao').value };
+                    produtoEdicaoOriginal = { ...prod, nota: Number(document.getElementById('nota').value),
+                        ranking: Number(document.getElementById('ranking').value),
+                        ofertaRelampagoDuracao: document.getElementById('ofertaRelampagoDuracao').value };
                     informarStatusCadastro('Editando produto. Promoções vencidas continuam encerradas, mesmo após salvar outros campos.');
                     document.getElementById('btn-submit-prod').innerText = "💾 Salvar Edição";
                     window.scrollTo(0, document.getElementById('formProduto').offsetTop - 20);

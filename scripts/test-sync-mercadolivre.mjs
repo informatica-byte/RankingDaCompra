@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { runInNewContext } from "node:vm";
 import {
   diagnoseSupportItem,
   sanitizeSupportPayload,
@@ -10,12 +12,106 @@ import {
   extractCatalogIdFromUrl,
   extractItemIdFromUrl,
   isMercadoLivreProduct,
+  isEncryptedTokenEnvelope,
+  validateMarketplaceItem,
+  deriveRecord,
   repairLegacyHiddenRecords,
   selectPreflightItemIds,
   shouldRetryBulkOutcome,
   summarizeBatchChecks,
   shouldTrustStoredItemId,
 } from "./sync-mercadolivre.mjs";
+
+test('resposta 200 incompleta ou de outro anúncio nunca comprova preço ou indisponibilidade', async () => {
+  const source = await readFile(new URL('./sync-mercadolivre.mjs', import.meta.url), 'utf8');
+  const functionSource = source.slice(source.indexOf('async function checkProduct('), source.indexOf('// Application support diagnostic:'));
+  const itemSource = source.slice(source.indexOf('async function fetchMarketplaceItem('), source.indexOf('function lightningFields('));
+  const check = runInNewContext(itemSource + functionSource + '\ncheckProduct;', {
+    extractCatalogIdFromUrl, deriveRecord, bulkItemFromEntry, validateMarketplaceItem, accessToken: '',
+    fetchJson: async () => { throw new Error('Nenhuma consulta externa permitida no teste'); },
+  });
+  const id = 'MLB1234567890';
+  const active = { id, status: 'active', price: 125, currency_id: 'BRL', available_quantity: 1 };
+  const prior = { itemId: id, managed: true, status: 'active', available: true, visible: true,
+    price: 125, regularPrice: 150, unavailableChecks: 0, checkedAt: '2026-10-10T00:00:00Z' };
+  for (const body of [{ id }, { id, status: 'active' }, { id, status: 'active', price: true },
+    { id, status: 'active', price: [125] }, { id, status: 'unknown', price: 125 },
+    { ...active, id: 'MLB9876543210' },
+    { ...active, currency_id: undefined }, { ...active, currency_id: 'USD' },
+    ...[undefined, null, '', '1', true, -1, NaN, Infinity].map(available_quantity => ({ ...active, available_quantity }))]) {
+    const outcome = bulkItemFromEntry({ id, status_code: 200, body }, id);
+    assert.ok(outcome.error);
+    assert.equal(outcome.item, null);
+    let record = prior;
+    for (const at of ['2026-10-14T10:00:00Z', '2026-10-14T11:00:00Z']) {
+      record = await check({ id: 'fixture' }, record, at, id, outcome);
+      for (const field of ['status', 'available', 'visible', 'price', 'regularPrice', 'unavailableChecks', 'checkedAt']) {
+        assert.equal(record[field], prior[field], field);
+      }
+      assert.equal(record.lastAttemptAt, at);
+      assert.ok(record.lastError);
+      const summary = summarizeBatchChecks([['fixture', record]]);
+      assert.equal(summary.failed, 1);
+      assert.equal(summary.confirmed, 0);
+      assert.equal(summary.complete, false);
+    }
+  }
+});
+
+test('resposta válida conserva confirmações reais de anúncio ativo ou pausado', () => {
+  const id = 'MLB1234567890';
+  for (const available_quantity of [0, 1]) {
+    assert.equal(bulkItemFromEntry({ status_code: 200, body: { id, status: 'active', price: 125, currency_id: 'BRL', available_quantity } }, id).error, null);
+  }
+  for (const status of ['paused', 'closed']) {
+    const unavailable = bulkItemFromEntry({ status_code: 200, body: { id, status } }, id);
+    assert.equal(unavailable.error, null);
+    const first = deriveRecord({}, { itemId: id, status: unavailable.item.status, available: false, price: null }, '2026-10-14T10:00:00Z');
+    assert.equal(deriveRecord(first, { itemId: id, status, available: false, price: null }, '2026-10-14T11:00:00Z').visible, false);
+  }
+  const wrongNotFound = bulkItemFromEntry({ id: 'MLB9876543210', status_code: 404 }, id);
+  assert.ok(wrongNotFound.error);
+  assert.equal(wrongNotFound.notFound, undefined);
+});
+
+test('preservação OAuth aceita apenas envelope AES-GCM válido, sem descriptografar', () => {
+  const envelope = { version: 1, iv: Buffer.alloc(12).toString('base64'), tag: Buffer.alloc(16).toString('base64'), data: Buffer.alloc(24).toString('base64') };
+  assert.equal(isEncryptedTokenEnvelope(envelope), true);
+  for (const invalid of [null, {}, { ...envelope, data: '' }, { ...envelope, iv: Buffer.alloc(16).toString('base64') },
+    { ...envelope, tag: 'token-em-texto' }, { ...envelope, version: 2 }, { ...envelope, accessToken: 'não aceitar texto aberto' }]) {
+    assert.equal(isEncryptedTokenEnvelope(invalid), false);
+  }
+});
+
+test('workflow preserva somente a autorização alterada e válida mesmo se a consulta falhar', async () => {
+  const workflow = await readFile(new URL('../.github/workflows/sync-mercadolivre.yml', import.meta.url), 'utf8');
+  const preservation = workflow.slice(workflow.indexOf('      - name: Preservar autorização criptografada após falha posterior'), workflow.indexOf('      - name: Sinalizar conferência parcial'));
+  assert.match(preservation, /if: always\(\) && steps\.marketplace-query\.outcome != 'skipped'/);
+  assert.match(preservation, /! -f "\$RDC_OAUTH_PRESERVATION_MARKER"/);
+  assert.match(preservation, /git diff --quiet origin\/main -- \.mercadolivre-token\.enc/);
+  assert.match(preservation, /isEncryptedTokenEnvelope\(JSON\.parse/);
+  assert.match(preservation, /git worktree add --detach "\$oauth_worktree" origin\/main/);
+  assert.match(preservation, /git -C "\$oauth_worktree" commit --only[^\n]+-- \.mercadolivre-token\.enc/);
+  assert.match(preservation, /git -C "\$oauth_worktree" pull --rebase origin main/);
+  assert.match(preservation, /git -C "\$oauth_worktree" push origin HEAD:main/);
+  assert.doesNotMatch(preservation, /git add -A|git add mercadolivre-status|console\.log\(.*payload/);
+});
+
+test('renovação OAuth deixa marcador sem credenciais antes de uma falha posterior', async () => {
+  const source = await readFile(new URL('./sync-mercadolivre.mjs', import.meta.url), 'utf8');
+  const saveSource = source.slice(source.indexOf('async function saveOAuthToken('), source.indexOf('async function prepareAccessToken('));
+  const writes = new Map();
+  const save = runInNewContext(saveSource + '\nsaveOAuthToken;', {
+    TOKEN_FILE: 'memory-encrypted', OAUTH_PRESERVATION_MARKER: 'memory-marker', resolve: value => value,
+    encryptTokenSession: () => 'encrypted-fixture', writeFile: async (path, value) => writes.set(path, value),
+  });
+  await save({ access_token: 'fixture-only', refresh_token: 'fixture-refresh', expires_in: 21600 });
+  assert.equal(writes.get('memory-marker'), 'refreshed\n');
+  assert.equal(writes.get('memory-encrypted'), 'encrypted-fixture\n');
+  assert.doesNotMatch(writes.get('memory-marker'), /fixture/);
+  await assert.rejects((async () => { throw new Error('HTTP 403 after refresh'); })());
+  assert.equal(writes.get('memory-marker'), 'refreshed\n');
+});
 
 test("diagnóstico só libera confiança quando preço e anúncio são acessíveis", () => {
   assert.equal(canProceedWithPriceBatch({ item: true, salePrice: true }), true);
@@ -47,15 +143,15 @@ test("interpreta a resposta oficial do novo endpoint bulk", () => {
   assert.deepEqual(bulkItemFromEntry({
     id: "MLB1234567890",
     status_code: 200,
-    body: { id: "MLB1234567890", price: 199.9, status: "active" },
+    body: { id: "MLB1234567890", price: 199.9, status: "active", currency_id: "BRL", available_quantity: 1 },
   }), {
-    item: { id: "MLB1234567890", price: 199.9, status: "active" },
+    item: { id: "MLB1234567890", price: 199.9, status: "active", currency_id: "BRL", available_quantity: 1 },
     error: null,
   });
   assert.deepEqual(bulkItemFromEntry({
-    body: { id: "MLB1234567890", price: 199.9, status: "active" },
+    body: { id: "MLB1234567890", price: 199.9, status: "active", currency_id: "BRL", available_quantity: 1 },
   }), {
-    item: { id: "MLB1234567890", price: 199.9, status: "active" },
+    item: { id: "MLB1234567890", price: 199.9, status: "active", currency_id: "BRL", available_quantity: 1 },
     error: null,
   }, "aceita o body válido quando a seleção de campos omite status_code");
   assert.deepEqual(bulkItemFromEntry({ status_code: 404 }), {

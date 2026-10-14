@@ -93,7 +93,7 @@
         docs.push({ id: `resumo:${indice}:${copia}`, data: () => dados });
       }
     });
-    return { docs, doCache, atualizadoEm: cache.atualizadoEm, registros: cache.registros,
+    return { docs, doCache, atualizadoEm: cache.atualizadoEm, ultimoDia: cache.ultimoDia, registros: cache.registros,
       forEach: (callback) => docs.forEach(callback) };
   }
 
@@ -129,27 +129,38 @@
     return c;
   }
 
+  function baseDeOutroDia(snapshot) {
+    return /^\d{4}-\d{2}-\d{2}$/.test(String(snapshot.ultimoDia || "")) && snapshot.ultimoDia < diaBrasil();
+  }
+
   function descricao(snapshot) {
     const em = Number(snapshot.atualizadoEm);
     const data = em > 0 ? new Intl.DateTimeFormat("pt-BR", {
       timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short"
     }).format(new Date(em)) : "data desconhecida";
-    return "Base atualizada em " + data + (snapshot.desatualizado ? " — última base preservada; consulta indisponível."
+    return "Base atualizada em " + data + (baseDeOutroDia(snapshot)
+      ? " — base desatualizada: dados consultados só até " + snapshot.ultimoDia.split("-").reverse().join("/") + ". Use Atualizar contagem."
+      : snapshot.desatualizado ? " — última base preservada; consulta indisponível."
       : snapshot.doCache ? " — resumo local compartilhado." : " — dados consultados.");
   }
 
   function exibir(snapshot, alvo = root.document) {
     if (!alvo) return;
     const c = contar(snapshot.registros || snapshot.docs.map(doc => doc.data()));
+    const antiga = baseDeOutroDia(snapshot);
     alvo.querySelectorAll("[data-metrica]").forEach(el => {
       const chave = el.dataset.metrica, valor = c[chave];
-      el.textContent = chave === "taxa" ? valor === null ? "—"
+      el.title = antiga ? "Base consultada só até " + snapshot.ultimoDia + "; atualize a contagem para completar os dias seguintes." : "";
+      el.textContent = antiga && (chave === "visitasHoje" || chave === "cliquesHoje") ? "—"
+        : chave === "taxa" ? valor === null ? "—"
         : valor.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%"
         : Number(valor || 0).toLocaleString("pt-BR");
     });
     alvo.querySelectorAll("[data-metricas-status]").forEach(el => {
       el.textContent = descricao(snapshot) + " " + c.comerciais14.toLocaleString("pt-BR") +
-        " eventos comerciais em 14 dias. Os indicadores de produtos usam 7 dias, exceto “hoje”.";
+        " eventos comerciais em 14 dias." + (antiga
+          ? " As janelas de 7/14 dias podem estar incompletas; os indicadores de hoje ainda não foram consultados."
+          : " Os indicadores de produtos usam 7 dias, exceto “hoje”.");
     });
     return c;
   }

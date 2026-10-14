@@ -1533,7 +1533,7 @@ function renderSharePage(product, socialImage, categoryNames, marketplaceStatus 
   <meta name="rdc-rating-evidence" content="${hasDocumentedEditorialRating(product) ? escapeHtml(JSON.stringify(product.avaliacaoEditorial)) : ''}">
   <meta name="rdc-manual-price" content="${product.precoAtualizadoManualmente === true && manualPrice > 0 ? manualPrice : ""}">
   <meta name="rdc-manual-checked-at" content="${product.precoAtualizadoManualmente === true && Number.isFinite(manualCheckedAt) ? new Date(manualCheckedAt).toISOString() : ""}">
-  <script src="/privacy-controls.js?v=20261008-consent"></script>
+  <script src="/privacy-controls.js?v=20261014-audit"></script>
 
 </head>
 

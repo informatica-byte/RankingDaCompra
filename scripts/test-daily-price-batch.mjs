@@ -104,7 +104,8 @@ test("reutiliza a mesma lista na geração e publica somente no final", () => {
   assert.match(workflow, /RDC_PRODUCTS_SNAPSHOT:\s*\.price-sync-products\.json/);
   assert.match(sync, /PRODUCT_SNAPSHOT[\s\S]*writeFile/);
   assert.match(generator, /readProductSnapshot/);
-  assert.equal((workflow.match(/git commit /g) || []).length, 1);
+  const publication = workflow.slice(workflow.indexOf('      - name: Publicar arquivos validados'), workflow.indexOf('      # Um refresh'));
+  assert.equal((publication.match(/git commit /g) || []).length, 1);
 });
 
 test("consulta preços em blocos oficiais com ritmo econômico", () => {

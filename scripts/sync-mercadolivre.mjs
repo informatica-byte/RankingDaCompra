@@ -13,6 +13,7 @@ const MLB_RESOLUTIONS_FILE = resolve("mlb-resolucoes.json");
 const PRODUCT_SNAPSHOT = String(process.env.RDC_PRODUCTS_SNAPSHOT || "").trim();
 const BATCH_SKIP_MARKER = String(process.env.RDC_BATCH_SKIP_MARKER || "").trim();
 const BATCH_PARTIAL_MARKER = String(process.env.RDC_BATCH_PARTIAL_MARKER || "").trim();
+const OAUTH_PRESERVATION_MARKER = String(process.env.RDC_OAUTH_PRESERVATION_MARKER || "").trim();
 const DAILY_BATCH = String(process.env.RDC_DAILY_BATCH || "").toLowerCase() === "true";
 const FORCE_BATCH = String(process.env.RDC_FORCE_BATCH || "").toLowerCase() === "true";
 const PREFLIGHT_ONLY = String(process.env.RDC_ML_PREFLIGHT_ONLY || "").toLowerCase() === "true";
@@ -72,6 +73,20 @@ function encryptTokenSession(session) {
   });
 }
 
+// Confere apenas o envelope criptografado, sem abrir ou exibir a autorização.
+export function isEncryptedTokenEnvelope(payload) {
+  if (!payload || payload.version !== 1 || Array.isArray(payload)
+      || Object.keys(payload).sort().join(',') !== 'data,iv,tag,version') return false;
+  const decode = (value) => {
+    if (typeof value !== 'string' || value.length > 90000
+        || !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(value)) return null;
+    const bytes = Buffer.from(value, 'base64');
+    return bytes.toString('base64') === value ? bytes : null;
+  };
+  const iv = decode(payload.iv), tag = decode(payload.tag), data = decode(payload.data);
+  return iv?.length === 12 && tag?.length === 16 && Boolean(data?.length && data.length <= 65536);
+}
+
 function decryptTokenSession(value) {
   const payload = JSON.parse(value);
   if (payload?.version !== 1) throw new Error("Arquivo de autorização incompatível");
@@ -123,6 +138,8 @@ async function saveOAuthToken(payload, authorizationCodeHash = "") {
     authorizationCodeHash,
   };
   await writeFile(TOKEN_FILE, `${encryptTokenSession(session)}\n`, "utf8");
+  // O marcador não contém credenciais e sobrevive a falhas posteriores do lote.
+  if (OAUTH_PRESERVATION_MARKER) await writeFile(resolve(OAUTH_PRESERVATION_MARKER), 'refreshed\n', 'utf8');
   return session;
 }
 
@@ -479,12 +496,41 @@ async function fetchJson(
   return response.json();
 }
 
-export function bulkItemFromEntry(entry = {}) {
+function incompleteMarketplaceResponse() {
+  const error = new Error('Mercado Livre: resposta incompleta ou identidade divergente do anúncio');
+  error.httpStatus = 502;
+  return error;
+}
+
+export function validateMarketplaceItem(item, expectedItemId = '') {
+  const id = String(item?.id || '');
+  const knownStatuses = ['active', 'paused', 'closed', 'inactive', 'under_review', 'not_yet_active', 'payment_required'];
+  if (!/^MLB\d{6,}$/.test(id) || (expectedItemId && id !== expectedItemId)
+      || !knownStatuses.includes(item?.status)
+      || (item.status === 'active' && (typeof item.price !== 'number' || !Number.isFinite(item.price) || item.price <= 0
+        || item.currency_id !== 'BRL' || typeof item.available_quantity !== 'number'
+        || !Number.isFinite(item.available_quantity) || item.available_quantity < 0))) {
+    throw incompleteMarketplaceResponse();
+  }
+  return item;
+}
+
+export function bulkItemFromEntry(entry = {}, expectedItemId = '') {
+  const declaredId = String(entry.id || entry.body?.id || '');
+  if ((expectedItemId && declaredId && declaredId !== expectedItemId)
+      || (entry.id && entry.body?.id && entry.id !== entry.body.id)) {
+    return { item: null, error: incompleteMarketplaceResponse() };
+  }
   const rawStatus = entry.status_code ?? entry.code;
   const status = rawStatus === undefined || rawStatus === null
     ? (entry.body ? 200 : 502)
     : Number(rawStatus);
-  if (status === 200 && entry.body) return { item: entry.body, error: null };
+  if (status === 200 && entry.body) {
+    try {
+      const expected = expectedItemId || String(entry.id || '');
+      return { item: validateMarketplaceItem(entry.body, expected), error: null };
+    } catch (error) { return { item: null, error }; }
+  }
   if (status === 404) return { item: null, error: null, notFound: true };
   const detail = String(
     entry?.body?.message || entry?.body?.error || entry?.message || "resposta inválida",
@@ -539,9 +585,11 @@ async function requestBulkItems(itemIds, authenticated) {
   if (!Array.isArray(payload)) {
     throw new Error("Mercado Livre Bulk: resposta inválida");
   }
-  return new Map(payload.map((entry, index) => {
-    const id = extractItemIdFromText(entry?.id || entry?.body?.id || itemIds[index]);
-    return [id || itemIds[index], bulkItemFromEntry(entry)];
+  return new Map(payload.flatMap((entry) => {
+    const id = extractItemIdFromText(entry?.id || entry?.body?.id);
+    // Uma resposta sem ID não pode ser atribuída pela posição e ocultar outro anúncio.
+    if (!id || !itemIds.includes(id)) return [];
+    return [[id, bulkItemFromEntry(entry, id)]];
   }));
 }
 
@@ -597,11 +645,7 @@ async function requestSingleMarketplaceItem(itemId) {
   for (const authenticated of authenticatedAttempts) {
     try {
       const item = await fetchJson(url, { authenticated, maxRetries: 1 });
-      if (!item || !extractItemIdFromText(item.id || itemId)) {
-        const invalid = new Error("Mercado Livre Item: resposta inválida");
-        invalid.httpStatus = 502;
-        throw invalid;
-      }
+      validateMarketplaceItem(item, itemId);
       return { item, error: null };
     } catch (error) {
       lastError = error;
@@ -613,7 +657,8 @@ async function requestSingleMarketplaceItem(itemId) {
               authenticated: true,
               maxRetries: 1,
             });
-            if (item) return { item, error: null };
+            validateMarketplaceItem(item, itemId);
+            return { item, error: null };
           } catch (refreshedError) {
             lastError = refreshedError;
           }
@@ -939,7 +984,7 @@ async function fetchMarketplaceItem(itemId, product = {}, prefetchedOutcome = nu
     const batch = await fetchJson(batchUrl, { authenticated });
     const entry = Array.isArray(batch) ? batch[0] : null;
     if (!entry) throw new Error("Mercado Livre Multiget: resposta inválida");
-    const outcome = bulkItemFromEntry(entry);
+    const outcome = bulkItemFromEntry(entry, itemId);
     if (outcome.item) return outcome.item;
     if (outcome.notFound) {
       const notFound = new Error("Mercado Livre Multiget: anúncio não encontrado");
@@ -1095,6 +1140,7 @@ async function fetchMarketplaceItem(itemId, product = {}, prefetchedOutcome = nu
   // O endpoint bulk já traz o preço atual e o preço anterior. Evitamos aqui
   // duas requisições adicionais por produto (/sale_price e promoções), que eram
   // a principal fonte de picos e bloqueios no lote diário.
+  validateMarketplaceItem(item, itemId);
   const amount = Number(item?.price);
   const regularAmount = Number(item?.original_price);
   const status = String(item?.status || "unknown");

@@ -104,7 +104,30 @@
           + (feature.basis === 'fabricante' && sourceUrl(feature.sourceUrl) ? ' · <a href="' + esc(sourceUrl(feature.sourceUrl)) + '" target="_blank" rel="noopener noreferrer">Consultar fonte</a>' : '') + '</small>' : '') + '</td>').join('') + '</tr>').join('');
       comparison.innerHTML = '<section><h2>Comparação: ' + esc(group(selected[0])) + '</h2><p>' + (selected.length === 1 ? 'Produto selecionado. Marque mais uma ou duas alternativas abaixo. ' : '') + 'Comparamos informações cadastradas e do fabricante, não testes próprios. Uma característica não confirmada não é uma característica ausente.</p><div class="buyer-table-scroll" tabindex="0" aria-label="Comparação de produtos, deslize para ver todas as colunas"><table><thead><tr><th scope="col">Critério</th>' + header + '</tr></thead><tbody>' + '<tr><th scope="row">Preço e conferência</th>' + selected.map(product=>'<td>' + esc(priceLabel(product)) + '</td>').join('') + '</tr>' + features + [['Resumo da análise',product=>product.summary || 'Não informado'],['Avaliação editorial',product=>Number(product.rating)>0 ? product.rating + '/5; veja os critérios na análise' : 'Não informada']].map(([label,value])=>'<tr><th scope="row">' + label + '</th>' + selected.map(product=>'<td>' + esc(value(product)) + '</td>').join('') + '</tr>').join('') + '<tr><th scope="row">Ficha completa e lojas</th>' + selected.map(product=>'<td><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e ofertas</a></td>').join('') + '</tr></tbody></table></div></section>';
     };
+    const rememberFocus = () => {
+      const active = document.activeElement;
+      if (!active || !root.contains(active)) return null;
+      if (active.dataset?.buyerSelect) return {kind:'select', id:active.dataset.buyerSelect};
+      if (active.dataset?.buyerRemove) return {kind:'remove', id:active.dataset.buyerRemove,
+        index:[...comparison.querySelectorAll('[data-buyer-remove]')].indexOf(active)};
+      if (active.hasAttribute('data-buyer-more')) return {kind:'more', count:results.querySelectorAll('.buyer-card').length};
+      return null; // Filter inputs are not replaced and keep their own focus.
+    };
+    const restoreFocus = token => {
+      if (!token) return;
+      let target;
+      if (token.kind === 'more') target = results.querySelectorAll('.buyer-card')[token.count]?.querySelector('a')
+        || results.querySelector('[data-buyer-more]');
+      else if (token.kind === 'remove') {
+        const buttons = [...comparison.querySelectorAll('[data-buyer-remove]')];
+        target = buttons[Math.min(Math.max(token.index, 0), buttons.length - 1)];
+      }
+      if (!target && token.id) target = [...results.querySelectorAll('[data-buyer-select]')]
+        .find(input => input.dataset.buyerSelect === token.id);
+      (target || root.querySelector('[data-buyer-query]')).focus();
+    };
     const render = () => {
+      const focus = rememberFocus();
       const filters = {query:root.querySelector('[data-buyer-query]').value,category:root.querySelector('[data-buyer-category]').value,budget:root.querySelector('[data-buyer-budget]').value,recent:root.querySelector('[data-buyer-recent]').checked};
       const sameType = root.querySelector('[data-buyer-same-type]').checked && chosen.size ? group([...chosen.values()][0]) : '';
       const shown = filterProducts(products, filters).filter(product => !sameType || group(product) === sameType);
@@ -112,6 +135,7 @@
       results.innerHTML = shown.slice(0, limit).map(product => '<article class="buyer-card"><a href="' + esc(safeProductUrl(product.url)) + '">' + (/^https:\/\//.test(product.image || '') ? '<img src="' + esc(product.image) + '" alt="" loading="lazy" decoding="async" width="200" height="140">' : '') + '<h3>' + esc(product.title) + '</h3></a><p>' + esc(priceLabel(product)) + '</p><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e lojas</a>' + (group(product) ? '<label class="buyer-check"><input type="checkbox" data-buyer-select="' + esc(product.id) + '"' + (chosen.has(product.id)?' checked':'') + '> Comparar · ' + esc(group(product)) + '</label>' : '<small>Sem tipo confirmado para comparação automática.</small>') + '</article>').join('') || '<p>Nenhum produto corresponde aos filtros. Tente retirar a faixa de preço ou a exigência de conferência recente.</p>';
       if (shown.length > limit) results.insertAdjacentHTML('beforeend', '<button type="button" data-buyer-more>Mostrar mais 24 produtos</button>');
       renderComparison();
+      restoreFocus(focus);
     };
     root.addEventListener('input', event => { if (event.target.matches('[data-buyer-query],[data-buyer-budget]')) { limit = 24; render(); } });
     root.addEventListener('change', event => {

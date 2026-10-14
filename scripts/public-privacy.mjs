@@ -13,8 +13,11 @@ export function protectPublicHtml(html) {
   }
   html = html.replace(/\nregistrarVisita\(\);/g, '\nwindow.RDCPrivacy?.whenAnalyticsAllowed(()=>registrarVisita());');
   if (!/src=["'][^"']*privacy-controls\.js/.test(html)) {
-    html = html.replace(/<head([^>]*)>/i, '<head$1><script src="/privacy-controls.js?v=20261008-consent"></script>');
+    html = html.replace(/<head([^>]*)>/i, '<head$1><script src="/privacy-controls.js?v=20261014-audit"></script>');
   }
+  // A próxima geração normaliza também páginas existentes, sem duplicar scripts.
+  html = html.replace(/(<script\b[^>]*\bsrc=["']\/?privacy-controls\.js)(?:\?[^"']*)?(["'][^>]*>)/gi,
+    '$1?v=20261014-audit$2');
   return html;
 }
 

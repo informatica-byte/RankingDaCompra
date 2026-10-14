@@ -43,7 +43,7 @@
     <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
 <script src="/best-choices.js?v=20261011-2"></script>
-<script src="/metricas-resumo.js?v=20261007-counters"></script>
+<script src="/metricas-resumo.js?v=20261014-audit"></script>
 <script src="/promotion-title.js?v=20261005-1"></script>
 <script src="/best-choices-admin.js?v=20261010-audit"></script>
 </head>
@@ -267,10 +267,13 @@
         focusMobileLeituraAutorizada = false,
         fotoPreviaTentativa = 0,
         fotoPreviaTimer = 0,
-        fotoPreviaDebounce = 0;
+        fotoPreviaDebounce = 0,
+        fotoPreviaResolver = null,
+        publicacaoExpressaEmAndamento = false;
       const RESULTADOS_API = "https://api.github.com/repos/informatica-byte/RankingDaCompra/contents/mlb-resolucoes.json?ref=main";
 
       function limparFotoPrevia() {
+        fotoPreviaResolver?.(false);
         fotoPreviaTentativa += 1;
         clearTimeout(fotoPreviaTimer);
         clearTimeout(fotoPreviaDebounce);
@@ -280,6 +283,8 @@
       }
 
       function carregarFotoPrevia(valor, avisar = true) {
+        // Libera também o chamador da imagem anterior antes de trocar seus eventos.
+        fotoPreviaResolver?.(false);
         const url = String(valor || "").trim(),
           imagem = $("foto-previa"),
           erro = $("foto-erro"),
@@ -297,6 +302,7 @@
           const concluir = (valida) => {
             if (finalizado) return;
             finalizado = true;
+            if (fotoPreviaResolver === concluir) fotoPreviaResolver = null;
             if (tentativa !== fotoPreviaTentativa) return resolve(false);
             clearTimeout(fotoPreviaTimer);
             imagem.onload = null;
@@ -305,6 +311,7 @@
             erro.className = !valida && avisar ? "foto-erro on" : "foto-erro";
             resolve(valida);
           };
+          fotoPreviaResolver = concluir;
           imagem.onload = () => concluir(imagem.naturalWidth > 1 && imagem.naturalHeight > 1);
           imagem.onerror = () => concluir(false);
           imagem.src = url;
@@ -434,6 +441,12 @@
         parar.hidden = !automacaoPrecosAtiva && !automacaoPrecosPausada;
         const bloqueado = automacaoPrecosAtiva || automacaoPrecosPausada || filaPrecosSalvando || substituindo;
         for (const id of ["precos-iniciar", "precos-reconferir-hoje", "precos-auto-limite", "precos-auto-revisar"]) $(id).disabled = bloqueado;
+        for (const botao of $("precos-pausados-lista")?.querySelectorAll("[data-pausa-acao]") || []) {
+          const produto = filaPrecosDados?.todos.find(item => item.id === botao.dataset.produtoId);
+          botao.disabled = filaPrecosSalvando || automacaoPrecosAtiva || substituindo
+            || Boolean($("precos-editor") && !$("precos-editor").hidden)
+            || (botao.dataset.pausaAcao === "abrir" && (!produto || !linkPrecoAssistido(produto)));
+        }
         if (automacaoPrecosAtiva) {
           for (const id of ["precos-igual", "precos-novo", "precos-pular", "precos-pausar", "precos-editar", "precos-substituir", "precos-excluir"]) {
             const botao = $(id);
@@ -857,6 +870,7 @@
           return false;
         } finally {
           filaPrecosSalvando = false;
+          atualizarControlesAutomacaoPrecos();
         }
       }
 
@@ -1223,6 +1237,7 @@
           msg("precos-status", "Não foi possível excluir: " + String(erro?.message || erro), "erro");
         } finally {
           filaPrecosSalvando = false;
+          atualizarControlesAutomacaoPrecos();
         }
       }
       $("precos-pausados").addEventListener("click", evento => {
@@ -1510,6 +1525,19 @@
           return "";
         }
       }
+      function mesmaIdentidadePublicacao(produto, link, linkAfiliado) {
+        const identity = window.RDCAssistedPriceSafety?.identity;
+        const esperado = identity?.(link), cadastrado = identity?.(produto.link);
+        if (esperado && cadastrado) {
+          return esperado.key === cadastrado.key && esperado.variation === cadastrado.variation
+            && esperado.attributes === cadastrado.attributes;
+        }
+        const igual = (a, b) => {
+          try { return new URL(a).href === new URL(b).href; } catch { return false; }
+        };
+        // Sem um anúncio completo no cadastro legado, só reutilize o mesmo link exato.
+        return igual(produto.link, link) || (!produto.link && igual(produto.linkAfiliado, linkAfiliado));
+      }
       async function buscarProdutoExistente(link, linkAfiliado) {
         const buscas = [],
           codigo = mlb(link) || mlb(linkAfiliado);
@@ -1520,7 +1548,11 @@
         buscas.push(query(collection(db, "produtos"), where("link", "==", link), limit(1)));
         buscas.push(query(collection(db, "produtos"), where("linkAfiliado", "==", linkAfiliado), limit(1)));
         const respostas = await Promise.allSettled(buscas.map((consulta) => getDocs(consulta)));
-        for (const resposta of respostas) if (resposta.status === "fulfilled" && !resposta.value.empty) return { id: resposta.value.docs[0].id, ...resposta.value.docs[0].data() };
+        for (const resposta of respostas) {
+          if (resposta.status !== "fulfilled" || resposta.value.empty) continue;
+          const documento = resposta.value.docs[0], produto = { ...documento.data(), id: documento.id };
+          if (mesmaIdentidadePublicacao(produto, link, linkAfiliado)) return produto;
+        }
         return null;
       }
       async function abrirManual(link, linkAfiliado, tipo, motivo, existentePronto = null, marketplace = marketplaceAtual()) {
@@ -1538,6 +1570,7 @@
         limparFotoPrevia();
         const existente = existentePronto || (await buscarProdutoExistente(link, linkAfiliado));
         if (existente) {
+          if (existente.id && mesmaIdentidadePublicacao(existente, link, linkAfiliado)) resultado.produtoExistenteId = existente.id;
           $("titulo").value = String(existente.titulo || $("titulo").value);
           if (cats.some((x) => x.id === existente.categoria)) $("categoria").value = existente.categoria;
           $("selo").value = String(existente.selo || "");
@@ -2463,6 +2496,7 @@
       $("foto").oninput = () => {
         edicaoManual = true;
         const u = $("foto").value.trim();
+        fotoPreviaResolver?.(false);
         fotoPreviaTentativa += 1;
         clearTimeout(fotoPreviaTimer);
         clearTimeout(fotoPreviaDebounce);
@@ -2474,6 +2508,7 @@
         }),
       );
       $("analisar").onclick = async () => {
+        if (publicacaoExpressaEmAndamento) return;
         const link = $("link").value.trim(),
           linkAfiliado = $("link-afiliado").value.trim(),
           marketplace = marketplaceAtual(),
@@ -2554,7 +2589,8 @@
       };
       $("preview").onsubmit = async (e) => {
         e.preventDefault();
-        if (!resultado) return;
+        if (!resultado || publicacaoExpressaEmAndamento || $("publicar").disabled) return;
+        if (resultado.produtoExistenteId) return msg("pub-status", "Este anúncio já está cadastrado. Use Editar produto na conferência assistida ou no painel completo para alterar o cadastro existente; não é necessário criar outra publicação.", "erro");
         const atual = numero($("atual").value),
           anterior = numero($("anterior").value),
           linkShopee = $("link-shopee").value.trim(),
@@ -2594,18 +2630,25 @@
         if ((linkShopee && !precoShopee) || (!linkShopee && precoShopee)) return msg("pub-status", "Para oferecer a Shopee, informe o link e o preço juntos.", "erro");
         if (linkShopee && !linkMarketplaceValido(linkShopee, "shopee")) return msg("pub-status", "Confira o link HTTPS da Shopee.", "erro");
         if (!/^https:\/\//.test(d.foto)) return msg("pub-status", "Confira a URL da foto.", "erro");
-        if (!(await carregarFotoPrevia(d.foto))) return msg("pub-status", "A foto não abriu. Cole uma URL de imagem válida antes de publicar.", "erro");
-        if (d.comentario.length < 180 || d.pros.length < 60 || d.contras.length < 60 || d.dadosTecnicos.length < 70 || lista(d.dadosTecnicos).length < 3) return msg("pub-status", "A análise precisa de mais dados reais antes de publicar.", "erro");
-        if (tipo === "relampago") {
-          const s = seg($("duracao").value);
-          if (s <= 30) return msg("pub-status", "Informe o tempo restante em HH:MM:SS.", "erro");
-          d.ofertaRelampagoTerminaEm = new Date(Date.now() + s * 1000).toISOString();
-        }
         const b = $("publicar");
+        const analisando = $("analisar").disabled;
+        let publicado = false;
+        publicacaoExpressaEmAndamento = true;
         b.disabled = true;
-        b.textContent = "Publicando...";
+        $("limpar").disabled = true;
+        $("analisar").disabled = true;
+        b.textContent = "Verificando foto...";
         try {
+          if (!(await carregarFotoPrevia(d.foto))) return msg("pub-status", "A foto não abriu. Cole uma URL de imagem válida antes de publicar.", "erro");
+          if (d.comentario.length < 180 || d.pros.length < 60 || d.contras.length < 60 || d.dadosTecnicos.length < 70 || lista(d.dadosTecnicos).length < 3) return msg("pub-status", "A análise precisa de mais dados reais antes de publicar.", "erro");
+          if (tipo === "relampago") {
+            const s = seg($("duracao").value);
+            if (s <= 30) return msg("pub-status", "Informe o tempo restante em HH:MM:SS.", "erro");
+            d.ofertaRelampagoTerminaEm = new Date(Date.now() + s * 1000).toISOString();
+          }
+          b.textContent = "Publicando...";
           const salvo = await addDoc(collection(db, "produtos"), d);
+          publicado = true;
           let avisoSelecao = '';
           if (tipo === 'promocao') {
             try {
@@ -2622,11 +2665,18 @@
           b.textContent = "✅ Publicado";
         } catch (x) {
           msg("pub-status", "Erro: " + x.message, "erro");
-          b.disabled = false;
-          b.textContent = "🚀 Publicar na mesma vitrine";
+        } finally {
+          publicacaoExpressaEmAndamento = false;
+          $("limpar").disabled = false;
+          $("analisar").disabled = analisando;
+          if (!publicado) {
+            b.disabled = false;
+            b.textContent = "🚀 Publicar na mesma vitrine";
+          }
         }
       };
       $("limpar").onclick = () => {
+        if (publicacaoExpressaEmAndamento) return;
         roboMonitorId += 1;
         roboPedidoAtual = null;
         edicaoManual = false;
