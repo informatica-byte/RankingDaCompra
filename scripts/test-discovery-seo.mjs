@@ -82,21 +82,23 @@ try {
   assert.doesNotMatch(router, /Repetidor TP-Link/);
   assert.doesNotMatch(watch, /Relógio Digital Casio/);
   assert.doesNotMatch(fones, /Fone Gamer com Fio/);
-  assert.match(router, /3 produtos comparados/);
+  const routerSchema = JSON.parse(router.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  assert.equal(routerSchema['@graph'].find(node => node['@type'] === 'CollectionPage').mainEntity.itemListElement.length, 3);
+  assert.match(router, /<h1>Qual roteador escolher\? Compare Wi-Fi, Gigabit e Mesh<\/h1>/);
   assert.match(fones, /Fones TWS e intra-auriculares/);
   assert.match(fones, /Headphones e headsets/);
   assert.doesNotMatch(fones, /produtos comparados|🏆 Maior pontuação da seleção/);
   assert.doesNotMatch(fones, /🏆 Melhor geral/);
   assert.match(fones, /Não realizamos testes próprios/);
   assert.doesNotMatch(fones, /R\$\s*(?:&nbsp;)?0,00/);
-  assert.match(fones, /<title>Fones de ouvido: TWS, headphones e abertos \| Ranking da Compra<\/title>/i);
-  assert.match(watch, /<title>Melhores smartwatches custo-benefício de 2026 \| Ranking da Compra<\/title>/i);
+  assert.match(fones, /<title>Fones de ouvido Bluetooth: compare pelo formato e pelo uso \| Ranking da Compra<\/title>/i);
+  assert.match(watch, /<title>Qual smartwatch escolher\? Compare funções e compatibilidade \| Ranking da Compra<\/title>/i);
   assert.match(router, /Maior pontuação de qualidade por real/);
   assert.match(house, /data-unranked-guide/);
   assert.doesNotMatch(house, /Melhor custo-benefício/);
   assert.doesNotMatch(router, /Recurso técnico confirmado no anúncio/);
-  assert.match(sitemap, /melhores-roteador\.html<\/loc>\s*<lastmod>2026-10-01<\/lastmod>/);
-  assert.match(sitemap, /melhores-relogio-smartwatch\.html<\/loc>\s*<lastmod>2026-10-01<\/lastmod>/);
+  assert.match(sitemap, /melhores-roteador\.html<\/loc>\s*<lastmod>2026-10-15<\/lastmod>/);
+  assert.match(sitemap, /melhores-relogio-smartwatch\.html<\/loc>\s*<lastmod>2026-10-15<\/lastmod>/);
   assert.match(sitemap, /melhores-casa\.html<\/loc>\s*<lastmod>2026-09-06<\/lastmod>/);
   for (const [file, parent] of [['melhores-fones-bluetooth-ate-100.html',fones], ['melhores-roteadores-wifi-6-apartamento.html',router], ['melhores-smartwatches-caminhada.html',watch]]) {
     const focused = await readFile(join(directory, file), 'utf8');

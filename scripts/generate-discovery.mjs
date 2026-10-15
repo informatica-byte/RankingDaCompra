@@ -9,6 +9,7 @@ import { renderProductDecision, comparisonData } from "./product-decision.mjs";
 import { renderBuyingAdvice, renderGuideChecklist } from "./buying-advice.mjs";
 import { publishedEditorialNotes, editorialItems, usefulEditorialItems } from "./published-editorial.mjs";
 import { headphoneFormat, headphoneFormats } from './headphone-formats.mjs';
+import { applyVisibilityEditorial } from './visibility-editorial.mjs';
 import { routerCapabilities, renderPracticalSection, practicalProfile, EDITORIAL_REVIEWED_AT, FOCUSED_GUIDES, focusedProducts, renderFocusedGuide } from "./discovery-editorial.mjs";
 
 const PROJECT_ID = "rankingdacompra";
@@ -947,3 +948,4 @@ for (const product of products) {
 
 console.log(`Descoberta interna atualizada: ${products.length} análises pesquisáveis sem Firebase, ${guidePages.length} comparativos e ${relatedPages} páginas com produtos relacionados.`);
 await protectGeneratedPublicPages();
+await applyVisibilityEditorial();
