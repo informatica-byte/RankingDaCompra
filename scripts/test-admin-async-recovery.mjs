@@ -166,6 +166,7 @@ function publication({ validPhoto = true, failWrite = false } = {}) {
   const context = vm.createContext({
     resultado: { link: 'https://example.test/p', linkAfiliado: 'https://example.test/a', tipo: 'relampago', marketplace: 'mercado_livre', evidencia: 'manual' },
     publicacaoExpressaEmAndamento: false, $: field, db: {}, window: { RDCProductSaveSafety: safetyContext.RDCProductSaveSafety }, console,
+    cadastroExistenteExpressa: { isBusy: () => false, show() {}, reset() {} },
     numero: v => Number(String(v).replace(',', '.')), preco: v => String(v), hoje: () => '2026-10-14',
     mlb: () => 'MLB1234567', seg: () => 60, lista: v => v.split('\n'), serverTimestamp: () => 'SERVER_TIMESTAMP',
     collection: (_db, name) => name, msg: (...args) => messages.push(args),

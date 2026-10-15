@@ -179,7 +179,8 @@ const mobileCreate = section(mobile, 'const idNovo = window.RDCProductSaveSafety
 function productionCreation(db, { queryFailure = false } = {}) {
   const queryExisting = async (field, value) => {
     if (queryFailure) throw Error('permission-denied');
-    return { empty: ![...db.docs.values()].some(product => product[field] === value) };
+    const matches = [...db.docs.entries()].filter(([, product]) => product[field] === value);
+    return { empty: matches.length === 0, docs: matches.map(([id]) => ({ id })) };
   };
   const dashCollection = {
     doc: db.ref,

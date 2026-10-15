@@ -33,6 +33,9 @@
       .precos-auto[hidden],.precos-auto-acoes [hidden]{display:none}
       .precos-fila-acoes[hidden],.precos-editor[hidden]{display:none}
       .precos-editor{margin-top:14px;padding:13px;border:1px solid #b8d8c9;border-radius:12px;background:#f3faf6}
+      .express-existing{margin-top:12px;padding:12px;border:1px solid #b8d8c9;border-radius:12px;background:#f3faf6;overflow-wrap:anywhere}
+      .express-existing[hidden],.express-existing [hidden]{display:none}
+      .express-existing .btn{white-space:normal;height:auto;min-height:48px}
       .precos-editor .mini{line-height:1.45}
       .precos-editor details{margin-top:12px}
       .precos-editor .btn{margin-top:8px}
@@ -116,7 +119,8 @@
             <div class="largo"><label>Pontos de atenção</label><textarea id="contras" class="campo" maxlength="300" required></textarea></div>
           </div>
           <button id="publicar" class="btn azul">🚀 Publicar na mesma vitrine</button><button id="limpar" class="btn claro" type="button">Começar outra publicação</button>
-          <div id="pub-status" class="status"></div>
+          <div id="pub-status" class="status" role="status" aria-live="polite"></div>
+          <div id="publicacao-cadastro-existente" class="express-existing" hidden></div>
         </form>
         <div class="card" id="metricas-mobile">
           <h2>📊 Contagens do site</h2>
@@ -173,6 +177,7 @@
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/weekly-comparison-safety.js?v=20261012-audit-4"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
+    <script src="/express-existing-product.js?v=20261015-1"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
@@ -215,6 +220,45 @@
         $(id).className = "status";
         $(id).textContent = "";
       }
+      const cadastroExistenteExpressa = window.RDCExpressExisting.mount($("publicacao-cadastro-existente"), {
+        read: async id => {
+          if (!auth.currentUser) throw Error("Entre novamente no painel.");
+          if (automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento) throw Error("Aguarde ou pause a conferência antes de editar.");
+          const snapshot = await getDoc(doc(db, "produtos", id));
+          return snapshot.exists() ? snapshot.data() : null;
+        },
+        save: async (id, baseline, input) => {
+          if (!auth.currentUser) throw Error("Entre novamente no painel.");
+          if (automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento) throw Error("Aguarde ou pause a conferência antes de editar.");
+          const proposed = window.RDCExpressExisting.buildPatch(baseline, input, serverTimestamp());
+          if (proposed.sourceChanged) {
+            const duplicates = await Promise.all(window.RDCProductSaveSafety.duplicateLookups({ ...baseline, ...proposed.changes, marketplace: "mercado_livre" })
+              .map(([field, value]) => getDocs(query(collection(db, "produtos"), where(field, "==", value), limit(2)))));
+            if (duplicates.some(result => result.docs.some(item => item.id !== id))) throw Error("O novo anúncio já pertence a outro cadastro. Nenhum produto foi alterado.");
+          }
+          await runTransaction(db, async transaction => {
+            if (!auth.currentUser || automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento) throw Error("A sessão ou a conferência mudou. Pause e tente salvar novamente.");
+            const ref = doc(db, "produtos", id), current = await transaction.get(ref);
+            const changes = { ...proposed.changes, atualizadoEm: serverTimestamp() };
+            window.RDCProductSaveSafety.assertUnchanged(current.exists() ? current.data() : null, baseline, changes);
+            if (proposed.sourceChanged) changes.historicoAnuncios = arrayUnion(window.RDCOfferReplacement.previousOffer(current.data(), new Date().toISOString()));
+            transaction.update(ref, changes);
+          });
+          rankingDadosMovel = null;
+          if (filaPrecosDados) {
+            for (const items of [filaPrecosDados.todos, filaPrecosDados.produtos]) {
+              const local = items?.find(item => item.id === id);
+              if (local) Object.assign(local, proposed.changes, { atualizadoEm: new Date() });
+            }
+          }
+          if (proposed.sourceChanged) {
+            filaPrecosConferidos.delete(id); filaPrecosPulados.delete(id); filaPrecosResultados.delete(id);
+            automacaoPrecosIndisponiveis.delete(id); automacaoPrecosFalhas.delete(id); automacaoPrecosVisitados.delete(id);
+            guardarPosicaoFilaPrecos();
+          }
+          window.RDCPricePublication.saved("price-publication-mobile", false);
+        },
+      });
       function lista(v) {
         return (Array.isArray(v) ? v : String(v || "").split(/\n|;|\|/)).map((x) => String(x).replace(/\s+/g, " ").trim()).filter(Boolean);
       }
@@ -978,7 +1022,7 @@
       }
 
       function iniciarAutomacaoPrecosAssistida({ continuar = false } = {}) {
-        if (automacaoPrecosAtiva || filaPrecosSalvando || $("precos-substituicao") || ($("precos-editor") && !$("precos-editor").hidden)) return;
+        if (cadastroExistenteExpressa.isBusy() || automacaoPrecosAtiva || filaPrecosSalvando || $("precos-substituicao") || ($("precos-editor") && !$("precos-editor").hidden)) return;
         if (continuar && !automacaoPrecosPausada) return;
         if (!filaPrecosDados) return msg("precos-status", "Carregue a fila de hoje antes de iniciar.", "erro");
         if (typeof window.conferirPrecoNaAbaLocal !== "function" || !window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__)) {
@@ -1580,7 +1624,10 @@
         limparFotoPrevia();
         const existente = existentePronto || (await buscarProdutoExistente(link, linkAfiliado));
         if (existente) {
-          if (existente.id && mesmaIdentidadePublicacao(existente, link, linkAfiliado)) resultado.produtoExistenteId = existente.id;
+          if (existente.id && mesmaIdentidadePublicacao(existente, link, linkAfiliado)) {
+            resultado.produtoExistenteId = existente.id;
+            cadastroExistenteExpressa.show(existente.id);
+          }
           $("titulo").value = String(existente.titulo || $("titulo").value);
           if (cats.some((x) => x.id === existente.categoria)) $("categoria").value = existente.categoria;
           $("selo").value = String(existente.selo || "");
@@ -2518,7 +2565,8 @@
         }),
       );
       $("analisar").onclick = async () => {
-        if (publicacaoExpressaEmAndamento) return;
+        if (publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()) return;
+        cadastroExistenteExpressa.reset();
         const link = $("link").value.trim(),
           linkAfiliado = $("link-afiliado").value.trim(),
           marketplace = marketplaceAtual(),
@@ -2600,7 +2648,11 @@
       $("preview").onsubmit = async (e) => {
         e.preventDefault();
         if (!resultado || publicacaoExpressaEmAndamento || $("publicar").disabled) return;
-        if (resultado.produtoExistenteId) return msg("pub-status", "Este anúncio já está cadastrado. Use Editar produto na conferência assistida ou no painel completo para alterar o cadastro existente; não é necessário criar outra publicação.", "erro");
+        if (cadastroExistenteExpressa.isBusy()) return;
+        if (resultado.produtoExistenteId) {
+          cadastroExistenteExpressa.show(resultado.produtoExistenteId);
+          return msg("pub-status", "Este anúncio já está cadastrado. Use o botão abaixo para carregar e editar o cadastro existente, sem duplicá-lo.", "erro");
+        }
         const atual = numero($("atual").value),
           anterior = numero($("anterior").value),
           linkShopee = $("link-shopee").value.trim(),
@@ -2642,7 +2694,7 @@
         if (!/^https:\/\//.test(d.foto)) return msg("pub-status", "Confira a URL da foto.", "erro");
         const b = $("publicar");
         const analisando = $("analisar").disabled;
-        let publicado = false;
+        let publicado = false, cadastroDuplicadoId = "";
         publicacaoExpressaEmAndamento = true;
         b.disabled = true;
         $("limpar").disabled = true;
@@ -2662,8 +2714,13 @@
           if (idNovo) {
             const anteriores = await Promise.all(window.RDCProductSaveSafety.duplicateLookups(d)
               .map(([campo, valor]) => getDocs(query(collection(db, "produtos"), where(campo, "==", valor), limit(1)))));
-            if (anteriores.some(resposta => !resposta.empty)) throw Error("Este anúncio já está cadastrado. Recarregue a lista e edite o cadastro existente.");
+            const duplicado = anteriores.find(resposta => !resposta.empty)?.docs[0];
+            if (duplicado) {
+              cadastroDuplicadoId = duplicado.id;
+              throw Error("Este anúncio já está cadastrado. Use o botão abaixo para carregar e editar o cadastro existente.");
+            }
             salvo = doc(db, "produtos", idNovo);
+            cadastroDuplicadoId = idNovo;
             await runTransaction(db, async transaction => {
               window.RDCProductSaveSafety.assertNew(await transaction.get(salvo));
               transaction.set(salvo, d);
@@ -2686,6 +2743,10 @@
           b.textContent = "✅ Publicado";
         } catch (x) {
           msg("pub-status", "Erro: " + x.message, "erro");
+          if (cadastroDuplicadoId && /já está cadastrado/.test(x.message)) {
+            resultado.produtoExistenteId = cadastroDuplicadoId;
+            cadastroExistenteExpressa.show(cadastroDuplicadoId);
+          }
         } finally {
           publicacaoExpressaEmAndamento = false;
           $("limpar").disabled = false;
@@ -2697,7 +2758,8 @@
         }
       };
       $("limpar").onclick = () => {
-        if (publicacaoExpressaEmAndamento) return;
+        if (publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()) return;
+        cadastroExistenteExpressa.reset();
         roboMonitorId += 1;
         roboPedidoAtual = null;
         edicaoManual = false;
