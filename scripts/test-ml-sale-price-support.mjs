@@ -71,3 +71,15 @@ test('modo manual retorna antes de carregar catálogo ou Firebase e recusa modos
   assert.match(workflow, /support_sale_price:[\s\S]*?default: false/);
   assert.match(workflow, /RDC_ML_SUPPORT_SALE_PRICE: \$\{\{ inputs.support_sale_price \}\}/);
 });
+test('opção sale_price preenche o anúncio do chamado se o formulário enviar código vazio', () => {
+  const workflow = readFileSync('.github/workflows/testar-acesso-mercadolivre.yml', 'utf8');
+  const expression = workflow.match(/RDC_ML_SUPPORT_ITEM_ID: \$\{\{ (.+) \}\}/)?.[1];
+  assert.equal(expression, "inputs.support_item_id || (inputs.support_sale_price && 'MLB2171368181') || ''");
+  const evaluate = new Function('inputs', 'return ' + expression);
+  assert.equal(evaluate({ support_item_id: '', support_sale_price: true }), 'MLB2171368181');
+  assert.equal(evaluate({ support_sale_price: true }), 'MLB2171368181');
+  assert.equal(evaluate({ support_item_id: '', support_sale_price: false }), '');
+  assert.equal(evaluate({ support_item_id: 'MLB4231915505', support_sale_price: true }), 'MLB4231915505');
+  assert.equal(evaluate({ support_item_id: 'MLB4231915505', support_sale_price: false }), 'MLB4231915505');
+  assert.match(workflow, /Suporte WCS-51776: consultar sale_price de MLB2171368181/);
+});

@@ -9,12 +9,12 @@ on:
         type: boolean
         default: false
       support_item_id:
-        description: "Anúncio MLB solicitado pelo suporte (vazio mantém diagnóstico padrão)"
+        description: "Anúncio MLB opcional: no teste sale_price, vazio usa MLB2171368181; nos outros mantém o diagnóstico padrão"
         required: false
         type: string
         default: ""
       support_sale_price:
-        description: "Somente GET /items/MLB.../sale_price, com status e JSON para suporte (sem lote/Firebase)"
+        description: "Suporte WCS-51776: consultar sale_price de MLB2171368181 (ou código acima), uma vez, sem lote/Firebase"
         required: false
         type: boolean
         default: false
@@ -46,7 +46,7 @@ jobs:
         env:
           RDC_ML_PREFLIGHT_ONLY: "true"
           RDC_ML_SUPPORT_APPLICATION_DETAILS: ${{ inputs.application_details }}
-          RDC_ML_SUPPORT_ITEM_ID: ${{ inputs.support_item_id }}
+          RDC_ML_SUPPORT_ITEM_ID: ${{ inputs.support_item_id || (inputs.support_sale_price && 'MLB2171368181') || '' }}
           RDC_ML_SUPPORT_SALE_PRICE: ${{ inputs.support_sale_price }}
           MERCADO_LIVRE_ACCESS_TOKEN: ${{ secrets.MERCADO_LIVRE_ACCESS_TOKEN }}
           MERCADO_LIVRE_CLIENT_ID: ${{ secrets.MERCADO_LIVRE_CLIENT_ID }}
