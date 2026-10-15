@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-15T15:29:07.089Z",
+  "generatedAt": "2026-10-15T19:21:36.387Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -3831,6 +3831,30 @@
       "precoConferenciaId": "dd5932a2-3fb7-467c-afb2-48f4d10f7d82",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 77.21,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "hC5H8O2mjGMYXFMH5jic",
+      "titulo": "Celular Positivo S675 4GB RAM 128GB ROM Smartphone 4G Tela HD+ 6,75\" Câmera 50MP NFC Bateria 5000mAh Desbloqueado Android",
+      "comentario": "O Celular Positivo S675 dispõe de 128 GB de armazenamento interno acompanhados por 4 GB de memória RAM. O modelo apresenta uma tela LCD IPS de 6,75 polegadas com resolução HD+, além de contar com uma câmera traseira principal de 50 MP e bateria com capacidade de 5000 mAh.",
+      "categoria": "celular",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_660287-MLA118919221503_102026-F.webp",
+      "preco": "770,97",
+      "precoAnterior": "829,00",
+      "precoPromocional": "725,09",
+      "nota": "",
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-15",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-16T03:13:02.867Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-15T19:20:51.492Z",
+      "precoConferenciaId": "c98b0370-dda6-4967-9163-1866d5711a89",
+      "precoConferenciaCampo": "precoPromocional",
+      "precoConferenciaValor": 725.09,
       "pros": "",
       "contras": "",
       "notaInformada": ""
