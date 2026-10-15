@@ -1311,6 +1311,31 @@ export async function diagnoseSupportItem(
   return report;
 }
 
+// One isolated request for support. Never retry a denied request, query
+// another endpoint, or replace the actual response with a generic error.
+export async function diagnoseSupportSalePrice(
+  itemId,
+  { request = fetch, headers = requestHeaders(), secrets = [] } = {},
+) {
+  if (!/^MLB\d{10,}$/.test(itemId)) throw new Error("Informe um código de anúncio MLB válido.");
+  const endpoint = `https://api.mercadolibre.com/items/${itemId}/sale_price`;
+  const report = { itemId, endpoint, executedAt: new Date().toISOString(), httpStatus: null };
+  try {
+    const response = await request(endpoint, {
+      method: "GET", headers: { accept: "application/json", ...headers },
+      signal: AbortSignal.timeout(15000), redirect: "error",
+    });
+    report.httpStatus = response.status;
+    const body = await response.text();
+    let json;
+    try { json = JSON.parse(body); } catch { json = { nonJsonBody: body }; }
+    report.json = sanitizeSupportPayload(json, secrets);
+  } catch (error) {
+    report.error = sanitizeSupportPayload(String(error?.message || error), secrets);
+  }
+  return report;
+}
+
 async function diagnoseMarketplaceAccess(previous) {
   const [id] = selectPreflightItemIds(previous, 1);
   if (!id) throw new Error("Sem item de amostra para testar o acesso do Mercado Livre.");
@@ -1604,6 +1629,14 @@ export async function diagnoseSupportApplication(getJson, expectedOwnerId = "131
 // End application support diagnostic
 
 async function main() {
+  const supportItemInput = String(process.env.RDC_ML_SUPPORT_ITEM_ID || "").trim().toUpperCase();
+  const supportSalePrice = String(process.env.RDC_ML_SUPPORT_SALE_PRICE || "").toLowerCase() === "true";
+  if (supportSalePrice && (!PREFLIGHT_ONLY || !/^MLB\d{10,}$/.test(supportItemInput))) {
+    throw new Error("O teste isolado de sale_price exige modo de diagnóstico e um código MLB válido.");
+  }
+  if (supportSalePrice && String(process.env.RDC_ML_SUPPORT_APPLICATION_DETAILS || "").toLowerCase() === "true") {
+    throw new Error("Escolha somente sale_price ou dados da aplicação, não os dois testes juntos.");
+  }
   const authorization = await prepareAccessToken();
   if (authorization === "not_configured") {
     console.log(
@@ -1627,7 +1660,18 @@ async function main() {
     console.log("Consulta da aplicação encerrada: sem lote, produtos ou Firebase; credenciais não incluídas.");
     return;
   }
-  const supportItemId = String(process.env.RDC_ML_SUPPORT_ITEM_ID || "").trim().toUpperCase();
+  const supportItemId = supportItemInput;
+  if (PREFLIGHT_ONLY && supportSalePrice) {
+    const stored = TOKEN_KEY ? await readTokenSession() : null;
+    const report = await diagnoseSupportSalePrice(supportItemId, {
+      secrets: [accessToken, stored?.refreshToken, CLIENT_SECRET, TOKEN_KEY, AUTHORIZATION_CODE],
+    });
+    console.log("SUPPORT_SALE_PRICE_JSON_BEGIN");
+    console.log(JSON.stringify(report, null, 2));
+    console.log("SUPPORT_SALE_PRICE_JSON_END");
+    console.log("Diagnóstico sale_price encerrado: uma consulta isolada, sem lote, produtos ou Firebase; credenciais removidas.");
+    return;
+  }
   if (PREFLIGHT_ONLY && supportItemId) {
     const stored = TOKEN_KEY ? await readTokenSession() : null;
     const report = await diagnoseSupportItem(supportItemId, {
