@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
 import {renderPracticalSection} from './discovery-editorial.mjs';
 
 test('practical tables scroll within their container in every guide template', () => {
@@ -18,5 +19,15 @@ test('practical tables scroll within their container in every guide template', (
 });
 test('unrelated categories do not acquire an empty comparison table', () => {
   assert.equal(renderPracticalSection('beleza',[],new Map()),'');
+});
+test('publication validator accepts real tables with attributes, not lookalikes or incomplete tags', async () => {
+  const pattern = /<table(?:\s[^>]*)?>[\s\S]*?<\/table>/i;
+  const source = await readFile(new URL('./validate-site.mjs',import.meta.url),'utf8');
+  assert.ok(source.includes('has(html, '+pattern.toString()+', "tabela de comparação rápida ausente", file)'));
+  assert.ok(pattern.test('<table><tr><td>Valor</td></tr></table>'));
+  assert.ok(pattern.test('<table style="min-width:680px"><tr><td>Valor</td></tr></table>'));
+  assert.ok(pattern.test('<TABLE aria-label="Comparação"><tr><td>Valor</td></tr></TABLE>'));
+  assert.equal(pattern.test('<tableau>Não é tabela</tableau>'),false);
+  assert.equal(pattern.test('<table><tr><td>Sem fechamento'),false);
 });
 

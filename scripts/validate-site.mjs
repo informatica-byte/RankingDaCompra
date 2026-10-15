@@ -584,7 +584,7 @@ for (const file of guideFiles) {
     has(html, /Por que está nesta posição:/, "justificativa de posição ausente", file);
   }
   if (!html.includes("data-unranked-guide") && !html.includes("data-focused-guide")) has(html, /Não é a melhor escolha para:|Limitação ou dúvida:/, "limitação prática ausente", file);
-  has(html, /<table>/, "tabela de comparação rápida ausente", file);
+  has(html, /<table(?:\s[^>]*)?>[\s\S]*?<\/table>/i, "tabela de comparação rápida ausente", file);
   if (html.includes("data-unranked-guide")) has(html, /Leia nossa metodologia/, "link da metodologia ausente", file);
   else has(html, /<h2>Como classificamos<\/h2>/, "metodologia resumida ausente", file);
   if (/\bNaN\b/.test(html)) fail(file + ": preço ou pontuação inválida aparece como NaN");
