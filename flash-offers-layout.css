@@ -1,0 +1,114 @@
+/* Keep white cards readable inside the dark flash-offer section. */
+.flash-card,
+.flash-card h3 {
+  color: var(--ink, #11221d);
+  min-width: 0;
+}
+
+.flash-card .flash-timer {
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.flash-card .flash-timer > span {
+  flex: 1 1 80px;
+  min-width: 0;
+}
+
+.flash-card .flash-timer strong {
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Flash cards need their own mobile flow: the generic two-column product
+   grid cannot accommodate the countdown and the inserted price history. */
+@media (max-width: 680px) {
+  .flash-deals {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .flash-deals .flash-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px;
+  }
+
+  .flash-card > * {
+    grid-column: auto;
+    grid-row: auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .flash-card::before {
+    position: static;
+    align-self: flex-start;
+    max-width: 100%;
+    margin-bottom: 8px;
+    border-radius: 8px;
+  }
+
+  .flash-card .deal-tag {
+    position: static;
+    align-self: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .flash-card img {
+    width: 100%;
+    height: 176px;
+    grid-row: auto;
+  }
+
+  .flash-card .deal-check {
+    margin-top: 10px;
+  }
+
+  .flash-card h3 {
+    display: block;
+    min-height: 0;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+    overflow-wrap: anywhere;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    margin: 6px 0 10px;
+  }
+
+  .flash-card .deal-price {
+    font-size: 1.3rem;
+  }
+
+  .flash-card .offer-proof,
+  .flash-card .flash-timer,
+  .flash-card .deal-actions {
+    width: 100%;
+  }
+
+  .flash-card .deal-actions {
+    margin-top: 12px;
+  }
+
+  .flash-card .deal-actions .offer-button {
+    min-height: 44px;
+    font-size: .9rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .flash-card .deal-secondary-actions button {
+    min-height: 44px;
+    font-size: .82rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flash-card.flash-urgent {
+    animation: none;
+  }
+}
