@@ -24,7 +24,7 @@
   }
 
   function mount(container, options) {
-    let productId = "", baseline = null, busy = false, generation = 0;
+    let productId = "", expectedLink = "", baseline = null, busy = false, generation = 0;
     container.classList.add("express-existing");
     container.hidden = true;
     container.innerHTML = '<button type="button" class="btn azul" data-action="load">✏️ Carregar cadastro existente</button>' +
@@ -52,12 +52,19 @@
     const load = async () => {
       if (busy || !productId) return;
       const token = ++generation;
+      baseline = null;
+      find("[data-editor]").hidden = true;
       setBusy(true);
       status("Carregando somente este cadastro...");
       try {
         const product = await options.read(productId);
         if (token !== generation) return;
         if (!product) throw Error("Este produto foi excluído. Nenhum cadastro será recriado.");
+        if (expectedLink) {
+          const expectedId = root.RDCProductSaveSafety.listingId({ marketplace: "mercado_livre", link: expectedLink });
+          const foundId = root.RDCProductSaveSafety.listingId({ marketplace: "mercado_livre", link: product.link });
+          if (expectedId && foundId !== expectedId) throw Error("O cadastro encontrado pertence a outro anúncio ou não comprova o anúncio informado. Nenhum dado foi aberto para edição. Confira os links e prepare uma nova publicação.");
+        }
         baseline = root.RDCProductSaveSafety.capture(product);
         for (const name of ["titulo", "link", "linkAfiliado", "foto"]) field(name).value = String(product[name] || (name === "foto" ? product.imagem : "") || "");
         field("sameProduct").checked = false;
@@ -100,9 +107,9 @@
       if (event.key === "Enter" && event.target?.matches("input")) event.preventDefault();
     });
     return Object.freeze({
-      show(id) {
+      show(id, sourceLink = "") {
         if (busy) return false;
-        productId = String(id || ""); baseline = null; ++generation;
+        productId = String(id || ""); expectedLink = String(sourceLink || ""); baseline = null; ++generation;
         container.hidden = !productId;
         find("[data-editor]").hidden = true;
         find("[data-status]").className = "status";

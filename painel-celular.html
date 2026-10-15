@@ -171,13 +171,13 @@
         </div>
       </section>
     </main>
-    <script src="/product-save-safety.js?v=20261014-1"></script>
+    <script src="/product-save-safety.js?v=20261015-2"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261014-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/weekly-comparison-safety.js?v=20261012-audit-4"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
-    <script src="/express-existing-product.js?v=20261015-1"></script>
+    <script src="/express-existing-product.js?v=20261015-2"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
@@ -1175,13 +1175,7 @@
         $("precos-iniciar").disabled = false;
       }
       function idAnuncioFilaPrecos(valor) {
-        try {
-          const url = new URL(valor);
-          const parametros = [url.searchParams.get("item_id"), url.searchParams.get("wid"), url.searchParams.get("pdp_filters")].join(" ");
-          return mlb(parametros) || (/\/p\/MLB\d+/i.test(url.pathname) ? "" : mlb(url.pathname));
-        } catch {
-          return "";
-        }
+        return window.RDCProductSaveSafety.listingId({ marketplace: "mercado_livre", link: valor });
       }
       async function salvarEdicaoProdutoFilaPrecosAssistida() {
         if (filaPrecosSalvando || !filaPrecosDados) return;
@@ -1522,8 +1516,10 @@
         return s;
       }
       function mlb(v) {
-        const a = String(v || "").match(/\bMLB[-_]?(\d{6,})\b/i);
-        return a ? "MLB" + a[1] : "";
+        const raw = String(v || "").trim();
+        if (/^https?:\/\//i.test(raw)) return window.RDCProductSaveSafety.listingId({ marketplace: "mercado_livre", link: raw });
+        const direto = raw.match(/^MLB[-_]?(\d{6,})$/i);
+        return direto ? "MLB" + direto[1] : "";
       }
       function marketplaceAtual() {
         return document.querySelector('[name="marketplace"]:checked')?.value || "mercado_livre";
@@ -1626,7 +1622,7 @@
         if (existente) {
           if (existente.id && mesmaIdentidadePublicacao(existente, link, linkAfiliado)) {
             resultado.produtoExistenteId = existente.id;
-            cadastroExistenteExpressa.show(existente.id);
+            cadastroExistenteExpressa.show(existente.id, link);
           }
           $("titulo").value = String(existente.titulo || $("titulo").value);
           if (cats.some((x) => x.id === existente.categoria)) $("categoria").value = existente.categoria;
@@ -2650,7 +2646,7 @@
         if (!resultado || publicacaoExpressaEmAndamento || $("publicar").disabled) return;
         if (cadastroExistenteExpressa.isBusy()) return;
         if (resultado.produtoExistenteId) {
-          cadastroExistenteExpressa.show(resultado.produtoExistenteId);
+          cadastroExistenteExpressa.show(resultado.produtoExistenteId, resultado.link);
           return msg("pub-status", "Este anúncio já está cadastrado. Use o botão abaixo para carregar e editar o cadastro existente, sem duplicá-lo.", "erro");
         }
         const atual = numero($("atual").value),
@@ -2745,7 +2741,7 @@
           msg("pub-status", "Erro: " + x.message, "erro");
           if (cadastroDuplicadoId && /já está cadastrado/.test(x.message)) {
             resultado.produtoExistenteId = cadastroDuplicadoId;
-            cadastroExistenteExpressa.show(cadastroDuplicadoId);
+            cadastroExistenteExpressa.show(cadastroDuplicadoId, resultado.link);
           }
         } finally {
           publicacaoExpressaEmAndamento = false;

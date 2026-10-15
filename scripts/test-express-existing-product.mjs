@@ -77,6 +77,21 @@ test('mostrar aviso não lê Firebase; carregar faz uma leitura específica e pr
   assert.equal(ui.field('linkAfiliado').value, product.linkAfiliado);
   assert.equal(ui.node('[data-editor]').hidden, false);
 });
+test('editor recusa cadastro de outro anúncio antes de preencher qualquer campo', async () => {
+  const ui = setup();
+  ui.editor.show('maquininha', 'https://produto.mercadolivre.com.br/MLB-987654321-controle-_JM');
+  await ui.action('load').handlers.click();
+  assert.equal(ui.field('titulo').value, '');
+  assert.equal(ui.node('[data-editor]').hidden, true);
+  assert.match(ui.node('[data-status]').textContent, /outro anúncio/);
+});
+test('editor abre o anúncio correto mesmo se o wid estiver depois de #', async () => {
+  const ui = setup();
+  ui.editor.show('original', 'https://www.mercadolivre.com.br/produto/up/MLBU55555555?pdp_filters=deal%3AMLB779362-1#wid=MLB123456789');
+  await ui.action('load').handlers.click();
+  assert.equal(ui.field('titulo').value, product.titulo);
+  assert.equal(ui.node('[data-editor]').hidden, false);
+});
 test('salvar usa o ID original e cliques repetidos não duplicam gravação', async () => {
   const calls = [];
   let finish;
@@ -120,10 +135,10 @@ test('Enter no editor não dispara criação pelo formulário externo', () => {
 });
 test('integração mantém travas, atualização transacional, histórico e três caminhos de duplicidade', () => {
   const html = readFileSync('painel-celular.html', 'utf8');
-  assert.match(html, /express-existing-product\.js\?v=20261015-1/);
-  assert.match(html, /cadastroExistenteExpressa\.show\(existente\.id\)/);
-  assert.match(html, /cadastroExistenteExpressa\.show\(resultado\.produtoExistenteId\)/);
-  assert.match(html, /cadastroExistenteExpressa\.show\(cadastroDuplicadoId\)/);
+  assert.match(html, /express-existing-product\.js\?v=20261015-2/);
+  assert.match(html, /cadastroExistenteExpressa\.show\(existente\.id, link\)/);
+  assert.match(html, /cadastroExistenteExpressa\.show\(resultado\.produtoExistenteId, resultado\.link\)/);
+  assert.match(html, /cadastroExistenteExpressa\.show\(cadastroDuplicadoId, resultado\.link\)/);
   const save = html.slice(html.indexOf('save: async (id, baseline, input)'), html.indexOf('function lista('));
   assert.match(save, /assertUnchanged/);
   assert.match(save, /transaction\.update\(ref, changes\)/);

@@ -27,17 +27,33 @@
   // ids (/p/MLB...) and affiliate short links do not identify a seller listing.
   function listingId(product) {
     if (product?.marketplace !== 'mercado_livre') return '';
+    let url;
     try {
-      const url = new URL(String(product.link || ''));
-      if (url.protocol !== 'https:' || !/(^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) return '';
-      for (const key of ['item_id', 'wid', 'pdp_filters']) {
-        const match = String(url.searchParams.get(key) || '').match(/\bMLB[-_]?(\d{6,})\b/i);
-        if (match) return 'MLB' + match[1];
-      }
-      if (/\/p\/MLB\d+/i.test(url.pathname)) return '';
-      const match = url.pathname.match(/\bMLB[-_]?(\d{6,})\b/i);
-      return match ? 'MLB' + match[1] : '';
+      url = new URL(String(product.link || ''));
     } catch { return ''; }
+    if (url.protocol !== 'https:' || url.username || url.password || url.port
+      || !/(^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) return '';
+    const ids = new Set();
+    const add = value => {
+      if (!value) return;
+      const match = String(value).trim().match(/^MLB[-_]?(\d{6,})$/i);
+      if (!match) throw new Error('O link contém um código de anúncio inválido. Copie novamente o endereço completo do produto.');
+      ids.add('MLB' + match[1]);
+    };
+    // Offer links keep wid after #. deal:MLB... is a campaign, never a listing.
+    const hash = new URL(url.origin + '/?' + url.hash.slice(1)).searchParams;
+    for (const params of [url.searchParams, hash]) {
+      for (const key of ['item_id', 'wid']) for (const value of params.getAll(key)) add(value);
+      for (const filter of params.getAll('pdp_filters')) {
+        for (const match of filter.matchAll(/(?:^|[|,])item_id:([^|,]+)/gi)) add(match[1]);
+      }
+    }
+    if (!/\/p\/MLB\d+/i.test(url.pathname)) {
+      const pathId = url.pathname.match(/\/(MLB[-_]?\d{6,})(?=[\/_-]|$)/i)?.[1];
+      if (pathId) add(pathId);
+    }
+    if (ids.size > 1) throw new Error('O link contém códigos de anúncios diferentes. Copie novamente o endereço do anúncio escolhido.');
+    return [...ids][0] || '';
   }
 
   function creationId(product) {

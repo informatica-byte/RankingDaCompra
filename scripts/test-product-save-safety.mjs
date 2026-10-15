@@ -236,7 +236,7 @@ test('legacy lookup failure fails closed instead of creating another product', a
 
 test('both panels use the shared guarded creation before the legacy fallback', () => {
   for (const html of [dashboard, mobile]) {
-    assert.match(html, /src="\/product-save-safety\.js\?v=20261014-1"/);
+    assert.match(html, /src="\/product-save-safety\.js\?v=20261015-2"/);
     assert.match(html, /RDCProductSaveSafety\.creationId\(/);
     assert.match(html, /RDCProductSaveSafety\.duplicateLookups\(/);
     assert.match(html, /RDCProductSaveSafety\.assertNew\(await transaction\.get\(/);
