@@ -1,0 +1,20 @@
+.rdc-existing-flash{margin:14px 0;padding:14px;border:1px solid #d6b757;border-radius:12px;background:#fffdf1;color:#183c2d;overflow-wrap:anywhere}
+.rdc-existing-flash,.rdc-existing-flash *{box-sizing:border-box;min-width:0}
+.rdc-existing-flash [hidden]{display:none!important}
+.rdc-existing-flash p{font-size:14px;line-height:1.5;margin:10px 0;color:#375e4b}
+.rdc-existing-flash h3{font-size:17px;line-height:1.4;margin:12px 0}
+.rdc-existing-flash button{display:block;width:100%;min-height:48px;padding:12px;border:1px solid #08794d;border-radius:9px;background:#08794d;color:white;font:700 14px system-ui;white-space:normal;cursor:pointer;margin:10px 0 0}
+.rdc-existing-flash [data-open]{background:#ffe166;border-color:#e1bc36;color:#2b3216;margin:0}
+.rdc-existing-flash button:disabled{opacity:.55;cursor:wait}
+.rdc-existing-flash .rdc-ef-secondary{background:white;color:#07563f;border-color:#a9c1b7}
+.rdc-existing-flash label{display:block;font-size:14px;font-weight:700;margin:12px 0 6px}
+.rdc-existing-flash input:not([type=checkbox]),.rdc-existing-flash select{display:block;width:100%;min-height:48px;padding:11px;margin-top:6px;border:1px solid #a9c1b7;border-radius:9px;background:white;color:#183c2d;font:16px system-ui}
+.rdc-existing-flash img{display:block;width:100%;max-height:150px;object-fit:contain;background:white;border-radius:9px;margin:10px 0}
+.rdc-existing-flash a{color:#07563f;font-weight:700;text-decoration:underline;overflow-wrap:anywhere}
+.rdc-existing-flash .rdc-ef-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rdc-existing-flash .rdc-ef-note{font-size:12px;color:#586c5f}
+.rdc-existing-flash .rdc-ef-confirm{display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.rdc-existing-flash .rdc-ef-confirm input{flex:none;width:20px;height:20px;margin:2px 0 0}
+.rdc-existing-flash .rdc-ef-error{padding:10px;background:#fff0ee;color:#a61b12;border-radius:8px}
+.rdc-existing-flash [data-publication]{margin-top:12px;padding:12px;background:#e8f8ef;border-radius:9px}
+@media(max-width:600px){.rdc-existing-flash .rdc-ef-grid{grid-template-columns:1fr;gap:0}}

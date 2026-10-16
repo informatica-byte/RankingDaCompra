@@ -49,6 +49,7 @@
 <script src="/metricas-resumo.js?v=20261014-audit"></script>
 <script src="/promotion-title.js?v=20261005-1"></script>
 <script src="/best-choices-admin.js?v=20261010-audit"></script>
+    <link rel="stylesheet" href="/existing-flash-offer.css?v=20261016-1">
 </head>
   <body>
     <header>
@@ -81,6 +82,7 @@
             ><label class="tipo"><input name="tipo" type="radio" value="relampago" /><span>⚡ Oferta relâmpago</span></label>
           </div>
           <div id="duracao-box" hidden>
+            <div id="oferta-relampago-existente-mobile"></div>
             <label>Tempo restante</label><input id="duracao" class="campo" inputmode="numeric" placeholder="HH:MM:SS" />
             <div class="mini">Só será necessário se o contador não for identificado.</div>
             <div class="mini">A vitrine aceita até 6 ofertas relâmpago. Pode cadastrar só 3: aparecem apenas as 3, sem espaços vazios reservados. O preço precisa estar conferido e o horário válido.</div>
@@ -176,6 +178,7 @@
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261014-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
+    <script src="/existing-flash-offer.js?v=20261016-1"></script>
     <script src="/weekly-comparison-safety.js?v=20261012-audit-4"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
     <script src="/express-existing-product.js?v=20261015-2"></script>
@@ -258,6 +261,45 @@
             guardarPosicaoFilaPrecos();
           }
           window.RDCPricePublication.saved("price-publication-mobile", false);
+        },
+      });
+      let produtosRelampagoCacheMobile = null;
+      function autorizarOfertaExistenteMobile() {
+        if (!auth.currentUser) throw Error("Entre novamente no painel.");
+        if (automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()) throw Error("Aguarde ou pause a conferência antes de preparar a oferta.");
+        return auth.currentUser.uid;
+      }
+      const ofertasRelampagoExistentesMovel = window.RDCExistingFlashOffer.mount($("oferta-relampago-existente-mobile"), {
+        loadProducts: async () => {
+          autorizarOfertaExistenteMobile();
+          const cached = filaPrecosDados?.todos || rankingDadosMovel?.todos || produtosRelampagoCacheMobile;
+          if (cached) return cached;
+          const snapshot = await getDocs(collection(db, "produtos"));
+          produtosRelampagoCacheMobile = snapshot.docs.map(item => ({ ...item.data(), id: item.id }));
+          return produtosRelampagoCacheMobile;
+        },
+        read: async id => {
+          autorizarOfertaExistenteMobile();
+          const snapshot = await getDoc(doc(db, "produtos", id));
+          return snapshot.exists() ? snapshot.data() : null;
+        },
+        save: async (id, baseline, input) => {
+          const uid = autorizarOfertaExistenteMobile();
+          const changes = window.RDCExistingFlashOffer.buildPatch(baseline, input, { timestamp: serverTimestamp(), confirmationId: crypto.randomUUID() });
+          await runTransaction(db, async transaction => {
+            if (autorizarOfertaExistenteMobile() !== uid) throw Error("A sessão mudou. Reabra o produto antes de salvar.");
+            const ref = doc(db, "produtos", id), snapshot = await transaction.get(ref);
+            if (autorizarOfertaExistenteMobile() !== uid) throw Error("A sessão mudou. Reabra o produto antes de salvar.");
+            window.RDCExistingFlashOffer.assertCurrent(snapshot.exists() ? snapshot.data() : null, baseline, changes);
+            transaction.update(ref, changes);
+          });
+          const local = { ...changes, precoAtualizadoManualmenteEm: new Date(), atualizadoEm: new Date(), _rdcPendingConfirmationId: changes.precoConferenciaId };
+          for (const items of [filaPrecosDados?.todos, filaPrecosDados?.produtos, rankingDadosMovel?.todos, rankingDadosMovel?.produtos, produtosRelampagoCacheMobile]) {
+            const product = items?.find(item => item.id === id);
+            if (product) Object.assign(product, local);
+          }
+          window.RDCPricePublication.saved("price-publication-mobile", false);
+          return { ...baseline, ...local };
         },
       });
       function lista(v) {
@@ -827,7 +869,7 @@
         }
       }
       async function salvarFilaPrecoAssistida(novoValor, opcoes = {}) {
-        if (filaPrecosSalvando || !filaPrecosDados) return false;
+        if ((typeof ofertasRelampagoExistentesMovel !== 'undefined' && ofertasRelampagoExistentesMovel.isBusy()) || filaPrecosSalvando || !filaPrecosDados) return false;
         const produto = filaPrecosDados.todos.find((item) => item.id === filaPrecosIdAtual);
         if (!produto || produto.conferenciaPausada === true || !linkPrecoAssistido(produto)) {
           msg("precos-status", "Confira o link do anúncio antes de confirmar.", "erro");
@@ -1023,7 +1065,7 @@
       }
 
       function iniciarAutomacaoPrecosAssistida({ continuar = false } = {}) {
-        if (cadastroExistenteExpressa.isBusy() || automacaoPrecosAtiva || filaPrecosSalvando || $("precos-substituicao") || ($("precos-editor") && !$("precos-editor").hidden)) return;
+        if ((typeof ofertasRelampagoExistentesMovel !== 'undefined' && ofertasRelampagoExistentesMovel.isBusy()) || cadastroExistenteExpressa.isBusy() || automacaoPrecosAtiva || filaPrecosSalvando || $("precos-substituicao") || ($("precos-editor") && !$("precos-editor").hidden)) return;
         if (continuar && !automacaoPrecosPausada) return;
         if (!filaPrecosDados) return msg("precos-status", "Carregue a fila de hoje antes de iniciar.", "erro");
         if (typeof window.conferirPrecoNaAbaLocal !== "function" || !window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__)) {
@@ -2519,6 +2561,7 @@
           saveConfig:settings=>{if(!auth.currentUser)throw Error('Sessão encerrada.');return setDoc(doc(db,'configuracoes','site'),settings,{merge:true});}};
       });
       onAuthStateChanged(auth, async (u) => {
+        if (!u) { ofertasRelampagoExistentesMovel.reset(); produtosRelampagoCacheMobile = null; }
         $("login").style.display = u ? "none" : "block";
         $("app").style.display = u ? "block" : "none";
         if (u)
@@ -2562,7 +2605,7 @@
         }),
       );
       $("analisar").onclick = async () => {
-        if (publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()) return;
+        if ((typeof ofertasRelampagoExistentesMovel !== 'undefined' && ofertasRelampagoExistentesMovel.isBusy()) || publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()) return;
         cadastroExistenteExpressa.reset();
         const link = $("link").value.trim(),
           linkAfiliado = $("link-afiliado").value.trim(),
@@ -2755,7 +2798,7 @@
         }
       };
       $("limpar").onclick = () => {
-        if (publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()) return;
+        if ((typeof ofertasRelampagoExistentesMovel !== 'undefined' && ofertasRelampagoExistentesMovel.isBusy()) || publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()) return;
         cadastroExistenteExpressa.reset();
         roboMonitorId += 1;
         roboPedidoAtual = null;
