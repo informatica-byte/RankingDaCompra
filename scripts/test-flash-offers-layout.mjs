@@ -10,7 +10,7 @@ const until = html.indexOf('let intervaloRelampago=', from);
 assert.ok(from > 0 && until > from);
 
 test('a home carrega a correção depois dos estilos genéricos', () => {
-  const link = html.indexOf('<link rel="stylesheet" href="/flash-offers-layout.css?v=20261015-1">');
+  const link = html.indexOf('<link rel="stylesheet" href="/flash-offers-layout.css?v=20261016-6">');
   assert.ok(link > html.indexOf('</style>'));
   assert.match(css, /\.flash-card,\s*\.flash-card h3\s*\{[^}]*color:\s*var\(--ink/);
 });

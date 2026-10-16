@@ -1,3 +1,18 @@
+.flash-deals .deal-grid {
+  /* Empty tracks collapse: three offers never reserve a second row for six. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+}
+
+@media (min-width: 681px) and (max-width: 1000px) {
+  .flash-deals .deal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* A third/fifth offer fills the final tablet row rather than leaving a hole. */
+  .flash-deals .deal-grid > .flash-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
 /* Keep white cards readable inside the dark flash-offer section. */
 .flash-card,
 .flash-card h3 {
@@ -25,6 +40,10 @@
 /* Flash cards need their own mobile flow: the generic two-column product
    grid cannot accommodate the countdown and the inserted price history. */
 @media (max-width: 680px) {
+  .flash-deals .deal-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .flash-deals {
     padding: 14px;
     border-radius: 14px;

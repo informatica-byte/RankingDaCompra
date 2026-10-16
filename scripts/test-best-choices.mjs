@@ -100,7 +100,7 @@ test('publicadores reconstroem seleção estática após preços sem nova consul
     assert.match(source,/git add[^\n]+best-choices-guides\.json/);
   }
   for(const file of ['best-choices.js','best-choices-page.js','scripts/generate-best-choices.mjs'])assert.doesNotMatch(await readFile(file,'utf8'),/getDocs|db\.collection|firebase\.firestore/);
-  const home=await readFile('index.html','utf8');assert.match(home,/todos\.filter\(ofertaRelampagoValida\)[\s\S]{0,230}\.slice\(0, 3\)/);
+  const home=await readFile('index.html','utf8');assert.match(home,/todos\.filter\(ofertaRelampagoValida\)[\s\S]{0,230}\.slice\(0, 6\)/);
   const mobile=await readFile('painel-celular.html','utf8');assert.match(mobile,/let salvo;/);assert.match(mobile,/RDCProductSaveSafety\.assertNew\(await transaction\.get\(salvo\)\)/);assert.match(mobile,/else salvo = await addDoc/);assert.match(mobile,/bestChoicesProductIds:\[\.\.\.new Set\(\[salvo\.id,\.\.\.ids\]\)\]/);
 });
 test('página permanente tem HTML rastreável, canônico, categorias e sitemap sem Offer inventado',async()=>{

@@ -1,0 +1,17 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {runInNewContext} from 'node:vm';
+const html=readFileSync('index.html','utf8');
+const css=readFileSync('flash-offers-layout.css','utf8');
+const expression=html.match(/relampagos = (todos\.filter\(ofertaRelampagoValida\)[\s\S]*?)\s*;/)?.[1];
+assert.ok(expression,'seleção real de ofertas encontrada');
+const source='function selecionarOfertasRelampago(todos){return '+expression+'}';
+const context={ofertaRelampagoValida:p=>p.valid!==false,fimOfertaRelampago:p=>p.end,descontoOfertaRelampago:p=>p.discount||0};
+runInNewContext(source,context);
+const products=n=>Array.from({length:n},(_,i)=>({id:'product-'+i,end:i+1,discount:10,valid:true,preco:'120,00',precoPromocional:'100,00',link:'https://meli.la/existing-'+i}));
+test('seleção mostra exatamente a quantidade real de zero a seis, sem preencher vagas',()=>{for(let count=0;count<=6;count++){const list=products(count),before=JSON.stringify(list),selected=context.selecionarOfertasRelampago(list);assert.equal(selected.length,count);assert.deepEqual([...selected].map(x=>x.id),list.map(x=>x.id));assert.equal(JSON.stringify(list),before);}});
+test('com mais de seis, exibe no máximo seis e não altera preços, links ou cadastro',()=>{const list=products(9).reverse(),before=JSON.stringify(list),selected=context.selecionarOfertasRelampago(list);assert.equal(selected.length,6);assert.deepEqual([...selected].map(x=>x.id),products(6).map(x=>x.id));for(const entry of selected)assert.strictEqual(entry,list.find(x=>x.id===entry.id));assert.equal(JSON.stringify(list),before);});
+test('ofertas inelegíveis não ocupam as seis vagas e a prioridade anterior é preservada',()=>{const list=products(8);list[0].valid=false;list[1].valid=false;const selected=context.selecionarOfertasRelampago(list);assert.equal(selected.length,6);assert.equal(selected[0].id,'product-2');const tied=[{id:'smaller',end:1,discount:10},{id:'larger',end:1,discount:20}];assert.equal(context.selecionarOfertasRelampago(tied)[0].id,'larger');});
+test('vitrine usa a seleção de seis e cria cartões apenas a partir das ofertas reais',()=>{assert.match(expression,/\.slice\(0,\s*6\)/);assert.ok(html.includes('${relampagos.map(relampagoCard).join("")}'));assert.match(html,/if\s*\(\s*!restantes\s*\)\s*\{\s*secao\.remove\(\)/);assert.match(css,/\.flash-deals \.deal-grid\s*\{[^}]*repeat\(auto-fit/);assert.match(css,/\.flash-card:last-child:nth-child\(odd\)\s*\{[^}]*grid-column: 1 \/ -1/);});
+test('os dois painéis explicam a quantidade sem adicionar novas gravações',()=>{for(const file of ['dashboard.html','painel-celular.html'])assert.match(readFileSync(file,'utf8'),/até 6 ofertas relâmpago/);});

@@ -131,7 +131,7 @@
     /* Busca e comparador visíveis sem ocupar toda a primeira tela. */
     @media(max-width:680px){.hero{padding:18px 0 16px}.hero h1{font-size:clamp(1.75rem,7.5vw,2.15rem);line-height:1.1}.hero-search{grid-template-columns:minmax(0,1fr) auto;margin-top:13px;gap:4px;padding:5px}.hero-search input{padding:8px;font-size:.88rem}.hero-search button{padding:8px 10px;min-height:44px;font-size:.85rem}.hero-actions{margin-top:12px;gap:8px}.hero-actions .primary{width:auto;flex:1}.hero-actions .button{padding:9px 10px;font-size:.78rem}.hero-proof{margin-top:10px;gap:4px}.hero-proof span{font-size:.62rem}.hero + main{padding-top:12px}}
   </style>
-  <link rel="stylesheet" href="/flash-offers-layout.css?v=20261015-1">
+  <link rel="stylesheet" href="/flash-offers-layout.css?v=20261016-6">
 
 </head>
 <body>
@@ -343,7 +343,7 @@ async function homeComPromocoes(){
     todos = catalogo.products.map(aplicarDadosMercadoLivre).filter((produto) => produtoDisponivel(produto) && conteudoEditorialValido(produto));
     relampagos = todos.filter(ofertaRelampagoValida)
       .sort((a, b) => fimOfertaRelampago(a) - fimOfertaRelampago(b) || descontoOfertaRelampago(b) - descontoOfertaRelampago(a))
-      .slice(0, 3);
+      .slice(0, 6);
     // A seleção permanente não depende do vencimento da promoção.
   } catch (erro) {
     console.warn("Não foi possível carregar as promoções.", erro);
