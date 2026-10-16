@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-16T13:01:57.714Z",
+  "generatedAt": "2026-10-16T15:40:56.255Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -5695,18 +5695,18 @@
       "foto": "https://http2.mlstatic.com/D_NQ_NP_878916-MLB117966667293_092026-O-tnis-casual-kappa-zenit-masculino-unissex-conforto.webp",
       "preco": "93,47",
       "precoAnterior": "229,99",
-      "precoPromocional": "93,47",
+      "precoPromocional": "95,44",
       "nota": "",
       "ranking": "10",
       "promocaoAtiva": false,
       "promocaoValidaAte": "2026-10-16",
       "ofertaRelampagoAtiva": true,
-      "ofertaRelampagoTerminaEm": "2026-10-16T16:01:05.477Z",
+      "ofertaRelampagoTerminaEm": "2026-10-17T02:40:21.856Z",
       "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-16T13:01:31.793Z",
-      "precoConferenciaId": "0232a8a8-e062-481b-8caf-52aee1b65f0d",
+      "precoAtualizadoManualmenteEm": "2026-10-16T15:40:23.504Z",
+      "precoConferenciaId": "7e953297-6b08-4be8-893d-9b6f39c426a6",
       "precoConferenciaCampo": "precoPromocional",
-      "precoConferenciaValor": 93.47,
+      "precoConferenciaValor": 95.44,
       "pros": "",
       "contras": "",
       "notaInformada": ""
