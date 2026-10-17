@@ -88,7 +88,10 @@ const PRODUCT_CORRECTIONS = new Map([
     suppressRating: true,
   }],
   ["dsddqlXmq1JumgBMwtm0", {
-    model: /brastoy/i,
+    // Limitar a proteção ao título legado contraditório. A Casa na Árvore dos
+    // Sonhos de 504 peças foi identificada pelas fotos e aprovada em 17/10/2026;
+    // seu novo título/ficha não devem ser substituídos pelo aviso antigo.
+    model: /^(?:Blocos de Montar Brastoy,\s*Magnéticos|Blocos Magnéticos de Montar Brastoy\b)/i,
     correct: "Blocos Magnéticos de Montar Brastoy — Quantidade a confirmar",
     replacements: [["Blocos de Montar Brastoy, Magnéticos, com 504 Peças | Bloco magnetico", "Blocos Magnéticos de Montar Brastoy — Quantidade a confirmar"]],
     summary: "O cadastro identifica blocos magnéticos de montar Brastoy. A quantidade de peças está a confirmar: o título e o texto anteriores informavam quantidades diferentes, e a variante do anúncio ainda não foi verificada. Antes de comprar, confirme o conjunto selecionado, o número de peças, as dimensões, a faixa etária e as advertências na embalagem com o vendedor. Não testamos força dos ímãs, resistência ou segurança do conjunto e não comprovamos benefícios educacionais. Não escolha esta oferta apenas por uma quantidade ainda não confirmada.",
