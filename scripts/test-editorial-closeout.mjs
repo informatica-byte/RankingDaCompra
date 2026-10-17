@@ -38,6 +38,32 @@ test('Brastoy desconhecido não escolhe entre 100 e 504 peças', () => {
   assert.match(fixed.titulo, /Quantidade a confirmar/);
   assert.doesNotMatch([fixed.titulo,fixed.comentario,fixed.pros].join(' '), /100|504/);
 });
+test('Brastoy identificado não volta ao aviso antigo, mesmo na projeção pública', () => {
+  const product = {
+    id: 'dsddqlXmq1JumgBMwtm0',
+    titulo: 'Blocos de Montar Brastoy Casa na Árvore dos Sonhos — 504 Peças',
+    dadosTecnicos: 'Quantidade de peças: 504\nÉ magnético: Não',
+    comentario: 'Casa na Árvore dos Sonhos com 504 peças de encaixe, não magnético.',
+    pros: 'Cenário com casa, árvore, varanda e balanço.',
+    contras: 'Não é um kit magnético. Confira a indicação etária na embalagem.',
+    preco: '78,90', linkAfiliado: 'https://meli.la/1EmpRif',
+    link: 'https://www.mercadolivre.com.br/brastoy-blocos-de-montar-cabana-de-arvore-dos-sonhos-504-pcs/up/MLBU3666763988?wid=MLB4352222959',
+    precoConferenciaId: 'confirmacao-preservada',
+  };
+  const fixed = correctProductData(product);
+  for (const key of Object.keys(product)) assert.equal(fixed[key], product[key]);
+  assert.deepEqual(correctProductData(fixed), fixed);
+  const projected = correctProductData({id:product.id, titulo:product.titulo, comentario:product.comentario});
+  assert.equal(projected.titulo, product.titulo);
+  assert.equal(projected.comentario, product.comentario);
+});
+
+test('Brastoy legado já marcado como incerto continua protegido', () => {
+  const fixed = correctProductData({id:'dsddqlXmq1JumgBMwtm0',titulo:'Blocos Magnéticos de Montar Brastoy — Quantidade a confirmar'});
+  assert.match(fixed.titulo, /Quantidade a confirmar/);
+  assert.doesNotMatch([fixed.titulo, fixed.comentario, fixed.pros].join(' '), /100|504/);
+});
+
 test('número no cadastro não comprova origem; documentação exige responsável, fonte, critérios e data', () => {
   const p = {nota:4.8};
   assert.equal(hasDocumentedEditorialRating(p), false);
