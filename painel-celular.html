@@ -495,15 +495,25 @@
         alvo.hidden = false;
       }
 
+      function pendenciasAtuaisAutomacaoPrecos() {
+        // Preserve o histórico exportável; só cadastros ainda pendentes são ações atuais.
+        const atuais = filaPrecosDados
+          ? new Set(dadosFilaPrecosAssistida().pendentes.map(produto => produto.id))
+          : null;
+        const filtrar = mapa => [...mapa.values()].filter(item => !atuais || atuais.has(item.id));
+        return { indisponiveis: filtrar(automacaoPrecosIndisponiveis), falhas: filtrar(automacaoPrecosFalhas) };
+      }
+
       function resumoAutomacaoPrecos(texto = "") {
         const alvo = $("precos-auto-resumo");
         if (!alvo) return;
-        const indisponiveis = automacaoPrecosIndisponiveis.size;
-        const falhas = automacaoPrecosFalhas.size;
+        const pendencias = pendenciasAtuaisAutomacaoPrecos();
+        const indisponiveis = pendencias.indisponiveis.length;
+        const falhas = pendencias.falhas.length;
         const detalhes = [];
         if (indisponiveis) detalhes.push(indisponiveis + " indisponível(is)");
         if (falhas) detalhes.push(falhas + " para revisão manual");
-        const separados = [...automacaoPrecosIndisponiveis.values(), ...automacaoPrecosFalhas.values()];
+        const separados = [...pendencias.indisponiveis, ...pendencias.falhas];
         const listaSeparados = separados.length
           ? '<details><summary>Ver todas as ' + separados.length + ' pendências</summary><ul class="precos-auto-lista">' + separados.map((item) => "<li>" + rankingEsc(item.titulo) + " — " + rankingEsc(item.motivo) + '<button class="btn claro" type="button" data-substituir-anuncio="' + rankingEsc(item.id || "") + '">🔄 Substituir anúncio</button></li>').join("") + "</ul></details>"
           : "";
