@@ -22,7 +22,7 @@
         .filter(Boolean).map(item);
       if (ids.some(id => !id) || new Set(ids).size > 1) return null;
       const listing = ids[0] ? "MLB" + ids[0] : "";
-      const catalog = url.pathname.match(/\/p\/(MLB\d+)/i)?.[1]?.toUpperCase() || "";
+      const catalog = url.pathname.match(/\/(?:p|up)\/(MLBU?\d+)/i)?.[1]?.toUpperCase() || "";
       return { key: String(listing || catalog || url.hostname + url.pathname).toUpperCase(), listing, catalog,
         variation: url.searchParams.get("searchVariation") || "", attributes: url.searchParams.get("attributes") || "" };
     } catch { return null; }

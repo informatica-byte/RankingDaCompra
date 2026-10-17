@@ -176,7 +176,7 @@
     </main>
     <script src="/product-save-safety.js?v=20261015-2"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
-    <script src="/assisted-price-safety.js?v=20261014-1"></script>
+    <script src="/assisted-price-safety.js?v=20261017-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/existing-flash-offer.js?v=20261016-1"></script>
     <script src="/weekly-comparison-safety.js?v=20261012-audit-4"></script>
@@ -420,6 +420,7 @@
         card.id = "precos-mobile";
         card.innerHTML = '<div class="etapa">Conferência assistida</div><h2>💰 Confira um produto por vez</h2><p>Primeiro os mais visualizados nos últimos sete dias; depois, os há mais tempo sem conferência manual. Você pode conferir manualmente ou deixar a automação assistida percorrer a fila na página logada do Mercado Livre.</p><button id="precos-iniciar" class="btn verde" type="button">Carregar fila de hoje</button><label class="mini"><input id="precos-reconferir-hoje" type="checkbox" /> Revisar também os preços já conferidos hoje</label><div id="precos-auto" class="precos-auto"><b>🤖 Automação assistida</b><p class="mini">Confere e salva automaticamente o preço total em destaque do mesmo nome/modelo, seja à vista, no Pix ou no cartão. Ignora cor, tamanho/numeração e voltagem. Não grava o valor de uma parcela. Reutiliza a aba e pausa se aparecer CAPTCHA. Produtos indisponíveis ficam separados para sua decisão.</p><div class="precos-auto-acoes"><button id="precos-auto-iniciar" class="btn azul largo" type="button" disabled>▶ Conferir todos automaticamente</button><button id="precos-auto-continuar" class="btn verde largo" type="button" hidden>▶ Continuar após resolver o CAPTCHA</button><button id="precos-auto-parar" class="btn claro largo" type="button" hidden>⏹ Parar conferência</button></div><div id="precos-auto-resumo" class="precos-auto-resumo">Carregue a fila para começar. É necessário instalar ou atualizar o robô do Tampermonkey.</div><a class="mini" href="/bot-precos.user.js" target="_blank" rel="noopener">Instalar ou atualizar o robô de preços</a></div><div id="precos-progresso" class="precos-fila-resumo" style="margin-top:12px">A fila só lê produtos e visitas quando você tocar no botão.</div><div id="precos-item"></div><div id="precos-status" class="status" role="status" aria-live="polite"></div><details id="precos-pausados" style="margin:16px 0"><summary><b>⏸ Anúncios pausados (<span id="precos-pausados-total">0</span>)</b></summary><p class="mini">Ficam fora da conferência diária por sua escolha. Após 30 dias, revise: reative, substitua os links ou exclua manualmente. Nada será excluído sozinho; a análise e o histórico serão preservados.</p><div id="precos-pausados-lista">Carregue a fila para ver os anúncios pausados.</div></details><details><summary>Conferência automática pelo GitHub (opcional)</summary><p>A API do Mercado Livre pode negar acesso. Use apenas depois de resolver a permissão. Nenhuma conferência começa sozinha.</p><a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/sync-mercadolivre.yml" target="_blank" rel="noopener">Conferir todos os preços agora (GitHub)</a></details>';
         card.querySelector("#precos-auto-iniciar").textContent = "▶ Conferir automaticamente até o limite";
+        card.querySelector(".precos-auto-acoes").insertAdjacentHTML("afterbegin", '<button id="precos-auto-todos" class="btn verde largo" type="button" disabled>▶ Conferir todos os pendentes</button>');
         card.querySelector(".precos-auto-acoes").insertAdjacentHTML("beforebegin", '<label for="precos-auto-limite">Limite de produtos nesta execução</label><input id="precos-auto-limite" class="campo" type="number" min="1" max="10000" step="1" value="50" /><label class="mini"><input id="precos-auto-revisar" type="checkbox" /> Revisar cada resultado antes de salvar</label><p class="mini">Com a revisão desmarcada, salva automaticamente item a item. Marcada, espera sua aprovação. O limite conta tentativas, inclusive falhas e indisponíveis; retomar após CAPTCHA mantém o orçamento.</p>');
         card.querySelector(".precos-auto-acoes").insertAdjacentHTML("afterend", '<div id="precos-auto-revisao" class="precos-editor" hidden aria-live="polite"></div>');
         $("focus-mobile").before(card);
@@ -523,6 +524,8 @@
         const roboPronto = typeof window.conferirPrecoNaAbaLocal === "function" && window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__);
         const substituindo = Boolean($("precos-substituicao"));
         iniciar.disabled = !filaPrecosDados || automacaoPrecosAtiva || filaPrecosSalvando || substituindo || !roboPronto;
+        const todos = $("precos-auto-todos");
+        if (todos) { todos.disabled = iniciar.disabled; todos.hidden = automacaoPrecosPausada; }
         continuar.disabled = filaPrecosSalvando || substituindo;
         iniciar.hidden = automacaoPrecosPausada;
         continuar.hidden = !automacaoPrecosPausada;
@@ -875,7 +878,7 @@
           msg("precos-status", "Confira o link do anúncio antes de confirmar.", "erro");
           return false;
         }
-        const campo = campoPrecoFila(produto);
+        let campo = campoPrecoFila(produto);
         const valorAnterior = numero(produto[campo]);
         const valor = novoValor === null ? valorAnterior : numero(novoValor);
         if (opcoes.automatico) {
@@ -891,10 +894,10 @@
           msg("precos-status", "Informe um preço válido, por exemplo 149,90.", "erro");
           return false;
         }
-        if (campo === "precoPromocional" && novoValor !== null && valor >= numero(produto.precoAnterior)) {
-          msg("precos-status", "O preço visto não é menor que o preço anterior da promoção. Corrija a promoção no painel completo antes de confirmá-la.", "erro");
-          return false;
-        }
+        // Se alcançou o preço anterior da promoção, o valor comprovado vira
+        // preço normal. Nunca manter um desconto fictício nem recusar o preço real.
+        const promocaoEncerrada = campo === "precoPromocional" && novoValor !== null && valor >= numero(produto.precoAnterior);
+        if (promocaoEncerrada) campo = "preco";
         const alterou = !valorAnterior || Math.abs(valor - valorAnterior) >= 0.01;
         const confirmacaoId = crypto.randomUUID();
         const campos = {
@@ -916,10 +919,14 @@
           campos.precoProvaVersao = 0;
           campos.precoProvaAnuncio = "";
         }
-        if (alterou) {
+        if (alterou || promocaoEncerrada) {
           campos[campo] = preco(valor);
           campos.atualizadoEm = serverTimestamp();
         }
+        if (promocaoEncerrada) Object.assign(campos, {
+          precoPromocional: "", promocaoAtiva: false, promocaoValidaAte: "",
+          ofertaRelampagoAtiva: false, ofertaRelampagoTerminaEm: "",
+        });
         const id = produto.id;
         filaPrecosSalvando = true;
         filaPrecosConferidos.add(id);
@@ -936,9 +943,10 @@
             origem: campos.precoConferidoPor, proofVersion: campos.precoProvaVersao,
             evidencia: opcoes.resultado?.evidencia || "Confirmação humana no painel", confirmacaoId,
           });
-          produto.precoAtualizadoManualmente = true;
-          produto.precoAtualizadoManualmenteEm = new Date();
-          produto.precoConferenciaId = confirmacaoId;
+          Object.assign(produto, campos, {
+            precoAtualizadoManualmenteEm: new Date(),
+            ...(campos.atualizadoEm ? { atualizadoEm: new Date() } : {}),
+          });
           // Só esta sessão usa a revisão, sem comparar relógio local com servidor.
           produto._rdcPendingConfirmationId = confirmacaoId;
           if (alterou) produto[campo] = preco(valor);
@@ -948,7 +956,7 @@
           filaPrecosIdAtual = "";
           guardarPosicaoFilaPrecos();
           renderizarFilaPrecosAssistida();
-          msg("precos-status", alterou ? "Novo preço salvo. Próximo produto pronto." : "Preço confirmado sem mudança. Próximo produto pronto.", "ok");
+          msg("precos-status", promocaoEncerrada ? "Preço real salvo e promoção encerrada, sem desconto fictício. Próximo produto pronto." : alterou ? "Novo preço salvo. Próximo produto pronto." : "Preço confirmado sem mudança. Próximo produto pronto.", "ok");
           if (!opcoes.automatico) $("precos-mobile").scrollIntoView({ behavior: "smooth", block: "start" });
           return true;
         } catch (erro) {
@@ -1017,7 +1025,21 @@
           }
           resumoAutomacaoPrecos("Consultando: <b>" + rankingEsc(produto.titulo) + "</b>");
           try {
-            const resultadoLocal = await window.conferirPrecoNaAbaLocal({ produtoId: produto.id, titulo: produto.titulo, url: link });
+            let resultadoLocal;
+            for (let tentativa = 0; tentativa < 2; tentativa++) {
+              if (!automacaoPrecosAtiva || rodada !== automacaoPrecosRodada) return;
+              try {
+                resultadoLocal = await window.conferirPrecoNaAbaLocal({ produtoId: produto.id, titulo: produto.titulo, url: link });
+              } catch (erro) {
+                if (tentativa === 1 || !/demorou|timeout|carreg|estabiliz|rede|network/i.test(String(erro?.message || erro))) throw erro;
+                resumoAutomacaoPrecos("Repetindo uma vez a consulta de <b>" + rankingEsc(produto.titulo) + "</b>, sem gravar preço.");
+                await esperar(500);
+                continue;
+              }
+              if (tentativa === 1 || resultadoLocal?.status !== "error" || !/demorou|principal|carreg|estabiliz|rede|network/i.test(String(resultadoLocal?.motivo || ""))) break;
+              resumoAutomacaoPrecos("Repetindo uma vez a leitura de <b>" + rankingEsc(produto.titulo) + "</b>, sem gravar preço.");
+              await esperar(500);
+            }
             if (!automacaoPrecosAtiva || rodada !== automacaoPrecosRodada) return;
             if (resultadoLocal?.status === "security") {
               pausarAutomacaoPrecosAssistida(produto);
@@ -1343,6 +1365,13 @@
         if (acao === "excluir" && window.RDCConferencePause.state(produto).expired) void excluirProdutoFilaPrecosAssistida(produto.id);
       });
       $("precos-iniciar").addEventListener("click", carregarFilaPrecosAssistida);
+      $("precos-auto-todos")?.addEventListener("click", () => {
+        if (automacaoPrecosAtiva || automacaoPrecosPausada || filaPrecosSalvando || !filaPrecosDados) return;
+        const quantidade = dadosFilaPrecosAssistida().pendentes.length;
+        if (!quantidade) return msg("precos-status", "Não há produtos pendentes nesta fila.", "ok");
+        $("precos-auto-limite").value = String(quantidade);
+        iniciarAutomacaoPrecosAssistida();
+      });
       $("precos-auto-iniciar").addEventListener("click", () => iniciarAutomacaoPrecosAssistida());
       $("precos-auto-continuar").addEventListener("click", () => iniciarAutomacaoPrecosAssistida({ continuar: true }));
       $("precos-auto-parar").addEventListener("click", () => pararAutomacaoPrecosAssistida());

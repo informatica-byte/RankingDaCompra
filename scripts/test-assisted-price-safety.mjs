@@ -49,7 +49,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.4.5');
+  assert.equal(result.robotVersion, '2.4.6');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -154,7 +154,7 @@ test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo 
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261014-1/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261017-1/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
@@ -416,7 +416,7 @@ test('mínimo 2.4.4 exige robô com os critérios atuais', () => {
   for(const version of ['2.3.9','2.4.0','2.4.1','2.4.2','2.4.3','1.99.99','2.4','invalid']) {
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),false,version);
   }
-  for(const version of ['2.4.4','2.4.5','2.5.0','3.0.0']) {
+  for(const version of ['2.4.4','2.4.6','2.5.0','3.0.0']) {
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),true,version);
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:false}),false,version);
   }

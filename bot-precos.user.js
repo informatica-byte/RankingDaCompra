@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.5
+// @version      2.4.6
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -13,15 +13,17 @@
 // @grant        GM_addValueChangeListener
 // @grant        GM_removeValueChangeListener
 // @run-at       document-start
+// @noframes
 // ==/UserScript==
 
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.5";
+  const BOT_VERSION = "2.4.6";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
+  const CONTROLLER_KEY = "rdc_preco_controller_v3";
   const PANEL_HOST = "rankingdacompra.com.br";
 
   function normalizeText(value) {
@@ -132,7 +134,7 @@
         .filter(Boolean).map(item);
       if (ids.some(id => !id) || new Set(ids).size > 1) return null;
       const listing = ids[0] ? "MLB" + ids[0] : "";
-      const catalog = url.pathname.match(/\/p\/(MLB\d+)/i)?.[1]?.toUpperCase() || "";
+      const catalog = url.pathname.match(/\/(?:p|up)\/(MLBU?\d+)/i)?.[1]?.toUpperCase() || "";
       return { key: String(listing || catalog || url.hostname + url.pathname).toUpperCase(), listing, catalog,
         variation: url.searchParams.get("searchVariation") || "", attributes: url.searchParams.get("attributes") || "" };
     } catch { return null; }
@@ -290,8 +292,49 @@
   }
 
 
+  function conferenceUrl(rawUrl, sessionId) {
+    const url = new URL(rawUrl);
+    if (!offerIdentity(rawUrl) || !/^[a-z0-9-]{8,100}$/i.test(String(sessionId || ""))) throw new Error("Sessão de conferência inválida.");
+    const hash = new URLSearchParams(url.hash.slice(1));
+    hash.set("_rdc_conferencia", sessionId);
+    url.hash = hash.toString();
+    return url.href;
+  }
+
+  function controllerSession() {
+    const marker = new URLSearchParams(new URL(location.href).hash.slice(1)).get("_rdc_conferencia") || "";
+    if (marker && /^[a-z0-9-]{8,100}$/i.test(marker)) {
+      try { sessionStorage.setItem(CONTROLLER_KEY, marker); unsafeWindow.name = "rdc_conferencia_" + marker; } catch {}
+      return marker;
+    }
+    try {
+      const stored = sessionStorage.getItem(CONTROLLER_KEY) || "";
+      return stored && unsafeWindow.name === "rdc_conferencia_" + stored ? stored : "";
+    } catch { return ""; }
+  }
+
+  async function handleConferenceCommand(command) {
+    if (!command?.requestId || Date.now() - Number(command.createdAt || 0) > 120000) return;
+    // Uma aba comum do Mercado Livre não pode ser sequestrada pela fila.
+    if (!command.sessionId) {
+      if (sameOffer(command.url, location.href)) await publishCurrentPageResult(command);
+      return;
+    }
+    if (controllerSession() !== command.sessionId || !offerIdentity(command.url)) return;
+    if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId) return;
+    GM_setValue(CONTROLLER_KEY, { sessionId: command.sessionId, requestId: command.requestId, seenAt: Date.now() });
+    if (!sameOffer(command.url, location.href)) {
+      // Navegar a própria aba evita depender de WindowProxy/opener antigos,
+      // perdidos por COOP ou pela restauração de janelas do Chrome.
+      location.assign(conferenceUrl(command.url, command.sessionId));
+      return;
+    }
+    await publishCurrentPageResult(command);
+  }
+
   function installPanelBridge() {
     let offerWindow = null;
+    const sessionId = Date.now().toString(36) + "-" + Math.random().toString(36).slice(2);
     unsafeWindow.__RDC_BOT_PRECOS_LOCAL__ = { version: BOT_VERSION, ready: true, assisted: true };
     unsafeWindow.conferirPrecoPelaFonteLocal = async (request) => {
       const result = await unsafeWindow.conferirPrecoNaAbaLocal(request);
@@ -315,16 +358,19 @@
         GM_removeValueChangeListener(listener);
         reject(new Error("O anúncio demorou mais de 45 segundos. Confira a aba do Mercado Livre."));
       }, REQUEST_TIMEOUT);
-      GM_setValue(COMMAND_KEY, { requestId, produtoId, titulo, url, createdAt: Date.now() });
+      const controller = typeof GM_getValue === "function" ? GM_getValue(CONTROLLER_KEY, null) : null;
+      const hasController = controller?.sessionId === sessionId && Date.now() - Number(controller.seenAt || 0) >= 0
+        && Date.now() - Number(controller.seenAt || 0) < 90000;
+      GM_setValue(COMMAND_KEY, { requestId, produtoId, titulo, url, sessionId, createdAt: Date.now() });
       const features = unsafeWindow.innerWidth >= 900
         ? `popup=yes,width=620,height=850,left=${Math.max(0, unsafeWindow.screen.availWidth - 632)},top=20`
         : "";
       try {
-        // O navegador reutiliza a janela pelo nome. Não navegar por um handle
-        // cross-origin antigo: ele pode não acompanhar a aba do anúncio.
-        offerWindow = unsafeWindow.open(url, "ranking_conferencia_mercado_livre", features);
-        if (!offerWindow) throw new Error("O navegador bloqueou a janela do anúncio. Permita pop-ups para o Ranking da Compra.");
-        try { offerWindow.focus(); } catch {}
+        if (!hasController) {
+          offerWindow = unsafeWindow.open(conferenceUrl(url, sessionId), "ranking_conferencia_mercado_livre", features);
+          if (!offerWindow) throw new Error("O navegador bloqueou a janela do anúncio. Permita pop-ups para o Ranking da Compra.");
+          try { offerWindow.focus(); } catch {}
+        }
       } catch (error) {
         clearTimeout(timer);
         GM_removeValueChangeListener(listener);
@@ -363,11 +409,12 @@
     return;
   }
   if (/mercadolivre\.com\.br$/i.test(location.hostname)) {
-    const run = () => void publishCurrentPageResult(GM_getValue(COMMAND_KEY, null));
+    controllerSession(); // Vincular a aba antes de eventuais redirecionamentos da página.
+    const run = () => void handleConferenceCommand(GM_getValue(COMMAND_KEY, null));
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run, { once: true });
     else run();
     GM_addValueChangeListener(COMMAND_KEY, (_key, _oldValue, command) => {
-      if (command?.requestId) void publishCurrentPageResult(command);
+      if (command?.requestId) void handleConferenceCommand(command);
     });
   }
 })();
