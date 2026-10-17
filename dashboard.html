@@ -2567,13 +2567,14 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         function cartaoProdutoPublicado(doc) {
             const prod = doc.data();
             const status = statusMercadoLivreAdmin[doc.id] || {};
-            const fimRelampago = new Date(status.lightningActive === true ? status.lightningEndsAt : (prod.ofertaRelampagoTerminaEm || ''));
-            const relampagoAtivo = (status.lightningActive === true || prod.ofertaRelampagoAtiva === true) && !Number.isNaN(fimRelampago.getTime()) && fimRelampago.getTime() > Date.now();
+            // Usar os mesmos critérios da vitrine: prazo sozinho não comprova
+            // desconto nem preço recente do anúncio atual. Sem novas leituras.
+            const relampagoAtivo = window.RDCFlashOfferSafety?.evaluate(prod, status, Date.now()).eligible === true;
             return `
                 <div class="item-admin">
                     <div class="item-admin-conteudo">
                         <div class="item-admin-topo"><span class="badge-cat">${escapeHtml(prod.categoria || 'Sem categoria')}</span><span class="item-admin-titulo">${escapeHtml(prod.titulo || 'Produto sem título')}</span>${relampagoAtivo ? '<span class="status-relampago">⚡ RELÂMPAGO</span>' : ''}${prod.promocaoAtiva ? '<span class="status-promocao">PROMOÇÃO MARCADA</span>' : ''}</div>
-                        <span class="status-publicado">✓ Visível na vitrine pública</span>
+                        <span class="status-publicado" title="O cadastro está salvo; as alterações na vitrine dependem da publicação.">✓ Cadastro pronto para a vitrine</span>
                     </div>
                     <div class="acoes">
                         <button type="button" class="btn-edit" onclick="editarProduto('${doc.id}')" aria-label="Editar ${escapeHtml(prod.titulo || 'produto')}">✎ Editar</button>

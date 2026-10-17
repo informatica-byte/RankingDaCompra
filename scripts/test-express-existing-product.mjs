@@ -147,7 +147,7 @@ test('integração mantém travas, atualização transacional, histórico e trê
   assert.doesNotMatch(save, /addDoc|deleteDoc|transaction\.set/);
 });
 
-function adapter(current = product, duplicates = []) {
+function adapter(current = product, duplicates = [], source = readFileSync('painel-celular.html', 'utf8')) {
   const writes = [], reads = [], lookups = [];
   const ctx = { URL, URLSearchParams, Date, Error };
   for (const file of ['product-offer-replacement.js', 'product-save-safety.js', 'express-existing-product.js']) runInNewContext(readFileSync(file, 'utf8'), ctx);
@@ -166,7 +166,9 @@ function adapter(current = product, duplicates = []) {
     }),
   });
   for (const key of ['filaPrecosConferidos', 'filaPrecosPulados', 'filaPrecosResultados', 'automacaoPrecosIndisponiveis', 'automacaoPrecosFalhas', 'automacaoPrecosVisitados']) ctx[key] = new Set();
-  const html = readFileSync('painel-celular.html', 'utf8');
+  // Git em Windows pode converter LF para CRLF. Extrair o mesmo adaptador
+  // independentemente da quebra de linha, sem alterar o HTML publicado.
+  const html = source.replace(/\r\n?/g, '\n');
   const start = html.indexOf('save: async (id, baseline, input)');
   const end = html.indexOf('\n        },\n      });', start) + '\n        }'.length;
   assert.ok(start > 0 && end > start);
@@ -179,6 +181,17 @@ test('adapter real atualiza só nome/foto no documento original, sem consulta da
   assert.equal(db.lookups.length, 0);
   assert.deepEqual(db.reads.map(ref => ref.id), ['original']);
   assert.deepEqual(serial(db.writes), [{ ref: { collection: 'produtos', id: 'original' }, changes: { titulo: 'Correção', atualizadoEm: 'SERVER_TIME' } }]);
+});
+
+test('adapter executa a mesma proteção com arquivos LF e CRLF', async () => {
+  const html = readFileSync('painel-celular.html', 'utf8').replace(/\r\n?/g, '\n');
+  for (const source of [html, html.replace(/\n/g, '\r\n')]) {
+    const db = adapter(product, [], source);
+    await db.save('original', product, input({ titulo: 'Correção' }));
+    assert.equal(db.writes.length, 1);
+    assert.equal(db.writes[0].ref.id, 'original');
+    assert.equal(db.writes[0].changes.titulo, 'Correção');
+  }
 });
 test('adapter recusa edição concorrente e documento excluído sem sobrescrever/recriar', async () => {
   for (const current of [null, { ...product, titulo: 'Editado em outro painel' }]) {
