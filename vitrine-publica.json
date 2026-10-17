@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-17T15:02:55.153Z",
+  "generatedAt": "2026-10-17T15:17:08.703Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -2706,7 +2706,7 @@
       "comentario": "O cadastro identifica blocos magnéticos de montar Brastoy. A quantidade de peças está a confirmar: o título e o texto anteriores informavam quantidades diferentes, e a variante do anúncio ainda não foi verificada. Antes de comprar, confirme o conjunto selecionado, o número de peças, as dimensões, a faixa etária e as advertências na embalagem com o vendedor. Não testamos força dos ímãs, resistência ou segurança do conjunto e não comprovamos benefícios educacionais. Não escolha esta oferta apenas por uma quantidade ainda não confirmada.",
       "categoria": "brinquedos",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_977930-MLA114139472831_072026-F.jpg",
-      "preco": "84,78",
+      "preco": "78,90",
       "precoAnterior": "199,00",
       "precoPromocional": "153,00",
       "nota": "",
@@ -2716,8 +2716,11 @@
       "ofertaRelampagoAtiva": false,
       "ofertaRelampagoTerminaEm": "",
       "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-08T10:49:53.818Z",
-      "precoConferenciaId": "dad86497-1211-439c-b0c9-79109f9a640d",
+      "precoAtualizadoManualmenteEm": "2026-10-17T15:15:54.447Z",
+      "precoConferenciaId": "abfc85f4-942e-421d-8474-f108f095baa6",
+      "precoConferenciaCampo": "preco",
+      "precoConferenciaValor": 78.9,
+      "anuncioSubstituidoEm": "2026-10-17T15:15:40.070Z",
       "pros": "Blocos magnéticos de montar identificados no cadastro; confirme o conjunto oferecido.",
       "contras": "Quantidade de peças e variante do anúncio a confirmar.\nResistência, ímãs, certificação e adequação à idade não foram verificados pela equipe.",
       "notaInformada": ""
