@@ -54,11 +54,12 @@ test('current bot asks browser to reuse named worker for every product, never ol
     hash.delete('_rdc_conferencia'); url.hash = hash.toString(); return url.href;
   }), requests.map(request => request.url));
   assert.equal(s.calls.length, 3);
-  assert.deepEqual([...new Set(s.calls.map(call => call.name))], ['ranking_conferencia_mercado_livre']);
+  assert.equal(new Set(s.calls.map(call => call.name)).size, 1);
+  assert.match(s.calls[0].name, /^rdc_conferencia_[a-z0-9-]+$/i);
   assert.equal(new Set(s.calls.map(call => call.features)).size, 1);
   assert.match(s.calls[0].features, /popup=yes/);
   assert.equal(s.forbiddenHandleReads(), 0);
-  assert.equal(s.panel.__RDC_BOT_PRECOS_LOCAL__.version, '2.4.6');
+  assert.equal(s.panel.__RDC_BOT_PRECOS_LOCAL__.version, '2.4.7');
 });
 
 test('reused worker ignores old request, different product and altered requested variant', async () => {

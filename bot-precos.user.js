@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.6
+// @version      2.4.7
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -19,7 +19,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.6";
+  const BOT_VERSION = "2.4.7";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -314,22 +314,41 @@
   }
 
   async function handleConferenceCommand(command) {
-    if (!command?.requestId || Date.now() - Number(command.createdAt || 0) > 120000) return;
+    if (!command?.requestId || Date.now() - Number(command.createdAt || 0) > 120000) return false;
     // Uma aba comum do Mercado Livre não pode ser sequestrada pela fila.
     if (!command.sessionId) {
-      if (sameOffer(command.url, location.href)) await publishCurrentPageResult(command);
-      return;
+      if (sameOffer(command.url, location.href)) { await publishCurrentPageResult(command); return true; }
+      return false;
     }
-    if (controllerSession() !== command.sessionId || !offerIdentity(command.url)) return;
-    if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId) return;
+    if (controllerSession() !== command.sessionId || !offerIdentity(command.url)) return false;
+    if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId) return false;
     GM_setValue(CONTROLLER_KEY, { sessionId: command.sessionId, requestId: command.requestId, seenAt: Date.now() });
     if (!sameOffer(command.url, location.href)) {
       // Navegar a própria aba evita depender de WindowProxy/opener antigos,
       // perdidos por COOP ou pela restauração de janelas do Chrome.
       location.assign(conferenceUrl(command.url, command.sessionId));
-      return;
+      return true;
     }
     await publishCurrentPageResult(command);
+    return true;
+  }
+
+  function installOfferChannel() {
+    let processing = "", completed = "";
+    const run = async () => {
+      const command = GM_getValue(COMMAND_KEY, null);
+      if (!command?.requestId || command.requestId === processing || command.requestId === completed) return;
+      const id = command.requestId;
+      processing = id;
+      try { if (await handleConferenceCommand(command)) completed = id; }
+      finally { if (processing === id) processing = ""; }
+    };
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => void run(), { once: true });
+    else void run();
+    GM_addValueChangeListener(COMMAND_KEY, () => void run());
+    // A notificação pode se perder entre domínios/abas em segundo plano.
+    // Recuperação local: não consulta a rede nem o Firebase e só opera a aba vinculada.
+    if (controllerSession() && typeof setInterval === "function") setInterval(() => void run(), 1500);
   }
 
   function installPanelBridge() {
@@ -348,13 +367,18 @@
       }
       const requestId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       let timer = 0;
-      const listener = GM_addValueChangeListener(RESULT_KEY, (_key, _oldValue, value) => {
+      let poll = 0, listener = 0;
+      const acceptResult = (value) => {
         if (!value || value.requestId !== requestId || value.produtoId !== produtoId || value.requestedUrl !== url) return;
         clearTimeout(timer);
+        if (poll) clearInterval(poll);
         GM_removeValueChangeListener(listener);
         resolve(value);
-      });
+      };
+      listener = GM_addValueChangeListener(RESULT_KEY, (_key, _oldValue, value) => acceptResult(value));
+      if (typeof setInterval === "function") poll = setInterval(() => acceptResult(GM_getValue(RESULT_KEY, null)), 500);
       timer = setTimeout(() => {
+        if (poll) clearInterval(poll);
         GM_removeValueChangeListener(listener);
         reject(new Error("O anúncio demorou mais de 45 segundos. Confira a aba do Mercado Livre."));
       }, REQUEST_TIMEOUT);
@@ -367,12 +391,13 @@
         : "";
       try {
         if (!hasController) {
-          offerWindow = unsafeWindow.open(conferenceUrl(url, sessionId), "ranking_conferencia_mercado_livre", features);
+          offerWindow = unsafeWindow.open(conferenceUrl(url, sessionId), "rdc_conferencia_" + sessionId, features);
           if (!offerWindow) throw new Error("O navegador bloqueou a janela do anúncio. Permita pop-ups para o Ranking da Compra.");
           try { offerWindow.focus(); } catch {}
         }
       } catch (error) {
         clearTimeout(timer);
+        if (poll) clearInterval(poll);
         GM_removeValueChangeListener(listener);
         reject(error);
       }
@@ -410,11 +435,6 @@
   }
   if (/mercadolivre\.com\.br$/i.test(location.hostname)) {
     controllerSession(); // Vincular a aba antes de eventuais redirecionamentos da página.
-    const run = () => void handleConferenceCommand(GM_getValue(COMMAND_KEY, null));
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run, { once: true });
-    else run();
-    GM_addValueChangeListener(COMMAND_KEY, (_key, _oldValue, command) => {
-      if (command?.requestId) void handleConferenceCommand(command);
-    });
+    installOfferChannel();
   }
 })();
