@@ -989,7 +989,14 @@
       }
 
       function separarProdutoAutomacao(produto, destino, motivo) {
+        // Uma nova tentativa substitui o estado anterior, não duplica pendências.
+        automacaoPrecosFalhas.delete(produto.id);
+        automacaoPrecosIndisponiveis.delete(produto.id);
         destino.set(produto.id, { id: produto.id, titulo: produto.titulo, motivo: String(motivo || "").trim(), tentativaEm: new Date().toISOString(), robotVersion: window.__RDC_BOT_PRECOS_LOCAL__?.version || "", url: linkPrecoAssistido(produto) });
+        // Set.add não move um item já pulado. Remover antes de reinserir é
+        // essencial ao retomar uma fila só de pendências: senão o primeiro
+        // reaparece imediatamente e a proteção de visitados encerra a rodada.
+        filaPrecosPulados.delete(produto.id);
         filaPrecosPulados.add(produto.id);
         filaPrecosIdAtual = "";
         guardarPosicaoFilaPrecos();
