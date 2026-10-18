@@ -64,6 +64,7 @@
         <div id="login-status" class="status"></div>
       </section>
       <section id="app">
+        <div id="appcheck-diagnostico-mobile" class="card" hidden></div>
 <div id="best-choices-mobile" class="card"></div>
         <div class="card">
           <div class="etapa">Publicação expressa</div>
@@ -174,6 +175,8 @@
         </div>
       </section>
     </main>
+    <script src="/appcheck-local-diagnostics.js?v=20261018-1"></script>
+    <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
     <script src="/product-save-safety.js?v=20261015-2"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261017-1"></script>
@@ -199,14 +202,16 @@
         },
         app = initializeApp(cfg),
         aiApp = initializeApp(cfg, "ai-logic");
-      initializeAppCheck(aiApp, {
-        provider: new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"),
-        isTokenAutoRefreshEnabled: true,
-      });
-      initializeAppCheck(app, {
-        provider: new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"),
-        isTokenAutoRefreshEnabled: true,
-      });
+      const aiAppCheckProvider = new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp");
+      const firestoreAppCheckProvider = new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp");
+      window.RDCLocalAppCheckDiagnostics?.observeProvider(aiAppCheckProvider, 'ai-logic');
+      window.RDCLocalAppCheckDiagnostics?.observeProvider(firestoreAppCheckProvider, 'firestore');
+      try {
+        initializeAppCheck(aiApp, {provider: aiAppCheckProvider, isTokenAutoRefreshEnabled: true});
+      } catch (error) { window.RDCLocalAppCheckDiagnostics?.record(error, 'ai-logic'); throw error; }
+      try {
+        initializeAppCheck(app, {provider: firestoreAppCheckProvider, isTokenAutoRefreshEnabled: true});
+      } catch (error) { window.RDCLocalAppCheckDiagnostics?.record(error, 'firestore'); throw error; }
       const auth = getAuth(app),
         db = getFirestore(app),
         mobileAI = getAI(aiApp, { backend: new GoogleAIBackend() }),

@@ -34,7 +34,8 @@ test("promoção vencida desativa só a marcação, preservando cadastro e preç
 
 test("App Check é preparado em todos os clientes sem ativar enforcement", () => {
   assert.match(home, /firebase\.appCheck\(\)\.activate\(new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
-  assert.match(dashboard, /firebase\.appCheck\(\)\.activate\(new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
+  assert.match(dashboard, /const firestoreAppCheckProvider = new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
+  assert.match(dashboard, /firebase\.appCheck\(\)\.activate\(firestoreAppCheckProvider, true\)/);
   assert.match(mobile, /initializeAppCheck\(app, \{/);
   assert.match(growth, /firebase\.appCheck\(\)\.activate\(new firebase\.appCheck\.ReCaptchaEnterpriseProvider/);
   // A nova etiqueta muda a apresentação, não a inicialização do App Check.

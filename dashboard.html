@@ -189,6 +189,7 @@
 
     <!-- DASHBOARD -->
     <div id="admin-content">
+        <div class="painel" id="appcheck-diagnostico-dashboard" hidden></div>
 
         <section class="painel painel-consumo" aria-labelledby="consumo-titulo">
             <h2 id="consumo-titulo">⛽ Tanque de leituras do Firestore</h2>
@@ -458,6 +459,8 @@
     </div>
 
     <!-- SDKs do Firebase -->
+    <script src="/appcheck-local-diagnostics.js?v=20261018-1"></script>
+    <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-dashboard'), {page:'dashboard'});</script>
     <script src="https://www.gstatic.com/firebasejs/12.10.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.10.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check-compat.js"></script>
@@ -479,10 +482,11 @@
         };
 
         const aiApp = initializeApp(firebaseConfigAI, "ai-logic");
-        initializeAppCheck(aiApp, {
-            provider: new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"),
-            isTokenAutoRefreshEnabled: true
-        });
+        const aiAppCheckProvider = new ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp");
+        window.RDCLocalAppCheckDiagnostics?.observeProvider(aiAppCheckProvider, 'ai-logic');
+        try {
+            initializeAppCheck(aiApp, {provider: aiAppCheckProvider, isTokenAutoRefreshEnabled: true});
+        } catch (error) { window.RDCLocalAppCheckDiagnostics?.record(error, 'ai-logic'); throw error; }
 
         const ai = getAI(aiApp, { backend: new GoogleAIBackend() });
         // A primeira IA redige; a segunda usa outro modelo para auditar a resposta.
@@ -1092,9 +1096,12 @@ FORMATO:
         firebase.initializeApp(firebaseConfig);
         if (firebase.appCheck?.ReCaptchaEnterpriseProvider) {
             try {
-                firebase.appCheck().activate(new firebase.appCheck.ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp"), true);
+                const firestoreAppCheckProvider = new firebase.appCheck.ReCaptchaEnterpriseProvider("6LeNOlUtAAAAAOHg_j1l5d7AkzLGnxNF6LszSoOp");
+                window.RDCLocalAppCheckDiagnostics?.observeProvider(firestoreAppCheckProvider, 'firestore');
+                firebase.appCheck().activate(firestoreAppCheckProvider, true);
                 window.rankingAppCheckReady = true;
             } catch (erro) {
+                window.RDCLocalAppCheckDiagnostics?.record(erro, 'firestore');
                 console.warn('App Check em monitoramento indisponível; o painel continuará funcionando.', erro);
             }
         }
