@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-18T16:42:26.226Z",
+  "generatedAt": "2026-10-18T23:18:52.261Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -5220,24 +5220,6 @@
       "notaInformada": ""
     },
     {
-      "id": "lPcaSjRN7lMTPPP8QL4a",
-      "titulo": "Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml",
-      "comentario": "Este kit oferece um conjunto versátil com três fragrâncias distintas em frascos de 200ml, sendo uma excelente escolha para quem busca rotatividade no uso diário. Ele supera opções unitárias de entrada ao entregar maior volume e variedade, atendendo bem ao perfil masculino que prefere perfumação leve e refrescante após o banho ou durante o dia.",
-      "categoria": "kitbodysplashmasculino",
-      "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_997574-MLA109633443994_042026-F.webp",
-      "preco": "93,41",
-      "nota": "",
-      "ranking": "1",
-      "precoAtualizadoManualmente": true,
-      "precoAtualizadoManualmenteEm": "2026-10-18T10:14:02.076Z",
-      "precoConferenciaId": "d89db523-13ef-4a64-90ed-d24cf4f875f7",
-      "precoConferenciaCampo": "preco",
-      "precoConferenciaValor": 93.41,
-      "pros": "",
-      "contras": "",
-      "notaInformada": ""
-    },
-    {
       "id": "LQ12PkH1sbM7Uu0geBQf",
       "titulo": "Lava E Seca Samsung Wd11m Com Digital Inverter Inox 11kg Cor Inox look",
       "comentario": "A Lava E Seca Samsung WD11M possui capacidade de 11 kg para lavagem e 7 kg para secagem. Conta com operação 3 em 1, lavando, secando e esterilizando a seco. Seu motor Digital Inverter garante economia e baixo ruído, enquanto o tambor Diamond Drum protege os tecidos. Inclui também lavagem rápida de 15 minutos e ciclo lava e seca em 59 minutos.",
@@ -5727,6 +5709,30 @@
       "precoConferenciaId": "a60257db-e341-42ef-a808-8fdd68605d95",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": "222",
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB4645102377",
+      "titulo": "Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml",
+      "comentario": "Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml. É recarregável: Não. Volume da unidade: 200 mL. Perfume vegano e livre de crueldade animal. País de origem: Brasil. Marca: Primacial; Código do catálogo: MLB68104527. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "categoria": "kitbodysplashmasculino",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_918307-MLA118847501699_102026-F.jpg",
+      "preco": "93,41",
+      "precoAnterior": "140,00",
+      "precoPromocional": "93,41",
+      "nota": "",
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-18",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-19T10:17:44.548Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-18T23:18:09.739Z",
+      "precoConferenciaId": "a1f69e9e-4eaa-42a2-b357-794377685c9d",
+      "precoConferenciaCampo": "precoPromocional",
+      "precoConferenciaValor": 93.41,
       "pros": "",
       "contras": "",
       "notaInformada": ""
