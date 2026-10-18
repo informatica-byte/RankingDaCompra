@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 const html=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
 const fn=html.slice(html.indexOf('function guardarPosicaoFilaPrecos()'),html.indexOf('function recuperarPosicaoFilaPrecos()'));
+const recovery=readFileSync(new URL('../assisted-report-recovery.js',import.meta.url),'utf8');
 function setup(fail){
  const results=new Map([['novo',{status:'confirmado',preco:123,origem:'robo_assistido_2.4.8'}]]),nodes=new Map(),writes=[];
  nodes.set('precos-auto',{appendChild(node){nodes.set(node.id,node);}});
@@ -11,7 +12,9 @@ function setup(fail){
   filaPrecosRodadaId:'2026-10-18T10:00:00Z',automacaoPrecosFalhas:new Map(),automacaoPrecosIndisponiveis:new Map(),filaPrecosDados:{reconferirHoje:false},filaPrecosReconferirSalvo:false,
   acompanhamentoPrecos:{estado:()=>({tentados:16})},chaveFilaPrecos:'rdc-conferencia-test',
   localStorage:{setItem(k,v){if(fail)throw new Error('QuotaExceededError');writes.push([k,v]);},getItem(){throw new Error('Não reler cópia antiga');},removeItem(){throw new Error('Não apagar histórico');}},
+  sessionStorage:{getItem:()=>null,setItem(){}},
   $:id=>nodes.get(id),document:{createElement:()=>({setAttribute(){}})}});
+ c.window=c;vm.runInContext(recovery,c);
  vm.runInContext(fn,c);return{c,nodes,writes};
 }
 test('quota local não transforma relatório atual em snapshot antigo nem apaga histórico',()=>{
@@ -25,5 +28,5 @@ test('persistência disponível mantém diário e backup da rodada',()=>{
 });
 test('exportação usa retorno vivo da serialização e não lê snapshot persistido antigo',()=>{
  const exportCode=html.slice(html.indexOf('$("precos-exportar-rodada").onclick'),html.indexOf('function atualizarControlesAutomacaoPrecos'));
- assert.match(exportCode,/const dados = guardarPosicaoFilaPrecos\(\)/);assert.doesNotMatch(exportCode,/localStorage\.getItem/);
+ assert.match(exportCode,/const diario = guardarPosicaoFilaPrecos\(\)/);assert.match(exportCode,/RDCAssistedReportRecovery.report/);assert.doesNotMatch(exportCode,/localStorage\.getItem/);
 });

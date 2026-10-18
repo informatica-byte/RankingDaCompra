@@ -29,7 +29,7 @@ test('antes de carregar a fila o histórico não é declarado resolvido',()=>{
  assert.equal(value.falhas.length,4);assert.equal(value.indisponiveis.length,2);
 });
 test('resumo e botões de substituição usam a mesma lista atual',()=>{
- const summary=html.slice(html.indexOf('function resumoAutomacaoPrecos('),html.indexOf('function atualizarControlesAutomacaoPrecos('));
+ const summary=html.slice(html.indexOf('function resumoAutomacaoPrecos('),html.indexOf('$("precos-exportar-rodada").onclick'));
  assert.match(summary,/const pendencias = pendenciasAtuaisAutomacaoPrecos\(\)/);
  assert.match(summary,/const separados = \[\.\.\.pendencias\.indisponiveis, \.\.\.pendencias\.falhas\]/);
  assert.doesNotMatch(summary,/automacaoPrecosFalhas\.size|automacaoPrecosIndisponiveis\.values/);

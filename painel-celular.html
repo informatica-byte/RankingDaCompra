@@ -180,6 +180,7 @@
     <script src="/product-save-safety.js?v=20261015-2"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261018-1"></script>
+    <script src="/assisted-report-recovery.js?v=20261018-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/existing-flash-offer.js?v=20261016-1"></script>
     <script src="/weekly-comparison-safety.js?v=20261012-audit-4"></script>
@@ -530,7 +531,13 @@
         $("precos-exportar-rodada").onclick = () => {
           // Exportar o estado vivo mesmo se o navegador não permitir persistir
           // mais dados. Reler localStorage exportava silenciosamente uma rodada antiga.
-          const dados = guardarPosicaoFilaPrecos();
+          const diario = guardarPosicaoFilaPrecos();
+          const fila = dadosFilaPrecosAssistida();
+          const dados = JSON.stringify(window.RDCAssistedReportRecovery.report({
+            snapshot: diario, all: filaPrecosDados.todos, pending: fila.pendentes,
+            failures: [...automacaoPrecosFalhas.values()], unavailable: [...automacaoPrecosIndisponiveis.values()],
+            active: automacaoPrecosAtiva, paused: automacaoPrecosPausada, generatedAt: new Date().toISOString(),
+          }));
           const url = URL.createObjectURL(new Blob([dados], { type: "application/json" }));
           const link = document.createElement("a"); link.href = url; link.download = "conferencia-" + filaPrecosDia + ".json"; link.click();
           setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -581,10 +588,11 @@
             versao: 2,
             acompanhamento: acompanhamentoPrecos.estado(),
         });
-        try {
-          localStorage.setItem(chaveFilaPrecos, diario);
-          localStorage.setItem(chaveFilaPrecos + ":rodada:" + filaPrecosRodadaId, diario);
-        } catch {
+        const persistencia = window.RDCAssistedReportRecovery.persist({
+          local: localStorage, session: sessionStorage, key: chaveFilaPrecos,
+          roundKey: chaveFilaPrecos + ":rodada:" + filaPrecosRodadaId, snapshot: diario,
+        });
+        if (!persistencia.primary || !persistencia.backup) {
           let aviso = $("precos-armazenamento-aviso");
           if (!aviso) {
             aviso = document.createElement("p");
@@ -593,14 +601,17 @@
             aviso.setAttribute("role", "status");
             $("precos-auto")?.appendChild(aviso);
           }
-          aviso.textContent = "Não foi possível atualizar a cópia local da rodada. Os preços já salvos no Firebase permanecem salvos. Baixe o relatório atual antes de fechar ou recarregar o painel; nenhum histórico foi apagado.";
+          aviso.textContent = (persistencia.session ? "Cópia da rodada preservada nesta aba. Mantenha esta aba aberta. " : "Não foi possível atualizar a cópia local da rodada. ") + "Os preços já salvos no Firebase permanecem salvos. Baixe o relatório atual antes de fechar o painel; nenhum histórico foi apagado.";
+        } else {
+          const aviso = $("precos-armazenamento-aviso");
+          if (aviso) aviso.textContent = "";
         }
         return diario;
       }
 
       function recuperarPosicaoFilaPrecos() {
         try {
-          const salvo = JSON.parse(localStorage.getItem(chaveFilaPrecos) || "null");
+          const salvo = window.RDCAssistedReportRecovery.latest({ local: localStorage, session: sessionStorage, key: chaveFilaPrecos, day: hoje() });
           if (salvo?.dia !== hoje()) return;
           filaPrecosRetomada = true;
           filaPrecosReconferirSalvo = salvo.reconferirHoje === true;
@@ -880,6 +891,18 @@
           if (filaPrecosDados) rankingDadosMovel = null;
           filaPrecosDados = await rankingCarregarDados(true);
           filaPrecosDados.reconferirHoje = filaPrecosRetomada ? filaPrecosReconferirSalvo : $("precos-reconferir-hoje").checked;
+          const recuperados = window.RDCAssistedReportRecovery.recover({
+            products: filaPrecosDados.todos, day: hoje(), reviewToday: filaPrecosDados.reconferirHoje,
+            results: filaPrecosResultados, millis: millisPrecoAssistido, dayOf: diaPrecoAssistido,
+            number: numero, source: linkPrecoAssistido,
+          });
+          for (const [id, resultado] of recuperados) {
+            filaPrecosResultados.set(id, resultado);
+            filaPrecosConferidos.add(id);
+            filaPrecosPulados.delete(id);
+            automacaoPrecosFalhas.delete(id);
+            automacaoPrecosIndisponiveis.delete(id);
+          }
           if (filaPrecosDados.reconferirHoje && !filaPrecosRetomada) {
             guardarPosicaoFilaPrecos();
             filaPrecosRodadaId = new Date().toISOString();

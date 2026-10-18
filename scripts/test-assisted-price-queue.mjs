@@ -42,7 +42,8 @@ test('posição da fila volta no mesmo dia sem salvar falsa conferência',()=>{
  const values=new Map();
  const localStorage={getItem:key=>values.get(key)||null,setItem:(key,value)=>values.set(key,value)};
  const create=day=>{
-  const context=vm.createContext({localStorage,hoje:()=>day});
+  const context=vm.createContext({localStorage,sessionStorage:{getItem:()=>null,setItem(){}},$:()=>null,hoje:()=>day});
+  context.window=context;vm.runInContext(readFileSync(new URL('../assisted-report-recovery.js',import.meta.url),'utf8'),context);
   vm.runInContext(stateCode,context);
   return context;
  };

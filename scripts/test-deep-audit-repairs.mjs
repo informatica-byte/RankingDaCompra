@@ -77,7 +77,7 @@ test('fila persiste concluídos, erros e retomada, mostrando todas as pendência
 test('recarga restaura resultados e motivos sem repetir concluídos ou reativar reconferência', () => {
   const code = mobile.slice(mobile.indexOf('let filaPrecosDados = null;'), mobile.indexOf('function millisPrecoAssistido('));
   const values = new Map(), localStorage = {getItem:key=>values.get(key)||null,setItem:(key,value)=>values.set(key,value)};
-  const setup = () => { const ctx=vm.createContext({localStorage,hoje:()=> '2026-10-06'});vm.runInContext(code,ctx);return ctx; };
+  const setup = () => { const ctx=vm.createContext({localStorage,sessionStorage:{getItem:()=>null,setItem(){}},$:()=>null,hoje:()=> '2026-10-06'});ctx.window=ctx;vm.runInContext(read('assisted-report-recovery.js'),ctx);vm.runInContext(code,ctx);return ctx; };
   const first=setup();
   vm.runInContext('filaPrecosConferidos.add("ok");filaPrecosResultados.set("ok",{preco:100,origem:"manual"});automacaoPrecosFalhas.set("erro",{motivo:"403",tentativaEm:"agora"});filaPrecosReconferirSalvo=true;filaPrecosDados={reconferirHoje:false};guardarPosicaoFilaPrecos()',first);
   const resumed=setup();
