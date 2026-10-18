@@ -528,8 +528,9 @@
         const acompanhamento = acompanhamentoPrecos.estado();
         alvo.innerHTML = (texto || "Automação pronta.") + '<br>' + acompanhamento.tentados + ' de ' + acompanhamento.limite + ' produtos tentados nesta execução.' + (detalhes.length ? "<br><b>Separados:</b> " + detalhes.join(" · ") + "." + listaSeparados : "") + '<button id="precos-exportar-rodada" class="btn claro" type="button">Baixar relatório desta rodada</button>';
         $("precos-exportar-rodada").onclick = () => {
-          guardarPosicaoFilaPrecos();
-          const dados = localStorage.getItem(chaveFilaPrecos) || "{}";
+          // Exportar o estado vivo mesmo se o navegador não permitir persistir
+          // mais dados. Reler localStorage exportava silenciosamente uma rodada antiga.
+          const dados = guardarPosicaoFilaPrecos();
           const url = URL.createObjectURL(new Blob([dados], { type: "application/json" }));
           const link = document.createElement("a"); link.href = url; link.download = "conferencia-" + filaPrecosDia + ".json"; link.click();
           setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -566,8 +567,7 @@
       }
 
       function guardarPosicaoFilaPrecos() {
-        try {
-          const diario = JSON.stringify({
+        const diario = JSON.stringify({
             dia: filaPrecosDia,
             atual: filaPrecosIdAtual,
             pulados: [...filaPrecosPulados],
@@ -580,10 +580,22 @@
             atualizadoEm: new Date().toISOString(),
             versao: 2,
             acompanhamento: acompanhamentoPrecos.estado(),
-          });
+        });
+        try {
           localStorage.setItem(chaveFilaPrecos, diario);
           localStorage.setItem(chaveFilaPrecos + ":rodada:" + filaPrecosRodadaId, diario);
-        } catch {}
+        } catch {
+          let aviso = $("precos-armazenamento-aviso");
+          if (!aviso) {
+            aviso = document.createElement("p");
+            aviso.id = "precos-armazenamento-aviso";
+            aviso.className = "mini";
+            aviso.setAttribute("role", "status");
+            $("precos-auto")?.appendChild(aviso);
+          }
+          aviso.textContent = "Não foi possível atualizar a cópia local da rodada. Os preços já salvos no Firebase permanecem salvos. Baixe o relatório atual antes de fechar ou recarregar o painel; nenhum histórico foi apagado.";
+        }
+        return diario;
       }
 
       function recuperarPosicaoFilaPrecos() {
