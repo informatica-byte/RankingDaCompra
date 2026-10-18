@@ -188,11 +188,11 @@
     <script src="/express-existing-product.js?v=20261015-2"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-      import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
-      import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
-      import { getFirestore, collection, getDocs, query, where, limit, orderBy, addDoc, serverTimestamp, doc, getDoc, setDoc, updateDoc, deleteDoc, runTransaction, arrayUnion } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
-      import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-ai.js";
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+      import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app-check.js";
+      import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+      import { getFirestore, collection, getDocs, query, where, limit, orderBy, addDoc, serverTimestamp, doc, getDoc, setDoc, updateDoc, deleteDoc, runTransaction, arrayUnion } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+      import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-ai.js";
       const cfg = {
           apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
           authDomain: "rankingdacompra.firebaseapp.com",
@@ -445,6 +445,7 @@
       const chaveFilaPrecos = "ranking-fila-precos-assistida-v1";
       let automacaoPrecosAtiva = false;
       let automacaoPrecosPausada = false;
+      let ultimaMensagemAutomacaoPrecos = "";
       let automacaoPrecosRodada = 0;
       const automacaoPrecosVisitados = new Set();
       const automacaoPrecosIndisponiveis = new Map();
@@ -513,6 +514,7 @@
       function resumoAutomacaoPrecos(texto = "") {
         const alvo = $("precos-auto-resumo");
         if (!alvo) return;
+        if (texto) ultimaMensagemAutomacaoPrecos = texto;
         const pendencias = pendenciasAtuaisAutomacaoPrecos();
         const indisponiveis = pendencias.indisponiveis.length;
         const transporte = item => /bloqueou a janela|45 segundos|RDC_CHANNEL|comunicação com a aba/i.test(item.motivo || "");
@@ -527,7 +529,7 @@
           ? '<details><summary>Ver todas as ' + separados.length + ' pendências</summary><ul class="precos-auto-lista">' + separados.map((item) => "<li>" + rankingEsc(item.titulo) + " — " + rankingEsc(item.motivo) + (transporte(item) ? '<p class="mini">Retome a conferência; esta falha não exige substituir o anúncio.</p>' : '<button class="btn claro" type="button" data-substituir-anuncio="' + rankingEsc(item.id || "") + '">🔄 Substituir anúncio</button>') + '</li>').join("") + "</ul></details>"
           : "";
         const acompanhamento = acompanhamentoPrecos.estado();
-        alvo.innerHTML = (texto || "Automação pronta.") + '<br>' + acompanhamento.tentados + ' de ' + acompanhamento.limite + ' produtos tentados nesta execução.' + (detalhes.length ? "<br><b>Separados:</b> " + detalhes.join(" · ") + "." + listaSeparados : "") + '<button id="precos-exportar-rodada" class="btn claro" type="button">Baixar relatório desta rodada</button>';
+        alvo.innerHTML = (ultimaMensagemAutomacaoPrecos || "Automação pronta.") + '<br>' + acompanhamento.tentados + ' de ' + acompanhamento.limite + ' produtos tentados nesta execução.' + (detalhes.length ? "<br><b>Separados:</b> " + detalhes.join(" · ") + "." + listaSeparados : "") + '<button id="precos-exportar-rodada" class="btn claro" type="button">Baixar relatório desta rodada</button>';
         $("precos-exportar-rodada").onclick = () => {
           // Exportar o estado vivo mesmo se o navegador não permitir persistir
           // mais dados. Reler localStorage exportava silenciosamente uma rodada antiga.
@@ -773,6 +775,9 @@
         window.RDCPricePublication.saved("price-publication-mobile", fila.pendentes.length === 0);
         resumo.textContent = feitos + " de " + fila.todos.length + (filaPrecosDados.reconferirHoje ? " revisados nesta rodada" : " conferidos hoje") + " · " + fila.pendentes.length + " restantes. " + (filaPrecosDados.todos.length - fila.todos.length) + " pausado(s) fora da fila. A ordem usa visualizações dos últimos 7 dias e depois a conferência mais antiga.";
         atualizarControlesAutomacaoPrecos();
+        // A confirmação manual também altera a lista; não deixar botões e
+        // totais antigos enquanto o progresso e o relatório já estão atualizados.
+        resumoAutomacaoPrecos();
         if (!fila.pendentes.length) {
           filaPrecosIdAtual = "";
           alvo.innerHTML = '<div class="precos-fila-item"><strong>✅ Fila de hoje concluída.</strong><p>Os produtos sem mudança foram apenas marcados como conferidos; os preços alterados foram salvos individualmente.</p></div>';

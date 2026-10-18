@@ -48,7 +48,7 @@
     ]
   },
   "clientProtection": {
-    "firebaseVersion": "12.10.0",
+    "firebaseVersion": "12.19.0",
     "classicClients": "index.html, dashboard.html and growth-tools.js use compat app/app-check/firestore plus auth on dashboard",
     "enterpriseProvider": "Firebase 8.10.1 lacks the Enterprise provider used by these pages; do not restore that SDK",
     "enforcement": "Verify console status separately per service; initialize client provider before protected requests; no billing upgrade"

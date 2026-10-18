@@ -103,19 +103,19 @@
     if (metricsDbPromise) return metricsDbPromise;
     metricsDbPromise = (async () => {
       await loadMetricsScript(
-        "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-compat.js",
+        "https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js",
         () => Boolean(window.firebase)
       );
       try {
         await loadMetricsScript(
-          "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check-compat.js",
+          "https://www.gstatic.com/firebasejs/12.19.0/firebase-app-check-compat.js",
           () => Boolean(window.firebase?.appCheck)
         );
       } catch (error) {
         console.warn("App Check em monitoramento indisponível; métricas serão mantidas.", error);
       }
       await loadMetricsScript(
-        "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore-compat.js",
+        "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore-compat.js",
         () => Boolean(window.firebase?.firestore)
       );
       if (!window.firebase.apps.length) window.firebase.initializeApp(METRICS_FIREBASE_CONFIG);

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.8
+// @version      2.4.9
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -19,11 +19,12 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.8";
+  const BOT_VERSION = "2.4.9";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
   const CONTROLLER_KEY = "rdc_preco_controller_v3";
+  const NAVIGATION_KEY = "rdc_preco_navigation_v1";
   const PANEL_HOST = "rankingdacompra.com.br";
 
   function normalizeText(value) {
@@ -309,6 +310,14 @@
   function conferenceUrl(rawUrl, sessionId) {
     const url = new URL(rawUrl);
     if (!offerIdentity(rawUrl) || !/^[a-z0-9-]{8,100}$/i.test(String(sessionId || ""))) throw new Error("Sessão de conferência inválida.");
+    // Um filtro de campanha vencida pode esconder estoque do MESMO anúncio.
+    // Limpar apenas deal; manter wid, item_id, variante e a URL original na prova.
+    const filters = url.searchParams.get("pdp_filters");
+    if (filters && /(?:^|[|,])deal:/i.test(filters)) {
+      const retained = filters.split(/[|,]/).filter(part => !/^deal:/i.test(part));
+      if (retained.length) url.searchParams.set("pdp_filters", retained.join("|"));
+      else url.searchParams.delete("pdp_filters");
+    }
     const hash = new URLSearchParams(url.hash.slice(1));
     hash.set("_rdc_conferencia", sessionId);
     url.hash = hash.toString();
@@ -338,6 +347,27 @@
     if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId) return false;
     GM_setValue(CONTROLLER_KEY, { sessionId: command.sessionId, requestId: command.requestId, seenAt: Date.now() });
     if (!sameOffer(command.url, location.href)) {
+      // Catálogos antigos podem redirecionar a outro catálogo. Uma navegação
+      // por pedido é suficiente: repetir após cada reload criava um ciclo até
+      // o timeout. Não aceitar o preço de uma identidade diferente.
+      let navigation;
+      try { navigation = JSON.parse(sessionStorage.getItem(NAVIGATION_KEY) || "null"); } catch {}
+      if (navigation?.requestId === command.requestId && navigation?.sessionId === command.sessionId) {
+        GM_setValue(RESULT_KEY, { status: "error", code: "RDC_PRODUCT_REDIRECT",
+          motivo: "O Mercado Livre redirecionou para outro catálogo. Revise o link do mesmo produto; preço preservado.",
+          robotVersion: BOT_VERSION, requestedUrl: command.url, requestId: command.requestId,
+          produtoId: command.produtoId, checkedAt: Date.now() });
+        return true;
+      }
+      try {
+        sessionStorage.setItem(NAVIGATION_KEY, JSON.stringify({ requestId: command.requestId, sessionId: command.sessionId }));
+      } catch {
+        GM_setValue(RESULT_KEY, { status: "error", code: "RDC_NAVIGATION_STORAGE",
+          motivo: "Não foi possível preservar a navegação nesta aba. Preço preservado; confira manualmente.",
+          robotVersion: BOT_VERSION, requestedUrl: command.url, requestId: command.requestId,
+          produtoId: command.produtoId, checkedAt: Date.now() });
+        return true;
+      }
       // Navegar a própria aba evita depender de WindowProxy/opener antigos,
       // perdidos por COOP ou pela restauração de janelas do Chrome.
       location.assign(conferenceUrl(command.url, command.sessionId));
