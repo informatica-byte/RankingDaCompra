@@ -514,13 +514,16 @@
         if (!alvo) return;
         const pendencias = pendenciasAtuaisAutomacaoPrecos();
         const indisponiveis = pendencias.indisponiveis.length;
-        const falhas = pendencias.falhas.length;
+        const transporte = item => /bloqueou a janela|45 segundos|RDC_CHANNEL|comunicação com a aba/i.test(item.motivo || "");
+        const interrupcoes = pendencias.falhas.filter(transporte).length;
+        const falhas = pendencias.falhas.length - interrupcoes;
         const detalhes = [];
         if (indisponiveis) detalhes.push(indisponiveis + " indisponível(is)");
         if (falhas) detalhes.push(falhas + " para revisão manual");
+        if (interrupcoes) detalhes.push(interrupcoes + " para retomar após falha de comunicação (não são anúncios indisponíveis)");
         const separados = [...pendencias.indisponiveis, ...pendencias.falhas];
         const listaSeparados = separados.length
-          ? '<details><summary>Ver todas as ' + separados.length + ' pendências</summary><ul class="precos-auto-lista">' + separados.map((item) => "<li>" + rankingEsc(item.titulo) + " — " + rankingEsc(item.motivo) + '<button class="btn claro" type="button" data-substituir-anuncio="' + rankingEsc(item.id || "") + '">🔄 Substituir anúncio</button></li>').join("") + "</ul></details>"
+          ? '<details><summary>Ver todas as ' + separados.length + ' pendências</summary><ul class="precos-auto-lista">' + separados.map((item) => "<li>" + rankingEsc(item.titulo) + " — " + rankingEsc(item.motivo) + (transporte(item) ? '<p class="mini">Retome a conferência; esta falha não exige substituir o anúncio.</p>' : '<button class="btn claro" type="button" data-substituir-anuncio="' + rankingEsc(item.id || "") + '">🔄 Substituir anúncio</button>') + '</li>').join("") + "</ul></details>"
           : "";
         const acompanhamento = acompanhamentoPrecos.estado();
         alvo.innerHTML = (texto || "Automação pronta.") + '<br>' + acompanhamento.tentados + ' de ' + acompanhamento.limite + ' produtos tentados nesta execução.' + (detalhes.length ? "<br><b>Separados:</b> " + detalhes.join(" · ") + "." + listaSeparados : "") + '<button id="precos-exportar-rodada" class="btn claro" type="button">Baixar relatório desta rodada</button>';
@@ -1061,7 +1064,7 @@
               return;
             }
             if (resultadoLocal?.status === "unavailable") {
-              separarProdutoAutomacao(produto, automacaoPrecosIndisponiveis, "O anúncio informou que o produto está indisponível.");
+              separarProdutoAutomacao(produto, automacaoPrecosIndisponiveis, resultadoLocal.motivo || "O anúncio informou que o produto está indisponível.");
               continue;
             }
             if (resultadoLocal?.status !== "ok" || !numero(resultadoLocal.preco)) {
@@ -1091,6 +1094,15 @@
           } catch (erro) {
             if (!automacaoPrecosAtiva || rodada !== automacaoPrecosRodada) return;
             const motivo = String(erro?.message || erro);
+            if (["RDC_POPUP_BLOCKED", "RDC_CHANNEL_TIMEOUT"].includes(erro?.code) || /bloqueou a janela|45 segundos/i.test(motivo)) {
+              // Falha global de transporte não é defeito de cada produto.
+              // Preservar o item atual e interromper evita centenas de falsos pulados.
+              automacaoPrecosVisitados.delete(produto.id);
+              guardarPosicaoFilaPrecos();
+              pararAutomacaoPrecosAssistida("⚠️ Comunicação com a aba interrompida. Nenhum preço foi alterado neste item. Deixe a aba do Mercado Livre aberta e toque em iniciar para retomar deste produto.");
+              msg("precos-status", motivo + " A fila foi preservada; não é necessário substituir os anúncios.", "erro");
+              return;
+            }
             if (/captcha|confirmação humana|verificação de segurança/i.test(motivo)) {
               pausarAutomacaoPrecosAssistida(produto);
               return;

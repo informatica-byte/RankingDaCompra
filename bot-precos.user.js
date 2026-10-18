@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.7
+// @version      2.4.8
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -19,7 +19,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.7";
+  const BOT_VERSION = "2.4.8";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -271,6 +271,15 @@
           ? "A opção aberta está indisponível. Preço preservado; confira outra opção do mesmo produto."
           : "O anúncio aberto está indisponível ou sem estoque. Preço preservado.",
       };
+      // Alguns anúncios de calçados não mostram buybox/aviso: somente opções
+      // explicitamente bloqueadas. Não confundir uma opção esgotada com todas.
+      const options = [...documentHtml.querySelectorAll('.ui-pdp-outside_variations__thumbnails__item')]
+        .filter(node => visibleNode(documentHtml, node));
+      if (options.length && options.every(node => node.classList?.contains('ui-pdp-outside_variations__thumbnails__item--BLOCKED')
+        || /n[aã]o dispon[ií]vel/i.test(node.getAttribute('aria-label') || ''))) return {
+        status: "unavailable", tituloEncontrado: pageTitle, fonteConsultada: finalUrl,
+        motivo: "Todas as opções exibidas estão indisponíveis e o anúncio não mostra preço. Preço preservado.",
+      };
     }
     if (!documentHtml.defaultView) return { status: "loading", motivo: "É necessário conferir a página renderizada na aba logada." };
     const structured = extractStructuredPrice(documentHtml, pageTitle, finalUrl);
@@ -337,6 +346,11 @@
     let processing = "", completed = "";
     const run = async () => {
       const command = GM_getValue(COMMAND_KEY, null);
+      // O heartbeat deve continuar mesmo após responder. Antes, 90 segundos
+      // sem pedido expiravam a aba viva e provocavam novas janelas assíncronas.
+      if (command?.sessionId && controllerSession() === command.sessionId) {
+        GM_setValue(CONTROLLER_KEY, { sessionId: command.sessionId, requestId: command.requestId, seenAt: Date.now() });
+      }
       if (!command?.requestId || command.requestId === processing || command.requestId === completed) return;
       const id = command.requestId;
       processing = id;
@@ -380,7 +394,8 @@
       timer = setTimeout(() => {
         if (poll) clearInterval(poll);
         GM_removeValueChangeListener(listener);
-        reject(new Error("O anúncio demorou mais de 45 segundos. Confira a aba do Mercado Livre."));
+        if (GM_getValue(COMMAND_KEY, null)?.requestId === requestId) GM_setValue(COMMAND_KEY, null);
+        reject(Object.assign(new Error("O anúncio demorou mais de 45 segundos. Confira a aba do Mercado Livre."), { code: "RDC_CHANNEL_TIMEOUT" }));
       }, REQUEST_TIMEOUT);
       const controller = typeof GM_getValue === "function" ? GM_getValue(CONTROLLER_KEY, null) : null;
       const hasController = controller?.sessionId === sessionId && Date.now() - Number(controller.seenAt || 0) >= 0
@@ -392,13 +407,14 @@
       try {
         if (!hasController) {
           offerWindow = unsafeWindow.open(conferenceUrl(url, sessionId), "rdc_conferencia_" + sessionId, features);
-          if (!offerWindow) throw new Error("O navegador bloqueou a janela do anúncio. Permita pop-ups para o Ranking da Compra.");
+          if (!offerWindow) throw Object.assign(new Error("O navegador bloqueou a janela do anúncio. Toque novamente em iniciar para reabrir a aba."), { code: "RDC_POPUP_BLOCKED" });
           try { offerWindow.focus(); } catch {}
         }
       } catch (error) {
         clearTimeout(timer);
         if (poll) clearInterval(poll);
         GM_removeValueChangeListener(listener);
+        if (typeof GM_getValue === "function" && GM_getValue(COMMAND_KEY, null)?.requestId === requestId) GM_setValue(COMMAND_KEY, null);
         reject(error);
       }
     });

@@ -57,3 +57,28 @@ test('tempo esgotado limpa polling sem fabricar confirmação',async()=>{
  for(const fn of [...f.timeouts.values()])fn();
  await rejection;assert.equal(f.intervals.size,0);assert.equal(f.listeners.size,0);
 });
+
+test('aba viva renova presença mesmo após concluir o comando, sem nova navegação',async()=>{
+ const f=fixture();f.c.installOfferChannel();
+ const command={requestId:'done',sessionId:session,produtoId:'p',titulo:'Roteador',url:source.replace('1234567890','2345678901'),createdAt:Date.now()};
+ f.values.set(commandKey,command);
+ for(const {fn} of f.intervals.values())fn();
+ await flush();assert.equal(f.navigations.length,1);
+ const now=Date.now()+100000;f.c.Date={now:()=>now};
+ for(const {fn} of f.intervals.values())fn();
+ await flush();assert.equal(f.navigations.length,1);
+ assert.equal(f.values.get('rdc_preco_controller_v3').seenAt,now);
+});
+
+test('janela bloqueada tem código de transporte e cancela comando pendente',async()=>{
+ const f=fixture(true);f.c.unsafeWindow.open=()=>null;
+ await assert.rejects(f.c.unsafeWindow.conferirPrecoNaAbaLocal({produtoId:'p',titulo:'Roteador',url:source}),e=>e.code==='RDC_POPUP_BLOCKED');
+ assert.equal(f.values.get(commandKey),null);assert.equal(f.timeouts.size,0);assert.equal(f.listeners.size,0);
+});
+
+test('timeout tem código global e cancela pedido para não executar após interrupção',async()=>{
+ const f=fixture(true);const p=f.c.unsafeWindow.conferirPrecoNaAbaLocal({produtoId:'p',titulo:'Roteador',url:source});
+ const rejected=assert.rejects(p,e=>e.code==='RDC_CHANNEL_TIMEOUT');
+ for(const fn of [...f.timeouts.values()])fn();await rejected;
+ assert.equal(f.values.get(commandKey),null);
+});

@@ -49,7 +49,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.4.7');
+  assert.equal(result.robotVersion, '2.4.8');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -87,6 +87,26 @@ test('aviso de estoque não sobrepõe preço principal nem autoriza outro produt
   const { context: c } = setup(doc);
   assert.equal(c.extractDocumentOffer(doc, title, url).preco, 358.79);
   assert.equal(c.extractDocumentOffer(page({ prices: [], foundTitle: 'Tênis Adidas Superstar', unavailable: [message] }), title, url).status, 'loading');
+});
+
+test('calçado sem buybox só é indisponível quando todas as opções visíveis estão bloqueadas', () => {
+  for (const [blocked, expected] of [[[true], 'unavailable'], [[true,true], 'unavailable'], [[true,false], 'loading'], [[], 'loading']]) {
+    const doc=page({prices:[]}), original=doc.querySelectorAll;
+    doc.querySelectorAll=selector=>selector==='.ui-pdp-outside_variations__thumbnails__item'
+      ? blocked.map(value=>({...visibleText('40 BR'),classList:{contains:()=>value}})) : original(selector);
+    const {context:c}=setup(doc),result=c.extractDocumentOffer(doc,title,url);
+    assert.equal(result.status,expected);assert.equal(result.preco,undefined);
+  }
+});
+
+test('opções bloqueadas ocultas e com preço válido não vencem o preço visível', () => {
+  for (const prices of [[],[money(74.90)]]) {
+    const doc=page({prices}), original=doc.querySelectorAll;
+    doc.querySelectorAll=selector=>selector==='.ui-pdp-outside_variations__thumbnails__item'
+      ? [{...visibleText('40 BR',{hidden:true}),classList:{contains:()=>true}}] : original(selector);
+    const {context:c}=setup(doc),result=c.extractDocumentOffer(doc,title,url);
+    assert.equal(result.status,prices.length?'ok':'loading');
+  }
 });
 
 test('anúncio pausado sem preço é separado sem inventar valor ou consultar metadados', () => {
