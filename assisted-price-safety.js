@@ -108,7 +108,8 @@
       if (foundModels.some(other => other.replace(/\d+/g, "#") === family) && !found.has(model)) return false;
     }
     const matches = expected.filter(word => found.has(word)).length;
-    return matches >= Math.min(3, expected.length) && matches / expected.length >= 0.5;
+    return matches >= Math.min(3, expected.length) && (matches / expected.length >= 0.5
+      || (matches >= 5 && matches / found.size >= 0.8));
   }
   function variantMismatch(_title, _attributes) {
     // Preferência do responsável: conferir nome e preço, sem validar variantes.

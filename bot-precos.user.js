@@ -120,7 +120,12 @@
       if (foundModels.some(other => other.replace(/\d+/g, "#") === family) && !found.has(model)) return false;
     }
     const matches = expected.filter(word => found.has(word)).length;
-    return matches >= Math.min(3, expected.length) && matches / expected.length >= 0.5;
+    // Títulos cadastrados podem ter muitos complementos ausentes no título
+    // curto do anúncio. Exigir ao menos cinco termos e 80% do título curto
+    // evita rejeitar o mesmo kit por descrições extras; modelos divergentes
+    // continuam recusados acima e a identidade da URL é validada separadamente.
+    return matches >= Math.min(3, expected.length) && (matches / expected.length >= 0.5
+      || (matches >= 5 && matches / found.size >= 0.8));
   }
 
   function offerIdentity(rawUrl) {

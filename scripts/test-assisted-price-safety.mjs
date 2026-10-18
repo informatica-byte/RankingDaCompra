@@ -138,6 +138,18 @@ test('modelo diferente não passa por duas palavras genéricas em comum', () => 
   assert.equal(c.sameOffer(url,url.replace('175705466645','175705466646')),true);
   assert.equal(c.sameOffer(url,'https://mercadolivre.com.br.evil.invalid/MLB-2926671021'),false);
 });
+
+test('kit NTK com título abreviado mantém o mesmo produto sem aceitar PS5 de outra versão', () => {
+  const {context:c}=setup();
+  const expected='Kit 8 Latas Refil Nautika Ntk 227g Camping Maçarico Fogareiro Fogão Recarga Gás Acampamento Portátil Cozinha Flambar Cozinhar Vivara Laranja-claro';
+  const found='Kit Camping Gás De Maçarico Fogareiro 8 Latas Refil Ntk 227g';
+  for(const match of [c.matchingProduct,c.RDCAssistedPriceSafety.matchingProduct]){
+    assert.equal(match(expected,found),true);
+    assert.equal(match('PlayStation 5 Edição Digital 825 GB Slim CFI 2114B Novo Lacrado','Playstation 5 Slim Disk 1tb 1 Controle Branco Sony'),false);
+    assert.equal(match('Notebook Asus Vivobook Go Ryzen 5 16GB SSD 512GB WiFi Windows','Notebook Asus Vivobook Go Ryzen 3 16GB SSD 512GB'),false);
+    assert.equal(match('Kit Camping Gás de Maçarico Fogareiro 8 Latas Refil Ntk 227g','Cama Elástica Infantil Kit Com Rede De Proteção'),false);
+  }
+});
 test('aba antiga não responde a novo pedido mesmo com título idêntico', async () => {
   const {context:c,writes,setCommand}=setup();
   const command={requestId:'next',produtoId:'outro',titulo:title,url:url.replace('2926671021','1111111111'),createdAt:Date.now()};
@@ -174,7 +186,7 @@ test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo 
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261017-1/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261018-1/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
