@@ -6,6 +6,7 @@ import offerReplacement from "../product-offer-replacement.js";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import SEO_PRIORITIES from "../seo-priorities.js";
 import { renderProductDecision, comparisonData } from "./product-decision.mjs";
+import { renderManufacturerSpecifications } from './manufacturer-specifications.mjs';
 import { renderBuyingAdvice, renderGuideChecklist } from "./buying-advice.mjs";
 import { publishedEditorialNotes, editorialItems, usefulEditorialItems } from "./published-editorial.mjs";
 import { headphoneFormat, headphoneFormats } from './headphone-formats.mjs';
@@ -939,12 +940,13 @@ for (const product of products) {
   let html = await readFile(page, "utf8");
   html = html.replace(/Ver promoções do dia/g, "Ver melhores escolhas");
   html = html.replace(/<section class="panel" data-product-decision[\s\S]*?<\/section>/g, "");
+  html = html.replace(/<section class="panel" data-manufacturer-specifications[\s\S]*?<\/section>/g, "");
   html = html.replace(/<section class="panel" data-buying-advice[\s\S]*?<\/section>/g, "");
   const advice = renderBuyingAdvice(product);
   html = html.includes('<div class="panels">')
     ? html.replace('<div class="panels">', advice + '<div class="panels">')
     : html.replace("</article>", advice + "</article>");
-  html = html.replace("</article>", renderProductDecision(product) + "</article>");
+  html = html.replace("</article>", renderManufacturerSpecifications(product) + renderProductDecision(product) + "</article>");
   await writeFile(page, html, "utf8");
 }
 

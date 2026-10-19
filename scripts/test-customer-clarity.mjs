@@ -36,12 +36,13 @@ test('limitações verificáveis permanecem e números ambíguos do notebook nã
   assert.match(band.summary,/não para diagnóstico/);
   assert.match(HIGHLIGHT_EDITORIAL.get('huCYMmOsGPKJ8jOiJ1gR').summary,/nominal de 1.015 PSI/);
 });
-test('Redmi separa autonomia por sessão e com estojo sem inventar ausência de ANC',()=>{
+test('Redmi separa autonomia e confirma ausência de ANC apenas pela FAQ oficial',()=>{
   const p=correctProductData({id:'ARscPKCMZs3D8k22qltl',titulo:'Fone Xiaomi Redmi Buds 6 Play M2420E1'});
   const features=comparisonData(p).features;
-  assert.equal(features.find(f=>f.label==='Autonomia no fone').value,'Até 7,5 h anunciadas');
-  assert.equal(features.find(f=>f.label==='Autonomia com estojo').value,'Até 36 h anunciadas');
-  assert.equal(features.find(f=>f.label==='Cancelamento ativo de ruído').state,'unknown');
+  assert.match(features.find(f=>f.label==='Autonomia no fone').value,/Até 7,5 h anunciadas/);
+  assert.match(features.find(f=>f.label==='Autonomia com estojo').value,/Até 36 h anunciadas com recargas/);
+  const anc=features.find(f=>f.label==='Cancelamento ativo de ruído');
+  assert.equal(anc.state,'no'); assert.match(anc.sourceUrl,/global\/support\/faq\/details\/KA-309446/);
 });
 test('frase misturada ou ausência de comprovação não vira duração errada nem ausência do recurso',()=>{
   const mixed=comparisonData({titulo:'Fone TWS',comentario:'Autonomia de até 7,5 horas no fone e até 36 horas de bateria com estojo. Redução de ruído no microfone não equivale a ANC.'}).features;

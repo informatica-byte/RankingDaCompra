@@ -1,0 +1,146 @@
+// Field-level review, 19/10/2026. Only primary manufacturer sources.
+// Specifications describe the model, never authenticate the seller's unit.
+const reviewedAt = '2026-10-19';
+const sources = {
+  redmi: 'https://www.mi.com/global/product/redmi-buds-6-play/',
+  redmiFaq: 'https://www.mi.com/global/support/faq/details/KA-309446/',
+  jbl: 'https://www.jbl.com.br/JBLT520BTBLK.html',
+  jblAnc: 'https://www.jbl.com.br/blog/comparativo-jbl-tune-530bt-e-520bt.html',
+  band: 'https://www.mi.com/global/product/xiaomi-smart-band-9-active/specs/',
+  logitech: 'https://www.logitech.com/pt-br/shop/p/m170-wireless-mouse.910-006864',
+  wap: 'https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/ocasional/lavadora_wl_1800_FW011457_FW011458/arquivos/ficha_tecnica/WAPWL1800-Fichatcnica.pdf',
+  amd: 'https://www.amd.com/es/products/processors/laptop/ryzen/7000-series/amd-ryzen-5-7520u.html',
+  p30i: 'https://www.soundcore.com/products/soundcore-p30i',
+  budsCore: 'https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos',
+  ex1500: 'https://www.tp-link.com/br/home-networking/wifi-router/ex1500/',
+  ax2s: 'https://consumer.huawei.com/br/routers/ax2s/',
+  ax2sSpecs: 'https://consumer.huawei.com/br/routers/ax2s/specs/',
+  deco: 'https://www.tp-link.com/br/home-networking/deco/deco-x10/',
+};
+const fact = (label, value, source, state = 'yes') => ({label, value, state, basis:'fabricante', sourceUrl:sources[source], checkedAt:reviewedAt});
+const pending = (label, reason) => ({label, value:'Não informado / a confirmar', state:'unknown', basis:'cadastro', reason});
+const redmi = {
+  model:/\b(?:xiaomi\s+)?redmi\s+buds\s*6\s*play\b/i, family:'fone-tws',
+  scope:'Redmi Buds 6 Play: especificações do modelo. Cor não altera estes recursos; autenticidade e conteúdo da oferta continuam a conferir.',
+  features:[
+    fact('Formato','Intra-auricular','redmiFaq'), fact('Versão Bluetooth','Bluetooth 5.4','redmi'),
+    fact('Cancelamento ativo de ruído','Não possui ANC para ouvir; redução de ruído apenas nas chamadas','redmiFaq','no'),
+    fact('Microfone','Microfone para chamadas; redução de ruído anunciada','redmiFaq'),
+    fact('Autonomia no fone','Até 7,5 h anunciadas; volume de 50% e SBC','redmi'),
+    fact('Autonomia com estojo','Até 36 h anunciadas com recargas; volume de 50% e SBC','redmi'),
+    fact('Proteção contra água','IPX4 somente nos fones; não no estojo, não para banho ou imersão','redmi'),
+  ],
+  limitations:['Áudio, conforto e qualidade de chamada não foram testados pela equipe. A bateria real varia com o uso.'],
+};
+export const MANUFACTURER_SPECIFICATIONS = new Map([
+  ['ARscPKCMZs3D8k22qltl',redmi], ['4eal5Q0HLTcrspjkUwee',redmi],
+  ['GjHJtzdsIhbmSINvhPeX',{
+    model:/\bjbl\s+tune\s*520\s*bt\b/i, family:'headphone', scope:'JBL Tune 520BT; não estende especificações aos modelos 530BT, 720BT ou versões NC.',
+    features:[fact('Formato','On-ear (sobre as orelhas)','jbl'),fact('Versão Bluetooth','Bluetooth 5.3','jbl'),
+      fact('Cancelamento ativo de ruído','Não possui, segundo a ficha','jblAnc','no'),fact('Microfone','Microfone integrado (1), com Voice Aware','jbl'),
+      fact('Autonomia no fone','Até 57 h anunciadas','jbl'),fact('Recarga completa','Aproximadamente 2 h, via USB-C','jbl'),fact('Conexão multiponto','Informada pelo fabricante','jbl')],
+    limitations:['Autonomia, áudio e conforto não foram medidos pela equipe. Microfone confirmado não significa qualidade de chamada testada.'],
+  }],
+  ['48oRcQNlH00KgNLHkvsG',{
+    model:/\bxiaomi\s+smart\s*band\s*9\s*active\b/i, family:'smart-band', scope:'Xiaomi Smart Band 9 Active global; não confundir com Smart Band 9 ou 9 Pro.',
+    features:[fact('Tela','TFT de 1,47 polegada; 172 × 320 pixels','band'),fact('Versão Bluetooth','Bluetooth 5.3 BLE','band'),
+      fact('Aplicativo','Mi Fitness','band'),fact('Compatibilidade anunciada','Android 8.0 ou iOS 14.0 e superiores','band'),
+      fact('Modos de exercício','50 modos anunciados','band'),fact('Autonomia típica','Até 18 dias anunciados; varia com o uso','band'),
+      fact('Bateria','300 mAh; carregamento magnético','band'),fact('Resistência à água','5 ATM; respeitar as condições do manual, não equivale a profundidade de mergulho','band')],
+    limitations:['Frequência cardíaca, SpO₂ e sono são referências de bem-estar, não diagnóstico. Precisão e autonomia real não foram medidas.'],
+  }],
+  ['UvxFn4gfaexb8TvcaT5e',{
+    model:/\blogitech\b.*\bm170\b/i, family:'mouse', scope:'Logitech M170: recursos do modelo, não confirmação do receptor, pilha ou garantia do vendedor.',
+    features:[fact('Conexão','Sem fio por receptor USB plug and play','logitech'),fact('Formato','Compacto e ambidestro','logitech'),
+      fact('Compatibilidade anunciada','Windows, macOS, Chrome OS e Linux; requer porta USB compatível','logitech'),
+      fact('Autonomia da pilha','Até 12 meses anunciados; depende do uso','logitech'),fact('Alcance sem fio','Até 10 m anunciados; depende do ambiente','logitech'),
+      fact('Rastreamento','Óptico, com rolagem linha a linha','logitech')],
+    limitations:['Precisão, conforto e duração da pilha não foram testados. Confira os acessórios efetivamente incluídos na oferta.'],
+  }],
+  ['huCYMmOsGPKJ8jOiJ1gR',{
+    model:/\bwap\b.*\bwl\s*1800\b/i, family:'washer-pressure', scope:'WAP WL 1800. O cadastro selecionado informa 220 V; a ficha também contempla outra tensão. Confira o código da unidade.',
+    features:[fact('Potência','1.400 W anunciados','wap'),fact('Pressão nominal','1.015 PSI / 7 MPa','wap'),
+      fact('Pressão permissível','1.500 PSI / 10,5 MPa; não pressão contínua','wap'),fact('Vazão nominal máxima','270 L/h / 4,5 L/min','wap'),
+      fact('Vazão máxima da bomba','360 L/h / 6 L/min; diferente da vazão nominal','wap'),fact('Mangueira de alta pressão','3 m','wap'),fact('Cabo elétrico','5 m','wap')],
+    limitations:['A documentação do modelo não confirma acessórios, tensão ou estado de uma unidade vendida. Não medimos limpeza, consumo ou durabilidade.'],
+  }],
+  ['O6e0R2WtiZfyyf2MJe5Y',{
+    model:/\basus\b.*\bvivobook\b.*\b7520u\b/i, family:'notebook',
+    scope:'Somente o processador Ryzen 5 7520U anunciado no cadastro: a documentação AMD não confirma o SKU, RAM, SSD, portas ou tela deste notebook ASUS.',
+    features:[fact('Núcleos/threads do processador anunciado','Ryzen 5 7520U: 4 núcleos e 8 threads','amd'),
+      fact('GPU do processador anunciado','Radeon 610M integrada ao Ryzen 5 7520U','amd'),
+      {label:'Processador',value:'AMD Ryzen 5 7520U — identificado no cadastro, SKU ASUS a confirmar',state:'yes',basis:'cadastro'},
+      pending('Memória RAM','Falta o código completo da variante ASUS e confirmação da memória instalada; capacidade máxima do processador não é RAM instalada.'),
+      pending('Armazenamento SSD','O título abrevia 512SSD sem unidade e sem SKU completo; não atribuir uma configuração de outra variante.')],
+    limitations:['RAM, capacidade/unidade do SSD, tela e expansão continuam a confirmar. Keep OS é o sistema informado no cadastro, não uma licença Windows.'],
+  }],
+  ['5bQKU9inL3pq14yE8K4L',{
+    model:/\bsoundcore\b.*\bp30i\b/i, family:'fone-tws',scope:'soundcore P30i; não usa os números do P40i, P20i ou Life P3i exibidos na mesma tabela.',
+    features:[fact('Versão Bluetooth','Bluetooth 5.4','p30i'),fact('Cancelamento ativo de ruído','ANC e modo transparência anunciados','p30i'),
+      fact('Microfone','4 microfones com processamento de chamadas anunciado','p30i'),fact('Autonomia no fone','Até 10 h anunciadas; depende do modo e uso','p30i'),
+      fact('Autonomia com estojo','Até 45 h anunciadas com recargas; depende do modo e uso','p30i'),fact('Proteção anunciada','IP54; não significa uso submerso','p30i'),
+      fact('Estojo','Apoio externo para celular integrado ao estojo','p30i')],
+    limitations:['Os máximos de 10/45 horas não garantem a mesma duração com ANC ligado. Áudio, conforto e desempenho real não foram testados.'],
+  }],
+  ['FlqPY3yHJ2xPoNgnhSTE',{
+    model:/\bgalaxy\s+buds\s*core\b/i, family:'fone-tws',scope:'Samsung Galaxy Buds Core; recursos Galaxy AI dependem do smartphone e software compatíveis.',
+    features:[fact('Formato','Intra-auricular com ponteiras de silicone','budsCore'),fact('Versão Bluetooth','Bluetooth 5.4','budsCore'),
+      fact('Cancelamento ativo de ruído','ANC anunciado pela Samsung','budsCore'),fact('Microfone','Sistema de três microfones anunciado','budsCore'),
+      fact('Autonomia com estojo','Até 35 h com ANC desligado; aproximadamente 20 h com ANC ligado, incluindo recargas','budsCore'),
+      fact('Proteção anunciada','IP54, contra poeira e respingos; não significa uso submerso','budsCore'),
+      pending('Autonomia no fone','A fonte consultada informa totais com estojo; não atribuir esse total a uma sessão contínua.')],
+    limitations:['Bateria total inclui recargas. Não testamos áudio, chamadas, conforto nem autonomia real. A integração Galaxy AI não é tradução independente dos fones.'],
+  }],
+  ['qZUWO8WSrcOKWVrAqTW7',{
+    model:/\btp[ -]?link\b.*\bex\s*1500\b/i,family:'roteador',scope:'TP-Link EX1500: a contagem de conectores segue a tabela técnica, não a frase promocional divergente da mesma página.',
+    features:[fact('Wi-Fi 6','802.11ax em 5 GHz; classe AX1500','ex1500'),fact('Banda de 5 GHz','2,4 GHz e 5 GHz','ex1500'),
+      fact('Portas Gigabit','Portas Ethernet 10/100/1000 Mbps','ex1500'),fact('Quantidade de portas','1 porta WAN + 3 portas LAN, segundo a tabela técnica','ex1500'),
+      fact('Rede Mesh','Compatível com EasyMesh; requer outros equipamentos compatíveis','ex1500')],
+    limitations:['A página também cita quatro LAN em um texto promocional; a tabela técnica distingue 1 WAN e 3 LAN. Confirme a revisão física antes de comprar. Cobertura e velocidade real não foram medidas.'],
+  }],
+  ['YuOWci2UixF5GuQE6IYS',{
+    model:/\bhuawei\b.*\bax2s\b/i,family:'roteador',scope:'HUAWEI WiFi AX2S. As próprias páginas oficiais divergem na contagem de portas; esse campo não foi completado por suposição.',
+    features:[fact('Wi-Fi 6','Wi-Fi 6 em 5 GHz; 2,4 GHz em 802.11n','ax2s'),fact('Banda de 5 GHz','2,4 GHz e 5 GHz simultâneas','ax2s'),
+      fact('Portas Gigabit','Gigabit Ethernet com adaptação WAN/LAN','ax2s'),fact('Rede Mesh','HarmonyOS Mesh+ / EasyMesh anunciados; confirmar equipamentos e firmware compatíveis','ax2s'),
+      pending('Quantidade de portas','A visão geral oficial informa três entradas Gigabit; a ficha oficial informa quatro. Confirmar a revisão exata com o fabricante/vendedor.')],
+    limitations:['Quantidade de portas a confirmar: visão geral oficial diz três, especificações dizem quatro. Recursos podem variar por região e versão.'],
+    additionalSources:[sources.ax2sSpecs],
+  }],
+  ['LUsq533hX6lTuHwnZbhz',{
+    model:/\btp[ -]?link\b.*\bdeco\s*x10\b/i,family:'roteador',scope:'TP-Link Deco X10. Os dados são por unidade; 1-pack não inclui as unidades de um kit 2-pack ou 3-pack.',
+    features:[fact('Wi-Fi 6','802.11ax em 5 GHz; classe AX1500','deco'),fact('Banda de 5 GHz','2,4 GHz e 5 GHz','deco'),
+      fact('Portas Gigabit','Gigabit Ethernet com adaptação WAN/LAN','deco'),fact('Quantidade de portas','2 portas Gigabit por unidade, WAN/LAN automáticas','deco'),
+      fact('Rede Mesh','TP-Link Mesh entre unidades Deco; não presume compatibilidade EasyMesh','deco')],
+    limitations:['O cadastro anuncia 1-pack. Área e cobertura dependem do ambiente e da quantidade de unidades; não garantimos alcance em metros quadrados.'],
+  }],
+]);
+
+export function documentedSpecifications(product) {
+  const id=String(product?.id||''), title=String(product?.titulo||product?.title||'');
+  const record=MANUFACTURER_SPECIFICATIONS.get(id);
+  if (!record || /^(?:capa|case|suporte|carregador|refil)\b/i.test(title) || !record.model.test(title)) return null;
+  return {family:record.family, scope:record.scope, checkedAt:reviewedAt,
+    features:record.features.map(f=>({...f})), limitations:[...record.limitations],
+    additionalSources:[...(record.additionalSources||[])]};
+}
+
+export function mergeDocumentedFeatures(product, features=[]) {
+  const record=documentedSpecifications(product);
+  if (!record) return features;
+  const merged=new Map(features.map(f=>[f.label,f]));
+  for (const feature of record.features) merged.set(feature.label,feature);
+  return [...merged.values()];
+}
+
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function renderManufacturerSpecifications(product) {
+  const record=documentedSpecifications(product);
+  if (!record) return '';
+  const known=record.features.filter(f=>f.state!=='unknown' && f.basis==='fabricante'), uncertain=record.features.filter(f=>f.state==='unknown');
+  return '<section class="panel" data-manufacturer-specifications style="margin-top:24px"><h2>Ficha conferida em fontes do fabricante</h2><p>'+esc(record.scope)+'</p><ul>'
+    +known.map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.value)+' — <a href="'+esc(f.sourceUrl)+'" target="_blank" rel="noopener noreferrer">fonte oficial</a>.</li>').join('')+'</ul>'
+    +(uncertain.length?'<h3>O que continua a confirmar</h3><ul>'+uncertain.map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.reason)+'</li>').join('')+'</ul>':'')
+    +'<p>'+record.limitations.map(esc).join(' ')+'</p>'
+    +record.additionalSources.map(url=>'<p><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Outra página oficial consultada para conferir a divergência</a>.</p>').join('')
+    +'<p class="fine">Documentação revisada em 19/10/2026. Valores anunciados pelo fabricante, não teste independente nem autenticação da oferta. Esta revisão não altera a data da conferência do preço.</p></section>';
+}

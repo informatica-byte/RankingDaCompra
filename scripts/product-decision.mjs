@@ -1,5 +1,6 @@
 import { featureState, featureEvidence, evidenceClauses, isAdviceClause } from './discovery-editorial.mjs';
 import { manufacturerEvidence } from './product-title-corrections.mjs';
+import { documentedSpecifications, mergeDocumentedFeatures } from './manufacturer-specifications.mjs';
 const escape = value => String(value || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const profiles = [
   { match: /roteador/i, audience: 'quem precisa distribuir a conexão de internet entre os aparelhos da casa', criteria: [ ['Wi-Fi 6', /wi[ -]?fi\s*6|802\.11ax|\bax\d{3,4}\b/i, 'É uma geração de rede sem fio; o ganho depende também dos aparelhos e do ambiente.'], ['Portas Gigabit', /gigabit|1000\s*mbps/i, 'Vale conferir as portas de entrada e de saída para não limitar uma conexão cabeada rápida.'], ['Rede Mesh', /\bmesh\b/i, 'Confirme quais unidades são compatíveis e se o preço inclui mais de uma unidade.'] ], missing: 'alcance real no seu imóvel, número de aparelhos simultâneos e quantidade/velocidade das portas' },
@@ -132,7 +133,8 @@ export function comparisonFamily(product) {
 }
 
 export function comparisonData(product) {
-  const family = comparisonFamily(product);
+  const documented = documentedSpecifications(product);
+  const family = comparisonFamily(product) || documented?.family;
   if (!family) return null;
   let features;
   if (family === 'roteador') {
@@ -149,7 +151,7 @@ export function comparisonData(product) {
       specification(product, 'Armazenamento SSD', /(?:ssd\s*(?:de\s*)?[:—-]?\s*(\d+)\s*(gb|tb))|(?:(\d+)\s*(gb|tb)\s*(?:de\s*)?ssd)/i, match => `${match[1] || match[3]} ${(match[2] || match[4]).toUpperCase()}`),
       processorFeature(product),
     ];
-  } else {
+  } else if (['fone','fone-tws','fone-com-fio','headphone','headset'].includes(family)) {
     const autonomy = label => specification(product, label, AUTONOMY, match => {
       const duration = (match[1] || match[2]).match(/(\d+(?:[.,]\d+)?)\s*(?:horas?|h)/i)?.[1];
       return duration ? `${/at[eé]\s*\d/i.test(match[1] || match[2]) ? 'Até ' : ''}${numberText(duration)} h anunciadas` : null;
@@ -171,8 +173,8 @@ export function comparisonData(product) {
       autonomy('Autonomia no fone'),
       ...(family === 'fone-tws' ? [autonomy('Autonomia com estojo')] : []),
     ];
-  }
-  return {family, features};
+  } else features = [];
+  return {family, features:mergeDocumentedFeatures(product,features)};
 }
 
 export function decisionData(product) {

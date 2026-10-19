@@ -24,7 +24,8 @@ test('JBL publicado mantém ausência de ANC e autonomia anunciada, sem inventar
   assert.match(feature(comparison, 'Autonomia no fone').sourceUrl, /^https:\/\//);
   assert.equal(feature(comparison, 'Formato').value, 'On-ear (sobre as orelhas)');
   assert.equal(feature(comparison, 'Versão Bluetooth').value, 'Bluetooth 5.3');
-  assert.equal(feature(comparison, 'Microfone').state, 'unknown', 'limitação de teste não prova um recurso');
+  assert.equal(feature(comparison, 'Microfone').state, 'yes', 'microfone agora confirmado na ficha oficial do modelo');
+  assert.match(feature(comparison, 'Microfone').sourceUrl,/jbl.com.br\/JBLT520BTBLK/);
   const html = renderProductDecision(product);
   assert.match(html, /Cancelamento ativo de ruído — Não possui, segundo a ficha/);
   assert.match(html, /Até 57 h anunciadas/);
@@ -90,7 +91,8 @@ test('notebook não inclui power bank e une apenas refinamentos compatíveis de 
   const basike = {id:'sinwoGjrsJl5UMA13pES',titulo:'Power Bank Basike 20000mAh para Notebook e Celular com Cabo USB-C 65W'};
   assert.equal(comparisonData(basike), null);
   const actual = comparisonData(asus);
-  assert.equal(feature(actual, 'Processador').value, 'AMD Ryzen 5 7520U');
+  assert.match(feature(actual, 'Processador').value, /^AMD Ryzen 5 7520U/);
+  assert.equal(feature(actual, 'Processador').basis, 'cadastro');
   assert.equal(feature(actual, 'Memória RAM').state, 'unknown');
   assert.equal(feature(actual, 'Armazenamento SSD').state, 'unknown', '512ssd sem unidade não comprova capacidade');
   const labelled = comparisonData({titulo:'Notebook',comentario:'Modelo do processador: 7520U. Linha do processador: Ryzen 5. Marca do processador: AMD.'});

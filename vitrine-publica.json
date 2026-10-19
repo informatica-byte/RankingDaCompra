@@ -1800,7 +1800,7 @@
     {
       "id": "ARscPKCMZs3D8k22qltl",
       "titulo": "Fone de Ouvido Bluetooth Xiaomi Redmi Buds 6 Play M2420E1 Preto",
-      "comentario": "O Xiaomi Redmi Buds 6 Play M2420E1 é um fone TWS intra-auricular para quem procura um conjunto compacto com estojo USB-C. A Xiaomi informa Bluetooth 5.4. A autonomia anunciada é de até 7,5 horas no fone. A autonomia com estojo é de até 36 horas, incluindo recargas, não uma sessão contínua. O encaixe dentro do ouvido pode não agradar a todos. IPX4 não comprova proteção contra poeira nem autoriza mergulho. Não testamos conforto, áudio ou chamadas. Se precisa de ANC para ouvir, confirme esse recurso; redução de ruído nas chamadas é outra função.",
+      "comentario": "O Xiaomi Redmi Buds 6 Play M2420E1 é um fone TWS intra-auricular com estojo USB-C e Bluetooth 5.4 informados pela Xiaomi. A fabricante anuncia até 7,5 horas no fone e até 36 horas com recargas no estojo, em suas condições de teste. A FAQ oficial esclarece que não há ANC para ouvir; a redução de ruído anunciada atua nas chamadas pelo microfone. IPX4 aplica-se apenas aos fones, não ao estojo, não comprova proteção contra poeira e não autoriza banho ou imersão. Não testamos conforto, áudio ou chamadas; a autonomia real depende do uso.",
       "categoria": "fonesdeouvido",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_926937-MLA117575013847_092026-F.jpg",
       "preco": "99,90",
@@ -3464,7 +3464,7 @@
     {
       "id": "GjHJtzdsIhbmSINvhPeX",
       "titulo": "Fone de Ouvido JBL Tune 520BT Bluetooth 5.3 Preto",
-      "comentario": "O JBL Tune 520BT é um fone on-ear Bluetooth 5.3 para quem prefere não inserir ponteiras no ouvido. A JBL anuncia até 57 horas de bateria, sem garantia dessa duração em todo uso. O apoio fica sobre as orelhas: avalie esse formato para sessões longas. Não possui cancelamento ativo de ruído (ANC); para transporte ou ambientes muito ruidosos, compare alternativas com esse recurso. Não testamos conforto, áudio nem qualidade do microfone.",
+      "comentario": "O JBL Tune 520BT é um fone on-ear Bluetooth 5.3, apoiado sobre as orelhas, com microfone integrado e Voice Aware informados pela JBL. A fabricante anuncia até 57 horas de bateria e cerca de 2 horas para recarga USB-C. Não possui cancelamento ativo de ruído (ANC). A conexão multiponto permite alternar entre dispositivos compatíveis; não comprova mistura simultânea de áudio. Não testamos conforto, áudio nem qualidade do microfone. A autonomia real depende do uso.",
       "categoria": "fonesdeouvido",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_645297-MLA99992011927_112025-F.jpg",
       "preco": "239,00",
@@ -11349,7 +11349,7 @@
     {
       "id": "YuOWci2UixF5GuQE6IYS",
       "titulo": "Roteador HUAWEI WiFi AX2S Wi-Fi 6 Preto",
-      "comentario": "Roteador HUAWEI WiFi AX2S 5 GHz Wi-Fi 6 HarmonyOS Mesh+ EasyMesh; controle do Wi-Fi Controle Parental Preto. Quantidade de roteadores: 1. Tecnologia Wi-Fi 6 com banda de 5 GHz que atinge taxas de até 1201 Mbps para jogos e streaming de dados pesados. Três portas Gigabit Ethernet com adaptação automática WAN e LAN que dispensam a configuração manual dos cabos.",
+      "comentario": "O HUAWEI WiFi AX2S tem Wi-Fi 6 em 5 GHz, duas bandas simultâneas, portas Gigabit e recursos Mesh anunciados pela Huawei. A quantidade de portas está a confirmar: a visão geral oficial cita três entradas, enquanto a página de especificações informa quatro. Confira a revisão física exata e o firmware com o fabricante ou vendedor. Não medimos cobertura, velocidade ou estabilidade. Mesh requer equipamentos compatíveis e não garante sinal em todos os cômodos.",
       "categoria": "roteador",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_761101-MLA114281663137_072026-F.jpg",
       "preco": "159,00",
@@ -11367,8 +11367,8 @@
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": "159",
       "anuncioSubstituidoEm": "2026-10-07T10:54:48.114Z",
-      "pros": "",
-      "contras": "",
+      "pros": "Wi-Fi 6 em 5 GHz e bandas de 2,4/5 GHz informados pela Huawei.\nPortas Gigabit e recursos Mesh anunciados; confirme a compatibilidade dos equipamentos.",
+      "contras": "Quantidade de portas divergente entre as próprias páginas oficiais; confirmar a revisão exata.\nCobertura e velocidade real não foram medidas; firmware e aparelhos compatíveis influenciam os recursos.",
       "notaInformada": ""
     },
     {

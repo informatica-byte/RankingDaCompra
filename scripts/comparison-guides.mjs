@@ -1,6 +1,7 @@
 import integrity from '../comparison-integrity.js';
 import {comparisonData} from './product-decision.mjs';
 import {manufacturerEvidence} from './product-title-corrections.mjs';
+import {documentedSpecifications} from './manufacturer-specifications.mjs';
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const SITE='https://rankingdacompra.com.br/';
 const money=value=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(value);
@@ -20,15 +21,17 @@ function evidence(p){
   return {confirmed,registered,uncertain};
 }
 function card(item,urls){
-  const p=item.product, facts=evidence(p), source=manufacturerEvidence(p), value=price(p);
-  const feature=f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.value)+'</li>';
+  const p=item.product, facts=evidence(p), source=manufacturerEvidence(p), value=price(p), documentation=documentedSpecifications(p);
+  const feature=f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.value)+(f.basis==='fabricante'&&safeUrl(f.sourceUrl)?' (<a href="'+esc(safeUrl(f.sourceUrl))+'" target="_blank" rel="noopener">fonte oficial</a>)':'')+'</li>';
   return '<article class="comparison-card" data-comparison-product="'+esc(p.id)+'" data-model-key="'+esc(item.model)+'">'
     +(safeUrl(p.foto)?'<img src="'+esc(safeUrl(p.foto))+'" alt="" loading="lazy" width="250" height="160">':'')
     +'<h3>'+esc(p.titulo||p.title)+'</h3><p><b>'+(value?esc(money(value)):'Preço a confirmar')+'</b> · registro: '+esc(date(p))+'</p>'
+    +(documentation?'<p class="fine">'+esc(documentation.scope)+'</p>':'')
     +(facts.confirmed.length?'<p><b>Documentado pelo fabricante:</b></p><ul>'+facts.confirmed.map(feature).join('')+'</ul>':source?'<p>Documentação do fabricante disponível na análise e na fonte abaixo. Não extrapolamos recursos para outras variantes.</p>':'<p><b>Sem especificações técnicas confirmadas por fonte de fabricante nesta revisão.</b></p>')
     +(source?'<p><a href="'+esc(safeUrl(source.sourceUrl))+'" target="_blank" rel="noopener">Fonte do fabricante e condições</a></p>':'')
     +(facts.registered.length?'<details><summary>Dados anunciados no cadastro — confirmar no vendedor</summary><ul>'+facts.registered.map(feature).join('')+'</ul><p>Estes dados não foram confirmados por fonte de fabricante nesta revisão.</p></details>':'')
     +(facts.uncertain.length?'<p class="fine"><b>A confirmar:</b> '+esc(facts.uncertain.map(f=>f.label).join(', '))+'. Informação ausente não significa recurso inexistente.</p>':'')
+    +(facts.uncertain.some(f=>f.reason)?'<details><summary>Por que estes dados continuam a confirmar?</summary><ul>'+facts.uncertain.filter(f=>f.reason).map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.reason)+'</li>').join('')+'</ul></details>':'')
     +(item.alternatives.length?'<details data-colour-alternatives><summary>'+item.alternatives.length+' outro(s) cadastro(s) do mesmo modelo, sem disputar posição</summary><ul>'+item.alternatives.map(other=>'<li><a href="'+esc(safeUrl(urls.get(other.id)))+'">'+esc(other.titulo||other.title)+'</a></li>').join('')+'</ul><p>Cadastros e links foram preservados. Confira a oferta e a variante de cada um.</p></details>':'')
     +'<a class="button" href="'+esc(safeUrl(urls.get(p.id)))+'">Ver análise, data e oferta</a></article>';
 }

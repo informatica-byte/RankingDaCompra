@@ -2731,7 +2731,59 @@
       "recordedPrice": 92.03,
       "rating": 0,
       "ranking": 0,
-      "comparison": null,
+      "comparison": {
+        "family": "mouse",
+        "features": [
+          {
+            "label": "Conexão",
+            "value": "Sem fio por receptor USB plug and play",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.logitech.com/pt-br/shop/p/m170-wireless-mouse.910-006864",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Formato",
+            "value": "Compacto e ambidestro",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.logitech.com/pt-br/shop/p/m170-wireless-mouse.910-006864",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Compatibilidade anunciada",
+            "value": "Windows, macOS, Chrome OS e Linux; requer porta USB compatível",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.logitech.com/pt-br/shop/p/m170-wireless-mouse.910-006864",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Autonomia da pilha",
+            "value": "Até 12 meses anunciados; depende do uso",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.logitech.com/pt-br/shop/p/m170-wireless-mouse.910-006864",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Alcance sem fio",
+            "value": "Até 10 m anunciados; depende do ambiente",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.logitech.com/pt-br/shop/p/m170-wireless-mouse.910-006864",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Rastreamento",
+            "value": "Óptico, com rolagem linha a linha",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.logitech.com/pt-br/shop/p/m170-wireless-mouse.910-006864",
+            "checkedAt": "2026-10-19"
+          }
+        ]
+      },
       "url": "https://rankingdacompra.com.br/produto/UvxFn4gfaexb8TvcaT5e-20260810-1.html"
     },
     {
@@ -2930,39 +2982,59 @@
         "features": [
           {
             "label": "Formato",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Intra-auricular",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/support/faq/details/KA-309446/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Bluetooth 5.4",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Não possui ANC para ouvir; redução de ruído apenas nas chamadas",
+            "state": "no",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/support/faq/details/KA-309446/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Microfone para chamadas; redução de ruído anunciada",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/support/faq/details/KA-309446/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Até 7,5 h anunciadas; volume de 50% e SBC",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Autonomia com estojo",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Até 36 h anunciadas com recargas; volume de 50% e SBC",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Proteção contra água",
+            "value": "IPX4 somente nos fones; não no estojo, não para banho ou imersão",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/",
+            "checkedAt": "2026-10-19"
           }
         ]
       },
@@ -2985,7 +3057,7 @@
     {
       "id": "ARscPKCMZs3D8k22qltl",
       "title": "Fone de Ouvido Bluetooth Xiaomi Redmi Buds 6 Play M2420E1 Preto",
-      "summary": "O Xiaomi Redmi Buds 6 Play M2420E1 é um fone TWS intra-auricular para quem procura um conjunto compacto com estojo USB-C. A Xiaomi informa Bluetooth 5.4. A autonomia anunciada é de até 7,5 horas no fone. A autonomia com estojo é de até 36 horas, incluindo recargas, não uma sessão contínua. O encaixe dentro do ouvido pode não agradar a todos. IPX4 não comprova proteção contra poeira nem autoriza mergulho. Não testamos conforto, áudio ou chamadas. Se precisa de ANC para ouvir, confirme esse recurso; redução de ruído nas chamadas é outra função.",
+      "summary": "O Xiaomi Redmi Buds 6 Play M2420E1 é um fone TWS intra-auricular com estojo USB-C e Bluetooth 5.4 informados pela Xiaomi. A fabricante anuncia até 7,5 horas no fone e até 36 horas com recargas no estojo, em suas condições de teste. A FAQ oficial esclarece que não há ANC para ouvir; a redução de ruído anunciada atua nas chamadas pelo microfone. IPX4 aplica-se apenas aos fones, não ao estojo, não comprova proteção contra poeira e não autoriza banho ou imersão. Não testamos conforto, áudio ou chamadas; a autonomia real depende do uso.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/ARscPKCMZs3D8k22qltl-84abea11a4d8.jpg?v=20260810-1",
       "price": 99.9,
@@ -3001,40 +3073,56 @@
             "value": "Intra-auricular",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/"
+            "sourceUrl": "https://www.mi.com/global/support/faq/details/KA-309446/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Versão Bluetooth",
             "value": "Bluetooth 5.4",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/"
+            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Não possui ANC para ouvir; redução de ruído apenas nas chamadas",
+            "state": "no",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/support/faq/details/KA-309446/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Microfone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Microfone para chamadas; redução de ruído anunciada",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/support/faq/details/KA-309446/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Até 7,5 h anunciadas",
+            "value": "Até 7,5 h anunciadas; volume de 50% e SBC",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/"
+            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Autonomia com estojo",
-            "value": "Até 36 h anunciadas",
+            "value": "Até 36 h anunciadas com recargas; volume de 50% e SBC",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/"
+            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Proteção contra água",
+            "value": "IPX4 somente nos fones; não no estojo, não para banho ou imersão",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/",
+            "checkedAt": "2026-10-19"
           }
         ]
       },
@@ -4493,7 +4581,7 @@
     {
       "id": "YuOWci2UixF5GuQE6IYS",
       "title": "Roteador HUAWEI WiFi AX2S Wi-Fi 6 Preto",
-      "summary": "Roteador HUAWEI WiFi AX2S 5 GHz Wi-Fi 6 HarmonyOS Mesh+ EasyMesh; controle do Wi-Fi Controle Parental Preto. Quantidade de roteadores: 1. Tecnologia Wi-Fi 6 com banda de 5 GHz que atinge taxas de até 1201 Mbps para jogos e streaming de dados pesados. Três portas Gigabit Ethernet com adaptação automática WAN e LAN que dispensam a configuração manual dos cabos.",
+      "summary": "O HUAWEI WiFi AX2S tem Wi-Fi 6 em 5 GHz, duas bandas simultâneas, portas Gigabit e recursos Mesh anunciados pela Huawei. A quantidade de portas está a confirmar: a visão geral oficial cita três entradas, enquanto a página de especificações informa quatro. Confira a revisão física exata e o firmware com o fabricante ou vendedor. Não medimos cobertura, velocidade ou estabilidade. Mesh requer equipamentos compatíveis e não garante sinal em todos os cômodos.",
       "category": "Roteador",
       "image": "https://rankingdacompra.com.br/produto/imagens/YuOWci2UixF5GuQE6IYS-73146d164b7e.jpg?v=20260810-1",
       "price": 159,
@@ -4506,33 +4594,42 @@
         "features": [
           {
             "label": "Wi-Fi 6",
-            "value": "Informado",
+            "value": "Wi-Fi 6 em 5 GHz; 2,4 GHz em 802.11n",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://consumer.huawei.com/br/routers/ax2s/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Banda de 5 GHz",
-            "value": "Informado",
+            "value": "2,4 GHz e 5 GHz simultâneas",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://consumer.huawei.com/br/routers/ax2s/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Portas Gigabit",
-            "value": "Informado",
+            "value": "Gigabit Ethernet com adaptação WAN/LAN",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://consumer.huawei.com/br/routers/ax2s/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Quantidade de portas",
-            "value": "3 portas anunciadas",
-            "state": "yes",
-            "basis": "cadastro"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro",
+            "reason": "A visão geral oficial informa três entradas Gigabit; a ficha oficial informa quatro. Confirmar a revisão exata com o fabricante/vendedor."
           },
           {
             "label": "Rede Mesh",
-            "value": "Informado",
+            "value": "HarmonyOS Mesh+ / EasyMesh anunciados; confirmar equipamentos e firmware compatíveis",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://consumer.huawei.com/br/routers/ax2s/",
+            "checkedAt": "2026-10-19"
           }
         ]
       },
@@ -4905,32 +5002,57 @@
             "label": "Versão Bluetooth",
             "value": "Bluetooth 5.4",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.soundcore.com/products/soundcore-p30i",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Cancelamento ativo de ruído",
-            "value": "Informado",
+            "value": "ANC e modo transparência anunciados",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.soundcore.com/products/soundcore-p30i"
+            "sourceUrl": "https://www.soundcore.com/products/soundcore-p30i",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Microfone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "4 microfones com processamento de chamadas anunciado",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.soundcore.com/products/soundcore-p30i",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Até 10 h anunciadas; depende do modo e uso",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.soundcore.com/products/soundcore-p30i",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Autonomia com estojo",
-            "value": "45 h anunciadas",
+            "value": "Até 45 h anunciadas com recargas; depende do modo e uso",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.soundcore.com/products/soundcore-p30i",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Proteção anunciada",
+            "value": "IP54; não significa uso submerso",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.soundcore.com/products/soundcore-p30i",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Estojo",
+            "value": "Apoio externo para celular integrado ao estojo",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.soundcore.com/products/soundcore-p30i",
+            "checkedAt": "2026-10-19"
           }
         ]
       },
@@ -5065,7 +5187,75 @@
       "recordedPrice": 199,
       "rating": 0,
       "ranking": 0,
-      "comparison": null,
+      "comparison": {
+        "family": "smart-band",
+        "features": [
+          {
+            "label": "Tela",
+            "value": "TFT de 1,47 polegada; 172 × 320 pixels",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/xiaomi-smart-band-9-active/specs/",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Versão Bluetooth",
+            "value": "Bluetooth 5.3 BLE",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/xiaomi-smart-band-9-active/specs/",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Aplicativo",
+            "value": "Mi Fitness",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/xiaomi-smart-band-9-active/specs/",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Compatibilidade anunciada",
+            "value": "Android 8.0 ou iOS 14.0 e superiores",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/xiaomi-smart-band-9-active/specs/",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Modos de exercício",
+            "value": "50 modos anunciados",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/xiaomi-smart-band-9-active/specs/",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Autonomia típica",
+            "value": "Até 18 dias anunciados; varia com o uso",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/xiaomi-smart-band-9-active/specs/",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Bateria",
+            "value": "300 mAh; carregamento magnético",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/xiaomi-smart-band-9-active/specs/",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Resistência à água",
+            "value": "5 ATM; respeitar as condições do manual, não equivale a profundidade de mergulho",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/xiaomi-smart-band-9-active/specs/",
+            "checkedAt": "2026-10-19"
+          }
+        ]
+      },
       "url": "https://rankingdacompra.com.br/produto/48oRcQNlH00KgNLHkvsG-20260810-1.html"
     },
     {
@@ -5196,36 +5386,43 @@
         "features": [
           {
             "label": "Wi-Fi 6",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "802.11ax em 5 GHz; classe AX1500",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Banda de 5 GHz",
-            "value": "Informado",
+            "value": "2,4 GHz e 5 GHz",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/"
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Portas Gigabit",
-            "value": "Informado",
+            "value": "Portas Ethernet 10/100/1000 Mbps",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/"
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Quantidade de portas",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "1 porta WAN + 3 portas LAN, segundo a tabela técnica",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Rede Mesh",
-            "value": "Informado",
+            "value": "Compatível com EasyMesh; requer outros equipamentos compatíveis",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/"
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/",
+            "checkedAt": "2026-10-19"
           }
         ]
       },
@@ -5396,7 +5593,66 @@
       "recordedPrice": 224.72,
       "rating": 0,
       "ranking": 0,
-      "comparison": null,
+      "comparison": {
+        "family": "fone-tws",
+        "features": [
+          {
+            "label": "Formato",
+            "value": "Intra-auricular com ponteiras de silicone",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Versão Bluetooth",
+            "value": "Bluetooth 5.4",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Cancelamento ativo de ruído",
+            "value": "ANC anunciado pela Samsung",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Microfone",
+            "value": "Sistema de três microfones anunciado",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Autonomia no fone",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro",
+            "reason": "A fonte consultada informa totais com estojo; não atribuir esse total a uma sessão contínua."
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Até 35 h com ANC desligado; aproximadamente 20 h com ANC ligado, incluindo recargas",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Proteção anunciada",
+            "value": "IP54, contra poeira e respingos; não significa uso submerso",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos",
+            "checkedAt": "2026-10-19"
+          }
+        ]
+      },
       "url": "https://rankingdacompra.com.br/produto/FlqPY3yHJ2xPoNgnhSTE-20260810-1.html"
     },
     {
@@ -5514,7 +5770,7 @@
     {
       "id": "GjHJtzdsIhbmSINvhPeX",
       "title": "Fone de Ouvido JBL Tune 520BT Bluetooth 5.3 Preto",
-      "summary": "O JBL Tune 520BT é um fone on-ear Bluetooth 5.3 para quem prefere não inserir ponteiras no ouvido. A JBL anuncia até 57 horas de bateria, sem garantia dessa duração em todo uso. O apoio fica sobre as orelhas: avalie esse formato para sessões longas. Não possui cancelamento ativo de ruído (ANC); para transporte ou ambientes muito ruidosos, compare alternativas com esse recurso. Não testamos conforto, áudio nem qualidade do microfone.",
+      "summary": "O JBL Tune 520BT é um fone on-ear Bluetooth 5.3, apoiado sobre as orelhas, com microfone integrado e Voice Aware informados pela JBL. A fabricante anuncia até 57 horas de bateria e cerca de 2 horas para recarga USB-C. Não possui cancelamento ativo de ruído (ANC). A conexão multiponto permite alternar entre dispositivos compatíveis; não comprova mistura simultânea de áudio. Não testamos conforto, áudio nem qualidade do microfone. A autonomia real depende do uso.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/GjHJtzdsIhbmSINvhPeX-1d9a9d5c103f.jpg?v=20260810-1",
       "price": 239,
@@ -5527,36 +5783,59 @@
         "features": [
           {
             "label": "Formato",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "On-ear (sobre as orelhas)",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.jbl.com.br/JBLT520BTBLK.html",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Versão Bluetooth",
             "value": "Bluetooth 5.3",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.jbl.com.br/blog/comparativo-jbl-tune-530bt-e-520bt.html"
+            "sourceUrl": "https://www.jbl.com.br/JBLT520BTBLK.html",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não possui, segundo a ficha",
             "state": "no",
             "basis": "fabricante",
-            "sourceUrl": "https://www.jbl.com.br/blog/comparativo-jbl-tune-530bt-e-520bt.html"
+            "sourceUrl": "https://www.jbl.com.br/blog/comparativo-jbl-tune-530bt-e-520bt.html",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Microfone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Microfone integrado (1), com Voice Aware",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.jbl.com.br/JBLT520BTBLK.html",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Autonomia no fone",
             "value": "Até 57 h anunciadas",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.jbl.com.br/blog/comparativo-jbl-tune-530bt-e-520bt.html"
+            "sourceUrl": "https://www.jbl.com.br/JBLT520BTBLK.html",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Recarga completa",
+            "value": "Aproximadamente 2 h, via USB-C",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.jbl.com.br/JBLT520BTBLK.html",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Conexão multiponto",
+            "value": "Informada pelo fabricante",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.jbl.com.br/JBLT520BTBLK.html",
+            "checkedAt": "2026-10-19"
           }
         ]
       },
@@ -5780,33 +6059,43 @@
         "features": [
           {
             "label": "Wi-Fi 6",
-            "value": "Informado",
+            "value": "802.11ax em 5 GHz; classe AX1500",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/deco/deco-x10/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Banda de 5 GHz",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "2,4 GHz e 5 GHz",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/deco/deco-x10/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Portas Gigabit",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Gigabit Ethernet com adaptação WAN/LAN",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/deco/deco-x10/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Quantidade de portas",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "2 portas Gigabit por unidade, WAN/LAN automáticas",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/deco/deco-x10/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Rede Mesh",
-            "value": "Informado",
+            "value": "TP-Link Mesh entre unidades Deco; não presume compatibilidade EasyMesh",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/deco/deco-x10/",
+            "checkedAt": "2026-10-19"
           }
         ]
       },
@@ -5991,7 +6280,67 @@
       "recordedPrice": 299,
       "rating": 0,
       "ranking": 0,
-      "comparison": null,
+      "comparison": {
+        "family": "washer-pressure",
+        "features": [
+          {
+            "label": "Potência",
+            "value": "1.400 W anunciados",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/ocasional/lavadora_wl_1800_FW011457_FW011458/arquivos/ficha_tecnica/WAPWL1800-Fichatcnica.pdf",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Pressão nominal",
+            "value": "1.015 PSI / 7 MPa",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/ocasional/lavadora_wl_1800_FW011457_FW011458/arquivos/ficha_tecnica/WAPWL1800-Fichatcnica.pdf",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Pressão permissível",
+            "value": "1.500 PSI / 10,5 MPa; não pressão contínua",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/ocasional/lavadora_wl_1800_FW011457_FW011458/arquivos/ficha_tecnica/WAPWL1800-Fichatcnica.pdf",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Vazão nominal máxima",
+            "value": "270 L/h / 4,5 L/min",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/ocasional/lavadora_wl_1800_FW011457_FW011458/arquivos/ficha_tecnica/WAPWL1800-Fichatcnica.pdf",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Vazão máxima da bomba",
+            "value": "360 L/h / 6 L/min; diferente da vazão nominal",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/ocasional/lavadora_wl_1800_FW011457_FW011458/arquivos/ficha_tecnica/WAPWL1800-Fichatcnica.pdf",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Mangueira de alta pressão",
+            "value": "3 m",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/ocasional/lavadora_wl_1800_FW011457_FW011458/arquivos/ficha_tecnica/WAPWL1800-Fichatcnica.pdf",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Cabo elétrico",
+            "value": "5 m",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/ocasional/lavadora_wl_1800_FW011457_FW011458/arquivos/ficha_tecnica/WAPWL1800-Fichatcnica.pdf",
+            "checkedAt": "2026-10-19"
+          }
+        ]
+      },
       "url": "https://rankingdacompra.com.br/produto/huCYMmOsGPKJ8jOiJ1gR-20260810-1.html"
     },
     {
@@ -8108,19 +8457,37 @@
             "label": "Memória RAM",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "Falta o código completo da variante ASUS e confirmação da memória instalada; capacidade máxima do processador não é RAM instalada."
           },
           {
             "label": "Armazenamento SSD",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O título abrevia 512SSD sem unidade e sem SKU completo; não atribuir uma configuração de outra variante."
           },
           {
             "label": "Processador",
-            "value": "AMD Ryzen 5 7520U",
+            "value": "AMD Ryzen 5 7520U — identificado no cadastro, SKU ASUS a confirmar",
             "state": "yes",
             "basis": "cadastro"
+          },
+          {
+            "label": "Núcleos/threads do processador anunciado",
+            "value": "Ryzen 5 7520U: 4 núcleos e 8 threads",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.amd.com/es/products/processors/laptop/ryzen/7000-series/amd-ryzen-5-7520u.html",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "GPU do processador anunciado",
+            "value": "Radeon 610M integrada ao Ryzen 5 7520U",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.amd.com/es/products/processors/laptop/ryzen/7000-series/amd-ryzen-5-7520u.html",
+            "checkedAt": "2026-10-19"
           }
         ]
       },

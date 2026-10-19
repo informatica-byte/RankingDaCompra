@@ -2,6 +2,7 @@ import { readFile, readdir, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { HIGHLIGHT_EDITORIAL } from './highlight-editorial.mjs';
+import { documentedSpecifications } from './manufacturer-specifications.mjs';
 
 const PRODUCT_CORRECTIONS = new Map([
   ['5bQKU9inL3pq14yE8K4L', {
@@ -69,6 +70,10 @@ const PRODUCT_CORRECTIONS = new Map([
   ["YuOWci2UixF5GuQE6IYS", {
     model: /HUAWEI.*AX2S/i,
     correct: "Roteador HUAWEI WiFi AX2S Wi-Fi 6 Preto",
+    summary: 'O HUAWEI WiFi AX2S tem Wi-Fi 6 em 5 GHz, duas bandas simultâneas, portas Gigabit e recursos Mesh anunciados pela Huawei. A quantidade de portas está a confirmar: a visão geral oficial cita três entradas, enquanto a página de especificações informa quatro. Confira a revisão física exata e o firmware com o fabricante ou vendedor. Não medimos cobertura, velocidade ou estabilidade. Mesh requer equipamentos compatíveis e não garante sinal em todos os cômodos.',
+    positiveNotes: ['Wi-Fi 6 em 5 GHz e bandas de 2,4/5 GHz informados pela Huawei.', 'Portas Gigabit e recursos Mesh anunciados; confirme a compatibilidade dos equipamentos.'],
+    negativeNotes: ['Quantidade de portas divergente entre as próprias páginas oficiais; confirmar a revisão exata.', 'Cobertura e velocidade real não foram medidas; firmware e aparelhos compatíveis influenciam os recursos.'],
+    sourceUrl:'https://consumer.huawei.com/br/routers/ax2s/', sourceLabel:'HUAWEI WiFi AX2S — recursos e divergência de especificações', reviewedAt:'2026-10-19', suppressRating:true,
     replacements: [["EasyMeshVisualização de Diagnósticos do Wi-Fi", "EasyMesh; controle do Wi-Fi"]],
   }],
   ["uc5ynLQTGAPKkIMIyzQ2", {
@@ -332,6 +337,9 @@ function correctionFor(product) {
 }
 
 export function manufacturerEvidence(product) {
+  const documented = documentedSpecifications(product);
+  const source = documented?.features.find(f=>f.state!=='unknown' && f.sourceUrl);
+  if (source) return {sourceUrl:source.sourceUrl, model:documented.scope, checkedAt:documented.checkedAt, kind:'manufacturer-specification', independentTest:false};
   const correction = correctionFor(product);
   return correction?.summary && correction.sourceUrl
     ? {sourceUrl: correction.sourceUrl, model: correction.sourceLabel, checkedAt: correction.reviewedAt || "2026-10-06", kind: "manufacturer-specification", independentTest: false}
