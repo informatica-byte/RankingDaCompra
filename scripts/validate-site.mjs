@@ -565,6 +565,26 @@ for (const file of guideFiles) {
     if (!urls.includes(SITE + file)) fail(file + ": página permanente ausente do sitemap");
     continue;
   }
+  if (html.includes('data-comparison-integrity')) {
+    has(html, /Sem vencedor artificial/, 'organização sem ranking não explicada', file);
+    has(html, /data-practical-guide/, 'limites de confirmação ausentes', file);
+    has(html, /A confirmar|a confirmar/, 'informações pendentes não identificadas', file);
+    has(html, /como-avaliamos\.html/, 'metodologia ausente', file);
+    has(html, /CollectionPage/, 'coleção estruturada ausente', file);
+    has(html, /data-comparison-type=/, 'separação por tipo ausente', file);
+    has(html, /registro:|Preço a confirmar/, 'data ou limite do preço ausente', file);
+    if (/🏆|💚 Melhor custo-benefício|Maior pontuação de qualidade por real/.test(html)) fail(file + ': recomendação sem comprovação no guia documental');
+    for (const section of html.matchAll(/<section[^>]*data-comparison-type="([^"]+)"[^>]*>([\s\S]*?)<\/section>/g)) {
+      const keys = [...section[2].matchAll(/data-model-key="([^"]+)"/g)].map(x=>x[1]);
+      if (new Set(keys).size !== keys.length) fail(file + ': modelo repetido no mesmo grupo');
+      for (const [,id] of section[2].matchAll(/data-comparison-product="([^"]+)"/g)) {
+        if (!searchProducts.some(p=>p.id===id)) fail(file + ': produto ausente do catálogo: ' + id);
+      }
+    }
+    if (!urls.includes(SITE + file)) fail(file + ': guia revisado ausente do sitemap');
+    if (/\bNaN\b/.test(html)) fail(file + ': valor numérico inválido');
+    continue;
+  }
   if (html.includes("data-focused-guide")) {
     has(html, /sem vencedor artificial/, "guia específico não explica a ordem neutra", file);
     has(html, /data-practical-guide/, "critérios práticos do guia específico ausentes", file);

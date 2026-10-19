@@ -10,6 +10,7 @@ import { renderBuyingAdvice, renderGuideChecklist } from "./buying-advice.mjs";
 import { publishedEditorialNotes, editorialItems, usefulEditorialItems } from "./published-editorial.mjs";
 import { headphoneFormat, headphoneFormats } from './headphone-formats.mjs';
 import { applyVisibilityEditorial } from './visibility-editorial.mjs';
+import { renderIntegrityGuide } from './comparison-guides.mjs';
 import { routerCapabilities, renderPracticalSection, practicalProfile, EDITORIAL_REVIEWED_AT, FOCUSED_GUIDES, focusedProducts, renderFocusedGuide } from "./discovery-editorial.mjs";
 
 const PROJECT_ID = "rankingdacompra";
@@ -871,15 +872,15 @@ for (const category of categories) {
   const categoryProducts = productsByCategory.get(category.id) || [];
   const comparableProducts = comparableCategoryProducts(category.id, categoryName, categoryProducts);
   const broad = isBroadCategory(category.id, categoryName);
-  const guideProducts = broad || comparableProducts.length < 3 ? categoryProducts : comparableProducts;
+  // Keep every record available, but never put different types in one contest.
+  const guideProducts = categoryProducts;
   const guideModified = newestDate([
     ...guideProducts.flatMap((product) => [product.atualizadoEm, product.dataCadastro]),
     category.criadoEm,
     practicalProfile(`${category.id} ${categoryName}`) ? EDITORIAL_REVIEWED_AT : "",
   ]);
-  const rawGuide = broad || comparableProducts.length < 3
-    ? renderUnrankedCategoryGuide(category.id, categoryName, guideProducts, productUrls, guideModified)
-    : renderCategoryGuide(category.id, categoryName, guideProducts, productUrls, guideModified);
+  const rawGuide = renderIntegrityGuide({file:fileName, title:categoryName + ': compare por tipo e informações disponíveis',
+    products:guideProducts, urls:productUrls, date:guideModified});
   const noValue = rawGuide.includes("Custo-benefício: sem dados comparáveis suficientes");
   let honestGuide = noValue ? rawGuide
     .replace("Comparação por pontuação cadastrada, evidências para custo-benefício e menor preço informado.", "Comparação objetiva por preço, vantagens e limitações; sem selo de custo-benefício quando faltam evidências.")
@@ -898,7 +899,7 @@ for (const category of categories) {
   let guide = honestGuide.includes("data-price-unconfirmed-guide") || honestGuide.includes("data-unranked-guide") || noValue
     ? honestGuide : applyCategorySearchIntent(honestGuide, category.id, categoryName, guideProducts.filter((product) => numberPrice(product.precoPromocional || product.preco) > 0).length);
   if (!guide) continue;
-  const practical = renderGuideChecklist(`${category.id} ${categoryName}`) + renderPracticalSection(`${category.id} ${categoryName}`, comparableProducts, productUrls);
+  const practical = renderGuideChecklist(`${category.id} ${categoryName}`);
   const focused = FOCUSED_GUIDES.filter((config) => config.category.test(`${category.id} ${categoryName}`));
   const focusedLinks = focused.length ? `<section class="method"><h2>Guias para uma necessidade específica</h2><ul>${focused.map((config) => `<li><a href="${SITE}${config.file}">${escapeHtml(config.title)}</a></li>`).join("")}</ul></section>` : "";
   guide = guide.includes('<section aria-label="Ranking detalhado">')
@@ -907,7 +908,8 @@ for (const category of categories) {
   for (const config of focused) {
     const price = (product) => numberPrice(product.precoPromocional || product.preco);
     const selected = focusedProducts(config, comparableProducts, price);
-    await writeFile(resolve(config.file), renderFocusedGuide(config, selected, productUrls, fileName, guideModified, SITE, price, money), "utf8");
+    await writeFile(resolve(config.file), renderIntegrityGuide({file:config.file,title:config.title,description:config.intro,
+      products:selected,urls:productUrls,date:guideModified,focused:true,parentFile:fileName}), "utf8");
     guidePages.push(config.file);
     guideModifiedDates.set(config.file, guideModified);
   }

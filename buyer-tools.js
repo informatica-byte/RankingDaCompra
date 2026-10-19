@@ -12,6 +12,7 @@
     return Number.isFinite(timestamp) && now - timestamp >= 0 && now - timestamp <= 86400000 && price(product) !== null;
   }
   function group(product) {
+    if (window.RDCComparisonIntegrity) return window.RDCComparisonIntegrity.label(product);
     const title = normalize(product.title);
     if (/^(?:capa|suporte|base|carregador|fonte|bateria|tela|placa[- ]mae|memoria|ssd|hd|teclado|cabo|adaptador|case|bolsa|mochila|pelicula|almofada|espuma|microfone)\b/.test(title)
       || /\b(?:capa|suporte|fonte|carregador|case|bateria|tela)\s+(?:para|de)\s+(?:notebook|laptop|roteador|fone|headphone)/.test(title)) return '';
@@ -53,6 +54,7 @@
     return price(product) === null ? 'Preço a confirmar' : (recent(product) ? 'Conferido' : 'Registrado') + ': ' + money(price(product)) + ' · ' + dateLabel(product);
   }
   function comparable(items) {
+    if (window.RDCComparisonIntegrity) return window.RDCComparisonIntegrity.comparable(items);
     return items.length >= 2 && !!group(items[0]) && items.every(item => group(item) === group(items[0]));
   }
   function comparisonFeatures(product) {
@@ -102,7 +104,7 @@
         + row.values.map(feature => '<td>' + esc(feature.value) + (feature.state !== 'unknown' ? '<small>Fonte: '
           + (feature.basis === 'fabricante' ? 'informação do fabricante' : 'informação cadastrada, não teste próprio')
           + (feature.basis === 'fabricante' && sourceUrl(feature.sourceUrl) ? ' · <a href="' + esc(sourceUrl(feature.sourceUrl)) + '" target="_blank" rel="noopener noreferrer">Consultar fonte</a>' : '') + '</small>' : '') + '</td>').join('') + '</tr>').join('');
-      comparison.innerHTML = '<section><h2>Comparação: ' + esc(group(selected[0])) + '</h2><p>' + (selected.length === 1 ? 'Produto selecionado. Marque mais uma ou duas alternativas abaixo. ' : '') + 'Comparamos informações cadastradas e do fabricante, não testes próprios. Uma característica não confirmada não é uma característica ausente.</p><div class="buyer-table-scroll" tabindex="0" aria-label="Comparação de produtos, deslize para ver todas as colunas"><table><thead><tr><th scope="col">Critério</th>' + header + '</tr></thead><tbody>' + '<tr><th scope="row">Preço e conferência</th>' + selected.map(product=>'<td>' + esc(priceLabel(product)) + '</td>').join('') + '</tr>' + features + [['Resumo da análise',product=>product.summary || 'Não informado'],['Avaliação editorial',product=>Number(product.rating)>0 ? product.rating + '/5; veja os critérios na análise' : 'Não informada']].map(([label,value])=>'<tr><th scope="row">' + label + '</th>' + selected.map(product=>'<td>' + esc(value(product)) + '</td>').join('') + '</tr>').join('') + '<tr><th scope="row">Ficha completa e lojas</th>' + selected.map(product=>'<td><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e ofertas</a></td>').join('') + '</tr></tbody></table></div></section>';
+      comparison.innerHTML = '<section><h2>Comparação: ' + esc(group(selected[0])) + '</h2><p>' + (selected.length === 1 ? 'Produto selecionado. Marque mais uma ou duas alternativas abaixo. ' : '') + 'Comparamos informações cadastradas e do fabricante, não testes próprios. Uma característica não confirmada não é uma característica ausente.</p><div class="buyer-table-scroll" tabindex="0" aria-label="Comparação de produtos, deslize para ver todas as colunas"><table><thead><tr><th scope="col">Critério</th>' + header + '</tr></thead><tbody>' + '<tr><th scope="row">Preço e conferência</th>' + selected.map(product=>'<td>' + esc(priceLabel(product)) + '</td>').join('') + '</tr>' + features + [['Limite da confirmação',product=>comparisonFeatures(product).some(f=>f.basis==='fabricante' && sourceUrl(f.sourceUrl)) ? 'Veja as fontes de fabricante nos campos documentados. Os demais dados ainda precisam de confirmação.' : 'Sem especificações técnicas confirmadas por fonte de fabricante nesta revisão. Consulte a ficha e o vendedor.']].map(([label,value])=>'<tr><th scope="row">' + label + '</th>' + selected.map(product=>'<td>' + esc(value(product)) + '</td>').join('') + '</tr>').join('') + '<tr><th scope="row">Ficha completa e lojas</th>' + selected.map(product=>'<td><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e ofertas</a></td>').join('') + '</tr></tbody></table></div></section>';
     };
     const rememberFocus = () => {
       const active = document.activeElement;
@@ -146,7 +148,7 @@
         if (!event.target.checked) chosen.delete(id);
         else if (!product || chosen.size >= 3 || (chosen.size && !comparable([...chosen.values(), product]))) {
           event.target.checked = false;
-          status.textContent = chosen.size >= 3 ? 'Limite de três produtos. Remova um para escolher outro.' : 'Escolha produtos do mesmo tipo; itens diferentes não devem disputar a mesma comparação.';
+          status.textContent = chosen.size >= 3 ? 'Limite de três produtos. Remova um para escolher outro.' : 'Escolha modelos distintos do mesmo tipo. Outra cor do mesmo modelo não é uma alternativa diferente.';
           return;
         } else chosen.set(id, product);
       }
