@@ -26,7 +26,7 @@
     if(/^(?:power bank|carregador portatil)\b/.test(t))return 'power-bank';
     if(/^carregador\b/.test(t))return 'charger';
     if(/intercomunicador|fone.*capacete/.test(t))return '';
-    if(/open ear|orelha aberta|ear clip|earcuff|\bows\b/.test(t))return 'earphones-open';
+    if(/open ear|orelha aberta|ear clip|earcuff|\bows\b/.test(t))return /intra auricular|in ear|on ear|over ear/.test(t)?'':'earphones-open';
     if(/headset|jbl quantum/.test(t))return 'headsets';
     if(/headphone|over ear|on ear|jbl.*(?:520|510|720|770)\s*bt/.test(t)){
       if(!/bluetooth|sem fio|\b(?:520|510|720|770)\s*bt\b/.test(t))return '';
@@ -34,7 +34,8 @@
     }
     if(/fone|earbud|\bbuds\b|soundcore.*p30i/.test(t)){
       if(/com fio|\bp2\b|3 5\s*mm/.test(t)&&!/bluetooth|sem fio|tws/.test(t))return 'earphones-wired';
-      if(/intra auricular|in ear|redmi.*buds 6 play|galaxy.*buds core|soundcore.*p30i|lenovo.*lp40|havit.*tw982/.test(t))return 'earbuds-tws';
+      if(/redmi.*buds 6 play|galaxy.*buds core|soundcore.*p30i/.test(t))return 'earbuds-tws';
+      if(/intra auricular|in ear/.test(t)&&/bluetooth|sem fio|tws/.test(t))return 'earbuds-tws';
       return ''; // TWS or a hook alone does not prove in-ear versus open fit.
     }
     if(/starlink|internet.*satelite/.test(t))return 'satellite';

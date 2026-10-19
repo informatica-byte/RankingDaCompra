@@ -12,6 +12,8 @@ test('separa tipos por finalidade sem usar a categoria como prova',()=>{
   assert.equal(integrity.type({title:'Suporte para Notebook Asus'}),'');
   assert.equal(integrity.type({title:'Caixa de som Bluetooth TWS'}),'speaker-portable');
   assert.equal(integrity.type({title:'Fone Bluetooth com gancho'}),'');
+  assert.equal(integrity.type({title:'Fone Bluetooth In-ear Gamer Earcuffs'}),'');
+  assert.equal(integrity.type({title:'Fone Havit TW982 Sem Fio'}),'');
   assert.equal(integrity.type({title:'Fone soundcore P30i Estojo com Suporte para Celular'}),'earbuds-tws');
 });
 test('não duplica modelos por cor e preserva configurações que realmente mudam',()=>{
