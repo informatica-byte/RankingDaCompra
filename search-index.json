@@ -5148,10 +5148,9 @@
         "features": [
           {
             "label": "Wi-Fi 6",
-            "value": "Informado",
-            "state": "yes",
-            "basis": "fabricante",
-            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro"
           },
           {
             "label": "Banda de 5 GHz",
