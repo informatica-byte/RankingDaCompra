@@ -69,6 +69,10 @@
       for (const match of text.matchAll(/\b(ipad|airpods)\s+(?:pro|max|mini|air)\s+(\d+(?:\.\d+)?)(?![a-z0-9])/g)) add(match[1], match[2]);
       for (const match of text.matchAll(/\b(\d+)(?:a|o|\u00aa|\u00ba)?\s*(?:geracao|generation)\b/g)) add("geracao", match[1]);
       for (const match of text.matchAll(/\b(\d+)\s*(?:gb\s*)?ssd\b(?!\s*(?:de\s+)?\d)|\bssd\s*(?:de\s+)?(\d+)\s*gb\b/g)) add("ssd", match[1] || match[2]);
+      // Armazenamento não se confunde com a soma de RAM física + expansão.
+      const storage = [...text.matchAll(/\b(\d+)\s*(gb|tb)\b/g)]
+        .map(match => Number(match[1]) * (match[2] === "tb" ? 1024 : 1)).filter(value => value >= 64);
+      if (storage.length) add("armazenamento", Math.max(...storage));
       return features;
     };
     const expectedFeatures = numericFeatures(expectedTitle), foundFeatures = numericFeatures(foundTitle);
@@ -101,7 +105,9 @@
       .split(" ").filter(word => (word.length >= 3 || /[a-z]\d|\d[a-z]/.test(word)) && !/^(com|sem|para|preto|branco|produto|original|promocao)$/.test(word));
     const expected = [...new Set(words(expectedTitle))], found = new Set(words(foundTitle));
     if (!expected.length || !found.size) return false;
-    const models = values => values.filter(word => /^[a-z]+\d[a-z0-9]*$/.test(word) || /^\d+[a-z]+$/.test(word));
+    // Unidades de RAM/Boost e potência não são códigos de modelo.
+    const models = values => values.filter(word => !/^\d+(?:gb|tb|mb|hz|w|mah|mp|ml|kg|g|l)$/.test(word)
+      && (/^[a-z]+\d[a-z0-9]*$/.test(word) || /^\d+[a-z]+$/.test(word)));
     const foundModels = models([...found]);
     for (const model of models(expected)) {
       const family = model.replace(/\d+/g, "#");

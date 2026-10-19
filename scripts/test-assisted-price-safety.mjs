@@ -188,7 +188,7 @@ test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo 
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261018-1/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261019-1/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
@@ -553,6 +553,18 @@ test('menor total não usa cupom condicional, frete, cashback, parcela ou preço
  const {context:c}=setup(doc),result=c.extractDocumentOffer(doc,title,url);
  assert.equal(result.preco,299.90);assert.equal(result.mainPrice,299.90);
  assert.equal(c.RDCAssistedPriceSafety.validate({...result,produtoId:'p',requestId:'best',checkedAt:Date.now()},{produtoId:'p',url,titulo:title}),'');
+});
+
+test('RAM física mais expansão e unidades não são confundidas com modelo do produto',()=>{
+ const {context:c}=setup();
+ for(const match of [c.matchingProduct,c.RDCAssistedPriceSafety.matchingProduct]){
+  assert.equal(match('Smartphone Motorola Moto G35 5G 128GB 12GB RAM Boost Verde','Smartphone Motorola Moto G35 5G 128GB 4GB RAM 8GB Ram Boost Verde'),true);
+  assert.equal(match('Motorola Edge 70 Pro 256GB 24GB RAM 12GB RAM 12GB RAM Boost','Motorola Edge 70 Pro 256GB 12GB RAM Boost'),true);
+  assert.equal(match('Caixa De Som Basike Ba-RAD207 80W Rádio FM Bluetooth 5.3 TWS RGB','Caixa De Som Basike Ba-RAD207 120W Rádio FM Bluetooth 5.3 TWS RGB'),true);
+  assert.equal(match('Smartphone Motorola Moto G35 5G 128GB','Smartphone Motorola Moto G17 5G 128GB'),false);
+  assert.equal(match('Fone JBL Tune 520BT Preto Bluetooth','Fone JBL Tune 720BT Preto Bluetooth'),false);
+  assert.equal(match('Notebook Asus Vivobook Go Ryzen 5 SSD 512GB','Notebook Asus Vivobook Go Ryzen 3 SSD 256GB'),false);
+ }
 });
 test('mesmo catálogo pode exibir outra oferta; título/modelo e identidade do catálogo continuam exigidos', () => {
   const catalog='https://www.mercadolivre.com.br/fone/p/MLB57289720';
