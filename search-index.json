@@ -529,41 +529,7 @@
       "recordedPrice": 36.98,
       "rating": 0,
       "ranking": 0,
-      "comparison": {
-        "family": "fone",
-        "features": [
-          {
-            "label": "Formato",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
-          },
-          {
-            "label": "Versão Bluetooth",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
-          },
-          {
-            "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
-          },
-          {
-            "label": "Microfone",
-            "value": "Informado",
-            "state": "yes",
-            "basis": "cadastro"
-          },
-          {
-            "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
-          }
-        ]
-      },
+      "comparison": null,
       "url": "https://rankingdacompra.com.br/produto/SUBPibuHNUsgB6zVTL5r-20260810-1.html"
     },
     {
@@ -2453,41 +2419,7 @@
       "recordedPrice": 78.9,
       "rating": 0,
       "ranking": 0,
-      "comparison": {
-        "family": "fone",
-        "features": [
-          {
-            "label": "Formato",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
-          },
-          {
-            "label": "Versão Bluetooth",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
-          },
-          {
-            "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
-          },
-          {
-            "label": "Microfone",
-            "value": "Informado",
-            "state": "yes",
-            "basis": "cadastro"
-          },
-          {
-            "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
-          }
-        ]
-      },
+      "comparison": null,
       "url": "https://rankingdacompra.com.br/produto/WO8eJVPACXCORVzrdNVh-20260810-1.html"
     },
     {
@@ -3158,33 +3090,42 @@
         "features": [
           {
             "label": "Wi-Fi 6",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Não: padrões documentados Wi-Fi 4 / 802.11n/b/g",
+            "state": "no",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/tl-wr840n/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Banda de 5 GHz",
-            "value": "Não possui, segundo a ficha",
+            "value": "Não: banda documentada de 2,4 GHz",
             "state": "no",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/tl-wr840n/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Portas Gigabit",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Não: portas Fast Ethernet 10/100 Mbps",
+            "state": "no",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/tl-wr840n/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Quantidade de portas",
-            "value": "4 portas LAN anunciadas",
+            "value": "1 porta WAN + 4 portas LAN, todas 10/100 Mbps",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.tp-link.com/br/home-networking/wifi-router/tl-wr840n/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Rede Mesh",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "Não foi confirmada para a revisão e firmware da unidade. Modo repetidor ou ponto de acesso não comprova Mesh."
           }
         ]
       },
@@ -4807,31 +4748,56 @@
             "label": "Formato",
             "value": "Over-ear (ao redor das orelhas)",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Não se aplica à conexão com fio documentada",
+            "state": "no",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "ANC para ouvir não foi confirmado nesta ficha. Microfone direcional não comprova ANC."
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Boom direcional removível",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Não se aplica à conexão analógica com fio documentada",
+            "state": "no",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Conexão",
+            "value": "Com fio, conector de 3,5 mm",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Cabo",
+            "value": "1,2 m",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf",
+            "checkedAt": "2026-10-19"
           }
         ]
       },
@@ -5102,33 +5068,42 @@
         "features": [
           {
             "label": "Wi-Fi 6",
-            "value": "Informado",
+            "value": "802.11ax, classe AX3000",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Banda de 5 GHz",
-            "value": "Informado",
+            "value": "2,4 GHz e 5 GHz",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Portas Gigabit",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Gigabit Ethernet",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Quantidade de portas",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "1 porta WAN Gigabit + 3 portas LAN Gigabit",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Rede Mesh",
-            "value": "Informado",
-            "state": "yes",
-            "basis": "cadastro"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro",
+            "reason": "A página internacional V4 anuncia EasyMesh; confirmar suporte no firmware regional da unidade brasileira."
           }
         ]
       },
@@ -6011,33 +5986,43 @@
         "features": [
           {
             "label": "Wi-Fi 6",
-            "value": "Informado",
+            "value": "Wi-Fi 6 em 5 GHz; classe AX1500",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://backend.intelbras.com/sites/default/files/2025-03/Ficha%20T%C3%A9cnica%20-%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX.pdf",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Banda de 5 GHz",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "2,4 GHz e 5 GHz",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://backend.intelbras.com/sites/default/files/2025-03/Ficha%20T%C3%A9cnica%20-%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX.pdf",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Portas Gigabit",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Gigabit Ethernet",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://backend.intelbras.com/sites/default/files/2025-03/Ficha%20T%C3%A9cnica%20-%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX.pdf",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Quantidade de portas",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "1 porta WAN/LAN Gigabit + 1 porta LAN Gigabit por módulo",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://backend.intelbras.com/sites/default/files/2025-03/Ficha%20T%C3%A9cnica%20-%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX.pdf",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Rede Mesh",
-            "value": "Informado",
+            "value": "inMesh, baseado em EasyMesh; usar aparelhos compatíveis",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://backend.intelbras.com/sites/default/files/2025-03/Ficha%20T%C3%A9cnica%20-%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX.pdf",
+            "checkedAt": "2026-10-19"
           }
         ]
       },

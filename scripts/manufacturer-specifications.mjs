@@ -16,6 +16,10 @@ const sources = {
   ax2s: 'https://consumer.huawei.com/br/routers/ax2s/',
   ax2sSpecs: 'https://consumer.huawei.com/br/routers/ax2s/specs/',
   deco: 'https://www.tp-link.com/br/home-networking/deco/deco-x10/',
+  wr840: 'https://www.tp-link.com/br/home-networking/wifi-router/tl-wr840n/',
+  mr80: 'https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/',
+  twibi: 'https://backend.intelbras.com/sites/default/files/2025-03/Ficha%20T%C3%A9cnica%20-%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX.pdf',
+  quantum: 'https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf',
 };
 const fact = (label, value, source, state = 'yes') => ({label, value, state, basis:'fabricante', sourceUrl:sources[source], checkedAt:reviewedAt});
 const pending = (label, reason) => ({label, value:'Não informado / a confirmar', state:'unknown', basis:'cadastro', reason});
@@ -112,6 +116,32 @@ export const MANUFACTURER_SPECIFICATIONS = new Map([
       fact('Portas Gigabit','Gigabit Ethernet com adaptação WAN/LAN','deco'),fact('Quantidade de portas','2 portas Gigabit por unidade, WAN/LAN automáticas','deco'),
       fact('Rede Mesh','TP-Link Mesh entre unidades Deco; não presume compatibilidade EasyMesh','deco')],
     limitations:['O cadastro anuncia 1-pack. Área e cobertura dependem do ambiente e da quantidade de unidades; não garantimos alcance em metros quadrados.'],
+  }],
+  ['2e2m7sDdRyGHq1Tzj8ra',{
+    model:/\btp[ -]?link\b.*\btl[ -]?\s*wr\s*840\s*n\b/i,family:'roteador',scope:'TP-Link TL-WR840N: ficha atual do modelo. Confira revisão de hardware e firmware; não usar a ficha de um Archer ou de uma versão ISP diferente.',
+    features:[fact('Wi-Fi 6','Não: padrões documentados Wi-Fi 4 / 802.11n/b/g','wr840','no'),fact('Banda de 5 GHz','Não: banda documentada de 2,4 GHz','wr840','no'),
+      fact('Portas Gigabit','Não: portas Fast Ethernet 10/100 Mbps','wr840','no'),fact('Quantidade de portas','1 porta WAN + 4 portas LAN, todas 10/100 Mbps','wr840'),
+      pending('Rede Mesh','Não foi confirmada para a revisão e firmware da unidade. Modo repetidor ou ponto de acesso não comprova Mesh.')],
+    limitations:['N300 é taxa Wi-Fi teórica, não velocidade garantida de internet. Recursos de software e modos dependem da revisão.'],
+  }],
+  ['AweCTxq7vwVQ7VmN4IIg',{
+    model:/\bmercusys\b.*\bmr\s*80x\b.*\bv4\b/i,family:'roteador',scope:'MERCUSYS MR80X V4: documentação internacional da revisão V4. Firmware e recursos disponíveis no Brasil devem ser confirmados para a unidade.',
+    features:[fact('Wi-Fi 6','802.11ax, classe AX3000','mr80'),fact('Banda de 5 GHz','2,4 GHz e 5 GHz','mr80'),fact('Portas Gigabit','Gigabit Ethernet','mr80'),
+      fact('Quantidade de portas','1 porta WAN Gigabit + 3 portas LAN Gigabit','mr80'),pending('Rede Mesh','A página internacional V4 anuncia EasyMesh; confirmar suporte no firmware regional da unidade brasileira.')],
+    limitations:['A documentação internacional não comprova todos os recursos de firmware regional. AX3000 não equivale à taxa medida em um cliente. Cobertura não testada.'],
+  }],
+  ['sMCnNBstxTrJqaF6jp2O',{
+    model:/\bintelbras\b.*\btwibi\s+force\s+ax\b|\btwibi\s+force\s+ax\b.*\bintelbras\b/i,family:'roteador',scope:'Intelbras Twibi Force AX: dados por módulo; não confundir com Twibi Force Plug nem atribuir duas unidades a uma oferta unitária.',
+    features:[fact('Wi-Fi 6','Wi-Fi 6 em 5 GHz; classe AX1500','twibi'),fact('Banda de 5 GHz','2,4 GHz e 5 GHz','twibi'),fact('Portas Gigabit','Gigabit Ethernet','twibi'),
+      fact('Quantidade de portas','1 porta WAN/LAN Gigabit + 1 porta LAN Gigabit por módulo','twibi'),fact('Rede Mesh','inMesh, baseado em EasyMesh; usar aparelhos compatíveis','twibi')],
+    limitations:['Quantidade de módulos e ambiente alteram a cobertura. A própria ficha limita compatibilidade de Twibi Fast/Giga/Giga+ ao modo repetidor. Não testamos alcance.'],
+  }],
+  ['c9hb1oe40g3K1dP4dAsy',{
+    model:/\bjbl\b.*\bquantum\s*100\s*m2\b/i,family:'headset',scope:'JBL Quantum 100M2: headset over-ear com fio; não usar especificações dos modelos Quantum Wireless.',
+    features:[fact('Formato','Over-ear (ao redor das orelhas)','quantum'),fact('Conexão','Com fio, conector de 3,5 mm','quantum'),fact('Microfone','Boom direcional removível','quantum'),fact('Cabo','1,2 m','quantum'),
+      fact('Versão Bluetooth','Não se aplica à conexão com fio documentada','quantum','no'),fact('Autonomia no fone','Não se aplica à conexão analógica com fio documentada','quantum','no'),
+      pending('Cancelamento ativo de ruído','ANC para ouvir não foi confirmado nesta ficha. Microfone direcional não comprova ANC.')],
+    limitations:['Confirme a entrada de áudio e eventuais adaptadores do seu aparelho. Não testamos conforto, áudio ou qualidade de voz.'],
   }],
 ]);
 

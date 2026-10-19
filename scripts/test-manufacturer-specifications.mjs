@@ -2,21 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {MANUFACTURER_SPECIFICATIONS,documentedSpecifications,renderManufacturerSpecifications} from './manufacturer-specifications.mjs';
-import {comparisonData} from './product-decision.mjs';
+import {comparisonData,renderProductDecision} from './product-decision.mjs';
 import {renderIntegrityGuide} from './comparison-guides.mjs';
 const catalogue=JSON.parse(await readFile(new URL('../vitrine-publica.json',import.meta.url),'utf8')).products;
 const product=id=>catalogue.find(p=>p.id===id);
 const feature=(id,label)=>comparisonData(product(id)).features.find(f=>f.label===label);
 
-test('as doze revisões usam modelo exato e não mudam cadastros, preço ou prova de conferência',()=>{
-  assert.equal(MANUFACTURER_SPECIFICATIONS.size,12);
+test('as revisões usam modelo exato e não mudam cadastros, preço ou prova de conferência',()=>{
+  assert.equal(MANUFACTURER_SPECIFICATIONS.size,16);
   for(const [id] of MANUFACTURER_SPECIFICATIONS){
     const p=product(id);assert.ok(p,id);const before=JSON.stringify(p);
     const record=documentedSpecifications(p);assert.ok(record,id);
     assert.ok(record.features.some(f=>f.basis==='fabricante'));
     for(const f of record.features.filter(f=>f.basis==='fabricante')){
       const url=new URL(f.sourceUrl);assert.equal(url.protocol,'https:');
-      assert.match(url.hostname,/(?:mi\.com|jbl\.com\.br|logitech\.com|wap\.ind\.br|amd\.com|soundcore\.com|samsung\.com|tp-link\.com|huawei\.com)$/);
+      assert.match(url.hostname,/(?:mi\.com|jbl\.com\.br|logitech\.com|wap\.ind\.br|amd\.com|soundcore\.com|samsung\.com|tp-link\.com|huawei\.com|mercusys\.com|intelbras\.com)$/);
       assert.equal(f.checkedAt,'2026-10-19');
     }
     assert.equal(documentedSpecifications({...p,titulo:'Produto completamente diferente',title:''}),null);
@@ -68,4 +68,10 @@ test('guias exibem fontes por campo e razões das pendências de forma indexáve
   const p=product('YuOWci2UixF5GuQE6IYS');
   const html=renderIntegrityGuide({file:'melhores-roteador.html',title:'Roteadores',products:[p],urls:new Map([[p.id,'https://rankingdacompra.com.br/produto/'+p.id+'-20260810-1.html']]),date:'2026-10-19'});
   assert.match(html,/Por que estes dados continuam a confirmar/);assert.match(html,/visão geral oficial informa três/);assert.match(html,/fonte oficial/);
+});
+test('microfone numa webcam ou brinquedo não cria ficha e pendências de fone',()=>{
+  for(const titulo of ['Webcam GoodVision USB com Microfone','Guitarra E Microfone Infantil Instrumento Brinquedo Musical']){
+    assert.equal(comparisonData({titulo}),null);assert.equal(renderProductDecision({titulo}),'');
+  }
+  assert.equal(comparisonData({titulo:'Fone de ouvido TWS'}).family,'fone-tws');
 });

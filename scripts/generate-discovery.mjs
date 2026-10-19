@@ -946,7 +946,11 @@ for (const product of products) {
   html = html.includes('<div class="panels">')
     ? html.replace('<div class="panels">', advice + '<div class="panels">')
     : html.replace("</article>", advice + "</article>");
-  html = html.replace("</article>", renderManufacturerSpecifications(product) + renderProductDecision(product) + "</article>");
+  const manufacturerFacts = renderManufacturerSpecifications(product);
+  html = html.includes('<section class="related-discovery"')
+    ? html.replace('<section class="related-discovery"',manufacturerFacts+'<section class="related-discovery"')
+    : html.replace('</article>',manufacturerFacts+'</article>');
+  html = html.replace("</article>", renderProductDecision(product) + "</article>");
   await writeFile(page, html, "utf8");
 }
 
