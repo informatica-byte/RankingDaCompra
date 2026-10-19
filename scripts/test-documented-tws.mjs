@@ -18,6 +18,8 @@ test('seleção documental sobrevive à publicação sem truncar identidade ou p
   const published=publicWeeklyComparison({...draft,publicado:true,secret:'not public'});
   assert.equal(published.assinaturaEditorial,draft.assinaturaEditorial);
   assert.equal(published.versao,5);
+  assert.equal(publicWeeklyComparison({...draft,versao:'5'}).versao,5);
+  assert.equal(publicWeeklyComparison({...draft,versao:'5junk'}).versao,undefined);
   assert.equal(published.modoEditorial,'documental');
   assert.equal(published.secret,undefined);
   assert.equal(safety.reconcile(published,{products},now).needsReview,false);
