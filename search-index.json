@@ -2945,7 +2945,7 @@
     {
       "id": "ARscPKCMZs3D8k22qltl",
       "title": "Fone de Ouvido Bluetooth Xiaomi Redmi Buds 6 Play M2420E1 Preto",
-      "summary": "O Xiaomi Redmi Buds 6 Play M2420E1 é um fone TWS intra-auricular para quem procura um conjunto compacto com estojo. A Xiaomi informa Bluetooth 5.4, até 7,5 horas de bateria no fone e até 36 horas com recargas no estojo; esses tempos não são uma única sessão contínua. O estojo usa USB-C. O encaixe dentro do ouvido pode não agradar a todos. IPX4 não comprova proteção contra poeira nem autoriza mergulho. Não testamos conforto, áudio ou chamadas; redução de ruído no microfone não equivale a ANC para ouvir.",
+      "summary": "O Xiaomi Redmi Buds 6 Play M2420E1 é um fone TWS intra-auricular para quem procura um conjunto compacto com estojo USB-C. A Xiaomi informa Bluetooth 5.4. A autonomia anunciada é de até 7,5 horas no fone. A autonomia com estojo é de até 36 horas, incluindo recargas, não uma sessão contínua. O encaixe dentro do ouvido pode não agradar a todos. IPX4 não comprova proteção contra poeira nem autoriza mergulho. Não testamos conforto, áudio ou chamadas. Se precisa de ANC para ouvir, confirme esse recurso; redução de ruído nas chamadas é outra função.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/ARscPKCMZs3D8k22qltl-84abea11a4d8.jpg?v=20260810-1",
       "price": 99.9,
@@ -2972,27 +2972,26 @@
           },
           {
             "label": "Cancelamento ativo de ruído",
-            "value": "Não possui, segundo a ficha",
-            "state": "no",
-            "basis": "fabricante",
-            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/"
-          },
-          {
-            "label": "Microfone",
-            "value": "Informado",
-            "state": "yes",
-            "basis": "fabricante",
-            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/"
-          },
-          {
-            "label": "Autonomia no fone",
             "value": "Não informado / a confirmar",
             "state": "unknown",
             "basis": "cadastro"
           },
           {
-            "label": "Autonomia com estojo",
+            "label": "Microfone",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro"
+          },
+          {
+            "label": "Autonomia no fone",
             "value": "Até 7,5 h anunciadas",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/"
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Até 36 h anunciadas",
             "state": "yes",
             "basis": "fabricante",
             "sourceUrl": "https://www.mi.com/global/product/redmi-buds-6-play/"

@@ -36,6 +36,13 @@ test('limitações verificáveis permanecem e números ambíguos do notebook nã
   assert.match(band.summary,/não para diagnóstico/);
   assert.match(HIGHLIGHT_EDITORIAL.get('huCYMmOsGPKJ8jOiJ1gR').summary,/nominal de 1.015 PSI/);
 });
+test('Redmi separa autonomia por sessão e com estojo sem inventar ausência de ANC',()=>{
+  const p=correctProductData({id:'ARscPKCMZs3D8k22qltl',titulo:'Fone Xiaomi Redmi Buds 6 Play M2420E1'});
+  const features=comparisonData(p).features;
+  assert.equal(features.find(f=>f.label==='Autonomia no fone').value,'Até 7,5 h anunciadas');
+  assert.equal(features.find(f=>f.label==='Autonomia com estojo').value,'Até 36 h anunciadas');
+  assert.equal(features.find(f=>f.label==='Cancelamento ativo de ruído').state,'unknown');
+});
 test('celular mantém privacidade acessível no fluxo e remove botões sobre cartões',async()=>{
   const source=await readFile(new URL('../privacy-controls.js',import.meta.url),'utf8');
   assert.match(source,/rdc-privacy-settings\{position:static/);

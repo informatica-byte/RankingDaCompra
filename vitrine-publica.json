@@ -1800,7 +1800,7 @@
     {
       "id": "ARscPKCMZs3D8k22qltl",
       "titulo": "Fone de Ouvido Bluetooth Xiaomi Redmi Buds 6 Play M2420E1 Preto",
-      "comentario": "O Xiaomi Redmi Buds 6 Play M2420E1 é um fone TWS intra-auricular para quem procura um conjunto compacto com estojo. A Xiaomi informa Bluetooth 5.4, até 7,5 horas de bateria no fone e até 36 horas com recargas no estojo; esses tempos não são uma única sessão contínua. O estojo usa USB-C. O encaixe dentro do ouvido pode não agradar a todos. IPX4 não comprova proteção contra poeira nem autoriza mergulho. Não testamos conforto, áudio ou chamadas; redução de ruído no microfone não equivale a ANC para ouvir.",
+      "comentario": "O Xiaomi Redmi Buds 6 Play M2420E1 é um fone TWS intra-auricular para quem procura um conjunto compacto com estojo USB-C. A Xiaomi informa Bluetooth 5.4. A autonomia anunciada é de até 7,5 horas no fone. A autonomia com estojo é de até 36 horas, incluindo recargas, não uma sessão contínua. O encaixe dentro do ouvido pode não agradar a todos. IPX4 não comprova proteção contra poeira nem autoriza mergulho. Não testamos conforto, áudio ou chamadas. Se precisa de ANC para ouvir, confirme esse recurso; redução de ruído nas chamadas é outra função.",
       "categoria": "fonesdeouvido",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_926937-MLA117575013847_092026-F.jpg",
       "preco": "99,90",
@@ -1818,8 +1818,8 @@
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 99.9,
       "anuncioSubstituidoEm": "2026-10-19T11:45:01.038Z",
-      "pros": "Fones TWS com estojo USB-C para guardar e recarregar entre usos.\nAté 7,5 horas no fone e até 36 horas com estojo anunciadas pela Xiaomi, separando uso contínuo de recargas.",
-      "contras": "Encaixe intra-auricular: conforto individual não foi testado.\nAutonomia e qualidade das chamadas variam com o uso; não comprovamos ANC para ouvir.",
+      "pros": "Fones TWS com estojo USB-C para guardar e recarregar entre usos.\nAutonomia anunciada pela Xiaomi de até 7,5 horas no fone.\nAutonomia anunciada pela Xiaomi de até 36 horas com recargas no estojo.",
+      "contras": "Encaixe intra-auricular: conforto individual não foi testado.\nAs 36 horas incluem recargas no estojo; não são duração contínua. Autonomia real e chamadas não foram testadas.",
       "notaInformada": ""
     },
     {

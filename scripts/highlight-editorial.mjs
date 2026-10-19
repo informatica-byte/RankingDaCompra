@@ -10,9 +10,9 @@ export const HIGHLIGHT_EDITORIAL = new Map([
   }],
   ['ARscPKCMZs3D8k22qltl', {
     model: /Redmi.*Buds\s*6\s*Play/i,
-    summary: 'O Xiaomi Redmi Buds 6 Play M2420E1 é um fone TWS intra-auricular para quem procura um conjunto compacto com estojo. A Xiaomi informa Bluetooth 5.4, até 7,5 horas de bateria no fone e até 36 horas com recargas no estojo; esses tempos não são uma única sessão contínua. O estojo usa USB-C. O encaixe dentro do ouvido pode não agradar a todos. IPX4 não comprova proteção contra poeira nem autoriza mergulho. Não testamos conforto, áudio ou chamadas; redução de ruído no microfone não equivale a ANC para ouvir.',
-    positiveNotes: ['Fones TWS com estojo USB-C para guardar e recarregar entre usos.', 'Até 7,5 horas no fone e até 36 horas com estojo anunciadas pela Xiaomi, separando uso contínuo de recargas.'],
-    negativeNotes: ['Encaixe intra-auricular: conforto individual não foi testado.', 'Autonomia e qualidade das chamadas variam com o uso; não comprovamos ANC para ouvir.'],
+    summary: 'O Xiaomi Redmi Buds 6 Play M2420E1 é um fone TWS intra-auricular para quem procura um conjunto compacto com estojo USB-C. A Xiaomi informa Bluetooth 5.4. A autonomia anunciada é de até 7,5 horas no fone. A autonomia com estojo é de até 36 horas, incluindo recargas, não uma sessão contínua. O encaixe dentro do ouvido pode não agradar a todos. IPX4 não comprova proteção contra poeira nem autoriza mergulho. Não testamos conforto, áudio ou chamadas. Se precisa de ANC para ouvir, confirme esse recurso; redução de ruído nas chamadas é outra função.',
+    positiveNotes: ['Fones TWS com estojo USB-C para guardar e recarregar entre usos.', 'Autonomia anunciada pela Xiaomi de até 7,5 horas no fone.', 'Autonomia anunciada pela Xiaomi de até 36 horas com recargas no estojo.'],
+    negativeNotes: ['Encaixe intra-auricular: conforto individual não foi testado.', 'As 36 horas incluem recargas no estojo; não são duração contínua. Autonomia real e chamadas não foram testadas.'],
     sourceUrl: 'https://www.mi.com/global/product/redmi-buds-6-play/', specUrl: 'https://www.mi.com/global/product/redmi-buds-6-play/specs/', sourceLabel: 'Xiaomi Redmi Buds 6 Play M2420E1', reviewedAt: '2026-10-19', suppressRating: true,
   }],
   ['GjHJtzdsIhbmSINvhPeX', {
