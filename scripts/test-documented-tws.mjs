@@ -27,6 +27,8 @@ test('não confunde open-ear ou caixa TWS com intra-auricular e não repete mode
   assert.equal(safety.family({title:'Fone TWS OWS Open Ear ForeStory X5'}),'open-ear');
   assert.equal(safety.family({title:'Caixa de som TWS Bluetooth'}),'');
   assert.equal(safety.family(products[1]),'earbuds-tws');
+  assert.equal(safety.family({title:'Fone de Ouvido soundcore P30i estojo com suporte para celular'}),'earbuds-tws');
+  assert.equal(safety.family({title:'Suporte para fone TWS'}),'');
   const pair=[products[0],{...products[0],id:'blue',title:'Fone Xiaomi Redmi Buds 6 Play Azul'}];
   assert.equal(safety.distinctModels(pair).length,1);
   const draft=safety.documentedDraft({products},now);
@@ -64,4 +66,10 @@ test('ambos os painéis oferecem a mesma revisão documental antes de salvar',as
     assert.match(source,/RDCWeeklyComparisonSafety.documentedDraft\(index\)/);
     assert.match(source,/RDCWeeklyComparisonSafety.documentaryMarkup/);
   }
+});
+test('a seleção documental funciona com os títulos completos do catálogo publicado',async()=>{
+  const index=JSON.parse(await readFile(new URL('../search-index.json',import.meta.url),'utf8'));
+  const at=Math.max(...index.products.filter(p=>products.some(q=>q.id===p.id)).map(p=>Date.parse(p.checkedAt)))+1000;
+  const draft=safety.documentedDraft(index,at);
+  assert.equal(draft.produtos.length,3);
 });

@@ -44,7 +44,7 @@
     // Só o tipo do próprio título decide a família. Uma ressalva mencionando
     // outro equipamento na descrição não muda a identidade deste produto.
     const title = normalize(product?.titulo || product?.title);
-    if (/\b(?:suporte|capa|pelicula|carregador|adaptador)\b/.test(title)) return '';
+    if (/^(?:(?:kit|conjunto)\s+(?:de\s+)?)?(?:suporte|capa|pelicula|carregador|adaptador)\b/.test(title)) return '';
     if (/starlink|internet.*satelite/.test(title)) return 'satellite';
     if (/repetidor|extensor.*wi.?fi/.test(title)) return 'repeater';
     if (/access point|ponto de acesso/.test(title)) return 'access-point';
