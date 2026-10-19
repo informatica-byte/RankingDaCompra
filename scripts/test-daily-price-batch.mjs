@@ -21,6 +21,7 @@ test("sitemap mantém uma janela diária e não relê Firebase por artefatos ou 
   const paths = [...pushTriggers.matchAll(/^\s+-\s+"([^"]+)"\s*$/gm)].map(match => match[1]);
   assert.deepEqual(paths, [
     "scripts/generate-sitemap.mjs",
+    "home-selection.js",
     "scripts/generate-discovery.mjs",
     "scripts/discovery-editorial.mjs",
     "scripts/published-editorial.mjs",

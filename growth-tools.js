@@ -1195,7 +1195,10 @@
       || "Vídeos do Ranki: produtos em destaque";
     const playerUrl = `https://www.youtube-nocookie.com/embed/${ids[0]}?playlist=${encodeURIComponent(ids.join(","))}&autoplay=1&mute=1&loop=1&playsinline=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(SITE)}`;
     section.innerHTML = `<div class="youtube-showcase-copy"><span>🦊 RANKI EM VÍDEO</span><h2>${escapeHtml(title)}</h2><p>${ids.length} vídeos passam automaticamente. Toque no botão discreto sobre o vídeo para abrir a análise do produto.</p><a data-current-youtube href="${items[0].youtubeUrl}" target="_blank" rel="noopener noreferrer">Abrir no YouTube</a></div><div class="youtube-showcase-player"><iframe data-src="${playerUrl}" title="${escapeHtml(title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><a class="youtube-product-overlay" data-youtube-product-overlay hidden><img alt="" loading="lazy"><span><small>Produto deste vídeo</small><strong></strong><em></em></span><b>Ver produto</b></a></div>`;
-    promotion.insertAdjacentElement("afterend", section);
+    // Buying paths and offers precede videos. A valid weekly comparison can
+    // subsequently insert itself after Top 6, naturally before this player.
+    const videoAnchor = document.getElementById('ranking-da-semana') || document.getElementById('top5-semanal') || promotion;
+    videoAnchor.insertAdjacentElement("afterend", section);
     const overlay = section.querySelector("[data-youtube-product-overlay]");
     const currentYoutube = section.querySelector("[data-current-youtube]");
     // Defer catalogue and YouTube API until the visitor approaches the player.
@@ -1994,14 +1997,9 @@
     try {index = window.RDCPublicData ? await window.RDCPublicData.json('/search-index.json') : await (await fetch('/search-index.json', {cache:'no-cache'})).json();} catch {return;}
     const reconciled = window.RDCWeeklyComparisonSafety?.reconcile(config, index);
     if (!reconciled || !reconciled.products.length) return;
-    if (reconciled.needsReview) {
-      const section = document.createElement('section');
-      section.className = 'weekly-comparison'; section.id = 'ranking-da-semana'; section.dataset.weeklyComparison = 'em-revisao';
-      section.innerHTML = '<div class="weekly-comparison-head"><div><small>SELEÇÃO EM REVISÃO EDITORIAL</small><h2>Opções para conhecer — sem classificação</h2><p>A seleção anterior precisa de nova revisão. Produtos de propostas diferentes não disputam o mesmo ranking. Confira as análises e o preço no vendedor.</p></div></div><div class="weekly-ranking-grid">'
-        + reconciled.products.map(p => '<article class="weekly-ranking-card"><img loading="lazy" src="' + escapeHtml(p.foto) + '" alt="' + escapeHtml(p.titulo) + '"><h3>' + escapeHtml(p.titulo) + '</h3><strong>' + escapeHtml((p.precoConfirmado ? 'Preço conferido: ' : 'Último preço registrado: ') + (p.preco > 0 ? brl.format(p.preco) : 'a confirmar')) + '</strong><p>' + escapeHtml(p.precoConferidoEm ? 'Conferência: ' + dateBr.format(new Date(p.precoConferidoEm)) : 'Aguardando conferência') + '</p><a href="' + escapeHtml(p.productUrl) + '">Ver análise e conferir preço</a></article>').join('') + '</div>';
-      (document.getElementById('top5-semanal') || document.querySelector('main'))?.insertAdjacentElement('afterend', section);
-      return;
-    }
+    // Keep the saved configuration and product records in the panels. An
+    // unfinished editorial selection is not a customer recommendation.
+    if (reconciled.needsReview) return;
     const products = weeklyScoreProducts(reconciled.products).map(product => ({
       ...product, analiseHumana: Number(config.versao) >= 4 && Object.values(product.analiseHumana || {}).every(window.RDCWeeklyComparisonSafety.editorialTextAllowed) ? product.analiseHumana : null
     }));

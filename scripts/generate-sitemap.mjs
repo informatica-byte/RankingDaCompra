@@ -2,6 +2,7 @@ import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promise
 
 import { createHash } from "node:crypto";
 import { publicCatalogue } from "./public-catalogue.mjs";
+import homeSelection from '../home-selection.js';
 import offerReplacement from "../product-offer-replacement.js";
 import { decodeConfigFields, publicSiteConfig } from "./public-site-config.mjs";
 import { correctProductData, hasDocumentedEditorialRating } from "./product-title-corrections.mjs";
@@ -1167,6 +1168,10 @@ async function generateWeeklyTop(products, socialImages) {
 
 
 
+  // Equal visible titles do not establish equivalence, but must not occupy
+  // multiple discovery slots. Preserve the first stable choice and fill from
+  // the remaining eligible catalogue; no underlying product is modified.
+  ordered = homeSelection.distinctTitles(ordered);
   const selected = [];
 
   const categoryCounts = new Map();

@@ -2,6 +2,7 @@ import {readFile,writeFile,readdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import choices from '../best-choices.js';
 import titles from '../promotion-title.js';
+import homeSelection from '../home-selection.js';
 
 const SITE='https://rankingdacompra.com.br/';
 const json=async file=>JSON.parse(await readFile(resolve(file),'utf8'));
@@ -48,7 +49,8 @@ await writeFile('sitemap.xml',sitemap);
 // Persistent HTML also lives on the home page, with no Firebase request.
 let home=await readFile('index.html','utf8');
 const start='<!-- static-home-products:start -->',end='<!-- static-home-products:end -->';
-const staticBlock=start+'<main class="wrap static-home" aria-label="Produtos e comparativos em destaque">'+content+'<a class="button secondary" href="/'+choices.PAGE+'">Ver página completa de melhores escolhas</a><nav class="static-guide-grid" aria-label="Comparativos prioritários">'+selectedGuides.map(g=>'<a href="/'+choices.esc(g.url)+'">'+choices.esc(g.title)+'</a>').join('')+'</nav></main>'+end;
+const homeProducts=content.replace(/<h3 class="best-products-heading">Rankings por categoria<\/h3><nav class="best-guide-grid"[\s\S]*?<\/nav>/,'');
+const staticBlock=start+'<main class="wrap static-home" aria-label="Produtos e comparativos em destaque">'+homeSelection.guideNavigation(selectedGuides)+homeProducts+'<a class="button secondary" href="/'+choices.PAGE+'">Ver página completa de melhores escolhas</a></main>'+end;
 home=home.replace(new RegExp(start+'[\\s\\S]*?'+end),staticBlock);
 await writeFile('index.html',home);
 await protectGeneratedPublicPages();

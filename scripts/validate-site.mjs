@@ -37,14 +37,16 @@ has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato aus
 has(homeHtml, /repetidoEmDestaque/, "preenchimento de segurança para manter seis produtos ausente", "index.html");
 has(homeHtml, /seo-priorities\.js\?v=20260913-1/, "catálogo SEO compartilhado ausente da vitrine", "index.html");
 // A revisão visual preserva App Check e o protocolo dos contadores da versão anterior.
-has(homeHtml, /growth-tools\.js\?v=20261012-audit-4(?=$|["'&<>\s])/, "versão conhecida das ferramentas da vitrine ausente", "index.html");
+has(homeHtml, /growth-tools\.js\?v=(?:20261012-audit-4|20261019-home)(?=$|["'&<>\s])/, "versão conhecida das ferramentas da vitrine ausente", "index.html");
 has(homeHtml, /class="hero-search"[\s\S]{0,300}name="busca"/, "busca principal visível ausente da primeira tela", "index.html");
 has(homeHtml, /<a\b[^>]*href=["']\/?analises\.html["'][^>]*>(?:Ver todos os comparativos|Ver guias de compra)<\/a>/, "atalho principal para comparativos ausente", "index.html");
 has(homeHtml, /name="robots" content="index,follow,max-image-preview:large"/, "prévia de imagem grande ausente da página inicial", "index.html");
 has(homeHtml, /static-home-products:start/, "produtos estáticos rastreáveis ausentes da página inicial", "index.html");
 has(homeHtml, /class="deal-grid" data-best-products/, "grade estática de produtos ausente da página inicial", "index.html");
-has(homeHtml, /aria-label="Comparativos prioritários"/, "prioridades semanais de comparativos ausentes", "index.html");
-has(homeHtml, /class="static-guide-grid"/, "links internos dos comparativos prioritários ausentes", "index.html");
+const priorityNavigation = homeHtml.match(/<nav\b[^>]*aria-label="(?:Comparativos prioritários|Guias para escolher por necessidade)"[^>]*>([\s\S]*?)<\/nav>/)?.[1] || '';
+if (!priorityNavigation) fail('index.html: navegação dos comparativos prioritários ausente');
+const priorityGuideLinks = [...priorityNavigation.matchAll(/href="\/?(melhores-[a-z0-9-]+\.html)"/g)].map(match=>match[1]);
+if (new Set(priorityGuideLinks).size !== 3) fail('index.html: a navegação inicial deve conter três comparativos publicados distintos');
 if (/`#\$\{i\} no ranking`/.test(homeHtml)) fail("index.html: resultado comum ainda recebe posição de ranking sem comparação aprovada");
 has(homeHtml, /RDCPublicData\.json\('\/search-index\.json'\)/, "busca estática sem Firebase ausente", "index.html");
 has(homeHtml, /window\.RANKING_CATEGORY_GUIDES=\{/, "mapa preventivo de categorias antigas ausente", "index.html");
