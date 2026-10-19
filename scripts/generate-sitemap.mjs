@@ -1207,18 +1207,20 @@ async function generateWeeklyTop(products, socialImages) {
   }
 
 
-  if (selected.length < 6) {
+  if (!selected.length) {
     if (previous?.products?.length) {
       console.warn("Top 6 anterior preservado: somente " + selected.length + " produto(s) elegível(is).");
       return previous;
     }
-    throw new Error("Não há 6 produtos elegíveis para montar o Top 6 semanal.");
+    throw new Error("Não há produtos elegíveis para montar a seleção semanal.");
   }
 
 
   const payload = {
 
     version: 1,
+
+    presentationRule: 'um-titulo-visivel-por-vaga-sem-unir-cadastros',
 
     weekStart: week.start,
 
