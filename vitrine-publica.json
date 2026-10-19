@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-19T20:04:17.685Z",
+  "generatedAt": "2026-10-19T20:30:31.123Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -731,7 +731,7 @@
     {
       "id": "5bQKU9inL3pq14yE8K4L",
       "titulo": "Fone de Ouvido Bluetooth 5.4 soundcore P30i da Anker, Cancelamento de Ruído Adaptativo, Graves Poderosos, 45H de Reprodução, Estojo 2-em-1 com Suporte para Celular, IP54, Fone sem fio TWS, Verde",
-      "comentario": "Fone de Ouvido Bluetooth 5.4 soundcore P30i da Anker, Cancelamento de Ruído Adaptativo, Graves Poderosos, 45H de Reprodução, Estojo 2-em-1 com: Autonomia de até 45 horas de reprodução, cancelamento de ruído adaptativo eficiente para isolamento. Pontos de atenção registrados: Verifique a compatibilidade do encaixe do suporte do estojo com a espessura do seu aparelho, a certificação IP54 oferece.",
+      "comentario": "O soundcore P30i é um fone TWS intra-auricular com ANC e modo transparência anunciados pela fabricante. A duração anunciada é de até 10 horas nos fones e até 45 horas com recargas no estojo; 45 horas não são uma sessão contínua. O estojo também funciona como apoio para celular. Não medimos áudio, conforto, ANC ou bateria real. Recursos ligados, volume e condições de uso alteram a autonomia.",
       "categoria": "fonesdeouvido",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_704425-MLA99991505833_112025-F.webp",
       "preco": "196,50",
@@ -745,8 +745,8 @@
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 196.5,
       "anuncioSubstituidoEm": "2026-10-10T11:24:07.520Z",
-      "pros": "",
-      "contras": "",
+      "pros": "ANC e modo transparência anunciados pela soundcore.\nEstojo com função de apoio para celular, segundo a fabricante.",
+      "contras": "As 45 horas incluem recargas no estojo, não duração contínua.\nEficácia do ANC, conforto e autonomia real não foram testados.",
       "notaInformada": ""
     },
     {
@@ -3221,7 +3221,7 @@
     {
       "id": "FlqPY3yHJ2xPoNgnhSTE",
       "titulo": "Galaxy Buds Core Preto",
-      "comentario": "Galaxy Buds Core Preto: design voltado para conforto auricular, construção otimizada para uso diário. Pontos de atenção registrados: Necessidade de verificar a compatibilidade total com seu dispositivo, limites técnicos comuns a modelos da categoria de entrada.",
+      "comentario": "O Samsung Galaxy Buds Core é um fone TWS intra-auricular com ANC anunciado pela Samsung. A autonomia total com estojo anunciada é de até 35 horas com ANC desligado ou aproximadamente 20 horas com ANC ligado, incluindo recargas. Esses números não representam uma sessão contínua nos fones. As funções Galaxy AI exigem smartphone Galaxy compatível; os fones não traduzem de forma independente. Não testamos áudio, conforto, microfone ou autonomia real.",
       "categoria": "fonesdeouvido",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_650858-MLA97317826023_112025-F.webp",
       "preco": "224,72",
@@ -3235,8 +3235,8 @@
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 224.72,
       "anuncioSubstituidoEm": "2026-10-18T13:03:14.080Z",
-      "pros": "",
-      "contras": "",
+      "pros": "Cancelamento ativo de ruído (ANC) anunciado pela Samsung.\nBluetooth 5.4 informado pela fabricante para conexão compatível.",
+      "contras": "Totais de 35/20 horas incluem estojo e têm condições de ANC diferentes.\nRecursos Galaxy AI dependem de smartphone compatível; conforto e áudio não foram testados.",
       "notaInformada": ""
     },
     {
