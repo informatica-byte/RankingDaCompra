@@ -47,6 +47,26 @@ const numberText = value => String(value).replace(',', '.').replace(/\.0+$/, '')
 const accessoryTitle = title => /^(?:kit\s+(?:de\s+)?)?(?:capa|bolsa|mochila|case|estojo|suporte|almofada|espuma|adaptador|fonte|carregador|bateria para)\b/i.test(String(title || '').replace(/^[^\p{L}\p{N}]+/u, '').trim());
 const PROCESSOR = /\b(?:Intel\s+)?Core\s+i[3579](?:[ -]\d{4,5}[A-Z]{0,3})?\b|\b(?:AMD\s+)?Ryzen\s+[3579](?:\s+\d{4}[A-Z]{0,3})?\b|\b(?:Intel\s+)?Celeron\s+[A-Z]?\d{3,5}\b/i;
 
+function routerPorts(product) {
+  const words = {uma:1, um:1, duas:2, dois:2, 'três':3, tres:3, quatro:4, cinco:5, seis:6, sete:7, oito:8, nove:9, dez:10, onze:11, doze:12};
+  const pattern = /\b(\d+|uma|um|duas|dois|três|tres|quatro|cinco|seis|sete|oito|nove|dez|onze|doze)\s*portas?\s*(?:de\s*)?(LAN|WAN|ethernet|gigabit|10\/100)\b/i;
+  const unknown = {label:'Quantidade de portas', value:UNKNOWN, state:'unknown', basis:'cadastro'};
+  const result = featureEvidence(product, pattern);
+  if (result.state !== 'yes') return unknown;
+  const roles = new Map();
+  for (const item of result.evidence) for (const match of item.text.matchAll(new RegExp(pattern.source, 'gi'))) {
+    const count = Number(match[1]) || words[match[1].toLowerCase()];
+    const role = /^(?:LAN|WAN)$/i.test(match[2]) ? match[2].toUpperCase() : '';
+    if (!(count > 0 && count <= 64)) return unknown;
+    if (roles.has(role) && roles.get(role) !== count) return unknown;
+    roles.set(role, count);
+  }
+  // A count of LAN ports is not a count of every connector. Never add a WAN
+  // port that was not specified, nor choose one side of conflicting counts.
+  if (!roles.size || (roles.size > 1 && roles.has(''))) return unknown;
+  return {label:'Quantidade de portas', value:[...roles].map(([role,count]) => `${count} ${count === 1 ? 'porta' : 'portas'}${role ? ' ' + role : ''}`).join(' + ') + ' anunciadas', state:'yes', ...provenance(product, result.evidence)};
+}
+
 function processorFeature(product) {
   const result = featureEvidence(product, PROCESSOR);
   const unknown = () => ({label: 'Processador', value: UNKNOWN, state: 'unknown', basis: 'cadastro'});
@@ -120,7 +140,7 @@ export function comparisonData(product) {
       booleanFeature(product, 'Wi-Fi 6', /wi[ -]?fi\s*6|802\.11ax|\bax\d{3,4}\b/i),
       booleanFeature(product, 'Banda de 5 GHz', /dual[ -]?band|duas bandas|5\s*ghz/i),
       booleanFeature(product, 'Portas Gigabit', /gigabit|1000\s*mbps|1\s*gbps/i),
-      specification(product, 'Quantidade de portas', /(\d+)\s*portas?\s*(?:de\s*)?(?:ethernet|gigabit|LAN|WAN|10\/100)/i, match => `${match[1]} portas anunciadas`),
+      routerPorts(product),
       booleanFeature(product, 'Rede Mesh', /\bmesh\b|easymesh/i),
     ];
   } else if (family === 'notebook') {

@@ -66,8 +66,9 @@
     const style = document.createElement('style');
     style.textContent = '.rdc-privacy-banner{position:fixed;z-index:20000;bottom:88px;left:16px;right:16px;max-width:700px;margin:auto;padding:18px;background:#fff;color:#16312a;border:1px solid #a6c3b6;border-radius:12px;box-shadow:0 5px 25px #0003;font:15px/1.5 system-ui}.rdc-privacy-banner[hidden]{display:none}.rdc-privacy-actions{display:flex;flex-wrap:wrap;gap:10px}.rdc-privacy-actions button,.rdc-privacy-settings{min-height:44px;padding:9px 13px;border:1px solid #075b49;border-radius:7px;background:#fff;color:#075b49;font-weight:700;cursor:pointer}.rdc-privacy-settings{position:fixed;z-index:15000;bottom:12px;left:12px;font-size:12px}.rdc-privacy-banner a{color:#075b49}.rdc-privacy-banner button:focus-visible,.rdc-privacy-settings:focus-visible{outline:3px solid #1769e0;outline-offset:3px}';
     document.head.appendChild(style);
-    // No celular, manter o controle acima do botão fixo de compra, sem cobri-lo.
-    style.textContent += '@media(max-width:700px){.rdc-privacy-settings{bottom:76px}}';
+    // On narrow screens the persistent settings control belongs to document
+    // flow, not over a product/photo or the sticky purchase action.
+    style.textContent += '@media(max-width:700px){.rdc-privacy-settings{position:static;display:block;width:max-content;max-width:calc(100% - 32px);margin:16px;bottom:auto;left:auto}.rdc-privacy-banner{bottom:76px;max-height:calc(100dvh - 100px);overflow:auto}.club-floating,.club-floating-close{display:none!important}.weekly-card .weekly-discount{position:static;display:inline-flex;align-self:flex-start;margin:0 0 10px}.weekly-card .weekly-rank{position:static;display:inline-flex;align-self:flex-start;margin:0 0 8px}}';
     const banner = document.createElement('section');
     banner.id = 'rdc-privacy-banner'; banner.className = 'rdc-privacy-banner';
     banner.setAttribute('aria-label', 'Escolhas de privacidade');

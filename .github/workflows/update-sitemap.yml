@@ -16,6 +16,7 @@ on:
       - "scripts/product-url-continuity.mjs"
       - "product-url-aliases.json"
       - "scripts/product-title-corrections.mjs"
+      - "scripts/highlight-editorial.mjs"
       - "scripts/firestore-read-auth.mjs"
       - "scripts/public-catalogue.mjs"
       - "scripts/public-site-config.mjs"

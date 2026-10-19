@@ -1,6 +1,7 @@
 import { readFile, readdir, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { HIGHLIGHT_EDITORIAL } from './highlight-editorial.mjs';
 
 const PRODUCT_CORRECTIONS = new Map([
   ['VzQgxGhowdzlfNshI3ZC', {
@@ -305,6 +306,10 @@ const PRODUCT_CORRECTIONS = new Map([
   }],
 ]);
 
+for (const [id, review] of HIGHLIGHT_EDITORIAL) {
+  PRODUCT_CORRECTIONS.set(id, {...PRODUCT_CORRECTIONS.get(id), ...review});
+}
+
 function correctionFor(product) {
   const correction = PRODUCT_CORRECTIONS.get(String(product?.id || ""));
   // Um cadastro pode ser reutilizado. Nunca aplicar a ficha do modelo anterior
@@ -315,7 +320,7 @@ function correctionFor(product) {
 export function manufacturerEvidence(product) {
   const correction = correctionFor(product);
   return correction?.summary && correction.sourceUrl
-    ? {sourceUrl: correction.sourceUrl, model: correction.sourceLabel, checkedAt: "2026-10-06", kind: "manufacturer-specification", independentTest: false}
+    ? {sourceUrl: correction.sourceUrl, model: correction.sourceLabel, checkedAt: correction.reviewedAt || "2026-10-06", kind: "manufacturer-specification", independentTest: false}
     : null;
 }
 
