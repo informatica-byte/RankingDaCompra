@@ -2293,6 +2293,10 @@
       try {
         if (typeof auth !== "undefined" && !auth.currentUser) throw new Error("Sua sessão administrativa expirou.");
         const database = typeof db !== "undefined" ? db : await metricsDb();
+        if (weeklyRankingDraft.modoEditorial === 'documental') {
+          const index = await (await fetch('/search-index.json', {cache:'no-cache'})).json();
+          if (window.RDCWeeklyComparisonSafety.reconcile(weeklyRankingDraft, index).needsReview) throw Error('A base mudou. Carregue novamente a revisão documental antes de salvar.');
+        }
         await database.collection(CONFIG_COLLECTION).doc(WEEKLY_COMPARISON_DOC).set({
           ...weeklyRankingDraft, publicado: true,
           atualizadoEm: window.firebase.firestore.FieldValue.serverTimestamp()
@@ -2307,6 +2311,7 @@
     try {
       const current = await loadWeeklyComparison();
       if (current?.publicado) {
+        if (current.modoEditorial === 'documental') review.innerHTML = weeklyDraftMarkup(current);
         const expired = String(current.semana || "") !== weeklyMondayKey();
         status.textContent = expired
           ? "O ranking publicado é da semana anterior. Prepare e aprove a nova seleção."

@@ -2529,6 +2529,7 @@
           const s = await getDoc(doc(db, "configuracoes", "ranking-semanal"));
           if (!s.exists()) return;
           const d = s.data();
+          if (d.modoEditorial === 'documental') rankingMostrarRevisao(d);
           msg("ranking-status", String(d.semana || "") === rankingSemana() ? "✓ O ranking desta semana já está publicado." : "O ranking publicado é da semana anterior. Prepare a nova seleção.", "ok");
         } catch {}
       }
@@ -2633,6 +2634,10 @@
         const b = e.currentTarget;
         b.disabled = true;
         try {
+          if (rankingDraftMovel.modoEditorial === 'documental') {
+            const index = await (await fetch('/search-index.json', {cache:'no-cache'})).json();
+            if (window.RDCWeeklyComparisonSafety.reconcile(rankingDraftMovel, index).needsReview) throw Error('A base mudou. Carregue novamente a revisão documental antes de salvar.');
+          }
           await setDoc(doc(db, "configuracoes", "ranking-semanal"), {
             ...rankingDraftMovel,
             publicado: true,

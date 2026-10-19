@@ -176,6 +176,11 @@
     return draft;
   }
   function documentaryMarkup(config, products) {
+    return documentaryContent(config, products)
+      .replace('class="weekly-ranking-grid"', 'class="weekly-ranking-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px"')
+      .replaceAll('style="min-width:0;overflow-wrap:anywhere"', 'style="min-width:0;overflow-wrap:anywhere;border:1px solid #cfe1d8;background:#fff;padding:16px;border-radius:14px"');
+  }
+  function documentaryContent(config, products) {
     const esc = value => String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
     const facts = products.map(p => DOCUMENTED_TWS.find(f => f.id === p.id && f.model === modelKey(p)));
     if (products.length !== 3 || facts.some(f => !f)) return '';
