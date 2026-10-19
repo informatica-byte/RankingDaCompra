@@ -153,7 +153,13 @@ export function comparisonData(product) {
     const autonomy = label => specification(product, label, AUTONOMY, match => {
       const duration = (match[1] || match[2]).match(/(\d+(?:[.,]\d+)?)\s*(?:horas?|h)/i)?.[1];
       return duration ? `${/at[eé]\s*\d/i.test(match[1] || match[2]) ? 'Até ' : ''}${numberText(duration)} h anunciadas` : null;
-    }, item => label === 'Autonomia com estojo' ? /estojo/i.test(item.text) : !/estojo|recarga|carregamento|recarregar/i.test(item.text));
+    }, item => {
+      // One clause mentioning two durations cannot safely attribute the first
+      // number to the charging case merely because "estojo" occurs later.
+      const durations = [...item.text.matchAll(/\b\d+(?:[.,]\d+)?\s*(?:horas?\b|h\b)/gi)];
+      if (durations.length !== 1) return false;
+      return label === 'Autonomia com estojo' ? /estojo/i.test(item.text) : !/estojo|recarga|carregamento|recarregar/i.test(item.text);
+    });
     features = [
       specification(product, 'Formato', /\bon[ -]?ear\b|\bover[ -]?ear\b|\bin[ -]?ear\b|intra[ -]?auricular|supra[ -]?auricular|circum[ -]?auricular|\bear\s*clip\b/i, match => {
         const format = match[0].toLowerCase().replace(/[ -]/g, '');

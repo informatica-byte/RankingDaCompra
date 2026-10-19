@@ -30,7 +30,7 @@ export function featureEvidence(product, pattern) {
     // “sem fio com microfone” não nega o microfone ou outro recurso seguinte.
     const before = clause.slice(Math.max(0, match.index - 65), match.index).replace(/\bsem fio\b/gi, 'wireless');
     const after = clause.slice(match.index + match[0].length, match.index + match[0].length + 45);
-    if (/n[aã]o (?:informa|confirm|especific|menciona|detalha|descreve|documenta|indica|esclarece)|sem (?:confirma[cç][aã]o|informa[cç][aã]o|dados|documenta[cç][aã]o)|(?:falta|aus[eê]ncia) de (?:informa[cç][aã]o|dados|documenta[cç][aã]o)|a confirmar|verifi(?:que|car)|confir(?:me|mar)|incert|n[aã]o [ée] confirm/i.test(before + after)
+    if (/n[aã]o (?:informa|confirm|comprova|equivale|especific|menciona|detalha|descreve|documenta|indica|esclarece)|sem (?:confirma[cç][aã]o|informa[cç][aã]o|dados|documenta[cç][aã]o)|(?:falta|aus[eê]ncia) de (?:informa[cç][aã]o|dados|documenta[cç][aã]o)|a confirmar|verifi(?:que|car)|confir(?:me|mar)|incert|n[aã]o [ée] confirm/i.test(before + after)
         || /n[aã]o (?:foi|foram) (?:confirmad|informad)/i.test(after)) unknown.push(evidence);
     else if (/(?:\bsem|\bn[aã]o(?: possui| tem| suporta| conta com| inclui| oferece)?|aus[eê]ncia de|carece de|falta de)(?:\s+[\wÀ-ÿ-]+){0,4}\s*$/i.test(before)
         || /^\s*(?:[:—-]\s*)?(?:ausente|indispon[ií]vel|inexistente|n[aã]o\s+(?:possui|tem|suporta|inclui|oferece|dispon[ií]vel|presente)|n[aã]o\s*[.;]?$)/i.test(after)) absent.push(evidence);

@@ -43,6 +43,10 @@ test('Redmi separa autonomia por sessão e com estojo sem inventar ausência de 
   assert.equal(features.find(f=>f.label==='Autonomia com estojo').value,'Até 36 h anunciadas');
   assert.equal(features.find(f=>f.label==='Cancelamento ativo de ruído').state,'unknown');
 });
+test('frase misturada ou ausência de comprovação não vira duração errada nem ausência do recurso',()=>{
+  const mixed=comparisonData({titulo:'Fone TWS',comentario:'Autonomia de até 7,5 horas no fone e até 36 horas de bateria com estojo. Redução de ruído no microfone não equivale a ANC.'}).features;
+  for(const label of ['Autonomia no fone','Autonomia com estojo','Cancelamento ativo de ruído']) assert.equal(mixed.find(f=>f.label===label).state,'unknown',label);
+});
 test('celular mantém privacidade acessível no fluxo e remove botões sobre cartões',async()=>{
   const source=await readFile(new URL('../privacy-controls.js',import.meta.url),'utf8');
   assert.match(source,/rdc-privacy-settings\{position:static/);
