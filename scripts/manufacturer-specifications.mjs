@@ -20,6 +20,8 @@ const sources = {
   mr80: 'https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/',
   twibi: 'https://backend.intelbras.com/sites/default/files/2025-03/Ficha%20T%C3%A9cnica%20-%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX.pdf',
   quantum: 'https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf',
+  lenovo256: 'https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0003BR',
+  lenovo512: 'https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0002BR',
 };
 const fact = (label, value, source, state = 'yes') => ({label, value, state, basis:'fabricante', sourceUrl:sources[source], checkedAt:reviewedAt});
 const pending = (label, reason) => ({label, value:'Não informado / a confirmar', state:'unknown', basis:'cadastro', reason});
@@ -142,6 +144,20 @@ export const MANUFACTURER_SPECIFICATIONS = new Map([
       fact('Versão Bluetooth','Não se aplica à conexão com fio documentada','quantum','no'),fact('Autonomia no fone','Não se aplica à conexão analógica com fio documentada','quantum','no'),
       pending('Cancelamento ativo de ruído','ANC para ouvir não foi confirmado nesta ficha. Microfone direcional não comprova ANC.')],
     limitations:['Confirme a entrada de áudio e eventuais adaptadores do seu aparelho. Não testamos conforto, áudio ou qualidade de voz.'],
+  }],
+  ['mlMLB5212483469',{
+    model:/\blenovo\b.*\b83ns0003br\b/i,family:'notebook',scope:'Lenovo IdeaPad Slim 3 15IRH10, código exato 83NS0003BR. Configuração de fábrica no PSREF; não copiar o SSD do código 83NS0002BR.',
+    features:[fact('Memória RAM','8 GB DDR5-4800 soldados; configuração de fábrica','lenovo256'),
+      fact('Armazenamento SSD','256 GB M.2 2242 PCIe 4.0 x4 NVMe; configuração de fábrica','lenovo256'),
+      fact('Processador','Intel Core i5-13420H','lenovo256'),fact('Sistema operacional de fábrica','Windows 11 Home Single Language, português do Brasil','lenovo256')],
+    limitations:['Confirme o SKU na oferta e se o vendedor modificou memória, armazenamento ou sistema. A ficha de fábrica não autentica a unidade e não é teste de desempenho.'],
+  }],
+  ['XCp2wV9P76JfBz2zuUTX',{
+    model:/\blenovo\b.*\b83ns0002br\b/i,family:'notebook',scope:'Lenovo IdeaPad Slim 3 15IRH10, código exato 83NS0002BR. Configuração de fábrica no PSREF; não copiar o SSD do código 83NS0003BR.',
+    features:[fact('Memória RAM','8 GB DDR5-4800 soldados; configuração de fábrica','lenovo512'),
+      fact('Armazenamento SSD','512 GB M.2 2242 PCIe 4.0 x4 NVMe; configuração de fábrica','lenovo512'),
+      fact('Processador','Intel Core i5-13420H','lenovo512'),fact('Sistema operacional de fábrica','Windows 11 Home Single Language, português do Brasil','lenovo512')],
+    limitations:['Confirme o SKU na oferta e se o vendedor modificou memória, armazenamento ou sistema. A ficha de fábrica não autentica a unidade e não é teste de desempenho.'],
   }],
 ]);
 

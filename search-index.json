@@ -8404,21 +8404,35 @@
         "features": [
           {
             "label": "Memória RAM",
-            "value": "16 GB",
+            "value": "8 GB DDR5-4800 soldados; configuração de fábrica",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0003BR",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Armazenamento SSD",
-            "value": "256 GB",
+            "value": "256 GB M.2 2242 PCIe 4.0 x4 NVMe; configuração de fábrica",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0003BR",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Processador",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Intel Core i5-13420H",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0003BR",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Sistema operacional de fábrica",
+            "value": "Windows 11 Home Single Language, português do Brasil",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0003BR",
+            "checkedAt": "2026-10-19"
           }
         ]
       },
@@ -8630,21 +8644,35 @@
         "features": [
           {
             "label": "Memória RAM",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "8 GB DDR5-4800 soldados; configuração de fábrica",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0002BR",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Armazenamento SSD",
-            "value": "512 GB",
+            "value": "512 GB M.2 2242 PCIe 4.0 x4 NVMe; configuração de fábrica",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0002BR",
+            "checkedAt": "2026-10-19"
           },
           {
             "label": "Processador",
             "value": "Intel Core i5-13420H",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0002BR",
+            "checkedAt": "2026-10-19"
+          },
+          {
+            "label": "Sistema operacional de fábrica",
+            "value": "Windows 11 Home Single Language, português do Brasil",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0002BR",
+            "checkedAt": "2026-10-19"
           }
         ]
       },

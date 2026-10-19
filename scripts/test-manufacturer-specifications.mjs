@@ -9,14 +9,14 @@ const product=id=>catalogue.find(p=>p.id===id);
 const feature=(id,label)=>comparisonData(product(id)).features.find(f=>f.label===label);
 
 test('as revisões usam modelo exato e não mudam cadastros, preço ou prova de conferência',()=>{
-  assert.equal(MANUFACTURER_SPECIFICATIONS.size,16);
+  assert.equal(MANUFACTURER_SPECIFICATIONS.size,18);
   for(const [id] of MANUFACTURER_SPECIFICATIONS){
     const p=product(id);assert.ok(p,id);const before=JSON.stringify(p);
     const record=documentedSpecifications(p);assert.ok(record,id);
     assert.ok(record.features.some(f=>f.basis==='fabricante'));
     for(const f of record.features.filter(f=>f.basis==='fabricante')){
       const url=new URL(f.sourceUrl);assert.equal(url.protocol,'https:');
-      assert.match(url.hostname,/(?:mi\.com|jbl\.com\.br|logitech\.com|wap\.ind\.br|amd\.com|soundcore\.com|samsung\.com|tp-link\.com|huawei\.com|mercusys\.com|intelbras\.com)$/);
+      assert.match(url.hostname,/(?:mi\.com|jbl\.com\.br|logitech\.com|wap\.ind\.br|amd\.com|soundcore\.com|samsung\.com|tp-link\.com|huawei\.com|mercusys\.com|intelbras\.com|lenovo\.com)$/);
       assert.equal(f.checkedAt,'2026-10-19');
     }
     assert.equal(documentedSpecifications({...p,titulo:'Produto completamente diferente',title:''}),null);
@@ -74,4 +74,10 @@ test('microfone numa webcam ou brinquedo não cria ficha e pendências de fone',
     assert.equal(comparisonData({titulo}),null);assert.equal(renderProductDecision({titulo}),'');
   }
   assert.equal(comparisonData({titulo:'Fone de ouvido TWS'}).family,'fone-tws');
+});
+test('notebooks Lenovo com códigos diferentes não compartilham a configuração de SSD',()=>{
+  assert.match(feature('mlMLB5212483469','Armazenamento SSD').value,/^256 GB/);
+  assert.match(feature('XCp2wV9P76JfBz2zuUTX','Armazenamento SSD').value,/^512 GB/);
+  assert.match(feature('mlMLB5212483469','Processador').sourceUrl,/83NS0003BR/);
+  assert.equal(documentedSpecifications({...product('mlMLB5212483469'),titulo:product('XCp2wV9P76JfBz2zuUTX').titulo}),null);
 });
