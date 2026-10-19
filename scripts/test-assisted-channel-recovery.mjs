@@ -124,3 +124,50 @@ test('timeout tem código global e cancela pedido para não executar após inter
  for(const fn of [...f.timeouts.values()])fn();await rejected;
  assert.equal(f.values.get(commandKey),null);
 });
+
+test('falha transitória tem só uma nova tentativa, mesma URL e pedido novo sem aceitar resposta antiga',async()=>{
+ for(const code of ['RDC_PRODUCT_REDIRECT','RDC_OFFER_NOT_READY']){
+  const f=fixture(true),request={produtoId:'p',titulo:'Roteador',url:source};
+  const promise=f.c.unsafeWindow.conferirPrecoNaAbaLocal(request);
+  const first=f.values.get(commandKey);
+  const respond=(command,result)=>{
+   f.values.set(resultKey,{requestId:command.requestId,produtoId:'p',requestedUrl:source,...result});
+   for(const {fn} of [...f.intervals.values()])fn();
+  };
+  respond(first,{status:'error',code});await flush();
+  assert.equal(f.timeouts.size,1); // Apenas a espera local entre tentativas.
+  for(const fn of [...f.timeouts.values()])fn();await flush();
+  const second=f.values.get(commandKey);
+  assert.notEqual(second.requestId,first.requestId);assert.equal(second.url,source);assert.equal(second.produtoId,'p');
+  let resolved=false;promise.then(()=>{resolved=true;});
+  respond(first,{status:'ok',preco:1});await flush();assert.equal(resolved,false);
+  respond(second,{status:'error',code});const final=await promise;
+  assert.equal(final.status,'error');assert.equal(final.code,code);
+  assert.equal(f.opens.length,2);assert.equal(f.intervals.size,0);
+ }
+});
+
+test('sucesso, CAPTCHA e indisponibilidade não repetem a consulta nem fabricam preço',async()=>{
+ for(const result of [{status:'ok',preco:199.9},{status:'ok',preco:199.9,code:'RDC_PRODUCT_REDIRECT'},{status:'security'},{status:'unavailable'},{status:'error',code:'OTHER'}]){
+  const f=fixture(true),promise=f.c.unsafeWindow.conferirPrecoNaAbaLocal({produtoId:'p',titulo:'Roteador',url:source});
+  const command=f.values.get(commandKey);
+  f.values.set(resultKey,{requestId:command.requestId,produtoId:'p',requestedUrl:source,...result});
+  for(const {fn} of [...f.intervals.values()])fn();
+  const final=await promise;assert.equal(final.status,result.status);
+  assert.equal(f.opens.length,1);assert.equal(f.timeouts.size,0);assert.equal(f.intervals.size,0);
+  if(result.status!=='ok')assert.equal('preco' in final,false);
+ }
+});
+
+test('cancelamento ou pedido novo durante a espera impede retentativa atrasada',async()=>{
+ for(const replacement of [null,{requestId:'newer-request',produtoId:'another-product'}]){
+  const f=fixture(true),promise=f.c.unsafeWindow.conferirPrecoNaAbaLocal({produtoId:'p',titulo:'Roteador',url:source});
+  const first=f.values.get(commandKey);
+  f.values.set(resultKey,{requestId:first.requestId,produtoId:'p',requestedUrl:source,status:'error',code:'RDC_PRODUCT_REDIRECT'});
+  for(const {fn} of [...f.intervals.values()])fn();await flush();
+  f.values.set(commandKey,replacement);
+  for(const fn of [...f.timeouts.values()])fn();await flush();
+  assert.equal((await promise).status,'error');assert.equal(f.opens.length,1);
+  assert.equal(f.values.get(commandKey),replacement);
+ }
+});

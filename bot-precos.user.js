@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.9
+// @version      2.4.10
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -19,7 +19,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.9";
+  const BOT_VERSION = "2.4.10";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -222,7 +222,7 @@
   }
 
   function extractMainPrice(documentHtml) {
-    // A forma de pagamento não decide o preço: usa o total principal em destaque.
+    // Melhor total visível no bloco principal, independentemente do pagamento.
     // Valores de parcela, preço antigo, cashback e recomendações continuam excluídos.
     const candidates = [];
     for (const node of documentHtml.querySelectorAll('.ui-pdp-price__second-line .andes-money-amount')) {
@@ -237,19 +237,14 @@
       const currency = node.querySelector('.andes-money-amount__currency-symbol')?.textContent;
       const label = node.getAttribute('aria-label') || "";
       const installment = /\bparcelas?\b|\b\d{1,2}\s*(?:x|vezes)\b/i.test(label);
-      if (/\bantes\b|cashback|a partir/i.test(label) || (installment && !/\btotal\b/i.test(label)) || currency?.trim() !== "R$") continue;
+      if (/\bantes\b|cashback|a partir|cupom|primeira compra|frete/i.test(label) || (installment && !/\btotal\b/i.test(label)) || currency?.trim() !== "R$") continue;
       const price = parsePrice(`${fraction},${cents.padStart(2, "0")}`);
       if (!price) continue;
-      let fontSize = 0;
-      try { fontSize = parseFloat(documentHtml.defaultView?.getComputedStyle(fractionNode || node)?.fontSize) || 0; } catch {}
-      candidates.push({ price, fontSize, index: candidates.length });
+      candidates.push(price);
     }
-    // Só compara destaque quando o navegador fornece medidas para todos os totais.
-    // Sem essa informação, preserva a ordem do bloco principal; nunca escolhe o menor.
-    if (candidates.length > 1 && candidates.every(candidate => candidate.fontSize > 0)) {
-      candidates.sort((left, right) => right.fontSize - left.fontSize || left.index - right.index);
-    }
-    return candidates.length ? [candidates[0].price] : [];
+    // Só compara totais principais já filtrados. Não é o menor valor da página:
+    // parcelas, cashback, preço anterior, recomendações e outros vendedores não entram.
+    return candidates.length ? [Math.min(...candidates)] : [];
   }
 
   function extractDocumentOffer(documentHtml, expectedTitle, finalUrl, requestedUrl = finalUrl) {
@@ -409,7 +404,7 @@
       if (result.status !== "ok") throw new Error(result.motivo || "Preço principal não comprovado. Confira a aba do Mercado Livre.");
       return result;
     };
-    unsafeWindow.conferirPrecoNaAbaLocal = ({ produtoId, titulo, url }) => new Promise((resolve, reject) => {
+    const consultarUmaVez = ({ produtoId, titulo, url }) => new Promise((resolve, reject) => {
       if (!/^https:\/\/(?:[^/]+\.)?mercadolivre\.com\.br\//i.test(String(url || ""))) {
         reject(new Error("O produto não possui um link completo do Mercado Livre."));
         return;
@@ -453,6 +448,18 @@
         reject(error);
       }
     });
+    unsafeWindow.conferirPrecoNaAbaLocal = async request => {
+      const result = await consultarUmaVez(request);
+      // Uma página transitória pode ter respondido antes da navegação estabilizar.
+      // Novo pedido, mesma URL e mesmas validações: só repete falha, nunca sucesso,
+      // indisponibilidade, CAPTCHA ou erro global de comunicação. Não grava preços.
+      if (result?.status === "error" && ["RDC_PRODUCT_REDIRECT", "RDC_OFFER_NOT_READY"].includes(result.code)) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        if (GM_getValue(COMMAND_KEY, null)?.requestId !== result.requestId) return result;
+        return consultarUmaVez(request);
+      }
+      return result;
+    };
   }
 
   async function publishCurrentPageResult(command) {
@@ -475,7 +482,7 @@
       }
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
-    if (result.status === "loading" || (result.status === "ok" && !stable)) result = { status: "error", motivo: result.motivo || "O preço principal não estabilizou. Confira manualmente." };
+    if (result.status === "loading" || (result.status === "ok" && !stable)) result = { status: "error", code: "RDC_OFFER_NOT_READY", motivo: result.motivo || "O preço principal não estabilizou. Confira manualmente." };
     if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId || !sameOffer(command.url, location.href)) return;
     GM_setValue(RESULT_KEY, { ...result, robotVersion: BOT_VERSION, requestedUrl: command.url, requestId: command.requestId, produtoId: command.produtoId, checkedAt: Date.now() });
   }

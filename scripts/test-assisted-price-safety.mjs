@@ -49,7 +49,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.4.9');
+  assert.equal(result.robotVersion, '2.4.10');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -117,10 +117,12 @@ test('anúncio pausado sem preço é separado sem inventar valor ou consultar me
   assert.equal(result.preco, undefined);
   assert.match(result.motivo, /sem estoque/);
 });
-test('preço principal tem prioridade sobre JSON-LD e cópias Pix, sem escolher o menor', () => {
-  for (const doc of [page({structured:[structuredOffer(85.40)]}), page({prices:[money(358.79),money(349.90)]})]) {
+test('JSON-LD não substitui total visível; menor total principal inclui Pix', () => {
+  for (const doc of [page({structured:[structuredOffer(85.40)]})]) {
     const { context: c } = setup(doc); assert.equal(c.extractDocumentOffer(doc, title, url).preco, 358.79);
   }
+  const pix=setup(page({prices:[money(358.79),money(349.90)]}));
+  assert.equal(pix.context.extractDocumentOffer(pix.context.document,title,url).preco,349.90);
   for (const doc of [page({prices:[money(358.79,{currency:'US$'})]})]) {
     const { context: c } = setup(doc); assert.equal(c.extractDocumentOffer(doc, title, url).status, 'loading');
   }
@@ -536,14 +538,21 @@ test('total principal aceita Pix, à vista ou parcelado, nunca o valor da parcel
     assert.equal(c.extractDocumentOffer(doc,title,url).status,'loading',label);
   }
 });
-test('destaque visual no bloco principal vale mais que ordem e não escolhe o menor preço', () => {
+test('melhor total visível no bloco principal independe da ordem e do tamanho da fonte', () => {
   for(const totals of [[{value:199.90,size:22},{value:219.90,size:36}],[{value:219.90,size:22},{value:199.90,size:36}]]) {
     const nodes=totals.map(total=>{const node=money(total.value);node.fontSize=total.size;const query=node.querySelector;node.querySelector=selector=>({...query(selector),fontSize:total.size});return node;});
     const doc=page({prices:nodes});
     doc.defaultView.getComputedStyle=node=>({display:'inline',visibility:'visible',fontSize:String(node.fontSize)+'px'});
     const {context:c}=setup(doc);
-    assert.equal(c.extractDocumentOffer(doc,title,url).preco,totals[1].value);
+    assert.equal(c.extractDocumentOffer(doc,title,url).preco,199.90);
   }
+});
+
+test('menor total não usa cupom condicional, frete, cashback, parcela ou preço fora do bloco válido',()=>{
+ const doc=page({prices:[money(350),money(299.90,{label:'Total no Pix'}),money(10,{label:'Cupom de 10 reais'}),money(5,{label:'Frete 5 reais'}),money(3,{label:'Cashback'}),money(24.99,{label:'12x de 24,99'}),money(199.90,{excluded:true}),money(1,{hidden:true})]});
+ const {context:c}=setup(doc),result=c.extractDocumentOffer(doc,title,url);
+ assert.equal(result.preco,299.90);assert.equal(result.mainPrice,299.90);
+ assert.equal(c.RDCAssistedPriceSafety.validate({...result,produtoId:'p',requestId:'best',checkedAt:Date.now()},{produtoId:'p',url,titulo:title}),'');
 });
 test('mesmo catálogo pode exibir outra oferta; título/modelo e identidade do catálogo continuam exigidos', () => {
   const catalog='https://www.mercadolivre.com.br/fone/p/MLB57289720';
