@@ -26,6 +26,9 @@
     if(/^(?:power bank|carregador portatil)\b/.test(t))return 'power-bank';
     if(/^carregador\b/.test(t))return 'charger';
     if(/intercomunicador|fone.*capacete/.test(t))return '';
+    // The registered LP40 title claims in-ear, but the format is not confirmed
+    // by manufacturer documentation in this review. Do not infer it from TWS.
+    if(/lenovo.*\blp40\b/.test(t))return '';
     if(/open ear|orelha aberta|ear clip|earcuff|\bows\b/.test(t))return /intra auricular|in ear|on ear|over ear/.test(t)?'':'earphones-open';
     if(/headset|jbl quantum/.test(t))return 'headsets';
     if(/headphone|over ear|on ear|jbl.*(?:520|510|720|770)\s*bt/.test(t)){
