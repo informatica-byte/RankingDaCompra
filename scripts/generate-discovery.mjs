@@ -176,7 +176,7 @@ async function loadGeneratedPages() {
     categories.set(categoryId, { id: categoryId, nome: categoryName });
     products.push({
       id: productId,
-      titulo: compactText(title, 96),
+      titulo: String(title).trim().slice(0, 800),
       categoria: categoryId,
       comentario: summary,
       foto: image,

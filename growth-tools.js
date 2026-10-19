@@ -2000,6 +2000,16 @@
     // Keep the saved configuration and product records in the panels. An
     // unfinished editorial selection is not a customer recommendation.
     if (reconciled.needsReview) return;
+    if (config.modoEditorial === 'documental') {
+      const markup = window.RDCWeeklyComparisonSafety.documentaryMarkup(config, reconciled.products);
+      if (!markup) return;
+      const section = document.createElement('section');
+      section.className = 'weekly-comparison'; section.id = 'ranking-da-semana';
+      section.dataset.weeklyComparison = config.semana; section.innerHTML = markup;
+      const anchor = document.getElementById('top5-semanal') || document.querySelector('main');
+      anchor?.insertAdjacentElement(anchor.matches('main') ? 'afterbegin' : 'afterend', section);
+      return;
+    }
     const products = weeklyScoreProducts(reconciled.products).map(product => ({
       ...product, analiseHumana: Number(config.versao) >= 4 && Object.values(product.analiseHumana || {}).every(window.RDCWeeklyComparisonSafety.editorialTextAllowed) ? product.analiseHumana : null
     }));
@@ -2123,7 +2133,7 @@
         clicks: signals.clicks, views: signals.views, match, withinBudget
       };
     }).filter(item => item.match && item.withinBudget);
-    const group = window.RDCWeeklyComparisonSafety?.groupCandidates(candidates).find(g => g.family && g.products.length >= 3);
+    const group = window.RDCWeeklyComparisonSafety?.groupCandidates(candidates).map(g => ({...g, products:window.RDCWeeklyComparisonSafety.distinctModels(g.products)})).find(g => g.family && g.products.length >= 3);
     if (!group) throw new Error('São necessários ao menos três produtos equivalentes. Ajuste o filtro; não misturamos tipos diferentes para completar cinco.');
     const selected = weeklyScoreProducts(group.products).slice(0, 5);
     const finalSelection = weeklyScoreProducts(selected);
@@ -2140,6 +2150,7 @@
   }
 
   function weeklyDraftMarkup(draft) {
+    if (draft.modoEditorial === 'documental') return window.RDCWeeklyComparisonSafety.documentaryMarkup(draft, draft.produtos);
     const aiIntro = draft.resumoIA ? '<div class="weekly-admin-ai"><b>🤖 Visão geral auditada</b><p>' + escapeHtml(draft.resumoIA) + '</p></div>' : "";
     return '<div class="weekly-admin-draft"><h3>' + escapeHtml(draft.titulo) + '</h3><p>Semana de '
       + escapeHtml(dateBr.format(new Date(draft.semana + "T12:00:00-03:00"))) + ' · revise os três a cinco produtos equivalentes antes de publicar.</p>'
@@ -2167,6 +2178,7 @@
       + '<label for="weekly-ranking-seo-title">Título focado na busca</label><input id="weekly-ranking-seo-title" type="text" maxlength="120" placeholder="Ex.: Celulares até R$ 1.500: seleção por perfis">'
       + '<div class="weekly-admin-actions"><button id="weekly-ranking-suggest" type="button">✨ Sugerir pelo interesse da semana</button>'
       + '<button id="weekly-ranking-prepare" type="button">Preparar comparação</button>'
+      + '<button id="weekly-ranking-documented" type="button">Carregar comparativo TWS documentado</button>'
       + '<button id="weekly-ranking-ai" type="button" disabled>🤖 Gerar análise humanizada</button>'
       + '<button id="weekly-ranking-publish" type="button" disabled>Publicar após aprovação</button>'
       + '<a href="/#ranking-da-semana" target="_blank" rel="noopener">Ver na vitrine</a></div>'
@@ -2181,6 +2193,16 @@
     const publish = section.querySelector("#weekly-ranking-publish");
     const aiButton = section.querySelector("#weekly-ranking-ai");
     let cachedData = null;
+    section.querySelector('#weekly-ranking-documented').addEventListener('click', async () => {
+      publish.disabled = true; aiButton.disabled = true;
+      try {
+        const index = window.RDCPublicData ? await window.RDCPublicData.json('/search-index.json') : await (await fetch('/search-index.json', {cache:'no-cache'})).json();
+        weeklyRankingDraft = window.RDCWeeklyComparisonSafety.documentedDraft(index);
+        review.innerHTML = weeklyDraftMarkup(weeklyRankingDraft);
+        publish.disabled = false;
+        status.textContent = 'Três modelos documentados, sem notas ou duplicação por cor. Revise as fontes antes de publicar. Nenhum preço ou cadastro foi alterado.';
+      } catch (error) { weeklyRankingDraft = null; status.textContent = error.message; }
+    });
     const ensureData = async () => cachedData || (cachedData = await weeklyAdminData(status));
     const seo = window.RDC_SEO_PRIORITIES;
     const chips = section.querySelector("#weekly-seo-chips");

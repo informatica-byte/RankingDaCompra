@@ -49,6 +49,9 @@
     if (/repetidor|extensor.*wi.?fi/.test(title)) return 'repeater';
     if (/access point|ponto de acesso/.test(title)) return 'access-point';
     if (/roteador|router|sistema mesh/.test(title)) return /\bmesh\b/.test(title) ? 'router-mesh' : 'router';
+    if (/open.?ear|orelha aberta|\bows\b|ear.?clip/.test(title)) return 'open-ear';
+    if (/caixa de som|speaker|soundbar/.test(title)) return '';
+    if (/soundcore.*\bp30i\b/.test(title)) return 'earbuds-tws';
     if (/\btws\b|true wireless|earbuds|\bbuds\b/.test(title)) return 'earbuds-tws';
     if (/headphone|headset|over.?ear|on.?ear/.test(title)) return 'headphone';
     if (/fone.*(?:com fio|p2|3[.,]5mm)/.test(title)) return 'wired-earphone';
@@ -121,6 +124,65 @@
     ].join('|')).sort();
     return 'v1:' + entries.join('~');
   }
+  function modelKey(product) {
+    const title = normalize(product?.titulo || product?.title);
+    if (/redmi.*buds\s*6\s*play/.test(title)) return 'xiaomi-redmi-buds-6-play';
+    if (/soundcore.*\bp30i\b/.test(title)) return 'soundcore-p30i';
+    if (/galaxy.*buds\s*core/.test(title)) return 'samsung-galaxy-buds-core';
+    return title.replace(/\b(preto|preta|branco|branca|azul|rosa|verde|black|white|blue)\b/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+  function distinctModels(products) {
+    const seen = new Set();
+    return products.filter(product => {
+      const key = modelKey(product);
+      if (seen.has(key)) return false;
+      seen.add(key); return true;
+    });
+  }
+  const DOCUMENTED_TWS = [
+    {id:'ARscPKCMZs3D8k22qltl', model:'xiaomi-redmi-buds-6-play', name:'Redmi Buds 6 Play',
+      anc:'ANC para ouvir: não confirmado nesta revisão; redução de ruído nas chamadas é outra função.',
+      battery:'Até 7,5 h nos fones; até 36 h incluindo recargas no estojo, segundo a Xiaomi.',
+      profile:'Para comparar um TWS com menor preço registrado nesta seleção, sem presumir ANC.',
+      limit:'Conforto, áudio, chamadas e autonomia real não foram testados.',
+      source:'https://www.mi.com/global/product/redmi-buds-6-play/'},
+    {id:'5bQKU9inL3pq14yE8K4L', model:'soundcore-p30i', name:'soundcore P30i',
+      anc:'ANC e modo transparência anunciados pela soundcore.',
+      battery:'Até 10 h nos fones; até 45 h com recargas no estojo. São limites anunciados, não medições próprias; ANC e uso afetam a duração.',
+      profile:'Para quem procura ANC e estojo que também funciona como apoio para o celular.',
+      limit:'Não classificamos a eficácia do ANC nem a qualidade do áudio sem testes.',
+      source:'https://www.soundcore.com/products/soundcore-p30i'},
+    {id:'FlqPY3yHJ2xPoNgnhSTE', model:'samsung-galaxy-buds-core', name:'Galaxy Buds Core',
+      anc:'ANC anunciado pela Samsung.',
+      battery:'Total com estojo: até 35 h com ANC desligado ou aproximadamente 20 h com ANC ligado. Duração de uma carga dos fones não confirmada nesta revisão.',
+      profile:'Para comparar ANC e integração com aparelhos Galaxy; confira recursos compatíveis com seu celular.',
+      limit:'Funções Galaxy AI dependem de smartphone Galaxy compatível; os fones não traduzem de forma independente.',
+      source:'https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos'}
+  ];
+  function documentedDraft(index, now = Date.now()) {
+    const products = DOCUMENTED_TWS.map((fact, i) => {
+      const product = (index?.products || []).find(p => p.id === fact.id);
+      if (!product || modelKey(product) !== fact.model) throw Error('Modelo documentado ausente ou alterado: ' + fact.name);
+      return {id:product.id, titulo:product.title, preco:price(product.price), foto:product.image || '', productUrl:product.url,
+        position:i + 1, motivo:fact.profile, comparisonFamily:'earbuds-tws'};
+    });
+    const draft = {versao:5, modoEditorial:'documental', publicado:false, semana:weekKey(now),
+      titulo:'Redmi Buds 6 Play, soundcore P30i e Galaxy Buds Core: recursos e preços',
+      termo:'Fones TWS intra-auriculares', precoMaximo:'', familiaComparavel:'earbuds-tws',
+      comparabilidadeRevisada:true, revisadoEm:new Date(now).toISOString(), produtos:products,
+      assinaturaEditorial:signature(products)};
+    const result = reconcile(draft, index, now);
+    if (result.needsReview) throw Error('Revisão documental aguarda: ' + result.reasons.join(', '));
+    return draft;
+  }
+  function documentaryMarkup(config, products) {
+    const esc = value => String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    const facts = products.map(p => DOCUMENTED_TWS.find(f => f.id === p.id && f.model === modelKey(p)));
+    if (products.length !== 3 || facts.some(f => !f)) return '';
+    const money = new Intl.NumberFormat('pt-BR', {style:'currency',currency:'BRL'});
+    return '<div class="weekly-comparison-head"><div><small>COMPARATIVO DOCUMENTAL · SEMANA DE ' + esc(config.semana) + '</small><h2>' + esc(config.titulo) + '</h2><p>Três modelos TWS intra-auriculares distintos, sem repetir cores. Não realizamos testes de áudio, conforto ou bateria.</p></div></div>'
+      + '<div class="weekly-ranking-grid">' + products.map((p,i) => '<article class="weekly-ranking-card" style="min-width:0;overflow-wrap:anywhere"><h3>' + esc(facts[i].name) + '</h3><img src="' + esc(p.foto) + '" alt="' + esc(facts[i].name) + '" loading="lazy" style="width:100%;height:150px;object-fit:contain"><p><b>' + esc(money.format(p.preco)) + '</b> · preço registrado em ' + esc(p.precoConferidoEm ? new Date(p.precoConferidoEm).toLocaleDateString('pt-BR') : config.revisadoEm?.slice(0,10)) + '</p><p><b>ANC:</b> ' + esc(facts[i].anc) + '</p><p><b>Autonomia anunciada:</b> ' + esc(facts[i].battery) + '</p><p><b>Perfil:</b> ' + esc(facts[i].profile) + '</p><p><b>Atenção:</b> ' + esc(facts[i].limit) + '</p><p><a href="' + esc(facts[i].source) + '" target="_blank" rel="noopener">Fonte do fabricante</a></p><a href="' + esc(p.productUrl) + '">Ver análise e preço atual</a></article>').join('') + '</div><p class="weekly-ranking-method">Comparação de documentação, não ranking de qualidade. Totais com estojo incluem recargas, não uso contínuo. Os fabricantes usam condições de teste diferentes; os números não comprovam superioridade em uso real. Preço, frete e estoque podem mudar. Podemos receber comissão por compras pelos links, sem custo adicional.</p>';
+  }
   function weekKey(now) {
     const local = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(now));
     const date = new Date(local + 'T12:00:00Z');
@@ -152,11 +214,12 @@
     const reasons = [];
     if (missing.length) reasons.push('missing-products');
     if (!comparable) reasons.push('incompatible-or-insufficient-products');
+    if (new Set(products.map(modelKey)).size !== products.length) reasons.push('duplicate-model');
     if (products.some(product => !product.precoConfirmado)) reasons.push('awaiting-price-confirmation');
     if (String(config?.semana || '') !== weekKey(now)) reasons.push('previous-week');
     if (config?.comparabilidadeRevisada !== true) reasons.push('editorial-review-required');
     if (String(config?.assinaturaEditorial || '') !== currentSignature) reasons.push('changed-editorial-basis');
     return { products, groups, missing, comparable, signature: currentSignature, needsReview: reasons.length > 0, reasons };
   }
-  return { family, groupCandidates, specificEvidence, demandValue, demandSample, demandScore, ratingEvidence, selectionTitle, signature, reconcile, weekKey, price, productPrice, editorialTextAllowed };
+  return { family, groupCandidates, specificEvidence, demandValue, demandSample, demandScore, ratingEvidence, selectionTitle, signature, reconcile, weekKey, price, productPrice, editorialTextAllowed, modelKey, distinctModels, documentedDraft, documentaryMarkup };
 });

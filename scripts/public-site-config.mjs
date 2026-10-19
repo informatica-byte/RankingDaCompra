@@ -7,7 +7,9 @@ export function publicWeeklyComparison(input = {}) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) throw new Error('Comparativo público inválido.');
   const result = {};
   const strings = ['semana','validoAte','titulo','termo','familiaComparavel','assinaturaEditorial','revisadoEm','resumoIA'];
-  for (const key of strings) if (typeof input[key] === 'string') result[key] = input[key].slice(0, key === 'resumoIA' ? 1500 : 300);
+  for (const key of strings) if (typeof input[key] === 'string') result[key] = input[key].slice(0, key === 'assinaturaEditorial' ? 12000 : key === 'resumoIA' ? 1500 : 300);
+  if (Number.isInteger(input.versao) && input.versao >= 1 && input.versao <= 5) result.versao = input.versao;
+  if (input.modoEditorial === 'documental') result.modoEditorial = 'documental';
   for (const key of ['publicado','comparabilidadeRevisada']) if (typeof input[key] === 'boolean') result[key] = input[key];
   if (typeof input.precoMaximo === 'string' || (typeof input.precoMaximo === 'number' && Number.isFinite(input.precoMaximo))) result.precoMaximo = input.precoMaximo;
   const numericFields = ['scoreTotal','clicks','views'];

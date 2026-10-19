@@ -166,6 +166,7 @@
           <button id="ranking-ia" class="btn claro" type="button" disabled>🤖 Gerar análise humanizada</button>
           <div id="ranking-status" class="status"></div>
           <div id="ranking-revisao" class="ranking-mobile-review"></div>
+          <button id="ranking-documentado" class="btn claro" type="button">Carregar comparativo TWS documentado</button>
           <button id="ranking-publicar" class="btn azul" type="button" disabled>Publicar após aprovação</button><a class="ranking-mobile-link" href="/#ranking-da-semana" target="_blank" rel="noopener">Ver ranking na vitrine</a>
         </div>
         <div class="card">
@@ -183,7 +184,7 @@
     <script src="/assisted-report-recovery.js?v=20261018-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/existing-flash-offer.js?v=20261016-1"></script>
-    <script src="/weekly-comparison-safety.js?v=20261012-audit-4"></script>
+    <script src="/weekly-comparison-safety.js?v=20261012-audit-4&review=20261019"></script>
     <script src="/product-offer-replacement.js?v=20261006-1"></script>
     <script src="/express-existing-product.js?v=20261015-2"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
@@ -2381,7 +2382,7 @@
             };
           })
           .filter((x) => x.aceito);
-        const grupo = window.RDCWeeklyComparisonSafety?.groupCandidates(candidatos).find(g => g.family && g.products.length >= 3);
+        const grupo = window.RDCWeeklyComparisonSafety?.groupCandidates(candidatos).map(g => ({...g, products:window.RDCWeeklyComparisonSafety.distinctModels(g.products)})).find(g => g.family && g.products.length >= 3);
         if (!grupo) throw Error('São necessários ao menos três produtos equivalentes. Ajuste o filtro; tipos diferentes não completam o ranking.');
         const produtos = rankingPontuar(rankingPontuar(grupo.products).slice(0, 5)).map((x) => ({
           ...x,
@@ -2508,6 +2509,10 @@
         return { ...auditada, fonte: origem };
       }
       function rankingMostrarRevisao(r) {
+        if (r.modoEditorial === 'documental') {
+          $("ranking-revisao").innerHTML = window.RDCWeeklyComparisonSafety.documentaryMarkup(r, r.produtos);
+          return;
+        }
         const itens = r.produtos
           .map((x) => {
             const criterios = "Preço relativo " + x.criterios.custoBeneficio + " · Avaliação " + (x.avaliacaoVerificada ? "documentada" : "sem fonte: neutra") + " · Interesse " + (x.amostraInteresse >= 20 ? x.criterios.interesse : "amostra insuficiente: neutro") + " · Completude cadastral " + x.criterios.evidencia,
@@ -2612,6 +2617,16 @@
           b.disabled = false;
           $("ranking-publicar").disabled = false;
         }
+      };
+      $("ranking-documentado").onclick = async () => {
+        $("ranking-publicar").disabled = true; $("ranking-ia").disabled = true;
+        try {
+          const index = window.RDCPublicData ? await window.RDCPublicData.json('/search-index.json') : await (await fetch('/search-index.json', {cache:'no-cache'})).json();
+          rankingDraftMovel = window.RDCWeeklyComparisonSafety.documentedDraft(index);
+          rankingMostrarRevisao(rankingDraftMovel);
+          $("ranking-publicar").disabled = false;
+          msg("ranking-status", "Três modelos documentados, sem notas ou duplicação por cor. Revise as fontes antes de publicar. Nenhum cadastro foi alterado.", "ok");
+        } catch (x) { rankingDraftMovel = null; msg("ranking-status", x.message, "erro"); }
       };
       $("ranking-publicar").onclick = async (e) => {
         if (!rankingDraftMovel) return;
