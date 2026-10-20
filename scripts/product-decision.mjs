@@ -147,7 +147,7 @@ export function comparisonData(product) {
     ];
   } else if (family === 'notebook') {
     features = [
-      specification(product, 'Memória RAM', /(\d+)\s*gb\s*(?:de\s*)?(?:ram|ddr\d)|(?:ram|mem[oó]ria ram)\s*(?:de\s*)?[:—-]?\s*(\d+)\s*gb/i, match => `${match[1] || match[2]} GB`),
+      specification(product, 'Memória RAM', /\b(\d+)\s*gb\s*(?:de\s*)?(?:mem[oó]ria\s+)?(?:ram|ddr\d)\b|\b(?:ram|mem[oó]ria\s+ram)\s*(?:de\s*)?[:—-]?\s*(\d+)\s*gb\b/i, match => `${match[1] || match[2]} GB`, item => !/(?:m[aá]xim|suporta|expans[íi]vel|expans[aã]o|at[eé]\s+\d+\s*gb|\bvram\b|\bgpu\b|placa de v[ií]deo|mem[oó]ria de v[ií]deo)/i.test(item.text)),
       specification(product, 'Armazenamento SSD', /(?:ssd\s*(?:de\s*)?[:—-]?\s*(\d+)\s*(gb|tb))|(?:(\d+)\s*(gb|tb)\s*(?:de\s*)?ssd)/i, match => `${match[1] || match[3]} ${(match[2] || match[4]).toUpperCase()}`),
       processorFeature(product),
     ];

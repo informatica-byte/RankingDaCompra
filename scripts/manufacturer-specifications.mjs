@@ -22,6 +22,10 @@ const sources = {
   deco: 'https://www.tp-link.com/br/home-networking/deco/deco-x10/',
   wr840: 'https://www.tp-link.com/br/home-networking/wifi-router/tl-wr840n/',
   mr80: 'https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/',
+  mr80br: 'https://www.mercusys.com.br/product/wifi-router/mr80x/v4/',
+  havit982: 'https://havitsmart.com/es/products/havit-life-01t-true-wireless-stereo-earbuds-tw982',
+  havit982Fit: 'https://cdn.shopify.com/s/files/1/0755/1365/9703/files/01T-_TW982_-page_-_-2024.05_13.jpg?v=1788255515',
+  havit982Specs: 'https://cdn.shopify.com/s/files/1/0755/1365/9703/files/01T-_TW982_-page_-_-2024.05_14.jpg?v=1788255515',
   twibi: 'https://backend.intelbras.com/sites/default/files/2025-03/Ficha%20T%C3%A9cnica%20-%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX.pdf',
   quantum: 'https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf',
   lenovo256: 'https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0003BR',
@@ -153,10 +157,23 @@ export const MANUFACTURER_SPECIFICATIONS = new Map([
     limitations:['N300 é taxa Wi-Fi teórica, não velocidade garantida de internet. Recursos de software e modos dependem da revisão.'],
   }],
   ['AweCTxq7vwVQ7VmN4IIg',{
-    model:/\bmercusys\b.*\bmr\s*80x\b.*\bv4\b/i,family:'roteador',scope:'MERCUSYS MR80X V4: documentação internacional da revisão V4. Firmware e recursos disponíveis no Brasil devem ser confirmados para a unidade.',
+    model:/\bmercusys\b.*\bmr\s*80x\b.*\bv4\b/i,family:'roteador',reviewedAt:'2026-10-20',scope:'MERCUSYS MR80X V4: página brasileira da revisão V4 consultada. Recursos dependem do firmware e dos aparelhos compatíveis, não são garantia de cobertura.',
     features:[fact('Wi-Fi 6','802.11ax, classe AX3000','mr80'),fact('Banda de 5 GHz','2,4 GHz e 5 GHz','mr80'),fact('Portas Gigabit','Gigabit Ethernet','mr80'),
-      fact('Quantidade de portas','1 porta WAN Gigabit + 3 portas LAN Gigabit','mr80'),pending('Rede Mesh','A página internacional V4 anuncia EasyMesh; confirmar suporte no firmware regional da unidade brasileira.')],
-    limitations:['A documentação internacional não comprova todos os recursos de firmware regional. AX3000 não equivale à taxa medida em um cliente. Cobertura não testada.'],
+      fact('Quantidade de portas','1 porta WAN Gigabit + 3 portas LAN Gigabit','mr80'),fact('Rede Mesh','EasyMesh anunciado na página brasileira V4; requer firmware e outros aparelhos compatíveis','mr80br')],
+    additionalSources:[sources.mr80br],
+    limitations:['A fabricante alerta para conflitos de firmware entre fornecedores e informa que não há certificação Wi-Fi EasyMesh. O firmware da unidade vendida precisa ser conferido. AX3000 não é velocidade garantida; cobertura não testada.'],
+  }],
+  ['kYzXt8BeErDzXsC6BlwB',{
+    model:/\bhavit\b.*\btw\s*982\b(?!\s*(?:pro|plus)\b)/i,family:'fone-tws',reviewedAt:'2026-10-20',
+    scope:'HAVIT LIFE 01T / TW982, não TW982 Pro. Números lidos na tabela ilustrada publicada na página oficial; não são medição da equipe.',
+    features:[fact('Formato','Intra-auricular com ponteiras, conforme a apresentação oficial','havit982Fit'),
+      fact('Versão Bluetooth','Bluetooth 5.4','havit982Specs'),
+      fact('Autonomia no fone','Até 7,5 h anunciadas, a 60% do volume','havit982Specs'),
+      fact('Autonomia com estojo','Até 33 h anunciadas com recargas, a 60% do volume','havit982Specs'),
+      fact('Carregamento do estojo','USB-C; cerca de 1,5 h anunciada para o estojo','havit982Specs'),
+      pending('Cancelamento ativo de ruído','ENC anunciado para chamadas não confirma ANC para ouvir. Não usamos a ficha do TW982 Pro para completar este campo.')],
+    additionalSources:[sources.havit982],
+    limitations:['Autonomia real depende do volume e do uso. Não medimos conforto, som ou chamadas; 33 horas incluem recargas no estojo.'],
   }],
   ['sMCnNBstxTrJqaF6jp2O',{
     model:/\bintelbras\b.*\btwibi\s+force\s+ax\b|\btwibi\s+force\s+ax\b.*\bintelbras\b/i,family:'roteador',scope:'Intelbras Twibi Force AX: dados por módulo; não confundir com Twibi Force Plug nem atribuir duas unidades a uma oferta unitária.',
@@ -214,6 +231,6 @@ export function renderManufacturerSpecifications(product) {
     +known.map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.value)+' — <a href="'+esc(f.sourceUrl)+'" target="_blank" rel="noopener noreferrer">fonte oficial</a>.</li>').join('')+'</ul>'
     +(uncertain.length?'<h3>O que continua a confirmar</h3><ul>'+uncertain.map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.reason)+'</li>').join('')+'</ul>':'')
     +'<p>'+record.limitations.map(esc).join(' ')+'</p>'
-    +record.additionalSources.map(url=>'<p><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Outra página oficial consultada para conferir a divergência</a>.</p>').join('')
+    +record.additionalSources.map(url=>'<p><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Outra fonte oficial consultada</a>.</p>').join('')
     +'<p class="fine">Documentação revisada em '+esc(record.checkedAt.split('-').reverse().join('/'))+'. Valores anunciados pelo fabricante, não teste independente nem autenticação da oferta. Esta revisão não altera a data da conferência do preço.</p></section>';
 }

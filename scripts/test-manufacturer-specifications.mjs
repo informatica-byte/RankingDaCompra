@@ -9,14 +9,14 @@ const product=id=>catalogue.find(p=>p.id===id);
 const feature=(id,label)=>comparisonData(product(id)).features.find(f=>f.label===label);
 
 test('as revisões usam modelo exato e não mudam cadastros, preço ou prova de conferência',()=>{
-  assert.equal(MANUFACTURER_SPECIFICATIONS.size,20);
+  assert.equal(MANUFACTURER_SPECIFICATIONS.size,21);
   for(const [id] of MANUFACTURER_SPECIFICATIONS){
     const p=product(id);assert.ok(p,id);const before=JSON.stringify(p);
     const record=documentedSpecifications(p);assert.ok(record,id);
     assert.ok(record.features.some(f=>f.basis==='fabricante'));
     for(const f of record.features.filter(f=>f.basis==='fabricante')){
       const url=new URL(f.sourceUrl);assert.equal(url.protocol,'https:');
-      assert.match(url.hostname,/(?:mi\.com|jbl\.com\.br|logitech\.com|wap\.ind\.br|amd\.com|asus\.com|amazfit\.com|soundcore\.com|samsung\.com|tp-link\.com|huawei\.com|mercusys\.com|intelbras\.com|lenovo\.com)$/);
+      assert.match(url.hostname,/(?:mi\.com|jbl\.com\.br|logitech\.com|wap\.ind\.br|amd\.com|asus\.com|amazfit\.com|soundcore\.com|samsung\.com|tp-link\.com|huawei\.com|mercusys\.com(?:\.br)?|intelbras\.com|lenovo\.com|shopify\.com)$/);
       assert.equal(f.checkedAt,record.checkedAt);
     }
     assert.equal(documentedSpecifications({...p,titulo:'Produto completamente diferente',title:''}),null);
