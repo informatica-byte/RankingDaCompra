@@ -31,6 +31,10 @@ jobs:
     steps:
       - name: Baixar a versao atual do site
         uses: actions/checkout@v5
+        with:
+          # Um evento que aguardou a fila pode apontar para um SHA antigo.
+          ref: main
+          fetch-depth: 0
 
 
       - name: Preparar Node.js
@@ -61,19 +65,26 @@ jobs:
 
 
       - name: Publicar novos resultados
+        id: publicar
         shell: bash
         run: |
-          if git diff --quiet -- mlb-resolucoes.json .mercadolivre-token.enc; then
-            echo "Nenhum novo pedido encontrado."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mlb-resolucoes.json
-          if [[ -f .mercadolivre-token.enc ]]; then git add .mercadolivre-token.enc; fi
-          git commit -m "Atualiza localizador de codigos MLB"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          node --test scripts/test-localizer-publication.mjs
+          node scripts/publish-localizer.mjs
+
+      - name: Preservar resultados se a publicação não terminar
+        if: always() && (steps.publicar.outcome == 'failure' || steps.resolver.outcome == 'failure')
+        uses: actions/upload-artifact@v4
+        with:
+          name: localizador-recuperacao-${{ github.run_id }}
+          # Apenas o cache já criptografado; nunca variáveis de ambiente/credenciais.
+          path: |
+            mlb-resolucoes.json
+            .mercadolivre-token.enc
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: warn
 
       - name: Sinalizar dados não obtidos após preservar os resultados
         if: steps.resolver.outputs.incomplete == 'true'

@@ -23,7 +23,30 @@ test('seleção documental sobrevive à publicação sem truncar identidade ou p
   assert.equal(published.modoEditorial,'documental');
   assert.equal(published.secret,undefined);
   assert.equal(safety.reconcile(published,{products},now).needsReview,false);
-  assert.ok(safety.reconcile(published,{products:products.map(p=>({...p,price:p.price+1}))},now).reasons.includes('changed-editorial-basis'));
+  const repriced=safety.reconcile(published,{products:products.map(p=>({...p,price:p.price+1}))},now);
+  assert.equal(repriced.needsReview,false);
+  assert.equal(repriced.products[2].preco,225.72);
+});
+
+test('assinatura antiga preserva aprovação somente da mesma identidade, com preço atual',()=>{
+  const draft=safety.documentedDraft({products},now);
+  draft.assinaturaEditorial='v1:'+draft.produtos.map(p=>[p.id,safety.family(p),p.titulo.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim(),Math.round(p.preco*100)].join('|')).sort().join('~');
+  const current={products:products.map(p=>({...p,price:p.price+10}))};
+  assert.equal(safety.reconcile(draft,current,now).needsReview,false);
+  assert.ok(safety.reconcile({...draft,assinaturaEditorial:draft.assinaturaEditorial+'tampered'},current,now).reasons.includes('changed-editorial-basis'));
+  const changed={products:current.products.map((p,i)=>i===2?{...p,title:'Samsung Galaxy Buds FE TWS'}:p)};
+  assert.ok(safety.reconcile(draft,changed,now).reasons.includes('changed-editorial-basis'));
+  assert.ok(safety.reconcile(draft,{products:current.products.map(p=>({...p,checkedAt:'2026-10-15'}))},now).reasons.includes('awaiting-price-confirmation'));
+  assert.ok(safety.reconcile({...draft,comparabilidadeRevisada:false},current,now).reasons.includes('editorial-review-required'));
+});
+
+test('categoria corrigida da lavadora não altera preço, prazo ou links nem outro produto',()=>{
+  const original={id:'mlMLB4644707253',titulo:'Lavadora Alta Pressão Compacta 1400w, 1600psi, 300l/h',categoria:'caixadesom',preco:'283,49',precoPromocional:'288,57',ofertaRelampagoTerminaEm:'2026-10-20T15:03:55.474Z',link:'https://produto.mercadolivre.com.br/MLB-4644707253',linkAfiliado:'https://meli.la/exemplo'};
+  const revised=correctProductData(original);
+  assert.equal(revised.categoria,'ferramentas');
+  for(const key of ['preco','precoPromocional','ofertaRelampagoTerminaEm','link','linkAfiliado'])assert.equal(revised[key],original[key]);
+  assert.equal(original.categoria,'caixadesom');
+  assert.equal(correctProductData({...original,titulo:'Caixa de Som Bluetooth'}).categoria,'caixadesom');
 });
 test('não confunde open-ear ou caixa TWS com intra-auricular e não repete modelo por cor',()=>{
   assert.equal(safety.family({title:'Fone TWS OWS Open Ear ForeStory X5'}),'open-ear');

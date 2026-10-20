@@ -117,12 +117,19 @@
       .replace(/custo[- ]benef[íi]cio/gi, 'preços e perfis')
       .replace(/\b(?:ranking|top)\b/gi, 'Seleção').trim();
   }
-  function signature(products) {
+  function legacySignature(products) {
     const entries = (Array.isArray(products) ? products : []).map(product => [
       String(product.id || ''), family(product), normalize(product.titulo || product.title),
       Math.round(price(product.preco ?? product.price ?? product.recordedPrice) * 100),
     ].join('|')).sort();
     return 'v1:' + entries.join('~');
+  }
+  function signature(products) {
+    // Preço e data vêm sempre do índice atual. Só uma mudança de identidade
+    // precisa invalidar a aprovação editorial; a validade do preço é checada à parte.
+    return 'v2:' + (Array.isArray(products) ? products : []).map(product => [
+      String(product.id || ''), family(product), normalize(product.titulo || product.title),
+    ].join('|')).sort().join('~');
   }
   function modelKey(product) {
     const title = normalize(product?.titulo || product?.title);
@@ -143,7 +150,7 @@
     {id:'ARscPKCMZs3D8k22qltl', model:'xiaomi-redmi-buds-6-play', name:'Redmi Buds 6 Play',
       anc:'ANC para ouvir: não confirmado nesta revisão; redução de ruído nas chamadas é outra função.',
       battery:'Até 7,5 h nos fones; até 36 h incluindo recargas no estojo, segundo a Xiaomi.',
-      profile:'Para comparar um TWS com menor preço registrado nesta seleção, sem presumir ANC.',
+      profile:'Para comparar um TWS básico pelo preço atual e pelos recursos documentados, sem presumir ANC.',
       limit:'Conforto, áudio, chamadas e autonomia real não foram testados.',
       source:'https://www.mi.com/global/product/redmi-buds-6-play/'},
     {id:'5bQKU9inL3pq14yE8K4L', model:'soundcore-p30i', name:'soundcore P30i',
@@ -223,7 +230,13 @@
     if (products.some(product => !product.precoConfirmado)) reasons.push('awaiting-price-confirmation');
     if (String(config?.semana || '') !== weekKey(now)) reasons.push('previous-week');
     if (config?.comparabilidadeRevisada !== true) reasons.push('editorial-review-required');
-    if (String(config?.assinaturaEditorial || '') !== currentSignature) reasons.push('changed-editorial-basis');
+    const approvedSignature = String(config?.assinaturaEditorial || '');
+    // Migração de leitura: não grava o banco nem aprova modelos novos. Uma
+    // assinatura v1 só vale se autenticar os itens salvos e a identidade não mudou.
+    const legacyApproval = approvedSignature.startsWith('v1:')
+      && approvedSignature === legacySignature(stored)
+      && signature(stored) === currentSignature;
+    if (approvedSignature !== currentSignature && !legacyApproval) reasons.push('changed-editorial-basis');
     return { products, groups, missing, comparable, signature: currentSignature, needsReview: reasons.length > 0, reasons };
   }
   return { family, groupCandidates, specificEvidence, demandValue, demandSample, demandScore, ratingEvidence, selectionTitle, signature, reconcile, weekKey, price, productPrice, editorialTextAllowed, modelKey, distinctModels, documentedDraft, documentaryMarkup };

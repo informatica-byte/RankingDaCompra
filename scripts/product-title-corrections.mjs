@@ -5,6 +5,7 @@ import { HIGHLIGHT_EDITORIAL } from './highlight-editorial.mjs';
 import { documentedSpecifications } from './manufacturer-specifications.mjs';
 
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB4644707253', {model:/lavadora.*alta\s*press[aã]o/i, category:'ferramentas'}],
   ['5bQKU9inL3pq14yE8K4L', {
     model:/soundcore.*\bp30i\b/i,
     summary:'O soundcore P30i é um fone TWS intra-auricular com ANC e modo transparência anunciados pela fabricante. A duração anunciada é de até 10 horas nos fones e até 45 horas com recargas no estojo; 45 horas não são uma sessão contínua. O estojo também funciona como apoio para celular. Não medimos áudio, conforto, ANC ou bateria real. Recursos ligados, volume e condições de uso alteram a autonomia.',
