@@ -125,6 +125,23 @@ test('timeout tem código global e cancela pedido para não executar após inter
  assert.equal(f.values.get(commandKey),null);
 });
 
+test('timeout força sessão nova apesar do heartbeat recente e não aceita resposta da tentativa anterior',async()=>{
+ const f=fixture(true),request={produtoId:'p',titulo:'Roteador',url:source};
+ const firstPromise=f.c.unsafeWindow.conferirPrecoNaAbaLocal(request),first=f.values.get(commandKey);
+ f.values.set('rdc_preco_controller_v3',{sessionId:first.sessionId,seenAt:Date.now()});
+ const rejected=assert.rejects(firstPromise,e=>e.code==='RDC_CHANNEL_TIMEOUT');
+ for(const fn of [...f.timeouts.values()])fn();await rejected;
+ const nextPromise=f.c.unsafeWindow.conferirPrecoNaAbaLocal(request),next=f.values.get(commandKey);
+ assert.notEqual(next.sessionId,first.sessionId);assert.notEqual(next.requestId,first.requestId);
+ assert.equal(next.url,first.url);assert.equal(f.opens.length,2);assert.notEqual(f.opens[0][1],f.opens[1][1]);
+ let resolved=false;nextPromise.then(()=>{resolved=true;});
+ f.values.set(resultKey,{requestId:first.requestId,produtoId:'p',requestedUrl:source,status:'ok',preco:1});
+ for(const {fn} of [...f.intervals.values()])fn();await flush();assert.equal(resolved,false);
+ const response={requestId:next.requestId,produtoId:'p',requestedUrl:source,status:'ok',preco:99.9};
+ f.values.set(resultKey,response);for(const {fn} of [...f.intervals.values()])fn();
+ assert.equal(await nextPromise,response);assert.equal(f.intervals.size,0);assert.equal(f.listeners.size,0);
+});
+
 test('falha transitória tem só uma nova tentativa, mesma URL e pedido novo sem aceitar resposta antiga',async()=>{
  for(const code of ['RDC_PRODUCT_REDIRECT','RDC_OFFER_NOT_READY']){
   const f=fixture(true),request={produtoId:'p',titulo:'Roteador',url:source};

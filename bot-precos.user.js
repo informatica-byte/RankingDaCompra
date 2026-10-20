@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.12
+// @version      2.4.13
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -21,7 +21,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.12";
+  const BOT_VERSION = "2.4.13";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -442,7 +442,8 @@
 
   function installPanelBridge() {
     let offerWindow = null;
-    const sessionId = Date.now().toString(36) + "-" + Math.random().toString(36).slice(2);
+    const newSessionId = () => Date.now().toString(36) + "-" + Math.random().toString(36).slice(2);
+    let sessionId = newSessionId(), renewSession = false;
     unsafeWindow.__RDC_BOT_PRECOS_LOCAL__ = { version: BOT_VERSION, ready: true, assisted: true };
     unsafeWindow.conferirPrecoPelaFonteLocal = async (request) => {
       const result = await unsafeWindow.conferirPrecoNaAbaLocal(request);
@@ -454,6 +455,10 @@
         reject(new Error("O produto não possui um link completo do Mercado Livre."));
         return;
       }
+      // A timed-out tab may still have a recent heartbeat although its renderer
+      // stopped responding. Only the next bounded attempt gets a new session;
+      // the old worker cannot navigate or answer commands from that session.
+      if (renewSession) { sessionId = newSessionId(); offerWindow = null; renewSession = false; }
       const requestId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       let timer = 0;
       let poll = 0, listener = 0;
@@ -469,7 +474,10 @@
       timer = setTimeout(() => {
         if (poll) clearInterval(poll);
         GM_removeValueChangeListener(listener);
-        if (GM_getValue(COMMAND_KEY, null)?.requestId === requestId) GM_setValue(COMMAND_KEY, null);
+        if (GM_getValue(COMMAND_KEY, null)?.requestId === requestId) {
+          GM_setValue(COMMAND_KEY, null);
+          renewSession = true;
+        }
         reject(Object.assign(new Error("O anúncio demorou mais de 45 segundos. Confira a aba do Mercado Livre."), { code: "RDC_CHANNEL_TIMEOUT" }));
       }, REQUEST_TIMEOUT);
       const controller = typeof GM_getValue === "function" ? GM_getValue(CONTROLLER_KEY, null) : null;

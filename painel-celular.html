@@ -527,7 +527,7 @@
         if (interrupcoes) detalhes.push(interrupcoes + " para retomar após falha de comunicação (não são anúncios indisponíveis)");
         const separados = [...pendencias.indisponiveis, ...pendencias.falhas];
         const listaSeparados = separados.length
-          ? '<details><summary>Ver todas as ' + separados.length + ' pendências</summary><ul class="precos-auto-lista">' + separados.map((item) => "<li>" + rankingEsc(item.titulo) + " — " + rankingEsc(item.motivo) + (transporte(item) ? '<p class="mini">Retome a conferência; esta falha não exige substituir o anúncio.</p>' : '<button class="btn claro" type="button" data-substituir-anuncio="' + rankingEsc(item.id || "") + '">🔄 Substituir anúncio</button>') + '</li>').join("") + "</ul></details>"
+          ? '<details><summary>Ver todas as ' + separados.length + ' pendências</summary><ul class="precos-auto-lista">' + separados.map((item) => "<li>" + rankingEsc(item.titulo) + " — " + rankingEsc(item.motivo) + '<button class="btn claro" type="button" data-revisar-preco="' + rankingEsc(item.id || "") + '">🔎 Revisar este preço</button>' + (transporte(item) ? '<p class="mini">Retome a conferência; esta falha não exige substituir o anúncio.</p>' : '<button class="btn claro" type="button" data-substituir-anuncio="' + rankingEsc(item.id || "") + '">🔄 Substituir anúncio</button>') + '</li>').join("") + "</ul></details>"
           : "";
         const acompanhamento = acompanhamentoPrecos.estado();
         alvo.innerHTML = (ultimaMensagemAutomacaoPrecos || "Automação pronta.") + '<br>' + acompanhamento.tentados + ' de ' + acompanhamento.limite + ' produtos tentados nesta execução.' + (detalhes.length ? "<br><b>Separados:</b> " + detalhes.join(" · ") + "." + listaSeparados : "") + '<button id="precos-exportar-rodada" class="btn claro" type="button">Baixar relatório desta rodada</button>';
@@ -1180,6 +1180,16 @@
         atualizarControlesAutomacaoPrecos();
         void executarAutomacaoPrecosAssistida();
       }
+      function abrirRevisaoPendenciaPrecoAssistida(produtoId) {
+        if (filaPrecosSalvando || automacaoPrecosAtiva || automacaoPrecosPausada || $("precos-substituicao") || ($("precos-editor") && !$("precos-editor").hidden) || !filaPrecosDados) return;
+        const produto = dadosFilaPrecosAssistida().pendentes.find(item => item.id === produtoId);
+        if (!produto) return msg("precos-status", "Este produto já foi conferido ou está fora da fila. Nenhum dado foi alterado.", "ok");
+        filaPrecosIdAtual = produto.id;
+        guardarPosicaoFilaPrecos();
+        renderizarFilaPrecosAssistida();
+        msg("precos-status", "Produto selecionado para revisão. Confira o anúncio e use os botões de preço; links e cadastro foram preservados.", "ok");
+        $("precos-item").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
       function abrirSubstituicaoAnuncioFilaPrecosAssistida(produtoId = filaPrecosIdAtual) {
         if (filaPrecosSalvando || automacaoPrecosAtiva || $("precos-substituicao") || !filaPrecosDados) return;
         const produto = filaPrecosDados.todos.find(item => item.id === produtoId);
@@ -1499,6 +1509,8 @@
         }
       });
       $("precos-auto-resumo").addEventListener("click", evento => {
+        const revisar = evento.target.closest?.("[data-revisar-preco]");
+        if (revisar) return abrirRevisaoPendenciaPrecoAssistida(revisar.dataset.revisarPreco);
         const botao = evento.target.closest?.("[data-substituir-anuncio]");
         if (botao) abrirSubstituicaoAnuncioFilaPrecosAssistida(botao.dataset.substituirAnuncio);
       });
