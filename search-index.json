@@ -2377,7 +2377,7 @@
     {
       "id": "kYzXt8BeErDzXsC6BlwB",
       "title": "Fone De Ouvido Sem Fio Havit Tw982 Enc Bluetooth 5.4 Cor Preto",
-      "summary": "O Fone de Ouvido Havit TW982 opera com Bluetooth 5.4 e possui microfone com tecnologia ENC para chamadas mais claras. O modelo traz drivers de 13mm, fones leves de apenas 4,1g cada e uma case de carregamento de 400mAh com entrada Tipo-C, garantindo autonomia de até 7.5 horas de reprodução contínua.",
+      "summary": "O HAVIT LIFE 01T, modelo TW982, é um fone TWS com Bluetooth 5.4 e formato intra-auricular com ponteiras na apresentação oficial. A tabela da fabricante anuncia até 7,5 horas nos fones e 33 horas com recargas no estojo, a 60% do volume. O estojo usa USB-C. ENC anunciado para chamadas não comprova ANC para ouvir; não copiamos os recursos do TW982 Pro. Não testamos som, chamadas, conforto ou autonomia real.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/kYzXt8BeErDzXsC6BlwB-157817e3956d.jpg?v=20260810-1",
       "price": 78.9,
@@ -2386,37 +2386,60 @@
       "rating": 0,
       "ranking": 0,
       "comparison": {
-        "family": "fone",
+        "family": "fone-tws",
         "features": [
           {
             "label": "Formato",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Intra-auricular com ponteiras, conforme a apresentação oficial",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://cdn.shopify.com/s/files/1/0755/1365/9703/files/01T-_TW982_-page_-_-2024.05_13.jpg?v=1788255515",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
             "value": "Bluetooth 5.4",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "fabricante",
+            "sourceUrl": "https://cdn.shopify.com/s/files/1/0755/1365/9703/files/01T-_TW982_-page_-_-2024.05_14.jpg?v=1788255515",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "ENC anunciado para chamadas não confirma ANC para ouvir. Não usamos a ficha do TW982 Pro para completar este campo."
           },
           {
             "label": "Microfone",
-            "value": "Informado",
-            "state": "yes",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
             "basis": "cadastro"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Até 7,5 h anunciadas, a 60% do volume",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://cdn.shopify.com/s/files/1/0755/1365/9703/files/01T-_TW982_-page_-_-2024.05_14.jpg?v=1788255515",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Até 33 h anunciadas com recargas, a 60% do volume",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://cdn.shopify.com/s/files/1/0755/1365/9703/files/01T-_TW982_-page_-_-2024.05_14.jpg?v=1788255515",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Carregamento do estojo",
+            "value": "USB-C; cerca de 1,5 h anunciada para o estojo",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://cdn.shopify.com/s/files/1/0755/1365/9703/files/01T-_TW982_-page_-_-2024.05_14.jpg?v=1788255515",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -5153,7 +5176,7 @@
     {
       "id": "AweCTxq7vwVQ7VmN4IIg",
       "title": "Roteador Mercusys Mr80x V4 Ax3000 Dual Band Wifi6",
-      "summary": "Modelo V4 dual band AX3000 com portas Gigabit e canais de 160 MHz. As taxas nominais são 2402 Mbps em 5 GHz e 574 Mbps em 2,4 GHz. Interessante para dispositivos Wi-Fi 6 compatíveis; não significa internet de 3 Gbps. A WAN é Gigabit. Comparação de ficha oficial, sem testes próprios de cobertura ou estabilidade.",
+      "summary": "O MERCUSYS MR80X V4 é um roteador Wi-Fi 6 AX3000 dual band com portas Gigabit. A página brasileira da revisão V4 anuncia EasyMesh para rede com outros aparelhos compatíveis. Confira o firmware da unidade: a fabricante alerta para conflitos entre fornecedores e informa que o produto não obteve certificação Wi-Fi EasyMesh. AX3000 é classe de sinal, não internet de 3 Gbps; a WAN é Gigabit. Não testamos cobertura, estabilidade ou velocidade real.",
       "category": "Roteador",
       "image": "https://rankingdacompra.com.br/produto/imagens/AweCTxq7vwVQ7VmN4IIg-2fd1ed9ee3e8.jpg?v=20260810-1",
       "price": 197.11,
@@ -5170,7 +5193,7 @@
             "state": "yes",
             "basis": "fabricante",
             "sourceUrl": "https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/",
-            "checkedAt": "2026-10-19"
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Banda de 5 GHz",
@@ -5178,7 +5201,7 @@
             "state": "yes",
             "basis": "fabricante",
             "sourceUrl": "https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/",
-            "checkedAt": "2026-10-19"
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Portas Gigabit",
@@ -5186,7 +5209,7 @@
             "state": "yes",
             "basis": "fabricante",
             "sourceUrl": "https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/",
-            "checkedAt": "2026-10-19"
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Quantidade de portas",
@@ -5194,14 +5217,15 @@
             "state": "yes",
             "basis": "fabricante",
             "sourceUrl": "https://www.mercusys.com/ca/product/wifi-router/mr80x/v4/",
-            "checkedAt": "2026-10-19"
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Rede Mesh",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro",
-            "reason": "A página internacional V4 anuncia EasyMesh; confirmar suporte no firmware regional da unidade brasileira."
+            "value": "EasyMesh anunciado na página brasileira V4; requer firmware e outros aparelhos compatíveis",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://www.mercusys.com.br/product/wifi-router/mr80x/v4/",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -8582,8 +8606,8 @@
         "features": [
           {
             "label": "Memória RAM",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
+            "value": "8 GB",
+            "state": "yes",
             "basis": "cadastro"
           },
           {
@@ -8781,8 +8805,8 @@
         "features": [
           {
             "label": "Memória RAM",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
+            "value": "8 GB",
+            "state": "yes",
             "basis": "cadastro"
           },
           {
@@ -8909,8 +8933,8 @@
         "features": [
           {
             "label": "Memória RAM",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
+            "value": "8 GB",
+            "state": "yes",
             "basis": "cadastro"
           },
           {
@@ -8973,8 +8997,8 @@
         "features": [
           {
             "label": "Memória RAM",
-            "value": "8 GB",
-            "state": "yes",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
             "basis": "cadastro"
           },
           {

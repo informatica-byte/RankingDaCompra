@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-20T15:59:20.846Z",
+  "generatedAt": "2026-10-20T20:08:56.274Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -1876,7 +1876,7 @@
     {
       "id": "AweCTxq7vwVQ7VmN4IIg",
       "titulo": "Roteador Mercusys Mr80x V4 Ax3000 Dual Band Wifi6",
-      "comentario": "Modelo V4 dual band AX3000 com portas Gigabit e canais de 160 MHz. As taxas nominais são 2402 Mbps em 5 GHz e 574 Mbps em 2,4 GHz. Interessante para dispositivos Wi-Fi 6 compatíveis; não significa internet de 3 Gbps. A WAN é Gigabit. Comparação de ficha oficial, sem testes próprios de cobertura ou estabilidade.",
+      "comentario": "O MERCUSYS MR80X V4 é um roteador Wi-Fi 6 AX3000 dual band com portas Gigabit. A página brasileira da revisão V4 anuncia EasyMesh para rede com outros aparelhos compatíveis. Confira o firmware da unidade: a fabricante alerta para conflitos entre fornecedores e informa que o produto não obteve certificação Wi-Fi EasyMesh. AX3000 é classe de sinal, não internet de 3 Gbps; a WAN é Gigabit. Não testamos cobertura, estabilidade ou velocidade real.",
       "categoria": "roteador",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_682515-MLA106922089707_022026-F.webp",
       "preco": "197,11",
@@ -1893,8 +1893,8 @@
       "precoConferenciaId": "901c262d-aaee-4ba6-b97b-477c2e25b4b8",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 197.11,
-      "pros": "",
-      "contras": "",
+      "pros": "Wi-Fi 6 dual band e portas Gigabit documentados para a revisão V4.\nCompatibilidade EasyMesh anunciada na página brasileira V4, com condições de firmware.",
+      "contras": "Um roteador sozinho não garante cobertura em todos os cômodos.\nConfirme revisão e firmware dos aparelhos; compatibilidade anunciada não é certificação Wi-Fi EasyMesh.",
       "notaInformada": ""
     },
     {
@@ -4973,7 +4973,7 @@
     {
       "id": "kYzXt8BeErDzXsC6BlwB",
       "titulo": "Fone De Ouvido Sem Fio Havit Tw982 Enc Bluetooth 5.4 Cor Preto",
-      "comentario": "O Fone de Ouvido Havit TW982 opera com Bluetooth 5.4 e possui microfone com tecnologia ENC para chamadas mais claras. O modelo traz drivers de 13mm, fones leves de apenas 4,1g cada e uma case de carregamento de 400mAh com entrada Tipo-C, garantindo autonomia de até 7.5 horas de reprodução contínua.",
+      "comentario": "O HAVIT LIFE 01T, modelo TW982, é um fone TWS com Bluetooth 5.4 e formato intra-auricular com ponteiras na apresentação oficial. A tabela da fabricante anuncia até 7,5 horas nos fones e 33 horas com recargas no estojo, a 60% do volume. O estojo usa USB-C. ENC anunciado para chamadas não comprova ANC para ouvir; não copiamos os recursos do TW982 Pro. Não testamos som, chamadas, conforto ou autonomia real.",
       "categoria": "fonesdeouvido",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_687944-MLA96073444085_102025-F.webp",
       "preco": "78,90",
@@ -4990,8 +4990,8 @@
       "precoConferenciaId": "faf94e56-1f01-4601-bfa5-51d332827a93",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 78.9,
-      "pros": "",
-      "contras": "",
+      "pros": "Bluetooth 5.4 documentado na tabela oficial do TW982.\nAté 7,5 horas nos fones e 33 horas com estojo anunciadas a 60% do volume.",
+      "contras": "As 33 horas incluem recargas; a duração real depende do uso e do volume.\nANC para ouvir continua sem confirmação; não é a ficha do TW982 Pro.",
       "notaInformada": ""
     },
     {
