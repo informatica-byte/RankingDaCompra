@@ -49,7 +49,7 @@ test('bateria dos TWS é separada por sessão e estojo, sem transplantar número
   assert.equal(comparisonData(product('FlqPY3yHJ2xPoNgnhSTE')).family,'fone-tws');
 });
 test('divergências oficiais e configuração desconhecida permanecem a confirmar',()=>{
-  const ports=feature('YuOWci2UixF5GuQE6IYS','Quantidade de portas');assert.equal(ports.state,'unknown');assert.match(ports.reason,/três.*quatro/);
+  const ports=feature('YuOWci2UixF5GuQE6IYS','Quantidade de portas');assert.equal(ports.state,'unknown');assert.match(ports.reason,/quatro.*três/);
   assert.match(feature('qZUWO8WSrcOKWVrAqTW7','Quantidade de portas').value,/1 porta WAN \+ 3 portas LAN/);
   assert.match(feature('LUsq533hX6lTuHwnZbhz','Quantidade de portas').value,/2 portas.*por unidade/);
   assert.equal(feature('O6e0R2WtiZfyyf2MJe5Y','Processador').basis,'cadastro');
@@ -69,7 +69,7 @@ test('destaques sem perfil antigo também ganham dados documentados e limites',(
 test('guias exibem fontes por campo e razões das pendências de forma indexável',()=>{
   const p=product('YuOWci2UixF5GuQE6IYS');
   const html=renderIntegrityGuide({file:'melhores-roteador.html',title:'Roteadores',products:[p],urls:new Map([[p.id,'https://rankingdacompra.com.br/produto/'+p.id+'-20260810-1.html']]),date:'2026-10-19'});
-  assert.match(html,/Por que estes dados continuam a confirmar/);assert.match(html,/visão geral oficial informa três/);assert.match(html,/fonte oficial/);
+  assert.match(html,/Por que estes dados continuam a confirmar/);assert.match(html,/próprio anúncio informa quatro.*três/);assert.match(html,/fonte oficial/);
 });
 test('microfone numa webcam ou brinquedo não cria ficha e pendências de fone',()=>{
   for(const titulo of ['Webcam GoodVision USB com Microfone','Guitarra E Microfone Infantil Instrumento Brinquedo Musical']){

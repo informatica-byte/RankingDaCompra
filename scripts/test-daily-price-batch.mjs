@@ -35,6 +35,7 @@ test("sitemap mantém uma janela diária e não relê Firebase por artefatos ou 
     "scripts/product-title-corrections.mjs",
     "scripts/highlight-editorial.mjs",
     "scripts/manufacturer-specifications.mjs",
+    "scripts/marketplace-field-reviews.mjs",
     "scripts/firestore-read-auth.mjs",
     "scripts/public-catalogue.mjs",
     "scripts/public-site-config.mjs",

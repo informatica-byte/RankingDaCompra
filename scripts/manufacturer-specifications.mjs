@@ -1,5 +1,6 @@
 // Field-level review, 19/10/2026. Only primary manufacturer sources.
 // Specifications describe the model, never authenticate the seller's unit.
+import {listingReviewFor} from './marketplace-field-reviews.mjs';
 const reviewedAt = '2026-10-19';
 const sources = {
   redmi: 'https://www.mi.com/global/product/redmi-buds-6-play/',
@@ -231,8 +232,10 @@ export const MARKETPLACE_SPECIFICATIONS = new Map([
 export function documentedSpecifications(product) {
   const id=String(product?.id||''), title=String(product?.titulo||product?.title||'');
   const record=MARKETPLACE_SPECIFICATIONS.get(id)||MANUFACTURER_SPECIFICATIONS.get(id);
-  if (!record || /^(?:capa|case|suporte|carregador|refil)\b/i.test(title) || !record.model.test(title)) return null;
-  if(record.sourceKind==='marketplace-listing') {
+  const listing=listingReviewFor(product);
+  const applicable=record && !/^(?:capa|case|suporte|carregador|refil)\b/i.test(title) && record.model.test(title);
+  if(!applicable && !listing)return null;
+  if(applicable && record.sourceKind==='marketplace-listing') {
     const cpu=title.match(/\bryzen\s+[3579]\s+(\d{4}[a-z]*)\b/i)?.[1];
     if(cpu && cpu.toUpperCase()!=='7520U') return null;
     if(product.link) {
@@ -243,10 +246,17 @@ export function documentedSpecifications(product) {
       } catch {return null;}
     }
   }
-  const checkedAt=record.reviewedAt || reviewedAt;
-  return {family:record.family, scope:record.scope, checkedAt,sourceKind:record.sourceKind||'manufacturer-specification',
-    features:record.features.map(f=>({...f,...(f.basis==='fabricante'?{checkedAt}:{})})), limitations:[...record.limitations],
-    additionalSources:[...(record.additionalSources||[])]};
+  const checkedAt=applicable?(record.reviewedAt || reviewedAt):listing.reviewedAt;
+  const base=applicable?record:null;
+  const features=new Map((base?.features||[]).map(f=>[f.label,{...f,...(f.basis==='fabricante'?{checkedAt}:{})}]));
+  for(const f of listing?.features||[])features.set(f.label,{...f});
+  const hasManufacturer=[...features.values()].some(f=>f.state!=='unknown'&&f.basis==='fabricante');
+  return {family:base?.family||listing.family,scope:base?.scope||listing.scope,checkedAt,
+    sourceKind:listing?(hasManufacturer?'mixed-specifications':'marketplace-listing'):(base.sourceKind||'manufacturer-specification'),
+    features:[...features.values()],limitations:[...(base?.limitations||[]),...(listing?.limitations||[])],
+    additionalSources:[...(base?.additionalSources||[])],
+    ...(listing?{listingScope:listing.scope,listingNotes:listing.notes,listingSourceUrl:listing.sourceUrl,listingCheckedAt:listing.reviewedAt}:{}),
+  };
 }
 
 export function mergeDocumentedFeatures(product, features=[]) {
@@ -261,15 +271,20 @@ const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;
 export function renderManufacturerSpecifications(product) {
   const record=documentedSpecifications(product);
   if (!record) return '';
-  if(record.sourceKind==='marketplace-listing') return '<section class="panel" data-marketplace-specifications style="margin-top:24px"><h2>Ficha informada no anúncio do Mercado Livre</h2><p>'+esc(record.scope)+'</p><ul>'
-    +record.features.filter(f=>f.state!=='unknown').map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.value)+'.</li>').join('')+'</ul>'
-    +'<p><a href="'+esc(record.features[0].sourceUrl)+'" target="_blank" rel="noopener noreferrer">Consultar o anúncio usado como fonte</a>.</p><p>'+record.limitations.map(esc).join(' ')+'</p>'
-    +'<p class="fine">Descrição da oferta revisada em '+esc(record.checkedAt.split('-').reverse().join('/'))+'. Não altera a data da conferência do preço.</p></section>';
-  const known=record.features.filter(f=>f.state!=='unknown' && f.basis==='fabricante'), uncertain=record.features.filter(f=>f.state==='unknown');
+  const listingFeatures=record.features.filter(f=>f.sourceKind==='marketplace-listing');
+  const listingUnknown=listingFeatures.filter(f=>f.state==='unknown');
+  const listingHtml=listingFeatures.length?'<section class="panel" data-marketplace-specifications style="margin-top:24px"><h2>Ficha informada no anúncio do Mercado Livre</h2><p>'+esc(record.listingScope||record.scope)+'</p><ul>'
+    +listingFeatures.filter(f=>f.state!=='unknown').map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.value)+'.</li>').join('')+'</ul>'
+    +(listingUnknown.length?'<h3>O que o anúncio não esclarece</h3><ul>'+listingUnknown.map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.reason)+'</li>').join('')+'</ul>':'')
+    +(record.listingNotes||[]).map(note=>'<p>'+esc(note)+'</p>').join('')
+    +'<p><a href="'+esc(record.listingSourceUrl||listingFeatures[0].sourceUrl)+'" target="_blank" rel="noopener noreferrer">Consultar o anúncio usado como fonte</a>.</p><p>'+record.limitations.map(esc).join(' ')+'</p>'
+    +'<p class="fine">Descrição da oferta revisada em '+esc((record.listingCheckedAt||record.checkedAt).split('-').reverse().join('/'))+'. Não altera a data da conferência do preço.</p></section>':'';
+  if(record.sourceKind==='marketplace-listing')return listingHtml;
+  const known=record.features.filter(f=>f.state!=='unknown' && f.basis==='fabricante'), uncertain=record.features.filter(f=>f.state==='unknown'&&f.sourceKind!=='marketplace-listing');
   return '<section class="panel" data-manufacturer-specifications style="margin-top:24px"><h2>Ficha conferida em fontes do fabricante</h2><p>'+esc(record.scope)+'</p><ul>'
     +known.map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.value)+' — <a href="'+esc(f.sourceUrl)+'" target="_blank" rel="noopener noreferrer">fonte oficial</a>.</li>').join('')+'</ul>'
     +(uncertain.length?'<h3>O que continua a confirmar</h3><ul>'+uncertain.map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.reason)+'</li>').join('')+'</ul>':'')
     +'<p>'+record.limitations.map(esc).join(' ')+'</p>'
     +record.additionalSources.map(url=>'<p><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Outra fonte oficial consultada</a>.</p>').join('')
-    +'<p class="fine">Documentação revisada em '+esc(record.checkedAt.split('-').reverse().join('/'))+'. Valores anunciados pelo fabricante, não teste independente nem autenticação da oferta. Esta revisão não altera a data da conferência do preço.</p></section>';
+    +'<p class="fine">Documentação revisada em '+esc(record.checkedAt.split('-').reverse().join('/'))+'. Valores anunciados pelo fabricante, não teste independente nem autenticação da oferta. Esta revisão não altera a data da conferência do preço.</p></section>'+listingHtml;
 }

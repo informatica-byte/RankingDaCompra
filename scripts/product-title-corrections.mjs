@@ -3,6 +3,7 @@ import { basename, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { HIGHLIGHT_EDITORIAL } from './highlight-editorial.mjs';
 import { documentedSpecifications } from './manufacturer-specifications.mjs';
+import { MARKETPLACE_FIELD_REVIEWS,listingReviewFor } from './marketplace-field-reviews.mjs';
 
 const PRODUCT_CORRECTIONS = new Map([
   ['mlMLB4644707253', {model:/lavadora.*alta\s*press[aã]o/i, category:'ferramentas'}],
@@ -369,8 +370,20 @@ for (const [id, review] of HIGHLIGHT_EDITORIAL) {
   PRODUCT_CORRECTIONS.set(id, {...PRODUCT_CORRECTIONS.get(id), ...review});
 }
 
+const PRE_LISTING_CORRECTIONS=new Map(PRODUCT_CORRECTIONS);
+for(const [id,review]of MARKETPLACE_FIELD_REVIEWS)if(review.summary) {
+  PRODUCT_CORRECTIONS.set(id,{...PRODUCT_CORRECTIONS.get(id),model:review.model,summary:review.summary,
+    positiveNotes:review.positiveNotes,negativeNotes:review.negativeNotes,sourceUrl:review.sourceUrl,
+    sourceKind:'marketplace-listing',sourceLabel:'Anúncio do vendedor no Mercado Livre',reviewedAt:review.reviewedAt,specUrl:undefined,suppressRating:true});
+}
+
 function correctionFor(product) {
-  const correction = PRODUCT_CORRECTIONS.get(String(product?.id || ""));
+  const id=String(product?.id||'');
+  let correction = PRODUCT_CORRECTIONS.get(id);
+  // Old safeguards (for example removing unsupported superlatives) still
+  // apply when the exact current listing cannot be established. They do not
+  // grant permission to attach this review's new seller-declared facts.
+  if(correction?.sourceKind==='marketplace-listing' && MARKETPLACE_FIELD_REVIEWS.has(id) && !listingReviewFor(product))correction=PRE_LISTING_CORRECTIONS.get(id);
   // Um cadastro pode ser reutilizado. Nunca aplicar a ficha do modelo anterior
   // só porque o ID continua igual; a identidade atual precisa corresponder.
   if(correction?.sourceKind==='marketplace-listing' && !documentedSpecifications(product)) return undefined;
@@ -378,10 +391,11 @@ function correctionFor(product) {
 }
 
 export function manufacturerEvidence(product) {
+  const correction = correctionFor(product);
+  if(correction?.sourceKind==='marketplace-listing')return null;
   const documented = documentedSpecifications(product);
   const source = documented?.features.find(f=>f.state!=='unknown' && f.basis==='fabricante' && f.sourceUrl);
   if (source) return {sourceUrl:source.sourceUrl, model:documented.scope, checkedAt:documented.checkedAt, kind:'manufacturer-specification', independentTest:false};
-  const correction = correctionFor(product);
   return correction?.summary && correction.sourceUrl && correction.sourceKind!=='marketplace-listing'
     ? {sourceUrl: correction.sourceUrl, model: correction.sourceLabel, checkedAt: correction.reviewedAt || "2026-10-06", kind: "manufacturer-specification", independentTest: false}
     : null;

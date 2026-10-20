@@ -53,6 +53,9 @@ test('relógios separam IP e ATM e removem apenas alegações não comprovadas',
   assert.doesNotMatch(fit.titulo,/64\s*gb|182"/i);assert.match(fit.titulo,/1,82/);
   const f=comparisonData(fit).features;
   assert.match(f.find(x=>x.label==='Proteção IP').value,/IP6X.*poeira/);
-  assert.equal(f.find(x=>x.label==='Armazenamento interno').state,'unknown');
+  assert.equal(f.find(x=>x.label==='Armazenamento interno').state,'yes');
+  assert.equal(f.find(x=>x.label==='Armazenamento interno').basis,'cadastro');
+  assert.match(f.find(x=>x.label==='Armazenamento interno').value,/64 GB.*vendedor.*segundo o anúncio/);
+  assert.equal(f.find(x=>x.label==='Memória RAM').state,'unknown','não copia o armazenamento como RAM');
   assert.doesNotMatch(renderManufacturerSpecifications(product('GjHJtzdsIhbmSINvhPeX')),/20\/10\/2026/,'revisar outro modelo não renova datas antigas');
 });
