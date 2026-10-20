@@ -2413,8 +2413,8 @@
           },
           {
             "label": "Microfone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
+            "value": "Microfone com ENC informado no cadastro; qualidade de chamada não testada",
+            "state": "yes",
             "basis": "cadastro"
           },
           {
