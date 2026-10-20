@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-20T15:07:23.929Z",
+  "generatedAt": "2026-10-20T15:29:42.128Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -856,8 +856,8 @@
     },
     {
       "id": "5MGE98tYssH9nEfBeHoW",
-      "titulo": "Smartwatch HUAWEI WATCH FIT 5 AMOLED de 182\" Design Leve Mini Treino Bateria com Até 10 Dias 64 GB Gerenciamento Avançado da Saúde Monitor do Sono SpO2 GPS Compatível com iOS e Android Preto",
-      "comentario": "O HUAWEI WATCH FIT 5 possui tela AMOLED de 1,82\" com brilho de 2500 nits e design de 27 gramas. O dispositivo conta com 64 GB de armazenamento e bateria com autonomia de até 10 dias em uso moderado. O modelo oferece monitoramento de SpO2, frequência cardíaca e recursos para exercícios, sendo compatível com sistemas iOS e Android.",
+      "titulo": "Smartwatch HUAWEI WATCH FIT 5 com GPS e tela AMOLED de 1,82 polegada",
+      "comentario": "O HUAWEI WATCH FIT 5 tem tela AMOLED de 1,82 polegada e GPS integrado, conforme a ficha oficial internacional do modelo, não Pro. A ficha distingue IP6X para poeira de resistência à água de 5 ATM, sujeita às restrições do manual. A alegação anterior de 64 GB não foi confirmada e foi retirada do título, sem atribuir outra capacidade. Confirme a variante e os recursos disponíveis na região. Não testamos sensores, conforto ou autonomia.",
       "categoria": "relogio-smartwatch",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_879649-MLA110592319201_042026-F.webp",
       "preco": "752,40",
@@ -872,8 +872,8 @@
       "precoConferenciaId": "7154c65c-79c0-466a-a2e6-4d79d9d932f5",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 752.4,
-      "pros": "",
-      "contras": "",
+      "pros": "Tela AMOLED de 1,82 polegada documentada para o WATCH FIT 5.\nGPS integrado com dupla banda L1 + L5 na ficha oficial.",
+      "contras": "A capacidade de armazenamento de 64 GB não foi confirmada.\nIP6X não significa IP68; água e condições regionais exigem atenção ao manual.",
       "notaInformada": ""
     },
     {
@@ -1526,8 +1526,8 @@
     },
     {
       "id": "9P123IBTTYnSCMilPvXB",
-      "titulo": "Smartwatch Amazfit Bip 6 Global com GPS, Alexa e Tela AMOLED 1.97\"",
-      "comentario": "O Smartwatch Amazfit Bip 6 Global oferece excelente custo-benefício, destacando-se pela tela AMOLED ultranítida de 1,97 polegadas, GPS integrado e integração com a assistente Alexa. É ideal para monitoramento de saúde e atividades físicas diárias com bateria de longa duração.",
+      "titulo": "Smartwatch Amazfit Bip 6 com GPS e tela AMOLED de 1,97 polegada",
+      "comentario": "O Amazfit Bip 6 tem GPS integrado, chamadas Bluetooth com o celular conectado e tela AMOLED de 1,97 polegada, segundo a fabricante. A classificação de resistência à água é 5 ATM, com restrições no manual; não atribuímos um código IP não confirmado. A fonte consultada cita Zepp Flow em regiões selecionadas, não confirma Alexa. Confira o aplicativo Zepp e a compatibilidade do celular antes de comprar. Não testamos precisão, chamadas ou autonomia.",
       "categoria": "relogio-smartwatch",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_964586-MLA99491874316_112025-F.webp",
       "preco": "569,48",
@@ -1544,8 +1544,8 @@
       "precoConferenciaId": "bffcaaf1-399d-439d-b534-14e8313b6498",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 569.48,
-      "pros": "",
-      "contras": "",
+      "pros": "GPS integrado documentado para registrar atividades.\nChamadas Bluetooth anunciadas, usando o celular conectado.",
+      "contras": "Alexa não foi confirmada na fonte oficial consultada.\nSensores não são diagnóstico médico; siga as restrições de uso na água.",
       "notaInformada": ""
     },
     {
@@ -6887,8 +6887,8 @@
     },
     {
       "id": "O6e0R2WtiZfyyf2MJe5Y",
-      "titulo": "Notebook Asus Vivobook Go 15 Amd Ryzen 5 7520u 16gb 512ssd Mixed Black",
-      "comentario": "Este ASUS Vivobook Go 15 é anunciado com AMD Ryzen 5 7520U e vídeo integrado Radeon 610M. Pode entrar na comparação para estudo, navegação e trabalho, conforme os requisitos dos programas usados; não medimos desempenho. O título identifica a configuração como 16GB/512SSD, mas a ficha precisa confirmar memória RAM e capacidade/unidade do SSD antes da decisão. O sistema informado é Keep OS, não uma licença do Windows. Confira o código completo da unidade, tela e possibilidade de expansão; não presumimos características de outro Vivobook.",
+      "titulo": "Notebook ASUS Vivobook Go 15 E1504FA-NJ1288, 16 GB RAM e SSD 512 GB",
+      "comentario": "O SKU E1504FA-NJ1288 informado pelo responsável consta na loja ASUS com 16 GB de RAM LPDDR5, SSD NVMe de 512 GB e KeepOS. As fontes oficiais consultadas concordam nessas capacidades, mas a página individual informa Ryzen 5 40 e um conjunto com o mesmo SKU informa Ryzen 5 7520U. Por isso, o processador e a GPU da unidade precisam de confirmação antes da compra. Não atribuímos desempenho de uma variante à outra nem medimos desempenho deste notebook.",
       "categoria": "notebook",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_722728-MLA110061030541_042026-F.jpg",
       "preco": "3.372,21",
@@ -6905,8 +6905,8 @@
       "precoConferenciaId": "07a347e6-150c-46ba-bd25-a657802ef963",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 3372.21,
-      "pros": "Processador AMD Ryzen 5 7520U identificado no cadastro, permitindo comparar os requisitos dos programas pelo modelo exato.\nVídeo integrado Radeon 610M informado na ficha; não depende de atribuir uma GPU dedicada inexistente no cadastro.",
-      "contras": "Keep OS informado no cadastro não equivale a Windows licenciado.\nRAM, capacidade do SSD, tela e expansão devem ser confirmadas pelo código completo da variante; o título abreviado não basta.",
+      "pros": "RAM de 16 GB LPDDR5 documentada pela ASUS para o SKU informado.\nSSD NVMe de 512 GB documentado para o mesmo SKU.",
+      "contras": "Keep OS não equivale a Windows licenciado.\nAs fontes oficiais divergem no processador; confirme CPU, GPU e possibilidade de expansão com a ASUS e o vendedor.",
       "notaInformada": ""
     },
     {

@@ -7268,8 +7268,8 @@
     },
     {
       "id": "9P123IBTTYnSCMilPvXB",
-      "title": "Smartwatch Amazfit Bip 6 Global com GPS, Alexa e Tela AMOLED 1.97\"",
-      "summary": "O Smartwatch Amazfit Bip 6 Global oferece excelente custo-benefício, destacando-se pela tela AMOLED ultranítida de 1,97 polegadas, GPS integrado e integração com a assistente Alexa. É ideal para monitoramento de saúde e atividades físicas diárias com bateria de longa duração.",
+      "title": "Smartwatch Amazfit Bip 6 com GPS e tela AMOLED de 1,97 polegada",
+      "summary": "O Amazfit Bip 6 tem GPS integrado, chamadas Bluetooth com o celular conectado e tela AMOLED de 1,97 polegada, segundo a fabricante. A classificação de resistência à água é 5 ATM, com restrições no manual; não atribuímos um código IP não confirmado. A fonte consultada cita Zepp Flow em regiões selecionadas, não confirma Alexa. Confira o aplicativo Zepp e a compatibilidade do celular antes de comprar. Não testamos precisão, chamadas ou autonomia.",
       "category": "relógio/smartwatch",
       "image": "https://rankingdacompra.com.br/produto/imagens/9P123IBTTYnSCMilPvXB-a8e104108e6b.jpg?v=20260810-1",
       "price": 569.48,
@@ -7277,7 +7277,58 @@
       "recordedPrice": 569.48,
       "rating": 0,
       "ranking": 0,
-      "comparison": null,
+      "comparison": {
+        "family": "smartwatch",
+        "features": [
+          {
+            "label": "GPS integrado",
+            "value": "GPS integrado, com cinco sistemas de posicionamento anunciados",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://br.amazfit.com/products/amazfit-bip-6",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Chamadas Bluetooth",
+            "value": "Chamadas Bluetooth com o celular conectado; não é linha móvel independente",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://br.amazfit.com/products/amazfit-bip-6",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Tela",
+            "value": "AMOLED de 1,97 polegada; 390 × 450 pixels",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://br.amazfit.com/products/amazfit-bip-6",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Resistência à água",
+            "value": "5 ATM; seguir as condições do manual, não equivale a mergulho a 50 m",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://br.amazfit.com/products/amazfit-bip-6",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Compatibilidade anunciada",
+            "value": "Android 7.0 ou iOS 14.0 e superiores; aplicativo Zepp",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://br.amazfit.com/products/amazfit-bip-6",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Proteção IP",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro",
+            "reason": "A fonte informa 5 ATM; não atribuímos um código IP que não foi confirmado."
+          }
+        ]
+      },
       "url": "https://rankingdacompra.com.br/produto/9P123IBTTYnSCMilPvXB-20260810-1.html"
     },
     {
@@ -7520,8 +7571,8 @@
     },
     {
       "id": "5MGE98tYssH9nEfBeHoW",
-      "title": "Smartwatch HUAWEI WATCH FIT 5 AMOLED de 182\" Design Leve Mini Treino Bateria com Até 10 Dias 64 GB Gerenciamento Avançado da Saúde Monitor do Sono SpO2 GPS Compatível com iOS e Android Preto",
-      "summary": "O HUAWEI WATCH FIT 5 possui tela AMOLED de 1,82\" com brilho de 2500 nits e design de 27 gramas. O dispositivo conta com 64 GB de armazenamento e bateria com autonomia de até 10 dias em uso moderado. O modelo oferece monitoramento de SpO2, frequência cardíaca e recursos para exercícios, sendo compatível com sistemas iOS e Android.",
+      "title": "Smartwatch HUAWEI WATCH FIT 5 com GPS e tela AMOLED de 1,82 polegada",
+      "summary": "O HUAWEI WATCH FIT 5 tem tela AMOLED de 1,82 polegada e GPS integrado, conforme a ficha oficial internacional do modelo, não Pro. A ficha distingue IP6X para poeira de resistência à água de 5 ATM, sujeita às restrições do manual. A alegação anterior de 64 GB não foi confirmada e foi retirada do título, sem atribuir outra capacidade. Confirme a variante e os recursos disponíveis na região. Não testamos sensores, conforto ou autonomia.",
       "category": "relógio/smartwatch",
       "image": "https://rankingdacompra.com.br/produto/imagens/5MGE98tYssH9nEfBeHoW-f6d1e569f634.jpg?v=20260810-1",
       "price": 752.4,
@@ -7529,7 +7580,58 @@
       "recordedPrice": 752.4,
       "rating": 0,
       "ranking": 0,
-      "comparison": null,
+      "comparison": {
+        "family": "smartwatch",
+        "features": [
+          {
+            "label": "Tela",
+            "value": "AMOLED de 1,82 polegada; 480 × 408 pixels",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://consumer.huawei.com/ma/wearables/watch-fit5/specs/",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "GPS integrado",
+            "value": "GNSS integrado; GPS de dupla banda L1 + L5",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://consumer.huawei.com/ma/wearables/watch-fit5/specs/",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Proteção IP",
+            "value": "IP6X: proteção contra poeira; não é IP68",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://consumer.huawei.com/ma/wearables/watch-fit5/specs/",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Resistência à água",
+            "value": "5 ATM; seguir as restrições do manual, não equivale a mergulho a 50 m",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://consumer.huawei.com/ma/wearables/watch-fit5/specs/",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Compatibilidade anunciada",
+            "value": "Android 9.0 ou iOS 13.0 e superiores",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://consumer.huawei.com/ma/wearables/watch-fit5/specs/",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Armazenamento interno",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro",
+            "reason": "Não foi confirmada a alegação de 64 GB; removida do título público, sem substituir por outra capacidade."
+          }
+        ]
+      },
       "url": "https://rankingdacompra.com.br/produto/5MGE98tYssH9nEfBeHoW-20260810-1.html"
     },
     {
@@ -8510,8 +8612,8 @@
     },
     {
       "id": "O6e0R2WtiZfyyf2MJe5Y",
-      "title": "Notebook Asus Vivobook Go 15 Amd Ryzen 5 7520u 16gb 512ssd Mixed Black",
-      "summary": "Este ASUS Vivobook Go 15 é anunciado com AMD Ryzen 5 7520U e vídeo integrado Radeon 610M. Pode entrar na comparação para estudo, navegação e trabalho, conforme os requisitos dos programas usados; não medimos desempenho. O título identifica a configuração como 16GB/512SSD, mas a ficha precisa confirmar memória RAM e capacidade/unidade do SSD antes da decisão. O sistema informado é Keep OS, não uma licença do Windows. Confira o código completo da unidade, tela e possibilidade de expansão; não presumimos características de outro Vivobook.",
+      "title": "Notebook ASUS Vivobook Go 15 E1504FA-NJ1288, 16 GB RAM e SSD 512 GB",
+      "summary": "O SKU E1504FA-NJ1288 informado pelo responsável consta na loja ASUS com 16 GB de RAM LPDDR5, SSD NVMe de 512 GB e KeepOS. As fontes oficiais consultadas concordam nessas capacidades, mas a página individual informa Ryzen 5 40 e um conjunto com o mesmo SKU informa Ryzen 5 7520U. Por isso, o processador e a GPU da unidade precisam de confirmação antes da compra. Não atribuímos desempenho de uma variante à outra nem medimos desempenho deste notebook.",
       "category": "Notebook",
       "image": "https://rankingdacompra.com.br/produto/imagens/O6e0R2WtiZfyyf2MJe5Y-88870cf2683a.jpg?v=20260810-1",
       "price": 3372.21,
@@ -8524,39 +8626,34 @@
         "features": [
           {
             "label": "Memória RAM",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro",
-            "reason": "Falta o código completo da variante ASUS e confirmação da memória instalada; capacidade máxima do processador não é RAM instalada."
+            "value": "16 GB LPDDR5, na configuração oficial do SKU",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-nivel-ips.html",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Armazenamento SSD",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro",
-            "reason": "O título abrevia 512SSD sem unidade e sem SKU completo; não atribuir uma configuração de outra variante."
+            "value": "512 GB SSD NVMe, na configuração oficial do SKU",
+            "state": "yes",
+            "basis": "fabricante",
+            "sourceUrl": "https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-nivel-ips.html",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Processador",
-            "value": "AMD Ryzen 5 7520U — identificado no cadastro, SKU ASUS a confirmar",
-            "state": "yes",
-            "basis": "cadastro"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro",
+            "reason": "O anúncio e um conjunto oficial indicam Ryzen 5 7520U; a página individual do mesmo SKU indica Ryzen 5 40. Confirmar com a ASUS antes de atribuir CPU e GPU à unidade."
           },
           {
-            "label": "Núcleos/threads do processador anunciado",
-            "value": "Ryzen 5 7520U: 4 núcleos e 8 threads",
+            "label": "Sistema operacional de fábrica",
+            "value": "KeepOS; não equivale a licença Windows",
             "state": "yes",
             "basis": "fabricante",
-            "sourceUrl": "https://www.amd.com/es/products/processors/laptop/ryzen/7000-series/amd-ryzen-5-7520u.html",
-            "checkedAt": "2026-10-19"
-          },
-          {
-            "label": "GPU do processador anunciado",
-            "value": "Radeon 610M integrada ao Ryzen 5 7520U",
-            "state": "yes",
-            "basis": "fabricante",
-            "sourceUrl": "https://www.amd.com/es/products/processors/laptop/ryzen/7000-series/amd-ryzen-5-7520u.html",
-            "checkedAt": "2026-10-19"
+            "sourceUrl": "https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-nivel-ips.html",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
