@@ -33,6 +33,7 @@ test('TW982 não Pro usa somente a tabela oficial do próprio modelo',()=>{
   assert.match(field(p,'Autonomia no fone').value,/7,5 h.*60%/);
   assert.match(field(p,'Autonomia com estojo').value,/33 h.*recargas.*60%/);
   assert.equal(field(p,'Formato').basis,'fabricante');
+  assert.equal(field(p,'Microfone').basis,'cadastro','preserva a informação anterior sem atribuí-la à tabela oficial');
   assert.equal(field(p,'Cancelamento ativo de ruído').state,'unknown');
   assert.match(field(p,'Autonomia no fone').sourceUrl,/01T-_TW982_.*14\.jpg/);
   for(const titulo of ['Havit TW982 Pro','Havit TW982PRO','Havit TW981','Capa para Havit TW982']) assert.equal(documentedSpecifications({...p,titulo}),null);

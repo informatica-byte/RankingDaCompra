@@ -172,6 +172,7 @@ export const MANUFACTURER_SPECIFICATIONS = new Map([
       fact('Autonomia no fone','Até 7,5 h anunciadas, a 60% do volume','havit982Specs'),
       fact('Autonomia com estojo','Até 33 h anunciadas com recargas, a 60% do volume','havit982Specs'),
       fact('Carregamento do estojo','USB-C; cerca de 1,5 h anunciada para o estojo','havit982Specs'),
+      {label:'Microfone',value:'Microfone com ENC informado no cadastro; qualidade de chamada não testada',state:'yes',basis:'cadastro'},
       pending('Cancelamento ativo de ruído','ENC anunciado para chamadas não confirma ANC para ouvir. Não usamos a ficha do TW982 Pro para completar este campo.')],
     additionalSources:[sources.havit982],
     limitations:['Autonomia real depende do volume e do uso. Não medimos conforto, som ou chamadas; 33 horas incluem recargas no estojo.'],
