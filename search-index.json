@@ -8679,7 +8679,7 @@
     {
       "id": "O6e0R2WtiZfyyf2MJe5Y",
       "title": "Notebook ASUS Vivobook Go 15 E1504FA-NJ1288, 16 GB RAM e SSD 512 GB",
-      "summary": "O SKU E1504FA-NJ1288 informado pelo responsável consta na loja ASUS com 16 GB de RAM LPDDR5, SSD NVMe de 512 GB e KeepOS. As fontes oficiais consultadas concordam nessas capacidades, mas a página individual informa Ryzen 5 40 e um conjunto com o mesmo SKU informa Ryzen 5 7520U. Por isso, o processador e a GPU da unidade precisam de confirmação antes da compra. Não atribuímos desempenho de uma variante à outra nem medimos desempenho deste notebook.",
+      "summary": "O anúncio do Mercado Livre identifica este ASUS Vivobook Go 15 como E1504FA-NJ1288, com processador AMD Ryzen 5 7520U, vídeo integrado Radeon 610M, 16 GB de RAM LPDDR5 e SSD PCIe NVMe de 512 GB. O vendedor informa Linux KeepOS e tela Full HD de 15,6 polegadas. Estes são dados da oferta consultada, não uma validação independente da configuração de fábrica. Considere a compatibilidade dos programas que pretende usar: não acompanha Windows. Não testamos desempenho, autonomia ou possibilidade de expansão. Consulte no anúncio as condições atuais de garantia, entrega e devolução.",
       "category": "Notebook",
       "image": "https://rankingdacompra.com.br/produto/imagens/O6e0R2WtiZfyyf2MJe5Y-88870cf2683a.jpg?v=20260810-1",
       "price": 3372.21,
@@ -8692,33 +8692,56 @@
         "features": [
           {
             "label": "Memória RAM",
-            "value": "16 GB LPDDR5, na configuração oficial do SKU",
+            "value": "16 GB LPDDR5, segundo o anúncio",
             "state": "yes",
-            "basis": "fabricante",
-            "sourceUrl": "https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-nivel-ips.html",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB43417665?pdp_filters=item_id%3AMLB3914161563",
             "checkedAt": "2026-10-20"
           },
           {
             "label": "Armazenamento SSD",
-            "value": "512 GB SSD NVMe, na configuração oficial do SKU",
+            "value": "512 GB SSD PCIe NVMe M.2, segundo o anúncio",
             "state": "yes",
-            "basis": "fabricante",
-            "sourceUrl": "https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-nivel-ips.html",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB43417665?pdp_filters=item_id%3AMLB3914161563",
             "checkedAt": "2026-10-20"
           },
           {
             "label": "Processador",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
+            "value": "AMD Ryzen 5 7520U, segundo o anúncio",
+            "state": "yes",
             "basis": "cadastro",
-            "reason": "O anúncio e um conjunto oficial indicam Ryzen 5 7520U; a página individual do mesmo SKU indica Ryzen 5 40. Confirmar com a ASUS antes de atribuir CPU e GPU à unidade."
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB43417665?pdp_filters=item_id%3AMLB3914161563",
+            "checkedAt": "2026-10-20"
           },
           {
-            "label": "Sistema operacional de fábrica",
-            "value": "KeepOS; não equivale a licença Windows",
+            "label": "Placa de vídeo",
+            "value": "AMD Radeon 610M integrada, segundo o anúncio",
             "state": "yes",
-            "basis": "fabricante",
-            "sourceUrl": "https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-nivel-ips.html",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB43417665?pdp_filters=item_id%3AMLB3914161563",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Sistema operacional anunciado",
+            "value": "Linux KeepOS; não acompanha Windows, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB43417665?pdp_filters=item_id%3AMLB3914161563",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Tela",
+            "value": "15,6 polegadas, Full HD 1920 × 1080, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB43417665?pdp_filters=item_id%3AMLB3914161563",
             "checkedAt": "2026-10-20"
           }
         ]

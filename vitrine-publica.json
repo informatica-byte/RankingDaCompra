@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-20T20:13:06.431Z",
+  "generatedAt": "2026-10-20T20:37:24.442Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -6960,7 +6960,7 @@
     {
       "id": "O6e0R2WtiZfyyf2MJe5Y",
       "titulo": "Notebook ASUS Vivobook Go 15 E1504FA-NJ1288, 16 GB RAM e SSD 512 GB",
-      "comentario": "O SKU E1504FA-NJ1288 informado pelo responsável consta na loja ASUS com 16 GB de RAM LPDDR5, SSD NVMe de 512 GB e KeepOS. As fontes oficiais consultadas concordam nessas capacidades, mas a página individual informa Ryzen 5 40 e um conjunto com o mesmo SKU informa Ryzen 5 7520U. Por isso, o processador e a GPU da unidade precisam de confirmação antes da compra. Não atribuímos desempenho de uma variante à outra nem medimos desempenho deste notebook.",
+      "comentario": "O anúncio do Mercado Livre identifica este ASUS Vivobook Go 15 como E1504FA-NJ1288, com processador AMD Ryzen 5 7520U, vídeo integrado Radeon 610M, 16 GB de RAM LPDDR5 e SSD PCIe NVMe de 512 GB. O vendedor informa Linux KeepOS e tela Full HD de 15,6 polegadas. Estes são dados da oferta consultada, não uma validação independente da configuração de fábrica. Considere a compatibilidade dos programas que pretende usar: não acompanha Windows. Não testamos desempenho, autonomia ou possibilidade de expansão. Consulte no anúncio as condições atuais de garantia, entrega e devolução.",
       "categoria": "notebook",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_722728-MLA110061030541_042026-F.jpg",
       "preco": "3.372,21",
@@ -6977,8 +6977,8 @@
       "precoConferenciaId": "07a347e6-150c-46ba-bd25-a657802ef963",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 3372.21,
-      "pros": "RAM de 16 GB LPDDR5 documentada pela ASUS para o SKU informado.\nSSD NVMe de 512 GB documentado para o mesmo SKU.",
-      "contras": "Keep OS não equivale a Windows licenciado.\nAs fontes oficiais divergem no processador; confirme CPU, GPU e possibilidade de expansão com a ASUS e o vendedor.",
+      "pros": "16 GB de RAM LPDDR5 e SSD de 512 GB informados no anúncio.\nRyzen 5 7520U, Radeon 610M e tela Full HD anunciados para esta oferta.",
+      "contras": "Linux KeepOS anunciado: não acompanha licença Windows.\nDesempenho, autonomia e expansão não foram testados pela equipe; consulte as condições da oferta no vendedor.",
       "notaInformada": ""
     },
     {
