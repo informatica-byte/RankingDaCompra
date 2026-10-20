@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.10
+// @version      2.4.11
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -12,6 +12,8 @@
 // @grant        GM_getValue
 // @grant        GM_addValueChangeListener
 // @grant        GM_removeValueChangeListener
+// @grant        GM_getTab
+// @grant        GM_saveTab
 // @run-at       document-start
 // @noframes
 // ==/UserScript==
@@ -19,13 +21,39 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.10";
+  const BOT_VERSION = "2.4.11";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
   const CONTROLLER_KEY = "rdc_preco_controller_v3";
   const NAVIGATION_KEY = "rdc_preco_navigation_v1";
   const PANEL_HOST = "rankingdacompra.com.br";
+  let tabSession = "", tabNavigation = null;
+
+  // Tampermonkey keeps this metadata in this tab, across subdomains. Never
+  // recover a session from global storage: that would capture unrelated tabs.
+  function readControllerTab() {
+    return new Promise(resolve => {
+      if (typeof GM_getTab !== "function") { resolve(null); return; }
+      try { GM_getTab(tab => resolve(tab || {})); } catch { resolve(null); }
+    });
+  }
+  async function restoreControllerTab() {
+    const tab = await readControllerTab();
+    if (/^[a-z0-9-]{8,100}$/i.test(String(tab?.rdcPriceSession || ""))) {
+      tabSession = tab.rdcPriceSession;
+      tabNavigation = tab.rdcPriceNavigation || null;
+    }
+  }
+  async function persistControllerTab(sessionId, navigation = tabNavigation) {
+    if (typeof GM_getTab !== "function" || typeof GM_saveTab !== "function") return false;
+    const tab = await readControllerTab();
+    if (!tab) return false;
+    return new Promise(resolve => {
+      try { GM_saveTab({ ...tab, rdcPriceSession: sessionId, rdcPriceNavigation: navigation }, () => resolve(true)); }
+      catch { resolve(false); }
+    });
+  }
 
   function normalizeText(value) {
     return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
@@ -330,13 +358,14 @@
   function controllerSession() {
     const marker = new URLSearchParams(new URL(location.href).hash.slice(1)).get("_rdc_conferencia") || "";
     if (marker && /^[a-z0-9-]{8,100}$/i.test(marker)) {
+      tabSession = marker;
       try { sessionStorage.setItem(CONTROLLER_KEY, marker); unsafeWindow.name = "rdc_conferencia_" + marker; } catch {}
       return marker;
     }
     try {
       const stored = sessionStorage.getItem(CONTROLLER_KEY) || "";
-      return stored && unsafeWindow.name === "rdc_conferencia_" + stored ? stored : "";
-    } catch { return ""; }
+      return tabSession || (stored && unsafeWindow.name === "rdc_conferencia_" + stored ? stored : "");
+    } catch { return tabSession; }
   }
 
   async function handleConferenceCommand(command) {
@@ -353,24 +382,32 @@
       // Catálogos antigos podem redirecionar a outro catálogo. Uma navegação
       // por pedido é suficiente: repetir após cada reload criava um ciclo até
       // o timeout. Não aceitar o preço de uma identidade diferente.
-      let navigation;
-      try { navigation = JSON.parse(sessionStorage.getItem(NAVIGATION_KEY) || "null"); } catch {}
+      let navigation = tabNavigation;
+      if (!navigation) try { navigation = JSON.parse(sessionStorage.getItem(NAVIGATION_KEY) || "null"); } catch {}
       if (navigation?.requestId === command.requestId && navigation?.sessionId === command.sessionId) {
-        GM_setValue(RESULT_KEY, { status: "error", code: "RDC_PRODUCT_REDIRECT",
-          motivo: "O Mercado Livre redirecionou para outro catálogo. Revise o link do mesmo produto; preço preservado.",
+        const security = securityCheck(String(document.body?.innerText || ""));
+        GM_setValue(RESULT_KEY, { status: security ? "security" : "error", code: security ? "RDC_HUMAN_VERIFICATION" : "RDC_PRODUCT_REDIRECT",
+          motivo: security ? "O Mercado Livre pediu confirmação humana. Resolva pessoalmente na aba do anúncio."
+            : "O Mercado Livre redirecionou para outra página ou catálogo. Revise o link do mesmo produto; preço preservado.",
           robotVersion: BOT_VERSION, requestedUrl: command.url, requestId: command.requestId,
           produtoId: command.produtoId, checkedAt: Date.now() });
         return true;
       }
-      try {
-        sessionStorage.setItem(NAVIGATION_KEY, JSON.stringify({ requestId: command.requestId, sessionId: command.sessionId }));
-      } catch {
+      const nextNavigation = { requestId: command.requestId, sessionId: command.sessionId };
+      let stored = false;
+      try { sessionStorage.setItem(NAVIGATION_KEY, JSON.stringify(nextNavigation)); stored = true; } catch {}
+      if (typeof GM_getTab === "function" && typeof GM_saveTab === "function") {
+        stored = await persistControllerTab(command.sessionId, nextNavigation);
+        if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId) return false;
+      }
+      if (!stored) {
         GM_setValue(RESULT_KEY, { status: "error", code: "RDC_NAVIGATION_STORAGE",
           motivo: "Não foi possível preservar a navegação nesta aba. Preço preservado; confira manualmente.",
           robotVersion: BOT_VERSION, requestedUrl: command.url, requestId: command.requestId,
           produtoId: command.produtoId, checkedAt: Date.now() });
         return true;
       }
+      tabNavigation = nextNavigation;
       // Navegar a própria aba evita depender de WindowProxy/opener antigos,
       // perdidos por COOP ou pela restauração de janelas do Chrome.
       location.assign(conferenceUrl(command.url, command.sessionId));
@@ -495,12 +532,26 @@
     GM_setValue(RESULT_KEY, { ...result, robotVersion: BOT_VERSION, requestedUrl: command.url, requestId: command.requestId, produtoId: command.produtoId, checkedAt: Date.now() });
   }
 
+  async function initializeOfferChannel() {
+      // Capture the URL marker synchronously, before page scripts can redirect.
+      const markedSession = controllerSession();
+      if (!markedSession) await restoreControllerTab();
+      const sessionId = controllerSession();
+      if (sessionId) {
+        const command = GM_getValue(COMMAND_KEY, null);
+        if (command?.sessionId === sessionId && sameOffer(command.url, location.href)) {
+          tabNavigation = { requestId: command.requestId, sessionId };
+        }
+        await persistControllerTab(sessionId);
+      }
+      installOfferChannel();
+  }
+
   if (location.hostname === PANEL_HOST) {
     installPanelBridge();
     return;
   }
   if (/mercadolivre\.com\.br$/i.test(location.hostname)) {
-    controllerSession(); // Vincular a aba antes de eventuais redirecionamentos da página.
-    installOfferChannel();
+    void initializeOfferChannel();
   }
 })();
