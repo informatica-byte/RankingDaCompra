@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.11
+// @version      2.4.12
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -21,7 +21,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.11";
+  const BOT_VERSION = "2.4.12";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -481,7 +481,9 @@
         : "";
       try {
         if (!hasController) {
-          offerWindow = unsafeWindow.open(conferenceUrl(url, sessionId), "rdc_conferencia_" + sessionId, features);
+          // Start on the stable home page so the tab is bound before visiting
+          // an item that can HTTP-redirect and discard our fragment entirely.
+          offerWindow = unsafeWindow.open(conferenceUrl("https://www.mercadolivre.com.br/", sessionId), "rdc_conferencia_" + sessionId, features);
           if (!offerWindow) throw Object.assign(new Error("O navegador bloqueou a janela do anúncio. Toque novamente em iniciar para reabrir a aba."), { code: "RDC_POPUP_BLOCKED" });
           try { offerWindow.focus(); } catch {}
         }

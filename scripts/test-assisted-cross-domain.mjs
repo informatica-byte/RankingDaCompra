@@ -68,6 +68,20 @@ test('primeira abertura registra a navegação antes do redirecionamento inicial
   assert.equal(values.get(resultKey).code,'RDC_PRODUCT_REDIRECT');assert.equal(redirect.navigations.length,0);
 });
 
+test('entrada na página inicial vincula a aba antes de um redirecionamento HTTP do anúncio',async()=>{
+  const command={sessionId,requestId:'first-http-redirect',produtoId:'tenis',titulo:'Tênis Fila',url:source,createdAt:Date.now()};
+  const values=new Map([[commandKey,command]]),state={};
+  const home=fixture(state,'https://www.mercadolivre.com.br/#_rdc_conferencia='+sessionId,values);
+  await home.c.initializeOfferChannel();assert.equal(state.rdcPriceSession,sessionId);
+  await home.c.handleConferenceCommand(command);assert.equal(home.navigations.length,1);
+  assert.equal(new URL(home.navigations[0]).hostname,'produto.mercadolivre.com.br');
+  assert.equal(state.rdcPriceNavigation.requestId,command.requestId);
+  const redirect=fixture(state,'https://lista.mercadolivre.com.br/tenis/#redirectedFromVip',values);
+  await redirect.c.restoreControllerTab();await redirect.c.handleConferenceCommand(command);
+  assert.equal(values.get(resultKey).code,'RDC_PRODUCT_REDIRECT');assert.equal('preco' in values.get(resultKey),false);
+  assert.equal(redirect.navigations.length,0);
+});
+
 test('pedido cancelado durante a persistência não navega depois',async()=>{
   const command={sessionId,requestId:'cancelled',url:target,createdAt:Date.now()},values=new Map([[commandKey,command]]);
   const f=fixture({},source+'#_rdc_conferencia='+sessionId,values);
