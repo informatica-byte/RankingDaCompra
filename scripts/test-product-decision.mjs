@@ -91,10 +91,12 @@ test('notebook não inclui power bank e une apenas refinamentos compatíveis de 
   const basike = {id:'sinwoGjrsJl5UMA13pES',titulo:'Power Bank Basike 20000mAh para Notebook e Celular com Cabo USB-C 65W'};
   assert.equal(comparisonData(basike), null);
   const actual = comparisonData(asus);
-  assert.match(feature(actual, 'Processador').value, /^AMD Ryzen 5 7520U/);
-  assert.equal(feature(actual, 'Processador').basis, 'cadastro');
-  assert.equal(feature(actual, 'Memória RAM').state, 'unknown');
-  assert.equal(feature(actual, 'Armazenamento SSD').state, 'unknown', '512ssd sem unidade não comprova capacidade');
+  assert.equal(feature(actual, 'Processador').state, 'unknown', 'fontes ASUS divergem no mesmo SKU');
+  assert.equal(feature(actual, 'Memória RAM').basis, 'fabricante');
+  assert.match(feature(actual, 'Memória RAM').value, /16 GB/);
+  assert.match(feature(actual, 'Armazenamento SSD').value, /512 GB SSD/);
+  const unconfirmed=comparisonData({...asus,id:'sem-sku-confirmado'});
+  assert.equal(feature(unconfirmed, 'Armazenamento SSD').state,'unknown','512ssd sem fonte e SKU não comprova capacidade');
   const labelled = comparisonData({titulo:'Notebook',comentario:'Modelo do processador: 7520U. Linha do processador: Ryzen 5. Marca do processador: AMD.'});
   assert.equal(feature(labelled, 'Processador').value, 'AMD Ryzen 5 7520U');
   const core = comparisonData({titulo:'Notebook Acer Intel Core I3 1215u',comentario:'Linha do processador: Core i3. Modelo do processador: 1215U. Marca do processador: Intel.'});

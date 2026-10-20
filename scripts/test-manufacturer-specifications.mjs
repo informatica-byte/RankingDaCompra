@@ -9,15 +9,15 @@ const product=id=>catalogue.find(p=>p.id===id);
 const feature=(id,label)=>comparisonData(product(id)).features.find(f=>f.label===label);
 
 test('as revisões usam modelo exato e não mudam cadastros, preço ou prova de conferência',()=>{
-  assert.equal(MANUFACTURER_SPECIFICATIONS.size,18);
+  assert.equal(MANUFACTURER_SPECIFICATIONS.size,20);
   for(const [id] of MANUFACTURER_SPECIFICATIONS){
     const p=product(id);assert.ok(p,id);const before=JSON.stringify(p);
     const record=documentedSpecifications(p);assert.ok(record,id);
     assert.ok(record.features.some(f=>f.basis==='fabricante'));
     for(const f of record.features.filter(f=>f.basis==='fabricante')){
       const url=new URL(f.sourceUrl);assert.equal(url.protocol,'https:');
-      assert.match(url.hostname,/(?:mi\.com|jbl\.com\.br|logitech\.com|wap\.ind\.br|amd\.com|soundcore\.com|samsung\.com|tp-link\.com|huawei\.com|mercusys\.com|intelbras\.com|lenovo\.com)$/);
-      assert.equal(f.checkedAt,'2026-10-19');
+      assert.match(url.hostname,/(?:mi\.com|jbl\.com\.br|logitech\.com|wap\.ind\.br|amd\.com|asus\.com|amazfit\.com|soundcore\.com|samsung\.com|tp-link\.com|huawei\.com|mercusys\.com|intelbras\.com|lenovo\.com)$/);
+      assert.equal(f.checkedAt,record.checkedAt);
     }
     assert.equal(documentedSpecifications({...p,titulo:'Produto completamente diferente',title:''}),null);
     assert.equal(documentedSpecifications({...p,titulo:'Capa para '+p.titulo}),null);
@@ -52,9 +52,11 @@ test('divergências oficiais e configuração desconhecida permanecem a confirma
   const ports=feature('YuOWci2UixF5GuQE6IYS','Quantidade de portas');assert.equal(ports.state,'unknown');assert.match(ports.reason,/três.*quatro/);
   assert.match(feature('qZUWO8WSrcOKWVrAqTW7','Quantidade de portas').value,/1 porta WAN \+ 3 portas LAN/);
   assert.match(feature('LUsq533hX6lTuHwnZbhz','Quantidade de portas').value,/2 portas.*por unidade/);
-  for(const label of ['Memória RAM','Armazenamento SSD'])assert.equal(feature('O6e0R2WtiZfyyf2MJe5Y',label).state,'unknown');
-  assert.equal(feature('O6e0R2WtiZfyyf2MJe5Y','Processador').basis,'cadastro');
-  assert.match(renderManufacturerSpecifications(product('O6e0R2WtiZfyyf2MJe5Y')),/não confirma o SKU/);
+  assert.equal(feature('O6e0R2WtiZfyyf2MJe5Y','Processador').state,'unknown');
+  assert.match(feature('O6e0R2WtiZfyyf2MJe5Y','Processador').reason,/7520U.*Ryzen 5 40/);
+  assert.match(feature('O6e0R2WtiZfyyf2MJe5Y','Memória RAM').value,/16 GB LPDDR5/);
+  assert.match(feature('O6e0R2WtiZfyyf2MJe5Y','Armazenamento SSD').value,/512 GB SSD NVMe/);
+  assert.match(renderManufacturerSpecifications(product('O6e0R2WtiZfyyf2MJe5Y')),/20\/10\/2026/);
 });
 test('destaques sem perfil antigo também ganham dados documentados e limites',()=>{
   for(const id of ['48oRcQNlH00KgNLHkvsG','UvxFn4gfaexb8TvcaT5e','huCYMmOsGPKJ8jOiJ1gR']){

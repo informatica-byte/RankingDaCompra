@@ -10,6 +10,10 @@ const sources = {
   logitech: 'https://www.logitech.com/pt-br/shop/p/m170-wireless-mouse.910-006864',
   wap: 'https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/ocasional/lavadora_wl_1800_FW011457_FW011458/arquivos/ficha_tecnica/WAPWL1800-Fichatcnica.pdf',
   amd: 'https://www.amd.com/es/products/processors/laptop/ryzen/7000-series/amd-ryzen-5-7520u.html',
+  asus: 'https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-nivel-ips.html',
+  asusBundle: 'https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-notebook-asus-x515ka-br309ws-slate-grey.html',
+  bip6: 'https://br.amazfit.com/products/amazfit-bip-6',
+  fit5: 'https://consumer.huawei.com/ma/wearables/watch-fit5/specs/',
   p30i: 'https://www.soundcore.com/products/soundcore-p30i',
   budsCore: 'https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos',
   ex1500: 'https://www.tp-link.com/br/home-networking/wifi-router/ex1500/',
@@ -71,14 +75,36 @@ export const MANUFACTURER_SPECIFICATIONS = new Map([
     limitations:['A documentação do modelo não confirma acessórios, tensão ou estado de uma unidade vendida. Não medimos limpeza, consumo ou durabilidade.'],
   }],
   ['O6e0R2WtiZfyyf2MJe5Y',{
-    model:/\basus\b.*\bvivobook\b.*\b7520u\b/i, family:'notebook',
-    scope:'Somente o processador Ryzen 5 7520U anunciado no cadastro: a documentação AMD não confirma o SKU, RAM, SSD, portas ou tela deste notebook ASUS.',
-    features:[fact('Núcleos/threads do processador anunciado','Ryzen 5 7520U: 4 núcleos e 8 threads','amd'),
-      fact('GPU do processador anunciado','Radeon 610M integrada ao Ryzen 5 7520U','amd'),
-      {label:'Processador',value:'AMD Ryzen 5 7520U — identificado no cadastro, SKU ASUS a confirmar',state:'yes',basis:'cadastro'},
-      pending('Memória RAM','Falta o código completo da variante ASUS e confirmação da memória instalada; capacidade máxima do processador não é RAM instalada.'),
-      pending('Armazenamento SSD','O título abrevia 512SSD sem unidade e sem SKU completo; não atribuir uma configuração de outra variante.')],
-    limitations:['RAM, capacidade/unidade do SSD, tela e expansão continuam a confirmar. Keep OS é o sistema informado no cadastro, não uma licença Windows.'],
+    model:/\basus\b.*\bvivobook\b(?=.*(?:\b7520u\b|\be1504fa-nj1288\b))(?=.*\b16\s*gb\b)(?=.*\b512\s*(?:ssd|gb)\b)/i, family:'notebook', reviewedAt:'2026-10-20',
+    scope:'ASUS Vivobook Go 15 E1504FA-NJ1288: SKU informado pelo responsável. As duas páginas oficiais consultadas concordam na RAM e no SSD, mas divergem no processador.',
+    features:[fact('Memória RAM','16 GB LPDDR5, na configuração oficial do SKU','asus'),
+      fact('Armazenamento SSD','512 GB SSD NVMe, na configuração oficial do SKU','asus'),
+      fact('Sistema operacional de fábrica','KeepOS; não equivale a licença Windows','asus'),
+      pending('Processador','O anúncio e um conjunto oficial indicam Ryzen 5 7520U; a página individual do mesmo SKU indica Ryzen 5 40. Confirmar com a ASUS antes de atribuir CPU e GPU à unidade.')],
+    additionalSources:[sources.asusBundle],
+    limitations:['A ficha de fábrica não autentica a unidade do vendedor. Expansão e portas continuam a confirmar; desempenho não foi testado.'],
+  }],
+  ['9P123IBTTYnSCMilPvXB',{
+    model:/\bamazfit\b.*\bbip\s*6\b(?!\s*(?:pro|max|active)\b)/i, family:'smartwatch', reviewedAt:'2026-10-20',
+    scope:'Amazfit Bip 6: recursos do modelo, não autenticação da unidade ou teste independente.',
+    features:[fact('GPS integrado','GPS integrado, com cinco sistemas de posicionamento anunciados','bip6'),
+      fact('Chamadas Bluetooth','Chamadas Bluetooth com o celular conectado; não é linha móvel independente','bip6'),
+      fact('Tela','AMOLED de 1,97 polegada; 390 × 450 pixels','bip6'),
+      fact('Resistência à água','5 ATM; seguir as condições do manual, não equivale a mergulho a 50 m','bip6'),
+      fact('Compatibilidade anunciada','Android 7.0 ou iOS 14.0 e superiores; aplicativo Zepp','bip6'),
+      pending('Proteção IP','A fonte informa 5 ATM; não atribuímos um código IP que não foi confirmado.')],
+    limitations:['A documentação cita Zepp Flow, disponível em regiões selecionadas; Alexa não foi confirmada. Sensores não substituem diagnóstico médico. Áudio, precisão e autonomia real não foram medidos.'],
+  }],
+  ['5MGE98tYssH9nEfBeHoW',{
+    model:/\bhuawei\b.*\bwatch\s*fit\s*5\b(?!\s*(?:pro|max)\b)/i, family:'smartwatch', reviewedAt:'2026-10-20',
+    scope:'HUAWEI WATCH FIT 5, não Pro: ficha oficial internacional. Confirmar disponibilidade regional e a variante vendida.',
+    features:[fact('Tela','AMOLED de 1,82 polegada; 480 × 408 pixels','fit5'),
+      fact('GPS integrado','GNSS integrado; GPS de dupla banda L1 + L5','fit5'),
+      fact('Proteção IP','IP6X: proteção contra poeira; não é IP68','fit5'),
+      fact('Resistência à água','5 ATM; seguir as restrições do manual, não equivale a mergulho a 50 m','fit5'),
+      fact('Compatibilidade anunciada','Android 9.0 ou iOS 13.0 e superiores','fit5'),
+      pending('Armazenamento interno','Não foi confirmada a alegação de 64 GB; removida do título público, sem substituir por outra capacidade.')],
+    limitations:['Não atribuímos NFC a todas as cores ou regiões. Autonomia e sensores não foram testados; registros de bem-estar não são diagnóstico médico.'],
   }],
   ['5bQKU9inL3pq14yE8K4L',{
     model:/\bsoundcore\b.*\bp30i\b/i, family:'fone-tws',scope:'soundcore P30i; não usa os números do P40i, P20i ou Life P3i exibidos na mesma tabela.',
@@ -165,8 +191,9 @@ export function documentedSpecifications(product) {
   const id=String(product?.id||''), title=String(product?.titulo||product?.title||'');
   const record=MANUFACTURER_SPECIFICATIONS.get(id);
   if (!record || /^(?:capa|case|suporte|carregador|refil)\b/i.test(title) || !record.model.test(title)) return null;
-  return {family:record.family, scope:record.scope, checkedAt:reviewedAt,
-    features:record.features.map(f=>({...f})), limitations:[...record.limitations],
+  const checkedAt=record.reviewedAt || reviewedAt;
+  return {family:record.family, scope:record.scope, checkedAt,
+    features:record.features.map(f=>({...f,...(f.basis==='fabricante'?{checkedAt}:{})})), limitations:[...record.limitations],
     additionalSources:[...(record.additionalSources||[])]};
 }
 
@@ -188,5 +215,5 @@ export function renderManufacturerSpecifications(product) {
     +(uncertain.length?'<h3>O que continua a confirmar</h3><ul>'+uncertain.map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.reason)+'</li>').join('')+'</ul>':'')
     +'<p>'+record.limitations.map(esc).join(' ')+'</p>'
     +record.additionalSources.map(url=>'<p><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Outra página oficial consultada para conferir a divergência</a>.</p>').join('')
-    +'<p class="fine">Documentação revisada em 19/10/2026. Valores anunciados pelo fabricante, não teste independente nem autenticação da oferta. Esta revisão não altera a data da conferência do preço.</p></section>';
+    +'<p class="fine">Documentação revisada em '+esc(record.checkedAt.split('-').reverse().join('/'))+'. Valores anunciados pelo fabricante, não teste independente nem autenticação da oferta. Esta revisão não altera a data da conferência do preço.</p></section>';
 }

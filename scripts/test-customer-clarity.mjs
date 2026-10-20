@@ -22,15 +22,22 @@ test('os seis destaques têm análise específica, modelo protegido e dados oper
     const revised=correctProductData(original);
     assert.ok(revised.pros.split('\n').length>=2);
     assert.ok(revised.contras.split('\n').length>=2);
-    for(const [key,value] of Object.entries(original)) if(!['comentario','pros','contras','nota','notaInformada'].includes(key)) assert.deepEqual(revised[key],value,key);
+    for(const [key,value] of Object.entries(original)) if(!['titulo','comentario','pros','contras','nota','notaInformada'].includes(key)) assert.deepEqual(revised[key],value,key);
+    assert.equal(revised.titulo,review.correct || original.titulo);
     assert.equal(correctProductData({...original,titulo:'Produto completamente diferente',comentario:'Preservado'}).comentario,'Preservado');
     assert.deepEqual(correctProductData(revised),revised);
   }
 });
-test('limitações verificáveis permanecem e números ambíguos do notebook não viram RAM/SSD',()=>{
+test('SKU ASUS confirmado completa capacidades, sem esconder divergência de CPU ou generalizar outros SKUs',()=>{
   const asus=correctProductData({id:'O6e0R2WtiZfyyf2MJe5Y',titulo:'Notebook Asus Vivobook Go 15 Ryzen 5 7520u 16gb 512ssd'});
   const data=comparisonData(asus);
-  for(const label of ['Memória RAM','Armazenamento SSD']) assert.equal(data.features.find(f=>f.label===label).state,'unknown');
+  assert.equal(data.features.find(f=>f.label==='Processador').state,'unknown');
+  assert.match(data.features.find(f=>f.label==='Memória RAM').value,/16 GB/);
+  assert.match(data.features.find(f=>f.label==='Armazenamento SSD').value,/512 GB/);
+  assert.doesNotMatch(asus.titulo,/7520u/i);
+  assert.match(asus.titulo,/E1504FA-NJ1288/);
+  const other=comparisonData({titulo:'Notebook Asus Vivobook Go 15 Ryzen 5 7520u 16gb 512ssd'});
+  for(const label of ['Memória RAM','Armazenamento SSD']) assert.equal(other.features.find(f=>f.label===label).state,'unknown');
   assert.match(asus.contras,/Keep OS/);
   const band=HIGHLIGHT_EDITORIAL.get('48oRcQNlH00KgNLHkvsG');
   assert.match(band.summary,/não para diagnóstico/);

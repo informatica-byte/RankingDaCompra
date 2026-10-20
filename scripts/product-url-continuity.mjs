@@ -21,15 +21,32 @@ export function legacyProductAliases(registry, validProducts, duplicateAliases =
   }
   const byId = new Map(validProducts.map(product => [product.id, product]));
   const aliases = new Map();
-  for (const [fileName, id] of Object.entries(registry)) {
+  for (const [fileName, entry] of Object.entries(registry)) {
+    const proof=typeof entry==='object' && entry!==null && !Array.isArray(entry)?entry:null;
+    const id=proof?proof.id:entry;
     if (!/^[A-Za-z0-9_-]+\.html$/.test(fileName) || typeof id !== "string" || !/^[A-Za-z0-9_-]+$/.test(id)) {
       throw new Error("Endereço antigo ou cadastro inválido");
     }
     const candidate = byId.get(id) || duplicateAliases.get(id);
     const target = candidate && byId.get(candidate.id);
+    if (proof) {
+      if (!/^MLB\d{6,}$/.test(proof.itemId||'') || !Array.isArray(proof.modelWords) || !proof.modelWords.length || proof.modelWords.some(word=>typeof word!=='string'||!/^[a-z0-9]+$/.test(word))) throw new Error('Prova de identidade do endereço antigo inválida');
+      if (!target || !sameHistoricalOffer(target,proof)) continue;
+    }
     if (target) aliases.set(fileName, target);
   }
   return aliases;
+}
+
+function sameHistoricalOffer(product,proof) {
+  const title=String(product.titulo||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ');
+  if (!proof.modelWords.every(word=>title.split(/\s+/).includes(word))) return false;
+  try {
+    const url=new URL(String(product.link||''));
+    if (url.protocol!=='https:' || !/(?:^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) return false;
+    const evidence=decodeURIComponent(url.pathname+' '+url.search+' '+url.hash).replace(/MLB-/gi,'MLB');
+    return [...evidence.matchAll(/\bMLB\d{6,}\b/gi)].some(match=>match[0].toUpperCase()===proof.itemId);
+  } catch {return false;}
 }
 
 // Descobre somente versões que realmente existem no diretório publicado.
