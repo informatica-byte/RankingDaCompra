@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-20T20:08:56.274Z",
+  "generatedAt": "2026-10-20T20:12:20.820Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -8887,7 +8887,7 @@
     {
       "id": "SJRf3jhIFlr1BQadDNnH",
       "titulo": "Notebook Gamer Lenovo LOQ 15IRX9 Intel Core i5-13450HX RTX 3050 8GB 512GB SSD windows 11",
-      "comentario": "O Lenovo LOQ 15IRX9 é uma excelente opção para quem busca desempenho em jogos e aplicações profissionais. Comparado a notebooks com gráficos integrados, a RTX 3050 proporciona ganhos expressivos em jogos, renderização e edição de vídeo. O Intel Core i5-13450HX garante alta capacidade de processamento, tornando o equipamento uma solução robusta para entretenimento e produtividade com ótimo custo-benefício.",
+      "comentario": "O Lenovo LOQ 15IRX9 do SKU 83KH0001BR informado pelo responsável corresponde à configuração oficial com Core i5-13450HX, 8 GB de RAM DDR5 e SSD de 512 GB. A RTX 3050 para laptop tem 6 GB GDDR6 de memória de vídeo, separados da RAM do sistema. A Lenovo informa Windows 11 Home e tela FHD de 15,6 polegadas a 144 Hz. Confira o mesmo SKU e eventuais alterações do vendedor; não atribuímos desempenho de outras versões nem medimos jogos, temperatura ou autonomia.",
       "categoria": "notebook",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_891763-MLA112377969125_052026-F.webp",
       "preco": "5.699,00",
@@ -8898,8 +8898,8 @@
       "precoConferenciaId": "feed2da0-9939-4f71-aa68-3fd3396b6297",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": "5699",
-      "pros": "",
-      "contras": "",
+      "pros": "Configuração de 8 GB de RAM e SSD de 512 GB documentada para o SKU 83KH0001BR.\nRTX 3050 para laptop com 6 GB GDDR6 e tela FHD de 144 Hz informadas pela Lenovo.",
+      "contras": "A RAM de 8 GB e a memória de vídeo de 6 GB são separadas; compare os requisitos dos seus programas.\nConfira o SKU e modificações do vendedor. Desempenho em jogos, temperatura e bateria não foram testados.",
       "notaInformada": ""
     },
     {
