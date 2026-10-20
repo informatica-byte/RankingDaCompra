@@ -801,7 +801,7 @@
     {
       "id": "DlFv98xnrCPIAeFfbRFv",
       "title": "Fone Ouvido Bluetooth 5.4 Sem Fio Estojo De Carregamento Anti Ruido A Prova Dagua Compatível Com Ios Samsung Galaxy Android Tws Wireless Air Premium Microfone Touch Marca Pro Phone See",
-      "summary": "O Fone Ouvido Bluetooth 5.4 Sem Fio conta com conectividade Bluetooth, microfone integrado e controles de música operados diretamente no dispositivo. O modelo apresenta um design ergonômico, sendo compatível com sistemas operacionais Android, iOS, Windows e macOS.",
+      "summary": "A oferta PRO PHONE SEE informa fones TWS intra-auriculares, Bluetooth 5.4, microfone integrado e duração de 3 a 5 horas de uso contínuo, variável conforme volume e utilização. O estojo é anunciado com 300 mAh, mas isso não informa horas totais de reprodução. O anúncio menciona cancelamento de ruído sem esclarecer ANC. Não reproduzimos termos de outras marcas ou classificações IP misturadas nos campos; som, conforto e bateria não foram testados.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/DlFv98xnrCPIAeFfbRFv-23d1d1ed0413.jpg?v=20260810-1",
       "price": 47.34,
@@ -814,39 +814,59 @@
         "features": [
           {
             "label": "Formato",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Intra-auricular (in-ear), segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB58519492?pdp_filters=item_id%3AMLB5758097762",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Bluetooth 5.4",
+            "value": "Bluetooth 5.4, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB58519492?pdp_filters=item_id%3AMLB5758097762",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB58519492?pdp_filters=item_id%3AMLB5758097762",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Microfone integrado, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB58519492?pdp_filters=item_id%3AMLB5758097762",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "3 a 5 h de uso contínuo anunciadas; varia com volume e uso, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB58519492?pdp_filters=item_id%3AMLB5758097762",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia com estojo",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "O anúncio informa estojo de 300 mAh, mas não a autonomia total com recargas. mAh não são horas.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB58519492?pdp_filters=item_id%3AMLB5758097762",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -925,7 +945,7 @@
     {
       "id": "z507ObVuMlSEBSnK40Uc",
       "title": "Fone de Ouvido Bluetooth 5.3 Tws Sem Fio Esportivo Compatível Com iPhone Samsung Xiaomi Motorola Com Gancho Premium KAPBOM Preto",
-      "summary": "Fone de Ouvido Bluetooth 5.3 Tws Sem Fio Esportivo Compatível Com iPhone Samsung Xiaomi Motorola Com Gancho Premium KAPBOM Preto. Quantidade de pares: 1. Cor da luz: Azul. Conexão Bluetooth 5.3 que reduz o consumo de energia e mantém a estabilidade do sinal em até 15 metros de distância. Classificação IPX4 que protege os componentes internos contra suor e respingos durante treinos de alta intensidade.",
+      "summary": "O anúncio informa fabricante Kapbom, marca Scorpion e modelo KA-790/KA790D, com formato intra-auricular com gancho, microfone e cerca de 4 a 6 horas de música por carga. O estojo é anunciado com 620 mAh, sem duração total informada. A tabela nega cancelamento de ruído e diverge da descrição na versão Bluetooth, entre 5.4 e 5.3. Não usamos a ficha do Lenovo XT80 e não testamos áudio, conforto ou bateria.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/z507ObVuMlSEBSnK40Uc-5f41bca4dde5.jpg?v=20260810-1",
       "price": 48.99,
@@ -938,39 +958,59 @@
         "features": [
           {
             "label": "Formato",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Intra-auricular com gancho, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Bluetooth 5.3",
-            "state": "yes",
-            "basis": "cadastro"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "Título e descrição informam Bluetooth 5.3, mas a tabela informa 5.4.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Sem cancelamento de ruído, conforme o campo específico da tabela, segundo o anúncio",
+            "state": "no",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Microfone para chamadas, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Aproximadamente 4 a 6 h de música por carga, dependendo do volume, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia com estojo",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "O estojo é anunciado com 620 mAh, sem duração total de reprodução informada.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -1217,7 +1257,7 @@
     {
       "id": "mGfjcGRX5FvusGGZMYJL",
       "title": "Fone De Ouvido Bluetooth In-ear Gamer Sem Fio Earcuffs",
-      "summary": "Fone De Ouvido Bluetooth In-ear Gamer Sem Fio Earcuffs. Quantidade de pares: 1; Inclui microfone. Marca: IIKOSMAX; Cor: Preto; Código do catálogo: MLBU3887866793; Condição informada: novo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "summary": "O anúncio identifica o IIKOSMAX M145 com microfone e conectividade Bluetooth. Os demais campos exigem cautela: a tabela e a descrição divergem sobre conexão sem fio e formato, e há um trecho que menciona outra marca. Por isso não atribuímos ao M145 a versão Bluetooth ou os números de bateria daquele trecho. Não testamos áudio, conforto, resistência ou autonomia.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/mGfjcGRX5FvusGGZMYJL-1aa502069524.jpg?v=20260810-1",
       "price": 56,
@@ -1230,33 +1270,62 @@
         "features": [
           {
             "label": "Formato",
-            "value": "Intra-auricular",
-            "state": "yes",
-            "basis": "cadastro"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "Tabela e parte da descrição dizem in-ear; outro trecho diz open-ear com gancho. O formato é contraditório.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU3887866793?pdp_filters=item_id%3AMLB4596924785",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "O campo só confirma Bluetooth. A versão 5.4 aparece em trecho genérico que também menciona outra marca, sem vínculo inequívoco com o M145.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU3887866793?pdp_filters=item_id%3AMLB4596924785",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU3887866793?pdp_filters=item_id%3AMLB4596924785",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Microfone integrado, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU3887866793?pdp_filters=item_id%3AMLB4596924785",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "Os números de 7/30 h aparecem em trecho misturado com outra marca, sem comprovação de que se referem ao IIKOSMAX M145.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU3887866793?pdp_filters=item_id%3AMLB4596924785",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "Não foi identificado total com estojo inequivocamente atribuído ao M145.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU3887866793?pdp_filters=item_id%3AMLB4596924785",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -1349,7 +1418,7 @@
     {
       "id": "rERcfIbgG1c0uUdNlQ4o",
       "title": "Fones De Ouvido Bluetooth Intra-auriculares Lenovo Lp40 Cor Preto",
-      "summary": "Fones De Ouvido Bluetooth Intra-auriculares Lenovo Lp40 Cor Preto. Quantidade de pares: 1. Bluetooth versão 5.0 com alcance de até 10 m. Tecnologia TWS para som estéreo sem fio. Sensibilidade do alto-falante de 98 dB. Diâmetro da unidade de som de 1.3 cm. Bateria do estojo de 300 mAh com carregamento incluído.. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "summary": "O anúncio do Lenovo LP40 informa formato in-ear, Bluetooth 5.0, microfone e aproximadamente 3 horas de música por carga, dependendo do volume. O estojo é anunciado com 300 mAh, sem duração total de reprodução informada. O campo genérico de cancelamento de ruído não esclarece ANC. Não usamos a ficha do LP40 Pro e não testamos autenticidade, conforto, som ou bateria.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/rERcfIbgG1c0uUdNlQ4o-a334071e9195.jpg?v=20260810-1",
       "price": 58,
@@ -1358,43 +1427,63 @@
       "rating": 0,
       "ranking": 0,
       "comparison": {
-        "family": "fone-tws",
+        "family": "fone",
         "features": [
           {
             "label": "Formato",
-            "value": "Intra-auricular",
+            "value": "Intra-auricular (in-ear), segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB61405511?pdp_filters=item_id%3AMLB5947242720",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Bluetooth 5.0",
+            "value": "Bluetooth 5.0, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB61405511?pdp_filters=item_id%3AMLB5947242720",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB61405511?pdp_filters=item_id%3AMLB5947242720",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Microfone integrado, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB61405511?pdp_filters=item_id%3AMLB5947242720",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Aproximadamente 3 h de música por carga; varia com o volume, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB61405511?pdp_filters=item_id%3AMLB5947242720",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia com estojo",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "O anúncio informa estojo de 300 mAh, mas não duração total com recargas. Não usamos dados do LP40 Pro.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB61405511?pdp_filters=item_id%3AMLB5947242720",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -1417,7 +1506,7 @@
     {
       "id": "VgB90DThWdh8uyXUeE3U",
       "title": "Headset Gamer Com Fio Mageon Vermelho Com Microfone Ajustável",
-      "summary": "O Headset Gamer Com Fio Mageon Vermelho possui drivers de 40mm para reprodução de áudio e conta com microfone ajustável. O dispositivo dispõe de conexão P2 3,5mm compatível com PCs, notebooks e consoles, além de integrar um controle de volume diretamente no cabo.",
+      "summary": "O anúncio do headset Mageon informa conexão com fio por dois plugs de 3,5 mm, microfone ajustável, cabo de 1,8 m e controle de volume no cabo. A tabela nega Bluetooth e cancelamento de ruído. Bateria e estojo de recarga não se aplicam à conexão analógica anunciada. Confira as entradas do aparelho: dois plugs separados podem exigir adaptador para uma entrada combinada. Não testamos áudio, microfone ou conforto.",
       "category": "Informática",
       "image": "https://rankingdacompra.com.br/produto/imagens/VgB90DThWdh8uyXUeE3U-f7c67015a4e4.jpg?v=20260810-1",
       "price": 58.83,
@@ -1432,31 +1521,47 @@
             "label": "Formato",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "O anúncio informa headset estéreo com fio, mas não especifica encaixe on-ear ou over-ear.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB57322445?pdp_filters=item_id%3AMLB4959327979",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Não possui Bluetooth: a tabela informa “Não”, segundo o anúncio",
+            "state": "no",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB57322445?pdp_filters=item_id%3AMLB4959327979",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Sem cancelamento de ruído, conforme o campo específico da tabela, segundo o anúncio",
+            "state": "no",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB57322445?pdp_filters=item_id%3AMLB4959327979",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Microfone ajustável, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB57322445?pdp_filters=item_id%3AMLB4959327979",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Não se aplica à conexão analógica por cabo anunciada, segundo o anúncio",
+            "state": "no",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB57322445?pdp_filters=item_id%3AMLB4959327979",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -1633,7 +1738,7 @@
     {
       "id": "FWRyLtto1bKeKurNikKq",
       "title": "FORESTORY Fone de Ouvido Bluetooth 5.4 OWS TWS Sem Fio X5 Open Ear Esportivo com Gancho Display LED HD Microfone Grave Potente para Academia Corrida Compatível iPhone Samsung Xiaomi Motorola Android",
-      "summary": "O fone de ouvido FORESTORY X5 conta com alcance sem fio de 15 m e bateria com autonomia de até 100 h. O modelo possui tecnologia True Wireless, classificação IP55 de resistência à água e poeira, além de ser monaural e desenhado especificamente para o público infantil, acompanhando um prático estojo de carregamento.",
+      "summary": "O anúncio identifica o FORESTORY X5 com microfone integrado e estojo de recarga. A ficha específica marca ausência de cancelamento de ruído. Outros pontos são contraditórios: o título e a tabela divergem entre open-ear e in-ear e entre Bluetooth 5.4 e 5.3; há vários números incompatíveis de autonomia. Mantemos esses campos sem um valor fechado. Não comprovamos som, conforto, impermeabilidade ou duração real em teste próprio.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/FWRyLtto1bKeKurNikKq-7d5f3aa308ed.jpg?v=20260810-1",
       "price": 63.24,
@@ -1648,37 +1753,59 @@
             "label": "Formato",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "O título anuncia open-ear/OWS, enquanto a tabela diz in-ear e monaural. A descrição menciona uso individual e duplo; o encaixe exato permanece contraditório.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68085605?pdp_filters=item_id%3AMLB4840111509",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Bluetooth 5.4",
-            "state": "yes",
-            "basis": "cadastro"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "O título informa Bluetooth 5.4; tabela e descrição informam 5.3.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68085605?pdp_filters=item_id%3AMLB4840111509",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Sem cancelamento de ruído, conforme o campo específico da tabela, segundo o anúncio",
+            "state": "no",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68085605?pdp_filters=item_id%3AMLB4840111509",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Microfone integrado para chamadas, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68085605?pdp_filters=item_id%3AMLB4840111509",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Até 100 h anunciadas",
-            "state": "yes",
-            "basis": "cadastro"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "A descrição menciona 30 h por fone e também 5 a 8 h; não escolhemos um dos números.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68085605?pdp_filters=item_id%3AMLB4840111509",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia com estojo",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "O mesmo anúncio menciona totais de 30, 100 e mais de 120 h. Não há um total inequívoco.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68085605?pdp_filters=item_id%3AMLB4840111509",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -2079,7 +2206,7 @@
     {
       "id": "WO6BdDxEWWCCjBVJ0ygB",
       "title": "Fone de Ouvido Bluetooth com Ear Clip OWS Bluetooth 6.0 com Microfone e Bateria 30H Preto",
-      "summary": "Fone de Ouvido Bluetooth com Ear Clip OWS Bluetooth 6.0 com Microfone e Bateria 30H Preto. Quantidade de pares: 1. Formato clip-ear que mantém os fones fixos na orelha durante atividades físicas intensas e movimentos bruscos. Classificação IP55 que garante resistência ao pó e proteção contra jatos de água durante treinos ao ar livre. Bluetooth 6.0 que permite conexão sem fio estável em um raio de 10 metros com menor consumo de bateria.",
+      "summary": "O anúncio identifica o INOVA FON-13025F como ear clip TWS com Bluetooth 6.0, microfone e recarga USB-C. A autonomia permanece sem valor único: a tabela informa 8 h e a descrição aproximadamente 5 h de música, além de 30 h em espera. Espera não equivale a reprodução. A resistência à água também apresenta dados conflitantes. Não confirmamos ANC nem testamos conforto, som, bateria ou impermeabilidade.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/WO6BdDxEWWCCjBVJ0ygB-30382b2c4036.jpg?v=20260810-1",
       "price": 75.5,
@@ -2088,37 +2215,64 @@
       "rating": 0,
       "ranking": 0,
       "comparison": {
-        "family": "fone",
+        "family": "fone-tws",
         "features": [
           {
             "label": "Formato",
-            "value": "Ear clip",
+            "value": "Ear clip (clip-ear), segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB75615487?pdp_filters=item_id%3AMLB7213068268",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Bluetooth 6.0",
+            "value": "Bluetooth 6.0, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB75615487?pdp_filters=item_id%3AMLB7213068268",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB75615487?pdp_filters=item_id%3AMLB7213068268",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Microfone integrado, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB75615487?pdp_filters=item_id%3AMLB7213068268",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
-            "value": "30 h anunciadas",
-            "state": "yes",
-            "basis": "cadastro"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "A tabela informa 8 h; a descrição menciona aproximadamente 5 h de música e 30 h em espera. Não tratamos espera como reprodução.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB75615487?pdp_filters=item_id%3AMLB7213068268",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "O anúncio não informa total de reprodução com estojo de forma inequívoca e diverge na capacidade do estojo (300/400 mAh).",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB75615487?pdp_filters=item_id%3AMLB7213068268",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -2281,7 +2435,7 @@
     {
       "id": "Mdyju6zRmHsKRpOYqz51",
       "title": "40hrs Fone De Ouvido Gancho Bluetooth Sem Fio Esportivo,inova Cases Fone De Ouvido Gancho Gamer Com Microfone Para iPhone Samsung Xiaomi Lenovo Motorola Celular Cor Preto",
-      "summary": "Este dispositivo oferece conectividade Bluetooth 5.4 e design ergonômico com ganchos de 45° para fixação nas orelhas. O modelo disponibiliza controle por toque e promete até 48 horas de autonomia total com o auxílio da case de carregamento. O fone apresenta estrutura aberta que não é inserida no canal auditivo.",
+      "summary": "A oferta Inova Cases anuncia fones com gancho, Bluetooth 5.4, microfone e estojo de recarga. A própria descrição mistura referência a Basike e números de bateria diferentes do título, por isso não publicamos uma duração fechada nem confirmamos ANC. O gancho está anunciado, mas o tipo exato de encaixe e a compatibilidade devem ser avaliados na oferta. Não testamos som, estabilidade do encaixe ou bateria.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/Mdyju6zRmHsKRpOYqz51-93b90cc75ede.jpg?v=20260810-1",
       "price": 78.88,
@@ -2296,31 +2450,59 @@
             "label": "Formato",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "O gancho é informado, mas o texto mistura design aberto e ponteiras auriculares sem definir o encaixe com segurança.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB63064167?pdp_filters=item_id%3AMLB6043042334",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Bluetooth 5.4",
+            "value": "Bluetooth 5.4, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB63064167?pdp_filters=item_id%3AMLB6043042334",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB63064167?pdp_filters=item_id%3AMLB6043042334",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Microfone para chamadas, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB63064167?pdp_filters=item_id%3AMLB6043042334",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "A descrição mistura referência a Basike com o anúncio INOVA e números de 8 h/48 h; não atribuímos duração por carga a um modelo não identificado.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB63064167?pdp_filters=item_id%3AMLB6043042334",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "O título anuncia 40 h e a descrição informa 48 h. Não escolhemos o maior total.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB63064167?pdp_filters=item_id%3AMLB6043042334",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -2357,7 +2539,7 @@
     {
       "id": "NJipazuMXMzOH9YZbxwu",
       "title": "Fone De Ouvido Headphone Dapon H02D Bluetooth 5.1 Over-ear 22h Preto",
-      "summary": "O Fone De Ouvido Headphone Dapon H02D oferece conectividade via Bluetooth 5.1 e estrutura over-ear. O modelo inclui microfone integrado e acompanha cabo P2 para uso, sendo especificado pelo vendedor com uma autonomia de bateria de até 22 horas.",
+      "summary": "O anúncio do Dapon H02D informa Bluetooth 5.1, microfone integrado, estrutura dobrável e opção de uso por cabo P2 de 3,5 mm. A tabela marca ausência de cancelamento de ruído. A bateria permanece sem um valor único porque o título e a descrição informam 22 h, enquanto a tabela informa 35 h. O tipo de porta de recarga também diverge entre as seções. Não testamos som, conforto ou autonomia.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/NJipazuMXMzOH9YZbxwu-d6790789ef5e.jpg?v=20260810-1",
       "price": 78.9,
@@ -2370,33 +2552,58 @@
         "features": [
           {
             "label": "Formato",
-            "value": "Over-ear (ao redor das orelhas)",
+            "value": "Headphone over-ear anunciado no título, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB24117280?pdp_filters=item_id%3AMLB4587377807",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Bluetooth 5.1",
+            "value": "Bluetooth 5.1, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB24117280?pdp_filters=item_id%3AMLB4587377807",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Sem cancelamento de ruído, conforme o campo específico da tabela, segundo o anúncio",
+            "state": "no",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB24117280?pdp_filters=item_id%3AMLB4587377807",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Microfone integrado, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB24117280?pdp_filters=item_id%3AMLB4587377807",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Até 22 h anunciadas",
-            "state": "yes",
-            "basis": "cadastro"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "O título e a descrição informam até 22 h, mas a tabela informa 35 h. Não escolhemos um desses números.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB24117280?pdp_filters=item_id%3AMLB4587377807",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Não se aplica: o anúncio informa que não inclui estojo de carregamento, segundo o anúncio",
+            "state": "no",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB24117280?pdp_filters=item_id%3AMLB4587377807",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -2437,7 +2644,10 @@
             "value": "Não informado / a confirmar",
             "state": "unknown",
             "basis": "cadastro",
-            "reason": "ENC anunciado para chamadas não confirma ANC para ouvir. Não usamos a ficha do TW982 Pro para completar este campo."
+            "reason": "O anúncio descreve ENC para chamadas, não ANC para ouvir. Não usamos o TW982 Pro para completar esse campo.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB44616858?pdp_filters=item_id%3AMLB3949019849",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
@@ -2574,7 +2784,7 @@
     {
       "id": "FpO2EOBfcTy3F04Jk6pY",
       "title": "Fone De Ouvido Sem Fio Bluetooth Compativel Jbl 760",
-      "summary": "Fone De Ouvido Sem Fio Bluetooth Compativel Jbl 760. Quantidade de pares: 1; Inclui microfone. Desenhado para crianças. Marca: Genérica; Cor: Branco; Código do catálogo: MLBU5415345146. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "summary": "Este anúncio identifica um fone de marca Genérica, descrito como compatível ou similar ao Tune 760. A tabela informa formato over-ear e Bluetooth 5.3; a descrição cita microfone integrado, entrada P2 e estrutura dobrável. A semelhança do nome não comprova que seja um JBL Tune 760NC nem transfere o ANC ou a bateria desse modelo. A autonomia não está clara e não testamos áudio, conexão ou conforto.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/FpO2EOBfcTy3F04Jk6pY-483798a38526.jpg?v=20260810-1",
       "price": 83.64,
@@ -2583,37 +2793,54 @@
       "rating": 0,
       "ranking": 0,
       "comparison": {
-        "family": "fone",
+        "family": "headphone",
         "features": [
           {
             "label": "Formato",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Over-ear (ao redor das orelhas), segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU5415345146?pdp_filters=item_id%3AMLB7757427584",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Bluetooth 5.3 informado no campo de modelo, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU5415345146?pdp_filters=item_id%3AMLB7757427584",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU5415345146?pdp_filters=item_id%3AMLB7757427584",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Microfone integrado, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU5415345146?pdp_filters=item_id%3AMLB7757427584",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não informa este dado com clareza para este produto.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU5415345146?pdp_filters=item_id%3AMLB7757427584",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -2842,7 +3069,7 @@
     {
       "id": "U52A4gBWWLEmfCzONtHb",
       "title": "Fone Ouvido Bluetooth Sem Fio Prova DAgua Wireless Tipo Light Cancelamento Ruido Celular",
-      "summary": "O fone de ouvido Bluetooth TWS pro phone see conta com tecnologia Bluetooth 5.3 para uma conexão estável e econômica. Ele possui som estéreo de alta qualidade com graves definidos, controle por toque para chamadas e músicas, design ergonômico e um estojo de carregamento portátil para maior praticidade no uso diário.",
+      "summary": "A ficha do anúncio PRO PHONE SEE informa Bluetooth 5.3, tecnologia TWS, microfone e estojo de recarga. Os campos de formato, proteção e conectores contêm termos misturados, e o cancelamento de ruído não é identificado como ANC. A tabela menciona 4 h sem esclarecer as condições ou o total com estojo; não completamos esses dados por suposição. Não testamos áudio, resistência ou bateria.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/U52A4gBWWLEmfCzONtHb-7b0a2381e3ad.jpg?v=20260810-1",
       "price": 93.99,
@@ -2857,37 +3084,59 @@
             "label": "Formato",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não informa este dado com clareza para este produto.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Bluetooth 5.3",
+            "value": "Bluetooth 5.3, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Microfone integrado, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "A tabela informa 4 h sem descrição que esclareça a condição e a separação entre fones e estojo.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia com estojo",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "Não há duração total com estojo informada de forma inequívoca.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -3232,7 +3481,10 @@
             "value": "Não informado / a confirmar",
             "state": "unknown",
             "basis": "cadastro",
-            "reason": "Não foi confirmada para a revisão e firmware da unidade. Modo repetidor ou ponto de acesso não comprova Mesh."
+            "reason": "A tabela do anúncio não identifica a revisão e a descrição não confirma Mesh. WDS/bridge, repetidor ou WISP não comprovam Mesh.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB15314118?pdp_filters=item_id%3AMLB3858550725",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -3465,7 +3717,7 @@
     {
       "id": "xUz3eJJ8CDLhc5sW47BB",
       "title": "Basike Fone de Ouvido Bluetooth 5.4 TWS",
-      "summary": "O Basike Fone de Ouvido Bluetooth 5.4 TWS apresenta um design ergonômico com gancho de silicone e tecnologia de áudio direcional. O dispositivo oferece som HiFi, 3D e conta com cancelamento de ruído ENC para chamadas.",
+      "summary": "Este anúncio Basike também identifica o modelo BA-FON240B, com Bluetooth 5.4, microfone com ENC para chamadas e recarga USB-C. O cadastro e seus links permanecem separados. O anúncio diverge no formato, na autonomia e na resistência IP; não escolhemos o maior número nem prometemos ausência de vazamento de som ou latência específica. ENC de chamadas não confirma ANC para ouvir e não testamos conforto, áudio ou duração real.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/xUz3eJJ8CDLhc5sW47BB-97559af38c00.jpg?v=20260810-1",
       "price": 108.9,
@@ -3480,37 +3732,59 @@
             "label": "Formato",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "A tabela informa in-ear e a descrição open-ear com ear clip. Não atribuímos um único encaixe.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513786?pdp_filters=item_id%3AMLB7456114952",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Bluetooth 5.4",
+            "value": "Bluetooth 5.4, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513786?pdp_filters=item_id%3AMLB7456114952",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513786?pdp_filters=item_id%3AMLB7456114952",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Microfone integrado com ENC para chamadas, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513786?pdp_filters=item_id%3AMLB7456114952",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "A descrição anuncia 10 h contínuas e menciona um intervalo de 6h a 18h; a tabela informa 50 h. Não escolhemos um número por carga.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513786?pdp_filters=item_id%3AMLB7456114952",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia com estojo",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "A tabela informa 50 h sem distinguir recargas; 800 mAh de capacidade do estojo não comprovam um total de horas.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513786?pdp_filters=item_id%3AMLB7456114952",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -3589,7 +3863,7 @@
     {
       "id": "1tIzUpXs4udqZOZwpQX7",
       "title": "Headset Com Fio Hxz-b39 Fone De Ouvido Headset Gamer Bege Preto",
-      "summary": "Headset Com Fio Hxz-b39 Fone De Ouvido Headset Gamer Bege Preto. Quantidade de pares: 1. O formato over-ear cobre completamente as orelhas para isolamento acústico durante sessões de uso prolongadas. A conexão via Bluetooth permite mobilidade sem fios durante a reprodução de áudio em dispositivos compatíveis. O microfone integrado possibilita a captação de voz para comunicação bidirecional em chamadas e partidas online.",
+      "summary": "O anúncio do HXZ-B39 informa formato over-ear, Bluetooth 5.3, microfone com ENC para chamadas e até 60 horas de uso contínuo. O título menciona “com fio”, enquanto a tabela e a descrição apresentam conexão sem fio; essa divergência permanece sinalizada. ENC no microfone não confirma ANC para ouvir. São informações do vendedor, sem teste de som, latência, conforto ou bateria pela equipe.",
       "category": "Celular",
       "image": "https://rankingdacompra.com.br/produto/imagens/1tIzUpXs4udqZOZwpQX7-d8da74c16726.jpg?v=20260810-1",
       "price": 109.99,
@@ -3602,33 +3876,49 @@
         "features": [
           {
             "label": "Formato",
-            "value": "Over-ear (ao redor das orelhas)",
+            "value": "Over-ear (ao redor das orelhas), segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Bluetooth 5.3, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Informado",
+            "value": "Microfone integrado com ENC para chamadas, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Até 60 h de uso contínuo anunciadas, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -3791,7 +4081,7 @@
     {
       "id": "goH2juydLAa3JYXzctkH",
       "title": "Fone Bluetooth Basike Ear Clip com Gancho",
-      "summary": "Fone Bluetooth Basike identificado no cadastro. Autonomia e modelo exato ainda precisam de confirmação. Latência de 0,0035 ms, redução de vazamento de 90% e promessa de impedir quedas são alegações do anúncio sem medição independente; não são usadas como vantagens comprovadas. Confira formato, bateria, encaixe e compatibilidade com o vendedor.",
+      "summary": "A tabela deste Basike identifica o modelo BA-FON240B. A descrição informa Bluetooth 5.4, microfone com ENC para chamadas e carregamento USB-C. O formato aparece como in-ear na tabela e open-ear com gancho no texto; a autonomia aparece como 50 h e 10 h sem uma separação inequívoca entre fones e estojo. Não escolhemos um desses valores, não confirmamos ANC e não reproduzimos as promessas de latência ou ausência de vazamento de som.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/goH2juydLAa3JYXzctkH-a705d610f7ac.jpg?v=20260810-1",
       "price": 117.41,
@@ -3804,33 +4094,61 @@
         "features": [
           {
             "label": "Formato",
-            "value": "Ear clip",
-            "state": "yes",
-            "basis": "cadastro"
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "Tabela informa in-ear; descrição informa open-ear com ear clip e gancho. Não atribuímos encaixe único.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513507?pdp_filters=item_id%3AMLB6587035878",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Bluetooth 5.4, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513507?pdp_filters=item_id%3AMLB6587035878",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513507?pdp_filters=item_id%3AMLB6587035878",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Microfone integrado com ENC para chamadas, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513507?pdp_filters=item_id%3AMLB6587035878",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "Descrição informa 10 h contínuas; a tabela informa 50 h sem explicar a composição. A autonomia por carga não ficou inequívoca.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513507?pdp_filters=item_id%3AMLB6587035878",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "O anúncio não esclarece se as 50 h incluem o estojo. Não convertemos a capacidade de 800 mAh em duração.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67513507?pdp_filters=item_id%3AMLB6587035878",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -4413,7 +4731,7 @@
     {
       "id": "BhacwzAPIbDglRkNCoyz",
       "title": "Fones Esportivo Bluetooth 6.0 Tradutor Ai Miniso X15pro Ipx5",
-      "summary": "Fones Esportivo Bluetooth 6.0 Tradutor Ai Miniso X15pro Ipx5. Marca: Miniso; Código do catálogo: MLB6877799706; Condição informada: novo. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "summary": "O anúncio identifica os fones como MINISO X15 Pro, de formato open-ear com gancho, Bluetooth 6.0 e microfone para chamadas. A tradução anunciada depende de aplicativo, mas o nome e as condições do serviço não estão claros. A autonomia diverge dentro da própria descrição: 13 horas em um trecho e 4,5 horas em outro. Não escolhemos um desses valores nem confirmamos ANC, autenticidade, conforto ou qualidade de tradução em teste próprio.",
       "category": "Fones de ouvido",
       "image": "https://rankingdacompra.com.br/produto/imagens/BhacwzAPIbDglRkNCoyz-eedf5e049c07.jpg?v=20260810-1",
       "price": 148.85,
@@ -4426,33 +4744,60 @@
         "features": [
           {
             "label": "Formato",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Open-ear com gancho, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://produto.mercadolivre.com.br/MLB-6877799706-fones-esportivo-bluetooth-60-tradutor-ai-miniso-x15pro-ipx5-_JM",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Versão Bluetooth",
-            "value": "Bluetooth 6.0",
+            "value": "Bluetooth 6.0, segundo o anúncio",
             "state": "yes",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://produto.mercadolivre.com.br/MLB-6877799706-fones-esportivo-bluetooth-60-tradutor-ai-miniso-x15pro-ipx5-_JM",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Cancelamento ativo de ruído",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://produto.mercadolivre.com.br/MLB-6877799706-fones-esportivo-bluetooth-60-tradutor-ai-miniso-x15pro-ipx5-_JM",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro"
+            "value": "Microfone para chamadas, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://produto.mercadolivre.com.br/MLB-6877799706-fones-esportivo-bluetooth-60-tradutor-ai-miniso-x15pro-ipx5-_JM",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia no fone",
             "value": "Não informado / a confirmar",
             "state": "unknown",
-            "basis": "cadastro"
+            "reason": "A mesma descrição anuncia 13 h por carga e aproximadamente 4,5 h nos fones. Não escolhemos um dos valores.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://produto.mercadolivre.com.br/MLB-6877799706-fones-esportivo-bluetooth-60-tradutor-ai-miniso-x15pro-ipx5-_JM",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "Há estojo de recarga, mas o anúncio não fornece duração total inequívoca com estojo.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://produto.mercadolivre.com.br/MLB-6877799706-fones-esportivo-bluetooth-60-tradutor-ai-miniso-x15pro-ipx5-_JM",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -4770,10 +5115,12 @@
           },
           {
             "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
+            "value": "Sem cancelamento de ruído: a tabela informa “Não” e a descrição cita isolamento passivo, segundo o anúncio",
+            "state": "no",
             "basis": "cadastro",
-            "reason": "ANC para ouvir não foi confirmado nesta ficha. Microfone direcional não comprova ANC."
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB47044981?pdp_filters=item_id%3AMLB4590134133",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Microfone",
@@ -4870,7 +5217,7 @@
     {
       "id": "YuOWci2UixF5GuQE6IYS",
       "title": "Roteador HUAWEI WiFi AX2S Wi-Fi 6 Preto",
-      "summary": "O HUAWEI WiFi AX2S tem Wi-Fi 6 em 5 GHz, duas bandas simultâneas, portas Gigabit e recursos Mesh anunciados pela Huawei. A quantidade de portas está a confirmar: a visão geral oficial cita três entradas, enquanto a página de especificações informa quatro. Confira a revisão física exata e o firmware com o fabricante ou vendedor. Não medimos cobertura, velocidade ou estabilidade. Mesh requer equipamentos compatíveis e não garante sinal em todos os cômodos.",
+      "summary": "O anúncio identifica o HUAWEI WiFi AX2S WS7000 e informa Wi-Fi 6 em 5 GHz, duas bandas, portas Gigabit e HarmonyOS Mesh+. As taxas de até 300 e 1201 Mbps são valores nominais, não velocidade garantida da internet. A quantidade de portas permanece a confirmar: o próprio anúncio cita quatro em uma seção e três em outra. Não testamos cobertura, desempenho ou compatibilidade entre roteadores.",
       "category": "Roteador",
       "image": "https://rankingdacompra.com.br/produto/imagens/YuOWci2UixF5GuQE6IYS-73146d164b7e.jpg?v=20260810-1",
       "price": 175,
@@ -4910,7 +5257,10 @@
             "value": "Não informado / a confirmar",
             "state": "unknown",
             "basis": "cadastro",
-            "reason": "A visão geral oficial informa três entradas Gigabit; a ficha oficial informa quatro. Confirmar a revisão exata com o fabricante/vendedor."
+            "reason": "O próprio anúncio informa quatro portas WAN/LAN em uma seção e três entradas Gigabit em outra. Não escolhemos uma contagem.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB36213556",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Rede Mesh",
@@ -5930,7 +6280,10 @@
             "value": "Não informado / a confirmar",
             "state": "unknown",
             "basis": "cadastro",
-            "reason": "A fonte consultada informa totais com estojo; não atribuir esse total a uma sessão contínua."
+            "reason": "O anúncio anuncia até 35 h sem distinguir uma sessão de uso. Não atribuímos o total com recargas à duração de uma carga dos fones.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB52845211?pdp_filters=item_id%3AMLB5121690259",
+            "checkedAt": "2026-10-20"
           },
           {
             "label": "Autonomia com estojo",
@@ -7433,7 +7786,10 @@
             "value": "Não informado / a confirmar",
             "state": "unknown",
             "basis": "cadastro",
-            "reason": "A fonte informa 5 ATM; não atribuímos um código IP que não foi confirmado."
+            "reason": "O anúncio informa 5 ATM, não um código IP. Não convertimos ATM em IP67/IP68.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB57802650?pdp_filters=item_id%3AMLB6739814208",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
@@ -7680,7 +8036,7 @@
     {
       "id": "5MGE98tYssH9nEfBeHoW",
       "title": "Smartwatch HUAWEI WATCH FIT 5 com GPS e tela AMOLED de 1,82 polegada",
-      "summary": "O HUAWEI WATCH FIT 5 tem tela AMOLED de 1,82 polegada e GPS integrado, conforme a ficha oficial internacional do modelo, não Pro. A ficha distingue IP6X para poeira de resistência à água de 5 ATM, sujeita às restrições do manual. A alegação anterior de 64 GB não foi confirmada e foi retirada do título, sem atribuir outra capacidade. Confirme a variante e os recursos disponíveis na região. Não testamos sensores, conforto ou autonomia.",
+      "summary": "O anúncio do HUAWEI WATCH FIT 5 informa tela AMOLED de 1,82 polegada, GPS, compatibilidade com Android e iOS e armazenamento interno de 64 GB. A capacidade de 64 GB é uma informação do vendedor, não uma confirmação independente de fábrica, e não foi tratada como RAM. O anúncio também menciona 5 ATM; isso não autoriza mergulho. Os recursos de saúde não substituem diagnóstico e não testamos sensores, autonomia ou armazenamento.",
       "category": "relógio/smartwatch",
       "image": "https://rankingdacompra.com.br/produto/imagens/5MGE98tYssH9nEfBeHoW-f6d1e569f634.jpg?v=20260810-1",
       "price": 752.4,
@@ -7733,10 +8089,22 @@
           },
           {
             "label": "Armazenamento interno",
+            "value": "64 GB de armazenamento informados na descrição do vendedor, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67714386",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Memória RAM",
             "value": "Não informado / a confirmar",
             "state": "unknown",
             "basis": "cadastro",
-            "reason": "Não foi confirmada a alegação de 64 GB; removida do título público, sem substituir por outra capacidade."
+            "reason": "A tabela também repete 64 GB como RAM, sem esclarecimento. Não tratamos armazenamento e RAM como a mesma capacidade.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB67714386",
+            "checkedAt": "2026-10-20"
           }
         ]
       },
