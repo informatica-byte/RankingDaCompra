@@ -85,7 +85,7 @@ export const MANUFACTURER_SPECIFICATIONS = new Map([
     limitations:['A ficha de fábrica não autentica a unidade do vendedor. Expansão e portas continuam a confirmar; desempenho não foi testado.'],
   }],
   ['9P123IBTTYnSCMilPvXB',{
-    model:/\bamazfit\b.*\bbip\s*6\b(?!\s*(?:pro|max|active)\b)/i, family:'smartwatch', reviewedAt:'2026-10-20',
+    model:/\bamazfit\b.*\bbip\s*6\b(?!\s*(?:pro|max|active)\b)/i, family:'watch-smart', reviewedAt:'2026-10-20',
     scope:'Amazfit Bip 6: recursos do modelo, não autenticação da unidade ou teste independente.',
     features:[fact('GPS integrado','GPS integrado, com cinco sistemas de posicionamento anunciados','bip6'),
       fact('Chamadas Bluetooth','Chamadas Bluetooth com o celular conectado; não é linha móvel independente','bip6'),
@@ -96,7 +96,7 @@ export const MANUFACTURER_SPECIFICATIONS = new Map([
     limitations:['A documentação cita Zepp Flow, disponível em regiões selecionadas; Alexa não foi confirmada. Sensores não substituem diagnóstico médico. Áudio, precisão e autonomia real não foram medidos.'],
   }],
   ['5MGE98tYssH9nEfBeHoW',{
-    model:/\bhuawei\b.*\bwatch\s*fit\s*5\b(?!\s*(?:pro|max)\b)/i, family:'smartwatch', reviewedAt:'2026-10-20',
+    model:/\bhuawei\b.*\bwatch\s*fit\s*5\b(?!\s*(?:pro|max)\b)/i, family:'watch-smart', reviewedAt:'2026-10-20',
     scope:'HUAWEI WATCH FIT 5, não Pro: ficha oficial internacional. Confirmar disponibilidade regional e a variante vendida.',
     features:[fact('Tela','AMOLED de 1,82 polegada; 480 × 408 pixels','fit5'),
       fact('GPS integrado','GNSS integrado; GPS de dupla banda L1 + L5','fit5'),

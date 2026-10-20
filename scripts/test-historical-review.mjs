@@ -42,12 +42,14 @@ test('revisões preservam todos os dados operacionais, são idempotentes e não 
 });
 test('relógios separam IP e ATM e removem apenas alegações não comprovadas',()=>{
   const bip=correctProductData(product('9P123IBTTYnSCMilPvXB'));
+  assert.equal(comparisonData(bip).family,'watch-smart');
   assert.doesNotMatch(bip.titulo,/Alexa/i);
   const b=comparisonData(bip).features;
   assert.equal(b.find(f=>f.label==='Proteção IP').state,'unknown');
   assert.match(b.find(f=>f.label==='Resistência à água').value,/5 ATM/);
   assert.equal(b.find(f=>f.label==='Chamadas Bluetooth').basis,'fabricante');
   const fit=correctProductData(product('5MGE98tYssH9nEfBeHoW'));
+  assert.equal(comparisonData(fit).family,'watch-smart');
   assert.doesNotMatch(fit.titulo,/64\s*gb|182"/i);assert.match(fit.titulo,/1,82/);
   const f=comparisonData(fit).features;
   assert.match(f.find(x=>x.label==='Proteção IP').value,/IP6X.*poeira/);
