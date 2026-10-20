@@ -2,6 +2,40 @@
   'use strict';
   const normalize=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
   const title=p=>normalize(p?.titulo||p?.title);
+  // Only sourced fields from a reviewed ficha can refine (or veto) the title.
+  // Generic features extracted from marketing text are not a reviewed format.
+  function reviewedFormat(p){
+    const features=p?.comparison?.features;
+    if(!Array.isArray(features))return null;
+    const sourced=features.filter(f=>normalize(f?.label)==='formato' &&
+      (f.basis==='fabricante'||(f.basis==='cadastro'&&f.sourceKind==='marketplace-listing')) && validSource(f.sourceUrl));
+    if(!sourced.length)return null;
+    if(sourced.length!==1||sourced[0].state!=='yes')return {type:''};
+    const value=normalize(sourced[0].value);
+    const formats=[
+      ['open',/open ear|orelha aberta|ear clip|clip ear|earcuff|\bows\b/],
+      ['in',/intra auricular|\bin ear\b/],
+      ['on',/supra auricular|\bon ear\b/],
+      ['over',/circum auricular|\bover ear\b/],
+    ].filter(([,pattern])=>pattern.test(value));
+    return {type:formats.length===1?formats[0][0]:''};
+  }
+  function validSource(value){
+    try{const url=new URL(value);return url.protocol==='https:'&&!url.username&&!url.password;}catch{return false;}
+  }
+  function reviewedAudioType(p,t,format){
+    if(!format.type)return '';
+    const features=Array.isArray(p?.comparison?.features)?p.comparison.features:[];
+    const bluetooth=features.find(f=>normalize(f?.label)==='versao bluetooth'&&
+      (f.basis==='fabricante'||f.sourceKind==='marketplace-listing')&&validSource(f.sourceUrl));
+    const wired=bluetooth?.state==='no';
+    const wireless=!wired&&(/bluetooth|sem fio|\btws\b|\bbuds\b|earbud/.test(t)||
+      (bluetooth?.state==='yes'&&/bluetooth\s*\d/.test(normalize(bluetooth.value))));
+    if(format.type==='open')return 'earphones-open';
+    if(/headset|jbl quantum/.test(t))return 'headsets';
+    if(format.type==='in')return wireless?'earbuds-tws':wired||/com fio|\bp2\b|3 5\s*mm/.test(t)?'earphones-wired':'';
+    return wireless?(format.type==='on'?'headphones-on-wireless':'headphones-over-wireless'):'';
+  }
   const labels={
     'earbuds-tws':'Fones TWS intra-auriculares','headphones-on-wireless':'Fones on-ear sem fio','headphones-over-wireless':'Headphones over-ear sem fio',
     'headsets':'Headsets para jogos e chamadas','earphones-wired':'Fones intra-auriculares com fio','earphones-open':'Fones abertos / open-ear',
@@ -26,8 +60,12 @@
     if(/^(?:power bank|carregador portatil)\b/.test(t))return 'power-bank';
     if(/^carregador\b/.test(t))return 'charger';
     if(/intercomunicador|fone.*capacete/.test(t))return '';
-    // The registered LP40 title claims in-ear, but the format is not confirmed
-    // by manufacturer documentation in this review. Do not infer it from TWS.
+    if(/fone|headset|headphone|earbud|\bbuds\b|ear clip|earcuff|\bows\b|soundcore.*p30i/.test(t)){
+      const format=reviewedFormat(p);
+      if(format)return reviewedAudioType(p,t,format);
+    }
+    // With no sourced format, the old LP40 title alone still does not prove
+    // the fit. A reviewed listing/manufacturer ficha is handled above.
     if(/lenovo.*\blp40\b/.test(t))return '';
     if(/open ear|orelha aberta|ear clip|earcuff|\bows\b/.test(t))return /intra auricular|in ear|on ear|over ear/.test(t)?'':'earphones-open';
     if(/headset|jbl quantum/.test(t))return 'headsets';
