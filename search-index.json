@@ -7278,7 +7278,7 @@
       "rating": 0,
       "ranking": 0,
       "comparison": {
-        "family": "smartwatch",
+        "family": "watch-smart",
         "features": [
           {
             "label": "GPS integrado",
@@ -7581,7 +7581,7 @@
       "rating": 0,
       "ranking": 0,
       "comparison": {
-        "family": "smartwatch",
+        "family": "watch-smart",
         "features": [
           {
             "label": "Tela",
