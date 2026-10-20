@@ -25,12 +25,12 @@ export const HIGHLIGHT_EDITORIAL = new Map([
   ['O6e0R2WtiZfyyf2MJe5Y', {
     model: /Asus.*Vivobook(?=.*(?:7520u|E1504FA-NJ1288))(?=.*16\s*gb)(?=.*512\s*(?:ssd|gb))/i,
     correct: 'Notebook ASUS Vivobook Go 15 E1504FA-NJ1288, 16 GB RAM e SSD 512 GB',
-    summary: 'O SKU E1504FA-NJ1288 informado pelo responsável consta na loja ASUS com 16 GB de RAM LPDDR5, SSD NVMe de 512 GB e KeepOS. As fontes oficiais consultadas concordam nessas capacidades, mas a página individual informa Ryzen 5 40 e um conjunto com o mesmo SKU informa Ryzen 5 7520U. Por isso, o processador e a GPU da unidade precisam de confirmação antes da compra. Não atribuímos desempenho de uma variante à outra nem medimos desempenho deste notebook.',
-    positiveNotes: ['RAM de 16 GB LPDDR5 documentada pela ASUS para o SKU informado.', 'SSD NVMe de 512 GB documentado para o mesmo SKU.'],
-    negativeNotes: ['Keep OS não equivale a Windows licenciado.', 'As fontes oficiais divergem no processador; confirme CPU, GPU e possibilidade de expansão com a ASUS e o vendedor.'],
-    sourceUrl: 'https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-nivel-ips.html',
-    specUrl: 'https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-notebook-asus-x515ka-br309ws-slate-grey.html',
-    sourceLabel: 'ASUS E1504FA-NJ1288 — páginas oficiais com divergência no processador', reviewedAt: '2026-10-20', suppressRating: true,
+    summary: 'O anúncio do Mercado Livre identifica este ASUS Vivobook Go 15 como E1504FA-NJ1288, com processador AMD Ryzen 5 7520U, vídeo integrado Radeon 610M, 16 GB de RAM LPDDR5 e SSD PCIe NVMe de 512 GB. O vendedor informa Linux KeepOS e tela Full HD de 15,6 polegadas. Estes são dados da oferta consultada, não uma validação independente da configuração de fábrica. Considere a compatibilidade dos programas que pretende usar: não acompanha Windows. Não testamos desempenho, autonomia ou possibilidade de expansão. Consulte no anúncio as condições atuais de garantia, entrega e devolução.',
+    positiveNotes: ['16 GB de RAM LPDDR5 e SSD de 512 GB informados no anúncio.', 'Ryzen 5 7520U, Radeon 610M e tela Full HD anunciados para esta oferta.'],
+    negativeNotes: ['Linux KeepOS anunciado: não acompanha licença Windows.', 'Desempenho, autonomia e expansão não foram testados pela equipe; consulte as condições da oferta no vendedor.'],
+    sourceUrl: 'https://www.mercadolivre.com.br/p/MLB43417665?pdp_filters=item_id%3AMLB3914161563',
+    sourceKind: 'marketplace-listing',
+    sourceLabel: 'Anúncio do Mercado Livre — ASUS E1504FA-NJ1288, MLB3914161563', reviewedAt: '2026-10-20', suppressRating: true,
   }],
   ['UvxFn4gfaexb8TvcaT5e', {
     model: /Logitech.*M170/i,

@@ -373,15 +373,16 @@ function correctionFor(product) {
   const correction = PRODUCT_CORRECTIONS.get(String(product?.id || ""));
   // Um cadastro pode ser reutilizado. Nunca aplicar a ficha do modelo anterior
   // só porque o ID continua igual; a identidade atual precisa corresponder.
+  if(correction?.sourceKind==='marketplace-listing' && !documentedSpecifications(product)) return undefined;
   return correction?.model && !correction.model.test(String(product?.titulo || "")) ? undefined : correction;
 }
 
 export function manufacturerEvidence(product) {
   const documented = documentedSpecifications(product);
-  const source = documented?.features.find(f=>f.state!=='unknown' && f.sourceUrl);
+  const source = documented?.features.find(f=>f.state!=='unknown' && f.basis==='fabricante' && f.sourceUrl);
   if (source) return {sourceUrl:source.sourceUrl, model:documented.scope, checkedAt:documented.checkedAt, kind:'manufacturer-specification', independentTest:false};
   const correction = correctionFor(product);
-  return correction?.summary && correction.sourceUrl
+  return correction?.summary && correction.sourceUrl && correction.sourceKind!=='marketplace-listing'
     ? {sourceUrl: correction.sourceUrl, model: correction.sourceLabel, checkedAt: correction.reviewedAt || "2026-10-06", kind: "manufacturer-specification", independentTest: false}
     : null;
 }
@@ -678,10 +679,12 @@ function applyVerifiedSummary(content, correction) {
     for (const review of Array.isArray(product.review) ? product.review : product.review ? [product.review] : []) review.reviewBody = correction.summary;
     return a + JSON.stringify(payload).replace(/</g, "\\u003c") + b;
   });
-  const source = correction.sourceUrl
+  const source = correction.sourceKind==='marketplace-listing' && correction.sourceUrl
+    ? `<p class="fine" data-verified-listing>Fonte: <a href="${esc(correction.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(correction.sourceLabel)}</a>. Informações do anúncio do vendedor, não validação independente ou teste do produto.</p>`
+    : correction.sourceUrl
     ? `<p class="fine" data-verified-manufacturer>Fonte do fabricante: <a href="${esc(correction.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(correction.sourceLabel)}</a>${correction.specUrl ? ` e <a href="${esc(correction.specUrl)}" target="_blank" rel="noopener noreferrer">ficha técnica oficial</a>` : ''}. Especificações anunciadas, não medição independente.</p>`
     : `<p class="fine" data-editorial-limit>Esta revisão remove afirmações sem comprovação; não significa validação técnica ou teste do produto.</p>`;
-  content = content.replace(/<p class="fine" data-(?:verified-manufacturer|editorial-limit)>[\s\S]*?<\/p>/g, "");
+  content = content.replace(/<p class="fine" data-(?:verified-manufacturer|verified-listing|editorial-limit)>[\s\S]*?<\/p>/g, "");
   return content.replace(/(<p class="fine source">[\s\S]*?<\/p>)/, "$1" + source);
 }
 

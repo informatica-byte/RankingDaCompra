@@ -940,7 +940,7 @@ for (const product of products) {
   let html = await readFile(page, "utf8");
   html = html.replace(/Ver promoções do dia/g, "Ver melhores escolhas");
   html = html.replace(/<section class="panel" data-product-decision[\s\S]*?<\/section>/g, "");
-  html = html.replace(/<section class="panel" data-manufacturer-specifications[\s\S]*?<\/section>/g, "");
+  html = html.replace(/<section class="panel" data-(?:manufacturer|marketplace)-specifications[\s\S]*?<\/section>/g, "");
   html = html.replace(/<section class="panel" data-buying-advice[\s\S]*?<\/section>/g, "");
   const advice = renderBuyingAdvice(product);
   html = html.includes('<div class="panels">')

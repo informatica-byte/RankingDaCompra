@@ -79,16 +79,6 @@ export const MANUFACTURER_SPECIFICATIONS = new Map([
       fact('Vazão máxima da bomba','360 L/h / 6 L/min; diferente da vazão nominal','wap'),fact('Mangueira de alta pressão','3 m','wap'),fact('Cabo elétrico','5 m','wap')],
     limitations:['A documentação do modelo não confirma acessórios, tensão ou estado de uma unidade vendida. Não medimos limpeza, consumo ou durabilidade.'],
   }],
-  ['O6e0R2WtiZfyyf2MJe5Y',{
-    model:/\basus\b.*\bvivobook\b(?=.*(?:\b7520u\b|\be1504fa-nj1288\b))(?=.*\b16\s*gb\b)(?=.*\b512\s*(?:ssd|gb)\b)/i, family:'notebook', reviewedAt:'2026-10-20',
-    scope:'ASUS Vivobook Go 15 E1504FA-NJ1288: SKU informado pelo responsável. As duas páginas oficiais consultadas concordam na RAM e no SSD, mas divergem no processador.',
-    features:[fact('Memória RAM','16 GB LPDDR5, na configuração oficial do SKU','asus'),
-      fact('Armazenamento SSD','512 GB SSD NVMe, na configuração oficial do SKU','asus'),
-      fact('Sistema operacional de fábrica','KeepOS; não equivale a licença Windows','asus'),
-      pending('Processador','O anúncio e um conjunto oficial indicam Ryzen 5 7520U; a página individual do mesmo SKU indica Ryzen 5 40. Confirmar com a ASUS antes de atribuir CPU e GPU à unidade.')],
-    additionalSources:[sources.asusBundle],
-    limitations:['A ficha de fábrica não autentica a unidade do vendedor. Expansão e portas continuam a confirmar; desempenho não foi testado.'],
-  }],
   ['9P123IBTTYnSCMilPvXB',{
     model:/\bamazfit\b.*\bbip\s*6\b(?!\s*(?:pro|max|active)\b)/i, family:'watch-smart', reviewedAt:'2026-10-20',
     scope:'Amazfit Bip 6: recursos do modelo, não autenticação da unidade ou teste independente.',
@@ -218,12 +208,43 @@ export const MANUFACTURER_SPECIFICATIONS = new Map([
   }],
 ]);
 
+// Seller-declared fields stay separate from primary manufacturer facts. The
+// source identifies the existing listing; it is not a new offer or price check.
+const asusListingUrl='https://www.mercadolivre.com.br/p/MLB43417665?pdp_filters=item_id%3AMLB3914161563';
+const listingFact=(label,value)=>({label,value,state:'yes',basis:'cadastro',sourceKind:'marketplace-listing',sourceUrl:asusListingUrl,checkedAt:'2026-10-20'});
+export const MARKETPLACE_SPECIFICATIONS = new Map([
+  ['O6e0R2WtiZfyyf2MJe5Y',{
+    model:/\basus\b.*\bvivobook\b(?=.*(?:\b7520u\b|\be1504fa-nj1288\b))(?=.*\b16\s*gb\b)(?=.*\b512\s*(?:ssd|gb)\b)/i,
+    family:'notebook',sourceKind:'marketplace-listing',reviewedAt:'2026-10-20',
+    scope:'ASUS Vivobook Go 15 E1504FA-NJ1288: configuração informada pelo vendedor no anúncio MLB3914161563 do Mercado Livre, consultado em 20/10/2026. Não é validação independente ou ficha de fábrica.',
+    features:[listingFact('Memória RAM','16 GB LPDDR5, segundo o anúncio'),
+      listingFact('Armazenamento SSD','512 GB SSD PCIe NVMe M.2, segundo o anúncio'),
+      listingFact('Processador','AMD Ryzen 5 7520U, segundo o anúncio'),
+      listingFact('Placa de vídeo','AMD Radeon 610M integrada, segundo o anúncio'),
+      listingFact('Sistema operacional anunciado','Linux KeepOS; não acompanha Windows, segundo o anúncio'),
+      listingFact('Tela','15,6 polegadas, Full HD 1920 × 1080, segundo o anúncio')],
+    additionalSources:[],
+    limitations:['Informações reproduzidas da oferta, sem teste de desempenho, autonomia ou expansão pela equipe. Consulte no Mercado Livre e no vendedor as condições atuais de garantia, entrega e devolução. Não atribuímos especificações de outras revisões à oferta.'],
+  }],
+]);
+
 export function documentedSpecifications(product) {
   const id=String(product?.id||''), title=String(product?.titulo||product?.title||'');
-  const record=MANUFACTURER_SPECIFICATIONS.get(id);
+  const record=MARKETPLACE_SPECIFICATIONS.get(id)||MANUFACTURER_SPECIFICATIONS.get(id);
   if (!record || /^(?:capa|case|suporte|carregador|refil)\b/i.test(title) || !record.model.test(title)) return null;
+  if(record.sourceKind==='marketplace-listing') {
+    const cpu=title.match(/\bryzen\s+[3579]\s+(\d{4}[a-z]*)\b/i)?.[1];
+    if(cpu && cpu.toUpperCase()!=='7520U') return null;
+    if(product.link) {
+      try {
+        const url=new URL(product.link),hash=new URLSearchParams(url.hash.slice(1));
+        const item=url.searchParams.get('pdp_filters')?.match(/item_id[:=](MLB\d+)/)?.[1]||url.searchParams.get('wid')||hash.get('wid');
+        if(url.protocol!=='https:' || !['www.mercadolivre.com.br','produto.mercadolivre.com.br'].includes(url.hostname) || !url.pathname.includes('MLB43417665') || (item && item!=='MLB3914161563')) return null;
+      } catch {return null;}
+    }
+  }
   const checkedAt=record.reviewedAt || reviewedAt;
-  return {family:record.family, scope:record.scope, checkedAt,
+  return {family:record.family, scope:record.scope, checkedAt,sourceKind:record.sourceKind||'manufacturer-specification',
     features:record.features.map(f=>({...f,...(f.basis==='fabricante'?{checkedAt}:{})})), limitations:[...record.limitations],
     additionalSources:[...(record.additionalSources||[])]};
 }
@@ -240,6 +261,10 @@ const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;
 export function renderManufacturerSpecifications(product) {
   const record=documentedSpecifications(product);
   if (!record) return '';
+  if(record.sourceKind==='marketplace-listing') return '<section class="panel" data-marketplace-specifications style="margin-top:24px"><h2>Ficha informada no anúncio do Mercado Livre</h2><p>'+esc(record.scope)+'</p><ul>'
+    +record.features.filter(f=>f.state!=='unknown').map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.value)+'.</li>').join('')+'</ul>'
+    +'<p><a href="'+esc(record.features[0].sourceUrl)+'" target="_blank" rel="noopener noreferrer">Consultar o anúncio usado como fonte</a>.</p><p>'+record.limitations.map(esc).join(' ')+'</p>'
+    +'<p class="fine">Descrição da oferta revisada em '+esc(record.checkedAt.split('-').reverse().join('/'))+'. Não altera a data da conferência do preço.</p></section>';
   const known=record.features.filter(f=>f.state!=='unknown' && f.basis==='fabricante'), uncertain=record.features.filter(f=>f.state==='unknown');
   return '<section class="panel" data-manufacturer-specifications style="margin-top:24px"><h2>Ficha conferida em fontes do fabricante</h2><p>'+esc(record.scope)+'</p><ul>'
     +known.map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.value)+' — <a href="'+esc(f.sourceUrl)+'" target="_blank" rel="noopener noreferrer">fonte oficial</a>.</li>').join('')+'</ul>'

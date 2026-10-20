@@ -27,7 +27,7 @@ function card(item,urls){
     +(safeUrl(p.foto)?'<img src="'+esc(safeUrl(p.foto))+'" alt="" loading="lazy" width="250" height="160">':'')
     +'<h3>'+esc(p.titulo||p.title)+'</h3><p><b>'+(value?esc(money(value)):'Preço a confirmar')+'</b> · registro: '+esc(date(p))+'</p>'
     +(documentation?'<p class="fine">'+esc(documentation.scope)+'</p>':'')
-    +(facts.confirmed.length?'<p><b>Documentado pelo fabricante:</b></p><ul>'+facts.confirmed.map(feature).join('')+'</ul>':source?'<p>Documentação do fabricante disponível na análise e na fonte abaixo. Não extrapolamos recursos para outras variantes.</p>':'<p><b>Sem especificações técnicas confirmadas por fonte de fabricante nesta revisão.</b></p>')
+    +(facts.confirmed.length?'<p><b>Documentado pelo fabricante:</b></p><ul>'+facts.confirmed.map(feature).join('')+'</ul>':source?'<p>Documentação do fabricante disponível na análise e na fonte abaixo. Não extrapolamos recursos para outras variantes.</p>':documentation?.sourceKind==='marketplace-listing'?'<p><b>Informações do anúncio do vendedor no Mercado Livre, sem teste independente.</b></p>':'<p><b>Sem especificações técnicas confirmadas por fonte de fabricante nesta revisão.</b></p>')
     +(source?'<p><a href="'+esc(safeUrl(source.sourceUrl))+'" target="_blank" rel="noopener">Fonte do fabricante e condições</a></p>':'')
     +(facts.registered.length?'<details><summary>Dados anunciados no cadastro — confirmar no vendedor</summary><ul>'+facts.registered.map(feature).join('')+'</ul><p>Estes dados não foram confirmados por fonte de fabricante nesta revisão.</p></details>':'')
     +(facts.uncertain.length?'<p class="fine"><b>A confirmar:</b> '+esc(facts.uncertain.map(f=>f.label).join(', '))+'. Informação ausente não significa recurso inexistente.</p>':'')

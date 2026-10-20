@@ -91,8 +91,10 @@ test('notebook não inclui power bank e une apenas refinamentos compatíveis de 
   const basike = {id:'sinwoGjrsJl5UMA13pES',titulo:'Power Bank Basike 20000mAh para Notebook e Celular com Cabo USB-C 65W'};
   assert.equal(comparisonData(basike), null);
   const actual = comparisonData(asus);
-  assert.equal(feature(actual, 'Processador').state, 'unknown', 'fontes ASUS divergem no mesmo SKU');
-  assert.equal(feature(actual, 'Memória RAM').basis, 'fabricante');
+  assert.equal(feature(actual, 'Processador').state, 'yes', 'configuração reproduzida do anúncio, não da ficha de fábrica');
+  assert.equal(feature(actual, 'Processador').basis, 'cadastro');
+  assert.match(feature(actual, 'Processador').value, /7520U.*segundo o anúncio/);
+  assert.equal(feature(actual, 'Memória RAM').basis, 'cadastro');
   assert.match(feature(actual, 'Memória RAM').value, /16 GB/);
   assert.match(feature(actual, 'Armazenamento SSD').value, /512 GB SSD/);
   const unconfirmed=comparisonData({...asus,id:'sem-sku-confirmado'});

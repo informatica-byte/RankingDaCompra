@@ -28,17 +28,19 @@ test('os seis destaques têm análise específica, modelo protegido e dados oper
     assert.deepEqual(correctProductData(revised),revised);
   }
 });
-test('SKU ASUS confirmado completa capacidades, sem esconder divergência de CPU ou generalizar outros SKUs',()=>{
+test('ASUS usa configuração do anúncio sem generalizar ou fingir confirmação de fábrica',()=>{
   const asus=correctProductData({id:'O6e0R2WtiZfyyf2MJe5Y',titulo:'Notebook Asus Vivobook Go 15 Ryzen 5 7520u 16gb 512ssd'});
   const data=comparisonData(asus);
-  assert.equal(data.features.find(f=>f.label==='Processador').state,'unknown');
+  assert.equal(data.features.find(f=>f.label==='Processador').state,'yes');
+  assert.equal(data.features.find(f=>f.label==='Processador').basis,'cadastro');
+  assert.match(data.features.find(f=>f.label==='Processador').value,/7520U.*segundo o anúncio/);
   assert.match(data.features.find(f=>f.label==='Memória RAM').value,/16 GB/);
   assert.match(data.features.find(f=>f.label==='Armazenamento SSD').value,/512 GB/);
   assert.doesNotMatch(asus.titulo,/7520u/i);
   assert.match(asus.titulo,/E1504FA-NJ1288/);
   const other=comparisonData({titulo:'Notebook Asus Vivobook Go 15 Ryzen 5 7520u 16gb 512ssd'});
   for(const label of ['Memória RAM','Armazenamento SSD']) assert.equal(other.features.find(f=>f.label===label).state,'unknown');
-  assert.match(asus.contras,/Keep OS/);
+  assert.match(asus.contras,/Keep\s?OS/);
   const band=HIGHLIGHT_EDITORIAL.get('48oRcQNlH00KgNLHkvsG');
   assert.match(band.summary,/não para diagnóstico/);
   assert.match(HIGHLIGHT_EDITORIAL.get('huCYMmOsGPKJ8jOiJ1gR').summary,/nominal de 1.015 PSI/);
