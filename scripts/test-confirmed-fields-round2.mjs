@@ -48,11 +48,22 @@ test('EasyMesh V4 anunciado no Brasil não afirma certificação ou firmware da 
   assert.equal(documentedSpecifications({...p,titulo:'Roteador Mercusys MR80X sem revisão'}),null);
 });
 test('nova revisão é idempotente, não troca título, produto, preço, foto ou links',()=>{
-  for(const id of ['kYzXt8BeErDzXsC6BlwB','AweCTxq7vwVQ7VmN4IIg']){
+  for(const id of ['kYzXt8BeErDzXsC6BlwB','AweCTxq7vwVQ7VmN4IIg','SJRf3jhIFlr1BQadDNnH']){
     const p=product(id),original=JSON.stringify(p),revised=correctProductData(p);
     assert.deepEqual(correctProductData(revised),revised);
     for(const [key,value]of Object.entries(p))if(!['comentario','pros','contras','nota','notaInformada'].includes(key))assert.deepEqual(revised[key],value,key);
     assert.equal(JSON.stringify(p),original);
     assert.equal(correctProductData({...p,titulo:'Outro produto',comentario:'Preservado'}).comentario,'Preservado');
   }
+});
+test('SKU LOQ informado confere RAM e GPU separadas, sem completar outra configuração',()=>{
+  const p=correctProductData(product('SJRf3jhIFlr1BQadDNnH'));
+  assert.match(field(p,'Memória RAM').value,/^8 GB DDR5-4800/);
+  assert.equal(field(p,'Memória RAM').basis,'fabricante');
+  assert.match(field(p,'Memória RAM').sourceUrl,/83kh0001br/);
+  assert.match(field(p,'Placa de vídeo').value,/6 GB GDDR6/);
+  assert.match(field(p,'Armazenamento SSD').value,/^512 GB.*PCIe Gen4/);
+  assert.match(field(p,'Tela').value,/144 Hz/);
+  assert.match(p.comentario,/83KH0001BR/);
+  for(const titulo of [p.titulo.replace('8GB','16GB'),p.titulo.replace('RTX 3050','RTX 4050'),p.titulo.replace('i5-13450HX','i7-13650HX'),'Lenovo LOQ 15IRX9 sem configuração','Capa para '+p.titulo])assert.equal(documentedSpecifications({...p,titulo}),null,titulo);
 });

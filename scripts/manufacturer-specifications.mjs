@@ -30,6 +30,7 @@ const sources = {
   quantum: 'https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf',
   lenovo256: 'https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0003BR',
   lenovo512: 'https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0002BR',
+  loq: 'https://www.lenovo.com/br/pt/p/laptops/loq-laptops/88lq3001926/83kh0001br',
 };
 const fact = (label, value, source, state = 'yes') => ({label, value, state, basis:'fabricante', sourceUrl:sources[source], checkedAt:reviewedAt});
 const pending = (label, reason) => ({label, value:'Não informado / a confirmar', state:'unknown', basis:'cadastro', reason});
@@ -201,6 +202,18 @@ export const MANUFACTURER_SPECIFICATIONS = new Map([
       fact('Armazenamento SSD','512 GB M.2 2242 PCIe 4.0 x4 NVMe; configuração de fábrica','lenovo512'),
       fact('Processador','Intel Core i5-13420H','lenovo512'),fact('Sistema operacional de fábrica','Windows 11 Home Single Language, português do Brasil','lenovo512')],
     limitations:['Confirme o SKU na oferta e se o vendedor modificou memória, armazenamento ou sistema. A ficha de fábrica não autentica a unidade e não é teste de desempenho.'],
+  }],
+  ['SJRf3jhIFlr1BQadDNnH',{
+    model:/\blenovo\b.*\bloq\b(?=.*\b15irx9\b)(?=.*\bi5[- ]?13450hx\b)(?=.*\brtx\s*3050\b)(?=.*\b8\s*gb\b)(?=.*\b512\s*gb\b)/i,
+    family:'notebook',reviewedAt:'2026-10-20',
+    scope:'Lenovo LOQ 15IRX9, SKU 83KH0001BR informado pelo responsável e conferido na loja oficial. Configuração de fábrica, não de qualquer LOQ 15IRX9.',
+    features:[fact('Memória RAM','8 GB DDR5-4800 MT/s SODIMM; configuração de fábrica','loq'),
+      fact('Armazenamento SSD','512 GB M.2 2242 PCIe Gen4 TLC; configuração de fábrica','loq'),
+      fact('Processador','Intel Core i5-13450HX','loq'),
+      fact('Placa de vídeo','NVIDIA GeForce RTX 3050 para laptop, com 6 GB GDDR6 de memória de vídeo','loq'),
+      fact('Sistema operacional de fábrica','Windows 11 Home','loq'),
+      fact('Tela','15,6 polegadas, FHD 1920 × 1080, WVA, 144 Hz','loq')],
+    limitations:['Os 8 GB de RAM do sistema e os 6 GB da GPU têm funções diferentes; não são uma memória única de 14 GB. Confirme o SKU e eventuais alterações do vendedor. Não medimos desempenho, jogos, temperatura ou autonomia.'],
   }],
 ]);
 
