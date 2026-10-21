@@ -89,6 +89,7 @@
   "seasonalThemeId": "criancas",
   "bestChoicesTitle": "Melhores escolhas e rankings de produtos",
   "bestChoicesProductIds": [
+    "mlMLB4952988337",
     "48oRcQNlH00KgNLHkvsG",
     "ARscPKCMZs3D8k22qltl",
     "GjHJtzdsIhbmSINvhPeX",
@@ -144,5 +145,5 @@
     ]
   },
   "schemaVersion": 2,
-  "generatedAt": "2026-10-21T12:30:23.191Z"
+  "generatedAt": "2026-10-21T16:25:10.756Z"
 }
