@@ -109,15 +109,19 @@
   "guides": [
     {
       "file":"melhores-fones-de-ouvido.html",
+      "reviewedAt":"2026-10-21",
+      "questions":[["Qual fone Bluetooth tem melhor custo-benefício para mim?","Defina primeiro o formato e o uso, depois o teto de gasto. Compare modelos distintos do mesmo tipo: um TWS com estojo não é equivalente a um headphone ou a um ear clip. Use o preço registrado como filtro, não como garantia de valor na loja."],["Como escolher um fone de até R$ 100 ou R$ 200?","Use os atalhos do comparador e confirme a data do preço. Depois abra a ficha de cada opção e procure os recursos documentados. Se ANC, microfone ou autonomia não estiverem confirmados, não os considere uma vantagem comprovada."]],
       "title":"Fones de ouvido Bluetooth: compare pelo formato e pelo uso",
       "description":"Compare fones de ouvido Bluetooth por formato, microfone, autonomia e ANC anunciado. Veja qual proposta combina com chamadas, música ou caminhada.",
       "intro":"O melhor fone para você depende primeiro do uso. Um TWS com estojo, um headphone e um ear clip não resolvem a mesma necessidade; por isso esta página separa os formatos antes de comparar recursos.",
       "choices":[["Chamadas e reuniões","Priorize microfone, compatibilidade e amostras de voz. Bluetooth mais novo, sozinho, não comprova qualidade de chamada."],["Música por várias horas","Compare autonomia do fone separada do total com estojo. Encaixe e conforto precisam ser avaliados por quem vai usar."],["Caminhada e movimento","Compare fixação, peso e proteção anunciada. Gancho e ear clip não garantem o mesmo ajuste em todas as orelhas."]],
       "decision":"Se um recurso decisivo estiver a confirmar, consulte a ficha ou escolha uma alternativa com esse dado documentado. Não troque ausência de informação por uma promessa de ANC, resistência ou baixa latência.",
-      "links":[{"url":"/produto/z507ObVuMlSEBSnK40Uc-20260810-1.html","label":"Análise do TWS KAPBOM com gancho"},{"url":"/melhores-fones-bluetooth-ate-100.html","label":"Fones Bluetooth com preço informado de até R$ 100"}]
+      "links":[{"url":"/comparar.html?q=fone&orcamento=100","label":"Filtrar fones com preço registrado até R$ 100"},{"url":"/comparar.html?q=fone&orcamento=200","label":"Filtrar fones com preço registrado até R$ 200"},{"url":"/produto/z507ObVuMlSEBSnK40Uc-20260810-1.html","label":"Análise do TWS KAPBOM com gancho"},{"url":"/melhores-fones-bluetooth-ate-100.html","label":"Fones Bluetooth com preço informado de até R$ 100"}]
     },
     {
       "file":"melhores-roteador.html",
+      "reviewedAt":"2026-10-21",
+      "questions":[["Qual o melhor roteador Wi-Fi para minha casa?","Comece pela velocidade do plano, pelas portas documentadas e pelo problema a resolver. Compare roteadores com roteadores; repetidor, access point e terminal de satélite têm funções diferentes. O maior número de Mbps anunciado não comprova a melhor cobertura no seu ambiente."],["Gigabit ou Wi-Fi de longo alcance: o que conferir?","Para planos acima de 100 Mbps, confirme WAN e LAN Gigabit. Para cobertura, considere paredes, posicionamento e compatibilidade dos pontos adicionais. Sem teste no imóvel, não prometemos alcance nem velocidade real."]],
       "title":"Qual roteador escolher? Compare Wi-Fi, Gigabit e Mesh",
       "description":"Compare roteadores para casa por Wi-Fi, portas WAN/LAN e Mesh. Entenda a diferença entre velocidade anunciada, plano de internet e cobertura.",
       "intro":"Para escolher um roteador, comece pelo seu plano de internet e pelo problema a resolver: velocidade nas conexões ou cobertura nos cômodos. O número anunciado na caixa não responde sozinho a nenhuma dessas perguntas.",
@@ -127,6 +131,8 @@
     },
     {
       "file":"melhores-relogio-smartwatch.html",
+      "reviewedAt":"2026-10-21",
+      "questions":[["Pulseira e smartwatch podem ser tratados como a mesma coisa?","Não automaticamente. Confira a proposta e as funções documentadas de cada modelo. Compare versões distintas pelo que você precisa, sem repetir o mesmo modelo apenas por cor."],["Como usar o orçamento sem perder a função importante?","Filtre pelo preço registrado, abra a ficha e confirme compatibilidade, chamadas e GPS quando forem essenciais. Um campo a confirmar não prova que o recurso existe ou está ausente. Confirme o valor final e a variante no anúncio."]],
       "title":"Qual smartwatch escolher? Compare funções e compatibilidade",
       "description":"Compare smartwatches e pulseiras por compatibilidade, GPS anunciado, notificações e autonomia. Veja o que conferir para caminhada e uso diário.",
       "intro":"Escolha pelo recurso que você realmente vai usar. Ver notificações, atender chamadas e registrar um trajeto sem celular são funções diferentes; uma lista longa de modos esportivos não comprova que todas estão disponíveis.",

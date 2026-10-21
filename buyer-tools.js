@@ -74,6 +74,19 @@
     try { const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password ? url.href : ''; }
     catch { return ''; }
   }
+  const budgetShortcuts = [100, 200, 500, 1000, 3000];
+  function validBudget(value) {
+    const number = Number(value);
+    return Number.isFinite(number) && number > 0 ? number : null;
+  }
+  function recordInteraction(action, selectedCount, budget) {
+    // Aggregate usage only: never search terms, product URLs or Firestore writes.
+    if (!['budget_shortcut', 'compare_select', 'compare_remove'].includes(action)
+      || !window.RDCPrivacy?.analyticsAllowed() || typeof window.gtag !== 'function') return;
+    const params = {action, selected_count:selectedCount};
+    if (action === 'budget_shortcut') params.budget_limit = validBudget(budget) || 0;
+    try { window.gtag('event', 'comparison_interaction', params); } catch {} // Measurement must not break filtering.
+  }
   async function mount(root, initialQuery = '') {
     if (!root || root.dataset.buyerMounted) return;
     root.dataset.buyerMounted = 'true';
@@ -82,7 +95,9 @@
     catch { root.dataset.buyerMounted = ''; return; } // Keep existing search results if loading fails.
     const products = catalog.products.filter(product => safeProductUrl(product.url) !== '#');
     const chosen = new Map();
-    const requestedId = new URLSearchParams(window.location?.search || '').get('produto');
+    const parameters = new URLSearchParams(window.location?.search || '');
+    initialQuery = initialQuery || parameters.get('q') || '';
+    const requestedId = parameters.get('produto');
     const requested = products.find(product => product.id === requestedId && group(product));
     if (requested) chosen.set(requested.id, requested);
     let limit = 24;
@@ -96,6 +111,14 @@
     typeControl.className = 'buyer-check buyer-same-type';
     typeControl.innerHTML = '<input data-buyer-same-type type="checkbox"' + (requested ? ' checked' : '') + '> Mostrar só alternativas do mesmo tipo selecionado';
     root.querySelector('.buyer-controls').appendChild(typeControl);
+    const budgetControl = document.createElement('div');
+    budgetControl.className = 'buyer-budget-shortcuts';
+    budgetControl.setAttribute('role', 'group');
+    budgetControl.setAttribute('aria-label', 'Atalhos de orçamento');
+    budgetControl.innerHTML = '<strong>Atalhos de orçamento</strong><div>' + budgetShortcuts.map(value => '<button type="button" data-buyer-budget-shortcut="' + value + '" aria-pressed="false">Até ' + money(value) + '</button>').join('') + '<button type="button" data-buyer-budget-shortcut="" aria-pressed="true">Sem limite</button></div><small>Filtro pelo preço registrado, sem frete. Você também pode digitar outro valor no campo acima.</small>';
+    root.querySelector('.buyer-controls').appendChild(budgetControl);
+    const initialBudget = validBudget(parameters.get('orcamento'));
+    if (initialBudget) root.querySelector('[data-buyer-budget]').value = String(initialBudget);
     const renderComparison = () => {
       const selected = [...chosen.values()];
       if (!selected.length) { comparison.innerHTML = ''; return; }
@@ -133,6 +156,7 @@
       const filters = {query:root.querySelector('[data-buyer-query]').value,category:root.querySelector('[data-buyer-category]').value,budget:root.querySelector('[data-buyer-budget]').value,recent:root.querySelector('[data-buyer-recent]').checked};
       const sameType = root.querySelector('[data-buyer-same-type]').checked && chosen.size ? group([...chosen.values()][0]) : '';
       const shown = filterProducts(products, filters).filter(product => !sameType || group(product) === sameType);
+      for (const button of budgetControl.querySelectorAll('[data-buyer-budget-shortcut]')) button.setAttribute('aria-pressed', String((validBudget(filters.budget) || '') === (validBudget(button.dataset.buyerBudgetShortcut) || '')));
       status.textContent = shown.length + ' produtos encontrados · ' + chosen.size + ' selecionados para comparar.';
       results.innerHTML = shown.slice(0, limit).map(product => '<article class="buyer-card"><a href="' + esc(safeProductUrl(product.url)) + '">' + (/^https:\/\//.test(product.image || '') ? '<img src="' + esc(product.image) + '" alt="" loading="lazy" decoding="async" width="200" height="140">' : '') + '<h3>' + esc(product.title) + '</h3></a><p>' + esc(priceLabel(product)) + '</p><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e lojas</a>' + (group(product) ? '<label class="buyer-check"><input type="checkbox" data-buyer-select="' + esc(product.id) + '"' + (chosen.has(product.id)?' checked':'') + '> Comparar · ' + esc(group(product)) + '</label>' : '<small>Sem tipo confirmado para comparação automática.</small>') + '</article>').join('') || '<p>Nenhum produto corresponde aos filtros. Tente retirar a faixa de preço ou a exigência de conferência recente.</p>';
       if (shown.length > limit) results.insertAdjacentHTML('beforeend', '<button type="button" data-buyer-more>Mostrar mais 24 produtos</button>');
@@ -151,13 +175,21 @@
           status.textContent = chosen.size >= 3 ? 'Limite de três produtos. Remova um para escolher outro.' : 'Escolha modelos distintos do mesmo tipo. Outra cor do mesmo modelo não é uma alternativa diferente.';
           return;
         } else chosen.set(id, product);
+        recordInteraction(event.target.checked ? 'compare_select' : 'compare_remove', chosen.size);
       }
       render();
     });
     root.addEventListener('click', event => {
+      const shortcut = event.target.closest('[data-buyer-budget-shortcut]');
+      if (shortcut && (shortcut.dataset.buyerBudgetShortcut === '' || budgetShortcuts.includes(Number(shortcut.dataset.buyerBudgetShortcut)))) {
+        root.querySelector('[data-buyer-budget]').value = shortcut.dataset.buyerBudgetShortcut;
+        limit = 24;
+        render();
+        recordInteraction('budget_shortcut', chosen.size, shortcut.dataset.buyerBudgetShortcut);
+      }
       if (event.target.closest('[data-buyer-more]')) { limit += 24; render(); }
       const remove = event.target.closest('[data-buyer-remove]');
-      if (remove) { chosen.delete(remove.dataset.buyerRemove); render(); }
+      if (remove) { chosen.delete(remove.dataset.buyerRemove); render(); recordInteraction('compare_remove', chosen.size); }
       if (event.target.closest('[data-buyer-reset]')) {
         limit = 24;
         root.querySelector('[data-buyer-query]').value = '';
@@ -176,6 +208,7 @@
   style.textContent = '.buyer-tools,.buyer-tools *{box-sizing:border-box}.buyer-tools{display:block!important}.buyer-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px;background:#eff8f3;border:1px solid #c8ded1;border-radius:14px;padding:16px}.buyer-controls label{font-weight:700}.buyer-controls input:not([type=checkbox]),.buyer-controls select{display:block;width:100%;min-height:44px;margin-top:6px;border:1px solid #9bb8a7;border-radius:8px;padding:8px;font:inherit;background:#fff}.buyer-controls button,.buyer-table-scroll button{min-height:44px;border:1px solid #147653;border-radius:8px;background:#fff;color:#116149;font:inherit;cursor:pointer}.buyer-check{display:flex;align-items:center;gap:8px;min-height:44px}.buyer-check input{width:18px;height:18px;flex:none}.buyer-help{font-size:.88rem;line-height:1.5;color:#53665b}.buyer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px}.buyer-card{border:1px solid #dae7df;border-radius:12px;background:#fff;padding:16px;min-width:0}.buyer-card img{width:100%;object-fit:contain;height:140px}.buyer-card h3{font-size:1rem;line-height:1.4}.buyer-card p{font-size:.86rem;line-height:1.5;color:#345442}.buyer-card small{display:block;margin-top:12px}.buyer-table-scroll{overflow:auto;max-width:100%;margin-bottom:20px}.buyer-table-scroll table{width:100%;border-collapse:collapse;min-width:580px}.buyer-table-scroll th,.buyer-table-scroll td{padding:12px;vertical-align:top;border:1px solid #d7e4dc;min-width:150px;max-width:320px;font-size:.88rem;overflow-wrap:anywhere}.buyer-table-scroll th{background:#edf7f1}.buyer-tools :focus-visible{outline:3px solid #1769e0;outline-offset:2px}';
   document.head.appendChild(style);
   style.textContent += '.buyer-table-scroll td small{display:block;margin-top:6px;color:#53665b;font-size:.76rem}.buyer-same-type{grid-column:1/-1}';
+  style.textContent += '.buyer-budget-shortcuts{grid-column:1/-1;min-width:0}.buyer-budget-shortcuts>div{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.buyer-budget-shortcuts button{padding:8px 12px}.buyer-budget-shortcuts button[aria-pressed=true]{background:#116149;color:#fff}.buyer-budget-shortcuts small{display:block;line-height:1.5}.buyer-controls{grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr))}';
   const start = () => {
     mount(document.querySelector('[data-buyer-catalog]'));
     const app = document.getElementById('app');

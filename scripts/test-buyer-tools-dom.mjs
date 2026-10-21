@@ -4,14 +4,14 @@ import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
 const sample=(id,title,extra={})=>({id,title,category:'Informática',summary:'Confira os critérios e limitações.',url:'/produto/'+id+'-20260810-1.html',recordedPrice:100,checkedAt:'2026-10-11T12:00:00Z',...extra});
-const makeElement=()=>({dataset:{},value:'',checked:false,innerHTML:'',textContent:'',insertAdjacentHTML(_where,html){this.innerHTML+=html;}});
+const makeElement=()=>({dataset:{},value:'',checked:false,innerHTML:'',textContent:'',setAttribute(name,value){this[name]=value;},querySelectorAll(){return this.buttons||[];},insertAdjacentHTML(_where,html){this.innerHTML+=html;}});
 
 async function page(products,search='',initialQuery='') {
   const selectors=Object.fromEntries(['query','category','budget','recent','same-type','status','results','comparison'].map(key=>['[data-buyer-'+key+']',makeElement()]));
   selectors['[data-buyer-query]'].value=initialQuery;
   const events={},root={dataset:{},classList:{add(){}},innerHTML:'',querySelector:selector=>selectors[selector]||null,contains:element=>element?.owner===root,addEventListener:(name,handler)=>{events[name]=handler;}};
   const controls=makeElement();
-  controls.appendChild=element=>{selectors['[data-buyer-same-type]'].checked=/ checked/.test(element.innerHTML);};
+  controls.appendChild=element=>{if(element.className==='buyer-check buyer-same-type')selectors['[data-buyer-same-type]'].checked=/ checked/.test(element.innerHTML);else {selectors.shortcuts=element;element.buttons=[...element.innerHTML.matchAll(/data-buyer-budget-shortcut="([^"]*)"/g)].map(match=>({...makeElement(),dataset:{buyerBudgetShortcut:match[1]}}));}};
   selectors['.buyer-controls']=controls;
   const document={activeElement:null,head:{appendChild(){}},readyState:'loading',createElement:()=>makeElement(),addEventListener(){}};
   const control=(dataset={})=>({owner:root,dataset,checked:false,focus(){document.activeElement=this;},hasAttribute:name=>name==='data-buyer-more'&&Object.hasOwn(dataset,'buyerMore'),closest(selector){return selector==='[data-buyer-remove]'&&dataset.buyerRemove||selector==='[data-buyer-more]'&&Object.hasOwn(dataset,'buyerMore')?this:null;}});
@@ -40,8 +40,48 @@ async function page(products,search='',initialQuery='') {
     const target=selectors['[data-buyer-results]'].querySelectorAll('[data-buyer-select]').find(input=>input.dataset.buyerSelect===id)||{dataset:{buyerSelect:id}};
     target.checked=checked;events.change({target});return target;
   };
-  return {root,selectors,events,select,document,tools:context.window.RDCBuyerTools};
+  return {root,selectors,events,select,document,window:context.window,tools:context.window.RDCBuyerTools};
 }
+
+test('atalhos filtram preços registrados, preservam seleção e sincronizam valor personalizado e limpeza',async()=>{
+  const products=[sample('one','Roteador A',{recordedPrice:99}),sample('two','Roteador B',{recordedPrice:201}),sample('unknown','Roteador C',{recordedPrice:null})];
+  const before=JSON.stringify(products),result=await page(products,'?produto=two');
+  const click=value=>result.events.click({target:{closest:selector=>selector==='[data-buyer-budget-shortcut]'?{dataset:{buyerBudgetShortcut:value}}:null}});
+  click('100');
+  assert.match(result.selectors['[data-buyer-status]'].textContent,/1 produtos encontrados · 1 selecionados/);
+  assert.match(result.selectors['[data-buyer-comparison]'].innerHTML,/Roteador B/);
+  assert.equal(result.selectors.shortcuts.buttons.find(b=>b.dataset.buyerBudgetShortcut==='100')['aria-pressed'],'true');
+  result.selectors['[data-buyer-budget]'].value='150';result.events.input({target:{matches:()=>true}});
+  assert.ok(result.selectors.shortcuts.buttons.every(b=>b['aria-pressed']==='false'));
+  click('');assert.match(result.selectors['[data-buyer-status]'].textContent,/3 produtos encontrados/);
+  click('999');assert.equal(result.selectors['[data-buyer-budget]'].value,'');
+  result.events.click({target:{closest:selector=>selector==='[data-buyer-reset]'?{}:null}});
+  assert.equal(result.selectors.shortcuts.buttons.at(-1)['aria-pressed'],'true');
+  assert.equal(JSON.stringify(products),before);
+});
+
+test('link de guia aplica busca e orçamento sem aceitar limite inválido',async()=>{
+  const items=[sample('one','Fone TWS A',{recordedPrice:99}),sample('two','Fone TWS B',{recordedPrice:201}),sample('three','Roteador Wi-Fi')];
+  const result=await page(items,'?q=fone&orcamento=100');
+  assert.match(result.root.innerHTML,/value="fone"/);
+  // The browser reads the query input from markup; mirror it in this lightweight DOM.
+  result.selectors['[data-buyer-query]'].value='fone';result.events.input({target:{matches:()=>true}});
+  assert.match(result.selectors['[data-buyer-status]'].textContent,/1 produtos encontrados/);
+  for(const value of ['-1','Infinity','nada'])assert.equal((await page(items,'?orcamento='+value)).selectors['[data-buyer-budget]'].value,'');
+});
+
+test('medição do comparador exige consentimento, não transmite busca nem URLs e não simula compra',async()=>{
+  const result=await page([sample('one','Roteador A'),sample('two','Roteador B')]);
+  const calls=[];result.window.gtag=(...args)=>calls.push(args);
+  result.select('one');assert.equal(calls.length,0);
+  result.window.RDCPrivacy={analyticsAllowed:()=>false};result.select('two');assert.equal(calls.length,0);
+  result.window.RDCPrivacy.analyticsAllowed=()=>true;result.select('two',false);result.select('two');
+  assert.deepEqual(calls.map(c=>c[1]),['comparison_interaction','comparison_interaction']);
+  assert.equal(calls[1][2].selected_count,2);
+  assert.deepEqual(Object.keys(calls[1][2]).sort(),['action','selected_count']);
+  result.window.gtag=()=>{throw Error('bloqueador');};result.select('two',false);
+  assert.match(result.selectors['[data-buyer-status]'].textContent,/1 selecionados/);
+});
 
 test('teclado mantém seleção, segue remoções e entra nos novos resultados sem perder foco',async()=>{
   const result=await page(Array.from({length:30},(_,index)=>sample(String(index+1),'Roteador Wi-Fi '+(index+1))));

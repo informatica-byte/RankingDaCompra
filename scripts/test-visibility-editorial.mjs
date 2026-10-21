@@ -5,6 +5,14 @@ import {CONFIG, improveProduct, improveGuide} from './visibility-editorial.mjs';
 const item=CONFIG.products[0];
 const fixture=(name='Notebook Acer Aspire 5 A515-45-R2A3',robots='index,follow')=>`<html><head><title>Original</title><meta name="robots" content="${robots}"><meta name="description" content="Original"><link rel="canonical" href="https://rankingdacompra.com.br/produto/${item.id}-20260810-1.html"><script type="application/ld+json">${JSON.stringify({'@type':'Product',name,url:`https://rankingdacompra.com.br/produto/${item.id}-20260810-1.html`,offers:{price:'3419.90',availability:'https://schema.org/InStock'}})}</script></head><body><main><article><h1>${name}</h1><a id="affiliate-offer" href="https://meli.la/existing" rel="sponsored">Comprar</a><div class="panels"></div></article></main></body></html>`;
 test('escopo editorial possui exatamente dez produtos e três comparativos',()=>{assert.equal(CONFIG.products.length,10);assert.equal(new Set(CONFIG.products.map(x=>x.id)).size,10);assert.equal(CONFIG.guides.length,3);});
+
+test('guias oferecem dúvidas visíveis e atalhos seguros sem inventar avaliações nem renovar preços',()=>{
+  const html='<html><head><title>Guia</title></head><body><h1>Guia</h1><table><td>R$ 123,45</td></table></body></html>';
+  for(const guide of CONFIG.guides){const out=improveGuide(html,guide);assert.equal((out.match(/<details>/g)||[]).length,2);assert.match(out,/Revisão editorial: 21\/10\/2026/);assert.ok(out.includes('R$ 123,45'));assert.doesNotMatch(out,/"@type":"(?:FAQPage|AggregateRating)"/);}
+  const out=improveGuide(html,CONFIG.guides[0]);assert.match(out,/comparar\.html\?q=fone&amp;orcamento=100/);
+  const malicious=improveGuide(html,{...CONFIG.guides[0],questions:[['<script>','<img>']],links:[{url:'//outro.com/?orcamento=1',label:'fora'}]});
+  assert.match(malicious,/&lt;script&gt;/);assert.doesNotMatch(malicious,/href="\/\/outro/);
+});
 test('produto ganha conteúdo visível e metadata sem alterar oferta ou canonical',()=>{const html=fixture(),out=improveProduct(html,item);assert.match(out,/Vale a pena para o seu uso/);assert.match(out,/sem teste prático/);assert.match(out,/Acer Aspire 5 A515-45-R2A3: vale a pena/);for(const part of html.match(/<script[\s\S]*?<\/script>|<link[^>]*canonical[^>]*>|<a id="affiliate-offer"[^>]*>/g))assert.ok(out.includes(part));});
 test('reescrever a mesma página é idempotente',()=>{const out=improveProduct(fixture(),item);assert.equal(improveProduct(out,item),out);});
 test('não aplica conselho de um produto a outro modelo nem a página retirada',()=>{assert.equal(improveProduct(fixture('Notebook outro modelo'),item),fixture('Notebook outro modelo'));assert.equal(improveProduct(fixture(undefined,'noindex,follow'),item),fixture(undefined,'noindex,follow'));});

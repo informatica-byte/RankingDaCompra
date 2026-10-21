@@ -260,7 +260,7 @@
                 <div><span class="central-kicker">CRESCIMENTO E RECEITA</span><h2>🚀 Central de Divulgação e Resultados</h2><p>As três promoções mais fortes, textos reais, imagens prontas e desempenho por produto e rede social.</p></div>
                 <div class="central-cabecalho-acoes"><a class="btn-central-secundario" href="estudio-videos.html" style="text-decoration:none">🎬 Estúdio do Ranki</a><a class="btn-central-secundario" href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer" style="text-decoration:none" title="Abra a automação e clique em Run workflow">⚡ Criar páginas agora</a><button type="button" class="btn-central-secundario" id="btn-central-atualizar">↻ Atualizar relatório</button><button type="button" class="btn-salvar" id="btn-central-ia">✨ Gerar textos com IA para as 3</button></div>
             </div>
-            <div class="central-metricas" aria-label="Funil de vendas dos últimos sete dias">
+            <div class="central-metricas" aria-label="Eventos de interesse dos últimos sete dias, não vendas">
                 <div><strong id="central-visualizacoes-semana" data-metrica="visualizacoes7">—</strong><span>Visualizações de produtos — 7 dias</span></div>
                 <div><strong id="central-cliques-semana" data-metrica="cliques7">—</strong><span>Cliques em Comprar — 7 dias</span></div>
                 <div><strong class="taxa-funil" id="central-taxa-clique" data-metrica="taxa">—</strong><span>Cliques / visualizações — 7 dias</span></div>
@@ -270,6 +270,7 @@
             </div>
             <p class="central-status" id="central-status" data-metricas-status>Atualize o relatório para consultar a mesma base do painel móvel.</p>
             <p class="ajuda-metrica">Cliques incluem Mercado Livre e Shopee. São eventos registrados, não pessoas únicas nem vendas confirmadas. Visitas da vitrine e visualizações de produtos medem ações diferentes.</p>
+            <details class="ajuda-metrica" data-metrics-guide><summary>Como separar visitas, comparações e vendas</summary><p>Search Console: impressões e cliques na busca. Google Analytics: visitas e uso do comparador, com consentimento. No GA4, procure o evento comparison_interaction (atalho de orçamento, seleção ou remoção) e affiliate_click (abertura de oferta nas fichas).</p><p>Esses eventos começam a ser medidos após esta atualização e não completam o histórico anterior. Não some affiliate_click com select_item: podem representar o mesmo clique. Vendas e comissões devem ser confirmadas nos relatórios do Mercado Livre e da Shopee; ausência de relatório não significa zero vendas.</p><p>Não há consulta nova ao Firebase nem carregamento de relatórios externos ao abrir esta orientação.</p></details>
             <div class="funil-diagnostico" id="central-diagnostico">Aguardando dados para diagnosticar o caminho até a compra.</div>
             <section class="central-bloco"><div class="central-titulo"><div><h3>🏆 As 3 melhores ofertas de hoje</h3><p>Escolha a rede e use um único botão. O link receberá a identificação do produto, da campanha e do canal.</p></div></div><div class="central-ofertas" id="central-melhores"><div class="estado-lista">Carregando produtos...</div></div></section>
             <section class="central-bloco"><h3>🎯 O que o público mais acessa — 7 dias</h3><p class="central-ajuda">Compara cliques nas Melhores escolhas, Ofertas-relâmpago e Rankings. Os números começam a contar após esta atualização.</p><div id="central-secoes"><div class="estado-lista">Aguardando os primeiros acessos...</div></div></section><section class="central-bloco" id="central-foco-section"><h3>🧭 Central de foco — próximos 7 dias</h3><p class="central-ajuda">Mostra onde concentrar publicações usando visualizações, cliques em Comprar e compartilhamentos registrados pelo próprio site. Cliques valem mais porque indicam intenção comercial.</p><div id="central-foco"><div class="estado-lista">Calculando categorias e produtos em evidência...</div></div></section><section class="central-bloco" id="seo-opportunities-dashboard"></section><section class="central-bloco"><h3>📊 Relatório diário e semanal</h3><div id="central-relatorio"><div class="estado-lista">Carregando resultados...</div></div></section>
@@ -3394,7 +3395,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script defer src="/seo-opportunities.js?v=20261004-2"></script>
   <script src="/promotion-title.js?v=20261005-1"></script>
-  <script defer src="/growth-tools.js?v=20261012-audit-4&review=20261019"></script>
+  <script defer src="/growth-tools.js?v=20261012-audit-4&review=20261019&metrics=20261021"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
 <script>

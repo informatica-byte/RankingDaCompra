@@ -182,6 +182,18 @@
     return true;
   }
 
+  function recordAffiliateAnalytics(offer) {
+    if (!offer || !window.RDCPrivacy?.analyticsAllowed() || typeof window.gtag !== 'function') return;
+    // An outbound click is not a purchase. Never send the affiliate URL or query string.
+    const product = funnelProduct(offer);
+    if (!product.id) return;
+    try { window.gtag('event', 'affiliate_click', {
+      product_id:product.id,
+      marketplace:offer.id === 'affiliate-offer-shopee' ? 'shopee' : 'mercado_livre',
+      placement:offer.id === 'mobile-affiliate-offer' ? 'mobile' : 'detail'
+    }); } catch {} // Navigation and the existing counter must survive a blocked analytics script.
+  }
+
   function setupFunnelTracking() {
     if (document.documentElement.dataset.funnelTrackingReady) return;
     document.documentElement.dataset.funnelTrackingReady = "true";
@@ -195,6 +207,7 @@
     };
     document.addEventListener("click", event => {
       const offer = event.target.closest?.("#affiliate-offer, #mobile-affiliate-offer, #affiliate-offer-shopee");
+      recordAffiliateAnalytics(offer || event.target.closest?.('#offer-link'));
       if (!offer) return;
       void recordFunnelMetric("clique_oferta", offer).catch(error =>
         console.warn("Não foi possível registrar o clique comercial.", error)

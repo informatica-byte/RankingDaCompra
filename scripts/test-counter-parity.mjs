@@ -102,14 +102,14 @@ function trackingContext(navigator) {
     elements.set(id, { id, listeners: [], addEventListener(type, fn) { this.listeners.push(fn); },
       closest(selector) { return selector.split(",").some(s => s.trim() === "#" + id) ? this : null; } });
   const context = vm.createContext({
-    window: {}, document: { documentElement: { dataset: {} }, getElementById: id => elements.get(id),
+    window: {RDCPrivacy:{analyticsAllowed:()=>true},gtag:(...args)=>analytics.push(args)}, document: { documentElement: { dataset: {} }, getElementById: id => elements.get(id),
       addEventListener: (type, fn) => listeners.push(fn) },
     funnelProduct: () => ({ id: "p" }), METRICS_VIEW_INTERVAL_MS: 1800000,
     localStorage: { getItem: () => String(Date.now()) },
     recordFunnelMetric: async (type, el) => firebase.push({ type, id: el.id }),
     gtag: (...args) => analytics.push(args), navigator, console
   });
-  vm.runInContext(growth.slice(growth.indexOf("  function setupFunnelTracking() {"), growth.indexOf("  function escapeHtml(")) +
+  vm.runInContext(growth.slice(growth.indexOf("  function recordAffiliateAnalytics("), growth.indexOf("  function escapeHtml(")) +
     "\nsetupFunnelTracking();setupFunnelTracking();", context);
   vm.runInContext(inline.replace(/^<script>/, "").replace(/<\/script>$/, ""), context);
   return { firebase, analytics, listeners, elements };
@@ -124,7 +124,8 @@ test("botões principal, fixo do celular e Shopee registram uma vez em cada cole
     for (const listener of element.listeners) await listener(event);
     for (const listener of t.listeners) await listener(event);
     assert.equal(t.firebase.length, 1, id);
-    assert.equal(t.analytics.length, 1, id);
+    assert.equal(t.analytics.filter(event=>event[1]==='select_item').length,1,id+': evento legado único');
+    assert.equal(t.analytics.filter(event=>event[1]==='affiliate_click').length,1,id+': abertura de oferta única, não somar ao legado');
   }
 });
 
@@ -147,7 +148,7 @@ test("os dois painéis usam os mesmos campos e helper; ranking móvel continua c
   assert.match(dashboard, /RankingMetricasResumo\.criarLeitor/);
   assert.match(mobile, /RankingMetricasResumo\.criarLeitor/);
   assert.match(mobile, /\.filter\(m => m\.dia >= chave && m\.dia <= hoje\(\)\)/);
-  assert.doesNotMatch(growth.slice(growth.indexOf("async function recordFunnelMetric"), growth.indexOf("function setupFunnelTracking")),
+  assert.doesNotMatch(growth.slice(growth.indexOf("async function recordFunnelMetric"), growth.indexOf("function recordAffiliateAnalytics")),
     /marketplace\s*:/, "não adicionar campo rejeitado pelas regras do Firestore");
 });
 

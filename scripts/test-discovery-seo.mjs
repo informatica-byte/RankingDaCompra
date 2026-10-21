@@ -100,8 +100,8 @@ try {
   assert.match(house, /data-unranked-guide/);
   assert.doesNotMatch(house, /Melhor custo-benefício/);
   assert.doesNotMatch(router, /Recurso técnico confirmado no anúncio/);
-  assert.match(sitemap, /melhores-roteador\.html<\/loc>\s*<lastmod>2026-10-15<\/lastmod>/);
-  assert.match(sitemap, /melhores-relogio-smartwatch\.html<\/loc>\s*<lastmod>2026-10-15<\/lastmod>/);
+  assert.match(sitemap, /melhores-roteador\.html<\/loc>\s*<lastmod>2026-10-21<\/lastmod>/);
+  assert.match(sitemap, /melhores-relogio-smartwatch\.html<\/loc>\s*<lastmod>2026-10-21<\/lastmod>/);
   assert.match(sitemap, /melhores-casa\.html<\/loc>\s*<lastmod>2026-09-06<\/lastmod>/);
   for (const [file, parent] of [['melhores-fones-bluetooth-ate-100.html',fones], ['melhores-roteadores-wifi-6-apartamento.html',router], ['melhores-smartwatches-caminhada.html',watch]]) {
     const focused = await readFile(join(directory, file), 'utf8');
