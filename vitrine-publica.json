@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-21T16:34:58.339Z",
+  "generatedAt": "2026-10-21T16:51:46.092Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -6450,6 +6450,30 @@
       "precoConferenciaId": "eaf6fa5a-68f1-4522-a816-a32e751bf95c",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 45.57,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB6907306094",
+      "titulo": "HUAWEI WiFi BE3 3.6 Gpbs Dual-Band Wi-Fi 7 I Visualização de diagnóstico WiFi I Controle parental Preto",
+      "comentario": "HUAWEI WiFi BE3 3.6 Gpbs Dual-Band Wi-Fi 7 I Visualização de diagnóstico WiFi I Controle parental Preto. Quantidade de roteadores: 1. Ele oferece uma velocidade de 450Kb/s. Tem 4 portas para conexão. Dimensões: 71,5 m de largura, 215 m de altura, 148,8 m de profundidade. Com controle parental. Marca: Huawei. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "categoria": "roteador",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_687204-MLA88056293609_072025-F.jpg",
+      "preco": "294,31",
+      "precoAnterior": "349,41",
+      "precoPromocional": "291,65",
+      "nota": "",
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-21",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-22T03:50:52.081Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-21T16:51:07.410Z",
+      "precoConferenciaId": "dbf99087-67d8-4e57-88b6-cb2695a8a4b8",
+      "precoConferenciaCampo": "precoPromocional",
+      "precoConferenciaValor": 291.65,
       "pros": "",
       "contras": "",
       "notaInformada": ""
