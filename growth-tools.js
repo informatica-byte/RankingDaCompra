@@ -189,6 +189,7 @@
     if (!product.id) return;
     try { window.gtag('event', 'affiliate_click', {
       product_id:product.id,
+      product_name:String(product.title || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().slice(0,100),
       marketplace:offer.id === 'affiliate-offer-shopee' ? 'shopee' : 'mercado_livre',
       placement:offer.id === 'mobile-affiliate-offer' ? 'mobile' : 'detail'
     }); } catch {} // Navigation and the existing counter must survive a blocked analytics script.

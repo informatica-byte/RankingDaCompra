@@ -8,7 +8,7 @@ const helper=source.slice(source.indexOf('  function recordAffiliateAnalytics(')
 
 test('clique de afiliado tem consentimento, sem URL, credenciais ou evento de compra',()=>{
   const calls=[],window={gtag:(...args)=>calls.push(args)};
-  const context={window,funnelProduct:()=>({id:'produto-123',title:'não enviar título',category:'não enviar'})};
+  const context={window,funnelProduct:()=>({id:'produto-123',title:'Produto público',category:'não enviar'})};
   vm.runInNewContext(helper,context);
   for(const value of [undefined,false]){window.RDCPrivacy=value===undefined?undefined:{analyticsAllowed:()=>false};context.recordAffiliateAnalytics({id:'affiliate-offer',href:'https://meli.la/privado'});}
   assert.equal(calls.length,0);
@@ -16,8 +16,12 @@ test('clique de afiliado tem consentimento, sem URL, credenciais ou evento de co
   for(const id of ['affiliate-offer','mobile-affiliate-offer','affiliate-offer-shopee','offer-link'])context.recordAffiliateAnalytics({id});
   assert.equal(calls.length,4);
   assert.ok(calls.every(call=>call[0]==='event'&&call[1]==='affiliate_click'));
-  assert.deepEqual(Object.keys(calls[0][2]).sort(),['marketplace','placement','product_id']);
+  assert.deepEqual(Object.keys(calls[0][2]).sort(),['marketplace','placement','product_id','product_name']);
+  assert.equal(calls[0][2].product_name,'Produto público');
   assert.equal(calls[1][2].placement,'mobile');assert.equal(calls[2][2].marketplace,'shopee');
+  context.funnelProduct=()=>({id:'produto-123',title:'<b>'+ 'Produto público '.repeat(30)+'</b>'});
+  context.recordAffiliateAnalytics({id:'affiliate-offer'});
+  assert.equal(calls[4][2].product_name.length,100);assert.doesNotMatch(calls[4][2].product_name,/<b>/);
   assert.doesNotMatch(helper,/\.collection\(|fetch\(|['"]purchase['"]|transaction_id|href\b/);
   window.gtag=()=>{throw Error('bloqueado');};assert.doesNotThrow(()=>context.recordAffiliateAnalytics({id:'affiliate-offer'}));
 });

@@ -79,12 +79,16 @@
     const number = Number(value);
     return Number.isFinite(number) && number > 0 ? number : null;
   }
-  function recordInteraction(action, selectedCount, budget) {
+  function recordInteraction(action, selectedCount, budget, product) {
     // Aggregate usage only: never search terms, product URLs or Firestore writes.
     if (!['budget_shortcut', 'compare_select', 'compare_remove'].includes(action)
       || !window.RDCPrivacy?.analyticsAllowed() || typeof window.gtag !== 'function') return;
     const params = {action, selected_count:selectedCount};
     if (action === 'budget_shortcut') params.budget_limit = validBudget(budget) || 0;
+    if (action !== 'budget_shortcut' && product && /^[A-Za-z0-9_-]{1,100}$/.test(String(product.id || ''))) {
+      params.product_id = String(product.id);
+      params.product_name = String(product.title || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().slice(0,100);
+    }
     try { window.gtag('event', 'comparison_interaction', params); } catch {} // Measurement must not break filtering.
   }
   async function mount(root, initialQuery = '') {
@@ -175,7 +179,7 @@
           status.textContent = chosen.size >= 3 ? 'Limite de três produtos. Remova um para escolher outro.' : 'Escolha modelos distintos do mesmo tipo. Outra cor do mesmo modelo não é uma alternativa diferente.';
           return;
         } else chosen.set(id, product);
-        recordInteraction(event.target.checked ? 'compare_select' : 'compare_remove', chosen.size);
+        recordInteraction(event.target.checked ? 'compare_select' : 'compare_remove', chosen.size, undefined, product);
       }
       render();
     });
@@ -189,7 +193,7 @@
       }
       if (event.target.closest('[data-buyer-more]')) { limit += 24; render(); }
       const remove = event.target.closest('[data-buyer-remove]');
-      if (remove) { chosen.delete(remove.dataset.buyerRemove); render(); recordInteraction('compare_remove', chosen.size); }
+      if (remove) { const product = chosen.get(remove.dataset.buyerRemove); chosen.delete(remove.dataset.buyerRemove); render(); recordInteraction('compare_remove', chosen.size, undefined, product); }
       if (event.target.closest('[data-buyer-reset]')) {
         limit = 24;
         root.querySelector('[data-buyer-query]').value = '';

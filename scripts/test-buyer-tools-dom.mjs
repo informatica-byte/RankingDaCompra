@@ -78,7 +78,10 @@ test('medição do comparador exige consentimento, não transmite busca nem URLs
   result.window.RDCPrivacy.analyticsAllowed=()=>true;result.select('two',false);result.select('two');
   assert.deepEqual(calls.map(c=>c[1]),['comparison_interaction','comparison_interaction']);
   assert.equal(calls[1][2].selected_count,2);
-  assert.deepEqual(Object.keys(calls[1][2]).sort(),['action','selected_count']);
+  assert.deepEqual(Object.keys(calls[1][2]).sort(),['action','product_id','product_name','selected_count']);
+  assert.equal(calls[1][2].product_id,'two');assert.equal(calls[1][2].product_name,'Roteador B');
+  result.events.click({target:{closest:selector=>selector==='[data-buyer-budget-shortcut]'?{dataset:{buyerBudgetShortcut:'100'}}:null}});
+  assert.deepEqual(Object.keys(calls[2][2]).sort(),['action','budget_limit','selected_count'],'atalho não atribui produto nem inventa comparação');
   result.window.gtag=()=>{throw Error('bloqueador');};result.select('two',false);
   assert.match(result.selectors['[data-buyer-status]'].textContent,/1 selecionados/);
 });
