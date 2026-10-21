@@ -49,7 +49,9 @@ await writeFile('sitemap.xml',sitemap);
 // Persistent HTML also lives on the home page, with no Firebase request.
 let home=await readFile('index.html','utf8');
 const start='<!-- static-home-products:start -->',end='<!-- static-home-products:end -->';
-const homeProducts=content.replace(/<h3 class="best-products-heading">Rankings por categoria<\/h3><nav class="best-guide-grid"[\s\S]*?<\/nav>/,'');
+const homeProducts=content.replace(/<h3 class="best-products-heading">Rankings por categoria<\/h3><nav class="best-guide-grid"[\s\S]*?<\/nav>/,'')
+  .replace(/(<div class="deal-grid" data-best-products>)[\s\S]*?(<\/div><p class="best-explanation">Seleção sem prazo)/,
+    (_,start,end)=>start+choices.productCards(homeSelection.consumerSelection(products),status.products||{})+end);
 const staticBlock=start+'<main class="wrap static-home" aria-label="Produtos e comparativos em destaque">'+homeSelection.guideNavigation(selectedGuides)+homeProducts+'<a class="button secondary" href="/'+choices.PAGE+'">Ver página completa de melhores escolhas</a></main>'+end;
 home=home.replace(new RegExp(start+'[\\s\\S]*?'+end),staticBlock);
 await writeFile('index.html',home);

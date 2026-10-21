@@ -5,7 +5,7 @@
   <script src="/best-choices.js?v=20261011-2"></script>
   <script src="/flash-offer-safety.js?v=20261012-audit"></script>
   <script src="/weekly-comparison-safety.js?v=20261020-price-identity"></script>
-  <script src="/home-selection.js?v=20261019-home"></script>
+  <script src="/home-selection.js?v=20261021-consumer"></script>
   <meta name="msvalidate.01" content="E9995C648A88C729F81E3AF3221620C0" />
 
   <meta charset="utf-8">
@@ -354,7 +354,7 @@ async function homeComPromocoes(){
   if (!catalogoCarregado && restaurarSelecaoPublicada(selecaoPublicada)) return;
 
   const [top5Payload, historicoVitrine, siteConfig, guideManifest] = await Promise.all([top5PayloadPromise, historicoPromise, siteConfigPromise, guideManifestPromise]);
-  promocoes = window.RDCBestChoices.selectProducts(todos,siteConfig);
+  promocoes = window.RDCHomeSelection.consumerSelection(window.RDCBestChoices.selectProducts(todos,siteConfig));
   const rankingsDestaque = window.RDCBestChoices.selectGuides(guideManifest.guides || [],siteConfig);
   const tituloPromocoes = window.RDCBestChoices.title(siteConfig.bestChoicesTitle,promocoes,window.RDCPromotionTitle,mercadoLivreStatus);
   for(const produto of promocoes)produtosParaCompartilhar.set(String(produto.id),{...produto,tipoCompartilhamento:'produto'});

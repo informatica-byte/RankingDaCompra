@@ -6,6 +6,7 @@ import offerReplacement from "../product-offer-replacement.js";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import SEO_PRIORITIES from "../seo-priorities.js";
 import { renderProductDecision, comparisonData } from "./product-decision.mjs";
+import { applyQuickSummary } from './product-quick-summary.mjs';
 import { renderManufacturerSpecifications } from './manufacturer-specifications.mjs';
 import { renderBuyingAdvice, renderGuideChecklist } from "./buying-advice.mjs";
 import { publishedEditorialNotes, editorialItems, usefulEditorialItems } from "./published-editorial.mjs";
@@ -951,6 +952,7 @@ for (const product of products) {
     ? html.replace('<section class="related-discovery"',manufacturerFacts+'<section class="related-discovery"')
     : html.replace('</article>',manufacturerFacts+'</article>');
   html = html.replace("</article>", renderProductDecision(product) + "</article>");
+  html = applyQuickSummary(html, product);
   await writeFile(page, html, "utf8");
 }
 
