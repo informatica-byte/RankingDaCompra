@@ -46,3 +46,11 @@ test('catalog filters keep the same prices and freshness boundaries', async () =
   assert.equal(tools.filterProducts(items, {query:'notebook',budget:2100,recent:true}, now).length, 1);
   assert.equal(tools.recent({...items[0],checkedAt:'2026-10-12T09:00:00Z'},now), false);
 });
+
+test('busca por fone não confunde microfone e aceita plural, acentos e modelos pontuados',async()=>{
+  const tools=await api();
+  const items=[{title:'Webcam',summary:'Com microfone',category:'Informática'}, {title:'Fones Bluetooth',summary:'',category:'Áudio'}, {title:'Notebook ASUS E1504FA-NJ1288',summary:'',category:'Informática'}];
+  assert.deepEqual(Array.from(tools.filterProducts(items,{query:'fone'}),x=>x.title),['Fones Bluetooth']);
+  assert.equal(tools.filterProducts(items,{query:'audio'}).length,1);
+  assert.equal(tools.filterProducts(items,{query:'ASUS E1504FA-NJ1288'}).length,1);
+});

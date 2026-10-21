@@ -33,10 +33,10 @@
     return ''; // Category alone is not evidence of equivalence.
   }
   function filterProducts(products, filters, now = Date.now()) {
-    const terms = normalize(filters.query).split(/\s+/).filter(Boolean);
+    const terms = normalize(filters.query).split(/[^a-z0-9]+/).filter(Boolean);
     const budget = Number(filters.budget);
     return products.filter(product =>
-      terms.every(term => normalize(product.title + ' ' + product.summary + ' ' + product.category).includes(term))
+      terms.every(term => normalize(product.title + ' ' + product.summary + ' ' + product.category).split(/[^a-z0-9]+/).some(word => word.startsWith(term)))
       && (!filters.category || product.category === filters.category)
       && (!(budget > 0) || (price(product) !== null && price(product) <= budget))
       && (!filters.recent || recent(product, now))
