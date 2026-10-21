@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-21T16:25:11.778Z",
+  "generatedAt": "2026-10-21T16:33:31.792Z",
   "products": [
     {
       "id": "05S6aRd5qQ8i4L37P6qN",
@@ -6257,6 +6257,30 @@
       "precoConferenciaId": "0d1c0a5a-2bf8-4496-8070-e50c8aa85d9f",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 92.99,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB5751316838",
+      "titulo": "Notebook Asus Vivobook 15 X1504va Intel Core I5 1334u 8gb Ram 512gb Ssd Intel Iris Xe Windows 11 Home Tela 15,6 Fhd Silver - Nj1740w",
+      "comentario": "O notebook Asus Vivobook 15 X1504VA é uma excelente escolha para quem busca desempenho ágil e fluido em multitarefas cotidianas, estudos e trabalho. Equipado com processador Intel Core i5 de 13ª geração, SSD de 512GB e tela Full HD de 15,6 polegadas, ele oferece ótima performance e rapidez. Conta com design elegante na cor prata e recursos modernos do Windows 11 Home, garantindo praticidade e eficiência para o seu dia a dia.",
+      "categoria": "notebook",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_704459-MLA99979883783_112025-F.webp",
+      "preco": "3.901,00",
+      "precoAnterior": "4.999,00",
+      "precoPromocional": "3.796,00",
+      "nota": "",
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-21",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-22T03:32:26.881Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-21T16:32:57.537Z",
+      "precoConferenciaId": "568b155e-e063-4587-a1b0-be9a79d3f3f2",
+      "precoConferenciaCampo": "precoPromocional",
+      "precoConferenciaValor": "3796",
       "pros": "",
       "contras": "",
       "notaInformada": ""
