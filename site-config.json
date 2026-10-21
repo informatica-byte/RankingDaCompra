@@ -19,7 +19,8 @@
     "https://www.youtube.com/watch?v=R7IzxraW7jQ",
     "https://www.youtube.com/watch?v=oJTuA5dCrb8",
     "https://www.youtube.com/watch?v=yqWeI3HwtYM",
-    "https://www.youtube.com/watch?v=VQM24ucJtGw"
+    "https://www.youtube.com/watch?v=VQM24ucJtGw",
+    "https://www.youtube.com/watch?v=6igKYCyPTCQ"
   ],
   "youtubeShowcaseItems": [
     {
@@ -81,6 +82,10 @@
     {
       "youtubeUrl": "https://www.youtube.com/watch?v=VQM24ucJtGw",
       "productUrl": "https://rankingdacompra.com.br/produto/28xGyV66fEYlx6CnRxIq-20260810-1.html"
+    },
+    {
+      "youtubeUrl": "https://www.youtube.com/watch?v=6igKYCyPTCQ",
+      "productUrl": "https://rankingdacompra.com.br/produto/mlMLB6907306094-20260810-1.html"
     }
   ],
   "seasonalThemeEnd": "",
@@ -145,5 +150,5 @@
     ]
   },
   "schemaVersion": 2,
-  "generatedAt": "2026-10-21T16:52:44.866Z"
+  "generatedAt": "2026-10-21T20:48:38.296Z"
 }
