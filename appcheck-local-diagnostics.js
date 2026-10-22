@@ -17,6 +17,7 @@
   const watched = new WeakSet();
   const views = [];
   let page = null;
+  let pageDocument = null;
   let memory = [];
   let volatile = false;
 
@@ -32,6 +33,23 @@
     if ((typeof value === 'number' || typeof value === 'string') && /^[1-5]\d\d$/.test(String(value))) return Number(value);
     return null;
   }
+  function cleanContext(value) {
+    const context = {};
+    if (typeof value?.online === 'boolean') context.online = value.online;
+    if (['visible', 'hidden'].includes(value?.visibility)) context.visibility = value.visibility;
+    if (['present', 'missing'].includes(value?.recaptchaScript)) context.recaptchaScript = value.recaptchaScript;
+    return Object.keys(context).length ? context : null;
+  }
+  function contextNow() {
+    // Coarse, local-only context, captured only on an existing failure. No URLs or identifiers.
+    const context = {};
+    try { context.online = window.navigator?.onLine; } catch (_) {}
+    try { context.visibility = pageDocument?.visibilityState; } catch (_) {}
+    try {
+      if (typeof pageDocument?.querySelector === 'function') context.recaptchaScript = pageDocument.querySelector('script[src*="/recaptcha/enterprise.js"]') ? 'present' : 'missing';
+    } catch (_) {}
+    return cleanContext(context);
+  }
   function clean(items) {
     const now = Date.now();
     return (Array.isArray(items) ? items : []).slice(-MAX).flatMap(item => {
@@ -43,6 +61,8 @@
         source: item.source, code, count: Number.isInteger(item.count) ? Math.max(1, Math.min(9999, item.count)) : 1};
       const status = statusOf(item.status);
       if (status !== null) result.status = status;
+      const context = cleanContext(item.context);
+      if (context) result.context = context;
       return [result];
     });
   }
@@ -83,6 +103,7 @@
       view.list.textContent = items.length ? items.slice().reverse().map(item =>
         item.lastAt + ' | ' + item.page + ' | ' + item.source + ' | ' + item.code +
         (item.status ? ' | HTTP ' + item.status : '') + ' | ' + item.count + ' ocorrência(s)'
+        + (item.context ? ' | ' + JSON.stringify(item.context) : '')
       ).join('\n') : 'Nenhuma falha registrada por este diagnóstico. Isso não comprova que todo o tráfego do Firestore foi validado.';
       if (!view.output.hidden) view.output.value = report();
     }
@@ -96,8 +117,10 @@
       let status;
       try { status = statusOf(error?.customData?.httpStatus); } catch (_) {}
       if (status !== null && status !== undefined) item.status = status;
+      const context = contextNow();
+      if (context) item.context = context;
       const previous = items[items.length - 1];
-      if (previous && previous.page === item.page && previous.source === item.source && previous.code === item.code && previous.status === item.status && Date.now() - Date.parse(previous.lastAt) >= 0 && Date.now() - Date.parse(previous.lastAt) < 60000) {
+      if (previous && previous.page === item.page && previous.source === item.source && previous.code === item.code && previous.status === item.status && JSON.stringify(previous.context) === JSON.stringify(item.context) && Date.now() - Date.parse(previous.lastAt) >= 0 && Date.now() - Date.parse(previous.lastAt) < 60000) {
         previous.lastAt = at;
         previous.count = Math.min(9999, previous.count + 1);
       } else items.push(item);
@@ -130,6 +153,7 @@
     container.dataset.rdcLocalDiagnostics = '1';
     container.hidden = false;
     const doc = container.ownerDocument;
+    pageDocument = doc;
     if (!doc.getElementById('rdc-local-diagnostics-style')) {
       const style = doc.createElement('style');
       style.id = 'rdc-local-diagnostics-style';
@@ -140,7 +164,7 @@
     const details = make('details'); details.className = 'rdc-local-diagnostics';
     const summary = make('summary');
     const mode = make('p');
-    const help = make('p', 'Registra falhas de obtenção e renovação do App Check neste painel. Não guarda tokens, mensagens completas, senhas ou dados de produtos e não envia o diagnóstico à nuvem. Não executa testes, consultas ou novas avaliações.');
+    const help = make('p', 'Registra falhas de obtenção e renovação do App Check neste painel. Não guarda tokens, mensagens completas, senhas ou dados de produtos e não envia o diagnóstico à nuvem. Não executa testes, consultas ou novas avaliações. Em uma falha, anota apenas conexão, visibilidade da aba e presença do script do reCAPTCHA; isso ajuda a investigar, mas não comprova a causa.');
     const list = make('pre');
     const actions = make('div'); actions.className = 'rdc-local-diagnostics-actions';
     const copy = make('button', 'Copiar diagnóstico'); copy.type = 'button';

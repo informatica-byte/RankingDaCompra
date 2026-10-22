@@ -104,7 +104,7 @@ jobs:
         id: publicar
         shell: bash
         run: |
-          if [[ -z "$(git status --porcelain -- index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json vitrine-publica.json site-config.json best-choices-guides.json ':(top,glob)*.html')" ]]; then
+          if [[ -z "$(git status --porcelain -- index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json ':(top,glob)*.html')" ]]; then
             echo "O sitemap, as páginas sociais e o diretório de análises já estão atualizados."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -112,7 +112,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json vitrine-publica.json site-config.json best-choices-guides.json ':(top,glob)*.html'
+          git add -A index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json ':(top,glob)*.html'
           echo "Arquivos gerados alterados (validadores já aprovados; antes do push):"
           git diff --cached --name-only
           git commit -m "Atualiza sitemap, análises, busca e Top 6"

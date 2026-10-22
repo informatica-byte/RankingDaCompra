@@ -59,6 +59,26 @@ test('sucesso preserva resultado e não acessa nem grava token',async()=>{
   assert.equal(provider.getToken(),pending);assert.equal(await pending,result);
   await Promise.resolve();assert.equal(env.writes.length,0);
 });
+
+test('contexto da falha é local, enumérico e não registra URLs nem dados de navegação',async()=>{
+  const env=boot(); env.context.window.navigator.onLine=false;
+  env.doc.visibilityState='hidden';env.doc.querySelector=selector=>selector==='script[src*="/recaptcha/enterprise.js"]'?{}:null;
+  env.api.record({code:'appCheck/recaptcha-error'},'firestore');
+  const first=(await env.exported()).records[0];
+  assert.deepEqual(first.context,{online:false,visibility:'hidden',recaptchaScript:'present'});
+  env.context.window.navigator.onLine=true;
+  env.api.record({code:'appCheck/recaptcha-error'},'firestore');
+  assert.equal((await env.exported()).records.length,2,'network changes must not merge into the earlier failure');
+  assert.doesNotMatch(JSON.stringify([...env.shared]),/enterprise\.js|location|userAgent|cookie|token:/);
+});
+
+test('contexto persistido rejeita campos livres e mantém relatórios antigos compatíveis',async()=>{
+  const at='2026-10-18T00:00:00Z';
+  const shared=new Map([['rdc-appcheck-diagnostico-local-v1',JSON.stringify({version:1,records:[{at,lastAt:at,page:'dashboard',source:'firestore',code:'appCheck/recaptcha-error',context:{online:true,visibility:'SECRET_TOKEN',recaptchaScript:'https://evil.example',url:'SECRET_TOKEN'}}]})]]);
+  const env=boot({shared});const report=await env.exported();
+  assert.deepEqual(report.records[0].context,{online:true});
+  assert.doesNotMatch(JSON.stringify([...shared]),/SECRET_TOKEN|evil\.example/);
+});
 test('erro síncrono é preservado; instrumentação duplicada não duplica ocorrências',()=>{
   const env=boot(),failure=error(),provider={getToken(){throw failure;}};
   env.api.observeProvider(provider,'firestore');const wrapped=provider.getToken;
@@ -125,7 +145,7 @@ test('UI utiliza texto seguro; não intercepta console, rede ou callbacks globai
 test('os dois painéis carregam e montam o diagnóstico antes de inicializar os provedores',()=>{
   for(const file of ['dashboard.html','painel-celular.html']) {
     const html=readFileSync(new URL('../'+file,import.meta.url),'utf8');
-    assert.ok(html.indexOf('/appcheck-local-diagnostics.js?v=20261018-1')<html.indexOf('initializeAppCheck(aiApp'));
+    assert.ok(html.indexOf('/appcheck-local-diagnostics.js?v=20261022-1')<html.indexOf('initializeAppCheck(aiApp'));
     assert.match(html,/RDCLocalAppCheckDiagnostics\?\.mount/);
     assert.match(html,/observeProvider\(aiAppCheckProvider, 'ai-logic'\)/);
     assert.match(html,/observeProvider\(firestoreAppCheckProvider, 'firestore'\)/);

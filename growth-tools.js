@@ -2,17 +2,16 @@
   "use strict";
 
   const SITE = "https://rankingdacompra.com.br";
-  const HISTORY_URL = "/historico-precos.json";
   const HISTORY_DAYS = 30;
   const STYLE_ID = "ranking-growth-tools-style";
   const CONFIG_DOC = "site";
   const CONFIG_COLLECTION = "configuracoes";
   const CONFIG_CACHE_KEY = "ranking-da-compra-config-publica-v2";
   const CONFIG_CACHE_TTL = 12 * 60 * 60 * 1000;
-  const HISTORY_CACHE_MS = 15 * 60 * 1000;
 
   const state = {
-    history: null,
+    history: { products: {} },
+    historyRequested: new Set(),
     config: null,
     configPromise: null,
     configCache: { savedAt: 0, published: null, overrides: {} },
@@ -757,41 +756,34 @@
     document.head.appendChild(style);
   }
 
-  async function loadHistory() {
-    if (state.history) return state.history;
-    if (window.RDCPublicData) {
-      try { state.history = await window.RDCPublicData.json("/historico-precos.json"); }
-      catch { return { products: {} }; }
-      return state.history;
-    }
-    const cacheKey = "ranking-price-history-cache";
+  function historyIdsFromPage() {
+    return [...new Set([...document.querySelectorAll("article,.deal-card,.product-card-wrap")].map(card => {
+      const link = card.matches?.('a[href*="/produto/"]') ? card : card.querySelector('a[href*="/produto/"]');
+      const isProductArticle = /^\/produto\/.+\.html$/.test(location.pathname) && !!card.querySelector("h1");
+      return productIdFromUrl(isProductArticle ? location.href : link?.href || "");
+    }).filter(Boolean))];
+  }
+
+  async function loadHistory(ids = historyIdsFromPage()) {
+    const missing = ids.filter(id => !state.historyRequested.has(id));
+    if (!missing.length || !window.RDCPriceHistoryData) return state.history;
+    // Mark before awaiting: observers and late-rendered modules never repeat a request.
+    missing.forEach(id => state.historyRequested.add(id));
     try {
-      const cached = JSON.parse(sessionStorage.getItem(cacheKey) || "null");
-      if (cached?.savedAt && Date.now() - cached.savedAt < HISTORY_CACHE_MS && cached.data) {
-        state.history = cached.data;
-        return state.history;
-      }
-    } catch {}
-    try {
-      const response = await fetch(`${HISTORY_URL}?v=${encodeURIComponent(todayKey())}`, { cache: "no-store" });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      state.history = await response.json();
-      try { sessionStorage.setItem(cacheKey, JSON.stringify({ savedAt: Date.now(), data: state.history })); } catch {}
-    } catch (error) {
-      console.warn("Histórico de preços temporariamente indisponível.", error);
-      state.history = { products: {} };
-    }
+      const result = await window.RDCPriceHistoryData.load(missing);
+      Object.assign(state.history.products, result.products);
+    } catch (_) { /* History is optional; never block the catalogue or query Firestore. */ }
     return state.history;
   }
 
   function historySummary(id, currentPrice = 0) {
     const item = state.history?.products?.[id];
     const points = Array.isArray(item?.points) ? item.points
-      .map(point => ({ date: String(point?.[0] || ""), price: numberPrice(point?.[1]) }))
+      .map(point => ({ date: String(point?.[0] || ""), price: numberPrice(point?.[1]), ...(point?.length > 2 ? { verified: point[2] === true } : {}) }))
       .filter(point => point.date && point.price > 0 && Date.parse(`${point.date}T12:00:00-03:00`) >= Date.now() - HISTORY_DAYS * 86400000 && Date.parse(`${point.date}T00:00:00-03:00`) <= Date.now())
       .sort((a, b) => a.date.localeCompare(b.date)) : [];
     // Legado fica visível no histórico, mas não comprova um menor preço comercial.
-    const verifiedPoints = points.filter(point => item.observations?.[point.date]?.verified === true);
+    const verifiedPoints = points.filter(point => point.verified === true || item.observations?.[point.date]?.verified === true);
     const prices = verifiedPoints.map(point => point.price);
     const minimum = prices.length ? Math.min(...prices) : 0;
     const latest = points.at(-1) || null;
@@ -850,6 +842,10 @@
 
   function decorateVisibleProducts() {
     document.querySelectorAll("article,.deal-card,.product-card-wrap").forEach(decorateProductCard);
+    const missing = historyIdsFromPage().filter(id => !state.historyRequested.has(id));
+    if (missing.length && window.RDCPriceHistoryData) void loadHistory(missing).then(() => {
+      document.querySelectorAll("article,.deal-card,.product-card-wrap").forEach(decorateProductCard);
+    });
   }
 
   function persistConfigCache(value) {

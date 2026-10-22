@@ -4,6 +4,21 @@ import { pathToFileURL } from 'node:url';
 
 export function protectPublicHtml(html) {
   if (!/<head\b/i.test(html)) return html;
+  // Keep generation and existing pages on the partitioned display-only history.
+  html = html.replace(/(<script\b[^>]*\bsrc=["'][^"']*\b(?:growth-tools|public-data)\.js)([^"']*)(["'][^>]*>)/gi,
+    (_all, start, query, end) => {
+      const params = new URLSearchParams(query.replace(/^\?/, ''));
+      params.set('history', '20261022-1');
+      return start + '?' + params.toString() + end;
+    });
+  if (/src=["'][^"']*growth-tools\.js/.test(html) && !/src=["'][^"']*price-history-data\.js/.test(html)) {
+    html = html.replace(/(<script\b[^>]*\bsrc=["'][^"']*growth-tools\.js[^"']*["'][^>]*>)/i,
+      '<script defer src="/price-history-data.js?v=20261022-1"></script>$1');
+  }
+  if (/src=["'][^"']*price-history-data\.js/.test(html) && !/src=["'][^"']*public-data\.js/.test(html)) {
+    html = html.replace(/(<script\b[^>]*\bsrc=["'][^"']*price-history-data\.js[^"']*["'][^>]*>)/i,
+      '<script defer src="/public-data.js?v=20261005-1&history=20261022-1"></script>$1');
+  }
   // Remover somente o carregamento antigo de GA; Auth, App Check e dados do catálogo não mudam.
   html = html.replace(/<script\b[^>]*src=["']https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-NBKRX8TTR6["'][^>]*>\s*<\/script>\s*/gi, '');
   html = html.replace(/<script\b[^>]*>\s*window\.dataLayer=window\.dataLayer\|\|\[\];function gtag\(\)\{dataLayer\.push\(arguments\)\}gtag\('js',new Date\(\)\);gtag\('config','G-NBKRX8TTR6',\{anonymize_ip:true\}\);\s*<\/script>/g, '');

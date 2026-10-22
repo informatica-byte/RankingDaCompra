@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { observationFromHtml, addObservation } from "./price-observation.mjs";
 import { historyIdentity } from "./history-identity.mjs";
+import { buildPriceHistoryAssets } from "./build-price-history-assets.mjs";
 
 const ROOT = process.cwd();
 const PRODUCT_DIR = path.join(ROOT, "produto");
@@ -140,6 +141,7 @@ async function main() {
     products
   };
   await fs.writeFile(OUTPUT, `${JSON.stringify(output)}\n`, "utf8");
+  await buildPriceHistoryAssets(ROOT);
   console.log(`Histórico atualizado: ${recorded} produto(s), janela de ${DAYS} dias.`);
 }
 

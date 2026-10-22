@@ -314,7 +314,9 @@ if (!hasBuyerFirstMobileOrder(sitemapGenerator)) fail("scripts/generate-sitemap.
 has(sitemapGenerator, /contentType === "image\/webp" \? "webp"/, "imagens WebP do catálogo ainda podem bloquear a publicação", "scripts/generate-sitemap.mjs");
 const growthToolsVersionPattern = /growth-tools\.js\?v=([^"'<>]+)/;
 const growthToolsVersions = [homeHtml, dashboardHtml, sitemapGenerator]
-  .map((source) => source.match(growthToolsVersionPattern)?.[1] || "");
+  // The generation normalizer adds this exact display-history cache suffix.
+  // Core/editorial/metrics versions must still match the generation template.
+  .map((source) => (source.match(growthToolsVersionPattern)?.[1] || "").replace(/&history=20261022-1$/, ""));
 if (growthToolsVersions.some((version) => !version) || new Set(growthToolsVersions).size !== 1) {
   fail("index.html, dashboard.html e scripts/generate-sitemap.mjs: versões de cache das ferramentas não estão alinhadas");
 }
