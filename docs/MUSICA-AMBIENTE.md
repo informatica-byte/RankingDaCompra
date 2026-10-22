@@ -1,6 +1,6 @@
 # Música ambiente opcional
 
-O controle fica no fluxo normal da página, antes do rodapé, sem flutuar sobre ofertas ou navegação. Não é incluído em páginas administrativas ou com `noindex`.
+O controle compacto fica em uma linha própria logo abaixo do cabeçalho, no fluxo normal da página, sem flutuar sobre a busca, ofertas ou navegação. O volume começa recolhido e se expande no fluxo ao tocar em Volume. Não é incluído em páginas administrativas ou com `noindex`.
 
 - Começa sempre desligado; somente o botão Ativar/Continuar pode iniciar o áudio.
 - Pausar suspende o áudio e o agendador. Voltar à aba não retoma a música sozinho.

@@ -13,29 +13,36 @@
       || /noindex/i.test(document.querySelector('meta[name="robots"]')?.content || '')) return;
     const style = document.createElement('style');
     style.textContent = `
-      #rdc-ambient-music{box-sizing:border-box;position:static;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(150px,220px);align-items:center;gap:14px 20px;width:calc(100% - 32px);max-width:1100px;margin:24px auto;padding:18px;border:1px solid #c8d9ce;border-radius:12px;background:#f4f8f4;color:#173d2d;font:14px/1.5 system-ui,sans-serif}
+      #rdc-ambient-music{box-sizing:border-box;position:static;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:6px 12px;width:calc(100% - 32px);max-width:1100px;margin:10px auto;padding:10px 14px;border:1px solid #c8d9ce;border-radius:10px;background:#f4f8f4;color:#173d2d;font:14px/1.5 system-ui,sans-serif}
       #rdc-ambient-music *{box-sizing:border-box;min-width:0}
       #rdc-ambient-music strong{font-size:16px}#rdc-ambient-music p{margin:4px 0 0}
-      #rdc-ambient-music button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;padding:10px 16px;border:1px solid #15563d;border-radius:8px;background:#15563d;color:#fff;font:600 14px/1.4 system-ui,sans-serif;cursor:pointer;white-space:normal}
+      #rdc-ambient-music button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;padding:10px 12px;border:1px solid #15563d;border-radius:8px;background:#15563d;color:#fff;font:600 14px/1.4 system-ui,sans-serif;cursor:pointer;white-space:normal}
       #rdc-ambient-music button:disabled{opacity:.65;cursor:default}
       #rdc-ambient-music label{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 8px;font-weight:600}
       #rdc-ambient-music input{grid-column:1/-1;display:block;width:100%;height:44px;margin:0;accent-color:#15563d;cursor:pointer}
-      #rdc-ambient-music button:focus-visible,#rdc-ambient-music input:focus-visible{outline:3px solid #1769e0;outline-offset:3px}
+      #rdc-ambient-music details{align-self:start}#rdc-ambient-music details[open]{grid-column:1/-1}
+      #rdc-ambient-music summary{display:flex;align-items:center;justify-content:center;min-height:44px;width:max-content;max-width:100%;padding:8px 10px;border:1px solid #9cb9a8;border-radius:8px;background:#fff;color:#173d2d;font-weight:600;cursor:pointer;list-style:none}
+      #rdc-ambient-music summary::-webkit-details-marker{display:none}#rdc-ambient-music details[open] label{max-width:320px;margin-top:8px}
+      #rdc-ambient-music button:focus-visible,#rdc-ambient-music input:focus-visible,#rdc-ambient-music summary:focus-visible{outline:3px solid #1769e0;outline-offset:3px}
       #rdc-ambient-music .rdc-music-status{grid-column:1/-1;margin:0;color:#47604d;font-size:12px}
-      @media(max-width:700px){#rdc-ambient-music{grid-template-columns:minmax(0,1fr);gap:12px;padding:16px}#rdc-ambient-music button{width:100%}#rdc-ambient-music label{width:100%}}
+      @media(max-width:700px){#rdc-ambient-music{gap:6px 8px;padding:10px}#rdc-ambient-music strong{font-size:14px}#rdc-ambient-music .rdc-music-title-extra{display:none}#rdc-ambient-music button{padding:8px 10px}#rdc-ambient-music summary{padding:8px}#rdc-ambient-music label{width:100%}}
       @media(prefers-contrast:more){#rdc-ambient-music{border:2px solid currentColor}#rdc-ambient-music .rdc-music-status{color:inherit}}
     `;
     document.head.appendChild(style);
     const panel = document.createElement('section');
     panel.id = 'rdc-ambient-music';
     panel.setAttribute('aria-label', 'Música ambiente opcional');
-    panel.innerHTML = '<div><strong>♫ Música ambiente</strong><p>Instrumental suave, sem voz. Você escolhe se quer ouvir.</p></div>'
+    panel.innerHTML = '<strong>♫ Música<span class="rdc-music-title-extra"> ambiente</span></strong>'
       + '<button type="button" id="rdc-music-toggle" aria-pressed="false">Ativar música</button>'
-      + '<label for="rdc-music-volume">Volume <output id="rdc-music-volume-value" for="rdc-music-volume">20%</output>'
-      + '<input id="rdc-music-volume" type="range" min="0" max="100" step="1" value="20" aria-label="Volume da música ambiente"></label>'
+      + '<details><summary>Volume</summary><label for="rdc-music-volume">Volume <output id="rdc-music-volume-value" for="rdc-music-volume">20%</output>'
+      + '<input id="rdc-music-volume" type="range" min="0" max="100" step="1" value="20" aria-label="Volume da música ambiente"></label></details>'
       + '<p class="rdc-music-status" id="rdc-music-status" role="status" aria-live="polite">Desligada. Só começa ao ativar; pausa ao sair da aba ou da página.</p>';
-    const footer = document.querySelector('footer');
-    if (footer) footer.before(panel); else document.body.appendChild(panel);
+    // Separate row in document flow: never insert into search/navigation or over offers.
+    const header = document.querySelector('body > header');
+    const main = document.querySelector('body > main, #app');
+    if (header) header.after(panel);
+    else if (main) main.before(panel);
+    else document.body.prepend(panel);
     const toggle = panel.querySelector('#rdc-music-toggle');
     const slider = panel.querySelector('#rdc-music-volume');
     const valueLabel = panel.querySelector('#rdc-music-volume-value');

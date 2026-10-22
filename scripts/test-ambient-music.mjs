@@ -5,11 +5,11 @@ import vm from 'node:vm';
 import {protectPublicHtml} from './public-privacy.mjs';
 
 const source = await readFile(new URL('../ambient-music.js', import.meta.url), 'utf8');
-function fixture({saved=null, path='/', robots='', unsupported=false, fail=false, blockedStorage=false, deferred=false}={}) {
+function fixture({saved=null, path='/', robots='', unsupported=false, fail=false, blockedStorage=false, deferred=false, layout='header'}={}) {
   const stored = new Map(saved === null ? [] : [['rdc-ambient-volume-v1', saved]]);
   const nodes = new Map(), docEvents = new Map(), winEvents = new Map(), intervals = new Map();
   const contexts = [], notes = [], ramps = [];
-  let finishResume;
+  let finishResume, placement;
   const element = () => ({
     attributes:{},textContent:'',value:'',events:new Map(),disabled:false,
     setAttribute(key, value) {this.attributes[key]=value;},
@@ -24,9 +24,11 @@ function fixture({saved=null, path='/', robots='', unsupported=false, fail=false
   });
   const document = {
     hidden:false,readyState:'complete',head:{appendChild(){}},
-    body:{appendChild(node){nodes.set(node.id,node);}},
+    body:{prepend(node){nodes.set(node.id,node);placement='body';}},
     getElementById:id=>nodes.get(id), createElement:element,
-    querySelector:selector=>selector==='meta[name="robots"]'?{content:robots}:null,
+    querySelector:selector=>selector==='meta[name="robots"]'?{content:robots}
+      :selector==='body > header'&&layout==='header'?{after(node){nodes.set(node.id,node);placement='after-header';}}
+      :selector==='body > main, #app'&&layout==='main'?{before(node){nodes.set(node.id,node);placement='before-main';}}:null,
     addEventListener(name, handler){docEvents.set(name,handler);}
   };
   const param = () => ({value:0,setValueAtTime(){},linearRampToValueAtTime(){},exponentialRampToValueAtTime(){},setTargetAtTime(value){ramps.push(value);}});
@@ -47,7 +49,7 @@ function fixture({saved=null, path='/', robots='', unsupported=false, fail=false
   };
   const context={window,document,location:{pathname:path},localStorage:{getItem(key){if(blockedStorage)throw new Error('storage blocked');return stored.get(key)??null;},setItem(key,value){if(blockedStorage)throw new Error('storage blocked');stored.set(key,value);}}};
   vm.runInNewContext(source,context);
-  return {window,document,nodes,contexts,notes,stored,ramps,intervals,docEvents,winEvents,runAgain(){vm.runInNewContext(source,context);},finishResume(){finishResume();}};
+  return {window,document,nodes,contexts,notes,stored,ramps,intervals,docEvents,winEvents,get placement(){return placement;},runAgain(){vm.runInNewContext(source,context);},finishResume(){finishResume();}};
 }
 
 test('music is off by default, including with a saved volume; audio is created only on activation',async()=>{
@@ -124,8 +126,20 @@ test('public generation adds one versioned music script and preserves existing c
   const before='<html><head><meta name="robots" content="index,follow"></head><body><a href="https://meli.la/example">Preço: R$ 100</a></body></html>';
   const after=protectPublicHtml(before);
   assert.equal((after.match(/ambient-music\.js/g)||[]).length,1);
-  assert.match(after,/defer src="\/ambient-music\.js\?v=20261022-1"/);
+  assert.match(after,/defer src="\/ambient-music\.js\?v=20261022-2"/);
   assert.equal(protectPublicHtml(after),after);
   assert.ok(after.includes('<a href="https://meli.la/example">Preço: R$ 100</a>'));
   assert.doesNotMatch(protectPublicHtml('<html><head><meta name="robots" content="noindex,nofollow"></head></html>'),/ambient-music/);
+});
+test('compact player is below the header without changing navigation; volume starts collapsed',()=>{
+  assert.equal(fixture().placement,'after-header');
+  assert.equal(fixture({layout:'main'}).placement,'before-main');
+  assert.equal(fixture({layout:'body'}).placement,'body');
+  assert.match(source,/<details><summary>Volume<\/summary>/);
+  assert.doesNotMatch(source,/<details\s+open|header\.append|header\.innerHTML|header\.prepend/);
+  assert.match(source,/details\[open\]\{grid-column:1\/-1\}/);
+  const prior='<html><head><script defer src="/ambient-music.js?v=20261022-1"></script></head><body>Preço original</body></html>';
+  const after=protectPublicHtml(prior);
+  assert.equal((after.match(/ambient-music\.js/g)||[]).length,1);
+  assert.ok(after.includes('ambient-music.js?v=20261022-2'));
 });
