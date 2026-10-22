@@ -152,6 +152,6 @@ export function unavailableProductPage(previousHtml) {
 export function pausedProductPage(product) {
   const title = String(product?.titulo || '').trim();
   return pageShell('Anúncio em pausa',
-    `<meta name="rdc-paused-product" content="true">`,
+    `<meta name="rdc-paused-product" content="true"><meta name="rdc-retired-product-title" content="${escapeHtml(title)}">`,
     `<h1>Anúncio em pausa</h1><p>${escapeHtml(title || 'O produto consultado')} está separado para revisão no Ranking da Compra.</p><p>O cadastro foi preservado. Enquanto estiver pausado, não exibimos preço ou botão de compra como oferta atual. Isso não confirma que o vendedor excluiu o anúncio.</p><p><a href="${SITE}analises.html">Consultar análises atuais →</a></p>`);
 }
