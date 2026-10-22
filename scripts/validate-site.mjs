@@ -21,6 +21,9 @@ function hasBuyerFirstMobileOrder(html) {
     && heading>0&&heading<photo&&photo<summary&&summary<offer;
 }
 function productIdentityKeys(html) {
+  // Related recommendations may name another offer's MLB code. They are not
+  // the identity of this page; keep checking every code/link in its own ficha.
+  html = String(html).replace(/<section\b[^>]*class=["'][^"']*\brelated-discovery\b[^"']*["'][^>]*>[\s\S]*?<\/section>/gi, '');
   const mlbKeys = [...html.matchAll(/\bMLB[-_\s]?(\d{6,})\b/gi)]
     .map((match) => "mlb:" + match[1]);
   const affiliateKeys = [...html.matchAll(/https:\/\/meli\.la\/[A-Za-z0-9_-]+/gi)]

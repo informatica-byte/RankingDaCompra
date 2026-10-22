@@ -113,7 +113,8 @@
     return rules.find(([regex])=>regex.test(t))?.[1]||'';
   }
   function modelKey(p){
-    const t=title(p);
+    // An offer identifier distinguishes links, not product models.
+    const t=title(p).replace(/\s+anuncio\s+mlb\d+$/,'');
     for(const [pattern,key]of [[/redmi.*buds\s*6\s*play/,'redmi-buds-6-play'],[/soundcore.*\bp30i\b/,'soundcore-p30i'],[/galaxy.*buds\s*core/,'galaxy-buds-core'],[/jbl.*tune\s*520\s*bt/,'jbl-tune-520bt'],[/lenovo.*\blp40\b/,'lenovo-lp40'],[/havit.*\btw982\b/,'havit-tw982']])if(pattern.test(t))return key;
     // Fragrance names/ingredients are not merely packaging colours.
     if (['perfume','body-splash','sunscreen','creatine','protein'].includes(type(p))) return t;

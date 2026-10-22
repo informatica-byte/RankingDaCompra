@@ -5,6 +5,7 @@ import { HIGHLIGHT_EDITORIAL } from './highlight-editorial.mjs';
 import { documentedSpecifications } from './manufacturer-specifications.mjs';
 import { MARKETPLACE_FIELD_REVIEWS,listingReviewFor } from './marketplace-field-reviews.mjs';
 
+import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
   ['mlMLB4952988337', {
     model:/conversor.*fibra.*10\/100\/1000\s*mbps.*u\s*maisu/i,
@@ -378,6 +379,7 @@ for (const [id, review] of HIGHLIGHT_EDITORIAL) {
 }
 
 const PRE_LISTING_CORRECTIONS=new Map(PRODUCT_CORRECTIONS);
+for (const [id, review] of EXISTING_OFFER_REVIEWS) PRODUCT_CORRECTIONS.set(id, review);
 for(const [id,review]of MARKETPLACE_FIELD_REVIEWS)if(review.summary) {
   PRODUCT_CORRECTIONS.set(id,{...PRODUCT_CORRECTIONS.get(id),model:review.model,summary:review.summary,
     positiveNotes:review.positiveNotes,negativeNotes:review.negativeNotes,sourceUrl:review.sourceUrl,
@@ -387,6 +389,7 @@ for(const [id,review]of MARKETPLACE_FIELD_REVIEWS)if(review.summary) {
 function correctionFor(product) {
   const id=String(product?.id||'');
   let correction = PRODUCT_CORRECTIONS.get(id);
+  if (correction?.expectedListing && !matchesExistingOffer(product, correction.expectedListing)) return undefined;
   // Old safeguards (for example removing unsupported superlatives) still
   // apply when the exact current listing cannot be established. They do not
   // grant permission to attach this review's new seller-declared facts.
@@ -625,6 +628,10 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
         || corrected.match(/<title>([\s\S]*?)<\/title>/i)?.[1]
         || (() => { try { const payload = JSON.parse(corrected.match(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i)?.[1] || '{}'); return (payload['@graph'] || [payload]).find(n => n['@type'] === 'Product')?.name || ''; } catch { return ''; } })());
       if (correction.model && !correction.model.test(heading)) continue;
+      if (correction.expectedListing) {
+        const sourceUrl = corrected.match(/<meta\b[^>]*name=["']rdc-offer-url["'][^>]*content=["']([^"']+)["']/i)?.[1];
+        if (!sourceUrl || !matchesExistingOffer({link: sourceUrl.replace(/&amp;/g, '&')}, correction.expectedListing)) continue;
+      }
       if (correction.correct) corrected = applyVerifiedTitle(corrected, correction.correct);
       if (correction.category === 'informatica') {
         corrected = corrected.replace(/(<span>Categoria<\/span>)[^<]*(<\/div>)/, '$1Informática$2');

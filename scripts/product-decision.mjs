@@ -183,9 +183,18 @@ export function decisionData(product) {
   if (!profile) return null; // Avoid adding generic template text to unrelated products.
   const comparison = comparisonData(product);
   const comparisonByLabel = new Map((comparison?.features || []).map(item => [item.label, item]));
-  const criteria = profile.criteria.map(([label, pattern, explanation]) => ({ label, state: featureState(product, pattern), explanation, ...comparisonByLabel.get(label) }));
+  const consumed = new Set();
+  const criteria = profile.criteria.map(([label, pattern, explanation]) => {
+    let fact = comparisonByLabel.get(label);
+    // A documented Bluetooth version (or its explicit absence on a wired
+    // headset) answers the generic connection question too. Unknown versions
+    // must not erase a separately announced Bluetooth connection.
+    const version = label === 'Bluetooth' ? comparisonByLabel.get('Versão Bluetooth') : null;
+    if (!fact && version && version.state !== 'unknown') { fact = version; consumed.add(version.label); }
+    return {state: featureState(product, pattern), ...fact, label, explanation};
+  });
   for (const item of comparison?.features || []) {
-    if (!criteria.some(criterion => criterion.label === item.label)) criteria.push({...item, explanation: item.label.startsWith('Autonomia') ? 'Duração anunciada, não medida pela equipe; o resultado depende do volume, dos recursos ligados e do uso.' : 'Informação cadastrada para o modelo; confirme a variante oferecida pelo vendedor.'});
+    if (!consumed.has(item.label) && !criteria.some(criterion => criterion.label === item.label)) criteria.push({...item, explanation: item.label.startsWith('Autonomia') ? 'Duração anunciada, não medida pela equipe; o resultado depende do volume, dos recursos ligados e do uso.' : 'Informação cadastrada para o modelo; confirme a variante oferecida pelo vendedor.'});
   }
   const positive = criteria.filter(item => item.state === 'yes').map(item => item.label);
   return { audience: profile.audience, criteria, comparison, distinction: positive.length ? 'Recursos identificados na ficha: ' + positive.join(', ') + '. Compare esses mesmos critérios em alternativas do mesmo tipo.' : 'A ficha não confirma recursos suficientes para justificar um diferencial frente a concorrentes.', limitation: 'Não comprovamos em teste próprio: ' + profile.missing + '.' };

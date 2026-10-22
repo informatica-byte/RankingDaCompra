@@ -4,6 +4,12 @@ import { pathToFileURL } from 'node:url';
 
 export function protectPublicHtml(html) {
   if (!/<head\b/i.test(html)) return html;
+  html = html.replace(/(<script\b[^>]*\bsrc=["'][^"']*\b(?:home-selection|comparison-integrity)\.js)([^"']*)(["'][^>]*>)/gi,
+    (_all, start, query, end) => {
+      const params = new URLSearchParams(query.replace(/^\?/, ''));
+      params.set('editorial', '20261022-1');
+      return start + '?' + params.toString() + end;
+    });
   // Keep generation and existing pages on the partitioned display-only history.
   html = html.replace(/(<script\b[^>]*\bsrc=["'][^"']*\b(?:growth-tools|public-data)\.js)([^"']*)(["'][^>]*>)/gi,
     (_all, start, query, end) => {

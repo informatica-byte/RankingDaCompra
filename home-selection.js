@@ -8,7 +8,7 @@
   function titleKey(product){
     // Presentation rule, not a claim of identical SKU. Keep model, color,
     // voltage and size words. Never remove a record or rewrite an offer.
-    const title=String(product?.titulo||product?.title||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+    const title=String(product?.titulo||product?.title||'').replace(/\s+—\s+anúncio\s+MLB\d+$/i,'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
     return title ? 'title:'+title : 'id:'+String(product?.id||'');
   }
   function distinctTitles(products){
