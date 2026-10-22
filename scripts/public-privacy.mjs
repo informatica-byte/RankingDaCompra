@@ -18,6 +18,14 @@ export function protectPublicHtml(html) {
   // A próxima geração normaliza também páginas existentes, sem duplicar scripts.
   html = html.replace(/(<script\b[^>]*\bsrc=["']\/?privacy-controls\.js)(?:\?[^"']*)?(["'][^>]*>)/gi,
     '$1?v=20261014-audit$2');
+  // Optional, first-party instrumental; never inject into administrative/noindex pages.
+  if (!/<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html)) {
+    if (!/src=["'][^"']*ambient-music\.js/.test(html)) {
+      html = html.replace(/<\/head>/i, '<script defer src="/ambient-music.js?v=20261022-1"></script></head>');
+    }
+    html = html.replace(/(<script\b[^>]*\bsrc=["']\/?ambient-music\.js)(?:\?[^"']*)?(["'][^>]*>)/gi,
+      '$1?v=20261022-1$2');
+  }
   return html;
 }
 
