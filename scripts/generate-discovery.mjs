@@ -835,6 +835,7 @@ for (const product of allProducts) {
   if (marketplaceProducts[product.id] && !offerReplacement.statusFor(product, marketplaceProducts[product.id])) delete marketplaceProducts[product.id];
 }
 const candidateProducts = allProducts.map(correctProductData)
+  .filter((product) => product.conferenciaPausada !== true)
   .filter(editorialProduct)
   .filter((product) => marketplaceProducts[product.id]?.visible !== false)
   .sort(sortProducts);

@@ -29,6 +29,30 @@ test('comparison rejects unvalidated feature data instead of displaying assertio
   assert.equal(tools.comparisonFeatures({comparison:{features:'invalid'}}).length, 0);
 });
 
+test('proteção usa uma linha sem equiparar IPX4 e IP54 nem perder fontes',async()=>{
+  const tools=await api();
+  const items=[
+    {price:87,comparison:{features:[{label:'Proteção contra água',value:'IPX4 somente nos fones; não no estojo',state:'yes',basis:'fabricante',sourceUrl:'https://www.mi.com/'}]}},
+    {price:196.5,comparison:{features:[{label:'Proteção anunciada',value:'IP54; não significa uso submerso',state:'yes',basis:'fabricante',sourceUrl:'https://www.soundcore.com/'}]}},
+    {comparison:{features:[]}}
+  ];
+  const before=JSON.stringify(items),rows=tools.featureRows(items);
+  assert.equal(rows.length,1);assert.equal(rows[0].label,'Proteção anunciada (água/poeira)');
+  assert.equal(rows[0].values[0].value,items[0].comparison.features[0].value);
+  assert.equal(rows[0].values[1].sourceUrl,'https://www.soundcore.com/');
+  assert.equal(rows[0].values[2].state,'unknown');assert.equal(JSON.stringify(items),before);
+});
+
+test('campos de proteção contraditórios no mesmo produto não são fundidos ou descartados',async()=>{
+  const tools=await api(),features=[
+    {label:'Proteção contra água',value:'IPX4',state:'yes',basis:'fabricante'},
+    {label:'Proteção anunciada',value:'Não confirmada',state:'unknown',basis:'cadastro'}
+  ];
+  const rows=tools.featureRows([{comparison:{features}}]);
+  assert.equal(rows.length,2);assert.equal(rows[0].values[0].value,'IPX4');
+  assert.equal(rows[1].values[0].state,'unknown');
+});
+
 test('notebooks are comparable without confusing router or headphone uses', async () => {
   const tools = await api();
   assert.equal(tools.group({title:'Notebook Asus 8 GB SSD 256 GB'}), 'Notebooks');

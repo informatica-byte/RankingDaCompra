@@ -11,4 +11,16 @@ test("resumo ignora pausados e exige reconferência após reativar",()=>{
  const now=Date.now(), rows=[{precoAtualizadoManualmenteEm:now},{conferenciaPausada:true},{precoAtualizadoManualmenteEm:now-1000,conferenciaReativadaEm:now}];
  ctx.atualizarResumoRotina({size:3,forEach(fn){rows.forEach(data=>fn({data:()=>data}));}});
  assert.equal(elements["rotina-conferidos"].textContent,"1");assert.equal(elements["rotina-restantes"].textContent,"1");
+ assert.equal(elements["rotina-pausados"].textContent,"1");
+});
+
+test('retirar link Shopee preserva preço histórico; não permite oferta nova sem preço ou preço órfão novo',()=>{
+ const ctx=createContext({String,numeroPrecoPromocao:value=>Number(String(value).replace(',','.'))});
+ new Script(extract('validarParShopeeCadastro')).runInContext(ctx);
+ assert.equal(ctx.validarParShopeeCadastro('','229,00',{linkShopee:'https://s.shopee.com.br/old',precoShopee:'229,00'}),'');
+ assert.equal(ctx.validarParShopeeCadastro('','229,00',{linkShopee:'',precoShopee:'229,00'}),'');
+ assert.ok(ctx.validarParShopeeCadastro('','230,00',{precoShopee:'229,00'}));
+ assert.ok(ctx.validarParShopeeCadastro('','229,00'));
+ assert.ok(ctx.validarParShopeeCadastro('https://s.shopee.com.br/new',''));
+ assert.equal(ctx.validarParShopeeCadastro('https://s.shopee.com.br/new','229,00'),'');
 });

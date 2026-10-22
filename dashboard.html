@@ -170,7 +170,7 @@
     </style>
 <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
 <script src="/product-save-safety.js?v=20261015-2"></script>
-<script src="/best-choices.js?v=20261011-2"></script>
+<script src="/best-choices.js?v=20261022-pause"></script>
 <script src="/best-choices-admin.js?v=20261010-audit"></script>
     <link rel="stylesheet" href="/existing-flash-offer.css?v=20261016-1">
 </head>
@@ -231,6 +231,7 @@
             <div class="metricas-visitas">
                 <div class="metrica-visita"><strong id="rotina-conferidos">—</strong><span>Preços conferidos hoje</span></div>
                 <div class="metrica-visita"><strong id="rotina-restantes">—</strong><span>Produtos sem conferência hoje</span></div>
+                <div class="metrica-visita"><strong id="rotina-pausados">—</strong><span>Anúncios pausados — fora da fila</span></div>
                 <div class="metrica-visita"><strong id="rotina-vencidas">—</strong><span>Promoções marcadas e vencidas</span></div>
             </div>
             <p id="rotina-publicacao" class="ajuda-metrica" role="status">Aguardando produtos...</p>
@@ -2122,6 +2123,15 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             status.style.color = erro ? '#b91c1c' : '#087f5b';
         }
 
+        function validarParShopeeCadastro(link, preco, original = null) {
+            if (link && numeroPrecoPromocao(preco)) return '';
+            if (!link && !preco) return '';
+            // A disabled secondary offer may retain its historical price. Only
+            // clear the URL: neither reprice the product nor erase old evidence.
+            if (!link && original && preco === String(original.precoShopee || '').trim()) return '';
+            return 'Para oferecer a Shopee, informe o link e o preço juntos.';
+        }
+
         document.getElementById('formProduto').addEventListener('submit', async (e) => {
             e.preventDefault();
             if ((typeof ofertasRelampagoExistentesDashboard !== 'undefined' && ofertasRelampagoExistentesDashboard.isBusy()) || salvandoProduto) return;
@@ -2133,7 +2143,8 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const nomeLoja = marketplace === 'shopee' ? 'Shopee' : 'Mercado Livre';
             if (!linkMarketplaceValidoCadastro(linkProduto, marketplace)) return informarStatusCadastro(`Cole um link HTTPS válido do produto na ${nomeLoja}.`, true);
             if (!linkMarketplaceValidoCadastro(linkAfiliadoProduto, marketplace)) return informarStatusCadastro(`Cole um link de afiliado HTTPS válido da ${nomeLoja}.`, true);
-            if ((linkShopeeProduto && !numeroPrecoPromocao(precoShopeeProduto)) || (!linkShopeeProduto && precoShopeeProduto)) return informarStatusCadastro('Para oferecer a Shopee, informe o link e o preço juntos.', true);
+            const erroParShopee = validarParShopeeCadastro(linkShopeeProduto, precoShopeeProduto, editProdId !== null ? produtoEdicaoOriginal : null);
+            if (erroParShopee) return informarStatusCadastro(erroParShopee, true);
             if (linkShopeeProduto && !linkMarketplaceValidoCadastro(linkShopeeProduto, 'shopee')) return informarStatusCadastro('Confira o link HTTPS da Shopee.', true);
             const ofertaRelampagoAtiva = document.getElementById('ofertaRelampagoAtiva').checked;
             const ofertaRelampagoDuracao = document.getElementById('ofertaRelampagoDuracao').value.trim();
@@ -3081,6 +3092,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const hojeBrasil = diaBrasilRotina(new Date());
             let conferidos = 0;
             let ativos = 0;
+            let pausados = 0;
             let vencidas = 0;
             snapshot.forEach(doc => {
                 const produto = doc.data();
@@ -3089,11 +3101,12 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     const confirmadoEm = millisRotina(produto.precoAtualizadoManualmenteEm);
                     const reativadoEm = millisRotina(produto.conferenciaReativadaEm);
                     if (diaBrasilRotina(produto.precoAtualizadoManualmenteEm) === hojeBrasil && !(reativadoEm > confirmadoEm)) conferidos += 1;
-                }
+                } else pausados += 1;
                 if (promocaoVencida(produto, hojeBrasil)) vencidas += 1;
             });
             document.getElementById('rotina-conferidos').textContent = String(conferidos);
             document.getElementById('rotina-restantes').textContent = String(ativos - conferidos);
+            document.getElementById('rotina-pausados').textContent = String(pausados);
             document.getElementById('rotina-vencidas').textContent = String(vencidas);
             const botaoEncerrar = document.getElementById('btn-encerrar-promocoes-vencidas');
             if (botaoEncerrar && !botaoEncerrar.dataset.salvando) botaoEncerrar.disabled = vencidas === 0;

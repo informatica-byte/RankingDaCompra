@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head><script src="/privacy-controls.js?v=20261022-continuous"></script>
   <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
-  <script src="/best-choices.js?v=20261011-2"></script>
+  <script src="/best-choices.js?v=20261022-pause"></script>
   <script src="/flash-offer-safety.js?v=20261012-audit"></script>
   <script src="/weekly-comparison-safety.js?v=20261020-price-identity"></script>
   <script src="/home-selection.js?v=20261021-consumer"></script>
@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <script src="/public-data.js?v=20261005-1"></script>
   <script src="/comparison-integrity.js?v=20261020-formatos"></script>
-  <script defer src="/buyer-tools.js?v=20261021-report"></script>
+  <script defer src="/buyer-tools.js?v=20261022-protection"></script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Compare rankings por categoria, análises e produtos selecionados para escolher melhor. Consulte preços, diferenças e limitações.">
   <meta name="robots" content="index,follow,max-image-preview:large">
@@ -184,7 +184,7 @@ function precoConfirmadoRecente(produto){return fontePrecoSeguro(produto)?.confi
 function precoConferidoValor(produto){const fonte=fontePrecoSeguro(produto);return fonte?.confirmado?fonte.valor:0}
 function registroPreco(produto){const fonte=fontePrecoSeguro(produto);if(fonte)return{valor:moeda(fonte.valor),data:new Intl.DateTimeFormat('pt-BR',{timeZone:'America/Sao_Paulo'}).format(fonte.quando),origem:fonte.origem};const cadastrado=precoManualProduto(produto);return cadastrado>0?{valor:moeda(cadastrado),data:null,origem:'cadastro'}:null}
 function rotuloPrecoSeguro(produto){const fonte=fontePrecoSeguro(produto);if(fonte?.confirmado)return moeda(fonte.valor);const registro=registroPreco(produto);if(!registro)return'Conferir preço atual no vendedor';return registro.data?'Último preço registrado: '+registro.valor+' ('+registro.data+')':'Último preço cadastrado: '+registro.valor+' (não confirmado)'}
-function produtoDisponivel(produto){const status=statusMercadoLivre(produto),quando=Date.parse(status?.checkedAt||'');const fonte=fontePrecoSeguro(produto);if(fonte?.confirmado&&fonte.origem==='manual'&&(!Number.isFinite(quando)||fonte.quando>=quando))return true;return !(status?.visible===false&&Number(status?.unavailableChecks)>=2&&Number.isFinite(quando)&&Date.now()-quando>=0&&Date.now()-quando<=24*60*60*1000)}
+function produtoDisponivel(produto){if(produto?.conferenciaPausada===true)return false;const status=statusMercadoLivre(produto),quando=Date.parse(status?.checkedAt||'');const fonte=fontePrecoSeguro(produto);if(fonte?.confirmado&&fonte.origem==='manual'&&(!Number.isFinite(quando)||fonte.quando>=quando))return true;return !(status?.visible===false&&Number(status?.unavailableChecks)>=2&&Number.isFinite(quando)&&Date.now()-quando>=0&&Date.now()-quando<=24*60*60*1000)}
 function aplicarDadosMercadoLivre(produto){const status=statusMercadoLivre(produto);if(!status||fontePrecoSeguro(produto)?.origem==='manual')return produto;const atualizado={...produto};if(Number(status.price)>0)atualizado.preco=Number(status.price).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});if(atualizado.promocaoAtiva===true&&Number(status.price)>0){const atual=Number(status.price),anterior=Number(status.regularPrice)>atual?Number(status.regularPrice):numeroPreco(atualizado.precoAnterior);if(anterior>atual){atualizado.precoAnterior=anterior.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});atualizado.precoPromocional=atual.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}else atualizado.promocaoAtiva=false}if(status.lightningActive===true&&Date.parse(status.lightningEndsAt)>Date.now()){const atual=Number(status.lightningPrice)>0?Number(status.lightningPrice):Number(status.price),anterior=Number(status.regularPrice)>atual?Number(status.regularPrice):numeroPreco(atualizado.precoAnterior);atualizado.ofertaRelampagoAtiva=true;atualizado.ofertaRelampagoTerminaEm=status.lightningEndsAt;atualizado.ofertaRelampagoOrigem='api';if(anterior>atual&&atual>0){atualizado.precoAnterior=anterior.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});atualizado.precoPromocional=atual.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}}return atualizado}
 function getPrice(p){if(!produtoDisponivel(p)){queueMicrotask(()=>{const link=document.getElementById('offer-link');if(link){link.removeAttribute('href');link.removeAttribute('target');link.setAttribute('aria-disabled','true');link.textContent='Oferta encerrada no Mercado Livre'}});return Promise.resolve('Oferta indisponível')}return Promise.resolve(rotuloPrecoSeguro(p))}
 const produtosParaCompartilhar=new Map();

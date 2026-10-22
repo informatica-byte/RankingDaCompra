@@ -9,7 +9,7 @@ import { correctProductData, hasDocumentedEditorialRating } from "./product-titl
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { publicationBackup } from "./publication-backup.mjs";
 import { productSeoTitle } from "./product-seo-titles.mjs";
-import { legacyProductAliases, observedProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage } from "./product-url-continuity.mjs";
+import { legacyProductAliases, observedProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage, pausedProductPage } from "./product-url-continuity.mjs";
 import { generateSeasonalGuides, GUIDE_THEMES } from "./generate-seasonal-guides.mjs";
 
 import { resolve } from "node:path";
@@ -1664,6 +1664,8 @@ for (const product of allProducts) {
 
 const rawShareProducts = allProducts
 
+  .filter((product) => product.conferenciaPausada !== true)
+
   .filter((product) => marketplaceProducts[product.id]?.visible !== false)
 
   .sort((a, b) => a.id.localeCompare(b.id));
@@ -2001,6 +2003,15 @@ if (!partialProductSource) {
 
 
 const expectedPages = new Set();
+
+// The saved record and its URL survive the pause; never retest, reprice or
+// redirect a paused product to a different offer merely to fill the showcase.
+for (const product of allProducts.filter(product => product.conferenciaPausada === true)) {
+  if (!/^[A-Za-z0-9_-]+$/.test(product.id)) continue;
+  const fileName = `${product.id}-${SHARE_VERSION}.html`;
+  expectedPages.add(fileName);
+  if (!partialProductSource) await writeFile(resolve(productDirectory,fileName),pausedProductPage(product),'utf8');
+}
 
 for (const product of validProducts) {
   const fileName = `${product.id}-${SHARE_VERSION}.html`;

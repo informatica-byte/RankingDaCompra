@@ -16,7 +16,7 @@
   }
   function eligible(product) {
     return product && /^[A-Za-z0-9_-]+$/.test(String(product.id || '')) && product.sistema !== true
-      && product.ativo !== false && product.indisponivel !== true && product.status !== 'indisponivel'
+      && product.ativo !== false && product.conferenciaPausada !== true && product.indisponivel !== true && product.status !== 'indisponivel'
       && String(product.titulo || '').trim() && /^https:\/\//.test(String(product.foto || ''));
   }
   function legacyIds(products) {

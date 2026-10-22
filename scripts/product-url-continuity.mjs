@@ -146,3 +146,12 @@ export function unavailableProductPage(previousHtml) {
     `<h1>Esta análise não está disponível</h1><p>${escapeHtml(title || "O produto consultado")} não consta na seleção atual. O preço e o anúncio antigos não são exibidos porque podem estar desatualizados.</p><p>Este endereço não representa uma oferta atual. Você pode pesquisar outro anúncio ou comparar opções disponíveis, sem assumir que são o mesmo produto.</p><form action="${SITE}" method="get"><label for="retired-product-search">Buscar produtos e análises atuais</label><input id="retired-product-search" name="busca" type="search" value="${escapeHtml(title)}" placeholder="Nome ou tipo de produto" maxlength="200"><button type="submit">Buscar opções atuais</button></form><p><a href="${SITE}analises.html">Ver todas as análises atuais →</a></p>`,
   );
 }
+
+// Pause is an administrator's reversible decision, not proof that a seller's
+// listing was deleted. Keep the same address without a stale price or redirect.
+export function pausedProductPage(product) {
+  const title = String(product?.titulo || '').trim();
+  return pageShell('Anúncio em pausa',
+    `<meta name="rdc-paused-product" content="true">`,
+    `<h1>Anúncio em pausa</h1><p>${escapeHtml(title || 'O produto consultado')} está separado para revisão no Ranking da Compra.</p><p>O cadastro foi preservado. Enquanto estiver pausado, não exibimos preço ou botão de compra como oferta atual. Isso não confirma que o vendedor excluiu o anúncio.</p><p><a href="${SITE}analises.html">Consultar análises atuais →</a></p>`);
+}

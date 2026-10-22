@@ -66,8 +66,24 @@
   }
   function featureRows(products) {
     const lists = products.map(comparisonFeatures);
-    const labels = [...new Set(lists.flatMap(features => features.map(feature => feature.label)))];
-    return labels.map(label => ({label, values:lists.map(features => features.find(feature => feature.label === label)
+    // Only documented label aliases, never guessed values or equivalent IP levels.
+    const key = feature => ['protecao contra agua','protecao anunciada'].includes(normalize(feature.label).trim())
+      ? 'protection-announced' : 'label:' + feature.label;
+    const ambiguous = new Set();
+    for (const features of lists) {
+      const seen = new Set();
+      for (const feature of features) {
+        const id = key(feature);
+        if (seen.has(id)) ambiguous.add(id);
+        seen.add(id);
+      }
+    }
+    // Multiple protection fields in one record stay separate; do not discard a
+    // contradiction, qualifiers or distinct sources by choosing the first one.
+    const resolved = feature => ambiguous.has(key(feature)) ? 'label:' + feature.label : key(feature);
+    const fields = new Map(lists.flatMap(features => features.map(feature => [resolved(feature),
+      resolved(feature) === 'protection-announced' ? 'Proteção anunciada (água/poeira)' : feature.label])));
+    return [...fields].map(([id,label]) => ({label, values:lists.map(features => features.find(feature => resolved(feature) === id)
       || {label, value:'Não confirmado no cadastro', state:'unknown', basis:'cadastro'})}));
   }
   function sourceUrl(value) {
