@@ -1,11 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {reviewProduct as product} from './fixtures/review-products.mjs';
 import {MANUFACTURER_SPECIFICATIONS,documentedSpecifications,renderManufacturerSpecifications} from './manufacturer-specifications.mjs';
 import {comparisonData,renderProductDecision} from './product-decision.mjs';
 import {renderIntegrityGuide} from './comparison-guides.mjs';
-const catalogue=JSON.parse(await readFile(new URL('../vitrine-publica.json',import.meta.url),'utf8')).products;
-const product=id=>catalogue.find(p=>p.id===id);
 const feature=(id,label)=>comparisonData(product(id)).features.find(f=>f.label===label);
 
 test('as revisões usam modelo exato e não mudam cadastros, preço ou prova de conferência',()=>{

@@ -6,9 +6,8 @@ import {correctProductData} from './product-title-corrections.mjs';
 import {documentedSpecifications,renderManufacturerSpecifications} from './manufacturer-specifications.mjs';
 import {comparisonData} from './product-decision.mjs';
 
-const catalogue=JSON.parse(readFileSync(new URL('../vitrine-publica.json',import.meta.url),'utf8')).products;
+import {reviewCatalogue as catalogue,reviewProduct as product} from './fixtures/review-products.mjs';
 const registry=JSON.parse(readFileSync(new URL('../product-url-aliases.json',import.meta.url),'utf8'));
-const product=id=>catalogue.find(p=>p.id===id);
 const oldOffers=[
   ['PIogVXjZBCR03LoHIPLE','VzQgxGhowdzlfNshI3ZC','MLB6756757832'],
   ['L9Vdxx2fNGSSaTR0d7Iu','CFEyN1hdeMSM6BS89h5o','MLB3817089255'],
@@ -29,6 +28,27 @@ test('quatro URLs históricas dependem do mesmo anúncio e modelo, não só de u
 });
 test('provas incompletas não autorizam um redirecionamento histórico',()=>{
   for(const proof of [{id:'x',itemId:'MLB123456',modelWords:[]},{id:'x',itemId:'MLB123456',modelWords:['.*']},{id:'x',itemId:'MLBU123456',modelWords:['fone']}]) assert.throws(()=>legacyProductAliases({'old.html':proof},[]),/inválida/);
+});
+test('cadastro deduplicado usa apenas o canônico do mesmo anúncio e modelo; ausência não autoriza destino',()=>{
+  const file='eLIzAkv4GxeN7eIPOKEx-20260810-1.html';
+  const original=product('Th1cm6hi9QYlLqUWQKgq');
+  const canonical={...original,id:'canonical-fixture',link:'https://www.mercadolivre.com.br/p/MLB12345678?pdp_filters=item_id%3AMLB3371578831'};
+  const duplicates=new Map([[original.id,canonical]]);
+  assert.equal(legacyProductAliases(registry,[canonical],duplicates).get(file),canonical);
+  assert.equal(legacyProductAliases(registry,[],duplicates).has(file),false);
+  for(const changed of [{...canonical,titulo:'Produto diferente'},{...canonical,link:'https://www.mercadolivre.com.br/p/MLB99999999'}]) {
+    assert.equal(legacyProductAliases(registry,[changed],new Map([[original.id,changed]])).has(file),false);
+  }
+});
+test('testes de identidade não exigem que o catálogo publicado contenha os cadastros históricos',()=>{
+  for(const name of ['test-historical-review.mjs','test-manufacturer-specifications.mjs']) {
+    const source=readFileSync(new URL('./'+name,import.meta.url),'utf8');
+    assert.doesNotMatch(source,/new URL\(['"]\.\.\/vitrine-publica\.json/);
+    assert.match(source,/fixtures\/review-products\.mjs/);
+  }
+  assert.throws(()=>product('cadastro-inexistente'),/Identidade de teste ausente/);
+  const first=product('XCp2wV9P76JfBz2zuUTX');first.titulo='Alterado';
+  assert.match(product(first.id).titulo,/83NS0002BR/);
 });
 test('revisões preservam todos os dados operacionais, são idempotentes e não se aplicam a outro modelo',()=>{
   for(const id of ['O6e0R2WtiZfyyf2MJe5Y','9P123IBTTYnSCMilPvXB','5MGE98tYssH9nEfBeHoW']){

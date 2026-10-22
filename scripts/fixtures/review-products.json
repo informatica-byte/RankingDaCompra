@@ -1,0 +1,131 @@
+{
+  "description": "Identidades de teste congeladas a partir do catálogo publicado em 22/10/2026. Não são cadastros, preços ou estoque atuais e nunca alimentam a publicação.",
+  "products": [
+    {
+      "id": "2e2m7sDdRyGHq1Tzj8ra",
+      "titulo": "Roteador Wi-fi Tp-Link TL- Wr840 N Wireless 300Mbps",
+      "categoria": "roteador"
+    },
+    {
+      "id": "48oRcQNlH00KgNLHkvsG",
+      "titulo": "Pulseira Inteligente Xiaomi Smart Band 9 Active Global",
+      "categoria": "relogio-smartwatch"
+    },
+    {
+      "id": "4eal5Q0HLTcrspjkUwee",
+      "titulo": "Redmi Buds 6 Play Fone De Ouvido Bluetooth Sem Fio Cor Azul",
+      "categoria": "fonesdeouvido"
+    },
+    {
+      "id": "5bQKU9inL3pq14yE8K4L",
+      "titulo": "Fone de Ouvido Bluetooth 5.4 soundcore P30i da Anker, Cancelamento de Ruído Adaptativo, Graves Poderosos, 45H de Reprodução, Estojo 2-em-1 com Suporte para Celular, IP54, Fone sem fio TWS, Verde",
+      "categoria": "fonesdeouvido"
+    },
+    {
+      "id": "5MGE98tYssH9nEfBeHoW",
+      "titulo": "Smartwatch HUAWEI WATCH FIT 5 com GPS e tela AMOLED de 1,82 polegada",
+      "categoria": "relogio-smartwatch"
+    },
+    {
+      "id": "9P123IBTTYnSCMilPvXB",
+      "titulo": "Smartwatch Amazfit Bip 6 com GPS e tela AMOLED de 1,97 polegada",
+      "categoria": "relogio-smartwatch"
+    },
+    {
+      "id": "ARscPKCMZs3D8k22qltl",
+      "titulo": "Fone de Ouvido Bluetooth Xiaomi Redmi Buds 6 Play M2420E1 Preto",
+      "categoria": "fonesdeouvido"
+    },
+    {
+      "id": "AweCTxq7vwVQ7VmN4IIg",
+      "titulo": "Roteador Mercusys Mr80x V4 Ax3000 Dual Band Wifi6",
+      "categoria": "roteador"
+    },
+    {
+      "id": "c9hb1oe40g3K1dP4dAsy",
+      "titulo": "Fone de Ouvido JBL Quantum 100M2 Gamer Over-ear com Microfone Removível para PS4 e PS5",
+      "categoria": "fonesdeouvido"
+    },
+    {
+      "id": "CFEyN1hdeMSM6BS89h5o",
+      "titulo": "Creatina Monohidratada em Pote 300g 100% Pura Dark Lab",
+      "categoria": "belezaecuidados"
+    },
+    {
+      "id": "FlqPY3yHJ2xPoNgnhSTE",
+      "titulo": "Galaxy Buds Core Preto",
+      "categoria": "fonesdeouvido",
+      "comentario": "O Samsung Galaxy Buds Core é um fone TWS intra-auricular com ANC anunciado pela Samsung. A autonomia total com estojo anunciada é de até 35 horas com ANC desligado ou aproximadamente 20 horas com ANC ligado, incluindo recargas. Esses números não representam uma sessão contínua nos fones. As funções Galaxy AI exigem smartphone Galaxy compatível; os fones não traduzem de forma independente. Não testamos áudio, conforto, microfone ou autonomia real."
+    },
+    {
+      "id": "GjHJtzdsIhbmSINvhPeX",
+      "titulo": "Fone de Ouvido JBL Tune 520BT Bluetooth 5.3 Preto",
+      "categoria": "fonesdeouvido"
+    },
+    {
+      "id": "huCYMmOsGPKJ8jOiJ1gR",
+      "titulo": "Lavadora de Alta Pressão Compacta WAP WL 1800 1400W 1500PSI 360L/h 220V",
+      "categoria": "casa"
+    },
+    {
+      "id": "kYzXt8BeErDzXsC6BlwB",
+      "titulo": "Fone De Ouvido Sem Fio Havit Tw982 Enc Bluetooth 5.4 Cor Preto",
+      "categoria": "fonesdeouvido"
+    },
+    {
+      "id": "LUsq533hX6lTuHwnZbhz",
+      "titulo": "TP-Link Deco X10(1-pack) Roteador Mesh Wifi6 AX1500 Cobre até 190m²",
+      "categoria": "roteador"
+    },
+    {
+      "id": "mlMLB5212483469",
+      "titulo": "Notebook Lenovo Ideapad Slim 3 15irh10 Intel Core i5-13420h 8gb 256gb Ssd Windows 11 15.3 - 83ns0003br Luna Grey",
+      "categoria": "notebook"
+    },
+    {
+      "id": "O6e0R2WtiZfyyf2MJe5Y",
+      "titulo": "Notebook ASUS Vivobook Go 15 E1504FA-NJ1288, 16 GB RAM e SSD 512 GB",
+      "categoria": "notebook"
+    },
+    {
+      "id": "qZUWO8WSrcOKWVrAqTW7",
+      "titulo": "Roteador Tp-link Ex1500 Wi-fi 6 Ax1500 Dual Band Gigabit",
+      "categoria": "roteador"
+    },
+    {
+      "id": "SJRf3jhIFlr1BQadDNnH",
+      "titulo": "Notebook Gamer Lenovo LOQ 15IRX9 Intel Core i5-13450HX RTX 3050 8GB 512GB SSD windows 11",
+      "categoria": "notebook"
+    },
+    {
+      "id": "sMCnNBstxTrJqaF6jp2O",
+      "titulo": "Roteador Mesh Sem Fio Wifi 6 1200mb Intelbras Twibi Force Ax Cor Branco",
+      "categoria": "roteador"
+    },
+    {
+      "id": "Th1cm6hi9QYlLqUWQKgq",
+      "titulo": "Parafusadeira Furadeira The Black Tools TB12A 3/8 a Bateria Cor Amarelo Frequência 60Hz",
+      "categoria": "ferramentas"
+    },
+    {
+      "id": "UvxFn4gfaexb8TvcaT5e",
+      "titulo": "Mouse Logitech Sem Fio M170 Rc/nano C/pilha - Preto",
+      "categoria": "informatica"
+    },
+    {
+      "id": "VzQgxGhowdzlfNshI3ZC",
+      "titulo": "Carregador Portátil Power Bank Turbo 20000mah 22.5w Universal Para iPhone Samsung Motorola Xiaomi Com Display Digital Preto ou Branco- Hardline",
+      "categoria": "celular"
+    },
+    {
+      "id": "XCp2wV9P76JfBz2zuUTX",
+      "titulo": "Notebook Lenovo IdeaPad Slim 3 15IRH10 Intel Core i5-13420H 8GB 512GB SSD Windows 11 15.3\" - 83NS0002BR Luna Grey",
+      "categoria": "notebook"
+    },
+    {
+      "id": "YuOWci2UixF5GuQE6IYS",
+      "titulo": "Roteador HUAWEI WiFi AX2S Wi-Fi 6 Preto",
+      "categoria": "roteador"
+    }
+  ]
+}
