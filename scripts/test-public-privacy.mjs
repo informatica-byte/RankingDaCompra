@@ -17,15 +17,16 @@ test('geração renova somente a referência do controle de privacidade existent
   const html = '<html><head><script defer src="/privacy-controls.js?v=antiga"></script><script src="/public-data.js?v=preservada"></script></head></html>';
   const fixed = protectPublicHtml(html);
   assert.equal((fixed.match(/privacy-controls\.js/g) || []).length, 1);
-  assert.match(fixed, /defer src="\/privacy-controls\.js\?v=20261014-audit"/);
+  assert.match(fixed, /defer src="\/privacy-controls\.js\?v=20261022-continuous"/);
   assert.ok(fixed.includes('/public-data.js?v=preservada'));
   assert.equal(protectPublicHtml(fixed), fixed);
 });
 
 const source = await readFile(new URL('../privacy-controls.js', import.meta.url), 'utf8');
-function browser({render=false}={}) {
+function browser({render=false,host=null}={}) {
   const stored = new Map(), listeners = new Map(), loaded = [];
   const window = {addEventListener(type, cb) {listeners.set(type, [...(listeners.get(type) || []), cb]);}, removeEventListener(type, cb) {listeners.set(type, (listeners.get(type) || []).filter(x => x !== cb));}, dispatchEvent(event) {for (const cb of [...(listeners.get(event.type) || [])]) cb(event);}};
+  window.parent=host?{RDCContinuousNavigation:host}:window;
   const nodes=new Map();
   const element=()=>{
     const node={controls:{},hidden:false,focus(){document.activeElement=this;},contains(target){return Object.values(this.controls).includes(target);},setAttribute(){},addEventListener(type,handler){this[type]=handler;},querySelector:selector=>node.controls[selector]||null};
@@ -60,6 +61,25 @@ test('aceite carrega uma vez; retirada bloqueia novos eventos sem apagar prefer�
   window.gtag('event', 'select_item');
   assert.equal(window.dataLayer.length, count);
   assert.equal(stored.get('firebase-auth-existing'), 'preservado');
+});
+test('o documento persistente suspende métricas sem retirar consentimento ou apagar cookies',()=>{
+  const f=browser();f.window.RDCPrivacy.setAnalytics(true);
+  const saved=f.stored.get('rdc-privacy-choice-v1');f.document.cookie='_ga=existing';
+  f.window.RDCPrivacy.suspendDocumentMetrics();
+  assert.equal(f.window.RDCPrivacy.analyticsAllowed(),false);
+  assert.equal(f.window['ga-disable-G-NBKRX8TTR6'],true);
+  const count=f.window.dataLayer.length;
+  f.window.gtag('event','select_item');assert.equal(f.window.dataLayer.length,count);
+  f.window.dispatchEvent({type:'storage',key:'rdc-privacy-choice-v1'});
+  assert.equal(f.document.cookie,'_ga=existing');assert.equal(f.stored.get('rdc-privacy-choice-v1'),saved);
+  assert.equal(f.window['ga-disable-G-NBKRX8TTR6'],true);
+});
+test('a página exibida usa a origem anterior da navegação contínua, sem autorizar novas métricas',()=>{
+  const f=browser({host:{owns(){return true;},referrerFor(){return 'https://example.test/comparar.html';}}});
+  assert.equal(f.loaded.length,0);
+  f.window.RDCPrivacy.setAnalytics(true);
+  const config=f.window.dataLayer.find(args=>args[0]==='config')[2];
+  assert.equal(config.page_referrer,'https://example.test/comparar.html');
 });
 test('HTML usa controle antes de outros scripts, sem GA automático, e é idempotente', () => {
   const html = `<html><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-NBKRX8TTR6"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-NBKRX8TTR6',{anonymize_ip:true});</script><script src="firebase-auth.js"></script></head></html>`;

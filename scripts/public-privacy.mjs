@@ -13,18 +13,22 @@ export function protectPublicHtml(html) {
   }
   html = html.replace(/\nregistrarVisita\(\);/g, '\nwindow.RDCPrivacy?.whenAnalyticsAllowed(()=>registrarVisita());');
   if (!/src=["'][^"']*privacy-controls\.js/.test(html)) {
-    html = html.replace(/<head([^>]*)>/i, '<head$1><script src="/privacy-controls.js?v=20261014-audit"></script>');
+    html = html.replace(/<head([^>]*)>/i, '<head$1><script src="/privacy-controls.js?v=20261022-continuous"></script>');
   }
   // A próxima geração normaliza também páginas existentes, sem duplicar scripts.
   html = html.replace(/(<script\b[^>]*\bsrc=["']\/?privacy-controls\.js)(?:\?[^"']*)?(["'][^>]*>)/gi,
-    '$1?v=20261014-audit$2');
+    '$1?v=20261022-continuous$2');
   // Optional, first-party instrumental; never inject into administrative/noindex pages.
   if (!/<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html)) {
     if (!/src=["'][^"']*ambient-music\.js/.test(html)) {
-      html = html.replace(/<\/head>/i, '<script defer src="/ambient-music.js?v=20261022-3"></script></head>');
+      html = html.replace(/<\/head>/i, '<script defer src="/ambient-music.js?v=20261022-4"></script></head>');
     }
     html = html.replace(/(<script\b[^>]*\bsrc=["']\/?ambient-music\.js)(?:\?[^"']*)?(["'][^>]*>)/gi,
-      '$1?v=20261022-3$2');
+      '$1?v=20261022-4$2');
+    if (!/src=["'][^"']*continuous-navigation\.js/.test(html)) {
+      html = html.replace(/<script\s+defer\s+src=["']\/ambient-music\.js/i,
+        '<script defer src="/continuous-navigation.js?v=20261022-1"></script><script defer src="/ambient-music.js');
+    }
   }
   return html;
 }

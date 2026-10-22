@@ -3,14 +3,14 @@
   if (window.RDCPrivacy) return;
   const KEY = 'rdc-privacy-choice-v1', TTL = 180 * 86400000;
   const GA = 'G-NBKRX8TTR6';
-  let memory = null, loaded = false;
+  let memory = null, loaded = false, suspended = false;
   function choice() {
     let value = memory;
     try { value = JSON.parse(localStorage.getItem(KEY) || 'null') || memory; } catch {}
     return value?.version === 1 && typeof value.analytics === 'boolean'
       && Number(value.expiresAt) > Date.now() ? value : null;
   }
-  const analyticsAllowed = () => choice()?.analytics === true;
+  const analyticsAllowed = () => !suspended && choice()?.analytics === true;
   window.dataLayer = window.dataLayer || [];
   window.gtag = function () {
     if (arguments[0] === 'consent' || analyticsAllowed()) window.dataLayer.push(arguments);
@@ -27,6 +27,7 @@
     }
   }
   function apply() {
+    if (suspended) { window['ga-disable-' + GA] = true; return; }
     const allowed = analyticsAllowed();
     window['ga-disable-' + GA] = !allowed;
     window.gtag('consent', 'update', consent(allowed));
@@ -34,7 +35,12 @@
     if (loaded) return;
     loaded = true;
     window.gtag('js', new Date());
-    window.gtag('config', GA, {allow_google_signals: false, allow_ad_personalization_signals: false});
+    const config = {allow_google_signals: false, allow_ad_personalization_signals: false};
+    try {
+      const host = window.parent !== window && window.parent.RDCContinuousNavigation;
+      if (host?.owns(window)) config.page_referrer = host.referrerFor(window);
+    } catch {} // Normal pages and external embeds retain the browser's referrer.
+    window.gtag('config', GA, config);
     const tag = document.createElement('script');
     tag.async = true;
     tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA;
@@ -83,7 +89,10 @@
     settings.addEventListener('click', () => { banner.hidden = false; banner.querySelector('button').focus(); });
     document.body.appendChild(settings);
   }
-  window.RDCPrivacy = Object.freeze({analyticsAllowed, whenAnalyticsAllowed, setAnalytics: save});
+  // The visible destination owns its own metrics. Never send a duplicate
+  // history/page-view event from the inert audio-owning document.
+  function suspendDocumentMetrics() { suspended = true; window['ga-disable-' + GA] = true; }
+  window.RDCPrivacy = Object.freeze({analyticsAllowed, whenAnalyticsAllowed, setAnalytics: save, suspendDocumentMetrics});
   window.addEventListener('storage', event => { if (event.key === KEY) { memory = null; apply(); window.dispatchEvent(new CustomEvent('rdc-privacy-change')); } });
   apply();
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render, {once: true});
