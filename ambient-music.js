@@ -2,6 +2,22 @@
   'use strict';
   // Original, locally synthesized instrumental. No recordings, streams or trackers.
   const VOLUME_KEY = 'rdc-ambient-volume-v1';
+  const NAV_KEY = 'rdc-ambient-navigation-v1';
+  const publicPath = path => !/\/(?:dashboard|painel-celular|admin|login|studio)(?:[./-]|$)/i.test(path);
+  // One-use, short-lived handoff. A visit/reload never restores a saved playing flag.
+  let handoff = null;
+  try {
+    const saved = sessionStorage.getItem(NAV_KEY);
+    sessionStorage.removeItem(NAV_KEY);
+    if (saved) {
+      const candidate = JSON.parse(saved);
+      const referrer = new URL(document.referrer);
+      const navigation = performance.getEntriesByType('navigation')[0];
+      if (candidate.to === location.href && candidate.from === referrer.href
+        && referrer.origin === location.origin && navigation?.type === 'navigate'
+        && Date.now() - candidate.at >= 0 && Date.now() - candidate.at < 30000) handoff = candidate;
+    }
+  } catch {} // Storage, referrer or navigation timing unavailable: remain off.
   const chords = [[48, 55, 59, 64], [45, 52, 55, 60], [41, 48, 52, 57], [43, 50, 57, 62]];
   const melody = [76, 72, 69, 74, 71, 67, 69, 74];
   const frequency = note => 440 * Math.pow(2, (note - 69) / 12);
@@ -9,7 +25,7 @@
 
   function mount() {
     if (document.getElementById('rdc-ambient-music') || !document.body) return;
-    if (/\/(?:dashboard|painel-celular|admin|login|studio)(?:[./-]|$)/i.test(location.pathname)
+    if (!publicPath(location.pathname)
       || /noindex/i.test(document.querySelector('meta[name="robots"]')?.content || '')) return;
     const style = document.createElement('style');
     style.textContent = `
@@ -36,7 +52,7 @@
       + '<button type="button" id="rdc-music-toggle" aria-pressed="false">Ativar música</button>'
       + '<details><summary>Volume</summary><label for="rdc-music-volume">Volume <output id="rdc-music-volume-value" for="rdc-music-volume">20%</output>'
       + '<input id="rdc-music-volume" type="range" min="0" max="100" step="1" value="20" aria-label="Volume da música ambiente"></label></details>'
-      + '<p class="rdc-music-status" id="rdc-music-status" role="status" aria-live="polite">Desligada. Só começa ao ativar; pausa ao sair da aba ou da página.</p>';
+      + '<p class="rdc-music-status" id="rdc-music-status" role="status" aria-live="polite">Desligada. Ative se quiser ouvir durante a navegação nesta aba.</p>';
     // Separate row in document flow: never insert into search/navigation or over offers.
     const header = document.querySelector('body > header');
     const main = document.querySelector('body > main, #app');
@@ -50,6 +66,7 @@
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
     let volume = 20, context = null, master = null, playing = false, busy = false;
     let timer = null, nextChord = 0, chordIndex = 0, everPlayed = false, generation = 0;
+    let pendingNavigation = null;
     try {
       const saved = localStorage.getItem(VOLUME_KEY);
       if (saved !== null && saved !== '') volume = clampVolume(saved);
@@ -90,7 +107,8 @@
         nextChord = at + 8;
       }
     }
-    async function pause(message) {
+    async function pause(message, preserveNavigation = false) {
+      if (!preserveNavigation) pendingNavigation = null;
       generation += 1;
       playing = false;
       stopTimer();
@@ -125,12 +143,12 @@
       status.textContent = 'Este navegador não oferece música ambiente. A navegação continua normalmente.';
       return;
     }
-    toggle.addEventListener('click', async () => {
+    async function start(automatic = false) {
       if (busy) return;
-      if (playing) { await pause(); return; }
       busy = true;
       toggle.disabled = true;
       const attempt = ++generation;
+      let deadline = null;
       try {
         if (!context || context.state === 'closed') {
           context = new AudioContextClass();
@@ -144,8 +162,11 @@
             }
           });
         }
-        // This is the only resume path, directly triggered by the user's button.
-        await context.resume();
+        // Internal handoff is attempted only after the visitor explicitly opted in.
+        // Respect browser policy: do not keep a late resume pending or simulate gestures.
+        await Promise.race([context.resume(), new Promise((_, reject) => {
+          deadline = window.setTimeout(() => reject(new Error('Audio blocked')), 2500);
+        })]);
         if (attempt !== generation || document.hidden) {
           if (context?.state === 'running') await context.suspend();
           return;
@@ -158,17 +179,63 @@
         render();
       } catch {
         release();
-        status.textContent = 'Não foi possível iniciar a música. Tente ativar novamente; o restante do site funciona normalmente.';
-      } finally { busy = false; toggle.disabled = false; }
+        if (automatic) {
+          everPlayed = true;
+          render('O navegador pausou a música. Toque em Continuar música para ouvir.');
+        } else status.textContent = 'Não foi possível iniciar a música. Tente ativar novamente; o restante do site funciona normalmente.';
+      } finally {
+        if (deadline !== null) window.clearTimeout(deadline);
+        busy = false; toggle.disabled = false;
+      }
+    }
+    toggle.addEventListener('click', async () => {
+      pendingNavigation = null;
+      if (playing) await pause(); else await start();
+    });
+    document.addEventListener('click', event => {
+      pendingNavigation = null;
+      if (!playing || event.defaultPrevented || event.button !== 0
+        || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      const link = event.target?.closest?.('a[href]');
+      if (!link || link.hasAttribute('download')) return;
+      const target = link.getAttribute('target') || document.querySelector('base[target]')?.getAttribute('target') || '_self';
+      if (target.toLowerCase() !== '_self') return;
+      try {
+        const to = new URL(link.href, location.href), from = new URL(location.href);
+        if (to.origin !== from.origin || !publicPath(to.pathname)
+          || !(/\.html$/i.test(to.pathname) || to.pathname.endsWith('/'))
+          || (to.pathname === from.pathname && to.search === from.search)) return;
+        from.hash = ''; // Referrers never contain the source fragment.
+        pendingNavigation = {from:from.href, to:to.href, at:Date.now()};
+      } catch {}
     });
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) void pause('Pausada ao sair da aba. Clique em Continuar música para retomar.');
+      if (document.hidden) void pause('Pausada ao sair da aba. Clique em Continuar música para retomar.', true);
     });
     document.addEventListener('play', event => {
       if (/^(?:VIDEO|AUDIO)$/.test(event.target?.tagName || '')) void pause('Pausada para não disputar áudio com o vídeo ou anúncio.');
     }, true);
-    window.addEventListener('pagehide', release);
-    // Deliberately no persisted "playing" state, automatic resume, network or analytics.
+    window.addEventListener('pagehide', () => {
+      try {
+        sessionStorage.removeItem(NAV_KEY);
+        if (pendingNavigation && Date.now() - pendingNavigation.at < 5000) {
+          sessionStorage.setItem(NAV_KEY, JSON.stringify(pendingNavigation));
+        }
+      } catch {}
+      pendingNavigation = null;
+      release();
+    });
+    window.addEventListener('pageshow', event => {
+      // Back/forward cache restores the old context paused, never a stale handoff.
+      if (event.persisted) {
+        pendingNavigation = null;
+        try { sessionStorage.removeItem(NAV_KEY); } catch {}
+        release();
+      }
+    });
+    if (handoff && !document.hidden) void start(true);
+    handoff = null;
+    // No network, analytics, permanent playing preference or navigation interception.
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, {once: true});
   else mount();
