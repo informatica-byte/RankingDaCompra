@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-23T15:24:24.156Z",
+  "generatedAt": "2026-10-23T15:31:04.111Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -6580,6 +6580,30 @@
       "precoConferenciaId": "7a5e0031-ae40-428d-b517-bbaf10cbbd9c",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 1923.53,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB6778555692",
+      "titulo": "SSD Interno PRODRIVE 240GB 2.5\" SATA III PROSATA301/240G",
+      "comentario": "SSD Interno PRODRIVE 240GB 2.5\" SATA III PROSATA301/240G. Interface SATA III com taxa de transferência de até 60 GB/s. Velocidade de leitura máxima de 550 MB/s. Velocidade de gravação máxima de 500 MB/s. Algoritmo de Wear Leveling que prolonga a vida útil do SSD. SSD durável e resistente a choques, sem ruído. Marca: PRODRIVE. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "categoria": "informatica",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_950511-MLA100361322506_122025-F.jpg",
+      "preco": "264,99",
+      "precoAnterior": "303,00",
+      "precoPromocional": "264,99",
+      "nota": "",
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-23",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-24T02:30:23.312Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-23T15:30:35.748Z",
+      "precoConferenciaId": "67deffeb-1060-436f-a515-c6600f59765f",
+      "precoConferenciaCampo": "precoPromocional",
+      "precoConferenciaValor": 264.99,
       "pros": "",
       "contras": "",
       "notaInformada": ""
