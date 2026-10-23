@@ -65,6 +65,7 @@
       </section>
       <section id="app">
         <div id="appcheck-diagnostico-mobile" class="card" hidden></div>
+        <div id="leituras-diagnostico-mobile" class="card"></div>
 <div id="best-choices-mobile" class="card"></div>
         <div class="card">
           <div class="etapa">Publicação expressa</div>
@@ -178,6 +179,7 @@
       </section>
     </main>
     <script src="/appcheck-local-diagnostics.js?v=20261022-1"></script>
+    <script src="/admin-read-economy.js?v=20261023-1"></script>
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
     <script src="/product-save-safety.js?v=20261015-2"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
@@ -193,7 +195,7 @@
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
       import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app-check.js";
       import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-      import { getFirestore, collection, getDocs, query, where, limit, orderBy, addDoc, serverTimestamp, doc, getDoc, setDoc, updateDoc, deleteDoc, runTransaction, arrayUnion } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+      import { getFirestore, collection, getDocs, getDocsFromServer, query, where, limit, orderBy, addDoc, serverTimestamp, doc, getDoc, setDoc, updateDoc, deleteDoc, runTransaction, arrayUnion } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
       import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-ai.js";
       const cfg = {
           apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
@@ -221,6 +223,12 @@
         modelRapido = getGenerativeModel(mobileAI, { model: "gemini-3.5-flash-lite", tools: [{ urlContext: {} }] }),
         modelReserva = getGenerativeModel(mobileAI, { model: "gemini-3.7-flash", tools: [{ urlContext: {} }] }),
         $ = (id) => document.getElementById(id);
+      const economiaLeiturasMovel = window.RDCAdminReadEconomy.create({
+        session: () => auth.currentUser?.uid, container: $("leituras-diagnostico-mobile")
+      });
+      function lerProdutosParaModulosMovel(fresh = false) {
+        return economiaLeiturasMovel.read('produtos', () => getDocsFromServer(collection(db, 'produtos')), { fresh, ttl: 60000 });
+      }
       let cats = [],
         resultado = null;
       function msg(id, texto, tipo = "") {
@@ -282,7 +290,7 @@
           autorizarOfertaExistenteMobile();
           const cached = filaPrecosDados?.todos || rankingDadosMovel?.todos || produtosRelampagoCacheMobile;
           if (cached) return cached;
-          const snapshot = await getDocs(collection(db, "produtos"));
+          const snapshot = await lerProdutosParaModulosMovel();
           produtosRelampagoCacheMobile = snapshot.docs.map(item => ({ ...item.data(), id: item.id }));
           return produtosRelampagoCacheMobile;
         },
@@ -2128,7 +2136,9 @@
         return /^https:\/\/rankingdacompra\.com\.br\/produto\//i.test(u) ? u : "https://rankingdacompra.com.br/produto/" + encodeURIComponent(String(p.id)) + "-20260810-1.html";
       }
       async function rankingCarregarDados(somentePrecos = false) {
-        if (rankingDadosMovel) return rankingDadosMovel;
+        if (rankingDadosMovel && !somentePrecos) return rankingDadosMovel;
+        const uid = auth.currentUser?.uid;
+        if (!uid) throw Error('Entre novamente no painel.');
         if (!somentePrecos) msg("ranking-status", "Carregando produtos e interesse dos últimos sete dias...");
         const inicio = new Date();
         inicio.setDate(inicio.getDate() - 6);
@@ -2138,7 +2148,8 @@
           month: "2-digit",
           day: "2-digit",
         }).format(inicio);
-        const [ps, ms] = await Promise.all([getDocs(collection(db, "produtos")), obterMetricasMovel(chave)]);
+        const [ps, ms] = await Promise.all([lerProdutosParaModulosMovel(somentePrecos), obterMetricasMovel(chave)]);
+        if (auth.currentUser?.uid !== uid) throw Error('A sessão mudou. Carregue novamente o painel.');
         rankingDadosMovel = {
           todos: ps.docs.map((d) => ({ id: d.id, ...d.data() })).filter((p) => p.sistema !== true && String(p.titulo || "").trim()),
           produtos: ps.docs.map((d) => ({ id: d.id, ...d.data() })).filter(rankingElegivel),
@@ -2153,7 +2164,7 @@
         metricasMovelLeitor ||= window.RankingMetricasResumo.criarLeitor({
           diaAtual: hoje,
           armazenamento: localStorage,
-          lerDocumentos: desde => getDocs(query(collection(db, "visitas"), where("dia", ">=", desde))),
+          lerDocumentos: desde => economiaLeiturasMovel.read('metricas', () => getDocs(query(collection(db, "visitas"), where("dia", ">=", desde)))),
         });
         metricasMovelPromise = metricasMovelLeitor.ler(forcar).then(snapshot => {
           window.RankingMetricasResumo.exibir(snapshot);
@@ -2685,7 +2696,7 @@
         void focusMobileLoad();
       };
       async function carregar() {
-        const s = await getDocs(query(collection(db, "categorias"), orderBy("criadoEm", "asc")));
+        const s = await economiaLeiturasMovel.read('categorias', () => getDocs(query(collection(db, "categorias"), orderBy("criadoEm", "asc"))));
         cats = s.docs.map((d) => ({ id: d.id, nome: d.data().nome || d.id }));
         $("categoria").innerHTML = '<option value="" selected disabled>Selecione a categoria</option>' + cats.map((c) => '<option value="' + rankingEsc(c.id) + '">' + rankingEsc(c.nome) + "</option>").join("");
         if (!cats.length) throw Error("Nenhuma categoria cadastrada.");
@@ -2697,7 +2708,10 @@
           saveConfig:settings=>{if(!auth.currentUser)throw Error('Sessão encerrada.');return setDoc(doc(db,'configuracoes','site'),settings,{merge:true});}};
       });
       onAuthStateChanged(auth, async (u) => {
-        if (!u) { ofertasRelampagoExistentesMovel.reset(); produtosRelampagoCacheMobile = null; }
+        if (!u) {
+          ofertasRelampagoExistentesMovel.reset(); produtosRelampagoCacheMobile = null;
+          economiaLeiturasMovel.reset(); rankingDadosMovel = null;
+        }
         $("login").style.display = u ? "none" : "block";
         $("app").style.display = u ? "block" : "none";
         if (u)

@@ -190,6 +190,7 @@
     <!-- DASHBOARD -->
     <div id="admin-content">
         <div class="painel" id="appcheck-diagnostico-dashboard" hidden></div>
+        <div class="painel" id="leituras-diagnostico-dashboard"></div>
 
         <section class="painel painel-consumo" aria-labelledby="consumo-titulo">
             <h2 id="consumo-titulo">⛽ Tanque de leituras do Firestore</h2>
@@ -462,6 +463,7 @@
 
     <!-- SDKs do Firebase -->
     <script src="/appcheck-local-diagnostics.js?v=20261022-1"></script>
+    <script src="/admin-read-economy.js?v=20261023-1"></script>
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-dashboard'), {page:'dashboard'});</script>
     <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
@@ -1109,6 +1111,10 @@ FORMATO:
         }
         const auth = firebase.auth();
         const db = firebase.firestore();
+        const economiaLeiturasDashboard = window.RDCAdminReadEconomy.create({
+            session: () => auth.currentUser?.uid,
+            container: document.getElementById('leituras-diagnostico-dashboard')
+        });
 
         const loginContent = document.getElementById('login-content');
         const adminContent = document.getElementById('admin-content');
@@ -1219,6 +1225,8 @@ FORMATO:
                 });
             } else {
                 pausarListenersAdmin();
+                economiaLeiturasDashboard.reset();
+                snapshotProdutosBackup = null; snapshotCategoriasBackup = null;
                 ofertasRelampagoExistentesDashboard.reset();
                 loginContent.style.display = 'block';
                 adminContent.style.display = 'none';
@@ -1247,13 +1255,29 @@ FORMATO:
         async function obterMetricasPainel(forcar = false) {
             metricasPainelLeitor ||= RankingMetricasResumo.criarLeitor({
                 diaAtual: dataBrasil,
-                lerDocumentos: desde => db.collection('visitas').where('dia', '>=', desde).get()
+                lerDocumentos: desde => economiaLeiturasDashboard.read('metricas', () => db.collection('visitas').where('dia', '>=', desde).get())
             });
             const snapshot = await metricasPainelLeitor.ler(forcar);
             RankingMetricasResumo.exibir(snapshot);
             return snapshot;
         }
 
+        // O comparativo usa os mesmos snapshots vivos da lista e o resumo de
+        // métricas já consultado; não relê três coleções inteiras ao abrir.
+        window.RDCAdminReadAccess = {
+            products: async () => snapshotProdutosBackup
+                ? economiaLeiturasDashboard.reuse('produtos', snapshotProdutosBackup)
+                : economiaLeiturasDashboard.read('produtos', () => db.collection('produtos').get()),
+            categories: async () => snapshotCategoriasBackup
+                ? economiaLeiturasDashboard.reuse('categorias', snapshotCategoriasBackup)
+                : economiaLeiturasDashboard.read('categorias', () => db.collection('categorias').get()),
+            metrics: async desde => {
+                if (!auth.currentUser) throw Error('Entre novamente no painel.');
+                const snapshot = await obterMetricasPainel();
+                const docs = snapshot.docs.filter(item => String(item.data().dia || '') >= desde);
+                return { docs, forEach: callback => docs.forEach(callback) };
+            }
+        };
         async function carregarMetricasVisitas(forcar = false) {
             const botao = document.getElementById('btn-atualizar-visitas');
             botao.disabled = true;
@@ -1867,7 +1891,9 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         // público (index.html) enxergue exatamente as mesmas categorias.
         function carregarCategorias() {
             if (pararCategoriasAdmin) return;
+            economiaLeiturasDashboard.watch('categorias');
             pararCategoriasAdmin = db.collection("categorias").orderBy("criadoEm", "asc").onSnapshot(snapshot => {
+                economiaLeiturasDashboard.observe('categorias', snapshot, true);
                 snapshotCategoriasBackup = snapshot;
                 const select = document.getElementById('categoria');
                 const listaCatAdmin = document.getElementById('lista-categorias-admin');
@@ -3238,7 +3264,9 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
         function carregarProdutos() {
             if (pararProdutosAdmin) return;
+            economiaLeiturasDashboard.watch('produtos');
             pararProdutosAdmin = db.collection("produtos").orderBy("dataCadastro", "desc").onSnapshot(snapshot => {
+                economiaLeiturasDashboard.observe('produtos', snapshot, true);
                 snapshotProdutosBackup = snapshot;
                 statusMercadoLivreAdminPronto.then(() => {
                     snapshot.forEach(doc => {
@@ -3408,7 +3436,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
   <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <script defer src="/seo-opportunities.js?v=20261004-2"></script>
   <script src="/promotion-title.js?v=20261005-1"></script>
-  <script defer src="/growth-tools.js?v=20261012-audit-4&review=20261019&metrics=20261021-products&history=20261022-1"></script>
+  <script defer src="/growth-tools.js?v=20261012-audit-4&review=20261019&metrics=20261021-products&history=20261022-1&reads=20261023-1"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
 <script>

@@ -65,6 +65,14 @@ function adapterFixture(panel){
  const list=()=>({docs:[...records].map(([id,data])=>({id,data:()=>data}))});
  const db={collection:()=>({doc:reference,get:async()=>{counts.list++;return list();}}),runTransaction:async fn=>fn({get:async ref=>snapshot(ref.id),update:(ref,changes)=>{counts.update++;records.set(ref.id,{...records.get(ref.id),...changes});}})};
  Object.assign(context,{auth:{currentUser:{uid:'owner'}},db,crypto:{randomUUID:()=> 'fixture-confirmation'},firebase:{firestore:{FieldValue:{serverTimestamp:()=>new Date(now)}}},serverTimestamp:()=>new Date(now),getDocs:async()=>{counts.list++;return list();},collection:()=>({}),doc:(_db,_collection,id)=>reference(id),getDoc:async ref=>{counts.read++;return snapshot(ref.id);},runTransaction:(_db,fn)=>db.runTransaction(fn),$:()=>({}),document:{getElementById:()=>({})},window:{RDCExistingFlashOffer:{...existing,mount:(_host,h)=>{hooks=h;return{reset(){},isBusy:()=>false};}},RDCPricePublication:{saved(){}}},automacaoPrecosAtiva:false,filaPrecosSalvando:false,publicacaoExpressaEmAndamento:false,cadastroExistenteExpressa:{isBusy:()=>false},filaPrecosDados:null,rankingDadosMovel:null,salvandoProduto:false,conferenciaPrecoIAEmAndamento:false,correcaoLoteEmAndamento:false,snapshotProdutosBackup:null,produtosCentralAtual:[]});
+ if(mobile){
+   context.getDocsFromServer=context.getDocs;
+   runInNewContext(readFileSync('admin-read-economy.js','utf8'),context);
+   context.economiaLeiturasMovel=context.window.RDCAdminReadEconomy.create({session:()=>context.auth.currentUser?.uid});
+   const helperStart=html.indexOf('      function lerProdutosParaModulosMovel('),helperEnd=html.indexOf('      let cats =',helperStart);
+   assert.ok(helperStart>0&&helperEnd>helperStart);
+   runInNewContext(html.slice(helperStart,helperEnd),context);
+ }
  runInNewContext(source,context);
  return{source,hooks,records,counts,context};
 }

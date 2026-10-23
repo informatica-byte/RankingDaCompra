@@ -2061,9 +2061,9 @@
       timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit"
     }).format(start);
     const [productsSnapshot, categoriesSnapshot, metricsSnapshot, publishedSnapshot] = await Promise.all([
-      database.collection("produtos").get(),
-      database.collection("categorias").get(),
-      database.collection("visitas").where("dia", ">=", startKey).get(),
+      window.RDCAdminReadAccess ? window.RDCAdminReadAccess.products() : database.collection("produtos").get(),
+      window.RDCAdminReadAccess ? window.RDCAdminReadAccess.categories() : database.collection("categorias").get(),
+      window.RDCAdminReadAccess ? window.RDCAdminReadAccess.metrics(startKey) : database.collection("visitas").where("dia", ">=", startKey).get(),
       database.collection(CONFIG_COLLECTION).doc(WEEKLY_COMPARISON_DOC).get()
     ]);
     const categories = {};

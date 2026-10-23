@@ -96,6 +96,8 @@ test('segunda abertura da fila reutiliza métricas compactas sem consultar event
     getDocs:async()=>{queries++;return {docs:[{id:'1',data:()=>({dia:'2026-10-06',tipo:'visualizacao_produto',produtoId:'a'})}]};},
     query:(...args)=>args,collection:()=>null,where:(...args)=>args,db:{},msg:()=>{},
     rankingTipoMetrica:e=>e.tipo,rankingMetricaProdutoId:e=>e.produtoId,rankingMetricaCanal:()=>''});
+  vm.runInContext(read('admin-read-economy.js'),ctx);
+  ctx.economiaLeiturasMovel=ctx.window.RDCAdminReadEconomy.create({session:()=> 'fixture-owner'});
   vm.runInContext(code,ctx);
   assert.equal((await ctx.obterMetricasMovel('2026-09-30')).docs.length,1);
   assert.equal((await ctx.obterMetricasMovel('2026-09-30')).docs.length,1);

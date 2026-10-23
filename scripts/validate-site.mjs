@@ -319,7 +319,13 @@ const growthToolsVersionPattern = /growth-tools\.js\?v=([^"'<>]+)/;
 const growthToolsVersions = [homeHtml, dashboardHtml, sitemapGenerator]
   // The generation normalizer adds this exact display-history cache suffix.
   // Core/editorial/metrics versions must still match the generation template.
-  .map((source) => (source.match(growthToolsVersionPattern)?.[1] || "").replace(/&history=20261022-1$/, ""));
+  .map((source, index) => {
+    let version = source.match(growthToolsVersionPattern)?.[1] || "";
+    // Apenas o painel ganhou coordenação de leituras; a versão pública/base
+    // continua idêntica e não precisa provocar uma releitura do Firestore.
+    if (index === 1) version = version.replace(/&reads=20261023-1$/, "");
+    return version.replace(/&history=20261022-1$/, "");
+  });
 if (growthToolsVersions.some((version) => !version) || new Set(growthToolsVersions).size !== 1) {
   fail("index.html, dashboard.html e scripts/generate-sitemap.mjs: versões de cache das ferramentas não estão alinhadas");
 }
