@@ -1,4 +1,19 @@
 export const PAGE_SIZE = 10;
+export const QUEUE_QUOTA_BACKOFF_MS = 2 * 60 * 60 * 1000;
+
+// Metadados públicos e limitados: nenhum corpo de erro, URL ou credencial.
+// Um estado inválido/futuro demais nunca impede a fila indefinidamente.
+export function queueQuotaRetry(state, now = Date.now()) {
+  const failure = state?.readFailure;
+  const at = Date.parse(failure?.at), retry = Date.parse(failure?.retryAfter);
+  if (failure?.http !== 429 || !Number.isFinite(at) || !Number.isFinite(retry)
+    || at > now || retry <= now || retry - at !== QUEUE_QUOTA_BACKOFF_MS) return null;
+  return { http: 429, at: new Date(at).toISOString(), retryAfter: new Date(retry).toISOString() };
+}
+
+export function queueQuotaFailure(now = Date.now()) {
+  return { http: 429, at: new Date(now).toISOString(), retryAfter: new Date(now + QUEUE_QUOTA_BACKOFF_MS).toISOString() };
+}
 
 export function resolutionSummary(ids, results, maxAttempts = 3) {
   const current = ids.map(id => results[id]).filter(Boolean);

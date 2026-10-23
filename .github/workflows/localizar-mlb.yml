@@ -88,8 +88,16 @@ jobs:
 
       - name: Sinalizar dados não obtidos após preservar os resultados
         if: steps.resolver.outputs.incomplete == 'true'
+        env:
+          QUEUE_STATUS: ${{ steps.resolver.outputs.queue_status }}
+          RETRY_AFTER: ${{ steps.resolver.outputs.retry_after }}
+          FAILED_COUNT: ${{ steps.resolver.outputs.failed_count }}
         run: |
-          echo "::error::O localizador não concluiu a obtenção dos dados. Falhas em pedidos: ${{ steps.resolver.outputs.failed_count }}. Consulte o resumo da consulta/fila. Resultados preservados; use revisão manual para pedidos sem dados."
+          if [[ "$QUEUE_STATUS" == "quota" || "$QUEUE_STATUS" == "deferred" ]]; then
+            echo "::error::Fila Firestore adiada por HTTP 429 (limite de uso). Próxima tentativa não antes de $RETRY_AFTER. Fila não confirmada como vazia. Não edite produtos por esta falha; resultados preservados."
+          else
+            echo "::error::O localizador não concluiu a obtenção dos dados. Falhas em pedidos: $FAILED_COUNT. Consulte o resumo da consulta/fila. Resultados preservados; use revisão manual para pedidos sem dados."
+          fi
           exit 1
 
 

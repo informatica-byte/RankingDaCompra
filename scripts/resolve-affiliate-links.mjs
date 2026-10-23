@@ -1,7 +1,7 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { readFile, writeFile, appendFile } from "node:fs/promises";
-import { queueQuery, nextCursor, pendingRequests, resolutionSummary } from "./localizer-queue.mjs";
+import { queueQuery, nextCursor, pendingRequests, resolutionSummary, queueQuotaRetry, queueQuotaFailure } from "./localizer-queue.mjs";
 import { LocalizerError, recordResponse, recordNetworkFailure, recordPageChallenge, resolveQueuedRequests, diagnosticTable } from "./localizer-diagnostics.mjs";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
@@ -420,7 +420,10 @@ async function requests(cursor = null) {
       body: JSON.stringify(structuredQuery),
     });
     const payload = await response.json();
-    const documents = (Array.isArray(payload) ? payload : []).map((row) => row.document).filter(Boolean);
+    if (!Array.isArray(payload) || payload.some(row => !row || typeof row !== 'object' || row.error)) {
+      throw new Error('Fila Firebase: formato de resposta inválido; não é possível confirmar ausência de pedidos.');
+    }
+    const documents = payload.map((row) => row.document).filter(Boolean);
     const items = documents.map((document) => {
       const data = { id: document.name.split("/").pop() };
       for (const [key, value] of Object.entries(document.fields || {})) data[key] = field(value);
@@ -430,7 +433,7 @@ async function requests(cursor = null) {
   } catch (error) {
     if (/HTTP 429|cota temporariamente esgotada/i.test(String(error?.message || error))) {
       console.warn("Fila Firebase: cota temporariamente esgotada; esta parte da fila não pôde ser consultada. Resultados preservados.");
-      return { items: [], cursor, readSucceeded: false };
+      return { items: [], cursor, readSucceeded: false, http: 429 };
     }
     throw error;
   }
@@ -608,8 +611,12 @@ payload.resultados ||= {};
 
 
 const priorQueueState = JSON.stringify(payload.queueState || null);
-const head = await requests();
+const deferredQuota = queueQuotaRetry(payload.queueState);
+const head = deferredQuota
+  ? { items: [], cursor: payload.queueState?.cursor, readSucceeded: false, http: 429 }
+  : await requests();
 let queueReadSucceeded = head.readSucceeded;
+let queueReadHttp = head.http;
 let queue = pendingRequests(head.items, payload.resultados, MAX_REQUEST_ATTEMPTS);
 // Duas consultas limitadas, no máximo 20 documentos por execução. A segunda
 // avança a paginação antiga mesmo quando os dez recentes já foram resolvidos.
@@ -618,16 +625,22 @@ if (head.readSucceeded) {
   if (cursor) {
     const older = await requests(cursor);
     queueReadSucceeded = queueReadSucceeded && older.readSucceeded;
+    if (!older.readSucceeded) queueReadHttp = older.http;
     const backlog = pendingRequests(older.items, payload.resultados, MAX_REQUEST_ATTEMPTS);
     const candidates = [...backlog.slice(0, 5), ...queue.slice(0, 5), ...backlog.slice(5), ...queue.slice(5)];
     queue = [...new Map(candidates.map(request => [request.id, request])).values()].slice(0, 10);
-    if (older.readSucceeded) payload.queueState = { cursor: older.cursor };
-  } else payload.queueState = { cursor: null };
+    if (older.readSucceeded) payload.queueState = { ...payload.queueState, cursor: older.cursor };
+  } else payload.queueState = { ...payload.queueState, cursor: null };
+}
+if (queueReadSucceeded && payload.queueState) delete payload.queueState.readFailure;
+else if (queueReadHttp === 429 && !deferredQuota) {
+  payload.queueState = { ...payload.queueState, readFailure: queueQuotaFailure() };
 }
 
 
 if (!queue.length) {
-  console.log("Nenhum pedido MLB processável nesta janela; a paginação continua no próximo ciclo.");
+  if (!queueReadSucceeded) console.warn('Fila não consultada por completo (HTTP 429). Isto não confirma fila vazia nem anúncio indisponível.');
+  else console.log("Nenhum pedido MLB processável nesta janela; a paginação continua no próximo ciclo.");
 } else {
   const batch = await resolveQueuedRequests(queue, payload.resultados, resolveRequest, {
     onResult: (request, result) => {
@@ -647,11 +660,17 @@ if (queue.length || JSON.stringify(payload.queueState || null) !== priorQueueSta
 // Encerrar o processo não significa ter conseguido consultar o Mercado Livre.
 // Os resultados devem ser publicados antes de sinalizar a conferência parcial.
 const summary = resolutionSummary(queue.map(request => request.id), payload.resultados, MAX_REQUEST_ATTEMPTS);
+const queueStatus = queueReadSucceeded ? 'read' : deferredQuota ? 'deferred' : queueReadHttp === 429 ? 'quota' : 'incomplete';
+const retryAfter = queueQuotaRetry(payload.queueState)?.retryAfter || '';
+const queueNotice = queueReadSucceeded ? '' : queueReadHttp === 429
+  ? `A fila do Firestore retornou HTTP 429 (limite de uso). ${deferredQuota ? 'Nenhuma nova leitura da fila foi feita nesta execução.' : 'Novas leituras da fila serão adiadas para reduzir tentativas sem resultado.'} Próxima tentativa automática não antes de ${retryAfter}. Isto não confirma ausência de pedidos nem anúncio indisponível. Não é necessário editar produtos por causa desta falha; preços, cadastros, tentativas anteriores e posição da fila permanecem preservados.`
+  : 'A fila não pôde ser consultada por completo; isto não confirma ausência de pedidos.';
 console.log(`Localizador: ${summary.processed} processados; ${summary.succeeded} resolvidos; ${summary.failed} falhas nesta execução; ${summary.exhausted} pedidos com tentativas esgotadas no histórico.`);
+if (queueNotice) console.warn(queueNotice);
 if (summary.failed) console.warn('::warning::Conferência parcial: dados indisponíveis no Mercado Livre. Os preços e cadastros existentes não foram alterados.');
-if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `failed_count=${summary.failed}\nincomplete=${summary.failed > 0 || !queueReadSucceeded}\n`);
+if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `failed_count=${summary.failed}\nincomplete=${summary.failed > 0 || !queueReadSucceeded}\nqueue_status=${queueStatus}\nretry_after=${retryAfter}\n`);
 if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY,
-  `## Resultado real do localizador\n\nProcessados: ${summary.processed}. Resolvidos: ${summary.succeeded}. Falhas nesta execução: ${summary.failed}. Pedidos com tentativas esgotadas no histórico: ${summary.exhausted}.\n\n${queueReadSucceeded ? '' : 'A fila não pôde ser consultada por completo; isto não confirma ausência de pedidos.\n\n'}Nenhum preço/cadastro foi alterado. Pedidos com três tentativas esgotadas precisam de revisão do link ou preenchimento manual no painel; não são repetidos indefinidamente.\n\n${diagnosticTable(queue, payload.resultados)}`);
+  `## Resultado real do localizador\n\nProcessados: ${summary.processed}. Resolvidos: ${summary.succeeded}. Falhas em pedidos nesta execução: ${summary.failed}. Pedidos com tentativas esgotadas no histórico: ${summary.exhausted}.\n\n${queueNotice ? queueNotice + '\n\n' : ''}Nenhum preço/cadastro foi alterado. Pedidos com três tentativas esgotadas precisam de revisão do link ou preenchimento manual no painel; não são repetidos indefinidamente.\n\n${diagnosticTable(queue, payload.resultados)}`);
 
 
 

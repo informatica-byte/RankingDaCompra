@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
-import { pendingRequests, resolutionSummary } from './localizer-queue.mjs';
+import { pendingRequests, resolutionSummary, queueQuotaRetry, queueQuotaFailure } from './localizer-queue.mjs';
 import { LocalizerError, recordPageChallenge, recordNetworkFailure, resolveQueuedRequests, diagnosticTable } from './localizer-diagnostics.mjs';
 
 const source = await readFile(new URL('./resolve-affiliate-links.mjs', import.meta.url), 'utf8');
@@ -72,22 +72,26 @@ test('links repetidos do mesmo anúncio não criam ambiguidade artificial', asyn
   assert.deepEqual(consulted, ['MLB4359093019']);
 });
 
-async function runQueue({ headSucceeded = true, olderSucceeded = true, recentPending = false } = {}) {
+async function runQueue({ headSucceeded = true, olderSucceeded = true, recentPending = false, readFailure, failProduct = false } = {}) {
   const priorCursor = [{ timestampValue: '2026-10-11T12:00:00Z' }, { referenceValue: 'projects/test/documents/mlbSolicitacoes/old' }];
   const payload = { resultados: { preserved: { status: 'ok', precoAtual: 99, resolvidoEm: '2026-10-10T12:00:00Z' } }, queueState: { cursor: priorCursor } };
+  if (readFailure) payload.queueState.readFailure = readFailure;
   const output = new Map();
   const calls = [];
   const tail = source.slice(source.indexOf('const priorQueueState ='));
   await runInNewContext(`(async () => { ${tail} })();`, {
     payload, OUTPUT: 'memory-results.json', MAX_REQUEST_ATTEMPTS: 3,
-    pendingRequests, resolutionSummary, resolveQueuedRequests, diagnosticTable,
+    pendingRequests, resolutionSummary, resolveQueuedRequests, diagnosticTable, queueQuotaRetry, queueQuotaFailure,
     requests: async cursor => {
       calls.push(cursor);
       return calls.length === 1
-        ? { readSucceeded: headSucceeded, cursor: priorCursor, items: recentPending ? [{ id: 'new', status: 'pendente', link: 'https://meli.la/new', criadoEm: '2026-10-12T12:00:00Z' }] : [] }
-        : { readSucceeded: olderSucceeded, cursor: null, items: [] };
+        ? { readSucceeded: headSucceeded, http: headSucceeded ? undefined : 429, cursor: priorCursor, items: recentPending ? [{ id: 'new', status: 'pendente', link: 'https://meli.la/new', criadoEm: '2026-10-12T12:00:00Z' }] : [] }
+        : { readSucceeded: olderSucceeded, http: olderSucceeded ? undefined : 429, cursor: null, items: [] };
     },
-    resolveRequest: async request => ({ status: 'ok', mlb: 'MLB4359093019', precoAtual: 32.15, linkOriginal: request.link }),
+    resolveRequest: async request => {
+      if (failProduct) throw new LocalizerError({ events: [{ stage: 'anuncio', http: 403 }] });
+      return { status: 'ok', mlb: 'MLB4359093019', precoAtual: 32.15, linkOriginal: request.link };
+    },
     writeFile: async (path, content) => output.set(path, content),
     appendFile: async (path, content) => output.set(path, (output.get(path) || '') + content),
     process: { env: { GITHUB_OUTPUT: 'memory-output', GITHUB_STEP_SUMMARY: 'memory-summary' } },
@@ -103,15 +107,19 @@ test('429 da segunda página marca parcial, conserva cursor/histórico e mantém
   assert.deepEqual(payload.resultados.preserved, { status: 'ok', precoAtual: 99, resolvidoEm: '2026-10-10T12:00:00Z' });
   assert.equal(payload.resultados.new.status, 'ok');
   assert.match(output.get('memory-output'), /failed_count=0\nincomplete=true/);
-  assert.match(output.get('memory-summary'), /não pôde ser consultada por completo/);
+  assert.match(output.get('memory-summary'), /Firestore retornou HTTP 429/);
+  assert.match(output.get('memory-output'), /queue_status=quota/);
+  assert.ok(queueQuotaRetry(payload.queueState));
   assert.ok(output.has('memory-results.json'));
 });
 
 test('fila vazia com segunda página não lida não é declarada completamente consultada', async () => {
-  const { output, calls } = await runQueue({ olderSucceeded: false });
+  const { output, calls, payload, priorCursor } = await runQueue({ olderSucceeded: false });
   assert.equal(calls.length, 2);
   assert.match(output.get('memory-output'), /incomplete=true/);
-  assert.equal(output.has('memory-results.json'), false);
+  assert.equal(output.has('memory-results.json'), true, 'Persistir apenas a espera de cota, sem inventar respostas.');
+  assert.deepEqual(payload.queueState.cursor, priorCursor);
+  assert.deepEqual(Object.keys(payload.resultados), ['preserved']);
 });
 
 test('primeira página falhando permanece parcial sem fazer leitura adicional', async () => {
@@ -126,4 +134,56 @@ test('duas leituras concluídas preservam estado de sucesso e avançam o cursor'
   assert.equal(payload.queueState.cursor, null);
   assert.match(output.get('memory-output'), /incomplete=false/);
   assert.doesNotMatch(output.get('memory-summary'), /não pôde ser consultada/);
+});
+
+test('espera de cota não lê Firestore, não processa produtos e não estende prazo ou cursor', async () => {
+  const readFailure = queueQuotaFailure(Date.now() - 60000);
+  const { payload, output, calls, priorCursor } = await runQueue({ readFailure, recentPending: true });
+  assert.equal(calls.length, 0);
+  assert.deepEqual(payload.queueState.cursor, priorCursor);
+  assert.deepEqual(payload.queueState.readFailure, readFailure);
+  assert.deepEqual(Object.keys(payload.resultados), ['preserved']);
+  assert.equal(output.has('memory-results.json'), false);
+  assert.match(output.get('memory-output'), /incomplete=true\nqueue_status=deferred/);
+  assert.match(output.get('memory-summary'), /Nenhuma nova leitura da fila foi feita/);
+  assert.doesNotMatch(output.get('memory-summary'), /fila vazia|Todos os pedidos resolvidos/);
+});
+
+test('espera expirada retoma a leitura e remove o aviso depois de sucesso', async () => {
+  const readFailure = queueQuotaFailure(Date.now() - 3 * 60 * 60 * 1000);
+  const { payload, output, calls } = await runQueue({ readFailure, recentPending: true });
+  assert.equal(calls.length, 2);
+  assert.equal(payload.queueState.readFailure, undefined);
+  assert.equal(payload.resultados.new.status, 'ok');
+  assert.match(output.get('memory-output'), /incomplete=false\nqueue_status=read/);
+});
+
+test('falha do anúncio continua separada da cota e não agenda espera do Firestore', async () => {
+  const { payload, output } = await runQueue({ recentPending: true, failProduct: true });
+  assert.match(output.get('memory-output'), /failed_count=1\nincomplete=true\nqueue_status=read/);
+  assert.equal(payload.queueState.readFailure, undefined);
+  assert.equal(payload.resultados.new.status, 'erro');
+  assert.match(output.get('memory-summary'), /anuncio: HTTP 403/);
+});
+
+test('metadados de espera só aceitam HTTP 429 e duas horas, sem texto livre nem prazo eterno', () => {
+  const now = Date.now(), failure = queueQuotaFailure(now - 1);
+  assert.deepEqual(queueQuotaRetry({ readFailure: { ...failure, token: 'NEVER-PUBLISH' } }, now), failure);
+  assert.equal(queueQuotaRetry({ readFailure: { ...failure, http: 403 } }, now), null);
+  assert.equal(queueQuotaRetry({ readFailure: { ...failure, retryAfter: '2099-01-01T00:00:00Z' } }, now), null);
+  assert.equal(queueQuotaRetry({ readFailure: queueQuotaFailure(now + 60000) }, now), null);
+  assert.equal(queueQuotaRetry({ readFailure: queueQuotaFailure(now - 3 * 3600000) }, now), null);
+  assert.equal(queueQuotaRetry({ readFailure: { at: 'invalid', retryAfter: 'invalid', http: 429 } }, now), null);
+});
+
+test('leitura de fila rejeita corpo inválido sem declarar que a fila está vazia', async () => {
+  const requestSource = source.slice(source.indexOf('async function requests(cursor'), source.indexOf('async function dumpViaMirror'));
+  for (const response of [{ error: { code: 429 } }, [{ error: { code: 403 } }], [null]]) {
+    const request = runInNewContext(requestSource + '\nrequests;', {
+      FIRESTORE: 'https://test.invalid', queueQuery: () => ({}), nextCursor: () => null,
+      fetchFirebase: async () => ({ json: async () => response }),
+      console: { warn() {} },
+    });
+    await assert.rejects(request(), /formato de resposta inválido/);
+  }
 });
