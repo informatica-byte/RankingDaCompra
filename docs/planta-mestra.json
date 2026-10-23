@@ -442,5 +442,17 @@
   "publicIntegrity": {
     "offline": "All HTML, scripts, JSON-LD and local references are validated during CI.",
     "online": "Manual workflow checks all public page/resource statuses and canonical consistency. Does not query Firestore, use credentials or test real purchases."
+  },
+  "localFirebaseGauge": {
+    "script": "tanque-firebase-local.user.js",
+    "installationPage": "instalar-tanque-firebase.html",
+    "guide": "docs/TANQUE-FIREBASE-LOCAL.md",
+    "test": "scripts/test-tanque-firebase-local.mjs",
+    "mode": "Optional independent Tampermonkey script, not loaded by the site; installation must be verified separately",
+    "source": "Only rendered DOM elements of default Firestore database read total and current quota period in rankingdacompra console",
+    "storage": "Same browser profile, private userscript storage: last day, reads, observed-at timestamp, rounding flag and pause preference; no remote publishing",
+    "writes": "Visual gauge only; no forms, credentials, site storage, Firestore queries, network requests, price changes or daily price robot changes",
+    "freshness": "Pacific quota date, rounded totals marked approximate, unchanged totals do not renew observed timestamp, stale after 45 minutes, missing or old-day data never becomes zero",
+    "cloudMode": "Billing-related 403 workflow stays disabled; no IAM or billing changes"
   }
 }
