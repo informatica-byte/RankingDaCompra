@@ -10,7 +10,7 @@
       const details = doc.createElement('details'), title = doc.createElement('summary');
       title.textContent = '📉 Leituras deste painel — diagnóstico local';
       const help = doc.createElement('p');
-      help.textContent = 'Conta somente as consultas instrumentadas nesta aba. Documentos retornados pelo SDK não são a cobrança exata: cache, regras e índices podem alterar a contabilização. Sem tokens, dados de produtos, envio à nuvem ou novas consultas. Reabrir a página zera este resumo.';
+      help.textContent = 'Conta somente as consultas instrumentadas nesta aba. Abas compatíveis do dashboard compartilham a lista em memória na mesma sessão: recebimentos de outra aba contam como reaproveitamento, não como nova consulta. Documentos retornados pelo SDK não são a cobrança exata: cache, regras e índices podem alterar a contabilização. Sem tokens, dados de produtos no diagnóstico, envio à nuvem ou novas consultas. Reabrir a página zera este resumo.';
       output = doc.createElement('pre');
       output.style.cssText = 'white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px';
       details.appendChild(title); details.appendChild(help); details.appendChild(output);
@@ -38,7 +38,8 @@
     function observe(key, snapshot, listener = false) {
       const value = entry(key);
       try {
-        if (!snapshot?.metadata?.fromCache) {
+        if (snapshot?.metadata?.shared) { value.reused++; }
+        else if (!snapshot?.metadata?.fromCache) {
           const docs = listener && typeof snapshot?.docChanges === 'function'
             ? snapshot.docChanges().map(change => change.doc) : snapshot?.docs || [];
           value.documents += docs.filter(doc => !doc.metadata?.hasPendingWrites).length;

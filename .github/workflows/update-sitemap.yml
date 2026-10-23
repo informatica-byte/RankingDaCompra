@@ -22,7 +22,8 @@ on:
       - "scripts/highlight-editorial.mjs"
       - "scripts/manufacturer-specifications.mjs"
       - "scripts/marketplace-field-reviews.mjs"
-      - "scripts/firestore-read-auth.mjs"
+      # Alterações apenas no transporte/autenticação não mudam as páginas.
+      # Não reler o catálogo inteiro só por publicar uma otimização de leitura.
       - "scripts/public-catalogue.mjs"
       - "scripts/public-site-config.mjs"
       - "scripts/generate-best-choices.mjs"
@@ -78,6 +79,9 @@ jobs:
           RDC_FIRESTORE_ACCESS_TOKEN: ${{ steps.firestore-auth.outputs.access_token }}
           RDC_FIRESTORE_AUTH_REQUIRED: "true"
           PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices }}
+          # Nunca restaurar este cache entre publicações: uma nova execução lê
+          # os dados atuais. Só retentativas da mesma execução reaproveitam páginas.
+          RDC_FIRESTORE_READ_CACHE_SCOPE: ${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           if [[ "$PRESERVE_PUBLISHED_PRICES" == "true" ]]; then
             git show HEAD:vitrine-publica.json > "$RUNNER_TEMP/rdc-before-publication.json"

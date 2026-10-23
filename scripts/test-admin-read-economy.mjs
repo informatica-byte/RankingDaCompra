@@ -134,3 +134,11 @@ test('integração mantém transações de segurança, não habilita persistênc
   assert.match(dashboard, /if \(pararProdutosAdmin\) return;/);
   assert.match(dashboard, /read.*20261023-1/);
 });
+
+test('snapshot compartilhado entre abas não é contado como documento relido do servidor', () => {
+  const { api } = boot();
+  api.observe('produtos', { ...snapshot(579), metadata: { shared: true, fromCache: false } }, true);
+  assert.equal(api.summary().produtos.documents, 0);
+  assert.equal(api.summary().produtos.reused, 1);
+  assert.equal(api.summary().produtos.queries, 0);
+});

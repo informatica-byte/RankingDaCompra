@@ -463,7 +463,8 @@
 
     <!-- SDKs do Firebase -->
     <script src="/appcheck-local-diagnostics.js?v=20261022-1"></script>
-    <script src="/admin-read-economy.js?v=20261023-1"></script>
+    <script src="/admin-read-economy.js?v=20261023-1&shared=20261023-2"></script>
+    <script src="/admin-shared-listener.js?v=20261023-1"></script>
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-dashboard'), {page:'dashboard'});</script>
     <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
@@ -1203,6 +1204,18 @@ FORMATO:
         }
 
         let pararProdutosAdmin = null, pararCategoriasAdmin = null, pausaAdminTimer = null;
+        function escutarListaAdmin(colecao, consulta, receber, falhar) {
+            return window.RDCAdminSharedListener.subscribe({
+                session: () => auth.currentUser?.uid || '', collection: colecao,
+                listen: (next, error) => {
+                    economiaLeiturasDashboard.watch(colecao);
+                    return consulta.onSnapshot(next, error);
+                },
+                next: receber, error: falhar,
+                ref: id => db.collection(colecao).doc(id),
+                timestamp: (seconds, nanoseconds) => new firebase.firestore.Timestamp(seconds, nanoseconds)
+            });
+        }
         function pausarListenersAdmin() {
             if (pararProdutosAdmin) pararProdutosAdmin();
             if (pararCategoriasAdmin) pararCategoriasAdmin();
@@ -1912,8 +1925,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         // público (index.html) enxergue exatamente as mesmas categorias.
         function carregarCategorias() {
             if (pararCategoriasAdmin) return;
-            economiaLeiturasDashboard.watch('categorias');
-            pararCategoriasAdmin = db.collection("categorias").orderBy("criadoEm", "asc").onSnapshot(snapshot => {
+            pararCategoriasAdmin = escutarListaAdmin('categorias', db.collection("categorias").orderBy("criadoEm", "asc"), snapshot => {
                 economiaLeiturasDashboard.observe('categorias', snapshot, true);
                 snapshotCategoriasBackup = snapshot;
                 const select = document.getElementById('categoria');
@@ -3285,8 +3297,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
 
         function carregarProdutos() {
             if (pararProdutosAdmin) return;
-            economiaLeiturasDashboard.watch('produtos');
-            pararProdutosAdmin = db.collection("produtos").orderBy("dataCadastro", "desc").onSnapshot(snapshot => {
+            pararProdutosAdmin = escutarListaAdmin('produtos', db.collection("produtos").orderBy("dataCadastro", "desc"), snapshot => {
                 economiaLeiturasDashboard.observe('produtos', snapshot, true);
                 snapshotProdutosBackup = snapshot;
                 statusMercadoLivreAdminPronto.then(() => {

@@ -1,5 +1,10 @@
 // Tokens de execução curta fornecidos por WIF. Nunca lê chaves privadas,
 // grava credenciais, envia tokens a terceiros ou tenta acesso anônimo após 403.
+import { createFirestoreReadCache } from './firestore-read-cache.mjs';
+const cache = createFirestoreReadCache();
+if (cache.enabled) process.once('exit', () => {
+  console.log('Diagnóstico de leituras desta execução (não é faturamento): ' + JSON.stringify(cache.summary()));
+});
 export function firestoreReadRequest(url, options = {}, env = process.env) {
   const target = new URL(url);
   const root = '/v1/projects/rankingdacompra/databases/(default)/documents';
@@ -27,5 +32,5 @@ export function firestoreReadRequest(url, options = {}, env = process.env) {
 
 export function fetchFirestoreRead(url, options = {}) {
   const request = firestoreReadRequest(url, options);
-  return fetch(request.url, request.options);
+  return cache.read(request.url, request.options);
 }
