@@ -41,6 +41,9 @@
         .consumo-status { display: inline-block; padding: 6px 10px; border-radius: 999px; background: #ecf1ed; color: #445d4e; font-size: 12px; font-weight: 800; }
         .consumo-status.atencao { background: #fff1c2; color: #765000; }
         .consumo-status.critico { background: #ffe5e2; color: #a0271b; }
+        .consumo-status.ativo { background: #e0f5e8; color: #075c38; }
+        .consumo-fontes { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0; }
+        .consumo-manual summary { cursor: pointer; color: #3d5145; font-size: 13px; font-weight: 800; padding: 8px 0; }
         .consumo-leituras { margin: 13px 0 8px; color: #163d2d; font-size: 20px; font-weight: 900; font-variant-numeric: tabular-nums; }
         .consumo-secundarias { display: flex; gap: 10px; flex-wrap: wrap; margin: 9px 0; }
         .consumo-secundarias span { border: 1px solid #dce8df; background: white; border-radius: 8px; padding: 7px 9px; color: #3d5145; font-size: 12px; }
@@ -194,7 +197,7 @@
 
         <section class="painel painel-consumo" aria-labelledby="consumo-titulo">
             <h2 id="consumo-titulo">⛽ Tanque de leituras do Firestore</h2>
-            <p class="consumo-subtitulo">Modo manual preservado. O teste automático do Google indicou exigência de faturamento e foi interrompido, sem ativar cobrança.</p>
+            <p class="consumo-subtitulo">O tanque pode receber leituras locais do Tampermonkey. O modo em nuvem permanece desligado, sem ativar cobrança.</p>
             <div class="consumo-layout">
                 <div class="consumo-medidor" id="consumo-medidor" role="img" aria-label="Consumo ainda não medido">
                     <svg viewBox="0 0 240 139" aria-hidden="true" focusable="false">
@@ -214,17 +217,23 @@
                     <p id="consumo-hora" class="consumo-hora">Abra o consumo oficial do Firebase e informe as leituras de hoje.</p>
                 </div>
             </div>
-            <div class="consumo-acoes"><button type="button" id="btn-consumo-automatico" disabled>Automático não ativado</button></div>
+            <div class="consumo-fontes" aria-label="Fontes de atualização do tanque">
+                <span id="consumo-local-status" class="consumo-status" role="status">Verificando tanque via Tampermonkey…</span>
+                <span id="consumo-nuvem-status" class="consumo-status">Modo em nuvem desligado</span>
+            </div>
+            <button type="button" id="btn-consumo-automatico" disabled hidden>Modo em nuvem desligado</button>
+            <details class="consumo-manual"><summary>Registro manual (opcional)</summary>
             <form id="consumo-form" class="consumo-form">
                 <label for="consumo-leituras-informadas">Leituras de hoje no Firebase
                     <input type="number" id="consumo-leituras-informadas" min="0" step="1" inputmode="numeric" placeholder="Ex.: 12500" required disabled>
                 </label>
                 <div class="consumo-acoes"><button type="submit" id="btn-consumo-salvar" disabled>Atualizar ponteiro</button></div>
             </form>
+            </details>
             <div class="consumo-acoes">
                 <a href="https://console.firebase.google.com/project/rankingdacompra/firestore/usage" target="_blank" rel="noopener noreferrer">Ver consumo oficial no Firebase ↗</a>
             </div>
-            <p class="ajuda-metrica">O agendamento foi desativado após o teste HTTP 403 relacionado a faturamento. Não há atualização automática em execução. O registro manual fica apenas neste navegador e expira na virada da cota do Pacífico. Não foram alterados preços, cadastros, regras, plano ou cobrança.</p>
+            <p class="ajuda-metrica">A atualização local via Tampermonkey é independente do modo em nuvem. Mantenha o Chrome e a aba de uso do Firebase abertos no mesmo perfil. O horário é o da leitura da tela; as métricas podem atrasar ou estar arredondadas. O modo em nuvem continua desligado e não houve ativação de cobrança. O registro manual é opcional e fica apenas neste navegador.</p>
         </section>
 
         <section class="painel" aria-labelledby="rotina-titulo">
@@ -3471,7 +3480,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
   <script src="/promotion-title.js?v=20261005-1"></script>
   <script defer src="/growth-tools.js?v=20261012-audit-4&review=20261019&metrics=20261021-products&history=20261022-1&reads=20261023-1"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script defer src="/firebase-consumo.js?v=20261023-auto1&status=manual-billing-stop"></script>
+  <script defer src="/firebase-consumo.js?v=20261023-local-status1"></script>
 <script>
 window.RDCBestChoicesAdmin.mount(document.getElementById('best-choices-dashboard'),async()=>{
   if(!auth.currentUser)throw Error('Entre no painel administrativo.');

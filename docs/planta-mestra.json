@@ -453,6 +453,7 @@
     "storage": "Same browser profile, private userscript storage: last day, reads, observed-at timestamp, rounding flag and pause preference; no remote publishing",
     "writes": "Visual gauge only; no forms, credentials, site storage, Firestore queries, network requests, price changes or daily price robot changes",
     "freshness": "Pacific quota date, rounded totals marked approximate, unchanged totals do not renew observed timestamp, stale after 45 minutes, missing or old-day data never becomes zero",
-    "cloudMode": "Billing-related 403 workflow stays disabled; no IAM or billing changes"
+    "cloudMode": "Billing-related 403 workflow stays disabled; no IAM or billing changes",
+    "dashboardIndicator": "DOM-only observer of installed userscript output, distinguishes absent/waiting/active/paused/stale, requires current quota day, no network or private extension storage; cloud mode separately labeled off, legacy button disabled and hidden, manual entry collapsed but preserved"
   }
 }

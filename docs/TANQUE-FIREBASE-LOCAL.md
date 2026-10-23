@@ -6,6 +6,10 @@ Correção 1.0.1: reconhece também o endereço de Uso terminado em `/reads`, co
 
 Quem já instalou: abra o link abaixo no Chrome e confirme **Atualizar**, verificando a versão **1.0.1**. Depois recarregue o console e, somente quando não houver lote em andamento, o painel. Uma conferência em andamento não deve ser interrompida. Confira se o total da tela e o tanque coincidem (com “≈” quando arredondado). Publicação do arquivo e testes não substituem a confirmação real após atualizar no Chrome.
 
+### Indicadores do dashboard
+
+O painel distingue o estado do **tanque via Tampermonkey** do estado **Modo em nuvem desligado**. O indicador local observa apenas o quadro DOM que o userscript 1.0.1 já exibe: ausência, aguardando leitura, ativo com leitura recebida, pausado e leitura antiga têm rótulos diferentes. A data da cota precisa ser a atual. Não acessa armazenamento privado da extensão, rede, credenciais ou dados do Firestore e não altera o agregado/ponteiro. O registro manual fica recolhido em “Registro manual (opcional)”, sem apagar seu valor. O antigo botão de atualização em nuvem permanece oculto e desativado; não é um controle do Tampermonkey. Não é necessário atualizar o userscript para esses indicadores, apenas carregar o novo dashboard quando não houver conferência em andamento. Testes: `scripts/test-firebase-gauge-status.mjs`.
+
 ## Instalação por link no Chrome com Tampermonkey
 
 Link direto: https://rankingdacompra.com.br/tanque-firebase-local.user.js . Abra no Chrome com o Tampermonkey instalado e confirme **Instalar**. Não é preciso copiar código. Página de ajuda: https://rankingdacompra.com.br/instalar-tanque-firebase.html .

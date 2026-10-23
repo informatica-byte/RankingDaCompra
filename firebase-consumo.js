@@ -58,7 +58,14 @@
       return snapshot ? { ...snapshot, automatic: true, stale: now.getTime() - Date.parse(snapshot.at) > STALE_MS } : null;
     } catch (_) { return null; }
   }
-  const helpers = { pacificDate, gaugeState, parseReads, currentSnapshot, automaticSnapshot, LIMITS, STALE_MS, PUBLIC_USAGE_URL };
+  function localGaugeStatus({ present = false, paused = false, reading = false, stale = false } = {}) {
+    if (!present) return { state: 'absent', label: 'Tanque via Tampermonkey não detectado nesta aba', level: '' };
+    if (paused) return { state: 'paused', label: 'Tanque via Tampermonkey pausado', level: 'atencao' };
+    if (!reading) return { state: 'waiting', label: 'Tampermonkey ativo — aguardando leitura de hoje', level: 'atencao' };
+    if (stale) return { state: 'stale', label: 'Tampermonkey ativo — leitura antiga', level: 'atencao' };
+    return { state: 'active', label: 'Tanque via Tampermonkey ativo — leitura recebida', level: 'ativo' };
+  }
+  const helpers = { pacificDate, gaugeState, parseReads, currentSnapshot, automaticSnapshot, localGaugeStatus, LIMITS, STALE_MS, PUBLIC_USAGE_URL };
   if (typeof module !== "undefined" && module.exports) module.exports = helpers;
   if (typeof document === "undefined") return;
 
@@ -70,6 +77,24 @@
   let authorizedAdmin = false;
   let renderedDay = pacificDate(new Date());
   let automatic = null, requestInFlight = null, lastAttempt = 0;
+
+  function updateLocalIndicator() {
+    if (!authorizedAdmin) return;
+    const element = $('consumo-local-status');
+    if (!element) return;
+    // Somente sinais DOM já exibidos pelo userscript instalado. Não troca dados,
+    // não lê o armazenamento da extensão e não registra listeners do Firebase.
+    const note = $('rdc-tanque-local');
+    const message = note?.querySelector?.('[role="status"]')?.textContent || '';
+    const action = note?.querySelector?.('button')?.textContent || '';
+    const day = message.match(/Dia da cota no Pacífico:\s*(\d{4}-\d{2}-\d{2})/i)?.[1];
+    const state = localGaugeStatus({ present: Boolean(note), paused: /Retomar tanque local/.test(action),
+      reading: /Tela lida em/.test(message) && day === pacificDate(new Date()), stale: /Leitura antiga/i.test(message) });
+    if (element.textContent !== state.label) element.textContent = state.label;
+    const className = 'consumo-status' + (state.level ? ' ' + state.level : '');
+    if (element.className !== className) element.className = className;
+    element.setAttribute('data-state', state.state);
+  }
 
   function setStatus(message, level = "") {
     const element = $("consumo-status");
@@ -120,9 +145,8 @@
       showReading(snapshot);
     } else {
       field.value = "";
-      clearReading("Aguardando a medição automática do dia atual. Se necessário, use o registro manual de contingência.");
-      setStatus(AUTOMATIC_ENABLED ? "Aguardando medição automática de hoje" : "Modo manual — automático não ativado");
-      if (!AUTOMATIC_ENABLED) $("consumo-hora").textContent = 'A consulta automática ao Google foi interrompida por indicação de exigência de faturamento. Nenhuma cobrança foi ativada. Informe o total do console no campo abaixo.';
+      clearReading("Aguardando uma leitura de hoje pelo Tampermonkey ou pelo registro manual opcional.");
+      setStatus(AUTOMATIC_ENABLED ? "Aguardando medição automática de hoje" : "Aguardando leitura local ou registro manual");
     }
   }
 
@@ -160,14 +184,18 @@
     return requestInFlight;
   }
   $('btn-consumo-automatico')?.addEventListener('click', refreshAutomatic);
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) { loadSnapshot(); refreshAutomatic(); } });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) { loadSnapshot(); refreshAutomatic(); updateLocalIndicator(); } });
+
+  const localContainer = document.querySelector?.('.painel-consumo');
+  const localObserver = localContainer && root.MutationObserver ? new root.MutationObserver(updateLocalIndicator) : null;
+  localObserver?.observe(localContainer, { childList: true, characterData: true, subtree: true });
 
   if (root.firebase?.auth) {
     root.firebase.auth().onAuthStateChanged((user) => {
       authorizedAdmin = Boolean(user);
       field.disabled = !authorizedAdmin;
       button.disabled = !authorizedAdmin;
-      if (authorizedAdmin) { loadSnapshot(); refreshAutomatic(); }
+      if (authorizedAdmin) { loadSnapshot(); refreshAutomatic(); updateLocalIndicator(); }
       else {
         automatic = null;
         field.value = "";
@@ -179,8 +207,9 @@
   const intervalId = root.setInterval(() => {
     if (authorizedAdmin) {
       if (pacificDate(new Date()) !== renderedDay || automatic) loadSnapshot();
+      updateLocalIndicator();
       if (Date.now() - lastAttempt >= 5 * 60 * 1000) refreshAutomatic();
     }
   }, 60 * 1000);
-  root.addEventListener("beforeunload", () => root.clearInterval(intervalId), { once: true });
+  root.addEventListener("beforeunload", () => { root.clearInterval(intervalId); localObserver?.disconnect(); }, { once: true });
 })(typeof window === "undefined" ? globalThis : window);
