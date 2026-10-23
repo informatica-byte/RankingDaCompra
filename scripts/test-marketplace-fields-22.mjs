@@ -72,7 +72,7 @@ test('fontes de fabricante anteriores e anúncio novo não são misturados sob o
   assert.equal(record.sourceKind,'mixed-specifications');
   const official=html.match(/<section[^>]*data-manufacturer-specifications[\s\S]*?<\/section>/)?.[0];
   const listing=html.match(/<section[^>]*data-marketplace-specifications[\s\S]*?<\/section>/)?.[0];
-  assert.ok(official);assert.ok(listing);assert.doesNotMatch(official,/64 GB/);assert.match(listing,/64 GB.*segundo o anúncio/);
+  assert.ok(official);assert.ok(listing);assert.match(official,/64 GB de armazenamento anunciados pela HUAWEI/);assert.match(listing,/64 GB.*segundo o anúncio/);
   assert.doesNotMatch(listing,/fonte oficial/);
   assert.equal(record.features.find(f=>f.label==='Tela').basis,'fabricante');
   assert.equal(record.features.find(f=>f.label==='Armazenamento interno').basis,'cadastro');

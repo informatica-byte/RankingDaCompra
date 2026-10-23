@@ -7,14 +7,14 @@ import {renderIntegrityGuide} from './comparison-guides.mjs';
 const feature=(id,label)=>comparisonData(product(id)).features.find(f=>f.label===label);
 
 test('as revisões usam modelo exato e não mudam cadastros, preço ou prova de conferência',()=>{
-  assert.equal(MANUFACTURER_SPECIFICATIONS.size,21);
+  assert.equal(MANUFACTURER_SPECIFICATIONS.size,22);
   for(const [id] of MANUFACTURER_SPECIFICATIONS){
     const p=product(id);assert.ok(p,id);const before=JSON.stringify(p);
     const record=documentedSpecifications(p);assert.ok(record,id);
     assert.ok(record.features.some(f=>f.basis==='fabricante'));
     for(const f of record.features.filter(f=>f.basis==='fabricante')){
       const url=new URL(f.sourceUrl);assert.equal(url.protocol,'https:');
-      assert.match(url.hostname,/(?:mi\.com|jbl\.com\.br|logitech\.com|wap\.ind\.br|amd\.com|asus\.com|amazfit\.com|soundcore\.com|samsung\.com|tp-link\.com|huawei\.com|mercusys\.com(?:\.br)?|intelbras\.com|lenovo\.com|shopify\.com)$/);
+      assert.match(url.hostname,/(?:mi\.com|jbl\.com\.br|logitech\.com|wap\.ind\.br|amd\.com|asus\.com|amazfit\.com|soundcore\.com|samsung\.com|tp-link\.com|huawei\.com|mercusys\.com(?:\.br)?|intelbras\.com|lenovo\.com|shopify\.com|tendacn\.com)$/);
       assert.equal(f.checkedAt,record.checkedAt);
     }
     assert.equal(documentedSpecifications({...p,titulo:'Produto completamente diferente',title:''}),null);
@@ -22,6 +22,26 @@ test('as revisões usam modelo exato e não mudam cadastros, preço ou prova de 
     renderManufacturerSpecifications(p);comparisonData(p);
     assert.equal(JSON.stringify(p),before);
   }
+});
+
+test('Tenda exige a revisão RX12 Pro V2.0, sem copiar Mesh ou portas para outro modelo',()=>{
+  const id='mlMLB4801704305';
+  assert.equal(feature(id,'Portas Gigabit').state,'yes');
+  assert.match(feature(id,'Quantidade de portas').value,/4 portas.*1 WAN \+ 3 LAN/);
+  assert.match(feature(id,'Rede Mesh').value,/Wi-Fi\+.*compatíveis/);
+  assert.doesNotMatch(feature(id,'Rede Mesh').value,/EasyMesh|universal/);
+  for(const titulo of ['Tenda RX12 Pro V1.0','Tenda RX12 Pro','Tenda RX12 V2.0','Tenda TX12 Pro V2.0','Tenda RX12 Pro V2.0 Max'])assert.equal(documentedSpecifications({id,titulo}),null,titulo);
+  assert.equal(documentedSpecifications({id:'outro',titulo:product(id).titulo}),null);
+});
+
+test('Huawei distingue armazenamento oficial, declaração do vendedor e RAM ainda desconhecida',()=>{
+  const id='5MGE98tYssH9nEfBeHoW';
+  assert.match(feature(id,'Chamadas Bluetooth').value,/telefone compatível conectado/);
+  assert.equal(feature(id,'Chamadas Bluetooth').basis,'fabricante');
+  assert.match(feature(id,'Armazenamento interno (fabricante)').value,/64 GB.*não são memória RAM/);
+  assert.match(feature(id,'Armazenamento interno (fabricante)').sourceUrl,/\/br\/wearables\/watch-fit5\/$/);
+  assert.equal(feature(id,'Memória RAM').state,'unknown');
+  assert.equal(feature(id,'Armazenamento interno').basis,'cadastro');
 });
 test('documentação de outro modelo, versão ou cadastro nunca completa por semelhança',()=>{
   for(const [id,titulo] of [['ARscPKCMZs3D8k22qltl','Redmi Buds 6 Active'],['GjHJtzdsIhbmSINvhPeX','JBL Tune 530BT'],['48oRcQNlH00KgNLHkvsG','Xiaomi Smart Band 9 Pro'],['5bQKU9inL3pq14yE8K4L','soundcore P40i']]) assert.equal(documentedSpecifications({id,titulo}),null);

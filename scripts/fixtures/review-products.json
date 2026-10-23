@@ -2,6 +2,11 @@
   "description": "Identidades de teste congeladas a partir do catálogo publicado em 22/10/2026. Não são cadastros, preços ou estoque atuais e nunca alimentam a publicação.",
   "products": [
     {
+      "id": "mlMLB4801704305",
+      "titulo": "Tenda Roteador Wi-fi Rx12 Pro V2.0 Ax3000 Wi-fi 6 Dual Banda",
+      "categoria": "roteador"
+    },
+    {
       "id": "2e2m7sDdRyGHq1Tzj8ra",
       "titulo": "Roteador Wi-fi Tp-Link TL- Wr840 N Wireless 300Mbps",
       "categoria": "roteador"

@@ -38,8 +38,8 @@ export const MARKETPLACE_FIELD_REVIEWS=new Map([
   review('5MGE98tYssH9nEfBeHoW',/huawei.*watch\s*fit\s*5\b(?!\s*(?:pro|max))/i,'watch-smart','MLB67714386','',[
     yes('Armazenamento interno','64 GB de armazenamento informados na descrição do vendedor'),
     unknown('Memória RAM','A tabela também repete 64 GB como RAM, sem esclarecimento. Não tratamos armazenamento e RAM como a mesma capacidade.')],
-    ['A descrição e o campo memória interna anunciam 64 GB. Isso é uma declaração da oferta, não confirmação de fábrica; não copiamos o campo duplicado de RAM.'],
-    'O anúncio do HUAWEI WATCH FIT 5 informa tela AMOLED de 1,82 polegada, GPS, compatibilidade com Android e iOS e armazenamento interno de 64 GB. A capacidade de 64 GB é uma informação do vendedor, não uma confirmação independente de fábrica, e não foi tratada como RAM. O anúncio também menciona 5 ATM; isso não autoriza mergulho. Os recursos de saúde não substituem diagnóstico e não testamos sensores, autonomia ou armazenamento.',
+    ['A descrição e o campo memória interna anunciam 64 GB de armazenamento. O campo duplicado de RAM continua sem esclarecimento; armazenamento não equivale a RAM.'],
+    'O anúncio do HUAWEI WATCH FIT 5 informa tela AMOLED de 1,82 polegada, GPS, compatibilidade com Android e iOS e armazenamento interno de 64 GB. A capacidade informada é de armazenamento, não de RAM. A documentação do fabricante é apresentada separadamente nesta análise; ela não autentica a unidade vendida. O anúncio também menciona 5 ATM; isso não autoriza mergulho. Os recursos de saúde não substituem diagnóstico e não testamos sensores, autonomia ou armazenamento.',
     ['Tela AMOLED de 1,82 polegada e GPS informados na oferta.','Armazenamento interno de 64 GB descrito pelo vendedor, com origem identificada.'],
     ['A tabela repete 64 GB como RAM sem esclarecer; não reproduzimos essa equivalência.','Sensores e autonomia não foram testados; não é dispositivo de diagnóstico.']),
   review('9P123IBTTYnSCMilPvXB',/amazfit.*bip\s*6\b(?!\s*(?:pro|max))/i,'watch-smart','MLB57802650','MLB6739814208',[
