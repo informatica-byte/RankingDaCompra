@@ -1,7 +1,7 @@
 name: Atualizar tanque de consumo Firebase
 on:
-  schedule:
-    - cron: '8,23,38,53 * * * *'
+  # Sem cron: teste real respondeu 403 relacionado a faturamento.
+  # Workflow desativado no GitHub; não reativar sem decisão do proprietário.
   workflow_dispatch:
 permissions:
   contents: write

@@ -258,8 +258,8 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 
 ### Economia do Firebase
 
-- o painel administrativo privado inclui um medidor de leituras com ponteiro: `firebase-consumo.js` lê somente o agregado público `{reads, at}` da branch exclusiva `metricas-consumo-firebase`. O registro manual local permanece como contingência. O navegador não usa OAuth, API de métricas ou leituras adicionais do Firestore;
-- o job `firebase-consumo.yml` tenta atualizar a cada quinze minutos com identidade temporária e escopo `monitoring.read`, usando somente `monitoring.timeSeries.list`. Publica apenas total e horário, sem reconstruir páginas. Não habilita serviços, cobrança ou gravadores de métricas. O plano Spark é preservado;
+- o painel administrativo privado inclui um medidor de leituras com ponteiro **manual**. A implementação automática foi preparada para ler somente `{reads, at}`, mas está desativada (`AUTOMATIC_ENABLED=false`): o teste real de 23/10/2026 respondeu HTTP 403 relacionado a faturamento. Nenhuma cobrança foi ativada;
+- o job `firebase-consumo.yml` está desativado no GitHub e sem cron. Nenhum agregado foi publicado e não há consulta automática de métricas em execução. O registro manual local permanece, sem OAuth, API de métricas ou leituras adicionais do Firestore no navegador. O plano Spark foi preservado;
 - a cota de referência é de 50 mil leituras/dia e segue `America/Los_Angeles`, inclusive horário de verão. O saldo é estimativa do monitoramento, não faturamento exato nem consumo instantâneo. Medições de outro dia são recusadas; atrasos acima de 45 minutos são sinalizados;
 - a busca e a maior parte da leitura pública usam arquivos JSON estáticos;
 - a Central de Foco só faz leitura ampla após ação manual;

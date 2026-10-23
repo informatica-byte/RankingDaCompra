@@ -73,7 +73,7 @@ test('publicador tem allowlist de dois campos e grava somente a branch exclusiva
 });
 test('workflow não lê Firestore, não muda IAM/cobrança e não cria chave ou artefato de credenciais', () => {
   const workflow = readFileSync('.github/workflows/firebase-consumo.yml','utf8');
-  assert.match(workflow, /8,23,38,53 \* \* \* \*/); assert.match(workflow, /auth\/monitoring\.read/);
+  assert.doesNotMatch(workflow, /^  schedule:|^\s+-\s+cron:/m); assert.match(workflow, /auth\/monitoring\.read/);
   assert.match(workflow, /create_credentials_file: false/); assert.match(workflow, /persist-credentials: false/);
   assert.doesNotMatch(workflow, /generate-sitemap|firestore-read-auth|credentials_json|upload-artifact|gcloud services enable|billing/);
   const gauge = readFileSync('firebase-consumo.js','utf8');
@@ -94,7 +94,8 @@ test('renderização automática usa só arquivo público e apaga saldo antigo n
     fetch: async (url, options) => { calls.push([url, options]); return Response.json({ reads: 42000, at: '2026-10-23T17:56:00Z' }); },
     AbortSignal, setInterval: callback => intervals.push(callback), clearInterval() {}, addEventListener() {},
     localStorage: { getItem: () => '', setItem: (...args) => writes.push(args) } };
-  runInNewContext(readFileSync('firebase-consumo.js','utf8'), { window, document, Date: Clock, Intl, module: { exports: {} } });
+  const readySource = readFileSync('firebase-consumo.js','utf8').replace('const AUTOMATIC_ENABLED = false;', 'const AUTOMATIC_ENABLED = true;');
+  runInNewContext(readySource, { window, document, Date: Clock, Intl, module: { exports: {} } });
   auth({ uid: 'owner' }); await new Promise(done => setImmediate(done));
   assert.equal(calls.length, 1); assert.equal(calls[0][1].credentials, 'omit');
   assert.equal(elements.get('consumo-leituras').textContent, '42.000 / 50.000 leituras');
@@ -108,4 +109,10 @@ test('exigência de cobrança recebe sinal terminal explícito, sem expor mensag
   await assert.rejects(collectUsage({ token: 'PRIVATE', now, request: async () => Response.json({ error: {
     message: 'private billing message', details: [{ reason: 'BILLING_DISABLED' }]
   } }, { status: 403 }) }), error => error.message.includes('BILLING_REQUIRED') && !error.message.includes('private'));
+});
+
+test('configuração publicada permanece desativada após o bloqueio de faturamento', () => {
+  assert.match(readFileSync('firebase-consumo.js','utf8'), /const AUTOMATIC_ENABLED = false;/);
+  assert.match(readFileSync('dashboard.html','utf8'), /id="btn-consumo-automatico" disabled/);
+  assert.doesNotMatch(readFileSync('.github/workflows/firebase-consumo.yml','utf8'), /^  schedule:/m);
 });

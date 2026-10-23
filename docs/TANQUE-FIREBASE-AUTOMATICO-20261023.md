@@ -1,5 +1,11 @@
 # Tanque de consumo automático
 
+**Estado: NÃO ATIVADO.** O teste real de 23/10/2026 (run 40014401589) autenticou, mas a consulta respondeu HTTP 403 classificado como `BILLING_REQUIRED`. Conforme condição do proprietário, não se habilitou cobrança nem se repetiu a consulta. Workflow desativado no GitHub e cron retirado do código. O dashboard continua manual e mostra o motivo. Nenhum agregado foi publicado.
+
+Foram retirados a concessão nova de métricas à conta de serviço e o workflow novo da condição WIF, restaurando os acessos anteriores. O papel personalizado de uma permissão permanece definido, sem atribuição à conta. Não foi excluído nenhum cadastro ou dado do usuário.
+
+O fluxo abaixo documenta a implementação preparada e testada localmente, não uma automação em operação.
+
 Solicitação do proprietário: automatizar atualização sem alterar produtos, preços, regras ou cobrança. Aprovados acesso somente leitura às métricas, fluxo específico do GitHub e publicação somente do total agregado e horário.
 
 ## Fluxo

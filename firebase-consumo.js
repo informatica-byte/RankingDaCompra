@@ -7,6 +7,9 @@
   const LIMITS = { reads: 50000 };
   const PUBLIC_USAGE_URL = 'https://raw.githubusercontent.com/informatica-byte/RankingDaCompra/metricas-consumo-firebase/firebase-consumo.json';
   const STALE_MS = 45 * 60 * 1000;
+  // Teste real interrompido em 23/10/2026: HTTP 403 relacionado a faturamento.
+  // Não tentar novamente automaticamente nem pedir OAuth no navegador.
+  const AUTOMATIC_ENABLED = false;
   const formatter = new Intl.NumberFormat("pt-BR");
 
   function pacificDate(value) {
@@ -118,7 +121,8 @@
     } else {
       field.value = "";
       clearReading("Aguardando a medição automática do dia atual. Se necessário, use o registro manual de contingência.");
-      setStatus("Aguardando medição automática de hoje");
+      setStatus(AUTOMATIC_ENABLED ? "Aguardando medição automática de hoje" : "Modo manual — automático não ativado");
+      if (!AUTOMATIC_ENABLED) $("consumo-hora").textContent = 'A consulta automática ao Google foi interrompida por indicação de exigência de faturamento. Nenhuma cobrança foi ativada. Informe o total do console no campo abaixo.';
     }
   }
 
@@ -136,7 +140,7 @@
   });
 
   function refreshAutomatic() {
-    if (!authorizedAdmin || document.hidden || requestInFlight || Date.now() - lastAttempt < 30000) return requestInFlight;
+    if (!AUTOMATIC_ENABLED || !authorizedAdmin || document.hidden || requestInFlight || Date.now() - lastAttempt < 30000) return requestInFlight;
     lastAttempt = Date.now();
     // Apenas um JSON público do GitHub; nunca a API de métricas, OAuth ou Firestore.
     requestInFlight = root.fetch(PUBLIC_USAGE_URL, { cache: 'no-store', credentials: 'omit', redirect: 'error',

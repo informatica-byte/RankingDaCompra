@@ -6,7 +6,7 @@ Configuração autorizada pelo proprietário em 06/10/2026. Não exige chave pri
 
 - Projeto: `rankingdacompra`, número `300637600463`.
 - Conta: `ranking-publication-reader@rankingdacompra.iam.gserviceaccount.com`.
-- Papel de dados da conta no projeto: `roles/datastore.viewer` (Leitor do Cloud Datastore). Em 23/10/2026 foi autorizado também o papel personalizado `projects/rankingdacompra/roles/rankingUsageMetricsReader`, contendo somente `monitoring.timeSeries.list`, para o tanque de consumo. Não concede escrita ou administração.
+- Único papel de dados atribuído à conta no projeto: `roles/datastore.viewer` (Leitor do Cloud Datastore). Em 23/10/2026 foi testado o papel personalizado `projects/rankingdacompra/roles/rankingUsageMetricsReader`, contendo somente `monitoring.timeSeries.list`. A concessão foi retirada após o bloqueio relacionado a faturamento. A definição do papel permanece sem atribuição à conta.
 - Pool: `ranking-github-read`; provedor OIDC: `ranking-github-main`.
 - Emissor: `https://token.actions.githubusercontent.com`; audiência padrão do provedor.
 - Mapeamentos: `google.subject=assertion.sub`, `attribute.repository_id=assertion.repository_id`.
@@ -23,8 +23,7 @@ assertion.workflow_ref in [
   'informatica-byte/RankingDaCompra/.github/workflows/update-sitemap.yml@refs/heads/main',
   'informatica-byte/RankingDaCompra/.github/workflows/sync-mercadolivre.yml@refs/heads/main',
   'informatica-byte/RankingDaCompra/.github/workflows/localizar-mlb.yml@refs/heads/main',
-  'informatica-byte/RankingDaCompra/.github/workflows/testar-identidade-firestore.yml@refs/heads/main',
-  'informatica-byte/RankingDaCompra/.github/workflows/firebase-consumo.yml@refs/heads/main'
+  'informatica-byte/RankingDaCompra/.github/workflows/testar-identidade-firestore.yml@refs/heads/main'
 ]
 ```
 
@@ -44,11 +43,11 @@ Não habilitar cobrança, mudar para Blaze ou criar chave de administrador para 
 
 ## Tanque automático — autorizado em 23/10/2026
 
-Somente o fluxo exato `firebase-consumo.yml` foi acrescentado à condição existente. Repositório, proprietário, branch main, emissor, audiência e mapeamento de atributos permanecem restritos como antes. O novo job emite token de 300 segundos exclusivamente com escopo `monitoring.read`; não usa o transporte de documentos.
+Somente o fluxo exato `firebase-consumo.yml` foi acrescentado à condição existente durante o teste. Após HTTP 403 relacionado a faturamento, essa inclusão foi retirada e a condição original de quatro workflows foi restaurada. Repositório, proprietário, branch main, emissor, audiência e mapeamento de atributos permanecem restritos como antes. O código preparado para o novo job emite token de 300 segundos exclusivamente com escopo `monitoring.read`, mas está sem cron e desativado no GitHub.
 
 Uma chamada agrega a métrica `firestore.googleapis.com/document/read_ops_count` do banco `(default)` desde a meia-noite do Pacífico. A coleta não lê produtos nem grava métricas. Respostas inválidas, quota, 403 ou exigência de cobrança não produzem falso zero nem expansão de acesso automática.
 
-O agregado `{reads, at}` é publicado na branch órfã exclusiva `metricas-consumo-firebase`, cujo arquivo público único é `firebase-consumo.json`. Não se publica resposta bruta, token, série, identidade ou configuração do projeto, nem se executa geração de catálogo. O GITHUB_TOKEN temporário só é usado em cabeçalho na API GitHub do próprio repositório, sem arquivo de credenciais.
+O agregado planejado `{reads, at}` seria publicado na branch órfã exclusiva `metricas-consumo-firebase`, cujo arquivo público único seria `firebase-consumo.json`. Essa etapa não foi executada: nenhum agregado foi publicado. Não se publica resposta bruta, token, série, identidade ou configuração do projeto, nem se executa geração de catálogo. O código usa GITHUB_TOKEN temporário só em cabeçalho na API GitHub do próprio repositório, sem arquivo de credenciais.
 
 O cron de quinze minutos pode atrasar ou não executar no horário exato. O painel sinaliza medições com mais de 45 minutos e rejeita dias antigos. É uma estimativa do monitoramento, não uma garantia de saldo de faturamento.
 
