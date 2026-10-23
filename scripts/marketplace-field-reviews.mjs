@@ -18,6 +18,7 @@ const without=value=>({value:value+', segundo o anúncio',state:'no'});
 function review(id,model,family,catalog,item,features,notes,summary,positiveNotes=[],negativeNotes=[]) {
   const sourceUrl=catalog.startsWith('MLBU')?'https://www.mercadolivre.com.br/up/'+catalog+'?pdp_filters=item_id%3A'+item
     :catalog==='MLB6877799706'?'https://produto.mercadolivre.com.br/MLB-6877799706-fones-esportivo-bluetooth-60-tradutor-ai-miniso-x15pro-ipx5-_JM'
+    :catalog==='MLB3793292751'?'https://produto.mercadolivre.com.br/MLB-3793292751-smartwatch-esportivo-masculina-relogio-inteligente-redondo-_JM'
     :'https://www.mercadolivre.com.br/p/'+catalog+(item?'?pdp_filters=item_id%3A'+item:'');
   return [id,{model,family,catalog,item,sourceUrl,sourceKind:'marketplace-listing',reviewedAt:date,
     scope:'Informações lidas no anúncio do Mercado Livre em 20/10/2026. A fonte descreve a oferta; não é teste independente ou autenticação do produto.',
@@ -26,7 +27,81 @@ function review(id,model,family,catalog,item,features,notes,summary,positiveNote
     limitations:['Informações do vendedor, sem teste de som, desempenho, conforto ou autonomia pela equipe. Campos ausentes ou contraditórios não foram completados por suposição. Consulte as condições atuais na oferta.'],
   }];
 }
+function reviewToday(...args) {
+  const [id,record]=review(...args),reviewedAt='2026-10-22';
+  return [id,{...record,reviewedAt,
+    scope:'Informações lidas no anúncio específico do Mercado Livre em 22/10/2026. Dados declarados pelo vendedor, sem teste independente ou autenticação da unidade.',
+    features:record.features.map(f=>({...f,checkedAt:reviewedAt}))}];
+}
 export const MARKETPLACE_FIELD_REVIEWS=new Map([
+  reviewToday('C5b5fKstKDUgNDUxnQkP',/power\s*bank.*basike|basike.*power\s*bank/i,'power-bank','MLB63849175','MLB4407942173',[
+    yes('USB-C','Conector USB-C identificado na tabela; a descrição informa entrada e saída Tipo-C'),
+    yes('Modelo anunciado','BA-POW079 / POW079 na tabela; B-079F na descrição')],
+    ['USB-C é confirmado na tabela e descrição. A contagem de portas, a identificação B-079F/POW079 e alguns valores elétricos divergem; não copiamos a tabela elétrica inteira nem garantimos uma quantidade de recargas.'],
+    'O anúncio deste power bank Basike informa capacidade nominal de 20.000 mAh, conector USB-C e carregamento anunciado de até 22,5 W. A descrição distingue entrada e saída Tipo-C. Há divergências na identificação do modelo, na quantidade de portas e em valores elétricos, por isso esses detalhes não foram fechados por suposição. Potência e desempenho dependem do cabo, do aparelho e do protocolo; não medimos capacidade útil, tempo de carga ou quantidade de recargas.',
+    ['USB-C identificado tanto na tabela como na descrição.'],
+    ['Identificação, quantidade de portas e valores elétricos têm divergências; confirme a variante.','Capacidade útil e desempenho de carga não foram medidos.']),
+  reviewToday('zev1LogqUFpJ3cLlIXyy',/auxiliar.*partida.*compressor/i,'auxiliar-partida','MLB75836344','MLB7218305234',[
+    yes('USB-C','Entrada e saída USB-C de 5 V / 2 A descritas na oferta'),
+    unknown('Carga rápida','O anúncio informa USB-C de 5 V / 2 A, mas não identifica protocolo de carga rápida. Os 120 W da tabela não foram atribuídos à saída USB.')],
+    ['A tabela identifica DISTRIBUIDORA BRAZUCA CELL e inclui cabo USB-C. Não usamos potência do compressor/auxiliar como potência USB.'],
+    'O anúncio identifica um auxiliar de partida com compressor, lanterna e função power bank. A descrição informa entrada e saída USB-C de 5 V / 2 A e cabo USB-C incluído. Não foi confirmado um protocolo de carga rápida. A potência máxima de 120 W da tabela não comprova essa potência na saída USB. Não testamos partida, calibração, proteções ou bateria; confirme no vendedor a aplicação ao veículo e as instruções de uso.',
+    ['Entrada e saída USB-C descritas na oferta.'],
+    ['Protocolo de carga rápida não identificado.','Não atribuímos a potência do aparelho à saída USB nem garantimos partida ou calibração.']),
+  reviewToday('BcfEuX1oed02O8pYXKyg',/lanterna.*cabe[cç]a.*12\s*modos/i,'lanterna','MLB63116023','MLB6038239378',[
+    yes('Carregamento USB','Recarga por USB e cabo USB incluído, conforme tabela e descrição'),
+    unknown('USB-C','O anúncio informa apenas USB; não identifica o formato USB-C da porta.'),
+    unknown('Carga rápida','O anúncio não identifica protocolo ou potência de carga rápida.')],
+    ['A tabela identifica LUMIZAR MATERIAIS ELÉTRICOS, mas o modelo é descrito genericamente como “ciclista trilheiros”. Não usamos ficha de outra lanterna. IPX4 não comprova proteção contra poeira ou imersão.'],
+    'O anúncio desta lanterna de cabeça informa 12 modos de iluminação, bateria recarregável e recarga por USB, com cabo incluído. A marca indicada na tabela é LUMIZAR MATERIAIS ELÉTRICOS; não há um código técnico inequívoco do modelo. USB-C e carga rápida continuam sem confirmação. Os números de luminosidade, alcance e autonomia são alegações da oferta, não medições da equipe; não tratamos IPX4 como proteção para imersão ou contra poeira.',
+    ['Recarga USB e cabo incluído informados no anúncio.'],
+    ['Formato da porta e carga rápida não identificados.','Luminosidade, alcance e autonomia não foram medidos; IPX4 não comprova imersão.']),
+  reviewToday('cSmjEdmFugRGDdJHkMcR',/smartwatch.*(?:redondo|foxbox|bw0223)/i,'watch-smart','MLB3793292751','MLB3793292751',[
+    yes('Modelo anunciado','FoxBox BW0223; código alfanumérico 223 na tabela'),
+    no('GPS integrado','Sem GPS, conforme o campo específico da tabela'),
+    yes('Chamadas Bluetooth','Faz, recebe e rejeita chamadas com o telefone conectado por Bluetooth; aplicativo Da Fit'),
+    yes('Proteção IP','IP67 declarado na descrição; o vendedor orienta não nadar, tomar banho ou mergulhar com o relógio')],
+    ['O modelo BW0223 foi encontrado no próprio anúncio; não dependemos de um manual de outro relógio. IP67 é uma declaração do vendedor, não resultado de ensaio da equipe.'],
+    'O anúncio identifica o smartwatch FoxBox BW0223 (código 223), com chamadas pelo Bluetooth do celular e aplicativo Da Fit. A tabela informa que não possui GPS. A descrição declara IP67, mas também orienta não usar em natação, banho ou mergulho. Não prometemos uso submerso, precisão de sensores, medição médica ou autonomia real; a equipe não testou esses recursos.',
+    ['Modelo BW0223 identificado na tabela do anúncio.','Chamadas com o celular conectado por Bluetooth descritas pelo vendedor.'],
+    ['Sem GPS segundo a tabela da oferta.','IP67 é declarado pelo vendedor; ele próprio desaconselha natação, banho e mergulho.']),
+  reviewToday('wYxgVNIJeeWmGhcToFLP',/power\s*bank.*20000.*4\s*cabos/i,'power-bank','MLB72899141','MLB7502238108',[
+    yes('Carga rápida','Carregamento rápido anunciado de até 22,5 W; protocolo e potência por saída não detalhados'),
+    yes('USB-C','Conectores USB/USB-C na tabela e entrada Tipo-C na descrição'),
+    yes('Modelo anunciado','3Tech AJ-C03 / AJ-C03-H na tabela')],
+    ['A tabela diz “Rápida” e a descrição anuncia até 22,5 W. Isso não garante essa potência em todos os cabos, dispositivos ou saídas simultâneas. Não inferimos recarga por indução do campo genérico “É sem fio”.'],
+    'A oferta identifica o power bank 3Tech AJ-C03 / AJ-C03-H com capacidade nominal de 20.000 mAh, cabos integrados, visor e entrada Tipo-C. Tabela e descrição anunciam carga rápida, de até 22,5 W no texto, mas não detalham protocolo nem potência por saída. Isso não comprova esse desempenho em todos os aparelhos ou em uso simultâneo. Não atribuímos carregamento por indução ao campo genérico de conexão sem fio.',
+    ['Entrada Tipo-C e carga rápida anunciadas pelo vendedor.'],
+    ['Protocolo e potência por saída não detalhados.','Capacidade útil, tempo de carga e carregamento simultâneo não foram testados.']),
+  reviewToday('M0Zj2K84Q8PX0YTQMIHz',/smartwatch.*novante/i,'watch-smart','MLB65117366','MLB6208101802',[
+    yes('Modelo anunciado','NOVANTE OCEAN GT, HT-1289, conforme a tabela'),
+    yes('GPS integrado','GPS integrado e registro independente de trajetória declarados na descrição e na tabela'),
+    yes('Chamadas Bluetooth','Atende e rejeita chamadas com o celular conectado por Bluetooth, conforme a descrição'),
+    yes('Proteção IP','IPX8 declarado na tabela e descrição; condições de ensaio não confirmadas')],
+    ['Não transformamos a alegação de 30 m em garantia de natação ou mergulho. Peso e autonomia divergem entre as seções e não foram completados por suposição.'],
+    'O anúncio identifica o NOVANTE OCEAN GT HT-1289, com GPS integrado, registro independente de trajetos, chamadas Bluetooth com o celular conectado e classificação IPX8 declarados pelo vendedor. A classificação não é um ensaio da equipe e não usamos a alegação de 30 m como garantia para natação ou mergulho. Peso e autonomia apresentam diferenças entre as seções; não escolhemos um número. Sensores de saúde não são tratados como diagnóstico médico.',
+    ['Modelo OCEAN GT HT-1289 e GPS integrado identificados no anúncio.','Chamadas Bluetooth e IPX8 declarados pelo vendedor.'],
+    ['Condições de ensaio da proteção não confirmadas; não garantimos natação ou mergulho.','Peso, autonomia e sensores não foram validados em teste independente.']),
+  ...[
+    ['UkgpEmnU2nSDUmOujW6W','MLB64244402','MLB6162191874','HT1291'],
+    ['Znhr4d5uhDKsj5poLEmZ','MLB65974451','MLB4460735385','HT-1303'],
+  ].map(([id,catalog,item,model])=>reviewToday(id,/novante.*alexa|alexa.*novante/i,'watch-smart',catalog,item,[
+    yes('Modelo anunciado','NOVANTE '+model+', conforme a tabela deste anúncio'),
+    no('GPS integrado','Não possui GPS independente: observação expressa na descrição e campo “Com GPS: Não”'),
+    yes('Proteção IP','IP68 declarado na tabela e descrição; condições de ensaio não confirmadas')],
+    ['O código do modelo foi lido separadamente em cada anúncio. As palavras GPS em hashtags genéricas não comprovam GPS independente contra a observação expressa da própria descrição. Não garantimos uso em banho, natação ou mergulho.'],
+    'Este anúncio identifica o smartwatch NOVANTE '+model+' e declara Alexa e chamadas Bluetooth. A descrição afirma expressamente que não possui GPS independente, e a tabela marca “Com GPS: Não”. IP68 é informado pelo vendedor, sem condições de ensaio verificadas pela equipe. Não prometemos adequação à natação ou banho, precisão de sensores, diagnóstico por ECG ou duração real da bateria.',
+    ['Modelo '+model+' identificado na tabela específica da oferta.','Alexa e chamadas Bluetooth anunciadas, sem teste independente.'],
+    ['Não possui GPS independente segundo a própria oferta.','Proteção, sensores, ECG e autonomia não foram testados; não garantimos uso em natação ou banho.'])),
+  reviewToday('mlMLB4474695467',/smartwatch.*gps.*strava/i,'watch-smart','MLBU3786668455','MLB4474695467',[
+    yes('Chamadas Bluetooth','Faz e atende ligações com microfone interno e o Bluetooth do celular conectado, conforme a descrição'),
+    yes('GPS conectado','A descrição informa localização em uso conjunto com celular e aplicativo'),
+    unknown('GPS integrado','A tabela diz “Com GPS: Sim”, mas a descrição vincula a localização ao celular e aplicativo; não comprova GPS independente.'),
+    unknown('Proteção IP','O anúncio fala em resistência a respingos, mas não identifica um código IP inequívoco.')],
+    ['Não convertemos “Com GPS: Sim” em registro de trajetos sem celular. O anúncio desaconselha chuveiro e sauna; não reproduzimos promessas médicas ou compatibilidade universal.'],
+    'O anúncio deste smartwatch descreve chamadas com o celular conectado por Bluetooth. A localização por GPS é apresentada para uso junto ao celular e aplicativo; GPS integrado independente continua sem comprovação, apesar do campo genérico “Com GPS: Sim”. O vendedor cita resistência a respingos e desaconselha chuveiro e sauna, sem identificar um código IP inequívoco. Não testamos sensores nem apresentamos medições de saúde como diagnóstico médico.',
+    ['Chamadas Bluetooth com o telefone conectado descritas no anúncio.'],
+    ['GPS independente e código IP não foram confirmados.','Recursos de saúde não são tratados como medições médicas validadas.']),
   review('1tIzUpXs4udqZOZwpQX7',/\bhxz[-\s]*b39\b/i,'headset','MLB68000685','MLB6660301362',phones({format:'Over-ear (ao redor das orelhas)',bt:'Bluetooth 5.3',mic:'Microfone integrado com ENC para chamadas',hours:'Até 60 h de uso contínuo anunciadas'}),
     ['O título diz com fio, mas a tabela e a descrição informam Bluetooth. Preservamos o título e expomos essa divergência; ENC não confirma ANC.'],
     'O anúncio do HXZ-B39 informa formato over-ear, Bluetooth 5.3, microfone com ENC para chamadas e até 60 horas de uso contínuo. O título menciona “com fio”, enquanto a tabela e a descrição apresentam conexão sem fio; essa divergência permanece sinalizada. ENC no microfone não confirma ANC para ouvir. São informações do vendedor, sem teste de som, latência, conforto ou bateria pela equipe.',
@@ -66,11 +141,11 @@ export const MARKETPLACE_FIELD_REVIEWS=new Map([
     'Este anúncio identifica um fone de marca Genérica, descrito como compatível ou similar ao Tune 760. A tabela informa formato over-ear e Bluetooth 5.3; a descrição cita microfone integrado, entrada P2 e estrutura dobrável. A semelhança do nome não comprova que seja um JBL Tune 760NC nem transfere o ANC ou a bateria desse modelo. A autonomia não está clara e não testamos áudio, conexão ou conforto.',
     ['Formato over-ear, microfone e entrada P2 informados no anúncio.','Estrutura dobrável e ajuste de haste anunciados.'],
     ['Marca Genérica: não apresentamos como JBL original.','Autonomia e ANC não confirmados; não usamos a ficha do Tune 760NC.']),
-  review('FWRyLtto1bKeKurNikKq',/forestory.*\bx5\b/i,'fone','MLB68085605','MLB4840111509',phones({format:missing('O título anuncia open-ear/OWS, enquanto a tabela diz in-ear e monaural. A descrição menciona uso individual e duplo; o encaixe exato permanece contraditório.'),bt:missing('O título informa Bluetooth 5.4; tabela e descrição informam 5.3.'),anc:without('Sem cancelamento de ruído, conforme o campo específico da tabela'),mic:'Microfone integrado para chamadas',hours:missing('A descrição menciona 30 h por fone e também 5 a 8 h; não escolhemos um dos números.'),caseHours:missing('O mesmo anúncio menciona totais de 30, 100 e mais de 120 h. Não há um total inequívoco.')}),
+  reviewToday('FWRyLtto1bKeKurNikKq',/forestory.*\bx5\b/i,'fone','MLB68085605','MLB4840111509',phones({format:missing('O título anuncia open-ear/OWS, enquanto a tabela diz in-ear e monaural. A descrição menciona uso individual e duplo; o encaixe exato permanece contraditório.'),bt:'Bluetooth 5.3; título, tabela e descrição atuais concordam',anc:without('Sem cancelamento de ruído, conforme o campo específico da tabela'),mic:'Microfone integrado para chamadas',hours:missing('A descrição menciona 30 h por fone e também 5 a 8 h; não escolhemos um dos números.'),caseHours:missing('O mesmo anúncio menciona totais de 30, 100 e mais de 120 h. Não há um total inequívoco.')}),
     ['Foram lidas todas as seções; não copiamos 100 h como uma sessão de reprodução, nem resolvemos o formato por fotografia.'],
-    'O anúncio identifica o FORESTORY X5 com microfone integrado e estojo de recarga. A ficha específica marca ausência de cancelamento de ruído. Outros pontos são contraditórios: o título e a tabela divergem entre open-ear e in-ear e entre Bluetooth 5.4 e 5.3; há vários números incompatíveis de autonomia. Mantemos esses campos sem um valor fechado. Não comprovamos som, conforto, impermeabilidade ou duração real em teste próprio.',
-    ['Microfone e estojo de recarga informados pelo vendedor.','O modelo X5 está identificado na tabela.'],
-    ['Formato e versão Bluetooth divergem no próprio anúncio.','Autonomia contraditória; 100 h não foram tratadas como duração de uma carga.']),
+    'O anúncio atual identifica o FORESTORY X5 com Bluetooth 5.3 no título, na tabela e na descrição, microfone integrado e estojo de recarga. A ficha específica marca ausência de cancelamento de ruído. O formato continua contraditório entre open-ear e in-ear, e há vários números incompatíveis de autonomia. Não escolhemos um formato ou duração fechada. Não comprovamos som, conforto, impermeabilidade ou duração real em teste próprio.',
+    ['Bluetooth 5.3 e modelo X5 identificados no anúncio atual.','Microfone e estojo de recarga informados pelo vendedor.'],
+    ['Formato continua divergente no próprio anúncio.','Autonomia contraditória; 100 h não foram tratadas como duração de uma carga.']),
   review('goH2juydLAa3JYXzctkH',/basike.*ear\s*clip/i,'fone-tws','MLB67513507','MLB6587035878',phones({format:missing('Tabela informa in-ear; descrição informa open-ear com ear clip e gancho. Não atribuímos encaixe único.'),bt:'Bluetooth 5.4',mic:'Microfone integrado com ENC para chamadas',hours:missing('Descrição informa 10 h contínuas; a tabela informa 50 h sem explicar a composição. A autonomia por carga não ficou inequívoca.'),caseHours:missing('O anúncio não esclarece se as 50 h incluem o estojo. Não convertemos a capacidade de 800 mAh em duração.')}),
     ['O anúncio identifica BA-FON240B. Existem também IPX5 e IPX6 no texto; não repetimos as promessas de latência ou redução percentual de vazamento.'],
     'A tabela deste Basike identifica o modelo BA-FON240B. A descrição informa Bluetooth 5.4, microfone com ENC para chamadas e carregamento USB-C. O formato aparece como in-ear na tabela e open-ear com gancho no texto; a autonomia aparece como 50 h e 10 h sem uma separação inequívoca entre fones e estojo. Não escolhemos um desses valores, não confirmamos ANC e não reproduzimos as promessas de latência ou ausência de vazamento de som.',
@@ -119,18 +194,21 @@ export const MARKETPLACE_FIELD_REVIEWS=new Map([
     'Este anúncio Basike também identifica o modelo BA-FON240B, com Bluetooth 5.4, microfone com ENC para chamadas e recarga USB-C. O cadastro e seus links permanecem separados. O anúncio diverge no formato, na autonomia e na resistência IP; não escolhemos o maior número nem prometemos ausência de vazamento de som ou latência específica. ENC de chamadas não confirma ANC para ouvir e não testamos conforto, áudio ou duração real.',
     ['Modelo BA-FON240B e Bluetooth 5.4 informados na oferta.','Microfone com ENC e recarga USB-C anunciados.'],
     ['Formato, autonomia e IP divergem entre título, tabela e descrição.','Não prometemos latência específica, ausência de vazamento ou ANC não informado.']),
-  review('YuOWci2UixF5GuQE6IYS',/huawei.*(?:wifi|wi[ -]?fi).*ax2s/i,'roteador','MLB36213556','',[
-    unknown('Quantidade de portas','O próprio anúncio informa quatro portas WAN/LAN em uma seção e três entradas Gigabit em outra. Não escolhemos uma contagem.')],
-    ['WS7000 está identificado. O mesmo anúncio mantém a divergência de 3/4 portas; não alteramos quantidade com base em uma única seção.'],
-    'O anúncio identifica o HUAWEI WiFi AX2S WS7000 e informa Wi-Fi 6 em 5 GHz, duas bandas, portas Gigabit e HarmonyOS Mesh+. As taxas de até 300 e 1201 Mbps são valores nominais, não velocidade garantida da internet. A quantidade de portas permanece a confirmar: o próprio anúncio cita quatro em uma seção e três em outra. Não testamos cobertura, desempenho ou compatibilidade entre roteadores.',
+  reviewToday('YuOWci2UixF5GuQE6IYS',/huawei.*(?:wifi|wi[ -]?fi).*ax2s/i,'roteador','MLB36213556','',[
+    unknown('Quantidade de portas','O próprio anúncio informa quatro portas WAN/LAN em uma seção e três entradas Gigabit em outra; a tabela ainda registra cinco portas totais. Não escolhemos uma contagem.')],
+    ['WS7000 está identificado. O mesmo anúncio mantém números de 3, 4 e 5 portas em seções diferentes; não alteramos quantidade com base em uma única seção.'],
+    'O anúncio identifica o HUAWEI WiFi AX2S WS7000 e informa Wi-Fi 6 em 5 GHz, duas bandas, portas Gigabit e HarmonyOS Mesh+. As taxas de até 300 e 1201 Mbps são valores nominais, não velocidade garantida da internet. A quantidade de portas permanece a confirmar: o texto cita quatro em uma seção e três em outra, e a tabela registra cinco portas totais. Não testamos cobertura, desempenho ou compatibilidade entre roteadores.',
     ['Wi-Fi 6 em 5 GHz e duas bandas anunciados.','Portas Gigabit e HarmonyOS Mesh+ descritos na oferta.'],
-    ['O anúncio diverge entre três e quatro portas; não publicamos contagem fechada.','Taxas nominais e Mesh não garantem cobertura ou velocidade real no ambiente.']),
+    ['O anúncio diverge entre três, quatro e cinco portas; não publicamos contagem fechada.','Taxas nominais e Mesh não garantem cobertura ou velocidade real no ambiente.']),
   review('z507ObVuMlSEBSnK40Uc',/fone.*kapbom/i,'fone-tws','MLB69395726','MLB6549129000',phones({format:'Intra-auricular com gancho',bt:missing('Título e descrição informam Bluetooth 5.3, mas a tabela informa 5.4.'),anc:without('Sem cancelamento de ruído, conforme o campo específico da tabela'),mic:'Microfone para chamadas',hours:'Aproximadamente 4 a 6 h de música por carga, dependendo do volume',caseHours:missing('O estojo é anunciado com 620 mAh, sem duração total de reprodução informada.')}),
     ['A tabela identifica fabricante Kapbom, marca Scorpion e modelo KA-790/KA790D. Não tratamos como Lenovo XT80 nem como edição de outra marca.'],
     'O anúncio informa fabricante Kapbom, marca Scorpion e modelo KA-790/KA790D, com formato intra-auricular com gancho, microfone e cerca de 4 a 6 horas de música por carga. O estojo é anunciado com 620 mAh, sem duração total informada. A tabela nega cancelamento de ruído e diverge da descrição na versão Bluetooth, entre 5.4 e 5.3. Não usamos a ficha do Lenovo XT80 e não testamos áudio, conforto ou bateria.',
     ['Modelo KA-790/KA790D e microfone identificados na oferta.','A descrição informa aproximadamente 4 a 6 h de música por carga, conforme o volume.'],
     ['Versão Bluetooth divergente: 5.3 no texto e 5.4 na tabela.','Sem cancelamento de ruído segundo a tabela; total de horas com estojo não informado.']),
 ]);
+
+// Same listing, now consistent on Bluetooth 5.3. No change of model or links.
+MARKETPLACE_FIELD_REVIEWS.get('FWRyLtto1bKeKurNikKq').replacements=[['Bluetooth 5.4','Bluetooth 5.3']];
 
 export function listingReviewFor(product) {
   const record=MARKETPLACE_FIELD_REVIEWS.get(String(product?.id||'')),title=String(product?.titulo||'');

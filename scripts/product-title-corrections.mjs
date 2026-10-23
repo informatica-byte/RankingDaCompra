@@ -378,10 +378,11 @@ for (const [id, review] of HIGHLIGHT_EDITORIAL) {
   PRODUCT_CORRECTIONS.set(id, {...PRODUCT_CORRECTIONS.get(id), ...review});
 }
 
-const PRE_LISTING_CORRECTIONS=new Map(PRODUCT_CORRECTIONS);
 for (const [id, review] of EXISTING_OFFER_REVIEWS) PRODUCT_CORRECTIONS.set(id, review);
+const PRE_LISTING_CORRECTIONS=new Map(PRODUCT_CORRECTIONS);
 for(const [id,review]of MARKETPLACE_FIELD_REVIEWS)if(review.summary) {
   PRODUCT_CORRECTIONS.set(id,{...PRODUCT_CORRECTIONS.get(id),model:review.model,summary:review.summary,
+    ...(review.replacements?{replacements:review.replacements}:{}),
     positiveNotes:review.positiveNotes,negativeNotes:review.negativeNotes,sourceUrl:review.sourceUrl,
     sourceKind:'marketplace-listing',sourceLabel:'Anúncio do vendedor no Mercado Livre',reviewedAt:review.reviewedAt,specUrl:undefined,suppressRating:true});
 }

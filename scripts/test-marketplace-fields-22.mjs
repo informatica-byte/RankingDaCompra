@@ -9,13 +9,13 @@ const catalog=JSON.parse(readFileSync(new URL('../vitrine-publica.json',import.m
 const product=id=>catalog.find(p=>p.id===id);
 const field=(id,label)=>comparisonData(correctProductData(product(id))).features.find(f=>f.label===label);
 
-test('22 revisões são específicas, preservam cadastros e não viram preços ou prova de fabricante',()=>{
-  assert.equal(MARKETPLACE_FIELD_REVIEWS.size,22);
+test('31 revisões são específicas, preservam cadastros e não viram preços ou prova de fabricante',()=>{
+  assert.equal(MARKETPLACE_FIELD_REVIEWS.size,31);
   for(const [id,review]of MARKETPLACE_FIELD_REVIEWS){
     const p=product(id),before=JSON.stringify(p);assert.ok(p,id);
     assert.ok(listingReviewFor(p),id);assert.ok(documentedSpecifications(p),id);
     const after=correctProductData(p);
-    for(const [key,value]of Object.entries(p))if(!['comentario','pros','contras','nota','notaInformada'].includes(key))assert.deepEqual(after[key],value,id+':'+key);
+    for(const [key,value]of Object.entries(p))if(!['comentario','pros','contras','nota','notaInformada'].includes(key)&&!(id==='FWRyLtto1bKeKurNikKq'&&key==='titulo'))assert.deepEqual(after[key],value,id+':'+key);
     assert.equal(JSON.stringify(p),before);assert.deepEqual(correctProductData(after),after);
     assert.equal(listingReviewFor({...p,id:'outro'}),null);
     assert.equal(listingReviewFor({...p,titulo:'Produto diferente'}),null);
@@ -23,7 +23,7 @@ test('22 revisões são específicas, preservam cadastros e não viram preços o
     assert.equal(listingReviewFor({...p,link:'https://evil.example/'+review.catalog}),null);
     assert.equal(listingReviewFor({...p,link:'https://www.mercadolivre.com.br/p/MLB99999999'}),null);
     if(review.item && review.catalog!==review.item)assert.equal(listingReviewFor({...p,link:review.sourceUrl.replace(review.item,'MLB9999999999')}),null);
-    for(const f of review.features){assert.equal(f.basis,'cadastro');assert.equal(f.sourceKind,'marketplace-listing');assert.equal(f.checkedAt,'2026-10-20');assert.ok(f.sourceUrl.startsWith('https://'));if(f.state==='unknown')assert.ok(f.reason);}
+    for(const f of review.features){assert.equal(f.basis,'cadastro');assert.equal(f.sourceKind,'marketplace-listing');assert.equal(f.checkedAt,review.reviewedAt);assert.ok(f.sourceUrl.startsWith('https://'));if(f.state==='unknown')assert.ok(f.reason);}
     if(review.summary){assert.equal(manufacturerEvidence(after),null);assert.doesNotMatch(after.comentario,/R\$|100% garantido|garantimos/i);}
     const html=renderManufacturerSpecifications(after);assert.match(html,/data-marketplace-specifications/,id);assert.match(html,/Consultar o anúncio usado como fonte/);
   }
@@ -55,7 +55,8 @@ test('modelos e campos misturados não recebem a ficha de outra marca ou ediçã
   const generic=correctProductData(product('FpO2EOBfcTy3F04Jk6pY'));assert.match(generic.comentario,/marca Genérica/);assert.match(generic.contras,/não apresentamos como JBL original/);
   assert.equal(field('mGfjcGRX5FvusGGZMYJL','Versão Bluetooth').state,'unknown');
   assert.equal(field('FWRyLtto1bKeKurNikKq','Formato').state,'unknown');
-  assert.equal(field('FWRyLtto1bKeKurNikKq','Versão Bluetooth').state,'unknown');
+  assert.equal(field('FWRyLtto1bKeKurNikKq','Versão Bluetooth').state,'yes');
+  assert.match(field('FWRyLtto1bKeKurNikKq','Versão Bluetooth').value,/Bluetooth 5\.3/);
   assert.equal(field('z507ObVuMlSEBSnK40Uc','Versão Bluetooth').state,'unknown');
   for(const id of ['goH2juydLAa3JYXzctkH','xUz3eJJ8CDLhc5sW47BB']){
     assert.match(correctProductData(product(id)).comentario,/BA-FON240B/);assert.equal(field(id,'Formato').state,'unknown');
