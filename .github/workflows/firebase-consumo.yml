@@ -1,0 +1,45 @@
+name: Atualizar tanque de consumo Firebase
+on:
+  schedule:
+    - cron: '8,23,38,53 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rankingdacompra-consumo-metricas
+  cancel-in-progress: false
+jobs:
+  consumo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Validar privacidade e período da cota (sem serviços externos)
+        run: node --test scripts/test-firebase-usage-automatic.mjs
+      - name: Autenticar apenas leitura de métricas (sem chave permanente)
+        id: metrics-auth
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093
+        with:
+          workload_identity_provider: projects/300637600463/locations/global/workloadIdentityPools/ranking-github-read/providers/ranking-github-main
+          service_account: ranking-publication-reader@rankingdacompra.iam.gserviceaccount.com
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/monitoring.read
+          access_token_lifetime: 300s
+          create_credentials_file: false
+          export_environment_variables: false
+      - name: Consultar uma série agregada, sem ler documentos Firestore
+        env:
+          RDC_MONITORING_ACCESS_TOKEN: ${{ steps.metrics-auth.outputs.access_token }}
+        run: node scripts/update-firebase-usage.mjs
+      - name: Publicar somente total e horário em branch exclusiva
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/publish-firebase-usage.mjs

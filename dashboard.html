@@ -194,7 +194,7 @@
 
         <section class="painel painel-consumo" aria-labelledby="consumo-titulo">
             <h2 id="consumo-titulo">⛽ Tanque de leituras do Firestore</h2>
-            <p class="consumo-subtitulo">Estimativa gratuita a partir do número que você informar. Não consulta a API paga nem representa o consumo em tempo real.</p>
+            <p class="consumo-subtitulo">Atualização automática por métricas oficiais, com atraso. O painel lê só um arquivo agregado, sem consultar produtos ou guardar credenciais.</p>
             <div class="consumo-layout">
                 <div class="consumo-medidor" id="consumo-medidor" role="img" aria-label="Consumo ainda não medido">
                     <svg viewBox="0 0 240 139" aria-hidden="true" focusable="false">
@@ -206,7 +206,7 @@
                         <circle cx="120" cy="119" r="9" fill="#203b31"/>
                     </svg>
                     <strong id="consumo-restante">—</strong>
-                    <span>leituras restantes no momento anotado</span>
+                    <span>leituras restantes estimadas até a medição</span>
                 </div>
                 <div>
                     <span id="consumo-status" class="consumo-status" role="status">Aguardando registro de hoje</span>
@@ -214,16 +214,19 @@
                     <p id="consumo-hora" class="consumo-hora">Abra o consumo oficial do Firebase e informe as leituras de hoje.</p>
                 </div>
             </div>
+            <div class="consumo-acoes"><button type="button" id="btn-consumo-automatico">↻ Atualizar medição automática</button></div>
+            <details><summary>Registro manual de contingência (opcional)</summary>
             <form id="consumo-form" class="consumo-form">
                 <label for="consumo-leituras-informadas">Leituras de hoje no Firebase
                     <input type="number" id="consumo-leituras-informadas" min="0" step="1" inputmode="numeric" placeholder="Ex.: 12500" required disabled>
                 </label>
                 <div class="consumo-acoes"><button type="submit" id="btn-consumo-salvar" disabled>Atualizar ponteiro</button></div>
             </form>
+            </details>
             <div class="consumo-acoes">
                 <a href="https://console.firebase.google.com/project/rankingdacompra/firestore/usage" target="_blank" rel="noopener noreferrer">Ver consumo oficial no Firebase ↗</a>
             </div>
-            <p class="ajuda-metrica">Copie apenas o total de leituras do painel oficial. O valor fica salvo somente neste navegador e é descartado pelo mostrador no próximo dia da cota (horário do Pacífico). O ponteiro não soma o consumo posterior e não faz leituras extras do Firestore. Gravações e exclusões devem ser conferidas no Firebase.</p>
+            <p class="ajuda-metrica">O robô tenta atualizar a cada 15 minutos, inclusive com seu computador desligado. Atrasos do Google, GitHub e cache podem ocorrer; confira sempre o horário da medição. A cota muda à meia-noite do Pacífico. O arquivo público contém somente o total e o horário, sem dados de produtos. Falha ou dado antigo não vira saldo zero. O registro manual fica apenas neste navegador.</p>
         </section>
 
         <section class="painel" aria-labelledby="rotina-titulo">
@@ -3470,7 +3473,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
   <script src="/promotion-title.js?v=20261005-1"></script>
   <script defer src="/growth-tools.js?v=20261012-audit-4&review=20261019&metrics=20261021-products&history=20261022-1&reads=20261023-1"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script defer src="/firebase-consumo.js?v=20260924-manual1"></script>
+  <script defer src="/firebase-consumo.js?v=20261023-auto1"></script>
 <script>
 window.RDCBestChoicesAdmin.mount(document.getElementById('best-choices-dashboard'),async()=>{
   if(!auth.currentUser)throw Error('Entre no painel administrativo.');

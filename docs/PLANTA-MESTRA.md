@@ -258,9 +258,9 @@ Há modo automático e manual. Os temas cobrem Ano-Novo, volta às aulas, Carnav
 
 ### Economia do Firebase
 
-- o painel administrativo privado inclui um medidor de leituras com ponteiro, gratuito e **manual**: o administrador informa o total exibido no Firebase Console. `firebase-consumo.js` guarda o registro somente no aparelho; não usa Cloud Monitoring, OAuth ou leituras adicionais do Firestore;
-- a cota de referência é de 50 mil leituras/dia. O restante é uma estimativa derivada do número informado, não telemetria automática nem saldo global dos serviços Firebase. O plano Spark é preservado; não é preciso cadastrar faturamento;
-- o dia da cota segue `America/Los_Angeles`. O registro expira na virada da cota e o painel mostra quando o valor foi anotado. Consulte o console oficial para atualizar a estimativa;
+- o painel administrativo privado inclui um medidor de leituras com ponteiro: `firebase-consumo.js` lê somente o agregado público `{reads, at}` da branch exclusiva `metricas-consumo-firebase`. O registro manual local permanece como contingência. O navegador não usa OAuth, API de métricas ou leituras adicionais do Firestore;
+- o job `firebase-consumo.yml` tenta atualizar a cada quinze minutos com identidade temporária e escopo `monitoring.read`, usando somente `monitoring.timeSeries.list`. Publica apenas total e horário, sem reconstruir páginas. Não habilita serviços, cobrança ou gravadores de métricas. O plano Spark é preservado;
+- a cota de referência é de 50 mil leituras/dia e segue `America/Los_Angeles`, inclusive horário de verão. O saldo é estimativa do monitoramento, não faturamento exato nem consumo instantâneo. Medições de outro dia são recusadas; atrasos acima de 45 minutos são sinalizados;
 - a busca e a maior parte da leitura pública usam arquivos JSON estáticos;
 - a Central de Foco só faz leitura ampla após ação manual;
 - preço e disponibilidade são conferidos em um único lote diário/manual, nunca produto a produto ao abrir o painel;

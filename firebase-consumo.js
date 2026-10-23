@@ -1,10 +1,12 @@
-/* Medidor privado e gratuito: usa somente o número informado pelo administrador. */
+/* Medidor administrativo: agregado público sem credenciais; manual como contingência. */
 (function (root) {
   "use strict";
 
   const TIME_ZONE = "America/Los_Angeles";
   const STORAGE_KEY = "rdc-firestore-usage-manual-v1";
   const LIMITS = { reads: 50000 };
+  const PUBLIC_USAGE_URL = 'https://raw.githubusercontent.com/informatica-byte/RankingDaCompra/metricas-consumo-firebase/firebase-consumo.json';
+  const STALE_MS = 45 * 60 * 1000;
   const formatter = new Intl.NumberFormat("pt-BR");
 
   function pacificDate(value) {
@@ -45,7 +47,15 @@
     } catch { return null; }
   }
 
-  const helpers = { pacificDate, gaugeState, parseReads, currentSnapshot, LIMITS };
+  function automaticSnapshot(raw, now = new Date()) {
+    try {
+      const value = typeof raw === 'string' ? JSON.parse(raw) : raw;
+      if (!value || Object.keys(value).sort().join(',') !== 'at,reads') return null;
+      const snapshot = currentSnapshot({ ...value, day: pacificDate(value.at) }, now);
+      return snapshot ? { ...snapshot, automatic: true, stale: now.getTime() - Date.parse(snapshot.at) > STALE_MS } : null;
+    } catch (_) { return null; }
+  }
+  const helpers = { pacificDate, gaugeState, parseReads, currentSnapshot, automaticSnapshot, LIMITS, STALE_MS, PUBLIC_USAGE_URL };
   if (typeof module !== "undefined" && module.exports) module.exports = helpers;
   if (typeof document === "undefined") return;
 
@@ -56,6 +66,7 @@
   const button = $("btn-consumo-salvar");
   let authorizedAdmin = false;
   let renderedDay = pacificDate(new Date());
+  let automatic = null, requestInFlight = null, lastAttempt = 0;
 
   function setStatus(message, level = "") {
     const element = $("consumo-status");
@@ -68,7 +79,7 @@
     $("consumo-restante").textContent = "—";
     $("consumo-leituras").textContent = "— / 50.000 leituras";
     $("consumo-hora").textContent = message;
-    $("consumo-medidor").setAttribute("aria-label", "Sem registro manual de leituras para o dia atual da cota");
+    $("consumo-medidor").setAttribute("aria-label", "Sem medição válida de leituras para o dia atual da cota");
   }
 
   function showReading(snapshot) {
@@ -84,11 +95,20 @@
     $("consumo-medidor").setAttribute("aria-label", `${formatter.format(state.remaining)} leituras restantes na hora do registro manual, não em tempo real`);
     const at = new Date(snapshot.at);
     $("consumo-hora").textContent = `Valor anotado em ${new Intl.DateTimeFormat("pt-BR", { dateStyle: "short", timeStyle: "short" }).format(at)}. Dia da cota no horário do Pacífico: ${snapshot.day}. O consumo posterior não está incluído.`;
+    if (snapshot.automatic) {
+      setStatus(snapshot.stale ? 'Medição atrasada — confira no Firebase' : state.level === 'critico'
+        ? 'Automático — atenção ao limite estimado' : 'Atualização automática — métricas com atraso', snapshot.stale ? 'atencao' : state.level === 'normal' ? '' : state.level);
+      $("consumo-medidor").setAttribute('aria-label', `${formatter.format(state.remaining)} leituras restantes estimadas até a medição, não em tempo real`);
+      $("consumo-hora").textContent = `Métricas cobrem até ${new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(at)}. Dia da cota no Pacífico: ${snapshot.day}. Estimativa do monitoramento, não faturamento exato. Google e GitHub podem atrasar; o consumo posterior não está incluído.`;
+    }
   }
 
   function loadSnapshot() {
     if (!authorizedAdmin) return;
     renderedDay = pacificDate(new Date());
+    const measured = automaticSnapshot(automatic);
+    if (measured) { showReading(measured); return; }
+    automatic = null;
     let stored = "";
     try { stored = root.localStorage.getItem(STORAGE_KEY) || ""; } catch { /* Armazenamento indisponível. */ }
     const snapshot = currentSnapshot(stored);
@@ -97,8 +117,8 @@
       showReading(snapshot);
     } else {
       field.value = "";
-      clearReading("Informe o número de leituras exibido hoje no painel oficial do Firebase.");
-      setStatus("Aguardando registro de hoje");
+      clearReading("Aguardando a medição automática do dia atual. Se necessário, use o registro manual de contingência.");
+      setStatus("Aguardando medição automática de hoje");
     }
   }
 
@@ -115,13 +135,37 @@
     if (!saved) setStatus("Valor exibido, mas o navegador não conseguiu salvá-lo", "atencao");
   });
 
+  function refreshAutomatic() {
+    if (!authorizedAdmin || document.hidden || requestInFlight || Date.now() - lastAttempt < 30000) return requestInFlight;
+    lastAttempt = Date.now();
+    // Apenas um JSON público do GitHub; nunca a API de métricas, OAuth ou Firestore.
+    requestInFlight = root.fetch(PUBLIC_USAGE_URL, { cache: 'no-store', credentials: 'omit', redirect: 'error',
+      signal: root.AbortSignal.timeout(10000) }).then(async response => {
+      if (!response.ok) throw Error('Medição indisponível.');
+      const text = await response.text();
+      if (text.length > 1000) throw Error('Arquivo inválido.');
+      const value = automaticSnapshot(text);
+      if (!value) throw Error('Medição de outro dia ou inválida.');
+      if (authorizedAdmin) { automatic = { reads: value.reads, at: value.at }; loadSnapshot(); }
+    }).catch(() => {
+      if (!authorizedAdmin) return;
+      loadSnapshot();
+      const value = automaticSnapshot(automatic);
+      if (value) setStatus('Atualização indisponível — última medição preservada', 'atencao');
+    }).finally(() => { requestInFlight = null; });
+    return requestInFlight;
+  }
+  $('btn-consumo-automatico')?.addEventListener('click', refreshAutomatic);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) { loadSnapshot(); refreshAutomatic(); } });
+
   if (root.firebase?.auth) {
     root.firebase.auth().onAuthStateChanged((user) => {
       authorizedAdmin = Boolean(user);
       field.disabled = !authorizedAdmin;
       button.disabled = !authorizedAdmin;
-      if (authorizedAdmin) loadSnapshot();
+      if (authorizedAdmin) { loadSnapshot(); refreshAutomatic(); }
       else {
+        automatic = null;
         field.value = "";
         clearReading("Entre no painel para registrar as leituras.");
         setStatus("Sem registro");
@@ -129,7 +173,10 @@
     });
   }
   const intervalId = root.setInterval(() => {
-    if (authorizedAdmin && pacificDate(new Date()) !== renderedDay) loadSnapshot();
+    if (authorizedAdmin) {
+      if (pacificDate(new Date()) !== renderedDay || automatic) loadSnapshot();
+      if (Date.now() - lastAttempt >= 5 * 60 * 1000) refreshAutomatic();
+    }
   }, 60 * 1000);
   root.addEventListener("beforeunload", () => root.clearInterval(intervalId), { once: true });
 })(typeof window === "undefined" ? globalThis : window);
