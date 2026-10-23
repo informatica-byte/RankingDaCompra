@@ -39,6 +39,11 @@ on:
     # Após cadastrar produtos ou conferir preços, use Run workflow para publicar antes.
     - cron: "17 22 * * *"
   workflow_dispatch:
+    inputs:
+      preserve_published_prices:
+        description: "Bloquear publicação se algum preço já publicado mudar"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -72,7 +77,11 @@ jobs:
         env:
           RDC_FIRESTORE_ACCESS_TOKEN: ${{ steps.firestore-auth.outputs.access_token }}
           RDC_FIRESTORE_AUTH_REQUIRED: "true"
+          PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices }}
         run: |
+          if [[ "$PRESERVE_PUBLISHED_PRICES" == "true" ]]; then
+            git show HEAD:vitrine-publica.json > "$RUNNER_TEMP/rdc-before-publication.json"
+          fi
           generated=false
           for attempt in 1 2 3; do
             if timeout 100s node scripts/generate-sitemap.mjs; then
@@ -103,7 +112,15 @@ jobs:
       - name: Publicar sitemap e páginas sociais quando houver alteração
         id: publicar
         shell: bash
+        env:
+          PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices }}
         run: |
+          guard_prices() {
+            if [[ "$PRESERVE_PUBLISHED_PRICES" == "true" ]]; then
+              node scripts/publication-price-guard.mjs "$RUNNER_TEMP/rdc-before-publication.json" vitrine-publica.json || exit 1
+            fi
+          }
+          guard_prices
           if [[ -z "$(git status --porcelain -- index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json ':(top,glob)*.html')" ]]; then
             echo "O sitemap, as páginas sociais e o diretório de análises já estão atualizados."
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -117,6 +134,7 @@ jobs:
           git diff --cached --name-only
           git commit -m "Atualiza sitemap, análises, busca e Top 6"
           git pull --rebase origin main
+          guard_prices
           node scripts/validate-site.mjs
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"

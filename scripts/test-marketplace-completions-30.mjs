@@ -1,12 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {reviewedProduct} from './fixtures/reviewed-marketplace-products.mjs';
 import {listingReviewFor} from './marketplace-field-reviews.mjs';
 import {correctProductData,manufacturerEvidence} from './product-title-corrections.mjs';
 import {comparisonData,decisionData} from './product-decision.mjs';
 import {renderManufacturerSpecifications} from './manufacturer-specifications.mjs';
-const products=JSON.parse(readFileSync(new URL('../vitrine-publica.json',import.meta.url),'utf8')).products;
-const get=id=>products.find(p=>p.id===id);
+const get=reviewedProduct;
 const fact=(id,label)=>comparisonData(correctProductData(get(id))).features.find(f=>f.label===label);
 
 test('complementos do anúncio não alteram preços, links, cadastros ou prova da conferência',()=>{

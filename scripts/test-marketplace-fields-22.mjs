@@ -1,16 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {reviewedProducts,reviewedProduct} from './fixtures/reviewed-marketplace-products.mjs';
 import {MARKETPLACE_FIELD_REVIEWS,listingReviewFor} from './marketplace-field-reviews.mjs';
 import {correctProductData,manufacturerEvidence} from './product-title-corrections.mjs';
 import {comparisonData} from './product-decision.mjs';
 import {documentedSpecifications,renderManufacturerSpecifications} from './manufacturer-specifications.mjs';
-const catalog=JSON.parse(readFileSync(new URL('../vitrine-publica.json',import.meta.url),'utf8')).products;
-const product=id=>catalog.find(p=>p.id===id);
+const catalog=reviewedProducts();
+const product=reviewedProduct;
 const field=(id,label)=>comparisonData(correctProductData(product(id))).features.find(f=>f.label===label);
 
 test('31 revisões são específicas, preservam cadastros e não viram preços ou prova de fabricante',()=>{
   assert.equal(MARKETPLACE_FIELD_REVIEWS.size,31);
+  assert.deepEqual(new Set(catalog.map(p=>p.id)),new Set(MARKETPLACE_FIELD_REVIEWS.keys()));
   for(const [id,review]of MARKETPLACE_FIELD_REVIEWS){
     const p=product(id),before=JSON.stringify(p);assert.ok(p,id);
     assert.ok(listingReviewFor(p),id);assert.ok(documentedSpecifications(p),id);

@@ -6,9 +6,10 @@ import integrity from '../comparison-integrity.js';
 import {comparisonData} from './product-decision.mjs';
 import {groupComparisonProducts,renderIntegrityGuide} from './comparison-guides.mjs';
 import {MARKETPLACE_FIELD_REVIEWS} from './marketplace-field-reviews.mjs';
+import {reviewedProducts,reviewedProduct} from './fixtures/reviewed-marketplace-products.mjs';
 
-const catalog=JSON.parse(readFileSync(new URL('../vitrine-publica.json',import.meta.url),'utf8')).products;
-const product=id=>catalog.find(p=>p.id===id);
+const catalog=reviewedProducts();
+const product=reviewedProduct;
 const indexed=id=>{const p=product(id);return {id,title:p.titulo,comparison:comparisonData(p)};};
 const released=new Map([
   ['BhacwzAPIbDglRkNCoyz','earphones-open'],
@@ -70,7 +71,7 @@ test('revisão não duplica LP40/HAVIT por cor nem altera preços ou registros',
   assert.equal(JSON.stringify(catalog),before);
 });
 
-test('gerador de guias e comparador interativo usam os mesmos formatos nas 22 fichas',()=>{
+test('gerador de guias e comparador interativo usam os mesmos formatos nas 31 fichas históricas',()=>{
   const targets=[...MARKETPLACE_FIELD_REVIEWS.keys()].map(product);
   const rawBefore=JSON.stringify(targets);
   const groups=groupComparisonProducts(targets);

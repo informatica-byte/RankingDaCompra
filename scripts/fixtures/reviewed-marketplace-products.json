@@ -1,0 +1,284 @@
+{
+  "sourceCommit": "9cab5b238",
+  "capturedAt": "2026-10-23",
+  "purpose": "Fixtures de regressão; não são fonte da publicação nem substituem o catálogo atual.",
+  "products": [
+    {
+      "id": "C5b5fKstKDUgNDUxnQkP",
+      "titulo": "Power Bank Basike 20000mAh",
+      "categoria": "celular",
+      "preco": "136,96",
+      "precoAnterior": "213,80",
+      "precoPromocional": "114,85",
+      "nota": ""
+    },
+    {
+      "id": "zev1LogqUFpJ3cLlIXyy",
+      "titulo": "Auxiliar de Partida e Compressor de Ar Portátil 6 em 1 Inteligente para Carro, Moto e Bicicleta com Lanterna e Power Bank",
+      "categoria": "ferramentas",
+      "preco": "156,51",
+      "precoAnterior": "300,00",
+      "precoPromocional": "160,00",
+      "nota": ""
+    },
+    {
+      "id": "BcfEuX1oed02O8pYXKyg",
+      "titulo": "Lanterna De Cabeça Led Sensor Movimento 12 Modos Recarregável Power Bank Usb Alta Potência Ciclismo Camping Pesca Reparo Noturna Zoom Ajustável Ipx4 Resistente Mãos Livres Frontal 100000 Lumens",
+      "categoria": "esporte-e-lazer",
+      "preco": "116,30",
+      "precoAnterior": "289,90",
+      "precoPromocional": "120,81",
+      "nota": ""
+    },
+    {
+      "id": "cSmjEdmFugRGDdJHkMcR",
+      "titulo": "Smartwatch Esportivo Masculina Relógio Inteligente Redondo",
+      "categoria": "relogio-smartwatch",
+      "preco": "159,00",
+      "precoAnterior": "215,00",
+      "precoPromocional": "110,80",
+      "nota": ""
+    },
+    {
+      "id": "wYxgVNIJeeWmGhcToFLP",
+      "titulo": "Power Bank 20000mah Carregador Portátil 4 Cabos Integrados Visor Digital Lanterna Led Usb Tipo C Compatível iPhone Samsung Xiaomi Android Bateria Externa Carrega 4 Dispositivos Preto",
+      "categoria": "celular",
+      "preco": "95,90",
+      "precoAnterior": "122,00",
+      "precoPromocional": "69,90",
+      "nota": ""
+    },
+    {
+      "id": "M0Zj2K84Q8PX0YTQMIHz",
+      "titulo": "Smartwatch Relógio Inteligente Gps Chamadas Bluetooth Novante Masculino Feminino Moda Esportivo Digital Preto Ipx8 Água Tela Hd 1.83 480mah Android Ios Notificações Instantâneas Com Lanterna Bússola",
+      "categoria": "relogio-smartwatch",
+      "preco": "149,39",
+      "precoAnterior": "399,00",
+      "precoPromocional": "126,00",
+      "nota": ""
+    },
+    {
+      "id": "UkgpEmnU2nSDUmOujW6W",
+      "titulo": "Smartwatch NOVANTE Alexa e chamadas Bluetooth — anúncio MLB6162191874",
+      "categoria": "relogio-smartwatch",
+      "preco": "146,40",
+      "precoAnterior": "299,00",
+      "precoPromocional": "138,26",
+      "nota": ""
+    },
+    {
+      "id": "Znhr4d5uhDKsj5poLEmZ",
+      "titulo": "Smartwatch NOVANTE Alexa e chamadas Bluetooth — anúncio MLB4460735385",
+      "categoria": "relogio-smartwatch",
+      "preco": "164,39",
+      "precoAnterior": "299,00",
+      "precoPromocional": "138,00",
+      "nota": ""
+    },
+    {
+      "id": "mlMLB4474695467",
+      "titulo": "Smartwatch A Prova D'água Mede Pressão Arterial Gps Strava",
+      "categoria": "relogio-smartwatch",
+      "preco": "214,70",
+      "precoAnterior": "348,62",
+      "precoPromocional": "70,23",
+      "nota": ""
+    },
+    {
+      "id": "1tIzUpXs4udqZOZwpQX7",
+      "titulo": "Headset Com Fio Hxz-b39 Fone De Ouvido Headset Gamer Bege Preto",
+      "categoria": "celular",
+      "preco": "109,99",
+      "precoAnterior": "109,99",
+      "precoPromocional": "99,16",
+      "nota": ""
+    },
+    {
+      "id": "2e2m7sDdRyGHq1Tzj8ra",
+      "titulo": "Roteador Wi-fi Tp-Link TL- Wr840 N Wireless 300Mbps",
+      "categoria": "roteador",
+      "preco": "99,90",
+      "precoAnterior": "129,00",
+      "precoPromocional": "99,73",
+      "nota": ""
+    },
+    {
+      "id": "5MGE98tYssH9nEfBeHoW",
+      "titulo": "Smartwatch HUAWEI WATCH FIT 5 com GPS e tela AMOLED de 1,82 polegada",
+      "categoria": "relogio-smartwatch",
+      "preco": "727,20",
+      "precoAnterior": "1499,00",
+      "precoPromocional": "766,38",
+      "nota": ""
+    },
+    {
+      "id": "9P123IBTTYnSCMilPvXB",
+      "titulo": "Smartwatch Amazfit Bip 6 com GPS e tela AMOLED de 1,97 polegada",
+      "categoria": "relogio-smartwatch",
+      "preco": "551,99",
+      "precoAnterior": "639,00",
+      "precoPromocional": "587,88",
+      "nota": ""
+    },
+    {
+      "id": "BhacwzAPIbDglRkNCoyz",
+      "titulo": "Fones Esportivo Bluetooth 6.0 Tradutor Ai Miniso X15pro Ipx5",
+      "categoria": "fonesdeouvido",
+      "preco": "146,56",
+      "precoAnterior": "229,00",
+      "precoPromocional": "155,72",
+      "nota": ""
+    },
+    {
+      "id": "c9hb1oe40g3K1dP4dAsy",
+      "titulo": "Fone de Ouvido JBL Quantum 100M2 Gamer Over-ear com Microfone Removível para PS4 e PS5",
+      "categoria": "fonesdeouvido",
+      "preco": "166,84",
+      "precoAnterior": "229,00",
+      "precoPromocional": "129,01",
+      "nota": ""
+    },
+    {
+      "id": "DlFv98xnrCPIAeFfbRFv",
+      "titulo": "Fone Ouvido Bluetooth 5.4 Sem Fio Estojo De Carregamento Anti Ruido A Prova Dagua Compatível Com Ios Samsung Galaxy Android Tws Wireless Air Premium Microfone Touch Marca Pro Phone See",
+      "categoria": "fonesdeouvido",
+      "preco": "47,34",
+      "precoAnterior": "",
+      "precoPromocional": "",
+      "nota": ""
+    },
+    {
+      "id": "FlqPY3yHJ2xPoNgnhSTE",
+      "titulo": "Galaxy Buds Core Preto",
+      "categoria": "fonesdeouvido",
+      "preco": "224,72",
+      "nota": ""
+    },
+    {
+      "id": "FpO2EOBfcTy3F04Jk6pY",
+      "titulo": "Fone De Ouvido Sem Fio Bluetooth Compativel Jbl 760",
+      "categoria": "fonesdeouvido",
+      "preco": "83,64",
+      "precoAnterior": "169,90",
+      "precoPromocional": "88,00",
+      "nota": ""
+    },
+    {
+      "id": "FWRyLtto1bKeKurNikKq",
+      "titulo": "FORESTORY Fone de Ouvido Bluetooth 5.3 OWS TWS Sem Fio X5 Open Ear Esportivo com Gancho Display LED HD Microfone Grave Potente para Academia Corrida Compatível iPhone Samsung Xiaomi Motorola Android",
+      "categoria": "fonesdeouvido",
+      "preco": "63,24",
+      "precoAnterior": "120,00",
+      "precoPromocional": "62,40",
+      "nota": ""
+    },
+    {
+      "id": "goH2juydLAa3JYXzctkH",
+      "titulo": "Fone Bluetooth Basike Ear Clip com Gancho",
+      "categoria": "fonesdeouvido",
+      "preco": "139,89",
+      "precoAnterior": "153,60",
+      "precoPromocional": "129,90",
+      "nota": ""
+    },
+    {
+      "id": "kYzXt8BeErDzXsC6BlwB",
+      "titulo": "Fone De Ouvido Sem Fio Havit Tw982 Enc Bluetooth 5.4 Cor Preto",
+      "categoria": "fonesdeouvido",
+      "preco": "78,90",
+      "precoAnterior": "119,00",
+      "precoPromocional": "72,65",
+      "nota": ""
+    },
+    {
+      "id": "Mdyju6zRmHsKRpOYqz51",
+      "titulo": "40hrs Fone De Ouvido Gancho Bluetooth Sem Fio Esportivo,inova Cases Fone De Ouvido Gancho Gamer Com Microfone Para iPhone Samsung Xiaomi Lenovo Motorola Celular Cor Preto",
+      "categoria": "fonesdeouvido",
+      "preco": "78,88",
+      "precoAnterior": "123,85",
+      "precoPromocional": "74,00",
+      "nota": ""
+    },
+    {
+      "id": "mGfjcGRX5FvusGGZMYJL",
+      "titulo": "Fone De Ouvido Bluetooth In-ear Gamer Sem Fio Earcuffs",
+      "categoria": "fonesdeouvido",
+      "preco": "62,00",
+      "precoAnterior": "99,00",
+      "precoPromocional": "91,08",
+      "nota": ""
+    },
+    {
+      "id": "NJipazuMXMzOH9YZbxwu",
+      "titulo": "Fone De Ouvido Headphone Dapon H02D Bluetooth 5.1 Over-ear 22h Preto",
+      "categoria": "fonesdeouvido",
+      "preco": "78,90",
+      "precoAnterior": "149,00",
+      "precoPromocional": "74,00",
+      "nota": ""
+    },
+    {
+      "id": "rERcfIbgG1c0uUdNlQ4o",
+      "titulo": "Fones De Ouvido Bluetooth Intra-auriculares Lenovo Lp40 Cor Preto",
+      "categoria": "fonesdeouvido",
+      "preco": "58,00",
+      "precoAnterior": "78,99",
+      "precoPromocional": "69,17",
+      "nota": ""
+    },
+    {
+      "id": "U52A4gBWWLEmfCzONtHb",
+      "titulo": "Fone Ouvido Bluetooth Sem Fio Prova DAgua Wireless Tipo Light Cancelamento Ruido Celular",
+      "categoria": "fonesdeouvido",
+      "preco": "93,99",
+      "precoAnterior": "78,90",
+      "precoPromocional": "35,99",
+      "nota": ""
+    },
+    {
+      "id": "VgB90DThWdh8uyXUeE3U",
+      "titulo": "Headset Gamer Com Fio Mageon Vermelho Com Microfone Ajustável",
+      "categoria": "informatica",
+      "preco": "51,88",
+      "precoAnterior": "78,59",
+      "precoPromocional": "57,04",
+      "nota": ""
+    },
+    {
+      "id": "WO6BdDxEWWCCjBVJ0ygB",
+      "titulo": "Fone de Ouvido Bluetooth com Ear Clip OWS Bluetooth 6.0 com Microfone e Bateria 30H Preto",
+      "categoria": "fonesdeouvido",
+      "preco": "75,50",
+      "precoAnterior": "112,79",
+      "precoPromocional": "77,83",
+      "nota": ""
+    },
+    {
+      "id": "xUz3eJJ8CDLhc5sW47BB",
+      "titulo": "Basike Fone de Ouvido Bluetooth 5.4 TWS",
+      "categoria": "fonesdeouvido",
+      "preco": "108,90",
+      "precoAnterior": "215,22",
+      "precoPromocional": "96,90",
+      "nota": ""
+    },
+    {
+      "id": "YuOWci2UixF5GuQE6IYS",
+      "titulo": "Roteador HUAWEI WiFi AX2S Wi-Fi 6 Preto",
+      "categoria": "roteador",
+      "preco": "180,00",
+      "precoAnterior": "499,00",
+      "precoPromocional": "151,05",
+      "nota": ""
+    },
+    {
+      "id": "z507ObVuMlSEBSnK40Uc",
+      "titulo": "Fone de Ouvido Bluetooth 5.3 Tws Sem Fio Esportivo Compatível Com iPhone Samsung Xiaomi Motorola Com Gancho Premium KAPBOM Preto",
+      "categoria": "fonesdeouvido",
+      "preco": "48,99",
+      "precoAnterior": "89,97",
+      "precoPromocional": "47,30",
+      "nota": ""
+    }
+  ]
+}
