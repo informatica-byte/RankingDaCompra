@@ -1,6 +1,10 @@
-# Tanque Firebase local — versão 1.0.0
+# Tanque Firebase local — versão 1.0.1
 
 Script independente do robô de preços. Não é uma atualização do `bot-precos.user.js`.
+
+Correção 1.0.1: reconhece também o endereço de Uso terminado em `/reads`, com ou sem `/u/N`, sem ampliar o acesso para outro projeto/banco ou alterar a validação do período atual. A versão 1.0.0 encerrava antes de ler essa tela e deixava o painel no último valor manual. Nome, namespace, permissões e armazenamento foram preservados para atualizar o mesmo userscript, não instalar outro robô.
+
+Quem já instalou: abra o link abaixo no Chrome e confirme **Atualizar**, verificando a versão **1.0.1**. Depois recarregue o console e, somente quando não houver lote em andamento, o painel. Uma conferência em andamento não deve ser interrompida. Confira se o total da tela e o tanque coincidem (com “≈” quando arredondado). Publicação do arquivo e testes não substituem a confirmação real após atualizar no Chrome.
 
 ## Instalação por link no Chrome com Tampermonkey
 

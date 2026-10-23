@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra — Tanque Firebase local
 // @namespace    rankingdacompra.tanque-local
-// @version      1.0.0
+// @version      1.0.1
 // @description  Lê somente o total já exibido no console e atualiza o tanque neste navegador. Não faz consultas à rede.
 // @match        https://console.firebase.google.com/project/rankingdacompra/firestore/*
 // @match        https://console.firebase.google.com/u/*/project/rankingdacompra/firestore/*
@@ -41,7 +41,9 @@
     try {
       const url = new URL(href);
       if (url.protocol !== 'https:') return '';
-      if (url.hostname === 'console.firebase.google.com' && /^\/(?:u\/\d+\/)?project\/rankingdacompra\/firestore\/databases\/-default-\/usage\/[^/]+\/?$/.test(url.pathname)) return 'console';
+      // O console também abre a métrica selecionada no sufixo /reads.
+      // Esse sufixo não altera o projeto, banco ou validação do período no DOM.
+      if (url.hostname === 'console.firebase.google.com' && /^\/(?:u\/\d+\/)?project\/rankingdacompra\/firestore\/databases\/-default-\/usage\/[^/]+(?:\/reads)?\/?$/.test(url.pathname)) return 'console';
       if (url.hostname === 'rankingdacompra.com.br' && url.pathname === '/dashboard.html') return 'dashboard';
       if (url.hostname === 'rankingdacompra.com.br' && url.pathname === '/painel-celular.html') return 'mobile';
     } catch { /* Endereço fora do escopo. */ }

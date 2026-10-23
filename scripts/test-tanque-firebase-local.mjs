@@ -60,6 +60,13 @@ test('escopo exato rejeita outros projetos, bancos, páginas e domínios', () =>
   for (const bad of [href.replace('rankingdacompra', 'outro'), href.replace('-default-', 'outro'), href.replace('/usage/last-24h', '/data'), 'http://rankingdacompra.com.br/dashboard.html', 'https://rankingdacompra.com.br.evil.invalid/dashboard.html', 'https://rankingdacompra.com.br/dashboard.html.old']) assert.equal(h.route(bad), '');
 });
 
+test('regressão 1.0.1 reconhece /reads sem ampliar projeto, banco ou subrotas', () => {
+  for (const url of [href + '/reads', href + '/reads/', href.replace('/u/1', '') + '/reads', href + '/reads?hl=pt-BR#main']) assert.equal(h.route(url), 'console');
+  for (const url of [href + '/writes', href + '/reads/data', href.replace('-default-', 'outro') + '/reads', href.replace('rankingdacompra', 'outro') + '/reads']) assert.equal(h.route(url), '');
+  assert.match(source, /^\/\/ @version\s+1\.0\.1\r?$/m);
+  assert.match(source, /^\/\/ @namespace\s+rankingdacompra\.tanque-local\r?$/m);
+});
+
 test('converte número exibido sem esconder o arredondamento e sem inventar zero', () => {
   for (const [raw, count, rounded] of [['43 mil', 43000, true], ['43,1 mil', 43100, true], ['43,117k', 43117, true], ['1,5 mi', 1500000, true], ['43.117', 43117, false], ['0', 0, false], ['627', 627, false]]) assert.deepEqual(h.counter(raw), { reads: count, rounded });
   assert.deepEqual(h.counter('1,234', 'en'), { reads: 1234, rounded: false });
@@ -89,6 +96,13 @@ test('fixture do DOM observado no console lê SOMENTE a métrica Leituras e seu 
 test('tela ambígua, oculta, carregando ou com formato desconhecido não publica nada', () => {
   const mutations = [f => f.picker.hidden = true, f => f.selected.textContent = 'Last 24 hours', f => f.number.textContent = 'Sem dados', f => f.total.textContent = 'valor selecionado', f => f.selectors.set('fire-date-range-picker-button', [f.picker, f.picker]), f => f.selectors.set('fire-c13g-multi-time-series-selector .metric-toggle', [f.metric, f.metric]), f => f.card.querySelectorAll = () => [f.number]];
   for (const change of mutations) { const f = fixture(); change(f); assert.equal(h.readScreen(f.doc, href, now), null); }
+});
+
+test('/reads ainda exige período seguro e recusa dados desconhecidos em vez de publicar zero', () => {
+  const f = fixture({ reads: '49 mil' });
+  assert.deepEqual(h.readScreen(f.doc, href + '/reads', now), { day: '2026-10-23', reads: 49000, rounded: true });
+  f.selected.textContent = 'Last 24 hours'; assert.equal(h.readScreen(f.doc, href + '/reads', now), null);
+  f.selected.textContent = 'Current quota period'; f.number.textContent = 'Sem dados'; assert.equal(h.readScreen(f.doc, href + '/reads', now), null);
 });
 
 test('allowlist impede guardar campos extras, datas futuras, outro dia ou valores inválidos', () => {
@@ -155,6 +169,19 @@ test('pausa interrompe captura sem afetar login, preços ou formularios; painel 
   assert.equal(bus.values.get('rdc-tanque-local-leitura-v1').reads, 43000);
   pauseButton.listeners.click(); dashboard.ids.get('admin-content').hidden = false; dash.timers[0]();
   assert.equal(dashboard.ids.get('consumo-leituras').textContent, '≈ 45.000 / 50.000 leituras');
+});
+
+test('inicialização direta em /reads envia o total ao painel, preservando o registro manual e o formulário', () => {
+  const bus = { values: new Map(), writes: [], listeners: new Map() }, clock = { at: now.getTime() };
+  const dashboard = fixture({ type: 'dashboard' }), consoleView = fixture({ reads: '49 mil' });
+  consoleView.href = href.replace('/u/1', '') + '/reads';
+  dashboard.ids.get('consumo-leituras').textContent = '32.000 / 50.000 leituras';
+  runtime(dashboard, bus, clock); runtime(consoleView, bus, clock);
+  assert.equal(bus.writes.length, 1);
+  assert.equal(dashboard.ids.get('consumo-leituras').textContent, '≈ 49.000 / 50.000 leituras');
+  assert.equal(dashboard.ids.get('consumo-restante').textContent, '≈ 1.000');
+  assert.equal(dashboard.ids.get('consumo-leituras-informadas').value, '123');
+  assert.deepEqual(Object.keys(bus.writes[0][1]).sort(), ['at','day','reads','rounded']);
 });
 
 test('sem período seguro o runtime não grava nem publica um total padrão', () => {
