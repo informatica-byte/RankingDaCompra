@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {assertPublishedPricesPreserved as guard} from './publication-price-guard.mjs';
+import {readFileSync} from 'node:fs';
 const before={products:[{id:'a',preco:99.90,precoAnterior:120,precoPromocional:89}]};
 
 test('proteção de publicação compara preços existentes sem editar entradas',()=>{
@@ -25,4 +26,11 @@ test('proteção rejeita catálogo incompleto e identidade duplicada',()=>{
   assert.throws(()=>guard({},before),/Catálogo inválido/);
   assert.throws(()=>guard(before,{products:[{id:'a'},{id:'a'}]}),/duplicada/);
   assert.throws(()=>guard(before,{products:[{}]}),/ausente/);
+});
+test('publicação explicitamente protegida por commit conserva a trava nos dois passos',()=>{
+  const workflow=readFileSync(new URL('../.github/workflows/update-sitemap.yml',import.meta.url),'utf8');
+  assert.equal((workflow.match(/PRESERVE_PUBLISHED_PRICES: \$\{\{ inputs\.preserve_published_prices \|\| contains\(github\.event\.head_commit\.message, '\[preservar-precos\]'\) \}\}/g)||[]).length,2);
+  assert.match(workflow,/node --test scripts\/test-\*\.mjs/);
+  assert.match(workflow,/node scripts\/publication-price-guard\.mjs/);
+  assert.match(workflow,/node scripts\/validate-site\.mjs/);
 });

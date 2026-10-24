@@ -78,7 +78,7 @@ jobs:
         env:
           RDC_FIRESTORE_ACCESS_TOKEN: ${{ steps.firestore-auth.outputs.access_token }}
           RDC_FIRESTORE_AUTH_REQUIRED: "true"
-          PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices }}
+          PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices || contains(github.event.head_commit.message, '[preservar-precos]') }}
           # Nunca restaurar este cache entre publicações: uma nova execução lê
           # os dados atuais. Só retentativas da mesma execução reaproveitam páginas.
           RDC_FIRESTORE_READ_CACHE_SCOPE: ${{ github.run_id }}-${{ github.run_attempt }}
@@ -117,7 +117,7 @@ jobs:
         id: publicar
         shell: bash
         env:
-          PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices }}
+          PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices || contains(github.event.head_commit.message, '[preservar-precos]') }}
         run: |
           guard_prices() {
             if [[ "$PRESERVE_PUBLISHED_PRICES" == "true" ]]; then

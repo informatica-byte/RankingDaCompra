@@ -26,6 +26,54 @@ function block(content, reviewedAt = CONFIG.reviewedAt) {
 function clean(html) {
   return html.replace(/<!-- visibility-editorial:start -->[\s\S]*?<!-- visibility-editorial:end -->/g, '').replace(/<style data-visibility-editorial>[\s\S]*?<\/style>\n?/g, '');
 }
+const SITE = 'https://rankingdacompra.com.br';
+function attributes(tag) {
+  return Object.fromEntries([...tag.matchAll(/([\w-]+)\s*=\s*(["'])([\s\S]*?)\2/g)].map(m => [m[1].toLowerCase(), m[3].replace(/&amp;/g, '&')]));
+}
+function productPath(value) {
+  try {
+    const url = new URL(value);
+    if (url.origin !== SITE || url.username || url.password || url.port || url.search || url.hash || !/^\/produto\/[A-Za-z0-9_-]+-\d{8}-\d+\.html$/.test(url.pathname)) return null;
+    return url.pathname.slice(1);
+  } catch {return null;}
+}
+function pageIdentity(html) {
+  const canonical = [...html.matchAll(/<link\b[^>]*>/gi)].map(m => attributes(m[0])).filter(a => a.rel?.toLowerCase() === 'canonical');
+  const metas = [...html.matchAll(/<meta\b[^>]*>/gi)].map(m => attributes(m[0]));
+  const refresh = metas.filter(a => a['http-equiv']?.toLowerCase() === 'refresh');
+  const noindex = metas.some(a => a.name?.toLowerCase() === 'robots' && /\bnoindex\b/i.test(a.content));
+  const products = [];
+  for (const [,json] of html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    const data = JSON.parse(json);
+    products.push(...(data['@graph'] || [data]).filter(n => n['@type'] === 'Product'));
+  }
+  return {canonical, metas, refresh, noindex, products};
+}
+// Follow only the one-hop alias emitted by our generator. A title in a related
+// link, an external canonical, a loop or a different model is never evidence.
+export async function resolveEditorialProduct(root, item) {
+  const originalFile = `produto/${item.id}-20260810-1.html`;
+  let html = await readFile(resolve(root, originalFile), 'utf8');
+  const original = pageIdentity(html);
+  let file = originalFile;
+  if (original.refresh.length) {
+    const aliasCanonical = original.canonical.length === 1 && productPath(original.canonical[0].href);
+    const destination = original.refresh.length === 1 && original.refresh[0].content?.match(/^0;url=(.+)$/)?.[1];
+    if (!original.noindex || original.products.length || !/<h1>Esta análise foi atualizada<\/h1>/.test(html) || !aliasCanonical || productPath(destination) !== aliasCanonical || aliasCanonical === originalFile) throw new Error(`Alias editorial inválido: ${originalFile}`);
+    file = aliasCanonical;
+    html = await readFile(resolve(root, file), 'utf8');
+  } else if (original.noindex) {
+    // Explicit retired/paused stubs must remain without a stale offer/editorial.
+    const retired = original.metas.some(a => ['rdc-retired-product-title', 'rdc-paused-product'].includes(a.name));
+    if (!retired || original.canonical.length || original.products.length || /id=["']affiliate-offer["']/.test(html)) throw new Error(`Página editorial inativa inválida: ${originalFile}`);
+    return {file, html, item, inactive:true};
+  }
+  const target = pageIdentity(html);
+  const product = target.products.length === 1 && target.products[0];
+  if (target.noindex || target.refresh.length || target.canonical.length !== 1 || productPath(target.canonical[0].href) !== file || !product || productPath(product.url || product['@id']) !== file || !new RegExp(item.guard, 'i').test(product.name || '')) throw new Error(`Identidade editorial não confirmada: ${originalFile} -> ${file}`);
+  const id = file.match(/^produto\/(.+)-\d{8}-\d+\.html$/)[1];
+  return {file, html, item:{...item, id}, inactive:false};
+}
 export function improveProduct(html, item) {
   const next = clean(html);
   if (/name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(next)) return next;
@@ -57,9 +105,16 @@ export function improveGuide(html, item) {
 export async function applyVisibilityEditorial(root = '.') {
   const changed = [], dates = new Map();
   for (const item of CONFIG.products) {
-    const file = `produto/${item.id}-20260810-1.html`;
-    let html; try {html = await readFile(resolve(root, file), 'utf8');} catch(error) {if(error.code === 'ENOENT') continue;throw error;}
-    const output = improveProduct(html, item);
+    let page;
+    try {page = await resolveEditorialProduct(root, item);} catch(error) {
+      // Small fixture builds may not include every editorial selection. Only
+      // that original absence is optional; a broken alias destination is not.
+      if (error.code === 'ENOENT' && error.path === resolve(root, `produto/${item.id}-20260810-1.html`)) continue;
+      throw error;
+    }
+    if (page.inactive) continue;
+    const {file, html} = page;
+    const output = improveProduct(html, page.item);
     if (output !== html) {await writeFile(resolve(root, file), output);changed.push(file);}
     if (output.includes('<!-- visibility-editorial:start -->')) dates.set(file, CONFIG.reviewedAt);
   }
