@@ -54,14 +54,14 @@ test('foto legada em imagem não é apagada ao carregar sem mudança', () => {
   assert.deepEqual(serial(api.buildPatch(legacy, input(), 'agora').changes), {});
 });
 
-function setup(read = async () => product, save = async () => {}) {
+function setup(read = async () => product, save = async () => {}, reuse) {
   const nodes = new Map();
   const node = key => {
     if (!nodes.has(key)) nodes.set(key, { value: '', checked: false, hidden: true, disabled: false, className: '', textContent: '', handlers: {}, addEventListener(event, fn) { this.handlers[event] = fn; }, focus() { this.focused = true; } });
     return nodes.get(key);
   };
   const container = { hidden: false, classList: { add() {} }, querySelector: node, handlers: {}, addEventListener(name, fn) { this.handlers[name] = fn; } };
-  const editor = api.mount(container, { read, save });
+  const editor = api.mount(container, { read, save, reuse });
   const action = name => node('[data-action=' + name + ']');
   const field = name => node('[data-field="' + name + '"]');
   return { editor, container, node, action, field };
@@ -133,9 +133,33 @@ test('Enter no editor não dispara criação pelo formulário externo', () => {
   ui.container.handlers.keydown({ key: 'Enter', target: { matches: () => true }, preventDefault() { prevented = true; } });
   assert.equal(prevented, true);
 });
+test('reutilizar abre a oferta pelo id original, sem editar links ou salvar o rascunho', async () => {
+  const calls = []; let finish;
+  const ui = setup(async () => { throw Error('não deveria ler aqui'); }, async () => { throw Error('não deveria salvar'); }, (...args) => { calls.push(args); return new Promise(resolve => { finish = resolve; }); });
+  ui.editor.show('original', product.link);
+  const pending = ui.action('reuse').handlers.click();
+  assert.equal(ui.editor.isBusy(), true); assert.equal(ui.editor.isReusing(), true);
+  await ui.action('reuse').handlers.click();
+  assert.deepEqual(calls, [['original', product.link]]);
+  finish(); await pending;
+  assert.equal(ui.editor.isBusy(), false); assert.equal(ui.editor.isReusing(), false);
+  assert.match(ui.node('[data-status]').textContent, /Confira os preços e o prazo/);
+});
+
+test('falha no atalho não perde o rascunho e reabilita controles', async () => {
+  const ui = setup(undefined, undefined, async () => { throw Error('conferência em andamento'); });
+  ui.editor.show('original', product.link);
+  ui.field('titulo').value = 'Meu rascunho';
+  await ui.action('reuse').handlers.click();
+  assert.match(ui.node('[data-status]').textContent, /conferência em andamento/);
+  assert.equal(ui.field('titulo').value, 'Meu rascunho');
+  assert.equal(ui.editor.isBusy(), false); assert.equal(ui.editor.isReusing(), false);
+});
+
 test('integração mantém travas, atualização transacional, histórico e três caminhos de duplicidade', () => {
   const html = readFileSync('painel-celular.html', 'utf8');
-  assert.match(html, /express-existing-product\.js\?v=20261015-2/);
+  assert.match(html, /express-existing-product\.js\?v=20261024-reuse/);
+  assert.match(html, /ofertasRelampagoExistentesMovel\.openProduct\(id, sourceLink\)/);
   assert.match(html, /cadastroExistenteExpressa\.show\(existente\.id, link\)/);
   assert.match(html, /cadastroExistenteExpressa\.show\(resultado\.produtoExistenteId, resultado\.link\)/);
   assert.match(html, /cadastroExistenteExpressa\.show\(cadastroDuplicadoId, resultado\.link\)/);

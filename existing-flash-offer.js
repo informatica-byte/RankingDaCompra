@@ -95,15 +95,24 @@
       finally { loading = false; disable(false); }
     };
     el('search').oninput = () => { if (!busy()) { generation++; renderList(); status(''); } };
-    el('products').onchange = async () => {
+    async function openProduct(id, expectedLink = '') {
       if (busy()) return;
-      const id = el('products').value, revision = ++generation;
+      const revision = ++generation;
       clearEditor(); if (!id) return;
+      el('drawer').hidden = false; el('open').setAttribute('aria-expanded', 'true');
       loading = true; disable(true); status('Carregando este cadastro para edição segura...');
       try {
         const product = await hooks.read(id);
         if (generation !== revision) return;
+        if (expectedLink) {
+          const expectedId = root.RDCProductSaveSafety.listingId({ marketplace: 'mercado_livre', link: expectedLink });
+          const foundId = root.RDCProductSaveSafety.listingId({ marketplace: 'mercado_livre', link: product?.link });
+          if ((expectedId && expectedId !== foundId) || (!expectedId && String(product?.link || '') !== expectedLink)) throw Error('O cadastro não comprova o mesmo anúncio informado. Confira os links antes de continuar.');
+        }
         assertProduct(product); selected = product; selectedId = id;
+        if (!products.some(item => item.id === id)) products.push({ ...product, id });
+        if (expectedLink) el('products').replaceChildren(new Option(String(product.titulo), id));
+        el('products').value = id;
         el('title').textContent = String(product.titulo); el('source').href = safeUrl(product.link);
         const image = safeUrl(product.foto); el('photo').hidden = !image; if (image) el('photo').src = image;
         const live = product.ofertaRelampagoAtiva === true && root.RDCFlashOfferSafety.millis(product.ofertaRelampagoTerminaEm) > Date.now();
@@ -114,7 +123,9 @@
         el('editor').hidden = false; status('Confira os preços e o prazo antes de salvar.');
       } catch (error) { if (generation === revision) status(error.message, true); }
       finally { loading = false; disable(false); }
-    };
+      return selectedId === id;
+    }
+    el('products').onchange = () => openProduct(el('products').value);
     for (const name of ['regular', 'current', 'duration']) el(name).oninput = () => { el('confirm').checked = false; el('publication').hidden = true; status(''); if (name === 'duration') deadlineEdited = true; };
     el('photo').onerror = () => { el('photo').hidden = true; };
     el('save').onclick = async () => {
@@ -136,7 +147,7 @@
     function reset() { generation++; cached = null; products = []; clearEditor(); el('search').value = ''; el('products').replaceChildren(new Option('Selecione um produto', '')); el('drawer').hidden = true; el('open').setAttribute('aria-expanded', 'false'); status(''); }
     el('close').onclick = () => { if (!busy()) reset(); };
     el('open').setAttribute('aria-expanded', 'false');
-    return { reset, isBusy: busy };
+    return { reset, isBusy: busy, openProduct };
   }
   return Object.freeze({ buildPatch, assertCurrent, search, duration, remaining, mount });
 });

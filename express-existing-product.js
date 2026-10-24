@@ -24,10 +24,12 @@
   }
 
   function mount(container, options) {
-    let productId = "", expectedLink = "", baseline = null, busy = false, generation = 0;
+    let productId = "", expectedLink = "", baseline = null, busy = false, reusing = false, generation = 0;
     container.classList.add("express-existing");
     container.hidden = true;
-    container.innerHTML = '<button type="button" class="btn azul" data-action="load">✏️ Carregar cadastro existente</button>' +
+    container.innerHTML = '<button type="button" class="btn verde" data-action="reuse">⚡ Preparar oferta relâmpago neste cadastro</button>' +
+      '<p class="mini">Para uma nova oferta do mesmo produto, use o botão acima: confira os preços e o prazo, sem duplicar o cadastro nem trocar os links. Para corrigir nome, foto ou links, use a edição abaixo.</p>' +
+      '<button type="button" class="btn azul" data-action="load">✏️ Carregar cadastro existente</button>' +
       '<div data-editor hidden><h3>Editar cadastro existente</h3><p class="mini">O rascunho acima será mantido. Somente os campos alterados abaixo serão salvos no produto original, sem criar outra página.</p>' +
       '<fieldset style="border:0;padding:0;margin:0"><label>Nome do produto<input class="campo" data-field="titulo" maxlength="180" /></label>' +
       '<label>Link completo do produto no Mercado Livre<input class="campo" data-field="link" type="url" inputmode="url" maxlength="1000" /></label>' +
@@ -46,6 +48,7 @@
     };
     const setBusy = value => {
       busy = value;
+      find("[data-action=reuse]").disabled = value;
       find("[data-action=load]").disabled = value;
       find("fieldset").disabled = value;
     };
@@ -94,6 +97,17 @@
       finally { setBusy(false); }
     };
     find("[data-action=load]").addEventListener("click", load);
+    find("[data-action=reuse]").hidden = typeof options.reuse !== "function";
+    find("[data-action=reuse]").addEventListener("click", async () => {
+      if (busy || !productId || typeof options.reuse !== "function") return;
+      reusing = true;
+      setBusy(true);
+      try {
+        await options.reuse(productId, expectedLink);
+        status("Oferta aberta acima no mesmo cadastro. Confira os preços e o prazo antes de salvar.");
+      } catch (error) { status("Não foi possível preparar a oferta: " + error.message, true); }
+      finally { reusing = false; setBusy(false); }
+    });
     find("[data-action=save]").addEventListener("click", save);
     find("[data-action=cancel]").addEventListener("click", () => {
       if (busy) return;
@@ -117,6 +131,7 @@
       },
       reset() { return this.show(""); },
       isBusy() { return busy; },
+      isReusing() { return reusing; },
     });
   }
   root.RDCExpressExisting = Object.freeze({ buildPatch, mount });

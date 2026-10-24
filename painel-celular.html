@@ -186,10 +186,10 @@
     <script src="/assisted-price-safety.js?v=20261019-1"></script>
     <script src="/assisted-report-recovery.js?v=20261018-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
-    <script src="/existing-flash-offer.js?v=20261016-1"></script>
+    <script src="/existing-flash-offer.js?v=20261024-reuse"></script>
     <script src="/weekly-comparison-safety.js?v=20261020-price-identity"></script>
-    <script src="/product-offer-replacement.js?v=20261006-1"></script>
-    <script src="/express-existing-product.js?v=20261015-2"></script>
+    <script src="/product-offer-replacement.js?v=20261024-listing"></script>
+    <script src="/express-existing-product.js?v=20261024-reuse"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
@@ -241,6 +241,14 @@
         $(id).textContent = "";
       }
       const cadastroExistenteExpressa = window.RDCExpressExisting.mount($("publicacao-cadastro-existente"), {
+        reuse: async (id, sourceLink) => {
+          if (!auth.currentUser) throw Error("Entre novamente no painel.");
+          if (automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento) throw Error("Aguarde ou pause a conferência antes de preparar a oferta.");
+          $("duracao-box").hidden = false;
+          const opened = await ofertasRelampagoExistentesMovel.openProduct(id, sourceLink);
+          if (!opened) throw Error("Confira o aviso da oferta antes de continuar.");
+          $("oferta-relampago-existente-mobile").scrollIntoView({ behavior: "smooth", block: "start" });
+        },
         read: async id => {
           if (!auth.currentUser) throw Error("Entre novamente no painel.");
           if (automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento) throw Error("Aguarde ou pause a conferência antes de editar.");
@@ -282,7 +290,7 @@
       let produtosRelampagoCacheMobile = null;
       function autorizarOfertaExistenteMobile() {
         if (!auth.currentUser) throw Error("Entre novamente no painel.");
-        if (automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()) throw Error("Aguarde ou pause a conferência antes de preparar a oferta.");
+        if (automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento || (cadastroExistenteExpressa.isBusy() && !cadastroExistenteExpressa.isReusing())) throw Error("Aguarde ou pause a conferência antes de preparar a oferta.");
         return auth.currentUser.uid;
       }
       const ofertasRelampagoExistentesMovel = window.RDCExistingFlashOffer.mount($("oferta-relampago-existente-mobile"), {
@@ -2841,7 +2849,7 @@
         if (cadastroExistenteExpressa.isBusy()) return;
         if (resultado.produtoExistenteId) {
           cadastroExistenteExpressa.show(resultado.produtoExistenteId, resultado.link);
-          return msg("pub-status", "Este anúncio já está cadastrado. Use o botão abaixo para carregar e editar o cadastro existente, sem duplicá-lo.", "erro");
+          return msg("pub-status", "Este anúncio já está cadastrado. Use o botão abaixo para preparar uma nova oferta no mesmo cadastro, ou editar os dados, sem duplicá-lo.", "erro");
         }
         const atual = numero($("atual").value),
           anterior = numero($("anterior").value),

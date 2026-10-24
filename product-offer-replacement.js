@@ -17,12 +17,26 @@
   function listing(value) {
     const parsed = url(value, true);
     if (!parsed) return "";
-    const values = [parsed.searchParams.get("item_id"), parsed.searchParams.get("wid"),
-      parsed.searchParams.get("pdp_filters"), new URLSearchParams(parsed.hash.slice(1)).get("wid"),
-      /\/p\/MLB\d+/i.test(parsed.pathname) ? "" : parsed.pathname];
-    const ids = [...new Set(values.flatMap(value => [...String(value || "").matchAll(/MLB-?(\d{6,})/gi)].map(match => "MLB" + match[1])))];
-    if (ids.length > 1) throw new Error("O link contém códigos de anúncios diferentes. Cole o endereço do anúncio escolhido.");
-    return ids[0] || "";
+    const ids = new Set();
+    const add = value => {
+      const match = String(value || "").trim().match(/^MLB[-_]?(\d{6,})$/i);
+      if (!match) throw new Error("O link contém um código de anúncio inválido. Copie novamente o endereço completo do produto.");
+      ids.add("MLB" + match[1]);
+    };
+    // Catalogs (/p/MLB...), user products (MLBU...) and deal:MLB... campaigns
+    // are not seller listings. Only explicit item_id/wid and listing paths count.
+    for (const params of [parsed.searchParams, new URLSearchParams(parsed.hash.slice(1))]) {
+      for (const key of ["item_id", "wid"]) for (const value of params.getAll(key)) add(value);
+      for (const filter of params.getAll("pdp_filters")) {
+        for (const match of filter.matchAll(/(?:^|[|,])item_id:([^|,]+)/gi)) add(match[1]);
+      }
+    }
+    if (!/\/p\/MLB\d+/i.test(parsed.pathname)) {
+      const pathId = parsed.pathname.match(/\/(MLB[-_]?\d{6,})(?=[\/_-]|$)/i)?.[1];
+      if (pathId) add(pathId);
+    }
+    if (ids.size > 1) throw new Error("O link contém códigos de anúncios diferentes. Cole o endereço do anúncio escolhido.");
+    return [...ids][0] || "";
   }
   function validate(product, input) {
     if (input.sameProduct !== true) throw new Error("Confirme que é exatamente o mesmo produto, modelo e versão. Para outro produto, use um novo cadastro.");

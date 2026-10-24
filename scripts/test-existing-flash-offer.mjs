@@ -94,6 +94,39 @@ for(const panel of ['mobile','dashboard']){
  });
 }
 test('integração nos dois painéis usa o mesmo componente e CSS responsivo sem formulários aninhados',()=>{
- for(const file of ['painel-celular.html','dashboard.html']){const html=readFileSync(file,'utf8');assert.match(html,/existing-flash-offer\.css\?v=20261016-1/);assert.match(html,/existing-flash-offer\.js\?v=20261016-1/);assert.match(html,/RDCExistingFlashOffer\.mount/);}
+ for(const file of ['painel-celular.html','dashboard.html']){const html=readFileSync(file,'utf8');assert.match(html,/existing-flash-offer\.css\?v=20261016-1/);assert.match(html,/existing-flash-offer\.js\?v=20261024-reuse/);assert.match(html,/RDCExistingFlashOffer\.mount/);}
  const source=readFileSync('existing-flash-offer.js','utf8');assert.doesNotMatch(source,/<form\b/);assert.match(source,/type="button" data-save/);assert.match(source,/\.textContent = String\(product\.titulo\)/);assert.match(readFileSync('existing-flash-offer.css','utf8'),/grid-template-columns:1fr/);
+});
+
+function directFixture(record = product()) {
+ const nodes = new Map(), counts = { read: 0, list: 0, save: 0 };
+ const node = selector => {
+  if (!nodes.has(selector)) nodes.set(selector, { hidden: false, value: '', checked: false, textContent: '', disabled: false, setAttribute() {}, replaceChildren() {}, add() {} });
+  return nodes.get(selector);
+ };
+ const ctx = { URL, Date, Option: function(text,value) { this.text=text;this.value=value; }, RDCFlashOfferSafety:flash, RDCProductSaveSafety:globalThis.RDCProductSaveSafety };
+ runInNewContext(readFileSync('existing-flash-offer.js','utf8'),ctx);
+ const ui = ctx.RDCExistingFlashOffer.mount({ classList:{add(){}},querySelector:node,querySelectorAll:()=>[...nodes.values()] }, {
+  read:async id=>{counts.read++;assert.equal(id,'original');return record;},
+  loadProducts:async()=>{counts.list++;return[];},save:async()=>{counts.save++;return record;},
+ });
+ return {ui,node,counts};
+}
+
+test('atalho direto carrega apenas o cadastro pedido sem consultar coleção, salvar ou confirmar preços',async()=>{
+ const f=directFixture(),original=product();
+ assert.equal(await f.ui.openProduct('original',original.link),true);
+ assert.deepEqual(f.counts,{read:1,list:0,save:0});
+ assert.equal(f.node('[data-editor]').hidden,false);assert.equal(f.node('[data-title]').textContent,original.titulo);
+ assert.equal(f.node('[data-confirm]').checked,false);assert.equal(f.node('[data-duration]').value,'');
+ f.node('[data-close]').onclick();assert.equal(f.node('[data-editor]').hidden,true);assert.equal(f.counts.save,0);
+});
+
+test('atalho mantém separados anúncios diferentes, removidos ou pausados',async()=>{
+ for(const record of [null,{...product(),conferenciaPausada:true}]){
+  const f=directFixture(record);assert.equal(await f.ui.openProduct('original',product().link),false);assert.equal(f.node('[data-editor]').hidden,true);assert.equal(f.counts.save,0);
+ }
+ const f=directFixture({...product(),link:'https://produto.mercadolivre.com.br/MLB-999999999-outro-_JM'});
+ assert.equal(await f.ui.openProduct('original','https://produto.mercadolivre.com.br/MLB-123456789-produto-_JM'),false);
+ assert.match(f.node('[data-status]').textContent,/mesmo anúncio/);assert.equal(f.node('[data-editor]').hidden,true);
 });

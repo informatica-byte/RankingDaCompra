@@ -52,6 +52,25 @@ test('catalog ID is not confused with seller listing and supports item_id, wid a
   assert.equal(replacement.listing('https://www.mercadolivre.com.br/p/MLB12345678#wid=MLB987654321'), 'MLB987654321');
   assert.throws(() => replacement.listing(input.link + '?wid=MLB222222222'), /códigos/);
 });
+
+test('regressão NAC: campanha deal não é outro anúncio ao editar links de oferta', () => {
+  const link = 'https://www.mercadolivre.com.br/nac-600mg-formula-exclusiva-com-maxima-concentracao-e-pureza-n-acetil-l-cisteina-60-capsulas/p/MLB58579835?pdp_filters=deal%3AMLB779362-1#polycard_client=offers&wid=MLB5761715520&sid=offers';
+  assert.equal(replacement.listing(link), 'MLB5761715520');
+  assert.equal(replacement.validate(product, { ...input, link }).mercadoLivreItemId, 'MLB5761715520');
+  assert.equal(replacement.listing('https://www.mercadolivre.com.br/p/MLB58579835?pdp_filters=deal%3AMLB779362-1'), '');
+});
+
+test('substituição valida todos os ids explícitos, sem aceitar campanhas como identidade', () => {
+  for (const link of [
+    'https://www.mercadolivre.com.br/p/MLB58579835?pdp_filters=deal%3AMLB779362-1%7Citem_id%3AMLB5761715520',
+    'https://produto.mercadolivre.com.br/MLB-5761715520-nac-_JM?pdp_filters=deal%3AMLB779362-1',
+    'https://www.mercadolivre.com.br/produto/up/MLBU55555555#item_id=MLB5761715520',
+  ]) assert.equal(replacement.listing(link), 'MLB5761715520');
+  for (const tail of ['?wid=MLB5761715520&wid=MLB1111111111', '?item_id=MLB5761715520#item_id=MLB1111111111', '?pdp_filters=item_id%3AMLB1111111111#wid=MLB5761715520']) {
+    assert.throws(() => replacement.listing('https://www.mercadolivre.com.br/p/MLB58579835' + tail), /códigos/);
+  }
+  assert.throws(() => replacement.listing('https://www.mercadolivre.com.br/p/MLB58579835?wid=MLBabc'), /inválido/);
+});
 test('old unavailable or price statuses cannot affect the new offer', () => {
   const changed = { ...product, ...replacement.buildPatch(product, input, when) };
   const old = { managed: true, status: 'active', available: true, visible: true, price: 90, checkedAt: '2026-10-06T11:00:00Z' };
