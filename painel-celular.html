@@ -183,7 +183,7 @@
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
     <script src="/product-save-safety.js?v=20261015-2"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
-    <script src="/assisted-price-safety.js?v=20261019-1"></script>
+    <script src="/assisted-price-safety.js?v=20261024-pendencias"></script>
     <script src="/assisted-report-recovery.js?v=20261018-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/existing-flash-offer.js?v=20261024-reuse"></script>
@@ -1046,11 +1046,29 @@
         }
       }
 
-      function separarProdutoAutomacao(produto, destino, motivo) {
+      function separarProdutoAutomacao(produto, destino, motivo, diagnostico = null) {
         // Uma nova tentativa substitui o estado anterior, não duplica pendências.
         automacaoPrecosFalhas.delete(produto.id);
         automacaoPrecosIndisponiveis.delete(produto.id);
         destino.set(produto.id, { id: produto.id, titulo: produto.titulo, motivo: String(motivo || "").trim(), tentativaEm: new Date().toISOString(), robotVersion: window.__RDC_BOT_PRECOS_LOCAL__?.version || "", url: linkPrecoAssistido(produto) });
+        // Only the public product heading/path and bounded listing diagnostics.
+        // Never persist page HTML, arbitrary payload fields or URL query tokens.
+        if (diagnostico && typeof diagnostico === "object") {
+          let urlFinal = "";
+          try {
+            const url = new URL(String(diagnostico.urlFinal || ""));
+            if (url.protocol === "https:" && !url.username && !url.password && !url.port && /(^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) urlFinal = (url.origin + url.pathname).slice(0, 1000);
+          } catch {}
+          const identifier = value => /^(?:MLB|MLBU)\d{6,}$/.test(String(value || "")) ? String(value) : "";
+          destino.get(produto.id).diagnostico = {
+            etapa: String(diagnostico.etapa || "").replace(/[^a-z_]/g, "").slice(0, 40),
+            tituloEncontrado: String(diagnostico.tituloEncontrado || "").replace(/\s+/g, " ").trim().slice(0, 240),
+            urlFinal, anuncioSolicitado: identifier(diagnostico.anuncioSolicitado),
+            anunciosVisiveis: Array.isArray(diagnostico.anunciosVisiveis) ? diagnostico.anunciosVisiveis.map(identifier).filter(Boolean).slice(0, 3) : [],
+            catalogoSolicitado: identifier(diagnostico.catalogoSolicitado), catalogoFinal: identifier(diagnostico.catalogoFinal),
+            blocosPreco: Number.isFinite(diagnostico.blocosPreco) ? Math.max(0, Math.min(100, Math.floor(diagnostico.blocosPreco))) : 0,
+          };
+        }
         // Set.add não move um item já pulado. Remover antes de reinserir é
         // essencial ao retomar uma fila só de pendências: senão o primeiro
         // reaparece imediatamente e a proteção de visitados encerra a rodada.
@@ -1129,16 +1147,16 @@
               return;
             }
             if (resultadoLocal?.status === "unavailable") {
-              separarProdutoAutomacao(produto, automacaoPrecosIndisponiveis, resultadoLocal.motivo || "O anúncio informou que o produto está indisponível.");
+              separarProdutoAutomacao(produto, automacaoPrecosIndisponiveis, resultadoLocal.motivo || "O anúncio informou que o produto está indisponível.", resultadoLocal.diagnostico);
               continue;
             }
             if (resultadoLocal?.status !== "ok" || !numero(resultadoLocal.preco)) {
-              separarProdutoAutomacao(produto, automacaoPrecosFalhas, resultadoLocal?.motivo || "Preço principal não comprovado.");
+              separarProdutoAutomacao(produto, automacaoPrecosFalhas, resultadoLocal?.motivo || "Preço principal não comprovado.", resultadoLocal?.diagnostico);
               continue;
             }
             const motivo = window.RDCAssistedPriceSafety.validate(resultadoLocal, { produtoId: produto.id, url: link, titulo: produto.titulo, previousPrice: numero(produto[campoPrecoFila(produto)]) });
             if (motivo) {
-              separarProdutoAutomacao(produto, automacaoPrecosFalhas, motivo);
+              separarProdutoAutomacao(produto, automacaoPrecosFalhas, motivo, resultadoLocal.diagnostico);
               continue;
             }
             const decisao = acompanhamentoPrecos.aguardar(rodada, produto.id);

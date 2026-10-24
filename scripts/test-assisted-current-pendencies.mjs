@@ -48,3 +48,21 @@ test('retomar fila já pulada move o item tentado para o fim e não duplica falh
  c.separarProdutoAutomacao({id:'a',titulo:'Produto A'},falhas,'Revisão necessária');
  assert.deepEqual([...pulados],['b','c','a']);assert.equal(indisponiveis.has('a'),false);assert.equal(falhas.get('a').motivo,'Revisão necessária');
 });
+
+test('relatório preserva o diagnóstico público e descarta campos arbitrários ou credenciais em URL',()=>{
+ const fn=html.slice(html.indexOf('function separarProdutoAutomacao('),html.indexOf('function pararAutomacaoPrecosAssistida('));
+ const failures=new Map(),c=vm.createContext({URL,automacaoPrecosFalhas:failures,automacaoPrecosIndisponiveis:new Map(),filaPrecosPulados:new Set(),filaPrecosIdAtual:'a',
+  window:{__RDC_BOT_PRECOS_LOCAL__:{version:'2.4.14'}},linkPrecoAssistido:()=> 'https://produto.mercadolivre.com.br/MLB-1234567890',
+  guardarPosicaoFilaPrecos(){},renderizarFilaPrecosAssistida(){},msg(){}});
+ vm.runInContext(fn,c);
+ c.separarProdutoAutomacao({id:'a',titulo:'Produto A'},failures,'Falta título',{
+  etapa:'titulo',tituloEncontrado:'Título público',urlFinal:'https://www.mercadolivre.com.br/p/MLB12345678?token=not-a-real-secret#auth=not-a-real-secret',
+  anuncioSolicitado:'MLB1234567890',anunciosVisiveis:['MLB1234567890','inválido'],catalogoFinal:'MLB12345678',blocosPreco:2,token:'not-a-real-secret',html:'body',
+ });
+ const value=failures.get('a').diagnostico;
+ assert.equal(value.urlFinal,'https://www.mercadolivre.com.br/p/MLB12345678');
+ assert.equal(value.blocosPreco,2);assert.equal(value.anunciosVisiveis.length,1);
+ assert.doesNotMatch(JSON.stringify(value),/not-a-real-secret|token|auth|body/);
+ c.separarProdutoAutomacao({id:'a',titulo:'Produto A'},failures,'Erro',{urlFinal:'https://user:pass@www.mercadolivre.com.br/p/MLB12345678'});
+ assert.equal(failures.get('a').diagnostico.urlFinal,'');
+});

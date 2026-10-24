@@ -15,6 +15,8 @@ O repositório sozinho **não é um backup completo**. Firestore, Firebase Authe
 
 ## 2. Resumo do produto
 
+Robô 2.4.14 (24/10/2026): corrige a leitura de “i5-6º” como “i5, 6ª geração”; recuperação de redirecionamento exige o anúncio solicitado visível, título compatível e duas leituras estáveis do preço principal. Diagnósticos locais de falha incluem etapa, título encontrado, caminho público final, IDs e contagem de blocos de preço, sem HTML ou parâmetros de URL. Não altera preços na instalação nem reinicia conferências. Ver `docs/CONFERENCIA-PENDENTES-20261024.md`.
+
 Correção de 24/10/2026: o aviso de duplicidade da publicação expressa oferece “Preparar oferta relâmpago neste cadastro”. O atalho abre somente o documento identificado, sem duplicar, alterar links ou confirmar preços automaticamente; exige conferir preços e prazo antes de salvar. A validação de substituição separa campanhas `deal:MLB...`, catálogo e anúncio, mantendo o bloqueio para IDs de anúncios realmente contraditórios.
 
 O Ranking da Compra é um portal brasileiro de descoberta, análise e comparação de produtos com monetização por links de afiliados. A experiência pública combina:

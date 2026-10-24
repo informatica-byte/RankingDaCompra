@@ -37,7 +37,7 @@ function setup(doc = page()) {
   const context = vm.createContext({ URL, URLSearchParams, document: doc, location: { hostname: 'test.invalid', href: url }, unsafeWindow: {},
     Date, setTimeout: callback => queueMicrotask(callback), GM_setValue: (key, value) => writes.push(value), GM_getValue: () => current,
   });
-  vm.runInContext(bot.replace(/\}\)\(\);\s*$/, 'Object.assign(globalThis, {parsePrice, matchingProduct, sameOffer, offerIdentity, extractMainPrice, variantMismatch, extractDocumentOffer, publishCurrentPageResult}); })();'), context);
+  vm.runInContext(bot.replace(/\}\)\(\);\s*$/, 'Object.assign(globalThis, {parsePrice, matchingProduct, sameOffer, offerIdentity, extractMainPrice, variantMismatch, extractDocumentOffer, publishCurrentPageResult, restoreControllerTab, handleConferenceCommand}); })();'), context);
   vm.runInContext(safetyCode, context);
   return { context, writes, setCommand: value => { current = value; } };
 }
@@ -49,11 +49,81 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.4.13');
+  assert.equal(result.robotVersion, '2.4.14');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
   for (const [input, output] of [['R$ 1.299,90',1299.90], ['1299.9',1299.9], ['85,40',85.40], ['1.299',1299], ['12x 85,40',null], ['de 10 até 20',null], ['85,40 90,00',null], ['-1',null], ['0',null]]) assert.equal(c.parsePrice(input), output, input);
+});
+
+test('pendência i5-6º corresponde a i5 de sexta geração sem aceitar outra geração ou SSD', () => {
+  const {context:c}=setup();
+  const expected='Computador Pc Completo Intel I5-6º Ssd 240gb 8gb Ram Ddr4';
+  const actual='Computador Completo Amorim Intel Core i5 6ª Geração Windows 10 Home 8GB RAM SSD 240GB HD';
+  for(const match of [c.matchingProduct,c.RDCAssistedPriceSafety.matchingProduct]) {
+    assert.equal(match(expected,actual),true);
+    assert.equal(match(expected,actual.replace('6ª','8ª')),false);
+    assert.equal(match(expected,actual.replace('240GB','512GB')),false);
+  }
+});
+
+test('redirecionamento só recupera o anúncio exato visível, com título e preço comprovados', () => {
+  const {context:c}=setup();
+  const final='https://www.mercadolivre.com.br/tenis/up/MLBU999999999';
+  const result=c.extractDocumentOffer(page(),title,final,url);
+  assert.equal(result.status,'ok');assert.equal(result.offerKey,'MLB2926671021');
+  Object.assign(result,{produtoId:'a',requestId:'request-proof',checkedAt:Date.now()});
+  assert.equal(c.RDCAssistedPriceSafety.validate(result,{produtoId:'a',url,titulo:title}),'');
+  for(const doc of [page({listing:''}),page({listing:'1111111111'}),page({foundTitle:'Tênis Adidas Superstar'})]) {
+    assert.equal(c.extractDocumentOffer(doc,title,final,url).status,'loading');
+  }
+  assert.equal(c.extractDocumentOffer(page(),title,final+'?wid=MLB1111111111',url).status,'loading');
+  assert.match(c.RDCAssistedPriceSafety.validate({...result,variantProof:{...result.variantProof,listingId:'MLB1111111111'}},{produtoId:'a',url,titulo:title}),/não corresponde/);
+});
+
+test('anúncio oculto ou recomendado não comprova um redirecionamento', () => {
+  const final='https://www.mercadolivre.com.br/tenis/up/MLBU999999999';
+  for(const opts of [{hidden:true},{excluded:true}]) {
+    const doc=page(),original=doc.querySelectorAll;
+    doc.querySelectorAll=selector=>selector.includes('denounce__info')?[visibleText('Anúncio #2926671021',opts)]:original(selector);
+    const {context:c}=setup(doc);assert.equal(c.extractDocumentOffer(doc,title,final,url).status,'loading');
+  }
+});
+
+test('vínculo da aba sobrevive ao catálogo novo sem navegar de novo ou repetir produto confirmado',async()=>{
+  const final='https://www.mercadolivre.com.br/tenis/up/MLBU999999999';
+  const s=setup(),c=s.context,sessionId='redirect-session-2414';
+  const command={sessionId,requestId:'redirect-now',produtoId:'a',titulo:title,url,createdAt:Date.now()};
+  s.setCommand(command);c.location.href=final+'#_rdc_conferencia='+sessionId;
+  c.GM_getTab=callback=>callback({rdcPriceSession:sessionId,rdcPriceNavigation:{sessionId,requestId:command.requestId}});
+  await c.restoreControllerTab();await c.handleConferenceCommand(command);
+  const results=s.writes.filter(value=>value.status);
+  assert.equal(results.length,1);assert.equal(results[0].status,'ok');assert.equal(results[0].preco,358.79);
+  assert.equal(c.RDCAssistedPriceSafety.validate(results[0],{produtoId:'a',url,titulo:title}),'');
+});
+
+test('diagnóstico das falhas contém só prova pública limitada, sem query ou corpo da página',()=>{
+  const doc=page({prices:[]}),{context:c}=setup(doc);
+  const final=url+'#private_test=must-not-export';
+  const result=c.extractDocumentOffer(doc,title,final,url);
+  assert.equal(result.diagnostico.etapa,'preco_principal');
+  assert.equal(result.diagnostico.tituloEncontrado,title);
+  assert.equal(result.diagnostico.blocosPreco,0);
+  assert.equal(result.diagnostico.anunciosVisiveis[0],'MLB2926671021');
+  assert.doesNotMatch(JSON.stringify(result.diagnostico),/private_test|must-not-export|searchVariation/);
+  const other=c.extractDocumentOffer(page({foundTitle:'Outro produto'}),title,url);
+  assert.equal(other.diagnostico.etapa,'titulo');
+});
+
+test('identidade valida todos os ids repetidos e não toma campanha deal por anúncio',()=>{
+  const {context:c}=setup();
+  for(const identity of [c.offerIdentity,c.RDCAssistedPriceSafety.identity]) {
+    const base='https://www.mercadolivre.com.br/produto/p/MLB12345678';
+    assert.equal(identity(base+'?pdp_filters=deal:MLB779362-1|item_id:MLB2926671021|item_id:MLB2926671021').listing,'MLB2926671021');
+    assert.equal(identity(base+'#item_id=MLB2926671021').listing,'MLB2926671021');
+    for(const tail of ['?wid=MLB2926671021&wid=MLB1111111111','?pdp_filters=item_id:MLB2926671021|item_id:MLB1111111111','?item_id=MLBabc']) assert.equal(identity(base+tail),null);
+    assert.equal(identity('https://user:password@www.mercadolivre.com.br/p/MLB12345678'),null);
+  }
 });
 test('AggregateOffer lowPrice e metadados isolados nunca substituem o preço principal', () => {
   const { context: c } = setup(page({ prices: [], structured: [structuredOffer(85.40, title, url, 'AggregateOffer')] }));
@@ -188,7 +258,7 @@ test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo 
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261019-1/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261024-pendencias/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);

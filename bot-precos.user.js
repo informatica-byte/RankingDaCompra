@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.13
+// @version      2.4.14
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -21,7 +21,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.13";
+  const BOT_VERSION = "2.4.14";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -82,6 +82,7 @@
   // A conferência verifica nome/modelo e preço, não uma variante específica.
   function nameForPrice(value) {
     return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/\b(i[3579])\s*[-–]\s*(\d{1,2})\s*[ºª]/gi, "$1 $2 geracao ")
       .replace(/\b(?:(?:cor|cores)\s*:?\s*)?(?:mixed\s+black|branc[oa]|pret[oa]|azul|vermelh[oa]|verde|amarel[oa]|bege|cinza|prata|dourad[oa]|rosa|rox[oa]|marrom|laranja|transparente|black|white)\b/gi, " ")
       .replace(/\b\d+(?:[.,]\d+)?\s*(?:v|volts?)\b|\bbivolt\b/gi, " ")
       .replace(/\b\d+(?:[.,]\d+)?\s*(?:polegadas?\b|pol\b|inch(?:es)?\b|["\u2033]|mm\b|cm\b|m\b)/gi, " ")
@@ -168,12 +169,19 @@
   function offerIdentity(rawUrl) {
     try {
       const url = new URL(rawUrl);
-      if (url.protocol !== "https:" || !/(^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) return null;
+      if (url.protocol !== "https:" || url.username || url.password || url.port || !/(^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) return null;
       const item = value => String(value || "").match(/^MLB-?(\d{6,})$/i)?.[1];
       const hash = new URLSearchParams(url.hash.slice(1));
-      const ids = [(url.searchParams.get("pdp_filters") || "").match(/(?:^|[|,])item_id:(MLB-?\d+)/i)?.[1],
-        url.pathname.match(/(?:^|\/)(MLB-\d+)/i)?.[1], url.searchParams.get("wid"), hash.get("wid")]
-        .filter(Boolean).map(item);
+      const values = [];
+      for (const params of [url.searchParams, hash]) {
+        for (const key of ["item_id", "wid"]) values.push(...params.getAll(key));
+        for (const filter of params.getAll("pdp_filters")) {
+          for (const match of filter.matchAll(/(?:^|[|,])item_id:([^|,]+)/gi)) values.push(match[1]);
+        }
+      }
+      const pathId = url.pathname.match(/(?:^|\/)(MLB-\d+)/i)?.[1];
+      if (pathId) values.push(pathId);
+      const ids = values.map(item);
       if (ids.some(id => !id) || new Set(ids).size > 1) return null;
       const listing = ids[0] ? "MLB" + ids[0] : "";
       const catalog = url.pathname.match(/\/(?:p|up)\/(MLBU?\d+)/i)?.[1]?.toUpperCase() || "";
@@ -206,14 +214,37 @@
     // Preferência do responsável: conferir nome e preço, sem validar variantes.
     return "";
   }
+  function visibleListingIds(documentHtml) {
+    return [...new Set([...documentHtml.querySelectorAll?.('.ui-vpp-denounce__info, .ui-pdp-denounce__info') || []]
+      .filter(node => visibleNode(documentHtml, node) && !node.closest('.ui-pdp-other-sellers, .ui-pdp-recommendations, [class*="carousel"]'))
+      .map(node => String(node.textContent || "").match(/An[uú]ncio\s*#?\s*(?:MLB-?)?(\d{6,})/i)?.[1]).filter(Boolean))].map(id => "MLB" + id);
+  }
+  function documentSourceMatches(documentHtml, expectedTitle, requestedUrl, finalUrl) {
+    if (sameOffer(requestedUrl, finalUrl)) return true;
+    const expected = offerIdentity(requestedUrl), actual = offerIdentity(finalUrl);
+    // A redirect may discard wid or replace the catalog path. Recover only
+    // with the exact requested seller listing visible on the rendered product.
+    // Similar titles or a new seller alone are never sufficient evidence.
+    if (!expected?.listing || !actual || (actual.listing && actual.listing !== expected.listing)) return false;
+    const ids = visibleListingIds(documentHtml);
+    const title = documentHtml.querySelector?.('h1.ui-pdp-title')?.textContent || documentHtml.querySelector?.('h1')?.textContent || '';
+    return ids.length === 1 && ids[0] === expected.listing && matchingProduct(expectedTitle, title);
+  }
+  function offerDiagnostic(documentHtml, requestedUrl, finalUrl, stage) {
+    const requested = offerIdentity(requestedUrl), actual = offerIdentity(finalUrl);
+    let finalPath = '';
+    if (actual) { const url = new URL(finalUrl); finalPath = url.origin + url.pathname; }
+    return { etapa: stage, tituloEncontrado: String(documentHtml.querySelector?.('h1.ui-pdp-title')?.textContent || documentHtml.querySelector?.('h1')?.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 240),
+      urlFinal: finalPath.slice(0, 1000), anuncioSolicitado: requested?.listing || '', anunciosVisiveis: visibleListingIds(documentHtml).slice(0, 3),
+      catalogoSolicitado: requested?.catalog || '', catalogoFinal: actual?.catalog || '',
+      blocosPreco: documentHtml.querySelectorAll?.('.ui-pdp-price__second-line .andes-money-amount')?.length || 0 };
+  }
   function extractVariantProof(documentHtml, expectedTitle, requestedUrl, finalUrl) {
-    const listingIds = [...documentHtml.querySelectorAll('.ui-vpp-denounce__info, .ui-pdp-denounce__info')]
-      .filter(node => visibleNode(documentHtml, node)).map(node => String(node.textContent || "").match(/An[uú]ncio\s*#?\s*(?:MLB-?)?(\d{6,})/i)?.[1]).filter(Boolean);
-    const ids = [...new Set(listingIds)];
-    const listingId = ids.length === 1 ? "MLB" + ids[0] : "";
+    const ids = visibleListingIds(documentHtml);
+    const listingId = ids.length === 1 ? ids[0] : "";
     const expectedListing = offerIdentity(requestedUrl)?.listing || offerIdentity(finalUrl)?.listing;
     const sameCatalog = offerIdentity(requestedUrl)?.catalog && offerIdentity(requestedUrl).catalog === offerIdentity(finalUrl)?.catalog;
-    if (!sameCatalog && expectedListing && ids.some(id => "MLB" + id !== expectedListing)) {
+    if (!sameCatalog && expectedListing && ids.some(id => id !== expectedListing)) {
       return { motivo: "O anúncio visível não corresponde ao vendedor cadastrado. Confira manualmente." };
     }
     return { verified: true, listingId, expectedTitle, attributes: [] };
@@ -284,17 +315,17 @@
   }
 
   function extractDocumentOffer(documentHtml, expectedTitle, finalUrl, requestedUrl = finalUrl) {
-    if (!sameOffer(requestedUrl, finalUrl)) return { status: "loading", motivo: "A aba ainda está em outro anúncio. Nenhum preço será aproveitado." };
+    if (!documentSourceMatches(documentHtml, expectedTitle, requestedUrl, finalUrl)) return { status: "loading", motivo: "A aba ainda está em outro anúncio. Nenhum preço será aproveitado.", diagnostico: offerDiagnostic(documentHtml, requestedUrl, finalUrl, 'identidade_url') };
     const source = String(documentHtml.body?.innerText || documentHtml.documentElement?.innerText || "");
     if (securityCheck(source)) return { status: "security", motivo: "O Mercado Livre pediu confirmação humana." };
     const pageTitle = String(
       documentHtml.querySelector("h1.ui-pdp-title")?.textContent ||
       documentHtml.querySelector("h1")?.textContent || "",
     ).replace(/\s+/g, " ").trim();
-    if (!matchingProduct(expectedTitle, pageTitle)) return { status: "loading", motivo: "A página ainda não confirmou o mesmo produto." };
+    if (!matchingProduct(expectedTitle, pageTitle)) return { status: "loading", motivo: "A página ainda não confirmou o mesmo produto.", diagnostico: offerDiagnostic(documentHtml, requestedUrl, finalUrl, 'titulo') };
     if (!documentHtml.defaultView) return { status: "loading", motivo: "É necessário conferir a página renderizada na aba logada." };
     const variantProof = extractVariantProof(documentHtml, expectedTitle, requestedUrl, finalUrl);
-    if (!variantProof.verified) return { status: "loading", motivo: variantProof.motivo };
+    if (!variantProof.verified) return { status: "loading", motivo: variantProof.motivo, diagnostico: offerDiagnostic(documentHtml, requestedUrl, finalUrl, 'anuncio_visivel') };
     const mainPrices = extractMainPrice(documentHtml);
     if (!mainPrices.length) {
       // O catálogo pode mostrar falta de estoque fora do buybox, junto às variações.
@@ -320,7 +351,7 @@
     }
     if (!documentHtml.defaultView) return { status: "loading", motivo: "É necessário conferir a página renderizada na aba logada." };
     const structured = extractStructuredPrice(documentHtml, pageTitle, finalUrl);
-    if (mainPrices.length !== 1) return { status: "loading", motivo: "Preço principal ausente ou ambíguo. Confira manualmente." };
+    if (mainPrices.length !== 1) return { status: "loading", motivo: "Preço principal ausente ou ambíguo. Confira manualmente.", diagnostico: offerDiagnostic(documentHtml, requestedUrl, finalUrl, 'preco_principal') };
     const mainPrice = mainPrices[0];
     const highlightedOfferKey = variantProof.listingId || offerIdentity(finalUrl).key;
     // JSON-LD pode trazer preço padrão enquanto a tela mostra Pix/promoção.
@@ -386,11 +417,17 @@
       if (!navigation) try { navigation = JSON.parse(sessionStorage.getItem(NAVIGATION_KEY) || "null"); } catch {}
       if (navigation?.requestId === command.requestId && navigation?.sessionId === command.sessionId) {
         const security = securityCheck(String(document.body?.innerText || ""));
+        const actual = offerIdentity(location.href);
+        const requested = offerIdentity(command.url);
+        if (!security && requested?.listing && actual && (!actual.listing || actual.listing === requested.listing) && (actual.catalog || actual.listing)) {
+          await publishCurrentPageResult(command, true);
+          return true;
+        }
         GM_setValue(RESULT_KEY, { status: security ? "security" : "error", code: security ? "RDC_HUMAN_VERIFICATION" : "RDC_PRODUCT_REDIRECT",
           motivo: security ? "O Mercado Livre pediu confirmação humana. Resolva pessoalmente na aba do anúncio."
             : "O Mercado Livre redirecionou para outra página ou catálogo. Revise o link do mesmo produto; preço preservado.",
           robotVersion: BOT_VERSION, requestedUrl: command.url, requestId: command.requestId,
-          produtoId: command.produtoId, checkedAt: Date.now() });
+          produtoId: command.produtoId, checkedAt: Date.now(), diagnostico: offerDiagnostic(document, command.url, location.href, security ? 'seguranca' : 'redirecionamento') });
         return true;
       }
       const nextNavigation = { requestId: command.requestId, sessionId: command.sessionId };
@@ -517,16 +554,16 @@
     };
   }
 
-  async function publishCurrentPageResult(command) {
+  async function publishCurrentPageResult(command, allowListingRedirect = false) {
     if (!command?.requestId || !command?.titulo || Date.now() - Number(command.createdAt || 0) > 120000) return;
     // A mudança da fila chega às abas antigas antes da navegação da janela reutilizada.
-    if (!sameOffer(command.url, location.href)) return;
+    if (!sameOffer(command.url, location.href) && !allowListingRedirect) return;
     const deadline = Date.now() + 18000;
     let result = { status: "loading" };
     let previousPrice = null;
     let stable = false;
     while (Date.now() < deadline) {
-      if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId || !sameOffer(command.url, location.href)) return;
+      if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId || (!sameOffer(command.url, location.href) && !allowListingRedirect)) return;
       result = extractDocumentOffer(document, command.titulo, location.href, command.url);
       if (result.status === "ok") {
         if (previousPrice === result.preco) { stable = true; break; }
@@ -537,8 +574,8 @@
       }
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
-    if (result.status === "loading" || (result.status === "ok" && !stable)) result = { status: "error", code: "RDC_OFFER_NOT_READY", motivo: result.motivo || "O preço principal não estabilizou. Confira manualmente." };
-    if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId || !sameOffer(command.url, location.href)) return;
+    if (result.status === "loading" || (result.status === "ok" && !stable)) result = { status: "error", code: result.diagnostico?.etapa === 'identidade_url' ? "RDC_PRODUCT_REDIRECT" : "RDC_OFFER_NOT_READY", motivo: result.motivo || "O preço principal não estabilizou. Confira manualmente.", diagnostico: result.diagnostico };
+    if (GM_getValue(COMMAND_KEY, null)?.requestId !== command.requestId || (!sameOffer(command.url, location.href) && !allowListingRedirect)) return;
     GM_setValue(RESULT_KEY, { ...result, robotVersion: BOT_VERSION, requestedUrl: command.url, requestId: command.requestId, produtoId: command.produtoId, checkedAt: Date.now() });
   }
 

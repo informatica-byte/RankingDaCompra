@@ -14,12 +14,19 @@
   function identity(raw) {
     try {
       const url = new URL(raw);
-      if (url.protocol !== "https:" || !/(^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) return null;
+      if (url.protocol !== "https:" || url.username || url.password || url.port || !/(^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) return null;
       const item = value => String(value || "").match(/^MLB-?(\d{6,})$/i)?.[1];
       const hash = new URLSearchParams(url.hash.slice(1));
-      const ids = [(url.searchParams.get("pdp_filters") || "").match(/(?:^|[|,])item_id:(MLB-?\d+)/i)?.[1],
-        url.pathname.match(/(?:^|\/)(MLB-\d+)/i)?.[1], url.searchParams.get("wid"), hash.get("wid")]
-        .filter(Boolean).map(item);
+      const values = [];
+      for (const params of [url.searchParams, hash]) {
+        for (const key of ["item_id", "wid"]) values.push(...params.getAll(key));
+        for (const filter of params.getAll("pdp_filters")) {
+          for (const match of filter.matchAll(/(?:^|[|,])item_id:([^|,]+)/gi)) values.push(match[1]);
+        }
+      }
+      const pathId = url.pathname.match(/(?:^|\/)(MLB-\d+)/i)?.[1];
+      if (pathId) values.push(pathId);
+      const ids = values.map(item);
       if (ids.some(id => !id) || new Set(ids).size > 1) return null;
       const listing = ids[0] ? "MLB" + ids[0] : "";
       const catalog = url.pathname.match(/\/(?:p|up)\/(MLBU?\d+)/i)?.[1]?.toUpperCase() || "";
@@ -27,10 +34,11 @@
         variation: url.searchParams.get("searchVariation") || "", attributes: url.searchParams.get("attributes") || "" };
     } catch { return null; }
   }
-  function sameProductSource(expectedUrl, actualUrl) {
+  function sameProductSource(expectedUrl, actualUrl, proof = null) {
     const expected = identity(expectedUrl), actual = identity(actualUrl);
     return !!expected && !!actual && (expected.key === actual.key
-      || Boolean(expected.catalog && actual.catalog && expected.catalog === actual.catalog));
+      || Boolean(expected.catalog && actual.catalog && expected.catalog === actual.catalog)
+      || Boolean(expected.listing && proof?.verified === true && proof.listingId === expected.listing && (!actual.listing || actual.listing === expected.listing)));
   }
   function normalized(value) {
     return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
@@ -43,6 +51,7 @@
   // A conferência verifica nome/modelo e preço, não uma variante específica.
   function nameForPrice(value) {
     return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/\b(i[3579])\s*[-–]\s*(\d{1,2})\s*[ºª]/gi, "$1 $2 geracao ")
       .replace(/\b(?:(?:cor|cores)\s*:?\s*)?(?:mixed\s+black|branc[oa]|pret[oa]|azul|vermelh[oa]|verde|amarel[oa]|bege|cinza|prata|dourad[oa]|rosa|rox[oa]|marrom|laranja|transparente|black|white)\b/gi, " ")
       .replace(/\b\d+(?:[.,]\d+)?\s*(?:v|volts?)\b|\bbivolt\b/gi, " ")
       .replace(/\b\d+(?:[.,]\d+)?\s*(?:polegadas?\b|pol\b|inch(?:es)?\b|["\u2033]|mm\b|cm\b|m\b)/gi, " ")
@@ -125,7 +134,7 @@
     const requested = identity(url), found = identity(result?.fonteConsultada);
     if (!robotReady({ version: result?.robotVersion, ready: true }) || result?.proofVersion !== 3 || result?.comparisonPolicy !== "name_price") return "Atualize o robô para a versão " + MIN_VERSION + " ou superior e recarregue o painel.";
     if (result.status !== "ok" || result.produtoId !== produtoId || result.requestedUrl !== url || !result.requestId) return "Resposta não pertence a este produto ou pedido. Preço preservado.";
-    if (!requested || !found || !sameProductSource(url, result?.fonteConsultada)) return "O anúncio não corresponde ao produto solicitado. Confira manualmente.";
+    if (!requested || !found || !sameProductSource(url, result?.fonteConsultada, result?.variantProof)) return "O anúncio não corresponde ao produto solicitado. Confira manualmente.";
     const proof = result.variantProof;
     if (!titulo || !proof || proof.expectedTitle !== titulo || proof.verified !== true || !matchingProduct(titulo, result.tituloEncontrado)) return "O título não confirma o mesmo produto. Preço preservado.";
     const sameCatalog = requested.catalog && requested.catalog === found.catalog;
