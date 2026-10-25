@@ -23,7 +23,7 @@ function setup(open = null) {
   return { c, panel, calls, commands, listeners, timers, respond, forbiddenHandleReads: () => forbiddenHandleReads };
 }
 function proof(c, command) {
-  return { status: 'ok', robotVersion: '2.4.4', proofVersion: 3, comparisonPolicy: 'name_price', priceBasis: 'highlighted_total', requestId: command.requestId, produtoId: command.produtoId,
+  return { status: 'ok', robotVersion: '2.4.14', proofVersion: 3, comparisonPolicy: 'name_price', priceBasis: 'highlighted_total', requestId: command.requestId, produtoId: command.produtoId,
     requestedUrl: command.url, fonteConsultada: command.url, tituloEncontrado: command.titulo,
     offerKey: c.RDCAssistedPriceSafety.identity(command.url).key,
     variantProof: { verified: true, expectedTitle: command.titulo, listingId: c.RDCAssistedPriceSafety.identity(command.url).listing, attributes: [] },

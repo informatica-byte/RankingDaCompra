@@ -57,7 +57,7 @@ function promotionFixture(fail=false){
  const $=id=>{if(!fields.has(id))fields.set(id,{disabled:false,scrollIntoView(){}});return fields.get(id);};
  const c=vm.createContext({URL,URLSearchParams,Date,window:{},filaPrecosSalvando:false,filaPrecosDados:{todos:[product]},filaPrecosIdAtual:'p',automacaoPrecosAtiva:true,automacaoPrecosRodada:1,acompanhamentoPrecos:{vigente:()=>true},filaPrecosConferidos:new Set(),filaPrecosPulados:new Set(),filaPrecosResultados:new Map(),automacaoPrecosFalhas:new Map(),automacaoPrecosIndisponiveis:new Map(),$: $,campoPrecoFila:()=> 'precoPromocional',linkPrecoAssistido:p=>p.link,numero:v=>Number(String(v).replace(',','.')),preco:v=>Number(v).toFixed(2).replace('.',','),crypto:{randomUUID:()=> 'confirmation-new'},serverTimestamp:()=> 'SERVER_TIMESTAMP',db:{},doc:(_db,collection,id)=>({collection,id}),updateDoc:async(ref,changes)=>{if(fail)throw Error('offline');writes.push({ref,changes});},guardarPosicaoFilaPrecos(){},renderizarFilaPrecosAssistida(){},atualizarControlesAutomacaoPrecos(){},msg(){}});
  vm.runInContext(safety,c);const start=panel.indexOf('async function salvarFilaPrecoAssistida('),end=panel.indexOf('function separarProdutoAutomacao(',start);vm.runInContext(panel.slice(start,end),c);
- const proof=price=>({status:'ok',robotVersion:'2.4.6',proofVersion:3,comparisonPolicy:'name_price',priceBasis:'highlighted_total',preco:price,mainPrice:price,currency:'BRL',priceSelector:'.ui-pdp-price__second-line .andes-money-amount',requestId:'request-new',produtoId:'p',requestedUrl:baseUrl,fonteConsultada:baseUrl,tituloEncontrado:product.titulo,offerKey:'MLB1234567890',variantProof:{verified:true,expectedTitle:product.titulo,listingId:'MLB1234567890'},checkedAt:Date.now(),evidencia:'Preço total em destaque no anúncio'});
+ const proof=price=>({status:'ok',robotVersion:'2.4.14',proofVersion:3,comparisonPolicy:'name_price',priceBasis:'highlighted_total',preco:price,mainPrice:price,currency:'BRL',priceSelector:'.ui-pdp-price__second-line .andes-money-amount',requestId:'request-new',produtoId:'p',requestedUrl:baseUrl,fonteConsultada:baseUrl,tituloEncontrado:product.titulo,offerKey:'MLB1234567890',variantProof:{verified:true,expectedTitle:product.titulo,listingId:'MLB1234567890'},checkedAt:Date.now(),evidencia:'Preço total em destaque no anúncio'});
  return{c,writes,product,proof};
 }
 test('promoção terminada grava preço total comprovado como normal, sem desconto falso',async()=>{
@@ -88,5 +88,14 @@ test('falha temporária repete no máximo uma vez; indisponível e CAPTCHA não 
   const context=vm.createContext({automacaoPrecosRodada:1,automacaoPrecosAtiva:true,automacaoPrecosPausada:false,filaPrecosIdAtual:'p',automacaoPrecosVisitados:new Set(),automacaoPrecosFalhas:new Map(),automacaoPrecosIndisponiveis:new Map(),dadosFilaPrecosAssistida:()=>({pendentes:done?[]:[product]}),acompanhamentoPrecos:{tentar:()=>{counts.attempts++;return true;}},linkPrecoAssistido:()=>baseUrl,rankingEsc:v=>v,numero:Number,resumoAutomacaoPrecos(){},renderizarFilaPrecosAssistida(){},esperar:async()=>{},pararAutomacaoPrecosAssistida:()=>{context.automacaoPrecosAtiva=false;},pausarAutomacaoPrecosAssistida:()=>{counts.paused++;context.automacaoPrecosPausada=true;},separarProdutoAutomacao:(_p,destination)=>{if(destination===context.automacaoPrecosIndisponiveis)counts.unavailable++;done=true;},salvarFilaPrecoAssistida:async()=>{counts.saves++;return true;},window:{conferirPrecoNaAbaLocal:async()=>{const value=scenario.responses[Math.min(counts.calls++,scenario.responses.length-1)];if(value instanceof Error)throw value;return value;}}});
   vm.runInContext(source,context);await context.executarAutomacaoPrecosAssistida(1);
   assert.equal(counts.calls,scenario.calls);assert.equal(counts.attempts,1);assert.equal(counts.saves,0);assert.equal(counts.paused,scenario.paused);assert.equal(counts.unavailable,scenario.unavailable);
+ }
+});
+
+
+test('salvamento real recusa robô antigo sem alterar produto, fila ou banco',async()=>{
+ for(const robotVersion of ['2.4.4','2.4.6','2.4.13']){
+  const f=promotionFixture(),result={...f.proof(120),robotVersion},before=JSON.stringify(f.product);
+  assert.equal(await f.c.salvarFilaPrecoAssistida(120,{automatico:true,produtoId:'p',rodada:1,resultado:result}),false);
+  assert.equal(f.writes.length,0);assert.equal(JSON.stringify(f.product),before);assert.equal(f.c.filaPrecosConferidos.size,0);assert.equal(f.c.filaPrecosResultados.size,0);
  }
 });

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
@@ -1093,7 +1095,7 @@ FORMATO:
 
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/social-page-verifier.js?v=20261023-1"></script>
-    <script src="/assisted-price-safety.js?v=20261024-pendencias"></script>
+    <script src="/assisted-price-safety.js?v=20261025-min2414"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/existing-flash-offer.js?v=20261024-reuse"></script>
     <script src="/weekly-comparison-safety.js?v=20261020-price-identity"></script>
@@ -2857,7 +2859,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                 const produto = { produtoId: editProdId, titulo: document.getElementById('titulo').value, url: document.getElementById('link').value };
                 if (!produto.url) throw new Error('O produto precisa de um link original antes do teste.');
                 const motor = motorConferenciaPrecoDisponivel();
-                if (!motor) throw new Error('Atualize o robô para 2.4.4 ou superior e recarregue o painel.');
+                if (!motor) throw new Error('Atualize o robô para 2.4.14 ou superior. Salve ou copie os campos preenchidos antes de recarregar o painel para ativar a atualização.');
                 botao.textContent = 'Consultando apenas este produto...';
                 const resultado = await motor.conferir(produto);
                 const motivo = window.RDCAssistedPriceSafety.validate(resultado, produto);
@@ -2941,7 +2943,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const conectado = typeof window.conferirPrecoPelaFonteLocal === 'function' && window.RDCAssistedPriceSafety.robotReady(window.__RDC_BOT_PRECOS_LOCAL__);
             status.classList.toggle('conectado', conectado);
             if (!conectado) {
-                status.textContent = '⚠️ Atualize o robô de preços para 2.4.4 ou superior e recarregue o painel. Conferência: nome/modelo e preço total em destaque, sem validar cor, tamanho/numeração ou voltagem.';
+                status.textContent = '⚠️ Atualize o robô de preços para 2.4.14 ou superior. Salve ou copie os campos preenchidos antes de recarregar o painel para ativar a atualização. Conferência: nome/modelo e preço total em destaque, sem validar cor, tamanho/numeração ou voltagem.';
                 return;
             }
             status.textContent = '✅ Robô local conectado — confere nome/modelo e preço, sem validar cor, tamanho ou voltagem. Só inicia quando você apertar o botão.';

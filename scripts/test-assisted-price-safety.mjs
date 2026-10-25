@@ -258,7 +258,7 @@ test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo 
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261024-pendencias/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261025-min2414/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
@@ -418,7 +418,7 @@ test('prova de preço do mesmo monitor não é bloqueada por tamanho, mas outro 
   assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],tituloEncontrado:'Impressora HP Laser 135A'},
     {produtoId:'a',url,titulo:expected}),/título não confirma/);
   assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],robotVersion:'2.3.0'},
-    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.4/);
+    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.14/);
 });
 
 test('2.4.1 bloqueia modelos numéricos e edições Pro/Plus explicitamente diferentes', () => {
@@ -515,12 +515,12 @@ test('MLB explícito diferente no anúncio visível preserva preço mesmo com UR
     {produtoId:'a',url,titulo:title}),'');
 });
 
-test('mínimo 2.4.4 exige robô com os critérios atuais', () => {
+test('mínimo 2.4.14 rejeita robôs anteriores às correções validadas', () => {
   const {context:c}=setup();
-  for(const version of ['2.3.9','2.4.0','2.4.1','2.4.2','2.4.3','1.99.99','2.4','invalid']) {
+  for(const version of ['2.3.9','2.4.0','2.4.1','2.4.2','2.4.3','2.4.4','2.4.6','2.4.13','1.99.99','2.4','invalid']) {
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),false,version);
   }
-  for(const version of ['2.4.4','2.4.6','2.5.0','3.0.0']) {
+  for(const version of ['2.4.14','2.4.15','2.5.0','3.0.0']) {
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),true,version);
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:false}),false,version);
   }
@@ -649,4 +649,20 @@ test('mesmo catálogo pode exibir outra oferta; título/modelo e identidade do c
   assert.equal(c.extractDocumentOffer(page({foundTitle:'Fone JBL Tune 720BT Branco',listing:'1111111111'}),expected,found,requested).status,'loading');
   assert.ok(c.RDCAssistedPriceSafety.validate({...proof,priceBasis:'installment'},{produtoId:'a',url:requested,titulo:expected}));
   assert.ok(c.RDCAssistedPriceSafety.validate({...proof,offerKey:'MLB9999999999'},{produtoId:'a',url:requested,titulo:expected}));
+});
+
+
+test('versão mínima acompanha o robô publicado e rejeita prova antiga antes de salvar', async () => {
+  const {context:c,writes,setCommand}=setup();
+  const released=bot.match(/@version\s+(\S+)/)?.[1];
+  assert.equal(c.RDCAssistedPriceSafety.MIN_VERSION,released);
+  const command={requestId:'minimum-version-proof',produtoId:'a',titulo:title,url,createdAt:Date.now()};
+  setCommand(command); await c.publishCurrentPageResult(command);
+  const valid=writes[0];
+  assert.equal(c.RDCAssistedPriceSafety.validate(valid,{produtoId:'a',url,titulo:title}),'');
+  for(const robotVersion of ['2.4.4','2.4.6','2.4.13']) {
+    const old={...valid,robotVersion}; const before=JSON.stringify(old);
+    assert.match(c.RDCAssistedPriceSafety.validate(old,{produtoId:'a',url,titulo:title}),/2\.4\.14.*Preço preservado/);
+    assert.equal(JSON.stringify(old),before);
+  }
 });

@@ -1,5 +1,12 @@
 {
   "schemaVersion": 1,
+  "auditRemediation20261025": {
+    "minimumRobotVersion": "2.4.14",
+    "formPreservation": "No forced reload, no queue reset; preserve or save entered fields before an optional reload to activate an update",
+    "browserPolicy": "Meta CSP on home/admin/technical entrypoints: object-src none, base-uri self, form-action self; strict-origin-when-cross-origin referrer meta. HTTP HSTS/nosniff/frame-ancestors require hosting configuration",
+    "rulesTests": "tests/firestore-rules: fixed dependencies, mandatory loopback emulator and demo project, no production credentials",
+    "limits": "No production rule changes or rate-limit claim; no price, affiliate link, billing or App Check changes"
+  },
   "appCheckLocalInvestigation": {
     "updated": "2026-10-25",
     "helper": "appcheck-local-diagnostics.js",
@@ -169,7 +176,7 @@
   ],
   "assistedPriceSafety": {
     "report": "docs/ROBO-PRECOS-20261006.md",
-    "minimumRobotVersion": "2.4.4",
+    "minimumRobotVersion": "2.4.14",
     "latestRobotVersion": "2.4.14",
     "pendencyReport": "docs/CONFERENCIA-PENDENTES-20261024.md",
     "validator": "assisted-price-safety.js",

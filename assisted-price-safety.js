@@ -1,6 +1,6 @@
 (function (root) {
   "use strict";
-  const MIN_VERSION = "2.4.4";
+  const MIN_VERSION = "2.4.14";
   function robotReady(info) {
     if (!/^\d+\.\d+\.\d+$/.test(String(info?.version || ""))) return false;
     const version = String(info.version).split(".").map(Number);
@@ -132,7 +132,7 @@
   }
   function validate(result, { produtoId, url, titulo, previousPrice = 0, now = Date.now() }) {
     const requested = identity(url), found = identity(result?.fonteConsultada);
-    if (!robotReady({ version: result?.robotVersion, ready: true }) || result?.proofVersion !== 3 || result?.comparisonPolicy !== "name_price") return "Atualize o robô para a versão " + MIN_VERSION + " ou superior e recarregue o painel.";
+    if (!robotReady({ version: result?.robotVersion, ready: true }) || result?.proofVersion !== 3 || result?.comparisonPolicy !== "name_price") return "Atualize o robô para a versão " + MIN_VERSION + " ou superior. Preço preservado. Salve ou copie os campos preenchidos antes de recarregar o painel para ativar a atualização.";
     if (result.status !== "ok" || result.produtoId !== produtoId || result.requestedUrl !== url || !result.requestId) return "Resposta não pertence a este produto ou pedido. Preço preservado.";
     if (!requested || !found || !sameProductSource(url, result?.fonteConsultada, result?.variantProof)) return "O anúncio não corresponde ao produto solicitado. Confira manualmente.";
     const proof = result.variantProof;

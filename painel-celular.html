@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
     <meta name="robots" content="noindex,nofollow" />
@@ -186,7 +188,7 @@
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
     <script src="/product-save-safety.js?v=20261015-2"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
-    <script src="/assisted-price-safety.js?v=20261024-pendencias"></script>
+    <script src="/assisted-price-safety.js?v=20261025-min2414"></script>
     <script src="/assisted-report-recovery.js?v=20261018-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/existing-flash-offer.js?v=20261024-reuse"></script>
@@ -593,7 +595,7 @@
             if (botao) botao.disabled = true;
           }
         }
-        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.4.4 ou superior e recarregue esta página. Conferência: nome/modelo e preço total em destaque, sem validar cor, tamanho/numeração ou voltagem.");
+        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.4.14 ou superior. Salve ou copie os campos preenchidos antes de recarregar esta página para ativar a atualização. Conferência: nome/modelo e preço total em destaque, sem validar cor, tamanho/numeração ou voltagem.");
       }
 
       function guardarPosicaoFilaPrecos() {

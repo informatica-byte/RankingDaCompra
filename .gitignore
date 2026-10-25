@@ -1,3 +1,10 @@
 .price-sync-products.json
 .price-sync-skipped
 .firebase-usage-public.json
+
+/tests/firestore-rules/node_modules/
+/tests/firestore-rules/*-debug.log
+/tests/firestore-rules/.firebase/
+
+/firebase-debug.log
+/firestore-debug.log
