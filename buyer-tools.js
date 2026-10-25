@@ -107,7 +107,7 @@
     }
     try { window.gtag('event', 'comparison_interaction', params); } catch {} // Measurement must not break filtering.
   }
-  async function mount(root, initialQuery = '') {
+  async function mount(root, initialQuery = '', searchCount = null) {
     if (!root || root.dataset.buyerMounted) return;
     root.dataset.buyerMounted = 'true';
     let catalog;
@@ -178,6 +178,7 @@
       const shown = filterProducts(products, filters).filter(product => !sameType || group(product) === sameType);
       for (const button of budgetControl.querySelectorAll('[data-buyer-budget-shortcut]')) button.setAttribute('aria-pressed', String((validBudget(filters.budget) || '') === (validBudget(button.dataset.buyerBudgetShortcut) || '')));
       status.textContent = shown.length + ' produtos encontrados · ' + chosen.size + ' selecionados para comparar.';
+      if (searchCount) searchCount.textContent = shown.length + (shown.length === 1 ? ' produto encontrado' : ' produtos encontrados') + ' no catálogo publicado.';
       results.innerHTML = shown.slice(0, limit).map(product => '<article class="buyer-card"><a href="' + esc(safeProductUrl(product.url)) + '">' + (/^https:\/\//.test(product.image || '') ? '<img src="' + esc(product.image) + '" alt="" loading="lazy" decoding="async" width="200" height="140">' : '') + '<h3>' + esc(product.title) + '</h3></a><p>' + esc(priceLabel(product)) + '</p><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e lojas</a>' + (group(product) ? '<label class="buyer-check"><input type="checkbox" data-buyer-select="' + esc(product.id) + '"' + (chosen.has(product.id)?' checked':'') + '> Comparar · ' + esc(group(product)) + '</label>' : '<small>Sem tipo confirmado para comparação automática.</small>') + '</article>').join('') || '<p>Nenhum produto corresponde aos filtros. Tente retirar a faixa de preço ou a exigência de conferência recente.</p>';
       if (shown.length > limit) results.insertAdjacentHTML('beforeend', '<button type="button" data-buyer-more>Mostrar mais 24 produtos</button>');
       renderComparison();
@@ -234,7 +235,7 @@
     const app = document.getElementById('app');
     if (!app) return;
     const query = new URLSearchParams(location.search).get('busca') || new URLSearchParams(location.search).get('q');
-    const mountSearch = () => { if (query) mount(app.querySelector('.products'), query); };
+    const mountSearch = () => { if (query) mount(app.querySelector('.products'), query, app.querySelector('[data-search-count]')); };
     mountSearch();
     new MutationObserver(mountSearch).observe(app, { childList:true, subtree:true });
   };

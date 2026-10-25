@@ -6,7 +6,7 @@ import vm from 'node:vm';
 const sample=(id,title,extra={})=>({id,title,category:'Informática',summary:'Confira os critérios e limitações.',url:'/produto/'+id+'-20260810-1.html',recordedPrice:100,checkedAt:'2026-10-11T12:00:00Z',...extra});
 const makeElement=()=>({dataset:{},value:'',checked:false,innerHTML:'',textContent:'',setAttribute(name,value){this[name]=value;},querySelectorAll(){return this.buttons||[];},insertAdjacentHTML(_where,html){this.innerHTML+=html;}});
 
-async function page(products,search='',initialQuery='') {
+async function page(products,search='',initialQuery='',searchCount=null) {
   const selectors=Object.fromEntries(['query','category','budget','recent','same-type','status','results','comparison'].map(key=>['[data-buyer-'+key+']',makeElement()]));
   selectors['[data-buyer-query]'].value=initialQuery;
   const events={},root={dataset:{},classList:{add(){}},innerHTML:'',querySelector:selector=>selectors[selector]||null,contains:element=>element?.owner===root,addEventListener:(name,handler)=>{events[name]=handler;}};
@@ -35,7 +35,7 @@ async function page(products,search='',initialQuery='') {
   }
   const context={window:{location:{search},RDCPublicData:{json:async path=>{assert.equal(path,'/search-index.json');return {products};}}},document,location:{search},URL,URLSearchParams,Intl};
   vm.runInNewContext(await readFile(new URL('../buyer-tools.js',import.meta.url),'utf8'),context);
-  await context.window.RDCBuyerTools.mount(root,initialQuery);
+  await context.window.RDCBuyerTools.mount(root,initialQuery,searchCount);
   const select=(id,checked=true)=>{
     const target=selectors['[data-buyer-results]'].querySelectorAll('[data-buyer-select]').find(input=>input.dataset.buyerSelect===id)||{dataset:{buyerSelect:id}};
     target.checked=checked;events.change({target});return target;
@@ -165,4 +165,38 @@ test('acessórios não disputam comparação com notebooks ou roteadores',async(
   for(const title of ['Capa para notebook','Suporte de notebook','Carregador para laptop','Fonte para roteador','Placa-mãe de notebook'])assert.equal(result.tools.group({title}),'',title);
   assert.equal(result.tools.group({title:'Notebook Asus Ryzen 5 16GB SSD 512GB'}),'Notebooks');
   assert.equal(result.tools.group({title:'Roteador TP-Link Wi-Fi 6 4 portas gigabit'}),'Roteadores');
+});
+
+test('cabeçalho da busca acompanha o filtro final e o total antes da paginação sem alterar o catálogo',async()=>{
+  const products=[...Array.from({length:30},(_,index)=>sample(String(index+1),'Fones Bluetooth '+(index+1),{recordedPrice:(index+1)*10})),sample('webcam','Webcam com microfone',{recordedPrice:10})];
+  const before=JSON.stringify(products),searchCount=makeElement();
+  const substringTotal=products.filter(product=>(product.title+' '+product.summary).toLowerCase().includes('fone')).length;
+  searchCount.textContent=substringTotal+' produtos encontrados no catálogo publicado.';
+  assert.equal(substringTotal,31,'a busca inicial por substring inclui microfone');
+  const result=await page(products,'?busca=fone','fone',searchCount);
+  const results=result.selectors['[data-buyer-results]'];
+  const assertTotal=(total,visible=total)=>{
+    assert.equal(searchCount.textContent,total+(total===1?' produto encontrado':' produtos encontrados')+' no catálogo publicado.');
+    assert.match(result.selectors['[data-buyer-status]'].textContent,new RegExp('^'+total+' produtos encontrados'));
+    assert.equal(results.querySelectorAll('.buyer-card').length,visible);
+  };
+  assertTotal(30,24);
+  assert.doesNotMatch(results.innerHTML,/Webcam com microfone/);
+  const more=results.querySelector('[data-buyer-more]');
+  assert.ok(more,'mantém o limite inicial de 24 cartões');
+  result.events.click({target:more});
+  assertTotal(30);
+  result.selectors['[data-buyer-budget]'].value='150';
+  result.events.input({target:{matches:()=>true}});
+  assertTotal(15);
+  result.selectors['[data-buyer-query]'].value='microfone';
+  result.events.input({target:{matches:()=>true}});
+  assertTotal(1);
+  assert.match(results.innerHTML,/Webcam com microfone/);
+  result.selectors['[data-buyer-query]'].value='inexistente';
+  result.events.input({target:{matches:()=>true}});
+  assertTotal(0);
+  assert.equal(JSON.stringify(products),before,'preserva o catálogo completo, incluindo preços e URLs');
+  const index=await readFile(new URL('../index.html',import.meta.url),'utf8');
+  assert.match(index,/<p data-search-count>/,'o contador da busca tem um alvo explícito para sincronização');
 });
