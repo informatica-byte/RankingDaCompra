@@ -91,6 +91,8 @@
             <div class="mini">Só será necessário se o contador não for identificado.</div>
             <div class="mini">A vitrine aceita até 6 ofertas relâmpago. Pode cadastrar só 3: aparecem apenas as 3, sem espaços vazios reservados. O preço precisa estar conferido e o horário válido.</div>
           </div>
+          <button id="revisar-cadastro-existente" class="btn claro" type="button">📋 Revisar cadastro existente</button>
+          <p class="mini">Use o link completo para abrir os dados já cadastrados. Esta opção apenas consulta o cadastro, sem buscar novos dados nem publicar.</p>
           <button id="analisar" class="btn verde" type="button">✨ Preparar publicação</button>
           <div id="status" class="status"></div>
         </div>
@@ -1805,6 +1807,25 @@
         }
         return null;
       }
+      async function buscarCadastroExistenteParaRevisao(link) {
+        const buscas = [query(collection(db, "produtos"), where("link", "==", link), limit(2))],
+          codigo = mlb(link);
+        if (codigo) {
+          buscas.push(query(collection(db, "produtos"), where("mercadoLivreItemId", "==", codigo), limit(2)));
+          buscas.push(query(collection(db, "produtos"), where("mercadoLivreItemId", "==", codigo.replace("MLB", "MLB-")), limit(2)));
+        }
+        // Every read must succeed. A failed lookup must never start data generation.
+        const respostas = await Promise.all(buscas.map(consulta => getDocsFromServer(consulta))), encontrados = new Map();
+        for (const resposta of respostas) {
+          if (!Array.isArray(resposta?.docs) || resposta.metadata?.fromCache !== false) throw Error("cadastro-read-incomplete");
+          for (const documento of resposta.docs) {
+            const produto = { ...documento.data(), id: documento.id };
+            if (produto.id && mesmaIdentidadePublicacao(produto, link, "")) encontrados.set(produto.id, produto);
+          }
+        }
+        if (encontrados.size > 1) throw Error("cadastro-ambiguous");
+        return encontrados.values().next().value || null;
+      }
       async function abrirManual(link, linkAfiliado, tipo, motivo, existentePronto = null, marketplace = marketplaceAtual()) {
         resultado = { link, linkAfiliado, tipo, marketplace, evidencia: "preenchimento manual" };
         atualizarAtalhoPublicacao(link, linkAfiliado, marketplace);
@@ -2803,6 +2824,44 @@
           if (document.activeElement === el) edicaoManual = true;
         }),
       );
+      async function revisarCadastroExistentePublicacao() {
+        const botao = $("revisar-cadastro-existente"), preparar = $("analisar");
+        if (botao.disabled || preparar.disabled || roboPedidoAtual || automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy() || ofertasRelampagoExistentesMovel.isBusy()) {
+          return msg("status", "Aguarde ou pause a operação atual antes de abrir outro cadastro. Os campos foram mantidos.", "erro");
+        }
+        const uid = auth.currentUser?.uid, link = $("link").value.trim(), marketplace = marketplaceAtual();
+        if (!uid) return msg("status", "Entre novamente no painel. Os campos foram mantidos.", "erro");
+        if (!linkMarketplaceValido(link, marketplace)) return msg("status", "Cole um link completo HTTPS válido do produto para consultar o cadastro. Os campos foram mantidos.", "erro");
+        const capturarCampos = () => JSON.stringify(Array.from(document.querySelectorAll("#app input,#app textarea,#app select"), el => [el.id, el.value, el.checked])),
+          camposIniciais = capturarCampos(), resultadoInicial = resultado,
+          tipo = document.querySelector('[name="tipo"]:checked').value;
+        botao.disabled = true;
+        publicacaoExpressaEmAndamento = true;
+        msg("status", "Consultando somente os cadastros existentes...");
+        let abrindoFormulario = false;
+        try {
+          const existente = await comPrazo(buscarCadastroExistenteParaRevisao(link), 12000, "A consulta do cadastro");
+          if (!existente?.id || !mesmaIdentidadePublicacao(existente, link, "")) {
+            return msg("status", "Nenhum cadastro do mesmo anúncio foi encontrado. Os campos e a revisão atual foram mantidos.", "erro");
+          }
+          if (auth.currentUser?.uid !== uid || roboPedidoAtual || capturarCampos() !== camposIniciais || resultado !== resultadoInicial || automacaoPrecosAtiva || filaPrecosSalvando || cadastroExistenteExpressa.isBusy() || ofertasRelampagoExistentesMovel.isBusy()) {
+            return msg("status", "O formulário ou a sessão mudou durante a consulta. Seus campos foram mantidos; consulte novamente quando terminar a edição.", "erro");
+          }
+          // Only a confirmed persisted product reaches the form; never use robot results here.
+          abrindoFormulario = true;
+          $("link").value = String(existente.link || link);
+          $("link-afiliado").value = String(existente.linkAfiliado || "");
+          await abrirManual($("link").value, $("link-afiliado").value, tipo, "", existente, marketplace);
+        } catch {
+          msg("status", abrindoFormulario
+            ? "O cadastro foi encontrado, mas não foi possível terminar de abrir o formulário. Nenhuma alteração foi salva; confira os campos antes de continuar."
+            : "Não foi possível confirmar o cadastro nesta consulta. Os campos e a revisão atual foram mantidos. Tente novamente quando a conexão estiver disponível.", "erro");
+        } finally {
+          botao.disabled = false;
+          publicacaoExpressaEmAndamento = false;
+        }
+      }
+      $("revisar-cadastro-existente").onclick = revisarCadastroExistentePublicacao;
       $("analisar").onclick = async () => {
         if ((typeof ofertasRelampagoExistentesMovel !== 'undefined' && ofertasRelampagoExistentesMovel.isBusy()) || publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()) return;
         cadastroExistenteExpressa.reset();
