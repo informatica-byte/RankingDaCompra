@@ -167,6 +167,7 @@ function publication({ validPhoto = true, failWrite = false } = {}) {
     resultado: { link: 'https://example.test/p', linkAfiliado: 'https://example.test/a', tipo: 'relampago', marketplace: 'mercado_livre', evidencia: 'manual' },
     publicacaoExpressaEmAndamento: false, $: field, db: {}, window: { RDCProductSaveSafety: safetyContext.RDCProductSaveSafety }, console,
     cadastroExistenteExpressa: { isBusy: () => false, show() {}, reset() {} },
+    cats: [{ id: 'cat', nome: 'Categoria válida' }], categoriasMovel: { load: async () => true },
     numero: v => Number(String(v).replace(',', '.')), preco: v => String(v), hoje: () => '2026-10-14',
     mlb: () => 'MLB1234567', seg: () => 60, lista: v => v.split('\n'), serverTimestamp: () => 'SERVER_TIMESTAMP',
     collection: (_db, name) => name, msg: (...args) => messages.push(args),
@@ -177,6 +178,17 @@ function publication({ validPhoto = true, failWrite = false } = {}) {
   return { context, field, writes, photoWaiters, messages };
 }
 const submit = s => s.field('preview').onsubmit({ preventDefault() {} });
+
+test('express publication refuses a category absent from the loaded registry without resetting fields', async () => {
+  const s = publication();
+  s.field('categoria').value = 'removed';
+  await submit(s);
+  assert.equal(s.writes.length, 0);
+  assert.equal(s.photoWaiters.length, 0);
+  assert.equal(s.field('titulo').value, 'Produto');
+  assert.equal(s.field('atual').value, '10,00');
+  assert.match(s.messages.at(-1)[1], /categoria.*campos preenchidos foram mantidos/);
+});
 
 test('express publication locks before photo validation and cannot create duplicate products', async () => {
   const s = publication();

@@ -103,8 +103,10 @@
           <div class="grade">
             <div class="largo"><label>Produto</label><input id="titulo" class="campo" required /></div>
             <div>
-              <label>Categoria</label
-              ><select id="categoria" class="campo" required></select>
+              <label for="categoria">Categoria</label
+              ><select id="categoria" class="campo" aria-describedby="categoria-status" required></select>
+              <button id="categorias-recarregar" class="btn claro" type="button">↻ Recarregar categorias</button>
+              <p id="categoria-status" class="mini" role="status" aria-live="polite"></p>
             </div>
             <div>
               <label>Selo</label
@@ -180,6 +182,7 @@
     </main>
     <script src="/appcheck-local-diagnostics.js?v=20261022-1"></script>
     <script src="/admin-read-economy.js?v=20261023-1"></script>
+    <script src="/mobile-categories.js?v=20261025-1"></script>
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
     <script src="/product-save-safety.js?v=20261015-2"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
@@ -1803,7 +1806,7 @@
         resultado = { link, linkAfiliado, tipo, marketplace, evidencia: "preenchimento manual" };
         atualizarAtalhoPublicacao(link, linkAfiliado, marketplace);
         $("titulo").value = tituloDoLink(link);
-        $("categoria").value = "";
+        categoriasMovel.prefer("");
         $("anterior").value = "";
         $("atual").value = "";
         $("foto").value = "";
@@ -1819,7 +1822,7 @@
             cadastroExistenteExpressa.show(existente.id, link);
           }
           $("titulo").value = String(existente.titulo || $("titulo").value);
-          if (cats.some((x) => x.id === existente.categoria)) $("categoria").value = existente.categoria;
+          categoriasMovel.prefer(existente.categoria);
           $("selo").value = String(existente.selo || "");
           $("anterior").value = preco(existente.precoAnterior || existente.preco);
           $("atual").value = preco(existente.precoPromocional || existente.preco);
@@ -2721,12 +2724,28 @@
         focusMobileLeituraAutorizada = true;
         void focusMobileLoad();
       };
-      async function carregar() {
-        const s = await economiaLeiturasMovel.read('categorias', () => getDocs(query(collection(db, "categorias"), orderBy("criadoEm", "asc"))));
-        cats = s.docs.map((d) => ({ id: d.id, nome: d.data().nome || d.id }));
-        $("categoria").innerHTML = '<option value="" selected disabled>Selecione a categoria</option>' + cats.map((c) => '<option value="' + rankingEsc(c.id) + '">' + rankingEsc(c.nome) + "</option>").join("");
-        if (!cats.length) throw Error("Nenhuma categoria cadastrada.");
-      }
+      const categoriasMovel = window.RDCMobileCategories.create({
+        select: $("categoria"), button: $("categorias-recarregar"), status: $("categoria-status"),
+        session: () => auth.currentUser?.uid,
+        onCategories: items => { cats = items; },
+        read: async () => {
+          const s = await economiaLeiturasMovel.read('categorias',
+            () => {
+              let timer;
+              // Release the shared pending read too, so a stalled SDK cannot block every retry.
+              return Promise.race([
+                getDocsFromServer(query(collection(db, "categorias"), orderBy("criadoEm", "asc"))),
+                new Promise((_, reject) => { timer = setTimeout(() => reject(Error("categories-timeout")), 12000); })
+              ]).finally(() => clearTimeout(timer));
+            });
+          return s.docs.map(d => ({ id: d.id, nome: d.data().nome || d.id }));
+        }
+      });
+      window.addEventListener("online", () => { void categoriasMovel.load(); });
+      window.addEventListener("focus", () => { void categoriasMovel.load(); });
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") void categoriasMovel.load();
+      });
       window.RDCBestChoicesAdmin.mount($('best-choices-mobile'),async()=>{
         if(!auth.currentUser)throw Error('Entre no painel administrativo.');
         const config=await getDoc(doc(db,'configuracoes','site'));
@@ -2737,12 +2756,13 @@
         if (!u) {
           ofertasRelampagoExistentesMovel.reset(); produtosRelampagoCacheMobile = null;
           economiaLeiturasMovel.reset(); rankingDadosMovel = null;
+          categoriasMovel.reset();
         }
         $("login").style.display = u ? "none" : "block";
         $("app").style.display = u ? "block" : "none";
         if (u)
           try {
-            await carregar();
+            await categoriasMovel.load();
             await carregarStatusRankingMovel();
             void focusMobileLoad();
           } catch (e) {
@@ -2865,6 +2885,10 @@
         e.preventDefault();
         if (!resultado || publicacaoExpressaEmAndamento || $("publicar").disabled) return;
         if (cadastroExistenteExpressa.isBusy()) return;
+        if (!cats.some(cat => cat.id === $("categoria").value)) {
+          void categoriasMovel.load();
+          return msg("pub-status", "Carregue as categorias e selecione uma opção válida. Os campos preenchidos foram mantidos.", "erro");
+        }
         if (resultado.produtoExistenteId) {
           cadastroExistenteExpressa.show(resultado.produtoExistenteId, resultado.link);
           return msg("pub-status", "Este anúncio já está cadastrado. Use o botão abaixo para preparar uma nova oferta no mesmo cadastro, ou editar os dados, sem duplicá-lo.", "erro");

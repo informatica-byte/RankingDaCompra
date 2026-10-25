@@ -132,6 +132,7 @@
     }
   ],
   "publicModules": [
+    "mobile-categories.js",
     "public-data.js",
     "vitrine-publica.json",
     "price-publication.js",

@@ -121,6 +121,7 @@ Não há etapa de compilação. Os arquivos HTML e JavaScript da raiz são servi
 
 - `dashboard.html`: CRUD, categorias, promoções, preços, SEO, campanhas, temas e ranking.
 - `painel-celular.html`: criação assistida, revisão, aprovação e publicação móvel.
+- `mobile-categories.js`: recuperação das categorias na mesma aba. Consulta autenticada ao servidor, tentativas concorrentes unificadas e prazo de 12 segundos no leitor; falha ou resposta vazia permite nova tentativa pelo botão, foco ou retorno da conexão/aba (intervalo mínimo de 30 segundos quando a lista está ausente). Uma lista válida não é relida automaticamente. Atualiza somente as opções, preserva a seleção e os demais campos; categoria de cadastro recebida antes da lista é recuperada quando validada. Troca de sessão descarta respostas antigas, categoria removida não é substituída automaticamente e a publicação exige categoria presente na lista. Não recarrega a página, não persiste rascunhos/credenciais nem altera a conferência diária. Testes: `scripts/test-mobile-categories.mjs`.
 - `estudio-videos.html`: fluxo protegido de escolha, roteiro, voz, vídeo e aprovação.
 - `ranki-video-studio.js`: catálogo estático, TTS, canvas, gravação e upload OAuth do YouTube.
 - `oauth-mercadolivre.html`: autorização da API.

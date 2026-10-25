@@ -127,7 +127,10 @@ test('todos os publicadores de páginas validam antes do push e categorias são 
     assert.ok(source.includes('node scripts/validate-site.mjs'));
   }
   const mobile = await fs.readFile('painel-celular.html', 'utf8');
-  assert.match(mobile, /rankingEsc\(c\.id\)[^\n]*rankingEsc\(c\.nome\)/);
+  assert.match(mobile, /mobile-categories\.js/);
+  const categories = await fs.readFile('mobile-categories.js', 'utf8');
+  assert.match(categories, /node\.value = value; node\.textContent = label/);
+  assert.doesNotMatch(categories, /innerHTML/);
 });
 
 test('aviso da vitrine reconhece revisão manual mesmo se o lote automático está parcial', async () => {
