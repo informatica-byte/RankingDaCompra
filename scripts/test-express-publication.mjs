@@ -221,7 +221,7 @@ test("403 de outra fonte não é apresentado como falha do App Check", () => {
   const ctx = {};
   runInNewContext(functionCode, ctx);
   assert.equal(ctx.mensagemIA(Error("Mercado Livre: 403 Forbidden")), "Mercado Livre: 403 Forbidden");
-  assert.match(ctx.mensagemIA(Error("App Check token is invalid: 403")), /não foi validado pelo Firebase/);
+  assert.match(ctx.mensagemIA(Error("App Check token is invalid: 403")), /validação App Check não foi concluída/);
 });
 
 test("revisão preserva segunda loja, validações e publicação somente por aprovação", () => {

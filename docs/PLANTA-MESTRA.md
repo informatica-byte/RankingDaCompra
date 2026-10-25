@@ -7,6 +7,8 @@
 
 ## 1. Para que serve esta planta
 
+Investigação App Check de 25/10/2026: o diagnóstico local distingue recusas na troca de token (`initial-throttle`) de tentativas barradas localmente pela espera do SDK (`throttled`), exibe a última falha em UTC e identifica os registros como históricos. HTTP associado a `throttled` vem da recusa anterior, não de uma nova resposta. O painel móvel orienta preservar o formulário aberto e aguardar sem repetir ações; não recomenda recarregar, fechar o navegador ou trocar de painel como solução. Inicialização oficial, renovação automática, configurações de proteção e cobrança permanecem intactas. Ver `APP-CHECK-INVESTIGACAO-20261025.md`; HTTP 401 ainda não tem causa raiz comprovada.
+
 Este documento permite que uma pessoa ou outra IA compreenda, mantenha e reconstrua o Ranking da Compra sem depender do histórico de uma conversa. Ele descreve a estrutura pública, os painéis, os dados, as automações, as integrações e os controles de segurança.
 
 O repositório é a fonte de verdade do código. Antes de qualquer reparo, sempre baixar a versão mais recente da branch `main`. Nunca substituir silenciosamente arquivos locais que tenham alterações não publicadas: primeiro mostrar a diferença e preservar uma cópia.

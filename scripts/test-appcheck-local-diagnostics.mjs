@@ -145,11 +145,43 @@ test('UI utiliza texto seguro; não intercepta console, rede ou callbacks globai
 test('os dois painéis carregam e montam o diagnóstico antes de inicializar os provedores',()=>{
   for(const file of ['dashboard.html','painel-celular.html']) {
     const html=readFileSync(new URL('../'+file,import.meta.url),'utf8');
-    assert.ok(html.indexOf('/appcheck-local-diagnostics.js?v=20261022-1')<html.indexOf('initializeAppCheck(aiApp'));
+    assert.ok(html.indexOf('/appcheck-local-diagnostics.js?v=20261025-1')<html.indexOf('initializeAppCheck(aiApp'));
     assert.match(html,/RDCLocalAppCheckDiagnostics\?\.mount/);
     assert.match(html,/observeProvider\(aiAppCheckProvider, 'ai-logic'\)/);
     assert.match(html,/observeProvider\(firestoreAppCheckProvider, 'firestore'\)/);
     assert.match(html,/record\((?:error|erro), 'firestore'\)/);
     assert.doesNotMatch(html,/getToken\(true\)|FIREBASE_APPCHECK_DEBUG_TOKEN/);
   }
+});
+
+test('histórico distingue recusas HTTP de espera local e não declara falha atual',async()=>{
+  const env=boot();
+  env.api.record({code:'appCheck/initial-throttle',customData:{httpStatus:401}},'firestore');
+  env.tick(1000);
+  env.api.record({code:'appCheck/throttled',customData:{httpStatus:401}},'firestore');
+  env.tick(1000);
+  env.api.record({code:'appCheck/throttled',customData:{httpStatus:401}},'firestore');
+  const history=env.doc.elements.find(e=>e.tagName==='p'&&e.textContent.includes('Última falha registrada'));
+  assert.match(history.textContent,/2026-10-18T00:00:02.000Z/);
+  assert.match(history.textContent,/não comprova falha atual/);
+  assert.match(history.textContent,/\(initial-throttle\): 1;/);
+  assert.match(history.textContent,/\(throttled\): 2\./);
+  assert.match(history.textContent,/não indica uma nova resposta do servidor/);
+  assert.equal((await env.exported()).records.length,2,'preserva agrupamento e registros anteriores');
+});
+
+test('orientação para App Check preserva formulário e não recomenda reiniciar ou trocar aba',()=>{
+  const html=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
+  const fn=html.match(/      function mensagemIA\(e\) \{[^]*?\n      \}/)?.[0];
+  assert.ok(fn);
+  const message=vm.runInNewContext(fn+';mensagemIA');
+  for(const code of ['appCheck/initial-throttle','appCheck/throttled','appCheck/recaptcha-error','appCheck/fetch-status-error']) {
+    const result=message({code,message:'Falha genérica'});
+    assert.match(result,/preservar o formulário/);
+    assert.doesNotMatch(result,/Feche o navegador|Atualize a página|use o painel completo/);
+  }
+  const wrapped=message({message:'AppCheck: Requests throttled. Attempts allowed again after 00m:30s (appCheck/initial-throttle)'});
+  assert.match(wrapped,/00m:30s/);
+  assert.match(wrapped,/sem repetir a ação/);
+  assert.equal(message({message:'Outra falha'}),'Outra falha');
 });

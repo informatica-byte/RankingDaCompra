@@ -180,7 +180,7 @@
         </div>
       </section>
     </main>
-    <script src="/appcheck-local-diagnostics.js?v=20261022-1"></script>
+    <script src="/appcheck-local-diagnostics.js?v=20261025-1"></script>
     <script src="/admin-read-economy.js?v=20261023-1"></script>
     <script src="/mobile-categories.js?v=20261025-1"></script>
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
@@ -1708,8 +1708,9 @@
             .replace(/\s+/g, " ")
             .trim(),
           m = s.match(/again after ([^()]+)/i);
-        if (/appCheck\/throttled|Requests throttled/i.test(s)) return "O Firebase pausou temporariamente a validação neste celular" + (m ? " por " + m[1] : "") + ". Não tente repetidamente. Feche o navegador, aguarde o prazo e abra o painel novamente.";
-        if (/app.?check/i.test(s) && /401|403|token is invalid/i.test(s)) return "Este celular não foi validado pelo Firebase. Atualize a página uma vez. Se continuar, use o painel completo enquanto verificamos a proteção App Check.";
+        const codigo = String(e?.code || "");
+        if (/appCheck\/(?:initial-throttle|throttled)/i.test(codigo + " " + s) || /Requests throttled/i.test(s)) return "O Firebase pausou temporariamente a validação neste navegador" + (m ? " por " + m[1] : "") + ". Aguarde o prazo indicado sem repetir a ação. Mantenha esta aba aberta para preservar o formulário. Abrir outra aba ou recarregar não corrige a recusa. Consulte o diagnóstico local do App Check se a falha persistir.";
+        if (/app.?check/i.test(codigo + " " + s)) return "A validação App Check não foi concluída. Mantenha esta aba aberta para preservar o formulário e consulte o diagnóstico local. Os dados desta operação não foram confirmados; não repita a ação enquanto a falha estiver em investigação.";
         return s;
       }
       function mlb(v) {

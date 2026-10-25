@@ -1,5 +1,13 @@
 {
   "schemaVersion": 1,
+  "appCheckLocalInvestigation": {
+    "updated": "2026-10-25",
+    "helper": "appcheck-local-diagnostics.js",
+    "interpretation": "Historical records are not proof of current failure; initial-throttle follows a refused token exchange, throttled is a local SDK backoff without a new server response",
+    "formSafety": "Mobile App Check errors advise preserving the open form, waiting without repeated actions and inspecting local diagnostics; never advise reload, browser closure or another panel as a fix",
+    "limits": "Passive diagnostics only; preserve provider initialization, automatic refresh, enforcement, risk threshold, billing, prices and affiliate links. HTTP 401 root cause is unconfirmed pending provider evidence.",
+    "test": "scripts/test-appcheck-local-diagnostics.mjs"
+  },
   "snapshotDate": "2026-10-11",
   "existingOfferReuse": {
     "updated": "2026-10-24",

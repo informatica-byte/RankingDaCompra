@@ -96,7 +96,13 @@
   function render() {
     for (const view of views) {
       const items = records();
-      view.summary.textContent = '🛠 Diagnóstico local do App Check — ' + items.length + ' registro(s)';
+      view.summary.textContent = '🛠 Diagnóstico local do App Check — ' + items.length + ' registro(s) no histórico';
+      const last = items.reduce((latest, item) => item.lastAt > latest ? item.lastAt : latest, '');
+      const refused = items.filter(item => item.code === 'appCheck/initial-throttle').reduce((total, item) => total + item.count, 0);
+      const waiting = items.filter(item => item.code === 'appCheck/throttled').reduce((total, item) => total + item.count, 0);
+      view.history.textContent = items.length
+        ? 'Última falha registrada (UTC): ' + last + '. O histórico não comprova falha atual. Recusas na troca de token (initial-throttle): ' + refused + '; tentativas barradas localmente durante a espera do SDK (throttled): ' + waiting + '. O HTTP destas últimas pertence à recusa anterior; não indica uma nova resposta do servidor.'
+        : 'Sem falhas neste histórico local. O diagnóstico não testa a validação atual.';
       view.mode.textContent = volatile
         ? 'O navegador não permitiu salvar. Estes registros duram apenas enquanto esta aba estiver aberta.'
         : 'Somente neste navegador. Até 50 registros; os mais antigos que 7 dias são descartados ao abrir ou usar o diagnóstico.';
@@ -164,6 +170,7 @@
     const details = make('details'); details.className = 'rdc-local-diagnostics';
     const summary = make('summary');
     const mode = make('p');
+    const history = make('p');
     const help = make('p', 'Registra falhas de obtenção e renovação do App Check neste painel. Não guarda tokens, mensagens completas, senhas ou dados de produtos e não envia o diagnóstico à nuvem. Não executa testes, consultas ou novas avaliações. Em uma falha, anota apenas conexão, visibilidade da aba e presença do script do reCAPTCHA; isso ajuda a investigar, mas não comprova a causa.');
     const list = make('pre');
     const actions = make('div'); actions.className = 'rdc-local-diagnostics-actions';
@@ -172,9 +179,9 @@
     const status = make('p'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
     const output = make('textarea'); output.readOnly = true; output.hidden = true; output.setAttribute('aria-label', 'Diagnóstico local sem credenciais');
     actions.appendChild(copy); actions.appendChild(clear);
-    for (const el of [summary, mode, help, list, actions, status, output]) details.appendChild(el);
+    for (const el of [summary, mode, history, help, list, actions, status, output]) details.appendChild(el);
     container.appendChild(details);
-    const view = {summary, mode, list, output}; views.push(view);
+    const view = {summary, mode, history, list, output}; views.push(view);
     copy.addEventListener('click', async () => {
       const text = report();
       try {
