@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-25T13:18:54.852Z",
+  "generatedAt": "2026-10-25T15:43:47.665Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -6100,6 +6100,30 @@
       "precoConferenciaId": "f20d58fd-bcbb-4f0d-8f0d-3067c49b650a",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 269.99,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB4812800951",
+      "titulo": "Mini drone L900 PRO SE com dual câmera 8K preto 5GHz 2 baterias Motor sem escova profissional",
+      "comentario": "Mini drone L900 PRO SE com dual câmera 8K preto 5GHz 2 baterias Motor sem escova profissional. Quantidade de baterias incluídas: 2. Tipo de drone: aéreo. GPS incluído. Com conexão Wi-Fi. Câmera dupla embutida. Resolução máxima da câmera 8K.. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "categoria": "drone",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_701158-MLA92687567172_092025-F.jpg",
+      "preco": "625,00",
+      "precoAnterior": "699,00",
+      "precoPromocional": "625,00",
+      "nota": "",
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-10-25",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-10-26T02:43:07.467Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-25T15:43:24.951Z",
+      "precoConferenciaId": "ece372c0-b1a8-4386-b8d2-14273060d100",
+      "precoConferenciaCampo": "precoPromocional",
+      "precoConferenciaValor": "625",
       "pros": "",
       "contras": "",
       "notaInformada": ""
