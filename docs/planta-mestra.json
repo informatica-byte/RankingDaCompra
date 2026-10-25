@@ -448,6 +448,7 @@
     "test": "scripts/test-localizer-diagnostics.mjs"
   },
   "publicIntegrity": {
+    "loadingRecovery": "Keep last published home selection visible with recorded-price labels until dynamic data is ready; public JSON, status and weekly top reads expire after 12 seconds on browsers supporting AbortSignal.timeout; no database fallback",
     "offline": "All HTML, scripts, JSON-LD and local references are validated during CI.",
     "online": "Manual workflow checks all public page/resource statuses and canonical consistency. Does not query Firestore, use credentials or test real purchases."
   },

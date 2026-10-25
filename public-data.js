@@ -10,7 +10,9 @@
     const now = Date.now(), stored = memory.get(key);
     if (stored && now - stored.at >= 0 && now - stored.at < TTL) return Promise.resolve(stored.data);
     if (pending.has(key)) return pending.get(key);
-    const request = fetch(key, { cache: historyChunk ? 'force-cache' : 'no-cache' }).then(response => {
+    const signal = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function'
+      ? AbortSignal.timeout(12000) : undefined;
+    const request = fetch(key, { cache: historyChunk ? 'force-cache' : 'no-cache', signal }).then(response => {
       if (!response.ok) throw new Error('HTTP ' + response.status);
       return response.json();
     }).then(data => {

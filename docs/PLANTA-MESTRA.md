@@ -107,6 +107,7 @@ Não há etapa de compilação. Os arquivos HTML e JavaScript da raiz são servi
 ### Núcleo público
 
 - `index.html`: aplicação pública principal e integração de todos os módulos.
+- Recuperação de carregamento (25/10/2026): a seleção estática publicada permanece visível enquanto os arquivos da vitrine são atualizados, com rótulos de último registro e sem afirmar nova conferência. A interface dinâmica só a substitui quando os dados necessários estão prontos; falha do catálogo preserva a seleção. Consultas públicas JSON e as leituras de status/Top 6 têm prazo de 12 segundos em navegadores com `AbortSignal.timeout`; falhas liberam a tentativa seguinte sem consultar o Firestore. Testes: `scripts/test-public-loading-recovery.mjs`.
 - `growth-tools.js`: temas, Ranki, WhatsApp, funil, histórico e ranking comparativo.
 - `seo-priorities.js`: categorias e intenções de compra prioritárias.
 - `seo-opportunities.js`: leitura e análise local dos CSVs do Search Console.

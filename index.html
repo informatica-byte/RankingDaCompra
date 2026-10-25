@@ -9,7 +9,7 @@
   <meta name="msvalidate.01" content="E9995C648A88C729F81E3AF3221620C0" />
 
   <meta charset="utf-8">
-  <script src="/public-data.js?v=20261005-1&history=20261022-1"></script>
+  <script src="/public-data.js?v=20261005-1&history=20261022-1&recovery=20261025-1"></script>
   <script src="/comparison-integrity.js?v=20261020-formatos&editorial=20261022-1"></script>
   <script defer src="/buyer-tools.js?v=20261022-protection"></script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -175,7 +175,7 @@ function precoSchema(valor){const texto=String(valor||'').replace(/[^\d,.-]/g,''
 function textoEditorialComparavel(valor){return String(valor||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()}
 function listaEditorial(valor,titulo=''){const tituloNormalizado=textoEditorialComparavel(titulo),palavrasTitulo=new Set(tituloNormalizado.split(' ').filter(item=>item.length>2));return String(valor||'').replace(/\uFFFD+/g,'').split(/\n|;|,/).map(item=>item.replace(/^[\s•✓!+\-]+/,'').replace(/\s+/g,' ').trim()).filter(item=>{if(item.length<18||item.split(/\s+/).length<3)return false;if(/informa[cç][oõ]es? (?:extra[ií]das?|obtidas?)|dados p[uú]blicos|confira (?:no|o) an[uú]ncio|recursos descritos|produto identificado/i.test(item))return false;const palavras=textoEditorialComparavel(item).split(' ').filter(palavra=>palavra.length>2);if(!palavras.length)return false;const sobreposicao=palavras.filter(palavra=>palavrasTitulo.has(palavra)).length/palavras.length;return !tituloNormalizado.includes(textoEditorialComparavel(item))&&sobreposicao<.8}).filter((item,indice,itens)=>itens.findIndex(outro=>textoEditorialComparavel(outro)===textoEditorialComparavel(item))===indice).slice(0,4)}
 let mercadoLivreStatus={},mercadoLivreAtualizadoEm="",mercadoLivreLoteCompleto=false;
-const mercadoLivreStatusPronto=fetch('./mercadolivre-status.json',{cache:'no-store'}).then(resposta=>resposta.ok?resposta.json():null).then(dados=>{mercadoLivreAtualizadoEm=String(dados?.updatedAt||'');mercadoLivreLoteCompleto=dados?.batchSummary?.complete===true;mercadoLivreStatus=dados?.products&&typeof dados.products==='object'?dados.products:{};return mercadoLivreStatus}).catch(erro=>{console.warn('Não foi possível carregar a atualização automática do Mercado Livre.',erro);mercadoLivreStatus={};return mercadoLivreStatus});
+const mercadoLivreStatusPronto=fetch('./mercadolivre-status.json',{cache:'no-store',signal:typeof AbortSignal!=='undefined'&&typeof AbortSignal.timeout==='function'?AbortSignal.timeout(12000):undefined}).then(resposta=>resposta.ok?resposta.json():null).then(dados=>{mercadoLivreAtualizadoEm=String(dados?.updatedAt||'');mercadoLivreLoteCompleto=dados?.batchSummary?.complete===true;mercadoLivreStatus=dados?.products&&typeof dados.products==='object'?dados.products:{};return mercadoLivreStatus}).catch(erro=>{console.warn('Não foi possível carregar a atualização automática do Mercado Livre.',erro);mercadoLivreStatus={};return mercadoLivreStatus});
 function statusMercadoLivre(produto){const status=mercadoLivreStatus[String(produto?.id||'')]||null;if(!produto?.anuncioSubstituidoEm)return status;const substituido=millisConferenciaManual(produto.anuncioSubstituidoEm),conferido=Date.parse(status?.checkedAt||'');return Number.isFinite(substituido)&&Number.isFinite(conferido)&&conferido>substituido?status:null}
 function millisConferenciaManual(valor){if(valor?.toMillis)return valor.toMillis();if(valor?.seconds)return Number(valor.seconds)*1000;const data=Date.parse(valor||'');return Number.isFinite(data)?data:NaN}
 function precoManualProduto(produto){const relampago=produto?.ofertaRelampagoAtiva===true&&Date.parse(produto?.ofertaRelampagoTerminaEm||'')>Date.now()&&numeroPreco(produto?.precoAnterior)>numeroPreco(produto?.precoPromocional);return numeroPreco(relampago||promocaoValida(produto)?produto?.precoPromocional:produto?.preco)}
@@ -199,7 +199,7 @@ function validadePromocao(valor){const limite=dataLimitePromocao(valor);return l
 function promotionCard(p){const confirmado=precoConfirmadoRecente(p),desconto=descontoPromocao(p);produtosParaCompartilhar.set(String(p.id),{...p,tipoCompartilhamento:'promocao'});return `<article class="deal-card">${confirmado?`<span class="deal-tag">-${desconto}%</span>`:''}<img loading="lazy" decoding="async" width="260" height="154" src="${safe(p.foto)}" alt="${esc(p.titulo)}"><div class="deal-check">${confirmado?'✓ Preço conferido recentemente':'Preço aguardando nova conferência'}</div><h3>${esc(p.titulo)}</h3><div class="deal-prices">${confirmado?`<span class="old-price">De ${moeda(numeroPreco(p.precoAnterior))}</span>`:''}<span class="deal-price">${esc(confirmado?moeda(numeroPreco(p.precoPromocional)):rotuloPrecoSeguro(p))}</span></div><p class="deal-validity">${confirmado?esc(validadePromocao(p.promocaoValidaAte)):'Confirme preço e disponibilidade no vendedor'}</p><div class="deal-actions"><a class="button offer-button" href="${urlProduto(p.id)}" data-promo-id="${esc(p.id)}">${confirmado?'Ver análise e preço atual':'Ver análise e conferir preço'}</a><div class="deal-secondary-actions"><button class="share-deal-button" type="button" data-share-product="${esc(p.id)}" aria-label="Compartilhar promoção de ${esc(p.titulo)}">↗ Compartilhar</button></div></div></article>`}
 async function carregarTop5Semanal() {
   try {
-    const response = await fetch("./top5-semanal.json?dia=" + dataBrasil() + "&atualizacao=" + Date.now(), { cache: "no-store" });
+    const response = await fetch("./top5-semanal.json?dia=" + dataBrasil() + "&atualizacao=" + Date.now(), { cache: "no-store", signal: typeof AbortSignal !== "undefined" && typeof AbortSignal.timeout === "function" ? AbortSignal.timeout(12000) : undefined });
     if (!response.ok) throw new Error("HTTP " + response.status);
     const payload = await response.json();
     const products = Array.isArray(payload?.products) ? payload.products : [];
@@ -321,6 +321,9 @@ async function homeComPromocoes(){
   const selecaoPublicada = document.querySelector('.static-home')?.cloneNode(true);
   const guiasPublicados = document.querySelector('.static-guide-grid')?.cloneNode(true);
   await home();
+  const mainDinamico = app.querySelector('main');
+  const selecaoDuranteCarga = selecaoPublicada?.cloneNode(true);
+  if (selecaoDuranteCarga) restaurarSelecaoPublicada(selecaoDuranteCarga);
   if (guiasPublicados && app.querySelector('.featured-guide')) {
     const destaque = app.querySelector('.featured-guide');
     destaque.replaceChildren();
@@ -371,6 +374,8 @@ async function homeComPromocoes(){
       || a.ordemOriginal - b.ordemOriginal)
     .map((item) => item.produto))
     .slice(0, 6);
+  // Only replace the published selection after all data needed to render is ready.
+  if (mainDinamico && selecaoDuranteCarga?.isConnected) selecaoDuranteCarga.replaceWith(mainDinamico);
   const ancoraRadar = document.getElementById("radar");
   const secaoRelampago = document.createElement("section");
   const secao = document.createElement("section");
