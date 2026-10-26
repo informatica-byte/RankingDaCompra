@@ -4,6 +4,7 @@ import {readFile} from 'node:fs/promises';
 import {HIGHLIGHT_EDITORIAL} from './highlight-editorial.mjs';
 import {correctProductData} from './product-title-corrections.mjs';
 import {comparisonData} from './product-decision.mjs';
+import {deletionRegressionProduct} from './fixtures/deletion-regression.mjs';
 
 const ports = product => comparisonData({titulo:'Roteador', ...product}).features.find(f=>f.label==='Quantidade de portas');
 test('portas por extenso e funções não se perdem ou viram contagem total inventada',()=>{
@@ -15,9 +16,8 @@ test('portas por extenso e funções não se perdem ou viram contagem total inve
   for (const comentario of ['Compare outros modelos com quatro portas LAN.','Confirme se tem quatro portas LAN.','Quantidade de portas a confirmar.','Sem confirmação de quatro portas LAN.']) assert.equal(ports({comentario}).state,'unknown');
 });
 test('os seis destaques têm análise específica, modelo protegido e dados operacionais intactos',async()=>{
-  const catalogue=JSON.parse(await readFile(new URL('../vitrine-publica.json',import.meta.url),'utf8'));
   for(const [id,review] of HIGHLIGHT_EDITORIAL){
-    const original=catalogue.products.find(p=>p.id===id);
+    const original=deletionRegressionProduct(id);
     assert.ok(original && review.model.test(original.titulo),id);
     const revised=correctProductData(original);
     assert.ok(revised.pros.split('\n').length>=2);

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
+import removal from '../product-removal-safety.js';
 
 const safetyContext = vm.createContext({ URL });
 vm.runInContext(readFileSync(new URL('../product-save-safety.js', import.meta.url), 'utf8'), safetyContext);
@@ -84,14 +85,24 @@ function queue(fail = false) {
     filaPrecosSalvando: false, filaPrecosDados: { todos: [product], produtos: [product] }, filaPrecosIdAtual: 'p',
     filaPrecosConferidos: new Set(), filaPrecosPulados: new Set(), filaPrecosResultados: new Map(),
     automacaoPrecosFalhas: new Map(), automacaoPrecosIndisponiveis: new Map(),
-    automacaoPrecosAtiva: false, automacaoPrecosPausada: false,
-    window: { conferirPrecoNaAbaLocal() {}, RDCAssistedPriceSafety: { robotReady: () => true } },
-    $: field, db: {}, crypto: { randomUUID: () => 'confirmation-id' }, confirm: () => true,
+    automacaoPrecosAtiva: false, automacaoPrecosPausada: false, publicacaoExpressaEmAndamento: false,
+    auth: {currentUser:{uid:'admin-test'}}, rankingDadosMovel:null, produtosRelampagoCacheMobile:null, automacaoPrecosVisitados:new Set(),
+    window: { RDCProductRemoval: removal, conferirPrecoNaAbaLocal() {}, RDCAssistedPriceSafety: { robotReady: () => true } },
+    $: field, db: {}, crypto: { randomUUID: () => 'confirmation-id' }, confirm: () => true, prompt:()=> 'EXCLUIR p',
     linkPrecoAssistido: p => p.link, campoPrecoFila: () => 'preco',
     numero: v => Number(String(v).replace(',', '.')), preco: v => String(v), serverTimestamp: () => 'SERVER_TIMESTAMP',
     doc: (_db, collection, id) => ({ collection, id }), msg() {}, guardarPosicaoFilaPrecos() {},
     updateDoc: async (ref, patch) => { if (fail) throw Error('offline'); writes.push({ ref, patch }); },
     deleteDoc: async ref => { if (fail) throw Error('offline'); writes.push({ ref }); },
+    runTransaction: async (_db,work) => {
+      const pending=[];
+      const result=await work({
+        get:async ref=>({exists:()=>ref.collection==='produtos',data:()=>({...product})}),
+        set:(ref,patch)=>pending.push({ref,patch}),delete:ref=>pending.push({ref,deleted:true})
+      });
+      if(fail)throw Error('offline');
+      writes.push(...pending);return result;
+    },
     renderizarFilaPrecosAssistida() { context.atualizarControlesAutomacaoPrecos(); },
   });
   // The replacement form is absent in this normal queue, as in the real DOM.
@@ -119,9 +130,16 @@ for (const fail of [false, true]) {
     assert.equal(s.field('precos-iniciar').disabled, false);
     assert.equal(s.field('precos-auto-iniciar').disabled, false);
     assert.ok(s.pausedControls.filter(button => button.dataset.pausaAcao !== 'abrir').every(button => !button.disabled));
-    assert.equal(s.writes.length, fail ? 0 : 1);
+    assert.equal(s.writes.length, fail ? 0 : 2);
+    if(!fail){assert.equal(s.writes[0].ref.id,'exclusoes-definitivas');assert.deepEqual(s.writes[0].patch.ids,['p']);assert.equal(s.writes[1].deleted,true);}
   });
 }
+
+test('permanent deletion cancellation, mistyped confirmation and busy conference never write',async()=>{
+  for(const setup of [c=>c.confirm=()=>false,c=>c.prompt=()=> 'EXCLUIR outro',c=>c.automacaoPrecosAtiva=true,c=>c.automacaoPrecosPausada=true,c=>c.auth.currentUser=null]){
+    const s=queue();setup(s.context);await s.context.excluirProdutoFilaPrecosAssistida();assert.equal(s.writes.length,0);
+  }
+});
 
 const editSource = section('async function salvarEdicaoProdutoFilaPrecosAssistida()', 'async function excluirProdutoFilaPrecosAssistida(');
 const editFinally = editSource.match(/} finally {([\s\S]*?)\n        }\n      }\s*$/)?.[1];

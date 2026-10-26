@@ -4,8 +4,8 @@ import {readFileSync} from 'node:fs';
 import {comparisonData} from './product-decision.mjs';
 import {documentedSpecifications} from './manufacturer-specifications.mjs';
 import {correctProductData} from './product-title-corrections.mjs';
-const catalogue=JSON.parse(readFileSync(new URL('../vitrine-publica.json',import.meta.url),'utf8')).products;
-const product=id=>catalogue.find(p=>p.id===id);
+import {deletionRegressionProduct} from './fixtures/deletion-regression.mjs';
+const product=deletionRegressionProduct;
 const field=(p,label)=>comparisonData(p).features.find(f=>f.label===label);
 const ram=comentario=>field({titulo:'Notebook',comentario},'Memória RAM');
 

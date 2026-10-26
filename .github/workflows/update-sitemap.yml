@@ -18,6 +18,7 @@ on:
       - "scripts/product-seo-titles.mjs"
       - "scripts/product-url-continuity.mjs"
       - "scripts/product-deduplication.mjs"
+      - "scripts/product-removals.mjs"
       - "product-url-aliases.json"
       - "scripts/product-title-corrections.mjs"
       - "scripts/highlight-editorial.mjs"
@@ -112,6 +113,7 @@ jobs:
           # Reutiliza as páginas recém-geradas; não consulta o Firebase.
           node scripts/update-price-history.mjs
           node scripts/generate-best-choices.mjs
+          node scripts/product-removals.mjs
           if [[ "$VERIFY_REVIEW_PAUSES" == "true" ]]; then node scripts/verify-reviewed-pauses.mjs; fi
           node --test scripts/test-*.mjs
           node scripts/validate-site.mjs
@@ -130,7 +132,7 @@ jobs:
             if [[ "$VERIFY_REVIEW_PAUSES" == "true" ]]; then node scripts/verify-reviewed-pauses.mjs || exit 1; fi
           }
           guard_prices
-          if [[ -z "$(git status --porcelain -- index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json ':(top,glob)*.html')" ]]; then
+          if [[ -z "$(git status --porcelain -- index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json product-deletions.json mercadolivre-status.json ':(top,glob)*.html')" ]]; then
             echo "O sitemap, as páginas sociais e o diretório de análises já estão atualizados."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -138,7 +140,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json ':(top,glob)*.html'
+          git add -A index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json product-deletions.json mercadolivre-status.json ':(top,glob)*.html'
           echo "Arquivos gerados alterados (validadores já aprovados; antes do push):"
           git diff --cached --name-only
           git commit -m "Atualiza sitemap, análises, busca e Top 6"

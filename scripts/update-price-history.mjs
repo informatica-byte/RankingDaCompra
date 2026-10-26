@@ -3,6 +3,7 @@ import path from "node:path";
 import { observationFromHtml, addObservation } from "./price-observation.mjs";
 import { historyIdentity } from "./history-identity.mjs";
 import { buildPriceHistoryAssets } from "./build-price-history-assets.mjs";
+import {localRemovals,purgeRemovals} from './product-removals.mjs';
 
 const ROOT = process.cwd();
 const PRODUCT_DIR = path.join(ROOT, "produto");
@@ -94,12 +95,15 @@ async function readExisting() {
 }
 
 async function main() {
+  const deletedIds = new Set((await localRemovals(ROOT)).ids);
   const history = await readExisting();
   const products = history.products && typeof history.products === "object" ? history.products : {};
+  for (const id of deletedIds) delete products[id];
   const files = (await fs.readdir(PRODUCT_DIR)).filter(name => name.endsWith(".html"));
   let recorded = 0;
 
   for (const filename of files) {
+    if (deletedIds.has(productId(filename))) continue;
     const filePath = path.join(PRODUCT_DIR, filename);
     let html = await fs.readFile(filePath, "utf8");
     const originalHtml = html;
@@ -142,6 +146,7 @@ async function main() {
   };
   await fs.writeFile(OUTPUT, `${JSON.stringify(output)}\n`, "utf8");
   await buildPriceHistoryAssets(ROOT);
+  await purgeRemovals(ROOT);
   console.log(`Histórico atualizado: ${recorded} produto(s), janela de ${DAYS} dias.`);
 }
 

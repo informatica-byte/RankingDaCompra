@@ -6,9 +6,9 @@ import homeSelection from '../home-selection.js';
 import choices from '../best-choices.js';
 import {quickSummary,applyQuickSummary} from './product-quick-summary.mjs';
 import {correctProductData} from './product-title-corrections.mjs';
-const catalog=JSON.parse(readFileSync(new URL('../vitrine-publica.json',import.meta.url),'utf8')).products;
+import {deletionRegressionProduct} from './fixtures/deletion-regression.mjs';
 const ids=['ARscPKCMZs3D8k22qltl','GjHJtzdsIhbmSINvhPeX','48oRcQNlH00KgNLHkvsG','O6e0R2WtiZfyyf2MJe5Y','UvxFn4gfaexb8TvcaT5e','huCYMmOsGPKJ8jOiJ1gR'];
-const p=id=>catalog.find(p=>p.id===id);
+const p=deletionRegressionProduct;
 const html=p=>'<html><head><title>Ficha</title></head><body><article><div class="top"><div><h1>'+p.titulo+'</h1><p class="summary">Análise completa preservada, com limites e informações da oferta.</p><div class="offer"><b>R$ 87,00</b><a href="https://meli.la/teste">Ver preço</a></div></div></div><div class="panels">Detalhes e fontes</div></article></body></html>';
 
 test('home prioriza seis modelos já selecionados sem alterar cadastros, preços ou configuração',()=>{

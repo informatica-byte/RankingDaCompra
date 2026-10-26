@@ -20,5 +20,5 @@ export function publicationBackup(backup, now = Date.now()) {
   };
   const records = items => items.map(item => ({ ...convert(item.data), id: item.id }));
   const config = new Map(backup.configurations.map(item => [item.id, convert(item.data)]));
-  return { products: records(backup.products), categories: records(backup.categories), site: config.get('site'), weekly: config.get('ranking-semanal') || { publicado: false, produtos: [] } };
+  return { products: records(backup.products), categories: records(backup.categories), site: config.get('site'), weekly: config.get('ranking-semanal') || { publicado: false, produtos: [] }, removals: config.get('exclusoes-definitivas') || null };
 }

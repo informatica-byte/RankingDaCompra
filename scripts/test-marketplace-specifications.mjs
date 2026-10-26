@@ -6,7 +6,8 @@ import {correctProductData,manufacturerEvidence} from './product-title-correctio
 import {comparisonData,renderProductDecision} from './product-decision.mjs';
 import {renderIntegrityGuide} from './comparison-guides.mjs';
 const id='O6e0R2WtiZfyyf2MJe5Y';
-const raw=JSON.parse(readFileSync(new URL('../vitrine-publica.json',import.meta.url),'utf8')).products.find(p=>p.id===id);
+import {deletionRegressionProduct} from './fixtures/deletion-regression.mjs';
+const raw=deletionRegressionProduct(id);
 const url='https://www.mercadolivre.com.br/p/MLB43417665?pdp_filters=item_id%3AMLB3914161563';
 
 test('ASUS reproduz dados vistos no anúncio sem atribuí-los ao fabricante',()=>{

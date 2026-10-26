@@ -201,6 +201,7 @@
     <script src="/product-offer-replacement.js?v=20261024-listing"></script>
     <script src="/express-existing-product.js?v=20261024-reuse"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
+    <script src="/product-removal-safety.js?v=20261026-1"></script>
     <script src="/pending-review-pause.js?v=20261026-1"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
@@ -592,6 +593,7 @@
         for (const botao of $("precos-pausados-lista")?.querySelectorAll("[data-pausa-acao]") || []) {
           const produto = filaPrecosDados?.todos.find(item => item.id === botao.dataset.produtoId);
           botao.disabled = filaPrecosSalvando || automacaoPrecosAtiva || substituindo
+            || (botao.dataset.pausaAcao.startsWith("excluir") && automacaoPrecosPausada)
             || Boolean($("precos-editor") && !$("precos-editor").hidden)
             || (botao.dataset.pausaAcao === "abrir" && (!produto || !linkPrecoAssistido(produto)));
         }
@@ -845,6 +847,7 @@
         substituir.className = "btn claro largo";
         substituir.textContent = "🔄 Anúncio pausado ou encerrado? Substituir links";
         $("precos-excluir").before(substituir);
+        $("precos-excluir").textContent = "🗑 Excluir cadastro e histórico definitivamente";
         atualizarControlesAutomacaoPrecos();
       }
       function renderizarAnunciosPausados() {
@@ -868,12 +871,13 @@
               : "Faltam " + state.remainingDays + " dia(s) para a revisão.");
           card.append(titulo, prazo);
           const actions = [["abrir", "↗ Ver se o anúncio voltou"], ["reativar", "▶ Reativar e conferir"], ["substituir", "🔄 Substituir links"]];
-          if (state.expired) actions.push(["excluir", "🗑 Excluir após 30 dias"]);
+          actions.push(["excluir-definitivo", "🗑 Excluir cadastro e histórico definitivamente"]);
           for (const [acao, texto] of actions) {
             const botao = document.createElement("button");
-            botao.type = "button"; botao.className = "btn " + (acao === "excluir" ? "precos-fila-excluir" : "claro");
+            botao.type = "button"; botao.className = "btn " + (acao.startsWith("excluir") ? "precos-fila-excluir" : "claro");
             botao.textContent = texto; botao.dataset.pausaAcao = acao; botao.dataset.produtoId = produto.id;
             botao.disabled = filaPrecosSalvando || automacaoPrecosAtiva || Boolean($("precos-substituicao")) || Boolean($("precos-editor") && !$("precos-editor").hidden)
+              || (acao.startsWith("excluir") && automacaoPrecosPausada)
               || (acao === "abrir" && !linkPrecoAssistido(produto));
             card.append(botao);
           }
@@ -1454,15 +1458,19 @@
         }
       }
       async function excluirProdutoFilaPrecosAssistida(produtoId = filaPrecosIdAtual) {
-        if (filaPrecosSalvando || !filaPrecosDados) return;
+        if (filaPrecosSalvando || !filaPrecosDados || automacaoPrecosAtiva || automacaoPrecosPausada || publicacaoExpressaEmAndamento || $("precos-substituicao") || ($("precos-editor") && !$("precos-editor").hidden)) return;
+        const uid = auth.currentUser?.uid;
+        if (!uid || !window.RDCProductRemoval) return msg("precos-status", "Entre novamente no painel antes de excluir.", "erro");
         const produto = filaPrecosDados.todos.find((item) => item.id === produtoId);
         if (!produto) return;
         const id = produto.id;
         const confirmado = confirm(
           "Excluir definitivamente \"" + produto.titulo + "\"?\n\n" +
-          "Use apenas se o anúncio não existir mais. O cadastro será apagado do Firebase; a página pública pode permanecer até uma geração do site com dados completos. Esta ação não pode ser desfeita."
+          "O cadastro será apagado do Firebase. O histórico de preços, páginas, busca e referências públicas serão removidos na próxima publicação completa. Esta ação não pode ser desfeita.\n\nNão apaga cópias em backups, Git ou caches dos buscadores. Um registro técnico contendo somente o ID impedirá a recriação automática."
         );
         if (!confirmado) return;
+        if (prompt("Para confirmar a exclusão do cadastro E do histórico, digite exatamente: EXCLUIR " + id) !== "EXCLUIR " + id) return;
+        if (auth.currentUser?.uid !== uid || automacaoPrecosAtiva || automacaoPrecosPausada || filaPrecosSalvando || publicacaoExpressaEmAndamento) return;
         filaPrecosSalvando = true;
         for (const botaoId of ["precos-igual", "precos-novo", "precos-pular", "precos-editar", "precos-excluir"]) {
           const botao = $(botaoId);
@@ -1470,15 +1478,30 @@
         }
         msg("precos-status", "Excluindo produto...");
         try {
-          await deleteDoc(doc(db, "produtos", id));
+          const productRef = doc(db, "produtos", id);
+          const registryRef = doc(db, "configuracoes", window.RDCProductRemoval.REGISTRY);
+          await window.RDCProductRemoval.remove({
+            session: () => auth.currentUser?.uid,
+            timestamp: serverTimestamp,
+            transaction: work => runTransaction(db, transaction => work({
+              product: async () => { const snap = await transaction.get(productRef); return snap.exists() ? snap.data() : null; },
+              registry: async () => { const snap = await transaction.get(registryRef); return snap.exists() ? snap.data() : null; },
+              saveRegistry: value => transaction.set(registryRef, value),
+              removeProduct: () => transaction.delete(productRef)
+            }))
+          }, produto, uid);
           filaPrecosDados.todos = filaPrecosDados.todos.filter((item) => item.id !== id);
           filaPrecosDados.produtos = filaPrecosDados.produtos.filter((item) => item.id !== id);
           filaPrecosPulados.delete(id);
           filaPrecosConferidos.delete(id);
-          filaPrecosIdAtual = "";
+          filaPrecosResultados.delete(id);
+          automacaoPrecosFalhas.delete(id); automacaoPrecosIndisponiveis.delete(id); automacaoPrecosVisitados.delete(id);
+          rankingDadosMovel = null;
+          if (produtosRelampagoCacheMobile) produtosRelampagoCacheMobile = produtosRelampagoCacheMobile.filter(item => item.id !== id);
+          if (filaPrecosIdAtual === id) filaPrecosIdAtual = "";
           guardarPosicaoFilaPrecos();
           renderizarFilaPrecosAssistida();
-          msg("precos-status", "Produto excluído do cadastro. A página pública será atualizada quando a geração usar dados completos. Próximo item pronto.", "ok");
+          msg("precos-status", "Cadastro excluído. A limpeza do histórico e das páginas está pendente da próxima publicação completa do sitemap. Os demais produtos e conferências foram preservados.", "ok");
         } catch (erro) {
           renderizarFilaPrecosAssistida();
           msg("precos-status", "Não foi possível excluir: " + String(erro?.message || erro), "erro");
@@ -1497,6 +1520,7 @@
         if (acao === "reativar") void alterarPausaAnuncio(produto.id, false);
         if (acao === "substituir") abrirSubstituicaoAnuncioFilaPrecosAssistida(produto.id);
         if (acao === "excluir" && window.RDCConferencePause.state(produto).expired) void excluirProdutoFilaPrecosAssistida(produto.id);
+        if (acao === "excluir-definitivo") void excluirProdutoFilaPrecosAssistida(produto.id);
       });
       $("precos-iniciar").addEventListener("click", carregarFilaPrecosAssistida);
       $("precos-auto-todos")?.addEventListener("click", () => {

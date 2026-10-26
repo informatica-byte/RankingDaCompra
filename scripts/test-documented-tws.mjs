@@ -93,11 +93,15 @@ test('ambos os painéis oferecem a mesma revisão documental antes de salvar',as
     assert.match(source,/RDCWeeklyComparisonSafety.documentaryMarkup/);
   }
 });
-async function verifyPublishedSelection(index,readPage){
+async function verifyPublishedSelection(index,readPage,deletedIds=new Set()){
   const at=Math.max(...index.products.filter(p=>products.some(q=>q.id===p.id)).map(p=>Date.parse(p.checkedAt)))+1000;
   const missing=products.filter(expected=>!index.products.some(p=>p.id===expected.id));
   if(missing.length){
     for(const product of missing){
+      if(deletedIds.has(product.id)){
+        await assert.rejects(readPage(product.id),{code:'ENOENT'},'exclusão confirmada não pode manter a página');
+        continue;
+      }
       const html=await readPage(product.id);
       assert.match(html,/<meta name="rdc-paused-product" content="true">/);
       assert.match(html,/<meta name="robots" content="noindex,follow">/);
@@ -112,7 +116,8 @@ async function verifyPublishedSelection(index,readPage){
 }
 test('catálogo completo permite seleção; pausa explícita preserva a recusa sem reinserir modelos',async()=>{
   const index=JSON.parse(await readFile(new URL('../search-index.json',import.meta.url),'utf8'));
-  await verifyPublishedSelection(index,id=>readFile(new URL('../produto/'+id+'-20260810-1.html',import.meta.url),'utf8'));
+  const removals=JSON.parse(await readFile(new URL('../product-deletions.json',import.meta.url),'utf8'));
+  await verifyPublishedSelection(index,id=>readFile(new URL('../produto/'+id+'-20260810-1.html',import.meta.url),'utf8'),new Set(removals.ids));
 });
 test('pausa documental é testada separadamente e uma ausência inesperada continua erro',async()=>{
   const index={products:products.filter(p=>p.id!==products[1].id)};
@@ -121,4 +126,11 @@ test('pausa documental é testada separadamente e uma ausência inesperada conti
   await assert.rejects(verifyPublishedSelection(index,async()=>{throw Error('ENOENT');}),/ENOENT/);
   const changed={products:products.map((p,i)=>i===1?{...p,title:'Fone soundcore P3i'}:p)};
   await assert.rejects(verifyPublishedSelection(changed,async()=>''),/alterado/);
+});
+
+test('exclusão documental só aceita ID registrado com página realmente ausente',async()=>{
+  const index={products:products.filter(p=>p.id!==products[1].id)},ids=new Set([products[1].id]);
+  await verifyPublishedSelection(index,async()=>{throw Object.assign(Error('missing'),{code:'ENOENT'});},ids);
+  await assert.rejects(verifyPublishedSelection(index,async()=>pausedProductPage({}),ids),/exclusão confirmada/);
+  await assert.rejects(verifyPublishedSelection(index,async()=>{throw Object.assign(Error('denied'),{code:'EACCES'});},ids));
 });

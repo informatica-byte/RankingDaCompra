@@ -1,6 +1,8 @@
 import { readFile, readdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import "./validate-blueprint.mjs";
+import {verifyRemovals} from './product-removals.mjs';
+await verifyRemovals();
 import offerReplacement from '../product-offer-replacement.js';
 
 const SITE = "https://rankingdacompra.com.br/";

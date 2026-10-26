@@ -8,6 +8,7 @@ import { decodeConfigFields, publicSiteConfig } from "./public-site-config.mjs";
 import { correctProductData, hasDocumentedEditorialRating } from "./product-title-corrections.mjs";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { publicationBackup } from "./publication-backup.mjs";
+import {publicationRemovals,pruneConfig,purgeRemovals} from './product-removals.mjs';
 import { productSeoTitle } from "./product-seo-titles.mjs";
 import { legacyProductAliases, observedProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage, pausedProductPage } from "./product-url-continuity.mjs";
 import { publicationProductGroups } from './product-deduplication.mjs';
@@ -1611,6 +1612,8 @@ if (snapshotProducts) {
 
 }
 
+const deletedProductIds = await publicationRemovals(publicationInput);
+allProducts = allProducts.filter(product => !deletedProductIds.has(product.id));
 const marketplaceProducts = await marketplaceStatus();
 
 
@@ -1775,7 +1778,7 @@ if (!partialProductSource) {
   const weeklyResponse = publicationInput ? null : await fetchFirestoreRead(FIRESTORE + '/configuracoes/ranking-semanal?key=' + FIREBASE_API_KEY, {signal: AbortSignal.timeout(15000)});
   if (weeklyResponse && !weeklyResponse.ok && weeklyResponse.status !== 404) throw new Error('Comparativo semanal: HTTP ' + weeklyResponse.status + '; publicação bloqueada para preservar dados.');
   remoteConfig.weeklyComparison = publicationInput ? publicationInput.weekly : weeklyResponse.ok ? decodeConfigFields((await weeklyResponse.json()).fields) : {publicado:false,produtos:[]};
-  publishedConfig = publicSiteConfig(publishedConfig, remoteConfig, themeConfig);
+  publishedConfig = pruneConfig(publicSiteConfig(publishedConfig, remoteConfig, themeConfig),deletedProductIds);
   await writeFile(resolve('site-config.json'), JSON.stringify(publishedConfig, null, 2) + '\n', 'utf8');
   guidePages = await generateSeasonalGuides(products.map((product) => ({
     ...product,
@@ -2052,6 +2055,7 @@ if (!partialProductSource) {
 
 
 const locallyHostedImages = expectedImages.size;
+if (!partialProductSource) await purgeRemovals();
 
 console.log(
 
