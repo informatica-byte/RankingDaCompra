@@ -1,26 +1,5 @@
 import offerReplacement from '../product-offer-replacement.js';
 
-function normalizedTitleWords(value) {
-  return String(value || '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, ' ')
-    .split(/\s+/)
-    .filter((word) => word.length > 2)
-    .filter((word, index, words) => words.indexOf(word) === index);
-}
-
-function compatiblePublishedTitle(leftTitle, rightTitle) {
-  const leftWords = normalizedTitleWords(leftTitle);
-  const rightWords = normalizedTitleWords(rightTitle);
-  if (!leftWords.length || !rightWords.length) return false;
-  const common = leftWords.filter((word) => rightWords.includes(word));
-  if (!common.length) return false;
-  const overlap = common.length / Math.max(leftWords.length, rightWords.length);
-  return common.length >= 2 || overlap >= 0.6;
-}
-
 // A catalogue, campaign, old stored MLB field, title or short affiliate link
 // alone is never proof that two records represent the same seller listing.
 export function publicationIdentity(product) {
@@ -43,8 +22,7 @@ export function publicationIdentity(product) {
 }
 
 export function samePublicationProduct(left, right) {
-  return Boolean(left && right && left.listingId === right.listingId
-    && compatiblePublishedTitle(left.title, right.title)
+  return Boolean(left && right && left.listingId === right.listingId && left.title === right.title
     && (!left.catalogueId || !right.catalogueId || left.catalogueId === right.catalogueId));
 }
 
