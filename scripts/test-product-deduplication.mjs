@@ -12,6 +12,13 @@ const item='MLB4231915505',other='MLB9876543210';
 const product=(id,link,titulo='Controle Joystick Wireless')=>({id,link,titulo,preco:'159,90',precoAnterior:'299,00',precoPromocional:'149,90',precoConferenciaId:'preservado',precoConferenciaValor:159.9,precoAtualizadoManualmenteEm:'2026-10-26T10:00:00Z'});
 const dedup=products=>selectCanonicalProducts(publicationProductGroups(products),p=>p.score||0);
 
+test('registro revisado é imutável e não permite retargeting em memória',()=>{
+ assert.ok(Object.isFrozen(REVIEWED_PUBLICATION_PAIRS));
+ assert.ok(REVIEWED_PUBLICATION_PAIRS.every(group=>Object.isFrozen(group)&&group.slice(3).every(Object.isFrozen)));
+ assert.throws(()=>REVIEWED_PUBLICATION_PAIRS.push([]),TypeError);
+ assert.throws(()=>{REVIEWED_PUBLICATION_PAIRS[0][3][0]='outro-cadastro';},TypeError);
+});
+
 for (const [listingId,catalogueId,affiliate,...records] of REVIEWED_PUBLICATION_PAIRS) {
  const rows=records.map(([id,title])=>Object.freeze({...product(id,
    `https://www.mercadolivre.com.br/p/${catalogueId}?wid=${listingId}`,title),

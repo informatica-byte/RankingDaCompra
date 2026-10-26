@@ -7,7 +7,7 @@ const normalizedTitle = value => String(value || '').normalize('NFD')
 // explicit record IDs, their exact normalized titles, one seller listing,
 // its catalogue and the same affiliate destination. A later edit invalidates
 // the exception. No fuzzy matching, catalogue-only or affiliate-only fallback.
-export const REVIEWED_PUBLICATION_PAIRS = [
+export const REVIEWED_PUBLICATION_PAIRS = Object.freeze([
   ['MLB2171368181','MLB18724648','https://meli.la/1wxDsG2',
     ['05S6aRd5qQ8i4L37P6qN','Colchão Casal Emma Original 138x188cm'],
     ['3yIHMxCIF9QgqjNOrSXC','Colchão Casal Emma Original 138x188cm 3 Camadas de Espuma, Embalado à Vácuo, Suporte para Coluna, Alta Respirabilidade, Capa Lavável']],
@@ -30,7 +30,7 @@ export const REVIEWED_PUBLICATION_PAIRS = [
   ['MLB7533453778','MLB40656539','https://meli.la/1BDxmV4',
     ['6mZ1ahzme9kUH1UdSkJw','Kit Starlink MINI Internet Via Satélite'],
     ['mlMLB7533453778','Starlink Mini Kit Antena Satélite com Roteador Wi-Fi']],
-];
+].map(group => Object.freeze(group.map(value => Array.isArray(value) ? Object.freeze(value) : value))));
 
 function reviewedIdentity(product, identity) {
   for (const [listingId, catalogueId, affiliate, ...records] of REVIEWED_PUBLICATION_PAIRS) {
