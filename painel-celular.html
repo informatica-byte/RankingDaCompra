@@ -12,6 +12,7 @@
       *{box-sizing:border-box}body{margin:0;background:#f2f7f4;color:#102b22;font:16px system-ui,-apple-system,Segoe UI,sans-serif}header{position:sticky;top:0;z-index:3;background:#07563f;color:white;padding:14px 16px}header div{max-width:680px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}header b{font-size:18px}header a{color:white;text-decoration:none;border:1px solid #ffffff77;border-radius:9px;padding:8px;font-size:12px;font-weight:800}main{max-width:680px;margin:auto;padding:14px}.card{background:white;border:1px solid #d5e5de;border-radius:18px;padding:17px;margin-bottom:14px;box-shadow:0 8px 25px #1232}h1,h2{margin:0 0 8px}h1{font-size:23px}h2{font-size:19px}p{color:#587066;line-height:1.45}.etapa{color:#08794d;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}label{display:block;font-weight:800;margin:13px 0 6px}.campo{width:100%;min-height:49px;border:1px solid #a9c1b7;border-radius:12px;padding:12px;background:white}textarea.campo{min-height:105px}.btn{width:100%;min-height:52px;border:0;border-radius:12px;margin-top:14px;padding:10px;font-weight:900}.verde{background:#0a8f5b;color:white}.azul{background:#246bdb;color:white}.claro{background:#edf4f1;color:#07563f}.btn:disabled{opacity:.55}.tipos,.grade{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tipo{position:relative}.tipo input{position:absolute;opacity:0}.tipo span{display:flex;min-height:52px;align-items:center;justify-content:center;border:2px solid #d5e5de;border-radius:12px;font-weight:900;text-align:center}.tipo input:checked+span{border-color:#0a8f5b;background:#e9f8f0}.largo{grid-column:1/-1}.status{display:none;margin-top:13px;padding:12px;border-radius:12px;background:#eef5ff;color:#174b91}.status.on{display:block}.status.erro{background:#fff0ee;color:#a61b12}.status.ok{background:#e8f8ef;color:#096b43}#app,#preview{display:none}#foto-previa{display:none;width:100%;max-height:250px;object-fit:contain;border:1px solid #d5e5de;border-radius:14px}.foto-erro{display:none;margin:0 0 10px;padding:11px;border:1px solid #efb0aa;border-radius:11px;background:#fff0ee;color:#9b2018;font-size:13px;font-weight:750;line-height:1.4}.foto-erro.on{display:block}.mini{font-size:12px;color:#61776e}@media(max-width:480px){.grade{grid-template-columns:1fr}.largo{grid-column:auto}} .ranking-mobile-actions{display:grid;gap:9px;margin-top:12px}.ranking-mobile-actions .btn{margin-top:0}.ranking-mobile-review{margin-top:12px}.ranking-mobile-review ol{padding-left:22px}.ranking-mobile-review li{margin:11px 0}.ranking-mobile-review span{display:block;margin-top:3px;color:#587066;font-size:13px;line-height:1.4}.ranking-mobile-link{display:block;margin-top:12px;text-align:center;color:#07563f;font-weight:800}.ranking-mobile-note{padding:10px;border-radius:10px;background:#f0f8f4;font-size:13px;color:#355b4b}.focus-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.focus-mobile-item{background:#f2faf6;border:1px solid #d6e9df;border-radius:11px;padding:11px}.focus-mobile-item small{display:block;color:#61776e;font-size:10px;font-weight:900;text-transform:uppercase}.focus-mobile-item strong{display:block;margin-top:5px;color:#086140;font-size:14px;line-height:1.25}.focus-mobile-rec{margin-top:11px;padding:11px;border-radius:10px;background:#e9f8f0;color:#145139;font-size:13px;line-height:1.4}.focus-mobile-list{margin:10px 0 0;padding-left:20px;color:#405f52;font-size:13px}.focus-mobile-list li{margin:6px 0}.focus-mobile-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.focus-mobile-links a{color:#07563f;font-size:12px;font-weight:800}
       .header-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
       #precos-mobile{scroll-margin-top:78px}
+      #revisao-pausa-mobile{scroll-margin-top:90px;overflow-wrap:anywhere}
       .precos-fila-resumo{padding:11px;border-radius:10px;background:#edf4ff;color:#174b91;font-size:13px;font-weight:800;line-height:1.4}
       .precos-fila-item{margin-top:12px;padding:13px;border:1px solid #d5e5de;border-radius:12px;background:#fbfdfc}
       .precos-fila-item h3{margin:0 0 8px;font-size:17px;line-height:1.3;overflow-wrap:anywhere}
@@ -68,6 +69,7 @@
       <section id="app">
         <div id="appcheck-diagnostico-mobile" class="card" hidden></div>
         <div id="leituras-diagnostico-mobile" class="card"></div>
+        <div id="revisao-pausa-mobile" class="card"></div>
 <div id="best-choices-mobile" class="card"></div>
         <div class="card">
           <div class="etapa">Publicação expressa</div>
@@ -199,6 +201,7 @@
     <script src="/product-offer-replacement.js?v=20261024-listing"></script>
     <script src="/express-existing-product.js?v=20261024-reuse"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
+    <script src="/pending-review-pause.js?v=20261026-1"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
       import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app-check.js";
@@ -2781,6 +2784,50 @@
         return {config:config.exists()?config.data():{},products:filaPrecosDados?.todos || [],
           saveConfig:settings=>{if(!auth.currentUser)throw Error('Sessão encerrada.');return setDoc(doc(db,'configuracoes','site'),settings,{merge:true});}};
       });
+      const pausaRevisaoMovel = window.RDCPendingReviewPause.mount($("revisao-pausa-mobile"), {
+        session: () => auth.currentUser?.uid || "",
+        assertReady(ownSave) {
+          if (!auth.currentUser) throw Error("Entre novamente no painel.");
+          if (automacaoPrecosAtiva || automacaoPrecosPausada || (!ownSave && filaPrecosSalvando)
+              || publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()
+              || ofertasRelampagoExistentesMovel.isBusy() || $("precos-substituicao")
+              || ($("precos-editor") && !$("precos-editor").hidden)) {
+            const error = Error("Encerre ou cancele a operação em andamento antes de pausar os cadastros. Nenhuma conferência será iniciada.");
+            error.code = "rdc-reviewed-pause"; throw error;
+          }
+        },
+        busy(value) { filaPrecosSalvando = value; atualizarControlesAutomacaoPrecos(); },
+        timestamp: serverTimestamp,
+        transaction: work => runTransaction(db, transaction => {
+          const allowed = new Set(window.RDCPendingReviewPause.TARGETS.map(target => target.id));
+          return work({
+            async get(id) {
+              if (!allowed.has(id)) throw Error("Cadastro fora da lista de revisão.");
+              const snapshot = await transaction.get(doc(db, "produtos", id));
+              return {id, data: snapshot.exists() ? snapshot.data() : null};
+            },
+            update(id, patch) {
+              if (!allowed.has(id) || Object.keys(patch).sort().join(",") !== "conferenciaPausada,conferenciaPausadaEm"
+                  || patch.conferenciaPausada !== true) throw Error("Alteração fora do escopo da pausa.");
+              transaction.update(doc(db, "produtos", id), patch);
+            }
+          });
+        }),
+        committed(result) {
+          const newlyPaused = new Set(result.pauseIds), allPaused = new Set([...result.pauseIds, ...result.alreadyPausedIds]);
+          const now = new Date();
+          for (const items of [filaPrecosDados?.todos, filaPrecosDados?.produtos, rankingDadosMovel?.todos,
+              rankingDadosMovel?.produtos, produtosRelampagoCacheMobile]) {
+            for (const product of items || []) if (allPaused.has(product.id)) {
+              product.conferenciaPausada = true;
+              if (newlyPaused.has(product.id)) product.conferenciaPausadaEm = now;
+            }
+          }
+          if (allPaused.has(filaPrecosIdAtual)) filaPrecosIdAtual = "";
+          // Preserve confirmed/skipped IDs, results and the saved daily budget.
+          if (filaPrecosDados) { guardarPosicaoFilaPrecos(); renderizarFilaPrecosAssistida(); }
+        }
+      });
       onAuthStateChanged(auth, async (u) => {
         if (!u) {
           ofertasRelampagoExistentesMovel.reset(); produtosRelampagoCacheMobile = null;
@@ -2789,6 +2836,7 @@
         }
         $("login").style.display = u ? "none" : "block";
         $("app").style.display = u ? "block" : "none";
+        pausaRevisaoMovel.refresh();
         if (u)
           try {
             await categoriasMovel.load();
