@@ -87,6 +87,12 @@ export async function purgeRemovals(root=process.cwd()){
   const filtered=data.products.filter(p=>!ids.has(p.id));if(filtered.length!==data.products.length){data.products=filtered;await writeFile(path,JSON.stringify(data,null,2)+'\n','utf8');}
  }
  const configPath=resolve(root,'site-config.json'),config=await optionalJson(configPath,null);if(config)await writeFile(configPath,JSON.stringify(pruneConfig(config,ids,aliases),null,2)+'\n','utf8');
+ const identityPath=resolve(root,'product-identities.json'),identity=await optionalJson(identityPath,null);
+ if(identity){
+  if(identity.version!==1||!identity.entries||typeof identity.entries!=='object'||Array.isArray(identity.entries)||Object.values(identity.entries).some(values=>!Array.isArray(values)))throw Error('Índice de identidade inválido na limpeza.');
+  const entries=Object.fromEntries(Object.entries(identity.entries).map(([key,values])=>[key,values.filter(id=>!ids.has(id))]).filter(([,values])=>values.length));
+  if(JSON.stringify(entries)!==JSON.stringify(identity.entries)){identity.entries=entries;await writeFile(identityPath,JSON.stringify(identity)+'\n','utf8');}
+ }
  const htmlFiles=[...(await files(root)).filter(n=>n.endsWith('.html')).map(n=>resolve(root,n)),...(await files(productDir)).filter(n=>n.endsWith('.html')).map(n=>resolve(productDir,n)),...(await files(resolve(root,'presentes'))).filter(n=>n.endsWith('.html')).map(n=>resolve(root,'presentes',n))];
  const texts=[];
  for(const path of htmlFiles){const original=await readFile(path,'utf8');const next=cleanRemovedLinks(original,ids,aliases);if(next!==original)await writeFile(path,next,'utf8');texts.push(next);}
@@ -112,5 +118,6 @@ export async function verifyRemovals(root=process.cwd()){
  const xml=await readFile(resolve(root,'sitemap.xml'),'utf8').catch(e=>{if(e.code==='ENOENT')return '';throw e;});
  for(const match of xml.matchAll(/<loc>([^<]+)<\/loc>/g))if(removedPath(match[1],ids,aliases))throw Error('Exclusão incompleta: sitemap');
  const config=await optionalJson(resolve(root,'site-config.json'),null);if(config&&JSON.stringify(pruneConfig(config,ids,aliases))!==JSON.stringify(config))throw Error('Exclusão incompleta: configuração pública');
+ const identity=await optionalJson(resolve(root,'product-identities.json'),null);if(identity&&Object.values(identity.entries||{}).some(values=>!Array.isArray(values)||values.some(id=>ids.has(id))))throw Error('Exclusão incompleta: índice de identidade');
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)console.log('Limpeza de exclusões confirmadas: '+JSON.stringify(await purgeRemovals()));

@@ -9,6 +9,7 @@ import { correctProductData, hasDocumentedEditorialRating } from "./product-titl
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { publicationBackup } from "./publication-backup.mjs";
 import {publicationRemovals,pruneConfig,purgeRemovals} from './product-removals.mjs';
+import {buildIdentityIndex} from './build-product-identity-index.mjs';
 import { productSeoTitle } from "./product-seo-titles.mjs";
 import { legacyProductAliases, observedProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage, pausedProductPage } from "./product-url-continuity.mjs";
 import { publicationProductGroups } from './product-deduplication.mjs';
@@ -1614,6 +1615,7 @@ if (snapshotProducts) {
 
 const deletedProductIds = await publicationRemovals(publicationInput);
 allProducts = allProducts.filter(product => !deletedProductIds.has(product.id));
+await buildIdentityIndex(allProducts);
 const marketplaceProducts = await marketplaceStatus();
 
 

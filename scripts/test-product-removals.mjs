@@ -36,6 +36,7 @@ test('cleanup erases selected history/pages/references without touching prefix c
   for(const file of ['p-1111111111111111.json','p-2222222222222222.json','p2-1111111111111111.json'])await json('assets/price-history/'+file,{data:true});
   for(const file of ['vitrine-publica.json','search-index.json','top5-semanal.json'])await json(file,{products:[{id:'p',preco:19},{id:'p2',preco:29}]});
   await json('site-config.json',{bestChoicesProductIds:['p','p2'],weeklyComparison:{publicado:true,produtos:[{id:'p'},{id:'p2'}]}});
+  await json('product-identities.json',{version:1,complete:true,entries:{['a'.repeat(64)]:['p','p2'],['b'.repeat(64)]:['p']}});
   await writeFile(join(root,'index.html'),'<a href="/produto/p.html">p</a><a href="/produto/old.html">old</a><a href="/produto/p2.html">p2</a><img src="/produto/imagens/p-222222222222.webp">');
   for(const name of ['p-111111111111.webp','p-222222222222.webp','p2-111111111111.webp'])await writeFile(join(root,'produto/imagens',name),'image');
   await writeFile(join(root,'sitemap.xml'),'<urlset><url><loc>https://rankingdacompra.com.br/produto/p.html</loc></url><url><loc>https://rankingdacompra.com.br/produto/p2.html</loc></url></urlset>');
@@ -48,6 +49,7 @@ test('cleanup erases selected history/pages/references without touching prefix c
   const index=await readFile(join(root,'index.html'),'utf8');assert.doesNotMatch(index,/href="\/produto\/(?:p|old)\.html"/);assert.match(index,/href="\/produto\/p2\.html"/);
   assert.doesNotMatch(await readFile(join(root,'sitemap.xml'),'utf8'),/\/p\.html/);
   const config=JSON.parse(await readFile(join(root,'site-config.json')));assert.deepEqual(config.bestChoicesProductIds,['p2']);assert.equal(config.weeklyComparison.publicado,false);
+  assert.deepEqual(JSON.parse(await readFile(join(root,'product-identities.json'))).entries,{['a'.repeat(64)]:['p2']});
   assert.deepEqual([...(await publicationRemovals({removals:null},root))],['p'],'old snapshot cannot restore a deleted product');
   assert.deepEqual(await purgeRemovals(root),{products:1,pages:0,historyFiles:0,images:0});
  }finally{await rm(root,{recursive:true,force:true});}

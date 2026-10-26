@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
+import uniqueness from '../product-uniqueness.js';
 import replacement from '../product-offer-replacement.js';
 import choices from '../best-choices.js';
 import { publicCatalogue } from './public-catalogue.mjs';
@@ -106,15 +107,15 @@ function setup({ server = product, denied = false } = {}) {
     filaPrecosSalvando: false, automacaoPrecosAtiva: false, filaPrecosIdAtual: 'p', filaPrecosDados: { todos: [local], produtos: [local] },
     filaPrecosConferidos: confirmed, filaPrecosPulados: skipped, filaPrecosResultados: results,
     automacaoPrecosIndisponiveis: new Map([['p', {}]]), automacaoPrecosFalhas: new Map([['p', {}]]), automacaoPrecosVisitados: new Set(['p']),
-    $: id => fields.get(id) || null, window: { RDCOfferReplacement: replacement, RDCPricePublication: { saved() {} } },
+    $: id => fields.get(id) || null, window: { RDCOfferReplacement: replacement, RDCProductUniqueness:{...uniqueness,loadIndex:async()=>({version:1,entries:{}})}, RDCPricePublication: { saved() {} } },
     serverTimestamp: () => 'SERVER_TIMESTAMP', arrayUnion: value => ({ union: value }), doc: (_db, collection, id) => ({ collection, id }),
     runTransaction: async (_db, callback) => {
       if (denied) throw Error('permission-denied');
-      return callback({ get: async () => ({ exists: () => Boolean(server), data: () => server }), update: (ref, data) => writes.push({ ref, data }) });
+      return callback({ get: async ref => ({ exists: () => ref.collection==='produtos'&&Boolean(server), data: () => server }), set:()=>{}, update: (ref, data) => writes.push({ ref, data }) });
     },
     msg: (...args) => messages.push(args), atualizarControlesAutomacaoPrecos() {}, guardarPosicaoFilaPrecos() {}, renderizarFilaPrecosAssistida() {}, resumoAutomacaoPrecos() {},
   });
-  vm.runInContext(saveCode, context);
+  vm.runInContext(html.slice(html.indexOf('async function protegerIdentidadeMovel('),html.indexOf('let cats ='))+'\n'+saveCode, context);
   return { context, fields, writes, messages, confirmed, local, results };
 }
 test('save is atomic, archives proof, writes only target and returns confirmed product to queue', async () => {

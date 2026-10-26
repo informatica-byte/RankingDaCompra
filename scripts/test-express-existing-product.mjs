@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
+import uniqueness from '../product-uniqueness.js';
 
 const context = { URL, URLSearchParams };
 for (const file of ['product-offer-replacement.js', 'product-save-safety.js', 'express-existing-product.js']) {
@@ -176,7 +177,7 @@ function adapter(current = product, duplicates = [], source = readFileSync('pain
   const ctx = { URL, URLSearchParams, Date, Error };
   for (const file of ['product-offer-replacement.js', 'product-save-safety.js', 'express-existing-product.js']) runInNewContext(readFileSync(file, 'utf8'), ctx);
   ctx.window = { RDCExpressExisting: ctx.RDCExpressExisting, RDCOfferReplacement: ctx.RDCOfferReplacement,
-    RDCProductSaveSafety: ctx.RDCProductSaveSafety, RDCPricePublication: { saved() {} } };
+    RDCProductSaveSafety: ctx.RDCProductSaveSafety, RDCProductUniqueness:{...uniqueness,loadIndex:async()=>({version:1,entries:{}})}, RDCPricePublication: { saved() {} } };
   Object.assign(ctx, { auth: { currentUser: {} }, db: {}, automacaoPrecosAtiva: false, filaPrecosSalvando: false,
     publicacaoExpressaEmAndamento: false, rankingDadosMovel: {}, filaPrecosDados: null,
     doc: (_db, collection, id) => ({ collection, id }), collection: () => 'produtos',
@@ -185,7 +186,8 @@ function adapter(current = product, duplicates = [], source = readFileSync('pain
     serverTimestamp: () => 'SERVER_TIME', arrayUnion: value => ({ arrayUnion: value }),
     guardarPosicaoFilaPrecos() {},
     runTransaction: async (_db, callback) => callback({
-      get: async ref => { reads.push(ref); return { exists: () => !!current, data: () => current }; },
+      get: async ref => { reads.push(ref); return { exists: () => ref.collection==='produtos'&&!!current, data: () => current }; },
+      set:()=>{},
       update: (ref, changes) => writes.push({ ref, changes }),
     }),
   });
@@ -193,6 +195,7 @@ function adapter(current = product, duplicates = [], source = readFileSync('pain
   // Git em Windows pode converter LF para CRLF. Extrair o mesmo adaptador
   // independentemente da quebra de linha, sem alterar o HTML publicado.
   const html = source.replace(/\r\n?/g, '\n');
+  runInNewContext(html.slice(html.indexOf('async function protegerIdentidadeMovel('),html.indexOf('let cats =')),ctx);
   const start = html.indexOf('save: async (id, baseline, input)');
   const end = html.indexOf('\n        },\n      });', start) + '\n        }'.length;
   assert.ok(start > 0 && end > start);

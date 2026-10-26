@@ -73,4 +73,5 @@
   }
 
   root.RDCProductSaveSafety = Object.freeze({ capture, assertUnchanged, listingId, creationId, duplicateLookups, assertNew });
+  if (typeof module === 'object' && module.exports) module.exports = root.RDCProductSaveSafety;
 })(typeof window === 'object' ? window : globalThis);

@@ -61,6 +61,6 @@ test('os extratores reais dos dois painéis usam o mesmo código correto', () =>
     assert.equal(runtime[name](control), 'MLB4231915505');
     assert.equal(runtime[name]('MLB-4231915505'), 'MLB4231915505');
     assert.equal(runtime[name]('deal:MLB779362-1'), '');
-    assert.match(html, /product-save-safety\.js\?v=20261015-2/);
+    assert.match(html, /product-save-safety\.js\?v=20261026-unique/);
   }
 });

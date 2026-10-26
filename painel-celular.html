@@ -191,7 +191,8 @@
     <script src="/admin-read-economy.js?v=20261026-delete"></script>
     <script src="/mobile-categories.js?v=20261025-1"></script>
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
-    <script src="/product-save-safety.js?v=20261015-2"></script>
+    <script src="/product-save-safety.js?v=20261026-unique"></script>
+    <script src="/product-uniqueness.js?v=20261026-1"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261026-min2415"></script>
     <script src="/assisted-report-recovery.js?v=20261018-1"></script>
@@ -241,6 +242,15 @@
       function lerProdutosParaModulosMovel(fresh = false) {
         return economiaLeiturasMovel.read('produtos', () => getDocsFromServer(collection(db, 'produtos')), { fresh, ttl: 60000 });
       }
+      async function protegerIdentidadeMovel(transaction, prepared, id, actual, creating = false) {
+        const registryRef = doc(db, 'configuracoes', window.RDCProductUniqueness.DOCUMENT);
+        await window.RDCProductUniqueness.acquire({
+          readRegistry: async () => { const snap = await transaction.get(registryRef); return snap.exists() ? snap.data() : null; },
+          readRemoved: async () => { const snap = await transaction.get(doc(db, 'configuracoes', 'exclusoes-definitivas')); return snap.exists() ? snap.data() : null; },
+          readProduct: async other => { const snap = await transaction.get(doc(db, 'produtos', other)); return snap.exists() ? snap.data() : null; },
+          saveRegistry: value => transaction.set(registryRef, value), timestamp: serverTimestamp
+        }, prepared, id, actual, creating);
+      }
       let cats = [],
         resultado = null;
       function msg(id, texto, tipo = "") {
@@ -271,6 +281,8 @@
           if (!auth.currentUser) throw Error("Entre novamente no painel.");
           if (automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento) throw Error("Aguarde ou pause a conferência antes de editar.");
           const proposed = window.RDCExpressExisting.buildPatch(baseline, input, serverTimestamp());
+          const identidade = window.RDCProductUniqueness.linksChanged(proposed.changes)
+            ? await window.RDCProductUniqueness.prepare({ ...baseline, ...proposed.changes }, () => window.RDCProductUniqueness.loadIndex()) : null;
           if (proposed.sourceChanged) {
             const duplicates = await Promise.all(window.RDCProductSaveSafety.duplicateLookups({ ...baseline, ...proposed.changes, marketplace: "mercado_livre" })
               .map(([field, value]) => getDocs(query(collection(db, "produtos"), where(field, "==", value), limit(2)))));
@@ -281,6 +293,7 @@
             const ref = doc(db, "produtos", id), current = await transaction.get(ref);
             const changes = { ...proposed.changes, atualizadoEm: serverTimestamp() };
             window.RDCProductSaveSafety.assertUnchanged(current.exists() ? current.data() : null, baseline, changes);
+            if (identidade) await protegerIdentidadeMovel(transaction, identidade, id, { ...current.data(), ...changes });
             if (proposed.sourceChanged) changes.historicoAnuncios = arrayUnion(window.RDCOfferReplacement.previousOffer(current.data(), new Date().toISOString()));
             transaction.update(ref, changes);
           });
@@ -1283,6 +1296,7 @@
         atualizarControlesAutomacaoPrecos();
         msg("precos-sub-status", "Salvando os novos links e preservando o anúncio anterior...");
         try {
+          const identidade = await window.RDCProductUniqueness.prepare({ ...produto, ...input }, () => window.RDCProductUniqueness.loadIndex());
           const ref = doc(db, "produtos", id);
           // Read one current document on click; never overwrite a concurrent link change.
           const campos = await runTransaction(db, async transaction => {
@@ -1294,6 +1308,7 @@
             }
             const agora = serverTimestamp();
             const patch = { ...window.RDCOfferReplacement.buildPatch(atual, input, agora), ...(atual.conferenciaPausada === true ? { conferenciaPausada: false, conferenciaReativadaEm: agora } : {}) };
+            await protegerIdentidadeMovel(transaction, identidade, id, { ...atual, ...patch });
             transaction.update(ref, { ...patch, atualizadoEm: agora,
               historicoAnuncios: arrayUnion(window.RDCOfferReplacement.previousOffer(atual, new Date().toISOString())) });
             return patch;
@@ -1432,10 +1447,13 @@
         $("precos-ed-cancelar").disabled = true;
         msg("precos-ed-status", "Salvando correções...");
         try {
+          const identidade = window.RDCProductUniqueness.linksChanged(alterados)
+            ? await window.RDCProductUniqueness.prepare({ ...produto, ...alterados }, () => window.RDCProductUniqueness.loadIndex()) : null;
           const ref = doc(db, "produtos", id);
           await runTransaction(db, async transaction => {
             const atual = await transaction.get(ref);
             window.RDCProductSaveSafety.assertUnchanged(atual.exists() ? atual.data() : null, baseConcorrencia, alterados);
+            if (identidade) await protegerIdentidadeMovel(transaction, identidade, id, { ...atual.data(), ...alterados });
             transaction.update(ref, alterados);
           });
           const locais = [filaPrecosDados.todos, filaPrecosDados.produtos];
@@ -3089,7 +3107,8 @@
             d.ofertaRelampagoTerminaEm = new Date(Date.now() + s * 1000).toISOString();
           }
           b.textContent = "Publicando...";
-          const idNovo = window.RDCProductSaveSafety.creationId(d);
+          const identidade = await window.RDCProductUniqueness.prepare(d, () => window.RDCProductUniqueness.loadIndex());
+          const idNovo = identidade.id;
           let salvo;
           if (idNovo) {
             const anteriores = await Promise.all(window.RDCProductSaveSafety.duplicateLookups(d)
@@ -3103,9 +3122,10 @@
             cadastroDuplicadoId = idNovo;
             await runTransaction(db, async transaction => {
               window.RDCProductSaveSafety.assertNew(await transaction.get(salvo));
+              await protegerIdentidadeMovel(transaction, identidade, idNovo, d, true);
               transaction.set(salvo, d);
             });
-          } else salvo = await addDoc(collection(db, "produtos"), d);
+          } else throw Error('Não foi possível identificar o produto. Nenhum cadastro foi criado.');
           publicado = true;
           let avisoSelecao = '';
           if (tipo === 'promocao') {
@@ -3122,6 +3142,7 @@
           msg("pub-status", "Produto cadastrado!"+avisoSelecao+" Use Publicar vitrine para atualizar as páginas. A conferência diária permanece igual.", "ok");
           b.textContent = "✅ Publicado";
         } catch (x) {
+          if (x.existingId) cadastroDuplicadoId = x.existingId;
           msg("pub-status", "Erro: " + x.message, "erro");
           if (cadastroDuplicadoId && /já está cadastrado/.test(x.message)) {
             resultado.produtoExistenteId = cadastroDuplicadoId;

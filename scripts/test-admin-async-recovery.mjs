@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import removal from '../product-removal-safety.js';
+import uniqueness from '../product-uniqueness.js';
 
 const safetyContext = vm.createContext({ URL });
 vm.runInContext(readFileSync(new URL('../product-save-safety.js', import.meta.url), 'utf8'), safetyContext);
@@ -182,17 +183,23 @@ function publication({ validPhoto = true, failWrite = false } = {}) {
     return fields.get(id);
   };
   const context = vm.createContext({
-    resultado: { link: 'https://example.test/p', linkAfiliado: 'https://example.test/a', tipo: 'relampago', marketplace: 'mercado_livre', evidencia: 'manual' },
-    publicacaoExpressaEmAndamento: false, $: field, db: {}, window: { RDCProductSaveSafety: safetyContext.RDCProductSaveSafety }, console,
+    resultado: { link: 'https://produto.mercadolivre.com.br/MLB-1234567890-produto-_JM', linkAfiliado: 'https://meli.la/test', tipo: 'relampago', marketplace: 'mercado_livre', evidencia: 'manual' },
+    publicacaoExpressaEmAndamento: false, $: field, db: {}, window: { RDCProductSaveSafety: safetyContext.RDCProductSaveSafety,RDCProductUniqueness:{...uniqueness,loadIndex:async()=>({version:1,entries:{}})} }, console,
     cadastroExistenteExpressa: { isBusy: () => false, show() {}, reset() {} },
     cats: [{ id: 'cat', nome: 'Categoria válida' }], categoriasMovel: { load: async () => true },
     numero: v => Number(String(v).replace(',', '.')), preco: v => String(v), hoje: () => '2026-10-14',
     mlb: () => 'MLB1234567', seg: () => 60, lista: v => v.split('\n'), serverTimestamp: () => 'SERVER_TIMESTAMP',
     collection: (_db, name) => name, msg: (...args) => messages.push(args),
+    economiaLeiturasMovel:{},getDocs:async()=>({empty:true,docs:[]}),query:()=>({}),where:()=>({}),limit:()=>1,doc:(_db,collection,id)=>({collection,id}),
+    runTransaction:async(_db,work)=>{
+      const pending=[];await work({get:async()=>({exists:()=>false}),set:(ref,data)=>{if(ref.collection==='produtos')pending.push({collection:'produtos',data});}});
+      if(failWrite)throw Error('offline');writes.push(...pending);
+    },
     carregarFotoPrevia: () => new Promise(resolve => { photoWaiters.push(() => resolve(validPhoto)); }),
     addDoc: async (collection, data) => { if (failWrite) throw Error('offline'); writes.push({ collection, data }); return { id: 'new-product' }; },
   });
-  vm.runInContext(publishSource + '\n' + resetSource, context);
+  const guardSource=section('async function protegerIdentidadeMovel(', 'let cats =');
+  vm.runInContext(guardSource + '\n' + publishSource + '\n' + resetSource, context);
   return { context, field, writes, photoWaiters, messages };
 }
 const submit = s => s.field('preview').onsubmit({ preventDefault() {} });

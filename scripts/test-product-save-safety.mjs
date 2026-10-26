@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import { observedProductAliases } from './product-url-continuity.mjs';
+import uniqueness from '../product-uniqueness.js';
+const guard={...uniqueness,loadIndex:async()=>({version:1,entries:{}})};
 
 const context = vm.createContext({ URL });
 vm.runInContext(readFileSync(new URL('../product-save-safety.js', import.meta.url), 'utf8'), context);
@@ -126,7 +128,7 @@ test('dashboard production edit block rechecks latest fields and writes only a p
   const original = { titulo: 'A', preco: '10,00', comentario: 'old', precoAtualizadoManualmenteEm: 'old date' };
   const db = memoryDatabase({ oldRandomId: { ...original, preco: '9,00', precoAtualizadoManualmenteEm: 'today' } });
   const c = vm.createContext({ idEdicao: 'oldRandomId', baseConcorrencia: safety.capture(original), camposEdicao: { comentario: 'new' },
-    dadosProduto: { atualizadoEm: 'SERVER_TIMESTAMP' }, window: { RDCProductSaveSafety: safety },
+    dadosProduto: { atualizadoEm: 'SERVER_TIMESTAMP' }, identidade:null, window: { RDCProductSaveSafety: safety },
     db: { collection: () => ({ doc: db.ref }), runTransaction: db.transaction } });
   await vm.runInContext('(async () => {' + dashEdit + '})()', c);
   assert.equal(db.docs.get('oldRandomId').comentario, 'new');
@@ -139,7 +141,7 @@ test('dashboard production edit block refuses same-field conflicts and deleted r
   for (const initial of [{ oldRandomId: { comentario: 'concurrent' } }, {}]) {
     const db = memoryDatabase(initial);
     const c = vm.createContext({ idEdicao: 'oldRandomId', baseConcorrencia: { comentario: 'old' }, camposEdicao: { comentario: 'new' },
-      dadosProduto: { atualizadoEm: 'SERVER_TIMESTAMP' }, window: { RDCProductSaveSafety: safety },
+      dadosProduto: { atualizadoEm: 'SERVER_TIMESTAMP' }, identidade:null, window: { RDCProductSaveSafety: safety },
       db: { collection: () => ({ doc: db.ref }), runTransaction: db.transaction } });
     await assert.rejects(vm.runInContext('(async () => {' + dashEdit + '})()', c), /mesmos campos|excluído/);
     assert.equal(db.writes.length, 0);
@@ -153,7 +155,7 @@ test('mobile editor captures raw baseline and checks it inside the production tr
   const original = { titulo: 'A', preco: '10,00' }, current = { ...original, preco: '9,00' };
   const db = memoryDatabase({ mobileId: current });
   const c = vm.createContext({ id: 'mobileId', baseConcorrencia: safety.capture(original), alterados: { titulo: 'B', atualizadoEm: 'SERVER_TIMESTAMP' },
-    db: {}, doc: (_db, _name, id) => db.ref(id), window: { RDCProductSaveSafety: safety },
+    db: {}, identidade:null, doc: (_db, _name, id) => db.ref(id), window: { RDCProductSaveSafety: safety },
     runTransaction: (_db, callback) => db.transaction(async tx => callback({ ...tx, get: async ref => { const snap = await tx.get(ref); return { ...snap, exists: () => snap.exists }; } })) });
   await vm.runInContext('(async () => {' + source + '})()', c);
   assert.equal(db.docs.get('mobileId').preco, '9,00');
@@ -174,8 +176,8 @@ test('simultaneous creation retries cannot overwrite the first product', async (
   assert.equal(db.writes.length, 1);
 });
 
-const dashCreate = section(dashboard, 'const idNovo = window.RDCProductSaveSafety.creationId(dadosProduto);', '\n                }\n                resetarFormProduto();');
-const mobileCreate = section(mobile, 'const idNovo = window.RDCProductSaveSafety.creationId(d);', '\n          publicado = true;');
+const dashCreate = section(dashboard, 'const identidade = await window.RDCProductUniqueness.prepare(dadosProduto,', '\n                }\n                resetarFormProduto();');
+const mobileCreate = section(mobile, 'const identidade = await window.RDCProductUniqueness.prepare(d,', '\n          publicado = true;');
 function productionCreation(db, { queryFailure = false } = {}) {
   const queryExisting = async (field, value) => {
     if (queryFailure) throw Error('permission-denied');
@@ -188,16 +190,19 @@ function productionCreation(db, { queryFailure = false } = {}) {
     add: () => { throw Error('identified item must not use random add'); },
   };
   const dashboardCreate = product => {
-    const c = vm.createContext({ dadosProduto: product, window: { RDCProductSaveSafety: safety },
-      db: { collection: () => dashCollection, runTransaction: db.transaction } });
+    const c = vm.createContext({ dadosProduto: product, window: { RDCProductSaveSafety: safety,RDCProductUniqueness:guard },
+      firebase:{firestore:{FieldValue:{serverTimestamp:()=> 'TIME'}}},
+      db: { collection: name => name==='produtos'?dashCollection:{doc:id=>db.ref('config:'+id)}, runTransaction: db.transaction } });
+    vm.runInContext(section(dashboard,'async function protegerIdentidadeDashboard(', 'function autorizarOfertaExistenteDashboard('),c);
     return vm.runInContext('(async () => {' + dashCreate + '})()', c);
   };
   const mobileCreateProduct = product => {
-    const c = vm.createContext({ d: product, window: { RDCProductSaveSafety: safety }, db: {},
+    const c = vm.createContext({ d: product, window: { RDCProductSaveSafety: safety,RDCProductUniqueness:guard }, db: {},serverTimestamp:()=> 'TIME',
       collection: (_db, name) => name, where: (field, _operator, value) => ({ field, value }), limit: () => 1,
       query: (_collection, predicate) => predicate, getDocs: predicate => queryExisting(predicate.field, predicate.value),
-      doc: (_db, _name, id) => db.ref(id), addDoc: () => { throw Error('identified item must not use random add'); },
+      doc: (_db, name, id) => db.ref(name==='produtos'?id:'config:'+id), addDoc: () => { throw Error('identified item must not use random add'); },
       runTransaction: (_db, callback) => db.transaction(async tx => callback({ ...tx, get: async ref => { const snap = await tx.get(ref); return { ...snap, exists: () => snap.exists }; } })) });
+    vm.runInContext(section(mobile,'async function protegerIdentidadeMovel(', 'let cats ='),c);
     return vm.runInContext('(async () => {' + mobileCreate + '})()', c);
   };
   return { dashboardCreate, mobileCreateProduct };
@@ -210,8 +215,8 @@ test('real creation blocks in both panels share the same unique item during a cr
   ]);
   assert.equal(results.filter(result => result.status === 'fulfilled').length, 1);
   assert.equal(results.filter(result => result.status === 'rejected').length, 1);
-  assert.equal(db.writes.length, 1);
-  assert.equal(db.docs.size, 1);
+  assert.equal(db.writes.length, 2,'one product plus the atomic identity registry');
+  assert.equal(db.docs.size, 2);
   assert.ok(db.docs.has('mlMLB1234567890'));
 });
 
@@ -234,10 +239,12 @@ test('legacy lookup failure fails closed instead of creating another product', a
   }
 });
 
-test('both panels use the shared guarded creation before the legacy fallback', () => {
+test('both panels use the guarded creation without a random-id fallback', () => {
   for (const html of [dashboard, mobile]) {
-    assert.match(html, /src="\/product-save-safety\.js\?v=20261015-2"/);
-    assert.match(html, /RDCProductSaveSafety\.creationId\(/);
+    assert.match(html, /src="\/product-save-safety\.js\?v=20261026-unique"/);
+    assert.match(html, /RDCProductUniqueness\.prepare\(/);
+    assert.match(html, /protegerIdentidade(?:Dashboard|Movel)\(transaction, identidade, idNovo/);
+    assert.doesNotMatch(html,/else salvo = await addDoc|else await db\.collection\("produtos"\)\.add/);
     assert.match(html, /RDCProductSaveSafety\.duplicateLookups\(/);
     assert.match(html, /RDCProductSaveSafety\.assertNew\(await transaction\.get\(/);
     assert.match(html, /transaction\.set\(/);
