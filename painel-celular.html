@@ -188,7 +188,7 @@
     </main>
     <script src="/appcheck-error-safety.js?v=20261026-1"></script>
     <script src="/appcheck-local-diagnostics.js?v=20261025-1"></script>
-    <script src="/admin-read-economy.js?v=20261023-1"></script>
+    <script src="/admin-read-economy.js?v=20261026-delete"></script>
     <script src="/mobile-categories.js?v=20261025-1"></script>
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
     <script src="/product-save-safety.js?v=20261015-2"></script>
@@ -1490,6 +1490,7 @@
               removeProduct: () => transaction.delete(productRef)
             }))
           }, produto, uid);
+          economiaLeiturasMovel.invalidate('produtos');
           filaPrecosDados.todos = filaPrecosDados.todos.filter((item) => item.id !== id);
           filaPrecosDados.produtos = filaPrecosDados.produtos.filter((item) => item.id !== id);
           filaPrecosPulados.delete(id);

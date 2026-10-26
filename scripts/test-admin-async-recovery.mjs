@@ -86,7 +86,7 @@ function queue(fail = false) {
     filaPrecosConferidos: new Set(), filaPrecosPulados: new Set(), filaPrecosResultados: new Map(),
     automacaoPrecosFalhas: new Map(), automacaoPrecosIndisponiveis: new Map(),
     automacaoPrecosAtiva: false, automacaoPrecosPausada: false, publicacaoExpressaEmAndamento: false,
-    auth: {currentUser:{uid:'admin-test'}}, rankingDadosMovel:null, produtosRelampagoCacheMobile:null, automacaoPrecosVisitados:new Set(),
+    auth: {currentUser:{uid:'admin-test'}}, rankingDadosMovel:null, produtosRelampagoCacheMobile:null, automacaoPrecosVisitados:new Set(), economiaLeiturasMovel:{invalidate:key=>assert.equal(key,'produtos')},
     window: { RDCProductRemoval: removal, conferirPrecoNaAbaLocal() {}, RDCAssistedPriceSafety: { robotReady: () => true } },
     $: field, db: {}, crypto: { randomUUID: () => 'confirmation-id' }, confirm: () => true, prompt:()=> 'EXCLUIR p',
     linkPrecoAssistido: p => p.link, campoPrecoFila: () => 'preco',

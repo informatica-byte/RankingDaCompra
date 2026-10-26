@@ -2,7 +2,7 @@
   'use strict';
   const LABELS = { produtos: 'Produtos', categorias: 'Categorias', metricas: 'Visitas e cliques' };
   function create({ session, now = Date.now, container } = {}) {
-    const cache = new Map(), pending = new Map();
+    const cache = new Map(), pending = new Map(), versions = new Map();
     let owner = '', generation = 0, stats = {};
     let output;
     if (container) {
@@ -24,7 +24,8 @@
           + (value.failures || 0) + ' falha(s).';
       }).join('\n');
     }
-    function reset() { cache.clear(); pending.clear(); generation++; stats = {}; render(); }
+    function reset() { cache.clear(); pending.clear(); versions.clear(); generation++; stats = {}; render(); }
+    function invalidate(key) { entry(key); versions.set(key,(versions.get(key)||0)+1); cache.delete(key); pending.delete(key); }
     function checkSession() {
       const current = String(session?.() || '');
       if (owner !== current) { reset(); owner = current; }
@@ -49,7 +50,7 @@
     }
     function reuse(key, value) { checkSession(); entry(key).reused++; render(); return value; }
     async function read(key, reader, { fresh = false, ttl = 0 } = {}) {
-      const uid = checkSession(), epoch = generation, value = entry(key), stored = cache.get(key);
+      const uid = checkSession(), epoch = generation, version = versions.get(key)||0, value = entry(key), stored = cache.get(key);
       // Mesmo a atualização explícita compartilha uma leitura já em andamento.
       // Uma leitura concluída só é reutilizada por até um minuto, em usos auxiliares.
       if (pending.has(key)) { value.reused++; render(); return pending.get(key); }
@@ -60,6 +61,7 @@
       value.queries++; render();
       const request = Promise.resolve().then(reader).then(snapshot => {
         if (generation !== epoch || String(session?.() || '') !== uid) throw Error('A sessão mudou. Carregue novamente o painel.');
+        if ((versions.get(key)||0) !== version) throw Error('Os cadastros mudaram durante a leitura. Carregue novamente a lista.');
         observe(key, snapshot);
         cache.set(key, { at: now(), data: snapshot });
         return snapshot;
@@ -70,7 +72,7 @@
     }
     render();
     function watch(key) { checkSession(); entry(key).queries++; render(); }
-    return { read, reuse, observe, watch, reset, summary: () => JSON.parse(JSON.stringify(stats)) };
+    return { read, reuse, observe, watch, reset, invalidate, summary: () => JSON.parse(JSON.stringify(stats)) };
   }
   root.RDCAdminReadEconomy = { create };
 })(typeof window === 'undefined' ? globalThis : window);

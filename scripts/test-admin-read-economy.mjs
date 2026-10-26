@@ -125,8 +125,8 @@ test('comparativo do dashboard reutiliza lista viva/categorias e resumo, limitad
 });
 
 test('integração mantém transações de segurança, não habilita persistência ou novos serviços', () => {
-  for (const html of [mobile, dashboard]) {
-    assert.match(html, /admin-read-economy\.js\?v=20261023-1/);
+  for (const [html,version] of [[mobile,'20261026-delete'],[dashboard,'20261023-1']]) {
+    assert.ok(html.includes('admin-read-economy.js?v='+version));
     assert.match(html, /transaction\.get\(ref\)/);
     assert.match(html, /RDCExistingFlashOffer\.assertCurrent/);
     assert.doesNotMatch(html, /enablePersistence|persistentLocalCache|FIREBASE_APPCHECK_DEBUG_TOKEN/);
@@ -141,4 +141,15 @@ test('snapshot compartilhado entre abas não é contado como documento relido do
   assert.equal(api.summary().produtos.documents, 0);
   assert.equal(api.summary().produtos.reused, 1);
   assert.equal(api.summary().produtos.queries, 0);
+});
+
+test('excluir invalida somente produtos, sem nova leitura, sem zerar diagnóstico e sem resposta antiga voltar ao cache',async()=>{
+ const {api}=boot();let calls=0,finish;
+ await api.read('categorias',async()=>snapshot(2),{ttl:60000});
+ const pending=api.read('produtos',()=>{calls++;return new Promise(resolve=>finish=resolve);},{ttl:60000});
+ await Promise.resolve();api.invalidate('produtos');assert.equal(calls,1);assert.equal(api.summary().categorias.documents,2);
+ finish(snapshot(5));await assert.rejects(pending,/cadastros mudaram/);
+ const current=await api.read('produtos',async()=>{calls++;return snapshot(1);},{ttl:60000});assert.equal(current.docs.length,1);assert.equal(calls,2);
+ await api.read('categorias',async()=>{throw Error('não reler');},{ttl:60000});
+ assert.equal(api.summary().categorias.queries,1);assert.equal(api.summary().produtos.queries,2);
 });
