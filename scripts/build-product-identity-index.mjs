@@ -11,7 +11,8 @@ export async function buildIdentityIndex(products,root=process.cwd()){
   let identity;try{identity=uniqueness.identify(product,{strict:false});}catch{skipped++;continue;}
   for(const key of await Promise.all(identity.keys.map(uniqueness.hash)))entries[key]=[...new Set([...(entries[key]||[]),product.id])].sort();
  }
- const index={...uniqueness.registry({version:1,entries}),complete:true,generatedAt:new Date().toISOString()};
+ const ordered=Object.fromEntries(Object.entries(entries).sort(([left],[right])=>left.localeCompare(right)));
+ const index={...uniqueness.registry({version:1,entries:ordered}),complete:true,generatedAt:new Date().toISOString()};
  await writeFile(resolve(root,'product-identities.json'),JSON.stringify(index)+'\n');
  console.log('Proteção de cadastros: '+Object.keys(entries).length+' identidades; '+skipped+' cadastro(s) legado(s) sem link inequívoco.');
  return index;

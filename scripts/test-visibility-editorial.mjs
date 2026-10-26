@@ -2,10 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile, mkdtemp, mkdir, writeFile, rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {CONFIG, improveProduct, improveGuide, resolveEditorialProduct, applyVisibilityEditorial} from './visibility-editorial.mjs';
 import {productAliasPage, pausedProductPage, unavailableProductPage} from './product-url-continuity.mjs';
+import {localRemovals} from './product-removals.mjs';
 const item=CONFIG.products[0];
 const fixture=(name='Notebook Acer Aspire 5 A515-45-R2A3',robots='index,follow')=>`<html><head><title>Original</title><meta name="robots" content="${robots}"><meta name="description" content="Original"><link rel="canonical" href="https://rankingdacompra.com.br/produto/${item.id}-20260810-1.html"><script type="application/ld+json">${JSON.stringify({'@type':'Product',name,url:`https://rankingdacompra.com.br/produto/${item.id}-20260810-1.html`,offers:{price:'3419.90',availability:'https://schema.org/InStock'}})}</script></head><body><main><article><h1>${name}</h1><a id="affiliate-offer" href="https://meli.la/existing" rel="sponsored">Comprar</a><div class="panels"></div></article></main></body></html>`;
 test('escopo editorial possui exatamente dez produtos e três comparativos',()=>{assert.equal(CONFIG.products.length,10);assert.equal(new Set(CONFIG.products.map(x=>x.id)).size,10);assert.equal(CONFIG.guides.length,3);});
@@ -22,14 +23,28 @@ test('reescrever a mesma página é idempotente',()=>{const out=improveProduct(f
 test('não aplica conselho de um produto a outro modelo nem a página retirada',()=>{assert.equal(improveProduct(fixture('Notebook outro modelo'),item),fixture('Notebook outro modelo'));assert.equal(improveProduct(fixture(undefined,'noindex,follow'),item),fixture(undefined,'noindex,follow'));});
 test('texto editorial não injeta HTML e links externos seguem lista permitida',()=>{const out=improveProduct(fixture(),{...item,fit:'<img onerror=alert(1)>',links:[{url:'javascript:alert(1)',label:'Ataque'}]});assert.match(out,/&lt;img onerror=alert\(1\)&gt;/);assert.doesNotMatch(out,/href="javascript:/);});
 test('comparativo preserva tabela e preço e apresenta h1 antes do auxílio de decisão',()=>{const html='<html><head><title>Antigo</title></head><body><main><h1>Antigo</h1><table><tr><td>R$ 123,45</td></tr></table></main></body></html>';const out=improveGuide(html,CONFIG.guides[0]);assert.ok(out.includes('<table><tr><td>R$ 123,45</td></tr></table>'));assert.ok(out.indexOf('<h1>')<out.indexOf('<!-- visibility-editorial:start -->'));assert.equal(improveGuide(out,CONFIG.guides[0]),out);assert.equal((out.match(/<!-- visibility-editorial:start -->/g)||[]).length,1);});
+
+async function verifiedEditorialPage(root,entry,deleted){
+  if(!deleted.has(entry.id))return resolveEditorialProduct(root,entry);
+  const original=resolve(root,`produto/${entry.id}-20260810-1.html`);
+  await assert.rejects(resolveEditorialProduct(root,entry),error=>error.code==='ENOENT'&&error.path===original,'exclusão confirmada deve remover a página, sem stub ou redirecionamento');
+  return null;
+}
+function deletedProductLink(url,deleted){
+  const id=String(url).match(/^\/produto\/([A-Za-z0-9_-]+)-\d{8}-\d+\.html$/)?.[1];return id&&deleted.has(id);
+}
 test('todas as páginas principais selecionadas têm uma única seção e links locais existentes',async()=>{
   const root=fileURLToPath(new URL('..',import.meta.url));
-  const pages=await Promise.all(CONFIG.products.map(x=>resolveEditorialProduct(root,x)));
+  const deleted=new Set((await localRemovals(root)).ids);
+  const pages=(await Promise.all(CONFIG.products.map(x=>verifiedEditorialPage(root,x,deleted)))).filter(Boolean);
   for(const page of pages.filter(p=>p.inactive)){assert.doesNotMatch(page.html,/visibility-editorial:start|id=["']affiliate-offer["']/);}
   for(const {file,html,item:entry} of [...pages.filter(p=>!p.inactive),...await Promise.all(CONFIG.guides.map(async x=>({file:x.file,html:await readFile(new URL('../'+x.file,import.meta.url),'utf8'),item:x})))]){
     assert.equal((html.match(/<!-- visibility-editorial:start -->/g)||[]).length,1,file);
     assert.ok(html.includes(entry.title),file);
-    for(const link of entry.links){if(link.url.startsWith('/'))await readFile(new URL('..'+link.url,import.meta.url));}
+    for(const link of entry.links){if(link.url.startsWith('/')){
+      if(deletedProductLink(link.url,deleted)){assert.equal(html.includes('href="'+link.url+'"'),false,'link excluído não pode continuar no HTML');await assert.rejects(readFile(new URL('..'+link.url,import.meta.url)),{code:'ENOENT'});}
+      else await readFile(new URL('..'+link.url,import.meta.url));
+    }}
     for(const [,json]of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(json));
   }
 });
@@ -75,4 +90,14 @@ test('pausa e retirada explícitas preservam stub; seção ausente numa página 
   await writeFile(join(f.root,f.old),f.alias);const page=await resolveEditorialProduct(f.root,f.starlink);
   assert.equal(page.inactive,false);assert.doesNotMatch(page.html,/visibility-editorial:start/);
   await rm(join(f.root,f.current));await assert.rejects(()=>resolveEditorialProduct(f.root,f.starlink));
+});
+
+test('só exclusão registrada permite ausência: páginas ativas, stubs, aliases quebrados e erros de acesso continuam bloqueados',async t=>{
+  const f=await aliasFixture(t),deleted=new Set([f.starlink.id]);
+  await rm(join(f.root,f.old));assert.equal(await verifiedEditorialPage(f.root,f.starlink,deleted),null);
+  await assert.rejects(verifiedEditorialPage(f.root,f.starlink,new Set()),{code:'ENOENT'});
+  await writeFile(join(f.root,f.old),unavailableProductPage('Starlink'));
+  await assert.rejects(verifiedEditorialPage(f.root,f.starlink,deleted),/exclusão confirmada/);
+  await writeFile(join(f.root,f.old),f.alias);await rm(join(f.root,f.current));
+  await assert.rejects(verifiedEditorialPage(f.root,f.starlink,deleted),/exclusão confirmada/);
 });
