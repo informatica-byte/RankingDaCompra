@@ -13,7 +13,7 @@ test('política em meta bloqueia objetos/base/form externo antes dos scripts sem
 });
 test('painéis carregam validador novo e orientam preservar campos antes de recarregar',()=>{
  for(const file of ['dashboard.html','painel-celular.html']){
-  const html=read(file);assert.match(html,/assisted-price-safety.js\?v=20261025-min2414/);
+  const html=read(file);assert.match(html,/assisted-price-safety.js\?v=20261026-min2415/);
   assert.doesNotMatch(html,/2\.4\.4 ou superior/);assert.match(html,/Salve ou copie os campos preenchidos antes de recarregar/);
  }
 });

@@ -191,7 +191,7 @@
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
     <script src="/product-save-safety.js?v=20261015-2"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
-    <script src="/assisted-price-safety.js?v=20261025-min2414"></script>
+    <script src="/assisted-price-safety.js?v=20261026-min2415"></script>
     <script src="/assisted-report-recovery.js?v=20261018-1"></script>
     <script src="/flash-offer-safety.js?v=20261012-audit"></script>
     <script src="/existing-flash-offer.js?v=20261024-reuse"></script>
@@ -598,7 +598,7 @@
             if (botao) botao.disabled = true;
           }
         }
-        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.4.14 ou superior. Salve ou copie os campos preenchidos antes de recarregar esta página para ativar a atualização. Conferência: nome/modelo e preço total em destaque, sem validar cor, tamanho/numeração ou voltagem.");
+        if (!roboPronto) resumoAutomacaoPrecos("Atualize o robô do Tampermonkey para 2.4.15 ou superior. Salve ou copie os campos preenchidos antes de recarregar esta página para ativar a atualização. Conferência: nome/modelo e preço total em destaque, sem validar cor, tamanho/numeração ou voltagem.");
       }
 
       function guardarPosicaoFilaPrecos() {
@@ -1075,6 +1075,9 @@
             anunciosVisiveis: Array.isArray(diagnostico.anunciosVisiveis) ? diagnostico.anunciosVisiveis.map(identifier).filter(Boolean).slice(0, 3) : [],
             catalogoSolicitado: identifier(diagnostico.catalogoSolicitado), catalogoFinal: identifier(diagnostico.catalogoFinal),
             blocosPreco: Number.isFinite(diagnostico.blocosPreco) ? Math.max(0, Math.min(100, Math.floor(diagnostico.blocosPreco))) : 0,
+            selecaoPrecos: Object.fromEntries(["contexto_excluido", "oculto", "condicional_ou_secundario", "parcela", "moeda_ausente_ou_divergente", "formato_invalido", "total_principal_aceito"]
+              .filter(key => Number.isFinite(diagnostico.selecaoPrecos?.[key]))
+              .map(key => [key, Math.max(0, Math.min(100, Math.floor(diagnostico.selecaoPrecos[key])))])),
           };
         }
         // Set.add não move um item já pulado. Remover antes de reinserir é

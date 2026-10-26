@@ -1,6 +1,6 @@
 (function (root) {
   "use strict";
-  const MIN_VERSION = "2.4.14";
+  const MIN_VERSION = "2.4.15";
   function robotReady(info) {
     if (!/^\d+\.\d+\.\d+$/.test(String(info?.version || ""))) return false;
     const version = String(info.version).split(".").map(Number);
@@ -58,7 +58,18 @@
       .replace(/\b(?:tamanho|tam|numero|numeracao)\s*[:#]?\s*(?:\d{1,3}\s*(?:br|eu|us)?|x{0,3}[pmg]{1,3}|xs|xl|xxl)\b/gi, " ")
       .replace(/\b\d{1,3}\s*(?:br|eu|us)\b/gi, " ");
   }
-  function matchingProduct(expectedTitle, foundTitle) {
+  function productEvidenceText(evidence) {
+    if (evidence?.source !== "visible_product_specs" || !Array.isArray(evidence.attributes) || !evidence.attributes.length || evidence.attributes.length > 24) return "";
+    const text = [];
+    for (const attribute of evidence.attributes) {
+      if (typeof attribute?.name !== "string" || typeof attribute?.value !== "string" || attribute.name.length > 100 || attribute.value.length > 160) return "";
+      const name = attribute.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+      if (!/^(?:marca|modelo|linha|tipo|volume|conteudo|quantidade|capacidade|material|inclui|com|velocidade|diametro|rede|unidades)(?: |$)/.test(name) || /[\x00-\x1f]/.test(attribute.name + attribute.value)) return "";
+      text.push(attribute.name + ": " + attribute.value);
+    }
+    return text.join("; ");
+  }
+  function matchingProduct(expectedTitle, foundTitle, details = "") {
     expectedTitle = nameForPrice(expectedTitle);
     foundTitle = nameForPrice(foundTitle);
     // Mesmo contrato do userscript: bloquear contradição explícita, não ficha
@@ -122,6 +133,22 @@
       const family = model.replace(/\d+/g, "#");
       if (foundModels.some(other => other.replace(/\d+/g, "#") === family) && !found.has(model)) return false;
     }
+    // Características só complementam título abreviado depois dos bloqueios
+    // de modelo/geração do título. Nunca corrigem uma contradição explícita.
+    if (details) {
+      const detailText = nameForPrice(details), detailFeatures = numericFeatures(detailText);
+      for (const [name, values] of expectedFeatures) {
+        if (name === "tela") continue;
+        const actual = detailFeatures.get(name);
+        if (actual?.size && ![...values].some(value => actual.has(value))) return false;
+      }
+      const detailWords = words(detailText), detailModels = models(detailWords);
+      for (const model of models(expected)) {
+        const family = model.replace(/\d+/g, "#");
+        if (detailModels.some(other => other.replace(/\d+/g, "#") === family && other !== model)) return false;
+      }
+      for (const word of detailWords) found.add(word);
+    }
     const matches = expected.filter(word => found.has(word)).length;
     return matches >= Math.min(3, expected.length) && (matches / expected.length >= 0.5
       || (matches >= 5 && matches / found.size >= 0.8));
@@ -136,7 +163,7 @@
     if (result.status !== "ok" || result.produtoId !== produtoId || result.requestedUrl !== url || !result.requestId) return "Resposta não pertence a este produto ou pedido. Preço preservado.";
     if (!requested || !found || !sameProductSource(url, result?.fonteConsultada, result?.variantProof)) return "O anúncio não corresponde ao produto solicitado. Confira manualmente.";
     const proof = result.variantProof;
-    if (!titulo || !proof || proof.expectedTitle !== titulo || proof.verified !== true || !matchingProduct(titulo, result.tituloEncontrado)) return "O título não confirma o mesmo produto. Preço preservado.";
+    if (!titulo || !proof || proof.expectedTitle !== titulo || proof.verified !== true || !matchingProduct(titulo, result.tituloEncontrado, productEvidenceText(result.productEvidence))) return "O título não confirma o mesmo produto. Preço preservado.";
     const sameCatalog = requested.catalog && requested.catalog === found.catalog;
     const expectedListing = requested.listing || found.listing;
     const highlightedKey = proof.listingId || found.key;

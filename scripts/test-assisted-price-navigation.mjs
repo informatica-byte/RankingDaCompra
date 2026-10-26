@@ -23,7 +23,7 @@ function setup(open = null) {
   return { c, panel, calls, commands, listeners, timers, respond, forbiddenHandleReads: () => forbiddenHandleReads };
 }
 function proof(c, command) {
-  return { status: 'ok', robotVersion: '2.4.14', proofVersion: 3, comparisonPolicy: 'name_price', priceBasis: 'highlighted_total', requestId: command.requestId, produtoId: command.produtoId,
+  return { status: 'ok', robotVersion: '2.4.15', proofVersion: 3, comparisonPolicy: 'name_price', priceBasis: 'highlighted_total', requestId: command.requestId, produtoId: command.produtoId,
     requestedUrl: command.url, fonteConsultada: command.url, tituloEncontrado: command.titulo,
     offerKey: c.RDCAssistedPriceSafety.identity(command.url).key,
     variantProof: { verified: true, expectedTitle: command.titulo, listingId: c.RDCAssistedPriceSafety.identity(command.url).listing, attributes: [] },
@@ -59,7 +59,7 @@ test('current bot asks browser to reuse named worker for every product, never ol
   assert.equal(new Set(s.calls.map(call => call.features)).size, 1);
   assert.match(s.calls[0].features, /popup=yes/);
   assert.equal(s.forbiddenHandleReads(), 0);
-  assert.equal(s.panel.__RDC_BOT_PRECOS_LOCAL__.version, '2.4.14');
+  assert.equal(s.panel.__RDC_BOT_PRECOS_LOCAL__.version, '2.4.15');
 });
 
 test('reused worker ignores old request, different product and altered requested variant', async () => {

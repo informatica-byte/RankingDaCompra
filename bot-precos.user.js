@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.4.14
+// @version      2.4.15
 // @description  Confere preços no navegador logado, pausa em verificações humanas e entrega os resultados ao painel.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -21,7 +21,7 @@
 (function () {
   "use strict";
 
-  const BOT_VERSION = "2.4.14";
+  const BOT_VERSION = "2.4.15";
   const REQUEST_TIMEOUT = 45000;
   const COMMAND_KEY = "rdc_preco_command_v2";
   const RESULT_KEY = "rdc_preco_result_v2";
@@ -89,7 +89,18 @@
       .replace(/\b(?:tamanho|tam|numero|numeracao)\s*[:#]?\s*(?:\d{1,3}\s*(?:br|eu|us)?|x{0,3}[pmg]{1,3}|xs|xl|xxl)\b/gi, " ")
       .replace(/\b\d{1,3}\s*(?:br|eu|us)\b/gi, " ");
   }
-  function matchingProduct(expectedTitle, foundTitle) {
+  function productEvidenceText(evidence) {
+    if (evidence?.source !== "visible_product_specs" || !Array.isArray(evidence.attributes) || !evidence.attributes.length || evidence.attributes.length > 24) return "";
+    const text = [];
+    for (const attribute of evidence.attributes) {
+      if (typeof attribute?.name !== "string" || typeof attribute?.value !== "string" || attribute.name.length > 100 || attribute.value.length > 160) return "";
+      const name = attribute.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+      if (!/^(?:marca|modelo|linha|tipo|volume|conteudo|quantidade|capacidade|material|inclui|com|velocidade|diametro|rede|unidades)(?: |$)/.test(name) || /[\x00-\x1f]/.test(attribute.name + attribute.value)) return "";
+      text.push(attribute.name + ": " + attribute.value);
+    }
+    return text.join("; ");
+  }
+  function matchingProduct(expectedTitle, foundTitle, details = "") {
     expectedTitle = nameForPrice(expectedTitle);
     foundTitle = nameForPrice(foundTitle);
     // Números só são identidade quando ligados a modelo/medida. Descontos,
@@ -156,6 +167,22 @@
     for (const model of models(expected)) {
       const family = model.replace(/\d+/g, "#");
       if (foundModels.some(other => other.replace(/\d+/g, "#") === family) && !found.has(model)) return false;
+    }
+    // Características só complementam título abreviado depois dos bloqueios
+    // de modelo/geração do título. Nunca corrigem uma contradição explícita.
+    if (details) {
+      const detailText = nameForPrice(details), detailFeatures = numericFeatures(detailText);
+      for (const [name, values] of expectedFeatures) {
+        if (name === "tela") continue;
+        const actual = detailFeatures.get(name);
+        if (actual?.size && ![...values].some(value => actual.has(value))) return false;
+      }
+      const detailWords = words(detailText), detailModels = models(detailWords);
+      for (const model of models(expected)) {
+        const family = model.replace(/\d+/g, "#");
+        if (detailModels.some(other => other.replace(/\d+/g, "#") === family && other !== model)) return false;
+      }
+      for (const word of detailWords) found.add(word);
     }
     const matches = expected.filter(word => found.has(word)).length;
     // Títulos cadastrados podem ter muitos complementos ausentes no título
@@ -232,12 +259,14 @@
   }
   function offerDiagnostic(documentHtml, requestedUrl, finalUrl, stage) {
     const requested = offerIdentity(requestedUrl), actual = offerIdentity(finalUrl);
+    const selecaoPrecos = {};
+    if (stage === "preco_principal") extractMainPrice(documentHtml, selecaoPrecos);
     let finalPath = '';
     if (actual) { const url = new URL(finalUrl); finalPath = url.origin + url.pathname; }
     return { etapa: stage, tituloEncontrado: String(documentHtml.querySelector?.('h1.ui-pdp-title')?.textContent || documentHtml.querySelector?.('h1')?.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 240),
       urlFinal: finalPath.slice(0, 1000), anuncioSolicitado: requested?.listing || '', anunciosVisiveis: visibleListingIds(documentHtml).slice(0, 3),
       catalogoSolicitado: requested?.catalog || '', catalogoFinal: actual?.catalog || '',
-      blocosPreco: documentHtml.querySelectorAll?.('.ui-pdp-price__second-line .andes-money-amount')?.length || 0 };
+      blocosPreco: documentHtml.querySelectorAll?.('.ui-pdp-price__second-line .andes-money-amount')?.length || 0, selecaoPrecos };
   }
   function extractVariantProof(documentHtml, expectedTitle, requestedUrl, finalUrl) {
     const ids = visibleListingIds(documentHtml);
@@ -288,15 +317,16 @@
     return { prices: [...new Set(prices)] };
   }
 
-  function extractMainPrice(documentHtml) {
+  function extractMainPrice(documentHtml, selection = null) {
+    const rejected = reason => { if (selection) selection[reason] = (selection[reason] || 0) + 1; };
     // Melhor total visível no bloco principal, independentemente do pagamento.
     // Valores de parcela, preço antigo, cashback e recomendações continuam excluídos.
     const candidates = [];
     for (const node of documentHtml.querySelectorAll('.ui-pdp-price__second-line .andes-money-amount')) {
-      if (node.closest('.andes-money-amount--previous, .ui-pdp-price__original-value, .ui-pdp-price__installments, .ui-pdp-promotions-pill-label, .ui-pdp-outside_variations, .ui-pdp-variations, .ui-pdp-other-sellers, .ui-pdp-other-sellers-item, .ui-pdp-recommendations, [class*="recommendations"], [class*="carousel"], [hidden], [aria-hidden="true"]')) continue;
+      if (node.closest('.andes-money-amount--previous, .ui-pdp-price__original-value, .ui-pdp-price__installments, .ui-pdp-promotions-pill-label, .ui-pdp-outside_variations, .ui-pdp-variations, .ui-pdp-other-sellers, .ui-pdp-other-sellers-item, .ui-pdp-recommendations, [class*="recommendations"], [class*="carousel"], [hidden], [aria-hidden="true"]')) { rejected("contexto_excluido"); continue; }
       if (documentHtml.defaultView) {
         const style = documentHtml.defaultView.getComputedStyle(node);
-        if (style.display === "none" || style.visibility === "hidden" || !node.getClientRects().length) continue;
+        if (style.display === "none" || style.visibility === "hidden" || !node.getClientRects().length) { rejected("oculto"); continue; }
       }
       const fractionNode = node.querySelector('.andes-money-amount__fraction');
       const fraction = fractionNode?.textContent;
@@ -304,9 +334,12 @@
       const currency = node.querySelector('.andes-money-amount__currency-symbol')?.textContent;
       const label = node.getAttribute('aria-label') || "";
       const installment = /\bparcelas?\b|\b\d{1,2}\s*(?:x|vezes)\b/i.test(label);
-      if (/\bantes\b|cashback|a partir|cupom|primeira compra|frete/i.test(label) || (installment && !/\btotal\b/i.test(label)) || currency?.trim() !== "R$") continue;
+      if (/\bantes\b|cashback|a partir|cupom|primeira compra|frete/i.test(label)) { rejected("condicional_ou_secundario"); continue; }
+      if (installment && !/\btotal\b/i.test(label)) { rejected("parcela"); continue; }
+      if (currency?.trim() !== "R$") { rejected("moeda_ausente_ou_divergente"); continue; }
       const price = parsePrice(`${fraction},${cents.padStart(2, "0")}`);
-      if (!price) continue;
+      if (!price) { rejected("formato_invalido"); continue; }
+      rejected("total_principal_aceito");
       candidates.push(price);
     }
     // Só compara totais principais já filtrados. Não é o menor valor da página:
@@ -314,6 +347,20 @@
     return candidates.length ? [Math.min(...candidates)] : [];
   }
 
+  function extractProductEvidence(documentHtml) {
+    const attributes = [];
+    for (const row of documentHtml.querySelectorAll('.ui-pdp-specs__table tr, .ui-vpp-highlighted-specs__table tr')) {
+      if (!visibleNode(documentHtml, row) || row.closest('.ui-pdp-other-sellers, .ui-pdp-recommendations, [class*="recommendations"], [class*="carousel"]')) continue;
+      const cells = [...row.querySelectorAll('th,td')];
+      if (cells.length !== 2) continue;
+      const name = String(cells[0].textContent || '').replace(/\s+/g, ' ').trim();
+      const value = String(cells[1].textContent || '').replace(/\s+/g, ' ').trim();
+      const attribute = {name, value};
+      if (value && productEvidenceText({source: "visible_product_specs", attributes: [attribute]})) attributes.push(attribute);
+      if (attributes.length === 24) break;
+    }
+    return {source: "visible_product_specs", attributes};
+  }
   function extractDocumentOffer(documentHtml, expectedTitle, finalUrl, requestedUrl = finalUrl) {
     if (!documentSourceMatches(documentHtml, expectedTitle, requestedUrl, finalUrl)) return { status: "loading", motivo: "A aba ainda está em outro anúncio. Nenhum preço será aproveitado.", diagnostico: offerDiagnostic(documentHtml, requestedUrl, finalUrl, 'identidade_url') };
     const source = String(documentHtml.body?.innerText || documentHtml.documentElement?.innerText || "");
@@ -322,7 +369,8 @@
       documentHtml.querySelector("h1.ui-pdp-title")?.textContent ||
       documentHtml.querySelector("h1")?.textContent || "",
     ).replace(/\s+/g, " ").trim();
-    if (!matchingProduct(expectedTitle, pageTitle)) return { status: "loading", motivo: "A página ainda não confirmou o mesmo produto.", diagnostico: offerDiagnostic(documentHtml, requestedUrl, finalUrl, 'titulo') };
+    const productEvidence = matchingProduct(expectedTitle, pageTitle) ? null : extractProductEvidence(documentHtml);
+    if (!matchingProduct(expectedTitle, pageTitle, productEvidenceText(productEvidence))) return { status: "loading", motivo: "O título e as características visíveis ainda não confirmaram o mesmo produto.", diagnostico: offerDiagnostic(documentHtml, requestedUrl, finalUrl, 'titulo') };
     if (!documentHtml.defaultView) return { status: "loading", motivo: "É necessário conferir a página renderizada na aba logada." };
     const variantProof = extractVariantProof(documentHtml, expectedTitle, requestedUrl, finalUrl);
     if (!variantProof.verified) return { status: "loading", motivo: variantProof.motivo, diagnostico: offerDiagnostic(documentHtml, requestedUrl, finalUrl, 'anuncio_visivel') };
@@ -362,6 +410,7 @@
         evidencia: `Preço total em destaque: R$ ${mainPrice.toFixed(2).replace(".", ",")}; anúncio visível ${highlightedOfferKey}`,
         tituloEncontrado: pageTitle, fonteConsultada: finalUrl, origem: "pagina_principal_visivel",
         robotVersion: BOT_VERSION, proofVersion: 3, requestedUrl, offerKey: highlightedOfferKey, variantProof,
+        ...(productEvidence ? {productEvidence} : {}),
         mainPrice, structuredPrices: structured.prices, currency: "BRL", priceSelector: ".ui-pdp-price__second-line .andes-money-amount",
       };
     }

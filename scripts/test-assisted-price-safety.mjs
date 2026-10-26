@@ -49,7 +49,7 @@ test('preço principal não é parcela, cashback, preço riscado ou oferta recom
   const result = context.extractDocumentOffer(context.document, title, url);
   assert.equal(result.preco, 358.79);
   assert.equal(result.offerKey, 'MLB2926671021');
-  assert.equal(result.robotVersion, '2.4.14');
+  assert.equal(result.robotVersion, '2.4.15');
 });
 test('números monetários rejeitam parcelas e intervalos em vez de concatená-los', () => {
   const { context: c } = setup();
@@ -258,7 +258,7 @@ test('validador recusa robô antigo e pedido trocado, mas corrige preço antigo 
 test('os dois painéis validam antes de escrever no Firebase e preservam conferência manual', () => {
   const mobile=readFileSync(new URL('../painel-celular.html',import.meta.url),'utf8');
   const dashboard=readFileSync(new URL('../dashboard.html',import.meta.url),'utf8');
-  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261025-min2414/);
+  for(const html of [mobile,dashboard]) assert.match(html,/assisted-price-safety.js\?v=20261026-min2415/);
   const save=mobile.slice(mobile.indexOf('async function salvarFilaPrecoAssistida'),mobile.indexOf('function separarProdutoAutomacao'));
   assert.ok(save.indexOf('RDCAssistedPriceSafety.validate')<save.indexOf('await updateDoc'));
   assert.match(save,/if \(opcoes.automatico\)/);
@@ -418,7 +418,7 @@ test('prova de preço do mesmo monitor não é bloqueada por tamanho, mas outro 
   assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],tituloEncontrado:'Impressora HP Laser 135A'},
     {produtoId:'a',url,titulo:expected}),/título não confirma/);
   assert.match(c.RDCAssistedPriceSafety.validate({...writes[0],robotVersion:'2.3.0'},
-    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.14/);
+    {produtoId:'a',url,titulo:expected}),/versão 2\.4\.15/);
 });
 
 test('2.4.1 bloqueia modelos numéricos e edições Pro/Plus explicitamente diferentes', () => {
@@ -515,12 +515,12 @@ test('MLB explícito diferente no anúncio visível preserva preço mesmo com UR
     {produtoId:'a',url,titulo:title}),'');
 });
 
-test('mínimo 2.4.14 rejeita robôs anteriores às correções validadas', () => {
+test('mínimo 2.4.15 rejeita robôs anteriores às correções validadas', () => {
   const {context:c}=setup();
   for(const version of ['2.3.9','2.4.0','2.4.1','2.4.2','2.4.3','2.4.4','2.4.6','2.4.13','1.99.99','2.4','invalid']) {
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),false,version);
   }
-  for(const version of ['2.4.14','2.4.15','2.5.0','3.0.0']) {
+  for(const version of ['2.4.15','2.4.16','2.5.0','3.0.0']) {
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:true}),true,version);
     assert.equal(c.RDCAssistedPriceSafety.robotReady({version,ready:false}),false,version);
   }
@@ -660,9 +660,69 @@ test('versão mínima acompanha o robô publicado e rejeita prova antiga antes d
   setCommand(command); await c.publishCurrentPageResult(command);
   const valid=writes[0];
   assert.equal(c.RDCAssistedPriceSafety.validate(valid,{produtoId:'a',url,titulo:title}),'');
-  for(const robotVersion of ['2.4.4','2.4.6','2.4.13']) {
+  for(const robotVersion of ['2.4.4','2.4.6','2.4.13','2.4.14']) {
     const old={...valid,robotVersion}; const before=JSON.stringify(old);
-    assert.match(c.RDCAssistedPriceSafety.validate(old,{produtoId:'a',url,titulo:title}),/2\.4\.14.*Preço preservado/);
+    assert.match(c.RDCAssistedPriceSafety.validate(old,{produtoId:'a',url,titulo:title}),/2\.4\.15.*Preço preservado/);
     assert.equal(JSON.stringify(old),before);
   }
+});
+
+function pageWithVisibleSpecs(options, specs, visibility = {}) {
+  const doc = page(options), original = doc.querySelectorAll;
+  doc.querySelectorAll = selector => selector === '.ui-pdp-specs__table tr, .ui-vpp-highlighted-specs__table tr'
+    ? specs.map(([name,value]) => ({...visibleText('',visibility),querySelectorAll:()=>[{textContent:name},{textContent:value}]})) : original(selector);
+  return doc;
+}
+
+test('26/10: seis títulos abreviados só passam com ficha técnica visível que comprova os dados ausentes', () => {
+  const cases = [
+    ['Sérum Ghk-cu + Colágeno Bioestimulação Facial Zencial 30ml','Ghk-cu Com Peptídeos De Cobre, Colágeno E Ácido Hialurônico',[['Marca','Zencial'],['Tipo','Sérum bioestimulação facial'],['Volume','30ml']]],
+    ['Cama Elástica Infantil 3,0m Pula Pula Com Rede De Proteção','Cama Elástica De 3 M 1,55m Nacional- Promoção Imperdível',[['Tipo','Cama elástica infantil pula pula'],['Inclui','Rede de proteção']]],
+    ['Shampoo Redutor de Grisalhos Grecin Control GX Para Todas os Tons Cabelo 118ml','Shampoo Tonalizante Grecin Control GX Reduz Grisalho 118ml',[['Tipo','Shampoo redutor de grisalhos para todos os tons de cabelo'],['Volume','118ml']]],
+    ['50km/h 4x4 Carro Controle Remoto Off Road Alta Velocidade','Carro Grande De Controle Remoto 4x4 Carro De Brinquedo 50km',[['Tipo','Carro controle remoto off road alta velocidade'],['Velocidade máxima','50km/h']]],
+    ['Magnésio Bisglicinato - 60 Cápsulas - Nutrify','Magnésio Nutrify em cápsula Sem sabor de 60 un',[['Tipo','Magnésio bisglicinato'],['Quantidade','60 cápsulas']]],
+    ['Fone Ouvido Bluetooth Sem Fio Prova DAgua Wireless Tipo Light Cancelamento Ruido Celular','Fone Ouvido Bluetooth Compatível Com iPhone X Xr 11 12 13 14',[['Modelo','Tipo Light'],['Tipo','Fone sem fio wireless prova dagua'],['Com','Cancelamento ruido celular']]],
+  ];
+  for (const [expected,foundTitle,specs] of cases) {
+    const {context:c}=setup();
+    assert.equal(c.extractDocumentOffer(page({foundTitle}),expected,url).status,'loading',expected+' sem ficha');
+    const result=c.extractDocumentOffer(pageWithVisibleSpecs({foundTitle},specs),expected,url);
+    assert.equal(result.status,'ok',expected+' com ficha');
+    assert.equal(result.tituloEncontrado,foundTitle);
+    assert.equal(result.productEvidence.source,'visible_product_specs');
+    assert.equal(c.RDCAssistedPriceSafety.validate({...result,produtoId:'p',requestId:'specs',checkedAt:Date.now()},{produtoId:'p',url,titulo:expected}),'');
+    assert.notEqual(c.RDCAssistedPriceSafety.validate({...result,productEvidence:undefined,produtoId:'p',requestId:'specs',checkedAt:Date.now()},{produtoId:'p',url,titulo:expected}),'');
+  }
+});
+
+test('ficha oculta, recomendação, descrição livre e metadados não resolvem identidade incompleta',()=>{
+ const expected='Magnésio Bisglicinato - 60 Cápsulas - Nutrify',foundTitle='Magnésio Nutrify em cápsula Sem sabor de 60 un';
+ const specs=[['Tipo','Magnésio bisglicinato 60 cápsulas']];
+ const {context:c}=setup();
+ for(const visibility of [{hidden:true},{excluded:true}]) assert.equal(c.extractDocumentOffer(pageWithVisibleSpecs({foundTitle},specs,visibility),expected,url).status,'loading');
+ assert.equal(c.extractDocumentOffer(pageWithVisibleSpecs({foundTitle},[['Descrição','Magnésio bisglicinato 60 cápsulas']]),expected,url).status,'loading');
+ const result=c.extractDocumentOffer(pageWithVisibleSpecs({foundTitle},specs),expected,url);
+ const proof={...result,produtoId:'p',requestId:'s',checkedAt:Date.now()};
+ for(const productEvidence of [{source:'metadata',attributes:result.productEvidence.attributes},{source:'visible_product_specs',attributes:[{name:'Descrição',value:expected}]},{source:'visible_product_specs',attributes:Array(25).fill({name:'Tipo',value:expected})}]) assert.notEqual(c.RDCAssistedPriceSafety.validate({...proof,productEvidence},{produtoId:'p',url,titulo:expected}),'');
+});
+
+test('características não sobrepõem modelo, geração, SSD ou anúncio divergentes',()=>{
+ const {context:c}=setup();
+ for(const match of [c.matchingProduct,c.RDCAssistedPriceSafety.matchingProduct]){
+  assert.equal(match('Fone JBL Tune 520BT Bluetooth','Fone JBL Tune 720BT Bluetooth','Modelo: Tune 520BT'),false);
+  assert.equal(match('Notebook Asus Vivobook Ryzen 5 SSD 512GB','Notebook Asus Vivobook Ryzen 3 SSD 256GB','Modelo: Vivobook Ryzen 5 SSD 512GB'),false);
+  assert.equal(match('Fone JBL Tune 520BT Bluetooth','Fone Bluetooth','Modelo: Tune 720BT Bluetooth'),false);
+ }
+ const expected='Magnésio Bisglicinato - 60 Cápsulas - Nutrify',foundTitle='Magnésio Nutrify em cápsula Sem sabor de 60 un';
+ const doc=pageWithVisibleSpecs({foundTitle,listing:'1111111111'},[['Tipo','Magnésio bisglicinato 60 cápsulas']]);
+ assert.equal(c.extractDocumentOffer(doc,expected,url).status,'loading');
+});
+
+test('diagnóstico de preços identifica os filtros sem aceitar parcelas nem exportar textos arbitrários',()=>{
+ const doc=page({prices:[money(10,{excluded:true}),money(10,{hidden:true}),money(10,{label:'10x de 10,00'}),money(10,{currency:'US$'}),money(10,{label:'Cupom privado-do-teste'}),money('inválido')]});
+ const {context:c}=setup(doc),result=c.extractDocumentOffer(doc,title,url);
+ assert.equal(result.status,'loading');
+ assert.deepEqual(JSON.parse(JSON.stringify(result.diagnostico.selecaoPrecos)),{contexto_excluido:1,oculto:1,parcela:1,moeda_ausente_ou_divergente:1,condicional_ou_secundario:1,formato_invalido:1});
+ assert.equal(result.preco,undefined);
+ assert.doesNotMatch(JSON.stringify(result.diagnostico),/privado-do-teste|inválido|US\$/);
 });
