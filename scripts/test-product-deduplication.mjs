@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 import offerReplacement from '../product-offer-replacement.js';
-import {publicationIdentity, publicationProductGroups, sameHistoricalListing} from './product-deduplication.mjs';
+import {publicationIdentity, publicationProductGroups, sameHistoricalListing, REVIEWED_PUBLICATION_PAIRS} from './product-deduplication.mjs';
 import {selectCanonicalProducts,legacyProductAliases} from './product-url-continuity.mjs';
 
 const control='https://www.mercadolivre.com.br/controle/up/MLBU3461479224';
@@ -11,6 +11,41 @@ const terminal='https://www.mercadolivre.com.br/maquininha/p/MLB12345678';
 const item='MLB4231915505',other='MLB9876543210';
 const product=(id,link,titulo='Controle Joystick Wireless')=>({id,link,titulo,preco:'159,90',precoAnterior:'299,00',precoPromocional:'149,90',precoConferenciaId:'preservado',precoConferenciaValor:159.9,precoAtualizadoManualmenteEm:'2026-10-26T10:00:00Z'});
 const dedup=products=>selectCanonicalProducts(publicationProductGroups(products),p=>p.score||0);
+
+for (const [listingId,catalogueId,affiliate,...records] of REVIEWED_PUBLICATION_PAIRS) {
+ const rows=records.map(([id,title])=>Object.freeze({...product(id,
+   `https://www.mercadolivre.com.br/p/${catalogueId}?wid=${listingId}`,title),
+   linkAfiliado:affiliate}));
+ test('revisão delimitada de títulos abreviados preserva valores: '+listingId,()=>{
+  const before=JSON.stringify(rows), result=dedup(rows);
+  assert.equal(result.selected.length,1);assert.equal(result.aliases.size,rows.length-1);
+  assert.equal(JSON.stringify(rows),before);
+  assert.ok(rows.includes(result.selected[0]));
+ });
+ for(const [label,patch] of [
+  ['outro cadastro',{id:'novo-cadastro-nao-revisado'}],
+  ['outro modelo',{titulo:records[0][1]+' Modelo Diferente 2'}],
+  ['outro anúncio',{link:`https://www.mercadolivre.com.br/p/${catalogueId}?wid=MLB9876543210`}],
+  ['outro catálogo',{link:`https://www.mercadolivre.com.br/p/MLB98765432?wid=${listingId}`}],
+  ['sem anúncio explícito',{link:`https://www.mercadolivre.com.br/p/${catalogueId}`}],
+  ['outro afiliado',{linkAfiliado:'https://meli.la/OutroDestino'}],
+ ])test('revisão não é reutilizada com '+label+': '+listingId,()=>{
+  const changed={...rows[0],...patch};
+  // Use the differently worded record; identical titles are already handled
+  // by the original explicit-listing rule, independently of this review.
+  assert.equal(dedup([changed,rows.at(-1)]).selected.length,2);
+ });
+}
+
+test('divergência P30i verde/preto continua separada mesmo com o mesmo anúncio',()=>{
+ const common='Fone de Ouvido Bluetooth 5.4 soundcore P30i da Anker';
+ const rows=['Verde','Preto'].map((color,i)=>({...product(
+   i?'ZVVdy8TuP0yW0XNIyiEA':'5bQKU9inL3pq14yE8K4L',
+   'https://www.mercadolivre.com.br/p/MLB38176139?wid=MLB5410636044',common+' '+color),
+   linkAfiliado:i?'https://meli.la/2JXwiJj':'https://meli.la/1jDhep3'}));
+ assert.equal(dedup(rows).selected.length,2);
+ assert.ok(rows.every(row=>!publicationIdentity(row).reviewed));
+});
 
 for(const campaign of ['deal:MLB779362-1','deal%3AMLB779362-1','deal%253AMLB779362-1'])test('campanha '+campaign+' nunca une produtos diferentes',()=>{
  const a=product('controle',control+'?pdp_filters='+campaign+'#wid='+item);

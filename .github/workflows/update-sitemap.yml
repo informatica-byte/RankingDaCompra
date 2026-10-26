@@ -80,6 +80,7 @@ jobs:
           RDC_FIRESTORE_ACCESS_TOKEN: ${{ steps.firestore-auth.outputs.access_token }}
           RDC_FIRESTORE_AUTH_REQUIRED: "true"
           PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices || contains(github.event.head_commit.message, '[preservar-precos]') }}
+          VERIFY_REVIEW_PAUSES: ${{ contains(github.event.head_commit.message, '[verificar-pausas]') }}
           # Nunca restaurar este cache entre publicações: uma nova execução lê
           # os dados atuais. Só retentativas da mesma execução reaproveitam páginas.
           RDC_FIRESTORE_READ_CACHE_SCOPE: ${{ github.run_id }}-${{ github.run_attempt }}
@@ -111,6 +112,7 @@ jobs:
           # Reutiliza as páginas recém-geradas; não consulta o Firebase.
           node scripts/update-price-history.mjs
           node scripts/generate-best-choices.mjs
+          if [[ "$VERIFY_REVIEW_PAUSES" == "true" ]]; then node scripts/verify-reviewed-pauses.mjs; fi
           node --test scripts/test-*.mjs
           node scripts/validate-site.mjs
 
@@ -119,11 +121,13 @@ jobs:
         shell: bash
         env:
           PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices || contains(github.event.head_commit.message, '[preservar-precos]') }}
+          VERIFY_REVIEW_PAUSES: ${{ contains(github.event.head_commit.message, '[verificar-pausas]') }}
         run: |
           guard_prices() {
             if [[ "$PRESERVE_PUBLISHED_PRICES" == "true" ]]; then
               node scripts/publication-price-guard.mjs "$RUNNER_TEMP/rdc-before-publication.json" vitrine-publica.json || exit 1
             fi
+            if [[ "$VERIFY_REVIEW_PAUSES" == "true" ]]; then node scripts/verify-reviewed-pauses.mjs || exit 1; fi
           }
           guard_prices
           if [[ -z "$(git status --porcelain -- index.html sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json ':(top,glob)*.html')" ]]; then

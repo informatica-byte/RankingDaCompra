@@ -12,6 +12,10 @@ Os aliases históricos que possuem prova específica agora verificam um anúncio
 
 ## Validações preservadas e fortalecidas
 
+Na etapa de revisão, foram acrescentadas exceções manuais para sete grupos de títulos curtos/longos: Emma, creatina Dark Lab, NAC, Moto G06, fone Tipo Light, Galaxy A36 e um par Starlink. Cada exceção está vinculada aos IDs revisados, títulos normalizados exatos, mesmo anúncio de vendedor, mesmo catálogo explícito e mesmo afiliado. Alterações nesses dados invalidam a exceção; não há comparação aproximada de nomes. A compatibilidade par a par permanece obrigatória. Produtos com `conferenciaPausada` são separados antes do agrupamento e não recebem oferta ativa por essa regra.
+
+A publicação de encerramento usa também o marcador `[verificar-pausas]`: depois da geração e novamente antes do envio, `verify-reviewed-pauses.mjs` exige os 21 endereços preservados com metadado de pausa e `noindex`, sem redirecionamento ou compra, fora da vitrine, sitemap e busca. Essa verificação lê somente os arquivos da mesma geração, não consulta nem escreve o Firebase. Os testes antigos e a trava `[preservar-precos]` permanecem nos dois passos.
+
 - A validação de duplicatas continua bloqueando páginas com o mesmo anúncio real ou o mesmo botão de afiliado. Uma colisão ambígua bloqueia a publicação para revisão; não escolhe outro produto.
 - O validador lê a fonte técnica explícita e os botões reais de compra. Códigos de campanha, catálogo, recomendações e citações na ficha não são tratados como anúncios duplicados.
 - Links curtos respeitam maiúsculas/minúsculas no token. Compartilhar um link curto não une os cadastros; pode exigir revisão dos links de compra.
