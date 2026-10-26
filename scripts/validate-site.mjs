@@ -1,6 +1,7 @@
 import { readFile, readdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import "./validate-blueprint.mjs";
+import offerReplacement from '../product-offer-replacement.js';
 
 const SITE = "https://rankingdacompra.com.br/";
 const errors = [];
@@ -21,16 +22,37 @@ function hasBuyerFirstMobileOrder(html) {
     && heading>0&&heading<photo&&photo<summary&&summary<offer;
 }
 function productIdentityKeys(html) {
-  // Related recommendations may name another offer's MLB code. They are not
-  // the identity of this page; keep checking every code/link in its own ficha.
+  // Only the explicit technical source and actual buy controls identify this
+  // offer. Catalogue/campaign IDs and citations never prove a duplicate page.
   html = String(html).replace(/<section\b[^>]*class=["'][^"']*\brelated-discovery\b[^"']*["'][^>]*>[\s\S]*?<\/section>/gi, '');
-  const mlbKeys = [...html.matchAll(/\bMLB[-_\s]?(\d{6,})\b/gi)]
-    .map((match) => "mlb:" + match[1]);
-  const affiliateKeys = [...html.matchAll(/https:\/\/meli\.la\/[A-Za-z0-9_-]+/gi)]
-    .map((match) => "affiliate:" + match[0].toLowerCase());
-  const shopeeKeys = [...html.matchAll(/https:\/\/(?:[a-z0-9-]+\.)?shopee\.com\.br\/[A-Za-z0-9_?&=.%/-]+/gi)]
-    .map((match) => "affiliate:" + match[0].toLowerCase());
-  return [...new Set([...mlbKeys, ...affiliateKeys, ...shopeeKeys])];
+  const attributes = tag => Object.fromEntries([...tag.matchAll(/([\w-]+)\s*=\s*(["'])([\s\S]*?)\2/g)]
+    .map(match => [match[1].toLowerCase(), match[3].replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'")]));
+  const sources = [...html.matchAll(/<meta\b[^>]*>/gi)].map(match => attributes(match[0]))
+    .filter(tag => tag.name === 'rdc-offer-url').map(tag => tag.content || '');
+  if (new Set(sources).size > 1) throw new Error('Página com fontes de anúncios contraditórias; publicação recusada.');
+  const listing = offerReplacement.listing(sources[0] || '');
+  const keys = listing ? ['mlb:' + listing.slice(3)] : [];
+  for (const match of html.matchAll(/<a\b[^>]*>/gi)) {
+    const tag = attributes(match[0]);
+    if (!['affiliate-offer', 'mobile-affiliate-offer', 'affiliate-offer-shopee'].includes(tag.id)) continue;
+    try {
+      const url = new URL(tag.href);
+      if (url.protocol !== 'https:' || url.username || url.password || url.port) continue;
+      const destinationListing = offerReplacement.listing(url.href);
+      if (listing && destinationListing && destinationListing !== listing) {
+        throw new Error('Botão e fonte apontam para anúncios diferentes; publicação recusada.');
+      }
+      if (url.hostname === 'meli.la' || /(?:^|\.)shopee\.com\.br$/i.test(url.hostname)) {
+        // Short-link tokens are case-sensitive. Sharing one still blocks the
+        // publication for review; it never merges two source records.
+        keys.push('affiliate:' + url.origin + url.pathname);
+      }
+    } catch (error) {
+      if (/anúncios diferentes|código de anúncio inválido/.test(String(error.message))) throw error;
+      // Existing URL/offer validators independently reject invalid links.
+    }
+  }
+  return [...new Set(keys)];
 }
 
 const homeHtml = await readFile(resolve("index.html"), "utf8");
@@ -342,6 +364,7 @@ has(sitemapGenerator, /const indexable = editorial && offerUrl !== "#"/, "produt
 has(sitemapGenerator, /if \(offerUrl !== "#" && confirmed\) structuredOffers\.push/, "preço não confirmado não pode ir para os dados estruturados", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /editorialProduct\(product\) && price > 0/, "produto sem preço ainda pode entrar no sitemap", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /selectCanonicalProducts\(groups, productSeoScore\)/, "URLs duplicadas não são ligadas à página principal", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /const groups = publicationProductGroups\(products\)/, "deduplicação exige prova explícita de anúncio e título", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /productAliasPage\(canonicalProduct\.titulo, productDetailUrl\(canonicalProduct\)\)/, "páginas antigas duplicadas ainda podem virar 404", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /unavailableProductPage\(previousHtml\)/, "páginas retiradas ainda podem virar 404", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /previousSitemapMetadata/, "modo de contingência pode apagar datas e prioridades do sitemap", "scripts/generate-sitemap.mjs");

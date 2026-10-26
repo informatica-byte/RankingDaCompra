@@ -100,12 +100,16 @@ test('HTML patch preserves offers and never applies an old offer review to a reu
   } finally { await rm(directory,{recursive:true,force:true}); }
 });
 
-test('duplicate validator checks the own offer but never a recommended product title', async () => {
-  const source=await read('scripts/validate-site.mjs'),context=vm.createContext({});
+test('duplicate validator checks explicit source and buy controls, not campaign, catalogue or citations', async () => {
+  const offerReplacement=(await import('../product-offer-replacement.js')).default;
+  const source=await read('scripts/validate-site.mjs'),context=vm.createContext({URL,offerReplacement});
   vm.runInContext(source.slice(source.indexOf('function productIdentityKeys('),source.indexOf('const homeHtml =')),context);
-  const html='<meta name="rdc-offer-url" content="https://www.mercadolivre.com.br/p/MLB64244402?wid=MLB6162191874"><a href="https://meli.la/OwnLink">Comprar</a><section class="related-discovery"><a href="/produto/other.html">Smartwatch NOVANTE — anúncio MLB4460735385</a></section>';
+  const html='<meta name="rdc-offer-url" content="https://www.mercadolivre.com.br/p/MLB64244402?wid=MLB6162191874&amp;pdp_filters=deal:MLB779362-1"><a id="affiliate-offer" href="https://meli.la/OwnLink">Comprar</a><section class="related-discovery"><a href="/produto/other.html">Smartwatch NOVANTE — anúncio MLB4460735385</a></section>';
   const keys=Array.from(context.productIdentityKeys(html));
-  assert.ok(keys.includes('mlb:6162191874'));assert.ok(keys.includes('affiliate:https://meli.la/ownlink'));
+  assert.ok(keys.includes('mlb:6162191874'));assert.ok(keys.includes('affiliate:https://meli.la/OwnLink'));
   assert.ok(!keys.includes('mlb:4460735385'));
-  assert.ok(Array.from(context.productIdentityKeys(html+'<p>Outro código na própria ficha MLB4460735385</p>')).includes('mlb:4460735385'));
+  assert.ok(!keys.includes('mlb:64244402'));assert.ok(!keys.includes('mlb:779362'));
+  assert.ok(!Array.from(context.productIdentityKeys(html+'<p>Citação na ficha MLB4460735385</p>')).includes('mlb:4460735385'));
+  assert.throws(()=>context.productIdentityKeys(html.replace('wid=MLB6162191874','wid=MLB6162191874&amp;item_id=MLB4460735385')),/anúncios diferentes/);
+  assert.ok(Array.from(context.productIdentityKeys(html.replace('OwnLink','ownlink'))).includes('affiliate:https://meli.la/ownlink'));
 });

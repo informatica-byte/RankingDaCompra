@@ -7,6 +7,8 @@
 
 ## 1. Para que serve esta planta
 
+Deduplicação segura (26/10/2026): `scripts/product-deduplication.mjs` separa campanha, catálogo e anúncio. Consolidar páginas exige anúncio explícito, título igual normalizado e catálogos compatíveis, com prova par a par; campos antigos, texto técnico, título isolado e afiliado curto não autorizam união. Aliases históricos verificam o anúncio real. O validador mantém colisões de anúncio/botão bloqueadas e recusa fonte e compra explicitamente contraditórias. Ver `DEDUPLICACAO-SEGURA-20261026.md`. Não há escrita de preços/cadastros ou execução de conferência nesse reparo.
+
 Reparos da auditoria de 25/10/2026: mínimo do robô alinhado à versão publicada 2.4.14. Atualizações não recarregam formulários nem reiniciam filas. Home e painéis técnicos possuem CSP em meta para bloquear objetos, base externa e envio de formulários a outra origem, além de Referrer-Policy em meta. Isso não substitui HSTS, X-Content-Type-Options ou frame-ancestors em cabeçalhos HTTP da hospedagem. Ver `REPAROS-AUDITORIA-20261025.md`.
 
 Investigação App Check de 25/10/2026: o diagnóstico local distingue recusas na troca de token (`initial-throttle`) de tentativas barradas localmente pela espera do SDK (`throttled`), exibe a última falha em UTC e identifica os registros como históricos. HTTP associado a `throttled` vem da recusa anterior, não de uma nova resposta. O painel móvel orienta preservar o formulário aberto e aguardar sem repetir ações; não recomenda recarregar, fechar o navegador ou trocar de painel como solução. Inicialização oficial, renovação automática, configurações de proteção e cobrança permanecem intactas. Ver `APP-CHECK-INVESTIGACAO-20261025.md`; HTTP 401 ainda não tem causa raiz comprovada.

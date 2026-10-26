@@ -10,6 +10,7 @@ import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { publicationBackup } from "./publication-backup.mjs";
 import { productSeoTitle } from "./product-seo-titles.mjs";
 import { legacyProductAliases, observedProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage, pausedProductPage } from "./product-url-continuity.mjs";
+import { publicationProductGroups } from './product-deduplication.mjs';
 import { generateSeasonalGuides, GUIDE_THEMES } from "./generate-seasonal-guides.mjs";
 
 import { resolve } from "node:path";
@@ -1680,37 +1681,6 @@ function normalizedProductTitle(product) {
   return title || "id:" + String(product?.id || "");
 }
 
-function normalizedUrlIdentity(value) {
-  try {
-    const url = new URL(String(value || "").trim());
-    url.hash = "";
-    for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]) {
-      url.searchParams.delete(key);
-    }
-    url.pathname = url.pathname.replace(/\/+$/, "");
-    return url.hostname.toLowerCase() + url.pathname + (url.searchParams.size ? "?" + url.searchParams.toString() : "");
-  } catch {
-    return "";
-  }
-}
-
-function productIdentityKeys(product) {
-  const identityText = [
-    product?.codigoMLB, product?.codigoMlb, product?.mlb, product?.idMLB,
-    product?.link, product?.linkAfiliado, product?.dadosTecnicos,
-  ].filter(Boolean).join(" ");
-  const mlbKeys = [...identityText.matchAll(/\bMLB[-_\s]?(\d{6,})\b/gi)]
-    .map((match) => "mlb:" + match[1]);
-  const affiliate = normalizedUrlIdentity(product?.linkAfiliado);
-  const source = normalizedUrlIdentity(product?.link);
-  const stableKeys = [
-    ...mlbKeys,
-    affiliate ? "affiliate:" + affiliate : "",
-    source ? "source:" + source : "",
-  ].filter(Boolean);
-  return [...new Set(stableKeys.length ? stableKeys : ["title:" + normalizedProductTitle(product)])];
-}
-
 function sanitizeEditorialSummary(value) {
   return repairPortugueseEncoding(value)
     .replace(/\b(?:comercializado|vendido|ofertado|disponível)\s+(?:pelo\s+)?(?:valor|preço)\s+de\s+R?\$?\s*[\d.,]+/gi, "com preço sujeito a alteração pelo vendedor")
@@ -1739,38 +1709,13 @@ function productSeoScore(product) {
 const productAliasTargets = new Map();
 
 function deduplicateProducts(products) {
-  const groups = new Set();
-  const aliases = new Map();
-  for (const product of products) {
-    const keys = productIdentityKeys(product);
-    const matchedGroups = [...new Set(keys.map((key) => aliases.get(key)).filter(Boolean))];
-    let group = matchedGroups[0];
-    if (!group) {
-      group = { products: [], keys: new Set() };
-      groups.add(group);
-    } else {
-      for (const other of matchedGroups.slice(1)) {
-        if (other === group) continue;
-        group.products.push(...other.products);
-        for (const key of other.keys) {
-          group.keys.add(key);
-          aliases.set(key, group);
-        }
-        groups.delete(other);
-      }
-    }
-    group.products.push(product);
-    for (const key of keys) {
-      group.keys.add(key);
-      aliases.set(key, group);
-    }
-  }
+  const groups = publicationProductGroups(products);
   const { selected, aliases: duplicateAliases } = selectCanonicalProducts(groups, productSeoScore);
   for (const [id, target] of duplicateAliases) productAliasTargets.set(id, target);
   if (selected.length !== products.length) {
     console.warn(
       "SEO: " + (products.length - selected.length) +
-      " produto(s) duplicado(s) do mesmo anúncio removido(s) das páginas e do sitemap.",
+      " página(s) do mesmo anúncio e título consolidadas com prova explícita; cadastros preservados.",
     );
   }
   return selected.sort((a, b) => String(a.id).localeCompare(String(b.id)));

@@ -1,4 +1,5 @@
 const SITE = "https://rankingdacompra.com.br/";
+import { sameHistoricalListing } from './product-deduplication.mjs';
 
 export function selectCanonicalProducts(groups, scoreProduct) {
   const aliases = new Map();
@@ -41,12 +42,7 @@ export function legacyProductAliases(registry, validProducts, duplicateAliases =
 function sameHistoricalOffer(product,proof) {
   const title=String(product.titulo||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ');
   if (!proof.modelWords.every(word=>title.split(/\s+/).includes(word))) return false;
-  try {
-    const url=new URL(String(product.link||''));
-    if (url.protocol!=='https:' || !/(?:^|\.)mercadolivre\.com\.br$/i.test(url.hostname)) return false;
-    const evidence=decodeURIComponent(url.pathname+' '+url.search+' '+url.hash).replace(/MLB-/gi,'MLB');
-    return [...evidence.matchAll(/\bMLB\d{6,}\b/gi)].some(match=>match[0].toUpperCase()===proof.itemId);
-  } catch {return false;}
+  return sameHistoricalListing(product, proof.itemId);
 }
 
 // Descobre somente versões que realmente existem no diretório publicado.
