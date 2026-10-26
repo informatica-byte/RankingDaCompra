@@ -89,9 +89,9 @@
     }
   ],
   "seasonalThemeEnd": "",
-  "seasonalThemeMode": "auto",
+  "seasonalThemeMode": "manual",
   "seasonalThemeStart": "",
-  "seasonalThemeId": "criancas",
+  "seasonalThemeId": "black-friday",
   "bestChoicesTitle": "Melhores escolhas e rankings de produtos",
   "bestChoicesProductIds": [
     "mlMLB4952988337",
@@ -150,5 +150,5 @@
     ]
   },
   "schemaVersion": 2,
-  "generatedAt": "2026-10-26T14:26:09.847Z"
+  "generatedAt": "2026-10-26T20:11:33.067Z"
 }
