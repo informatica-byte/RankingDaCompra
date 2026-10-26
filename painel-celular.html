@@ -184,6 +184,7 @@
         </div>
       </section>
     </main>
+    <script src="/appcheck-error-safety.js?v=20261026-1"></script>
     <script src="/appcheck-local-diagnostics.js?v=20261025-1"></script>
     <script src="/admin-read-economy.js?v=20261023-1"></script>
     <script src="/mobile-categories.js?v=20261025-1"></script>
@@ -1701,6 +1702,7 @@
           if (fonte(r.response) && /"status"\s*:\s*"ok"/i.test(texto)) return r;
           msg("status", "A IA rápida não conseguiu comprovar todos os dados. A IA reserva está analisando por até 15 segundos...");
         } catch (e) {
+          if (window.RDCAppCheckSafety.isFailure(e)) throw e;
           const s = String(e?.message || e || "");
           if (/App Check|401|403|throttled/i.test(s)) throw e;
           msg("status", "A IA rápida não concluiu em até 15 segundos. A IA reserva assumiu a análise...");

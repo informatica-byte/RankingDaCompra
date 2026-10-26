@@ -474,6 +474,7 @@
     </div>
 
     <!-- SDKs do Firebase -->
+    <script src="/appcheck-error-safety.js?v=20261026-1"></script>
     <script src="/appcheck-local-diagnostics.js?v=20261025-1"></script>
     <script src="/admin-read-economy.js?v=20261023-1&shared=20261023-2"></script>
     <script src="/admin-shared-listener.js?v=20261023-1"></script>
@@ -782,6 +783,7 @@ Formato obrigatório:
             try {
                 sugestaoInicial = normalizarSugestaoIA(await gerarResposta(promptBase), produto, categorias);
             } catch (primeiroErro) {
+                if (window.RDCAppCheckSafety.isFailure(primeiroErro)) throw primeiroErro;
                 if (erroTemporarioDaIA(primeiroErro)) {
                     const erroIndisponivel = new Error(erroDeQuota(primeiroErro)
                         ? "A cota da IA principal foi atingida. O painel usará a análise de contingência baseada na ficha técnica."
@@ -793,6 +795,7 @@ Formato obrigatório:
                 try {
                     sugestaoInicial = normalizarSugestaoIA(await gerarResposta(promptCorrecao), produto, categorias);
                 } catch (segundoErro) {
+                    if (window.RDCAppCheckSafety.isFailure(segundoErro)) throw segundoErro;
                     if (erroTemporarioDaIA(segundoErro)) {
                         const erroIndisponivel = new Error(erroDeQuota(segundoErro)
                             ? "A cota da IA principal foi atingida. O painel usará a análise de contingência baseada na ficha técnica."
@@ -807,6 +810,7 @@ Formato obrigatório:
             try {
                 return await revisarComSegundaIA(sugestaoInicial, produto, categorias);
             } catch (erroRevisao) {
+                if (window.RDCAppCheckSafety.isFailure(erroRevisao)) throw erroRevisao;
                 console.warn("A segunda IA não pôde concluir a auditoria; mantendo a resposta aprovada pelo verificador local.", erroRevisao);
                 return {
                     ...sugestaoInicial,
@@ -875,6 +879,7 @@ ${regras}`);
                 if (fonteRecuperadaComSucesso(comFontes.response)) fonte = "paginas_publicas_e_dados_consolidados";
                 candidata = JSON.parse(limparJsonDaIA(comFontes.response.text()));
             } catch (erroFonte) {
+                if (window.RDCAppCheckSafety.isFailure(erroFonte)) throw erroFonte;
                 console.warn("As páginas públicas não puderam ser consolidadas; usando somente os dados já verificados.", erroFonte);
                 const resposta = await model.generateContent(regras);
                 candidata = JSON.parse(limparJsonDaIA(resposta.response.text()));
@@ -1673,6 +1678,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
                     alert('✅ Análise criada pela IA principal e aprovada pelo verificador local. A segunda IA estava indisponível, mas nenhuma informação fora da ficha foi aceita.');
                 }
             } catch (erro) {
+                if (window.RDCAppCheckSafety.isFailure(erro)) return alert(window.RDCAppCheckSafety.guidance);
                 console.error('Erro ao gerar análise manual:', erro);
                 if (['AI_QUOTA', 'AI_UNAVAILABLE'].includes(erro?.code) && typeof window.criarAnaliseSemIA === 'function') {
                     try {
