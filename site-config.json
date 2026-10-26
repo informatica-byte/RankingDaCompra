@@ -116,7 +116,7 @@
     "revisadoEm": "2026-10-20T15:03:11.823Z",
     "versao": 5,
     "modoEditorial": "documental",
-    "publicado": true,
+    "publicado": false,
     "comparabilidadeRevisada": true,
     "precoMaximo": "",
     "produtos": [
@@ -130,15 +130,6 @@
         "preco": 99.9
       },
       {
-        "id": "5bQKU9inL3pq14yE8K4L",
-        "titulo": "Fone de Ouvido Bluetooth 5.4 soundcore P30i da Anker, Cancelamento de Ruído Adaptativo, Graves Poderosos, 45H de Reprodução, Estojo 2-em-1 com Suporte para Celular, IP54, Fone sem fio TWS, Verde",
-        "foto": "https://rankingdacompra.com.br/produto/imagens/5bQKU9inL3pq14yE8K4L-2c691578f58e.jpg?v=20260810-1",
-        "productUrl": "https://rankingdacompra.com.br/produto/5bQKU9inL3pq14yE8K4L-20260810-1.html",
-        "motivo": "Para quem procura ANC e estojo que também funciona como apoio para o celular.",
-        "comparisonFamily": "earbuds-tws",
-        "preco": 196.5
-      },
-      {
         "id": "FlqPY3yHJ2xPoNgnhSTE",
         "titulo": "Galaxy Buds Core Preto",
         "foto": "https://rankingdacompra.com.br/produto/imagens/FlqPY3yHJ2xPoNgnhSTE-8f51c0265c34.jpg?v=20260810-1",
@@ -150,5 +141,5 @@
     ]
   },
   "schemaVersion": 2,
-  "generatedAt": "2026-10-26T20:33:17.263Z"
+  "generatedAt": "2026-10-26T21:42:41.582Z"
 }
