@@ -4,6 +4,7 @@ import {createRequire} from 'node:module';
 import {readFile} from 'node:fs/promises';
 import {publicWeeklyComparison} from './public-site-config.mjs';
 import {correctProductData} from './product-title-corrections.mjs';
+import {pausedProductPage,unavailableProductPage} from './product-url-continuity.mjs';
 const safety = createRequire(import.meta.url)('../weekly-comparison-safety.js');
 const now = Date.parse('2026-10-19T14:00:00Z');
 const products = [
@@ -92,9 +93,32 @@ test('ambos os painéis oferecem a mesma revisão documental antes de salvar',as
     assert.match(source,/RDCWeeklyComparisonSafety.documentaryMarkup/);
   }
 });
-test('a seleção documental funciona com os títulos completos do catálogo publicado',async()=>{
-  const index=JSON.parse(await readFile(new URL('../search-index.json',import.meta.url),'utf8'));
+async function verifyPublishedSelection(index,readPage){
   const at=Math.max(...index.products.filter(p=>products.some(q=>q.id===p.id)).map(p=>Date.parse(p.checkedAt)))+1000;
+  const missing=products.filter(expected=>!index.products.some(p=>p.id===expected.id));
+  if(missing.length){
+    for(const product of missing){
+      const html=await readPage(product.id);
+      assert.match(html,/<meta name="rdc-paused-product" content="true">/);
+      assert.match(html,/<meta name="robots" content="noindex,follow">/);
+      assert.doesNotMatch(html,/id="(?:mobile-)?affiliate-offer"|"@type"\s*:\s*"Product"/);
+    }
+    assert.throws(()=>safety.documentedDraft(index,at),/Modelo documentado ausente/);
+    return 'paused';
+  }
   const draft=safety.documentedDraft(index,at);
   assert.equal(draft.produtos.length,3);
+  return 'active';
+}
+test('catálogo completo permite seleção; pausa explícita preserva a recusa sem reinserir modelos',async()=>{
+  const index=JSON.parse(await readFile(new URL('../search-index.json',import.meta.url),'utf8'));
+  await verifyPublishedSelection(index,id=>readFile(new URL('../produto/'+id+'-20260810-1.html',import.meta.url),'utf8'));
+});
+test('pausa documental é testada separadamente e uma ausência inesperada continua erro',async()=>{
+  const index={products:products.filter(p=>p.id!==products[1].id)};
+  assert.equal(await verifyPublishedSelection(index,async()=>pausedProductPage({titulo:products[1].title})),'paused');
+  await assert.rejects(verifyPublishedSelection(index,async()=>unavailableProductPage('')),/rdc-paused-product/);
+  await assert.rejects(verifyPublishedSelection(index,async()=>{throw Error('ENOENT');}),/ENOENT/);
+  const changed={products:products.map((p,i)=>i===1?{...p,title:'Fone soundcore P3i'}:p)};
+  await assert.rejects(verifyPublishedSelection(changed,async()=>''),/alterado/);
 });
