@@ -39,6 +39,7 @@ try{
  }
  await page.goto(base+'/',{waitUntil:'domcontentloaded'});
  await page.locator('[data-info-product]').first().waitFor();await check('início 390px sem Firebase');
+ const initialPrivacy=page.getByRole('button',{name:'Recusar métricas',exact:true});if(await initialPrivacy.isVisible())await initialPrivacy.click();
  await page.screenshot({path:resolve(out,'inicio-mobile.png'),fullPage:true});
  assert.match(await page.locator('h1').innerText(),/Escolha com clareza/);
  assert.equal(await page.locator('#rdc-ambient-music button').first().getAttribute('aria-pressed'),'false');
@@ -64,11 +65,23 @@ try{
  const featured=feed.products.find(p=>p.comparison?.features?.length>=4&&feed.selected.includes(p.id));assert.ok(featured);
  const productPath=new URL(featured.url).pathname;
  await page.goto(base+productPath,{waitUntil:'domcontentloaded'});await check('ficha mobile com fontes');
- assert.ok(await page.locator('[data-informational-faq] details').count());
+ assert.ok(await page.locator('[data-informational-faq] details,[data-reviewed-depth] details').count());
  const links=await page.locator('#affiliate-offer,#mobile-affiliate-offer,#affiliate-offer-shopee').evaluateAll(nodes=>nodes.map(el=>({id:el.id,href:el.href,rel:el.rel})));
  assert.ok(links.length);for(const link of links){assert.match(link.href,/^https:\/\//);assert.match(link.rel,/sponsored/);}
  results.push('afiliados preservados; nenhum link externo visitado');
  await page.screenshot({path:resolve(out,'ficha-mobile.png'),fullPage:true});
+ const depth=JSON.parse(await readFile(resolve(root,'featured-analysis.json'),'utf8'));
+ for(const entry of depth.products){
+  const item=feed.products.find(p=>p.id===entry.id);assert.ok(item,'destaque publicado');
+  await page.goto(base+new URL(item.url).pathname,{waitUntil:'domcontentloaded'});
+  const review=page.locator('[data-reviewed-depth="'+entry.id+'"]');await review.waitFor();
+  assert.equal(await review.locator('details').count(),entry.questions.length);
+  assert.match(await review.innerText(),/Vantagens para avaliar/);assert.match(await review.innerText(),/Limitações que podem pesar/);
+  const question=review.locator('details').first();await question.locator('summary').click();assert.equal(await question.getAttribute('open'),'');
+  await check('análise aprofundada mobile: '+entry.id);
+  if(entry.id==='O6e0R2WtiZfyyf2MJe5Y')assert.match(await review.innerText(),/Ryzen 5 40/);
+  await review.screenshot({path:resolve(out,'analise-'+entry.id+'.png')});
+ }
  await page.setViewportSize({width:360,height:800});await check('ficha 360px');
  await page.goto(base+'/melhores-fones-de-ouvido.html');await check('guia 360px');
  await page.goto(base+'/melhores-escolhas.html');await page.locator('[data-info-product]').first().waitFor();await check('seleção permanente 360px');

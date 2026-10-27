@@ -103,13 +103,13 @@ export function informationalHtml(source,product,file=''){
  html=html.split(/(<script\b[^]*?<\/script>|<style\b[^]*?<\/style>)/gi).map(part=>/^<(script|style)\b/i.test(part)?part:part.replace(/>([^<]+)</g,(_all,content)=>'>'+label(content)+'<').replace(/(<meta\b[^>]*(?:property|name)=["'](?:og:title|og:description|twitter:title|twitter:description|description)["'][^>]*content=)(["'])([^"']*)(\2)/gi,(_all,start,q,value,end)=>start+q+label(value)+end)).join('');
  html=html.replace(/<meta name="rdc-site-mode"[^>]*>/g,'').replace(/<script src="\/informational-mode\.js[^>]*><\/script>/g,'').replace(/<link rel="stylesheet" href="\/informational-mode\.css[^>]*>/g,'');
  html=html.replace(/(<script\b[^>]*src=["']\/)(buyer-tools|growth-tools|best-choices-page|best-choices)(\.js)([^"']*)(["'])/gi,(_all,start,name,ext,query,end)=>start+name+ext+query.replace(/([?&])mode=[^&"']*/g,'')+(query.includes('?')?'&':'?')+'mode='+info.VERSION+end);
- html=html.replace(/>(Conferir pre[cç]o(?: atual)?|Ver pre[cç]o)( no Mercado Livre| na Shopee)</gi,'>Ver produto$2<');
+ html=html.replace(/>(Conferir pre[cç]o(?: atual)?|Ver pre[cç]o)( no Mercado Livre| na Mercado Livre| na Shopee)</gi,(_all,_action,place)=>'>Ver produto'+place.replace('na Mercado','no Mercado')+'<');
  html=html.replace(/[ \t]+\r?\n/g,'\n');
  const injection='<meta name="rdc-site-mode" content="informational"><link rel="stylesheet" href="/informational-mode.css?v='+info.VERSION+'"><script src="/informational-mode.js?v='+info.VERSION+'"></script>';
  const policy=html.match(/<meta\b(?=[^>]*http-equiv=["']Content-Security-Policy["'])(?:[^>"']|"[^"]*"|'[^']*')*>/i);
  if(policy)html=html.slice(0,policy.index+policy[0].length)+injection+html.slice(policy.index+policy[0].length);
  else html=html.replace(/<head([^>]*)>/i,'<head$1>'+injection);
- if(product){const faq=info.faq(product);if(faq){const marker=html.indexOf('</article>');html=marker>=0?html.slice(0,marker)+faq+html.slice(marker):html.replace('</main>',faq+'</main>');}}
+ if(product&&!/data-reviewed-depth=/.test(html)){const faq=info.faq(product);if(faq){const marker=html.indexOf('</article>');html=marker>=0?html.slice(0,marker)+faq+html.slice(marker):html.replace('</main>',faq+'</main>');}}
  if(JSON.stringify(affiliateLinks(source))!==JSON.stringify(affiliateLinks(html)))throw Error('A migração alteraria os links de afiliados de '+(product?.id||'uma página')+'. Operação bloqueada.');
  return html;
 }

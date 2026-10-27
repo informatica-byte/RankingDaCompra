@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-10-26",
+  "products": [
+    {
+      "id": "mlMLB4952988337",
+      "guard": "Conversor.*Fibra.*[Uu][ -]?Maisu",
+      "title": "Conversor U Maisu Gigabit: compatibilidade antes de escolher",
+      "description": "Entenda o conversor de fibra U Maisu anunciado como Gigabit: para quem avaliar, diferença entre Mbps e MB/s e compatibilidades ainda não confirmadas.",
+      "basis": "Análise do cadastro e do endereço de anúncio já registrado. Não obtivemos manual específico nem nova leitura do anúncio nesta revisão; alcance e compatibilidade não foram verificados.",
+      "fit": "Para quem está montando uma ligação de rede e consegue conferir as duas pontas com documentação ou orientação técnica. O título anuncia fibra óptica e Ethernet RJ45 10/100/1000 Mbps; isso é informação do anúncio, não desempenho medido.",
+      "tradeoff": "Aqui a compatibilidade importa mais do que a quantidade de números no título. A proposta pode interessar à sua instalação, mas ainda faltam dados do modelo para recomendar uma compra sem ressalvas.",
+      "check": "Peça o tipo de fibra, os conectores, os requisitos de alimentação e a identificação do equipamento da outra ponta. Confira também quantas unidades e quais acessórios o vendedor entrega.",
+      "alternative": "Se você precisa de uma solução pronta ou de compatibilidade garantida com sua rede, prefira comparar conjuntos com documentação técnica e combinação de equipamentos explicitamente confirmada.",
+      "advantages": ["O anúncio identifica a interface RJ45 e as velocidades Ethernet pretendidas, um ponto de partida para conferir sua instalação.", "A proposta de ligação por fibra fica identificada; não a confundimos com uma promessa de internet ou Wi-Fi."],
+      "limitations": ["O alcance de 20 km do título não foi testado pela equipe.", "Não há confirmação nesta ficha do tipo de fibra, conectores ou compatibilidade com Starlink.", "Não confirmamos se a oferta contém um par ou apenas uma unidade."],
+      "questions": [
+        ["1000 Mbps significa 1000 MB/s?", "Não. Mbps e MB/s são unidades diferentes. O título informa megabits por segundo; não publicamos esse número como megabytes por segundo nem como velocidade real medida."],
+        ["Posso usar com a minha Starlink?", "Essa compatibilidade não foi confirmada. Informe ao vendedor o modelo dos equipamentos e a ligação pretendida; não compre apenas pela menção a Gigabit."],
+        ["Os 20 km estão garantidos nesta análise?", "Não. É uma distância anunciada no título. Sem documentação do modelo e das condições da instalação, não confirmamos esse alcance."],
+        ["Já vem tudo para funcionar?", "O conjunto fornecido não foi confirmado. Confira unidades, fontes, cabos e compatibilidade entre as pontas antes de comprar."],
+        ["Substitui meu roteador ou modem?", "O título de conversor não comprova essas funções. Peça a descrição técnica da função na rede e confira o que precisará continuar instalado."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB75776825?pdp_filters=item_id%3AMLB4952988337", "label": "Anúncio registrado do conversor U Maisu — sem nova leitura automática nesta revisão"}],
+      "links": [{"url": "/comparar.html?q=conversor", "label": "Localizar outros conversores cadastrados"}, {"url": "/melhores-roteador.html", "label": "Entender diferenças entre equipamentos de rede"}]
+    },
+    {
+      "id": "48oRcQNlH00KgNLHkvsG",
+      "guard": "Smart Band 9 Active",
+      "title": "Xiaomi Smart Band 9 Active: para quem serve e limitações",
+      "description": "Veja para quem considerar a Smart Band 9 Active, como interpretar bateria e sensores, compatibilidade com o celular e cuidados com a água.",
+      "basis": "Especificações e página oficial da Xiaomi consultadas. Os números são anunciados pela fabricante; não realizamos teste de precisão, conforto ou bateria.",
+      "fit": "Para quem quer consultar registros de atividade e bem-estar no pulso, usando o Mi Fitness no celular. A tela de 1,47 polegada e os 50 modos anunciados ajudam a entender a proposta, não comprovam precisão esportiva.",
+      "tradeoff": "O principal cuidado é escolher pela função de que você precisa, não pela lista mais longa de sensores. Se sua prioridade é diagnóstico, trajetos sem telefone ou chamadas pelo relógio, não presuma que esta pulseira resolve isso.",
+      "check": "Confira a versão global, a compatibilidade do telefone e as funções disponíveis no seu sistema. A Xiaomi informa Android 8.0 ou iOS 14.0 e superiores.",
+      "alternative": "Se uma função específica for decisiva, compare modelos que a documentem explicitamente. Para medições médicas, esta pulseira não substitui equipamento apropriado nem orientação profissional.",
+      "advantages": ["Consulta de registros na tela e sincronização com o Mi Fitness documentadas.", "Carregamento magnético e até 18 dias de uso típico anunciados pela Xiaomi."],
+      "limitations": ["Os dados de saúde são referências pessoais, não diagnóstico.", "Autonomia depende dos recursos ativados e do uso; 18 dias não são promessa para toda rotina.", "Não confirmamos aqui GPS independente nem atendimento de chamadas pelo pulso."],
+      "questions": [
+        ["Funciona com Android e iPhone?", "A ficha oficial informa Android 8.0 ou iOS 14.0 e superiores, com Mi Fitness. Confira também os requisitos atuais do aplicativo e das funções que pretende usar."],
+        ["A bateria dura sempre 18 dias?", "Não. Esse é o limite anunciado para uso típico nos testes da Xiaomi. Monitoramento e uso diferentes podem reduzir a duração."],
+        ["Pode tomar banho quente ou mergulhar?", "Não trate 5 ATM como autorização irrestrita. A Xiaomi não indica banho quente, sauna ou mergulho; respeite as condições do manual."],
+        ["Serve para acompanhar uma condição de saúde?", "Os registros são de bem-estar e referência pessoal. O fabricante não destina o produto a diagnóstico ou tratamento."],
+        ["Cinquenta modos significam cinquenta medições precisas?", "Não. O número identifica atividades disponíveis, não validação independente da precisão. Não testamos os sensores."]
+      ],
+      "sources": [{"url": "https://www.mi.com/global/product/xiaomi-smart-band-9-active/specs/", "label": "Xiaomi — especificações e compatibilidade"}, {"url": "https://www.mi.com/global/product/xiaomi-smart-band-9-active/", "label": "Xiaomi — condições de bateria, sensores e uso na água"}],
+      "links": [{"url": "/melhores-relogio-smartwatch.html", "label": "Comparar funções dos relógios e pulseiras"}, {"url": "/melhores-smartwatches-caminhada.html", "label": "O que conferir para caminhada"}]
+    },
+    {
+      "id": "ARscPKCMZs3D8k22qltl",
+      "guard": "Redmi.*Buds\\s*6\\s*Play.*M2420E1",
+      "title": "Redmi Buds 6 Play: uso cotidiano, bateria e limites do ruído",
+      "description": "Entenda o Redmi Buds 6 Play: encaixe intra-auricular, autonomia com estojo, redução de ruído nas chamadas e o que IPX4 não garante.",
+      "basis": "Página e FAQ oficiais da Xiaomi consultadas para o Redmi Buds 6 Play. Não testamos áudio, conforto, chamadas ou latência.",
+      "fit": "Para quem prefere fones intra-auriculares separados e estojo para guardar e recarregar durante a rotina. Antes de escolher, vale perguntar se você se adapta a esse encaixe e se precisa de ANC para ouvir.",
+      "tradeoff": "É importante separar duas coisas: reduzir ruído captado na chamada não é cancelar o barulho que você escuta. A FAQ oficial informa redução no microfone, não ANC de reprodução.",
+      "check": "Confira o modelo M2420E1, os acessórios da oferta e a compatibilidade do aparelho. Para reuniões importantes, procure amostras de voz; Bluetooth 5.4 sozinho não comprova qualidade de microfone.",
+      "alternative": "Se silenciar o ambiente é uma prioridade, compare TWS com ANC documentado. Se não gosta de ponteiras dentro do ouvido, avalie outro formato sem tratá-lo como equivalente em isolamento e encaixe.",
+      "advantages": ["Até 7,5 horas por carga e até 36 horas com recargas no estojo anunciadas pela Xiaomi.", "Estojo USB-C e ajustes no aplicativo Xiaomi Earbuds documentados."],
+      "limitations": ["Não possui ANC para ouvir, conforme a FAQ oficial.", "Conforto, qualidade de áudio e desempenho do microfone dependem do uso e não foram testados.", "IPX4 vale para os fones; não autoriza banho ou imersão e não protege o estojo."],
+      "questions": [
+        ["Tem cancelamento ativo de ruído?", "Não para ouvir música. A Xiaomi informa redução de ruído nas chamadas pelo microfone; isso não equivale a ANC de reprodução."],
+        ["As 36 horas são sem parar?", "Não. Incluem recargas no estojo. A estimativa por carga é de até 7,5 horas nas condições de teste da fabricante; a duração real varia."],
+        ["Posso usar no banho?", "Não. A indicação IPX4 dos fones não autoriza banho ou imersão e não se aplica ao estojo."],
+        ["É uma escolha garantida para reunião ou jogo?", "Não garantimos isso. Chamadas e atraso de áudio não foram medidos pela equipe. Confira compatibilidade e demonstrações do uso que importa para você."],
+        ["O aplicativo é obrigatório para tudo?", "A Xiaomi documenta ajustes de equalização e controles no Xiaomi Earbuds. Não presuma que todos os recursos extras estejam disponíveis em qualquer celular."]
+      ],
+      "sources": [{"url": "https://www.mi.com/global/product/redmi-buds-6-play/", "label": "Xiaomi — recursos e condições de autonomia"}, {"url": "https://www.mi.com/global/support/faq/details/KA-309446/", "label": "Xiaomi — FAQ do Redmi Buds 6 Play"}],
+      "links": [{"url": "/comparar.html?produto=ARscPKCMZs3D8k22qltl", "label": "Comparar este modelo com outros TWS"}, {"url": "/melhores-fones-de-ouvido.html", "label": "Entender os formatos de fone"}]
+    },
+    {
+      "id": "GjHJtzdsIhbmSINvhPeX",
+      "guard": "JBL.*Tune\\s*520\\s*BT",
+      "title": "JBL Tune 520BT: para quem serve, conforto e conexões",
+      "description": "Conheça a proposta do JBL Tune 520BT on-ear: bateria anunciada, multiponto, Voice Aware, ausência de ANC e cuidados para escolher o encaixe.",
+      "basis": "Ficha do produto e comparativo oficial da JBL consultados. Não atribuímos nota de áudio, conforto ou microfone sem teste próprio.",
+      "fit": "Para quem prefere um fone que se apoia sobre as orelhas, em vez de ponteiras dentro do canal. Pode entrar na comparação para música e chamadas, especialmente se alternar entre aparelhos for importante.",
+      "tradeoff": "O formato on-ear é uma escolha de encaixe, não garantia de conforto. Ele também não resolve a procura por ANC: a JBL informa que o 520BT não possui cancelamento ativo de ruído.",
+      "check": "Confira como o apoio nas orelhas se adapta a você e se os aparelhos que pretende usar são compatíveis com as conexões. Não confunda multiponto com ouvir duas fontes misturadas.",
+      "alternative": "Se busca ANC ou prefere conchas que envolvam a orelha, compare modelos com esse recurso ou formato documentado. Para trabalho com voz, a existência de microfone não substitui uma amostra de chamada.",
+      "advantages": ["Até 57 horas de bateria e recarga USB-C em aproximadamente duas horas anunciadas pela JBL.", "Conexão multiponto para alternar aparelhos e Voice Aware para ouvir a própria voz durante chamadas.", "A fabricante documenta ajustes de equalização pelo JBL Headphones."],
+      "limitations": ["Sem ANC; não conte com cancelamento ativo do ambiente.", "Não testamos pressão nas orelhas, conforto com óculos ou uso prolongado.", "Microfone integrado e versão Bluetooth não comprovam qualidade de chamada em qualquer local."],
+      "questions": [
+        ["Ele cobre toda a orelha?", "É on-ear: o apoio fica sobre a orelha. Não é o mesmo formato de um over-ear que a envolve."],
+        ["Tem ANC?", "Não. A JBL informa que o Tune 520BT não possui cancelamento ativo de ruído."],
+        ["O multiponto mistura o áudio de dois aparelhos?", "O recurso documentado permite alternar entre dispositivos compatíveis. Não publicamos isso como mistura simultânea de duas fontes."],
+        ["O que é Voice Aware?", "É o recurso anunciado para ouvir sua própria voz enquanto fala. Não o confundimos com ANC nem com prova de qualidade do microfone."],
+        ["As 57 horas são garantidas para meu uso?", "Não. São uma estimativa da fabricante. Volume, uso e condições de funcionamento podem alterar a duração; não fizemos medição própria."]
+      ],
+      "sources": [{"url": "https://www.jbl.com.br/JBLT520BTBLK.html", "label": "JBL — ficha do Tune 520BT"}, {"url": "https://www.jbl.com.br/blog/comparativo-jbl-tune-530bt-e-520bt.html", "label": "JBL — esclarecimentos de ANC, bateria e conexões"}],
+      "links": [{"url": "/comparar.html?produto=GjHJtzdsIhbmSINvhPeX", "label": "Comparar com fones do mesmo tipo"}, {"url": "/melhores-fones-de-ouvido.html", "label": "Decidir entre on-ear, over-ear e TWS"}]
+    },
+    {
+      "id": "O6e0R2WtiZfyyf2MJe5Y",
+      "guard": "(?=.*E1504FA-NJ1288)(?=.*16\\s*GB)(?=.*512\\s*GB).*ASUS.*Vivobook",
+      "title": "ASUS Vivobook Go 15 NJ1288: estudo, programas e configuração",
+      "description": "Analise o ASUS E1504FA-NJ1288 de 16 GB e SSD 512 GB anunciado com KeepOS: compatibilidade de programas, limitações e configuração a conferir.",
+      "basis": "A configuração desta ficha vem do anúncio registrado anteriormente, sem nova leitura automática disponível. A página atual da ASUS para NJ1288 apresenta Ryzen 5 40, enquanto o cadastro do anúncio informa Ryzen 5 7520U. Não tratamos as duas configurações como equivalentes nem alteramos silenciosamente a oferta.",
+      "fit": "É uma configuração para considerar se você procura um notebook para estudo e tarefas cotidianas e consegue conferir a compatibilidade dos seus programas com Linux. O anúncio registrado informa 16 GB de RAM, SSD de 512 GB e tela Full HD de 15,6 polegadas; não fizemos teste de desempenho.",
+      "tradeoff": "A pergunta decisiva não é apenas quanta memória ele tem. É se a configuração entregue e o sistema atendem aos programas de que você depende. A divergência de processador entre as fontes merece confirmação do vendedor antes da escolha.",
+      "check": "Peça a identificação completa da unidade e o Part Number, além da confirmação do processador, sistema e memória. Para um programa ou jogo específico, confira os requisitos oficiais e a configuração que será entregue.",
+      "alternative": "Se você precisa de Windows pronto para usar, expansão garantida ou desempenho comprovado em uma tarefa exigente, compare ofertas que documentem esses pontos. Não atribuímos resultados de outro Vivobook a este cadastro.",
+      "advantages": ["16 GB de RAM e SSD de 512 GB estão identificados na oferta registrada, sem confundir as duas capacidades.", "O sistema KeepOS está sinalizado, permitindo avaliar a compatibilidade antes da compra."],
+      "limitations": ["A oferta registrada não acompanha Windows; não prometemos instalação, licença ou compatibilidade automática.", "Há divergência de processador com a página atual da fabricante; confirme a unidade exata.", "Não testamos autonomia, jogos, expansão de RAM/SSD ou desempenho profissional."],
+      "questions": [
+        ["Ele já vem com Windows?", "Não segundo a oferta registrada: o sistema informado é KeepOS/Linux. Confira novamente o que o vendedor entregará; não presumimos licença Windows incluída."],
+        ["Os 16 GB são de memória ou de armazenamento?", "Na ficha do anúncio, 16 GB são RAM; 512 GB são a capacidade do SSD. São funções diferentes, não capacidades que se somam."],
+        ["Posso aumentar a memória depois?", "Não confirmamos a possibilidade de expansão desta unidade. Peça a documentação do Part Number exato antes de contar com uma atualização futura."],
+        ["Serve para meus jogos ou para edição pesada?", "Não fizemos esses testes. Confira os requisitos do software e peça confirmação da configuração; a quantidade de RAM sozinha não comprova esse desempenho."],
+        ["Por que o processador precisa ser confirmado?", "O anúncio registrado informa Ryzen 5 7520U; a página atual da ASUS consultada para NJ1288 apresenta Ryzen 5 40. Mantemos a diferença explícita e não usamos uma fonte para prometer a configuração da outra."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB43417665?pdp_filters=item_id%3AMLB3914161563", "label": "Anúncio de origem registrado — configuração atribuída ao vendedor"}, {"url": "https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj1288-mixed-black-nivel-ips.html", "label": "ASUS — página atual NJ1288; atenção à divergência de processador"}],
+      "links": [{"url": "/comparar.html?produto=O6e0R2WtiZfyyf2MJe5Y", "label": "Comparar com outros notebooks"}, {"url": "/melhores-notebook.html", "label": "Entender os critérios para escolher um notebook"}]
+    },
+    {
+      "id": "UvxFn4gfaexb8TvcaT5e",
+      "guard": "Logitech.*M170",
+      "title": "Logitech M170: receptor USB, uso cotidiano e limitações",
+      "description": "Veja para quem considerar o Logitech M170, por que ele precisa de receptor USB, o que a bateria anunciada significa e o que conferir no conjunto.",
+      "basis": "Recursos da página oficial Logitech consultados. Conforto, precisão e autonomia não foram medidos pela equipe.",
+      "fit": "Para quem busca um mouse para navegação e tarefas cotidianas e tem uma porta USB compatível disponível. A proposta é conectar o receptor e começar, sem tratá-lo como um mouse Bluetooth.",
+      "tradeoff": "Escolha pelo tipo de conexão e pela sua pegada. Um formato compacto pode interessar para transporte, mas isso não garante conforto para toda mão ou jornada.",
+      "check": "Confira receptor, pilha e conteúdo do conjunto. Se seu computador depende de adaptador, confirme a conexão necessária antes de comprar.",
+      "alternative": "Se precisa dispensar o receptor, alternar entre vários aparelhos ou usar recursos específicos de jogo, compare modelos que documentem essas funções.",
+      "advantages": ["Instalação por receptor USB e formato ambidestro documentados pela Logitech.", "A fabricante anuncia até 12 meses de pilha, dependendo do uso."],
+      "limitations": ["Depende do receptor e de porta compatível.", "Não testamos conforto, precisão ou uso em jogos."],
+      "questions": [
+        ["Ele conecta diretamente por Bluetooth?", "A conexão documentada é pelo receptor USB. Não o escolha como se fosse Bluetooth sem receptor."],
+        ["Funciona para canhotos?", "A Logitech informa formato ambidestro. O conforto individual ainda depende da mão e da pegada."],
+        ["A pilha dura um ano?", "Até 12 meses é uma estimativa anunciada, não uma duração garantida para toda rotina."],
+        ["É uma recomendação para jogar?", "Não fizemos testes de jogo ou precisão. Procure documentação específica se esse for o uso principal."]
+      ],
+      "sources": [{"url": "https://www.logitech.com/pt-br/shop/p/m170-wireless-mouse.910-006864", "label": "Logitech — conexão, formato e autonomia anunciada do M170"}],
+      "links": [{"url": "/comparar.html?produto=UvxFn4gfaexb8TvcaT5e", "label": "Comparar com outros mouses"}, {"url": "/melhores-informatica.html", "label": "Ver equipamentos por tipo e uso"}]
+    },
+    {
+      "id": "huCYMmOsGPKJ8jOiJ1gR",
+      "guard": "WAP.*WL\\s*1800(?=.*220\\s*V)",
+      "title": "WAP WL 1800 220 V: limpeza ocasional, pressão e cuidados",
+      "description": "Entenda a WAP WL 1800 220 V: proposta de uso ocasional, pressão nominal versus permissível, alcance dos cabos e limites não testados.",
+      "basis": "Página oficial WAP consultada e ficha técnica já registrada. Esta análise não é teste de eficiência, economia, durabilidade ou segurança da sua instalação.",
+      "fit": "Para considerar em tarefas de limpeza ocasional, quando você pode seguir as orientações de instalação e de aplicação na superfície. A oferta desta ficha é 220 V; confirme a versão antes de escolher.",
+      "tradeoff": "Compare os números com o mesmo significado. A WAP distingue pressão nominal de 1.015 PSI e permissível de 1.500 PSI; o maior valor não deve ser apresentado como pressão contínua testada.",
+      "check": "Planeje a posição do equipamento e confirme acessórios, alimentação de água e instalação elétrica nas instruções. A ficha informa mangueira de 3 m e cabo elétrico de 5 m; confira se isso atende ao local de uso.",
+      "alternative": "Para trabalho prolongado ou uma exigência específica, compare equipamentos com essa aplicação documentada. Não atribuímos capacidade profissional ou resultado de limpeza sem ensaio.",
+      "advantages": ["Formato compacto, alça e organização de acessórios descritos pela WAP.", "Bico regulável anunciado para adequar o jato às orientações de aplicação."],
+      "limitations": ["Esta oferta é 220 V, não uma promessa de funcionamento em qualquer rede.", "Pressão nominal e permissível são diferentes; desempenho real não foi medido.", "Não testamos economia de água, remoção de sujeira ou uso prolongado."],
+      "questions": [
+        ["Os 1.500 PSI são a pressão contínua?", "Na ficha WAP, 1.500 PSI são a pressão permissível. A nominal informada é 1.015 PSI; não tratamos os dois valores como equivalentes."],
+        ["Posso usar em tomada de outra tensão?", "A oferta desta ficha é identificada como 220 V. Confira a etiqueta da unidade e a instalação, seguindo o manual; não presumimos produto bivolt."],
+        ["Qual o alcance para organizar a limpeza?", "A ficha técnica informa mangueira de 3 m e cabo elétrico de 5 m. Planeje a posição conforme as instruções; não somamos esses números como alcance garantido de trabalho."],
+        ["Garante economia de água e limpeza sem esforço?", "Não fizemos essas medições. Resultado e consumo dependem da tarefa e do uso; não publicamos uma economia universal."],
+        ["O kit vem com todos os acessórios mostrados?", "Confira a lista da oferta e a versão entregue pelo vendedor. Uma imagem ilustrativa não confirma, sozinha, cada acessório incluído."]
+      ],
+      "sources": [{"url": "https://loja.wap.ind.br/lavadora-de-alta--pressao-wap-wl-1800-1/p", "label": "WAP — produto e instruções da WL 1800"}, {"url": "https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/ocasional/lavadora_wl_1800_FW011457_FW011458/arquivos/ficha_tecnica/WAPWL1800-Fichatcnica.pdf", "label": "WAP — ficha técnica: pressão, mangueira e cabo"}],
+      "links": [{"url": "/comparar.html?produto=huCYMmOsGPKJ8jOiJ1gR", "label": "Comparar com lavadoras do mesmo tipo"}, {"url": "/melhores-casa.html", "label": "Ver produtos domésticos por finalidade"}]
+    }
+  ]
+}

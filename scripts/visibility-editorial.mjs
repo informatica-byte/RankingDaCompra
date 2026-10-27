@@ -2,14 +2,20 @@ import {readFile, writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-export const CONFIG = JSON.parse(await readFile(new URL('../visibility-editorial.json', import.meta.url), 'utf8'));
+const originalConfig = JSON.parse(await readFile(new URL('../visibility-editorial.json', import.meta.url), 'utf8'));
+export const FEATURED_ANALYSES = JSON.parse(await readFile(new URL('../featured-analysis.json', import.meta.url), 'utf8'));
+const featured = new Map(FEATURED_ANALYSES.products.map(item=>[item.id,{...item,depth:true,reviewedAt:FEATURED_ANALYSES.reviewedAt}]));
+export const CONFIG = {...originalConfig,products:[...originalConfig.products.map(item=>featured.has(item.id)?{...item,...featured.get(item.id)}:item),...featured.values()].filter((item,index,items)=>items.findIndex(other=>other.id===item.id)===index)};
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const plain = value => String(value || '').replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
-const safeLink = url => /^\/(?!\/)[A-Za-z0-9_./-]+(?:\?(?:q=[A-Za-z0-9%+-]+&)?orcamento=\d+)?$/.test(url) || /^https:\/\/(?:www\.)?(?:grandstream\.com|tp-link\.com|mi\.com|starlink\.com)\//.test(url);
+const safeLink = value => {
+  if(/^\/(?!\/)[A-Za-z0-9_./-]+(?:\?(?:q=[A-Za-z0-9%+-]+(?:&orcamento=\d+)?|produto=[A-Za-z0-9_-]+|orcamento=\d+))?$/.test(value))return true;
+  try{const url=new URL(value);return url.protocol==='https:'&&!url.username&&!url.password&&!url.port&&['grandstream.com','www.grandstream.com','tp-link.com','www.tp-link.com','mi.com','www.mi.com','starlink.com','www.starlink.com','www.jbl.com.br','www.logitech.com','br.store.asus.com','loja.wap.ind.br','mais.conteudo.wap.ind.br','www.mercadolivre.com.br'].includes(url.hostname);}catch{return false;}
+};
 function links(items) {
   return (items || []).filter(item => safeLink(item.url)).map(item => `<li><a href="${esc(item.url)}"${item.url.startsWith('https:') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(item.label)}</a></li>`).join('');
 }
-const STYLE = '<style data-visibility-editorial>.visibility-editorial{margin:24px 0;padding:clamp(16px,3vw,24px);border:1px solid #ccded4;border-radius:14px;background:#f3faf6;color:#163b2c;line-height:1.65;overflow-wrap:anywhere}.visibility-editorial h2{font-size:1.35rem;line-height:1.25;margin:0 0 14px}.visibility-editorial h3{font-size:1rem;margin:0 0 7px}.visibility-editorial p{max-width:80ch}.visibility-editorial a{color:#07583d;text-decoration:underline;text-underline-offset:3px}.visibility-editorial li{margin:8px 0}.visibility-editorial .decision-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.visibility-editorial .decision-paths article{min-width:0;padding:16px;border:1px solid #ccded4;background:white;border-radius:10px}.visibility-editorial .decision-paths p{margin:0}.visibility-editorial details{border-top:1px solid #ccded4;margin-top:8px}.visibility-editorial summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:700}.visibility-editorial summary:focus-visible{outline:3px solid #1769e0;outline-offset:2px}.visibility-editorial .review-note{font-size:.84rem;color:#405d50}@media(max-width:700px){.visibility-editorial .decision-paths{grid-template-columns:1fr}.visibility-editorial{padding:16px}}</style>';
+const STYLE = '<style data-visibility-editorial>.visibility-editorial{margin:24px 0;padding:clamp(16px,3vw,24px);border:1px solid #ccded4;border-radius:14px;background:#f3faf6;color:#163b2c;line-height:1.65;overflow-wrap:anywhere}.visibility-editorial p>b:first-child{display:block;margin-bottom:4px}.visibility-editorial .editorial-evidence{padding:12px;border-left:3px solid #4b846b;background:#fff;border-radius:8px}.visibility-editorial h2{font-size:1.35rem;line-height:1.25;margin:0 0 14px}.visibility-editorial h3{font-size:1rem;margin:0 0 7px}.visibility-editorial p{max-width:80ch}.visibility-editorial a{color:#07583d;text-decoration:underline;text-underline-offset:3px}.visibility-editorial li{margin:8px 0}.visibility-editorial .decision-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.visibility-editorial .decision-paths article{min-width:0;padding:16px;border:1px solid #ccded4;background:white;border-radius:10px}.visibility-editorial .decision-paths p{margin:0}.visibility-editorial details{border-top:1px solid #ccded4;margin-top:8px}.visibility-editorial summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:700}.visibility-editorial summary:focus-visible{outline:3px solid #1769e0;outline-offset:2px}.visibility-editorial .review-note{font-size:.84rem;color:#405d50}@media(max-width:700px){.visibility-editorial .decision-paths{grid-template-columns:1fr}.visibility-editorial{padding:16px}}</style>';
 function metadata(html, item) {
   let next = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(item.title)} | Ranking da Compra</title>`);
   for (const [attribute, key, value] of [['name','description',item.description],['property','og:title',item.title],['property','og:description',item.description],['name','twitter:title',item.title],['name','twitter:description',item.description]]) {
@@ -19,9 +25,9 @@ function metadata(html, item) {
   }
   return next;
 }
-function block(content, reviewedAt = CONFIG.reviewedAt) {
+function block(content, reviewedAt = CONFIG.reviewedAt, depth = false) {
   const date = /^\d{4}-\d{2}-\d{2}$/.test(reviewedAt) ? reviewedAt.split('-').reverse().join('/') : 'data não informada';
-  return `<!-- visibility-editorial:start --><section class="visibility-editorial" data-visibility-editorial>${content}<p class="review-note">Revisão editorial: ${esc(date)} · <a href="/sobre.html">Equipe Ranking da Compra</a>. Análise de informações publicadas, sem teste prático. A data da revisão não renova a conferência do preço. Confirme valor final, frete, estoque e variante no vendedor.</p></section><!-- visibility-editorial:end -->`;
+  return `<!-- visibility-editorial:start --><section class="visibility-editorial" data-visibility-editorial>${content}<p class="review-note">Revisão editorial: ${esc(date)} · <a href="/sobre.html">Equipe Ranking da Compra</a>. Análise de informações publicadas, sem teste prático. ${depth?'A data se refere ao texto, não a uma nova verificação de estoque ou do anúncio. Confira versão, acessórios e condições na loja.':'A data da revisão não renova a conferência do preço. Confirme valor final, frete, estoque e variante no vendedor.'}</p></section><!-- visibility-editorial:end -->`;
 }
 function clean(html) {
   return html.replace(/<!-- visibility-editorial:start -->[\s\S]*?<!-- visibility-editorial:end -->/g, '').replace(/<style data-visibility-editorial>[\s\S]*?<\/style>\n?/g, '');
@@ -87,7 +93,10 @@ export function improveProduct(html, item) {
     try { const data = JSON.parse(json); const match=(data['@graph'] || [data]).find(x => x['@type'] === 'Product'||(x['@type']==='Article'&&x.about?.['@type']==='Thing'&&/name="rdc-site-mode" content="informational"/.test(next)));product=match?(match['@type']==='Product'?match:{name:match.about.name,url:match.mainEntityOfPage}):product; } catch {}
   }
   if (!product || !new RegExp(item.guard, 'i').test(product.name || '') || !String(product.url || product['@id']).includes('/produto/' + item.id + '-')) return next;
-  const content = block(`<h2>Vale a pena para o seu uso?</h2><p><b>Para quem considerar:</b> ${esc(item.fit)}</p><p><b>O que pesa na escolha:</b> ${esc(item.tradeoff)}</p><p><b>Antes de comprar:</b> ${esc(item.check)}</p><p><b>Quando comparar outra opção:</b> ${esc(item.alternative)}</p>${item.sources?.length ? '<h3>Fontes e conferência</h3><ul>' + links(item.sources) + '</ul>' : ''}<h3>Continue a comparação</h3><ul>${links(item.links)}</ul>`);
+  const points=(title,items)=>items?.length?'<h3>'+title+'</h3><ul>'+items.map(value=>'<li>'+esc(value)+'</li>').join('')+'</ul>':'';
+  const questions=item.questions?.length?'<h3>Dúvidas frequentes sobre este modelo</h3>'+item.questions.map(([question,answer])=>'<details><summary>'+esc(question)+'</summary><p>'+esc(answer)+'</p></details>').join(''):'';
+  const body=`<h2>Vale a pena para o seu uso?</h2>${item.basis?'<p class="editorial-evidence"><b>Base e limites desta análise:</b> '+esc(item.basis)+'</p>':''}<p><b>Para quem considerar:</b> ${esc(item.fit)}</p><p><b>O que pesa na escolha:</b> ${esc(item.tradeoff)}</p>${points('Vantagens para avaliar',item.advantages)}${points('Limitações que podem pesar na decisão',item.limitations)}<p><b>Antes de comprar:</b> ${esc(item.check)}</p><p><b>Quando comparar outra opção:</b> ${esc(item.alternative)}</p>${questions}${item.sources?.length ? '<h3>Fontes para conferir</h3><ul>' + links(item.sources) + '</ul>' : ''}<h3>Continue a comparação</h3><ul>${links(item.links)}</ul>`;
+  const content = block(item.depth?'<div data-reviewed-depth="'+esc(item.id)+'">'+body+'</div>':body,item.reviewedAt||CONFIG.reviewedAt,item.depth);
   let output = metadata(next, item).replace('</head>', STYLE + '\n</head>');
   if (output.includes('<div class="panels">')) output = output.replace('<div class="panels">', content + '<div class="panels">');
   else output = output.replace('</article>', content + '</article>');
@@ -119,7 +128,7 @@ export async function applyVisibilityEditorial(root = '.') {
     const {file, html} = page;
     const output = improveProduct(html, page.item);
     if (output !== html) {await writeFile(resolve(root, file), output);changed.push(file);}
-    if (output.includes('<!-- visibility-editorial:start -->')) dates.set(file, CONFIG.reviewedAt);
+    if (output.includes('<!-- visibility-editorial:start -->')) dates.set(file, item.reviewedAt || CONFIG.reviewedAt);
   }
   for (const item of CONFIG.guides) {
     let html;try {html = await readFile(resolve(root, item.file), 'utf8');} catch(error) {if(error.code === 'ENOENT') continue;throw error;}

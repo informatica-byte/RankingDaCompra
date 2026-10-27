@@ -40,6 +40,7 @@ on:
       - "scripts/product-quick-summary.mjs"
       - "scripts/visibility-editorial.mjs"
       - "visibility-editorial.json"
+      - "featured-analysis.json"
       - "scripts/buying-advice.mjs"
       - "editorial-focus.json"
   schedule:
