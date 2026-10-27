@@ -5,21 +5,25 @@
  const STORAGE='rdc-affiliate-audit-report-v1';
  const labels={available:'Disponível',unavailable:'Indisponível',unverified:'Não foi possível verificar',active_same:'Disponível na leitura anterior',different_target:'Resultado anterior — verificar disponibilidade',identity_unconfirmed:'Resultado anterior — verificar disponibilidade',security:'Não foi possível verificar — bloqueio',login:'Não foi possível verificar — login',error:'Não foi possível verificar — comunicação/link'};
  const esc=window.RDCInformational.esc;
+ const project=p=>window.RDCProductQuarantine?window.RDCProductQuarantine.project(p):core.project(p);
  const day=value=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(value));
  async function fingerprint(row){if(!crypto.subtle)return '';const data=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify([row.productId,row.title,row.affiliateUrl,row.expectedUrl])));return [...new Uint8Array(data)].map(x=>x.toString(16).padStart(2,'0')).join('');}
  function mount(){
   const host=document.getElementById('links-afiliados');if(!host||host.dataset.mounted)return;host.dataset.mounted='true';
   let products=[],rows=[],results=new Map(),progress=null,running=false,loading=false,editing=false,saving=false,generation=0,ready=false,visibleCount=50,storageFailed=false;
+  let quarantine=null,lastQuarantineNote='';
   const el=s=>host.querySelector(s),setStatus=text=>el('[data-audit-status]').textContent=text;
   host.innerHTML='<h2>🔗 Conferência Mercado Livre — disponível ou indisponível</h2><p>Somente Mercado Livre: o robô verifica se o anúncio está disponível ou indisponível. A Shopee não entra na fila. Usa o link original quando cadastrado; não compara nome, modelo, cor, tamanho, voltagem ou preço. Não altera cadastros sozinho.</p><p class="link-audit-note">Carregue a fila de hoje e confira os pendentes. A disponibilidade do anúncio não comprova que o link de afiliado abre o mesmo produto. Você pode substituir os links do produto e de afiliado usando “Salvar novos links”, sem criar outro cadastro. CAPTCHA, login e falha de comunicação não significam anúncio indisponível.</p><p data-audit-robot role="status">Verificando a versão do robô...</p><a class="link-audit-install" href="/bot-links.user.js" target="_blank" rel="noopener">Atualizar robô para 2.5.2 — somente links</a><p class="mini">O nome antigo “Bot local de preços” identifica a instalação no Tampermonkey. A versão 2.5.2 não devolve preços.</p><div class="link-audit-controls"><label><input type="checkbox" data-audit-paused checked> Incluir cadastros pausados, sem reativá-los</label><label><input type="checkbox" data-audit-repeat> Refazer também os anúncios já verificados hoje</label><label>Máximo por rodada <select data-audit-limit><option>10</option><option selected>20</option><option>50</option><option>100</option><option value="all">Todos os pendentes</option></select></label></div><div class="link-audit-actions"><button type="button" data-audit-load>Carregar fila de hoje</button><button type="button" data-audit-start disabled>Conferir pendentes</button><button type="button" data-audit-stop disabled>Parar</button><button type="button" data-audit-download>Baixar relatório local</button></div><p data-audit-status role="status" aria-live="polite">Nenhuma conferência começa sozinha. Os resultados ficam neste navegador, sem gravar preços ou consultar visitas.</p><p data-audit-summary></p><label class="link-audit-filter">Mostrar <select data-audit-filter><option value="all">Todos os itens</option><option value="review">Pendências de leitura — retomar no robô</option><option value="active">Disponíveis confirmados hoje</option><option value="unavailable" selected>Indisponíveis — revisão manual</option><option value="untested">Ainda não conferidos hoje</option><option value="paused">Cadastros pausados</option></select></label><div data-audit-editor hidden></div><div data-audit-results></div><button type="button" data-audit-more hidden>Mostrar mais itens</button><details class="link-audit-publication"><summary>Depois de substituir os links, como publicar?</summary><p>Conferir atividade não exige publicar. Se você salvar novos links, atualize a vitrine pelo fluxo habitual do GitHub, uma vez ao terminar. Não é necessário conferir preços.</p><a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer">Abrir publicação da vitrine ↗</a><p>Os resultados da conferência são locais deste navegador. Editar links ou pausar um cadastro só grava quando você confirma a ação.</p></details>';
   const another=document.createElement('button');another.type='button';another.dataset.auditAnother='';another.textContent='Preparar outra rodada';another.hidden=true;el('[data-audit-stop]').after(another);
+  el('[data-audit-paused]').parentElement.lastChild.textContent=' Incluir cadastros pausados e em quarentena (pausas manuais preservadas)';
   another.addEventListener('click',()=>{if(running||editing||saving||loading)return;if(!confirm('Encerrar só a fila desta rodada? Todos os resultados já salvos serão preservados.'))return;progress=null;persist();locked(false);setStatus('Fila da rodada encerrada. Resultados preservados; uma nova rodada conferirá apenas os pendentes.');});
   function locked(state){
-   const busy=state||editing||saving;el('[data-audit-load]').disabled=busy;for(const s of ['[data-audit-paused]','[data-audit-repeat]','[data-audit-limit]'])el(s).disabled=busy||checkpoint.resumable(progress);
+   const busy=state||editing||saving||quarantine?.isBusy();el('[data-audit-load]').disabled=busy;for(const s of ['[data-audit-paused]','[data-audit-repeat]','[data-audit-limit]'])el(s).disabled=busy||checkpoint.resumable(progress);
    el('[data-audit-start]').disabled=busy||!ready||!rows.length;el('[data-audit-stop]').disabled=!running;
    host.querySelectorAll('[data-audit-edit],[data-audit-pause]').forEach(b=>b.disabled=busy);
    el('[data-audit-start]').textContent=checkpoint.resumable(progress)?'Continuar de onde parou':'Conferir pendentes';
    const another=el('[data-audit-another]');if(another){another.hidden=!checkpoint.resumable(progress);another.disabled=busy;}
+   quarantine?.decorate();
   }
   function restore(){try{const saved=JSON.parse(localStorage.getItem(STORAGE)||'null');if(saved?.kind!==core.KIND||saved.version!==1||!Array.isArray(saved.records))return;progress=checkpoint.restore(saved.progress,day(Date.now()));if(checkpoint.resumable(progress)){el('[data-audit-limit]').value=progress.limit;el('[data-audit-repeat]').checked=progress.repeat;setStatus('Rodada recuperada na posição '+(progress.cursor+1)+' de '+progress.queue.length+'. Carregue a fila e toque em Continuar de onde parou.');}for(const row of saved.records.slice(0,3000)){try{const clean=core.safeResult(row);if(/^[a-f0-9]{64}$/.test(row.fingerprint||'')&&Date.now()-clean.checkedAt<core.MAX_AGE&&clean.checkedAt<=Date.now()+60000)results.set(clean.productId+':'+clean.market,{...clean,fingerprint:row.fingerprint});}catch{}}}catch{setStatus('Relatório local não pôde ser restaurado. Os cadastros não foram alterados.');}}
   const report=(all=false)=>({version:1,kind:core.KIND,marketScope:'mercado_livre',scope:'somente Mercado Livre; sem preços ou alterações automáticas de links',exportedAt:new Date().toISOString(),progress:progress?{...progress,queue:progress.queue.map(ref=>({...ref}))}:null,records:[...results.values()].filter(r=>all||r.market==='mercado_livre')});
@@ -27,7 +31,7 @@
   const resultFor=row=>results.get(row.key)?.fingerprint===row.fingerprint?results.get(row.key):null;
   const isAvailable=r=>['available','active_same'].includes(r?.status);
   const confirmed=row=>{const r=resultFor(row);return isAvailable(r)&&r.checkedAt<=Date.now()+60000&&day(r.checkedAt)===day(Date.now());};
-  const finishedToday=row=>{const r=resultFor(row);return !!r&&(isAvailable(r)||r.status==='unavailable')&&r.checkedAt<=Date.now()+60000&&day(r.checkedAt)===day(Date.now());};
+  const finishedToday=row=>{const r=resultFor(row),q=window.RDCProductQuarantine?.state(products.find(p=>p.id===row.productId));if(q?.due&&r?.checkedAt<q.deadline)return false;return !!r&&(isAvailable(r)||r.status==='unavailable')&&r.checkedAt<=Date.now()+60000&&day(r.checkedAt)===day(Date.now());};
   async function rebuild(){
    rows=core.queue(products,el('[data-audit-paused]').checked);for(const row of rows)row.fingerprint=row.invalid?'':await fingerprint(row);
    visibleCount=50;draw();
@@ -36,21 +40,21 @@
    const current=rows.map(row=>({...row,result:resultFor(row),confirmed:confirmed(row)})),count=status=>current.filter(x=>x.result?.status===status).length;
    el('[data-audit-summary]').textContent=rows.length+' link(s) carregado(s) · '+current.filter(x=>x.confirmed).length+' confirmado(s) hoje · '+count('unavailable')+' indisponível(is) · '+current.filter(x=>x.result&&!isAvailable(x.result)&&x.result.status!=='unavailable').length+' pendência(s) de leitura · '+current.filter(x=>!x.result||isAvailable(x.result)&&!x.confirmed).length+' sem confirmação hoje. Resultado pontual, não garantia de estoque futuro.';
    const filter=el('[data-audit-filter]').value;
-   const subset=current.filter(x=>filter==='all'||filter==='review'&&x.result&&!x.confirmed||filter==='active'&&x.confirmed||filter==='unavailable'&&x.result?.status==='unavailable'||filter==='untested'&&(!x.result||isAvailable(x.result)&&!x.confirmed)||filter==='paused'&&x.paused);
+   const subset=current.filter(x=>filter==='all'||filter==='quarantine'&&window.RDCProductQuarantine?.state(products.find(p=>p.id===x.productId)).active||filter==='review'&&x.result&&!x.confirmed||filter==='active'&&x.confirmed||filter==='unavailable'&&x.result?.status==='unavailable'||filter==='untested'&&(!x.result||isAvailable(x.result)&&!x.confirmed)||filter==='paused'&&x.paused);
    const sorted=[...subset.filter(x=>x.result&&!x.confirmed),...subset.filter(x=>!x.result),...subset.filter(x=>x.confirmed)];
    el('[data-audit-results]').innerHTML=sorted.slice(0,visibleCount).map(x=>'<article class="link-audit-result" data-audit-row="'+esc(x.key)+'"><h3>'+esc(x.title)+'</h3><strong>'+esc(x.result?(isAvailable(x.result)&&!x.confirmed?'Disponível na última leitura; conferir hoje':labels[x.result.status]):'A conferir')+' · '+esc(x.market==='shopee'?'Shopee':'Mercado Livre')+'</strong>'+(x.paused?'<p>⏸ Cadastro separado para revisão manual.</p>':'')+'<p>'+esc(x.result?.reason||'Ainda não há resultado para este link nesta fila.')+'</p>'+(x.result?.foundTitle?'<p>Página lida: '+esc(x.result.foundTitle)+'</p>':'')+(x.result?'<small>Última leitura: '+esc(new Date(x.result.checkedAt).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo'}))+'</small>':'')+'<div class="link-audit-result-actions">'+(core.url(x.checkUrl)?'<a href="'+esc(x.checkUrl)+'" target="_blank" rel="noopener noreferrer">Abrir anúncio ↗</a>':'')+(x.result?.finalUrl?'<a href="'+esc(x.result.finalUrl)+'" target="_blank" rel="noopener noreferrer">Ver destino lido ↗</a>':'')+'<button type="button" data-audit-edit="'+esc(x.key)+'">🔄 Substituir links do produto e de afiliado</button><button type="button" data-audit-pause="'+esc(x.key)+'">'+(x.paused?'▶ Reativar para conferir':'⏸ Separar para revisão manual')+'</button></div></article>').join('')||'<p>Nenhum item neste filtro.</p>';
    el('[data-audit-more]').hidden=sorted.length<=visibleCount;locked(running||loading);
   }
   function robot(){ready=window.__RDC_BOT_LINKS_LOCAL__?.readOnly===true&&window.__RDC_BOT_LINKS_LOCAL__.version===core.VERSION&&typeof window.conferirLinkAfiliadoNaAbaLocal==='function';el('[data-audit-robot]').textContent=ready?'Robô 2.5.2 conectado — somente disponibilidade; sem comparação ou preços.':'Atualize o robô para 2.5.2 e recarregue o painel para conferir os anúncios.';if(!running&&!loading)locked(false);}
   async function adopt(product,reset=false){
-   products=products.map(p=>p.id===product.id?core.project(product):p);await rebuild();
+   products=products.map(p=>p.id===product.id?project(product):p);await rebuild();
    for(const row of rows.filter(r=>r.productId===product.id))if(reset||results.get(row.key)?.fingerprint!==row.fingerprint)results.delete(row.key);
    persist();draw();
   }
   function closeEditor(){if(saving)return;editing=false;el('[data-audit-editor]').hidden=true;el('[data-audit-editor]').replaceChildren();locked(false);}
   host.addEventListener('click',async event=>{
    const edit=event.target.closest('[data-audit-edit]'),pause=event.target.closest('[data-audit-pause]');
-   if(!edit&&!pause)return;if(running||loading||editing||saving)return;
+   if(!edit&&!pause)return;if(running||loading||editing||saving||quarantine?.isBusy())return;
    const row=rows.find(r=>r.key===(edit?.dataset.auditEdit||pause?.dataset.auditPause));if(!row)return;
    const api=window.RDCAffiliateAuditReview;if(!api){setStatus('Entre no painel e aguarde os controles de edição carregarem.');return;}
    editing=true;locked(true);const box=el('[data-audit-editor]');box.hidden=false;box.textContent='Abrindo o cadastro atual, sem consultar preços...';
@@ -76,13 +80,14 @@
   });
   el('[data-audit-load]').addEventListener('click',async()=>{
    if(running||loading||editing)return;loading=true;locked(true);setStatus('Carregando a fila de hoje, sem consultar visitas...');
-   try{if(typeof window.RDCAffiliateAuditSource!=='function')throw Error('Entre no painel e aguarde o carregamento.');products=(await window.RDCAffiliateAuditSource()).map(p=>core.project(p));const keys=new Set(core.queue(products,true).map(r=>r.key));for(const key of results.keys())if(!keys.has(key)&&results.get(key).market==='mercado_livre')results.delete(key);await rebuild();setStatus(checkpoint.resumable(progress)?'Fila recuperada na posição '+(progress.cursor+1)+' de '+progress.queue.length+'. Toque em Continuar de onde parou.':'Fila pronta. Os disponíveis e indisponíveis já verificados hoje não serão repetidos.');}catch(e){setStatus('Não foi possível carregar: '+e.message);}finally{loading=false;locked(false);}
+   try{if(typeof window.RDCAffiliateAuditSource!=='function')throw Error('Entre no painel e aguarde o carregamento.');products=(await window.RDCAffiliateAuditSource()).map(project);const keys=new Set(core.queue(products,true).map(r=>r.key));for(const key of results.keys())if(!keys.has(key)&&results.get(key).market==='mercado_livre')results.delete(key);await rebuild();setStatus(checkpoint.resumable(progress)?'Fila recuperada na posição '+(progress.cursor+1)+' de '+progress.queue.length+'. Toque em Continuar de onde parou.':'Fila pronta. Os disponíveis e indisponíveis já verificados hoje não serão repetidos.');}catch(e){setStatus('Não foi possível carregar: '+e.message);}finally{loading=false;locked(false);}
   });
   el('[data-audit-paused]').addEventListener('change',()=>{if(!running&&!editing)void rebuild();});
   el('[data-audit-filter]').addEventListener('change',()=>{visibleCount=50;draw();});
   el('[data-audit-more]').addEventListener('click',()=>{visibleCount+=50;draw();});
   el('[data-audit-start]').addEventListener('click',async()=>{
-   if(running||!ready||editing||saving)return;
+   if(running||!ready||editing||saving||quarantine?.isBusy())return;
+   lastQuarantineNote='';
    if(progress?.day!==day(Date.now()))progress=null;
    const continuing=checkpoint.resumable(progress);
    if(!continuing)progress=checkpoint.create(rows,{day:day(Date.now()),limit:el('[data-audit-limit]').value,repeat:el('[data-audit-repeat]').checked,finished:finishedToday,result:resultFor});
@@ -98,6 +103,7 @@
      catch(e){if(!running||mine!==generation)break;value={kind:core.KIND,readOnly:true,productId:row.productId,market:row.market,checkedAt:Date.now(),status:'error',reason:e.message,robotVersion:core.VERSION};communication=true;}
      if(!running||mine!==generation)break;
      const clean=core.safeResult(value);results.set(row.key,{...clean,fingerprint:row.fingerprint});
+     if(quarantine){const note=await quarantine.review(row,clean,()=>running&&mine===generation);if(note)lastQuarantineNote=note;if(!running||mine!==generation)break;}
      if(communication||['security','login'].includes(clean.status)){paused=true;checkpoint.pause(progress,communication?'communication':clean.status);}
      else checkpoint.advance(progress);
      if(!persist())break;draw();
@@ -108,12 +114,14 @@
     if(storageFailed)return;
     if(!running){checkpoint.pause(progress,'manual');persist();setStatus('Rodada parada na posição '+Math.min(progress.cursor+1,progress.queue.length)+' de '+progress.queue.length+'. Resultados e ordem preservados.');}
     else if(paused)setStatus('Rodada pausada para sua intervenção na posição '+(progress.cursor+1)+' de '+progress.queue.length+'. Resolva login/verificação na loja e toque em “Continuar de onde parou”. Os itens anteriores desta rodada não serão repetidos.');
-    else setStatus('Rodada concluída: '+progress.cursor+' de '+progress.queue.length+' posições percorridas. As leituras inconclusivas ficam separadas; não são anúncios indisponíveis. Nenhum cadastro foi alterado automaticamente.');
+    else setStatus('Rodada concluída: '+progress.cursor+' de '+progress.queue.length+' posições percorridas. As leituras inconclusivas ficam separadas; não são anúncios indisponíveis. '+(lastQuarantineNote||'Somente quarentenas explicitamente autorizadas podem alterar cadastros; preços e links não foram alterados.'));
    }catch(error){if(mine===generation){checkpoint.pause(progress,'communication');persist();setStatus('Rodada pausada com posição preservada: '+String(error.message||error));}}
    finally{if(mine===generation){running=false;locked(false);}}
   });
   el('[data-audit-stop]').addEventListener('click',()=>{running=false;generation++;window.cancelarConferenciaLinksLocal?.();checkpoint.pause(progress,'manual');persist();locked(false);setStatus('Parado na posição '+Math.min((progress?.cursor||0)+1,progress?.queue.length||0)+' de '+(progress?.queue.length||0)+'. Continue de onde parou; resultados locais preservados.');});
   el('[data-audit-download]').addEventListener('click',()=>{const link=document.createElement('a'),blob=new Blob([JSON.stringify(report(),null,2)],{type:'application/json'});link.href=URL.createObjectURL(blob);link.download='conferencia-links-'+day(Date.now())+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000);});
+  quarantine=window.RDCProductQuarantinePanel?.mount({host,product:id=>products.find(p=>p.id===id),result:key=>{const row=rows.find(r=>r.key===key);return row?resultFor(row):null;},busy:()=>running||loading||editing||saving,adopt,remove:async id=>{products=products.filter(p=>p.id!==id);for(const key of [...results.keys()])if(key.startsWith(id+':'))results.delete(key);await rebuild();persist();},status:setStatus});
+  window.addEventListener('rdc-quarantine-busy',()=>locked(running||loading));
   restore();draw();robot();setInterval(robot,3000);
  }
  function init(){

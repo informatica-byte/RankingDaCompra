@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 import core from '../affiliate-link-audit.js';
+import quarantine from '../product-quarantine.js';
 import {buildLinkAuditBot} from './build-link-audit-bot.mjs';
 const req={productId:'jbl',title:'Fone JBL Tune 520BT Preto',affiliateUrl:'https://meli.la/abc',expectedUrl:'https://www.mercadolivre.com.br/fone/p/MLB23997257?wid=MLB1234567890'};
 const ok={url:'https://www.mercadolivre.com.br/fone/p/MLB23997257?wid=MLB1234567890&matt_tracing_id=not-a-secret',title:'JBL Tune 520BT Fone sem fio',listingIds:['MLB1234567890'],buyable:true};
@@ -137,7 +138,7 @@ test('fontes dos dois painéis exigem a mesma sessão e expõem apenas projeçã
  for(const file of ['dashboard.html','painel-celular.html']){
   const html=await readFile(new URL('../'+file,import.meta.url),'utf8');const source=html.match(/window\.RDCAffiliateAuditSource = async \(\) => \{[\s\S]*?\n\s*\};/)?.[0];assert.ok(source,file);
   const auth={currentUser:{uid:'admin'}},record={...core.project({id:'p',titulo:req.title,link:req.expectedUrl,linkAfiliado:req.affiliateUrl}),preco:999,token:'DO-NOT-COPY'},snapshot={docs:[{id:'p',data:()=>record}]};let calls=0;
-  const read=async()=>{calls++;return snapshot;};const c=vm.createContext({window:{RDCAffiliateLinkAudit:core,RDCAdminReadAccess:{products:read}},auth,lerProdutosParaModulosMovel:read});vm.runInContext(source,c);
+  const read=async()=>{calls++;return snapshot;};const c=vm.createContext({window:{RDCAffiliateLinkAudit:core,RDCProductQuarantine:quarantine,RDCAdminReadAccess:{products:read}},auth,lerProdutosParaModulosMovel:read});vm.runInContext(source,c);
   const rows=await c.window.RDCAffiliateAuditSource();assert.equal(calls,1);assert.equal(rows.length,1);assert.equal('preco'in rows[0],false);assert.equal('token'in rows[0],false);
   auth.currentUser=null;await assert.rejects(c.window.RDCAffiliateAuditSource(),/Entre novamente/);assert.equal(calls,1);
   auth.currentUser={uid:'admin'};const changed=async()=>{auth.currentUser={uid:'other'};return snapshot;};c.window.RDCAdminReadAccess.products=changed;c.lerProdutosParaModulosMovel=changed;await assert.rejects(c.window.RDCAffiliateAuditSource(),/sessão mudou/);

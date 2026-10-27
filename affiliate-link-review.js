@@ -1,13 +1,15 @@
 (function(root,factory){
- if(typeof module==='object'&&module.exports)module.exports=factory(require('./affiliate-link-audit.js'));
- else root.RDCAffiliateLinkReview=factory(root.RDCAffiliateLinkAudit);
-})(typeof window==='object'?window:globalThis,function(core){
+ if(typeof module==='object'&&module.exports)module.exports=factory(require('./affiliate-link-audit.js'),require('./product-quarantine.js'));
+ else root.RDCAffiliateLinkReview=factory(root.RDCAffiliateLinkAudit,root.RDCProductQuarantine);
+})(typeof window==='object'?window:globalThis,function(core,quarantine){
  'use strict';
  const fields=['titulo','link','linkAfiliado','linkShopee','linkShopeeOriginal','urlShopee'];
  const validId=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(id);
+ const project=(p,id)=>quarantine?quarantine.project(p,id):core.project(p,id);
  function baseline(current,expected){
   if(!current||current.sistema===true)throw Error('Cadastro removido ou de sistema. Nenhum produto foi criado.');
   if(!expected||fields.some(key=>String(current[key]||'').trim()!==String(expected[key]||'').trim())||Boolean(current.conferenciaPausada)!==Boolean(expected.conferenciaPausada))throw Error('O cadastro mudou em outro painel. Cancele e abra a revisão novamente.');
+  if(quarantine&&(JSON.stringify(quarantine.metadata(current))!==JSON.stringify(quarantine.metadata(expected))||Boolean(current.quarentenaAnuncio)!==Boolean(expected.quarentenaAnuncio)))throw Error('A quarentena mudou em outro painel. Reabra a revisão antes de salvar.');
  }
  function links(current,input){
   if(input?.sameProduct!==true)throw Error('Confirme que os dois links são do mesmo produto, modelo e versão.');
@@ -27,18 +29,18 @@
  function archive(current,at){return {substituidoEm:at,...Object.fromEntries(['link','linkAfiliado','linkShopee','linkShopeeOriginal','mercadoLivreItemId'].filter(key=>current[key]!==undefined).map(key=>[key,current[key]]))};}
  function create(adapter){
   const authorize=uid=>{const owner=adapter.authorize();if(!owner||uid&&owner!==uid)throw Error('A sessão mudou. Entre novamente e reabra a revisão.');return owner;};
-  async function read(id){if(!validId(id))throw Error('Identificador inválido.');const uid=authorize(),current=await adapter.read(id);authorize(uid);if(!current||current.sistema===true)throw Error('Cadastro não encontrado.');return core.project(current,id);}
+  async function read(id){if(!validId(id))throw Error('Identificador inválido.');const uid=authorize(),current=await adapter.read(id);authorize(uid);if(!current||current.sistema===true)throw Error('Cadastro não encontrado.');return project(current,id);}
   async function save(id,expected,input){
    if(!validId(id))throw Error('Identificador inválido.');const uid=authorize(),patch=links(expected,input);
    const prepared=await adapter.prepare({...expected,...patch});authorize(uid);
    const saved=await adapter.transact(id,async tx=>{authorize(uid);const current=await tx.read();authorize(uid);baseline(current,expected);
-    const changes=links(current,input);await tx.protect(prepared,{...current,...changes});authorize(uid);
-    const stamp=adapter.timestamp();tx.update({...changes,anuncioSubstituidoEm:stamp,atualizadoEm:stamp,historicoAnuncios:adapter.append(archive(current,new Date().toISOString()))});return core.project({...current,...changes},id);
+    const changes=links(current,input);if(current.quarentenaAnuncio){changes.quarentenaAnuncio=null;changes.conferenciaPausada=quarantine?.metadata(current)?.previousPaused??true;}await tx.protect(prepared,{...current,...changes});authorize(uid);
+    const stamp=adapter.timestamp();tx.update({...changes,anuncioSubstituidoEm:stamp,atualizadoEm:stamp,historicoAnuncios:adapter.append(archive(current,new Date().toISOString()))});return project({...current,...changes},id);
    });try{adapter.invalidate?.();}catch{}return saved;
   }
   async function pause(id,expected,paused){
    if(!validId(id)||typeof paused!=='boolean')throw Error('Pedido de revisão inválido.');const uid=authorize();
-   const saved=await adapter.transact(id,async tx=>{authorize(uid);const current=await tx.read();authorize(uid);baseline(current,expected);const stamp=adapter.timestamp();tx.update(paused?{conferenciaPausada:true,conferenciaPausadaEm:stamp}:{conferenciaPausada:false,conferenciaReativadaEm:stamp});return core.project({...current,conferenciaPausada:paused},id);});try{adapter.invalidate?.();}catch{}return saved;
+   const saved=await adapter.transact(id,async tx=>{authorize(uid);const current=await tx.read();authorize(uid);baseline(current,expected);const stamp=adapter.timestamp(),changes=paused?{conferenciaPausada:true,conferenciaPausadaEm:stamp}:{conferenciaPausada:false,conferenciaReativadaEm:stamp};if(!paused&&current.quarentenaAnuncio)changes.quarentenaAnuncio=null;tx.update(changes);return project({...current,...changes},id);});try{adapter.invalidate?.();}catch{}return saved;
   }
   return {read,save,pause};
  }

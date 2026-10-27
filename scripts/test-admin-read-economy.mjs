@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import affiliateReview from '../affiliate-link-review.js';
+import productQuarantine from '../product-quarantine.js';
 
 const source = readFileSync('admin-read-economy.js', 'utf8');
 const dashboard = readFileSync('dashboard.html', 'utf8');
@@ -108,7 +109,7 @@ test('comparativo do dashboard reutiliza lista viva/categorias e resumo, limitad
   const products = snapshot(562), categories = snapshot(27);
   products.forEach = cb => products.docs.forEach(cb); categories.forEach = cb => categories.docs.forEach(cb);
   class Clock extends Date { constructor(...args) { super(...(args.length ? args : ['2026-10-23T12:00:00Z'])); } }
-  const context = { window: { RDCAffiliateLinkReview: affiliateReview }, Date: Clock, Intl, auth: { currentUser: { uid: 'owner' } }, economiaLeiturasDashboard: api,
+  const context = { window: { RDCAffiliateLinkReview: affiliateReview, RDCProductQuarantine: productQuarantine }, Date: Clock, Intl, auth: { currentUser: { uid: 'owner' } }, economiaLeiturasDashboard: api,
     snapshotProdutosBackup: products, snapshotCategoriasBackup: categories, obterMetricasPainel: async () => metrics,
     db: { collection: name => {
       if (name !== 'configuracoes') { broadReads++; throw Error('coleção não deve ser relida'); }

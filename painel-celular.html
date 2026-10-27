@@ -200,9 +200,12 @@
     <script src="/informational-mode.js?v=20261026-info1"></script>
     <link rel="stylesheet" href="/affiliate-link-audit.css?v=20261027-3">
     <script src="/affiliate-link-audit.js?v=20261027-5"></script>
-    <script src="/affiliate-link-review.js?v=20261027-1"></script>
+    <script src="/product-removal-safety.js?v=20261026-1"></script>
+    <script src="/product-quarantine.js?v=20261027-1"></script>
+    <script src="/product-quarantine-panel.js?v=20261027-1"></script>
+    <script src="/affiliate-link-review.js?v=20261027-2"></script>
     <script src="/affiliate-link-progress.js?v=20261027-1"></script>
-    <script defer src="/affiliate-link-panel.js?v=20261027-6"></script>
+    <script defer src="/affiliate-link-panel.js?v=20261027-7"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261026-min2415"></script>
     <script src="/assisted-report-recovery.js?v=20261018-1"></script>
@@ -212,7 +215,6 @@
     <script src="/product-offer-replacement.js?v=20261024-listing"></script>
     <script src="/express-existing-product.js?v=20261024-reuse"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
-    <script src="/product-removal-safety.js?v=20261026-1"></script>
     <script src="/pending-review-pause.js?v=20261026-1"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
@@ -268,7 +270,7 @@
         if (!uid) throw Error('Entre novamente no painel.');
         const snapshot = await lerProdutosParaModulosMovel(false);
         if (auth.currentUser?.uid !== uid) throw Error('A sessão mudou. Carregue novamente o painel.');
-        return snapshot.docs.map(item => window.RDCAffiliateLinkAudit.project(item.data(), item.id));
+        return snapshot.docs.map(item => window.RDCProductQuarantine.project(item.data(), item.id));
       };
       window.RDCAffiliateAuditReview = window.RDCAffiliateLinkReview.create({
         authorize: () => {
@@ -286,6 +288,18 @@
         }),
         timestamp: serverTimestamp, append: value => arrayUnion(value),
         invalidate: () => { economiaLeiturasMovel.invalidate('produtos'); rankingDadosMovel = null; }
+      });
+      window.RDCProductQuarantineAccess = window.RDCProductQuarantine.create({
+        serverNow: () => window.RDCProductQuarantine.serverNow(window.fetch.bind(window)),
+        authorize: () => { if (!auth.currentUser || automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento) throw Error('Entre no painel e aguarde a operação atual.'); return auth.currentUser.uid; },
+        read: async id => { const snap = await getDoc(doc(db, 'produtos', id)); return snap.exists() ? snap.data() : null; },
+        transact: (id, action) => runTransaction(db, async transaction => {
+          const ref = doc(db, 'produtos', id), registryRef = doc(db, 'configuracoes', window.RDCProductRemoval.REGISTRY);
+          return action({read: async () => { const snap = await transaction.get(ref); return snap.exists() ? snap.data() : null; },
+            registry: async () => { const snap = await transaction.get(registryRef); return snap.exists() ? snap.data() : null; },
+            update: changes => transaction.update(ref, changes), saveRegistry: value => transaction.set(registryRef, value), removeProduct: () => transaction.delete(ref)});
+        }),
+        timestamp: serverTimestamp, invalidate: () => { economiaLeiturasMovel.invalidate('produtos'); rankingDadosMovel = null; }
       });
       function msg(id, texto, tipo = "") {
         const a = $(id);
