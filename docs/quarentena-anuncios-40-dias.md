@@ -4,11 +4,13 @@ Implementação de 27/10/2026 no dashboard e painel móvel, sem migração autom
 
 ## Uso
 
-1. Carregar a fila de links normalmente. Nos anúncios lidos como indisponíveis, usar **Colocar em quarentena por 40 dias**.
+1. Carregar a fila de links normalmente. Em **Mostrar**, escolher **Todos os itens** ou **Cadastros pausados** para encontrar outros produtos. Todos os cartões da fila têm **Colocar em quarentena por 40 dias**, inclusive disponíveis, pendentes de leitura e ainda não conferidos. A seleção é manual e não transforma o resultado do robô em indisponível; não é preciso iniciar uma nova conferência para usar o botão.
 2. Conferir o produto e confirmar expressamente a futura exclusão do cadastro **e do histórico**, digitando `QUARENTENA 40 ID`. A entrada apenas pausa o cadastro e salva sua política e data; não exclui nada.
 3. Usar o filtro **Quarentena — prazo de 40 dias** para ver a data limite e os dias restantes. **Cancelar quarentena**, **Reativar para conferir** ou substituir os links pelo fluxo atual cancela a autorização anterior. Uma pausa manual anterior é preservada quando aplicável.
 4. Manter “Incluir cadastros pausados” na conferência para revisar também a quarentena. O anúncio voltando com prova recente do mesmo MLB sai da quarentena. Não basta uma página de catálogo sem identificação do anúncio, um redirecionamento ou outro vendedor.
 5. Após o prazo de 40 × 24 horas, uma leitura NOVA, recente e vinculada ao mesmo MLB, ainda indisponível, permite exclusão transacional do cadastro e registro apenas do ID para limpeza pública. CAPTCHA, login, erro, versão antiga, resultado vencido, catálogo sem MLB, código diferente, links/foto/título alterados, conflito de sessão, cancelamento ou parada da conferência bloqueiam a exclusão.
+
+A entrada manual continua exigindo login, cadastro sem mudança concorrente, link original válido com o MLB do anúncio, confirmação individual e horário do servidor. Um cadastro sem MLB precisa ter seu link revisado pelo fluxo existente, não recebe autorização de exclusão por catálogo ou afiliado curto. Os botões ficam desativados enquanto há operação em andamento. Não há limite de um cadastro: podem ser colocados vários, um por vez. Uma nova leitura segura do mesmo anúncio disponível cancela também uma quarentena escolhida manualmente para um anúncio que já estava disponível.
 
 ## Limites e publicação
 
@@ -23,3 +25,5 @@ Não coloca nenhum produto em quarentena sozinho. Não muda os critérios do rob
 ## Verificação
 
 `scripts/test-product-quarantine.mjs` testa consentimento, prazo, cancelamento, retorno, indisponibilidade final, concorrência, parada, identificação e preservação de preços. `scripts/qa-product-quarantine.mjs` testa os dois painéis em 360 px com dados exclusivamente fictícios, incluindo cancelamento do diálogo, entrada, filtro, 39 dias, CAPTCHA após 40 dias, retomada e exclusão, além do retorno disponível. `scripts/qa-affiliate-link-audit.mjs` preserva os testes de cursor, CAPTCHA, limites, relatórios e não repetição. Não executar testes destrutivos em cadastros reais para verificar o botão.
+
+`scripts/test-product-quarantine-panel.mjs` cobre o botão para todos os estados, três entradas manuais seguidas sem leitura prévia, cancelamento/consentimento, bloqueio durante operações, sessão, mudança concorrente, falta de MLB e preservação de valores/links. A atualização manual altera somente a interface; `product-quarantine.js` e o robô 2.5.2 permanecem intactos. Nenhum cadastro real é migrado ou colocado em quarentena durante a implantação.
