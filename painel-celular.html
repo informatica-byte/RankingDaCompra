@@ -49,7 +49,9 @@
     <script defer src="/seo-priorities.js?v=20260913-1"></script>
   <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
 <script src="/best-choices.js?v=20261022-pause"></script>
-<script src="/metricas-resumo.js?v=20261014-audit"></script>
+<script src="/metricas-resumo.js?v=20261027-ga4"></script>
+<link rel="stylesheet" href="/analytics-audience.css?v=20261027-1">
+<script defer src="/analytics-audience.js?v=20261027-1"></script>
 <script src="/promotion-title.js?v=20261005-1"></script>
 <script src="/best-choices-admin.js?v=20261010-audit"></script>
     <link rel="stylesheet" href="/existing-flash-offer.css?v=20261016-1">
@@ -135,13 +137,14 @@
           <div id="pub-status" class="status" role="status" aria-live="polite"></div>
           <div id="publicacao-cadastro-existente" class="express-existing" hidden></div>
         </form>
-        <div class="card" id="metricas-mobile">
-          <h2>📊 Contagens do site</h2>
-          <p>Mesma base e critérios do dashboard. Produtos: últimos 7 dias; visitas: períodos indicados.</p>
+        <section class="card ga4-audience" data-ga4-audience aria-label="Audiência atual do Google Analytics"><h2>📊 Audiência atual — Google Analytics</h2><p>Conecte sua conta Google para consultar somente relatórios de leitura. Os dados atuais não são consultados no Firebase.</p></section>
+        <div class="card ga4-legacy" id="metricas-mobile">
+          <h2>📚 Histórico de entradas e eventos internos — Firebase</h2>
+          <p class="ga4-legacy-note">A gravação de entradas da vitrine foi desativada no modo informativo em 26/10/2026. Esses totais não representam a audiência atual. Os eventos de produtos e cliques abaixo continuam separados e não comprovam vendas. Consulte o GA4 acima para visitas atuais; não some as fontes.</p>
           <div class="focus-mobile-grid">
-            <div class="focus-mobile-item"><small>Visitas da vitrine — 14 dias</small><strong data-metrica="visitas14">—</strong></div>
-            <div class="focus-mobile-item"><small>Visitas da vitrine — hoje</small><strong data-metrica="visitasHoje">—</strong></div>
-            <div class="focus-mobile-item"><small>Visitas da vitrine — 7 dias</small><strong data-metrica="visitas7">—</strong></div>
+            <div class="focus-mobile-item"><small>Entradas antigas — janela de 14 dias</small><strong data-metrica="visitas14">—</strong></div>
+            <div class="focus-mobile-item"><small>Hoje: coleta antiga desativada</small><strong data-metrica="visitasHoje" data-metrica-legado="true">—</strong></div>
+            <div class="focus-mobile-item"><small>Entradas antigas — janela de 7 dias</small><strong data-metrica="visitas7">—</strong></div>
             <div class="focus-mobile-item"><small>Visualizações de produtos — 7 dias</small><strong data-metrica="visualizacoes7">—</strong></div>
             <div class="focus-mobile-item"><small>Cliques em Comprar — 7 dias</small><strong data-metrica="cliques7">—</strong></div>
             <div class="focus-mobile-item"><small>Cliques / visualizações — 7 dias</small><strong data-metrica="taxa">—</strong></div>
@@ -149,7 +152,7 @@
             <div class="focus-mobile-item"><small>Cliques hoje</small><strong data-metrica="cliquesHoje">—</strong></div>
             <div class="focus-mobile-item"><small>Ações de compartilhar/copiar — 7 dias</small><strong data-metrica="compartilhamentos7">—</strong></div>
           </div>
-          <button id="metricas-mobile-refresh" class="btn claro" type="button">↻ Atualizar contagem</button>
+          <button id="metricas-mobile-refresh" class="btn claro" type="button">↻ Consultar registros internos</button>
           <p class="mini" data-metricas-status role="status">Sem consulta automática ao abrir. Atualize a contagem ou reutilize a base do dashboard neste navegador.</p>
           <p class="mini">Cliques incluem Mercado Livre e Shopee, não vendas. Visitas da vitrine e visualizações de produtos são medidas diferentes. A coleta pode ser limitada por bloqueadores ou falhas de conexão; não representa pessoas únicas.</p>
           <details class="mini" data-metrics-guide><summary>Como separar visitas, comparações e vendas</summary><p>Search Console: impressões e cliques na busca. Google Analytics: visitas e uso do comparador, com consentimento. No GA4, procure o evento comparison_interaction (atalho de orçamento, seleção ou remoção) e affiliate_click (abertura de oferta nas fichas).</p><p>Esses eventos começam a ser medidos após esta atualização e não completam o histórico anterior. Não some affiliate_click com select_item: podem representar o mesmo clique. Vendas e comissões devem ser confirmadas nos relatórios do Mercado Livre e da Shopee; ausência de relatório não significa zero vendas.</p><p>Não há consulta nova ao Firebase nem carregamento de relatórios externos ao abrir esta orientação.</p></details>
@@ -2902,7 +2905,9 @@
           if (filaPrecosDados) { guardarPosicaoFilaPrecos(); renderizarFilaPrecosAssistida(); }
         }
       });
+      window.RDCAnalyticsUserId = () => auth.currentUser?.uid || '';
       onAuthStateChanged(auth, async (u) => {
+        window.dispatchEvent(new Event('rdc-admin-auth'));
         if (!u) {
           ofertasRelampagoExistentesMovel.reset(); produtosRelampagoCacheMobile = null;
           economiaLeiturasMovel.reset(); rankingDadosMovel = null;

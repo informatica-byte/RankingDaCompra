@@ -263,14 +263,16 @@
             <span id="backup-ranking-status" class="ajuda-metrica" role="status" aria-live="polite"></span>
         </section>
 
-        <div class="painel">
-            <h2>📈 Visitas da vitrine</h2>
+        <section class="painel ga4-audience" data-ga4-audience aria-label="Audiência atual do Google Analytics"><h2>📊 Audiência atual — Google Analytics</h2><p>Conecte sua conta Google para consultar somente relatórios de leitura. Os dados atuais não são consultados no Firebase.</p></section>
+        <div class="painel ga4-legacy">
+            <h2>📚 Histórico do contador de visitas — Firebase</h2>
+            <p class="ga4-legacy-note">A gravação de entradas da vitrine foi desativada no modo informativo em 26/10/2026. Os totais abaixo são registros antigos nas janelas indicadas, não a audiência atual. Consulte o Google Analytics acima; não some as duas fontes.</p>
             <div class="metricas-visitas">
-                <div class="metrica-visita"><strong id="visitas-total" data-metrica="visitas14">—</strong><span>Últimos 14 dias</span></div>
-                <div class="metrica-visita"><strong id="visitas-hoje" data-metrica="visitasHoje">—</strong><span>Hoje</span></div>
-                <div class="metrica-visita"><strong id="visitas-7-dias" data-metrica="visitas7">—</strong><span>Últimos 7 dias</span></div>
+                <div class="metrica-visita"><strong id="visitas-total" data-metrica="visitas14">—</strong><span>Registros antigos — janela de 14 dias</span></div>
+                <div class="metrica-visita"><strong id="visitas-hoje" data-metrica="visitasHoje" data-metrica-legado="true">—</strong><span>Hoje: coleta antiga desativada</span></div>
+                <div class="metrica-visita"><strong id="visitas-7-dias" data-metrica="visitas7">—</strong><span>Registros antigos — janela de 7 dias</span></div>
             </div>
-            <button type="button" class="btn-salvar btn-categoria" id="btn-atualizar-visitas">Atualizar contagem</button>
+            <button type="button" class="btn-salvar btn-categoria" id="btn-atualizar-visitas">Consultar registros internos</button>
             <p class="ajuda-metrica" data-metricas-status role="status"></p>
             <p class="ajuda-metrica">Contagem anônima da vitrine. O mesmo navegador é contado no máximo uma vez a cada 30 minutos; por isso, é uma estimativa e não substitui o Google Analytics.</p>
         </div>
@@ -1113,7 +1115,9 @@ FORMATO:
     <script src="/existing-flash-offer.js?v=20261024-reuse"></script>
     <script src="/weekly-comparison-safety.js?v=20261020-price-identity"></script>
     <script src="/product-offer-replacement.js?v=20261024-listing"></script>
-    <script src="/metricas-resumo.js?v=20261014-audit"></script>
+    <script src="/metricas-resumo.js?v=20261027-ga4"></script>
+    <link rel="stylesheet" href="/analytics-audience.css?v=20261027-1">
+    <script defer src="/analytics-audience.js?v=20261027-1"></script>
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyChRBmFfokCPPec7oTdC1u9obQg6M83Epk",
@@ -1260,7 +1264,9 @@ FORMATO:
             if (document.hidden) pausaAdminTimer = setTimeout(pausarListenersAdmin, 10 * 60 * 1000);
             else if (auth.currentUser) { carregarCategorias(); carregarProdutos(); }
         });
+        window.RDCAnalyticsUserId = () => auth.currentUser?.uid || '';
         auth.onAuthStateChanged(user => {
+            window.dispatchEvent(new Event('rdc-admin-auth'));
             if (user) {
                 loginContent.style.display = 'none';
                 adminContent.style.display = 'block';
@@ -1363,7 +1369,7 @@ FORMATO:
                 alert('Não foi possível consultar as contagens agora. Verifique a conexão e o login e tente novamente. Nenhum dado foi alterado.');
             } finally {
                 botao.disabled = false;
-                botao.textContent = 'Atualizar contagem';
+                botao.textContent = 'Consultar registros internos';
             }
         }
 

@@ -150,6 +150,11 @@
     const antiga = baseDeOutroDia(snapshot);
     alvo.querySelectorAll("[data-metrica]").forEach(el => {
       const chave = el.dataset.metrica, valor = c[chave];
+      if (el.dataset.metricaLegado === 'true') {
+        el.textContent = '—';
+        el.title = 'Coleta de entradas da vitrine desativada no modo informativo. Consulte o Google Analytics para audiência atual.';
+        return;
+      }
       el.title = antiga ? "Base consultada só até " + snapshot.ultimoDia + "; atualize a contagem para completar os dias seguintes." : "";
       el.textContent = antiga && (chave === "visitasHoje" || chave === "cliquesHoje") ? "—"
         : chave === "taxa" ? valor === null ? "—"
