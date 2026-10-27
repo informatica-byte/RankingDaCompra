@@ -7,22 +7,23 @@ import {buildLinkAuditBot} from './build-link-audit-bot.mjs';
 const req={productId:'jbl',title:'Fone JBL Tune 520BT Preto',affiliateUrl:'https://meli.la/abc',expectedUrl:'https://www.mercadolivre.com.br/fone/p/MLB23997257?wid=MLB1234567890'};
 const ok={url:'https://www.mercadolivre.com.br/fone/p/MLB23997257?wid=MLB1234567890&matt_tracing_id=not-a-secret',title:'JBL Tune 520BT Fone sem fio',listingIds:['MLB1234567890'],buyable:true};
 
-test('confirma somente identidade coerente e ação de compra visível, sem exigir preço',()=>{
- const result=core.classify(req,ok);assert.equal(result.status,'active_same');assert.equal(result.kind,core.KIND);assert.equal(result.readOnly,true);
+test('confirma disponibilidade sem comparar nome, identidade ou preço',()=>{
+ const result=core.classify(req,ok);assert.equal(result.status,'available');assert.equal(result.kind,core.KIND);assert.equal(result.readOnly,true);assert.equal(result.inspection,'availability');
  assert.equal(result.finalUrl,'https://www.mercadolivre.com.br/fone/p/MLB23997257?wid=MLB1234567890');
  assert.doesNotMatch(JSON.stringify(result),/preco|price|currency|matt_tracing/);
- assert.equal(core.classify(req,{...ok,buyable:false}).status,'identity_unconfirmed');
- assert.equal(core.classify(req,{...ok,title:''}).status,'identity_unconfirmed');
+ assert.equal(core.classify(req,{...ok,buyable:false}).status,'unverified');
+ assert.equal(core.classify(req,{...ok,title:''}).status,'available');
 });
-test('catálogo igual não mascara vendedor diferente, códigos conflitantes ou produto divergente',()=>{
- for(const e of [{...ok,url:ok.url.replace('MLB1234567890','MLB9999999999'),listingIds:['MLB9999999999']},{...ok,listingIds:['MLB9999999999']},{...ok,title:'JBL Tune 720BT Fone sem fio'},{...ok,url:'https://shopee.com.br/product/123/456'}])assert.equal(core.classify(req,e).status,'different_target');
- assert.equal(core.classify(req,{...ok,listingIds:['MLB1234567890','MLB9999999999']}).status,'identity_unconfirmed');
+test('troca de nome ou código não é critério de indisponibilidade; loja inválida permanece não verificada',()=>{
+ for(const e of [{...ok,url:ok.url.replace('MLB1234567890','MLB9999999999'),listingIds:['MLB9999999999']},{...ok,listingIds:['MLB9999999999']},{...ok,title:'JBL Tune 720BT Fone sem fio'}])assert.equal(core.classify(req,e).status,'available');
+ assert.equal(core.classify(req,{...ok,url:'https://shopee.com.br/product/123/456'}).status,'unverified');
+ assert.equal(core.classify(req,{...ok,listingIds:['MLB1234567890','MLB9999999999']}).status,'available');
  assert.equal(core.identity(req.expectedUrl+'#wid=MLB9999999999'),null);
 });
-test('redirecionamento que remove wid exige anúncio visível; catálogo sozinho não comprova a oferta',()=>{
+test('catálogo com compra habilitada basta para disponibilidade, sem exigir wid ou nome',()=>{
  const noWid={...ok,url:'https://www.mercadolivre.com.br/fone/p/MLB23997257',listingIds:[]};
- assert.equal(core.classify(req,noWid).status,'identity_unconfirmed');
- assert.equal(core.classify(req,{...noWid,listingIds:['MLB1234567890']}).status,'active_same');
+ assert.equal(core.classify(req,noWid).status,'available');
+ assert.equal(core.classify(req,{...noWid,title:'Outro nome',listingIds:['MLB1234567890']}).status,'available');
 });
 test('capacidade, modelos e edições contraditórios não viram o mesmo produto',()=>{
  for(const [a,b]of [['Samsung Galaxy A55 256 GB','Samsung Galaxy A55 128 GB'],['Apple iPhone 15 Pro 256 GB','Apple iPhone 15 256 GB'],['Sony PS5 Slim Disk com leitor','Sony PS5 Slim Digital 825 GB'],['Fone JBL Tune 520BT','Fone JBL Tune 720BT']])assert.equal(core.titleMatch(a,b),'different',a);
@@ -31,16 +32,16 @@ test('capacidade, modelos e edições contraditórios não viram o mesmo produto
 test('CAPTCHA/login e falhas não são anúncio indisponível; não há prova baseada em preço',()=>{
  assert.equal(core.classify(req,{...ok,security:true,unavailable:true,primaryNotice:true}).status,'security');
  assert.equal(core.classify(req,{...ok,login:true}).status,'login');
- assert.equal(core.classify(req,{...ok,unavailable:true,primaryNotice:false}).status,'active_same');
+ assert.equal(core.classify(req,{...ok,unavailable:true,primaryNotice:false}).status,'available');
  assert.equal(core.classify(req,{...ok,unavailable:true,primaryNotice:true,buyable:false}).status,'unavailable');
- assert.equal(core.classify(req,{...ok,url:'https://www.mercadolivre.com.br/',listingIds:[],unavailable:true,primaryNotice:true}).status,'identity_unconfirmed');
+ for(const path of ['/','/social/afiliado','/social/afiliado/lists','/social/afiliado?wid=MLB1234567890','/ofertas','/search'])assert.equal(core.classify(req,{...ok,url:'https://www.mercadolivre.com.br'+path,listingIds:[],unavailable:true,primaryNotice:true}).status,'unverified');
 });
-test('Shopee verifica shop/item; link curto sem original fica explicitamente não confirmado',()=>{
+test('Shopee confirma disponibilidade sem exigir original ou comparar shop/item',()=>{
  const shopee={productId:'fone',title:'Fone Soundcore P30i Anker',affiliateUrl:'https://s.shopee.com.br/example',expectedUrl:'https://shopee.com.br/product/1776344676/58264946714'};
  const e={url:'https://shopee.com.br/fone-i.1776344676.58264946714?utm_source=affiliate',title:'Fone Anker Soundcore P30i',buyable:true};
- assert.equal(core.classify(shopee,e).status,'active_same');
- assert.equal(core.classify({...shopee,expectedUrl:''},e).status,'identity_unconfirmed');
- assert.equal(core.classify(shopee,{...e,url:e.url.replace('58264946714','12345678901')}).status,'different_target');
+ assert.equal(core.classify(shopee,e).status,'available');
+ assert.equal(core.classify({...shopee,expectedUrl:''},e).status,'available');
+ assert.equal(core.classify(shopee,{...e,url:e.url.replace('58264946714','12345678901')}).status,'available');
  assert.throws(()=>core.request({...shopee,expectedUrl:req.expectedUrl}));
 });
 test('URLs enganosas, credenciais, domínios externos e protocolos inseguros são recusados',()=>{
@@ -56,11 +57,18 @@ test('fila não modifica produtos, usa afiliado de verdade e inclui pausados só
 test('pedido não navega diretamente para conta, carrinho, pagamento ou página genérica',()=>{
  for(const affiliateUrl of ['https://www.mercadolivre.com.br/cart/','https://shopee.com.br/checkout/','https://www.mercadolivre.com.br/login/','https://www.mercadolivre.com.br/'])assert.throws(()=>core.request({...req,expectedUrl:'',affiliateUrl}));
 });
+
+test('prefere anúncio original e registra explicitamente a alternativa quando só existe afiliado',()=>{
+ const original=core.request(req);assert.equal(original.checkUrl,req.expectedUrl);assert.equal(original.checkedVia,'original_product');assert.equal(original.inspection,'availability');
+ const fallback=core.request({...req,expectedUrl:''});assert.equal(fallback.checkUrl,req.affiliateUrl);assert.equal(fallback.checkedVia,'affiliate_fallback');
+ const p={id:'p',titulo:'Modelo apenas na Shopee',link:'https://shopee.com.br/product/123/456',linkAfiliado:'https://s.shopee.com.br/test',linkShopee:'https://s.shopee.com.br/test'};
+ const rows=core.queue([p]);assert.equal(rows.length,1);assert.equal(rows[0].key,'p:shopee');assert.equal(rows[0].checkUrl,p.link);assert.equal(rows[0].market,'shopee');
+});
 test('evidência de página ignora recomendações e não procura valores monetários',()=>{
  const node=(textContent,excluded=false)=>({textContent,disabled:false,closest:()=>excluded?{}:null,getClientRects:()=>[{}],getAttribute:()=>null});
  const h=node('JBL Tune 520BT Fone sem fio'),b=node('Comprar agora'),bad=node('Produto indisponível',true),code=node('Anúncio #1234567890');
  const doc={body:{innerText:'Fone JBL Tune 520BT R$ 99,90'},defaultView:{getComputedStyle:()=>({display:'block',visibility:'visible'})},querySelectorAll:s=>{if(/price|money|currency/i.test(s))throw Error('não ler preço');return s.startsWith('h1')?[h]:s.includes('ui-pdp-message')?[bad]:s.includes('ui-pdp-actions')?[b]:s.includes('denounce')?[code]:[];}};
- assert.equal(core.classify(req,core.evidence(doc,ok.url)).status,'active_same');
+ assert.equal(core.classify(req,core.evidence(doc,ok.url)).status,'available');
  assert.equal(core.evidence({...doc,body:{innerText:'Não sou um robô'}},ok.url).security,true);
  assert.equal(core.evidence(doc,'https://shopee.com.br/buyer/login?state=sensitive').login,true);
 });
@@ -76,9 +84,9 @@ test('nova instalação bloqueia chamadas de preço e exige novo protocolo vincu
  const f=await bridge();assert.equal(f.panel.__RDC_BOT_PRECOS_LOCAL__.ready,false);assert.equal(f.panel.__RDC_BOT_LINKS_LOCAL__.readOnly,true);
  await assert.rejects(f.panel.conferirPrecoNaAbaLocal(req),/somente links/);
  const waiting=f.panel.conferirLinkAfiliadoNaAbaLocal(req),command=f.values.get('rdc_link_audit_command_v1');assert.ok(command);assert.equal(f.opens.length,1);assert.match(f.opens[0][0],/mercadolivre.com.br\/#_rdc_link_audit=/);
- const result={...core.classify(req,ok),requestId:command.requestId,session:command.session,affiliateUrl:command.affiliateUrl};let resolved=false;waiting.then(()=>resolved=true);
- f.respond({...result,requestId:'old'});f.respond({...result,productId:'other'});f.respond({...result,session:'other'});await Promise.resolve();assert.equal(resolved,false);
- f.respond({...result,preco:999,token:'DO-NOT-COPY'});const out=await waiting;assert.equal(out.status,'active_same');assert.equal('preco'in out,false);assert.equal('token'in out,false);assert.equal(f.values.get('rdc_link_audit_command_v1'),null);assert.equal(f.values.get('rdc_link_audit_result_v1'),null);assert.equal(f.listeners.size,0);
+ const result={...core.classify(req,ok),requestId:command.requestId,session:command.session,affiliateUrl:command.affiliateUrl,checkUrl:command.checkUrl};let resolved=false;waiting.then(()=>resolved=true);
+ f.respond({...result,requestId:'old'});f.respond({...result,productId:'other'});f.respond({...result,session:'other'});f.respond({...result,checkUrl:'https://meli.la/wrong'});f.respond({...result,robotVersion:'2.5.0'});await Promise.resolve();assert.equal(resolved,false);
+ f.respond({...result,preco:999,token:'DO-NOT-COPY'});const out=await waiting;assert.equal(out.status,'available');assert.equal('preco'in out,false);assert.equal('token'in out,false);assert.equal(f.values.get('rdc_link_audit_command_v1'),null);assert.equal(f.values.get('rdc_link_audit_result_v1'),null);assert.equal(f.listeners.size,0);
 });
 test('consulta concorrente, cancelamento e timeout não alteram dados ou confundem sessão',async()=>{
  const f=await bridge(),first=f.panel.conferirLinkAfiliadoNaAbaLocal(req);
@@ -89,7 +97,7 @@ test('consulta concorrente, cancelamento e timeout não alteram dados ou confund
 test('pacote gerado é reproduzível e substitui identidade antiga sem permissões de API/cookies',async()=>{
  const before=await readFile(new URL('../bot-links.user.js',import.meta.url),'utf8'),built=await buildLinkAuditBot(undefined,false);assert.equal(before.replace(/\r\n/g,'\n'),built);
  const old=await readFile(new URL('../bot-precos.user.js',import.meta.url),'utf8');for(const field of ['name','namespace'])assert.equal(built.match(new RegExp('^// @'+field+'\\s+(.+)$','m'))?.[1],old.match(new RegExp('^// @'+field+'\\s+(.+)$','m'))?.[1]);
- assert.match(built,/@version\s+2\.5\.0/);assert.doesNotMatch(built,/GM_xmlhttpRequest|GM_cookie|parsePrice|updateDoc|setDoc|runTransaction|\.submit\(|\.click\(/);
+ assert.match(built,/@version\s+2\.5\.1/);assert.doesNotMatch(built,/GM_xmlhttpRequest|GM_cookie|parsePrice|updateDoc|setDoc|runTransaction|\.submit\(|\.click\(/);
 });
 
 async function worker(state,href,values,body=''){
@@ -99,13 +107,13 @@ async function worker(state,href,values,body=''){
  vm.runInContext(await readFile(new URL('../bot-links.user.js',import.meta.url),'utf8'),context);
  for(let i=0;i<20;i++)await new Promise(setImmediate);return {navigations,intervals,context};
 }
-test('worker preserva vínculo antes de seguir afiliado e confere depois do redirecionamento, sem capturar abas comuns',async()=>{
+test('worker visita anúncio original em vez do perfil afiliado, preservando vínculo após redirecionar',async()=>{
  const session='test-link-worker-session',command={...core.request(req),requestId:'request-worker',session,createdAt:Date.now()},values=new Map([['rdc_link_audit_command_v1',command]]),state={};
  const common=await worker({},ok.url,values);assert.equal(common.navigations.length,0);assert.equal(common.intervals.length,0);
  const first=await worker(state,'https://www.mercadolivre.com.br/#_rdc_link_audit='+session,values);
- assert.equal(first.navigations[0],req.affiliateUrl);assert.equal(state.rdcLinkAuditNavigation,command.requestId);
+ assert.equal(first.navigations[0],req.expectedUrl);assert.equal(state.rdcLinkAuditNavigation,command.requestId);
  const second=await worker(state,ok.url,values);assert.equal(second.navigations.length,0);
- const result=values.get('rdc_link_audit_result_v1');assert.equal(result.status,'active_same');assert.equal(result.session,session);assert.equal(result.requestId,command.requestId);assert.equal('preco'in result,false);
+ const result=values.get('rdc_link_audit_result_v1');assert.equal(result.status,'available');assert.equal(result.checkUrl,req.expectedUrl);assert.equal(result.session,session);assert.equal(result.requestId,command.requestId);assert.equal('preco'in result,false);
 });
 test('worker pausa no CAPTCHA, ignora protocolo antigo e sessão antiga não sobrescreve heartbeat atual',async()=>{
  const session='test-link-security-session',command={...core.request(req),requestId:'request-security',session,createdAt:Date.now()},values=new Map([['rdc_link_audit_command_v1',command]]),state={rdcLinkAuditSession:session,rdcLinkAuditNavigation:command.requestId};

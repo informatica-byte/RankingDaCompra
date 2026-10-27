@@ -14,7 +14,7 @@ window.record=Object.freeze({id:'jbl',titulo:'JBL Tune 520BT Fone sem fio',preco
 window.reviewRecord={...record};window.writes=[];window.protections=0;
 window.RDCAffiliateAuditReview=RDCAffiliateLinkReview.create({authorize:()=> 'admin',read:async()=>({...reviewRecord}),prepare:async p=>p,transact:async(_id,action)=>{let changes;const result=await action({read:async()=>({...reviewRecord}),protect:async()=>{protections++;},update:p=>{changes=p;}});if(changes){writes.push(changes);Object.assign(reviewRecord,changes);}return result;},timestamp:()=> 'test-stamp',append:x=>[x]});
 window.RDCAffiliateAuditSource=async()=>{sourceReads++;return [record];};
-window.__RDC_BOT_LINKS_LOCAL__={version:'2.5.0',readOnly:true,ready:true};
+window.__RDC_BOT_LINKS_LOCAL__={version:'2.5.1',readOnly:true,ready:true};
 window.conferirLinkAfiliadoNaAbaLocal=async row=>{calls.push({id:row.productId,market:row.market});return RDCAffiliateLinkAudit.classify(row,{url:row.expectedUrl,title:row.title,buyable:true,security:row.market==='shopee'&&!securityResolved});};
 window.cancelarConferenciaLinksLocal=()=>cancelCalls++;
 </script><script defer src="/affiliate-link-panel.js"></script></head><body><a href="#precos-mobile">Preços</a><button id="tab-precos">Preços</button><main id="${mobile?'app':'admin-content'}"><section id="${mobile?'precos-mobile':'painel-precos'}"><button>Conferir todos os preços</button><input id="historical-price" value="100"></section></main></body></html>`;
@@ -40,9 +40,10 @@ try{
   const initial=await page.evaluate(()=>JSON.parse(localStorage.getItem('rdc-affiliate-audit-report-v1')));assert.equal(initial.records.length,2);assert.doesNotMatch(JSON.stringify(initial),/"preco"|"price"|token|credential/);
   await page.evaluate(()=>securityResolved=true);await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
   assert.equal(await page.evaluate(()=>calls.length),3);assert.match(await page.locator('[data-audit-summary]').innerText(),/2 confirmado/);assert.equal(await page.evaluate(()=>record.preco),100);
-  const final=await page.evaluate(()=>JSON.parse(localStorage.getItem('rdc-affiliate-audit-report-v1')));assert.ok(final.records.every(x=>x.status==='active_same'));
+  const final=await page.evaluate(()=>JSON.parse(localStorage.getItem('rdc-affiliate-audit-report-v1')));assert.ok(final.records.every(x=>x.status==='available'));
   await page.screenshot({path:resolve(root,'.informational-qa','links-'+file.replace('.html','')+'-390.png'),fullPage:true});
   await page.setViewportSize({width:360,height:800});assert.equal(await page.locator('body').evaluate(b=>b.scrollWidth<=innerWidth+1),true);
+  await page.evaluate(()=>{const key='rdc-affiliate-audit-report-v1',r=JSON.parse(localStorage.getItem(key));r.records[0].status='active_same';r.records[0].robotVersion='2.5.0';delete r.records[0].inspection;localStorage.setItem(key,JSON.stringify(r));});
   await page.reload();await page.locator('[data-audit-load]').click();await page.waitForFunction(()=>!document.querySelector('[data-audit-start]').disabled);await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
   assert.equal(await page.evaluate(()=>calls.length),0,'retomada não repete confirmados');assert.equal(await page.evaluate(()=>sourceReads),1);
   await page.evaluate(()=>{window.RDCAffiliateAuditSource=async()=>{sourceReads++;return [record,...Array.from({length:55},(_,i)=>({...record,id:'extra-'+i,linkShopee:''}))];};});

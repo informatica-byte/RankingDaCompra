@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.5.0
-// @description  Agora somente links de afiliados: disponibilidade e identidade, sem preços ou alterações de cadastros. Nome preservado para atualizar o robô antigo.
+// @version      2.5.1
+// @description  Somente anúncio disponível ou indisponível, pelo link original quando cadastrado. Não compara produtos ou preços nem altera cadastros. Nome preservado para atualizar a instalação antiga.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
 // @match        https://*.mercadolivre.com.br/*
@@ -28,8 +28,8 @@
 
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.RDCAffiliateLinkAudit=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
- const VERSION='2.5.0',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
- const STATES=['active_same','unavailable','different_target','identity_unconfirmed','security','login','error'];
+ const VERSION='2.5.1',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
+ const STATES=['available','unavailable','unverified','security','login','error','active_same','different_target','identity_unconfirmed'];
  const text=x=>String(x||'').replace(/\s+/g,' ').trim();
  const redacted=x=>text(x).replace(/\b(?:Bearer\s+\S+|eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)\b/g,'[credencial omitida]').replace(/\b(?:access_token|refresh_token|client_secret|authorization|password|senha|cookie)\s*[:=]\s*\S+/gi,'[credencial omitida]');
  const normalize=x=>text(x).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
@@ -77,28 +77,23 @@
   const target=identity(input.affiliateUrl),short=['meli.la','www.meli.la','s.shopee.com.br','shope.ee'].includes(affiliate.u.hostname)||/^\/sec\/[a-z0-9_-]+\/?$/i.test(affiliate.u.pathname);
   if(/\/(?:checkout|cart|carrinho|payment|payments|orders|account|login|oauth|auth)(?:\/|$)/i.test(affiliate.u.pathname)||(!short&&!target?.listing&&!target?.catalog))throw Error('Use um link de produto/afiliado, não de conta, carrinho ou pagamento.');
   if(input.expectedUrl&&(!expected||expected.market!==affiliate.market||!identity(input.expectedUrl)))throw Error('O endereço original não identifica a mesma loja com segurança.');
-  return {kind:KIND,readOnly:true,productId:text(input.productId).slice(0,100),title:text(input.title).slice(0,300),affiliateUrl:affiliate.u.href,expectedUrl:expected?.u.href||'',market:affiliate.market};
+  const original=expected&&identity(expected.u.href),useOriginal=!!(original?.listing||original?.catalog);
+  return {kind:KIND,readOnly:true,inspection:'availability',checkedVia:useOriginal?'original_product':'affiliate_fallback',checkUrl:useOriginal?expected.u.href:affiliate.u.href,productId:text(input.productId).slice(0,100),title:text(input.title).slice(0,300),affiliateUrl:affiliate.u.href,expectedUrl:expected?.u.href||'',market:affiliate.market};
  }
  function classify(input,e){
-  const req=request(input),base={kind:KIND,readOnly:true,productId:req.productId,market:req.market,checkedAt:Date.now(),foundTitle:redacted(e.title).slice(0,300),finalUrl:publicURL(e.url),robotVersion:VERSION};
+  const req=request(input),base={kind:KIND,readOnly:true,inspection:'availability',checkedVia:req.checkedVia,productId:req.productId,market:req.market,checkedAt:Date.now(),foundTitle:redacted(e.title).slice(0,300),finalUrl:publicURL(e.url),robotVersion:VERSION};
   const done=(status,reason)=>({...base,status,reason});
   if(e.security)return done('security','Verificação humana ou bloqueio de acesso. Resolva pessoalmente; não é prova de anúncio indisponível.');
   if(e.login)return done('login','A loja exige login para concluir a leitura. Nenhum cadastro foi alterado.');
-  const actual=identity(e.url),expected=req.expectedUrl?identity(req.expectedUrl):null;
-  if(!actual||actual.market!==req.market)return done('different_target','O destino não pertence à loja esperada ou contém identidade conflitante.');
-  const visible=Array.isArray(e.listingIds)?[...new Set(e.listingIds)]:[];
-  if(visible.length>1)return done('identity_unconfirmed','Mais de um anúncio principal foi identificado. Confira manualmente.');
-  const actualListing=actual.listing||visible[0]||'';
-  if(actual.listing&&visible.length&&actual.listing!==visible[0])return done('different_target','O código visível e o endereço final divergem.');
-  if(expected?.listing&&actualListing&&expected.listing!==actualListing)return done('different_target','O link abriu outro anúncio. O link cadastrado foi preservado.');
-  if(expected?.catalog&&actual.catalog&&expected.catalog!==actual.catalog&&!expected.listing)return done('different_target','O catálogo final é diferente do cadastro.');
-  const names=titleMatch(req.title,e.title);if(names==='different')return done('different_target','Nome/modelo, edição ou capacidade contraditórios. Nenhuma substituição foi feita.');
-  const proved=!!expected&&((expected.listing&&expected.listing===actualListing)||(!expected.listing&&expected.catalog&&expected.catalog===actual.catalog));
-  if(proved&&e.unavailable&&e.primaryNotice)return done('unavailable','A página principal informa indisponibilidade. Não houve pausa, remoção ou troca automática.');
-  if(!proved)return done('identity_unconfirmed',names==='compatible'?'Nome compatível, mas falta código original suficiente para confirmar o destino.':'Não foi possível comprovar a identidade do produto cadastrado.');
-  if(names!=='compatible')return done('identity_unconfirmed','O código corresponde, mas o nome exibido está ausente ou não foi confirmado.');
-  if(!e.buyable)return done('identity_unconfirmed','Identidade compatível, mas não foi possível confirmar disponibilidade na página principal.');
-  return done('active_same','Link abriu o produto identificado e a página principal exibe ação de compra. Verificação pontual, sem garantia de estoque futuro.');
+  const actual=identity(e.url);
+  if(!actual||actual.market!==req.market)return done('unverified','Não foi possível ler um anúncio da loja esperada. Isso não comprova indisponibilidade.');
+  // Availability is not an identity audit. Still require a real product page,
+  // so a profile, list, search or recommendation is never counted as stock.
+  const path=url(e.url)?.u.pathname||'',productRoute=actual.market==='shopee'?!!actual.listing:/\/(?:p|up)\/MLBU?\d+(?:\/|$)|(?:^|\/)MLB-\d+(?:-|\/|$)/i.test(path);
+  if(!productRoute||/^\/(?:social|ofertas|search|lista|lists)(?:\/|$)/i.test(path))return done('unverified','A página aberta não é um anúncio de produto (pode ser perfil, lista ou redirecionamento). Confira o link original; não foi classificado como indisponível.');
+  if(e.unavailable&&e.primaryNotice)return done('unavailable','O anúncio informa que está pausado, encerrado ou sem estoque. Nenhum cadastro ou link foi alterado.');
+  if(e.buyable)return done('available','O anúncio exibe uma ação de compra habilitada. Apenas disponibilidade foi conferida; nome, modelo, preço e destino do afiliado não foram comparados.');
+  return done('unverified','O anúncio não mostrou informação suficiente para decidir se está disponível. Tente novamente ou confira manualmente; não é prova de indisponibilidade.');
  }
  function visible(doc,node){if(!node||node.closest?.('[hidden],[aria-hidden="true"],[class*="recommend"],[class*="carousel"],footer'))return false;const view=doc.defaultView;if(!view)return false;const s=view.getComputedStyle(node);return s.display!=='none'&&s.visibility!=='hidden'&&node.getClientRects().length>0;}
  function evidence(doc,href){
@@ -109,21 +104,23 @@
   const login=/\/(?:login|auth|sign-in|buyer\/login)(?:\/|$)/i.test(path);
   const notices=[...doc.querySelectorAll('.ui-pdp-message,.ui-pdp-stock-information,[data-testid="product-unavailable"],[role="alert"],.product-not-exist')].filter(n=>visible(doc,n));
   const unavailable=notices.some(n=>/an[uú]ncio (?:pausado|finalizado)|produto (?:sem estoque|indispon[ií]vel)|este (?:produto|an[uú]ncio) n[aã]o est[aá] dispon[ií]vel|produto n[aã]o encontrado|sold out|produto esgotado/i.test(text(n.textContent)))||/^(?:n[aã]o encontramos|produto n[aã]o encontrado|an[uú]ncio (?:pausado|finalizado))/i.test(title);
-  const controls=market==='shopee'?'[data-testid="buy-now"],.product-briefing button,.product-briefing [role="button"]':'.ui-pdp-actions button,.ui-pdp-buybox button';
+  const controls=market==='shopee'?'[data-testid="buy-now"],.product-briefing button,.product-briefing [role="button"],main button,[role="main"] button,.page-product button':'.ui-pdp-actions button,.ui-pdp-buybox button,.ui-vpp-buybox button';
   const buyable=[...doc.querySelectorAll(controls)].some(n=>visible(doc,n)&&!n.disabled&&n.getAttribute('aria-disabled')!=='true'&&/comprar|adicionar ao carrinho|buy now/i.test(text(n.textContent)));
   const listingIds=market==='mercado_livre'?[...doc.querySelectorAll('.ui-vpp-denounce__info,.ui-pdp-denounce__info')].filter(n=>visible(doc,n)).map(n=>text(n.textContent).match(/An[uú]ncio\s*#?\s*(?:MLB-?)?(\d{6,})/i)?.[1]).filter(Boolean).map(x=>'MLB'+x):[];
   return {url:href,title,security,login,unavailable,primaryNotice:unavailable,buyable,listingIds};
  }
  function queue(products,includePaused=true){
   const out=[],seen=new Set();for(const p of products||[]){if(!p?.id||p.sistema===true||!text(p.titulo)||(!includePaused&&p.conferenciaPausada===true))continue;
-   for(const [market,affiliate,source]of [['mercado_livre',p.linkAfiliado,p.link],['shopee',p.linkShopee,p.linkShopeeOriginal||p.urlShopee||p.linkShopee]]){
+   const primary=url(p.linkAfiliado)?.market||url(p.link)?.market||'mercado_livre';
+   const candidates=primary==='shopee'?[['shopee',p.linkShopee||p.linkAfiliado,p.linkShopeeOriginal||p.urlShopee||p.link]]:[['mercado_livre',p.linkAfiliado,p.link],['shopee',p.linkShopee,p.linkShopeeOriginal||p.urlShopee||p.linkShopee]];
+   for(const [market,affiliate,source]of candidates){
     if(!affiliate)continue;const key=String(p.id)+':'+market;if(seen.has(key))continue;seen.add(key);
     try{const expected=url(source)?.market===market?source:'';out.push({...request({productId:String(p.id),title:p.titulo,affiliateUrl:affiliate,expectedUrl:expected}),key,paused:p.conferenciaPausada===true});}
     catch{out.push({key,productId:String(p.id),title:text(p.titulo).slice(0,300),market,invalid:true});}
    }
   }return out;
  }
- function safeResult(value){if(value?.kind!==KIND||value.readOnly!==true||!STATES.includes(value.status)||!Number.isFinite(value.checkedAt))throw Error('Resposta de links inválida.');return {kind:KIND,readOnly:true,productId:text(value.productId).slice(0,100),market:['mercado_livre','shopee'].includes(value.market)?value.market:'',status:value.status,reason:redacted(value.reason).slice(0,500),foundTitle:redacted(value.foundTitle).slice(0,300),finalUrl:publicURL(value.finalUrl),checkedAt:value.checkedAt,robotVersion:VERSION};}
+ function safeResult(value){if(value?.kind!==KIND||value.readOnly!==true||!STATES.includes(value.status)||!Number.isFinite(value.checkedAt))throw Error('Resposta de links inválida.');return {kind:KIND,readOnly:true,inspection:value.inspection==='availability'?'availability':'',checkedVia:['original_product','affiliate_fallback'].includes(value.checkedVia)?value.checkedVia:'',productId:text(value.productId).slice(0,100),market:['mercado_livre','shopee'].includes(value.market)?value.market:'',status:value.status,reason:redacted(value.reason).slice(0,500),foundTitle:redacted(value.foundTitle).slice(0,300),finalUrl:publicURL(value.finalUrl),checkedAt:value.checkedAt,robotVersion:text(value.robotVersion).slice(0,20)};}
  const project=(p,id=p?.id)=>({id:String(id||''),titulo:p?.titulo,link:p?.link,linkAfiliado:p?.linkAfiliado,linkShopee:p?.linkShopee,linkShopeeOriginal:p?.linkShopeeOriginal,urlShopee:p?.urlShopee,conferenciaPausada:p?.conferenciaPausada===true,sistema:p?.sistema===true});
  return {VERSION,KIND,MAX_AGE,STATES,normalize,url,identity,publicURL,titleMatch,request,classify,evidence,queue,safeResult,project};
 });
@@ -150,12 +147,12 @@
     if(renew){session=random();renew=false;}
     const requestId=random();active=requestId;let listener,timer,poll;
     const clear=()=>{clearTimeout(timer);clearInterval(poll);if(listener!==undefined)unlisten(listener);if(get(COMMAND)?.requestId===requestId)set(COMMAND,null);if(get(RESULT)?.requestId===requestId)set(RESULT,null);active=null;};
-    const accept=value=>{if(!value||value.requestId!==requestId||value.session!==session||value.affiliateUrl!==req.affiliateUrl||value.productId!==req.productId)return;
+    const accept=value=>{if(!value||value.requestId!==requestId||value.session!==session||value.affiliateUrl!==req.affiliateUrl||value.checkUrl!==req.checkUrl||value.productId!==req.productId||value.robotVersion!==core.VERSION||value.inspection!=='availability')return;
      try{const result=core.safeResult(value);clear();resolve(result);}catch{} };
     listener=listen(RESULT,(_k,_old,value)=>accept(value));poll=setInterval(()=>{if(get(COMMAND)?.requestId!==requestId){clear();reject(Object.assign(Error('Consulta interrompida; nenhum cadastro foi alterado.'),{code:'RDC_AUDIT_STOPPED'}));return;}accept(get(RESULT));},500);
     timer=setTimeout(()=>{clear();renew=true;reject(Object.assign(Error('Não houve resposta em 60 segundos. O resultado fica pendente, não indisponível.'),{code:'RDC_AUDIT_TIMEOUT'}));},60000);
     set(COMMAND,{...req,requestId,session,createdAt:Date.now()});
-    const worker=get(HEARTBEAT),live=worker?.session===session&&Date.now()-worker.at<15000;
+    const worker=get(HEARTBEAT),live=worker?.session===session&&worker.version===core.VERSION&&Date.now()-worker.at<15000;
     if(!live){const home=req.market==='shopee'?'https://shopee.com.br/':'https://www.mercadolivre.com.br/';
      const opened=root.open(home+'#_rdc_link_audit='+session,'rdc_link_audit_'+session,root.innerWidth>=900?'popup=yes,width=640,height=850':'');
      if(!opened){clear();reject(Object.assign(Error('Permita a abertura da aba da loja e tente iniciar novamente.'),{code:'RDC_POPUP_BLOCKED'}));return;}
@@ -166,20 +163,20 @@
   let session='',navigation='',processing='',completed='';
   const tabRead=()=>new Promise(r=>{try{getTab(t=>r(t||{}));}catch{r({});}});
   const persist=async()=>{const tab=await tabRead();await new Promise(r=>{try{saveTab({...tab,rdcLinkAuditSession:session,rdcLinkAuditNavigation:navigation},r);}catch{r();}});};
-  const send=(command,result)=>{if(get(COMMAND)?.requestId!==command.requestId)return;set(RESULT,{...core.safeResult(result),requestId:command.requestId,session,affiliateUrl:command.affiliateUrl});};
-  async function run(){const c=get(COMMAND);if(!session)return;if(c?.session===session)set(HEARTBEAT,{session,at:Date.now()});
+  const send=(command,result)=>{if(get(COMMAND)?.requestId!==command.requestId)return;set(RESULT,{...core.safeResult(result),requestId:command.requestId,session,affiliateUrl:command.affiliateUrl,checkUrl:command.checkUrl});};
+  async function run(){const c=get(COMMAND);if(!session)return;if(c?.session===session)set(HEARTBEAT,{session,version:core.VERSION,at:Date.now()});
    if(!c||c.kind!==core.KIND||c.readOnly!==true||c.session!==session||!c.requestId||Date.now()-c.createdAt>90000||processing===c.requestId||completed===c.requestId)return;
-   try{core.request(c);}catch{return;}
+   let req;try{req=core.request(c);if(c.checkUrl!==req.checkUrl||c.inspection!=='availability')return;}catch{return;}
    processing=c.requestId;
    try{
-    if(navigation!==c.requestId){navigation=c.requestId;await persist();if(get(COMMAND)?.requestId!==c.requestId)return;loc.assign(c.affiliateUrl);return;}
+    if(navigation!==c.requestId){navigation=c.requestId;await persist();if(get(COMMAND)?.requestId!==c.requestId)return;loc.assign(req.checkUrl);return;}
     let last='',stable=0,result;
     for(let i=0;i<24;i++){
      if(get(COMMAND)?.requestId!==c.requestId)return;
      result=core.classify(c,core.evidence(doc,loc.href));
      if(['security','login','unavailable'].includes(result.status))break;
      const signature=JSON.stringify([result.status,result.finalUrl,result.foundTitle]);stable=signature===last?stable+1:0;last=signature;
-     if(stable>=2&&['active_same','different_target'].includes(result.status))break;
+     if(stable>=2&&result.status==='available')break;
      await delay(500);
     }
     if(result){send(c,result);completed=c.requestId;}

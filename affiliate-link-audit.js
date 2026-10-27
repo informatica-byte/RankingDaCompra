@@ -1,7 +1,7 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.RDCAffiliateLinkAudit=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
- const VERSION='2.5.0',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
- const STATES=['active_same','unavailable','different_target','identity_unconfirmed','security','login','error'];
+ const VERSION='2.5.1',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
+ const STATES=['available','unavailable','unverified','security','login','error','active_same','different_target','identity_unconfirmed'];
  const text=x=>String(x||'').replace(/\s+/g,' ').trim();
  const redacted=x=>text(x).replace(/\b(?:Bearer\s+\S+|eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)\b/g,'[credencial omitida]').replace(/\b(?:access_token|refresh_token|client_secret|authorization|password|senha|cookie)\s*[:=]\s*\S+/gi,'[credencial omitida]');
  const normalize=x=>text(x).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
@@ -49,28 +49,23 @@
   const target=identity(input.affiliateUrl),short=['meli.la','www.meli.la','s.shopee.com.br','shope.ee'].includes(affiliate.u.hostname)||/^\/sec\/[a-z0-9_-]+\/?$/i.test(affiliate.u.pathname);
   if(/\/(?:checkout|cart|carrinho|payment|payments|orders|account|login|oauth|auth)(?:\/|$)/i.test(affiliate.u.pathname)||(!short&&!target?.listing&&!target?.catalog))throw Error('Use um link de produto/afiliado, não de conta, carrinho ou pagamento.');
   if(input.expectedUrl&&(!expected||expected.market!==affiliate.market||!identity(input.expectedUrl)))throw Error('O endereço original não identifica a mesma loja com segurança.');
-  return {kind:KIND,readOnly:true,productId:text(input.productId).slice(0,100),title:text(input.title).slice(0,300),affiliateUrl:affiliate.u.href,expectedUrl:expected?.u.href||'',market:affiliate.market};
+  const original=expected&&identity(expected.u.href),useOriginal=!!(original?.listing||original?.catalog);
+  return {kind:KIND,readOnly:true,inspection:'availability',checkedVia:useOriginal?'original_product':'affiliate_fallback',checkUrl:useOriginal?expected.u.href:affiliate.u.href,productId:text(input.productId).slice(0,100),title:text(input.title).slice(0,300),affiliateUrl:affiliate.u.href,expectedUrl:expected?.u.href||'',market:affiliate.market};
  }
  function classify(input,e){
-  const req=request(input),base={kind:KIND,readOnly:true,productId:req.productId,market:req.market,checkedAt:Date.now(),foundTitle:redacted(e.title).slice(0,300),finalUrl:publicURL(e.url),robotVersion:VERSION};
+  const req=request(input),base={kind:KIND,readOnly:true,inspection:'availability',checkedVia:req.checkedVia,productId:req.productId,market:req.market,checkedAt:Date.now(),foundTitle:redacted(e.title).slice(0,300),finalUrl:publicURL(e.url),robotVersion:VERSION};
   const done=(status,reason)=>({...base,status,reason});
   if(e.security)return done('security','Verificação humana ou bloqueio de acesso. Resolva pessoalmente; não é prova de anúncio indisponível.');
   if(e.login)return done('login','A loja exige login para concluir a leitura. Nenhum cadastro foi alterado.');
-  const actual=identity(e.url),expected=req.expectedUrl?identity(req.expectedUrl):null;
-  if(!actual||actual.market!==req.market)return done('different_target','O destino não pertence à loja esperada ou contém identidade conflitante.');
-  const visible=Array.isArray(e.listingIds)?[...new Set(e.listingIds)]:[];
-  if(visible.length>1)return done('identity_unconfirmed','Mais de um anúncio principal foi identificado. Confira manualmente.');
-  const actualListing=actual.listing||visible[0]||'';
-  if(actual.listing&&visible.length&&actual.listing!==visible[0])return done('different_target','O código visível e o endereço final divergem.');
-  if(expected?.listing&&actualListing&&expected.listing!==actualListing)return done('different_target','O link abriu outro anúncio. O link cadastrado foi preservado.');
-  if(expected?.catalog&&actual.catalog&&expected.catalog!==actual.catalog&&!expected.listing)return done('different_target','O catálogo final é diferente do cadastro.');
-  const names=titleMatch(req.title,e.title);if(names==='different')return done('different_target','Nome/modelo, edição ou capacidade contraditórios. Nenhuma substituição foi feita.');
-  const proved=!!expected&&((expected.listing&&expected.listing===actualListing)||(!expected.listing&&expected.catalog&&expected.catalog===actual.catalog));
-  if(proved&&e.unavailable&&e.primaryNotice)return done('unavailable','A página principal informa indisponibilidade. Não houve pausa, remoção ou troca automática.');
-  if(!proved)return done('identity_unconfirmed',names==='compatible'?'Nome compatível, mas falta código original suficiente para confirmar o destino.':'Não foi possível comprovar a identidade do produto cadastrado.');
-  if(names!=='compatible')return done('identity_unconfirmed','O código corresponde, mas o nome exibido está ausente ou não foi confirmado.');
-  if(!e.buyable)return done('identity_unconfirmed','Identidade compatível, mas não foi possível confirmar disponibilidade na página principal.');
-  return done('active_same','Link abriu o produto identificado e a página principal exibe ação de compra. Verificação pontual, sem garantia de estoque futuro.');
+  const actual=identity(e.url);
+  if(!actual||actual.market!==req.market)return done('unverified','Não foi possível ler um anúncio da loja esperada. Isso não comprova indisponibilidade.');
+  // Availability is not an identity audit. Still require a real product page,
+  // so a profile, list, search or recommendation is never counted as stock.
+  const path=url(e.url)?.u.pathname||'',productRoute=actual.market==='shopee'?!!actual.listing:/\/(?:p|up)\/MLBU?\d+(?:\/|$)|(?:^|\/)MLB-\d+(?:-|\/|$)/i.test(path);
+  if(!productRoute||/^\/(?:social|ofertas|search|lista|lists)(?:\/|$)/i.test(path))return done('unverified','A página aberta não é um anúncio de produto (pode ser perfil, lista ou redirecionamento). Confira o link original; não foi classificado como indisponível.');
+  if(e.unavailable&&e.primaryNotice)return done('unavailable','O anúncio informa que está pausado, encerrado ou sem estoque. Nenhum cadastro ou link foi alterado.');
+  if(e.buyable)return done('available','O anúncio exibe uma ação de compra habilitada. Apenas disponibilidade foi conferida; nome, modelo, preço e destino do afiliado não foram comparados.');
+  return done('unverified','O anúncio não mostrou informação suficiente para decidir se está disponível. Tente novamente ou confira manualmente; não é prova de indisponibilidade.');
  }
  function visible(doc,node){if(!node||node.closest?.('[hidden],[aria-hidden="true"],[class*="recommend"],[class*="carousel"],footer'))return false;const view=doc.defaultView;if(!view)return false;const s=view.getComputedStyle(node);return s.display!=='none'&&s.visibility!=='hidden'&&node.getClientRects().length>0;}
  function evidence(doc,href){
@@ -81,21 +76,23 @@
   const login=/\/(?:login|auth|sign-in|buyer\/login)(?:\/|$)/i.test(path);
   const notices=[...doc.querySelectorAll('.ui-pdp-message,.ui-pdp-stock-information,[data-testid="product-unavailable"],[role="alert"],.product-not-exist')].filter(n=>visible(doc,n));
   const unavailable=notices.some(n=>/an[uú]ncio (?:pausado|finalizado)|produto (?:sem estoque|indispon[ií]vel)|este (?:produto|an[uú]ncio) n[aã]o est[aá] dispon[ií]vel|produto n[aã]o encontrado|sold out|produto esgotado/i.test(text(n.textContent)))||/^(?:n[aã]o encontramos|produto n[aã]o encontrado|an[uú]ncio (?:pausado|finalizado))/i.test(title);
-  const controls=market==='shopee'?'[data-testid="buy-now"],.product-briefing button,.product-briefing [role="button"]':'.ui-pdp-actions button,.ui-pdp-buybox button';
+  const controls=market==='shopee'?'[data-testid="buy-now"],.product-briefing button,.product-briefing [role="button"],main button,[role="main"] button,.page-product button':'.ui-pdp-actions button,.ui-pdp-buybox button,.ui-vpp-buybox button';
   const buyable=[...doc.querySelectorAll(controls)].some(n=>visible(doc,n)&&!n.disabled&&n.getAttribute('aria-disabled')!=='true'&&/comprar|adicionar ao carrinho|buy now/i.test(text(n.textContent)));
   const listingIds=market==='mercado_livre'?[...doc.querySelectorAll('.ui-vpp-denounce__info,.ui-pdp-denounce__info')].filter(n=>visible(doc,n)).map(n=>text(n.textContent).match(/An[uú]ncio\s*#?\s*(?:MLB-?)?(\d{6,})/i)?.[1]).filter(Boolean).map(x=>'MLB'+x):[];
   return {url:href,title,security,login,unavailable,primaryNotice:unavailable,buyable,listingIds};
  }
  function queue(products,includePaused=true){
   const out=[],seen=new Set();for(const p of products||[]){if(!p?.id||p.sistema===true||!text(p.titulo)||(!includePaused&&p.conferenciaPausada===true))continue;
-   for(const [market,affiliate,source]of [['mercado_livre',p.linkAfiliado,p.link],['shopee',p.linkShopee,p.linkShopeeOriginal||p.urlShopee||p.linkShopee]]){
+   const primary=url(p.linkAfiliado)?.market||url(p.link)?.market||'mercado_livre';
+   const candidates=primary==='shopee'?[['shopee',p.linkShopee||p.linkAfiliado,p.linkShopeeOriginal||p.urlShopee||p.link]]:[['mercado_livre',p.linkAfiliado,p.link],['shopee',p.linkShopee,p.linkShopeeOriginal||p.urlShopee||p.linkShopee]];
+   for(const [market,affiliate,source]of candidates){
     if(!affiliate)continue;const key=String(p.id)+':'+market;if(seen.has(key))continue;seen.add(key);
     try{const expected=url(source)?.market===market?source:'';out.push({...request({productId:String(p.id),title:p.titulo,affiliateUrl:affiliate,expectedUrl:expected}),key,paused:p.conferenciaPausada===true});}
     catch{out.push({key,productId:String(p.id),title:text(p.titulo).slice(0,300),market,invalid:true});}
    }
   }return out;
  }
- function safeResult(value){if(value?.kind!==KIND||value.readOnly!==true||!STATES.includes(value.status)||!Number.isFinite(value.checkedAt))throw Error('Resposta de links inválida.');return {kind:KIND,readOnly:true,productId:text(value.productId).slice(0,100),market:['mercado_livre','shopee'].includes(value.market)?value.market:'',status:value.status,reason:redacted(value.reason).slice(0,500),foundTitle:redacted(value.foundTitle).slice(0,300),finalUrl:publicURL(value.finalUrl),checkedAt:value.checkedAt,robotVersion:VERSION};}
+ function safeResult(value){if(value?.kind!==KIND||value.readOnly!==true||!STATES.includes(value.status)||!Number.isFinite(value.checkedAt))throw Error('Resposta de links inválida.');return {kind:KIND,readOnly:true,inspection:value.inspection==='availability'?'availability':'',checkedVia:['original_product','affiliate_fallback'].includes(value.checkedVia)?value.checkedVia:'',productId:text(value.productId).slice(0,100),market:['mercado_livre','shopee'].includes(value.market)?value.market:'',status:value.status,reason:redacted(value.reason).slice(0,500),foundTitle:redacted(value.foundTitle).slice(0,300),finalUrl:publicURL(value.finalUrl),checkedAt:value.checkedAt,robotVersion:text(value.robotVersion).slice(0,20)};}
  const project=(p,id=p?.id)=>({id:String(id||''),titulo:p?.titulo,link:p?.link,linkAfiliado:p?.linkAfiliado,linkShopee:p?.linkShopee,linkShopeeOriginal:p?.linkShopeeOriginal,urlShopee:p?.urlShopee,conferenciaPausada:p?.conferenciaPausada===true,sistema:p?.sistema===true});
  return {VERSION,KIND,MAX_AGE,STATES,normalize,url,identity,publicURL,titleMatch,request,classify,evidence,queue,safeResult,project};
 });

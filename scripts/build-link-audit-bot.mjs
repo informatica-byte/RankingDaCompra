@@ -4,8 +4,8 @@ export async function buildLinkAuditBot(root=new URL('..',import.meta.url),write
  const metadata=`// ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.5.0
-// @description  Agora somente links de afiliados: disponibilidade e identidade, sem preços ou alterações de cadastros. Nome preservado para atualizar o robô antigo.
+// @version      2.5.1
+// @description  Somente anúncio disponível ou indisponível, pelo link original quando cadastrado. Não compara produtos ou preços nem altera cadastros. Nome preservado para atualizar a instalação antiga.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
 // @match        https://*.mercadolivre.com.br/*
