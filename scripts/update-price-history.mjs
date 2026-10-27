@@ -95,6 +95,8 @@ async function readExisting() {
 }
 
 async function main() {
+  const mode = await fs.readFile(path.join(ROOT,'site-mode.json'),'utf8').then(JSON.parse).catch(error=>{if(error.code==='ENOENT')return null;throw error;});
+  if(mode?.mode==='informational'){console.log('Modo informativo: histórico interno preservado, sem registrar ou renovar preços.');return;}
   const deletedIds = new Set((await localRemovals(ROOT)).ids);
   const history = await readExisting();
   const products = history.products && typeof history.products === "object" ? history.products : {};

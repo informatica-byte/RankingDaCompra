@@ -193,6 +193,8 @@
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
     <script src="/product-save-safety.js?v=20261026-unique"></script>
     <script src="/product-uniqueness.js?v=20261026-1"></script>
+    <link rel="stylesheet" href="/informational-mode.css?v=20261026-info1">
+    <script src="/informational-mode.js?v=20261026-info1"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261026-min2415"></script>
     <script src="/assisted-report-recovery.js?v=20261018-1"></script>
@@ -3086,8 +3088,8 @@
             dataCadastro: serverTimestamp(),
             atualizadoEm: serverTimestamp(),
           };
-        if (!atual || !anterior || atual >= anterior) return msg("pub-status", "O preço anterior precisa ser maior que o atual.", "erro");
-        if ((linkShopee && !precoShopee) || (!linkShopee && precoShopee)) return msg("pub-status", "Para oferecer a Shopee, informe o link e o preço juntos.", "erro");
+        if (!window.RDCInformational?.enabled && (!atual || !anterior || atual >= anterior)) return msg("pub-status", "O preço anterior precisa ser maior que o atual.", "erro");
+        if (!window.RDCInformational?.enabled && ((linkShopee && !precoShopee) || (!linkShopee && precoShopee))) return msg("pub-status", "Para oferecer a Shopee, informe o link e o preço juntos.", "erro");
         if (linkShopee && !linkMarketplaceValido(linkShopee, "shopee")) return msg("pub-status", "Confira o link HTTPS da Shopee.", "erro");
         if (!/^https:\/\//.test(d.foto)) return msg("pub-status", "Confira a URL da foto.", "erro");
         const b = $("publicar");
@@ -3101,12 +3103,16 @@
         try {
           if (!(await carregarFotoPrevia(d.foto))) return msg("pub-status", "A foto não abriu. Cole uma URL de imagem válida antes de publicar.", "erro");
           if (d.comentario.length < 180 || d.pros.length < 60 || d.contras.length < 60 || d.dadosTecnicos.length < 70 || lista(d.dadosTecnicos).length < 3) return msg("pub-status", "A análise precisa de mais dados reais antes de publicar.", "erro");
-          if (tipo === "relampago") {
+          if (tipo === "relampago" && !window.RDCInformational?.enabled) {
             const s = seg($("duracao").value);
             if (s <= 30) return msg("pub-status", "Informe o tempo restante em HH:MM:SS.", "erro");
             d.ofertaRelampagoTerminaEm = new Date(Date.now() + s * 1000).toISOString();
           }
           b.textContent = "Publicando...";
+          if (window.RDCInformational?.enabled) {
+            for (const key of ['nota','selo','ranking','preco','precoAnterior','precoPromocional','precoShopee','promocaoValidaAte','ofertaRelampagoTerminaEm']) delete d[key];
+            d.promocaoAtiva=false; d.ofertaRelampagoAtiva=false;
+          }
           const identidade = await window.RDCProductUniqueness.prepare(d, () => window.RDCProductUniqueness.loadIndex());
           const idNovo = identidade.id;
           let salvo;
@@ -3139,7 +3145,7 @@
               } else avisoSelecao=' A seleção já tem 12 produtos; escolha quem substituir em Melhores escolhas. Nenhum destaque anterior foi retirado.';
             } catch(error){console.warn(error);avisoSelecao=' Cadastro salvo, mas a seleção não pôde ser atualizada. Inclua o produto em Melhores escolhas; não publique o cadastro novamente.';}
           }
-          msg("pub-status", "Produto cadastrado!"+avisoSelecao+" Use Publicar vitrine para atualizar as páginas. A conferência diária permanece igual.", "ok");
+          msg("pub-status", "Produto cadastrado!"+avisoSelecao+(window.RDCInformational?.enabled?' Use Publicar vitrine para atualizar as páginas informativas, sem conferência diária de preços.':' Use Publicar vitrine para atualizar as páginas. A conferência diária permanece igual.'), "ok");
           b.textContent = "✅ Publicado";
         } catch (x) {
           if (x.existingId) cadastroDuplicadoId = x.existingId;

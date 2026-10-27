@@ -97,6 +97,7 @@ jobs:
           node scripts/update-price-history.mjs
           node scripts/generate-best-choices.mjs
           node scripts/product-removals.mjs
+          node scripts/informational-site.mjs
           rm -f "$RDC_PRODUCTS_SNAPSHOT"
 
 
@@ -108,7 +109,7 @@ jobs:
       - name: Publicar arquivos validados
         shell: bash
         run: |
-          if [[ -z "$(git status --porcelain -- index.html mercadolivre-status.json sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json .mercadolivre-token.enc ':(top,glob)*.html')" ]]; then
+          if [[ -z "$(git status --porcelain -- index.html mercadolivre-status.json sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json informational-catalogue.json .mercadolivre-token.enc ':(top,glob)*.html')" ]]; then
             echo "Preços e disponibilidade continuam iguais."
             exit 0
           fi
@@ -116,7 +117,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A index.html mercadolivre-status.json sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json product-deletions.json product-identities.json ':(top,glob)*.html'
+          git add -A index.html mercadolivre-status.json sitemap.xml produto presentes analises.html 'melhores-*.html' top5-semanal.json search-index.json historico-precos.json historico-precos-indice.json assets/price-history/ vitrine-publica.json site-config.json best-choices-guides.json informational-catalogue.json product-deletions.json product-identities.json ':(top,glob)*.html'
           if [[ -f .mercadolivre-token.enc ]]; then
             git add .mercadolivre-token.enc
           fi

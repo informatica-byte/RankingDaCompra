@@ -60,6 +60,7 @@
     return {value:money(product.preco),at:null,confirmed:false,source:'cadastro'};
   }
   function title(value, products = [], validator, statuses = {}, now = Date.now()) {
+    if(typeof window!=='undefined'&&window.RDCInformational?.enabled)return 'Produtos e guias para escolher melhor';
     const requested = String(value || DEFAULT_TITLE).trim();
     if (!requested || requested === DEFAULT_TITLE || /^(?:ofertas|achados|promo(?:ç|c)ões)\s+d[oa]\s+dia\b/i.test(requested)) return DEFAULT_TITLE;
     return validator?.checkChoices ? validator.checkChoices(value,products.map(p=>{
@@ -74,6 +75,7 @@
     return '<nav class="best-guide-grid" aria-label="Rankings e comparativos por categoria">'+guides.map(g=>'<a class="best-guide-card" href="/'+esc(g.url)+'"><span>Comparativo da categoria</span><h3>'+esc(g.title)+'</h3><p>'+esc(g.summary)+'</p><strong>Ver critérios, diferenças e limitações →</strong></a>').join('')+'</nav>';
   }
   function productCards(products, statuses = {}, now = Date.now()) {
+    if(typeof window!=="undefined"&&window.RDCInformational?.enabled)return window.RDCInformational.cards(products);
     return products.map(p=>{
       const state=priceState(p,statuses[String(p.id)],now), date=state.at ? new Intl.DateTimeFormat('pt-BR',{timeZone:'America/Sao_Paulo'}).format(state.at) : '';
       const amount=state.value>0 ? new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(state.value) : '';

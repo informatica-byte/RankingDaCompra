@@ -75,7 +75,9 @@ test('seasonal promotion and WhatsApp subscription do not precede buyer content'
   assert.match(seasonal,/footer\.insertAdjacentElement\("beforebegin", banner\)/);assert.match(club,/footer\.insertAdjacentElement\("beforebegin", section\)/);
 });
 test('methodology distinguishes categories, weekly ranking and editorial selection',async()=>{
-  const html=await source('como-avaliamos.html');for(const text of ['Comparativos por categoria','Ranking inteligente semanal','até 5 pontos','Não significa o melhor de todo o mercado','Não garantimos que toda análise'])assert.ok(html.includes(text));
+  const html=await source('como-avaliamos.html');
+  const expected=html.includes('content="informational"')?['Comparamos o que pode ser comparado','Fontes e limites da informação','Sem ranking de menor preço','Não tratamos cliques como vendas','Não garantimos que toda análise']:['Comparativos por categoria','Ranking inteligente semanal','até 5 pontos','Não significa o melhor de todo o mercado','Não garantimos que toda análise'];
+  for(const text of expected)assert.ok(html.includes(text),text);
 });
 test('JBL on-ear is not silently mixed with over-ear or unknown formats',async()=>{
   const context={window:{},Intl,URL};vm.createContext(context);vm.runInContext(await source('buyer-tools.js'),context);const api=context.window.RDCBuyerTools;

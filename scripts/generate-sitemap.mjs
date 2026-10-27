@@ -10,6 +10,8 @@ import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
 import { publicationBackup } from "./publication-backup.mjs";
 import {publicationRemovals,pruneConfig,purgeRemovals} from './product-removals.mjs';
 import {buildIdentityIndex} from './build-product-identity-index.mjs';
+import informationalMode from '../informational-mode.js';
+const INFORMATIONAL_SITE = informationalMode.enabled;
 import { productSeoTitle } from "./product-seo-titles.mjs";
 import { legacyProductAliases, observedProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage, pausedProductPage } from "./product-url-continuity.mjs";
 import { publicationProductGroups } from './product-deduplication.mjs';
@@ -1129,7 +1131,7 @@ async function generateWeeklyTop(products, socialImages) {
 
       && affiliate.toLowerCase().startsWith("https://")
 
-      && weeklyTopCurrentPrice(product) > 0;
+      && (INFORMATIONAL_SITE || weeklyTopCurrentPrice(product) > 0);
 
   });
 
@@ -1390,7 +1392,9 @@ function renderSharePage(product, socialImage, categoryNames, marketplaceStatus 
   const browserTitle = productSeoTitle(title, product);
   const seoTitle = browserTitle;
 
-  const descriptionLead = promotional && discount >= 5
+  const descriptionLead = INFORMATIONAL_SITE
+    ? `Informações e diferenças de ${title}.`
+    : promotional && discount >= 5
 
     ? `Oferta informada: ${title} por ${money(currentPrice)} (${discount}% OFF).`
 
@@ -1730,7 +1734,7 @@ const shareProducts = deduplicateProducts(rawShareProducts);
 const products = shareProducts.filter((product) => {
   const promotional = promotionIsValid(product);
   const price = promotional ? numberPrice(product.precoPromocional) : numberPrice(product.preco);
-  return editorialProduct(product) && price > 0 && safeExternalUrl(product.linkAfiliado || product.link) !== "#";
+  return editorialProduct(product) && (INFORMATIONAL_SITE || price > 0) && safeExternalUrl(product.linkAfiliado || product.link) !== "#";
 });
 
 const productsByCategory = new Map();

@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-    <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="robots" content="noindex,nofollow">
-    <title>Autorizar Mercado Livre | Ranking da Compra</title>
+<!doctype html><html lang="pt-BR"><head><meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="rdc-site-mode" content="informational"><link rel="stylesheet" href="/informational-mode.css?v=20261026-info1"><script src="/informational-mode.js?v=20261026-info1"></script><meta name="referrer" content="strict-origin-when-cross-origin"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Autorizar Mercado Livre | Ranking da Compra</title>
     <style>
         :root { color-scheme: light; font-family: Inter, system-ui, -apple-system, sans-serif; }
         * { box-sizing: border-box; }
@@ -66,23 +58,7 @@
         .erro { color: #9d1c1c; background: #fff0f0; padding: 14px; border-radius: 10px; }
         small { display: block; margin-top: 18px; line-height: 1.5; color: #6c788b; }
     </style>
-</head>
-<body>
-<main>
-    <span class="selo">Autorização oficial</span>
-    <h1 id="titulo">Conexão com o Mercado Livre</h1>
-    <p id="mensagem">Conclua a autorização no Mercado Livre. Esta página não envia nem armazena sua senha ou seu código.</p>
-
-    <div id="sucesso" hidden>
-        <label for="codigo">Código de autorização temporário</label>
-        <input id="codigo" type="text" readonly autocomplete="off">
-        <button type="button" id="copiar">Copiar código</button>
-        <a href="./dashboard.html">Voltar ao painel</a>
-        <small>Guarde este código diretamente como segredo no GitHub. Não envie por WhatsApp, e-mail ou conversa.</small>
-    </div>
-
-    <p id="erro" class="erro" hidden></p>
-</main>
+</head><body><main><span class="selo">Autorização oficial</span><h1 id="titulo">Conexão com o Mercado Livre</h1><p id="mensagem">Conclua a autorização no Mercado Livre. Esta página não envia nem armazena sua senha ou seu código.</p><div id="sucesso" hidden><label for="codigo">Código de autorização temporário</label><input id="codigo" type="text" readonly autocomplete="off"><button type="button" id="copiar">Copiar código</button><a href="./dashboard.html">Voltar ao painel</a><small>Guarde este código diretamente como segredo no GitHub. Não envie por WhatsApp, e-mail ou conversa.</small></div><p id="erro" class="erro" hidden></p></main>
 <script>
     const parametros = new URLSearchParams(location.search);
     const codigo = parametros.get('code');
@@ -106,5 +82,4 @@
             : 'Nenhum código foi recebido. Inicie a autorização pelo endereço fornecido no painel do Mercado Livre.';
     }
 </script>
-</body>
-</html>
+</body></html>

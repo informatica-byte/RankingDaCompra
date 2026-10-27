@@ -2,8 +2,6 @@ name: Atualizar historico de precos
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "35 9 * * *"
 
 permissions:
   contents: write

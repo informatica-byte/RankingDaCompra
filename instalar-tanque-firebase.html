@@ -1,34 +1,5 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="Instalação do tanque local de consumo Firebase do Ranking da Compra, independente do robô de preços e sem consultas adicionais ao banco.">
-  <title>Instalar tanque Firebase local | Ranking da Compra</title>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="description" content="Instalação do tanque local de consumo Firebase do Ranking da Compra, independente do robô de preços e sem consultas adicionais ao banco."><title>Instalar tanque Firebase local | Ranking da Compra</title>
   <style>
     *{box-sizing:border-box}body{margin:0;background:#f2f7f4;color:#173f30;font:16px/1.55 system-ui,sans-serif}main{width:min(100% - 32px,680px);margin:32px auto;padding:24px;background:#fff;border:1px solid #cbded3;border-radius:18px;overflow-wrap:anywhere}h1{font-size:26px;line-height:1.2}h2{font-size:20px;margin-top:28px}.install{display:block;padding:15px 20px;min-height:48px;text-align:center;background:#075c42;color:#fff;border-radius:10px;text-decoration:none;font-weight:800;margin:24px 0}a{color:#075c42}a:focus-visible{outline:3px solid #bc7b00;outline-offset:4px}.note{padding:12px;background:#fff6d6;border-radius:9px}.small{font-size:14px;color:#50665a}li{margin:10px 0}@media(max-width:400px){main{padding:17px}h1{font-size:23px}}
   </style>
-</head>
-<body>
-  <main>
-    <p class="small">Ranking da Compra · complemento opcional</p>
-    <h1>⛽ Instalar tanque Firebase local</h1>
-    <p>Atualiza a estimativa de consumo nos seus painéis a partir do número já exibido no console do Firebase.</p>
-    <p><strong>Abra esta página no Chrome onde o Tampermonkey já está instalado.</strong></p>
-    <a class="install" href="/tanque-firebase-local.user.js">Instalar ou atualizar tanque Firebase local — versão 1.0.1</a>
-    <p class="small">O Tampermonkey deverá abrir a confirmação. Confira o nome <strong>Ranking da Compra — Tanque Firebase local</strong> e a versão <strong>1.0.1</strong>. Clique em <strong>Atualizar</strong> se já estiver instalado, ou em <strong>Instalar</strong> na primeira vez. Se aparecer apenas o código, pare: não cole no console do navegador e não substitua o robô de preços.</p>
-    <h2>Depois de instalar</h2>
-    <ol>
-      <li>Abra <a href="https://console.firebase.google.com/project/rankingdacompra/firestore/databases/-default-/usage/last-24h" target="_blank" rel="noopener noreferrer">o uso do Firestore no Firebase</a>, na conta que já tem acesso.</li>
-      <li>Escolha <strong>Current quota period / Período atual da cota</strong>, não “Últimas 24 horas”. Aguarde o total de Leituras e o quadro “Tanque Firebase local”.</li>
-      <li>No mesmo perfil do Chrome, abra o <a href="/dashboard.html" target="_blank" rel="noopener noreferrer">dashboard</a> ou o <a href="/painel-celular.html#precos-mobile" target="_blank" rel="noopener noreferrer">painel móvel</a> e entre normalmente. O quadro local acompanha o consumo, sem iniciar conferências.</li>
-    </ol>
-    <p class="note">Se houver uma conferência de preços em andamento, não recarregue essa aba. Aguarde o lote acabar antes de ativar o complemento nela.</p>
-    <h2>Sem mudança no robô ou na cobrança</h2>
-    <p>Este é outro script. Não muda o robô de preços, os cadastros, as regras do Firebase ou o plano. Não chama APIs, consulta documentos, lê credenciais ou envia o consumo para um servidor.</p>
-    <p>O computador e o Chrome precisam permanecer ligados. Os números podem estar arredondados e atrasados pelo Google; o horário mostrado é o da leitura da tela. O script sinaliza leituras antigas e não transforma falhas em consumo zero.</p>
-    <p class="small">A leitura local da tela não acrescenta consultas nem ativa cobrança. O uso normal já existente do console e do site continua sujeito às condições dos serviços. Use “Pausar tanque local” para interromper o complemento.</p>
-  </main>
-</body>
-</html>
+</head><body><main><p class="small">Ranking da Compra · complemento opcional</p><h1>⛽ Instalar tanque Firebase local</h1><p>Atualiza a estimativa de consumo nos seus painéis a partir do número já exibido no console do Firebase.</p><p><strong>Abra esta página no Chrome onde o Tampermonkey já está instalado.</strong></p><a class="install" href="/tanque-firebase-local.user.js">Instalar ou atualizar tanque Firebase local — versão 1.0.1</a><p class="small">O Tampermonkey deverá abrir a confirmação. Confira o nome<strong>Ranking da Compra — Tanque Firebase local</strong>e a versão<strong>1.0.1</strong>. Clique em<strong>Atualizar</strong>se já estiver instalado, ou em<strong>Instalar</strong>na primeira vez. Se aparecer apenas o código, pare: não cole no console do navegador e não substitua o robô de preços.</p><h2>Depois de instalar</h2><ol><li>Abra<a href="https://console.firebase.google.com/project/rankingdacompra/firestore/databases/-default-/usage/last-24h" target="_blank" rel="noopener noreferrer">o uso do Firestore no Firebase</a>, na conta que já tem acesso.</li><li>Escolha<strong>Current quota period / Período atual da cota</strong>, não “Últimas 24 horas”. Aguarde o total de Leituras e o quadro “Tanque Firebase local”.</li><li>No mesmo perfil do Chrome, abra o<a href="/dashboard.html" target="_blank" rel="noopener noreferrer">dashboard</a>ou o<a href="/painel-celular.html#precos-mobile" target="_blank" rel="noopener noreferrer">painel móvel</a>e entre normalmente. O quadro local acompanha o consumo, sem iniciar conferências.</li></ol><p class="note">Se houver uma conferência de preços em andamento, não recarregue essa aba. Aguarde o lote acabar antes de ativar o complemento nela.</p><h2>Sem mudança no robô ou na cobrança</h2><p>Este é outro script. Não muda o robô de preços, os cadastros, as regras do Firebase ou o plano. Não chama APIs, consulta documentos, lê credenciais ou envia o consumo para um servidor.</p><p>O computador e o Chrome precisam permanecer ligados. Os números podem estar arredondados e atrasados pelo Google; o horário mostrado é o da leitura da tela. O script sinaliza leituras antigas e não transforma falhas em consumo zero.</p><p class="small">A leitura local da tela não acrescenta consultas nem ativa cobrança. O uso normal já existente do console e do site continua sujeito às condições dos serviços. Use “Pausar tanque local” para interromper o complemento.</p></main></body></html>

@@ -4,6 +4,7 @@ import "./validate-blueprint.mjs";
 import {verifyRemovals} from './product-removals.mjs';
 await verifyRemovals();
 import offerReplacement from '../product-offer-replacement.js';
+import {assertInformationalHtml} from './informational-site.mjs';
 
 const SITE = "https://rankingdacompra.com.br/";
 const errors = [];
@@ -58,6 +59,7 @@ function productIdentityKeys(html) {
 }
 
 const homeHtml = await readFile(resolve("index.html"), "utf8");
+const informational = /name="rdc-site-mode" content="informational"/.test(homeHtml);
 has(homeHtml, /const rotaInicial=.*:homeComPromocoes\(\)/, "a vitrine inicial ainda espera serviços externos antes de aparecer", "index.html");
 has(homeHtml, /qualidadeHistoricoSemanal/, "priorização do Top 6 pelo histórico ausente", "index.html");
 has(homeHtml, /id="offers-loading"/, "estado visual de carregamento imediato ausente", "index.html");
@@ -351,6 +353,7 @@ const growthToolsVersions = [homeHtml, dashboardHtml, sitemapGenerator]
   // Core/editorial/metrics versions must still match the generation template.
   .map((source, index) => {
     let version = source.match(growthToolsVersionPattern)?.[1] || "";
+    version = version.replace(/&mode=20261026-info1$/, "");
     // Apenas o painel ganhou coordenação de leituras; a versão pública/base
     // continua idêntica e não precisa provocar uma releitura do Firestore.
     if (index === 1) version = version.replace(/&reads=20261023-1$/, "");
@@ -364,7 +367,7 @@ has(sitemapGenerator, /allProducts = allProducts\.map\(correctProductData\)/, "c
 has(sitemapGenerator, /const separated = repairPortugueseEncoding\(value\)/, "separação segura dos fatos editoriais ausente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /const indexable = editorial && offerUrl !== "#"/, "produto com análise e indicação não pode sumir quando o preço estiver pendente", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /if \(offerUrl !== "#" && confirmed\) structuredOffers\.push/, "preço não confirmado não pode ir para os dados estruturados", "scripts/generate-sitemap.mjs");
-has(sitemapGenerator, /editorialProduct\(product\) && price > 0/, "produto sem preço ainda pode entrar no sitemap", "scripts/generate-sitemap.mjs");
+has(sitemapGenerator, /editorialProduct\(product\) && \(INFORMATIONAL_SITE \|\| price > 0\)/, "elegibilidade informativa deve preservar análise e link sem exigir preço", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /selectCanonicalProducts\(groups, productSeoScore\)/, "URLs duplicadas não são ligadas à página principal", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /const groups = publicationProductGroups\(products\)/, "deduplicação exige prova explícita de anúncio e título", "scripts/generate-sitemap.mjs");
 has(sitemapGenerator, /productAliasPage\(canonicalProduct\.titulo, productDetailUrl\(canonicalProduct\)\)/, "páginas antigas duplicadas ainda podem virar 404", "scripts/generate-sitemap.mjs");
@@ -533,7 +536,8 @@ for (const url of urls) {
   has(html, /<title>[^<]{10,}<\/title>/i, "título ausente ou curto", relative);
   has(html, /<meta\s+name="description"\s+content="[^"]{50,}"/i, "descrição ausente ou curta", relative);
   has(html, /<meta\s+property="og:image"\s+content="https:\/\/rankingdacompra\.com\.br\/(?:produto\/imagens\/[^"]+|og-ranking-da-compra\.png)"/i, "imagem social local ou imagem padrão ausente", relative);
-  has(html, /"@type":"Product"/i, "dados estruturados de produto ausentes", relative);
+  has(html, informational ? /"@type":"Article"/i : /"@type":"Product"/i, "dados estruturados editoriais ausentes", relative);
+  if(informational){try{assertInformationalHtml(html,relative);}catch(error){fail(error.message);}has(html, /id="affiliate-offer"/, 'link monetizado do produto ausente',relative);}
   if (!html.includes('rel="canonical" href="' + url + '"')) fail(relative + ": endereço canônico divergente");
   if (/name="robots"\s+content="[^"]*noindex/i.test(html)) fail(relative + ": página do sitemap marcada como noindex");
   if (html.includes("\uFFFD")) fail(relative + ": caractere corrompido encontrado");
@@ -544,7 +548,7 @@ for (const url of urls) {
   if (visibleH1.length > 100) fail(relative + ": título visível maior que 100 caracteres");
   const structuredOffer = /"offers":(?:\{"@type":"Offer"|\[\{"@type":"Offer")/.test(html);
   const unconfirmedPrice = /<strong>(?:Último preço registrado em [^<]+|Preço a confirmar no vendedor)<\/strong>/i.test(html);
-  if (!structuredOffer && !unconfirmedPrice) {
+  if (!informational && !structuredOffer && !unconfirmedPrice) {
     fail(relative + ": oferta estruturada ou aviso de preço não confirmado ausente");
   }
   if (structuredOffer && !/"priceCurrency":"BRL"/.test(html)) {
@@ -614,7 +618,8 @@ for (const file of guideFiles) {
     has(html, /como-avaliamos\.html/, 'metodologia ausente', file);
     has(html, /CollectionPage/, 'coleção estruturada ausente', file);
     has(html, /data-comparison-type=/, 'separação por tipo ausente', file);
-    has(html, /registro:|Preço a confirmar/, 'data ou limite do preço ausente', file);
+    if(informational){try{assertInformationalHtml(html,file);}catch(error){fail(error.message);}}
+    else has(html, /registro:|Preço a confirmar/, 'data ou limite do preço ausente', file);
     if (/🏆|💚 Melhor custo-benefício|Maior pontuação de qualidade por real/.test(html)) fail(file + ': recomendação sem comprovação no guia documental');
     for (const section of html.matchAll(/<section[^>]*data-comparison-type="([^"]+)"[^>]*>([\s\S]*?)<\/section>/g)) {
       const keys = [...section[2].matchAll(/data-model-key="([^"]+)"/g)].map(x=>x[1]);
@@ -677,10 +682,13 @@ if (directoryUrls.size !== sitemapProductUrls.size) {
 }
 
 const methodHtml = await readFile(resolve("como-avaliamos.html"), "utf8");
+if(informational){has(methodHtml,/Sem ranking de menor preço/,'modo sem ranking financeiro não explicado','como-avaliamos.html');has(methodHtml,/Fontes e limites da informação/,'fontes não explicadas','como-avaliamos.html');}
+else {
 has(methodHtml, /Custo-benefício — 35%/, "peso de custo-benefício ausente da metodologia pública", "como-avaliamos.html");
 has(methodHtml, /Avaliação informada — 30%/, "peso de avaliação ausente da metodologia pública", "como-avaliamos.html");
 has(methodHtml, /Interesse observado — 15%/, "peso de interesse ausente da metodologia pública", "como-avaliamos.html");
 has(methodHtml, /Qualidade das evidências — 20%/, "peso de evidências ausente da metodologia pública", "como-avaliamos.html");
+}
 has(methodHtml, /não tratamos cliques como vendas/i, "limite editorial sobre cliques ausente", "como-avaliamos.html");
 has(methodHtml, /Não garantimos que toda análise tenha sido revisada por duas IAs/, "limite da revisão por IA não está explicado ao público", "como-avaliamos.html");
 has(methodHtml, /não altera silenciosamente a ordem calculada/i, "limite da IA sobre a classificação ausente", "como-avaliamos.html");
@@ -714,7 +722,7 @@ for (const product of weeklyProducts) {
   if (!String(product?.productUrl || "").startsWith(SITE + "produto/")) fail("top5-semanal.json: página de produto inválida: " + (id || "desconhecido"));
   if (!String(product?.linkAfiliado || "").startsWith("https://")) fail("top5-semanal.json: link de afiliado inválido: " + (id || "desconhecido"));
   const price = Number(String(product?.precoPromocional || product?.preco || "0").replace(/\./g, "").replace(",", "."));
-  if (!(price > 0)) fail("top5-semanal.json: preço inválido: " + (id || "desconhecido"));
+  if (!informational && !(price > 0)) fail("top5-semanal.json: preço inválido: " + (id || "desconhecido"));
 }
 
 if (errors.length) {

@@ -33,6 +33,12 @@
   });
 
   async function update() {
+    if(window.RDCInformational?.enabled){
+      const data=await window.RDCInformational.load(),byId=new Map(data.products.map(p=>[p.id,p]));
+      const products=data.selected.map(id=>byId.get(id)).filter(Boolean).slice(0,6);
+      const grid=document.querySelector('[data-best-products]');if(grid)grid.innerHTML=window.RDCInformational.cards(products);
+      return;
+    }
     const api=window.RDCBestChoices;
     const [catalogue,config,status,manifest]=await Promise.all([
       window.RDCPublicData.json('/vitrine-publica.json'),window.RDCPublicData.json('/site-config.json'),

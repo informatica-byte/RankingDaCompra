@@ -256,6 +256,7 @@
   }
 
   async function protectAffiliateProductPrice() {
+    if(window.RDCInformational?.enabled)return;
     if (!/^\/produto\/[^/]+\.html$/i.test(location.pathname)) return;
     const offer = document.getElementById("affiliate-offer");
     const price = document.querySelector(".offer > strong");
@@ -451,6 +452,7 @@
   }
 
   function renderSeasonalTheme(config) {
+    if(window.RDCInformational?.enabled)return;
     document.querySelector("[data-seasonal-banner]")?.remove();
     document.body.removeAttribute("data-seasonal-theme");
     for (const property of ["--seasonal-a", "--seasonal-b", "--seasonal-accent"]) document.body.style.removeProperty(property);
@@ -765,6 +767,7 @@
   }
 
   async function loadHistory(ids = historyIdsFromPage()) {
+    if(window.RDCInformational?.enabled&&!window.RDCInformational.privatePath(location.pathname))return state.history;
     const missing = ids.filter(id => !state.historyRequested.has(id));
     if (!missing.length || !window.RDCPriceHistoryData) return state.history;
     // Mark before awaiting: observers and late-rendered modules never repeat a request.
@@ -841,6 +844,7 @@
   }
 
   function decorateVisibleProducts() {
+    if(window.RDCInformational?.enabled&&!window.RDCInformational.privatePath(location.pathname))return;
     document.querySelectorAll("article,.deal-card,.product-card-wrap").forEach(decorateProductCard);
     const missing = historyIdsFromPage().filter(id => !state.historyRequested.has(id));
     if (missing.length && window.RDCPriceHistoryData) void loadHistory(missing).then(() => {
@@ -1302,6 +1306,7 @@
     section.className = "club-whatsapp";
     section.dataset.whatsappClub = "section";
     section.innerHTML = `<div><h2>💚 Clube de Ofertas no WhatsApp</h2><p>Receba somente as promoções mais fortes, cupons e ofertas relâmpago verificadas pelo Ranking da Compra.</p></div><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" data-club-place="section">Entrar gratuitamente</a>`;
+    if(window.RDCInformational?.enabled){section.querySelector('h2').textContent='💚 Novidades e guias no WhatsApp';section.querySelector('p').textContent='Acompanhe novos produtos, comparativos e cuidados para escolher. Confira sempre as condições diretamente na loja parceira.';}
     const isProductPage = /\/produto\//.test(location.pathname);
     if (isProductPage) document.body.classList.add("product-detail-page");
     const footer = document.querySelector("footer");
@@ -2000,6 +2005,7 @@
   }
 
   async function renderWeeklyComparison(config) {
+    if(window.RDCInformational?.enabled)return;
     document.querySelector("[data-weekly-comparison]")?.remove();
     const storedProducts = Array.isArray(config?.produtos) ? config.produtos.slice(0, 5) : [];
     if (config?.publicado !== true || !storedProducts.length || !/^\/(?:index\.html)?$/.test(location.pathname)) return;

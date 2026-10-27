@@ -25,7 +25,7 @@ const generatorCode=generator.slice(generator.indexOf('async function generateWe
 test('geração repõe a vaga repetida com outro elegível e mantém seis escolhas reais',async()=>{
   const products=[product('a','Tênis igual'),product('b','Tênis igual'),...Array.from({length:6},(_,i)=>product('other'+i,'Produto distinto '+i))];
   const before=JSON.stringify(products),writes=[];
-  const context={homeSelection:selection,weeklyTopWeek:()=>({id:'week',start:'2026-10-19',end:'2026-10-25'}),readPreviousWeeklyTop:async()=>({weekStart:'2026-10-19',products:products.slice(0,6)}),editorialProduct:()=>true,weeklyTopCurrentPrice:p=>p.preco,weeklyTopFreshnessDays:()=>0,weeklyTopScore:()=>1,weeklyTopSnapshot:(p,image,position)=>({...p,position}),writeFile:async(file,data)=>writes.push(JSON.parse(data)),resolve:x=>x,console};
+  const context={INFORMATIONAL_SITE:false,homeSelection:selection,weeklyTopWeek:()=>({id:'week',start:'2026-10-19',end:'2026-10-25'}),readPreviousWeeklyTop:async()=>({weekStart:'2026-10-19',products:products.slice(0,6)}),editorialProduct:()=>true,weeklyTopCurrentPrice:p=>p.preco,weeklyTopFreshnessDays:()=>0,weeklyTopScore:()=>1,weeklyTopSnapshot:(p,image,position)=>({...p,position}),writeFile:async(file,data)=>writes.push(JSON.parse(data)),resolve:x=>x,console};
   vm.runInNewContext(generatorCode,context);
   const result=await context.generateWeeklyTop(products,new Map(products.map(p=>[p.id,{fileName:p.id+'.jpg'}])));
   assert.equal(result.products.length,6);

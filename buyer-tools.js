@@ -34,12 +34,13 @@
   }
   function filterProducts(products, filters, now = Date.now()) {
     const terms = normalize(filters.query).split(/[^a-z0-9]+/).filter(Boolean);
-    const budget = Number(filters.budget);
+    const informational = window.RDCInformational?.enabled === true;
+    const budget = informational ? 0 : Number(filters.budget);
     return products.filter(product =>
       terms.every(term => normalize(product.title + ' ' + product.summary + ' ' + product.category).split(/[^a-z0-9]+/).some(word => word.startsWith(term)))
       && (!filters.category || product.category === filters.category)
       && (!(budget > 0) || (price(product) !== null && price(product) <= budget))
-      && (!filters.recent || recent(product, now))
+      && (informational || !filters.recent || recent(product, now))
     );
   }
   function safeProductUrl(value) {
@@ -51,6 +52,7 @@
     return Number.isFinite(date) ? new Intl.DateTimeFormat('pt-BR', {timeZone:'America/Sao_Paulo'}).format(date) : 'data não informada';
   }
   function priceLabel(product) {
+    if(window.RDCInformational?.enabled)return 'Consulte as condições diretamente na loja parceira.';
     return price(product) === null ? 'Preço a confirmar' : (recent(product) ? 'Conferido' : 'Registrado') + ': ' + money(price(product)) + ' · ' + dateLabel(product);
   }
   function comparable(items) {
@@ -111,7 +113,7 @@
     if (!root || root.dataset.buyerMounted) return;
     root.dataset.buyerMounted = 'true';
     let catalog;
-    try { catalog = await window.RDCPublicData.json('/search-index.json'); if (!Array.isArray(catalog.products)) throw Error('Catálogo inválido'); }
+    try { catalog = window.RDCInformational?.enabled ? await window.RDCInformational.load() : await window.RDCPublicData.json('/search-index.json'); if (!Array.isArray(catalog.products)) throw Error('Catálogo inválido'); }
     catch { root.dataset.buyerMounted = ''; return; } // Keep existing search results if loading fails.
     const products = catalog.products.filter(product => safeProductUrl(product.url) !== '#');
     const chosen = new Map();
@@ -136,6 +138,7 @@
     budgetControl.setAttribute('role', 'group');
     budgetControl.setAttribute('aria-label', 'Atalhos de orçamento');
     budgetControl.innerHTML = '<strong>Atalhos de orçamento</strong><div>' + budgetShortcuts.map(value => '<button type="button" data-buyer-budget-shortcut="' + value + '" aria-pressed="false">Até ' + money(value) + '</button>').join('') + '<button type="button" data-buyer-budget-shortcut="" aria-pressed="true">Sem limite</button></div><small>Filtro pelo preço registrado, sem frete. Você também pode digitar outro valor no campo acima.</small>';
+    if(window.RDCInformational?.enabled){budgetControl.hidden=true;for(const selector of ['[data-buyer-budget]','[data-buyer-recent]']){const control=root.querySelector(selector);control.disabled=true;control.closest('label').hidden=true;}root.querySelector('.buyer-help').textContent='Compare até três modelos distintos do mesmo tipo. Veja quais dados vêm do anúncio ou do fabricante e o que permanece sem confirmação. As condições de compra são consultadas nas lojas.';}
     root.querySelector('.buyer-controls').appendChild(budgetControl);
     const initialBudget = validBudget(parameters.get('orcamento'));
     if (initialBudget) root.querySelector('[data-buyer-budget]').value = String(initialBudget);
@@ -147,7 +150,7 @@
         + row.values.map(feature => '<td>' + esc(feature.value) + (feature.state !== 'unknown' ? '<small>Fonte: '
           + (feature.basis === 'fabricante' ? 'informação do fabricante' : 'informação cadastrada, não teste próprio')
           + (feature.basis === 'fabricante' && sourceUrl(feature.sourceUrl) ? ' · <a href="' + esc(sourceUrl(feature.sourceUrl)) + '" target="_blank" rel="noopener noreferrer">Consultar fonte</a>' : '') + '</small>' : '') + '</td>').join('') + '</tr>').join('');
-      comparison.innerHTML = '<section><h2>Comparação: ' + esc(group(selected[0])) + '</h2><p>' + (selected.length === 1 ? 'Produto selecionado. Marque mais uma ou duas alternativas abaixo. ' : '') + 'Comparamos informações cadastradas e do fabricante, não testes próprios. Uma característica não confirmada não é uma característica ausente.</p><div class="buyer-table-scroll" tabindex="0" aria-label="Comparação de produtos, deslize para ver todas as colunas"><table><thead><tr><th scope="col">Critério</th>' + header + '</tr></thead><tbody>' + '<tr><th scope="row">Preço e conferência</th>' + selected.map(product=>'<td>' + esc(priceLabel(product)) + '</td>').join('') + '</tr>' + features + [['Limite da confirmação',product=>comparisonFeatures(product).some(f=>f.basis==='fabricante' && sourceUrl(f.sourceUrl)) ? 'Veja as fontes de fabricante nos campos documentados. Os demais dados ainda precisam de confirmação.' : 'Sem especificações técnicas confirmadas por fonte de fabricante nesta revisão. Consulte a ficha e o vendedor.']].map(([label,value])=>'<tr><th scope="row">' + label + '</th>' + selected.map(product=>'<td>' + esc(value(product)) + '</td>').join('') + '</tr>').join('') + '<tr><th scope="row">Ficha completa e lojas</th>' + selected.map(product=>'<td><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e ofertas</a></td>').join('') + '</tr></tbody></table></div></section>';
+      comparison.innerHTML = '<section><h2>Comparação: ' + esc(group(selected[0])) + '</h2><p>' + (selected.length === 1 ? 'Produto selecionado. Marque mais uma ou duas alternativas abaixo. ' : '') + 'Comparamos informações cadastradas e do fabricante, não testes próprios. Uma característica não confirmada não é uma característica ausente.</p><div class="buyer-table-scroll" tabindex="0" aria-label="Comparação de produtos, deslize para ver todas as colunas"><table><thead><tr><th scope="col">Critério</th>' + header + '</tr></thead><tbody>' + (window.RDCInformational?.enabled ? '' : '<tr><th scope="row">Preço e conferência</th>' + selected.map(product=>'<td>' + esc(priceLabel(product)) + '</td>').join('') + '</tr>') + features + [['Limite da confirmação',product=>comparisonFeatures(product).some(f=>f.basis==='fabricante' && sourceUrl(f.sourceUrl)) ? 'Veja as fontes de fabricante nos campos documentados. Os demais dados ainda precisam de confirmação.' : 'Sem especificações técnicas confirmadas por fonte de fabricante nesta revisão. Consulte a ficha e o vendedor.']].map(([label,value])=>'<tr><th scope="row">' + label + '</th>' + selected.map(product=>'<td>' + esc(value(product)) + '</td>').join('') + '</tr>').join('') + '<tr><th scope="row">Ficha completa e lojas</th>' + selected.map(product=>'<td><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e ofertas</a></td>').join('') + '</tr></tbody></table></div></section>';
     };
     const rememberFocus = () => {
       const active = document.activeElement;
@@ -179,7 +182,7 @@
       for (const button of budgetControl.querySelectorAll('[data-buyer-budget-shortcut]')) button.setAttribute('aria-pressed', String((validBudget(filters.budget) || '') === (validBudget(button.dataset.buyerBudgetShortcut) || '')));
       status.textContent = shown.length + ' produtos encontrados · ' + chosen.size + ' selecionados para comparar.';
       if (searchCount) searchCount.textContent = shown.length + (shown.length === 1 ? ' produto encontrado' : ' produtos encontrados') + ' no catálogo publicado.';
-      results.innerHTML = shown.slice(0, limit).map(product => '<article class="buyer-card"><a href="' + esc(safeProductUrl(product.url)) + '">' + (/^https:\/\//.test(product.image || '') ? '<img src="' + esc(product.image) + '" alt="" loading="lazy" decoding="async" width="200" height="140">' : '') + '<h3>' + esc(product.title) + '</h3></a><p>' + esc(priceLabel(product)) + '</p><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e lojas</a>' + (group(product) ? '<label class="buyer-check"><input type="checkbox" data-buyer-select="' + esc(product.id) + '"' + (chosen.has(product.id)?' checked':'') + '> Comparar · ' + esc(group(product)) + '</label>' : '<small>Sem tipo confirmado para comparação automática.</small>') + '</article>').join('') || '<p>Nenhum produto corresponde aos filtros. Tente retirar a faixa de preço ou a exigência de conferência recente.</p>';
+      results.innerHTML = shown.slice(0, limit).map(product => '<article class="buyer-card"><a href="' + esc(safeProductUrl(product.url)) + '">' + (/^https:\/\//.test(product.image || '') ? '<img src="' + esc(product.image) + '" alt="" loading="lazy" decoding="async" width="200" height="140">' : '') + '<h3>' + esc(product.title) + '</h3></a><p>' + esc(priceLabel(product)) + '</p><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e lojas</a>' + (group(product) ? '<label class="buyer-check"><input type="checkbox" data-buyer-select="' + esc(product.id) + '"' + (chosen.has(product.id)?' checked':'') + '> Comparar · ' + esc(group(product)) + '</label>' : '<small>Sem tipo confirmado para comparação automática.</small>') + '</article>').join('') || '<p>Nenhum produto corresponde aos filtros. Tente outra marca, modelo ou categoria.</p>';
       if (shown.length > limit) results.insertAdjacentHTML('beforeend', '<button type="button" data-buyer-more>Mostrar mais 24 produtos</button>');
       renderComparison();
       restoreFocus(focus);

@@ -45,7 +45,10 @@ function pageIdentity(html) {
   const products = [];
   for (const [,json] of html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
     const data = JSON.parse(json);
-    products.push(...(data['@graph'] || [data]).filter(n => n['@type'] === 'Product'));
+    for(const node of data['@graph'] || [data]){
+      if(node['@type']==='Product')products.push(node);
+      else if(node['@type']==='Article'&&node.about?.['@type']==='Thing'&&typeof node.about.name==='string'&&typeof node.mainEntityOfPage==='string'&&/name="rdc-site-mode" content="informational"/.test(html))products.push({name:node.about.name,url:node.mainEntityOfPage});
+    }
   }
   return {canonical, metas, refresh, noindex, products};
 }
@@ -81,7 +84,7 @@ export function improveProduct(html, item) {
   const schemaBlocks = [...next.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
   let product;
   for (const [,json] of schemaBlocks) {
-    try { const data = JSON.parse(json); product = (data['@graph'] || [data]).find(x => x['@type'] === 'Product') || product; } catch {}
+    try { const data = JSON.parse(json); const match=(data['@graph'] || [data]).find(x => x['@type'] === 'Product'||(x['@type']==='Article'&&x.about?.['@type']==='Thing'&&/name="rdc-site-mode" content="informational"/.test(next)));product=match?(match['@type']==='Product'?match:{name:match.about.name,url:match.mainEntityOfPage}):product; } catch {}
   }
   if (!product || !new RegExp(item.guard, 'i').test(product.name || '') || !String(product.url || product['@id']).includes('/produto/' + item.id + '-')) return next;
   const content = block(`<h2>Vale a pena para o seu uso?</h2><p><b>Para quem considerar:</b> ${esc(item.fit)}</p><p><b>O que pesa na escolha:</b> ${esc(item.tradeoff)}</p><p><b>Antes de comprar:</b> ${esc(item.check)}</p><p><b>Quando comparar outra opção:</b> ${esc(item.alternative)}</p>${item.sources?.length ? '<h3>Fontes e conferência</h3><ul>' + links(item.sources) + '</ul>' : ''}<h3>Continue a comparação</h3><ul>${links(item.links)}</ul>`);

@@ -176,6 +176,8 @@
 <link rel="stylesheet" href="/best-choices.css?v=20261005-1">
 <script src="/product-save-safety.js?v=20261026-unique"></script>
 <script src="/product-uniqueness.js?v=20261026-1"></script>
+<link rel="stylesheet" href="/informational-mode.css?v=20261026-info1">
+<script src="/informational-mode.js?v=20261026-info1"></script>
 <script src="/best-choices.js?v=20261022-pause"></script>
 <script src="/best-choices-admin.js?v=20261010-audit"></script>
     <link rel="stylesheet" href="/existing-flash-offer.css?v=20261016-1">
@@ -1357,7 +1359,7 @@ function precoAtualCentral(produto){const status=statusMercadoLivreAdmin[String(
 
 function pontuacaoOfertaCentral(produto){return descontoCentral(produto)*3+(Number(produto?.nota)||0)*5+(linkAfiliadoValidoCentral(produto)?18:0)+(precoAtualCentral(produto)?15:0)+(relampagoAtivoCentral(produto)?35:0)-(statusMercadoLivreAdmin[String(produto?.id||'')]?.visible===false?1000:0)}
 
-function melhoresOfertasCentral(){return produtosCentralAtual.filter(campanhaValidaCentral).filter(produto=>statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).sort((a,b)=>pontuacaoOfertaCentral(b)-pontuacaoOfertaCentral(a)).slice(0,3)}
+function melhoresOfertasCentral(){if(window.RDCInformational?.enabled)return produtosCentralAtual.filter(p=>!produtoOcultoNaVitrine(p)&&p.titulo&&p.foto&&linkAfiliadoValidoCentral(p)).sort((a,b)=>String(a.titulo).localeCompare(String(b.titulo),'pt-BR')).slice(0,6);return produtosCentralAtual.filter(campanhaValidaCentral).filter(produto=>statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).sort((a,b)=>pontuacaoOfertaCentral(b)-pontuacaoOfertaCentral(a)).slice(0,3)}
 window.obterOfertasAtivasParaTitulo=()=>produtosCentralAtual.filter(promocaoValidaCentral).filter(produto=>!relampagoAtivoCentral(produto)&&statusMercadoLivreAdmin[String(produto.id)]?.visible!==false).sort((a,b)=>descontoCentral(b)-descontoCentral(a)).map(produto=>({id:String(produto.id),titulo:String(produto.titulo||''),categoria:String(produto.categoria||''),preco:numeroPrecoPromocao(produto.precoPromocional||produto.preco)})).filter(produto=>produto.titulo&&produto.preco>0).slice(0,6);
 window.obterProdutosParaGuia=(themeId)=>{
   const grupos={criancas:/brinqued/,natal:/brinqued|beleza|perfume|fone|casa|relogio|smartwatch/,maes:/beleza|perfume|casa|bolsa|smartwatch/,pais:/ferramenta|carro|esporte|fone|perfume|smartwatch/,namorados:/perfume|beleza|fone|smartwatch|bolsa/,pascoa:/brinqued|casa|super/,"volta-aulas":/informatica|notebook|tablet|impressora|bolsa/,consumidor:/casa|beleza|fone|celular|ferramenta/,"festa-junina":/casa|super|roupa/,carnaval:/beleza|roupa|caixa-de-som|bolsa/,"black-friday":/celular|notebook|smart-tv|casa|fone/,"ano-novo":/casa|esporte|beleza|informatica/};
@@ -1559,6 +1561,7 @@ function ofertaSeguraCentral(produto){return window.RDCFlashOfferSafety?.evaluat
 relampagoAtivoCentral=produto=>ofertaSeguraCentral(produto)?.eligible===true;
 campanhaValidaCentral=produto=>{const oferta=ofertaSeguraCentral(produto);return Boolean(oferta?.configured&&Date.parse(oferta.endsAt)>Date.now())||promocaoValidaCentral(produto)};
 statusOfertaCentral=produto=>{
+  if(window.RDCInformational?.enabled)return linkAfiliadoValidoCentral(produto)?[]:['link de afiliado não identificado'];
   const avisos=[]; const oferta=ofertaSeguraCentral(produto);
   const confirmado=window.RDCFlashOfferSafety?.recentPrice(produto,statusMercadoLivreAdmin[String(produto?.id||'')]||null);
   if(oferta?.configured&&!oferta.eligible) avisos.push('oferta aguardando conferência de preço e prazo');
@@ -1567,9 +1570,10 @@ statusOfertaCentral=produto=>{
   return avisos;
 };
 const textoConfirmadoCentral=textoPadraoCentral;
-textoPadraoCentral=produto=>statusOfertaCentral(produto).length?`${produto.titulo}\nPreço e disponibilidade aguardando conferência. Confira as condições no vendedor:`:textoConfirmadoCentral(produto);
+textoPadraoCentral=produto=>window.RDCInformational?.enabled?`${produto.titulo}\n${window.RDCInformational.excerpt(produto.comentario)}\nLeia as características, os pontos de atenção e as fontes. As condições de compra são da loja parceira:`:statusOfertaCentral(produto).length?`${produto.titulo}\nPreço e disponibilidade aguardando conferência. Confira as condições no vendedor:`:textoConfirmadoCentral(produto);
 const cartaoConfirmadoCentral=cartaoOfertaCentral;
 cartaoOfertaCentral=(produto,indice)=>{
+  if(window.RDCInformational?.enabled){const message=textosCampanhaCentral[produto.id]||(textosCampanhaCentral[produto.id]=textoPadraoCentral(produto));return window.RDCInformational.campaignCard(produto,{url:urlCampanhaCentral(produto,'whatsapp'),message});}
   const avisos=statusOfertaCentral(produto);
   if(!avisos.length) return cartaoConfirmadoCentral(produto,indice);
   return `<article class="campanha-card"><h4>${escapeHtml(produto.titulo)}</h4><p class="campanha-status campanha-alerta">⚠️ ${escapeHtml(avisos.join(' · '))}</p><p>Cadastro preservado. Sem desconto ou urgência divulgados até nova conferência.</p><button type="button" data-central-editar="${escapeHtml(produto.id)}">Conferir produto</button></article>`;
@@ -1594,7 +1598,7 @@ async function prepararFotoSocialCentral(produto,estado){if(estado.arquivoVerifi
 
 function carregarImagemCentral(url){return new Promise((resolve,reject)=>{const img=new Image();img.crossOrigin='anonymous';img.onload=()=>resolve(img);img.onerror=reject;img.src=url})}
 
-async function arquivoCampanhaCentral(produto){const fotoHospedada=await fotoHospedadaCentral(produto),relampago=relampagoAtivoCentral(produto),canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1080;const ctx=canvas.getContext('2d');ctx.fillStyle='#fbfaf5';ctx.fillRect(0,0,1080,1080);ctx.fillStyle='#0f4f3b';ctx.fillRect(0,0,1080,170);ctx.fillStyle='#fff';ctx.font='900 52px Arial';ctx.fillText('Ranking da Compra',64,103);ctx.font='700 25px Arial';ctx.fillText(relampago?'OFERTA RELÂMPAGO':'PROMOÇÃO VERIFICADA DO DIA',64,145);ctx.fillStyle='#fff';ctx.fillRect(55,220,465,590);try{const img=await carregarImagemCentral(fotoHospedada);const escala=Math.min(400/img.width,500/img.height);const w=img.width*escala,h=img.height*escala;ctx.drawImage(img,55+(465-w)/2,260+(500-h)/2,w,h)}catch{throw new Error('Não foi possível carregar a foto confirmada da campanha.')}ctx.fillStyle='#d83b2d';if(typeof ctx.roundRect==='function'){ctx.beginPath();ctx.roundRect(55,835,250,90,45);ctx.fill()}else{ctx.fillRect(55,835,250,90)}ctx.fillStyle='#fff';ctx.font='900 44px Arial';ctx.fillText(`-${descontoCentral(produto)}%`,105,895);ctx.fillStyle='#11221d';ctx.font='800 43px Arial';let y=quebrarTextoCanvas(ctx,produto.titulo,565,260,455,56,5);ctx.fillStyle='#6b746f';ctx.font='31px Arial';ctx.fillText(`De ${moedaCentral(produto.precoAnterior)}`,565,y+35);ctx.fillStyle='#087a3d';ctx.font='900 66px Arial';ctx.fillText(moedaCentral(produto.precoPromocional),565,y+115);ctx.fillStyle='#11221d';ctx.font='700 28px Arial';quebrarTextoCanvas(ctx,'Confira preço, frete e estoque antes de comprar.',565,y+180,430,38,3);ctx.fillStyle='#d9f99d';ctx.fillRect(0,980,1080,100);ctx.fillStyle='#0f4f3b';ctx.font='800 30px Arial';ctx.fillText('rankingdacompra.com.br',64,1042);const blob=await new Promise((resolve,reject)=>canvas.toBlob(valor=>valor?resolve(valor):reject(new Error('Falha ao criar imagem.')),'image/png',.95));return new File([blob],`oferta-${String(produto.id).replace(/[^a-z0-9-]/gi,'')}.png`,{type:'image/png'})}
+async function arquivoCampanhaCentral(produto){if(window.RDCInformational?.enabled)return window.RDCInformational.campaignImage(produto,await fotoHospedadaCentral(produto),carregarImagemCentral);const fotoHospedada=await fotoHospedadaCentral(produto),relampago=relampagoAtivoCentral(produto),canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1080;const ctx=canvas.getContext('2d');ctx.fillStyle='#fbfaf5';ctx.fillRect(0,0,1080,1080);ctx.fillStyle='#0f4f3b';ctx.fillRect(0,0,1080,170);ctx.fillStyle='#fff';ctx.font='900 52px Arial';ctx.fillText('Ranking da Compra',64,103);ctx.font='700 25px Arial';ctx.fillText(relampago?'OFERTA RELÂMPAGO':'PROMOÇÃO VERIFICADA DO DIA',64,145);ctx.fillStyle='#fff';ctx.fillRect(55,220,465,590);try{const img=await carregarImagemCentral(fotoHospedada);const escala=Math.min(400/img.width,500/img.height);const w=img.width*escala,h=img.height*escala;ctx.drawImage(img,55+(465-w)/2,260+(500-h)/2,w,h)}catch{throw new Error('Não foi possível carregar a foto confirmada da campanha.')}ctx.fillStyle='#d83b2d';if(typeof ctx.roundRect==='function'){ctx.beginPath();ctx.roundRect(55,835,250,90,45);ctx.fill()}else{ctx.fillRect(55,835,250,90)}ctx.fillStyle='#fff';ctx.font='900 44px Arial';ctx.fillText(`-${descontoCentral(produto)}%`,105,895);ctx.fillStyle='#11221d';ctx.font='800 43px Arial';let y=quebrarTextoCanvas(ctx,produto.titulo,565,260,455,56,5);ctx.fillStyle='#6b746f';ctx.font='31px Arial';ctx.fillText(`De ${moedaCentral(produto.precoAnterior)}`,565,y+35);ctx.fillStyle='#087a3d';ctx.font='900 66px Arial';ctx.fillText(moedaCentral(produto.precoPromocional),565,y+115);ctx.fillStyle='#11221d';ctx.font='700 28px Arial';quebrarTextoCanvas(ctx,'Confira preço, frete e estoque antes de comprar.',565,y+180,430,38,3);ctx.fillStyle='#d9f99d';ctx.fillRect(0,980,1080,100);ctx.fillStyle='#0f4f3b';ctx.font='800 30px Arial';ctx.fillText('rankingdacompra.com.br',64,1042);const blob=await new Promise((resolve,reject)=>canvas.toBlob(valor=>valor?resolve(valor):reject(new Error('Falha ao criar imagem.')),'image/png',.95));return new File([blob],`oferta-${String(produto.id).replace(/[^a-z0-9-]/gi,'')}.png`,{type:'image/png'})}
 
 function chaveArquivoCampanhaCentral(produto){return [dataBrasil(),produto?.id||'',produto?.foto||'',produto?.link||'',estadosPublicacaoCentral.get(String(produto?.id||''))?.pagina?.image||'',produto?.titulo||'',produto?.precoAnterior||'',produto?.precoPromocional||'',produto?.preco||'',produto?.promocaoValidaAte||'',produto?.ofertaRelampagoTerminaEm||''].join('|')}
 
@@ -2182,13 +2186,15 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         }
 
         function validarAlteracaoCadastro(dados, original) {
-            if (!numeroPrecoPromocao(dados.preco)) return 'Informe um preço válido para o produto.';
+            const informativo = typeof window !== 'undefined' && window.RDCInformational?.enabled;
+            if (!informativo && !numeroPrecoPromocao(dados.preco)) return 'Informe um preço válido para o produto.';
             const grupos = [
                 [['titulo', 'comentario', 'pros', 'contras', 'dadosTecnicos'], validarConteudoEditorial],
                 [['promocaoAtiva', 'precoAnterior', 'precoPromocional', 'promocaoValidaAte'], validarDadosPromocao],
                 [['ofertaRelampagoAtiva', 'ofertaRelampagoDuracao', 'precoAnterior', 'precoPromocional'], validarDadosRelampago]
             ];
             for (const [campos, validar] of grupos) {
+                if (informativo && validar !== validarConteudoEditorial) continue;
                 if (camposCadastroAlterados(dados, original, campos)) {
                     const erro = validar(dados);
                     if (erro) return erro;
@@ -2211,6 +2217,7 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
         }
 
         function validarParShopeeCadastro(link, preco, original = null) {
+            if (typeof window !== 'undefined' && window.RDCInformational?.enabled) return '';
             if (link && numeroPrecoPromocao(preco)) return '';
             if (!link && !preco) return '';
             // A disabled secondary offer may retain its historical price. Only
@@ -2274,7 +2281,12 @@ function inicializarCentralDivulgacao(){if(centralDivulgacaoInicializada)return;
             const erroCadastro = validarAlteracaoCadastro(dadosProduto, original);
             if (erroCadastro) return informarStatusCadastro(erroCadastro, true);
             delete dadosProduto.ofertaRelampagoDuracao;
+            if (window.RDCInformational?.enabled && !original) {
+                for (const key of ['nota','selo','ranking','preco','precoAnterior','precoPromocional','precoShopee','ofertaRelampagoTerminaEm','promocaoValidaAte']) delete dadosProduto[key];
+                dadosProduto.promocaoAtiva = false; dadosProduto.ofertaRelampagoAtiva = false;
+            }
             const camposEdicao = original ? camposCadastroParaAtualizar(dadosProduto, original) : null;
+            if (window.RDCInformational?.enabled && camposEdicao) for (const key of ['nota','selo','ranking','preco','precoAnterior','precoPromocional','precoShopee','promocaoAtiva','promocaoValidaAte','ofertaRelampagoAtiva','ofertaRelampagoTerminaEm']) delete camposEdicao[key];
             if (camposEdicao && !Object.keys(camposEdicao).length) return informarStatusCadastro('Nenhuma alteração para salvar.');
 
             const botao = document.getElementById('btn-submit-prod');
