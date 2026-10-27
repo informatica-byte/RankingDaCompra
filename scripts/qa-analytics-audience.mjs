@@ -46,18 +46,38 @@ try{
   await page.setViewportSize({width,height:900});assert.equal(await page.locator('[data-ga4-audience]').evaluate(el=>el.scrollWidth<=el.clientWidth+1),true,'sem excesso de largura em '+width);
   await page.locator('[data-ga4-audience]').screenshot({path:resolve(out,'ga4-dashboard-'+width+'.png')});
  }
- const mobile=await context.newPage();mobile.on('pageerror',e=>errors.push(e.message));await mobile.goto(base+'/painel-celular.html');
+ const mobile=await context.newPage();mobile.on('pageerror',e=>errors.push(e.message));await mobile.clock.install({time:new Date(fixtureTime)});await mobile.goto(base+'/painel-celular.html');
  await mobile.waitForFunction(()=>document.querySelector('[data-ga4-value="today:sessions"]').textContent==='2');assert.equal(requests,1,'outra aba reutiliza totais, não o token');
- assert.match(await mobile.locator('[data-ga4-status]').innerText(),/Não conectado/);
+ assert.match(await mobile.locator('[data-ga4-status]').innerText(),/Esta aba não está autorizada/);
+ assert.equal(await mobile.locator('[data-ga4-connection]').getAttribute('data-tone'),'warning');
  assert.equal(await mobile.locator('[data-ga4-refresh]').isDisabled(),true);
  await mobile.setViewportSize({width:360,height:800});await mobile.locator('[data-ga4-audience]').screenshot({path:resolve(out,'ga4-mobile-360.png')});
+ await mobile.locator('[data-ga4-connect]').click();await mobile.waitForFunction(()=>document.querySelector('[data-ga4-status]').textContent.includes('Conectado somente para leitura'));
+ assert.equal(requests,1,'autorizar outra aba não repete uma consulta ainda recente');
  await Promise.all([page,mobile].map(p=>p.evaluate(at=>{window.fixtureNow=at;},fixtureTime+16*60000)));
- await page.locator('[data-ga4-refresh]').click();await mobile.waitForFunction(()=>document.querySelector('[data-ga4-value="today:sessions"]').textContent==='3');assert.equal(requests,2);
- const lastDate=await page.locator('[data-ga4-date]').innerText();billing=true;await page.evaluate(at=>{window.fixtureNow=at;},fixtureTime+32*60000);
+ await mobile.clock.setFixedTime(new Date(fixtureTime+16*60000));await mobile.clock.runFor(60000);await mobile.clock.resume();
+ await mobile.waitForFunction(()=>document.querySelector('[data-ga4-value="today:sessions"]').textContent==='3');assert.equal(requests,2,'o agendamento do painel móvel atualiza sem clique manual');
+ await page.waitForFunction(()=>document.querySelector('[data-ga4-value="today:sessions"]').textContent==='3');
+ const savedDate=await mobile.locator('[data-ga4-date]').innerText(),savedNumbers=await mobile.locator('.ga4-periods').innerText(),beforeExpiry=requests;
+ await Promise.all([page,mobile].map(p=>p.evaluate(at=>{window.fixtureNow=at;},fixtureTime+61*60000)));
+ await mobile.clock.setFixedTime(new Date(fixtureTime+61*60000));await mobile.clock.runFor(60000);await mobile.clock.resume();
+ await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));
+ for(const panel of [page,mobile]){
+  await panel.waitForFunction(()=>document.querySelector('[data-ga4-title]').textContent==='⚠ Analytics precisa reconectar');
+  assert.equal(await panel.locator('[data-ga4-connection]').getAttribute('data-tone'),'warning');
+  assert.equal(await panel.locator('[data-ga4-connect]').innerText(),'Reconectar Google Analytics');
+  assert.equal(await panel.locator('[data-ga4-date]').innerText(),savedDate);assert.equal(await panel.locator('.ga4-periods').innerText(),savedNumbers);
+  assert.equal(await panel.locator('[data-ga4-refresh]').isDisabled(),true);
+  await panel.setViewportSize({width:360,height:800});assert.equal(await panel.locator('[data-ga4-audience]').evaluate(el=>el.scrollWidth<=el.clientWidth+1),true);
+  await panel.locator('[data-ga4-audience]').screenshot({path:resolve(out,panel===mobile?'ga4-mobile-expired-360.png':'ga4-dashboard-expired-360.png')});
+ }
+ assert.equal(requests,beforeExpiry,'expiração e aviso não geram consultas');
+ await page.locator('[data-ga4-connect]').click();await page.waitForFunction(()=>document.querySelector('[data-ga4-value="today:sessions"]').textContent==='4');
+ const lastDate=await page.locator('[data-ga4-date]').innerText();billing=true;await page.evaluate(at=>{window.fixtureNow=at;},fixtureTime+77*60000);
  await page.locator('[data-ga4-refresh]').click();await page.waitForFunction(()=>document.querySelector('[data-ga4-status]').textContent.includes('faturamento'));
- assert.equal(await page.locator('[data-ga4-value="today:sessions"]').innerText(),'3');assert.equal(await page.locator('[data-ga4-date]').innerText(),lastDate);assert.equal(await page.locator('[data-ga4-refresh]').isDisabled(),true);
+ assert.equal(await page.locator('[data-ga4-value="today:sessions"]').innerText(),'4');assert.equal(await page.locator('[data-ga4-date]').innerText(),lastDate);assert.equal(await page.locator('[data-ga4-refresh]').isDisabled(),true);
  await page.evaluate(()=>{window.fixtureUser='another';window.dispatchEvent(new Event('rdc-admin-auth'));});
  await page.waitForFunction(()=>document.querySelector('[data-ga4-value="today:sessions"]').textContent==='—');
  assert.deepEqual(violations,[]);assert.deepEqual(errors,[]);
- console.log(JSON.stringify({passed:['consentimento antes da leitura','somente analytics.readonly','nenhum token persistido ou compartilhado','cache privado por usuário','sincronia dos dois painéis sem consulta duplicada','360/390/768/1366px','erro de cobrança pausa e preserva data e totais','troca de usuário limpa a exibição','sem chamadas reais de Firebase, Analytics ou vendas'],errors,screenshots:out},null,2));
+ console.log(JSON.stringify({passed:['consentimento antes da leitura','somente analytics.readonly','nenhum token persistido ou compartilhado','cache privado por usuário','sincronia dos dois painéis sem consulta duplicada','atualização automática do móvel com relógio simulado, sem clique manual','360/390/768/1366px','erro de cobrança pausa e preserva data e totais','troca de usuário limpa a exibição','sem chamadas reais de Firebase, Analytics ou vendas'],errors,screenshots:out},null,2));
 }finally{await context.close();await browser.close();await new Promise(done=>server.close(done));}

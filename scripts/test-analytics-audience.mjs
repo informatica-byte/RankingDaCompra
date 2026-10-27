@@ -54,6 +54,18 @@ test('resposta tardia após sair ou desconectar não repõe estado, cache nem to
  f.reader.disconnect();resolve({ok:true,status:200,json:async()=>response()});await pending;
  assert.equal(f.reader.readState().status,'disconnected');assert.equal(f.values.size,0);assert.equal(f.reader.readState().snapshot,null);
 });
+test('aviso de reconexão preserva números, horário e cache sem consultas novas na expiração',async()=>{
+ const f=fixture();f.reader.authorize(token);await f.reader.refresh();const saved=f.reader.readState().snapshot;
+ f.time.at+=3600000;const expired=f.reader.readState(),notice=ga.connectionNotice(expired);
+ assert.equal(expired.status,'expired');assert.equal(notice.title,'⚠ Analytics precisa reconectar');assert.equal(notice.tone,'warning');assert.equal(notice.reconnect,true);
+ assert.match(notice.message,/últimos números e o horário/);assert.deepEqual(expired.snapshot,saved);
+ await f.reader.refresh();assert.equal(f.calls.length,1);assert.deepEqual(f.reader.readState().snapshot,saved);
+ const cached=fixture({values:f.values});assert.equal(cached.reader.readState().connected,false);assert.equal(ga.connectionNotice(cached.reader.readState()).reconnect,true);
+ assert.match(ga.connectionNotice(cached.reader.readState()).message,/outra aba conectada/);
+ assert.match(ga.connectionNotice({status:'quota',connected:false,snapshot:saved}).message,/Não aumente cotas/);
+ assert.match(ga.connectionNotice({status:'billing',connected:false,snapshot:saved}).message,/não ative cobrança/);
+ assert.doesNotMatch([...f.values.values()].join(''),/test-memory-only|access_token|refresh_token/);
+});
 test('valida cabeçalhos, cardinalidade e inteiros; somente uma resposta vazia válida representa zero',()=>{
  const ok=response();ok.reports[0].rows=[];ok.reports[0].rowCount=0;assert.equal(ga.parseReports(ok,cfg,at).ranges[0].views,0);
  const bad=response();bad.reports[0].metricHeaders[0].name='ecommercePurchases';assert.throws(()=>ga.parseReports(bad,cfg,at),/invalid_report/);
@@ -68,7 +80,7 @@ test('ambos os painéis têm o mesmo componente privado, histórico sinalizado e
  assert.deepEqual(Object.keys(settings).sort(),['clientId','propertyId','timeZone','version']);assert.ok(ga.config(settings).clientId);
  for(const file of ['dashboard.html','painel-celular.html']){
   const html=await readFile(new URL('../'+file,import.meta.url),'utf8');
-  assert.equal((html.match(/data-ga4-audience /g)||[]).length,1);assert.match(html,/analytics-audience\.js\?v=20261027-1/);
+  assert.equal((html.match(/data-ga4-audience /g)||[]).length,1);assert.match(html,/analytics-audience\.js\?v=20261027-2/);
   assert.match(html,/RDCAnalyticsUserId = \(\) => auth.currentUser\?\.uid \|\| ''/);assert.match(html,/rdc-admin-auth/);
   assert.match(html,/data-metrica="visitasHoje" data-metrica-legado="true"/);assert.match(html,/26\/10\/2026/);
  }

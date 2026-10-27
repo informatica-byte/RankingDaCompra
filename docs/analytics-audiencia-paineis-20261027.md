@@ -18,6 +18,12 @@ Após o login normal do painel, o administrador clica em Conectar Google Analyti
 
 Enquanto a aba autorizada estiver visível, tenta atualizar no máximo a cada quinze minutos; o botão manual respeita um minuto. As outras abas reutilizam apenas totais e datas no cache local, separado por usuário autenticado e propriedade. Nenhum dado de audiência é publicado num JSON público. Troca/logout do usuário interrompe a requisição e limpa a exibição; respostas tardias não repõem estado nem cache. Uma consulta indisponível mantém a data real anterior. Resumo de outro dia mostra “—” para hoje, nunca zero inventado.
 
+## Aviso de reconexão — revisão 20261027-2
+
+Os dois painéis exibem o mesmo quadro acessível acima dos números, com título destacado e instrução para usar “Reconectar Google Analytics” quando a autorização expira. O aviso muda para amarelo; os valores e a data/hora da última consulta bem-sucedida são preservados. Uma aba sem autorização própria explica que outra aba conectada ainda pode atualizar o resumo local, sem dizer que os dois painéis estão desconectados. Falha de consulta nunca altera o horário para parecer uma atualização bem-sucedida e nunca inventa zero. Retornar à aba verifica a expiração imediatamente, sem consultar o Firebase nem tentar reautorizar em segundo plano.
+
+O aviso não salva novos campos de autenticação, tokens, refresh tokens ou credenciais. Mantém o mesmo cache privado de totais/datas, as cotas, o intervalo e os endpoints existentes. A QA simula a atualização automática e a expiração nos dois painéis em 360 px, verifica aviso, botão, números, horário e ausência de consultas adicionais após expirar; testa reconexão e preservação em erro de cobrança. Não houve alteração no robô, nos produtos, preços, links, regras, App Check ou cobrança.
+
 ## Testes e referências
 
 `node --test scripts/test-analytics-audience.mjs` cobre payload de leitura, filtragem da página inicial, consentimento, expiração, cache por usuário, token apenas em memória, respostas inválidas, cobrança, quota e respostas tardias. `scripts/qa-analytics-audience.mjs` usa exclusivamente SDK/respostas locais simulados, testa os dois layouts em 360/390/768/1366 px e bloqueia APIs reais, Firebase e registro de eventos. Não usar fixtures como dados de produção.
