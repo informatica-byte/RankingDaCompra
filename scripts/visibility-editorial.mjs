@@ -32,7 +32,7 @@ function block(content, reviewedAt = CONFIG.reviewedAt, depth = false) {
   return `<!-- visibility-editorial:start --><section class="visibility-editorial" data-visibility-editorial>${content}<p class="review-note">Revisão editorial: ${esc(date)} · <a href="/sobre.html">Equipe Ranking da Compra</a>. Análise de informações publicadas, sem teste prático. ${depth?'A data se refere ao texto, não a uma nova verificação de estoque ou do anúncio. Confira versão, acessórios e condições na loja.':'A data da revisão não renova a conferência do preço. Confirme valor final, frete, estoque e variante no vendedor.'}</p></section><!-- visibility-editorial:end -->`;
 }
 function clean(html) {
-  return html.replace(/<!-- visibility-editorial:start -->[\s\S]*?<!-- visibility-editorial:end -->/g, '').replace(/<style data-visibility-editorial>[\s\S]*?<\/style>\n?/g, '');
+  return html.replace(/<!-- visibility-editorial:start -->[\s\S]*?<!-- visibility-editorial:end -->/g, '').replace(/<style data-visibility-editorial>[\s\S]*?<\/style>\r?\n?/g, '');
 }
 const SITE = 'https://rankingdacompra.com.br';
 function attributes(tag) {
