@@ -40,7 +40,7 @@ test('ASUS e conversor não ganham confirmação indevida, desempenho ou compati
 });
 
 test('campos adicionais são escapados e fontes parecidas ou com credenciais não entram',async()=>{
- const item=CONFIG.products.find(x=>x.depth),name='Xiaomi Smart Band 9 Active',url='https://rankingdacompra.com.br/produto/'+item.id+'-20260810-1.html';
+ const item=CONFIG.products.find(x=>x.id==='48oRcQNlH00KgNLHkvsG'),name='Xiaomi Smart Band 9 Active',url='https://rankingdacompra.com.br/produto/'+item.id+'-20260810-1.html';
  const html='<html><head><title>Modelo</title><link rel="canonical" href="'+url+'"><script type="application/ld+json">'+JSON.stringify({'@type':'Product',name,url})+'</script></head><body><article><h1>'+name+'</h1><div class="panels"></div></article></body></html>';
  const out=improveProduct(html,{...item,basis:'<img onerror=1>',advantages:['<script>'],questions:[['<svg>','<img>']],sources:[{url:'https://www.mi.com.evil.example/test',label:'falsa'},{url:'https://user:password@www.mi.com/test',label:'credencial'}]});
  assert.match(out,/&lt;script&gt;/);assert.match(out,/&lt;svg&gt;/);assert.doesNotMatch(out,/href="https:\/\/(?:www\.mi\.com\.evil|user:password)/);

@@ -1,0 +1,311 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-10-26",
+  "priority": {
+    "source": "Google Analytics 4 via Windsor.ai, somente leitura",
+    "account": "545546219",
+    "dateFrom": "2026-09-28",
+    "dateTo": "2026-10-25",
+    "metric": "screen_page_views",
+    "method": "Somar páginas /produto/ e entradas /?produto= por ID, removendo query strings. Excluir o comparador e as sete análises já aprofundadas. Este lote cobre os demais produtos com pelo menos oito visualizações registradas. Não são usuários únicos, compradores ou vendas; podem incluir testes e repetições."
+  },
+  "products": [
+    {
+      "id": "N1cKmru7WcRrMBSj4ut7", "views": 18,
+      "guard": "Gerador.*Espuma.*2[lL].*Lotus", "expectedListing": "MLB5296312807",
+      "title": "Gerador de espuma Lotus 2 L: proposta, limites e cuidados",
+      "description": "Entenda a proposta do espumador Lotus a bateria, o que falta confirmar sobre recarga e autonomia e por que não o tratamos como lavadora de alta pressão.",
+      "publicSummary": "O anúncio registrado apresenta um gerador de espuma Lotus a bateria, com reservatório anunciado de 2 L. A proposta é aplicar espuma; não confirmamos desempenho de limpeza, tempo de uso ou equivalência a uma lavadora de alta pressão.",
+      "basis": "Informações do anúncio já registrado, sem nova leitura do vendedor nesta revisão e sem manual específico confirmado. Os números e os acessórios anunciados não foram testados pela equipe.",
+      "fit": "Para quem procura um aplicador de espuma e aceita conferir o preparo e os produtos compatíveis no manual. Pode entrar na comparação para a etapa de aplicação, mas não deve ser escolhido como se também fizesse sozinho a remoção de toda a sujeira.",
+      "tradeoff": "A proposta a bateria evita depender de bombeamento manual contínuo, se o funcionamento anunciado corresponder ao modelo entregue. Em contrapartida, recarga, manutenção e disponibilidade de peças precisam entrar na decisão.",
+      "advantages": ["Reservatório de 2 L anunciado: uma referência de capacidade para comparar aplicadores.", "Funcionamento a bateria declarado no cadastro, sem promessa de autonomia medida."],
+      "limitations": ["Não confirmamos a quantidade de aplicações por carga ou o tempo de recarga.", "A escrita '74v' do título não permite concluir a tensão correta da bateria ou do carregador.", "Não há teste de densidade da espuma, alcance, resistência química ou uso profissional contínuo."],
+      "check": "Peça o manual exato, a tensão correta, o carregador exigido, os líquidos permitidos e as peças incluídas. Confirme se há bicos e vedações de reposição; não escolha uma fonte apenas pela aparência do conector.",
+      "alternative": "Se você precisa retirar sujeira com jato de água ou trabalhar continuamente, compare equipamentos documentados para essa finalidade. Aplicar espuma e lavar sob alta pressão são propostas que não devemos confundir.",
+      "questions": [
+        ["Substitui uma lavadora de alta pressão?", "Não confirmamos essa equivalência. O cadastro o identifica como gerador de espuma; pressão anunciada, sozinha, não comprova as funções ou o desempenho de uma lavadora."],
+        ["Posso usar qualquer detergente?", "A compatibilidade dos produtos químicos não foi confirmada. Siga o manual específico e a orientação do fabricante do aplicador, sem presumir que qualquer mistura seja adequada."],
+        ["Quantos carros consigo fazer por carga?", "Não temos esse dado confirmado. Capacidade do recipiente não informa duração da bateria nem quantidade de aplicações."],
+        ["Ele é 7,4 V ou 74 V?", "A grafia do anúncio é ambígua. Não corrigimos por suposição: confirme a etiqueta e o manual do modelo com o vendedor antes de escolher a alimentação."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB57289720?pdp_filters=item_id%3AMLB5296312807", "label": "Anúncio registrado do Lotus 2 L — sem nova verificação nesta revisão"}],
+      "links": [{"url": "/comparar.html?q=espuma", "label": "Localizar outros aplicadores cadastrados"}]
+    },
+    {
+      "id": "FWTjfbbohQT5qtJGYDBC", "views": 11,
+      "guard": "T[eê]nis.*Fitness.*Feminino", "expectedListing": "MLB5964576452",
+      "title": "Tênis Fit feminino: o que conferir antes de escolher",
+      "description": "Veja os pontos pendentes do tênis Fit feminino anunciado para academia e caminhada: medidas, materiais, finalidade e dúvidas sobre ajuste.",
+      "publicSummary": "Este cadastro identifica um tênis feminino da marca Fit, anunciado para academia, caminhada e corrida. Não há nesta revisão dados técnicos suficientes para confirmar amortecimento, peso, aderência ou indicação para uma rotina esportiva específica.",
+      "basis": "Marca, título e identificação do anúncio já cadastrados. Não foi localizado manual ou código técnico específico e não fizemos novo teste ou leitura da oferta. A lista de atividades do título não valida desempenho.",
+      "fit": "Para quem está procurando um tênis feminino e pode conferir as medidas e a finalidade real com o vendedor. Com os dados atuais, a ficha ajuda a montar perguntas, mas não sustenta uma recomendação de corrida ou treino intenso.",
+      "tradeoff": "Uma descrição ampla facilita encontrar o anúncio, mas diz pouco sobre a construção do calçado. Aqui o ajuste ao pé e a documentação do produto importam mais do que as palavras 'fitness' ou 'esportivo'.",
+      "advantages": ["Marca Fit e anúncio específico identificados, sem misturar o cadastro com os outros tênis femininos do site.", "A proposta de uso divulgada permite perguntar ao vendedor se há orientação específica para a atividade desejada."],
+      "limitations": ["Materiais, peso, drop, tipo de entressola e tecnologias de amortecimento não estão confirmados.", "Conforto, aderência, durabilidade e adequação à corrida não foram testados."],
+      "check": "Peça a tabela de medidas deste anúncio e os materiais do cabedal e do solado. Confira as condições de troca da numeração na loja e procure uma descrição técnica da atividade pretendida.",
+      "alternative": "Se você corre com frequência ou busca um recurso técnico específico, compare modelos que documentem essa finalidade. Não atribuímos a este tênis a ficha de um produto de aparência semelhante.",
+      "questions": [
+        ["É indicado para corrida diária?", "O título menciona corrida, mas não encontramos informação técnica suficiente para confirmar essa indicação. Não transformamos a palavra do título em avaliação de desempenho."],
+        ["Devo pedir meu número habitual?", "Não confirmamos a forma do modelo. Compare as medidas da tabela do próprio anúncio; não generalize pela marca ou por outro tênis."],
+        ["É antiderrapante ou impermeável?", "Essas propriedades não foram comprovadas nesta ficha. Peça documentação específica se forem decisivas para o seu uso."],
+        ["É o mesmo tênis DM Damando que aparece no site?", "Não tratamos os dois como iguais. São cadastros de marcas e anúncios diferentes; sem identificação confirmada, eles não são unidos."]
+      ],
+      "sources": [{"url": "https://produto.mercadolivre.com.br/MLB-5964576452-tnis-fitness-academia-feminino-esportivo-caminhada-corrida-_JM", "label": "Anúncio registrado do tênis Fit — medidas e materiais a conferir"}],
+      "links": [{"url": "/comparar.html?q=tenis", "label": "Encontrar tênis para comparar pela finalidade"}]
+    },
+    {
+      "id": "TaSttysuiLO2i5Rrb9hV", "views": 11,
+      "guard": "Puma.*Flyer Runner Mesh|Flyer Runner Mesh.*Puma", "expectedListing": "MLB4091855423",
+      "title": "Puma Flyer Runner Mesh feminino: ajuste e informações pendentes",
+      "description": "Conheça os limites da ficha do Puma Flyer Runner Mesh feminino e o que confirmar sobre tamanho, materiais e uso, sem copiar tecnologias de outra versão.",
+      "publicSummary": "O cadastro identifica o Puma Flyer Runner Mesh feminino do anúncio MLB4091855423. Sem o código completo da variante, não atribuímos tecnologias, peso ou medidas de outra versão. Conforto e desempenho não foram testados pela equipe.",
+      "basis": "Nome, marca e anúncio já registrados. Não obtivemos nesta revisão a identificação completa da variante ou nova leitura da oferta; não usamos a ficha de outro Flyer Runner para preencher lacunas.",
+      "fit": "Para quem procura esse nome de modelo e quer verificar se a variante disponível atende ao seu pé e à atividade pretendida. A identificação do anúncio permite conferir a oferta sem confundi-la com outra cor ou outro vendedor.",
+      "tradeoff": "Reconhecer uma linha de tênis ajuda na busca, mas não substitui conferir o código e a numeração. Fotos e nomes parecidos não garantem a mesma construção, e o ajuste é uma etapa importante da escolha.",
+      "advantages": ["Marca Puma e nome Flyer Runner Mesh identificados no cadastro.", "Código do anúncio mantido para distinguir esta oferta das outras com nome semelhante."],
+      "limitations": ["Não confirmamos código de fábrica, peso, drop ou tecnologia de amortecimento desta variante.", "Não fizemos teste de ajuste, aderência, conforto ou durabilidade."],
+      "check": "Confira o código na etiqueta, a tabela de medidas e os materiais informados pelo vendedor. Verifique quais numerações pertencem à oferta e as condições de troca; cor não deve ser usada como prova de um modelo técnico diferente.",
+      "alternative": "Se você precisa de uma característica técnica decisiva, compare apenas depois de encontrar a documentação da variante exata. Não conte com uma tecnologia só porque aparece em outro tênis Puma.",
+      "questions": [
+        ["Tem a mesma tecnologia de qualquer Flyer Runner?", "Não podemos afirmar. É necessário conferir o código da variante; não transferimos recursos de uma ficha semelhante para esta."],
+        ["O Mesh do nome confirma o material completo?", "Não. Mantemos o nome cadastrado, mas ele não substitui a composição detalhada do cabedal e dos demais componentes."],
+        ["A numeração é pequena ou grande?", "Não testamos a forma. Use a tabela específica do anúncio e confira as condições de troca em vez de adotar uma regra geral."],
+        ["Por que há outro produto com o mesmo nome?", "O site já teve ofertas do mesmo nome com códigos de anúncio diferentes. Isso não comprova modelos distintos; nesta análise mantemos a identidade desta oferta sem unir cadastros."]
+      ],
+      "sources": [{"url": "https://produto.mercadolivre.com.br/MLB-4091855423-tnis-flyer-runner-mesh-feminino-puma-_JM", "label": "Anúncio registrado do Puma Flyer Runner Mesh feminino"}],
+      "links": [{"url": "/comparar.html?q=tenis", "label": "Comparar tênis sem assumir equivalência pela aparência"}]
+    },
+    {
+      "id": "hokaCwafFsMcmt9QPBdX", "views": 11,
+      "guard": "HP.*135a|Hp135a", "expectedListing": "MLB4218581805",
+      "title": "HP Laser MFP 135a: impressão por USB, usos e limitações",
+      "description": "Entenda para quem considerar a HP 135a 4ZB82A: impressão monocromática, cópia e digitalização, conexão USB e dúvidas antes da compra.",
+      "publicSummary": "A HP Laser MFP 135a, código 4ZB82A, reúne impressão monocromática, cópia e digitalização. A documentação identifica conexão USB, não Wi-Fi. É uma opção para avaliar para documentos, não uma promessa de resultado ou produtividade testada pela equipe.",
+      "basis": "Modelo 135a/4ZB82A do cadastro comparado à documentação oficial da HP. A ficha não é da 135w. Não realizamos teste prático nem renovamos a verificação do estoque ou do pacote do vendedor.",
+      "fit": "Para quem precisa lidar com documentos e pode conectar a impressora por cabo a um computador compatível. Se você espera imprimir diretamente por Wi-Fi, esse requisito muda a escolha e deve ser resolvido antes da compra.",
+      "tradeoff": "Reunir três funções reduz a necessidade de procurar um aparelho para cada tarefa. Em troca, é importante considerar conexão, consumíveis e rotina: a palavra multifuncional não significa imprimir em cores ou ter rede sem fio.",
+      "advantages": ["Impressão, cópia e digitalização documentadas no mesmo aparelho.", "Identificação 135a/4ZB82A permite procurar o driver e os consumíveis do modelo correto."],
+      "limitations": ["A impressão é monocromática; não a indicamos para imprimir fotos ou documentos em cores.", "A conexão documentada é USB 2.0, sem Wi-Fi neste modelo.", "Não confirmamos os acessórios do pacote, a tensão da unidade ofertada ou a compatibilidade com todo sistema operacional."],
+      "check": "Confira no suporte da HP os drivers para seu sistema e peça ao vendedor tensão, itens entregues e consumíveis compatíveis. Não use a ficha da 135w para completar esta oferta.",
+      "alternative": "Se rede sem fio ou impressão em cores é indispensável, compare modelos que documentem essas funções. Para volume de trabalho, diferencie o limite de ciclo mensal da recomendação de uso do fabricante.",
+      "questions": [
+        ["Imprime pelo Wi-Fi?", "A HP informa conexão USB e ausência de capacidade sem fio para a 135a. Não atribuímos a ela os recursos de rede da 135w."],
+        ["Multifuncional significa impressão colorida?", "Não. Ela reúne funções, mas a impressão deste modelo é monocromática."],
+        ["Funciona no meu computador?", "Confira a disponibilidade do driver para o seu sistema na página oficial. Não prometemos compatibilidade universal ou instalação sem verificar os requisitos."],
+        ["O cabo e o toner já vêm no pacote?", "Não confirmamos o conteúdo desta oferta nesta revisão. Peça a relação exata ao vendedor, inclusive o consumível inicial e os cabos."],
+        ["Posso usar o máximo mensal como meta diária?", "Não. Ciclo máximo e volume recomendado são critérios diferentes. Consulte a recomendação da HP e dimensione o equipamento para sua rotina."]
+      ],
+      "sources": [{"url": "https://support.hp.com/br-pt/product/product-specs/hp/24494381", "label": "HP — especificações da Laser MFP 135a"}, {"url": "https://www.mercadolivre.com.br/p/MLB28305243?pdp_filters=item_id%3AMLB4218581805", "label": "Oferta registrada — conteúdo e condições a conferir no vendedor"}],
+      "links": [{"url": "/comparar.html?q=impressora", "label": "Comparar impressoras pela função necessária"}]
+    }
+    ,
+    {
+      "id": "2e2m7sDdRyGHq1Tzj8ra", "views": 9,
+      "guard": "TL[ -]*WR840[ -]*N\\b", "expectedListing": "MLB3858550725",
+      "title": "TP-Link TL-WR840N: quando o N300 atende e onde limita",
+      "description": "Entenda o TL-WR840N: Wi-Fi de 2,4 GHz, portas 10/100, diferença entre taxa anunciada e internet real e cuidados com a revisão do equipamento.",
+      "publicSummary": "O TL-WR840N é um roteador Wi-Fi N de 2,4 GHz. A TP-Link informa uma porta WAN e quatro LAN de 10/100 Mbps. O N300 descreve a taxa sem fio anunciada, não uma garantia de entregar um plano de internet de 300 Mbps.",
+      "basis": "Página oficial brasileira da TP-Link para o TL-WR840N consultada, mantendo a ressalva de revisão de hardware e firmware. Não é o TL-WR840N W nem um teste de cobertura nesta casa.",
+      "fit": "Para quem está avaliando uma rede básica e entende os limites das portas e dos aparelhos conectados. Antes de escolher, veja se sua necessidade é apenas acesso em um ponto ou aproveitar uma conexão mais rápida e vários dispositivos ao mesmo tempo.",
+      "tradeoff": "O equipamento reúne conexões com e sem cabo, mas a porta de entrada é um limite importante. Um número maior no nome do Wi-Fi não transforma essas portas em Gigabit nem elimina interferências e obstáculos.",
+      "advantages": ["Quatro portas LAN e uma WAN documentadas, permitindo planejar as conexões físicas.", "Modelo identificado para consultar firmware e documentação da revisão correta."],
+      "limitations": ["Portas 10/100 Mbps, não Gigabit.", "A ficha documenta 2,4 GHz; não oferecemos 5 GHz ou Wi-Fi 6 neste modelo.", "Cobertura e velocidade real não foram medidas pela equipe."],
+      "check": "Confira a versão de hardware na etiqueta, o firmware correspondente e a ligação com seu modem ou equipamento do provedor. Se a prioridade for velocidade por cabo acima de 100 Mbps, essa especificação não atende ao requisito.",
+      "alternative": "Compare um roteador com portas Gigabit e bandas compatíveis quando essas funções forem necessárias. Não chame qualquer modo extensor de uma solução Mesh sem documentação específica.",
+      "questions": [
+        ["Os 300 Mbps são a velocidade da internet?", "Não. É a taxa sem fio anunciada para o padrão N; portas, cliente, sinal e rede influenciam o resultado. Não é uma medição de acesso à internet."],
+        ["Tem rede de 5 GHz?", "A documentação consultada identifica Wi-Fi de 2,4 GHz. Não o apresentamos como dual band."],
+        ["As portas são Gigabit?", "Não. A ficha informa uma WAN e quatro LAN de 10/100 Mbps."],
+        ["Serve como extensor na minha rede?", "Confira a revisão, o firmware e a compatibilidade com o roteador principal. A existência de um modo de operação não garante o funcionamento em qualquer rede."],
+        ["A cobertura anunciada vale para minha casa?", "Não garantimos alcance por cômodos. Obstáculos, interferências e a posição dos equipamentos mudam a experiência."]
+      ],
+      "sources": [{"url": "https://www.tp-link.com/br/home-networking/wifi-router/tl-wr840n/", "label": "TP-Link Brasil — TL-WR840N e especificações"}],
+      "links": [{"url": "/melhores-roteador.html", "label": "Guia para comparar equipamentos de rede"}, {"url": "/comparar.html?q=roteador", "label": "Localizar outros roteadores"}]
+    },
+    {
+      "id": "9Y8FuG1gZwVywVcUHPCg", "views": 8,
+      "guard": "LG.*9000.*Frio", "expectedListing": "MLB5797783884",
+      "title": "LG Smart Inverter 9.000 BTUs frio: conjunto e instalação",
+      "description": "Confira a relação entre o LG S3-Q09JA31E e a unidade externa S3UQ09JA31E, os requisitos da instalação e os limites das promessas de economia.",
+      "publicSummary": "O anúncio cadastrado identifica um LG de 9.000 BTUs frio e informa o código S3UQ09JA31E.EB2GAM1. A LG relaciona S3UQ09JA31E à unidade externa do conjunto S3-Q09JA31E; confirme se a oferta entrega as duas unidades compatíveis, e não apenas uma delas.",
+      "basis": "Página oficial do conjunto S3-Q09JA31E consultada e comparada ao código do cadastro. O sufixo completo e o pacote do vendedor não foram revalidados. Não medimos ruído, consumo ou climatização.",
+      "fit": "Para quem procura resfriamento e pode dimensionar o ambiente e preparar uma instalação adequada. A capacidade anunciada é um ponto de partida, não uma indicação automática para qualquer quarto ou metragem.",
+      "tradeoff": "Instalação, condições do ambiente e composição do conjunto influenciam a escolha tanto quanto os recursos divulgados. Não seria útil prometer uma economia fixa ou silêncio absoluto sem conhecer o uso real.",
+      "advantages": ["A LG documenta operação frio e controle pelo ThinQ com Wi-Fi para o conjunto identificado.", "A relação entre código do conjunto e unidade externa ajuda a conferir o que está sendo comprado."],
+      "limitations": ["É necessário confirmar que a oferta contém o conjunto completo compatível.", "O fabricante informa 220 V/60 Hz; não tratamos este conjunto como bivolt.", "Não garantimos economia percentual, ruído percebido ou adequação a uma área específica."],
+      "check": "Solicite os códigos das duas unidades e os itens incluídos. Peça dimensionamento e orçamento de instalação a profissional habilitado, incluindo os requisitos elétricos. A página atual da LG informa classe energética B; confira a etiqueta da unidade oferecida.",
+      "alternative": "Se você precisa aquecimento, outra tensão ou capacidade, compare um conjunto explicitamente documentado para isso. Não transfira a ficha de uma versão quente/frio ou de capacidade diferente.",
+      "questions": [
+        ["Esse código é do aparelho completo?", "A LG identifica S3UQ09JA31E como unidade externa. O cadastro traz esse código com sufixo; por isso, confirme com o vendedor as duas unidades e o pacote antes de comprar."],
+        ["9.000 BTUs atende qualquer quarto?", "Não podemos concluir só pela capacidade. Tamanho, incidência solar, pessoas e outras condições precisam entrar no dimensionamento profissional."],
+        ["Também aquece?", "A proposta documentada deste conjunto é frio. Não atribuímos o ciclo quente/frio de outra versão."],
+        ["O controle por voz funciona sozinho?", "Não presuma isso. Confira os requisitos de rede, aplicativo e serviço compatível da LG; a função anunciada não significa assistente ou acessórios independentes incluídos."],
+        ["Quanto vou economizar na conta?", "Não temos uma medição para sua instalação. Tecnologia e etiqueta ajudam a comparar, mas não garantem um percentual de economia na sua rotina."]
+      ],
+      "sources": [{"url": "https://www.lg.com/br/ar-condicionado-residencial/s3-q09ja31e/", "label": "LG Brasil — conjunto S3-Q09JA31E e identificação da unidade externa"}, {"url": "https://www.mercadolivre.com.br/p/MLB57314352?pdp_filters=item_id%3AMLB5797783884", "label": "Oferta registrada — conjunto e sufixo a confirmar"}],
+      "links": [{"url": "/comparar.html?q=ar+condicionado", "label": "Comparar aparelhos pela capacidade e pelo ciclo"}]
+    },
+    {
+      "id": "UkgpEmnU2nSDUmOujW6W", "views": 8,
+      "guard": "Smartwatch NOVANTE Alexa", "expectedListing": "MLB6162191874",
+      "title": "NOVANTE HT1291: chamadas, GPS e limites das medições",
+      "description": "Entenda o NOVANTE do anúncio MLB6162191874: modelo HT1291 informado pelo vendedor, funções ligadas ao celular e recursos que não devem ser presumidos.",
+      "publicSummary": "A revisão registrada do anúncio MLB6162191874 identifica o NOVANTE HT1291, com Alexa e chamadas Bluetooth anunciadas pelo vendedor. A descrição consultada não informa GPS independente. Não validamos precisão clínica, autonomia ou uso na água.",
+      "basis": "Informações do anúncio específico registradas na revisão de 22/10/2026. Não fizemos nova leitura da oferta ou teste prático. A classificação IP68 é declaração do vendedor, sem condições de uso confirmadas por manual específico.",
+      "fit": "Para quem quer avaliar notificações e funções conectadas ao celular no pulso. Vale conferir o aplicativo, as permissões e as funções efetivamente compatíveis com o seu telefone antes de decidir.",
+      "tradeoff": "Uma lista extensa de funções não informa como elas funcionam nem se atendem à sua rotina. Chamadas Bluetooth, assistente, sensores e recursos citados no título precisam ser diferenciados de telefonia independente ou uso médico.",
+      "advantages": ["Modelo HT1291 identificado na revisão do anúncio, permitindo perguntas mais precisas ao vendedor.", "Alexa e chamadas Bluetooth anunciadas, úteis como critérios a verificar para quem procura funções conectadas."],
+      "limitations": ["Não há GPS independente informado na descrição revisada.", "Não confirmamos ECG clínico, precisão dos sensores ou recursos de diagnóstico.", "IP68 anunciado não é confirmação de banho, natação ou resistência a qualquer condição de água."],
+      "check": "Confirme o aplicativo e a compatibilidade do telefone, como funcionam chamadas e Alexa e qual é o manual do HT1291 entregue. Não presuma chip próprio, pagamento compatível com seu banco ou autonomia fixa.",
+      "alternative": "Se a prioridade for registrar trajetos sem telefone, telefonia independente ou uma medição clínica, compare equipamentos que documentem exatamente essa função e sua finalidade.",
+      "questions": [
+        ["Tem GPS próprio para sair sem celular?", "A descrição revisada do anúncio não informa GPS independente. Não apresentamos esse recurso como disponível."],
+        ["Posso fazer chamadas longe do celular?", "O recurso anunciado é Bluetooth. Isso não comprova chip ou telefonia independente; confirme o funcionamento e a conexão exigida."],
+        ["Os sensores substituem um exame?", "Não há validação clínica confirmada nesta análise. Termos de saúde no anúncio não comprovam diagnóstico ou eficácia médica."],
+        ["IP68 permite nadar ou tomar banho?", "Não confirmamos essas condições. Peça o manual e as restrições do modelo exato; não use somente a sigla como autorização."],
+        ["É igual ao outro NOVANTE cadastrado?", "Não presumimos equivalência. Mantemos este anúncio e seu modelo identificados, sem copiar a ficha de outro relógio da marca."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB64244402?pdp_filters=item_id%3AMLB6162191874", "label": "Anúncio NOVANTE revisado em 22/10 — sem nova leitura nesta etapa"}],
+      "links": [{"url": "/comparar.html?q=smartwatch", "label": "Comparar relógios pelo formato e pelas funções documentadas"}]
+    },
+    {
+      "id": "XXf1jGItNH4xwlZ136z3", "views": 8,
+      "guard": "New Hawaii.*Mochila.*50[lL]", "expectedListing": "MLB5373076729",
+      "title": "Mochila de pesca New Hawaii 50 L: organização e limites",
+      "description": "Saiba o que avaliar na mochila de pesca New Hawaii anunciada como 50 L: capacidade, bolsos, medidas e itens que ainda precisam ser confirmados.",
+      "publicSummary": "A mochila New Hawaii é anunciada para pesca, com capacidade de 50 L. O cadastro menciona divisões e alças, mas não comprova carga máxima, impermeabilidade ou conforto com peso. Confira as medidas e o conteúdo da oferta antes de escolher.",
+      "basis": "Título e descrição do anúncio já registrados. Não obtivemos manual específico, nova leitura da oferta ou teste com carga e água. Capacidade e organização são informações declaradas, não medições da equipe.",
+      "fit": "Para quem quer reunir materiais de pesca em uma mochila e consegue conferir as dimensões dos próprios acessórios. A decisão fica mais clara ao comparar o espaço útil e o acesso aos compartimentos, em vez de olhar apenas o total de litros.",
+      "tradeoff": "Muitos compartimentos podem ajudar na separação dos objetos, mas também precisam ter medidas adequadas ao que você leva. Não garantimos conforto, distribuição de peso ou proteção do equipamento sem dados e testes.",
+      "advantages": ["Capacidade de 50 L anunciada, uma referência inicial para comparar mochilas.", "Organização em compartimentos descrita no cadastro, a conferir com fotos e medidas do vendedor."],
+      "limitations": ["Litros não informam quantos quilos a mochila suporta.", "Não confirmamos impermeabilidade, resistência dos zíperes ou dimensões úteis de cada bolso.", "Acessórios mostrados em fotos não foram confirmados como parte da compra."],
+      "check": "Peça dimensões externas e internas, carga máxima declarada e relação dos itens incluídos. Confira o material, os cuidados e se existe capa de chuva fornecida; aparência reforçada não é teste de resistência.",
+      "alternative": "Se você precisa transportar um equipamento com tamanho ou proteção específicos, compare modelos com medidas e especificação de resistência documentadas. Não escolha apenas pela palavra 'pesca'.",
+      "questions": [
+        ["50 L significa suportar 50 kg?", "Não. Litros expressam volume, não carga máxima. A capacidade de peso precisa ser informada separadamente pelo fabricante ou vendedor."],
+        ["Pode pegar chuva sem molhar o conteúdo?", "Não confirmamos impermeabilidade ou proteção dos fechamentos. Peça a especificação e os cuidados do produto."],
+        ["As caixas e equipamentos das fotos acompanham?", "O conteúdo da oferta não foi confirmado nesta revisão. Solicite a relação exata dos itens antes da compra."],
+        ["Ela vai aliviar os ombros?", "Não fizemos avaliação ergonômica ou teste com carga. Formato das alças, ajuste e distribuição dos objetos não são uma garantia de conforto para qualquer pessoa."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB66854435?pdp_filters=item_id%3AMLB5373076729", "label": "Anúncio registrado da New Hawaii 50 L — medidas a confirmar"}],
+      "links": [{"url": "/comparar.html?q=mochila", "label": "Encontrar mochilas cadastradas"}]
+    }
+    ,
+    {
+      "id": "gmzJCKnbLsVLIZilQGSe", "views": 8,
+      "publicName": "Massageador Nixzen — seis velocidades e quatro cabeças anunciadas",
+      "guard": "Massageador.*Nixzen", "expectedListing": "MLB4664712799",
+      "title": "Massageador Nixzen: recursos anunciados e limites da ficha",
+      "description": "Veja o que o anúncio do massageador Nixzen informa sobre velocidades e cabeças, sem transformar linguagem de venda em benefício terapêutico comprovado.",
+      "publicSummary": "O anúncio do massageador Nixzen informa seis velocidades e quatro cabeças. Não realizamos testes de eficácia, intensidade, segurança clínica ou autonomia. Termos como 'profissional' e 'fisioterapia' no título não comprovam indicação terapêutica.",
+      "basis": "Características do anúncio já registrado, sem nova leitura nesta revisão ou manual específico confirmado. Não avaliamos este aparelho como dispositivo de diagnóstico ou tratamento e não transferimos resultados de outros massageadores.",
+      "fit": "Para quem quer entender os recursos de um massageador portátil antes de decidir. Com os dados disponíveis, é possível comparar o conjunto anunciado, mas não afirmar que este modelo atende a uma dor, lesão ou recuperação específica.",
+      "tradeoff": "A quantidade de velocidades e acessórios facilita distinguir os conjuntos, mas não mede qualidade nem resultado. Se o objetivo for terapêutico, a ficha comercial não oferece base suficiente para uma recomendação individual.",
+      "advantages": ["Seis velocidades anunciadas, para conferir quais ajustes o aparelho oferece.", "Quatro cabeças anunciadas, permitindo verificar quais acessórios pertencem ao conjunto."],
+      "limitations": ["Não confirmamos eficácia terapêutica, precisão da intensidade ou validação clínica.", "Autonomia, ruído, tempo de recarga e durabilidade não foram medidos.", "Não foi confirmado um manual específico com requisitos de alimentação e restrições de uso."],
+      "check": "Peça o manual e a identificação completa, os acessórios fornecidos e os requisitos do carregador. Para finalidade de tratamento, procure orientação profissional em vez de usar as promessas do título como prescrição.",
+      "alternative": "Se precisa de um recurso indicado para um tratamento, a escolha deve considerar avaliação e documentação apropriadas. Não apresentamos este anúncio como substituto de atendimento ou reabilitação.",
+      "questions": [
+        ["É comprovado para aliviar dor ou recuperar lesão?", "Não temos comprovação específica deste modelo nesta análise. As palavras do anúncio não são evidência clínica e não prometemos esse resultado."],
+        ["Mais velocidades significam melhor resultado?", "Não podemos concluir isso. A quantidade descreve ajustes anunciados; não mede eficácia, conforto ou qualidade do motor."],
+        ["Qual cabeça devo usar em uma lesão?", "Não fazemos indicação individual de tratamento. Sem avaliação e instruções específicas, esta ficha não oferece base para prescrever um acessório ou modo de uso."],
+        ["Posso carregar com qualquer fonte USB?", "Os requisitos exatos não foram confirmados por manual específico. Siga a orientação do fabricante do aparelho e não escolha apenas pelo conector."],
+        ["As seis velocidades e quatro cabeças foram testadas?", "Não. São características do anúncio registrado, mantidas como declarações do vendedor e não como resultado de teste da equipe."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB69323884?pdp_filters=item_id%3AMLB4664712799", "label": "Anúncio registrado do Nixzen — declarações comerciais, sem validação clínica"}],
+      "links": [{"url": "/comparar.html?q=massageador", "label": "Localizar massageadores e conferir a documentação de cada um"}]
+    },
+    {
+      "id": "i1ii8KV1IYFAeAN3SPWH", "views": 8,
+      "guard": "Parafusadeira.*Motosserra.*[Nn]akasaki", "expectedListing": "MLB3902983035",
+      "title": "Kit Nakasaki: parafusadeira, mini motosserra e o que conferir",
+      "description": "Entenda o conjunto anunciado com parafusadeira, mini motosserra, duas baterias e maleta, sem presumir torque, capacidade de corte ou compatibilidade.",
+      "publicSummary": "O cadastro anuncia um kit Nakasaki com parafusadeira, mini motosserra, duas baterias e maleta. Não há identificação técnica suficiente nesta revisão para confirmar torque, capacidade de corte, tensão real ou compatibilidade das baterias.",
+      "basis": "Título e composição descritos no anúncio já registrado. Sem nova leitura da oferta, manual específico ou teste das ferramentas. O cadastro usa Nakasaki no nome e KNakasaki na marca; a identificação exata precisa ser confirmada.",
+      "fit": "Para quem está avaliando um conjunto de ferramentas e pode descrever os trabalhos pretendidos ao vendedor. A composição anunciada permite começar a comparação, mas não comprova aptidão para um material, espessura ou rotina profissional.",
+      "tradeoff": "Comprar um conjunto pode concentrar os itens em uma só oferta, mas dificulta a escolha quando faltam os códigos de cada ferramenta. Compatibilidade, manutenção e especificações devem vir antes da quantidade de peças no título.",
+      "advantages": ["Duas ferramentas e maleta anunciadas no mesmo conjunto, cuja entrega deve ser confirmada.", "Duas baterias mencionadas no cadastro, permitindo perguntar sobre o sistema de alimentação e reposição."],
+      "limitations": ["Não confirmamos torque, rotação, função impacto ou capacidade de perfuração e corte.", "Não há confirmação de intercâmbio entre as baterias das duas ferramentas ou com outras marcas.", "Não validamos tensão, capacidade real das baterias, carregador ou disponibilidade de peças."],
+      "check": "Peça fotos das etiquetas, códigos e manuais de cada ferramenta, do carregador e das baterias. Confirme o conteúdo e a reposição. Siga as instruções de segurança e proteção do fabricante; esta análise não é um tutorial de operação.",
+      "alternative": "Se você precisa furar um material ou cortar uma dimensão específica, compare ferramentas com essa capacidade documentada. Não inferimos função de furadeira de impacto, motor brushless ou uso profissional pela aparência.",
+      "questions": [
+        ["A parafusadeira fura concreto?", "Não confirmamos função impacto ou capacidade para concreto. Peça a especificação do modelo e do material; não presuma a função pelo formato."],
+        ["As duas baterias servem nas duas ferramentas?", "A composição anunciada não comprova isso. Confirme encaixe, tensão, identificação e compatibilidade de cada unidade com o vendedor."],
+        ["Qual é a capacidade de corte da mini motosserra?", "Não temos uma capacidade confirmada por manual específico. Não estimamos o corte só pela foto ou pelo comprimento aparente da corrente."],
+        ["O kit vem pronto com carregador e todas as peças?", "A relação completa precisa ser confirmada na oferta. A descrição de duas baterias e maleta não garante os demais acessórios."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB24881455?pdp_filters=item_id%3AMLB3902983035", "label": "Anúncio registrado do kit — códigos e composição a confirmar"}],
+      "links": [{"url": "/comparar.html?q=parafusadeira", "label": "Localizar ferramentas para comparar sem misturar funções"}]
+    },
+    {
+      "id": "oVBbvfcldF36EbyYex8y", "views": 8,
+      "publicName": "Scooter elétrica Xplore 48 V/12 Ah/500 W — classificação a confirmar",
+      "guard": "Xplore.*48.*12.*500", "expectedCatalogue": "MLB54428983",
+      "title": "Scooter elétrica Xplore 500 W: ficha e classificação a conferir",
+      "description": "Entenda o que ainda falta confirmar na Xplore anunciada como 48 V/12 Ah/500 W, inclusive enquadramento para circulação, sem garantir dispensa de CNH.",
+      "publicSummary": "O cadastro anuncia uma Xplore 48 V/12 Ah/500 W. A expressão 'sem CNH' pertence ao título do anúncio e não é uma conclusão desta análise. Faltam dados completos para confirmar a classificação e as exigências de circulação do veículo.",
+      "basis": "Dados históricos do anúncio e orientação pública do DETRAN-PE sobre a regulamentação nacional consultada. A orientação geral não classifica esta Xplore. Não houve nova leitura da oferta ou teste de autonomia e segurança.",
+      "fit": "Para quem está pesquisando mobilidade elétrica e aceita verificar o veículo completo, a documentação e as regras aplicáveis antes da compra. A primeira decisão não deveria ser a cor ou o número de watts, mas se o equipamento é adequado e regular para o trajeto pretendido.",
+      "tradeoff": "A ficha anuncia alimentação e potência, mas esses números não respondem às dúvidas principais de circulação e uso. Comprar pela expressão 'sem CNH' sem verificar a classificação pode deixar uma exigência importante sem resposta.",
+      "advantages": ["Tensão, capacidade de bateria e potência anunciadas ficam identificadas para solicitar a documentação correspondente.", "O endereço do produto foi preservado para conferir as características e pedir esclarecimentos ao vendedor."],
+      "limitations": ["Não confirmamos velocidade máxima de fabricação, dimensões ou enquadramento regulamentar.", "Não asseguramos dispensa de CNH, registro, placa ou outras exigências.", "Autonomia real, carga suportada, recarga e resistência à chuva não foram testadas."],
+      "check": "Peça o modelo completo, velocidade de fabricação, dimensões, documentação, requisitos de recarga e classificação declarada. Confirme o enquadramento e as regras do trajeto com a autoridade de trânsito competente; o anúncio não substitui essa verificação.",
+      "alternative": "Se o vendedor não fornecer dados suficientes para a classificação e a manutenção, compare veículos com documentação clara. Esta análise não atribui à Xplore as características de outra bicicleta, ciclomotor ou autopropelido.",
+      "questions": [
+        ["A Xplore está liberada sem CNH?", "Não confirmamos isso. O título do anúncio não comprova o enquadramento, e a orientação geral consultada não identifica nem classifica este modelo específico."],
+        ["Ter 500 W resolve a classificação?", "Não é base suficiente para nossa conclusão. É necessário verificar o conjunto de características e a documentação; não classificamos o veículo apenas pela potência anunciada."],
+        ["Posso circular na calçada ou ciclovia?", "Não damos autorização de circulação nesta ficha. Primeiro confirme a classificação do veículo e depois as regras do local com a autoridade competente."],
+        ["Ela percorre 40 km por carga?", "Não validamos essa distância. A estimativa antiga do cadastro não será apresentada como autonomia garantida ou medida pela equipe."],
+        ["O anúncio se chama bicicleta: isso basta?", "Não usamos o nome comercial como prova da categoria regulamentar. Peça os dados técnicos e confirme o enquadramento antes de decidir."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB54428983", "label": "Endereço registrado da Xplore — dados específicos ainda pendentes"}, {"url": "https://www.detran.pe.gov.br/noticias/2308-detran-pe-alerta-sobre-novas-diretrizes-do-contran-para-uso-de-veiculos-ciclomotores-e-autopropelidos", "label": "DETRAN-PE — orientação geral, não certificação desta Xplore"}],
+      "links": [{"url": "/comparar.html?q=scooter", "label": "Encontrar outros cadastros de mobilidade para verificar individualmente"}]
+    },
+    {
+      "id": "pvXy1mkDwgkYeeGFQoUd", "views": 8,
+      "guard": "T[eê]nis.*Feminino.*Academia", "expectedListing": "MLB4463477029",
+      "title": "Tênis DM Damando feminino: medidas e proposta de uso",
+      "description": "Veja o que ainda precisa ser confirmado no tênis DM Damando anunciado para academia e caminhada, sem prometer conforto ou desempenho não testados.",
+      "publicSummary": "O tênis feminino DM Damando é anunciado para academia, corrida e caminhada. Leveza e conforto aparecem no título, mas não são medições da equipe. Materiais, peso e construção específica ainda precisam ser confirmados no anúncio.",
+      "basis": "Marca e anúncio já registrados, sem código técnico específico ou nova leitura da oferta nesta revisão. Não testamos ajuste, conforto, aderência ou durabilidade e não usamos a ficha do tênis Fit para preencher este cadastro.",
+      "fit": "Para quem procura um tênis feminino e quer começar pelas medidas e pelo tipo de atividade. Antes de recomendar para correr ou treinar, faltam informações que diferenciem este modelo de um calçado de uso casual.",
+      "tradeoff": "Um nome com muitas atividades não esclarece o apoio, o solado ou a construção. A escolha melhora quando você consegue comparar essas características com sua necessidade, em vez de assumir que todo tênis anunciado para academia é equivalente.",
+      "advantages": ["Marca DM Damando identificada no cadastro, separada das demais ofertas de tênis.", "Anúncio específico preservado para conferir numeração, composição e condições antes da decisão."],
+      "limitations": ["Peso, materiais, drop e sistema de amortecimento não foram confirmados.", "Não há teste de conforto, resistência à água ou aderência.", "A indicação de corrida no título não é uma validação técnica para a sua rotina."],
+      "check": "Solicite a tabela de medidas deste anúncio, composição e finalidade documentada. Confira as condições de troca de numeração e pergunte quais diferenças existem entre as opções oferecidas.",
+      "alternative": "Para corrida frequente ou exigência esportiva específica, compare modelos com documentação da finalidade pretendida. Não transferimos benefícios de outro tênis por semelhança visual.",
+      "questions": [
+        ["Ele é realmente leve?", "Não temos peso confirmado nesta ficha. A palavra do título não equivale a uma medição; peça o peso e a numeração de referência ao vendedor."],
+        ["Serve para correr ou só caminhar?", "O anúncio cita as duas atividades, mas não temos documentação técnica suficiente para recomendar uma rotina específica."],
+        ["É a mesma forma de outros tênis femininos?", "Não podemos afirmar. Compare as medidas e a orientação desta oferta, sem usar uma regra de outro modelo."],
+        ["O site testou conforto e aderência?", "Não. A análise organiza o que está identificado e o que falta confirmar; não relata experiência de uso que a equipe não teve."]
+      ],
+      "sources": [{"url": "https://produto.mercadolivre.com.br/MLB-4463477029-tenis-feminino-leve-confortavel-academia-corrida-caminhada-_JM", "label": "Anúncio registrado do DM Damando — peso e materiais pendentes"}],
+      "links": [{"url": "/comparar.html?q=tenis", "label": "Localizar tênis e conferir a finalidade de cada modelo"}]
+    },
+    {
+      "id": "qRN6SoGfO6PrwR2rj96v", "views": 8,
+      "guard": "RS.?7007BR", "expectedCatalogue": "MLB66100505",
+      "title": "Roadstar RS-7007BR: compatibilidade antes da instalação",
+      "description": "Entenda as dúvidas da multimídia Roadstar RS-7007BR de 7 polegadas: encaixe no carro, CarPlay, Android Auto e itens do pacote a confirmar.",
+      "publicSummary": "A Roadstar RS-7007BR é anunciada com tela de 7 polegadas, CarPlay e Android Auto sem fio. Não confirmamos manual específico, compatibilidade com cada celular ou encaixe em cada carro. O nome das funções não comprova sistema Android completo ou instalação universal.",
+      "basis": "Modelo e funções do anúncio já registrado, sem nova leitura da oferta ou teste prático nesta revisão. Não encontramos documentação específica suficiente para confirmar certificações, conexões ou acessórios deste conjunto.",
+      "fit": "Para quem procura funções de integração com o celular no carro e pode conferir os requisitos com o vendedor e o instalador. A análise ajuda a separar a promessa do anúncio das informações necessárias para uma instalação compatível.",
+      "tradeoff": "Ter uma tela de sete polegadas não resolve a compatibilidade elétrica ou o espaço no painel. É importante saber como a central se conecta e quais funções dependem do telefone, sem presumir recursos pela aparência.",
+      "advantages": ["Modelo RS-7007BR identificado para solicitar manual e verificar a oferta correta.", "CarPlay e Android Auto sem fio anunciados, funções que podem orientar a comparação após confirmação de compatibilidade."],
+      "limitations": ["Não confirmamos dimensões de encaixe, padrão de instalação, chicote ou interface para comandos do volante.", "Não garantimos conexão com todos os celulares, versões de sistema ou veículos.", "Não comprovamos sistema Android completo, instalação de aplicativos, chip próprio ou câmera incluída."],
+      "check": "Informe modelo e ano do carro e seu telefone ao vendedor e ao instalador. Peça dimensões, conectores, manual, requisitos das conexões e relação dos itens. Confirme eventual adaptação sem supor que a tela define o encaixe.",
+      "alternative": "Se um comando original, câmera ou função específica for indispensável, compare centrais com essa compatibilidade documentada. Não use a ficha de outro RS-7007 ou de uma central Android parecida.",
+      "questions": [
+        ["Serve em qualquer carro?", "Não confirmamos instalação universal. Dimensões, conectores e funções originais precisam ser conferidos para o modelo e ano do veículo."],
+        ["É Android completo para instalar aplicativos?", "Não temos essa função confirmada. A presença de Android Auto no título não comprova um sistema Android completo na central."],
+        ["CarPlay e Android Auto funcionam sem fio?", "É o que o anúncio registrado informa, mas não fizemos teste nem confirmamos os requisitos específicos. Confira o telefone, o sistema e as instruções do modelo."],
+        ["Mantém os comandos do volante e a câmera?", "Não há confirmação para todo veículo. Peça os requisitos e eventuais interfaces ao instalador antes da compra."],
+        ["O pacote inclui câmera, moldura e chicote?", "A relação desses itens não foi confirmada nesta revisão. Solicite a lista exata da oferta para não confundir imagem ilustrativa com acessório fornecido."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB66100505", "label": "Anúncio registrado da RS-7007BR — instalação e recursos a confirmar"}],
+      "links": [{"url": "/comparar.html?q=multimidia", "label": "Encontrar centrais multimídia cadastradas"}]
+    }
+  ]
+}

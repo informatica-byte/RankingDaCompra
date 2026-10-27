@@ -53,6 +53,8 @@ test("sitemap mantém uma janela diária e não relê Firebase por artefatos ou 
     "scripts/visibility-editorial.mjs",
     "visibility-editorial.json",
     "featured-analysis.json",
+    "popular-analysis.json",
+    "scripts/popular-analysis.mjs",
     "scripts/buying-advice.mjs",
     "editorial-focus.json",
   ]);

@@ -2,6 +2,7 @@ import {readFile,writeFile,readdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import info from '../informational-mode.js';
+import {popularById,matchesPopularAnalysis,registeredOfferUrl} from './popular-analysis.mjs';
 
 const money=/R\$(?:\s|&nbsp;)*[\d.,]+/gi;
 const label=value=>String(value||'').replace(/(?:Oferta informada:|Pre[cç]o informado de)\s*/gi,'Informações sobre ').replace(/\s+por\s+R\$(?:\s|&nbsp;)*[\d.,]+/gi,'').replace(/\(?\d+(?:[,.]\d+)?\s*%\s*(?:OFF|de desconto)\)?/gi,'').replace(/at[eé]\s*R\$(?:\s|&nbsp;)*[\d.,]+/gi,'por características').replace(money,'').replace(/(?:ofertas? rel[aâ]mpago|ofertas? verificadas?)/gi,'produtos em destaque').replace(/comparar por or[cç]amento/gi,'Comparar características').replace(/pre[cç]os com data(?: de confer[eê]ncia)?/gi,'informações com fontes').replace(/Ver an[aá]lise e (?:conferir pre[cç]o|pre[cç]o atual|ofertas|pre[cç]o)/gi,'Ver análise completa').replace(/Pre[cç]os? a confirmar:?/gi,'Condições nas lojas').replace(/pre[cç]os? registrados?/gi,'características documentadas').replace(/Consulte pre[cç]os, diferenças/gi,'Consulte fontes, diferenças').replace(/Compare rankings por categoria/gi,'Explore comparativos por categoria').replace(/mais barato/gi,'alternativas para comparar').replace(/melhor custo.benef[ií]cio/gi,'adequação ao seu uso').replace(/Melhores escolhas e rankings de produtos/gi,'Produtos e guias para escolher melhor').replace(/veja os crit[eé]rios dos rankings abaixo/gi,'consulte as fontes e limitações em cada ficha').replace(/rankings, produtos e pre[cç]os atualizados/gi,'guias e informações dos produtos').replace(/Atualizando rankings e produtos selecionados/gi,'Carregando produtos e guias').replace(/\s{2,}/g,' ').trim();
@@ -119,6 +120,13 @@ export async function buildInformationalSite(root=process.cwd()){
  const [search,catalogue,config,guides]=await Promise.all(['search-index.json','vitrine-publica.json','site-config.json','best-choices-guides.json'].map(readJson));
  const map=new Map(catalogue.products.map(p=>[p.id,p]));
  const products=search.products.map(p=>({id:p.id,title:p.title,summary:info.excerpt(p.summary),image:p.image,url:p.url,category:p.category,categoryId:map.get(p.id)?.categoria||'',comparison:p.comparison}));
+ // Public editorial projection only. Saved records, prices and source snapshots
+ // stay intact. Confirm against the page's registered seller before overriding.
+ for(const p of products){
+  const review=popularById.get(p.id);if(!review)continue;
+  const source=await readFile(resolve(root,new URL(p.url,'https://rankingdacompra.com.br').pathname.slice(1)),'utf8');
+  if(matchesPopularAnalysis(review,p.title,registeredOfferUrl(source))){p.summary=info.excerpt(review.publicSummary);if(review.publicName)p.title=review.publicName;}
+ }
  const byUrl=new Map(products.map(p=>[new URL(p.url,'https://rankingdacompra.com.br/').pathname.slice(1),p]));
  const publicFiles=(await readdir(root)).filter(f=>f.endsWith('.html')&&!info.privatePath('/'+f));
  for(const directory of ['produto','presentes'])for(const file of await readdir(resolve(root,directory)))if(file.endsWith('.html'))publicFiles.push(directory+'/'+file);

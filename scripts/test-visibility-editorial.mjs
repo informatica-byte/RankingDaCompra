@@ -9,7 +9,7 @@ import {productAliasPage, pausedProductPage, unavailableProductPage} from './pro
 import {localRemovals} from './product-removals.mjs';
 const item=CONFIG.products[0];
 const fixture=(name='Notebook Acer Aspire 5 A515-45-R2A3',robots='index,follow')=>`<html><head><title>Original</title><meta name="robots" content="${robots}"><meta name="description" content="Original"><link rel="canonical" href="https://rankingdacompra.com.br/produto/${item.id}-20260810-1.html"><script type="application/ld+json">${JSON.stringify({'@type':'Product',name,url:`https://rankingdacompra.com.br/produto/${item.id}-20260810-1.html`,offers:{price:'3419.90',availability:'https://schema.org/InStock'}})}</script></head><body><main><article><h1>${name}</h1><a id="affiliate-offer" href="https://meli.la/existing" rel="sponsored">Comprar</a><div class="panels"></div></article></main></body></html>`;
-test('escopo mantém os dez produtos anteriores e acrescenta seis destaques sem duplicar a pulseira',()=>{assert.equal(CONFIG.products.length,16);assert.equal(new Set(CONFIG.products.map(x=>x.id)).size,16);assert.equal(CONFIG.guides.length,3);});
+test('escopo mantém análises anteriores e acrescenta o lote priorizado por visualizações',()=>{assert.equal(CONFIG.products.length,28);assert.equal(new Set(CONFIG.products.map(x=>x.id)).size,28);assert.equal(CONFIG.guides.length,3);});
 
 test('guias oferecem dúvidas visíveis e atalhos seguros sem inventar avaliações nem renovar preços',()=>{
   const html='<html><head><title>Guia</title></head><body><h1>Guia</h1><table><td>R$ 123,45</td></table></body></html>';

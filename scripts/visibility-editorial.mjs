@@ -1,16 +1,18 @@
 import {readFile, writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {POPULAR_ANALYSES,matchesPopularAnalysis,registeredOfferUrl} from './popular-analysis.mjs';
+export {POPULAR_ANALYSES};
 
 const originalConfig = JSON.parse(await readFile(new URL('../visibility-editorial.json', import.meta.url), 'utf8'));
 export const FEATURED_ANALYSES = JSON.parse(await readFile(new URL('../featured-analysis.json', import.meta.url), 'utf8'));
-const featured = new Map(FEATURED_ANALYSES.products.map(item=>[item.id,{...item,depth:true,reviewedAt:FEATURED_ANALYSES.reviewedAt}]));
+const featured = new Map([FEATURED_ANALYSES,POPULAR_ANALYSES].flatMap(batch=>batch.products.map(item=>[item.id,{...item,depth:true,reviewedAt:batch.reviewedAt}])));
 export const CONFIG = {...originalConfig,products:[...originalConfig.products.map(item=>featured.has(item.id)?{...item,...featured.get(item.id)}:item),...featured.values()].filter((item,index,items)=>items.findIndex(other=>other.id===item.id)===index)};
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const plain = value => String(value || '').replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
 const safeLink = value => {
   if(/^\/(?!\/)[A-Za-z0-9_./-]+(?:\?(?:q=[A-Za-z0-9%+-]+(?:&orcamento=\d+)?|produto=[A-Za-z0-9_-]+|orcamento=\d+))?$/.test(value))return true;
-  try{const url=new URL(value);return url.protocol==='https:'&&!url.username&&!url.password&&!url.port&&['grandstream.com','www.grandstream.com','tp-link.com','www.tp-link.com','mi.com','www.mi.com','starlink.com','www.starlink.com','www.jbl.com.br','www.logitech.com','br.store.asus.com','loja.wap.ind.br','mais.conteudo.wap.ind.br','www.mercadolivre.com.br'].includes(url.hostname);}catch{return false;}
+  try{const url=new URL(value);return url.protocol==='https:'&&!url.username&&!url.password&&!url.port&&['grandstream.com','www.grandstream.com','tp-link.com','www.tp-link.com','mi.com','www.mi.com','starlink.com','www.starlink.com','www.jbl.com.br','www.logitech.com','br.store.asus.com','loja.wap.ind.br','mais.conteudo.wap.ind.br','www.mercadolivre.com.br','produto.mercadolivre.com.br','support.hp.com','www.lg.com','www.detran.pe.gov.br'].includes(url.hostname);}catch{return false;}
 };
 function links(items) {
   return (items || []).filter(item => safeLink(item.url)).map(item => `<li><a href="${esc(item.url)}"${item.url.startsWith('https:') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(item.label)}</a></li>`).join('');
@@ -84,6 +86,12 @@ export async function resolveEditorialProduct(root, item) {
   return {file, html, item:{...item, id}, inactive:false};
 }
 export function improveProduct(html, item) {
+  // Fail closed before cleaning an existing section if the seller identity has
+  // changed. Editorial facts from one offer must not move to a different one.
+  if(item.publicSummary){
+    const identity=pageIdentity(html),product=identity.products.length===1&&identity.products[0];
+    if(!product||!matchesPopularAnalysis(item,product.name,registeredOfferUrl(html)))return html;
+  }
   const next = clean(html);
   if (/name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(next)) return next;
   // Match the registered model, not words in related-product links or this block.
@@ -98,7 +106,27 @@ export function improveProduct(html, item) {
   const body=`<h2>Vale a pena para o seu uso?</h2>${item.basis?'<p class="editorial-evidence"><b>Base e limites desta análise:</b> '+esc(item.basis)+'</p>':''}<p><b>Para quem considerar:</b> ${esc(item.fit)}</p><p><b>O que pesa na escolha:</b> ${esc(item.tradeoff)}</p>${points('Vantagens para avaliar',item.advantages)}${points('Limitações que podem pesar na decisão',item.limitations)}<p><b>Antes de comprar:</b> ${esc(item.check)}</p><p><b>Quando comparar outra opção:</b> ${esc(item.alternative)}</p>${questions}${item.sources?.length ? '<h3>Fontes para conferir</h3><ul>' + links(item.sources) + '</ul>' : ''}<h3>Continue a comparação</h3><ul>${links(item.links)}</ul>`;
   const content = block(item.depth?'<div data-reviewed-depth="'+esc(item.id)+'">'+body+'</div>':body,item.reviewedAt||CONFIG.reviewedAt,item.depth);
   let output = metadata(next, item).replace('</head>', STYLE + '\n</head>');
-  if (output.includes('<div class="panels">')) output = output.replace('<div class="panels">', content + '<div class="panels">');
+  if(item.publicSummary){
+    output=output.replace(/<p class="summary">[\s\S]*?<\/p>/,()=>'<p class="summary">'+esc(item.publicSummary)+'</p>');
+    // The reviewed block already contains benefits and limitations. Remove only
+    // our two generated legacy panels, avoiding both old claims and repetition.
+    output=output.replace(/<div class="panels"><section class="panel positive">[\s\S]*?<\/section><section class="panel attention">[\s\S]*?<\/section><\/div>/,'<!-- popular-review-anchor -->');
+    if(item.publicName)output=output.replace(/<h1\b[^>]*>[\s\S]*?<\/h1>/,()=>'<h1>'+esc(item.publicName)+'</h1>');
+    output=output.replace(/<script\b([^>]*type=["']application\/ld\+json["'][^>]*)>([\s\S]*?)<\/script>/gi,(_tag,attrs,json)=>{
+      const data=JSON.parse(json);
+      for(const node of data['@graph']||[data]){
+        if(node['@type']==='Article'&&String(node.mainEntityOfPage).includes('/produto/'+item.id+'-')){
+          node.description=item.publicSummary;node.headline=item.title;
+          if(item.publicName&&node.about?.['@type']==='Thing')node.about.name=item.publicName;
+        }else if(node['@type']==='Product'&&String(node.url||node['@id']).includes('/produto/'+item.id+'-')){
+          node.description=item.publicSummary;if(item.publicName)node.name=item.publicName;
+        }
+      }
+      return '<script'+attrs+'>'+JSON.stringify(data).replace(/</g,'\\u003c')+'</script>';
+    });
+  }
+  if (output.includes('<!-- popular-review-anchor -->')) output = output.replace('<!-- popular-review-anchor -->', content + '<!-- popular-review-anchor -->');
+  else if (output.includes('<div class="panels">')) output = output.replace('<div class="panels">', content + '<div class="panels">');
   else output = output.replace('</article>', content + '</article>');
   return output;
 }
