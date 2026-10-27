@@ -14,9 +14,10 @@ test('recursos negados, contraditórios e incertos não recebem pontos', () => {
   assert.equal(featureState({titulo:'Smartwatch GPS conectado'}, /gps integrado/), 'unknown');
 });
 
-test('guias específicos filtram teto de preço e Wi-Fi 6 sem usar dados incertos', () => {
+test('guia informativo de fones não exige preços; filtros explícitos e Wi-Fi 6 continuam restritos', () => {
   const products = [{id:'a',titulo:'Fone Bluetooth',preco:99},{id:'b',titulo:'Fone Bluetooth',preco:101},{id:'c',titulo:'Fone Bluetooth',preco:0}];
-  assert.deepEqual(focusedProducts(FOCUSED_GUIDES[0], products, p=>p.preco).map(p=>p.id), ['a']);
+  assert.deepEqual(focusedProducts(FOCUSED_GUIDES[0], products, ()=>{throw Error('Guia informativo não deve consultar preço');}).map(p=>p.id), ['a','b','c']);
+  assert.deepEqual(focusedProducts({budget:100}, products, p=>p.preco).map(p=>p.id), ['a']);
   const routers = [{id:'a',titulo:'Roteador Wi-Fi 6'}, {id:'b',titulo:'Roteador',contras:'Não possui Wi-Fi 6'}];
   assert.deepEqual(focusedProducts(FOCUSED_GUIDES[1],routers,()=>0).map(p=>p.id), ['a']);
   const html = renderPracticalSection('fone',products,new Map(products.map(p=>[p.id,'https://rankingdacompra.com.br/produto/'+p.id+'.html'])));

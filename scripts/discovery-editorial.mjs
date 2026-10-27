@@ -101,14 +101,24 @@ export function renderPracticalSection(category, products, productUrls) {
 }
 
 export const FOCUSED_GUIDES = [
-  {file: 'melhores-fones-bluetooth-ate-100.html', category: /fone/i, title: 'Fones Bluetooth até R$ 100: opções e cuidados antes de comprar', intro: 'Um orçamento de R$ 100 não dispensa conferir encaixe, microfone e autonomia. Aqui entram apenas fones sem fio com preço informado dentro desse teto; o frete pode alterar o total.', budget: 100},
+  // The historical URL is permanent. Selection no longer depends on a price
+  // that is deliberately absent from informational product pages.
+  {file: 'melhores-fones-bluetooth-ate-100.html', category: /fone/i, title: 'Fones Bluetooth: compare formatos, recursos e limitações', intro: 'Compare fones Bluetooth pelo formato, microfone, autonomia e recursos anunciados. Modelos de tipos diferentes ficam separados; dados ausentes ou contraditórios continuam sinalizados. Consulte as condições de compra na loja parceira.', wirelessHeadphones: true},
   {file: 'melhores-roteadores-wifi-6-apartamento.html', category: /roteador/i, title: 'Roteadores Wi-Fi 6 para apartamento: como escolher', intro: 'Compare roteadores com Wi-Fi 6 anunciado e veja o que falta confirmar para seu apartamento. Não prometemos alcance através de paredes ou cobertura total sem medição.', wifi6: true},
   {file: 'melhores-smartwatches-caminhada.html', category: /smartwatch|relogio-smart/i, title: 'Smartwatch para caminhada: compare GPS e recursos anunciados', intro: 'Veja smartwatches cadastrados e confirme se o GPS funciona sem celular, a compatibilidade e a autonomia. Esta seleção não afirma teste de precisão dos sensores nem adequação médica.'},
 ];
 
 export function focusedProducts(config, products, price) {
   return products.filter((product) => (!config.budget || (price(product) > 0 && price(product) <= config.budget))
+    && (!config.wirelessHeadphones || wirelessHeadphone(product))
     && (!config.wifi6 || featureState(product, ROUTER_FEATURES[0][1]) === 'yes'));
+}
+
+function wirelessHeadphone(product) {
+  const title=String(product?.titulo||product?.title||'');
+  return /\bfones?\b|\bheadsets?\b|\bheadphones?\b|\bearbuds?\b|\bbuds\b/i.test(title)
+    && /bluetooth|sem fio|wireless|\btws\b|\bbuds\b/i.test(title)
+    && !/capacete|intercomunicador|\bcom fio\b|lapela|^\s*(?:(?:kit|conjunto)\s+(?:de\s+)?)?(?:capas?|cases?|estojos?|almofadas?|espumas?|adaptadores?|cabos?|carregadores?)\b/i.test(title);
 }
 
 export function renderFocusedGuide(config, products, productUrls, parentFile, date, site, price, money) {

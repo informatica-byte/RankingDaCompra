@@ -110,9 +110,13 @@ try {
     assert.ok(parent.includes(file));
     assert.ok(sitemap.includes(file));
   }
-  const budget = await readFile(join(directory, 'melhores-fones-bluetooth-ate-100.html'), 'utf8');
-  assert.match(budget, /Redmi Buds 6/);
-  assert.doesNotMatch(budget, /QCY T13|JBL Tune/);
+  const focusedFones = await readFile(join(directory, 'melhores-fones-bluetooth-ate-100.html'), 'utf8');
+  assert.match(focusedFones, /Redmi Buds 6/);
+  assert.match(focusedFones, /QCY T13/);assert.match(focusedFones, /JBL Tune/);
+  assert.match(focusedFones, /Fone Bluetooth sem preço confirmado/);
+  assert.doesNotMatch(focusedFones, /data-comparison-product="wired"/);
+  assert.match(focusedFones, /Fones Bluetooth: compare formatos, recursos e limitações/);
+  assert.doesNotMatch(focusedFones, /até R\$ 100|dentro desse teto/);
   assert.match(router, /data-practical-guide/);
   assert.match(watch, /GPS próprio/);
   console.log("Guias SEO: produtos comparáveis, títulos completos, selo calculado e datas por categoria validados.");
