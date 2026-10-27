@@ -124,6 +124,8 @@ jobs:
           node scripts/generate-best-choices.mjs
           node scripts/product-removals.mjs
           node scripts/informational-site.mjs
+          # Restaura os módulos com arquivos públicos locais; nenhuma releitura do Firebase.
+          node scripts/build-informational-home.mjs
           if [[ "$VERIFY_REVIEW_PAUSES" == "true" ]]; then node scripts/verify-reviewed-pauses.mjs; fi
           node --test scripts/test-*.mjs
           node scripts/validate-site.mjs

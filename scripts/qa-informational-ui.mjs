@@ -3,6 +3,7 @@ import http from 'node:http';
 import {readFile,mkdir,stat} from 'node:fs/promises';
 import {resolve,extname,sep} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import home from '../informational-home.js';
 
 // Development-only test: no logged-in browser, database, analytics or affiliate visits.
 const root=resolve(new URL('..',import.meta.url).pathname.replace(/^\/([A-Z]:)/,'$1'));
@@ -23,6 +24,14 @@ const out=resolve(root,'.informational-qa');await mkdir(out,{recursive:true});
 const browser=await chromium.launch({headless:true,channel:process.env.RDC_QA_BROWSER_CHANNEL||'chrome'});
 const results=[],errors=[];
 try{
+ const homeFeed=JSON.parse(await readFile(resolve(root,'informational-catalogue.json'),'utf8')),homeConfig=JSON.parse(await readFile(resolve(root,'site-config.json'),'utf8'));
+ const staticContext=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
+ await staticContext.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());
+ const staticPage=await staticContext.newPage();await staticPage.goto(base+'/');
+ assert.match(await staticPage.locator('[data-info-home-static]').innerText(),/Top 6/);
+ assert.equal(await staticPage.locator('[data-info-home-static] #comparativos-inicio nav a').count(),home.guides(homeFeed).length);
+ assert.equal(await staticPage.locator('[data-info-home-static] [data-info-video-product]').count(),home.videos(homeFeed,homeConfig).length);
+ assert.equal(await staticPage.locator('[data-info-home-static] iframe').count(),0);await staticContext.close();results.push('Top 6, guias e links dos vídeos rastreáveis sem JavaScript');
  const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
  await context.route('**/*',route=>{
   const url=route.request().url();
@@ -38,9 +47,20 @@ try{
   results.push(label);
  }
  await page.goto(base+'/',{waitUntil:'domcontentloaded'});
- await page.locator('[data-info-product]').first().waitFor();await check('início 390px sem Firebase');
+ await page.locator('[data-info-home-restored]').waitFor();await check('início 390px sem Firebase');
+ assert.equal(await page.locator('[data-info-home-restored] [data-info-product]').count(),6);
+ assert.match(await page.locator('[data-info-home-restored] [data-best-title]').innerText(),/Top 6/);
+ assert.equal(await page.locator('[data-info-home-restored] #comparativos-inicio nav a').count(),home.guides(homeFeed).length);
+ assert.equal(await page.locator('[data-info-home-restored] [data-info-video-card]').count(),home.videos(homeFeed,homeConfig).length);
+ assert.equal(await page.locator('[data-info-home-restored] iframe').count(),0,'nenhum player carrega sozinho');
+ await page.locator('[data-info-home-restored] .info-home-more').first().locator('summary').click();
+ assert.equal(await page.locator('[data-info-home-restored] #comparativos-inicio nav a:visible').count(),home.guides(homeFeed).length);
+ await page.locator('[data-info-home-restored] .info-home-more').first().locator('summary').click();
+ results.push('Top 6, 31 comparativos e 14 vídeos com ficha exata, sem reprodução automática');
  const initialPrivacy=page.getByRole('button',{name:'Recusar métricas',exact:true});if(await initialPrivacy.isVisible())await initialPrivacy.click();
  await page.screenshot({path:resolve(out,'inicio-mobile.png'),fullPage:true});
+ await page.locator('[data-info-home-restored] #comparativos-inicio').screenshot({path:resolve(out,'comparativos-inicio-mobile.png')});
+ await page.locator('[data-info-home-restored] #videos-inicio').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(out,'videos-inicio-mobile.png')});
  assert.match(await page.locator('h1').innerText(),/Escolha com clareza/);
  assert.equal(await page.locator('#rdc-ambient-music button').first().getAttribute('aria-pressed'),'false');
  await page.locator('#info-search').fill('fone');await page.locator('#info-search').press('Enter');
@@ -98,6 +118,11 @@ try{
  assert.doesNotMatch(await inner.locator('body').innerText(),/R\$\s*\d|Preço conferido em/);
  results.push('música preservada durante navegação até a ficha');
  await page.goto(base+'/');await page.locator('#rdc-music-toggle').waitFor();assert.equal(await page.locator('#rdc-music-toggle').getAttribute('aria-pressed'),'false');
+ await page.locator('[data-info-home-restored]').waitFor();
+ const plays=page.locator('[data-info-home-restored] [data-info-video-play]');await plays.nth(0).click();
+ assert.equal(await page.locator('[data-info-home-restored] iframe').count(),1);assert.match(await page.locator('[data-info-home-restored] iframe').getAttribute('src'),/^https:\/\/www.youtube-nocookie.com\/embed\/[\w-]{11}\?/);
+ await plays.nth(1).click();assert.equal(await page.locator('[data-info-home-restored] iframe').count(),1,'trocar de vídeo encerra o player anterior');
+ results.push('player sob clique e apenas um vídeo tocando por vez; YouTube externo bloqueado no teste');
  // Isolated admin markup: only the informational helper runs, without SDK/login/write.
  for(const file of ['dashboard.html','painel-celular.html']){
   const html=(await readFile(resolve(root,file),'utf8')).replace(/<script\b[^]*?<\/script>/gi,'').replace('</head>','<script src="/informational-mode.js"></script></head>');
