@@ -56,7 +56,9 @@ test('páginas, FAQ e projeção pública usam a revisão sem modificar afiliado
   assert.ok(html.includes('data-reviewed-depth="'+entry.id+'"'),entry.id);
   assert.equal((html.match(/visibility-editorial:start/g)||[]).length,1);
   const out=informationalHtml(improveProduct(html,page.item),{id:entry.id},page.file);
-  assert.equal(out,html,entry.id+': idempotência');assert.deepEqual(affiliateLinks(out),affiliateLinks(html));assertInformationalHtml(out,page.file);
+  // Git on Windows may check out CRLF; the generator uses LF. Only line endings
+  // are equivalent here: content, URLs, JSON and all safety checks stay strict.
+  assert.equal(out.replace(/\r\n/g,'\n'),html.replace(/\r\n/g,'\n'),entry.id+': idempotência');assert.deepEqual(affiliateLinks(out),affiliateLinks(html));assertInformationalHtml(out,page.file);
   assert.equal(registeredOfferUrl(out),registeredOfferUrl(html));assert.doesNotMatch(html,/data-informational-faq/);
   // CI regenerates a Product page from the read-only snapshot before the final
   // Article conversion. Test that path, not only a previously migrated page.
