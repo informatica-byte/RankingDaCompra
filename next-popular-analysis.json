@@ -1,0 +1,338 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-10-27",
+  "priority": {
+    "source": "GA4 via Windsor.ai, consulta somente de leitura",
+    "dateFrom": "2026-09-28",
+    "dateTo": "2026-10-25",
+    "metric": "screen_page_views",
+    "method": "Continuidade da mesma janela do lote anterior: somar caminhos de análise e entradas /?produto= pelo ID, sem comparador ou query strings. Excluir as 28 análises editoriais anteriores e os IDs fora do catálogo público. Este lote cobre os demais produtos publicados com seis ou sete visualizações. Podem incluir testes e repetições; não representam compradores ou vendas."
+  },
+  "products": [
+    {
+      "id": "H3AOP8Gxqhtn1TcPX2Ug", "views": 7,
+      "guard": "Lumin[aá]rias Solar Led.*Gancho", "expectedListing": "MLB7521767000",
+      "title": "Luminária solar Luatek com gancho: recarga e uso a conferir",
+      "description": "Veja o que confirmar no kit de luminárias Luatek: quantidade, recarga, autonomia e proteção contra água, sem tratar números do anúncio como teste.",
+      "publicSummary": "O cadastro anuncia luminárias LED Luatek com gancho, recarga solar e USB. A opção '1/kit 2' não esclarece sozinha quantas unidades serão entregues. Autonomia, potência de iluminação e resistência à água não foram testadas pela equipe.",
+      "basis": "Título e informações do anúncio já registrado. Não obtivemos manual específico ou nova leitura completa da oferta nesta revisão; os campos de alimentação e a quantidade do kit precisam ser esclarecidos.",
+      "fit": "Para quem busca um ponto de luz transportável e pode conferir como será pendurado e recarregado. Para acampamento ou falta de energia, vale planejar uma alternativa sem depender de uma autonomia ainda não confirmada.",
+      "tradeoff": "Gancho e duas formas de recarga anunciadas podem facilitar o planejamento do uso. O ponto decisivo, porém, é saber a luz disponível e o tempo de funcionamento na intensidade escolhida, e não apenas contar os modos do anúncio.",
+      "advantages": ["Gancho anunciado, permitindo avaliar uma opção de iluminação suspensa sem presumir uma instalação fixa.", "Recarga solar e USB descritas no cadastro, a confirmar no conjunto entregue."],
+      "limitations": ["Não confirmamos potência luminosa, tempo de carga solar ou autonomia em cada intensidade.", "O campo 127/220 V do cadastro não esclarece os requisitos da luminária, do cabo ou de uma eventual fonte.", "Não há classificação de proteção confirmada para chuva ou imersão."],
+      "check": "Peça foto da etiqueta, manual, quantidade de unidades e itens da caixa. Confirme requisitos da recarga, local adequado de uso e limites de exposição ao tempo antes de escolher a fonte ou deixar a luminária ao ar livre.",
+      "alternative": "Se precisa de iluminação contínua ou exposição ao tempo, compare produtos com autonomia por modo, fluxo luminoso e proteção documentados. Não trate 'solar' como funcionamento indefinido.",
+      "questions": [
+        ["Recebo uma ou duas luminárias?", "O título mistura '1' e 'kit 2'. Confirme a opção selecionada e a quantidade exata com o vendedor; não inferimos o conteúdo pela foto."],
+        ["As oito horas do cadastro valem em qualquer modo?", "Não confirmamos as condições desse número. Peça autonomia por intensidade e condições de carga; não é um resultado medido pela equipe."],
+        ["Posso deixar na chuva?", "A resistência à água mencionada não veio acompanhada de classificação e condições verificadas. Confira o manual antes de expor o aparelho e suas conexões."],
+        ["A recarga solar elimina o uso de USB?", "Não temos tempo de recarga solar ou rendimento confirmado. A necessidade de outra forma de carga depende das instruções e das condições de uso."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/up/MLBU4970387884?pdp_filters=item_id%3AMLB7521767000", "label": "Anúncio registrado das luminárias — kit e alimentação a confirmar"}],
+      "links": [{"url": "/comparar.html?q=luminaria", "label": "Localizar luminárias para comparar pelo uso"}]
+    },
+    {
+      "id": "IJvxoOY9DmdDPOXo8ZQ3", "views": 7,
+      "guard": "Pulverizador El[eé]trico.*Recarreg[aá]vel", "expectedListing": "MLB7239105442",
+      "title": "Pulverizador elétrico 2 L: aplicação, pressão e limites",
+      "description": "Entenda a proposta do pulverizador recarregável anunciado como 2 L e 3 bar, sem confundir aplicação de líquido ou espuma com lavagem de alta pressão.",
+      "publicSummary": "O cadastro anuncia um pulverizador elétrico recarregável, com recipiente de 2 L e pressão máxima declarada de 3 bar. Esses dados não comprovam desempenho de limpeza, vazão, autonomia ou equivalência a uma lavadora de alta pressão.",
+      "basis": "Descrição e identidade da oferta já registradas. A tentativa de leitura pública do anúncio não ficou acessível nesta revisão; não confirmamos manual, funcionamento híbrido ou especificações por outra fonte.",
+      "fit": "Para quem busca aplicar líquido ou espuma e consegue conferir quais produtos e formas de uso são permitidos. Antes de escolher para o jardim ou para o carro, é importante confirmar a compatibilidade de cada finalidade, sem generalizar pelo título.",
+      "tradeoff": "Recipiente e bico anunciados permitem avaliar a proposta de aplicação. Já a palavra 'profissional' ou 'alta pressão' não mostra a qualidade da espuma, a uniformidade do jato ou a capacidade de trabalhar continuamente.",
+      "advantages": ["Capacidade de 2 L anunciada, útil como referência inicial ao comparar recipientes.", "Bico e alimentação recarregável descritos na oferta, sem promessa de resultado testado."],
+      "limitations": ["Não confirmamos vazão, autonomia ou duração de recarga.", "O termo 'híbrido' não esclarece quais modos de alimentação ou acionamento existem.", "Compatibilidade química e resistência das vedações não foram documentadas nesta análise."],
+      "check": "Peça o manual, a identificação do modelo, os líquidos permitidos e a relação dos acessórios. Confira o carregador e o significado de 'híbrido' antes de assumir um modo manual ou uma segunda alimentação.",
+      "alternative": "Se sua necessidade é remover sujeira com jato de água, compare equipamentos documentados para lavagem. Se precisa de aplicação contínua, peça a especificação de regime de uso em vez de se orientar por 'profissional'.",
+      "questions": [
+        ["É igual ao espumador Lotus já analisado?", "Não tratamos como o mesmo produto. São cadastros e ofertas diferentes; os 2 L e a aparência não comprovam identidade de modelo ou de componentes."],
+        ["Três bar bastam para lavar o carro?", "Não avaliamos a limpeza deste aparelho. Pressão máxima declarada, sem vazão e função documentadas, não comprova equivalência a uma lavadora."],
+        ["Funciona como pulverizador e espumador?", "O cadastro usa descrições das duas propostas, mas não confirmou quais bicos e modos são fornecidos. Peça a relação exata e as instruções do modelo."],
+        ["Posso aplicar qualquer produto de jardim?", "Não confirmamos essa compatibilidade. Verifique o manual do pulverizador e as instruções do produto a aplicar; não presuma compatibilidade química."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB75662195?pdp_filters=item_id%3AMLB7239105442", "label": "Oferta registrada do pulverizador — leitura atual indisponível"}],
+      "links": [{"url": "/comparar.html?q=pulverizador", "label": "Comparar propostas de pulverização cadastradas"}]
+    },
+    {
+      "id": "MCdK7VlagX4qYFEKn6D9", "views": 7,
+      "guard": "^(?=.*parafusadeira)(?=.*furadeira)(?=.*48\\s*v)(?=.*(?:2|duas) baterias)", "expectedListing": "MLB4317803385",
+      "publicName": "Parafusadeira/furadeira anunciada como 48 V — duas baterias, modelo a confirmar",
+      "title": "Parafusadeira com duas baterias: o que o título não esclarece",
+      "description": "Veja os dados pendentes da parafusadeira anunciada como 48 V: tensão real, torque, mandril, baterias e capacidade para o trabalho pretendido.",
+      "publicSummary": "A oferta anuncia parafusadeira/furadeira sem fio com duas baterias. O '48 V' do título não foi validado por manual ou etiqueta nesta revisão. Torque, impacto, autonomia e capacidade de trabalho continuam a confirmar; não prometemos uso profissional.",
+      "basis": "Título e composição do cadastro existente, sem nova leitura completa da oferta ou manual específico. Não atribuímos marca ou especificações de uma ferramenta visualmente parecida.",
+      "fit": "Para quem procura uma ferramenta a bateria e pode esclarecer os serviços pretendidos com o vendedor. Com a identificação incompleta, esta ficha orienta perguntas de compra, mas não comprova aptidão para perfurar um material ou trabalhar por longos períodos.",
+      "tradeoff": "Duas baterias e maleta anunciadas podem facilitar a organização do conjunto, se forem entregues como descrito. A quantidade de acessórios, porém, não informa torque, segurança, autonomia ou facilidade de reposição.",
+      "advantages": ["Duas baterias mencionadas na oferta, permitindo perguntar sobre capacidade, compatibilidade e reposição.", "Maleta e acessórios descritos no cadastro, cuja relação exata deve ser conferida."],
+      "limitations": ["Tensão real da bateria e requisitos do carregador não foram confirmados.", "Não há torque máximo, rotação, capacidade de mandril ou função impacto verificados nesta revisão.", "Não testamos autonomia, durabilidade ou uso profissional contínuo."],
+      "check": "Solicite marca, modelo e fotos das etiquetas da ferramenta, baterias e carregador. Peça o manual e a capacidade para o material pretendido; confira peças e acessórios sem assumir que todo kit permite os mesmos trabalhos.",
+      "alternative": "Para uma tarefa definida, compare ferramentas com capacidade e assistência documentadas. Evite escolher apenas pelo número de volts do título ou pela quantidade de pontas incluídas.",
+      "questions": [
+        ["Ela realmente trabalha a 48 V?", "Não confirmamos essa tensão. O título não substitui etiqueta e manual; não convertimos o valor para outra tensão por suposição."],
+        ["Serve para parede ou concreto?", "Não temos função impacto ou capacidade para esse material confirmadas. Pergunte pelo modelo exato e pela especificação antes da compra."],
+        ["As duas baterias têm longa duração?", "Não há autonomia medida nem capacidade confirmada nesta análise. A expressão antiga de longa duração não é apresentada como garantia."],
+        ["Posso usar bateria de outra marca?", "Não confirmamos intercâmbio. Encaixe parecido não prova compatibilidade elétrica ou mecânica; use apenas combinações previstas na documentação."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/up/MLBU3584842699?pdp_filters=item_id%3AMLB4317803385", "label": "Anúncio registrado — modelo e tensão aguardam confirmação"}],
+      "links": [{"url": "/comparar.html?q=parafusadeira", "label": "Comparar ferramentas com função equivalente"}]
+    },
+    {
+      "id": "u3QrSb6J4YcZTM5ehgRb", "views": 7,
+      "guard": "Projetor.*Android.*4k.*Wifi.*Full Hd", "expectedListing": "MLB5049005753",
+      "title": "Projetor Android anunciado como 4K: resolução e requisitos",
+      "description": "Separe resolução nativa de suporte a 4K neste projetor: brilho sem padrão confirmado, aplicativos, conexões e distância de projeção a conferir.",
+      "publicSummary": "O anúncio cadastrado menciona resolução nativa de 1920 × 1080 e suporte a conteúdo 4K. Não validamos esses números por manual ou teste. Compatibilidade com sinal 4K não deve ser publicada como prova de projeção nativa em 4K.",
+      "basis": "Dados do cadastro e do endereço registrado, sem fabricante/modelo completos ou manual confirmado. A página do vendedor não ficou acessível na tentativa desta revisão; não há teste de imagem ou brilho da equipe.",
+      "fit": "Para quem pesquisa projeção de conteúdo e pode conferir antes a sala, a tela, as distâncias e os aparelhos que pretende conectar. A compra fica mais segura quando os requisitos reais substituem os muitos termos do título.",
+      "tradeoff": "Reprodução por aplicativos e conexões sem fio são propostas interessantes, mas precisam ser documentadas para o modelo. O nome 'Android 4K 5G' não comprova resolução, certificação de streaming ou conexão de operadora móvel.",
+      "advantages": ["O cadastro distingue uma resolução nativa de um suporte a sinal, ponto importante para pedir confirmação técnica.", "Funções Android e Wi-Fi anunciadas permitem verificar se o aparelho atende à forma de reprodução desejada."],
+      "limitations": ["O brilho anunciado não veio com padrão ANSI/ISO e condições de medição confirmados.", "Não confirmamos versão do sistema, memória, aplicativos certificados ou reprodução protegida por DRM.", "Distância, tamanho útil da imagem, ruído e qualidade em sala iluminada não foram testados."],
+      "check": "Peça marca, código do modelo e manual com resolução nativa, brilho com padrão de medição, entradas e relação de projeção. Confirme o serviço de streaming e o aparelho de origem; não presuma que um aplicativo abre ou transmite na resolução desejada.",
+      "alternative": "Se sua prioridade é imagem em ambiente claro ou um serviço específico, compare modelos com documentação e demonstrações nas condições relevantes. Não use números de brilho sem padrão como comparação direta.",
+      "questions": [
+        ["A imagem projetada é 4K nativa?", "Isso não foi confirmado. O próprio cadastro diferencia nativa 1920 × 1080 de suporte a 4K; não tratamos suporte de entrada como resolução do painel."],
+        ["Os 10.000 lúmens garantem imagem de dia?", "Não. Não confirmamos o método de medição nem fizemos teste em ambiente iluminado. Não comparamos esse número diretamente com lúmens ANSI ou ISO."],
+        ["O 5G significa internet com chip?", "Não há modem ou chip de operadora confirmado. Peça esclarecimento sobre Wi-Fi e conexões; o termo isolado do título não comprova rede móvel."],
+        ["Netflix e outros aplicativos funcionam em Full HD?", "Não validamos certificações, DRM, versão do sistema ou disponibilidade de aplicativos. Confirme cada serviço e a forma de reprodução pretendida."],
+        ["Qual tamanho de tela consigo usar?", "Não temos relação de projeção e desempenho medidos. Peça as distâncias e condições documentadas, sem estimar só pela aparência do aparelho."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB67684069?pdp_filters=item_id%3AMLB5049005753", "label": "Anúncio registrado do projetor — especificações sem validação independente"}],
+      "links": [{"url": "/comparar.html?q=projetor", "label": "Encontrar projetores cadastrados"}]
+    }
+    ,
+    {
+      "id": "5MGE98tYssH9nEfBeHoW", "views": 6,
+      "guard": "HUAWEI.*WATCH FIT 5\\b", "expectedCatalogue": "MLB67714386",
+      "title": "HUAWEI WATCH FIT 5: GPS, autonomia e funções conectadas",
+      "description": "Entenda o WATCH FIT 5, sem confundir armazenamento com RAM, chamadas Bluetooth com linha própria ou autonomia anunciada com duração garantida.",
+      "publicSummary": "O HUAWEI WATCH FIT 5 tem tela AMOLED de 1,82 polegada e GNSS documentados pela fabricante. Os 64 GB divulgados são armazenamento, não RAM. Recursos, autonomia e compatibilidade devem ser conferidos para a versão e o telefone; não é análise baseada em teste prático.",
+      "basis": "Páginas oficiais da HUAWEI para o Brasil e especificações regionais consultadas. Há diferenças de requisitos mínimos de Android entre páginas; não garantimos todas as funções em qualquer telefone ou mercado. Não revalidamos o pacote do vendedor.",
+      "fit": "Para quem deseja registros de atividades e recursos conectados no pulso e pode verificar a compatibilidade com seu telefone. A função de localização interessa a quem compara registros de percurso; isso não transforma o relógio em celular independente ou equipamento médico.",
+      "tradeoff": "Ter mais funções não significa precisar manter todas ligadas. Tela, localização e rotina de uso entram na escolha da autonomia, enquanto disponibilidade de aplicativos e recursos pode variar entre sistemas e regiões.",
+      "advantages": ["Tela AMOLED e localização GNSS documentadas para o WATCH FIT 5.", "Aplicativo e funções conectadas descritos pela fabricante, com requisitos a conferir para o telefone."],
+      "limitations": ["Até 10 dias em uso moderado, 7 em normal ou 4 com AOD são cenários anunciados, não duração garantida pela equipe.", "Chamadas Bluetooth não comprovam telefonia móvel independente.", "Medições são de referência; a HUAWEI não destina o produto a diagnóstico ou tratamento."],
+      "check": "Confira a versão exata, o aplicativo Huawei Saúde e a lista atual de compatibilidade. Para uso com água, respeite as restrições do modelo e da pulseira; não transforme 5 ATM em autorização de mergulho.",
+      "alternative": "Se uma função específica como linha própria, pagamento ou uso clínico for indispensável, compare somente equipamentos que a documentem para sua região. Não transfira a ficha do FIT 5 Pro para o FIT 5.",
+      "questions": [
+        ["Os 64 GB são de RAM?", "Não. A página brasileira anuncia armazenamento de 64 GB. Não repetimos a equivalência com RAM que apareceu na tabela do vendedor."],
+        ["A bateria sempre dura dez dias?", "Não. A HUAWEI descreve cenários diferentes, inclusive 7 dias em uso normal e 4 com tela sempre ativa. A duração real varia com as condições de uso."],
+        ["Tem GPS sem depender do telefone para localizar?", "As especificações documentam GNSS integrado. Isso não equivale a conexão móvel própria, nem garante a mesma precisão em todo ambiente."],
+        ["Funciona em qualquer Android ou iPhone?", "Não prometemos isso. As páginas regionais diferem no mínimo de Android; confira o Huawei Saúde, a lista atual e cada função no seu telefone antes de escolher."],
+        ["Posso usar como diagnóstico ou mergulhar?", "A fabricante não destina os registros a diagnóstico ou tratamento. A classificação 5 ATM também tem restrições e não significa mergulho a 50 metros; siga o manual específico."]
+      ],
+      "sources": [{"url": "https://consumer.huawei.com/br/wearables/watch-fit5/", "label": "HUAWEI Brasil — recursos e condições de autonomia"}, {"url": "https://consumer.huawei.com/ma/wearables/watch-fit5/specs/", "label": "HUAWEI — ficha regional; diferenças de compatibilidade sinalizadas"}],
+      "links": [{"url": "/comparar.html?q=smartwatch", "label": "Comparar relógios pela função necessária"}]
+    },
+    {
+      "id": "CCnmlZjBf8P0nhSyHOmm", "views": 6,
+      "guard": "The Black Tools.*TB12A", "expectedListing": "MLB3371578831",
+      "title": "The Black Tools TB12A: mandril, bateria e limites a conferir",
+      "description": "Veja o que o cadastro informa sobre a TB12A e o que falta confirmar sobre torque, rotação, materiais, bateria e carregador antes da compra.",
+      "publicSummary": "A oferta identifica a parafusadeira/furadeira The Black Tools TB12A, com mandril anunciado de 3/8, LED, reversão e ajuste de torque. Não confirmamos torque máximo, rotação ou capacidade de perfuração por manual específico nesta revisão.",
+      "basis": "Modelo e características do cadastro existente. O endereço da loja da marca encontrado na busca retornou página indisponível; não o usamos para validar novos dados. Não houve teste prático ou nova leitura completa da oferta.",
+      "fit": "Para quem precisa comparar uma ferramenta compacta a bateria e pode conferir se atende ao material e ao serviço pretendidos. Saber o modelo ajuda a pedir documentação, mas não substitui uma capacidade de trabalho especificada.",
+      "tradeoff": "LED, reversão e ajustes anunciados são funções a avaliar na operação. Já tamanho do mandril, tensão e torque respondem a perguntas diferentes; um deles não permite deduzir os demais ou prometer uso pesado.",
+      "advantages": ["Modelo TB12A identificado, útil para solicitar manual, acessórios e peças compatíveis.", "LED, reversão e controle de torque descritos no cadastro, sem avaliação de eficiência pela equipe."],
+      "limitations": ["Torque máximo, rotação e capacidade por material não foram confirmados.", "Não validamos tempo de recarga, autonomia ou regime de trabalho.", "Os 60 Hz do título não são informação de rotação da ferramenta nem prova de compatibilidade do carregador."],
+      "check": "Peça a ficha da TB12A e as etiquetas da bateria e do carregador. Confira capacidade do mandril, pontas incluídas, função impacto e atendimento pós-venda sem usar a documentação de outra ferramenta da marca.",
+      "alternative": "Se o objetivo é concreto, uso contínuo ou torque definido, compare modelos que documentem esses requisitos. Não conclua aptidão apenas pela palavra 'furadeira'.",
+      "questions": [
+        ["O mandril 3/8 informa o torque?", "Não. É uma referência de tamanho anunciada para o mandril, não uma especificação de força. O torque máximo precisa ser confirmado separadamente."],
+        ["Possui impacto para concreto?", "Essa função não foi confirmada nesta revisão. Peça a especificação do modelo e do material antes de comprar."],
+        ["A bateria carrega em duas horas?", "Esse tempo aparece no cadastro anterior, mas não foi validado por manual ou teste. Não o apresentamos como duração garantida."],
+        ["Os 60 Hz dizem quantas rotações ela faz?", "Não. Não convertemos esse campo do título em rpm. Confirme os dados de alimentação e a faixa de rotação nas respectivas etiquetas e no manual."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB24076624?pdp_filters=item_id%3AMLB3371578831", "label": "Anúncio registrado da TB12A — especificações técnicas pendentes"}],
+      "links": [{"url": "/comparar.html?q=parafusadeira", "label": "Localizar ferramentas para o mesmo tipo de trabalho"}]
+    },
+    {
+      "id": "InsaA7npZ9l5Qf6jByiC", "views": 6,
+      "guard": "Nike Court Legacy Lift Feminino", "expectedListing": "MLB2926671021",
+      "title": "Nike Court Legacy Lift feminino: proposta casual e variante",
+      "description": "Conheça a proposta de plataforma da linha Court Legacy Lift e o que ainda precisa confirmar no anúncio: código da variante, materiais e medidas.",
+      "publicSummary": "O anúncio cadastrado identifica o Nike Court Legacy Lift feminino. A Nike apresenta a linha com entressola de plataforma, mas o código de estilo desta oferta não foi confirmado. Não transferimos materiais ou medidas de uma variante oficial diferente para o produto anunciado.",
+      "basis": "Nome da oferta comparado à página oficial de uma variante Court Legacy Lift. A referência confirma a proposta da linha, não a identidade exata da unidade vendida, sua autenticidade ou o estoque. Não fizemos teste de uso.",
+      "fit": "Para quem procura a proposta visual de um tênis de plataforma e pode conferir tamanho e variante. A aparência casual é uma escolha de estilo; ela não comprova indicação para corrida, treinamento ou uma necessidade clínica.",
+      "tradeoff": "O nome da linha ajuda a localizar o produto, mas o código da etiqueta é o que permite conferir a ficha específica. Cores e fotos parecidas não garantem materiais, construção ou ajuste iguais entre ofertas.",
+      "advantages": ["Nome Court Legacy Lift e marca identificados, com referência oficial da linha para orientar a consulta.", "Proposta de plataforma apresentada pela Nike, a confirmar na variante oferecida."],
+      "limitations": ["Código de estilo, composição e medidas desta oferta continuam a confirmar.", "Não testamos forma, conforto, aderência ou durabilidade.", "Não verificamos autenticidade apenas pelo título ou pelas fotos do anúncio."],
+      "check": "Peça o código de estilo e a tabela de medidas desta variante. Confira as informações do vendedor e as condições de troca de tamanho, sem escolher uma numeração só com base em comentários sobre outro Court Legacy.",
+      "alternative": "Para corrida ou outra exigência esportiva, compare um modelo documentado para essa finalidade. Para escolher pela composição, aguarde a identificação exata em vez de copiar a ficha de outra cor.",
+      "questions": [
+        ["É um tênis de corrida?", "Não atribuímos essa finalidade a esta oferta. A referência oficial consultada apresenta uma proposta casual com plataforma; não fizemos avaliação esportiva."],
+        ["Qual é o material do par anunciado?", "Ainda falta o código de estilo da oferta. A composição de uma página oficial de outra variante não deve ser automaticamente atribuída a este par."],
+        ["A plataforma tem qual altura?", "Não confirmamos a medida desta variante. Peça a informação ao vendedor e à documentação correspondente, sem estimar pela foto."],
+        ["Como escolher o número e confirmar o modelo?", "Compare o código da etiqueta e a tabela específica. Confira também as condições de troca; não garantimos forma pequena, grande ou igual à de outro Nike."]
+      ],
+      "sources": [{"url": "https://www.nike.com.br/tenis-nike-court-legacy-lift-feminino-028801.html", "label": "Nike — referência da linha, não confirmação da variante vendida"}, {"url": "https://produto.mercadolivre.com.br/MLB-2926671021-tnis-nike-court-legacy-lift-feminino-_JM", "label": "Oferta registrada — código de estilo a confirmar"}],
+      "links": [{"url": "/comparar.html?q=tenis", "label": "Localizar tênis e separar propostas de uso"}]
+    },
+    {
+      "id": "q4XshIAfttQBQ9Bwz7uB", "views": 6,
+      "guard": "Carrinho Controle Remoto.*Recarreg[aá]vel", "expectedListing": "MLB7326859258",
+      "title": "Carrinho de controle remoto recarregável: kit e limites",
+      "description": "Veja o que confirmar no carrinho anunciado como 4x4 e off-road: tração, alcance do controle, idade indicada, recarga e conteúdo do conjunto.",
+      "publicSummary": "O cadastro anuncia carrinho de controle remoto com bateria recarregável e amortecedores. Não validamos tração 4x4, velocidade, alcance, autonomia ou resistência a impactos; esses termos não são resultados de teste da equipe.",
+      "basis": "Título e descrição do anúncio existente, sem nova leitura completa ou manual específico confirmado. As estimativas antigas de velocidade e bateria não foram medidas e não são garantias desta análise.",
+      "fit": "Para quem procura um brinquedo de controle remoto e pode conferir a faixa etária e o local de uso previstos no manual. Tamanho, alcance e tipo de piso ajudam mais a planejar a brincadeira do que nomes como drift ou off-road.",
+      "tradeoff": "Bateria recarregável e amortecedores anunciados são pontos para comparar os conjuntos. Em contrapartida, quantidade de motores, tração, controle e peças de reposição precisam ser esclarecidos para entender o que o brinquedo realmente oferece.",
+      "advantages": ["Bateria recarregável anunciada, permitindo verificar o sistema de alimentação e a reposição.", "Controle remoto e amortecedores mencionados no cadastro, com composição do kit a conferir."],
+      "limitations": ["Não confirmamos velocidade máxima, alcance de rádio ou tempo de funcionamento.", "A palavra 4x4 não foi validada como tração nas quatro rodas por manual.", "Não há teste de impermeabilidade, impactos ou uso em areia nesta análise."],
+      "check": "Peça manual, idade recomendada, dimensões e itens fornecidos. Confira bateria do carrinho, alimentação do controle, carregador, avisos de segurança e disponibilidade de peças; siga o local e a supervisão previstos para o produto.",
+      "alternative": "Se você busca desempenho ou manutenção de um modelo de hobby, compare equipamentos com escala, tração, alcance e peças documentados. Não presuma que este brinquedo atende a essas exigências pelo título.",
+      "questions": [
+        ["Ele tem tração 4x4 de verdade?", "É uma expressão do anúncio, não uma função confirmada nesta revisão. Peça a descrição do sistema de tração do modelo exato."],
+        ["A bateria dura uma hora?", "Não validamos a estimativa antiga do cadastro. Autonomia depende das condições e precisa ser documentada; não a tratamos como teste da equipe."],
+        ["Pode brincar em água, areia ou tomar pancadas?", "Não confirmamos essas condições. O nome off-road e a presença de amortecedores não comprovam proteção contra água, areia ou impactos."],
+        ["Vem tudo para usar e para qual idade?", "Conteúdo, alimentação do controle e faixa etária precisam ser confirmados no manual e na oferta. Não deduzimos a idade pela palavra infantil."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB76256682?pdp_filters=item_id%3AMLB7326859258", "label": "Anúncio registrado do carrinho — desempenho e faixa etária a conferir"}],
+      "links": [{"url": "/comparar.html?q=carrinho", "label": "Encontrar brinquedos cadastrados para conferir individualmente"}]
+    },
+    {
+      "id": "qZUWO8WSrcOKWVrAqTW7", "views": 6,
+      "guard": "Tp.?link Ex1500|TP.?Link.*EX1500", "expectedCatalogue": "MLBU4043490754",
+      "title": "TP-Link EX1500: Gigabit, bandas e condições do EasyMesh",
+      "description": "Entenda o EX1500 AX1500: bandas de Wi-Fi, portas Gigabit e EasyMesh, sem prometer velocidade real ou cobertura de toda a casa com um só roteador.",
+      "publicSummary": "A TP-Link documenta o EX1500 como roteador dual band AX1500 com portas Gigabit e compatibilidade EasyMesh. A tabela técnica informa uma WAN e três LAN. A classe AX1500 não é velocidade garantida para um aparelho ou para o acesso à internet.",
+      "basis": "Página oficial brasileira do EX1500 consultada. Usamos a tabela técnica de interfaces, não a frase promocional divergente sobre quatro LAN. Recursos devem ser conferidos na revisão e no firmware do aparelho entregue; não fizemos teste de rede.",
+      "fit": "Para quem quer comparar uma rede com conexões por cabo e duas bandas sem fio. Antes de comprar, vale definir se o objetivo é uma única área, mais portas ou uma rede com outros equipamentos compatíveis.",
+      "tradeoff": "As interfaces documentadas evitam confundir este modelo com um roteador de portas 10/100. Mesmo assim, aparelhos clientes, posicionamento e rede do provedor continuam importantes; a classe do Wi-Fi não substitui esse planejamento.",
+      "advantages": ["Portas Gigabit e bandas de 2,4 e 5 GHz documentadas pela TP-Link.", "EasyMesh anunciado para composição com outros equipamentos compatíveis, conforme requisitos do modelo."],
+      "limitations": ["AX1500 reúne taxas teóricas de bandas; não promete essa taxa em uma conexão individual.", "Um equipamento sozinho não garante cobertura em todos os ambientes.", "O texto promocional e a tabela divergem na contagem de LAN; confira as portas da revisão oferecida."],
+      "check": "Confira revisão, firmware e portas nas fotos do aparelho. Para EasyMesh, verifique todos os dispositivos e as condições de compatibilidade; a fabricante distingue compatibilidade de certificação Wi-Fi EasyMesh.",
+      "alternative": "Se você precisa de mais portas ou de cobrir vários pontos, compare a topologia completa, não só o roteador isolado. Não compre supondo que qualquer repetidor formará a mesma rede Mesh.",
+      "questions": [
+        ["Vou receber 1.500 Mbps em um aparelho?", "Não é uma promessa desta análise. A classe AX1500 reúne taxas anunciadas; velocidade real depende dos equipamentos e das condições da rede."],
+        ["Quantas portas de rede ele tem?", "A tabela técnica consultada informa uma WAN e três LAN Gigabit. Como há texto promocional divergente, confira as portas e a revisão na oferta."],
+        ["EasyMesh funciona com qualquer repetidor?", "Não. A função exige equipamentos e condições compatíveis. Confirme o conjunto e o firmware antes de escolher os pontos da rede."],
+        ["A internet funciona sem provedor ou modem?", "O roteador não inclui um serviço de internet. Confira a ligação e os equipamentos exigidos pelo seu provedor; não presumimos que substitui qualquer modem ou terminal."]
+      ],
+      "sources": [{"url": "https://www.tp-link.com/br/home-networking/wifi-router/ex1500/", "label": "TP-Link Brasil — EX1500, tabela técnica e ressalvas de compatibilidade"}, {"url": "https://www.tp-link.com/br/support/download/ex1500/", "label": "TP-Link — documentação e firmware por versão do EX1500"}],
+      "links": [{"url": "/melhores-roteador.html", "label": "Guia para separar funções de equipamentos de rede"}, {"url": "/comparar.html?q=roteador", "label": "Comparar roteadores por características documentadas"}]
+    }
+    ,
+    {
+      "id": "tKPMnMHGe8qlcFn4nNdC", "views": 6,
+      "guard": "Pegada 114861", "expectedCatalogue": "MLB45458232",
+      "title": "Pegada 114861: calce fácil, medidas e limitações da ficha",
+      "description": "Veja a proposta casual do Pegada 114861 e o que confirmar sobre elástico, zíper, materiais, numeração e aderência antes de escolher.",
+      "publicSummary": "O cadastro identifica o sapatênis casual masculino Pegada 114861, com elástico e zíper anunciados para facilitar o calce. Materiais, medidas e comportamento do solado não foram confirmados por documentação específica nem testados pela equipe.",
+      "basis": "Modelo e descrição do anúncio registrado. Não localizamos página oficial específica para confirmar novos dados nesta revisão; não usamos a ficha de outro Pegada ou de um código de cor diferente.",
+      "fit": "Para quem procura um calçado casual e valoriza uma forma de fechamento que possa facilitar a rotina. O ajuste ao pé precisa ser conferido nas medidas do modelo, sem presumir que 'calce fácil' é uma garantia de conforto individual.",
+      "tradeoff": "Elástico e zíper anunciados podem interessar a quem não quer depender apenas de amarração. Ainda assim, forma, largura e acesso real ao pé não ficam esclarecidos só pelo nome do recurso.",
+      "advantages": ["Código 114861 identificado, permitindo pedir medidas e documentação do produto correto.", "Elástico e zíper descritos no cadastro como proposta de fechamento a conferir."],
+      "limitations": ["Não confirmamos composição, peso, largura exata ou medidas por numeração.", "Não há teste de aderência ou comprovação específica para a alegação antiderrapante.", "Conforto, facilidade de calce e durabilidade não foram avaliados pela equipe."],
+      "check": "Peça código completo da variante, composição e tabela de medidas. Confira os fechamentos nas fotos e as condições de troca, sem atribuir couro ou uma tecnologia de conforto que não tenha sido confirmada para este produto.",
+      "alternative": "Para uma necessidade de trabalho, segurança ou adaptação específica, compare calçados documentados para esse uso. Um sapatênis casual não deve receber essa indicação só por ter zíper ou solado com desenho marcado.",
+      "questions": [
+        ["É de couro?", "A composição desta variante não foi confirmada nesta revisão. A marca e o nome sapatênis não bastam para afirmar o material."],
+        ["O calce fácil serve para qualquer pé?", "Não garantimos. Confira abertura, largura e medidas; o recurso anunciado não comprova ajuste ou conforto para todas as pessoas."],
+        ["O solado é antiderrapante em qualquer piso?", "Não testamos aderência nem obtivemos documentação específica dessa propriedade. Não tratamos a alegação antiga como garantia universal."],
+        ["Devo usar a mesma numeração de outro Pegada?", "Não presumimos formas iguais entre modelos. Use a tabela do 114861 oferecido e confira as condições de troca."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB45458232", "label": "Endereço registrado do Pegada 114861 — medidas e composição a conferir"}],
+      "links": [{"url": "/comparar.html?q=pegada", "label": "Localizar calçados Pegada cadastrados"}]
+    },
+    {
+      "id": "ucknzxk5UJWl0GnOXadP", "views": 6,
+      "guard": "B.?G Mini Compressor|Mini Compressor.*B.?G", "expectedListing": "MLB7076442330",
+      "title": "Mini compressor B&G: alimentação, válvulas e capacidade",
+      "description": "Entenda os dados pendentes do mini compressor B&G, incluindo alimentação contraditória no cadastro, pressão, válvulas e regime de funcionamento.",
+      "publicSummary": "O cadastro anuncia um mini compressor portátil B&G para pneus e menciona USB, mas também traz um campo 127/220 V sem esclarecimento. Não confirmamos os requisitos de alimentação, pressão máxima ou capacidade para cada aplicação.",
+      "basis": "Dados históricos do anúncio registrado, sem manual específico ou nova leitura completa nesta etapa. A divergência de alimentação é sinalizada, não corrigida para uma tensão presumida.",
+      "fit": "Para quem procura um calibrador transportável e consegue verificar as válvulas e os pneus que pretende atender. Com os dados atuais, a ficha não comprova enchimento de qualquer pneu ou aptidão para trabalho contínuo.",
+      "tradeoff": "Portabilidade pode ser importante para guardar e transportar o conjunto. Já velocidade de enchimento, pressão útil, alimentação e intervalo de trabalho são requisitos diferentes e precisam de documentação para orientar a compra.",
+      "advantages": ["Proposta portátil identificada, permitindo conferir dimensões e facilidade de transporte.", "Aplicações em pneus mencionadas no cadastro, ponto de partida para perguntar sobre válvulas e limites."],
+      "limitations": ["USB e 127/220 V aparecem sem esclarecer como o conjunto é alimentado.", "Pressão máxima, vazão, precisão e desligamento automático não estão confirmados.", "Não testamos autonomia, aquecimento, tempo de enchimento ou ruído."],
+      "check": "Solicite manual, modelo e fotos das etiquetas do compressor e de eventual fonte. Confirme alimentação, válvulas, pressão e regime de funcionamento antes de usar; não escolha uma conexão elétrica apenas pelo campo contraditório do anúncio.",
+      "alternative": "Se precisa encher pneus grandes ou trabalhar continuamente, compare equipamentos com vazão, pressão e regime documentados. A potência anunciada sozinha não demonstra essa capacidade.",
+      "questions": [
+        ["Ele é USB ou liga em 127/220 V?", "O cadastro é contraditório e não resolve essa pergunta. Peça as etiquetas e o manual do conjunto; não inferimos uma alimentação segura por suposição."],
+        ["Serve para qualquer carro, bicicleta ou moto?", "Não confirmamos universalidade. Confira válvulas, pressão exigida e os limites previstos pelo fabricante para a aplicação."],
+        ["Desliga quando chega à pressão escolhida?", "A função não foi confirmada nesta revisão. Não atribuímos visor digital, sensor ou desligamento automático só pela aparência."],
+        ["Pode funcionar sem pausa?", "Não temos regime de trabalho ou teste térmico. Respeite os limites do manual específico em vez de presumir funcionamento contínuo."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB20562024?pdp_filters=item_id%3AMLB7076442330", "label": "Anúncio registrado do B&G — alimentação e capacidade pendentes"}],
+      "links": [{"url": "/comparar.html?q=compressor", "label": "Comparar compressores pela aplicação e documentação"}]
+    },
+    {
+      "id": "xdMGqRvHv2lJ95LaBG9F", "views": 6,
+      "guard": "Lanterna.*T9\\b", "expectedListing": "MLB4698467927",
+      "publicName": "Lanterna LED T9 recarregável — alcance e proteção a confirmar",
+      "title": "Lanterna T9 recarregável: foco, alcance e informações pendentes",
+      "description": "Conheça a proposta da lanterna T9 sem repetir 'mais forte do mundo': foco, recarga, autonomia e resistência dependem de dados ainda não confirmados.",
+      "publicSummary": "O cadastro identifica uma lanterna T9 recarregável com foco ajustável anunciado. Não há comprovação para 'mais forte do mundo', alcance, autonomia ou impermeabilidade. A análise não apresenta essas alegações como testes ou garantias.",
+      "basis": "Nome e descrição do anúncio registrado, sem marca/modelo técnico completos ou manual confirmado nesta etapa. Não fizemos medição de luz, alcance, bateria ou resistência à água.",
+      "fit": "Para quem procura uma lanterna recarregável e pode conferir a intensidade útil e a duração necessárias para seu uso. Para atividade em que a iluminação seja essencial, a documentação e uma alternativa de segurança importam mais que um superlativo.",
+      "tradeoff": "Foco ajustável e recarga anunciados ajudam a organizar a comparação. Não mostram, porém, quanto ilumina cada área, por quanto tempo ou em quais condições pode ser usada ao ar livre.",
+      "advantages": ["Foco ajustável mencionado no cadastro, para conferir como o feixe pode ser regulado.", "Proposta recarregável identificada, permitindo perguntar sobre bateria e reposição."],
+      "limitations": ["Não há medição padronizada de fluxo luminoso, intensidade ou alcance.", "Não confirmamos classificação de proteção ou resistência a quedas.", "Autonomia e tempo de recarga não foram medidos, e o carregador específico precisa ser verificado."],
+      "check": "Peça fabricante, modelo, manual, dados da bateria e proteção documentada. Confira os itens fornecidos e os requisitos de alimentação; nomes como tática, militar ou alumínio de aviação não substituem certificação ou teste.",
+      "alternative": "Se você depende de um alcance ou de uma resistência determinados, compare lanternas que documentem método de medição e condições de uso. Não use 'mais forte' como critério técnico.",
+      "questions": [
+        ["Ela é a mais forte do mundo?", "Não há comprovação dessa afirmação nesta análise. Retiramos o superlativo do título público em vez de repeti-lo como uma conclusão."],
+        ["Ilumina a 500 metros?", "Esse alcance veio da descrição antiga, sem método ou condições confirmados. Não o publicamos como resultado medido ou garantido."],
+        ["Posso molhar ou mergulhar a lanterna?", "Não confirmamos classificação e restrições. A palavra impermeável do anúncio não é autorização irrestrita de uso na água."],
+        ["Qual bateria e carregador devo usar?", "Faltam requisitos técnicos confirmados por manual. Peça a identificação completa e as instruções do modelo antes de escolher alimentação ou reposição."]
+      ],
+      "sources": [{"url": "https://www.mercadolivre.com.br/p/MLB70041714?pdp_filters=item_id%3AMLB4698467927", "label": "Anúncio registrado da T9 — alegações de desempenho não verificadas"}],
+      "links": [{"url": "/comparar.html?q=lanterna", "label": "Localizar lanternas por proposta de uso"}]
+    },
+    {
+      "id": "zLqKcRRYNyzrP6t1Erhh", "views": 6,
+      "guard": "Rel[oó]gio Digital", "expectedListing": "MLB3620687217",
+      "publicName": "Relógio digital C-SHOCK — funções e resistência à água a confirmar",
+      "title": "Relógio digital C-SHOCK: identificação e limites do anúncio",
+      "description": "Veja o que precisa confirmar no relógio C-SHOCK, sem usar peso inconsistente, prometer impermeabilidade ou confundir a marca com outra linha de relógios.",
+      "publicSummary": "O cadastro identifica um relógio digital da marca informada C-SHOCK. O campo de peso aparece como 50 kg, dado inconsistente que não usamos como característica válida nem convertemos para gramas por suposição. A resistência à água continua a confirmar.",
+      "basis": "Marca e identidade do anúncio já registrados. A página do vendedor retornou bloqueio de acesso nesta tentativa; não obtivemos manual ou modelo alfanumérico e não testamos o produto.",
+      "fit": "Para quem procura um relógio digital e pode esclarecer funções básicas e dimensões antes de comprar. A ficha serve para separar identificação de promessa: a aparência esportiva não comprova funções inteligentes, resistência a impacto ou uso aquático.",
+      "tradeoff": "O nome da marca e a indicação digital são referências iniciais. Sem código do modelo, fica difícil verificar bateria, ajustes e cuidados, por isso não recomendamos escolher apenas pelo desenho ou por 'à prova d'água'.",
+      "advantages": ["Marca C-SHOCK informada no cadastro, mantida sem atribuir o relógio a outra fabricante.", "Código do anúncio identificado, permitindo pedir modelo, manual e medidas da unidade oferecida."],
+      "limitations": ["Modelo técnico, funções, dimensões e peso válido não foram confirmados.", "Não há classificação de resistência à água ou a impactos documentada nesta análise.", "Não testamos precisão, iluminação, alarme, cronômetro ou duração de bateria."],
+      "check": "Peça foto do fundo, código do modelo e manual. Confira funções e classificação de proteção; se o peso for importante, solicite o valor com a unidade correta em vez de reaproveitar o campo inconsistente.",
+      "alternative": "Se você quer uma função ou resistência específica, compare modelos com documentação verificável. Não atribuímos a este C-SHOCK as características de um Casio G-SHOCK ou de um smartwatch.",
+      "questions": [
+        ["O relógio pesa mesmo 50 kg?", "Esse campo é inconsistente e não é usado como peso confirmado. Também não o trocamos automaticamente por 50 g; o valor e a unidade precisam ser esclarecidos."],
+        ["É um Casio G-SHOCK?", "O cadastro informa C-SHOCK. Não tratamos nomes parecidos como a mesma marca nem transferimos especificações de outra linha."],
+        ["Pode tomar banho ou nadar?", "Não há classificação e condições confirmadas nesta ficha. Peça o manual; o título 'à prova d'água' sozinho não comprova esses usos."],
+        ["Tem alarme, cronômetro ou conexão com celular?", "Essas funções não foram confirmadas para o modelo exato. Não usamos o formato do visor para completar a ficha por suposição."]
+      ],
+      "sources": [{"url": "https://produto.mercadolivre.com.br/MLB-3620687217-relogio-digital-a-prova-dagua-masculino-original-esportivo-_JM", "label": "Anúncio registrado do C-SHOCK — identificação e peso a esclarecer"}],
+      "links": [{"url": "/comparar.html?q=relogio", "label": "Localizar relógios e separar digitais de smartwatches"}]
+    },
+    {
+      "id": "ZVVdy8TuP0yW0XNIyiEA", "views": 6,
+      "guard": "soundcore P30i", "expectedListing": "MLB5410636044",
+      "publicName": "soundcore P30i da Anker — fones TWS com ANC",
+      "title": "soundcore P30i: ANC, bateria no fone e total com estojo",
+      "description": "Entenda o P30i sem confundir 45 horas com uso contínuo no fone: ANC, estojo-suporte, resistência anunciada e divergência de Bluetooth sinalizada.",
+      "publicSummary": "O soundcore P30i tem cancelamento ativo de ruído e estojo com suporte para celular documentados pela fabricante. Até 10 horas no fone e 45 horas no total com estojo são cenários anunciados sem ANC; não são 45 horas contínuas no ouvido nem medições da equipe.",
+      "basis": "Páginas oficiais da soundcore e condições de autonomia consultadas. O título cadastrado informa Bluetooth 5.3, enquanto a página atual da fabricante mostra 5.4; sinalizamos a divergência e não presumimos a versão da unidade vendida.",
+      "fit": "Para quem procura fones TWS com ANC e valoriza um estojo que também apoie o telefone. Antes de escolher, compare ajuste, rotina de chamadas e condições de bateria, em vez de olhar somente o maior número de horas.",
+      "tradeoff": "ANC e os recursos do estojo são diferenciais documentados para avaliar. A experiência de vedação, conforto e voz depende do uso; não temos teste próprio para chamar o cancelamento de eficiente ou garantir qualidade de chamadas.",
+      "advantages": ["ANC e modo de transparência documentados, com desempenho anunciado e não medido pela equipe.", "Estojo 2 em 1 com suporte de telefone documentado pela soundcore."],
+      "limitations": ["Autonomia varia com ANC, volume e uso; o total com estojo inclui recargas.", "Não confirmamos a divergência entre Bluetooth 5.3 do cadastro e 5.4 da ficha atual para esta unidade.", "IP54 anunciado não deve ser tratado como autorização de imersão; conforto e microfone não foram testados."],
+      "check": "Confira o código e a versão da oferta, o aplicativo compatível e as condições dos números de bateria. Peça a relação dos itens e confirme a variante sem copiar a ficha do P20i, P40i ou Life P3i.",
+      "alternative": "Se a prioridade for formato aberto, encaixe específico ou outro recurso, compare modelos que documentem essa proposta. Para autonomia, use o mesmo cenário e diferencie uso dos fones de recargas no estojo.",
+      "questions": [
+        ["Ele dura 45 horas direto no ouvido?", "Não. A fabricante separa até 10 horas de reprodução no fone e até 45 no total com o estojo, sem ANC. O total inclui recargas e depende das condições de uso."],
+        ["Quanto muda com o ANC ligado?", "A referência oficial informa até 7 horas no fone e 30 no total com estojo com ANC. São estimativas da fabricante, não promessa de duração na sua rotina."],
+        ["O Bluetooth é 5.3 ou 5.4?", "O cadastro e a página atual da soundcore divergem. Mantemos esse ponto sinalizado; confirme o código e a documentação da unidade com o vendedor."],
+        ["O ANC garante silêncio ou microfone perfeito?", "Não. O recurso é documentado, mas não fizemos teste de isolamento ou voz. Não transformamos a intensidade máxima anunciada em garantia para todo ruído ou chamada."],
+        ["Pode nadar com ele ou carregar sem fio?", "A ficha consultada anuncia IP54 e não oferece recarga sem fio. Não tratamos essa proteção como uso submerso; siga as restrições do manual."]
+      ],
+      "comparisonFeatures": [
+        {"label":"Formato","value":"TWS com ponteiras; confirmar ajuste e variante","state":"yes","basis":"fabricante","sourceUrl":"https://www.soundcore.com/products/soundcore-p30i","checkedAt":"2026-10-27"},
+        {"label":"Versão Bluetooth","value":"Divergência: cadastro 5.3; página atual da fabricante 5.4. Confirmar a unidade","state":"unknown","basis":"cadastro","sourceUrl":"https://www.soundcore.com/products/soundcore-p30i","checkedAt":"2026-10-27"},
+        {"label":"Cancelamento ativo de ruído","value":"ANC e transparência documentados; desempenho não medido pela equipe","state":"yes","basis":"fabricante","sourceUrl":"https://www.soundcore.com/products/soundcore-p30i","checkedAt":"2026-10-27"},
+        {"label":"Microfone","value":"Quatro microfones anunciados; sem teste de voz da equipe","state":"yes","basis":"fabricante","sourceUrl":"https://www.soundcore.com/products/soundcore-p30i","checkedAt":"2026-10-27"},
+        {"label":"Autonomia no fone","value":"Até 10 h sem ANC ou 7 h com ANC; estimativas da fabricante","state":"yes","basis":"fabricante","sourceUrl":"https://www.soundcore.com/blogs/earbuds/best-wireless-earbuds-under-50","checkedAt":"2026-10-27"},
+        {"label":"Autonomia com estojo","value":"Até 45 h totais sem ANC ou 30 h com ANC, incluindo recargas","state":"yes","basis":"fabricante","sourceUrl":"https://www.soundcore.com/blogs/earbuds/best-wireless-earbuds-under-50","checkedAt":"2026-10-27"}
+      ],
+      "sources": [{"url": "https://www.soundcore.com/products/soundcore-p30i", "label": "soundcore — recursos e tabela atual do P30i"}, {"url": "https://www.soundcore.com/uk/products/a3959-soundcore-p30i", "label": "soundcore — referência oficial A3959, autonomia e estojo"}, {"url": "https://www.soundcore.com/blogs/earbuds/best-wireless-earbuds-under-50", "label": "soundcore — condições de bateria com ANC ligado e desligado"}],
+      "links": [{"url": "/melhores-fones-de-ouvido.html", "label": "Guia para escolher o formato de fone"}, {"url": "/comparar.html?q=P30i", "label": "Conferir a ficha de comparação do P30i"}]
+    }
+  ]
+}

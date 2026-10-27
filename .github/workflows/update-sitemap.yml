@@ -42,6 +42,7 @@ on:
       - "visibility-editorial.json"
       - "featured-analysis.json"
       - "popular-analysis.json"
+      - "next-popular-analysis.json"
       - "scripts/popular-analysis.mjs"
       - "scripts/buying-advice.mjs"
       - "editorial-focus.json"

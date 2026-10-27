@@ -1,18 +1,18 @@
 import {readFile, writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {POPULAR_ANALYSES,matchesPopularAnalysis,registeredOfferUrl} from './popular-analysis.mjs';
-export {POPULAR_ANALYSES};
+import {POPULAR_ANALYSES,NEXT_POPULAR_ANALYSES,POPULAR_BATCHES,matchesPopularAnalysis,registeredOfferUrl} from './popular-analysis.mjs';
+export {POPULAR_ANALYSES,NEXT_POPULAR_ANALYSES};
 
 const originalConfig = JSON.parse(await readFile(new URL('../visibility-editorial.json', import.meta.url), 'utf8'));
 export const FEATURED_ANALYSES = JSON.parse(await readFile(new URL('../featured-analysis.json', import.meta.url), 'utf8'));
-const featured = new Map([FEATURED_ANALYSES,POPULAR_ANALYSES].flatMap(batch=>batch.products.map(item=>[item.id,{...item,depth:true,reviewedAt:batch.reviewedAt}])));
+const featured = new Map([FEATURED_ANALYSES,...POPULAR_BATCHES].flatMap(batch=>batch.products.map(item=>[item.id,{...item,depth:true,reviewedAt:batch.reviewedAt}])));
 export const CONFIG = {...originalConfig,products:[...originalConfig.products.map(item=>featured.has(item.id)?{...item,...featured.get(item.id)}:item),...featured.values()].filter((item,index,items)=>items.findIndex(other=>other.id===item.id)===index)};
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const plain = value => String(value || '').replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
 const safeLink = value => {
   if(/^\/(?!\/)[A-Za-z0-9_./-]+(?:\?(?:q=[A-Za-z0-9%+-]+(?:&orcamento=\d+)?|produto=[A-Za-z0-9_-]+|orcamento=\d+))?$/.test(value))return true;
-  try{const url=new URL(value);return url.protocol==='https:'&&!url.username&&!url.password&&!url.port&&['grandstream.com','www.grandstream.com','tp-link.com','www.tp-link.com','mi.com','www.mi.com','starlink.com','www.starlink.com','www.jbl.com.br','www.logitech.com','br.store.asus.com','loja.wap.ind.br','mais.conteudo.wap.ind.br','www.mercadolivre.com.br','produto.mercadolivre.com.br','support.hp.com','www.lg.com','www.detran.pe.gov.br'].includes(url.hostname);}catch{return false;}
+  try{const url=new URL(value);return url.protocol==='https:'&&!url.username&&!url.password&&!url.port&&['grandstream.com','www.grandstream.com','tp-link.com','www.tp-link.com','mi.com','www.mi.com','starlink.com','www.starlink.com','www.jbl.com.br','www.logitech.com','br.store.asus.com','loja.wap.ind.br','mais.conteudo.wap.ind.br','www.mercadolivre.com.br','produto.mercadolivre.com.br','support.hp.com','www.lg.com','www.detran.pe.gov.br','www.soundcore.com','consumer.huawei.com','www.nike.com.br'].includes(url.hostname);}catch{return false;}
 };
 function links(items) {
   return (items || []).filter(item => safeLink(item.url)).map(item => `<li><a href="${esc(item.url)}"${item.url.startsWith('https:') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(item.label)}</a></li>`).join('');

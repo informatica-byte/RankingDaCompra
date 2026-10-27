@@ -1,7 +1,9 @@
 import {readFile} from 'node:fs/promises';
 
 export const POPULAR_ANALYSES=JSON.parse(await readFile(new URL('../popular-analysis.json',import.meta.url),'utf8'));
-export const popularById=new Map(POPULAR_ANALYSES.products.map(item=>[item.id,item]));
+export const NEXT_POPULAR_ANALYSES=JSON.parse(await readFile(new URL('../next-popular-analysis.json',import.meta.url),'utf8'));
+export const POPULAR_BATCHES=[POPULAR_ANALYSES,NEXT_POPULAR_ANALYSES];
+export const popularById=new Map(POPULAR_BATCHES.flatMap(batch=>batch.products.map(item=>[item.id,item])));
 
 // Match the model and every explicit seller item code. A catalogue, a deal code,
 // an affiliate short link or words in a related card cannot identify a seller.

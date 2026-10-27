@@ -125,7 +125,10 @@ export async function buildInformationalSite(root=process.cwd()){
  for(const p of products){
   const review=popularById.get(p.id);if(!review)continue;
   const source=await readFile(resolve(root,new URL(p.url,'https://rankingdacompra.com.br').pathname.slice(1)),'utf8');
-  if(matchesPopularAnalysis(review,p.title,registeredOfferUrl(source))){p.summary=info.excerpt(review.publicSummary);if(review.publicName)p.title=review.publicName;}
+  if(matchesPopularAnalysis(review,p.title,registeredOfferUrl(source))){
+   p.summary=info.excerpt(review.publicSummary);if(review.publicName)p.title=review.publicName;
+   if(review.comparisonFeatures&&p.comparison)p.comparison={...p.comparison,features:review.comparisonFeatures.map(feature=>({...feature}))};
+  }
  }
  const byUrl=new Map(products.map(p=>[new URL(p.url,'https://rankingdacompra.com.br/').pathname.slice(1),p]));
  const publicFiles=(await readdir(root)).filter(f=>f.endsWith('.html')&&!info.privatePath('/'+f));

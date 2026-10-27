@@ -9,7 +9,7 @@ import {productAliasPage, pausedProductPage, unavailableProductPage} from './pro
 import {localRemovals} from './product-removals.mjs';
 const item=CONFIG.products[0];
 const fixture=(name='Notebook Acer Aspire 5 A515-45-R2A3',robots='index,follow')=>`<html><head><title>Original</title><meta name="robots" content="${robots}"><meta name="description" content="Original"><link rel="canonical" href="https://rankingdacompra.com.br/produto/${item.id}-20260810-1.html"><script type="application/ld+json">${JSON.stringify({'@type':'Product',name,url:`https://rankingdacompra.com.br/produto/${item.id}-20260810-1.html`,offers:{price:'3419.90',availability:'https://schema.org/InStock'}})}</script></head><body><main><article><h1>${name}</h1><a id="affiliate-offer" href="https://meli.la/existing" rel="sponsored">Comprar</a><div class="panels"></div></article></main></body></html>`;
-test('escopo mantém análises anteriores e acrescenta o lote priorizado por visualizações',()=>{assert.equal(CONFIG.products.length,28);assert.equal(new Set(CONFIG.products.map(x=>x.id)).size,28);assert.equal(CONFIG.guides.length,3);});
+test('escopo mantém análises anteriores e acrescenta o lote priorizado por visualizações',()=>{assert.equal(CONFIG.products.length,42);assert.equal(new Set(CONFIG.products.map(x=>x.id)).size,42);assert.equal(CONFIG.guides.length,3);});
 
 test('guias oferecem dúvidas visíveis e atalhos seguros sem inventar avaliações nem renovar preços',()=>{
   const html='<html><head><title>Guia</title></head><body><h1>Guia</h1><table><td>R$ 123,45</td></table></body></html>';
@@ -40,7 +40,7 @@ test('todas as páginas principais selecionadas têm uma única seção e links 
   for(const page of pages.filter(p=>p.inactive)){assert.doesNotMatch(page.html,/visibility-editorial:start|id=["']affiliate-offer["']/);}
   for(const {file,html,item:entry} of [...pages.filter(p=>!p.inactive),...await Promise.all(CONFIG.guides.map(async x=>({file:x.file,html:await readFile(new URL('../'+x.file,import.meta.url),'utf8'),item:x})))]){
     assert.equal((html.match(/<!-- visibility-editorial:start -->/g)||[]).length,1,file);
-    assert.ok(html.includes(entry.title),file);
+    assert.ok(html.includes(entry.title.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))),file);
     for(const link of entry.links){if(link.url.startsWith('/')){
       if(deletedProductLink(link.url,deleted)){assert.equal(html.includes('href="'+link.url+'"'),false,'link excluído não pode continuar no HTML');await assert.rejects(readFile(new URL('..'+link.url,import.meta.url)),{code:'ENOENT'});}
       else await readFile(new URL('..'+link.url,import.meta.url));
