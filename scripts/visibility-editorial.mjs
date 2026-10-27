@@ -116,7 +116,7 @@ export function improveProduct(html, item) {
       const data=JSON.parse(json);
       for(const node of data['@graph']||[data]){
         if(node['@type']==='Article'&&String(node.mainEntityOfPage).includes('/produto/'+item.id+'-')){
-          node.description=item.publicSummary;node.headline=item.title;
+          node.description=item.publicSummary;node.headline=item.publicName||node.about?.name||node.headline;
           if(item.publicName&&node.about?.['@type']==='Thing')node.about.name=item.publicName;
         }else if(node['@type']==='Product'&&String(node.url||node['@id']).includes('/produto/'+item.id+'-')){
           node.description=item.publicSummary;if(item.publicName)node.name=item.publicName;

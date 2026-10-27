@@ -58,6 +58,16 @@ test('páginas, FAQ e projeção pública usam a revisão sem modificar afiliado
   const out=informationalHtml(improveProduct(html,page.item),{id:entry.id},page.file);
   assert.equal(out,html,entry.id+': idempotência');assert.deepEqual(affiliateLinks(out),affiliateLinks(html));assertInformationalHtml(out,page.file);
   assert.equal(registeredOfferUrl(out),registeredOfferUrl(html));assert.doesNotMatch(html,/data-informational-faq/);
+  // CI regenerates a Product page from the read-only snapshot before the final
+  // Article conversion. Test that path, not only a previously migrated page.
+  const legacy=html.replace(/<script\b([^>]*type="application\/ld\+json"[^>]*)>([\s\S]*?)<\/script>/gi,(_tag,attrs,json)=>{
+   const data=JSON.parse(json);for(const node of data['@graph']||[data])if(node['@type']==='Article'&&String(node.mainEntityOfPage).includes('/produto/'+entry.id+'-')){
+    node['@type']='Product';node.name=node.about.name;node.url=node.mainEntityOfPage;delete node.about;delete node.mainEntityOfPage;delete node.headline;
+   }
+   return '<script'+attrs+'>'+JSON.stringify(data)+'</script>';
+  });
+  const migrated=informationalHtml(improveProduct(legacy,page.item),{id:entry.id},page.file);
+  assert.equal(informationalHtml(improveProduct(migrated,page.item),{id:entry.id},page.file),migrated,entry.id+': regeneração Product → Article repetível');
   assert.match(html,new RegExp(entry.publicSummary.slice(0,35).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
   const projection=feed.products.find(p=>p.id===entry.id);assert.ok(projection);assert.ok(projection.summary.startsWith(entry.publicSummary.slice(0,50)));
   if(entry.publicName)assert.equal(projection.title,entry.publicName);
