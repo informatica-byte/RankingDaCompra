@@ -6,8 +6,8 @@ import {pathToFileURL} from 'node:url';
 const root=resolve(new URL('..',import.meta.url).pathname.replace(/^\/([A-Z]:)/,'$1'));
 const module=process.env.RDC_PLAYWRIGHT_MODULE;
 const {chromium}=module?await import(pathToFileURL(module)):await import('playwright');
-const assets=new Set(['affiliate-link-audit.js','affiliate-link-review.js','affiliate-link-panel.js','affiliate-link-audit.css']);
-const html=mobile=>`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/affiliate-link-audit.css"><style>body{font-family:Arial;margin:16px;color:#143b2b}.card,.painel{padding:14px;border:1px solid #ddd}button{font:inherit}</style><script src="/affiliate-link-audit.js"></script><script src="/affiliate-link-review.js"></script><script>
+const assets=new Set(['affiliate-link-audit.js','affiliate-link-review.js','affiliate-link-progress.js','affiliate-link-panel.js','affiliate-link-audit.css']);
+const html=mobile=>`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/affiliate-link-audit.css"><style>body{font-family:Arial;margin:16px;color:#143b2b}.card,.painel{padding:14px;border:1px solid #ddd}button{font:inherit}</style><script src="/affiliate-link-audit.js"></script><script src="/affiliate-link-review.js"></script><script src="/affiliate-link-progress.js"></script><script>
 window.RDCInformational={enabled:true,esc:value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))};
 window.sourceReads=0;window.calls=[];window.securityResolved=false;window.cancelCalls=0;
 window.record=Object.freeze({id:'jbl',titulo:'JBL Tune 520BT Fone sem fio',preco:100,link:'https://www.mercadolivre.com.br/p/MLB23997257?wid=MLB1234567890',linkAfiliado:'https://meli.la/test-only',linkShopee:'https://shopee.com.br/product/123/456'});
@@ -21,6 +21,36 @@ window.cancelarConferenciaLinksLocal=()=>cancelCalls++;
 const server=http.createServer(async(req,res)=>{try{const path=new URL(req.url,'http://localhost').pathname.slice(1);if(path==='dashboard.html'||path==='painel-celular.html'){res.setHeader('Content-Type','text/html; charset=utf-8');res.end(html(path==='painel-celular.html'));}else if(assets.has(path)){res.setHeader('Content-Type',path.endsWith('css')?'text/css':'text/javascript');res.end(await readFile(resolve(root,path)));}else{res.statusCode=404;res.end();}}catch{res.statusCode=500;res.end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;
 const browser=await chromium.launch({headless:true,channel:'chrome'});const errors=[],checked=[];await mkdir(resolve(root,'.informational-qa'),{recursive:true});
+async function checkResume(file){
+ const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});await context.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());
+ const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.addInitScript(()=>{const original=setTimeout.bind(window);window.setTimeout=(fn,ms,...args)=>original(fn,ms===5000?0:ms,...args);});
+ const install=()=>{
+  window.calls=[];window.securityResolved=false;
+  const records=['inconclusive','confirmed','challenge','later'].map(id=>({...record,id}));window.RDCAffiliateAuditSource=async()=>records;
+  window.conferirLinkAfiliadoNaAbaLocal=async row=>{calls.push(row.productId);return RDCAffiliateLinkAudit.classify(row,{url:row.checkUrl,title:row.title,buyable:row.productId!=='inconclusive',security:row.productId==='challenge'&&!securityResolved});};
+ };
+ await page.goto(base+'/'+file);await page.evaluate(install);await page.locator('[data-audit-load]').click();await page.waitForFunction(()=>!document.querySelector('[data-audit-start]').disabled);await page.locator('[data-audit-limit]').selectOption('all');await page.locator('[data-audit-start]').click();
+ await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('pausada para sua intervenção'));
+ assert.deepEqual(await page.evaluate(()=>calls),['inconclusive','confirmed','challenge']);assert.match(await page.locator('[data-audit-status]').innerText(),/posição 3 de 4/);assert.equal(await page.locator('[data-audit-start]').innerText(),'Continuar de onde parou');
+ assert.equal(await page.locator('[data-audit-repeat]').isDisabled(),true);assert.equal(await page.locator('[data-audit-limit]').isDisabled(),true);
+ await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>calls.length===4&&!document.querySelector('[data-audit-start]').disabled);
+ assert.deepEqual(await page.evaluate(()=>calls),['inconclusive','confirmed','challenge','challenge']);assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('rdc-affiliate-audit-report-v1')).progress.cursor),2);
+ await page.reload();await page.evaluate(install);await page.locator('[data-audit-load]').click();await page.waitForFunction(()=>!document.querySelector('[data-audit-start]').disabled);assert.equal(await page.locator('[data-audit-start]').innerText(),'Continuar de onde parou');assert.equal(await page.evaluate(()=>calls.length),0,'recarga não inicia nada sozinha');
+ await page.evaluate(()=>securityResolved=true);await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
+ assert.deepEqual(await page.evaluate(()=>calls),['challenge','later'],'retoma no CAPTCHA e segue ao próximo sem repetir inconclusivos anteriores');
+ const report=await page.evaluate(()=>JSON.parse(localStorage.getItem('rdc-affiliate-audit-report-v1')));assert.equal(report.progress.cursor,4);assert.equal(report.progress.state,'complete');assert.equal(report.records.find(x=>x.productId==='inconclusive').status,'unverified');assert.equal(await page.evaluate(()=>writes.length),0);
+ await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));assert.deepEqual(await page.evaluate(()=>calls),['challenge','later','inconclusive'],'nova rodada explícita pode rever a pendência, não a retomada');
+ await page.evaluate(()=>{
+  window.RDCAffiliateAuditSource=async()=>[{...record,id:'stopped'}];window.latePending=false;
+  window.conferirLinkAfiliadoNaAbaLocal=row=>{calls.push(row.productId);latePending=true;return new Promise(resolve=>{window.releaseLate=()=>resolve(RDCAffiliateLinkAudit.classify(row,{url:row.checkUrl,title:row.title,unavailable:true,primaryNotice:true}));});};
+ });
+ await page.locator('[data-audit-load]').click();await page.waitForFunction(()=>!document.querySelector('[data-audit-start]').disabled);await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>latePending);await page.locator('[data-audit-stop]').click();
+ assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('rdc-affiliate-audit-report-v1')).progress.cursor),0,'parada manual não avança o item em leitura');
+ await page.evaluate(()=>{window.conferirLinkAfiliadoNaAbaLocal=async row=>RDCAffiliateLinkAudit.classify(row,{url:row.checkUrl,title:row.title,buyable:true});});
+ await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));await page.evaluate(()=>releaseLate());await page.waitForTimeout(20);
+ const settled=await page.evaluate(()=>JSON.parse(localStorage.getItem('rdc-affiliate-audit-report-v1')));assert.equal(settled.records.find(x=>x.productId==='stopped').status,'available','resposta tardia da rodada parada não sobrescreve a retomada');assert.equal(settled.progress.state,'complete');
+ await context.close();checked.push(file+': cursor 3/4 preservado após CAPTCHA repetido e recarga; parada manual e resposta tardia seguras; nenhum preço/cadastro gravado');
+}
 try{
  for(const file of ['dashboard.html','painel-celular.html']){
   const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});await context.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());
@@ -76,7 +106,7 @@ try{
   assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('rdc-affiliate-audit-report-v1')).records.some(x=>x.market==='shopee')),true,'histórico antigo da Shopee preservado, sem conferir');
   const download=page.waitForEvent('download');await page.locator('[data-audit-download]').click();const fileDownload=await download;
   const exported=JSON.parse(await readFile(await fileDownload.path(),'utf8'));assert.equal(exported.marketScope,'mercado_livre');assert.ok(exported.records.every(x=>x.market==='mercado_livre'),'relatório exportado só do Mercado Livre');
-  checked.push(file+': limite numérico, todos acima de 50, pausa, retomada sem repetição, relatório, preservação do preço e layout 390/360 px');await context.close();
+  checked.push(file+': limite numérico, todos acima de 50, pausa, retomada sem repetição, relatório, preservação do preço e layout 390/360 px');await context.close();await checkResume(file);
  }
  assert.deepEqual(errors,[]);console.log(JSON.stringify({checked,errors,scope:'fixtures locais; sem Firestore, Analytics, credenciais ou consultas reais às lojas'},null,2));
 }finally{await browser.close();await new Promise(r=>server.close(r));}
