@@ -178,6 +178,9 @@
 <script src="/product-uniqueness.js?v=20261026-1"></script>
 <link rel="stylesheet" href="/informational-mode.css?v=20261026-info1">
 <script src="/informational-mode.js?v=20261026-info1"></script>
+    <link rel="stylesheet" href="/affiliate-link-audit.css?v=20261027-1">
+    <script src="/affiliate-link-audit.js?v=20261027-1"></script>
+    <script defer src="/affiliate-link-panel.js?v=20261027-1"></script>
 <script src="/best-choices.js?v=20261022-pause"></script>
 <script src="/best-choices-admin.js?v=20261010-audit"></script>
     <link rel="stylesheet" href="/existing-flash-offer.css?v=20261016-1">
@@ -1320,6 +1323,13 @@ FORMATO:
                 const docs = snapshot.docs.filter(item => String(item.data().dia || '') >= desde);
                 return { docs, forEach: callback => docs.forEach(callback) };
             }
+        };
+        window.RDCAffiliateAuditSource = async () => {
+            const uid = auth.currentUser?.uid;
+            if (!uid) throw Error('Entre novamente no painel.');
+            const snapshot = await window.RDCAdminReadAccess.products();
+            if (auth.currentUser?.uid !== uid) throw Error('A sessão mudou. Carregue novamente o painel.');
+            return snapshot.docs.map(item => window.RDCAffiliateLinkAudit.project(item.data(), item.id));
         };
         async function carregarMetricasVisitas(forcar = false) {
             const botao = document.getElementById('btn-atualizar-visitas');
