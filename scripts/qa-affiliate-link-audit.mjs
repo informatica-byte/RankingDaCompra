@@ -22,7 +22,13 @@ const browser=await chromium.launch({headless:true,channel:'chrome'});const erro
 try{
  for(const file of ['dashboard.html','painel-celular.html']){
   const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});await context.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());
-  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/'+file);await page.locator('[data-audit-load]').waitFor();
+  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+  await page.addInitScript(()=>{const original=window.setTimeout.bind(window);window.setTimeout=(fn,ms,...args)=>original(fn,ms===5000?0:ms,...args);});
+  await page.goto(base+'/'+file);await page.locator('[data-audit-load]').waitFor();
+  assert.equal(await page.locator('[data-audit-limit]').inputValue(),'20','limite conservador continua padrão');
+  assert.equal(await page.locator('[data-audit-limit] option[value="all"]').innerText(),'Todos os pendentes');
+  assert.equal(await page.locator('[data-audit-limit] option').allTextContents().then(x=>x.includes('100')),true);
+  await page.locator('[data-audit-limit]').selectOption('all');
   assert.equal(await page.locator('body').evaluate(b=>b.scrollWidth<=innerWidth+1),true);assert.equal(await page.locator(file==='dashboard.html'?'#painel-precos':'#precos-mobile').isVisible(),false);
   assert.equal(await page.evaluate(()=>sourceReads),0);assert.equal(await page.evaluate(()=>calls.length),0);
   assert.match(await page.evaluate(async()=>{try{await conferirPrecoNaAbaLocal({});return '';}catch(e){return e.message;}}),/somente links/);
@@ -37,7 +43,17 @@ try{
   await page.setViewportSize({width:360,height:800});assert.equal(await page.locator('body').evaluate(b=>b.scrollWidth<=innerWidth+1),true);
   await page.reload();await page.locator('[data-audit-load]').click();await page.waitForFunction(()=>!document.querySelector('[data-audit-start]').disabled);await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
   assert.equal(await page.evaluate(()=>calls.length),0,'retomada não repete confirmados');assert.equal(await page.evaluate(()=>sourceReads),1);
-  checked.push(file+': pausa, retomada, relatório, preservação do preço e layout 390/360 px');await context.close();
+  await page.evaluate(()=>{window.RDCAffiliateAuditSource=async()=>{sourceReads++;return [record,...Array.from({length:55},(_,i)=>({...record,id:'extra-'+i,linkShopee:''}))];};});
+  await page.locator('[data-audit-load]').click();await page.waitForFunction(()=>!document.querySelector('[data-audit-start]').disabled);
+  await page.locator('[data-audit-limit]').selectOption('10');await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
+  assert.equal(await page.evaluate(()=>calls.length),10,'limite numérico respeitado');
+  await page.locator('[data-audit-limit]').selectOption('all');await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
+  assert.equal(await page.evaluate(()=>calls.length),55,'todos ultrapassa 50 e não repete os dez já confirmados');
+  assert.match(await page.locator('[data-audit-summary]').innerText(),/57 confirmado/);
+  assert.equal(await page.evaluate(()=>record.preco),100);
+  await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
+  assert.equal(await page.evaluate(()=>calls.length),55,'nova rodada todos não repete confirmados');
+  checked.push(file+': limite numérico, todos acima de 50, pausa, retomada sem repetição, relatório, preservação do preço e layout 390/360 px');await context.close();
  }
  assert.deepEqual(errors,[]);console.log(JSON.stringify({checked,errors,scope:'fixtures locais; sem Firestore, Analytics, credenciais ou consultas reais às lojas'},null,2));
 }finally{await browser.close();await new Promise(r=>server.close(r));}
