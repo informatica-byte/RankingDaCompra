@@ -25,17 +25,23 @@ const browser=await chromium.launch({headless:true,channel:process.env.RDC_QA_BR
 const results=[],errors=[];
 try{
  const homeFeed=JSON.parse(await readFile(resolve(root,'informational-catalogue.json'),'utf8')),homeConfig=JSON.parse(await readFile(resolve(root,'site-config.json'),'utf8'));
+ const shelfCount=home.collections(homeFeed).length,additional=home.collections(homeFeed).reduce((n,s)=>n+s.products.length,0),homeCount=home.selection(homeFeed).length+additional;
  const staticContext=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
  await staticContext.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());
  const staticPage=await staticContext.newPage();await staticPage.goto(base+'/');
  assert.match(await staticPage.locator('[data-info-home-static]').innerText(),/Top 6/);
  assert.equal(await staticPage.locator('[data-info-home-static] #comparativos-inicio nav a').count(),home.guides(homeFeed).length);
  assert.equal(await staticPage.locator('[data-info-home-static] [data-info-video-product]').count(),home.videos(homeFeed,homeConfig).length);
+ assert.equal(await staticPage.locator('[data-info-home-static] [data-info-shelf] [data-info-product]:visible').count(),additional,'produtos das categorias expostos sem JavaScript');
  assert.equal(await staticPage.locator('[data-info-home-static] iframe').count(),0);await staticContext.close();results.push('Top 6, guias e links dos vídeos rastreáveis sem JavaScript');
  const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
  await context.route('**/*',route=>{
   const url=route.request().url();
   if(url.startsWith(base)||url.startsWith('data:')||url.startsWith('blob:'))return route.continue();
+  if(route.request().resourceType()==='image'&&url.startsWith('https://rankingdacompra.com.br/produto/imagens/')){
+   const path=new URL(url).pathname;
+   return readFile(resolve(root,'.'+path)).then(body=>route.fulfill({contentType:types[extname(path)]||'image/jpeg',body})).catch(()=>route.abort());
+  }
   // Product images only. Block SDKs, sales, analytics, APIs, pixels and storefronts.
   if(route.request().resourceType()==='image'&&/^https:\/\/(?:http2\.mlstatic\.com|rankingdacompra\.com\.br)\//.test(url))return route.continue();
   return route.abort();
@@ -48,7 +54,9 @@ try{
  }
  await page.goto(base+'/',{waitUntil:'domcontentloaded'});
  await page.locator('[data-info-home-restored]').waitFor();await check('início 390px sem Firebase');
- assert.equal(await page.locator('[data-info-home-restored] [data-info-product]').count(),6);
+ assert.equal(await page.locator('[data-info-home-restored] [data-info-product]').count(),homeCount);
+ assert.equal(await page.locator('[data-info-home-restored] [data-info-shelf]').count(),shelfCount);
+ assert.equal(await page.locator('[data-info-home-restored] [data-info-shelf] [data-info-product]:visible').count(),additional);
  assert.match(await page.locator('[data-info-home-restored] [data-best-title]').innerText(),/Top 6/);
  assert.equal(await page.locator('[data-info-home-restored] #comparativos-inicio nav a').count(),home.guides(homeFeed).length);
  assert.equal(await page.locator('[data-info-home-restored] [data-info-video-card]').count(),home.videos(homeFeed,homeConfig).length);
@@ -60,6 +68,13 @@ try{
  const initialPrivacy=page.getByRole('button',{name:'Recusar métricas',exact:true});if(await initialPrivacy.isVisible())await initialPrivacy.click();
  await page.screenshot({path:resolve(out,'inicio-mobile.png'),fullPage:true});
  await page.locator('[data-info-home-restored] #comparativos-inicio').screenshot({path:resolve(out,'comparativos-inicio-mobile.png')});
+ for(const width of [360,768,1366]){await page.setViewportSize({width,height:900});await check('vitrine ampliada '+width+'px');}
+ await page.setViewportSize({width:390,height:844});
+ for(const img of await page.locator('[data-info-shelf] img').all()){
+  await img.scrollIntoViewIfNeeded();await img.evaluate(el=>el.decode());
+  assert.equal(await img.evaluate(el=>el.complete&&el.naturalWidth>0),true,'foto existente da seleção carregada');
+ }
+ await page.locator('[data-info-shelf]').first().screenshot({path:resolve(out,'vitrine-fones-mobile.png')});
  await page.locator('[data-info-home-restored] #videos-inicio').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(out,'videos-inicio-mobile.png')});
  assert.match(await page.locator('h1').innerText(),/Escolha com clareza/);
  assert.equal(await page.locator('#rdc-ambient-music button').first().getAttribute('aria-pressed'),'false');

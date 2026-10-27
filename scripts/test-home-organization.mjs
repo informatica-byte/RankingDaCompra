@@ -64,7 +64,8 @@ test('home estática e dinâmica têm uma entrada de guias sem o bloco repetido'
   const home=await read('index.html');
   const staticHome=home.split('<!-- static-home-products:start -->')[1].split('<!-- static-home-products:end -->')[0];
   assert.equal((staticHome.match(/id="guias-inicio"/g)||[]).length,1);
-  assert.ok(staticHome.indexOf('id="guias-inicio"')<staticHome.indexOf('data-best-products'));
+  assert.ok(staticHome.includes('id="guias-inicio"'));
+  assert.ok(staticHome.indexOf('data-best-products')<staticHome.indexOf('id="comparativos-inicio"'),'vitrine informativa exibe produtos antes do diretório completo');
   assert.doesNotMatch(staticHome,/class="best-guide-grid"|class="static-guide-grid"/);
   const growth=await read('growth-tools.js');
   assert.match(growth,/const videoAnchor = document.getElementById\('ranking-da-semana'\) \|\| document.getElementById\('top5-semanal'\)/);
