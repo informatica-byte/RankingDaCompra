@@ -1,6 +1,6 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.RDCAffiliateLinkAudit=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
- const VERSION='2.5.1',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
+ const VERSION='2.5.2',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
  const STATES=['available','unavailable','unverified','security','login','error','active_same','different_target','identity_unconfirmed'];
  const text=x=>String(x||'').replace(/\s+/g,' ').trim();
  const redacted=x=>text(x).replace(/\b(?:Bearer\s+\S+|eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)\b/g,'[credencial omitida]').replace(/\b(?:access_token|refresh_token|client_secret|authorization|password|senha|cookie)\s*[:=]\s*\S+/gi,'[credencial omitida]');
@@ -64,27 +64,29 @@
   const path=url(e.url)?.u.pathname||'',productRoute=actual.market==='shopee'?!!actual.listing:/\/(?:p|up)\/MLBU?\d+(?:\/|$)|(?:^|\/)MLB-\d+(?:-|\/|$)/i.test(path);
   if(!productRoute||/^\/(?:social|ofertas|search|lista|lists)(?:\/|$)/i.test(path))return done('unverified','A página aberta não é um anúncio de produto (pode ser perfil, lista ou redirecionamento). Confira o link original; não foi classificado como indisponível.');
   if(e.unavailable&&e.primaryNotice)return done('unavailable','O anúncio informa que está pausado, encerrado ou sem estoque. Nenhum cadastro ou link foi alterado.');
-  if(e.buyable)return done('available','O anúncio exibe uma ação de compra habilitada. Apenas disponibilidade foi conferida; nome, modelo, preço e destino do afiliado não foram comparados.');
+  if(e.buyable||e.stockAvailable===true)return done('available','O anúncio informa estoque disponível ou exibe ação de compra habilitada. Somente disponibilidade foi conferida; produto, nome, características, preço e destino do afiliado não foram comparados.');
   return done('unverified','O anúncio não mostrou informação suficiente para decidir se está disponível. Tente novamente ou confira manualmente; não é prova de indisponibilidade.');
  }
- function visible(doc,node){if(!node||node.closest?.('[hidden],[aria-hidden="true"],[class*="recommend"],[class*="carousel"],footer'))return false;const view=doc.defaultView;if(!view)return false;const s=view.getComputedStyle(node);return s.display!=='none'&&s.visibility!=='hidden'&&node.getClientRects().length>0;}
+ function visible(doc,node){if(!node||node.closest?.('[hidden],[aria-hidden="true"],.ui-pdp-other-sellers,.ui-pdp-other-sellers-item,[class*="recommend"],[class*="carousel"],header,nav,footer'))return false;const view=doc.defaultView;if(!view)return false;const s=view.getComputedStyle(node);return s.display!=='none'&&s.visibility!=='hidden'&&node.getClientRects().length>0;}
  function evidence(doc,href){
   const safe=url(href),market=safe?.market,body=text(doc.body?.innerText).slice(0,12000);let path='';try{path=new URL(href).pathname;}catch{}
   const first=selectors=>[...doc.querySelectorAll(selectors)].find(n=>visible(doc,n));
   const heading=first(market==='shopee'?'h1,[data-testid="product-name"],.product-briefing h2':'h1.ui-pdp-title,h1');
   const title=text(heading?.textContent),security=/captcha|\/security\b|\/challenge\b/i.test(path)||/n[aã]o sou um rob[oô]|complete esta etapa|confirme que voc[eê] [eé] humano|automated access|access denied|too many requests|unusual traffic|temporariamente bloquead|acesso negado/i.test(body);
   const login=/\/(?:login|auth|sign-in|buyer\/login)(?:\/|$)/i.test(path);
-  const notices=[...doc.querySelectorAll('.ui-pdp-message,.ui-pdp-stock-information,[data-testid="product-unavailable"],[role="alert"],.product-not-exist')].filter(n=>visible(doc,n));
+  const notices=[...doc.querySelectorAll('.ui-pdp-message,.ui-pdp-stock-information,.ui-pdp-buybox,.ui-pdp-shipping-message__text,[data-testid="product-unavailable"],[role="alert"],.product-not-exist')].filter(n=>visible(doc,n));
   const unavailable=notices.some(n=>/an[uú]ncio (?:pausado|finalizado)|produto (?:sem estoque|indispon[ií]vel)|este (?:produto|an[uú]ncio) n[aã]o est[aá] dispon[ií]vel|produto n[aã]o encontrado|sold out|produto esgotado/i.test(text(n.textContent)))||/^(?:n[aã]o encontramos|produto n[aã]o encontrado|an[uú]ncio (?:pausado|finalizado))/i.test(title);
-  const controls=market==='shopee'?'[data-testid="buy-now"],.product-briefing button,.product-briefing [role="button"],main button,[role="main"] button,.page-product button':'.ui-pdp-actions button,.ui-pdp-buybox button,.ui-vpp-buybox button';
+  const stockAvailable=[...doc.querySelectorAll('.ui-pdp-stock-information,[data-testid="stock-information"]')].filter(n=>visible(doc,n)).some(n=>/\bestoque dispon[ií]vel\b|\bem estoque\b|\bdispon[ií]vel para compra\b/i.test(text(n.textContent)));
+  const controls=market==='shopee'?'[data-testid="buy-now"],.product-briefing button,.product-briefing [role="button"],main button,[role="main"] button,.page-product button':'.ui-pdp-actions button,.ui-pdp-buybox button,.ui-vpp-buybox button,main button,[role="main"] button';
   const buyable=[...doc.querySelectorAll(controls)].some(n=>visible(doc,n)&&!n.disabled&&n.getAttribute('aria-disabled')!=='true'&&/comprar|adicionar ao carrinho|buy now/i.test(text(n.textContent)));
   const listingIds=market==='mercado_livre'?[...doc.querySelectorAll('.ui-vpp-denounce__info,.ui-pdp-denounce__info')].filter(n=>visible(doc,n)).map(n=>text(n.textContent).match(/An[uú]ncio\s*#?\s*(?:MLB-?)?(\d{6,})/i)?.[1]).filter(Boolean).map(x=>'MLB'+x):[];
-  return {url:href,title,security,login,unavailable,primaryNotice:unavailable,buyable,listingIds};
+  return {url:href,title,security,login,unavailable,primaryNotice:unavailable,buyable,stockAvailable,listingIds};
  }
  function queue(products,includePaused=true){
   const out=[],seen=new Set();for(const p of products||[]){if(!p?.id||p.sistema===true||!text(p.titulo)||(!includePaused&&p.conferenciaPausada===true))continue;
-   const primary=url(p.linkAfiliado)?.market||url(p.link)?.market||'mercado_livre';
-   const candidates=primary==='shopee'?[['shopee',p.linkShopee||p.linkAfiliado,p.linkShopeeOriginal||p.urlShopee||p.link]]:[['mercado_livre',p.linkAfiliado,p.link],['shopee',p.linkShopee,p.linkShopeeOriginal||p.urlShopee||p.linkShopee]];
+   const mercadoLivre=value=>{try{return /(^|\.)(?:mercadolivre\.com\.br|meli\.la)$/.test(new URL(String(value||'')).hostname);}catch{return false;}};
+   if(!mercadoLivre(p.linkAfiliado)&&!mercadoLivre(p.link))continue;
+   const candidates=[['mercado_livre',p.linkAfiliado||p.link,p.link]];
    for(const [market,affiliate,source]of candidates){
     if(!affiliate)continue;const key=String(p.id)+':'+market;if(seen.has(key))continue;seen.add(key);
     try{const expected=url(source)?.market===market?source:'';out.push({...request({productId:String(p.id),title:p.titulo,affiliateUrl:affiliate,expectedUrl:expected}),key,paused:p.conferenciaPausada===true});}

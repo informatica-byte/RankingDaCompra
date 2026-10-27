@@ -51,7 +51,7 @@ test('URLs enganosas, credenciais, domínios externos e protocolos inseguros sã
 });
 test('fila não modifica produtos, usa afiliado de verdade e inclui pausados só por escolha',()=>{
  const p=Object.freeze({id:'p',titulo:req.title,preco:123,link:req.expectedUrl,linkAfiliado:req.affiliateUrl,linkShopee:'https://s.shopee.com.br/example',conferenciaPausada:true});
- const rows=core.queue([p,p]);assert.equal(rows.length,2);assert.equal(rows[0].affiliateUrl,req.affiliateUrl);assert.equal(rows[0].expectedUrl,req.expectedUrl);assert.equal(core.queue([p],false).length,0);assert.equal(p.preco,123);
+ const rows=core.queue([p,p]);assert.equal(rows.length,1);assert.equal(rows[0].affiliateUrl,req.affiliateUrl);assert.equal(rows[0].expectedUrl,req.expectedUrl);assert.equal(core.queue([p],false).length,0);assert.equal(p.preco,123);assert.equal(p.linkShopee,'https://s.shopee.com.br/example');
  assert.doesNotMatch(JSON.stringify(core.project(p)),/preco|price/);assert.equal(core.queue([{...p,linkAfiliado:'https://meli.la/abc?access_token=SECRET'}])[0].invalid,true);
 });
 test('pedido não navega diretamente para conta, carrinho, pagamento ou página genérica',()=>{
@@ -62,7 +62,8 @@ test('prefere anúncio original e registra explicitamente a alternativa quando s
  const original=core.request(req);assert.equal(original.checkUrl,req.expectedUrl);assert.equal(original.checkedVia,'original_product');assert.equal(original.inspection,'availability');
  const fallback=core.request({...req,expectedUrl:''});assert.equal(fallback.checkUrl,req.affiliateUrl);assert.equal(fallback.checkedVia,'affiliate_fallback');
  const p={id:'p',titulo:'Modelo apenas na Shopee',link:'https://shopee.com.br/product/123/456',linkAfiliado:'https://s.shopee.com.br/test',linkShopee:'https://s.shopee.com.br/test'};
- const rows=core.queue([p]);assert.equal(rows.length,1);assert.equal(rows[0].key,'p:shopee');assert.equal(rows[0].checkUrl,p.link);assert.equal(rows[0].market,'shopee');
+ assert.equal(core.queue([p]).length,0,'cadastros apenas na Shopee não entram na conferência');
+ const originalOnly=core.queue([{id:'original-only',titulo:req.title,link:req.expectedUrl}]);assert.equal(originalOnly.length,1);assert.equal(originalOnly[0].checkUrl,req.expectedUrl);
 });
 test('evidência de página ignora recomendações e não procura valores monetários',()=>{
  const node=(textContent,excluded=false)=>({textContent,disabled:false,closest:()=>excluded?{}:null,getClientRects:()=>[{}],getAttribute:()=>null});
@@ -80,6 +81,17 @@ async function bridge(){
  const respond=value=>{values.set('rdc_link_audit_result_v1',value);for(const {fn}of [...listeners.values()])fn('rdc_link_audit_result_v1',null,value);};
  return {values,listeners,timers,intervals,opens,panel:env.unsafeWindow,respond};
 }
+
+test('robô recusa pedidos da Shopee antes de abrir aba ou gravar comando',async()=>{
+ const f=await bridge();await assert.rejects(f.panel.conferirLinkAfiliadoNaAbaLocal({productId:'s',title:'Modelo da Shopee',affiliateUrl:'https://s.shopee.com.br/test',expectedUrl:'https://shopee.com.br/product/123/456'}),/somente anúncios do Mercado Livre/);assert.equal(f.opens.length,0);assert.equal(f.values.has('rdc_link_audit_command_v1'),false);assert.equal(f.panel.__RDC_BOT_LINKS_LOCAL__.marketScope,'mercado_livre');
+});
+
+test('estoque principal disponível basta sem escolher tamanho/cor; aviso oculto ou de outro vendedor não basta',()=>{
+ const node=(value,excluded=false)=>({textContent:value,disabled:true,closest:()=>excluded?{}:null,getClientRects:()=>[{}],getAttribute:()=>null});
+ for(const [value,excluded,want]of [['Estoque disponível',false,'available'],['Estoque disponível',true,'unverified'],['Estoque indisponível',false,'unverified']]){
+  const n=node(value,excluded),doc={body:{innerText:''},defaultView:{getComputedStyle:()=>({display:'block',visibility:'visible'})},querySelectorAll:s=>s==='.ui-pdp-stock-information,[data-testid="stock-information"]'?[n]:[]};assert.equal(core.classify(req,core.evidence(doc,ok.url)).status,want);
+ }
+});
 test('nova instalação bloqueia chamadas de preço e exige novo protocolo vinculado ao produto/pedido/sessão',async()=>{
  const f=await bridge();assert.equal(f.panel.__RDC_BOT_PRECOS_LOCAL__.ready,false);assert.equal(f.panel.__RDC_BOT_LINKS_LOCAL__.readOnly,true);
  await assert.rejects(f.panel.conferirPrecoNaAbaLocal(req),/somente links/);
@@ -97,7 +109,7 @@ test('consulta concorrente, cancelamento e timeout não alteram dados ou confund
 test('pacote gerado é reproduzível e substitui identidade antiga sem permissões de API/cookies',async()=>{
  const before=await readFile(new URL('../bot-links.user.js',import.meta.url),'utf8'),built=await buildLinkAuditBot(undefined,false);assert.equal(before.replace(/\r\n/g,'\n'),built);
  const old=await readFile(new URL('../bot-precos.user.js',import.meta.url),'utf8');for(const field of ['name','namespace'])assert.equal(built.match(new RegExp('^// @'+field+'\\s+(.+)$','m'))?.[1],old.match(new RegExp('^// @'+field+'\\s+(.+)$','m'))?.[1]);
- assert.match(built,/@version\s+2\.5\.1/);assert.doesNotMatch(built,/GM_xmlhttpRequest|GM_cookie|parsePrice|updateDoc|setDoc|runTransaction|\.submit\(|\.click\(/);
+ assert.match(built,/@version\s+2\.5\.2/);assert.doesNotMatch(built,/GM_xmlhttpRequest|GM_cookie|parsePrice|updateDoc|setDoc|runTransaction|\.submit\(|\.click\(/);assert.doesNotMatch(built,/^\/\/ @match\s+.*(?:shopee|shope\.ee)/m);
 });
 
 async function worker(state,href,values,body=''){
