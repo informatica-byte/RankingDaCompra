@@ -195,9 +195,10 @@
     <script src="/product-uniqueness.js?v=20261026-1"></script>
     <link rel="stylesheet" href="/informational-mode.css?v=20261026-info1">
     <script src="/informational-mode.js?v=20261026-info1"></script>
-    <link rel="stylesheet" href="/affiliate-link-audit.css?v=20261027-1">
+    <link rel="stylesheet" href="/affiliate-link-audit.css?v=20261027-3">
     <script src="/affiliate-link-audit.js?v=20261027-1"></script>
-    <script defer src="/affiliate-link-panel.js?v=20261027-2"></script>
+    <script src="/affiliate-link-review.js?v=20261027-1"></script>
+    <script defer src="/affiliate-link-panel.js?v=20261027-3"></script>
     <script src="/price-publication.js?v=20261004-2"></script>
     <script src="/assisted-price-safety.js?v=20261026-min2415"></script>
     <script src="/assisted-report-recovery.js?v=20261018-1"></script>
@@ -265,6 +266,23 @@
         if (auth.currentUser?.uid !== uid) throw Error('A sessão mudou. Carregue novamente o painel.');
         return snapshot.docs.map(item => window.RDCAffiliateLinkAudit.project(item.data(), item.id));
       };
+      window.RDCAffiliateAuditReview = window.RDCAffiliateLinkReview.create({
+        authorize: () => {
+          if (!auth.currentUser) throw Error('Entre novamente no painel.');
+          if (automacaoPrecosAtiva || filaPrecosSalvando || publicacaoExpressaEmAndamento) throw Error('Pause a operação em andamento antes de editar links.');
+          return auth.currentUser.uid;
+        },
+        read: async id => { const snap = await getDoc(doc(db, 'produtos', id)); return snap.exists() ? snap.data() : null; },
+        prepare: product => window.RDCProductUniqueness.prepare(product, () => window.RDCProductUniqueness.loadIndex()),
+        transact: (id, action) => runTransaction(db, async transaction => {
+          const ref = doc(db, 'produtos', id);
+          return action({read: async () => { const snap = await transaction.get(ref); return snap.exists() ? snap.data() : null; },
+            protect: (prepared, actual) => protegerIdentidadeMovel(transaction, prepared, id, actual),
+            update: changes => transaction.update(ref, changes)});
+        }),
+        timestamp: serverTimestamp, append: value => arrayUnion(value),
+        invalidate: () => { economiaLeiturasMovel.invalidate('produtos'); rankingDadosMovel = null; }
+      });
       function msg(id, texto, tipo = "") {
         const a = $(id);
         a.textContent = texto;

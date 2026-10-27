@@ -6,11 +6,13 @@ import {pathToFileURL} from 'node:url';
 const root=resolve(new URL('..',import.meta.url).pathname.replace(/^\/([A-Z]:)/,'$1'));
 const module=process.env.RDC_PLAYWRIGHT_MODULE;
 const {chromium}=module?await import(pathToFileURL(module)):await import('playwright');
-const assets=new Set(['affiliate-link-audit.js','affiliate-link-panel.js','affiliate-link-audit.css']);
-const html=mobile=>`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/affiliate-link-audit.css"><style>body{font-family:Arial;margin:16px;color:#143b2b}.card,.painel{padding:14px;border:1px solid #ddd}button{font:inherit}</style><script src="/affiliate-link-audit.js"></script><script>
+const assets=new Set(['affiliate-link-audit.js','affiliate-link-review.js','affiliate-link-panel.js','affiliate-link-audit.css']);
+const html=mobile=>`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/affiliate-link-audit.css"><style>body{font-family:Arial;margin:16px;color:#143b2b}.card,.painel{padding:14px;border:1px solid #ddd}button{font:inherit}</style><script src="/affiliate-link-audit.js"></script><script src="/affiliate-link-review.js"></script><script>
 window.RDCInformational={enabled:true,esc:value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))};
 window.sourceReads=0;window.calls=[];window.securityResolved=false;window.cancelCalls=0;
 window.record=Object.freeze({id:'jbl',titulo:'JBL Tune 520BT Fone sem fio',preco:100,link:'https://www.mercadolivre.com.br/p/MLB23997257?wid=MLB1234567890',linkAfiliado:'https://meli.la/test-only',linkShopee:'https://shopee.com.br/product/123/456'});
+window.reviewRecord={...record};window.writes=[];window.protections=0;
+window.RDCAffiliateAuditReview=RDCAffiliateLinkReview.create({authorize:()=> 'admin',read:async()=>({...reviewRecord}),prepare:async p=>p,transact:async(_id,action)=>{let changes;const result=await action({read:async()=>({...reviewRecord}),protect:async()=>{protections++;},update:p=>{changes=p;}});if(changes){writes.push(changes);Object.assign(reviewRecord,changes);}return result;},timestamp:()=> 'test-stamp',append:x=>[x]});
 window.RDCAffiliateAuditSource=async()=>{sourceReads++;return [record];};
 window.__RDC_BOT_LINKS_LOCAL__={version:'2.5.0',readOnly:true,ready:true};
 window.conferirLinkAfiliadoNaAbaLocal=async row=>{calls.push({id:row.productId,market:row.market});return RDCAffiliateLinkAudit.classify(row,{url:row.expectedUrl,title:row.title,buyable:true,security:row.market==='shopee'&&!securityResolved});};
@@ -53,6 +55,22 @@ try{
   assert.equal(await page.evaluate(()=>record.preco),100);
   await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
   assert.equal(await page.evaluate(()=>calls.length),55,'nova rodada todos não repete confirmados');
+  const edit=page.locator('[data-audit-edit="jbl:mercado_livre"]');await edit.click();await page.locator('[data-audit-edit-form]').waitFor();
+  assert.equal(await page.locator('[data-audit-start]').isDisabled(),true,'edição bloqueia nova rodada');
+  await page.locator('[data-audit-cancel]').click();assert.equal(await page.evaluate(()=>writes.length),0,'cancelamento não grava');
+  await edit.click();await page.locator('[data-audit-edit-form]').waitFor();await page.locator('#link-audit-source').fill('https://www.mercadolivre.com.br/p/MLB23997257?wid=MLB9876543210');await page.locator('#link-audit-affiliate').fill('https://meli.la/updated-only');
+  assert.equal(await page.locator('body').evaluate(b=>b.scrollWidth<=innerWidth+1),true,'formulário de edição cabe em 360px');await page.locator('[data-audit-editor]').screenshot({path:resolve(root,'.informational-qa','links-edicao-'+file.replace('.html','')+'-360.png')});
+  await page.locator('[data-audit-edit-form] button[type=submit]').click();assert.equal(await page.evaluate(()=>writes.length),0,'sem confirmar mesmo produto não grava');
+  await page.locator('[data-audit-edit-form] input[name=same]').check();await page.locator('[data-audit-edit-form] button[type=submit]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Novos links salvos'));
+  assert.equal(await page.evaluate(()=>writes.length),1);assert.equal(await page.evaluate(()=>protections),1);assert.equal(await page.evaluate(()=>reviewRecord.preco),100);assert.equal(await page.evaluate(()=>reviewRecord.linkShopee),await page.evaluate(()=>record.linkShopee));
+  await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));assert.equal(await page.evaluate(()=>calls.length),56,'apenas o link substituído volta para conferência');
+  page.once('dialog',dialog=>dialog.accept());await page.locator('[data-audit-pause="jbl:mercado_livre"]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Cadastro separado'));
+  assert.equal(await page.evaluate(()=>reviewRecord.conferenciaPausada),true);await page.locator('[data-audit-filter]').selectOption('paused');assert.equal(await page.locator('[data-audit-row]').count(),2);assert.equal(await page.evaluate(()=>reviewRecord.preco),100);
+  page.once('dialog',dialog=>dialog.accept());await page.locator('[data-audit-pause="jbl:mercado_livre"]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Cadastro reativado'));await page.locator('[data-audit-filter]').selectOption('all');
+  await page.evaluate(()=>securityResolved=true);await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
+  await page.evaluate(()=>{const key='rdc-affiliate-audit-report-v1',r=JSON.parse(localStorage.getItem(key));r.records.forEach(x=>x.checkedAt=Date.now()-86400000);localStorage.setItem(key,JSON.stringify(r));});
+  await page.reload();await page.evaluate(()=>securityResolved=true);await page.locator('[data-audit-load]').click();await page.waitForFunction(()=>!document.querySelector('[data-audit-start]').disabled);await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
+  assert.equal(await page.evaluate(()=>calls.length),2,'resultados de ontem são conferidos de novo hoje');assert.equal(await page.evaluate(()=>writes.length),0,'conferência não grava alterações no cadastro');
   checked.push(file+': limite numérico, todos acima de 50, pausa, retomada sem repetição, relatório, preservação do preço e layout 390/360 px');await context.close();
  }
  assert.deepEqual(errors,[]);console.log(JSON.stringify({checked,errors,scope:'fixtures locais; sem Firestore, Analytics, credenciais ou consultas reais às lojas'},null,2));
