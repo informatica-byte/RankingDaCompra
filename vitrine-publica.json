@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-28T08:16:50.427Z",
+  "generatedAt": "2026-10-28T12:01:28.450Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -6232,6 +6232,7 @@
       "precoConferenciaId": "4693fd63-88f6-4ec3-8932-0a3b1c3d0457",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 44.23,
+      "anuncioSubstituidoEm": "2026-10-28T11:56:33.649Z",
       "pros": "",
       "contras": "",
       "notaInformada": ""
@@ -7231,6 +7232,7 @@
       "precoConferenciaId": "d352d88f-cb0a-49a5-ab42-1c90b4bae5a2",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": "358",
+      "anuncioSubstituidoEm": "2026-10-28T11:58:47.637Z",
       "pros": "",
       "contras": "",
       "notaInformada": ""
@@ -10667,6 +10669,32 @@
       "notaInformada": ""
     },
     {
+      "id": "uRfZSbUKT8yjArcSlGPL",
+      "titulo": "Smartphone Motorola Moto G06",
+      "comentario": "O Smartphone Motorola Moto G06 possui processador Mediatek Helio G81 Ultra Octa-Core de 2GHz com 4GB de RAM e 128GB de memória interna. O modelo integra tela IPS de 6.9\" e uma bateria de 5.2 Ah, sendo comercializado como um dispositivo desbloqueado para operadoras.",
+      "categoria": "celular",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_657060-MLA104761778541_012026-F.webp",
+      "preco": "778,50",
+      "precoAnterior": "999,00",
+      "precoPromocional": "699,00",
+      "nota": "",
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-08-19",
+      "ofertaRelampagoAtiva": false,
+      "ofertaRelampagoTerminaEm": "",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-26T10:22:17.502Z",
+      "precoConferenciaId": "dda3ed2d-c5bf-4ce9-9a79-832267a94620",
+      "precoConferenciaCampo": "preco",
+      "precoConferenciaValor": 778.5,
+      "anuncioSubstituidoEm": "2026-10-28T11:53:22.463Z",
+      "conferenciaPausada": false,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
       "id": "UTXc1AEUdk18yttkAXMb",
       "titulo": "Nac 600mg N-acetil L-cisteína Antioxidante - Fórmula Com Máxima Concentração E Pureza 120 Cápsulas - Forged Nutrition",
       "comentario": "O Nac 600mg da Forged Nutrition é um suplemento de aminoácidos apresentado em formato de cápsulas em embalagem com 120 unidades. O produto possui fórmula sem sabor, é livre de glúten e não contém lactose. É recomendado para maiores de 19 anos, sendo inadequado para gestantes e lactantes.",
@@ -12676,6 +12704,7 @@
       "precoConferenciaId": "d7e36b16-f69f-4024-87d5-5d8d28d0ccdb",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 39.99,
+      "anuncioSubstituidoEm": "2026-10-28T11:47:43.756Z",
       "pros": "",
       "contras": "",
       "notaInformada": ""
@@ -12749,6 +12778,32 @@
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 199.9,
       "anuncioSubstituidoEm": "2026-10-21T12:14:07.931Z",
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "ZRkf5zIEicv1a47qGXXw",
+      "titulo": "Bolsa Térmica Marmita Lancheira Alça Transversal Ajustável 2 Compartimentos Preto Tche Amo",
+      "comentario": "Esta bolsa térmica da Tche Amo é excelente para organizar e transportar suas refeições diárias com praticidade. Conta com dois compartimentos espaçosos, revestimento interno isolante para manter a temperatura de alimentos quentes ou frios, além de alça transversal ajustável e removível que facilita o transporte no trabalho, academia ou passeios.",
+      "categoria": "malas-e-bolsas",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_664790-MLA100942371857_122025-F.webp",
+      "preco": "32,99",
+      "precoAnterior": "52,90",
+      "precoPromocional": "30,95",
+      "nota": "",
+      "ranking": "10",
+      "promocaoAtiva": false,
+      "promocaoValidaAte": "2026-09-29",
+      "ofertaRelampagoAtiva": true,
+      "ofertaRelampagoTerminaEm": "2026-09-30T10:45:52.742Z",
+      "precoAtualizadoManualmente": true,
+      "precoAtualizadoManualmenteEm": "2026-10-26T10:22:58.696Z",
+      "precoConferenciaId": "e6772472-2292-4585-9426-a8769b8b9b13",
+      "precoConferenciaCampo": "preco",
+      "precoConferenciaValor": 32.99,
+      "anuncioSubstituidoEm": "2026-10-28T11:49:45.087Z",
+      "conferenciaPausada": false,
       "pros": "",
       "contras": "",
       "notaInformada": ""
