@@ -33,7 +33,9 @@
  function localPath(value,pattern){try{const u=new URL(value,SITE);return u.origin===SITE&&!u.username&&!u.password&&!u.search&&!u.hash&&pattern.test(u.pathname)?u.pathname:'';}catch{return '';}}
  function selection(data){
   const byId=new Map((data.products||[]).map(p=>[p.id,p])),seen=new Set(),out=[];
-  for(const id of data.selected||[]){const p=byId.get(id);if(!p||info.productUrl(p)==='#')continue;const key=info.text(p.title).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(!key||seen.has(key))continue;seen.add(key);out.push(p);if(out.length===6)break;}
+  let ids=data.selected||[];
+  if(data.editorialSelectionVersion===1)ids=ids.filter(id=>{const b=byId.get(id)?.decisionBrief;return b?.reviewed&&b.advantages?.length&&b.limitations?.length&&b.sources?.length;}).map((id,index)=>({id,index,score:(byId.get(id).comparison?.features||[]).filter(f=>f.state!=='unknown'&&f.basis==='fabricante'&&f.sourceUrl).length})).sort((a,b)=>b.score-a.score||a.index-b.index).map(x=>x.id);
+  for(const id of ids){const p=byId.get(id);if(!p||info.productUrl(p)==='#')continue;const key=info.text(p.title).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(!key||seen.has(key))continue;seen.add(key);out.push(p);if(out.length===6)break;}
   return out;
  }
  function guides(data){const seen=new Set();return (data.guides||[]).flatMap(g=>{const path=localPath(g.url,/^\/melhores-[a-z0-9-]+\.html$/);if(!path||seen.has(path)||!clean(g.title))return [];seen.add(path);return [{path,title:clean(g.title)}];});}

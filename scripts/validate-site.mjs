@@ -353,7 +353,7 @@ const growthToolsVersions = [homeHtml, dashboardHtml, sitemapGenerator]
   // Core/editorial/metrics versions must still match the generation template.
   .map((source, index) => {
     let version = source.match(growthToolsVersionPattern)?.[1] || "";
-    version = version.replace(/&mode=20261026-info1$/, "");
+    version = version.replace(/&mode=(?:20261026-info1|20261028-info2)$/, "");
     // Apenas o painel ganhou coordenação de leituras; a versão pública/base
     // continua idêntica e não precisa provocar uma releitura do Firestore.
     if (index === 1) version = version.replace(/&reads=20261023-1$/, "");

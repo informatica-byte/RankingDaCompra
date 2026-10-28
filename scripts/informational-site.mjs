@@ -2,10 +2,13 @@ import {readFile,writeFile,readdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import info from '../informational-mode.js';
+import decision from '../decision-brief.js';
 import {popularById,matchesPopularAnalysis,registeredOfferUrl} from './popular-analysis.mjs';
+const featuredBriefs=JSON.parse(await readFile(new URL('../featured-analysis.json',import.meta.url),'utf8')).products;
 
 const money=/R\$(?:\s|&nbsp;)*[\d.,]+/gi;
-const label=value=>String(value||'').replace(/(?:Oferta informada:|Pre[cç]o informado de)\s*/gi,'Informações sobre ').replace(/\s+por\s+R\$(?:\s|&nbsp;)*[\d.,]+/gi,'').replace(/\(?\d+(?:[,.]\d+)?\s*%\s*(?:OFF|de desconto)\)?/gi,'').replace(/at[eé]\s*R\$(?:\s|&nbsp;)*[\d.,]+/gi,'por características').replace(money,'').replace(/(?:ofertas? rel[aâ]mpago|ofertas? verificadas?)/gi,'produtos em destaque').replace(/comparar por or[cç]amento/gi,'Comparar características').replace(/pre[cç]os com data(?: de confer[eê]ncia)?/gi,'informações com fontes').replace(/Ver an[aá]lise e (?:conferir pre[cç]o|pre[cç]o atual|ofertas|pre[cç]o)/gi,'Ver análise completa').replace(/Pre[cç]os? a confirmar:?/gi,'Condições nas lojas').replace(/pre[cç]os? registrados?/gi,'características documentadas').replace(/Consulte pre[cç]os, diferenças/gi,'Consulte fontes, diferenças').replace(/Compare rankings por categoria/gi,'Explore comparativos por categoria').replace(/mais barato/gi,'alternativas para comparar').replace(/melhor custo.benef[ií]cio/gi,'adequação ao seu uso').replace(/Melhores escolhas e rankings de produtos/gi,'Produtos e guias para escolher melhor').replace(/veja os crit[eé]rios dos rankings abaixo/gi,'consulte as fontes e limitações em cada ficha').replace(/rankings, produtos e pre[cç]os atualizados/gi,'guias e informações dos produtos').replace(/Atualizando rankings e produtos selecionados/gi,'Carregando produtos e guias').replace(/\s{2,}/g,' ').trim();
+const legacyLabel=value=>String(value||'').replace(/(?:Oferta informada:|Pre[cç]o informado de)\s*/gi,'Informações sobre ').replace(/\s+por\s+R\$(?:\s|&nbsp;)*[\d.,]+/gi,'').replace(/\(?\d+(?:[,.]\d+)?\s*%\s*(?:OFF|de desconto)\)?/gi,'').replace(/at[eé]\s*R\$(?:\s|&nbsp;)*[\d.,]+/gi,'por características').replace(money,'').replace(/(?:ofertas? rel[aâ]mpago|ofertas? verificadas?)/gi,'produtos em destaque').replace(/comparar por or[cç]amento/gi,'Comparar características').replace(/pre[cç]os com data(?: de confer[eê]ncia)?/gi,'informações com fontes').replace(/Ver an[aá]lise e (?:conferir pre[cç]o|pre[cç]o atual|ofertas|pre[cç]o)/gi,'Ver análise completa').replace(/Pre[cç]os? a confirmar:?/gi,'Condições nas lojas').replace(/pre[cç]os? registrados?/gi,'características documentadas').replace(/Consulte pre[cç]os, diferenças/gi,'Consulte fontes, diferenças').replace(/Compare rankings por categoria/gi,'Explore comparativos por categoria').replace(/mais barato/gi,'alternativas para comparar').replace(/melhor custo.benef[ií]cio/gi,'adequação ao seu uso').replace(/Melhores escolhas e rankings de produtos/gi,'Produtos e guias para escolher melhor').replace(/veja os crit[eé]rios dos rankings abaixo/gi,'consulte as fontes e limitações em cada ficha').replace(/rankings, produtos e pre[cç]os atualizados/gi,'guias e informações dos produtos').replace(/Atualizando rankings e produtos selecionados/gi,'Carregando produtos e guias').replace(/\s{2,}/g,' ').trim();
+const label=value=>legacyLabel(value).replace(/An[aá]lises de produtos, pre[cç]os e ofertas/gi,'Análises de produtos, vantagens e limitações').replace(/Ver pre[cç]o, pr[oó]s e contras/gi,'Ver análise, vantagens e limitações').replace(/pelo seu or[cç]amento/gi,'pelo seu uso');
 function attrs(tag){return Object.fromEntries([...tag.matchAll(/([\w:-]+)\s*=\s*(["'])([\s\S]*?)\2/g)].map(m=>[m[1].toLowerCase(),m[3]]));}
 function plain(value){return value.replace(/<script\b[\s\S]*?<\/script>|<style\b[\s\S]*?<\/style>/gi,'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();}
 // Position-based transformation: raw scripts/styles are opaque, and only
@@ -65,7 +68,12 @@ export function assertInformationalHtml(html,file='página'){
 export function informationalHtml(source,product,file=''){
  if(/^instalar[-.]/i.test(file))return source.replace(/<meta name="rdc-site-mode"[^>]*>/g,'').replace(/<script src="\/informational-mode\.js[^>]*><\/script>/g,'').replace(/<link rel="stylesheet" href="\/informational-mode\.css[^>]*>/g,'');
  if(/http-equiv=["']refresh["']|rdc-paused-product|rdc-retired-product/i.test(source))return source;
- let html=source.replace(/<script\b([^>]*type=["']application\/ld\+json["'][^>]*)>([\s\S]*?)<\/script>/gi,(_tag,attributes,json)=>{const clean=schema(JSON.parse(json));return clean?'<script'+attributes+'>'+JSON.stringify(clean).replace(/</g,'\\u003c')+'</script>':'';});
+ // Our bounded, generated brief already has its own escaping and editorial
+ // rules. Keep it opaque to legacy text rewrites (which trim inline spacing).
+ // The whole page still goes through the final public/security validators.
+ const savedBriefs=[];
+ const prepared=source.replace(/<!-- decision-brief:start -->[^]*?<!-- decision-brief:end -->/g,block=>'<!-- rdc-preserved-brief:'+ (savedBriefs.push(block)-1)+' -->');
+ let html=prepared.replace(/<script\b([^>]*type=["']application\/ld\+json["'][^>]*)>([\s\S]*?)<\/script>/gi,(_tag,attributes,json)=>{const clean=schema(JSON.parse(json));return clean?'<script'+attributes+'>'+JSON.stringify(clean).replace(/</g,'\\u003c')+'</script>':'';});
  const nodes=elements(html),ranges=[];let decisionQuestion=false;
  const add=(node,value='')=>ranges.push({start:node.start,end:node.end,value});
  for(const node of nodes){
@@ -106,11 +114,18 @@ export function informationalHtml(source,product,file=''){
  html=html.replace(/(<script\b[^>]*src=["']\/)(buyer-tools|growth-tools|best-choices-page|best-choices)(\.js)([^"']*)(["'])/gi,(_all,start,name,ext,query,end)=>start+name+ext+query.replace(/([?&])mode=[^&"']*/g,'')+(query.includes('?')?'&':'?')+'mode='+info.VERSION+end);
  html=html.replace(/>(Conferir pre[cç]o(?: atual)?|Ver pre[cç]o)( no Mercado Livre| na Mercado Livre| na Shopee)</gi,(_all,_action,place)=>'>Ver produto'+place.replace('na Mercado','no Mercado')+'<');
  html=html.replace(/[ \t]+\r?\n/g,'\n');
- const injection='<meta name="rdc-site-mode" content="informational"><link rel="stylesheet" href="/informational-mode.css?v='+info.VERSION+'"><script src="/informational-mode.js?v='+info.VERSION+'"></script>';
+ html=html.replace(/<script src="\/decision-brief\.js[^>]*><\/script>/g,'');
+ const injection='<meta name="rdc-site-mode" content="informational"><link rel="stylesheet" href="/informational-mode.css?v='+info.VERSION+'"><script src="/decision-brief.js?v='+info.VERSION+'"></script><script src="/informational-mode.js?v='+info.VERSION+'"></script>';
  const policy=html.match(/<meta\b(?=[^>]*http-equiv=["']Content-Security-Policy["'])(?:[^>"']|"[^"]*"|'[^']*')*>/i);
  if(policy)html=html.slice(0,policy.index+policy[0].length)+injection+html.slice(policy.index+policy[0].length);
  else html=html.replace(/<head([^>]*)>/i,'<head$1>'+injection);
  if(product&&!/data-reviewed-depth=/.test(html)){const faq=info.faq(product);if(faq){const marker=html.indexOf('</article>');html=marker>=0?html.slice(0,marker)+faq+html.slice(marker):html.replace('</main>',faq+'</main>');}}
+ html=html.replace(/<!-- rdc-preserved-brief:(\d+) -->/g,(_tag,index)=>savedBriefs[Number(index)]);
+ if(product?.decisionBrief){
+  html=html.replace(/<!-- decision-brief:start -->[^]*?<!-- decision-brief:end -->/g,'').replace(/<!-- quick-product-summary:start -->[^]*?<!-- quick-product-summary:end -->/g,'').replace(/<details data-full-product-summary><summary>Ler a análise completa<\/summary>(<p class="summary">[^]*?<\/p>)<\/details>/g,'$1');
+  const rendered=decision.render(product.decisionBrief);
+  html=html.replace(/<p class="summary">([^]*?)<\/p>/,(paragraph,body)=> '<!-- decision-brief:start -->'+rendered+'<!-- decision-brief:end -->'+(decision.sober(body)===decision.text(body)?paragraph:'<p class="summary">'+info.esc(decision.sober(body)||'Alegações promocionais do anúncio não foram comprovadas nesta análise. Consulte os dados e as fontes disponíveis.')+'</p>'));
+ }
  if(JSON.stringify(affiliateLinks(source))!==JSON.stringify(affiliateLinks(html)))throw Error('A migração alteraria os links de afiliados de '+(product?.id||'uma página')+'. Operação bloqueada.');
  return html;
 }
@@ -130,12 +145,18 @@ export async function buildInformationalSite(root=process.cwd()){
    if(review.comparisonFeatures&&p.comparison)p.comparison={...p.comparison,features:review.comparisonFeatures.map(feature=>({...feature}))};
   }
  }
+ for(const p of products){
+  const html=await readFile(resolve(root,new URL(p.url,'https://rankingdacompra.com.br').pathname.slice(1)),'utf8');
+  const candidate=popularById.get(p.id)||featuredBriefs.find(r=>r.id===p.id);
+  const matched=candidate&&new RegExp(candidate.guard,'i').test(p.title)&&html.includes('data-reviewed-depth="'+p.id+'"')&&(!(candidate.expectedListing||candidate.expectedCatalogue)||matchesPopularAnalysis(candidate,p.title,registeredOfferUrl(html)));
+  p.decisionBrief=decision.make(p,matched?candidate:null);
+ }
  const byUrl=new Map(products.map(p=>[new URL(p.url,'https://rankingdacompra.com.br/').pathname.slice(1),p]));
  const publicFiles=(await readdir(root)).filter(f=>f.endsWith('.html')&&!info.privatePath('/'+f));
  for(const directory of ['produto','presentes'])for(const file of await readdir(resolve(root,directory)))if(file.endsWith('.html'))publicFiles.push(directory+'/'+file);
  let changed=0;
  for(const file of publicFiles){const path=resolve(root,file),old=await readFile(path,'utf8'),p=byUrl.get(file);const next=informationalHtml(old,p,file);if(next!==old){await writeFile(path,next,'utf8');changed++;}}
- const feed={version:1,mode:'informational',generatedAt:new Date().toISOString(),selected:(config.bestChoicesProductIds||[]).filter(id=>products.some(p=>p.id===id)),guides:guides.guides.map(g=>({...g,title:label(g.title),summary:info.excerpt(g.summary)})),products};
+ const feed={version:1,mode:'informational',editorialSelectionVersion:1,generatedAt:new Date().toISOString(),selected:(config.bestChoicesProductIds||[]).filter(id=>products.some(p=>p.id===id)),guides:guides.guides.map(g=>({...g,title:label(g.title),summary:info.excerpt(g.summary)})),products};
  await writeFile(resolve(root,'informational-catalogue.json'),JSON.stringify(feed)+'\n');
  // The migration changes the page, not the verification date of its facts.
  // Keep a fixed migration floor instead of claiming a fresh review every build.

@@ -194,6 +194,11 @@
     }); } catch {} // Navigation and the existing counter must survive a blocked analytics script.
   }
 
+  function recordAnalysisAnalytics(product) {
+    if (!product || !/^[A-Za-z0-9_-]{1,100}$/.test(product.id || '') || !window.RDCPrivacy?.analyticsAllowed() || typeof window.gtag !== 'function') return false;
+    try { window.gtag('event', 'analysis_view', {product_id:product.id, product_name:String(product.title || '').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim().slice(0,100)});return true; } catch { return false; }
+  }
+
   function setupFunnelTracking() {
     if (document.documentElement.dataset.funnelTrackingReady) return;
     document.documentElement.dataset.funnelTrackingReady = "true";
@@ -216,6 +221,8 @@
     const offer = document.getElementById("affiliate-offer");
     if (!offer) return;
     const product = funnelProduct(offer);
+    let analysisSent=false;
+    if(/^\/produto\/[A-Za-z0-9_-]+\.html$/.test(window.location?.pathname||''))window.RDCPrivacy?.whenAnalyticsAllowed(()=>{if(!analysisSent)analysisSent=recordAnalysisAnalytics(product);});
     const storageKey = "ranking-funnel-view:" + product.id;
     let lastView = 0;
     try { lastView = Number(localStorage.getItem(storageKey) || 0); } catch {}

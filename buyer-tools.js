@@ -3,6 +3,8 @@
   const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const money = value => new Intl.NumberFormat('pt-BR', {style:'currency', currency:'BRL'}).format(value);
+  const needTypes={study:['notebook','desktop','mini-pc','tablet','mouse','keyboard','keyboard-mouse'],audio:['earbuds-tws','earphones-wired','earphones-open','headphones-on-wireless','headphones-over-wireless','headsets'],wifi:['router','router-mesh','repeater','access-point','satellite'],monitor:['camera-security']};
+  const needMatches=(product,need)=>!Object.hasOwn(needTypes,need)||needTypes[need].includes(window.RDCComparisonIntegrity?.type(product));
   function price(product) {
     const value = Number(product.recordedPrice ?? product.price);
     return Number.isFinite(value) && value > 0 ? value : null;
@@ -99,7 +101,7 @@
   }
   function recordInteraction(action, selectedCount, budget, product) {
     // Aggregate usage only: never search terms, product URLs or Firestore writes.
-    if (!['budget_shortcut', 'compare_select', 'compare_remove'].includes(action)
+    if (!['budget_shortcut', 'compare_select', 'compare_remove','need_study','need_audio','need_wifi','need_monitor','need_all'].includes(action)
       || !window.RDCPrivacy?.analyticsAllowed() || typeof window.gtag !== 'function') return;
     const params = {action, selected_count:selectedCount};
     if (action === 'budget_shortcut') params.budget_limit = validBudget(budget) || 0;
@@ -135,6 +137,10 @@
     const categories = [...new Set(products.map(product => product.category).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
     root.classList.add('buyer-tools');
     root.innerHTML = '<div class="buyer-controls"><label>Produto, marca ou modelo<input data-buyer-query type="search" placeholder="Ex.: fone Bluetooth" value="' + esc(initialQuery) + '"></label><label>Categoria<select data-buyer-category><option value="">Todas as categorias</option>' + categories.map(category=>'<option>' + esc(category) + '</option>').join('') + '</select></label><label>Preço registrado máximo (R$)<input data-buyer-budget type="number" min="0" step="0.01" inputmode="decimal" placeholder="Sem limite"></label><label class="buyer-check"><input data-buyer-recent type="checkbox"> Só preços conferidos nas últimas 24 horas</label><button type="button" data-buyer-reset>Limpar filtros</button></div><p class="buyer-help">O preço registrado pode ter mudado. Confirme preço, frete e estoque na loja. Selecione até três produtos do mesmo tipo para comparar; não atribuímos vencedor sem evidência.</p><p data-buyer-status role="status" aria-live="polite"></p><div data-buyer-comparison></div><div class="buyer-grid" data-buyer-results></div>';
+    const needControl = document.createElement('label');
+    needControl.className = 'buyer-need';
+    needControl.innerHTML = 'Por onde você quer começar?<select data-buyer-need><option value="">Todas as necessidades</option><option value="study">Estudo e trabalho — computadores e periféricos</option><option value="audio">Música e chamadas — formatos de áudio</option><option value="wifi">Conexão de internet — equipamentos de rede</option><option value="monitor">Monitoramento — câmeras de segurança</option></select><small>Atalhos por tipo, não recomendação de desempenho. Compare somente modelos equivalentes.</small>';
+    root.querySelector('.buyer-controls').appendChild(needControl);
     const status = root.querySelector('[data-buyer-status]');
     const results = root.querySelector('[data-buyer-results]');
     const comparison = root.querySelector('[data-buyer-comparison]');
@@ -187,7 +193,8 @@
       const focus = rememberFocus();
       const filters = {query:root.querySelector('[data-buyer-query]').value,category:root.querySelector('[data-buyer-category]').value,budget:root.querySelector('[data-buyer-budget]').value,recent:root.querySelector('[data-buyer-recent]').checked};
       const sameType = root.querySelector('[data-buyer-same-type]').checked && chosen.size ? group([...chosen.values()][0]) : '';
-      const shown = filterProducts(products, filters).filter(product => !sameType || group(product) === sameType);
+      const need=root.querySelector('[data-buyer-need]')?.value||'';
+      const shown = filterProducts(products, filters).filter(product => (!sameType || group(product) === sameType)&&needMatches(product,need));
       for (const button of budgetControl.querySelectorAll('[data-buyer-budget-shortcut]')) button.setAttribute('aria-pressed', String((validBudget(filters.budget) || '') === (validBudget(button.dataset.buyerBudgetShortcut) || '')));
       status.textContent = shown.length + ' produtos encontrados · ' + chosen.size + ' selecionados para comparar.';
       if (searchCount) searchCount.textContent = shown.length + (shown.length === 1 ? ' produto encontrado' : ' produtos encontrados') + ' no catálogo publicado.';
@@ -198,6 +205,7 @@
     };
     root.addEventListener('input', event => { if (event.target.matches('[data-buyer-query],[data-buyer-budget]')) { limit = 24; render(); } });
     root.addEventListener('change', event => {
+      if(event.target.matches?.('[data-buyer-need]')){const need=event.target.value;if(Object.hasOwn(needTypes,need)||need==='')recordInteraction('need_'+(need||'all'),chosen.size);}
       const id = event.target.dataset.buyerSelect;
       if (!id) limit = 24;
       if (id) {
@@ -230,12 +238,13 @@
         root.querySelector('[data-buyer-budget]').value = '';
         root.querySelector('[data-buyer-recent]').checked = false;
         root.querySelector('[data-buyer-same-type]').checked = false;
+        const need=root.querySelector('[data-buyer-need]');if(need)need.value='';
         render();
       }
     });
     render();
   }
-  window.RDCBuyerTools = { filterProducts, recent, price, group, comparable, safeProductUrl, comparisonFeatures, featureRows, mount };
+  window.RDCBuyerTools = { filterProducts, recent, price, group, comparable, safeProductUrl, comparisonFeatures, featureRows, needMatches, mount };
   if (typeof document === 'undefined') return;
   const style = document.createElement('style');
   style.textContent = '.buyer-tools,.buyer-tools *{box-sizing:border-box}.buyer-tools{display:block!important}.buyer-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px;background:#eff8f3;border:1px solid #c8ded1;border-radius:14px;padding:16px}.buyer-controls label{font-weight:700}.buyer-controls input:not([type=checkbox]),.buyer-controls select{display:block;width:100%;min-height:44px;margin-top:6px;border:1px solid #9bb8a7;border-radius:8px;padding:8px;font:inherit;background:#fff}.buyer-controls button,.buyer-table-scroll button{min-height:44px;border:1px solid #147653;border-radius:8px;background:#fff;color:#116149;font:inherit;cursor:pointer}.buyer-check{display:flex;align-items:center;gap:8px;min-height:44px}.buyer-check input{width:18px;height:18px;flex:none}.buyer-help{font-size:.88rem;line-height:1.5;color:#53665b}.buyer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px}.buyer-card{border:1px solid #dae7df;border-radius:12px;background:#fff;padding:16px;min-width:0}.buyer-card img{width:100%;object-fit:contain;height:140px}.buyer-card h3{font-size:1rem;line-height:1.4}.buyer-card p{font-size:.86rem;line-height:1.5;color:#345442}.buyer-card small{display:block;margin-top:12px}.buyer-table-scroll{overflow:auto;max-width:100%;margin-bottom:20px}.buyer-table-scroll table{width:100%;border-collapse:collapse;min-width:580px}.buyer-table-scroll th,.buyer-table-scroll td{padding:12px;vertical-align:top;border:1px solid #d7e4dc;min-width:150px;max-width:320px;font-size:.88rem;overflow-wrap:anywhere}.buyer-table-scroll th{background:#edf7f1}.buyer-tools :focus-visible{outline:3px solid #1769e0;outline-offset:2px}';

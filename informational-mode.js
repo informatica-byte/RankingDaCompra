@@ -1,15 +1,15 @@
 (function(root,factory){
- const api=factory();
+ const api=factory(typeof module==='object'&&module.exports?require('./decision-brief.js'):root.RDCDecisionBrief);
  if(typeof module==='object'&&module.exports)module.exports=api;
  else {root.RDCInformational=api;if(root.document){if(root.document.readyState==='loading')root.document.addEventListener('DOMContentLoaded',()=>api.init(),{once:true});else api.init();}}
-})(typeof window==='object'?window:globalThis,function(){
+})(typeof window==='object'?window:globalThis,function(decision){
  'use strict';
- const enabled=true,VERSION='20261026-info1';
+ const enabled=true,VERSION='20261028-info2';
  const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const normalize=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
  const privatePath=path=>/\/(?:dashboard|painel-celular|admin|estudio-videos|login)(?:[./-]|$)/i.test(path);
  function text(value){return String(value||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();}
- function excerpt(value){const clean=text(value).split(/(?<=[.!?])\s+/).filter(sentence=>!/(?:R\$\s*\d|\d+[,.]?\d*\s*%\s*(?:off|de desconto)|menor pre[cç]o|mais barato|melhor custo.benef[ií]cio|mais vendido|confira pre[cç]o)/i.test(sentence)).join(' ');return clean.length>230?clean.slice(0,226).replace(/\s+\S*$/,'')+'…':clean;}
+ function excerpt(value){const clean=(decision?decision.sober(value):text(value)).split(/(?<=[.!?])\s+/).filter(sentence=>!/(?:R\$\s*\d|\d+[,.]?\d*\s*%\s*(?:off|de desconto)|menor pre[cç]o|mais barato|melhor custo.benef[ií]cio|mais vendido|confira pre[cç]o)/i.test(sentence)).join(' ');return clean.length>230?clean.slice(0,226).replace(/\s+\S*$/,'')+'…':clean;}
  function safe(value){try{const url=new URL(String(value),'https://rankingdacompra.com.br/');return url.protocol==='https:'&&!url.username&&!url.password?url.href:'#';}catch{return '#';}}
  function productUrl(p){const value=p.url||p.productUrl||'/produto/'+p.id+'-20260810-1.html';try{const url=new URL(value,'https://rankingdacompra.com.br/');return url.origin==='https://rankingdacompra.com.br'&&/^\/produto\/[A-Za-z0-9_-]+\.html$/.test(url.pathname)?url.pathname:'#';}catch{return '#';}}
  function cards(products){return products.map(p=>'<article class="deal-card best-product-card info-card" data-info-product="'+esc(p.id)+'"><a href="'+esc(productUrl(p))+'"><img src="'+esc(safe(p.image||p.foto))+'" alt="'+esc(p.title||p.titulo)+'" loading="lazy" decoding="async" width="260" height="180"><h3>'+esc(p.title||p.titulo)+'</h3></a><p>'+esc(excerpt(p.summary||p.comentario))+'</p><div class="info-card-actions"><a class="button offer-button" href="'+esc(productUrl(p))+'" data-product-id="'+esc(p.id)+'">Conhecer o produto</a><a class="info-compare" href="/comparar.html?produto='+encodeURIComponent(p.id)+'">Comparar características →</a></div></article>').join('');}

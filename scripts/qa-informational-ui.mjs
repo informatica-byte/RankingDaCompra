@@ -86,6 +86,14 @@ try{
  for(const f of page.frames())if(f.url().includes('/comparar.html'))destination=f;
  if(!destination.url().includes('/comparar.html')){await page.goto(base+'/comparar.html?q=fone');destination=page;}
  await destination.locator('[data-buyer-results] .buyer-card').first().waitFor();
+ await destination.locator('[data-buyer-query]').fill('');
+ await destination.locator('[data-buyer-need]').selectOption('study');
+ assert.ok(await destination.locator('[data-buyer-results] .buyer-card').count());
+ assert.equal(await destination.locator('[data-buyer-results]').evaluate(el=>el.innerText.includes('Atalhos por tipo')),false);
+ await destination.locator('[data-buyer-need]').selectOption('audio');
+ assert.ok(await destination.locator('[data-buyer-results] .buyer-card').count());
+ await destination.locator('[data-buyer-need]').selectOption('');await destination.locator('[data-buyer-query]').fill('fone');
+ results.push('atalhos por necessidade filtram sem escolher produtos nem misturar a seleção comparável');
  assert.equal(await destination.locator('[data-buyer-budget]').isVisible(),false);
  assert.equal(await destination.locator('[data-buyer-recent]').isVisible(),false);
  const choices=destination.locator('[data-buyer-select]');assert.ok(await choices.count()>1);
@@ -100,6 +108,7 @@ try{
  const featured=feed.products.find(p=>p.comparison?.features?.length>=4&&feed.selected.includes(p.id));assert.ok(featured);
  const productPath=new URL(featured.url).pathname;
  await page.goto(base+productPath,{waitUntil:'domcontentloaded'});await check('ficha mobile com fontes');
+ assert.equal(await page.locator('[data-decision-brief]').count(),1);assert.match(await page.locator('[data-decision-brief]').innerText(),/Para quem|Informações ainda limitadas/);
  assert.ok(await page.locator('[data-informational-faq] details,[data-reviewed-depth] details').count());
  const links=await page.locator('#affiliate-offer,#mobile-affiliate-offer,#affiliate-offer-shopee').evaluateAll(nodes=>nodes.map(el=>({id:el.id,href:el.href,rel:el.rel})));
  assert.ok(links.length);for(const link of links){assert.match(link.href,/^https:\/\//);assert.match(link.rel,/sponsored/);}

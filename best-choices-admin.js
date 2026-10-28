@@ -9,7 +9,7 @@
   function mount(host, adapter) {
     if (!host || host.dataset.bestChoicesMounted) return;
     host.dataset.bestChoicesMounted='true'; host.classList.add('best-admin');
-    host.innerHTML='<details><summary>🏆 Melhores escolhas — produtos e rankings permanentes</summary><p>A seleção não vence no fim do dia. Os preços continuam dependendo da conferência diária. Salvar aqui não altera cadastros, preços, vídeos ou rankings existentes.</p><button type="button" data-best-load>Abrir seleção</button><div data-best-form hidden></div><p class="best-admin-status" role="status" aria-live="polite" data-best-status></p></details>';
+    host.innerHTML='<details><summary>🏆 Melhores escolhas — produtos e rankings permanentes</summary><p>A seleção não vence no fim do dia. No modo informativo não publicamos preços nem exigimos conferência diária de valores. A vitrine inicial prioriza até seis fichas completas, com fontes, vantagens e limitações; os demais selecionados continuam cadastrados. Salvar aqui não altera produtos, preços históricos, vídeos ou links de afiliados.</p><button type="button" data-best-load>Abrir seleção</button><div data-best-form hidden></div><p class="best-admin-status" role="status" aria-live="polite" data-best-status></p></details>';
     const loadButton=host.querySelector('[data-best-load]'), form=host.querySelector('[data-best-form]'), status=host.querySelector('[data-best-status]');
     let config={}, products=[], guides=[], selectedIds=[], selectedUrls=[], saveConfig, pending=false, categoryNames=new Map(), priceStatuses={};
     const productById=new Map();
