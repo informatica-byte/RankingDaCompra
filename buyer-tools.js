@@ -114,7 +114,16 @@
     root.dataset.buyerMounted = 'true';
     let catalog;
     try { catalog = window.RDCInformational?.enabled ? await window.RDCInformational.load() : await window.RDCPublicData.json('/search-index.json'); if (!Array.isArray(catalog.products)) throw Error('Catálogo inválido'); }
-    catch { root.dataset.buyerMounted = ''; return; } // Keep existing search results if loading fails.
+    catch {
+      root.dataset.buyerMounted = '';
+      // A failed enhancement must not erase existing search results.
+      if (root.hasAttribute?.('data-buyer-catalog')) {
+        root.innerHTML = '<p role="status">O catálogo não carregou agora. Nenhum produto foi alterado.</p><button type="button" data-buyer-retry>Tentar carregar novamente</button><p><a href="/analises.html">Consultar guias e análises publicados</a></p>';
+        const retry = root.querySelector('[data-buyer-retry]');
+        retry.addEventListener('click', () => { retry.disabled = true; void mount(root, initialQuery, searchCount); }, {once:true});
+      }
+      return;
+    }
     const products = catalog.products.filter(product => safeProductUrl(product.url) !== '#');
     const chosen = new Map();
     const parameters = new URLSearchParams(window.location?.search || '');

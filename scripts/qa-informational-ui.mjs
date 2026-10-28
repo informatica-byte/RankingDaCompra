@@ -138,6 +138,29 @@ try{
  assert.equal(await page.locator('[data-info-home-restored] iframe').count(),1);assert.match(await page.locator('[data-info-home-restored] iframe').getAttribute('src'),/^https:\/\/www.youtube-nocookie.com\/embed\/[\w-]{11}\?/);
  await plays.nth(1).click();assert.equal(await page.locator('[data-info-home-restored] iframe').count(),1,'trocar de vídeo encerra o player anterior');
  results.push('player sob clique e apenas um vídeo tocando por vez; YouTube externo bloqueado no teste');
+ // A public feed failure cannot erase the server-rendered shelves or require a reload.
+ const offlineContext=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+ await offlineContext.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());
+ const offline=await offlineContext.newPage();offline.on('pageerror',e=>errors.push(e.message));let unavailable=true;
+ await offline.route('**/informational-catalogue.json',route=>unavailable?route.fulfill({status:503,contentType:'application/json',body:'{}'}):route.continue());
+ await offline.goto(base+'/',{waitUntil:'domcontentloaded'});await offline.locator('[data-info-retry]').waitFor();
+ const offlinePrivacy=offline.getByRole('button',{name:'Recusar métricas',exact:true});if(await offlinePrivacy.isVisible())await offlinePrivacy.click();
+ assert.ok((await offline.locator('[data-info-retry]').boundingBox()).height>=44);
+ assert.equal(await offline.locator('[data-info-home-static]').isVisible(),true,'vitrine publicada continua visível na falha');
+ assert.equal(await offline.locator('[data-info-home-static] #comparativos-inicio nav a').count(),home.guides(homeFeed).length);
+ assert.equal(await offline.locator('[data-info-home-static] [data-info-video-product]').count(),home.videos(homeFeed,homeConfig).length);
+ assert.equal(await offline.locator('body').evaluate(el=>el.scrollWidth<=innerWidth+1),true);
+ await offline.screenshot({path:resolve(out,'recuperacao-vitrine-mobile.png'),fullPage:true});
+ await offline.locator('[data-info-recovery]').screenshot({path:resolve(out,'aviso-recuperacao-mobile.png')});
+ unavailable=false;await offline.locator('[data-info-retry]').click();await offline.locator('[data-info-home-restored]').waitFor();
+ assert.equal(await offline.locator('[data-info-recovery]').count(),0);
+ unavailable=true;await offline.goto(base+'/comparar.html',{waitUntil:'domcontentloaded'});await offline.locator('[data-buyer-retry]').waitFor();
+ assert.ok((await offline.locator('[data-buyer-retry]').boundingBox()).height>=44);
+ assert.equal(await offline.locator('[data-buyer-catalog] a[href="/analises.html"]').isVisible(),true);
+ unavailable=false;await offline.locator('[data-buyer-retry]').click();await offline.locator('[data-buyer-results] .buyer-card').first().waitFor();
+ assert.equal(await offline.locator('[data-buyer-retry]').count(),0);assert.equal(await offline.locator('body').evaluate(el=>el.scrollWidth<=innerWidth+1),true);
+ results.push('HTTP 503 preserva vitrine/Top 6/guias/vídeos; retentativa manual recupera home e comparador sem recarregar');
+ await offlineContext.close();
  // Isolated admin markup: only the informational helper runs, without SDK/login/write.
  for(const file of ['dashboard.html','painel-celular.html']){
   const html=(await readFile(resolve(root,file),'utf8')).replace(/<script\b[^]*?<\/script>/gi,'').replace('</head>','<script src="/informational-mode.js"></script></head>');
