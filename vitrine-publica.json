@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-28T20:53:12.962Z",
+  "generatedAt": "2026-10-28T22:27:32.059Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -5758,6 +5758,19 @@
       "precoConferenciaId": "1952d1b9-4392-4427-ac07-47b9d81a31fc",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 69.48,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB4222763449",
+      "titulo": "Sanduicheira Inox Multiuso Oster Preto/inox",
+      "comentario": "A Sanduicheira Inox Multiuso Oster é um aparelho de uso residencial projetado para preparar sanduíches, grelhados, carnes e legumes. O modelo possui estrutura em inox resistente e placas antiaderentes, atuando como grill e sanduicheira elétrica com funções de grelhar, tostar e aquecer alimentos.",
+      "categoria": "casa",
+      "foto": "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmFlMjc0MGYzNGEwODE5MTk1OTk5OGQ0ZjAzMWYwNTc6ZmlsZV8wMDAwMDAwMDlmZDA4MjBlOGQzODExNGM0ZDU4ZDA5MSIsImdpem1vX2lkIjpudWxsLCJ3aWQiOm51bGwsIm9pZCI6bnVsbCwic2lkIjpudWxsLCJjcyI6bnVsbCwiZm4iOm51bGwsImNkIjpudWxsLCJ0cyI6IjIwNzU0IiwicCI6InB5aSIsImNpZCI6IjEiLCJzaWciOiI4NmQxNGQ1ZTI4Njk1NGE5ZmExNjdiNTlhZDg3MTUzZTE3MTQyYjY5ZGRhYTQzZTJlYjhkYjY1NTdjYWY1NDFmIiwidiI6IjAiLCJjZG4iOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
+      "nota": "",
+      "promocaoAtiva": false,
+      "ofertaRelampagoAtiva": false,
       "pros": "",
       "contras": "",
       "notaInformada": ""
