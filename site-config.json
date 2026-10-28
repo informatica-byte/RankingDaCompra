@@ -94,6 +94,7 @@
   "seasonalThemeId": "black-friday",
   "bestChoicesTitle": "Melhores escolhas e rankings de produtos",
   "bestChoicesProductIds": [
+    "mlMLB5259893582",
     "mlMLB4513080577",
     "mlMLB4952988337",
     "48oRcQNlH00KgNLHkvsG",
@@ -142,5 +143,5 @@
     ]
   },
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T12:01:28.287Z"
+  "generatedAt": "2026-10-28T12:09:49.144Z"
 }

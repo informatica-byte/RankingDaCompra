@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-28T12:01:28.450Z",
+  "generatedAt": "2026-10-28T12:09:49.449Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -6526,6 +6526,19 @@
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 127.02,
       "anuncioSubstituidoEm": "2026-10-27T20:31:52.134Z",
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB5259893582",
+      "titulo": "Complexo B Ultra Vegano Em Gotas | 30ml | Sabor Frutas Amarelas | Bigens",
+      "comentario": "Complexo B Ultra Vegano Em Gotas | 30ml | Sabor Frutas Amarelas | Bigens. Volume da unidade: 30 mL. Tipo de embalagem: Vidro. Suplemento sublingual – Alta absorção e praticidade no dia a dia. Energia e bem-estar – Suporte ao metabolismo energético, saúde mental e imunológica. Sabor frutas amarelas – Adoçado naturalmente com Stévia. Complexo B Completo – Contém Metilfolato (B9), Metilcobalamina (B12), B1, B2, B3, B5, B6 e B7..",
+      "categoria": "belezaecuidados",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_817062-MLA100045882049_122025-F.jpg",
+      "nota": "",
+      "promocaoAtiva": false,
+      "ofertaRelampagoAtiva": false,
       "pros": "",
       "contras": "",
       "notaInformada": ""
