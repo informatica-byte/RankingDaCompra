@@ -22,6 +22,7 @@ function setup({read,products=[product]}={}){
   const tipo={id:'tipo-promocao',value:'promocao',checked:true};
   const deny=name=>(...args)=>{forbidden.push({name,args});throw Error('Ação proibida: '+name);};
   const ctx={URL,URLSearchParams,Map,Promise,JSON,Array,Error,window:{},auth:{currentUser:{uid:'admin'}},db:{},
+    imagemProdutoMovel:{clear(){},capture:()=>null},
     $:id=>fields[id],document:{querySelector:selector=>selector==='[name="tipo"]:checked'?tipo:null,querySelectorAll:()=>[...ids.map(id=>fields[id]),tipo]},
     msg:(...args)=>messages.push(args),automacaoPrecosAtiva:false,filaPrecosSalvando:false,publicacaoExpressaEmAndamento:false,
     roboPedidoAtual:null,edicaoManual:true,resultado:{draft:true},

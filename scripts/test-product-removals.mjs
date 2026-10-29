@@ -38,13 +38,15 @@ test('cleanup erases selected history/pages/references without touching prefix c
   await json('site-config.json',{bestChoicesProductIds:['p','p2'],weeklyComparison:{publicado:true,produtos:[{id:'p'},{id:'p2'}]}});
   await json('product-identities.json',{version:1,complete:true,entries:{['a'.repeat(64)]:['p','p2'],['b'.repeat(64)]:['p']}});
   await writeFile(join(root,'index.html'),'<a href="/produto/p.html">p</a><a href="/produto/old.html">old</a><a href="/produto/p2.html">p2</a><img src="/produto/imagens/p-222222222222.webp">');
-  for(const name of ['p-111111111111.webp','p-222222222222.webp','p2-111111111111.webp'])await writeFile(join(root,'produto/imagens',name),'image');
+  for(const name of ['p-111111111111.webp','p-222222222222.webp','p2-111111111111.webp','p-local-'+ 'a'.repeat(64)+'.jpg','p2-local-'+'b'.repeat(64)+'.jpg'])await writeFile(join(root,'produto/imagens',name),'image');
   await writeFile(join(root,'sitemap.xml'),'<urlset><url><loc>https://rankingdacompra.com.br/produto/p.html</loc></url><url><loc>https://rankingdacompra.com.br/produto/p2.html</loc></url></urlset>');
   await assert.rejects(verifyRemovals(root),/Exclusão incompleta/);
-  assert.deepEqual(await purgeRemovals(root),{products:1,pages:3,historyFiles:2,images:1});
+  assert.deepEqual(await purgeRemovals(root),{products:1,pages:3,historyFiles:2,images:2});
   await verifyRemovals(root);
   for(const file of ['produto/p.html','produto/old.html','produto/p-20260101-1.html','assets/price-history/p-1111111111111111.json'])await assert.rejects(access(join(root,file)),{code:'ENOENT'});
   for(const file of ['produto/p2.html','produto/imagens/p-222222222222.webp','assets/price-history/p2-1111111111111111.json'])await access(join(root,file));
+  await assert.rejects(access(join(root,'produto/imagens/p-local-'+'a'.repeat(64)+'.jpg')),{code:'ENOENT'});
+  await access(join(root,'produto/imagens/p2-local-'+'b'.repeat(64)+'.jpg'));
   const history=JSON.parse(await readFile(join(root,'historico-precos.json')));assert.deepEqual(history.products,{p2:{price:29}});
   const index=await readFile(join(root,'index.html'),'utf8');assert.doesNotMatch(index,/href="\/produto\/(?:p|old)\.html"/);assert.match(index,/href="\/produto\/p2\.html"/);
   assert.doesNotMatch(await readFile(join(root,'sitemap.xml'),'utf8'),/\/p\.html/);

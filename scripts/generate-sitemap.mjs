@@ -13,6 +13,8 @@ import {buildIdentityIndex} from './build-product-identity-index.mjs';
 import informationalMode from '../informational-mode.js';
 const INFORMATIONAL_SITE = informationalMode.enabled;
 import { productSeoTitle } from "./product-seo-titles.mjs";
+import productImageData from '../product-image-data.js';
+import {materializeLocalProductImages} from './local-product-images.mjs';
 import { legacyProductAliases, observedProductAliases, productAliasPage, selectCanonicalProducts, unavailableProductPage, pausedProductPage } from "./product-url-continuity.mjs";
 import { publicationProductGroups } from './product-deduplication.mjs';
 import { generateSeasonalGuides, GUIDE_THEMES } from "./generate-seasonal-guides.mjs";
@@ -647,6 +649,11 @@ async function cacheProductImage(product, imageDirectory) {
   const fallback = `${SITE}og-ranking-da-compra.png`;
 
   if (source === fallback) return { url: source, mime: "image/png", fileName: "" };
+  const localPhoto=productImageData.descriptor(product);
+  if(localPhoto){
+    if(!(await fileExists(resolve(imageDirectory,localPhoto.fileName))))throw Error('A foto local ainda não foi preparada para '+product.id);
+    return {url:localPhoto.url,mime:'image/jpeg',fileName:localPhoto.fileName};
+  }
 
 
 
@@ -1903,6 +1910,14 @@ const validProducts = shareProducts.filter((product) => {
 
   return valid;
 
+});
+
+if(!partialProductSource) await materializeLocalProductImages(validProducts,imageDirectory,async descriptor=>{
+  if(publicationInput)return publicationInput.imageQueues?.[descriptor.queueId]||null;
+  const response=await fetchFirestoreRead(FIRESTORE+'/configuracoes/'+descriptor.queueId,{signal:AbortSignal.timeout(15000)});
+  if(response.status===404)return null;
+  if(!response.ok)throw Error('Não foi possível ler a foto pendente: HTTP '+response.status);
+  return decodeConfigFields((await response.json()).fields||{});
 });
 
 let socialImages = partialProductSource

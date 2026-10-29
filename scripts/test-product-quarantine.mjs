@@ -80,6 +80,6 @@ test('trocar os links ou reativar manualmente cancela a autorização de exclus�
  }
 });
 test('os dois painéis usam transação autenticada e a limpeza existente, sem novo agendamento ou cobrança',async()=>{
- for(const file of ['dashboard.html','painel-celular.html']){const html=await readFile(new URL('../'+file,import.meta.url),'utf8');assert.match(html,/RDCProductQuarantineAccess = window.RDCProductQuarantine.create/);assert.match(html,/product-quarantine-panel.js/);assert.match(html,/saveRegistry: value => transaction.set\(registryRef, value\)/);assert.match(html,/removeProduct: \(\) => transaction.delete\(ref\)/);}
+ for(const file of ['dashboard.html','painel-celular.html']){const html=await readFile(new URL('../'+file,import.meta.url),'utf8');assert.match(html,/RDCProductQuarantineAccess = window.RDCProductQuarantine.create/);assert.match(html,/product-quarantine-panel.js/);assert.match(html,/saveRegistry: value => transaction.set\(registryRef, value\)/);assert.match(html,/removeProduct: \(\) => \{transaction.delete\(ref\);transaction.delete\([^\n]+RDCProductImageData.queueId\(id\)/);}
  const source=await readFile(new URL('../product-quarantine.js',import.meta.url),'utf8');assert.doesNotMatch(source,/setInterval|fetch\(|getDocs|access_token|refresh_token|secret|credentials:\s*['"]include/);assert.match(source,/method:'HEAD',credentials:'omit'/);
 });

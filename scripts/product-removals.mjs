@@ -96,7 +96,7 @@ export async function purgeRemovals(root=process.cwd()){
  const htmlFiles=[...(await files(root)).filter(n=>n.endsWith('.html')).map(n=>resolve(root,n)),...(await files(productDir)).filter(n=>n.endsWith('.html')).map(n=>resolve(productDir,n)),...(await files(resolve(root,'presentes'))).filter(n=>n.endsWith('.html')).map(n=>resolve(root,'presentes',n))];
  const texts=[];
  for(const path of htmlFiles){const original=await readFile(path,'utf8');const next=cleanRemovedLinks(original,ids,aliases);if(next!==original)await writeFile(path,next,'utf8');texts.push(next);}
- for(const name of await files(imageDir))if(deleted.some(id=>new RegExp('^'+id+'-[a-f0-9]{12}\\.(?:jpg|png|webp)$').test(name))&&!texts.some(html=>html.includes('produto/imagens/'+name))){await removeFile(imageDir,name);images++;}
+ for(const name of await files(imageDir))if(deleted.some(id=>new RegExp('^'+id+'-(?:[a-f0-9]{12}|local-[a-f0-9]{64})\\.(?:jpg|png|webp)$').test(name))&&!texts.some(html=>html.includes('produto/imagens/'+name))){await removeFile(imageDir,name);images++;}
  const sitemapPath=resolve(root,'sitemap.xml');try{const xml=await readFile(sitemapPath,'utf8');const next=xml.replace(/<url>[\s\S]*?<\/url>/g,entry=>removedPath(entry.match(/<loc>([^<]+)<\/loc>/)?.[1],ids,aliases)?'':entry);if(next!==xml)await writeFile(sitemapPath,next,'utf8');}catch(e){if(e.code!=='ENOENT')throw e;}
  // The technical ID-only registry is retained to prevent restoration from old snapshots.
  return {products:ids.size,pages,historyFiles,images};

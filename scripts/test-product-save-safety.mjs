@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import { observedProductAliases } from './product-url-continuity.mjs';
 import uniqueness from '../product-uniqueness.js';
+import imageData from '../product-image-data.js';
 const guard={...uniqueness,loadIndex:async()=>({version:1,entries:{}})};
 
 const context = vm.createContext({ URL });
@@ -127,7 +128,7 @@ const dashEdit = section(dashboard, 'const ref = db.collection("produtos").doc(i
 test('dashboard production edit block rechecks latest fields and writes only a patch', async () => {
   const original = { titulo: 'A', preco: '10,00', comentario: 'old', precoAtualizadoManualmenteEm: 'old date' };
   const db = memoryDatabase({ oldRandomId: { ...original, preco: '9,00', precoAtualizadoManualmenteEm: 'today' } });
-  const c = vm.createContext({ idEdicao: 'oldRandomId', baseConcorrencia: safety.capture(original), camposEdicao: { comentario: 'new' },
+  const c = vm.createContext({ imagemLocal:null,idEdicao: 'oldRandomId', baseConcorrencia: safety.capture(original), camposEdicao: { comentario: 'new' },
     dadosProduto: { atualizadoEm: 'SERVER_TIMESTAMP' }, identidade:null, window: { RDCProductSaveSafety: safety },
     db: { collection: () => ({ doc: db.ref }), runTransaction: db.transaction } });
   await vm.runInContext('(async () => {' + dashEdit + '})()', c);
@@ -178,7 +179,8 @@ test('simultaneous creation retries cannot overwrite the first product', async (
 
 const dashCreate = section(dashboard, 'const identidade = await window.RDCProductUniqueness.prepare(dadosProduto,', '\n                }\n                resetarFormProduto();');
 const mobileCreate = section(mobile, 'const identidade = await window.RDCProductUniqueness.prepare(d,', '\n          publicado = true;');
-function productionCreation(db, { queryFailure = false } = {}) {
+function productionCreation(db, { queryFailure = false, image = null } = {}) {
+  const picker={urlFor:(value,id)=>imageData.urlFor(id,value.hash),queueRecord:(value,id)=>({...value,version:1,productId:id,mime:'image/jpeg'}),committed(){}};
   const queryExisting = async (field, value) => {
     if (queryFailure) throw Error('permission-denied');
     const matches = [...db.docs.entries()].filter(([, product]) => product[field] === value);
@@ -190,14 +192,14 @@ function productionCreation(db, { queryFailure = false } = {}) {
     add: () => { throw Error('identified item must not use random add'); },
   };
   const dashboardCreate = product => {
-    const c = vm.createContext({ dadosProduto: product, window: { RDCProductSaveSafety: safety,RDCProductUniqueness:guard },
+    const c = vm.createContext({ imagemLocal:image,imagemProdutoDashboard:picker,dadosProduto: product, window: { RDCProductSaveSafety: safety,RDCProductUniqueness:guard,RDCProductImageData:imageData },
       firebase:{firestore:{FieldValue:{serverTimestamp:()=> 'TIME'}}},
       db: { collection: name => name==='produtos'?dashCollection:{doc:id=>db.ref('config:'+id)}, runTransaction: db.transaction } });
     vm.runInContext(section(dashboard,'async function protegerIdentidadeDashboard(', 'function autorizarOfertaExistenteDashboard('),c);
     return vm.runInContext('(async () => {' + dashCreate + '})()', c);
   };
   const mobileCreateProduct = product => {
-    const c = vm.createContext({ d: product, window: { RDCProductSaveSafety: safety,RDCProductUniqueness:guard }, db: {},serverTimestamp:()=> 'TIME',
+    const c = vm.createContext({ imagemLocal:image,imagemProdutoMovel:picker,d: product, window: { RDCProductSaveSafety: safety,RDCProductUniqueness:guard,RDCProductImageData:imageData }, db: {},serverTimestamp:()=> 'TIME',
       collection: (_db, name) => name, where: (field, _operator, value) => ({ field, value }), limit: () => 1,
       query: (_collection, predicate) => predicate, getDocs: predicate => queryExisting(predicate.field, predicate.value),
       doc: (_db, name, id) => db.ref(name==='produtos'?id:'config:'+id), addDoc: () => { throw Error('identified item must not use random add'); },
@@ -249,4 +251,14 @@ test('both panels use the guarded creation without a random-id fallback', () => 
     assert.match(html, /RDCProductSaveSafety\.assertNew\(await transaction\.get\(/);
     assert.match(html, /transaction\.set\(/);
   }
+});
+test('criação real com foto local grava somente URL no produto e imagem na fila, de forma atômica',async()=>{
+ const image={hash:'a'.repeat(64),data:'QUJD',bytes:3,width:100,height:100};
+ for(const name of ['dashboardCreate','mobileCreateProduct']){
+  const db=memoryDatabase(),adapters=productionCreation(db,{image});await adapters[name]({...listing,preco:'9,00',linkAfiliado:'https://meli.la/preservado'});
+  const id='mlMLB1234567890',product=db.docs.get(id),queue=db.docs.get('config:'+imageData.queueId(id));
+  assert.equal(product.foto,imageData.urlFor(id,image.hash));assert.equal(product.preco,'9,00');assert.equal(product.linkAfiliado,'https://meli.la/preservado');assert.equal(product.data,undefined);assert.equal(product.hash,undefined);
+  assert.equal(queue.data,image.data);assert.equal(queue.productId,id);assert.equal(db.writes.length,3);
+ }
+ const existing={...listing,titulo:'existente'},db=memoryDatabase({oldRandomId:existing}),adapters=productionCreation(db,{image});await assert.rejects(adapters.dashboardCreate({...listing}),/já está cadastrado/);assert.equal(db.writes.length,0,'nenhuma foto órfã quando o produto é duplicado');
 });

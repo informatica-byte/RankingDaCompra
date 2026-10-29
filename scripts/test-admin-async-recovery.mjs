@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import removal from '../product-removal-safety.js';
 import uniqueness from '../product-uniqueness.js';
+import imageData from '../product-image-data.js';
 
 const safetyContext = vm.createContext({ URL });
 vm.runInContext(readFileSync(new URL('../product-save-safety.js', import.meta.url), 'utf8'), safetyContext);
@@ -27,6 +28,7 @@ function photos() {
   const context = vm.createContext({
     fotoPreviaTentativa: 0, fotoPreviaTimer: 0, fotoPreviaDebounce: 0, fotoPreviaResolver: null,
     edicaoManual: false, $: field,
+    imagemProdutoMovel:{preview:()=>''},
     setTimeout: callback => { const id = ++sequence; timers.set(id, callback); return id; },
     clearTimeout: id => timers.delete(id),
   });
@@ -88,7 +90,7 @@ function queue(fail = false) {
     automacaoPrecosFalhas: new Map(), automacaoPrecosIndisponiveis: new Map(),
     automacaoPrecosAtiva: false, automacaoPrecosPausada: false, publicacaoExpressaEmAndamento: false,
     auth: {currentUser:{uid:'admin-test'}}, rankingDadosMovel:null, produtosRelampagoCacheMobile:null, automacaoPrecosVisitados:new Set(), economiaLeiturasMovel:{invalidate:key=>assert.equal(key,'produtos')},
-    window: { RDCProductRemoval: removal, conferirPrecoNaAbaLocal() {}, RDCAssistedPriceSafety: { robotReady: () => true } },
+    window: { RDCProductRemoval: removal, RDCProductImageData:imageData, conferirPrecoNaAbaLocal() {}, RDCAssistedPriceSafety: { robotReady: () => true } },
     $: field, db: {}, crypto: { randomUUID: () => 'confirmation-id' }, confirm: () => true, prompt:()=> 'EXCLUIR p',
     linkPrecoAssistido: p => p.link, campoPrecoFila: () => 'preco',
     numero: v => Number(String(v).replace(',', '.')), preco: v => String(v), serverTimestamp: () => 'SERVER_TIMESTAMP',
@@ -131,7 +133,8 @@ for (const fail of [false, true]) {
     assert.equal(s.field('precos-iniciar').disabled, false);
     assert.equal(s.field('precos-auto-iniciar').disabled, false);
     assert.ok(s.pausedControls.filter(button => button.dataset.pausaAcao !== 'abrir').every(button => !button.disabled));
-    assert.equal(s.writes.length, fail ? 0 : 2);
+    assert.equal(s.writes.length, fail ? 0 : 3);
+    if(!fail)assert.ok(s.writes.some(w=>w.deleted&&w.ref.collection==='configuracoes'&&w.ref.id==='imagem-produto-p'),'a exclusão autorizada também limpa a fila de imagem');
     if(!fail){assert.equal(s.writes[0].ref.id,'exclusoes-definitivas');assert.deepEqual(s.writes[0].patch.ids,['p']);assert.equal(s.writes[1].deleted,true);}
   });
 }
@@ -185,6 +188,7 @@ function publication({ validPhoto = true, failWrite = false } = {}) {
   const context = vm.createContext({
     resultado: { link: 'https://produto.mercadolivre.com.br/MLB-1234567890-produto-_JM', linkAfiliado: 'https://meli.la/test', tipo: 'relampago', marketplace: 'mercado_livre', evidencia: 'manual' },
     publicacaoExpressaEmAndamento: false, $: field, db: {}, window: { RDCProductSaveSafety: safetyContext.RDCProductSaveSafety,RDCProductUniqueness:{...uniqueness,loadIndex:async()=>({version:1,entries:{}})} }, console,
+    imagemProdutoMovel:{capture:()=>null,setBusy(){}},
     cadastroExistenteExpressa: { isBusy: () => false, show() {}, reset() {} },
     cats: [{ id: 'cat', nome: 'Categoria válida' }], categoriasMovel: { load: async () => true },
     numero: v => Number(String(v).replace(',', '.')), preco: v => String(v), hoje: () => '2026-10-14',

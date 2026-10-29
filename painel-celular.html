@@ -195,6 +195,8 @@
     <script src="/mobile-categories.js?v=20261025-1"></script>
     <script>window.RDCLocalAppCheckDiagnostics?.mount(document.getElementById('appcheck-diagnostico-mobile'), {page:'painel-celular'});</script>
     <script src="/product-save-safety.js?v=20261026-unique"></script>
+    <script src="/product-image-data.js?v=20261029-1"></script>
+    <script src="/product-image-picker.js?v=20261029-1"></script>
     <script src="/product-uniqueness.js?v=20261026-1"></script>
     <link rel="stylesheet" href="/informational-mode.css?v=20261026-info1">
     <script src="/informational-mode.js?v=20261026-info1"></script>
@@ -248,6 +250,17 @@
         modelRapido = getGenerativeModel(mobileAI, { model: "gemini-3.5-flash-lite", tools: [{ urlContext: {} }] }),
         modelReserva = getGenerativeModel(mobileAI, { model: "gemini-3.7-flash", tools: [{ urlContext: {} }] }),
         $ = (id) => document.getElementById(id);
+      const imagemProdutoMovel = window.RDCProductImagePicker.mount($("foto"), {
+        session: () => auth.currentUser?.uid || '',
+        cleanup: (item, uid) => runTransaction(db, async transaction => {
+          if (auth.currentUser?.uid !== uid) return false;
+          const ref = doc(db,'configuracoes',window.RDCProductImageData.queueId(item.id));
+          const snapshot = await transaction.get(ref), record = snapshot.exists() ? snapshot.data() : null;
+          if (!record || record.hash !== item.hash || auth.currentUser?.uid !== uid) return false;
+          if (record.data) transaction.update(ref,{data:'',publishedAt:serverTimestamp()});
+          return true;
+        })
+      });
       const economiaLeiturasMovel = window.RDCAdminReadEconomy.create({
         session: () => auth.currentUser?.uid, container: $("leituras-diagnostico-mobile")
       });
@@ -297,7 +310,7 @@
           const ref = doc(db, 'produtos', id), registryRef = doc(db, 'configuracoes', window.RDCProductRemoval.REGISTRY);
           return action({read: async () => { const snap = await transaction.get(ref); return snap.exists() ? snap.data() : null; },
             registry: async () => { const snap = await transaction.get(registryRef); return snap.exists() ? snap.data() : null; },
-            update: changes => transaction.update(ref, changes), saveRegistry: value => transaction.set(registryRef, value), removeProduct: () => transaction.delete(ref)});
+            update: changes => transaction.update(ref, changes), saveRegistry: value => transaction.set(registryRef, value), removeProduct: () => {transaction.delete(ref);transaction.delete(doc(db,'configuracoes',window.RDCProductImageData.queueId(id)));}});
         }),
         timestamp: serverTimestamp, invalidate: () => { economiaLeiturasMovel.invalidate('produtos'); rankingDadosMovel = null; }
       });
@@ -478,6 +491,8 @@
         erro.className = "foto-erro";
         imagem.removeAttribute("src");
         imagem.style.display = "none";
+        const local = imagemProdutoMovel.preview();
+        if (local) { imagem.onload=null;imagem.onerror=null;imagem.src=local;imagem.style.display='block';return Promise.resolve(true); }
         if (!/^https:\/\//i.test(url)) {
           if (avisar && url) erro.className = "foto-erro on";
           return Promise.resolve(false);
@@ -1553,7 +1568,7 @@
               product: async () => { const snap = await transaction.get(productRef); return snap.exists() ? snap.data() : null; },
               registry: async () => { const snap = await transaction.get(registryRef); return snap.exists() ? snap.data() : null; },
               saveRegistry: value => transaction.set(registryRef, value),
-              removeProduct: () => transaction.delete(productRef)
+              removeProduct: () => {transaction.delete(productRef);transaction.delete(doc(db,'configuracoes',window.RDCProductImageData.queueId(id)));}
             }))
           }, produto, uid);
           economiaLeiturasMovel.invalidate('produtos');
@@ -1926,6 +1941,7 @@
         return encontrados.values().next().value || null;
       }
       async function abrirManual(link, linkAfiliado, tipo, motivo, existentePronto = null, marketplace = marketplaceAtual()) {
+        imagemProdutoMovel.clear();
         resultado = { link, linkAfiliado, tipo, marketplace, evidencia: "preenchimento manual" };
         atualizarAtalhoPublicacao(link, linkAfiliado, marketplace);
         $("titulo").value = tituloDoLink(link);
@@ -3101,6 +3117,9 @@
           cadastroExistenteExpressa.show(resultado.produtoExistenteId, resultado.link);
           return msg("pub-status", "Este anúncio já está cadastrado. Use o botão abaixo para preparar uma nova oferta no mesmo cadastro, ou editar os dados, sem duplicá-lo.", "erro");
         }
+        let imagemLocal;
+        try { imagemLocal = imagemProdutoMovel.capture(); }
+        catch (error) { return msg('pub-status',error.message,'erro'); }
         const atual = numero($("atual").value),
           anterior = numero($("anterior").value),
           linkShopee = $("link-shopee").value.trim(),
@@ -3116,7 +3135,7 @@
             linkShopee,
             precoShopee: precoShopee ? preco(precoShopee) : "",
             selo: $("selo").value,
-            foto: $("foto").value.trim(),
+            foto: imagemLocal ? imagemProdutoMovel.urlFor(imagemLocal,'rascunho') : $("foto").value.trim(),
             comentario: $("resumo").value.trim(),
             preco: preco(atual),
             nota: 4.8,
@@ -3145,6 +3164,7 @@
         let publicado = false, cadastroDuplicadoId = "";
         publicacaoExpressaEmAndamento = true;
         b.disabled = true;
+        imagemProdutoMovel.setBusy(true);
         $("limpar").disabled = true;
         $("analisar").disabled = true;
         b.textContent = "Verificando foto...";
@@ -3165,6 +3185,7 @@
           const idNovo = identidade.id;
           let salvo;
           if (idNovo) {
+            if (imagemLocal) d.foto = imagemProdutoMovel.urlFor(imagemLocal,idNovo);
             const anteriores = await Promise.all(window.RDCProductSaveSafety.duplicateLookups(d)
               .map(([campo, valor]) => getDocs(query(collection(db, "produtos"), where(campo, "==", valor), limit(1)))));
             const duplicado = anteriores.find(resposta => !resposta.empty)?.docs[0];
@@ -3177,8 +3198,10 @@
             await runTransaction(db, async transaction => {
               window.RDCProductSaveSafety.assertNew(await transaction.get(salvo));
               await protegerIdentidadeMovel(transaction, identidade, idNovo, d, true);
+              if (imagemLocal) transaction.set(doc(db,'configuracoes',window.RDCProductImageData.queueId(idNovo)),imagemProdutoMovel.queueRecord(imagemLocal,idNovo));
               transaction.set(salvo, d);
             });
+            if (imagemLocal) imagemProdutoMovel.committed(imagemLocal,idNovo);
           } else throw Error('Não foi possível identificar o produto. Nenhum cadastro foi criado.');
           publicado = true;
           let avisoSelecao = '';
@@ -3204,6 +3227,7 @@
           }
         } finally {
           publicacaoExpressaEmAndamento = false;
+          imagemProdutoMovel.setBusy(false);
           $("limpar").disabled = false;
           $("analisar").disabled = analisando;
           if (!publicado) {

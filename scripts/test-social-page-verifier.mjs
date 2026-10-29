@@ -22,6 +22,14 @@ test('página direta continua válida e não depende de ID histórico na vitrine
   const f=fixture(main,main),p={...product,id:'6mZ1ahzme9kUH1UdSkJw'};
   assert.equal((await social.resolve(p,canonical,f.fetch)).aliased,false);assert.equal(f.calls.length,1);
 });
+
+test('foto local publicada é reconhecida no compartilhamento sem afrouxar a identidade do anúncio',async()=>{
+  const local=SITE+'/produto/imagens/6mZ1ahzme9kUH1UdSkJw-local-'+'a'.repeat(64)+'.jpg';
+  const p={...product,id:'6mZ1ahzme9kUH1UdSkJw',foto:local},html=main.replace(image,local),before=JSON.stringify(p);
+  assert.equal((await social.resolve(p,canonical,fixture(html,html).fetch)).image,local);
+  assert.equal(JSON.stringify(p),before);
+  await assert.rejects(social.resolve(product,original,fixture(alias,html.replaceAll('MLB7533453778','MLB9999999999')).fetch),/outro anúncio/);
+});
 test('mesmo catálogo com vendedor/anúncio diferente não libera compartilhamento',async()=>{
   await assert.rejects(social.resolve(product,original,fixture(alias,main.replaceAll('MLB7533453778','MLB9999999999')).fetch),/outro anúncio/);
   for(const changed of [{...product,link:'https://www.mercadolivre.com.br/p/MLB40656539'},{...product,link:'https://evil.example/MLB7533453778'},{...product,link:product.link+'&wid=MLB9999999999'}])await assert.rejects(social.resolve(changed,original,fixture().fetch),/prova do mesmo anúncio/);
