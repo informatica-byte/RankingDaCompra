@@ -1,6 +1,7 @@
 import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import { correctProductData } from "./product-title-corrections.mjs";
+import {ANALYSES_DESCRIPTION, publicProductName} from './public-seo-labels.mjs';
 import { protectGeneratedPublicPages } from "./public-privacy.mjs";
 import offerReplacement from "../product-offer-replacement.js";
 import { fetchFirestoreRead } from "./firestore-read-auth.mjs";
@@ -194,6 +195,7 @@ async function loadGeneratedPages() {
       __manualCheckedAt: attribute(html, /<meta[^>]+name=["']rdc-manual-checked-at["'][^>]*>/i, "content"),
       __manualPrice: attribute(html, /<meta[^>]+name=["']rdc-manual-price["'][^>]*>/i, "content"),
       __productUrl: canonical,
+      link: attribute(html, /<meta[^>]+name=["']rdc-offer-url["'][^>]*>/i, "content"),
     });
   }
   return [[...categories.values()], products, {}];
@@ -703,7 +705,7 @@ function renderDirectoryPage(categories, productsByCategory, productUrls, catego
     "@type": "ListItem", position: index + 1, url: productUrls.get(product.id), name: product.titulo,
   }));
   const directoryTitle = "Análises de produtos, preços e ofertas | Ranking da Compra";
-  const directoryDescription = `Compare ${itemList.length} análises de produtos por categoria, com preço confirmado quando disponível, pontos positivos, limitações e links para conferir a oferta atual.`;
+  const directoryDescription = ANALYSES_DESCRIPTION;
   const structuredData = JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
@@ -836,6 +838,7 @@ for (const product of allProducts) {
 }
 const candidateProducts = allProducts.map(correctProductData)
   .filter((product) => product.conferenciaPausada !== true)
+  .map(product=>({...product,titulo:publicProductName(product)}))
   .filter(editorialProduct)
   .filter((product) => marketplaceProducts[product.id]?.visible !== false)
   .sort(sortProducts);

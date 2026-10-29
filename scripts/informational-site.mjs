@@ -4,6 +4,7 @@ import {pathToFileURL} from 'node:url';
 import info from '../informational-mode.js';
 import decision from '../decision-brief.js';
 import {popularById,matchesPopularAnalysis,registeredOfferUrl} from './popular-analysis.mjs';
+import {applyPublicSeoLabels} from './public-seo-labels.mjs';
 const featuredBriefs=JSON.parse(await readFile(new URL('../featured-analysis.json',import.meta.url),'utf8')).products;
 
 const money=/R\$(?:\s|&nbsp;)*[\d.,]+/gi;
@@ -164,6 +165,7 @@ export async function buildInformationalSite(root=process.cwd()){
  const updated=sitemap.replace(/<lastmod>([^<]+)<\/lastmod>/g,(tag,date)=>date.slice(0,10)<'2026-10-26'?'<lastmod>2026-10-26</lastmod>':tag);
  if(updated!==sitemap)await writeFile(sitemapPath,updated,'utf8');
  console.log('Modo informativo: '+products.length+' produtos; '+changed+' páginas preparadas sem preços, sem alterar cadastros ou links de afiliados.');
- return {products:products.length,changed};
+ const seo=await applyPublicSeoLabels(root);
+ return {products:products.length,changed,seo};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await buildInformationalSite();

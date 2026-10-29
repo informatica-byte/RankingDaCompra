@@ -127,6 +127,14 @@ try{
   await review.screenshot({path:resolve(out,'analise-'+entry.id+'.png')});
  }
  await page.setViewportSize({width:360,height:800});await check('ficha 360px');
+ for(const id of ['Bf3ccSwSiVkLw1Z8k2Hu','SnMMDq9bDXiMWX0IXYdO','DjihMK3g3rkBHHTPbOwp','pO6CZCNo99YwtpIW0UB8']){
+  const item=feed.products.find(p=>p.id===id);if(!item)continue;
+  await page.goto(base+new URL(item.url).pathname,{waitUntil:'domcontentloaded'});
+  assert.equal(await page.locator('h1').innerText(),item.title);
+  assert.match(item.title,/ — anúncio MLB\d+$/);
+  await check('título de anúncio distinto 360px: '+id);
+  await page.screenshot({path:resolve(out,'titulo-'+id+'-mobile.png')});
+ }
  await page.goto(base+'/melhores-fones-de-ouvido.html');await check('guia 360px');
  await page.goto(base+'/melhores-escolhas.html');await page.locator('[data-info-product]').first().waitFor();await check('seleção permanente 360px');
  await page.goto(base+'/analises.html');await check('diretório de análises 360px');
