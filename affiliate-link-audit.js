@@ -1,6 +1,6 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.RDCAffiliateLinkAudit=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
- const VERSION='2.5.2',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
+ const VERSION='2.5.3',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
  const STATES=['available','unavailable','unverified','security','login','error','active_same','different_target','identity_unconfirmed'];
  const text=x=>String(x||'').replace(/\s+/g,' ').trim();
  const redacted=x=>text(x).replace(/\b(?:Bearer\s+\S+|eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)\b/g,'[credencial omitida]').replace(/\b(?:access_token|refresh_token|client_secret|authorization|password|senha|cookie)\s*[:=]\s*\S+/gi,'[credencial omitida]');
@@ -94,7 +94,17 @@
    }
   }return out;
  }
- function safeResult(value){if(value?.kind!==KIND||value.readOnly!==true||!STATES.includes(value.status)||!Number.isFinite(value.checkedAt))throw Error('Resposta de links inválida.');return {kind:KIND,readOnly:true,inspection:value.inspection==='availability'?'availability':'',checkedVia:['original_product','affiliate_fallback'].includes(value.checkedVia)?value.checkedVia:'',productId:text(value.productId).slice(0,100),market:['mercado_livre','shopee'].includes(value.market)?value.market:'',status:value.status,reason:redacted(value.reason).slice(0,500),foundTitle:redacted(value.foundTitle).slice(0,300),finalUrl:publicURL(value.finalUrl),checkedAt:value.checkedAt,robotVersion:text(value.robotVersion).slice(0,20)};}
+ // Diagnostic allowlist: durations and fixed enums only, never page content,
+ // URLs, request IDs, browser storage, cookies or authentication data.
+ function safeTiming(value){
+  if(!value||value.version!==1)return null;const out={version:1};
+  for(const key of ['startupMs','loadMs','readMs','workerMs','roundTripMs','deliveryMs','panelMs','pauseBeforeMs'])if(Number.isFinite(value[key])&&value[key]>=0&&value[key]<=86400000)out[key]=Math.round(value[key]);
+  if(Number.isInteger(value.observations)&&value.observations>=0&&value.observations<=1000)out.observations=value.observations;
+  for(const key of ['earlyRead','hiddenAtStart','timeout'])if(typeof value[key]==='boolean')out[key]=value[key];
+  if(['adaptive','careful'].includes(value.mode))out.mode=value.mode;
+  return Object.keys(out).length>1?out:null;
+ }
+ function safeResult(value){if(value?.kind!==KIND||value.readOnly!==true||!STATES.includes(value.status)||!Number.isFinite(value.checkedAt))throw Error('Resposta de links inválida.');const timing=safeTiming(value.timing);return {kind:KIND,readOnly:true,inspection:value.inspection==='availability'?'availability':'',checkedVia:['original_product','affiliate_fallback'].includes(value.checkedVia)?value.checkedVia:'',productId:text(value.productId).slice(0,100),market:['mercado_livre','shopee'].includes(value.market)?value.market:'',status:value.status,reason:redacted(value.reason).slice(0,500),foundTitle:redacted(value.foundTitle).slice(0,300),finalUrl:publicURL(value.finalUrl),checkedAt:value.checkedAt,robotVersion:text(value.robotVersion).slice(0,20),...(timing?{timing}:{})};}
  const project=(p,id=p?.id)=>({id:String(id||''),titulo:p?.titulo,link:p?.link,linkAfiliado:p?.linkAfiliado,linkShopee:p?.linkShopee,linkShopeeOriginal:p?.linkShopeeOriginal,urlShopee:p?.urlShopee,conferenciaPausada:p?.conferenciaPausada===true,sistema:p?.sistema===true});
- return {VERSION,KIND,MAX_AGE,STATES,normalize,url,identity,publicURL,titleMatch,request,classify,evidence,queue,safeResult,project};
+ return {VERSION,KIND,MAX_AGE,STATES,normalize,url,identity,publicURL,titleMatch,request,classify,evidence,queue,safeTiming,safeResult,project};
 });

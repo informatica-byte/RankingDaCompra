@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.5.2
+// @version      2.5.3
 // @description  Somente Mercado Livre: anúncio disponível ou indisponível. Sem Shopee, comparação de produtos ou preços e sem alteração automática de links.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -24,7 +24,7 @@
 
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.RDCAffiliateLinkAudit=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
- const VERSION='2.5.2',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
+ const VERSION='2.5.3',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
  const STATES=['available','unavailable','unverified','security','login','error','active_same','different_target','identity_unconfirmed'];
  const text=x=>String(x||'').replace(/\s+/g,' ').trim();
  const redacted=x=>text(x).replace(/\b(?:Bearer\s+\S+|eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)\b/g,'[credencial omitida]').replace(/\b(?:access_token|refresh_token|client_secret|authorization|password|senha|cookie)\s*[:=]\s*\S+/gi,'[credencial omitida]');
@@ -118,9 +118,19 @@
    }
   }return out;
  }
- function safeResult(value){if(value?.kind!==KIND||value.readOnly!==true||!STATES.includes(value.status)||!Number.isFinite(value.checkedAt))throw Error('Resposta de links inválida.');return {kind:KIND,readOnly:true,inspection:value.inspection==='availability'?'availability':'',checkedVia:['original_product','affiliate_fallback'].includes(value.checkedVia)?value.checkedVia:'',productId:text(value.productId).slice(0,100),market:['mercado_livre','shopee'].includes(value.market)?value.market:'',status:value.status,reason:redacted(value.reason).slice(0,500),foundTitle:redacted(value.foundTitle).slice(0,300),finalUrl:publicURL(value.finalUrl),checkedAt:value.checkedAt,robotVersion:text(value.robotVersion).slice(0,20)};}
+ // Diagnostic allowlist: durations and fixed enums only, never page content,
+ // URLs, request IDs, browser storage, cookies or authentication data.
+ function safeTiming(value){
+  if(!value||value.version!==1)return null;const out={version:1};
+  for(const key of ['startupMs','loadMs','readMs','workerMs','roundTripMs','deliveryMs','panelMs','pauseBeforeMs'])if(Number.isFinite(value[key])&&value[key]>=0&&value[key]<=86400000)out[key]=Math.round(value[key]);
+  if(Number.isInteger(value.observations)&&value.observations>=0&&value.observations<=1000)out.observations=value.observations;
+  for(const key of ['earlyRead','hiddenAtStart','timeout'])if(typeof value[key]==='boolean')out[key]=value[key];
+  if(['adaptive','careful'].includes(value.mode))out.mode=value.mode;
+  return Object.keys(out).length>1?out:null;
+ }
+ function safeResult(value){if(value?.kind!==KIND||value.readOnly!==true||!STATES.includes(value.status)||!Number.isFinite(value.checkedAt))throw Error('Resposta de links inválida.');const timing=safeTiming(value.timing);return {kind:KIND,readOnly:true,inspection:value.inspection==='availability'?'availability':'',checkedVia:['original_product','affiliate_fallback'].includes(value.checkedVia)?value.checkedVia:'',productId:text(value.productId).slice(0,100),market:['mercado_livre','shopee'].includes(value.market)?value.market:'',status:value.status,reason:redacted(value.reason).slice(0,500),foundTitle:redacted(value.foundTitle).slice(0,300),finalUrl:publicURL(value.finalUrl),checkedAt:value.checkedAt,robotVersion:text(value.robotVersion).slice(0,20),...(timing?{timing}:{})};}
  const project=(p,id=p?.id)=>({id:String(id||''),titulo:p?.titulo,link:p?.link,linkAfiliado:p?.linkAfiliado,linkShopee:p?.linkShopee,linkShopeeOriginal:p?.linkShopeeOriginal,urlShopee:p?.urlShopee,conferenciaPausada:p?.conferenciaPausada===true,sistema:p?.sistema===true});
- return {VERSION,KIND,MAX_AGE,STATES,normalize,url,identity,publicURL,titleMatch,request,classify,evidence,queue,safeResult,project};
+ return {VERSION,KIND,MAX_AGE,STATES,normalize,url,identity,publicURL,titleMatch,request,classify,evidence,queue,safeTiming,safeResult,project};
 });
 
 (function(root,factory){const api=factory(root.RDCAffiliateLinkAudit);if(typeof module==='object'&&module.exports)module.exports=api;else root.RDCAffiliateLinkBot=api;})(typeof globalThis!=='undefined'?globalThis:this,function(core){
@@ -143,13 +153,13 @@
     let req;try{req=core.request(input);if(req.market!=='mercado_livre')throw Error('Este robô confere somente anúncios do Mercado Livre.');}catch(e){reject(e);return;}
     const prior=get(COMMAND);if(active||(prior&&Date.now()-prior.createdAt<90000)){reject(Object.assign(Error('Já existe uma consulta de links em outra aba. Aguarde ou pare o outro lote.'),{code:'RDC_AUDIT_BUSY'}));return;}
     if(renew){session=random();renew=false;}
-    const requestId=random();active=requestId;let listener,timer,poll;
+    const requestId=random(),createdAt=Date.now();active=requestId;let listener,timer,poll;
     const clear=()=>{clearTimeout(timer);clearInterval(poll);if(listener!==undefined)unlisten(listener);if(get(COMMAND)?.requestId===requestId)set(COMMAND,null);if(get(RESULT)?.requestId===requestId)set(RESULT,null);active=null;};
     const accept=value=>{if(!value||value.requestId!==requestId||value.session!==session||value.affiliateUrl!==req.affiliateUrl||value.checkUrl!==req.checkUrl||value.productId!==req.productId||value.robotVersion!==core.VERSION||value.inspection!=='availability')return;
-     try{const result=core.safeResult(value);clear();resolve(result);}catch{} };
+     try{const result=core.safeResult(value),roundTripMs=Math.max(0,Date.now()-createdAt);result.timing=core.safeTiming({...result.timing,version:1,roundTripMs,...(Number.isFinite(result.timing?.workerMs)?{deliveryMs:Math.max(0,roundTripMs-result.timing.workerMs)}:{})});clear();resolve(result);}catch{} };
     listener=listen(RESULT,(_k,_old,value)=>accept(value));poll=setInterval(()=>{if(get(COMMAND)?.requestId!==requestId){clear();reject(Object.assign(Error('Consulta interrompida; nenhum cadastro foi alterado.'),{code:'RDC_AUDIT_STOPPED'}));return;}accept(get(RESULT));},500);
-    timer=setTimeout(()=>{clear();renew=true;reject(Object.assign(Error('Não houve resposta em 60 segundos. O resultado fica pendente, não indisponível.'),{code:'RDC_AUDIT_TIMEOUT'}));},60000);
-    set(COMMAND,{...req,requestId,session,createdAt:Date.now()});
+    timer=setTimeout(()=>{clear();renew=true;reject(Object.assign(Error('Não houve resposta em 60 segundos. O resultado fica pendente, não indisponível.'),{code:'RDC_AUDIT_TIMEOUT',timing:core.safeTiming({version:1,roundTripMs:Math.max(0,Date.now()-createdAt),timeout:true})}));},60000);
+    set(COMMAND,{...req,requestId,session,createdAt});
     const worker=get(HEARTBEAT),live=worker?.session===session&&worker.version===core.VERSION&&Date.now()-worker.at<15000;
     if(!live){const home='https://www.mercadolivre.com.br/';
      const opened=root.open(home+'#_rdc_link_audit='+session,'rdc_link_audit_'+session,root.innerWidth>=900?'popup=yes,width=640,height=850':'');
@@ -158,32 +168,36 @@
     }
    });return;
   }
-  let session='',navigation='',processing='',completed='';
+  let session='',navigation='',navigationAt=0,processing='',completed='';
   const tabRead=()=>new Promise(r=>{try{getTab(t=>r(t||{}));}catch{r({});}});
-  const persist=async()=>{const tab=await tabRead();await new Promise(r=>{try{saveTab({...tab,rdcLinkAuditSession:session,rdcLinkAuditNavigation:navigation},r);}catch{r();}});};
+  const persist=async()=>{const tab=await tabRead();await new Promise(r=>{try{saveTab({...tab,rdcLinkAuditSession:session,rdcLinkAuditNavigation:navigation,rdcLinkAuditNavigationAt:navigationAt},r);}catch{r();}});};
   const send=(command,result)=>{if(get(COMMAND)?.requestId!==command.requestId)return;set(RESULT,{...core.safeResult(result),requestId:command.requestId,session,affiliateUrl:command.affiliateUrl,checkUrl:command.checkUrl});};
   async function run(){const c=get(COMMAND);if(!session)return;if(c?.session===session)set(HEARTBEAT,{session,version:core.VERSION,at:Date.now()});
    if(!c||c.kind!==core.KIND||c.readOnly!==true||c.session!==session||!c.requestId||Date.now()-c.createdAt>90000||processing===c.requestId||completed===c.requestId)return;
    let req;try{req=core.request(c);if(req.market!=='mercado_livre'||c.checkUrl!==req.checkUrl||c.inspection!=='availability')return;}catch{return;}
    processing=c.requestId;
    try{
-    if(navigation!==c.requestId){navigation=c.requestId;await persist();if(get(COMMAND)?.requestId!==c.requestId)return;loc.assign(req.checkUrl);return;}
-    let last='',stable=0,result;
+    if(navigation!==c.requestId){navigation=c.requestId;navigationAt=Date.now();await persist();if(get(COMMAND)?.requestId!==c.requestId)return;loc.assign(req.checkUrl);return;}
+    const readStartedAt=Date.now(),earlyRead=doc.readyState==='loading',hiddenAtStart=doc.visibilityState==='hidden';
+    let last='',stable=0,result,observations=0;
     for(let i=0;i<40;i++){
      if(get(COMMAND)?.requestId!==c.requestId)return;
-     result=core.classify(c,core.evidence(doc,loc.href));
+     result=core.classify(c,core.evidence(doc,loc.href));observations++;
      if(['security','login','unavailable'].includes(result.status))break;
      const signature=JSON.stringify([result.status,result.finalUrl,result.foundTitle]);stable=signature===last?stable+1:0;last=signature;
      if(stable>=2&&result.status==='available')break;
      await delay(500);
     }
-    if(result){send(c,result);completed=c.requestId;}
+    if(result){const now=Date.now(),timing={version:1,readMs:Math.max(0,now-readStartedAt),workerMs:Math.max(0,now-c.createdAt),observations,earlyRead,hiddenAtStart};if(Number.isFinite(navigationAt)&&navigationAt>=c.createdAt&&navigationAt<=readStartedAt){timing.startupMs=navigationAt-c.createdAt;timing.loadMs=readStartedAt-navigationAt;}send(c,{...result,timing});completed=c.requestId;}
    }finally{processing='';}
   }
   void(async()=>{const tab=await tabRead(),marker=new URLSearchParams(new URL(loc.href).hash.slice(1)).get('_rdc_link_audit');
-   session=/^[a-z0-9-]{8,100}$/i.test(marker||'')?marker:tab.rdcLinkAuditSession||'';navigation=tab.rdcLinkAuditNavigation||'';
+   session=/^[a-z0-9-]{8,100}$/i.test(marker||'')?marker:tab.rdcLinkAuditSession||'';navigation=tab.rdcLinkAuditNavigation||'';navigationAt=tab.rdcLinkAuditNavigationAt||0;
    if(!/^[a-z0-9-]{8,100}$/i.test(session))return;await persist();
-   if(doc.readyState==='loading')doc.addEventListener('DOMContentLoaded',()=>void run(),{once:true});else void run();
+   // Observe immediately, including while the document is still parsing.
+   // An empty/partial DOM stays unverified; the same evidence rules, three
+   // stable observations 500ms apart and 20s reading budget still apply.
+   void run();if(doc.readyState==='loading')doc.addEventListener('DOMContentLoaded',()=>void run(),{once:true});
    listen(COMMAND,()=>void run());setInterval(()=>void run(),1500);
   })();
  }

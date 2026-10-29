@@ -99,7 +99,7 @@ test('nova instalação bloqueia chamadas de preço e exige novo protocolo vincu
  const waiting=f.panel.conferirLinkAfiliadoNaAbaLocal(req),command=f.values.get('rdc_link_audit_command_v1');assert.ok(command);assert.equal(f.opens.length,1);assert.match(f.opens[0][0],/mercadolivre.com.br\/#_rdc_link_audit=/);
  const result={...core.classify(req,ok),requestId:command.requestId,session:command.session,affiliateUrl:command.affiliateUrl,checkUrl:command.checkUrl};let resolved=false;waiting.then(()=>resolved=true);
  f.respond({...result,requestId:'old'});f.respond({...result,productId:'other'});f.respond({...result,session:'other'});f.respond({...result,checkUrl:'https://meli.la/wrong'});f.respond({...result,robotVersion:'2.5.0'});await Promise.resolve();assert.equal(resolved,false);
- f.respond({...result,preco:999,token:'DO-NOT-COPY'});const out=await waiting;assert.equal(out.status,'available');assert.equal('preco'in out,false);assert.equal('token'in out,false);assert.equal(f.values.get('rdc_link_audit_command_v1'),null);assert.equal(f.values.get('rdc_link_audit_result_v1'),null);assert.equal(f.listeners.size,0);
+ f.respond({...result,preco:999,token:'DO-NOT-COPY',timing:{version:1,workerMs:0,readMs:1000,token:'DO-NOT-COPY'}});const out=await waiting;assert.equal(out.status,'available');assert.equal('preco'in out,false);assert.equal('token'in out,false);assert.ok(out.timing.roundTripMs>=0);assert.ok(out.timing.deliveryMs>=0);assert.equal(out.timing.readMs,1000);assert.doesNotMatch(JSON.stringify(out.timing),/DO-NOT-COPY/);assert.equal(f.values.get('rdc_link_audit_command_v1'),null);assert.equal(f.values.get('rdc_link_audit_result_v1'),null);assert.equal(f.listeners.size,0);
 });
 test('consulta concorrente, cancelamento e timeout não alteram dados ou confundem sessão',async()=>{
  const f=await bridge(),first=f.panel.conferirLinkAfiliadoNaAbaLocal(req);
@@ -110,7 +110,7 @@ test('consulta concorrente, cancelamento e timeout não alteram dados ou confund
 test('pacote gerado é reproduzível e substitui identidade antiga sem permissões de API/cookies',async()=>{
  const before=await readFile(new URL('../bot-links.user.js',import.meta.url),'utf8'),built=await buildLinkAuditBot(undefined,false);assert.equal(before.replace(/\r\n/g,'\n'),built);
  const old=await readFile(new URL('../bot-precos.user.js',import.meta.url),'utf8');for(const field of ['name','namespace'])assert.equal(built.match(new RegExp('^// @'+field+'\\s+(.+)$','m'))?.[1],old.match(new RegExp('^// @'+field+'\\s+(.+)$','m'))?.[1]);
- assert.match(built,/@version\s+2\.5\.2/);assert.doesNotMatch(built,/GM_xmlhttpRequest|GM_cookie|parsePrice|updateDoc|setDoc|runTransaction|\.submit\(|\.click\(/);assert.doesNotMatch(built,/^\/\/ @match\s+.*(?:shopee|shope\.ee)/m);
+ assert.match(built,/@version\s+2\.5\.3/);assert.doesNotMatch(built,/GM_xmlhttpRequest|GM_cookie|parsePrice|updateDoc|setDoc|runTransaction|\.submit\(|\.click\(/);assert.doesNotMatch(built,/^\/\/ @match\s+.*(?:shopee|shope\.ee)/m);
 });
 
 async function worker(state,href,values,body=''){
