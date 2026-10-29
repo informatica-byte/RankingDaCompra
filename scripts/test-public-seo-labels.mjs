@@ -54,3 +54,10 @@ test('sitemap sinaliza só a revisão editorial selecionada sem remover URLs nem
  assert.equal(next,'<urlset>'+entry('analises.html','2026-10-29')+entry('outra.html','2026-10-20')+entry('futura.html','2026-11-01')+'</urlset>');
  assert.equal(seoSitemap(next,files),next);
 });
+test('caminho de navegação usa o nome público sem mudar os destinos',()=>{
+ const html='<nav class="crumb" aria-label="Você está aqui"><a href="/">Início</a>/<a href="/analises.html">Análises</a> / Nome antigo</nav>';
+ const next=rewritePublicSeo(html,{product:{title:'Kit Principia — anúncio MLB4247892213'}});
+ assert.match(next,/Kit Principia — anúncio MLB4247892213/);assert.doesNotMatch(next,/Nome antigo/);
+ assert.match(next,/<a href="\/">Início<\/a>\/<a href="\/analises.html">Análises<\/a>/);
+ assert.equal(rewritePublicSeo(next,{product:{title:'Kit Principia — anúncio MLB4247892213'}}),next);
+});

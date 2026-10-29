@@ -47,6 +47,11 @@ export function rewritePublicSeo(html,{file='',product=null,labels=new Map()}={}
    .replace(/<title>[\s\S]*?<\/title>/i,()=>`<title>${esc(productSeoTitle(title))}</title>`)
    .replace(/(<meta\b[^>]*(?:name=["']twitter:title["']|property=["']og:title["'])[^>]*content=)(["'])(.*?)\2/gi,(_,a,q)=>a+q+esc(title)+q)
    .replace(/(<img\b[^>]*class=["']photo["'][^>]*alt=)(["'])(.*?)\2/i,(_,a,q)=>a+q+esc(title)+q);
+  html=html.replace(/(<nav\b[^>]*class=["'][^"']*\bcrumb\b[^"']*["'][^>]*>)([\s\S]*?)(<\/nav>)/gi,(all,a,body,b)=>{
+   const last=body.lastIndexOf('</a>');
+   if(last<0||/<[^>]*>/.test(body.slice(last+4)))return all;
+   return a+body.slice(0,last+4)+' / '+esc(title)+b;
+  });
  }
  if(description)html=html.replace(/(<meta\b[^>]*(?:name=["'](?:description|twitter:description)["']|property=["']og:description["'])[^>]*content=)(["'])(.*?)\2/gi,(_,a,q)=>a+q+esc(description)+q);
  html=html.replace(/(<a\b[^>]*\bhref=(["'])(.*?)\2[^>]*>)([^<]*)(<\/a>)/gi,(all,a,q,url,body,end)=>{
