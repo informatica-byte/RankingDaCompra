@@ -20,7 +20,7 @@ try{
   await page.goto(base+'/'+file);await page.evaluate(mode=>{
    window.fixtureNow=Date.now();Date.now=()=>fixtureNow;window.writes=[];window.registry={version:1,ids:[]};window.blocked=false;window.back=mode==='manual';window.calls=[];
    window.current={id:'gone',titulo:'Produto fictício para teste local',foto:'https://http2.mlstatic.com/photo.jpg',link:'https://www.mercadolivre.com.br/fone/p/MLB23997257?wid=MLB1234567890',linkAfiliado:'https://meli.la/test',preco:123};
-   window.__RDC_BOT_LINKS_LOCAL__={version:'2.5.3',readOnly:true};window.RDCAffiliateAuditSource=async()=>current?[{...current}]:[];
+   window.__RDC_BOT_LINKS_LOCAL__={version:'2.5.4',readOnly:true};window.RDCAffiliateAuditSource=async()=>current?[{...current}]:[];
    window.conferirLinkAfiliadoNaAbaLocal=async row=>{calls.push(row.productId);return {...RDCAffiliateLinkAudit.classify(row,{url:row.checkUrl,title:row.title,buyable:back,security:blocked,unavailable:!back,primaryNotice:true}),checkedAt:fixtureNow};};
    window.RDCProductQuarantineAccess=RDCProductQuarantine.create({authorize:()=> 'owner',read:async()=>({...current}),now:()=>fixtureNow,serverNow:async()=>fixtureNow,timestamp:()=> 'fixture-time',invalidate(){},transact:async(id,work)=>{
     const ops=[];const result=await work({read:async()=>({...current}),registry:async()=>registry,update:p=>ops.push(['update',p]),saveRegistry:r=>ops.push(['registry',r]),removeProduct:()=>ops.push(['delete'])});

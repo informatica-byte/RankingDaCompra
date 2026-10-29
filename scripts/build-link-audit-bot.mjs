@@ -4,7 +4,7 @@ export async function buildLinkAuditBot(root=new URL('..',import.meta.url),write
  const metadata=`// ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.5.3
+// @version      2.5.4
 // @description  Somente Mercado Livre: anúncio disponível ou indisponível. Sem Shopee, comparação de produtos ou preços e sem alteração automática de links.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*

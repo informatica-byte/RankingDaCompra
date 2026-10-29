@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ranking da Compra - Bot local de preços
 // @namespace    https://rankingdacompra.com.br/
-// @version      2.5.3
+// @version      2.5.4
 // @description  Somente Mercado Livre: anúncio disponível ou indisponível. Sem Shopee, comparação de produtos ou preços e sem alteração automática de links.
 // @match        https://rankingdacompra.com.br/dashboard.html*
 // @match        https://rankingdacompra.com.br/painel-celular.html*
@@ -24,7 +24,7 @@
 
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.RDCAffiliateLinkAudit=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
- const VERSION='2.5.3',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
+ const VERSION='2.5.4',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
  const STATES=['available','unavailable','unverified','security','login','error','active_same','different_target','identity_unconfirmed'];
  const text=x=>String(x||'').replace(/\s+/g,' ').trim();
  const redacted=x=>text(x).replace(/\b(?:Bearer\s+\S+|eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)\b/g,'[credencial omitida]').replace(/\b(?:access_token|refresh_token|client_secret|authorization|password|senha|cookie)\s*[:=]\s*\S+/gi,'[credencial omitida]');
@@ -122,9 +122,9 @@
  // URLs, request IDs, browser storage, cookies or authentication data.
  function safeTiming(value){
   if(!value||value.version!==1)return null;const out={version:1};
-  for(const key of ['startupMs','loadMs','readMs','workerMs','roundTripMs','deliveryMs','panelMs','pauseBeforeMs'])if(Number.isFinite(value[key])&&value[key]>=0&&value[key]<=86400000)out[key]=Math.round(value[key]);
+  for(const key of ['startupMs','loadMs','readMs','readBudgetMs','readOverrunMs','workerMs','roundTripMs','deliveryMs','panelMs','pauseBeforeMs'])if(Number.isFinite(value[key])&&value[key]>=0&&value[key]<=86400000)out[key]=Math.round(value[key]);
   if(Number.isInteger(value.observations)&&value.observations>=0&&value.observations<=1000)out.observations=value.observations;
-  for(const key of ['earlyRead','hiddenAtStart','timeout'])if(typeof value[key]==='boolean')out[key]=value[key];
+  for(const key of ['earlyRead','hiddenAtStart','timeout','readLimitReached'])if(typeof value[key]==='boolean')out[key]=value[key];
   if(['adaptive','careful'].includes(value.mode))out.mode=value.mode;
   return Object.keys(out).length>1?out:null;
  }
@@ -135,10 +135,11 @@
 
 (function(root,factory){const api=factory(root.RDCAffiliateLinkAudit);if(typeof module==='object'&&module.exports)module.exports=api;else root.RDCAffiliateLinkBot=api;})(typeof globalThis!=='undefined'?globalThis:this,function(core){
  'use strict';
- const COMMAND='rdc_link_audit_command_v1',RESULT='rdc_link_audit_result_v1',HEARTBEAT='rdc_link_audit_worker_v1';
+ const COMMAND='rdc_link_audit_command_v1',RESULT='rdc_link_audit_result_v1',HEARTBEAT='rdc_link_audit_worker_v1',READ_BUDGET_MS=8000;
  function install(env){
   const {root,document:doc,location:loc,get,set,listen,unlisten,getTab,saveTab}=env;
   const delay=ms=>new Promise(r=>setTimeout(r,ms));
+  const clock=()=>typeof performance!=='undefined'&&typeof performance.now==='function'?performance.now():Date.now();
   const random=()=>Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
   if(loc.hostname==='rankingdacompra.com.br'){
    // Same userscript identity replaces the price bot. No legacy price protocol
@@ -178,17 +179,26 @@
    processing=c.requestId;
    try{
     if(navigation!==c.requestId){navigation=c.requestId;navigationAt=Date.now();await persist();if(get(COMMAND)?.requestId!==c.requestId)return;loc.assign(req.checkUrl);return;}
-    const readStartedAt=Date.now(),earlyRead=doc.readyState==='loading',hiddenAtStart=doc.visibilityState==='hidden';
-    let last='',stable=0,result,observations=0;
+    const readStartedAt=Date.now(),readStarted=clock(),earlyRead=doc.readyState==='loading',hiddenAtStart=doc.visibilityState==='hidden';
+    let last='',stable=0,result,observations=0,settled=false;
     for(let i=0;i<40;i++){
      if(get(COMMAND)?.requestId!==c.requestId)return;
      result=core.classify(c,core.evidence(doc,loc.href));observations++;
-     if(['security','login','unavailable'].includes(result.status))break;
+     if(['security','login','unavailable'].includes(result.status)){settled=true;break;}
      const signature=JSON.stringify([result.status,result.finalUrl,result.foundTitle]);stable=signature===last?stable+1:0;last=signature;
-     if(stable>=2&&result.status==='available')break;
+     if(stable>=2&&result.status==='available'){settled=true;break;}
+     const remaining=READ_BUDGET_MS-Math.max(0,clock()-readStarted);
+     // Never squeeze a final observation into less than the existing 500ms
+     // stability interval. End slightly early if that interval no longer fits.
+     if(remaining<500)break;
      await delay(500);
     }
-    if(result){const now=Date.now(),timing={version:1,readMs:Math.max(0,now-readStartedAt),workerMs:Math.max(0,now-c.createdAt),observations,earlyRead,hiddenAtStart};if(Number.isFinite(navigationAt)&&navigationAt>=c.createdAt&&navigationAt<=readStartedAt){timing.startupMs=navigationAt-c.createdAt;timing.loadMs=readStartedAt-navigationAt;}send(c,{...result,timing});completed=c.requestId;}
+    if(result){
+     const now=Date.now(),readMs=Math.max(0,clock()-readStarted);
+     if(!settled)result={...result,status:'unverified',reason:'Limite de leitura atingido. '+(result.status==='unverified'?result.reason:'A disponibilidade não ficou estável o suficiente para confirmar. O anúncio permanece pendente, não indisponível.')};
+     const timing={version:1,readMs,readBudgetMs:READ_BUDGET_MS,readLimitReached:!settled,readOverrunMs:Math.max(0,readMs-READ_BUDGET_MS),workerMs:Math.max(0,now-c.createdAt),observations,earlyRead,hiddenAtStart};
+     if(Number.isFinite(navigationAt)&&navigationAt>=c.createdAt&&navigationAt<=readStartedAt){timing.startupMs=navigationAt-c.createdAt;timing.loadMs=readStartedAt-navigationAt;}send(c,{...result,timing});completed=c.requestId;
+    }
    }finally{processing='';}
   }
   void(async()=>{const tab=await tabRead(),marker=new URLSearchParams(new URL(loc.href).hash.slice(1)).get('_rdc_link_audit');
@@ -196,7 +206,8 @@
    if(!/^[a-z0-9-]{8,100}$/i.test(session))return;await persist();
    // Observe immediately, including while the document is still parsing.
    // An empty/partial DOM stays unverified; the same evidence rules, three
-   // stable observations 500ms apart and 20s reading budget still apply.
+   // stable observations 500ms apart still apply. Inconclusive pages have
+   // an 8s monotonic deadline; a suspended tab stops at its next opportunity.
    void run();if(doc.readyState==='loading')doc.addEventListener('DOMContentLoaded',()=>void run(),{once:true});
    listen(COMMAND,()=>void run());setInterval(()=>void run(),1500);
   })();

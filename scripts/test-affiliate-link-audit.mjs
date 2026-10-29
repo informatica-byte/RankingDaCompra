@@ -110,7 +110,7 @@ test('consulta concorrente, cancelamento e timeout não alteram dados ou confund
 test('pacote gerado é reproduzível e substitui identidade antiga sem permissões de API/cookies',async()=>{
  const before=await readFile(new URL('../bot-links.user.js',import.meta.url),'utf8'),built=await buildLinkAuditBot(undefined,false);assert.equal(before.replace(/\r\n/g,'\n'),built);
  const old=await readFile(new URL('../bot-precos.user.js',import.meta.url),'utf8');for(const field of ['name','namespace'])assert.equal(built.match(new RegExp('^// @'+field+'\\s+(.+)$','m'))?.[1],old.match(new RegExp('^// @'+field+'\\s+(.+)$','m'))?.[1]);
- assert.match(built,/@version\s+2\.5\.3/);assert.doesNotMatch(built,/GM_xmlhttpRequest|GM_cookie|parsePrice|updateDoc|setDoc|runTransaction|\.submit\(|\.click\(/);assert.doesNotMatch(built,/^\/\/ @match\s+.*(?:shopee|shope\.ee)/m);
+ assert.match(built,/@version\s+2\.5\.4/);assert.doesNotMatch(built,/GM_xmlhttpRequest|GM_cookie|parsePrice|updateDoc|setDoc|runTransaction|\.submit\(|\.click\(/);assert.doesNotMatch(built,/^\/\/ @match\s+.*(?:shopee|shope\.ee)/m);
 });
 
 async function worker(state,href,values,body=''){

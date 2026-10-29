@@ -1,6 +1,6 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.RDCAffiliateLinkAudit=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
- const VERSION='2.5.3',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
+ const VERSION='2.5.4',KIND='affiliate_link_audit',MAX_AGE=7*86400000;
  const STATES=['available','unavailable','unverified','security','login','error','active_same','different_target','identity_unconfirmed'];
  const text=x=>String(x||'').replace(/\s+/g,' ').trim();
  const redacted=x=>text(x).replace(/\b(?:Bearer\s+\S+|eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)\b/g,'[credencial omitida]').replace(/\b(?:access_token|refresh_token|client_secret|authorization|password|senha|cookie)\s*[:=]\s*\S+/gi,'[credencial omitida]');
@@ -98,9 +98,9 @@
  // URLs, request IDs, browser storage, cookies or authentication data.
  function safeTiming(value){
   if(!value||value.version!==1)return null;const out={version:1};
-  for(const key of ['startupMs','loadMs','readMs','workerMs','roundTripMs','deliveryMs','panelMs','pauseBeforeMs'])if(Number.isFinite(value[key])&&value[key]>=0&&value[key]<=86400000)out[key]=Math.round(value[key]);
+  for(const key of ['startupMs','loadMs','readMs','readBudgetMs','readOverrunMs','workerMs','roundTripMs','deliveryMs','panelMs','pauseBeforeMs'])if(Number.isFinite(value[key])&&value[key]>=0&&value[key]<=86400000)out[key]=Math.round(value[key]);
   if(Number.isInteger(value.observations)&&value.observations>=0&&value.observations<=1000)out.observations=value.observations;
-  for(const key of ['earlyRead','hiddenAtStart','timeout'])if(typeof value[key]==='boolean')out[key]=value[key];
+  for(const key of ['earlyRead','hiddenAtStart','timeout','readLimitReached'])if(typeof value[key]==='boolean')out[key]=value[key];
   if(['adaptive','careful'].includes(value.mode))out.mode=value.mode;
   return Object.keys(out).length>1?out:null;
  }

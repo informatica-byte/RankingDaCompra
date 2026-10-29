@@ -14,7 +14,7 @@ window.record=Object.freeze({id:'jbl',titulo:'JBL Tune 520BT Fone sem fio',preco
 window.reviewRecord={...record};window.writes=[];window.protections=0;
 window.RDCAffiliateAuditReview=RDCAffiliateLinkReview.create({authorize:()=> 'admin',read:async()=>({...reviewRecord}),prepare:async p=>p,transact:async(_id,action)=>{let changes;const result=await action({read:async()=>({...reviewRecord}),protect:async()=>{protections++;},update:p=>{changes=p;}});if(changes){writes.push(changes);Object.assign(reviewRecord,changes);}return result;},timestamp:()=> 'test-stamp',append:x=>[x]});
 window.RDCAffiliateAuditSource=async()=>{sourceReads++;return [record,{...record,id:'beta'}];};
-window.__RDC_BOT_LINKS_LOCAL__={version:'2.5.3',readOnly:true,ready:true};
+window.__RDC_BOT_LINKS_LOCAL__={version:'2.5.4',readOnly:true,ready:true};
 window.conferirLinkAfiliadoNaAbaLocal=async row=>{calls.push({id:row.productId,market:row.market});return {...RDCAffiliateLinkAudit.classify(row,{url:row.expectedUrl,title:row.title,buyable:true,security:row.productId==='beta'&&!securityResolved}),timing:{version:1,startupMs:200,loadMs:300,readMs:1000,workerMs:1500,deliveryMs:100,observations:3,earlyRead:true,hiddenAtStart:false}};};
 window.cancelarConferenciaLinksLocal=()=>cancelCalls++;
 </script><script defer src="/affiliate-link-panel.js"></script></head><body><a href="#precos-mobile">Preços</a><button id="tab-precos">Preços</button><main id="${mobile?'app':'admin-content'}"><section id="${mobile?'precos-mobile':'painel-precos'}"><button>Conferir todos os preços</button><input id="historical-price" value="100"></section></main></body></html>`;
