@@ -34,7 +34,10 @@ try{
  assert.equal(await page.locator('[data-local-product-image]').count(),1);
  await page.evaluate(()=>window.RDCProductImagePicker.mount(document.getElementById('foto')));assert.equal(await page.locator('[data-local-product-image]').count(),1);
  const png=Buffer.from(await page.evaluate(()=>{const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1000;const ctx=canvas.getContext('2d');ctx.fillStyle='#1769e0';ctx.fillRect(0,0,1600,1000);ctx.fillStyle='#fff';ctx.font='bold 80px sans-serif';ctx.fillText('FOTO LOCAL — TESTE',120,450);return canvas.toDataURL('image/png').split(',')[1];}),'base64');
- await page.locator('[data-image-source="local"]').check();assert.equal(await page.locator('#foto').isVisible(),false);assert.equal(await page.locator('#foto').getAttribute('required'),null);
+ await page.locator('#foto').fill('url-antiga-invalida');
+ await page.locator('[data-image-source="local"]').check();assert.equal(await page.locator('#foto').isVisible(),false);assert.equal(await page.locator('#foto').getAttribute('required'),null);assert.equal(await page.locator('#foto').isDisabled(),true);
+ assert.equal(await page.evaluate(()=>document.querySelector('form').checkValidity()),true);
+ await page.evaluate(()=>document.getElementById('foto').value='https://http2.mlstatic.com/imagem-original.jpg');
  await page.locator('[data-image-file]').setInputFiles({name:'foto-de-teste.png',mimeType:'image/png',buffer:png});
  await page.waitForFunction(()=>document.querySelector('[data-image-status]').textContent.includes('Prévia pronta'));
  assert.equal(requests.length,0);assert.equal(await page.evaluate(()=>window.__savedPhoto),null);passed.push('seleção e prévia não enviam foto nem salvam produto');

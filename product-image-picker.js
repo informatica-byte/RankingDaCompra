@@ -7,7 +7,7 @@
  function mount(input,{cleanup=async()=>false,session=()=>''}={}){
   if(!input||!data)throw Error('Seletor de imagem indisponível.');
   if(controllers.has(input))return controllers.get(input);
-  const required=input.required,container=document.createElement('section');container.dataset.localProductImage='true';
+  const required=input.required,disabled=input.disabled,container=document.createElement('section');container.dataset.localProductImage='true';
   container.innerHTML='<style>[data-local-product-image]{min-width:0;max-width:100%;margin:10px 0;padding:12px;border:1px solid #b8d4c6;border-radius:10px;background:#f4faf6}[data-local-product-image] label{display:block;margin:8px 0}[data-local-product-image] input[type=radio],[data-local-product-image] input[type=checkbox]{width:auto!important;min-height:0;margin-right:8px}[data-local-product-image] input[type=file]{box-sizing:border-box;width:100%;max-width:100%;font:inherit}[data-local-product-image] button{min-height:44px;white-space:normal}[data-local-product-image] img{display:block;max-width:100%;height:200px;object-fit:contain;margin:10px auto}[data-local-product-image] [hidden]{display:none!important}[data-local-product-image] p{overflow-wrap:anywhere}</style>'
    +'<strong>Foto do produto</strong><label><input type="radio" data-image-source="url" checked> Usar o link da imagem do site</label><label><input type="radio" data-image-source="local"> Escolher uma imagem deste computador ou celular</label>'
    +'<div data-local-fields hidden><input type="file" data-image-file accept="image/jpeg,image/png,image/webp"><p>JPG, PNG ou WebP, até 8 MB. A imagem será reduzida, convertida para JPEG e terá os metadados removidos. Transparência terá fundo branco. Escolher o arquivo só cria uma prévia; o envio acontece ao salvar o produto.</p><label><input type="checkbox" data-image-permission> A foto é do produto cadastrado e é própria ou tenho autorização para publicá-la.</label><img data-image-preview hidden alt="Prévia da imagem selecionada"><p>Ao publicar as páginas, a foto ficará na vitrine, na ficha e nas postagens. Não são usados Firebase Storage ou serviços de upload contratados.</p></div>'
@@ -20,8 +20,8 @@
   let previousReadOnly=input.readOnly;
   function setBusy(busy){if(busy)previousReadOnly=input.readOnly;input.readOnly=busy?true:previousReadOnly;for(const control of container.querySelectorAll('input,button'))control.disabled=busy;}
   function revoke(){if(objectUrl)URL.revokeObjectURL(objectUrl);objectUrl='';preview.removeAttribute('src');preview.hidden=true;}
-  function useUrl(){generation++;mode='url';selection=null;processing=null;file.value='';permission.checked=false;revoke();status.textContent='';input.hidden=false;input.required=required;radios[0].checked=true;radios[1].checked=false;container.querySelector('[data-local-fields]').hidden=true;}
-  function chooseLocal(){mode='local';selection=null;generation++;input.hidden=true;input.required=false;container.querySelector('[data-local-fields]').hidden=false;}
+  function useUrl(){generation++;mode='url';selection=null;processing=null;file.value='';permission.checked=false;revoke();status.textContent='';input.hidden=false;input.disabled=disabled;input.required=required;radios[0].checked=true;radios[1].checked=false;container.querySelector('[data-local-fields]').hidden=true;}
+  function chooseLocal(){mode='local';selection=null;generation++;input.hidden=true;input.disabled=true;input.required=false;container.querySelector('[data-local-fields]').hidden=false;}
   radios[0].addEventListener('change',()=>{if(radios[0].checked)useUrl();});radios[1].addEventListener('change',()=>{if(radios[1].checked)chooseLocal();});
   async function optimize(chosen){
    if(!chosen||!chosen.size||chosen.size>8*1024*1024)throw Error('Escolha uma imagem de até 8 MB.');
