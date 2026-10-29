@@ -23,7 +23,7 @@ await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.
 const browser=await chromium.launch({headless:true,channel:'chrome'});const errors=[],checked=[];await mkdir(resolve(root,'.informational-qa'),{recursive:true});
 async function checkResume(file){
  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});await context.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());
- const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.addInitScript(()=>{const original=setTimeout.bind(window);window.setTimeout=(fn,ms,...args)=>original(fn,ms===5000?0:ms,...args);});
+ const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.addInitScript(()=>{const original=setTimeout.bind(window);window.pacingDelays=[];window.setTimeout=(fn,ms,...args)=>{if([2000,5000,10000].includes(ms))pacingDelays.push(ms);return original(fn,[2000,5000,10000].includes(ms)?0:ms,...args);};});
  const install=()=>{
   window.calls=[];window.securityResolved=false;
   const records=['inconclusive','confirmed','challenge','later'].map(id=>({...record,id}));window.RDCAffiliateAuditSource=async()=>records;
@@ -31,6 +31,7 @@ async function checkResume(file){
  };
  await page.goto(base+'/'+file);await page.evaluate(install);await page.locator('[data-audit-load]').click();await page.waitForFunction(()=>!document.querySelector('[data-audit-start]').disabled);await page.locator('[data-audit-limit]').selectOption('all');await page.locator('[data-audit-start]').click();
  await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('pausada para sua intervenção'));
+ assert.ok(await page.evaluate(()=>pacingDelays.includes(10000)),'inconclusivo usa pausa maior');assert.ok(await page.evaluate(()=>pacingDelays.includes(5000)),'volta ao ritmo com cuidado');
  assert.deepEqual(await page.evaluate(()=>calls),['inconclusive','confirmed','challenge']);assert.match(await page.locator('[data-audit-status]').innerText(),/posição 3 de 4/);assert.equal(await page.locator('[data-audit-start]').innerText(),'Continuar de onde parou');
  assert.equal(await page.locator('[data-audit-repeat]').isDisabled(),true);assert.equal(await page.locator('[data-audit-limit]').isDisabled(),true);
  await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>calls.length===4&&!document.querySelector('[data-audit-start]').disabled);
@@ -55,9 +56,10 @@ try{
  for(const file of ['dashboard.html','painel-celular.html']){
   const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});await context.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
-  await page.addInitScript(()=>{const original=window.setTimeout.bind(window);window.setTimeout=(fn,ms,...args)=>original(fn,ms===5000?0:ms,...args);});
+  await page.addInitScript(()=>{const original=window.setTimeout.bind(window);window.pacingDelays=[];window.setTimeout=(fn,ms,...args)=>{if([2000,5000,10000].includes(ms))pacingDelays.push(ms);return original(fn,[2000,5000,10000].includes(ms)?0:ms,...args);};});
   await page.goto(base+'/'+file);await page.locator('[data-audit-load]').waitFor();
   assert.equal(await page.locator('[data-audit-limit]').inputValue(),'20','limite conservador continua padrão');
+  assert.equal(await page.locator('[data-audit-pace]').inputValue(),'adaptive');assert.equal(await page.locator('[data-audit-pace] option').count(),2);await page.locator('[data-audit-pace]').selectOption('careful');
   assert.equal(await page.locator('[data-audit-limit] option[value="all"]').innerText(),'Todos os pendentes');
   assert.equal(await page.locator('[data-audit-limit] option').allTextContents().then(x=>x.includes('100')),true);
   await page.locator('[data-audit-limit]').selectOption('all');
@@ -67,6 +69,7 @@ try{
   await page.locator('[data-audit-load]').click();await page.waitForFunction(()=>!document.querySelector('[data-audit-start]').disabled);assert.equal(await page.evaluate(()=>sourceReads),1);
   await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('pausada para sua intervenção'),{timeout:20000});
   assert.equal(await page.evaluate(()=>calls.length),2);assert.match(await page.locator('[data-audit-summary]').innerText(),/1 confirmado/);
+  assert.ok(await page.evaluate(()=>pacingDelays.includes(5000)),'modo cuidadoso usa cinco segundos');await page.locator('[data-audit-pace]').selectOption('adaptive');
   const initial=await page.evaluate(()=>JSON.parse(localStorage.getItem('rdc-affiliate-audit-report-v1')));assert.equal(initial.records.length,2);assert.doesNotMatch(JSON.stringify(initial),/"preco"|"price"|token|credential/);
   await page.evaluate(()=>securityResolved=true);await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
   assert.equal(await page.evaluate(()=>calls.length),3);assert.match(await page.locator('[data-audit-summary]').innerText(),/2 confirmado/);assert.equal(await page.evaluate(()=>record.preco),100);
@@ -82,6 +85,7 @@ try{
   assert.equal(await page.evaluate(()=>calls.length),10,'limite numérico respeitado');
   await page.locator('[data-audit-limit]').selectOption('all');await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));
   assert.equal(await page.evaluate(()=>calls.length),55,'todos ultrapassa 50 e não repete os dez já confirmados');
+  assert.ok(await page.evaluate(()=>pacingDelays.includes(2000)),'modo adaptativo encurta só os intervalos normais');
   assert.match(await page.locator('[data-audit-summary]').innerText(),/56 confirmado/);
   assert.equal(await page.evaluate(()=>record.preco),100);
   await page.locator('[data-audit-start]').click();await page.waitForFunction(()=>document.querySelector('[data-audit-status]').textContent.includes('Rodada concluída'));

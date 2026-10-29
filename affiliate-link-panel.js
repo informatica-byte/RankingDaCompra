@@ -15,11 +15,14 @@
   const el=s=>host.querySelector(s),setStatus=text=>el('[data-audit-status]').textContent=text;
   host.innerHTML='<h2>🔗 Conferência Mercado Livre — disponível ou indisponível</h2><p>Somente Mercado Livre: o robô verifica se o anúncio está disponível ou indisponível. A Shopee não entra na fila. Usa o link original quando cadastrado; não compara nome, modelo, cor, tamanho, voltagem ou preço. Não altera cadastros sozinho.</p><p class="link-audit-note">Carregue a fila de hoje e confira os pendentes. A disponibilidade do anúncio não comprova que o link de afiliado abre o mesmo produto. Você pode substituir os links do produto e de afiliado usando “Salvar novos links”, sem criar outro cadastro. CAPTCHA, login e falha de comunicação não significam anúncio indisponível.</p><p data-audit-robot role="status">Verificando a versão do robô...</p><a class="link-audit-install" href="/bot-links.user.js" target="_blank" rel="noopener">Atualizar robô para 2.5.2 — somente links</a><p class="mini">O nome antigo “Bot local de preços” identifica a instalação no Tampermonkey. A versão 2.5.2 não devolve preços.</p><div class="link-audit-controls"><label><input type="checkbox" data-audit-paused checked> Incluir cadastros pausados, sem reativá-los</label><label><input type="checkbox" data-audit-repeat> Refazer também os anúncios já verificados hoje</label><label>Máximo por rodada <select data-audit-limit><option>10</option><option selected>20</option><option>50</option><option>100</option><option value="all">Todos os pendentes</option></select></label></div><div class="link-audit-actions"><button type="button" data-audit-load>Carregar fila de hoje</button><button type="button" data-audit-start disabled>Conferir pendentes</button><button type="button" data-audit-stop disabled>Parar</button><button type="button" data-audit-download>Baixar relatório local</button></div><p data-audit-status role="status" aria-live="polite">Nenhuma conferência começa sozinha. Os resultados ficam neste navegador, sem gravar preços ou consultar visitas.</p><p data-audit-summary></p><label class="link-audit-filter">Mostrar <select data-audit-filter><option value="all">Todos os itens</option><option value="review">Pendências de leitura — retomar no robô</option><option value="active">Disponíveis confirmados hoje</option><option value="unavailable" selected>Indisponíveis — revisão manual</option><option value="untested">Ainda não conferidos hoje</option><option value="paused">Cadastros pausados</option></select></label><div data-audit-editor hidden></div><div data-audit-results></div><button type="button" data-audit-more hidden>Mostrar mais itens</button><details class="link-audit-publication"><summary>Depois de substituir os links, como publicar?</summary><p>Conferir atividade não exige publicar. Se você salvar novos links, atualize a vitrine pelo fluxo habitual do GitHub, uma vez ao terminar. Não é necessário conferir preços.</p><a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer">Abrir publicação da vitrine ↗</a><p>Os resultados da conferência são locais deste navegador. Editar links ou pausar um cadastro só grava quando você confirma a ação.</p></details>';
   const another=document.createElement('button');another.type='button';another.dataset.auditAnother='';another.textContent='Preparar outra rodada';another.hidden=true;el('[data-audit-stop]').after(another);
+  const paceControl=document.createElement('label');paceControl.className='link-audit-pace';paceControl.innerHTML='Ritmo <select data-audit-pace><option value="adaptive">Rápido adaptativo</option><option value="careful">Cuidadoso</option></select>';el('.link-audit-controls').append(paceControl);
+  const paceNote=document.createElement('p');paceNote.className='link-audit-note';paceNote.dataset.auditPaceNote='';paceNote.textContent='Rápido adaptativo: intervalo de 2 segundos após leituras normais, com pausas maiores em retomadas, lentidão e resultados inconclusivos. Cuidadoso: pelo menos 5 segundos. O intervalo pode chegar a 10 segundos; CAPTCHA, login e falha de comunicação continuam pausando a rodada. Não abre anúncios simultâneos nem verifica o destino do afiliado separadamente do original.';el('.link-audit-controls').after(paceNote);
   el('[data-audit-paused]').parentElement.lastChild.textContent=' Incluir cadastros pausados e em quarentena (pausas manuais preservadas)';
   another.addEventListener('click',()=>{if(running||editing||saving||loading)return;if(!confirm('Encerrar só a fila desta rodada? Todos os resultados já salvos serão preservados.'))return;progress=null;persist();locked(false);setStatus('Fila da rodada encerrada. Resultados preservados; uma nova rodada conferirá apenas os pendentes.');});
   function locked(state){
    const busy=state||editing||saving||quarantine?.isBusy();el('[data-audit-load]').disabled=busy;for(const s of ['[data-audit-paused]','[data-audit-repeat]','[data-audit-limit]'])el(s).disabled=busy||checkpoint.resumable(progress);
    el('[data-audit-start]').disabled=busy||!ready||!rows.length;el('[data-audit-stop]').disabled=!running;
+   el('[data-audit-pace]').disabled=busy;
    host.querySelectorAll('[data-audit-edit],[data-audit-pause]').forEach(b=>b.disabled=busy);
    el('[data-audit-start]').textContent=checkpoint.resumable(progress)?'Continuar de onde parou':'Conferir pendentes';
    const another=el('[data-audit-another]');if(another){another.hidden=!checkpoint.resumable(progress);another.disabled=busy;}
@@ -91,6 +94,7 @@
    if(progress?.day!==day(Date.now()))progress=null;
    const continuing=checkpoint.resumable(progress);
    if(!continuing)progress=checkpoint.create(rows,{day:day(Date.now()),limit:el('[data-audit-limit]').value,repeat:el('[data-audit-repeat]').checked,finished:finishedToday,result:resultFor});
+   let pace={mode:el('[data-audit-pace]').value,slow:continuing?3:0,clean:0};
    progress.state='running';progress.reason='';running=true;storageFailed=false;const mine=++generation;locked(true);
    if(!persist()){locked(false);return;}
    let paused=false;
@@ -98,7 +102,7 @@
     while(running&&mine===generation){
      const row=checkpoint.next(progress,rows,finishedToday);if(!row){persist();break;}
      setStatus((continuing?'Continuando':'Conferindo')+' na posição '+(progress.cursor+1)+' de '+progress.queue.length+': '+row.title+' — Mercado Livre. Somente disponibilidade; sem preços.');
-     let value,communication=false;
+     let value,communication=false;const started=Date.now();
      try{value=row.invalid?{kind:core.KIND,readOnly:true,productId:row.productId,market:row.market,checkedAt:Date.now(),status:'error',reason:'Link cadastrado inválido. Use Substituir links para revisar.',robotVersion:core.VERSION}:await window.conferirLinkAfiliadoNaAbaLocal(row);}
      catch(e){if(!running||mine!==generation)break;value={kind:core.KIND,readOnly:true,productId:row.productId,market:row.market,checkedAt:Date.now(),status:'error',reason:e.message,robotVersion:core.VERSION};communication=true;}
      if(!running||mine!==generation)break;
@@ -108,7 +112,9 @@
      else checkpoint.advance(progress);
      if(!persist())break;draw();
      if(paused||progress.state==='complete')break;
-     await new Promise(r=>setTimeout(r,5000));
+     pace=checkpoint.pacing({...clean,elapsedMs:Math.max(0,Date.now()-started)},pace);
+     setStatus('Resultado preservado para '+row.title+'. Próxima posição '+(progress.cursor+1)+' de '+progress.queue.length+' após '+(pace.wait/1000)+' s — '+(pace.mode==='careful'?'ritmo cuidadoso':'ritmo adaptativo')+'.');
+     await new Promise(r=>setTimeout(r,pace.wait));
     }
     if(mine!==generation)return;
     if(storageFailed)return;

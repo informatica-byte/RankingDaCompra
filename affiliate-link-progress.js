@@ -30,5 +30,17 @@
  }
  function advance(p){if(p.cursor<p.queue.length)p.cursor++;p.state=p.cursor===p.queue.length?'complete':'running';p.reason='';}
  function pause(p,reason='manual'){if(!resumable(p))return;p.state='paused';p.reason=['security','login','communication','manual'].includes(reason)?reason:'manual';}
- return {restore,create,resumable,next,advance,pause};
+ // Pacing never changes the cursor, availability evidence or saved products.
+ function pacing(result,previous={}){
+  const mode=previous.mode==='careful'?'careful':'adaptive';
+  const slow=Number.isInteger(previous.slow)?Math.max(0,Math.min(3,previous.slow)):0;
+  const clean=Number.isInteger(previous.clean)?Math.max(0,Math.min(19,previous.clean)):0;
+  if(['security','login'].includes(result?.status))return {mode,slow:3,clean:0,wait:0};
+  if(!['available','unavailable'].includes(result?.status))return {mode,slow:3,clean:0,wait:10000};
+  if(result.elapsedMs>=15000)return {mode,slow:3,clean:0,wait:5000};
+  if(slow)return {mode,slow:slow-1,clean:0,wait:5000};
+  if(clean>=19)return {mode,slow:0,clean:0,wait:5000};
+  return {mode,slow:0,clean:clean+1,wait:mode==='careful'?5000:2000};
+ }
+ return {restore,create,resumable,next,advance,pause,pacing};
 });
