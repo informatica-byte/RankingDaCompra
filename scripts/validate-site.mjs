@@ -356,7 +356,7 @@ const growthToolsVersions = [homeHtml, dashboardHtml, sitemapGenerator]
     version = version.replace(/&mode=(?:20261026-info1|20261028-info2)$/, "");
     // Apenas o painel ganhou coordenação de leituras; a versão pública/base
     // continua idêntica e não precisa provocar uma releitura do Firestore.
-    if (index === 1) version = version.replace(/&reads=20261023-1$/, "");
+      if (index === 1) version = version.replace(/&music=20261029-1$/, "").replace(/&reads=20261023-1$/, "");
     return version.replace(/&history=20261022-1$/, "");
   });
 if (growthToolsVersions.some((version) => !version) || new Set(growthToolsVersions).size !== 1) {

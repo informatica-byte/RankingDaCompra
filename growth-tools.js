@@ -1378,6 +1378,7 @@
         <div class="growth-row"><button id="growth-showcase-save" type="button">Salvar vídeos e título SEO</button><a href="/" target="_blank" rel="noopener noreferrer">Abrir a vitrine</a></div>
         <p class="growth-admin-status" id="growth-showcase-status" role="status" aria-live="polite"></p>
       </div>
+      <div id="ambient-music-admin" class="showcase-admin"></div>
       <div class="seasonal-admin">
         <h2>🎨 Temas para datas comemorativas</h2>
         <p>Deixe a vitrine com uma campanha especial sem alterar produtos, links ou configurações importantes.</p>
@@ -1411,6 +1412,12 @@
     const test = container.querySelector("#growth-whatsapp-test");
     const status = container.querySelector("#growth-admin-status");
     const config = await loadConfig();
+    window.RDCAmbientMusicAdmin?.mount(container.querySelector('#ambient-music-admin'),{config,
+      save:async settings=>{
+        if(typeof db==='undefined'||typeof auth==='undefined'||!auth.currentUser)throw Error('Sessão administrativa encerrada.');
+        await db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).set(settings,{merge:true});
+        updateCachedConfig(settings);
+      }});
     input.value = config?.whatsappClubUrl || "";
     enabled.checked = config?.whatsappClubEnabled !== false;
     test.href = validWhatsAppUrl(input.value) ? input.value : "#";

@@ -3,14 +3,16 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 import {protectPublicHtml} from './public-privacy.mjs';
+import musicSettingsApi from '../ambient-music-settings.js';
 
 const source = await readFile(new URL('../ambient-music.js', import.meta.url), 'utf8');
-function fixture({saved=null, path='/', robots='', unsupported=false, fail=false, blockedStorage=false, deferred=false, layout='header', carry=null, referrer='', href='https://example.test/', navigationType='navigate', continuous=null, hosted=false}={}) {
+function fixture({saved=null, path='/', robots='', unsupported=false, fail=false, blockedStorage=false, deferred=false, layout='header', carry=null, referrer='', href='https://example.test/', navigationType='navigate', continuous=null, hosted=false,musicSettings=null}={}) {
   const stored = new Map(saved === null ? [] : [['rdc-ambient-volume-v1', saved]]);
   const session = new Map(carry === null ? [] : [['rdc-ambient-navigation-v1',typeof carry==='string'?carry:JSON.stringify(carry)]]);
   const timeouts = new Map();
   const nodes = new Map(), docEvents = new Map(), winEvents = new Map(), intervals = new Map();
   const contexts = [], notes = [], ramps = [];
+  const audios=[];
   let finishResume, placement;
   const element = () => ({
     attributes:{},textContent:'',value:'',events:new Map(),disabled:false,
@@ -44,7 +46,17 @@ function fixture({saved=null, path='/', robots='', unsupported=false, fail=false
     async suspend(){this.state='suspended';}
     async close(){this.state='closed';}
   }
+  class FakeAudio {
+    constructor(){this.tagName='AUDIO';this.paused=true;this.src='';this.events=new Map();audios.push(this);}
+    addEventListener(name,handler){this.events.set(name,handler);}
+    async play(){if(fail)throw Error('Audio error');if(deferred)await new Promise(resolve=>{finishResume=resolve;});this.paused=false;}
+    pause(){this.paused=true;}
+    removeAttribute(name){if(name==='src')this.src='';}
+    load(){}
+  }
   const window = {
+    Audio:FakeAudio,
+    RDCAmbientMusicSettings:musicSettings?{...musicSettingsApi,load:async()=>musicSettings}:undefined,
     RDCContinuousNavigation:continuous,
     AudioContext:unsupported?undefined:FakeContext,
     setInterval(handler){const id=intervals.size+1;intervals.set(id,handler);return id;},
@@ -56,7 +68,7 @@ function fixture({saved=null, path='/', robots='', unsupported=false, fail=false
   window.parent=hosted?{RDCContinuousNavigation:continuous}:window;
   const context={window,document,URL,performance:{getEntriesByType(){return [{type:navigationType}];}},location:{pathname:path,href,origin:new URL(href).origin},sessionStorage:{getItem(key){if(blockedStorage)throw new Error('storage blocked');return session.get(key)??null;},removeItem(key){session.delete(key);},setItem(key,value){if(blockedStorage)throw new Error('storage blocked');session.set(key,value);}},localStorage:{getItem(key){if(blockedStorage)throw new Error('storage blocked');return stored.get(key)??null;},setItem(key,value){if(blockedStorage)throw new Error('storage blocked');stored.set(key,value);}}};
   vm.runInNewContext(source,context);
-  return {window,document,nodes,contexts,notes,stored,session,timeouts,ramps,intervals,docEvents,winEvents,get placement(){return placement;},runAgain(){vm.runInNewContext(source,context);},finishResume(){finishResume();}};
+  return {window,document,nodes,contexts,audios,notes,stored,session,timeouts,ramps,intervals,docEvents,winEvents,get placement(){return placement;},runAgain(){vm.runInNewContext(source,context);},finishResume(){finishResume();}};
 }
 
 test('music is off by default, including with a saved volume; audio is created only on activation',async()=>{
@@ -133,7 +145,7 @@ test('public generation adds one versioned music script and preserves existing c
   const before='<html><head><meta name="robots" content="index,follow"></head><body><a href="https://meli.la/example">Preço: R$ 100</a></body></html>';
   const after=protectPublicHtml(before);
   assert.equal((after.match(/ambient-music\.js/g)||[]).length,1);
-  assert.match(after,/defer src="\/ambient-music\.js\?v=20261022-4"/);
+  assert.match(after,/defer src="\/ambient-music\.js\?v=20261029-1"/);
   assert.ok(after.indexOf('continuous-navigation.js')<after.indexOf('ambient-music.js'));
   assert.equal(protectPublicHtml(after),after);
   assert.ok(after.includes('<a href="https://meli.la/example">Preço: R$ 100</a>'));
@@ -149,7 +161,7 @@ test('compact player is below the header without changing navigation; volume sta
   const prior='<html><head><script defer src="/ambient-music.js?v=20261022-1"></script></head><body>Preço original</body></html>';
   const after=protectPublicHtml(prior);
   assert.equal((after.match(/ambient-music\.js/g)||[]).length,1);
-  assert.ok(after.includes('ambient-music.js?v=20261022-4'));
+  assert.ok(after.includes('ambient-music.js?v=20261029-1'));
 });
 
 const settle = () => new Promise(resolve=>setImmediate(resolve));
@@ -193,4 +205,25 @@ test('blocked voluntary startup releases context without a late sound',async()=>
   assert.equal(f.contexts[0].state,'closed');assert.equal(f.intervals.size,0);
   assert.match(f.nodes.get('rdc-music-status').textContent,/Não foi possível/);
   f.finishResume();await pending;assert.equal(f.notes.length,0);assert.equal(f.intervals.size,0);
+});
+const fileSettings={kind:'files',rightsConfirmed:true,tracks:[{name:'Faixa A',url:'https://audio.example.org/a.mp3',credit:'Autor',rights:'own',licenseUrl:''},{name:'Faixa B',url:'https://audio.example.org/b.mp3',credit:'Autor',rights:'own',licenseUrl:''}]};
+test('arquivos só criam áudio após ativação; pausa e volume não criam um segundo player',async()=>{
+ const f=fixture({musicSettings:fileSettings});await settle();assert.equal(f.audios.length,0);assert.equal(f.contexts.length,0);
+ const button=f.nodes.get('rdc-music-toggle');await button.fire('click');assert.equal(f.audios.length,1);assert.equal(f.audios[0].paused,false);assert.equal(button.attributes['aria-pressed'],'true');
+ const slider=f.nodes.get('rdc-music-volume');slider.value='0';await slider.fire('input');assert.equal(f.audios[0].volume,0);
+ await f.docEvents.get('play')({target:f.audios[0]});assert.equal(f.audios[0].paused,false);
+ await button.fire('click');assert.equal(f.audios[0].paused,true);await button.fire('click');assert.equal(f.audios.length,1);
+ await f.docEvents.get('play')({target:{tagName:'VIDEO'}});assert.equal(f.audios[0].paused,true);
+});
+test('sequência passa de faixa apenas enquanto ativa e nova entrada permanece desligada',async()=>{
+ const f=fixture({musicSettings:fileSettings});await settle();await f.nodes.get('rdc-music-toggle').fire('click');
+ const audio=f.audios[0];await audio.events.get('ended')();assert.equal(audio.src,fileSettings.tracks[1].url);
+ f.document.hidden=true;await f.docEvents.get('visibilitychange')();assert.equal(audio.paused,true);
+ f.document.hidden=false;await f.docEvents.get('visibilitychange')();await audio.events.get('ended')();assert.equal(audio.src,fileSettings.tracks[1].url);assert.equal(audio.paused,true);
+ f.winEvents.get('pagehide')();assert.equal(audio.src,'');assert.equal(audio.paused,true);
+ const fresh=fixture({musicSettings:fileSettings});await settle();assert.equal(fresh.audios.length,0);assert.equal(fresh.nodes.get('rdc-music-toggle').attributes['aria-pressed'],'false');
+});
+test('arquivo com erro ou carregamento tardio não deixa áudio tocando após sair',async()=>{
+ const failed=fixture({musicSettings:fileSettings,fail:true});await settle();await failed.nodes.get('rdc-music-toggle').fire('click');assert.equal(failed.audios[0].paused,true);assert.match(failed.nodes.get('rdc-music-status').textContent,/Não foi possível/);
+ const late=fixture({musicSettings:fileSettings,deferred:true});await settle();const pending=late.nodes.get('rdc-music-toggle').fire('click');late.winEvents.get('pagehide')();late.finishResume();await pending;assert.equal(late.audios[0].paused,true);assert.equal(late.nodes.get('rdc-music-toggle').attributes['aria-pressed'],'false');
 });

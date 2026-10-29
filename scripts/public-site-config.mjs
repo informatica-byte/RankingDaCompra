@@ -1,3 +1,4 @@
+import ambientMusic from '../ambient-music-settings.js';
 // Somente configuração de apresentação pode sair do banco para o site público.
 export const PUBLIC_CONFIG_FIELDS = ['whatsappClubEnabled','whatsappClubUrl','promotionSeoTitle','bestChoicesTitle','bestChoicesProductIds','bestChoicesGuideUrls','youtubeShowcaseEnabled','youtubeShowcaseTitle','youtubeShowcaseLinks','youtubeShowcaseItems','seasonalThemeMode','seasonalThemeId','seasonalThemeStart','seasonalThemeEnd','weeklyComparison'];
 
@@ -53,10 +54,10 @@ export function decodeConfigFields(fields) {
 }
 export function publicSiteConfig(previous = {}, config = {}, theme = {}, generatedAt = new Date().toISOString()) {
   const merged = {...previous,...config,...theme};
-  const allowed = key => PUBLIC_CONFIG_FIELDS.includes(key) || /^giftGuideTitle_[a-z0-9_]+$/.test(key);
+  const allowed = key => key==='ambientMusic' || PUBLIC_CONFIG_FIELDS.includes(key) || /^giftGuideTitle_[a-z0-9_]+$/.test(key);
   const value = Object.fromEntries(Object.entries(merged).filter(([key])=>allowed(key)));
   for (const [key,item] of Object.entries(value)) {
-    const expected = key === 'weeklyComparison' ? 'object' : key.endsWith('Enabled') ? 'boolean' : ['youtubeShowcaseLinks','youtubeShowcaseItems','bestChoicesProductIds','bestChoicesGuideUrls'].includes(key) ? 'array' : 'string';
+    const expected = ['weeklyComparison','ambientMusic'].includes(key) ? 'object' : key.endsWith('Enabled') ? 'boolean' : ['youtubeShowcaseLinks','youtubeShowcaseItems','bestChoicesProductIds','bestChoicesGuideUrls'].includes(key) ? 'array' : 'string';
     if (expected === 'array' ? !Array.isArray(item) : typeof item !== expected) throw new Error('Configuração pública inválida: ' + key + '. Publicação recusada sem substituir a versão existente.');
   }
   if (value.youtubeShowcaseLinks?.some(link=>typeof link !== 'string')) throw new Error('Link de vídeo inválido na configuração pública.');
@@ -65,5 +66,6 @@ export function publicSiteConfig(previous = {}, config = {}, theme = {}, generat
   // Pares contêm apenas o link do vídeo e a página pública do produto.
   if (Array.isArray(value.youtubeShowcaseItems)) value.youtubeShowcaseItems=value.youtubeShowcaseItems.map(item=>({youtubeUrl:String(item.youtubeUrl||item.videoUrl||item.url||''),productUrl:String(item.productUrl||item.produtoUrl||'')}));
   if (Object.hasOwn(value,'weeklyComparison')) value.weeklyComparison=publicWeeklyComparison(value.weeklyComparison);
+  if (Object.hasOwn(value,'ambientMusic')) value.ambientMusic=ambientMusic.normalize(value.ambientMusic,{strict:true});
   return {...value,schemaVersion:2,generatedAt};
 }

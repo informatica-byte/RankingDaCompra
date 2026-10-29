@@ -42,10 +42,14 @@ export function protectPublicHtml(html) {
   // Optional, first-party instrumental; never inject into administrative/noindex pages.
   if (!/<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html)) {
     if (!/src=["'][^"']*ambient-music\.js/.test(html)) {
-      html = html.replace(/<\/head>/i, '<script defer src="/ambient-music.js?v=20261022-4"></script></head>');
+      html = html.replace(/<\/head>/i, '<script defer src="/ambient-music.js?v=20261029-1"></script></head>');
     }
     html = html.replace(/(<script\b[^>]*\bsrc=["']\/?ambient-music\.js)(?:\?[^"']*)?(["'][^>]*>)/gi,
-      '$1?v=20261022-4$2');
+      '$1?v=20261029-1$2');
+    if (!/src=["'][^"']*ambient-music-settings\.js/.test(html)) {
+      html = html.replace(/<script\s+defer\s+src=["']\/ambient-music\.js/i,
+        '<script defer src="/ambient-music-settings.js?v=20261029-1"></script><script defer src="/ambient-music.js');
+    }
     if (!/src=["'][^"']*continuous-navigation\.js/.test(html)) {
       html = html.replace(/<script\s+defer\s+src=["']\/ambient-music\.js/i,
         '<script defer src="/continuous-navigation.js?v=20261022-1"></script><script defer src="/ambient-music.js');
