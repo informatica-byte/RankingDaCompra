@@ -1,6 +1,8 @@
 # Continuidade prioritária — Ranking da Compra
 ## Atualização prioritária de 30/10/2026 — retomar daqui
 
+Quarto lote PREPARADO, aguardando publicação: documented-analysis-20261030.json contém oito novas análises da fila pendente (M280, M90, K120, Tapo C200, C320WS, C500, JBL Go 4 e Quantum 100M2), com fontes oficiais consultadas em 30/10. IDs e fontes estão no checkpoint. Os fingerprints das 39 revisões anteriores permaneceram idênticos; apenas os oito selecionados mudaram. Go 4 corrigida para IP67 no resumo; C500 com revisão de hardware a confirmar e sem generalizar visão noturna colorida entre V1 e V2.80. C200 também não recebe recursos específicos da V3 sem confirmar hardware. 1.217 testes passaram e proteção de 551 IDs/604 URLs/campos operacionais/afiliados aprovada. Confirmar QA e publicação antes de marcar o lote concluído. Fila local atual: 504 pendentes e 47 revisões estruturadas; preservar as 47 na próxima retomada.
+
 Segundo lote PUBLICADO E VERIFICADO em 30/10: commit fbea35ce5338209d72b9dbf7c16fb64850ebfd33. Integridade 41087271036, sitemap 41087270896 e Pages 41087350854 concluídos com sucesso; o Pages intermediário foi cancelado e substituído pela publicação gerada. 25 guias genéricos receberam títulos e resumos por finalidade, mantendo os endereços. Cinco fichas da campanha local receberam revisão DOCUMENTAL LIMITADA, com base apenas no anúncio já registrado, sem nova consulta de estoque ou teste prático: mlMLB2062519916, kfLnRJzsg88rUfJxMtb6, mudVRd1YUQgKwHRcq3iD, b052WcTAD3j2UDZHQiXY, UnTwhXqatX5MyoPnl6DN. O Pegada anterior não foi repetido. A biblioteca nova é campaign-analysis.json e não usa métricas de procura inventadas. Os 1.213 testes e QA de celular passaram. Em produção: 551 produtos, 39 análises estruturadas, 604 URLs, cinco fichas com revisão exibida e afiliados preservados, nenhum título de guia genérico anterior. Campos operacionais e preços idênticos à base. A revisão aprofundada de todos os guias ainda NÃO está concluída; esta etapa corrigiu títulos/resumos.
 
 O usuário autorizou a retomada (“pode dar andamento”). Não pedir novamente a troca de modelo por rotina; pedir apenas se uma NOVA mudança de nível/modelo for necessária.
@@ -11,7 +13,7 @@ O primeiro lote está PUBLICADO E VERIFICADO: commit 25dfbd284b55883583368900c07
 
 Conferência em produção: 551 produtos, 604 URLs, campos operacionais/preços preservados em relação à base, câmera com resolução a confirmar, relacionados do secador sem pasta de dentes/balanças e nenhum resumo de guia no catálogo prometendo preços com data. GLOBAL-01, GLOBAL-02 e GLOBAL-03 podem ser tratados como concluídos para este lote. A contingência de releitura informativa também foi corrigida e validada. Não refazer este lote.
 
-Retomar GLOBAL-04 pela fila de 512 pendentes, preservando as 39 revisões estruturadas, e depois GLOBAL-05 a GLOBAL-10. A existência de revisão estruturada não comprova todas as especificações; respeitar o escopo documental sinalizado. O usuário autorizou todo o plano, mas não autoriza inventar fontes, assumir testes, trocar links, excluir produtos ou ativar cobrança. Registrar dependências factuais de cada ID.
+Retomar GLOBAL-04 pela fila de 504 pendentes, preservando as 47 revisões estruturadas, e depois GLOBAL-05 a GLOBAL-10. A existência de revisão estruturada não comprova todas as especificações; respeitar o escopo documental sinalizado. O usuário autorizou todo o plano, mas não autoriza inventar fontes, assumir testes, trocar links, excluir produtos ou ativar cobrança. Registrar dependências factuais de cada ID.
 
 1.208 testes locais passaram; a interface local foi testada nas larguras registradas abaixo. Nada disso significa revisão factual completa das 551 fichas. A agenda diária já existente continua ativa; não criar outra. O checkpoint foi atualizado localmente depois da publicação; preservar estas alterações de documentação.
 
@@ -34,8 +36,8 @@ Início: 30/10/2026. Repositório de trabalho: C:/Users/User/Documents/Codex/202
 1. Ler este arquivo e docs/site-improvement-progress.json antes de trabalhar.
 2. Conferir o estado do Git e o remoto, sem sobrescrever mudanças alheias.
 3. O registro contém os 551 IDs e uma impressão digital de título, resumo, ficha e dados de comparação.
-4. preserve_prior_review identifica 39 revisões estruturadas já presentes: conservar, sem refazer. Não significa auditoria completa de todas as informações.
-5. pending identifica os outros 512 itens: não são páginas vazias e não serão preenchidos por suposição.
+4. preserve_prior_review identifica 47 revisões estruturadas já presentes: conservar, sem refazer. Não significa auditoria completa de todas as informações.
+5. pending identifica os outros 504 itens: não são páginas vazias e não serão preenchidos por suposição.
 6. Depois de uma revisão factual verificada, registrar status, data, fontes e notas por ID. Usar blocked_missing_source quando faltar evidência específica. Não repetir a mesma busca bloqueada sem mudança de fonte.
 7. Marcar completed apenas com publicação e verificação correspondentes. Registrar pending_publication se o código ou texto está apenas local.
 8. O script scripts/site-improvement-ledger.mjs preserva estados com conteúdo inalterado; mudanças materiais reabrem o item com previousState.
@@ -48,7 +50,7 @@ Início: 30/10/2026. Repositório de trabalho: C:/Users/User/Documents/Codex/202
 | GLOBAL-01 | Relacionados por tipo e sem repetir cor/modelo | Publicado e verificado | Testes e inspeção das 551 fichas geradas; nenhum relacionado incompatível presumido |
 | GLOBAL-02 | Câmera com 8 MP/6 MP contraditórios | Publicado e verificado | Título/resumo público coerentes, sem atribuir resolução arbitrária; foto, afiliado e preço preservados |
 | GLOBAL-03 | Resumos do catálogo sem preços e sem frase duplicada | Publicado e verificado | 31 resumos alinhados ao modo informativo e regressões aprovadas |
-| GLOBAL-04 | Revisão editorial dos produtos ainda pendentes | 512 pendentes, 39 revisões estruturadas preservadas | Cada ID com fatos/fontes/limites suficientes ou pendência explícita; sem revisão fictícia |
+| GLOBAL-04 | Revisão editorial dos produtos ainda pendentes | 504 pendentes, 47 revisões estruturadas preservadas | Cada ID com fatos/fontes/limites suficientes ou pendência explícita; sem revisão fictícia |
 | GLOBAL-05 | Guias por intenção e perguntas específicas | Parcial: 25 títulos/resumos genéricos corrigidos e publicados | Revisar profundamente os 31 guias, preservar URLs, evitar guias concorrentes repetidos e não inventar volume de busca |
 | GLOBAL-06 | Comparações editoriais com URL estável | Pendente | Pares úteis do mesmo tipo e identidade confirmada, conteúdo próprio e tabela consistente; não gerar todas as combinações |
 | GLOBAL-07 | Caminho por necessidade e perguntas opcionais do comparador | Pendente | Usabilidade local, acessibilidade e eventos existentes preservados, sem novas leituras Firebase ou IA paga |

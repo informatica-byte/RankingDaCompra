@@ -26,7 +26,13 @@
     "results": "all success; superseding Pages generation deployed",
     "productionVerifiedAt": "2026-10-30",
     "guideTitleSummaryUpdates": 25,
-    "limitedDocumentaryReviews": ["mlMLB2062519916", "kfLnRJzsg88rUfJxMtb6", "mudVRd1YUQgKwHRcq3iD", "b052WcTAD3j2UDZHQiXY", "UnTwhXqatX5MyoPnl6DN"],
+    "limitedDocumentaryReviews": [
+      "mlMLB2062519916",
+      "kfLnRJzsg88rUfJxMtb6",
+      "mudVRd1YUQgKwHRcq3iD",
+      "b052WcTAD3j2UDZHQiXY",
+      "UnTwhXqatX5MyoPnl6DN"
+    ],
     "reviewScope": "Existing registered advert only; no new stock check, practical test, manufacturer confirmation or popularity claim.",
     "tests": "1213 passing; local responsive UI QA passing",
     "verified": "551 products, 604 sitemap URLs, 39 structured reviews, 5 live campaign pages; operational fields and affiliate links preserved",
@@ -44,9 +50,20 @@
     "tests": "1214 passing; responsive QA and methodology screenshot verified at 360, 390, 768 and 1366 pixels",
     "global08": "partial: public source and review limits clarified; no new credentials or practical tests claimed"
   },
+  "fourthBatch": {
+    "status": "pending_publication",
+    "reviewedAt": "2026-10-30",
+    "sourceFile": "documented-analysis-20261030.json",
+    "ids": ["lqUgNmaegZ1hAiP3iMOU", "HJcpaZe94VZRnomC2hH1", "vMno2u6iDC5eZJug2sOH", "YKSSWNPjLAaUeRSLtVWT", "iEXAHv7Lvrd0qvzDXiMA", "VaxspecNzGrFQjieZlq0", "jXr2Y2GPpfN57sjqnpfV", "c9hb1oe40g3K1dP4dAsy"],
+    "scope": "Official documentation consulted; not a practical test or new stock check. Model and registered seller guards preserved.",
+    "corrections": ["Go 4 public summary corrected from IPX7 to manufacturer IP67", "C500 hardware revision unresolved; no blanket color night vision claim", "C200 V3-specific features not assumed for unidentified revision"],
+    "tests": "1217 passing; invariants passing; responsive QA passed for all eight new pages; C500 mobile screenshot visually inspected",
+    "noRepetitionProof": "Compared fingerprints with HEAD checkpoint: only these eight changed; prior 39 unchanged.",
+    "remaining": "504 pending; 47 structured reviews to preserve."
+  },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-30T16:09:06.716Z",
-  "catalogueGeneratedAt": "2026-10-30T16:03:32.192Z",
+  "updatedAt": "2026-10-30T16:28:23.674Z",
+  "catalogueGeneratedAt": "2026-10-30T16:27:57.182Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -58,8 +75,8 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "pending": 512,
-    "preserve_prior_review": 39
+    "pending": 504,
+    "preserve_prior_review": 47
   },
   "items": [
     {
@@ -2085,12 +2102,17 @@
       "id": "c9hb1oe40g3K1dP4dAsy",
       "url": "https://rankingdacompra.com.br/produto/c9hb1oe40g3K1dP4dAsy-20260810-1.html",
       "title": "Fone de Ouvido JBL Quantum 100M2 Gamer Over-ear com Microfone Removível para PS4 e PS5",
-      "fingerprint": "a0e49af260677ba5b85d061802f12a5cd05a9c93ccabaf25b4890c798ee204a6",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "1359f3edf03cbfbc91256a1215f1afa35d48b55e22b02d01da5f28aed8e4ecef",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.jbl.com.br/JBLQTUM100M2BLK.html",
+        "https://www.jbl.com.br/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb298e5ae/pdfs/JBL_QUANTUM_100M2_Specsheet_EN.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "GjHJtzdsIhbmSINvhPeX",
@@ -2525,12 +2547,16 @@
       "id": "jXr2Y2GPpfN57sjqnpfV",
       "url": "https://rankingdacompra.com.br/produto/jXr2Y2GPpfN57sjqnpfV-20260810-1.html",
       "title": "JBL Caixa De Som Go 4 Black À Prova D'água Cor Preto",
-      "fingerprint": "038cdc39284f9d94bdbe294e2e29e2d0d0212f895bb85f3e7967bfa80c9da533",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "03d0aece4a3280673cee6c684e86173f36a4e87525393ca4395db05031de8d93",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.jbl.com.br/JBLGO4BLK.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "hDRgi7LAJobY4o5W9ipJ",
@@ -3585,23 +3611,31 @@
       "id": "lqUgNmaegZ1hAiP3iMOU",
       "url": "https://rankingdacompra.com.br/produto/lqUgNmaegZ1hAiP3iMOU-20260810-1.html",
       "title": "Mouse sem fio M280 Preto Logitech",
-      "fingerprint": "76833d53ba8510510e4a26d7e852c35e5ca86a5324c1c069a53ef9a588aea9fa",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "5d763e7b31e136e315e2ab839ac064001597e210626382b57f498ca4d62d635b",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.logitech.com/pt-br/shop/p/m280-wireless-mouse"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "HJcpaZe94VZRnomC2hH1",
       "url": "https://rankingdacompra.com.br/produto/HJcpaZe94VZRnomC2hH1-20260810-1.html",
       "title": "Mouse USB Óptico 1000DPI Preto M90 910-004053 Logitech",
-      "fingerprint": "9ff51de635acf71e63ba55e2841b8b724a2fc7d5d5750367285d4acc808840c2",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "278ee3aba064ba509fb3ab60ef5d3f7b68b81f3ea5fec6076f576dbb9a14ec63",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.logitech.com/pt-br/shop/p/m90-corded-mouse"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "qRN6SoGfO6PrwR2rj96v",
@@ -5221,12 +5255,16 @@
       "id": "vMno2u6iDC5eZJug2sOH",
       "url": "https://rankingdacompra.com.br/produto/vMno2u6iDC5eZJug2sOH-20260810-1.html",
       "title": "Teclado Com Fio Usb Logitech K120 Com Layout Abnt2 Cor de teclado Preto Idioma Português Brasil QWERTY",
-      "fingerprint": "a39d5788fdd6984073556510148468223cb72e6a0d511eb7d890a4d5359ce3e9",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "2a72ec3d1147fedd645bf05e0c157f1547f029614dcb972ea335f2c11a069ba6",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.logitech.com/pt-br/shop/p/k120-usb-standard-computer"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "sZGVRAGBdFaBYSOQbSO8",
@@ -5832,34 +5870,48 @@
       "id": "YKSSWNPjLAaUeRSLtVWT",
       "url": "https://rankingdacompra.com.br/produto/YKSSWNPjLAaUeRSLtVWT-20260810-1.html",
       "title": "TP-Link Tapo C200 Câmera de Segurança Wifi 1080P 360° Pan/Tilt",
-      "fingerprint": "7c23e6fe3e794126f32f2242ee67e47ff97096a05db0e444f7df4d96b0a4251a",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "aaa950ad12ce1b28377190ad3d15b83d48a196b6fa3dc9f04e24c1de6ab54b35",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.tp-link.com/br/home-networking/cloud-camera/tapo-c200/",
+        "https://www.tp-link.com/br/support/faq/2742/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "iEXAHv7Lvrd0qvzDXiMA",
       "url": "https://rankingdacompra.com.br/produto/iEXAHv7Lvrd0qvzDXiMA-20260810-1.html",
       "title": "TP-Link Tapo C320WS Câmera de Segurança Wifi 2K QHD Colorida IP66",
-      "fingerprint": "c5c569adc03e3a68f6f03763bb36af44227d109b38cdaa5ccc12dd870ab27b20",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "c3a3728b64189912bbd42cc5924d86293c812f6ffe00e63df7b6eefb6ab7e0e9",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.tp-link.com/br/home-networking/cloud-camera/tapo-c320ws/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "VaxspecNzGrFQjieZlq0",
       "url": "https://rankingdacompra.com.br/produto/VaxspecNzGrFQjieZlq0-20260810-1.html",
-      "title": "TP-Link Tapo C500 Câmera de Segurança Wifi 1080P 360° Colorida IP65",
-      "fingerprint": "b7a617078a5efc5b55b7e812fb7b7adc5820cd4da16223189d36b4453288e0a0",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "title": "TP-Link Tapo C500 — câmera externa Full HD pan/tilt; revisão a confirmar",
+      "fingerprint": "299df84065ae9f11f7d0cb4f231c1d6a9963a2af70385183a9dc8a67ad616177",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.tp-link.com/br/home-networking/cloud-camera/tapo-c500/v1/",
+        "https://www.tp-link.com/br/home-networking/cloud-camera/tapo-c500/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "EbNVkHXOor6py78Wgl8X",
