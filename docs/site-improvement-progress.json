@@ -293,7 +293,15 @@
     "remaining": "466 pending; 85 structured reviews published and to preserve."
   },
   "twelfthBatch": {
-    "status": "validated_ready_to_publish",
+    "status": "published_verified",
+    "sourceCommit": "d22c8ff4f",
+    "generatedCommit": "47627aced",
+    "integrityRun": 41126196019,
+    "sitemapRun": 41126196061,
+    "pagesRun": 41126275392,
+    "results": "all success; first Pages run superseded/cancelled",
+    "productionVerifiedAt": "2026-10-30T20:50:36.335Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-lote12.json: six HTTP 200 pages with source/affiliate checks; 91 reviews, 551 products, 604 URLs and protected fields verified",
     "reviewedAt": "2026-10-30",
     "sourceFile": "kitchen-analysis-20261030.json",
     "ids": [
@@ -315,7 +323,7 @@
     "researchNote": "Batedeira 1OfMg1pRePuvTqXaLiV6 NOT reviewed: title B-44-W versus original URL B-44-B. Need exact unit/model evidence before completing; no link or product swapped.",
     "tests": "1241 passing; general validator and 551 IDs/604 URLs/operational fields/affiliates preserved; responsive QA passed without JavaScript errors; BAF11A mobile screenshot inspected",
     "noRepetitionProof": "Only six fingerprints changed against previous checkpoint; prior 85 reviews identical.",
-    "remaining": "460 pending; 91 local structured reviews prepared. Only mark published after independent live proof."
+    "remaining": "460 pending; 91 structured reviews published and to preserve. Next run selects only new pending IDs or a documented new source/defect."
   },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
   "updatedAt": "2026-10-30T20:47:37.745Z",
@@ -424,8 +432,10 @@
       "fingerprint": "2e2fc11b4068389035ed268c4a1c5ac7f1ce4c552ed366bda5fc475c9d058afc",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T20:50:36.335Z",
+      "workNotes": [
+        "Lote 12: análise documental publicada e verificada; limites não confirmados preservados; sourceFile kitchen-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://www.elgin.com.br/fritadeira-air-fryer-quad-fry-1400w-42l-preta-com-tecnologia-air-circuit-360/p"
       ],
@@ -454,8 +464,10 @@
       "fingerprint": "1ec531f07a06be2f06b6a33fdc59609a36f38ff595bf58600780f42610f30f10",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T20:50:36.335Z",
+      "workNotes": [
+        "Lote 12: análise documental publicada e verificada; limites não confirmados preservados; sourceFile kitchen-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://www.philco.com.br/air-fryer-oven-11l-1800w-paf11b/p"
       ],
@@ -1062,8 +1074,10 @@
       "fingerprint": "ce4a8436d1a03c0acf36e17b990442f5adddc845a16fbac3f28313ad3389da64",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T20:50:36.335Z",
+      "workNotes": [
+        "Lote 12: análise documental publicada e verificada; limites não confirmados preservados; sourceFile kitchen-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://www.mondial.com.br/cafeteira-espresso-mondial-dolce-crema-20-bar-capsula-po-c-21-e-cnp/p"
       ],
@@ -2567,8 +2581,10 @@
       "fingerprint": "5f8c760557cdc5318c66dc03bc76ff3dcc4ed818d70baa2600e6accdc9c8e25a",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T20:50:36.335Z",
+      "workNotes": [
+        "Lote 12: análise documental publicada e verificada; limites não confirmados preservados; sourceFile kitchen-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://suporte.britania.com.br/hc/pt-br/articles/45660144685844-Documento-para-o-produto-Fritadeira-Air-Fryer-BAF11A",
         "https://suporte.britania.com.br/hc/pt-br/article_attachments/45660138420116",
@@ -3647,8 +3663,10 @@
       "fingerprint": "af9339e1a92a65f33749aaa8bc60cd2405c811ce1b4bd37eebd0f20dba1d8c1c",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T20:50:36.335Z",
+      "workNotes": [
+        "Lote 12: análise documental publicada e verificada; limites não confirmados preservados; sourceFile kitchen-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://www.philco.com.br/blender-liquidificador-portatil-philco-400w-600ml-plq04a/p"
       ],
@@ -3809,8 +3827,10 @@
       "fingerprint": "e36be4eeb4e9263afa844087c032dcb6600b0da3dec6389adfa63e79f97a6877",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T20:50:36.335Z",
+      "workNotes": [
+        "Lote 12: análise documental publicada e verificada; limites não confirmados preservados; sourceFile kitchen-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://loja.electrolux.com.br/micro-ondas-de-bancada-34l-meo44-branco-funcao-tira-odor-e-manter-aquecido-electrolux/p"
       ],
