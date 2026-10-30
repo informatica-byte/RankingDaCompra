@@ -166,7 +166,13 @@
     "remaining": "488 pending; 63 structured reviews to preserve."
   },
   "eighthBatch": {
-    "status": "pending_publication",
+    "status": "published_verified",
+    "sourceCommit": "345d55dee",
+    "integrityRun": 41119223102,
+    "sitemapRun": 41119223123,
+    "pagesRun": 41119285996,
+    "productionVerifiedAt": "2026-10-30T19:57:40.517Z",
+    "results": "all success; four HTTP 200 pages with expected review and sources; BE3 unit errors absent from page and search; 551 products, 604 URLs and protected fields preserved",
     "reviewedAt": "2026-10-30",
     "sourceFile": "connected-devices-analysis-20261030.json",
     "ids": ["mlMLB6907306094", "Wny29umvm2bXCrY9WGqg", "XDnd73z0ZIkihILVyQhX", "9P123IBTTYnSCMilPvXB"],
