@@ -12,7 +12,8 @@ export const NOTEBOOK_ANALYSES=JSON.parse(await readFile(new URL('../notebook-an
 export const HOUSEHOLD_ANALYSES=JSON.parse(await readFile(new URL('../household-analysis-20261030.json',import.meta.url),'utf8'));
 export const SECURITY_NETWORK_ANALYSES=JSON.parse(await readFile(new URL('../security-network-analysis-20261030.json',import.meta.url),'utf8'));
 export const KITCHEN_ANALYSES=JSON.parse(await readFile(new URL('../kitchen-analysis-20261030.json',import.meta.url),'utf8'));
-export const POPULAR_BATCHES=[POPULAR_ANALYSES,NEXT_POPULAR_ANALYSES,CAMPAIGN_ANALYSES,DOCUMENTED_ANALYSES,NETWORK_ANALYSES,OFFICE_MOBILE_ANALYSES,HOME_ANALYSES,CONNECTED_ANALYSES,NOTEBOOK_ANALYSES,HOUSEHOLD_ANALYSES,SECURITY_NETWORK_ANALYSES,KITCHEN_ANALYSES];
+export const EVERYDAY_TECH_ANALYSES=JSON.parse(await readFile(new URL('../everyday-tech-analysis-20261030.json',import.meta.url),'utf8'));
+export const POPULAR_BATCHES=[POPULAR_ANALYSES,NEXT_POPULAR_ANALYSES,CAMPAIGN_ANALYSES,DOCUMENTED_ANALYSES,NETWORK_ANALYSES,OFFICE_MOBILE_ANALYSES,HOME_ANALYSES,CONNECTED_ANALYSES,NOTEBOOK_ANALYSES,HOUSEHOLD_ANALYSES,SECURITY_NETWORK_ANALYSES,KITCHEN_ANALYSES,EVERYDAY_TECH_ANALYSES];
 export const popularById=new Map(POPULAR_BATCHES.flatMap(batch=>batch.products.map(item=>[item.id,item])));
 
 // Match the model and every explicit seller item code. A catalogue, a deal code,

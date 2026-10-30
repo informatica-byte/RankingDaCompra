@@ -8,6 +8,35 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['PfU3x9udsDbmj7DXjaCk', {
+    model:/(?=.*mondial)(?=.*vsp[- ]?30[- ]?b)/i,
+    correct:'Ventilador de Mesa Mondial VSP-30-B 30 cm — potência a confirmar',
+    summary:'O Mondial VSP-30-B tem diâmetro de 30 cm, seis pás, três velocidades, oscilação lateral e inclinação regulável documentados na página oficial. Há divergência de potência na própria fonte: título de 55 W e tabela de 60 W. Não escolhemos um valor nem presumimos equivalência entre versões. Confirme a etiqueta e a documentação da unidade antes de decidir por potência ou consumo. Não testamos vazão, ruído ou consumo e não garantimos silêncio ou refrigeração do ambiente.',
+    positiveNotes:['Ajustes de velocidade, oscilação e inclinação documentados para o VSP-30-B.'],
+    negativeNotes:['Potência a confirmar: página oficial diverge entre 55 W e 60 W.', 'Sem teste de vazão, ruído ou consumo; não é uma promessa de ar-condicionado.'],
+    sourceUrl:'https://www.mondial.com.br/ventilador-de-mesa-mondial-6-pas-vsp-30-b/p',sourceLabel:'Mondial — VSP-30-B, divergência de potência a confirmar',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
+  ['NUNROG3VOfMVViIW5Rtk', {
+    model:/(?=.*arno)(?=.*gpto)/i,
+    summary:'O Arno Compact GPTO tem placas antiaderentes em formato de grelha e placa superior ajustável documentadas no catálogo público da marca. A ficha distingue 850 W na versão 127 V e 700 W na versão 220 V; não publicamos 850 W como potência de qualquer unidade nem descrevemos o aparelho como bivolt. Não confirmamos placas removíveis ou uso em lava-louças. Quantidade de porções, tempo e resultado dependem do alimento; não fizemos teste de receitas ou do revestimento.',
+    positiveNotes:['Placa superior ajustável e revestimento antiaderente documentados para o GPTO.'],
+    negativeNotes:['Potência varia por tensão: 850 W em 127 V e 700 W em 220 V.', 'Placas removíveis, rendimento e desempenho não confirmados por teste.'],
+    sourceUrl:'https://www.arno.com.br/grill-arno-compact-preto-gpto-8010001307_pai-1/p',sourceLabel:'Arno — GPTO e versões de tensão',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
+  ['dMbluI9x5kQ0Gwxg8fOU', {
+    model:/(?=.*lg)(?=.*43lr6700psa)/i,
+    summary:'A LG 43LR6700PSA tem tela Full HD de 43 polegadas, frequência nativa de 60 Hz, processador alpha 5 AI Gen 6 e webOS 23 documentados na página oficial do código. Compatibilidade com Smart Magic não significa controle incluído: a fonte lista controle padrão e o Smart Magic vendido separadamente. Confira os requisitos das funções de voz e aplicativos. Não a descrevemos como 4K ou 120 Hz e não testamos brilho, contraste, imagem ou latência.',
+    positiveNotes:['Full HD, 60 Hz e conexões documentados para o código exato.'],
+    negativeNotes:['Smart Magic vendido separadamente na ficha; confira conjunto e requisitos de voz.', 'Recursos HDR e AI não equivalem a resultado de teste de imagem.'],
+    sourceUrl:'https://www.lg.com/br/small-medium-business/tvs-e-soundbars/smart-tvs/43lr6700psa/',sourceLabel:'LG Brasil — 43LR6700PSA, painel e controle',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
+  ['UlgA45nNx2rsEykMbv67', {
+    model:/(?=.*samsung)(?=.*u8600f)/i,
+    summary:'A Samsung U8600F de 50 polegadas documentada no Brasil, código UN50U8600FGXZD, tem resolução 4K de 3840 × 2160, painel de 60 Hz e sistema Tizen. Gaming Hub depende de internet, conta e condições dos parceiros; não significa jogos ou assinaturas pagos incluídos. Motion Xcelerator e processamento não transformam o painel em 120 Hz. Não testamos imagem, latência, som ou aplicativos e não transferimos recursos de outro tamanho ou código.',
+    positiveNotes:['Resolução 4K e frequência de 60 Hz documentadas para a versão brasileira de 50 polegadas.'],
+    negativeNotes:['Serviços podem exigir contas, pagamentos e acessórios separados.', 'Sem ensaio de imagem ou jogos; não atribuímos painel de 120 Hz.'],
+    sourceUrl:'https://www.samsung.com/br/tvs/uhd-4k-tv/u8600f-50-inch-crystal-uhd-4k-smart-tv-un50u8600fgxzd/',sourceLabel:'Samsung Brasil — U8600F 50, especificações e condições',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
   ['MBhoRb0kSLsHrhutbTLN', {
     model:/(?=.*mondial)(?=.*c[- ]?21[- ]?e[- ]?cnp)/i,
     summary:'A Mondial C-21-E-CNP Dolce Crema permite café em pó e acompanha adaptador para cápsulas Nespresso, segundo a página oficial. O adaptador para cápsulas Dolce Gusto é vendido separadamente. A marca descreve reservatório removível de 1,2 litro e bico vaporizador. A pressão nominal de 20 bar não é uma medição independente de qualidade, sabor ou tempo de preparo. Não garantimos rendimento fixo de xícaras nem resultado profissional; não testamos a bebida ou o equipamento. Confira acessórios e tensão no anúncio.',
