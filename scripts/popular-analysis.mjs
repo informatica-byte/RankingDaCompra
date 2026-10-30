@@ -4,7 +4,8 @@ export const POPULAR_ANALYSES=JSON.parse(await readFile(new URL('../popular-anal
 export const NEXT_POPULAR_ANALYSES=JSON.parse(await readFile(new URL('../next-popular-analysis.json',import.meta.url),'utf8'));
 export const CAMPAIGN_ANALYSES=JSON.parse(await readFile(new URL('../campaign-analysis.json',import.meta.url),'utf8'));
 export const DOCUMENTED_ANALYSES=JSON.parse(await readFile(new URL('../documented-analysis-20261030.json',import.meta.url),'utf8'));
-export const POPULAR_BATCHES=[POPULAR_ANALYSES,NEXT_POPULAR_ANALYSES,CAMPAIGN_ANALYSES,DOCUMENTED_ANALYSES];
+export const NETWORK_ANALYSES=JSON.parse(await readFile(new URL('../network-analysis-20261030.json',import.meta.url),'utf8'));
+export const POPULAR_BATCHES=[POPULAR_ANALYSES,NEXT_POPULAR_ANALYSES,CAMPAIGN_ANALYSES,DOCUMENTED_ANALYSES,NETWORK_ANALYSES];
 export const popularById=new Map(POPULAR_BATCHES.flatMap(batch=>batch.products.map(item=>[item.id,item])));
 
 // Match the model and every explicit seller item code. A catalogue, a deal code,

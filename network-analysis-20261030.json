@@ -1,0 +1,82 @@
+{
+ "version":1,
+ "reviewedAt":"2026-10-30",
+ "priority":{"source":"Fila editorial pendente, sem usar procura ou vendas presumidas","method":"Cinco roteadores com modelo identificado e documentação oficial; as 47 análises anteriores não foram refeitas."},
+ "products":[
+  {
+   "id":"YuOWci2UixF5GuQE6IYS","guard":"HUAWEI.*AX2S","expectedCatalogue":"MLB36213556",
+   "title":"Huawei AX2S: Wi-Fi 6 em 5 GHz, Mesh e dúvidas sobre a unidade",
+   "publicSummary":"O Huawei AX2S oferece duas bandas e Wi-Fi 6 em 5 GHz segundo a fabricante. As taxas anunciadas não garantem a velocidade do plano ou cobertura em todos os cômodos. A contagem de portas do anúncio é contraditória e continua a confirmar.",
+   "fit":"Para quem quer renovar a rede e consegue conferir a unidade vendida, os aparelhos conectados e a posição do roteador antes da escolha.",
+   "tradeoff":"Wi-Fi 6 em 5 GHz não significa que todos os dispositivos ou as duas bandas vão operar com o mesmo padrão e velocidade.",
+   "advantages":["Duas bandas simultâneas e Wi-Fi 6 em 5 GHz documentados pela Huawei.","A fabricante anuncia HarmonyOS Mesh+ e EasyMesh, com requisitos de compatibilidade."],
+   "limitations":["O cadastro apresenta contagens de portas divergentes; não escolhemos uma por suposição.","Não medimos cobertura, latência ou tráfego; recursos variam por unidade, região e dispositivos."],
+   "check":"Peça confirmação da versão e foto das conexões. Para ampliar uma rede existente, confira o protocolo, o firmware e a compatibilidade de cada aparelho.",
+   "alternative":"Se precisa de muitas conexões cabeadas, resolva a contagem de portas antes da compra ou compare um modelo que a documente claramente.",
+   "questions":[["AX1500 entrega 1.500 Mbps no celular?","Não é uma garantia. A classe reúne taxas nominais de bandas diferentes; a velocidade real depende da rede e do aparelho."],["Wi-Fi 6 vale nas duas bandas?","A Huawei destaca Wi-Fi 6 em 5 GHz. Não generalizamos o mesmo padrão para 2,4 GHz."],["Quantas portas terá a unidade?","A informação do anúncio é contraditória. A dúvida permanece sinalizada até confirmar o equipamento vendido."],["Funciona em Mesh com qualquer marca?","Não presuma isso. HarmonyOS Mesh+ e EasyMesh têm requisitos próprios; confirme o conjunto específico."]],
+   "description":"Entenda o Huawei AX2S, Wi-Fi 6 em 5 GHz e requisitos Mesh. Veja por que as taxas são nominais e a quantidade de portas ainda precisa ser confirmada.",
+   "basis":"Página oficial brasileira do AX2S consultada em 30/10/2026. Divergência de portas já registrada foi mantida. Sem teste de rede ou nova conferência do vendedor.",
+   "sources":[{"url":"https://consumer.huawei.com/br/routers/ax2s/","label":"Huawei — AX2S e notas sobre velocidades e compatibilidade; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"AweCTxq7vwVQ7VmN4IIg","guard":"Mercusys.*MR80X.*V4","expectedListing":"MLB4466469885",
+   "title":"Mercusys MR80X V4: AX3000, portas e limites do EasyMesh",
+   "publicSummary":"O Mercusys MR80X V4 é um roteador dual band Wi-Fi 6 AX3000 com portas Gigabit. A página brasileira anuncia EasyMesh, mas alerta para firmware e possíveis conflitos entre fornecedores. AX3000 não é uma promessa de internet a 3 Gbps em um aparelho.",
+   "fit":"Para quem precisa de rede dual band e conexões cabeadas e pode verificar a revisão V4 e a compatibilidade dos clientes.",
+   "tradeoff":"A classe Wi-Fi ajuda a comparar a proposta, mas não resume cobertura, desempenho real ou funcionamento de uma rede Mesh mista.",
+   "advantages":["Wi-Fi 6 dual band e portas Gigabit documentados para a revisão V4.","EasyMesh anunciado na página brasileira, permitindo planejar expansão quando os requisitos forem atendidos."],
+   "limitations":["A fabricante alerta para dependências de firmware e conflitos entre fornecedores no EasyMesh.","Não testamos o produto em residências nem garantimos roaming, velocidade ou estabilidade em qualquer conjunto."],
+   "check":"Confira V4 na identificação, firmware disponível e equipamentos que formarão a rede. Não atualize com arquivo de outra revisão ou região.",
+   "alternative":"Para ampliar um sistema já instalado, priorize compatibilidade documentada com esse sistema em vez de escolher apenas a maior classe AX.",
+   "questions":[["AX3000 é a velocidade garantida do meu plano?","Não. É uma classe de taxas sem fio; plano, portas, interferência e cliente limitam o resultado."],["EasyMesh significa que qualquer roteador vai funcionar?","Não. A página oficial alerta para firmware e conflitos entre fornecedores; confira o conjunto antes de comprar."],["Posso usar firmware de outra revisão?","Não trate versões parecidas como equivalentes. Siga o suporte oficial da revisão e região da unidade."],["Vai eliminar todas as áreas sem sinal?","Não medimos cobertura. Paredes, posição e conexões entre os pontos precisam ser avaliadas."]],
+   "description":"Conheça o Mercusys MR80X V4 para rede Wi-Fi 6 e veja os cuidados com classe AX3000, firmware e compatibilidade EasyMesh.",
+   "basis":"Página oficial brasileira do MR80X V4 consultada em 30/10/2026, incluindo ressalvas EasyMesh. Não é teste comparativo nem confirmação de estoque.",
+   "sources":[{"url":"https://www.mercusys.com.br/product/wifi-router/mr80x/v4/","label":"MERCUSYS — MR80X V4 e ressalvas de firmware/EasyMesh; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"sMCnNBstxTrJqaF6jp2O","guard":"Intelbras.*Twibi.*Force.*AX|Twibi.*Force.*AX.*Intelbras","expectedListing":"MLB5677541962",
+   "title":"Intelbras Twibi Force AX: módulo, conjunto e planejamento da rede",
+   "publicSummary":"A ficha Intelbras identifica o Twibi Force AX como AX1500, com inMesh e duas portas Gigabit por módulo. Uma unidade não equivale a um conjunto de dois pontos. A cobertura anunciada depende do ambiente e não é resultado medido pela equipe.",
+   "fit":"Para quem está planejando uma rede com pontos compatíveis e pode conferir quantos módulos estão incluídos no anúncio.",
+   "tradeoff":"Mesh permite planejar expansão, mas a quantidade de módulos, sua posição e a ligação entre eles fazem parte do projeto.",
+   "advantages":["Tecnologia inMesh, baseada em EasyMesh, documentada pela Intelbras.","Uma porta WAN/LAN Gigabit e uma LAN Gigabit por módulo informadas na ficha técnica."],
+   "limitations":["Limites anunciados de área, clientes e plano são referências condicionadas ao uso; não garantias para toda residência.","Não presumimos que o anúncio inclua dois módulos nem que todo produto chamado Mesh seja compatível."],
+   "check":"Confira quantidade de módulos, equipamentos inMesh compatíveis e portas que sobram após a ligação principal. Planeje posição e alimentação de cada ponto.",
+   "alternative":"Se só precisa conectar muitos aparelhos por cabo, confira a quantidade de portas e o projeto da rede antes de escolher pela função Mesh.",
+   "questions":[["O anúncio inclui um módulo ou dois?","Isso deve ser confirmado no anúncio. A documentação distingue módulo unitário e conjunto, e o nome comercial sozinho não define o pacote."],["1200mb do título é a velocidade da internet?","Não. A ficha descreve classe AX1500 e taxas por banda. Isso não é uma medição da conexão contratada."],["Qualquer roteador Mesh entra nessa rede?","Não presuma. Confira compatibilidade inMesh e as condições do equipamento que já possui."],["A cobertura anunciada vale em qualquer casa?","Não. A Intelbras ressalva perfil de uso, obstáculos e interferências; não testamos seu ambiente."]],
+   "description":"Entenda o Twibi Force AX, a diferença entre módulo e conjunto, as portas por unidade e os cuidados para planejar uma rede inMesh.",
+   "basis":"Ficha técnica oficial Intelbras Twibi Force AX consultada em 30/10/2026. Sem teste de cobertura, promessa de velocidade ou confirmação de quantidade no pacote do vendedor.",
+   "sources":[{"url":"https://backend.intelbras.com/sites/default/files/2025-03/Ficha%20T%C3%A9cnica%20-%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX.pdf","label":"Intelbras — ficha técnica de módulo e conjunto Twibi Force AX; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"mlMLB4801704305","guard":"Tenda.*RX12.*Pro.*V2","expectedListing":"MLB4801704305",
+   "title":"Tenda RX12 Pro V2.0: portas, classe AX3000 e versão regional",
+   "publicSummary":"A documentação Tenda do RX12 Pro V2.0 informa Wi-Fi 6 dual band, uma WAN e três LAN Gigabit, além de Wi-Fi+ Mesh. AX3000 não garante 3 Gbps de internet por dispositivo. A fonte consultada é regional e não comprova todos os recursos do firmware vendido no Brasil.",
+   "fit":"Para quem quer avaliar um roteador dual band com várias conexões cabeadas e pode confirmar a revisão e o suporte local.",
+   "tradeoff":"O mesmo nome de modelo em uma página estrangeira não basta para garantir que firmware, funções e condições regulatórias sejam idênticos na unidade anunciada.",
+   "advantages":["Uma WAN e três LAN Gigabit documentadas para o RX12 Pro V2.0.","Duas bandas e Wi-Fi+ Mesh listados na documentação da revisão."],
+   "limitations":["A fonte oficial consultada é da região francesa; recursos regionais e firmware brasileiro precisam ser conferidos.","Não medimos cobertura ou velocidade e não generalizamos compatibilidade Mesh para outros fabricantes."],
+   "check":"Confira V2.0, procedência, identificação regulatória e suporte oficial da região. Não instale firmware estrangeiro só porque o nome coincide.",
+   "alternative":"Se precisa integrar uma rede existente, procure compatibilidade explícita entre os aparelhos e versões antes de comparar antenas ou taxas nominais.",
+   "questions":[["AX3000 entrega 3 Gbps na porta de rede?","Não. As portas documentadas são Gigabit; a classe AX se refere a taxas nominais de Wi-Fi."],["Cinco antenas garantem mais alcance que outro roteador?","Não podemos concluir isso pelo número de antenas. Não fizemos teste de cobertura."],["A ficha estrangeira confirma tudo na unidade brasileira?","Não. Região e firmware podem variar; os limites da fonte estão sinalizados."],["Wi-Fi+ funciona com qualquer sistema Mesh?","Não presumimos interoperabilidade. Confirme aparelhos e firmware suportados pela Tenda."]],
+   "description":"Veja a proposta do Tenda RX12 Pro V2.0, suas portas e os cuidados com classe AX3000, firmware e diferenças entre versões regionais.",
+   "basis":"Página oficial Tenda France do RX12 Pro V2.0 consultada em 30/10/2026. Usada como referência da revisão, sem extrapolar recursos regionais ou confirmar firmware do anúncio.",
+   "sources":[{"url":"https://www.tendacn.com/fr/product/specification/685972222058593","label":"Tenda — RX12 Pro V2.0, fonte regional francesa; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"LUsq533hX6lTuHwnZbhz","guard":"TP.Link.*Deco.*X10","expectedCatalogue":"MLB49278422",
+   "title":"TP-Link Deco X10 de uma unidade: o que falta para formar uma rede Mesh",
+   "publicSummary":"O Deco X10 é um sistema Wi-Fi 6 AX1500 com duas portas Gigabit por unidade. Este cadastro identifica 1-pack: para formar uma rede com vários pontos, é preciso ter outras unidades compatíveis. A área anunciada não garante cobertura no seu imóvel.",
+   "fit":"Para quem quer iniciar ou ampliar um sistema Deco e consegue planejar os pontos e conferir o pacote escolhido.",
+   "tradeoff":"Uma unidade pode ser o ponto inicial da rede, mas não cria sozinha a distribuição física de um conjunto com vários módulos.",
+   "advantages":["Duas portas Gigabit por unidade documentadas pela TP-Link.","Rede Mesh entre unidades Deco e configuração orientada pelo aplicativo descritas pelo fabricante."],
+   "limitations":["1-pack não inclui um segundo ponto para instalar em outro cômodo.","Cobertura depende de ambiente e quantidade de unidades; não garantimos 190 m² nem compatibilidade com todo sistema chamado Mesh."],
+   "check":"Confirme uma unidade no pacote, compatibilidade com seus Decos, firmware e portas disponíveis após a ligação principal. Planeje onde instalar cada ponto.",
+   "alternative":"Se a necessidade é levar rede a vários locais, compare o conjunto completo de pontos necessários, não uma unidade isolada com um kit de duas ou três.",
+   "questions":[["O 1-pack cobre vários andares sozinho?","Não conte com isso. É uma unidade, e não testamos seu imóvel; paredes, posição e distância importam."],["AX1500 garante internet de 1.500 Mbps?","Não. A classe reúne taxas nominais das bandas e não substitui a velocidade real do plano e dos aparelhos."],["É compatível com qualquer roteador TP-Link?","Não presuma apenas pela marca. Confira a compatibilidade do sistema Deco e das versões envolvidas."],["Preciso comprar dois ou três de uma vez?","Depende do projeto. Planeje área, obstáculos e ligação entre pontos; esta análise não calcula a quantidade para sua casa."]],
+   "description":"Entenda o Deco X10 1-pack, suas duas portas e o planejamento de uma rede com outros Decos, sem presumir cobertura ou velocidade garantidas.",
+   "basis":"Página oficial brasileira do Deco X10 consultada em 30/10/2026. Quantidade 1-pack atribuída ao cadastro; não é teste de cobertura nem confirmação do conteúdo atual do anúncio.",
+   "sources":[{"url":"https://www.tp-link.com/br/home-networking/deco/deco-x10/","label":"TP-Link — Deco X10, pacotes e ressalvas de cobertura; consulta em 30/10/2026"}],"links":[]
+  }
+ ]
+}
