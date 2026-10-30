@@ -121,7 +121,7 @@ try{
  assert.ok(links.length);for(const link of links){assert.match(link.href,/^https:\/\//);assert.match(link.rel,/sponsored/);}
  results.push('afiliados preservados; nenhum link externo visitado');
  await page.screenshot({path:resolve(out,'ficha-mobile.png'),fullPage:true});
- const depth={products:(await Promise.all(['featured-analysis.json','popular-analysis.json','next-popular-analysis.json','campaign-analysis.json','documented-analysis-20261030.json','network-analysis-20261030.json'].map(async file=>JSON.parse(await readFile(resolve(root,file),'utf8'))))).flatMap(batch=>batch.products)};
+ const depth={products:(await Promise.all(['featured-analysis.json','popular-analysis.json','next-popular-analysis.json','campaign-analysis.json','documented-analysis-20261030.json','network-analysis-20261030.json','office-mobile-analysis-20261030.json'].map(async file=>JSON.parse(await readFile(resolve(root,file),'utf8'))))).flatMap(batch=>batch.products)};
  for(const entry of depth.products){
   const item=feed.products.find(p=>p.id===entry.id);assert.ok(item,'destaque publicado');
   await page.goto(base+new URL(item.url).pathname,{waitUntil:'domcontentloaded'});

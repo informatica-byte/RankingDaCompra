@@ -90,16 +90,37 @@
     "results": "all success; five HTTP 200 pages with expected sources and reviews; all 551 products, 604 URLs and protected operational/affiliate fields preserved",
     "reviewedAt": "2026-10-30",
     "sourceFile": "network-analysis-20261030.json",
-    "ids": ["YuOWci2UixF5GuQE6IYS", "AweCTxq7vwVQ7VmN4IIg", "sMCnNBstxTrJqaF6jp2O", "mlMLB4801704305", "LUsq533hX6lTuHwnZbhz"],
+    "ids": [
+      "YuOWci2UixF5GuQE6IYS",
+      "AweCTxq7vwVQ7VmN4IIg",
+      "sMCnNBstxTrJqaF6jp2O",
+      "mlMLB4801704305",
+      "LUsq533hX6lTuHwnZbhz"
+    ],
     "scope": "Five pending router reviews with official sources; no practical test, new stock or link availability check.",
-    "unresolvedFacts": ["AX2S advertised port count contradictory", "Tenda reference is a French regional page, not confirmation of Brazilian firmware", "Package quantities and actual coverage must be confirmed; Mesh is not assumed universal"],
+    "unresolvedFacts": [
+      "AX2S advertised port count contradictory",
+      "Tenda reference is a French regional page, not confirmation of Brazilian firmware",
+      "Package quantities and actual coverage must be confirmed; Mesh is not assumed universal"
+    ],
     "tests": "1220 passing; general validator and invariants passed; responsive QA passed; Deco mobile screenshot inspected",
     "noRepetitionProof": "Only these five fingerprints changed from the previous checkpoint; prior 47 unchanged. AX2S was an existing basic editorial entry, not a completed structured review.",
     "remaining": "499 pending; 52 structured reviews to preserve."
   },
+  "sixthBatch": {
+    "status": "pending_publication",
+    "reviewedAt": "2026-10-30",
+    "sourceFile": "office-mobile-analysis-20261030.json",
+    "ids": ["FlqPY3yHJ2xPoNgnhSTE", "EmrdwlcDgCCM5suoz8dB", "rcwXY2aQWUN6dbCVzvsB", "LASwiEy13CerUN6q3pKn", "tvmAXcLVslrks9nZlnoa", "35hImqo3QJm6moaV4OzO"],
+    "scope": "Official documentation consulted for six pending products; no practical tests, current stock check, price or affiliate edits.",
+    "limits": ["L3250 duplex is manual; L4360 printing duplex does not imply scanner duplex", "Buds total battery includes case; Interpreter depends on compatible Galaxy and service conditions", "G29 compatibility and separate accessories must be confirmed", "Phone RAM attributed to listing; no benchmark, charging time or battery-life guarantee"],
+    "tests": "1223 passing; general validator and invariants passed; responsive QA passed; L4360 mobile screenshot inspected",
+    "noRepetitionProof": "Compared all catalogue fingerprints with previous checkpoint: only these six changed; prior 52 unchanged.",
+    "remaining": "493 pending; 58 structured reviews to preserve."
+  },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-30T16:40:04.812Z",
-  "catalogueGeneratedAt": "2026-10-30T16:40:04.099Z",
+  "updatedAt": "2026-10-30T16:51:37.226Z",
+  "catalogueGeneratedAt": "2026-10-30T16:51:27.227Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -111,8 +132,8 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "pending": 499,
-    "preserve_prior_review": 52
+    "pending": 493,
+    "preserve_prior_review": 58
   },
   "items": [
     {
@@ -1390,23 +1411,31 @@
       "id": "tvmAXcLVslrks9nZlnoa",
       "url": "https://rankingdacompra.com.br/produto/tvmAXcLVslrks9nZlnoa-20260810-1.html",
       "title": "Celular Samsung Galaxy A36 5g 256gb 8gb Ram Branco",
-      "fingerprint": "b19c863792d1cd89ef97ec5d402704b494240ea694b1ab5c1130738d4c0ac077",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "ae8943c8583e9a8b6aa8a87ea0ca32d07f942334139b84da01cbde4df5c5ae7d",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.samsung.com/br/smartphones/galaxy-a/galaxy-a36-5g-awesome-white-256gb-sm-a366ezagzto/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "35hImqo3QJm6moaV4OzO",
       "url": "https://rankingdacompra.com.br/produto/35hImqo3QJm6moaV4OzO-20260810-1.html",
       "title": "Celular Samsung Galaxy A56 5g 256gb 8gb Ram Cinza",
-      "fingerprint": "0e4ff06f3178b8a2b513539272710a760e753ed46cef55588aab94916591863f",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "5df937efde586ee7ca36250f1053771f64f76483b0bd3d1226ae019a55207903",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://shop.samsung.com/br/galaxy-a56-256gb/p?idsku=8765"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "vfoOrRV7xpu2EgJ8aIUy",
@@ -2330,12 +2359,16 @@
       "id": "FlqPY3yHJ2xPoNgnhSTE",
       "url": "https://rankingdacompra.com.br/produto/FlqPY3yHJ2xPoNgnhSTE-20260810-1.html",
       "title": "Galaxy Buds Core Preto",
-      "fingerprint": "7be24e0cbb95eae3d750ecfe5507172a1fed89507b3ceeabb18a7550cd43f6c9",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "55867e5e9f0f9a82c1fcad308a7461a0e2ee02a73179d7a0bebcc6a077fccee4",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "0pP7JpudV4nPsUekxfeH",
@@ -2484,23 +2517,32 @@
       "id": "EmrdwlcDgCCM5suoz8dB",
       "url": "https://rankingdacompra.com.br/produto/EmrdwlcDgCCM5suoz8dB-20260810-1.html",
       "title": "Impressora 3x1 Multifuncional Epson Ecotank L3250 Wifi Bivol Preto",
-      "fingerprint": "f19301ff8cb24a1d93b7184d3bd19d4a13a287bd7e7eb837b2a67a58f7e96062",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "2cdf6938f550c9e7db199db80f5765b242f17ea7a612d8875eb82ab204e4dc51",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://epson.com.br/Para-casa/Impressoras/Impressoras-jato-de-tinta/Impressora-Multifuncional-3-em-1-Epson-EcoTank%C2%AE-L3250/p/C11CJ67303",
+        "https://epson.com.br/faq/SPT_C11CJ67301~faq-0000803-l3250_l3251"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "rcwXY2aQWUN6dbCVzvsB",
       "url": "https://rankingdacompra.com.br/produto/rcwXY2aQWUN6dbCVzvsB-20260810-1.html",
       "title": "Impressora Multifuncional L4360 Wi-fi Ecotank Epson",
-      "fingerprint": "cb56e1d0df3003776938ffaec94f8617f523b0faae237e8389d92d6585c4a3ef",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "9aad3b1b6080194beab819183304a82bcabfb3d764200397ea156ffac6c81b7a",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://epson.com.br/Para-casa/Impressoras/Impressoras-jato-de-tinta/Impressora-Multifuncional-Colorida-EcoTank-L4360-com-Wi-Fi-e-Impress%C3%A3o-Duplex/p/C11CL41302"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "hokaCwafFsMcmt9QPBdX",
@@ -6149,12 +6191,17 @@
       "id": "LASwiEy13CerUN6q3pKn",
       "url": "https://rankingdacompra.com.br/produto/LASwiEy13CerUN6q3pKn-20260810-1.html",
       "title": "Volante Gamer Logitech G29 Driving Force para PlayStation e PC",
-      "fingerprint": "33cffad70a64e22a09939abfdba9aac916d5055388e9cf31c849bf469614392d",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "dbc83c0f3972de10bd17e9ecc4426138a0b6108c19cd7671ffd1fa6bd60666c2",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.logitechg.com/pt-br/shop/p/driving-force-racing-wheel",
+        "https://www.logitechg.com/pt-br/shop/p/driving-force-shifter.941-000119"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "wAsxhijcNyAq9AblyLkN",
