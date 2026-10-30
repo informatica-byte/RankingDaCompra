@@ -8,7 +8,8 @@ import home from '../informational-home.js';
 // Development-only test: no logged-in browser, database, analytics or affiliate visits.
 const root=resolve(new URL('..',import.meta.url).pathname.replace(/^\/([A-Z]:)/,'$1'));
 const modulePath=process.env.RDC_PLAYWRIGHT_MODULE;
-const {chromium}=modulePath?await import(pathToFileURL(modulePath)):await import('playwright');
+const playwright=modulePath?await import(pathToFileURL(modulePath)):await import('playwright');
+const {chromium}=playwright.chromium?playwright:playwright.default;
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.jpg':'image/jpeg','.webp':'image/webp','.png':'image/png'};
 const server=http.createServer(async(req,res)=>{
  try{

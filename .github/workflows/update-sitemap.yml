@@ -9,6 +9,8 @@ on:
       - "scripts/generate-sitemap.mjs"
       - "home-selection.js"
       - "scripts/generate-discovery.mjs"
+      - "scripts/related-products.mjs"
+      - "scripts/published-discovery-summary.mjs"
       - "scripts/comparison-guides.mjs"
       - "comparison-integrity.js"
       - "scripts/discovery-editorial.mjs"

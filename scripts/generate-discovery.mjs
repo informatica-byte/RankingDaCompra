@@ -13,6 +13,8 @@ import { renderBuyingAdvice, renderGuideChecklist } from "./buying-advice.mjs";
 import { publishedEditorialNotes, editorialItems, usefulEditorialItems } from "./published-editorial.mjs";
 import { headphoneFormat, headphoneFormats } from './headphone-formats.mjs';
 import { applyVisibilityEditorial } from './visibility-editorial.mjs';
+import { selectRelatedProducts } from './related-products.mjs';
+import { publishedDiscoverySummary, publishedArticleProduct } from './published-discovery-summary.mjs';
 import { renderIntegrityGuide } from './comparison-guides.mjs';
 import { routerCapabilities, renderPracticalSection, practicalProfile, EDITORIAL_REVIEWED_AT, FOCUSED_GUIDES, focusedProducts, renderFocusedGuide } from "./discovery-editorial.mjs";
 
@@ -127,6 +129,8 @@ function structuredProduct(html) {
       const product = nodes.find((node) => node?.["@type"] === "Product"
         || (Array.isArray(node?.["@type"]) && node["@type"].includes("Product")));
       if (product) return product;
+      const informational=nodes.map(publishedArticleProduct).find(Boolean);
+      if(informational)return informational;
     } catch {
       // Um bloco inválido não impede a leitura dos demais dados públicos da página.
     }
@@ -140,6 +144,11 @@ function firstUrl(value) {
 }
 
 async function loadGeneratedPages() {
+  let publishedRecords=new Map();
+  try {
+    const snapshot=JSON.parse(await readFile(resolve('vitrine-publica.json'),'utf8'));
+    publishedRecords=new Map((snapshot.products||[]).map(p=>[String(p.id),p]));
+  } catch(error) {if(error.code!=='ENOENT')throw error;}
   const categories = new Map();
   const products = [];
   let entries = [];
@@ -161,7 +170,13 @@ async function loadGeneratedPages() {
     const schema = structuredProduct(html);
     const title = String(schema.name || "").trim()
       || textFromHtml(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]);
-    const summary = textFromHtml(html.match(/<p[^>]+class=["'][^"']*summary[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1]) || String(schema.description || "").trim();
+    let summary = textFromHtml(html.match(/<p[^>]+class=["'][^"']*summary[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1]) || String(schema.description || "").trim();
+    if(summary.length<180||GENERIC_TEXT.test(summary)){
+      const id=entry.name.endsWith('-'+SHARE_VERSION+'.html')?entry.name.slice(0,-('-'+SHARE_VERSION+'.html').length):'';
+      const published=publishedRecords.get(id);
+      const canonical=attribute(html,/<link[^>]+rel=["']canonical["'][^>]*>/i,'href');
+      summary=publishedDiscoverySummary({id,title,summary,canonical,expectedUrl:SITE+'produto/'+entry.name},published?{id:published.id,title:publicProductName(published),summary:published.comentario}:null);
+    }
     if (!title || summary.length < 180 || GENERIC_TEXT.test(summary)) continue;
     const categoryName = textFromHtml(html.match(/<div[^>]+class=["'][^"']*fact[^"']*["'][^>]*>\s*<span[^>]*>Categoria<\/span>([\s\S]*?)<\/div>/i)?.[1]) || String(schema.category || "Produtos").trim();
     const categoryId = slug(categoryName);
@@ -786,8 +801,7 @@ async function addRelatedLinks(products, productsByCategory, productUrls, catego
     } catch {
       continue;
     }
-    const related = [...(productsByCategory.get(product.categoria) || [])]
-      .filter((item) => item.id !== product.id).sort(sortProducts).slice(0, 4);
+    const related = selectRelatedProducts(product, productsByCategory.get(product.categoria) || []);
     const section = relatedSection(product, related, productUrls, categoryNames.get(product.categoria) || "Produtos");
     const withoutOldSection = html.replace(/<!-- discovery-related:start -->[\s\S]*?<!-- discovery-related:end -->/g, "");
     const next = upgradeProductExperience(withoutOldSection.replace("</article>", `${section}</article>`));
