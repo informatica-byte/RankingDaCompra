@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-30T20:49:21.055Z",
+  "generatedAt": "2026-10-30T21:01:09.036Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -2643,7 +2643,7 @@
     {
       "id": "dMbluI9x5kQ0Gwxg8fOU",
       "titulo": "Smart TV LG 43\"Full HD, Processador A5 Ger6, AI, Alexa e webOS 23 - 43LR6700PSA",
-      "comentario": "A Smart TV LG 43\"Full HD (43LR6700PSA) utiliza o processador A5 Ger6 e o sistema webOS 23 para o gerenciamento de sua interface. O dispositivo oferece suporte à integração com a assistente Alexa para o uso de comandos de voz no controle das funções.",
+      "comentario": "A LG 43LR6700PSA tem tela Full HD de 43 polegadas, frequência nativa de 60 Hz, processador alpha 5 AI Gen 6 e webOS 23 documentados na página oficial do código. Compatibilidade com Smart Magic não significa controle incluído: a fonte lista controle padrão e o Smart Magic vendido separadamente. Confira os requisitos das funções de voz e aplicativos. Não a descrevemos como 4K ou 120 Hz e não testamos brilho, contraste, imagem ou latência.",
       "categoria": "smarttv",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_741946-MLA107875422514_032026-F.webp",
       "preco": "1.665,79",
@@ -2654,8 +2654,8 @@
       "precoConferenciaId": "2c1a9b4a-898d-411b-ba34-b4445811c974",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 1665.79,
-      "pros": "",
-      "contras": "",
+      "pros": "Full HD, 60 Hz e conexões documentados para o código exato.",
+      "contras": "Smart Magic vendido separadamente na ficha; confira conjunto e requisitos de voz.\nRecursos HDR e AI não equivalem a resultado de teste de imagem.",
       "notaInformada": ""
     },
     {
@@ -7971,7 +7971,7 @@
     {
       "id": "NUNROG3VOfMVViIW5Rtk",
       "titulo": "Grill Arno Compact Preto Gpto",
-      "comentario": "O Grill Arno Compact Preto Gpto apresenta potência de 850 W e capacidade para o preparo simultâneo de 2 sanduíches. O modelo dispõe de placa superior ajustável, trava de segurança lateral para armazenamento e coletor de gordura integrado, ocupando uma área de 8x20x20 cm.",
+      "comentario": "O Arno Compact GPTO tem placas antiaderentes em formato de grelha e placa superior ajustável documentadas no catálogo público da marca. A ficha distingue 850 W na versão 127 V e 700 W na versão 220 V; não publicamos 850 W como potência de qualquer unidade nem descrevemos o aparelho como bivolt. Não confirmamos placas removíveis ou uso em lava-louças. Quantidade de porções, tempo e resultado dependem do alimento; não fizemos teste de receitas ou do revestimento.",
       "categoria": "casa",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_637333-MLA84849432755_052025-F.webp",
       "preco": "123,12",
@@ -7988,8 +7988,8 @@
       "precoConferenciaId": "3ec8de6a-14cd-4916-9af6-0b9dc77b6a31",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 123.12,
-      "pros": "",
-      "contras": "",
+      "pros": "Placa superior ajustável e revestimento antiaderente documentados para o GPTO.",
+      "contras": "Potência varia por tensão: 850 W em 127 V e 700 W em 220 V.\nPlacas removíveis, rendimento e desempenho não confirmados por teste.",
       "notaInformada": ""
     },
     {
@@ -8526,8 +8526,8 @@
     },
     {
       "id": "PfU3x9udsDbmj7DXjaCk",
-      "titulo": "Ventilador de Mesa 30cm Super Power Mondial 60W VSP-30-B",
-      "comentario": "O Ventilador de Mesa 30cm Super Power Mondial 60W VSP-30-B possui 6 pás e diâmetro de 30 cm, operando com uma potência de 60 W. O aparelho oferece um seletor de 3 velocidades para ajuste de ventilação e conta com uma grade removível para facilitar a manutenção, sendo um modelo certificado pelo INMETRO.",
+      "titulo": "Ventilador de Mesa Mondial VSP-30-B 30 cm — potência a confirmar",
+      "comentario": "O Mondial VSP-30-B tem diâmetro de 30 cm, seis pás, três velocidades, oscilação lateral e inclinação regulável documentados na página oficial. Há divergência de potência na própria fonte: título de 55 W e tabela de 60 W. Não escolhemos um valor nem presumimos equivalência entre versões. Confirme a etiqueta e a documentação da unidade antes de decidir por potência ou consumo. Não testamos vazão, ruído ou consumo e não garantimos silêncio ou refrigeração do ambiente.",
       "categoria": "casa",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_620576-MLA99958768953_112025-F.webp",
       "preco": "117,81",
@@ -8544,8 +8544,8 @@
       "precoConferenciaId": "ab782cab-9bb0-49fd-9c9f-39849bdc0238",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 117.81,
-      "pros": "",
-      "contras": "",
+      "pros": "Ajustes de velocidade, oscilação e inclinação documentados para o VSP-30-B.",
+      "contras": "Potência a confirmar: página oficial diverge entre 55 W e 60 W.\nSem teste de vazão, ruído ou consumo; não é uma promessa de ar-condicionado.",
       "notaInformada": ""
     },
     {
@@ -10610,7 +10610,7 @@
     {
       "id": "UlgA45nNx2rsEykMbv67",
       "titulo": "Smart Tv U8600f Crystal Uhd 4k 50 2025 Preto Samsung",
-      "comentario": "A Smart Tv U8600f Crystal Uhd 4k 50 2025 Preto Samsung possui tela de 50 polegadas e oferece resolução 4K de alta definição. O modelo utiliza a tecnologia Crystal UHD para a entrega de cores e é comercializado pelo valor de 2400,24.",
+      "comentario": "A Samsung U8600F de 50 polegadas documentada no Brasil, código UN50U8600FGXZD, tem resolução 4K de 3840 × 2160, painel de 60 Hz e sistema Tizen. Gaming Hub depende de internet, conta e condições dos parceiros; não significa jogos ou assinaturas pagos incluídos. Motion Xcelerator e processamento não transformam o painel em 120 Hz. Não testamos imagem, latência, som ou aplicativos e não transferimos recursos de outro tamanho ou código.",
       "categoria": "smarttv",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_934005-MLA110473970565_042026-F.webp",
       "preco": "2.699,00",
@@ -10621,8 +10621,8 @@
       "precoConferenciaId": "f7182955-94cc-4163-a2f1-831728af778e",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": "2699",
-      "pros": "",
-      "contras": "",
+      "pros": "Resolução 4K e frequência de 60 Hz documentadas para a versão brasileira de 50 polegadas.",
+      "contras": "Serviços podem exigir contas, pagamentos e acessórios separados.\nSem ensaio de imagem ou jogos; não atribuímos painel de 120 Hz.",
       "notaInformada": ""
     },
     {
