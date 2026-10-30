@@ -326,7 +326,20 @@
     "remaining": "460 pending; 91 structured reviews published and to preserve. Next run selects only new pending IDs or a documented new source/defect."
   },
   "thirteenthBatch": {
-    "status": "validated_ready_to_publish",
+    "status": "published_verified",
+    "sourceCommit": "d0c2d1337",
+    "generatedCommit": "727c4e7cd",
+    "integrityRun": 41127730903,
+    "integrityResult": "success",
+    "sitemapRun": 41127730778,
+    "sitemapResult": "success",
+    "pagesRun": 41127811255,
+    "pagesStatusAtCheckpoint": "completed; success",
+    "results": "integrity, sitemap and final Pages success; first Pages run superseded/cancelled",
+    "productionStructuredReviewsAtCheckpoint": 98,
+    "productionVerifiedAt": "2026-10-30T21:03:33.038Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-lote13.json: seven live HTTP 200 pages, sources, affiliates, search corrections, 551 products and 604 URLs verified",
+    "nextAction": "Published and verified. Select only pending IDs or a documented new source/defect; do not repeat these seven reviews.",
     "reviewedAt": "2026-10-30",
     "sourceFile": "everyday-tech-analysis-20261030.json",
     "ids": [
@@ -351,7 +364,7 @@
     "researchNote": "NVT-40-BL hLiaQWog1dogQ2OpMDSt NOT reviewed: no exact official source recovered. Do not replace with VTX-40 specifications or repeat the same empty search without new evidence.",
     "tests": "1244 passing; general validator and 551 IDs/604 URLs/operational fields/affiliates preserved; responsive QA no JavaScript errors; VSP30 mobile screenshot inspected",
     "noRepetitionProof": "Only seven fingerprints changed against preceding checkpoint; prior 91 reviews identical.",
-    "remaining": "453 pending; 98 local structured reviews prepared. Verify independent live publication before marking complete."
+    "remaining": "453 pending; 98 structured reviews public and to preserve."
   },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
   "updatedAt": "2026-10-30T20:59:10.890Z",
@@ -1490,8 +1503,10 @@
       "fingerprint": "c1f4b51e87da1abce2ee830639c97ea02254f894a9180fab477beea39a6dd202",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T21:03:33.038Z",
+      "workNotes": [
+        "Lote 13: análise documental pública verificada; informações não confirmadas sinalizadas; sourceFile everyday-tech-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://backend.intelbras.com/sites/default/files/2021-10/datasheet-cib-101-pt.pdf",
         "https://backend.intelbras.com/sites/default/files/2023-04/guia-de-compatibilidade-entre-as-campainhas.pdf"
@@ -2769,8 +2784,10 @@
       "fingerprint": "8c1fa6debe6ba54ad5adc4430cec7c09d4d0944885311da53b7d93d239df3d6d",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T21:03:33.038Z",
+      "workNotes": [
+        "Lote 13: análise documental pública verificada; informações não confirmadas sinalizadas; sourceFile everyday-tech-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://www.arno.com.br/grill-arno-compact-preto-gpto-8010001307_pai-1/p",
         "https://www.arno.com.br/api/catalog_system/pub/products/search?ft=GPTO"
@@ -5419,8 +5436,10 @@
       "fingerprint": "79f5228d3ead1df69af02eaab28f161b08f43b6e0c73f95472b77403398265e3",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T21:03:33.038Z",
+      "workNotes": [
+        "Lote 13: análise documental pública verificada; informações não confirmadas sinalizadas; sourceFile everyday-tech-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://www.lg.com/br/small-medium-business/tvs-e-soundbars/smart-tvs/43lr6700psa/"
       ],
@@ -5467,8 +5486,10 @@
       "fingerprint": "ee6a391060283a9692082dabe9f12191c3c9eb6b5943423fa72699a8b3d158a9",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T21:03:33.038Z",
+      "workNotes": [
+        "Lote 13: análise documental pública verificada; informações não confirmadas sinalizadas; sourceFile everyday-tech-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://www.samsung.com/br/tvs/uhd-4k-tv/u8600f-50-inch-crystal-uhd-4k-smart-tv-un50u8600fgxzd/"
       ],
@@ -6545,8 +6566,10 @@
       "fingerprint": "6736d590cc2f40612e1dbc510a917e3159a4c0de344fa66c3c4cb69d8180e28b",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T21:03:33.038Z",
+      "workNotes": [
+        "Lote 13: análise documental pública verificada; informações não confirmadas sinalizadas; sourceFile everyday-tech-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://www.mondial.com.br/ventilador-de-mesa-mondial-6-pas-vsp-30-b/p"
       ],
@@ -6697,8 +6720,10 @@
       "fingerprint": "828cee41b7b077776ed7e82db5831de01e10f20bd3bae83aebaf05f458b87dcd",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T21:03:33.038Z",
+      "workNotes": [
+        "Lote 13: análise documental pública verificada; informações não confirmadas sinalizadas; sourceFile everyday-tech-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://www.mi.com/global/product/poco-x7-pro/specs/"
       ],
@@ -6712,8 +6737,10 @@
       "fingerprint": "dc8e004efa906fe6097b1428c98a5eb5aaa59f6e34a71526b243e080cd6b9aa6",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-30T21:03:33.038Z",
+      "workNotes": [
+        "Lote 13: análise documental pública verificada; informações não confirmadas sinalizadas; sourceFile everyday-tech-analysis-20261030.json; sem alteração de afiliados ou conferência de estoque."
+      ],
       "sourceLinks": [
         "https://www.mi.com/global/product/redmi-15c/specs/"
       ],
