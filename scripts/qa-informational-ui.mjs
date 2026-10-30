@@ -105,6 +105,12 @@ try{
  assert.doesNotMatch(await destination.locator('body').innerText(),/R\$\s*\d|Preço e conferência/);
  results.push('comparador sem orçamento; seleção equivalente');
  await page.screenshot({path:resolve(out,'comparador-mobile.png'),fullPage:true});
+ await page.goto(base+'/como-avaliamos.html',{waitUntil:'domcontentloaded'});
+ await page.locator('[data-editorial-scope]').waitFor();
+ for(const width of [360,390,768,1366]){await page.setViewportSize({width,height:900});await check('limites da análise documental '+width+'px');}
+ assert.match(await page.locator('[data-editorial-scope]').innerText(),/Data do texto não é data de estoque/);
+ await page.setViewportSize({width:390,height:844});
+ await page.screenshot({path:resolve(out,'metodologia-mobile.png'),fullPage:true});
  const feed=JSON.parse(await readFile(resolve(root,'informational-catalogue.json'),'utf8'));
  const featured=feed.products.find(p=>p.comparison?.features?.length>=4&&feed.selected.includes(p.id));assert.ok(featured);
  const productPath=new URL(featured.url).pathname;

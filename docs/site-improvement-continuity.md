@@ -5,6 +5,8 @@ Segundo lote PUBLICADO E VERIFICADO em 30/10: commit fbea35ce5338209d72b9dbf7c16
 
 O usuário autorizou a retomada (“pode dar andamento”). Não pedir novamente a troca de modelo por rotina; pedir apenas se uma NOVA mudança de nível/modelo for necessária.
 
+Terceiro lote em validação: metodologia ampliada para distinguir ficha descritiva, análise documental e informação do fabricante; explica que a data editorial não confirma estoque e que a seleção não cobre todo o mercado. Não atribui novas credenciais ou autoria a pessoas. 1.214 testes aprovados; confirmar QA e publicação antes de marcar como concluído. GLOBAL-08 parcialmente atendido, sem alegar revisão factual completa do catálogo.
+
 O primeiro lote está PUBLICADO E VERIFICADO: commit 25dfbd284b55883583368900c077154b8de1161f, seguido de 6a47e4c31 (lista esperada de gatilhos no teste). A validação GitHub 41084569798 terminou com sucesso. As falhas das execuções antigas 41084266241/41084266254 foram causadas pela lista de gatilhos anterior aos dois novos módulos, não devem ser rerodadas no commit antigo.
 
 Conferência em produção: 551 produtos, 604 URLs, campos operacionais/preços preservados em relação à base, câmera com resolução a confirmar, relacionados do secador sem pasta de dentes/balanças e nenhum resumo de guia no catálogo prometendo preços com data. GLOBAL-01, GLOBAL-02 e GLOBAL-03 podem ser tratados como concluídos para este lote. A contingência de releitura informativa também foi corrigida e validada. Não refazer este lote.

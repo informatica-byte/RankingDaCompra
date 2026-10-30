@@ -32,6 +32,12 @@
     "verified": "551 products, 604 sitemap URLs, 39 structured reviews, 5 live campaign pages; operational fields and affiliate links preserved",
     "remaining": "512 products pending; guide copy improved but deep review of all 31 guides and GLOBAL-06 through GLOBAL-10 remain unfinished."
   },
+  "thirdBatch": {
+    "status": "pending_publication",
+    "scope": "Methodology clarifies descriptive records, documentary review and manufacturer documentation; editorial date is not stock confirmation; selection is not whole-market coverage.",
+    "tests": "1214 passing; responsive QA pending",
+    "global08": "partial: public source and review limits clarified; no new credentials or practical tests claimed"
+  },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
   "updatedAt": "2026-10-30T16:09:06.716Z",
   "catalogueGeneratedAt": "2026-10-30T16:03:32.192Z",

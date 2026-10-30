@@ -8,6 +8,15 @@ import integrity from '../comparison-integrity.js';
 import {informationalHtml,affiliateLinks} from './informational-site.mjs';
 const review={fit:'Para quem prefere um encaixe intra-auricular documentado.',alternative:'Se precisa de ANC, esta ficha não o confirma.',check:'Confira a variante e a compatibilidade.',advantages:['Estojo USB-C documentado na fonte.'],limitations:['A duração depende dos recursos ligados.'],sources:[{url:'https://www.mi.com/global/',label:'Fabricante'}]};
 const product={id:'a',title:'Fone Redmi Buds 6 Play',url:'/produto/a.html',comparison:{features:[{label:'Bluetooth',value:'5.4',state:'yes',basis:'fabricante',sourceUrl:'https://www.mi.com/global/'},{label:'ANC',value:'Não confirmado',state:'unknown',basis:'cadastro'}]}};
+
+test('metodologia distingue cadastro, revisão documental e fabricante sem alegar teste ou cobertura total',()=>{
+ const input='<html><head><title>Critérios</title></head><body><main><h1>Anterior</h1></main></body></html>';
+ const output=informationalHtml(input,null,'como-avaliamos.html');
+ assert.match(output,/data-editorial-scope/);
+ for(const text of ['Ficha descritiva','Análise documental','Informação do fabricante','Data do texto não é data de estoque','Não cobrimos todo o mercado'])assert.ok(output.includes(text),text);
+ assert.match(output,/não vira confirmação do fabricante nem experiência de uso/);
+ assert.equal(informationalHtml(output,null,'como-avaliamos.html'),output);
+});
 test('resumo reaproveita fatos e revisão, preserva pendências e nunca altera o produto',()=>{
  const before=JSON.stringify(product),b=decision.make(product,review),html=decision.render(b);assert.equal(b.reviewed,true);assert.deepEqual(b.pending,['ANC']);assert.match(html,/Para quem pode servir/);assert.match(html,/Quando considerar outra opção/);assert.match(html,/sem teste|não teste/);assert.equal(JSON.stringify(product),before);
  const empty=decision.make({id:'x'},null);assert.equal(empty.reviewed,false);assert.equal(empty.advantages.length,0);assert.match(decision.render(empty),/Informações ainda limitadas/);assert.doesNotMatch(decision.render(empty),/Vantagens documentadas/);
