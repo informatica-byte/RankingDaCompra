@@ -1,0 +1,52 @@
+{
+ "version":1,"reviewedAt":"2026-10-30",
+ "priority":{"source":"Fila editorial pendente; escolha por código exato, sem ranking de procura","method":"Três notebooks com documentação do código; as 67 revisões anteriores não foram refeitas. Acer A515-45-R2A3 não recebeu análise nesta rodada por falta de fonte oficial exata recuperada."},
+ "products":[
+  {
+   "id":"fOQZ2dyrpaoVIulwTufz","guard":"ASUS.*M1502YA.?NJ611|M1502YA.?NJ611.*ASUS","expectedCatalogue":"MLB49089309",
+   "title":"ASUS M1502YA-NJ611: Ryzen 7 5825U, KeepOS e configuração exata",
+   "publicSummary":"O ASUS M1502YA-NJ611 tem Ryzen 7 5825U, 8 GB de RAM, SSD de 512 GB e KeepOS documentados na loja oficial. O código completo importa: não é a ficha de todo Vivobook 15. Confira os programas que pretende usar e não presuma Windows incluído ou desempenho de jogos medido.",
+   "fit":"Para quem quer avaliar essa configuração para estudo e trabalho e pode conferir requisitos dos programas e compatibilidade com o sistema fornecido.",
+   "tradeoff":"Ryzen 7 é o nome de uma classe; o processador completo e o conjunto de memória, gráficos e software precisam ser considerados na escolha.",
+   "advantages":["Ryzen 7 5825U, 8 GB e SSD de 512 GB documentados para o código NJ611.","Tela Full HD de 15,6 polegadas e teclado com numérico descritos na ficha oficial."],
+   "limitations":["KeepOS não equivale a Windows incluído; confira a disponibilidade dos programas necessários no sistema escolhido.","Não medimos desempenho, tela, temperatura ou bateria; não generalizamos especificações de outras versões M1502."],
+   "check":"Confira o código M1502YA-NJ611 e alterações do vendedor. Antes de contar com expansão, confirme a configuração e o suporte oficial da unidade; não compre memória ou SSD apenas pelo nome da família.",
+   "alternative":"Se precisa de um programa específico, verifique seus requisitos e o sistema primeiro. Para jogos ou edição pesada, procure testes e requisitos da tarefa, não apenas o rótulo Ryzen 7.",
+   "questions":[["Vem com Windows?","A configuração oficial consultada lista KeepOS. Não tratamos essa informação como licença Windows incluída."],["Ryzen 7 significa que é o mais novo ou o melhor?","Não. Aqui o modelo documentado é 5825U; não classificamos desempenho apenas pelo número 7."],["Todo Vivobook 15 tem a mesma ficha?","Não. Compare o código completo e eventuais alterações do vendedor."],["8 GB de RAM e 512 GB são somados?","Não. RAM e armazenamento cumprem funções diferentes; espaço disponível também considera o sistema e arquivos."]],
+   "description":"Conheça o ASUS M1502YA-NJ611 com Ryzen 7 5825U e KeepOS e veja o que conferir sobre programas, configuração e diferenças entre variantes.",
+   "basis":"Loja oficial ASUS do M1502YA-NJ611 consultada em 30/10/2026. Sem teste prático, desempenho estimado ou nova conferência da configuração modificada pelo vendedor.",
+   "sources":[{"url":"https://br.store.asus.com/notebook-asus-vivobook-15-m1502ya-nj611-cool-silver-fhd-vips-1.html","label":"ASUS — código M1502YA-NJ611 e configuração; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"a77W30LAOCEPjWdkcAlU","guard":"ASUS.*E1504FA.?NJ732|E1504FA.?NJ732.*ASUS","expectedListing":"MLB4604524838",
+   "publicName":"Notebook ASUS Vivobook Go 15 E1504FA-NJ732 — processador a confirmar",
+   "title":"ASUS E1504FA-NJ732: confirme o processador antes de comparar",
+   "publicSummary":"O código E1504FA-NJ732 é anunciado com 8 GB, SSD de 512 GB e KeepOS. Há divergência de processador: o cadastro cita Ryzen 5 7520U, enquanto a página oficial atual do código informa Ryzen 5 40. Não presumimos equivalência nem qual unidade será entregue.",
+   "fit":"Para quem está considerando o Vivobook Go e pode confirmar a identificação completa da unidade antes de avaliar se atende aos programas desejados.",
+   "tradeoff":"O código ajuda a localizar a variante, mas a divergência entre cadastro e página atual impede assumir o processador sem conferir a unidade.",
+   "advantages":["Código E1504FA-NJ732 identificável na fonte oficial.","8 GB, SSD de 512 GB e KeepOS aparecem na página do código, permitindo conferir parte da configuração."],
+   "limitations":["Processador ainda a confirmar: não escolhemos entre 7520U e Ryzen 5 40 nem afirmamos que sejam o mesmo componente.","Não garantimos expansão de RAM, desempenho, autonomia ou compatibilidade de programas; não realizamos testes."],
+   "check":"Peça ao vendedor confirmação do processador e identificação da unidade, sem dados pessoais ou número de série público. Confira a configuração e o sistema efetivamente fornecidos antes de decidir.",
+   "alternative":"Se CPU ou expansão forem requisitos decisivos, não conclua a escolha enquanto a unidade e a documentação correspondente não estiverem claras.",
+   "questions":[["É Ryzen 5 7520U ou Ryzen 5 40?","O cadastro e a página oficial atual divergem. A ficha mantém a dúvida e não presume qual processador será entregue."],["Vocês trocaram o produto ou o link?","Não. A análise sinaliza a divergência do mesmo cadastro, mantendo os links de afiliados."],["Vem com Windows?","A página oficial consultada lista KeepOS. Confira a configuração oferecida pelo vendedor; não presumimos Windows incluído."],["Posso aumentar a RAM?","Não confirmamos expansão nesta revisão. Verifique a documentação e o suporte da unidade exata antes de comprar componentes."]],
+   "description":"Confira a divergência de processador do ASUS E1504FA-NJ732 e os cuidados com configuração, sistema e expansão antes da compra.",
+   "basis":"Página oficial ASUS E1504FA-NJ732 consultada em 30/10/2026. Ela lista Ryzen 5 40, enquanto o cadastro cita 7520U. Mantida a pendência; não trocamos produto ou afiliado e não testamos equivalência.",
+   "sources":[{"url":"https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj732-mixed-black-fhd-nivel-ips.html","label":"ASUS — E1504FA-NJ732, página atual com processador divergente; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"OJulxennkkhusiTWA3Wt","guard":"Lenovo.*83NS0002BR|83NS0002BR.*Lenovo","expectedListing":"MLB5761444412",
+   "title":"Lenovo 83NS0002BR: configuração de fábrica e o que confirmar na expansão",
+   "publicSummary":"O PSREF Lenovo do 83NS0002BR documenta Core i5-13420H, 8 GB DDR5 soldados e SSD de 512 GB. A ficha lista slot SODIMM, mas isso não comprova um módulo extra já instalado. Não copie a configuração do 83NS0003BR nem presuma alterações do vendedor.",
+   "fit":"Para quem avalia a configuração para estudo e trabalho e quer verificar o código exato, o sistema e eventuais planos de expansão.",
+   "tradeoff":"A possibilidade documentada de expansão é diferente da memória que vem instalada. Compare a unidade vendida, não apenas o máximo anunciado para a plataforma.",
+   "advantages":["Core i5-13420H, 8 GB de RAM e SSD de 512 GB documentados no PSREF do código exato.","Memória soldada e slot SODIMM diferenciados na documentação, facilitando planejar uma consulta de expansão."],
+   "limitations":["Não tratamos a capacidade máxima da plataforma como RAM instalada no anúncio.","Não testamos jogos, autonomia, temperatura ou desempenho; alterações do vendedor podem diferir da configuração de fábrica."],
+   "check":"Confirme 83NS0002BR, módulos instalados, SSD, sistema e condições de suporte antes de alterar o equipamento. Consulte compatibilidade e assistência para a expansão pretendida.",
+   "alternative":"Se o programa exige mais RAM ou gráficos específicos, compare seus requisitos com a configuração instalada, não só com o nome i5 ou com um limite de expansão.",
+   "questions":[["Os 8 GB estão todos em módulo removível?","O PSREF desse código informa 8 GB soldados e um slot SODIMM. Não descrevemos a memória soldada como um módulo removível."],["O máximo de memória anunciado vem instalado?","Não. Capacidade máxima e configuração instalada são informações diferentes; confira a unidade do vendedor."],["Posso usar a ficha do 83NS0003BR?","Não. É outro código e não deve substituir os dados do 83NS0002BR."],["O i5 garante desempenho em qualquer jogo?","Não. Não fizemos benchmark; requisitos de gráficos, RAM, software e condições de uso precisam ser avaliados."]],
+   "description":"Entenda o Lenovo IdeaPad 83NS0002BR, sua configuração de fábrica e a diferença entre RAM instalada, memória soldada e possibilidade de expansão.",
+   "basis":"PSREF oficial Lenovo do 83NS0002BR consultado em 30/10/2026. Configuração de fábrica, não confirmação de alterações do vendedor; sem teste ou promessa de desempenho.",
+   "sources":[{"url":"https://psref.lenovo.com/Detail/IdeaPad/IdeaPad_Slim_3_15IRH10?M=83NS0002BR","label":"Lenovo PSREF — configuração do código 83NS0002BR; consulta em 30/10/2026"}],"links":[]
+  }
+ ]
+}

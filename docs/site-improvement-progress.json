@@ -175,16 +175,38 @@
     "results": "all success; four HTTP 200 pages with expected review and sources; BE3 unit errors absent from page and search; 551 products, 604 URLs and protected fields preserved",
     "reviewedAt": "2026-10-30",
     "sourceFile": "connected-devices-analysis-20261030.json",
-    "ids": ["mlMLB6907306094", "Wny29umvm2bXCrY9WGqg", "XDnd73z0ZIkihILVyQhX", "9P123IBTTYnSCMilPvXB"],
+    "ids": [
+      "mlMLB6907306094",
+      "Wny29umvm2bXCrY9WGqg",
+      "XDnd73z0ZIkihILVyQhX",
+      "9P123IBTTYnSCMilPvXB"
+    ],
     "scope": "Four pending connected-device reviews with official documentation; no practical tests, new stock checks, prices or affiliate edits.",
-    "limits": ["BE3 incorrect units removed from public page and search; theoretical rates and unequal port speeds explained", "MC510 pan/tilt is not simultaneous 360-degree video; cloud subscription distinguished", "LG MBR cannot be assumed simultaneous with FreeSync/DAS", "Bip 6 calls depend on phone; US source does not confirm Brazilian services; not a medical device"],
+    "limits": [
+      "BE3 incorrect units removed from public page and search; theoretical rates and unequal port speeds explained",
+      "MC510 pan/tilt is not simultaneous 360-degree video; cloud subscription distinguished",
+      "LG MBR cannot be assumed simultaneous with FreeSync/DAS",
+      "Bip 6 calls depend on phone; US source does not confirm Brazilian services; not a medical device"
+    ],
     "tests": "1229 passing; general validator and invariants passed; responsive QA passed; BE3 mobile screenshot inspected",
     "noRepetitionProof": "Compared all catalogue fingerprints with previous checkpoint: only these four changed; prior 63 unchanged.",
     "remaining": "484 pending; 67 structured reviews to preserve."
   },
+  "ninthBatch": {
+    "status": "pending_publication",
+    "reviewedAt": "2026-10-30",
+    "sourceFile": "notebook-analysis-20261030.json",
+    "ids": ["fOQZ2dyrpaoVIulwTufz", "a77W30LAOCEPjWdkcAlU", "OJulxennkkhusiTWA3Wt"],
+    "scope": "Three pending exact-code notebook reviews; no benchmarks, seller configuration/stock checks, price or affiliate edits.",
+    "limits": ["E1504FA-NJ732 processor unresolved: registered 7520U versus current ASUS Ryzen 5 40; no equivalence presumed", "M1502YA-NJ611 KeepOS not presented as Windows included", "83NS0002BR factory RAM and expansion differentiated; do not substitute 83NS0003BR"],
+    "researchNote": "Acer A515-45-R2A3 (TEaC0vVXmdvp4s8QMqpn) not reviewed in this batch: no exact official source retrieved. Remains pending, not a completed review. Do not repeat the same empty search without new evidence.",
+    "tests": "1232 passing; general validator and invariants passed; responsive QA passed; ASUS Go uncertainty screenshot inspected",
+    "noRepetitionProof": "Compared all catalogue fingerprints with previous checkpoint: only these three changed; prior 67 unchanged.",
+    "remaining": "481 pending; 70 structured reviews to preserve."
+  },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-30T19:53:48.765Z",
-  "catalogueGeneratedAt": "2026-10-30T19:53:39.055Z",
+  "updatedAt": "2026-10-30T20:03:33.590Z",
+  "catalogueGeneratedAt": "2026-10-30T20:03:24.053Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -196,8 +218,8 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "pending": 484,
-    "preserve_prior_review": 67
+    "pending": 481,
+    "preserve_prior_review": 70
   },
   "items": [
     {
@@ -3900,29 +3922,22 @@
       "id": "fOQZ2dyrpaoVIulwTufz",
       "url": "https://rankingdacompra.com.br/produto/fOQZ2dyrpaoVIulwTufz-20260810-1.html",
       "title": "Notebook ASUS Vivobook 15 M1502, AMD Ryzen 7, 8 GB RAM, 512 GB SSD, KeepOS Linux, Cool Silver - M1502YA-NJ611",
-      "fingerprint": "1ab5f2528627314fd8fca035998aeed428792776355e98f9ad995696e7e93d99",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "0dc6a4dd22899a825ec607935af21ef6b392fe2a7ef1e113a362db0f5e2a40c4",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://br.store.asus.com/notebook-asus-vivobook-15-m1502ya-nj611-cool-silver-fhd-vips-1.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5751316838",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5751316838-20260810-1.html",
       "title": "Notebook Asus Vivobook 15 X1504va Intel Core I5 1334u 8gb Ram 512gb Ssd Intel Iris Xe Windows 11 Home Tela 15,6 Fhd Silver - Nj1740w",
       "fingerprint": "31140665bc2314f6b96dd07fb31b852c85d594b17807c7a918e5fcabc36688d9",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "a77W30LAOCEPjWdkcAlU",
-      "url": "https://rankingdacompra.com.br/produto/a77W30LAOCEPjWdkcAlU-20260810-1.html",
-      "title": "Notebook ASUS VivoBook Go 15 AMD Ryzen 5 7520U 8GB 512GB SSD KeepOS Tela 15,6\" FHD Mixed Black - E1504FA-NJ732",
-      "fingerprint": "c9baeb26fb6618594e6c649a791c4038cc862eca6e691262ab95f031aa6de8fc",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -3939,6 +3954,21 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "a77W30LAOCEPjWdkcAlU",
+      "url": "https://rankingdacompra.com.br/produto/a77W30LAOCEPjWdkcAlU-20260810-1.html",
+      "title": "Notebook ASUS Vivobook Go 15 E1504FA-NJ732 — processador a confirmar",
+      "fingerprint": "8ee6e0a17c13d35a7ccbc2cb27435cbf46f1ecd90d0cd433e2600255122cd69c",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": [
+        "https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj732-mixed-black-fhd-nivel-ips.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "7evzZBujin11TlbT8hvm",
@@ -3977,12 +4007,16 @@
       "id": "OJulxennkkhusiTWA3Wt",
       "url": "https://rankingdacompra.com.br/produto/OJulxennkkhusiTWA3Wt-20260810-1.html",
       "title": "Notebook Lenovo IdeaPad Slim 3 15IRH10 Intel Core i5-13420H 8GB 512GB SSD Windows 11 15.3\" - 83NS0002BR Luna Grey",
-      "fingerprint": "ac54d5496a22322b897890bc8a336f9632b7a537172412922eeb0742114a73e6",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "d7dc8850c5df52878f2a53010c7a7bd47612c68bd00a131c962c39cb59ddeab9",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://psref.lenovo.com/Detail/IdeaPad/IdeaPad_Slim_3_15IRH10?M=83NS0002BR"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "y8qOGP907Z3Bry3AI9cc",

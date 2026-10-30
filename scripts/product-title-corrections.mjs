@@ -8,6 +8,14 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['a77W30LAOCEPjWdkcAlU', {
+    model:/asus(?=.*e1504fa[- ]?nj732)/i,
+    correct:'Notebook ASUS Vivobook Go 15 E1504FA-NJ732 — processador a confirmar',
+    summary:'O cadastro identifica o ASUS Vivobook Go 15 E1504FA-NJ732 com 8 GB de RAM, SSD de 512 GB e KeepOS. O título anterior anunciava Ryzen 5 7520U, mas a página oficial atual do mesmo código informa Ryzen 5 40. Não presumimos equivalência entre os nomes nem qual unidade será entregue. Confirme processador, identificação completa e configuração com o vendedor. Não testamos desempenho, expansão ou autonomia e não mudamos os links do cadastro.',
+    positiveNotes:['Código E1504FA-NJ732 e configuração de memória/armazenamento identificados na fonte oficial.'],
+    negativeNotes:['Processador divergente entre cadastro e página oficial atual; confirmar a unidade.', 'Sem teste de desempenho ou confirmação de expansão.'],
+    sourceUrl:'https://br.store.asus.com/notebook-asus-vivobook-go-15-e1504fa-nj732-mixed-black-fhd-nivel-ips.html',sourceLabel:'ASUS E1504FA-NJ732 — divergência de processador a confirmar',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
   ['mlMLB6907306094', {
     model:/huawei.*\bbe3\b/i,
     summary:'A Huawei documenta o WiFi BE3 com bandas de 2,4 e 5 GHz, Wi-Fi 7, uma interface Ethernet de até 2,5 Gb/s e três interfaces Gigabit. As taxas sem fio são teóricas e não garantem velocidade real da internet. A descrição anterior continha unidades inconsistentes de velocidade e dimensões; esses valores foram retirados. A ficha oficial fornece dimensões em milímetros. Confira a versão, as conexões e os requisitos dos equipamentos. Não testamos cobertura, latência ou velocidade.',
