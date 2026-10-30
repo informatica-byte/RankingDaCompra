@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-30T19:20:45.149Z",
+  "generatedAt": "2026-10-30T19:56:04.917Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -7119,7 +7119,7 @@
     {
       "id": "mlMLB6907306094",
       "titulo": "HUAWEI WiFi BE3 3.6 Gpbs Dual-Band Wi-Fi 7 I Visualização de diagnóstico WiFi I Controle parental Preto",
-      "comentario": "HUAWEI WiFi BE3 3.6 Gpbs Dual-Band Wi-Fi 7 I Visualização de diagnóstico WiFi I Controle parental Preto. Quantidade de roteadores: 1. Ele oferece uma velocidade de 450Kb/s. Tem 4 portas para conexão. Dimensões: 71,5 m de largura, 215 m de altura, 148,8 m de profundidade. Com controle parental. Marca: Huawei. Informações consultadas no anúncio oficial do Mercado Livre. Confira preço, estoque, frete e prazo no momento da compra.",
+      "comentario": "A Huawei documenta o WiFi BE3 com bandas de 2,4 e 5 GHz, Wi-Fi 7, uma interface Ethernet de até 2,5 Gb/s e três interfaces Gigabit. As taxas sem fio são teóricas e não garantem velocidade real da internet. A descrição anterior continha unidades inconsistentes de velocidade e dimensões; esses valores foram retirados. A ficha oficial fornece dimensões em milímetros. Confira a versão, as conexões e os requisitos dos equipamentos. Não testamos cobertura, latência ou velocidade.",
       "categoria": "roteador",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_687204-MLA88056293609_072025-F.jpg",
       "preco": "294,31",
@@ -7136,8 +7136,8 @@
       "precoConferenciaId": "013eeb66-f596-44b3-bdca-845883eb57fc",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 294.31,
-      "pros": "",
-      "contras": "",
+      "pros": "Wi-Fi 7 dual band e interfaces Ethernet documentados pela Huawei.",
+      "contras": "Taxas teóricas não são velocidade garantida; não testamos a rede.\nNão presumimos banda de 6 GHz ou que todas as portas sejam de 2,5 Gb/s.",
       "notaInformada": ""
     },
     {
