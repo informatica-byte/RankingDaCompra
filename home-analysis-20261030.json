@@ -1,0 +1,81 @@
+{
+ "version":1,"reviewedAt":"2026-10-30",
+ "priority":{"source":"Fila editorial pendente, seleção por documentação identificável","method":"Cinco IDs ainda pendentes; preservadas as 58 revisões anteriores. Sem pesquisa de popularidade ou nova conferência de estoque."},
+ "products":[
+  {
+   "id":"yxqaNbV9fYlB5zQKWLqj","guard":"Electrolux.*EAF90|EAF90.*Electrolux","expectedListing":"MLB3767918194",
+   "title":"Electrolux EAF90: formato forno, espaço e tensão antes da escolha",
+   "publicSummary":"A Electrolux EAF90 é uma air fryer em formato forno de 12 litros, com painel digital e rotisserie documentados. A capacidade nominal não determina porções por receita. Há versões de tensão distintas; confira a unidade e o espaço de instalação antes da compra.",
+   "fit":"Para quem quer avaliar preparo em formato forno e acessórios para diferentes receitas, podendo conferir o espaço na bancada e a rotina de limpeza.",
+   "tradeoff":"Bandejas e acessórios oferecem formas de organizar alimentos, mas ocupação, circulação de ar e preparo dependem da receita e das orientações de uso.",
+   "advantages":["Modos de preparo, incluindo rotisserie, documentados pela Electrolux.","Painel digital e controle de temperatura descritos na documentação do modelo."],
+   "limitations":["Não medimos uniformidade, tempo de preparo, consumo ou facilidade de limpeza.","12 litros não são garantia de porções ou equivalência com um cesto de outro formato; acessórios do anúncio devem ser confirmados."],
+   "check":"Confira modelo, tensão, itens incluídos e espaço para abrir a porta, além das distâncias e da conexão elétrica exigidas no manual. Não improvise a instalação.",
+   "alternative":"Se prepara pequenas quantidades e quer reduzir o manuseio de bandejas, compare o formato de cesto, sem presumir desempenho melhor por capacidade ou watts.",
+   "questions":[["Ela é bivolt?","A Electrolux lista versões 127 V ou 220 V. Confira a tensão da unidade; a existência das duas opções não comprova bivolt."],["12 litros servem quantas pessoas?","Não fixamos porções pelo volume. Receita, quantidade e forma de distribuir os alimentos fazem diferença."],["Rotisserie significa que todos os acessórios vêm no anúncio?","Não presuma. Confira os itens do conjunto vendido e o manual correspondente."],["Os programas garantem o ponto da comida?","Não. Não fizemos teste de receitas; acompanhe o preparo e siga as instruções."]],
+   "description":"Conheça a Electrolux EAF90 em formato forno e os cuidados com espaço, tensão, acessórios e capacidade nominal antes de escolher.",
+   "basis":"Página oficial Electrolux EAF90 consultada em 30/10/2026. Sem teste de receitas, consumo ou desempenho; sem nova conferência do pacote e estoque.",
+   "sources":[{"url":"https://loja.electrolux.com.br/air-fryer-oven-electrolux-rita-lobo-12l-digital-grafite-c--espeto-e-grelhas-antiaderente--eaf90-/p","label":"Electrolux — EAF90, versões e especificações; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"DNqszoYPu5LLhotuYNKp","guard":"Electrolux.*AWD01|AWD01.*Electrolux","expectedListing":"MLB3259697043",
+   "title":"Electrolux AWD01: 12 litros de barril não são 12 litros úteis de água",
+   "publicSummary":"O Electrolux AWD01 aspira pó e água. A marca distingue barril de 12 litros, capacidade útil de 3 litros para pó e 5 litros para líquidos. Isso evita comparar volumes diferentes. Não é uma extratora para lavar estofados e exige configuração conforme o manual.",
+   "fit":"Para quem procura coleta de resíduos secos e líquidos e pode seguir a configuração correta para cada uso permitido.",
+   "tradeoff":"A função de aspirar água não equivale a pulverizar produto de limpeza ou lavar estofado como uma extratora.",
+   "advantages":["Aspiração de pó e água documentada pela Electrolux.","Capacidades total e úteis explicadas pela marca, permitindo comparar o volume correto."],
+   "limitations":["Não é uma extratora; não presumimos remoção de manchas ou lavagem profunda.","Não testamos sucção, ruído ou filtragem. O uso precisa respeitar resíduos permitidos e a montagem indicada no manual."],
+   "check":"Confira tensão, acessórios, consumíveis e o procedimento para uso seco ou úmido no manual. Não use para líquidos inflamáveis ou aplicações não autorizadas.",
+   "alternative":"Se a intenção é lavar sofá com aplicação e recolhimento de solução, compare uma extratora documentada para essa função.",
+   "questions":[["Posso recolher 12 litros de água?","Não use o volume total do barril como capacidade útil. A Electrolux informa 5 litros para líquidos no AWD01."],["Ele lava sofá como uma extratora?","Não. A marca distingue aspiração de líquidos de uma máquina com aplicação de solução para lavagem."],["1400 W comprova maior sucção que qualquer outro?","Não. Potência elétrica não é uma medição comparativa de sucção; não realizamos esse teste."],["A preparação é a mesma para pó e água?","Não presuma. Consulte o procedimento específico e os filtros e coletores exigidos no manual."]],
+   "description":"Entenda as capacidades do Electrolux AWD01, a diferença entre aspirar líquidos e lavar estofados e o que confirmar no uso seco ou úmido.",
+   "basis":"Conteúdo oficial Electrolux sobre o AWD01 consultado em 30/10/2026, distinguindo 12 L totais, 3 L úteis para pó e 5 L para líquidos. Sem teste próprio ou nova leitura do anúncio.",
+   "sources":[{"url":"https://loja.electrolux.com.br/inspira/blog/aspirador-de-po-e-agua-awd01","label":"Electrolux — AWD01, capacidades e diferença para extratora; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"wyofwkDoOxUtpmtG9uhf","guard":"Mondial.*E.?01|E.?01.*Mondial","expectedListing":"MLB2212309325",
+   "title":"Mondial E-01 Turbo Citrus: espremedor para cítricos, não centrífuga",
+   "publicSummary":"O Mondial E-01 Turbo Citrus é um espremedor para frutas cítricas, com jarra de 1,25 litro, acionamento por pressão e dupla rotação documentados. Não substitui liquidificador ou centrífuga para qualquer fruta. Capacidade da jarra não garante rendimento por quantidade de fruta.",
+   "fit":"Para quem prepara suco de laranja ou limão e prefere avaliar um espremedor dedicado a essa tarefa.",
+   "tradeoff":"A proposta é específica para cítricos: não escolha esperando processar qualquer ingrediente ou preparar misturas como um liquidificador.",
+   "advantages":["Acionamento por pressão e dupla rotação descritos pela Mondial.","Jarra de 1,25 litro e peças desmontáveis documentadas, permitindo planejar preparo e limpeza."],
+   "limitations":["Não testamos rendimento, velocidade, ruído ou esforço de uso.","Peças desmontáveis não significam que motor e todas as partes possam ser mergulhados ou lavados em máquina."],
+   "check":"Confira tensão da unidade, itens incluídos e instruções de limpeza. Não atribuímos potência pela tabela oficial consultada, pois o campo de potência está preenchido de modo inconsistente.",
+   "alternative":"Para receitas com outras frutas ou ingredientes, compare a função do equipamento, não apenas o tamanho da jarra.",
+   "questions":[["Serve para qualquer fruta?","A documentação descreve extração de laranja e limão por cone. Não presumimos função de liquidificador ou centrífuga."],["1,25 litro diz quantas frutas rende?","Não. O volume da jarra não determina o rendimento de frutas de tamanhos e características diferentes."],["Posso lavar o motor?","Não interprete a desmontagem como autorização para molhar a base elétrica. Siga o manual."],["A potência de 25 W foi confirmada?","Ela está no cadastro, mas o campo correspondente na página oficial consultada é inconsistente. Não a elevamos a dado confirmado nesta revisão."]],
+   "description":"Veja a proposta do Mondial E-01 Turbo Citrus, sua jarra e acionamento, com limites de função e cuidados de limpeza e tensão.",
+   "basis":"Página oficial Mondial E-01 consultada em 30/10/2026. Campo de potência inconsistente na fonte, sem confirmação dos 25 W do cadastro. Sem teste prático ou estoque novo.",
+   "sources":[{"url":"https://www.mondial.com.br/espremedor-mondial-turbo-citrus-e-01/p","label":"Mondial — E-01, jarra e acionamento; campo de potência inconsistente; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"nsOTlMwVIdo8dNOdpShY","guard":"Mondial.*AFON.?12L.?BI|AFON.?12L.?BI.*Mondial","expectedListing":"MLB5477424248",
+   "title":"Mondial AFON-12L-BI: confirme tensão e potência da versão",
+   "publicSummary":"A Mondial AFON-12L-BI combina air fryer e forno de 12 litros. A página oficial informa 2.000 W em 127 V e 2.200 W em 220 V. O código BI não deve ser usado como prova de bivolt: confira tensão e identificação da unidade escolhida.",
+   "fit":"Para quem quer um formato forno com bandejas e pode conferir a versão elétrica e o espaço necessário na bancada.",
+   "tradeoff":"O número de watts do anúncio precisa corresponder à tensão da unidade. Comparar apenas a maior potência não demonstra melhor resultado de receita.",
+   "advantages":["Funções de forno e fritadeira a ar documentadas para o modelo.","Página oficial distingue a potência de cada tensão, ajudando a verificar a variante correta."],
+   "limitations":["Não presumimos bivolt a partir do sufixo BI ou de uma página que lista as duas tensões.","Não testamos tempo, consumo, capacidade de porções ou uniformidade de preparo."],
+   "check":"Confira tensão na identificação e siga os requisitos elétricos e de instalação do manual. Verifique os acessórios incluídos no anúncio e espaço para abrir a porta.",
+   "alternative":"Se precisa apenas de preparos pequenos, compare o formato e o manuseio com uma air fryer de cesto, sem decidir somente por litros ou potência.",
+   "questions":[["É 2.000 W ou 2.200 W?","A Mondial informa 2.000 W para 127 V e 2.200 W para 220 V. Confira qual unidade será entregue."],["BI significa bivolt?","Não utilizamos o sufixo como comprovação. O manual orienta conferir a tensão do aparelho com a rede local."],["12 litros garantem uma quantidade fixa de porções?","Não. A distribuição dos alimentos e a receita importam; não fizemos teste de porções."],["Maior potência garante menor gasto ou preparo mais rápido?","Não concluímos isso. Consumo e duração de preparo precisam de avaliação sob condições comparáveis."]],
+   "description":"Entenda a Mondial AFON-12L-BI e a potência por tensão, com cuidados para escolher a unidade correta sem presumir bivolt ou desempenho.",
+   "basis":"Página e manual oficial AFON-12L-BI consultados em 30/10/2026. Potência atribuída por tensão conforme a página; sem teste de receita ou consumo e sem mudar a variante anunciada.",
+   "sources":[{"url":"https://www.mondial.com.br/fritadeira-air-fryer-oven-mondial-afon-12l-bi/p","label":"Mondial — AFON-12L-BI, potência por tensão; consulta em 30/10/2026"},{"url":"https://manuais.emondial.com/Manual-AFON-12L-BI.pdf","label":"Mondial — manual e orientação de conferir tensão da unidade"}],"links":[]
+  },
+  {
+   "id":"Ng9qQNFdPCPMTgUYzfEJ","guard":"Mondial.*VSP.?40C|VSP.?40C.*Mondial","expectedListing":"MLB5933492396",
+   "title":"Mondial VSP40C: ventilador de coluna sem promessa de silêncio absoluto",
+   "publicSummary":"O cadastro anuncia um Mondial VSP40C de coluna, com 40 cm, seis pás, três velocidades e tensão de 127 V. Isso não comprova ausência de ruído. A fonte oficial encontrada é da variante VSP-40C-NB; potência e medidas dessa variante não foram transferidas automaticamente.",
+   "fit":"Para quem quer direcionar circulação de ar a partir de uma coluna e pode conferir a variante e a tensão anunciadas.",
+   "tradeoff":"Número de pás e diâmetro ajudam a identificar o equipamento, mas não demonstram silêncio ou alcance comparativo sem medição.",
+   "advantages":["Formato de coluna e três velocidades informados no cadastro, úteis para avaliar a proposta de uso.","Modelo da família VSP40C identificado; a fonte de variante foi separada para não misturar especificações."],
+   "limitations":["Não temos medição de ruído, vazão ou consumo; foi removida do resumo a promessa sem ruídos.","Sufixo completo da unidade ainda a confirmar. A documentação NB não comprova todos os dados de outra variante."],
+   "check":"Confira código completo, tensão 127 V anunciada, medidas e requisitos de montagem. Se ruído for decisivo, procure medição em condições conhecidas, não apenas nomes comerciais de velocidade.",
+   "alternative":"Para dormir ou trabalhar em ambiente sensível a som, avalie ruído documentado e posicionamento antes de escolher pela palavra silencioso.",
+   "questions":[["Ele não faz barulho?","Não podemos afirmar isso. Sem ruídos era uma promessa não comprovada do resumo anterior e foi retirada."],["Seis pás garantem mais vento que outro modelo?","Não. Não realizamos medição comparativa de vazão ou alcance."],["Posso usar a ficha NB para qualquer VSP40C?","Não. A variante completa deve ser identificada antes de atribuir potência, medidas e outros detalhes."],["A unidade é 127 V ou bivolt?","O cadastro anuncia 127 V. Não presumimos bivolt pela existência de opções de tensão na página da família."]],
+   "description":"Confira a proposta do Mondial VSP40C de coluna e os limites sobre ruído, variante, tensão e números de pás antes da escolha.",
+   "basis":"Cadastro da unidade e página oficial VSP-40C-NB consultada em 30/10/2026. A NB é referência de variante, não confirmação do sufixo vendido. Sem teste de ruído, vazão ou consumo.",
+   "sources":[{"url":"https://www.mondial.com.br/ventilador-coluna-mondial-super-power-6-pas-40-cm-vsp-40c-nb/p","label":"Mondial — VSP-40C-NB; confirmar o sufixo da unidade do anúncio; consulta em 30/10/2026"}],"links":[]
+  }
+ ]
+}

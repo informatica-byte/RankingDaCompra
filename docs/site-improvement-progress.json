@@ -117,16 +117,39 @@
     "results": "all success; six HTTP 200 pages with expected review and source links; protected fields, 551 products and 604 URLs preserved",
     "reviewedAt": "2026-10-30",
     "sourceFile": "office-mobile-analysis-20261030.json",
-    "ids": ["FlqPY3yHJ2xPoNgnhSTE", "EmrdwlcDgCCM5suoz8dB", "rcwXY2aQWUN6dbCVzvsB", "LASwiEy13CerUN6q3pKn", "tvmAXcLVslrks9nZlnoa", "35hImqo3QJm6moaV4OzO"],
+    "ids": [
+      "FlqPY3yHJ2xPoNgnhSTE",
+      "EmrdwlcDgCCM5suoz8dB",
+      "rcwXY2aQWUN6dbCVzvsB",
+      "LASwiEy13CerUN6q3pKn",
+      "tvmAXcLVslrks9nZlnoa",
+      "35hImqo3QJm6moaV4OzO"
+    ],
     "scope": "Official documentation consulted for six pending products; no practical tests, current stock check, price or affiliate edits.",
-    "limits": ["L3250 duplex is manual; L4360 printing duplex does not imply scanner duplex", "Buds total battery includes case; Interpreter depends on compatible Galaxy and service conditions", "G29 compatibility and separate accessories must be confirmed", "Phone RAM attributed to listing; no benchmark, charging time or battery-life guarantee"],
+    "limits": [
+      "L3250 duplex is manual; L4360 printing duplex does not imply scanner duplex",
+      "Buds total battery includes case; Interpreter depends on compatible Galaxy and service conditions",
+      "G29 compatibility and separate accessories must be confirmed",
+      "Phone RAM attributed to listing; no benchmark, charging time or battery-life guarantee"
+    ],
     "tests": "1223 passing; general validator and invariants passed; responsive QA passed; L4360 mobile screenshot inspected",
     "noRepetitionProof": "Compared all catalogue fingerprints with previous checkpoint: only these six changed; prior 52 unchanged.",
     "remaining": "493 pending; 58 structured reviews to preserve."
   },
+  "seventhBatch": {
+    "status": "pending_publication",
+    "reviewedAt": "2026-10-30",
+    "sourceFile": "home-analysis-20261030.json",
+    "ids": ["yxqaNbV9fYlB5zQKWLqj", "DNqszoYPu5LLhotuYNKp", "wyofwkDoOxUtpmtG9uhf", "nsOTlMwVIdo8dNOdpShY", "Ng9qQNFdPCPMTgUYzfEJ"],
+    "scope": "Five pending home-appliance reviews with official documentation; no practical tests, new stock check, price or affiliate edits.",
+    "limits": ["AWD01 total versus useful capacities distinguished; not an extractor", "AFON power differs by voltage; suffix is not proof of bivolt", "E-01 25 W not independently confirmed due to inconsistent official table", "VSP40C suffix unresolved; NB specifications not silently transferred; unproven no-noise promise removed", "EAF90 portions, accessories and delivered voltage not assumed"],
+    "tests": "1226 passing; general validator and invariants passed; responsive QA passed; AWD01 mobile screenshot inspected",
+    "noRepetitionProof": "Compared all catalogue fingerprints with previous checkpoint: only these five changed; prior 58 unchanged.",
+    "remaining": "488 pending; 63 structured reviews to preserve."
+  },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-30T16:51:37.226Z",
-  "catalogueGeneratedAt": "2026-10-30T16:51:27.227Z",
+  "updatedAt": "2026-10-30T19:18:40.231Z",
+  "catalogueGeneratedAt": "2026-10-30T19:18:30.596Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -138,8 +161,8 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "pending": 493,
-    "preserve_prior_review": 58
+    "pending": 488,
+    "preserve_prior_review": 63
   },
   "items": [
     {
@@ -234,12 +257,16 @@
       "id": "yxqaNbV9fYlB5zQKWLqj",
       "url": "https://rankingdacompra.com.br/produto/yxqaNbV9fYlB5zQKWLqj-20260810-1.html",
       "title": "Air Fryer Forno 5 em 1 12L 1700W Digital Espeto Giratório 2 Bandejas Antiaderentes 10 funções 7 Receitas aviso sonoro Fritadeira Elétrica sem Óleo Forno Bancada Electrolux EAF90 Grafite",
-      "fingerprint": "ef8e876675f4b71056c5dbc60975a5481e47110cd2ccc0bcbf8276213750f1de",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "dd8a99fda1030ce661ad5dd862da4c5550b934c5a8c12792c0ac1193e0653dff",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://loja.electrolux.com.br/air-fryer-oven-electrolux-rita-lobo-12l-digital-grafite-c--espeto-e-grelhas-antiaderente--eaf90-/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "AhbvEgzfMuC19ltrB2WN",
@@ -300,12 +327,16 @@
       "id": "DNqszoYPu5LLhotuYNKp",
       "url": "https://rankingdacompra.com.br/produto/DNqszoYPu5LLhotuYNKp-20260810-1.html",
       "title": "Aspirador de Pó e Água Electrolux 1400W 12 Litros 5,9 raio de ação Compacto Potente Função Sopro protetor térmico AWD01",
-      "fingerprint": "eae8303fee7ce337b99244c2c15c726011dba9bc96a5fd4844accd28285a880e",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "fcd6b41a9d5c4c261d60b6bae10656fc2f1bdfca9341d33f36f3612f04a35556",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://loja.electrolux.com.br/inspira/blog/aspirador-de-po-e-agua-awd01"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "w7DR6QTHjF5FdGZyQTYX",
@@ -2008,12 +2039,16 @@
       "id": "wyofwkDoOxUtpmtG9uhf",
       "url": "https://rankingdacompra.com.br/produto/wyofwkDoOxUtpmtG9uhf-20260810-1.html",
       "title": "Espremedor Turbo Citrus, Mondial, 25W - E-01",
-      "fingerprint": "7087f6d1701515f83ac2a997897e0a1a70e2b91a4e711730abb067912c95baaf",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "7f27978534dac3deceed9fb4bb8328eedb0c53cc6ff6b12f440da13ae039384a",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.mondial.com.br/espremedor-mondial-turbo-citrus-e-01/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "PP8JorVbOJNMg5FXOr47",
@@ -2277,12 +2312,17 @@
       "id": "nsOTlMwVIdo8dNOdpShY",
       "url": "https://rankingdacompra.com.br/produto/nsOTlMwVIdo8dNOdpShY-20260810-1.html",
       "title": "Fritadeira Air Fryer Forno Oven 12L, Mondial, 2200W - AFON-12L-BI",
-      "fingerprint": "b97ba3e9c624fa66d639917308085f6706ee61c02370c21b351e22651b4bdeb2",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "9c141a2e09e0f6b7a358b78c3b0b6f620802c9dd31e6a1c035b93de6499fd179",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.mondial.com.br/fritadeira-air-fryer-oven-mondial-afon-12l-bi/p",
+        "https://manuais.emondial.com/Manual-AFON-12L-BI.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "asTGBkjkQIZ4mhlc7cxX",
@@ -6109,12 +6149,16 @@
       "id": "Ng9qQNFdPCPMTgUYzfEJ",
       "url": "https://rankingdacompra.com.br/produto/Ng9qQNFdPCPMTgUYzfEJ-20260810-1.html",
       "title": "Ventilador de Coluna 40cm Super Power VSP40C 6 Pás 3 Velocidades Mondial 127v",
-      "fingerprint": "25fabde257920ee05d77596f853d201667a6b3ba243e5ae88915ca560ab3056a",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "f8a2f63945ec1b9dbe430764d32ea9abca96063769ce973b6b6e062106493890",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.mondial.com.br/ventilador-coluna-mondial-super-power-6-pas-40-cm-vsp-40c-nb/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "bufeMWJJrnyiM5TBcKXW",
