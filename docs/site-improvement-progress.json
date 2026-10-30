@@ -224,7 +224,15 @@
     "remaining": "481 pending; 70 structured reviews to preserve."
   },
   "tenthBatch": {
-    "status": "validated_ready_to_publish",
+    "status": "published_verified",
+    "sourceCommit": "2f6c67f38",
+    "generatedCommit": "8c8c4dac0",
+    "integrityRun": 41122742618,
+    "sitemapRun": 41122742394,
+    "pagesRun": 41122828573,
+    "results": "all success; earlier Pages run superseded/cancelled, not a publication failure",
+    "productionVerifiedAt": "2026-10-30T20:25:54.537Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-lote10.json: eight live HTTP 200 pages, source links, 78 reviews, 551 IDs, 604 URLs and protected fields verified",
     "reviewedAt": "2026-10-30",
     "sourceFile": "household-analysis-20261030.json",
     "ids": ["w7DR6QTHjF5FdGZyQTYX","AC8pOvLAO9VLZSUhfYfh","31Lco0eFCDaomsks3iM3","7TeZ4aAirqbiu3TNCsug","N3JYVELP3Zqr7KuZYA3n","2V7q6nC2mg54DN9anaYi","oO9KBr39gclvEu1LfKEj","fOI4O124KZd2vLCx8Fmj"],
@@ -232,7 +240,7 @@
     "limits": ["Power Speed Max CI10 advert code not assumed equivalent to official reference; remains explicit confirmation", "Buzios composition linked to official 23799071; packaging reference must match", "GTW total versus useful volumes; W90 no app/base/water aspiration; climatizer not promised as air conditioning; Oster jar capacity not invented as universal useful volume"],
     "tests": "1235 passing; general validator, all 551 protected IDs and 604 URLs, affiliates and operational fields passed; responsive UI QA with no JavaScript errors; W90 mobile screenshot inspected",
     "noRepetitionProof": "Compared all 551 fingerprints against preceding checkpoint: only these eight changed; previous 70 identical.",
-    "remaining": "473 pending; 78 structured reviews prepared. Do not mark published before live verification."
+    "remaining": "473 pending; 78 structured reviews published and to preserve. Next run must select only new pending IDs or documented new evidence."
   },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
   "updatedAt": "2026-10-30T20:20:58.593Z",
