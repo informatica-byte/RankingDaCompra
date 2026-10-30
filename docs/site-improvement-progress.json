@@ -51,7 +51,13 @@
     "global08": "partial: public source and review limits clarified; no new credentials or practical tests claimed"
   },
   "fourthBatch": {
-    "status": "pending_publication",
+    "status": "published_verified",
+    "sourceCommit": "0d5ff6c24",
+    "integrityRun": 41090425064,
+    "sitemapRun": 41090425160,
+    "pagesRun": 41090509258,
+    "productionVerifiedAt": "2026-10-30T16:32:16.301Z",
+    "results": "all success; eight HTTP 200 pages with source links and expected documentary review; affiliate links and operational fields unchanged",
     "reviewedAt": "2026-10-30",
     "sourceFile": "documented-analysis-20261030.json",
     "ids": ["lqUgNmaegZ1hAiP3iMOU", "HJcpaZe94VZRnomC2hH1", "vMno2u6iDC5eZJug2sOH", "YKSSWNPjLAaUeRSLtVWT", "iEXAHv7Lvrd0qvzDXiMA", "VaxspecNzGrFQjieZlq0", "jXr2Y2GPpfN57sjqnpfV", "c9hb1oe40g3K1dP4dAsy"],
