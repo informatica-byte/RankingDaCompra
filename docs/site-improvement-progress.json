@@ -193,20 +193,50 @@
     "remaining": "484 pending; 67 structured reviews to preserve."
   },
   "ninthBatch": {
-    "status": "pending_publication",
+    "status": "published_verified",
+    "sourceCommit": "053614349",
+    "integrityRun": 41120542358,
+    "integrityResult": "success",
+    "sitemapRun": 41120542219,
+    "sitemapResult": "success",
+    "pagesRun": 41120699024,
+    "pagesStatusAtCheckpoint": "completed; success",
+    "productionStructuredReviewsAtCheckpoint": 70,
+    "productionVerifiedAt": "2026-10-30T20:13:28.118Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-lote9.json: three public pages and affiliate anchors verified; workflow status not misrepresented as success",
+    "nextAction": "Content and final Pages success verified. Do not repeat these three editorial reviews.",
     "reviewedAt": "2026-10-30",
     "sourceFile": "notebook-analysis-20261030.json",
-    "ids": ["fOQZ2dyrpaoVIulwTufz", "a77W30LAOCEPjWdkcAlU", "OJulxennkkhusiTWA3Wt"],
+    "ids": [
+      "fOQZ2dyrpaoVIulwTufz",
+      "a77W30LAOCEPjWdkcAlU",
+      "OJulxennkkhusiTWA3Wt"
+    ],
     "scope": "Three pending exact-code notebook reviews; no benchmarks, seller configuration/stock checks, price or affiliate edits.",
-    "limits": ["E1504FA-NJ732 processor unresolved: registered 7520U versus current ASUS Ryzen 5 40; no equivalence presumed", "M1502YA-NJ611 KeepOS not presented as Windows included", "83NS0002BR factory RAM and expansion differentiated; do not substitute 83NS0003BR"],
+    "limits": [
+      "E1504FA-NJ732 processor unresolved: registered 7520U versus current ASUS Ryzen 5 40; no equivalence presumed",
+      "M1502YA-NJ611 KeepOS not presented as Windows included",
+      "83NS0002BR factory RAM and expansion differentiated; do not substitute 83NS0003BR"
+    ],
     "researchNote": "Acer A515-45-R2A3 (TEaC0vVXmdvp4s8QMqpn) not reviewed in this batch: no exact official source retrieved. Remains pending, not a completed review. Do not repeat the same empty search without new evidence.",
     "tests": "1232 passing; general validator and invariants passed; responsive QA passed; ASUS Go uncertainty screenshot inspected",
     "noRepetitionProof": "Compared all catalogue fingerprints with previous checkpoint: only these three changed; prior 67 unchanged.",
     "remaining": "481 pending; 70 structured reviews to preserve."
   },
+  "tenthBatch": {
+    "status": "validated_ready_to_publish",
+    "reviewedAt": "2026-10-30",
+    "sourceFile": "household-analysis-20261030.json",
+    "ids": ["w7DR6QTHjF5FdGZyQTYX","AC8pOvLAO9VLZSUhfYfh","31Lco0eFCDaomsks3iM3","7TeZ4aAirqbiu3TNCsug","N3JYVELP3Zqr7KuZYA3n","2V7q6nC2mg54DN9anaYi","oO9KBr39gclvEu1LfKEj","fOI4O124KZd2vLCx8Fmj"],
+    "scope": "Eight new documentary household reviews. No new link/stock conferences, price changes, affiliate changes or practical tests.",
+    "limits": ["Power Speed Max CI10 advert code not assumed equivalent to official reference; remains explicit confirmation", "Buzios composition linked to official 23799071; packaging reference must match", "GTW total versus useful volumes; W90 no app/base/water aspiration; climatizer not promised as air conditioning; Oster jar capacity not invented as universal useful volume"],
+    "tests": "1235 passing; general validator, all 551 protected IDs and 604 URLs, affiliates and operational fields passed; responsive UI QA with no JavaScript errors; W90 mobile screenshot inspected",
+    "noRepetitionProof": "Compared all 551 fingerprints against preceding checkpoint: only these eight changed; previous 70 identical.",
+    "remaining": "473 pending; 78 structured reviews prepared. Do not mark published before live verification."
+  },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-30T20:03:33.590Z",
-  "catalogueGeneratedAt": "2026-10-30T20:03:24.053Z",
+  "updatedAt": "2026-10-30T20:20:58.593Z",
+  "catalogueGeneratedAt": "2026-10-30T20:20:51.164Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -218,8 +248,8 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "pending": 481,
-    "preserve_prior_review": 70
+    "pending": 473,
+    "preserve_prior_review": 78
   },
   "items": [
     {
@@ -399,34 +429,47 @@
       "id": "w7DR6QTHjF5FdGZyQTYX",
       "url": "https://rankingdacompra.com.br/produto/w7DR6QTHjF5FdGZyQTYX-20260810-1.html",
       "title": "Aspirador De Pó e Água Wap Gtw 10 Compacto 1400w 10 Litros Amarelo",
-      "fingerprint": "5bfb58634eccc6e18ae71fefdd07232724c234474a53e4edb5e78016d9b5f868",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "43bf7f7bcc67e73f924964e06b1e3042b8993268c4949fa652b09d0cf3ca8d58",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://loja.wap.ind.br/aspirador-de-po-e-agua-1400w-wap-gtw-10/p",
+        "https://mais.conteudo.wap.ind.br/wap/produtos/aspirador/barril/aspirador_gtw_10_fw005705_fw005706/arquivos/manual/manual_aspirador_gtw_10.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "AC8pOvLAO9VLZSUhfYfh",
       "url": "https://rankingdacompra.com.br/produto/AC8pOvLAO9VLZSUhfYfh-20260810-1.html",
       "title": "Aspirador de Pó Vertical e Portátil WAP High Speed Plus 1350W 3 em 1",
-      "fingerprint": "ec6bd0bc9199dfbbbdd28c168405ff4557d232f0f55c147dc8c768bbd9a4c0ac",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "81d708b1cf78b25abbf00c785a0316c59f751e8e2b53227bf4e7a45d1942072f",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://loja.wap.ind.br/aspirador-de-po-vertical-3-em-1-1350w-wap-high-speed-plus-1/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "31Lco0eFCDaomsks3iM3",
       "url": "https://rankingdacompra.com.br/produto/31Lco0eFCDaomsks3iM3-20260810-1.html",
       "title": "Aspirador De Pó Vertical Wap Power Speed Max 1600w",
-      "fingerprint": "eb8f6cac90185f445477bf51afbf20ae5da37606a1c3fbf768f24063e9802823",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "b7db4eed804a695add4c38a3a472185a8906ccbd002d172356b8dbb0c244c05e",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://loja.wap.ind.br/wap-power-speed-max--1/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7285394626",
@@ -1645,12 +1688,16 @@
       "id": "7TeZ4aAirqbiu3TNCsug",
       "url": "https://rankingdacompra.com.br/produto/7TeZ4aAirqbiu3TNCsug-20260810-1.html",
       "title": "Climatizador De Ar Wap Air Fresh 4 Em 1 De Torre 127V Cor Cinza 90W 3L Bolsas De Gel Filtro Colmeia Baixo Ruído Oscilação",
-      "fingerprint": "5137814419293ce01d9af2b6456dd5d0f3f51f8208e67188888502bbdc894132",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "9bbf77ce022e49a068dee1acde110593e124a784c4093c8dd2301273d886a362",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://loja.wap.ind.br/climatizador-de-ar-wap-air-fresh/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "scKXtqgNmOYETwmXi4EP",
@@ -2166,12 +2213,16 @@
       "id": "N3JYVELP3Zqr7KuZYA3n",
       "url": "https://rankingdacompra.com.br/produto/N3JYVELP3Zqr7KuZYA3n-20260810-1.html",
       "title": "Extratora e Higienizadora Portátil WAP Spot Cleaner W2 1600W - Pulveriza, Esfrega e Extrai",
-      "fingerprint": "c4542351d90eabbffc1a4a902ffa17a2e7534aca68fe6e6d5b0dc4f31f6a6be6",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "c9412dbc84686fe2eb93a99a5da31ac9acc5e3f10ccab6d01f6963ef6745543c",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://loja.wap.ind.br/extratora-e-higienizadora-portatil-wap-spot-cleaner-w2/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "0UsruHJ405ImvUXyhYgW",
@@ -2769,12 +2820,16 @@
       "id": "fOI4O124KZd2vLCx8Fmj",
       "url": "https://rankingdacompra.com.br/produto/fOI4O124KZd2vLCx8Fmj-20260810-1.html",
       "title": "Jogo Talheres Faqueiro Búzios Aço Inox 24 Peças Tramontina",
-      "fingerprint": "44f17eefe78feae45617993638e21250fadf76f868ec8e2a112244a5f0fd6789",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "e9b000d87fc0cd6bf051d7970367b6dffda59e51f15f40ecd811aeb7c61c2d70",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.tramontina.com.br/faqueiro-tramontina-buzios-em-aco-inox-com-detalhe-24-pecas/23799071.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "q8wxWRl86XmL7Gglikg7",
@@ -3429,12 +3484,16 @@
       "id": "oO9KBr39gclvEu1LfKEj",
       "url": "https://rankingdacompra.com.br/produto/oO9KBr39gclvEu1LfKEj-20260810-1.html",
       "title": "Liquidificador Oster OLIQ610 1400w Full 3,2L Cor Preto",
-      "fingerprint": "3fcc53fa38c3e2861a3819dc9ef67b98bd9800c4cc8e3f77dd8461149c0fd61c",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "e64f0f38dc8895eb0265bd5195f44602df486b0a2cdb3117274018a78acca572",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.oster.com.br/liquidificador-1400-full-oster-preto/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Zo8ybuHaQjV6HlCbCWqf",
@@ -4851,12 +4910,16 @@
       "id": "2V7q6nC2mg54DN9anaYi",
       "url": "https://rankingdacompra.com.br/produto/2V7q6nC2mg54DN9anaYi-20260810-1.html",
       "title": "Robô aspirador Robot W90 varre aspira e passa pano 30w Wap cor preto",
-      "fingerprint": "1ef1976df76ef7bc1d4dfa3814b97096658a6821b87c79ea2905948f72919ec7",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "a30bbe0bc9b807ae4654aa55a1f191440da3d8a73a3c36a3cf6d1fd7cbeb63d4",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w90/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "rJhe4VyyDiFudQmQmXCV",
