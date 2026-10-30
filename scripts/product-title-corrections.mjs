@@ -8,6 +8,20 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['MBhoRb0kSLsHrhutbTLN', {
+    model:/(?=.*mondial)(?=.*c[- ]?21[- ]?e[- ]?cnp)/i,
+    summary:'A Mondial C-21-E-CNP Dolce Crema permite café em pó e acompanha adaptador para cápsulas Nespresso, segundo a página oficial. O adaptador para cápsulas Dolce Gusto é vendido separadamente. A marca descreve reservatório removível de 1,2 litro e bico vaporizador. A pressão nominal de 20 bar não é uma medição independente de qualidade, sabor ou tempo de preparo. Não garantimos rendimento fixo de xícaras nem resultado profissional; não testamos a bebida ou o equipamento. Confira acessórios e tensão no anúncio.',
+    positiveNotes:['Uso de pó e adaptador Nespresso incluído documentados para a C-21-E-CNP.'],
+    negativeNotes:['Adaptador Dolce Gusto separado; não confundir compatibilidade com acessório incluído.', 'Sabor, temperatura e rapidez não foram testados; pressão nominal não garante resultado.'],
+    sourceUrl:'https://www.mondial.com.br/cafeteira-espresso-mondial-dolce-crema-20-bar-capsula-po-c-21-e-cnp/p',sourceLabel:'Mondial — C-21-E-CNP, configuração e acessórios',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
+  ['M9arBHEFyVVMelHK70ml', {
+    model:/(?=.*philco)(?=.*plq04a)/i,
+    summary:'A página oficial do Philco PLQ04A informa 400 W, dois squeezes de 600 ml com tampa e quatro lâminas em inox. Os dois recipientes não equivalem a uma jarra única de 1,2 litro. Portátil não comprova alimentação a bateria ou autonomia. O manual completo não foi recuperado nesta revisão; não confirmamos ingredientes duros, líquidos quentes, ciclos ou peças permitidas na lava-louças. A afirmação anterior sobre lavagem das peças não é mantida como comprovada. Confira alimentação, tensão, montagem e manual da unidade; sem teste de trituração ou vedação.',
+    positiveNotes:['Dois copos de 600 ml com tampa documentados na descrição oficial do PLQ04A.'],
+    negativeNotes:['Receitas, ciclos e limpeza dependem do manual; não presumimos peças liberadas para lava-louças.', 'Não confirmamos bateria ou autonomia só pelo termo portátil.'],
+    sourceUrl:'https://www.philco.com.br/blender-liquidificador-portatil-philco-400w-600ml-plq04a/p',sourceLabel:'Philco — PLQ04A, apresentação oficial',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
   ['mWdbAKSL36ZpIPwUTbdv', {
     model:/(?=.*intelbras)(?=.*im7)(?=.*3\s*mp)/i,
     summary:'A Intelbras iM7+ 3MP Full Color tem resolução de 2304 × 1296, microfone e alto-falante, movimento motorizado e proteção IP66 documentados na ficha oficial. Não é a iM7+ Zoom: não transferimos os recursos dessa outra versão. O alcance de movimento não representa visão simultânea de todo o entorno. A capacidade de microSD não comprova cartão incluído. A ficha oficial informa 565 g; o peso anterior de 423 g foi retirado por divergência. Não testamos imagem, rastreamento ou resistência.',

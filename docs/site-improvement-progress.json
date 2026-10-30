@@ -256,7 +256,18 @@
     "remaining": "473 pending; 78 structured reviews published and to preserve. Next run must select only new pending IDs or documented new evidence."
   },
   "eleventhBatch": {
-    "status": "validated_ready_to_publish",
+    "status": "published_verified",
+    "sourceCommit": "6cfc5168c",
+    "integrityRun": 41124438871,
+    "integrityResult": "success",
+    "sitemapRun": 41124438845,
+    "sitemapResult": "success",
+    "pagesRun": 41124517865,
+    "pagesStatusAtCheckpoint": "completed; success; first Pages run superseded/cancelled",
+    "productionStructuredReviewsAtCheckpoint": 85,
+    "productionVerifiedAt": "2026-10-30T20:44:21.212Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-lote11.json: seven live pages, source links, search corrections, affiliates, 551 IDs and 604 URLs verified",
+    "nextAction": "Published and verified; do not repeat these seven reviews.",
     "reviewedAt": "2026-10-30",
     "sourceFile": "security-network-analysis-20261030.json",
     "ids": [
@@ -279,11 +290,36 @@
     "researchNote": "CM209 mlMLB5239190177 remains pending; exact official global manufacturer source not recovered, no generic rewrite counted as factual review. Do not repeat the same searches without new evidence.",
     "tests": "1238 passing; general validator and protected fields/affiliates/551 IDs/604 URLs verified; responsive QA no JavaScript errors and Elsys mobile screenshot inspected",
     "noRepetitionProof": "Only seven fingerprints changed against previous checkpoint; prior 78 structured reviews identical.",
-    "remaining": "466 pending; 85 structured reviews prepared. Live publication still requires verification."
+    "remaining": "466 pending; 85 structured reviews published and to preserve."
+  },
+  "twelfthBatch": {
+    "status": "validated_ready_to_publish",
+    "reviewedAt": "2026-10-30",
+    "sourceFile": "kitchen-analysis-20261030.json",
+    "ids": [
+      "c3K3tq0esVOpmKeSLd9a",
+      "AhbvEgzfMuC19ltrB2WN",
+      "asTGBkjkQIZ4mhlc7cxX",
+      "MBhoRb0kSLsHrhutbTLN",
+      "oE4gHinZ6CfelSwfLDWk",
+      "M9arBHEFyVVMelHK70ml"
+    ],
+    "scope": "Six new documentary kitchen reviews; manufacturer sources, no recipe tests, stock/link conferences, price/affiliate/record changes.",
+    "limits": [
+      "BAF11A 11 L cavity versus 1.5 L deep tray; Agitar is reminder, not automatic stirring; no built-in installation",
+      "PAF11B manual not retrieved: no invented useful capacity/accessories or borrowed BAF11A specifications",
+      "C21 capsule adapter inclusion separated; pressure not proof of coffee quality",
+      "PLQ04A cups not summed as one jar; battery, dishwasher and hard/hot ingredients unconfirmed",
+      "MEO44 no grill and countertop, not built-in; Elgin nominal volume not serving count"
+    ],
+    "researchNote": "Batedeira 1OfMg1pRePuvTqXaLiV6 NOT reviewed: title B-44-W versus original URL B-44-B. Need exact unit/model evidence before completing; no link or product swapped.",
+    "tests": "1241 passing; general validator and 551 IDs/604 URLs/operational fields/affiliates preserved; responsive QA passed without JavaScript errors; BAF11A mobile screenshot inspected",
+    "noRepetitionProof": "Only six fingerprints changed against previous checkpoint; prior 85 reviews identical.",
+    "remaining": "460 pending; 91 local structured reviews prepared. Only mark published after independent live proof."
   },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-30T20:33:55.392Z",
-  "catalogueGeneratedAt": "2026-10-30T20:33:48.034Z",
+  "updatedAt": "2026-10-30T20:47:37.745Z",
+  "catalogueGeneratedAt": "2026-10-30T20:47:29.866Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -295,8 +331,8 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "pending": 466,
-    "preserve_prior_review": 85
+    "pending": 460,
+    "preserve_prior_review": 91
   },
   "items": [
     {
@@ -385,12 +421,16 @@
       "id": "c3K3tq0esVOpmKeSLd9a",
       "url": "https://rankingdacompra.com.br/produto/c3K3tq0esVOpmKeSLd9a-20260810-1.html",
       "title": "Air Fryer Elgin Quad Fry 4,2 L 1.400 W Preta",
-      "fingerprint": "98973ce94c43e0fb7238630e6c652388cad54752412bb94d5d94be3fd4e6a690",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "2e2fc11b4068389035ed268c4a1c5ac7f1ce4c552ed366bda5fc475c9d058afc",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.elgin.com.br/fritadeira-air-fryer-quad-fry-1400w-42l-preta-com-tecnologia-air-circuit-360/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "yxqaNbV9fYlB5zQKWLqj",
@@ -411,12 +451,16 @@
       "id": "AhbvEgzfMuC19ltrB2WN",
       "url": "https://rankingdacompra.com.br/produto/AhbvEgzfMuC19ltrB2WN-20260810-1.html",
       "title": "Air Fryer Oven Philco 11L 8 Funções Visor 1800W PAF11B",
-      "fingerprint": "9e73304315e4abace6b4d37410dda3bab56331c05516f047af549a373af49833",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "1ec531f07a06be2f06b6a33fdc59609a36f38ff595bf58600780f42610f30f10",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.philco.com.br/air-fryer-oven-11l-1800w-paf11b/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "MWjfkNgY4oXJD8NhCOQn",
@@ -1015,12 +1059,16 @@
       "id": "MBhoRb0kSLsHrhutbTLN",
       "url": "https://rankingdacompra.com.br/produto/MBhoRb0kSLsHrhutbTLN-20260810-1.html",
       "title": "Cafeteira Espresso Dolce Crema 20 Bar Mondial Preto/Inox 1200W C-21-E-CNP",
-      "fingerprint": "1453bb630ad7dae2fc435410ac6b275f17dbe3dfd8b05b1208929d9666285db2",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "ce4a8436d1a03c0acf36e17b990442f5adddc845a16fbac3f28313ad3389da64",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.mondial.com.br/cafeteira-espresso-mondial-dolce-crema-20-bar-capsula-po-c-21-e-cnp/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "hRsH9zCaHoAnMci7e45x",
@@ -2516,12 +2564,18 @@
       "id": "asTGBkjkQIZ4mhlc7cxX",
       "url": "https://rankingdacompra.com.br/produto/asTGBkjkQIZ4mhlc7cxX-20260810-1.html",
       "title": "Fritadeira Air Fryer Oven Britânia 11 Litros 8 Funções 1800W BAF11A",
-      "fingerprint": "d9f1f398905ec8c48313a47fa7570b59b1c8045620ee13f4f6d6a5bf26227cc0",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "5f8c760557cdc5318c66dc03bc76ff3dcc4ed818d70baa2600e6accdc9c8e25a",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://suporte.britania.com.br/hc/pt-br/articles/45660144685844-Documento-para-o-produto-Fritadeira-Air-Fryer-BAF11A",
+        "https://suporte.britania.com.br/hc/pt-br/article_attachments/45660138420116",
+        "https://suporte.britania.com.br/hc/pt-br/article_attachments/45660157722900"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "K8hXvUkqAAnbt0Om6wRj",
@@ -3590,12 +3644,16 @@
       "id": "M9arBHEFyVVMelHK70ml",
       "url": "https://rankingdacompra.com.br/produto/M9arBHEFyVVMelHK70ml-20260810-1.html",
       "title": "Liquidificador Philco Portátil 2 Squeezes 400W PLQ04A",
-      "fingerprint": "2d0a61e4c6c3b90222e16c93687b9fdff8dbcdcdb50c6ac67c90b3729183d312",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "af9339e1a92a65f33749aaa8bc60cd2405c811ce1b4bd37eebd0f20dba1d8c1c",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.philco.com.br/blender-liquidificador-portatil-philco-400w-600ml-plq04a/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "SnMMDq9bDXiMWX0IXYdO",
@@ -3748,12 +3806,16 @@
       "id": "oE4gHinZ6CfelSwfLDWk",
       "url": "https://rankingdacompra.com.br/produto/oE4gHinZ6CfelSwfLDWk-20260810-1.html",
       "title": "Micro-ondas Electrolux de bancada Branco com Função Tira Odor e Manter Aquecido 34L MEO44",
-      "fingerprint": "482ed1d9e2d9ee0d04bacfac6195b96c2e54409697aa38f12bb86cf7bfd010f3",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "e36be4eeb4e9263afa844087c032dcb6600b0da3dec6389adfa63e79f97a6877",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://loja.electrolux.com.br/micro-ondas-de-bancada-34l-meo44-branco-funcao-tira-odor-e-manter-aquecido-electrolux/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7871750870",
