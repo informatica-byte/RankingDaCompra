@@ -235,16 +235,55 @@
     "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-lote10.json: eight live HTTP 200 pages, source links, 78 reviews, 551 IDs, 604 URLs and protected fields verified",
     "reviewedAt": "2026-10-30",
     "sourceFile": "household-analysis-20261030.json",
-    "ids": ["w7DR6QTHjF5FdGZyQTYX","AC8pOvLAO9VLZSUhfYfh","31Lco0eFCDaomsks3iM3","7TeZ4aAirqbiu3TNCsug","N3JYVELP3Zqr7KuZYA3n","2V7q6nC2mg54DN9anaYi","oO9KBr39gclvEu1LfKEj","fOI4O124KZd2vLCx8Fmj"],
+    "ids": [
+      "w7DR6QTHjF5FdGZyQTYX",
+      "AC8pOvLAO9VLZSUhfYfh",
+      "31Lco0eFCDaomsks3iM3",
+      "7TeZ4aAirqbiu3TNCsug",
+      "N3JYVELP3Zqr7KuZYA3n",
+      "2V7q6nC2mg54DN9anaYi",
+      "oO9KBr39gclvEu1LfKEj",
+      "fOI4O124KZd2vLCx8Fmj"
+    ],
     "scope": "Eight new documentary household reviews. No new link/stock conferences, price changes, affiliate changes or practical tests.",
-    "limits": ["Power Speed Max CI10 advert code not assumed equivalent to official reference; remains explicit confirmation", "Buzios composition linked to official 23799071; packaging reference must match", "GTW total versus useful volumes; W90 no app/base/water aspiration; climatizer not promised as air conditioning; Oster jar capacity not invented as universal useful volume"],
+    "limits": [
+      "Power Speed Max CI10 advert code not assumed equivalent to official reference; remains explicit confirmation",
+      "Buzios composition linked to official 23799071; packaging reference must match",
+      "GTW total versus useful volumes; W90 no app/base/water aspiration; climatizer not promised as air conditioning; Oster jar capacity not invented as universal useful volume"
+    ],
     "tests": "1235 passing; general validator, all 551 protected IDs and 604 URLs, affiliates and operational fields passed; responsive UI QA with no JavaScript errors; W90 mobile screenshot inspected",
     "noRepetitionProof": "Compared all 551 fingerprints against preceding checkpoint: only these eight changed; previous 70 identical.",
     "remaining": "473 pending; 78 structured reviews published and to preserve. Next run must select only new pending IDs or documented new evidence."
   },
+  "eleventhBatch": {
+    "status": "validated_ready_to_publish",
+    "reviewedAt": "2026-10-30",
+    "sourceFile": "security-network-analysis-20261030.json",
+    "ids": [
+      "uIZQISdVd0NEyClG29Qv",
+      "cq6GYICiBnjXrygHzhaO",
+      "hvEYsBQVyORk8vWbQCNU",
+      "yKB6RcYlSxOOCG31HXN2",
+      "mWdbAKSL36ZpIPwUTbdv",
+      "Gcz9OSyGgHGMKYfG87IS",
+      "37zRkLVqUxzOjxBLGhO1"
+    ],
+    "scope": "Seven new documentary reviews: Grandstream GWN7660 and six camera records. No practical tests, stock/link conferences, operational data, prices or affiliates changed.",
+    "limits": [
+      "GWN7660 source revisions disagree on client capacity; no numerical capacity promise",
+      "Elsys optical zoom not confirmed, removed from public summary/search",
+      "iM7+ 3MP old 423 g replaced by documented 565 g, not copied from Zoom variant",
+      "iM7 S microphone not bidirectional conversation; iME 360 3MP not old Full HD generation",
+      "microSD support distinguished from kit inclusion; cloud service not presumed free or included"
+    ],
+    "researchNote": "CM209 mlMLB5239190177 remains pending; exact official global manufacturer source not recovered, no generic rewrite counted as factual review. Do not repeat the same searches without new evidence.",
+    "tests": "1238 passing; general validator and protected fields/affiliates/551 IDs/604 URLs verified; responsive QA no JavaScript errors and Elsys mobile screenshot inspected",
+    "noRepetitionProof": "Only seven fingerprints changed against previous checkpoint; prior 78 structured reviews identical.",
+    "remaining": "466 pending; 85 structured reviews prepared. Live publication still requires verification."
+  },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-30T20:20:58.593Z",
-  "catalogueGeneratedAt": "2026-10-30T20:20:51.164Z",
+  "updatedAt": "2026-10-30T20:33:55.392Z",
+  "catalogueGeneratedAt": "2026-10-30T20:33:48.034Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -256,8 +295,8 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "pending": 473,
-    "preserve_prior_review": 78
+    "pending": 466,
+    "preserve_prior_review": 85
   },
   "items": [
     {
@@ -319,12 +358,17 @@
       "id": "uIZQISdVd0NEyClG29Qv",
       "url": "https://rankingdacompra.com.br/produto/uIZQISdVd0NEyClG29Qv-20260810-1.html",
       "title": "Access Point Grandstream GWN7660 Wi-Fi 6 802.11ax Dual Band",
-      "fingerprint": "ee125ca369ed33d4668d15e691ae044ef1b1da5cf833ce736b35bb76c3048dbe",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "1beb40ec9a2ff468e640513c65280417f60d185ac7daeda49e639cd780ebf790",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.grandstream.com/products/networking-solutions/indoor-wifi-access-points/product/gwn7660",
+        "https://documentation.grandstream.com/knowledge-base/gwn7660-quick-installation-guide/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5239190177",
@@ -1125,12 +1169,17 @@
       "id": "cq6GYICiBnjXrygHzhaO",
       "url": "https://rankingdacompra.com.br/produto/cq6GYICiBnjXrygHzhaO-20260810-1.html",
       "title": "Câmera de segurança Elsys ESC-WB3F com resolução de 2MP visão noturna incluída branca",
-      "fingerprint": "19dc5d4b6484ab03db94438a83c9c4936a7b596b182f92c1975cc3097f92da39",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "e626690dc09a281b949dfa840c89619ccd37a145c375ae84d8955f194ed0e188",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://elsys.com/wp-content/uploads/2022/09/GUIA_RAPIDO_ESC-WB3F.pdf",
+        "https://storage.elsys.com.br/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "6rPnzKJkUk5676DoZ9ng",
@@ -1171,23 +1220,32 @@
       "id": "hvEYsBQVyORk8vWbQCNU",
       "url": "https://rankingdacompra.com.br/produto/hvEYsBQVyORk8vWbQCNU-20260810-1.html",
       "title": "Câmera De Vídeo Wi-Fi Intelbras IM3 C MicroSD 32GB Branco",
-      "fingerprint": "66a810c5729d8fc204ef09c79ddc0a0fd74e8fdfd6180e491b464487ff35d6c0",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "18a199037f2eff199322c0aa210db394edff14b6f17ee9c96cfd45e9be17d10e",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.intelbras.com/pt-br/camera-interna-wi-fi-full-hd-im3-c",
+        "https://loja.intelbras.com.br/camera-wifi-im3c/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "yKB6RcYlSxOOCG31HXN2",
       "url": "https://rankingdacompra.com.br/produto/yKB6RcYlSxOOCG31HXN2-20260810-1.html",
       "title": "Câmera Inteligente Full HD iM5 SC com MicroSD 32GB Branca Intelbras",
-      "fingerprint": "cc6ddd46cccfddde2819d26df4459f78f357d3e0ddc95b99777cbd469df96c1a",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "823e0e74c7ad9928b55344eb3137ae268582fd4c04ad3af3fdbfe3cf55b55adc",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://backend.intelbras.com/sites/default/files/2024-11/Datasheet%20-%20iM5%20S%20e%20iM5%20SC%20-%20C%C3%A2mera%20externa%20inteligente%20Wi-Fi%20Full%20HD.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "NfQ2YF7qf3SL1oehasTi",
@@ -1204,34 +1262,48 @@
       "id": "mWdbAKSL36ZpIPwUTbdv",
       "url": "https://rankingdacompra.com.br/produto/mWdbAKSL36ZpIPwUTbdv-20260810-1.html",
       "title": "Câmera Inteligente Im7 + 3mp De Resolução Branca Intelbras",
-      "fingerprint": "ef1b0185cdaca4aee4a8da07b167e783bd24e5db6fc741136c3cec42269516b3",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "6eb7f74efdbab149aee5bdcc83651d7c1179e590eca65e647d3d54ec76e2af65",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://backend.intelbras.com/sites/default/files/2024-11/Datasheet%20-%20iM7%2B%203MP%20-%20C%C3%A2mera%20externa%20inteligente%203MP%20Wi-Fi%20Full%20Color.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Gcz9OSyGgHGMKYfG87IS",
       "url": "https://rankingdacompra.com.br/produto/Gcz9OSyGgHGMKYfG87IS-20260810-1.html",
       "title": "Câmera Inteligente Intelbras Ime 360 3mp Visão 360 Wi-fi Cor Branco",
-      "fingerprint": "cf027e9f3816b7b032600202f9d5d8bddc147954283a80ae417abc787c48c706",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "d0f6e8278ceb38480780c62f3d224d1f4f61ad6895e611dc51ce2f677c162ef9",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.intelbras.com/pt-br/camera-interna-inteligente-3mp-wi-fi-360o-ime-360-3mp",
+        "https://backend.intelbras.com/sites/default/files/2025-09/Datasheet%20-%20iME%20360%203MP%20-%20C%C3%A2mera%20Interna%20Inteligente%20Wi-Fi%203MP%20360%C2%B0.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "37zRkLVqUxzOjxBLGhO1",
       "url": "https://rankingdacompra.com.br/produto/37zRkLVqUxzOjxBLGhO1-20260810-1.html",
       "title": "Câmera Inteligente Resistente a Chuva e Poeira iM7 S Branca Intelbras",
-      "fingerprint": "0348484e5cc5a86525040f0d03ad0bf2e255275063300df955aeed9f19603418",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "ea1dca12c491e97d6f6602926f7a06971d0f32936d57bf619575b6b577a68bf1",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://backend.intelbras.com/sites/default/files/2024-11/Datasheet%20-%20iM7%20S%20Full%20Color%20-%20C%C3%A2mera%20externa%20inteligente%20Full%20HD%20Wi-Fi%20Full%20Color.pdf",
+        "https://backend.intelbras.com/sites/default/files/2026-02/especificacoes_de_cameras_com_holofote.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "0vNEHjhD3cm0iTyBCZRe",

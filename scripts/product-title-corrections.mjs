@@ -8,6 +8,27 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mWdbAKSL36ZpIPwUTbdv', {
+    model:/(?=.*intelbras)(?=.*im7)(?=.*3\s*mp)/i,
+    summary:'A Intelbras iM7+ 3MP Full Color tem resolução de 2304 × 1296, microfone e alto-falante, movimento motorizado e proteção IP66 documentados na ficha oficial. Não é a iM7+ Zoom: não transferimos os recursos dessa outra versão. O alcance de movimento não representa visão simultânea de todo o entorno. A capacidade de microSD não comprova cartão incluído. A ficha oficial informa 565 g; o peso anterior de 423 g foi retirado por divergência. Não testamos imagem, rastreamento ou resistência.',
+    positiveNotes:['Resolução 3MP e áudio bidirecional documentados para a iM7+ 3MP.'],
+    negativeNotes:['Rotação não significa cobertura simultânea ou detecção infalível.', 'Não atribuímos zoom híbrido de outra versão nem cartão automaticamente incluído.'],
+    sourceUrl:'https://backend.intelbras.com/sites/default/files/2024-11/Datasheet%20-%20iM7%2B%203MP%20-%20C%C3%A2mera%20externa%20inteligente%203MP%20Wi-Fi%20Full%20Color.pdf',sourceLabel:'Intelbras — iM7+ 3MP, ficha específica',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
+  ['37zRkLVqUxzOjxBLGhO1', {
+    model:/(?=.*intelbras)(?=.*im7\s*s)/i,
+    summary:'A Intelbras iM7 S Full Color é uma câmera externa Full HD com microfone e proteção IP66 documentados na ficha da versão. Escuta não equivale a conversa bidirecional: o tutorial da marca diferencia esse recurso dos modelos iM7+. Não transferimos a resolução 3MP ou o zoom híbrido de outras versões. Não garantimos identificação noturna, cobertura simultânea ou detecção de todos os eventos. Fonte e conexões exigem proteção conforme as instruções; não testamos o produto.',
+    positiveNotes:['Full HD, microfone e aplicação externa IP66 documentados para a iM7 S.'],
+    negativeNotes:['Microfone não é promessa de áudio bidirecional; tutorial oficial lista a iM7 S sem essa função.', 'Cartão e gravação dependem do conjunto e da configuração; não garantimos prazo de retenção.'],
+    sourceUrl:'https://backend.intelbras.com/sites/default/files/2024-11/Datasheet%20-%20iM7%20S%20Full%20Color%20-%20C%C3%A2mera%20externa%20inteligente%20Full%20HD%20Wi-Fi%20Full%20Color.pdf',sourceLabel:'Intelbras — iM7 S Full Color, sem copiar outras versões',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
+  ['cq6GYICiBnjXrygHzhaO', {
+    model:/elsys.*esc[- ]?wb3f/i,
+    summary:'A Elsys ESC-WB3F é uma câmera externa Wi-Fi Full HD com infravermelho e configuração pelo ELSYS HOME documentados no guia oficial. A proteção IP66 da câmera não dispensa proteger fonte e conexões conforme o manual. A afirmação anterior de zoom óptico não foi comprovada e foi retirada; não usamos o número antigo como especificação. O guia condiciona a detecção à distância, posição e iluminação. Não testamos imagem, alcance, identificação ou detecção e não alteramos o anúncio nem o link de afiliado.',
+    positiveNotes:['Guia oficial do modelo documenta instalação externa e configuração pelo ELSYS HOME.'],
+    negativeNotes:['Zoom óptico não confirmado; afirmação anterior retirada.', 'Não garantimos detecção infalível ou identificação de detalhes à distância.'],
+    sourceUrl:'https://elsys.com/wp-content/uploads/2022/09/GUIA_RAPIDO_ESC-WB3F.pdf',sourceLabel:'Elsys — guia oficial ESC-WB3F',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
   ['a77W30LAOCEPjWdkcAlU', {
     model:/asus(?=.*e1504fa[- ]?nj732)/i,
     correct:'Notebook ASUS Vivobook Go 15 E1504FA-NJ732 — processador a confirmar',
