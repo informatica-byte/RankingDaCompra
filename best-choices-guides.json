@@ -17,59 +17,69 @@
       "summary": "Compare smartwatches e pulseiras por compatibilidade, GPS anunciado, notificações e autonomia. Veja o que conferir para caminhada e uso diário."
     },
     {
+      "url": "melhores-carro.html",
+      "title": "Acessórios para carro: confira finalidade e compatibilidade",
+      "summary": "Encontre acessórios por tarefa e confira compatibilidade com seu veículo, alimentação e itens do conjunto antes de consultar o anúncio."
+    },
+    {
+      "url": "melhores-moto.html",
+      "title": "Acessórios para moto: confira modelo e compatibilidade",
+      "summary": "Consulte os itens cadastrados e confira finalidade, instalação e compatibilidade com a moto. Aparência ou nome parecido não comprovam adequação."
+    },
+    {
+      "url": "melhores-fritadeira-air-fryer-eletrica.html",
+      "title": "Air fryers: compare formato, capacidade e espaço",
+      "summary": "Entenda o que conferir em fritadeiras de cesto e de forno: dimensões, capacidade nominal, tensão e limpeza. Não presumimos resultado ou porções pelo volume."
+    },
+    {
       "url": "melhores-beleza-cuidados-e-saude.html",
-      "title": "Beleza Cuidados e Saúde: compare por tipo e informações disponíveis",
-      "summary": "Guia: Beleza Cuidados e Saúde: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Beleza e cuidados: encontre produtos pela finalidade",
+      "summary": "Separe aparelhos, cosméticos e outros itens de cuidado. Confira composição, modelo, orientações e limitações, sem presumir benefícios de saúde."
     },
     {
       "url": "melhores-bicicletas.html",
-      "title": "Bicicletas: compare por tipo e informações disponíveis",
-      "summary": "Guia: Bicicletas: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Bicicletas: compare tipo, medidas e configuração",
+      "summary": "Diferencie bicicletas convencionais, ergométricas e elétricas. Confira medidas, configuração e orientações do fabricante antes de escolher."
     },
     {
       "url": "melhores-brinquedos.html",
-      "title": "Brinquedos: compare por tipo e informações disponíveis",
-      "summary": "Guia: Brinquedos: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Brinquedos: o que conferir no modelo e no conjunto",
+      "summary": "Compare brinquedos do mesmo tipo e confira peças, alimentação, indicação etária e itens incluídos no anúncio. Dados ausentes continuam sinalizados."
     },
     {
       "url": "melhores-caixa-de-som.html",
-      "title": "Caixas de som: compare por tipo e informações disponíveis",
-      "summary": "Guia: Caixas de som: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Caixas de som: encontre o formato para sua rotina",
+      "summary": "Compare formatos e recursos anunciados. Confira conexões, alimentação e condições de uso; potência anunciada não comprova qualidade de áudio."
     },
     {
       "url": "melhores-cameras-de-seguranca.html",
-      "title": "Câmeras de segurança: compare por tipo e informações disponíveis",
-      "summary": "Guia: Câmeras de segurança: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
-    },
-    {
-      "url": "melhores-carro.html",
-      "title": "Carro: compare por tipo e informações disponíveis",
-      "summary": "Guia: Carro: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Câmeras de segurança: conexão, gravação e uso",
+      "summary": "Confira modelo, ambiente indicado, conexão, alimentação e forma de gravação. Compare informações documentadas sem presumir qualidade de imagem."
     },
     {
       "url": "melhores-casa.html",
-      "title": "Casa: compare por tipo e informações disponíveis",
-      "summary": "Guia: Casa: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Casa: encontre por tarefa o produto que procura",
+      "summary": "Explore itens de limpeza, cozinha e conforto por tipo de produto. Confira espaço, alimentação e orientações de uso, sem misturar funções diferentes."
     },
     {
       "url": "melhores-celular.html",
-      "title": "Celular: compare por tipo e informações disponíveis",
-      "summary": "Guia: Celular: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Celulares: compare modelo, capacidade e recursos",
+      "summary": "Compare aparelhos pela configuração exata. Confira memória, armazenamento, conectividade e versão; nomes parecidos não garantem o mesmo produto."
     },
     {
       "url": "melhores-drone.html",
-      "title": "DRONE: compare por tipo e informações disponíveis",
-      "summary": "Guia: DRONE: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Drones: confira modelo, recursos e condições de uso",
+      "summary": "Consulte os drones cadastrados e confira identificação, bateria, controle e orientações aplicáveis. Recursos anunciados não substituem testes ou documentação."
     },
     {
       "url": "melhores-esporte-e-lazer.html",
-      "title": "Esporte e Lazer: compare por tipo e informações disponíveis",
-      "summary": "Guia: Esporte e Lazer: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Esporte e lazer: encontre itens pela atividade",
+      "summary": "Explore produtos pela atividade e compare apenas propostas equivalentes. Confira tamanho, montagem, acessórios e orientações específicas de uso."
     },
     {
       "url": "melhores-ferramentas.html",
-      "title": "Ferramentas: compare por tipo e informações disponíveis",
-      "summary": "Guia: Ferramentas: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Ferramentas: escolha pela tarefa e pelo material",
+      "summary": "Diferencie ferramentas para tarefas distintas. Confira material de trabalho, alimentação, acessórios e limites do fabricante antes de escolher."
     },
     {
       "url": "melhores-fones-bluetooth-ate-100.html",
@@ -77,49 +87,39 @@
       "summary": "Compare fones Bluetooth pelo formato, microfone, autonomia e recursos anunciados. Modelos de tipos diferentes ficam separados; dados ausentes ou contraditórios continuam sinalizados. Consulte as condições de compra na loja parceira."
     },
     {
-      "url": "melhores-fritadeira-air-fryer-eletrica.html",
-      "title": "Fritadeira Air Fryer elétrica: compare por tipo e informações disponíveis",
-      "summary": "Guia: Fritadeira Air Fryer elétrica: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
-    },
-    {
       "url": "melhores-impressoras.html",
-      "title": "Impressoras: compare por tipo e informações disponíveis",
-      "summary": "Guia: Impressoras: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Impressoras: compare conexão, funções e consumíveis",
+      "summary": "Confira impressão em cores ou monocromática, funções, conexões e consumíveis do modelo. Compare compatibilidade com sua rotina e sistema operacional."
     },
     {
       "url": "melhores-informatica.html",
-      "title": "Informática: compare por tipo e informações disponíveis",
-      "summary": "Guia: Informática: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Informática: encontre equipamentos pela função",
+      "summary": "Separe computadores, acessórios e periféricos pela tarefa. Confira modelo, conexões, configuração e compatibilidade em cada ficha."
     },
     {
       "url": "melhores-malas-e-bolsas.html",
-      "title": "Malas e Bolsas: compare por tipo e informações disponíveis",
-      "summary": "Guia: Malas e Bolsas: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
-    },
-    {
-      "url": "melhores-moto.html",
-      "title": "Moto: compare por tipo e informações disponíveis",
-      "summary": "Guia: Moto: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Malas e bolsas: confira medidas, formato e uso",
+      "summary": "Compare modelos da mesma finalidade. Confira dimensões, materiais, organização e condições do transporte; o título não garante aceitação pela companhia."
     },
     {
       "url": "melhores-notebook.html",
-      "title": "Notebook: compare por tipo e informações disponíveis",
-      "summary": "Guia: Notebook: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Notebooks: como comparar a configuração para sua rotina",
+      "summary": "Confira processador completo, RAM, SSD e sistema do notebook. Compare configurações equivalentes e confirme o código da variante antes de decidir."
     },
     {
       "url": "melhores-parafusadeira-eletrica.html",
-      "title": "Parafusadeira Elétrica: compare por tipo e informações disponíveis",
-      "summary": "Guia: Parafusadeira Elétrica: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Parafusadeiras: confira tarefa, bateria e acessórios",
+      "summary": "Compare a proposta das parafusadeiras e confira materiais permitidos, bateria, carregador e itens do kit. Uso profissional não é presumido pelo título."
     },
     {
       "url": "melhores-patinetes-eletricos.html",
-      "title": "Patinete Elétrico: compare por tipo e informações disponíveis",
-      "summary": "Guia: Patinete Elétrico: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Patinetes: confira motorização e condições de uso",
+      "summary": "Diferencie modelos motorizados e convencionais. Confira identificação, carga, bateria e orientações aplicáveis; autonomia e segurança não foram testadas."
     },
     {
       "url": "melhores-perfumes.html",
-      "title": "Perfumes: compare por tipo e informações disponíveis",
-      "summary": "Guia: Perfumes: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Perfumes: confira versão, concentração e volume",
+      "summary": "Compare fragrâncias sem tratar volume ou embalagem como diferença de fórmula. Confira nome, concentração e procedência no anúncio; fixação é individual."
     },
     {
       "url": "melhores-roteadores-wifi-6-apartamento.html",
@@ -128,13 +128,13 @@
     },
     {
       "url": "melhores-roupas-e-calcados.html",
-      "title": "Roupas e Calçados: compare por tipo e informações disponíveis",
-      "summary": "Guia: Roupas e Calçados: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Roupas e calçados: compare finalidade e medidas",
+      "summary": "Confira modelo, composição, tabela de medidas e condições de troca. Cor e numeração não comprovam conforto, desempenho ou um modelo diferente."
     },
     {
       "url": "melhores-smart-tv.html",
-      "title": "Smart TVs: compare por tipo e informações disponíveis",
-      "summary": "Guia: Smart TVs: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Smart TVs: compare tela, sistema e conexões",
+      "summary": "Confira resolução, sistema, conexões e o código da TV. Compare as funções necessárias para seu uso sem presumir qualidade de imagem ou som."
     },
     {
       "url": "melhores-smartwatches-caminhada.html",
@@ -143,18 +143,18 @@
     },
     {
       "url": "melhores-super-mercado.html",
-      "title": "Super Mercado: compare por tipo e informações disponíveis",
-      "summary": "Guia: Super Mercado: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Supermercado: confira produto, quantidade e embalagem",
+      "summary": "Consulte os itens cadastrados e confira quantidade, composição e embalagem do anúncio. Condições e disponibilidade são definidas pela loja."
     },
     {
       "url": "melhores-tablet.html",
-      "title": "Tablet: compare por tipo e informações disponíveis",
-      "summary": "Guia: Tablet: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Tablets: confira configuração, conexão e acessórios",
+      "summary": "Compare modelo, memória, armazenamento e conectividade. Confira quais acessórios estão incluídos e a compatibilidade com os aplicativos que pretende usar."
     },
     {
       "url": "melhores-kit-teclado-e-mouse-sem-fio.html",
-      "title": "Teclados e mouses: compare por tipo e informações disponíveis",
-      "summary": "Guia: Teclados e mouses: compare por tipo e informações disponíveis. Consulte modelos por tipo, informações com fontes. Confirme frete, estoque e condições no vendedor."
+      "title": "Teclados e mouses: confira conexão e compatibilidade",
+      "summary": "Separe kits e acessórios individuais. Confira conexão, receptor, alimentação, layout do teclado e compatibilidade com seus aparelhos."
     }
   ]
 }

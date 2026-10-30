@@ -1,8 +1,25 @@
 {
   "version": 1,
+  "firstBatch": {
+    "status": "published_verified",
+    "sourceCommit": "25dfbd284b55883583368900c077154b8de1161f",
+    "testCorrectionCommit": "6a47e4c31",
+    "integrityRun": 41084569798,
+    "integrityResult": "success",
+    "productionVerifiedAt": "2026-10-30",
+    "verified": [
+      "551 products preserved",
+      "604 sitemap URLs preserved",
+      "operational and price fields preserved",
+      "camera uncertainty displayed",
+      "hair dryer no longer links toothpaste or scales",
+      "no old price summaries in informational catalogue"
+    ],
+    "remaining": "517 factual reviews and GLOBAL-05 through GLOBAL-10 remain pending. No claim of completion for those items."
+  },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-30T15:31:23.748Z",
-  "catalogueGeneratedAt": "2026-10-30T15:31:22.657Z",
+  "updatedAt": "2026-10-30T16:09:06.716Z",
+  "catalogueGeneratedAt": "2026-10-30T16:03:32.192Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -14,8 +31,8 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "pending": 517,
-    "preserve_prior_review": 34
+    "pending": 512,
+    "preserve_prior_review": 39
   },
   "items": [
     {
@@ -374,12 +391,16 @@
       "id": "mudVRd1YUQgKwHRcq3iD",
       "url": "https://rankingdacompra.com.br/produto/mudVRd1YUQgKwHRcq3iD-20260810-1.html",
       "title": "Barbeador e Aparador Elétrico Philips OneBlade com Pente 5 em 1, Sem Fio e À Prova D'Água - QP1425/10",
-      "fingerprint": "acca7bb297475c8b62096921095f46bc6b897fb74a0ca934e45011e1028d954e",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "fc7ba44c4e0b5415fe2e59bbb11fe80fddc5a382a0939d2cc22ac9ba9e5e3f56",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/barbeador-e-aparador-eletrico-philips-oneblade-com-pente-5-em-1-sem-fio-e-prova-dagua-qp142510/p/MLB51986596"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "ICxKGrUEwJIcuNHBKQ6z",
@@ -3478,12 +3499,16 @@
       "id": "b052WcTAD3j2UDZHQiXY",
       "url": "https://rankingdacompra.com.br/produto/b052WcTAD3j2UDZHQiXY-20260810-1.html",
       "title": "Mop Esfregão Giratório Condor Balde Inox 13 Litros + Refil Microfibra + Cabo Longo 1,4 Metros",
-      "fingerprint": "8f2061422fd545a61e5abf19e5750c159eef9ba433461b62dffe19c1696efb17",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "0fd6afe35c2d97528f3842118e17af72e6b709151a52f3e610884416d63d787b",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/mop-esfregao-giratorio-condor-balde-inox-13-litros-refil-microfibra-cabo-longo-14-metros/p/MLB47285674?pdp_filters=item_id%3AMLB7674543452"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7174618968",
@@ -3819,12 +3844,16 @@
       "id": "UnTwhXqatX5MyoPnl6DN",
       "url": "https://rankingdacompra.com.br/produto/UnTwhXqatX5MyoPnl6DN-20260810-1.html",
       "title": "Parafusadeira Furadeira Sem Fio 12V WAP BPF 12K3 Kit Maleta",
-      "fingerprint": "8f4d40efbae432fae1442927ae931fb37f8539a763845e276d3d836c9086f4ce",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "f31e21e6bdf4fd4a6716b5615af873afedc883a34e4484b0682ec2017345e6a4",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/parafusadeira-furadeira-sem-fio-12v-wap-bpf-12k3-kit-maleta/p/MLB19141467?pdp_filters=item_id%3AMLB2723576006"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "CCnmlZjBf8P0nhSyHOmm",
@@ -4743,12 +4772,16 @@
       "id": "kfLnRJzsg88rUfJxMtb6",
       "url": "https://rankingdacompra.com.br/produto/kfLnRJzsg88rUfJxMtb6-20260810-1.html",
       "title": "Secador de Cabelos Mondial Preto 2000W SCN-01",
-      "fingerprint": "d95d3c2a8fd4f40b797bb95706db12f6c6fdf97232ce9f3ae0e786025c4dbde0",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "8605ef78c3d6bebe5696deee14d1e1bb19fbc6fcd17b401fed8d039a05a61e60",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/secador-de-cabelos-mondial-preto-2000w-scn-01/p/MLB18638651"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Qwej9VDipQviT3wfRoxl",
@@ -5612,12 +5645,16 @@
       "id": "mlMLB2062519916",
       "url": "https://rankingdacompra.com.br/produto/mlMLB2062519916-20260810-1.html",
       "title": "Tênis Olympikus Dynamic - Masculino - Original - Marinho/dou",
-      "fingerprint": "988096b5e3a2085898bc6ca7e588ef87dfe71ed59dcb02536190d481692fb23b",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "33207b445e4fcb52d6360ec31ac20e4ba4bb1967771be08a12eb7154b7179a53",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/tenis-masculino-olympikus-dynamic-original/up/MLBU4423018526?wid=MLB7238925036"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "hYk6ccUgsn1KL36RxXrY",

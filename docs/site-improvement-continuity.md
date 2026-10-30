@@ -1,4 +1,18 @@
 # Continuidade prioritária — Ranking da Compra
+## Atualização prioritária de 30/10/2026 — retomar daqui
+
+Segundo lote preparado em 30/10: 25 guias genéricos receberam títulos e resumos por finalidade, mantendo os endereços. Cinco fichas da campanha local receberam revisão DOCUMENTAL LIMITADA, com base apenas no anúncio já registrado, sem nova consulta de estoque ou teste prático: mlMLB2062519916, kfLnRJzsg88rUfJxMtb6, mudVRd1YUQgKwHRcq3iD, b052WcTAD3j2UDZHQiXY, UnTwhXqatX5MyoPnl6DN. O Pegada anterior não foi repetido. A biblioteca nova é campaign-analysis.json e não usa métricas de procura inventadas. 1.213 testes e QA de celular passaram. Confirmar publicação antes de marcar o lote como publicado. A revisão aprofundada de todos os guias ainda NÃO está concluída; esta etapa corrigiu títulos/resumos.
+
+O usuário autorizou a retomada (“pode dar andamento”). Não pedir novamente a troca de modelo por rotina; pedir apenas se uma NOVA mudança de nível/modelo for necessária.
+
+O primeiro lote está PUBLICADO E VERIFICADO: commit 25dfbd284b55883583368900c077154b8de1161f, seguido de 6a47e4c31 (lista esperada de gatilhos no teste). A validação GitHub 41084569798 terminou com sucesso. As falhas das execuções antigas 41084266241/41084266254 foram causadas pela lista de gatilhos anterior aos dois novos módulos, não devem ser rerodadas no commit antigo.
+
+Conferência em produção: 551 produtos, 604 URLs, campos operacionais/preços preservados em relação à base, câmera com resolução a confirmar, relacionados do secador sem pasta de dentes/balanças e nenhum resumo de guia no catálogo prometendo preços com data. GLOBAL-01, GLOBAL-02 e GLOBAL-03 podem ser tratados como concluídos para este lote. A contingência de releitura informativa também foi corrigida e validada. Não refazer este lote.
+
+Retomar GLOBAL-04 pela fila de 517 pendentes, preservando as 34 revisões anteriores, e depois GLOBAL-05 a GLOBAL-10. O usuário autorizou todo o plano, mas não autoriza inventar fontes, assumir testes, trocar links, excluir produtos ou ativar cobrança. Registrar dependências factuais de cada ID.
+
+1.208 testes locais passaram; a interface local foi testada nas larguras registradas abaixo. Nada disso significa revisão factual completa das 551 fichas. A agenda diária já existente continua ativa; não criar outra. O checkpoint foi atualizado localmente depois da publicação; preservar estas alterações de documentação.
+
 Início: 30/10/2026. Repositório de trabalho: C:/Users/User/Documents/Codex/2026-07-20/o/work/melhorias-integrais-20261030
 
 ## Regras solicitadas pelo usuário

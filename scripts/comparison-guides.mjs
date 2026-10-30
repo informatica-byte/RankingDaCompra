@@ -1,4 +1,5 @@
 import integrity from '../comparison-integrity.js';
+import {guideEditorialCopy} from './guide-public-copy.mjs';
 import {comparisonData} from './product-decision.mjs';
 import {manufacturerEvidence} from './product-title-corrections.mjs';
 import {documentedSpecifications} from './manufacturer-specifications.mjs';
@@ -40,6 +41,7 @@ function card(item,urls){
     +'<a class="button" href="'+esc(safeUrl(urls.get(p.id)))+'">Ver análise, data e oferta</a></article>';
 }
 export function renderIntegrityGuide({file,title,description,products,urls,date:modified,focused=false,parentFile='',links=''}){
+  ({title,description}=guideEditorialCopy(file,title,description));
   const scope = /patinete/.test(file)?['scooter-electric']:/roteador/.test(file)?['router','router-mesh']:/smart-tv/.test(file)?['television']:/notebook/.test(file)?['notebook']:/relogio-smart|smartwatches/.test(file)?['watch-smart','smart-band']:/fritadeira/.test(file)?['air-fryer']:/impressora/.test(file)?['printer']:/tablet/.test(file)?['tablet']:null;
   const groups=groupComparisonProducts(products).map(g=>({...g,related:!!(scope&&g.type&&!scope.includes(g.type))})).sort((a,b)=>Number(a.related)-Number(b.related));
   const known=groups.filter(g=>g.type&&!g.related), unknown=groups.find(g=>!g.type);

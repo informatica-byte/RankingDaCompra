@@ -13,7 +13,7 @@ export function refreshLedger(catalogue,previous={}) {
     return {id:p.id,url:p.url,title:p.title,fingerprint,
       status:p.decisionBrief?.reviewed?'preserve_prior_review':'pending',
       previousReviewPresent:!!p.decisionBrief?.reviewed,
-      lastCompletedAt:null,workNotes:[],sourceLinks:[],
+      lastCompletedAt:null,workNotes:[],sourceLinks:(p.decisionBrief?.sources||[]).map(source=>source.url).filter(Boolean),
       ...(prior?{previousState:prior.status,changedSinceCheckpoint:true}:{})};
   });
   return {...previous,version:1,scope:'public informational site; no prices, records, affiliates or security rules changed',
