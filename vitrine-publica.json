@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-30T20:23:21.058Z",
+  "generatedAt": "2026-10-30T20:35:42.265Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -526,7 +526,7 @@
     {
       "id": "37zRkLVqUxzOjxBLGhO1",
       "titulo": "Câmera Inteligente Resistente a Chuva e Poeira iM7 S Branca Intelbras",
-      "comentario": "A Câmera Externa Inteligente iM7 S Full Color da Intelbras oferece monitoramento com imagem Full HD e tecnologia Full Color para visão colorida à noite. O modelo conta com rotação 360°, rastreamento automático de movimentos, proteção IP66 contra chuva e poeira, além de conexão por Wi-Fi ou cabo de rede.",
+      "comentario": "A Intelbras iM7 S Full Color é uma câmera externa Full HD com microfone e proteção IP66 documentados na ficha da versão. Escuta não equivale a conversa bidirecional: o tutorial da marca diferencia esse recurso dos modelos iM7+. Não transferimos a resolução 3MP ou o zoom híbrido de outras versões. Não garantimos identificação noturna, cobertura simultânea ou detecção de todos os eventos. Fonte e conexões exigem proteção conforme as instruções; não testamos o produto.",
       "categoria": "câmerasdesegurança",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_741082-MLA99876823617_112025-F.webp",
       "preco": "296,01",
@@ -543,8 +543,8 @@
       "precoConferenciaId": "8d607f0c-7df4-47fa-9481-48de364cd6c2",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 296.01,
-      "pros": "",
-      "contras": "",
+      "pros": "Full HD, microfone e aplicação externa IP66 documentados para a iM7 S.",
+      "contras": "Microfone não é promessa de áudio bidirecional; tutorial oficial lista a iM7 S sem essa função.\nCartão e gravação dependem do conjunto e da configuração; não garantimos prazo de retenção.",
       "notaInformada": ""
     },
     {
@@ -2409,7 +2409,7 @@
     {
       "id": "cq6GYICiBnjXrygHzhaO",
       "titulo": "Câmera de segurança Elsys ESC-WB3F com resolução de 2MP visão noturna incluída branca",
-      "comentario": "Câmera de segurança Elsys ESC-WB3F com resolução de 2MP visão noturna incluída branca. Quantidade de câmeras de seguridad: 1. Resolução Full HD de 2MP para imagens nítidas e detalhadas. Zoom óptico de 3x para visão ampliada de detalhes. Conectividade Wi-Fi e LAN para fácil instalação. Detecção de movimento com alerta em tempo real. Visão noturna com alcance de até 30 m.. Informações extraídas dos dados públicos do anúncio.",
+      "comentario": "A Elsys ESC-WB3F é uma câmera externa Wi-Fi Full HD com infravermelho e configuração pelo ELSYS HOME documentados no guia oficial. A proteção IP66 da câmera não dispensa proteger fonte e conexões conforme o manual. A afirmação anterior de zoom óptico não foi comprovada e foi retirada; não usamos o número antigo como especificação. O guia condiciona a detecção à distância, posição e iluminação. Não testamos imagem, alcance, identificação ou detecção e não alteramos o anúncio nem o link de afiliado.",
       "categoria": "câmerasdesegurança",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_845156-MLA111859299383_052026-O.webp",
       "preco": "179,45",
@@ -2426,8 +2426,8 @@
       "precoConferenciaId": "ac058d91-b2d6-4477-ab90-eea66335e8a1",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 179.45,
-      "pros": "",
-      "contras": "",
+      "pros": "Guia oficial do modelo documenta instalação externa e configuração pelo ELSYS HOME.",
+      "contras": "Zoom óptico não confirmado; afirmação anterior retirada.\nNão garantimos detecção infalível ou identificação de detalhes à distância.",
       "notaInformada": ""
     },
     {
@@ -7600,7 +7600,7 @@
     {
       "id": "mWdbAKSL36ZpIPwUTbdv",
       "titulo": "Câmera Inteligente Im7 + 3mp De Resolução Branca Intelbras",
-      "comentario": "Câmera Inteligente Im7 + 3mp De Resolução Branca Intelbras. Quantidade de câmeras de seguridad: 1. Áudio bidirecional. Inclui visão noturna. Com sensor de movimento. Peso: 423 g. Capacidade de armazenamento de 256GB ( cartão vendido separadamente). Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "comentario": "A Intelbras iM7+ 3MP Full Color tem resolução de 2304 × 1296, microfone e alto-falante, movimento motorizado e proteção IP66 documentados na ficha oficial. Não é a iM7+ Zoom: não transferimos os recursos dessa outra versão. O alcance de movimento não representa visão simultânea de todo o entorno. A capacidade de microSD não comprova cartão incluído. A ficha oficial informa 565 g; o peso anterior de 423 g foi retirado por divergência. Não testamos imagem, rastreamento ou resistência.",
       "categoria": "câmerasdesegurança",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_892568-MLA99939109103_112025-O.webp",
       "preco": "319,68",
@@ -7617,8 +7617,8 @@
       "precoConferenciaId": "5fe16b76-2166-46eb-89ba-d0a1f323c32f",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 319.68,
-      "pros": "",
-      "contras": "",
+      "pros": "Resolução 3MP e áudio bidirecional documentados para a iM7+ 3MP.",
+      "contras": "Rotação não significa cobertura simultânea ou detecção infalível.\nNão atribuímos zoom híbrido de outra versão nem cartão automaticamente incluído.",
       "notaInformada": ""
     },
     {
