@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-30T20:35:42.265Z",
+  "generatedAt": "2026-10-30T20:49:21.055Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -5320,7 +5320,7 @@
     {
       "id": "M9arBHEFyVVMelHK70ml",
       "titulo": "Liquidificador Philco Portátil 2 Squeezes 400W PLQ04A",
-      "comentario": "Liquidificador Philco Portátil 2 Squeezes 400W PLQ04A. Material da jarra: Plástico. A sua potência é de 400 W. Suas peças são adequadas para lava-louças. Tem trava de segurança. Inclui 2 squeezes com tampa. Com lâmina removível.. Informações extraídas dos dados públicos do anúncio. Confira preço, estoque, frete e prazo no momento da compra.",
+      "comentario": "A página oficial do Philco PLQ04A informa 400 W, dois squeezes de 600 ml com tampa e quatro lâminas em inox. Os dois recipientes não equivalem a uma jarra única de 1,2 litro. Portátil não comprova alimentação a bateria ou autonomia. O manual completo não foi recuperado nesta revisão; não confirmamos ingredientes duros, líquidos quentes, ciclos ou peças permitidas na lava-louças. A afirmação anterior sobre lavagem das peças não é mantida como comprovada. Confira alimentação, tensão, montagem e manual da unidade; sem teste de trituração ou vedação.",
       "categoria": "casa",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_811379-MLA110694123444_052026-O.webp",
       "preco": "199,49",
@@ -5337,14 +5337,14 @@
       "precoConferenciaId": "76640287-52ef-4ab1-ab67-1cfaff91869c",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 199.49,
-      "pros": "",
-      "contras": "",
+      "pros": "Dois copos de 600 ml com tampa documentados na descrição oficial do PLQ04A.",
+      "contras": "Receitas, ciclos e limpeza dependem do manual; não presumimos peças liberadas para lava-louças.\nNão confirmamos bateria ou autonomia só pelo termo portátil.",
       "notaInformada": ""
     },
     {
       "id": "MBhoRb0kSLsHrhutbTLN",
       "titulo": "Cafeteira Espresso Dolce Crema 20 Bar Mondial Preto/Inox 1200W C-21-E-CNP",
-      "comentario": "A Cafeteira Espresso Dolce Crema 20 Bar Mondial possui 1200W de potência e 20 Bar de pressão, garantindo a extração de um café cremoso rapidamente. O modelo apresenta reservatório removível de 1,2 litro para até 30 espressos, bico vaporizador para leite, suporte aquecido para xícaras e acabamento durável em inox, além de aceitar pó ou cápsulas.",
+      "comentario": "A Mondial C-21-E-CNP Dolce Crema permite café em pó e acompanha adaptador para cápsulas Nespresso, segundo a página oficial. O adaptador para cápsulas Dolce Gusto é vendido separadamente. A marca descreve reservatório removível de 1,2 litro e bico vaporizador. A pressão nominal de 20 bar não é uma medição independente de qualidade, sabor ou tempo de preparo. Não garantimos rendimento fixo de xícaras nem resultado profissional; não testamos a bebida ou o equipamento. Confira acessórios e tensão no anúncio.",
       "categoria": "casa",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_626074-MLA107530258907_022026-F.webp",
       "preco": "599,00",
@@ -5361,8 +5361,8 @@
       "precoConferenciaId": "5ea341ef-909b-419b-a8de-889d8d207564",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": "599",
-      "pros": "",
-      "contras": "",
+      "pros": "Uso de pó e adaptador Nespresso incluído documentados para a C-21-E-CNP.",
+      "contras": "Adaptador Dolce Gusto separado; não confundir compatibilidade com acessório incluído.\nSabor, temperatura e rapidez não foram testados; pressão nominal não garante resultado.",
       "notaInformada": ""
     },
     {
