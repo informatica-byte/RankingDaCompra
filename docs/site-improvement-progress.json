@@ -137,7 +137,13 @@
     "remaining": "493 pending; 58 structured reviews to preserve."
   },
   "seventhBatch": {
-    "status": "pending_publication",
+    "status": "published_verified",
+    "sourceCommit": "a59dca22f",
+    "integrityRun": 41114447917,
+    "sitemapRun": 41114447844,
+    "pagesRun": 41114535957,
+    "productionVerifiedAt": "2026-10-30T19:22:59.755Z",
+    "results": "all success; five HTTP 200 pages with expected review and source links; 551 products, 604 URLs and protected affiliate/operational fields preserved",
     "reviewedAt": "2026-10-30",
     "sourceFile": "home-analysis-20261030.json",
     "ids": ["yxqaNbV9fYlB5zQKWLqj", "DNqszoYPu5LLhotuYNKp", "wyofwkDoOxUtpmtG9uhf", "nsOTlMwVIdo8dNOdpShY", "Ng9qQNFdPCPMTgUYzfEJ"],
