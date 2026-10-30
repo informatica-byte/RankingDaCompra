@@ -108,7 +108,13 @@
     "remaining": "499 pending; 52 structured reviews to preserve."
   },
   "sixthBatch": {
-    "status": "pending_publication",
+    "status": "published_verified",
+    "sourceCommit": "82222ffed",
+    "integrityRun": 41093935351,
+    "sitemapRun": 41093935736,
+    "pagesRun": 41094012122,
+    "productionVerifiedAt": "2026-10-30T16:56:43.532Z",
+    "results": "all success; six HTTP 200 pages with expected review and source links; protected fields, 551 products and 604 URLs preserved",
     "reviewedAt": "2026-10-30",
     "sourceFile": "office-mobile-analysis-20261030.json",
     "ids": ["FlqPY3yHJ2xPoNgnhSTE", "EmrdwlcDgCCM5suoz8dB", "rcwXY2aQWUN6dbCVzvsB", "LASwiEy13CerUN6q3pKn", "tvmAXcLVslrks9nZlnoa", "35hImqo3QJm6moaV4OzO"],
