@@ -1,0 +1,66 @@
+{
+ "version":1,"reviewedAt":"2026-10-30",
+ "priority":{"source":"Fila editorial pendente; seleção por modelo e fontes identificáveis","method":"Quatro IDs ainda pendentes. As 63 revisões anteriores foram preservadas. Sem teste prático ou nova conferência de estoque."},
+ "products":[
+  {
+   "id":"mlMLB6907306094","guard":"HUAWEI.*BE3","expectedListing":"MLB6907306094",
+   "title":"Huawei BE3: Wi-Fi 7 dual band e uma porta de 2,5 Gb/s",
+   "publicSummary":"A Huawei documenta o BE3 com Wi-Fi 7 em 2,4 e 5 GHz, uma porta de até 2,5 Gb/s e três Gigabit. A taxa sem fio total é teórica, não velocidade garantida da internet. O resumo anterior tinha unidades inconsistentes de dimensões e velocidade, corrigidas nesta revisão.",
+   "fit":"Para quem avalia atualizar a rede e consegue conferir as portas, o plano e os aparelhos que realmente aproveitarão os recursos.",
+   "tradeoff":"Uma porta mais rápida e Wi-Fi 7 não removem os limites das outras conexões nem transformam qualquer cliente em equipamento compatível com o padrão.",
+   "advantages":["Wi-Fi 7 dual band em 2,4 e 5 GHz documentado pela Huawei.","Uma interface de até 2,5 Gb/s e três interfaces Gigabit informadas na ficha oficial."],
+   "limitations":["Não é uma promessa de 3,6 Gb/s de internet em um único aparelho; as taxas publicadas são teóricas.","Não testamos cobertura, latência ou velocidade; cabo, portas, plano, cliente e ambiente importam."],
+   "check":"Confira a versão, as conexões necessárias e o suporte dos clientes a cada recurso. A ficha oficial fornece dimensões em milímetros, não os metros do resumo anterior.",
+   "alternative":"Se o gargalo estiver no provedor, na ligação cabeada ou na posição dos pontos, avalie isso antes de escolher apenas pela geração do Wi-Fi.",
+   "questions":[["Wi-Fi 7 significa que ele tem banda de 6 GHz?","Não neste modelo documentado: a ficha lista 2,4 GHz e 5 GHz. Não presumimos uma terceira banda pelo nome do padrão."],["Todas as portas são de 2,5 Gb/s?","Não. A ficha informa uma interface de até 2,5 Gb/s e três Gigabit."],["3,6 Gb/s é a velocidade garantida no celular?","Não. É referência de taxas teóricas; a velocidade do uso real depende da cadeia de conexão."],["O tamanho estava informado em metros?","O resumo anterior tinha erro de unidade. A Huawei especifica as medidas em milímetros; a informação inconsistente foi retirada da descrição pública."]],
+   "description":"Entenda o Huawei BE3 dual band, a diferença entre suas portas e as taxas teóricas, sem presumir banda de 6 GHz ou velocidade garantida.",
+   "basis":"Ficha oficial Huawei BE3 consultada em 30/10/2026. Corrigidas unidades inconsistentes da descrição pública; sem teste de rede ou conferência de disponibilidade.",
+   "sources":[{"url":"https://consumer.huawei.com/br/routers/wifi-be3/specs/","label":"Huawei — BE3, bandas, interfaces e dimensões; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"Wny29umvm2bXCrY9WGqg","guard":"Mercusys.*MC510","expectedListing":"MLB6160472112",
+   "title":"Mercusys MC510: enquadramento móvel e gravação local ou em nuvem",
+   "publicSummary":"A Mercusys MC510 é uma câmera externa pan/tilt, com imagem 2304 × 1296 e proteção IP65 documentadas pela marca. A cobertura de movimento não equivale a ver 360° ao mesmo tempo. Gravação local e serviço de nuvem têm requisitos distintos.",
+   "fit":"Para acompanhar uma área externa com mudança de enquadramento, planejando alimentação, sinal e privacidade das pessoas no local.",
+   "tradeoff":"Movimento ajuda a direcionar a câmera, mas não elimina pontos fora do enquadramento nem garante detectar todo evento.",
+   "advantages":["Pan/tilt e resolução 2304 × 1296 documentados na página MC510 V1.","Opções de microSD e nuvem Camera Care descritas, permitindo comparar formas de armazenamento."],
+   "limitations":["Não testamos detecção, visão noturna ou identificação de rostos e placas.","Nuvem exige assinatura; cartão, revisão e configurações devem ser conferidos. Não presuma armazenamento ilimitado gratuito."],
+   "check":"Confira revisão, alimentação, local de instalação e proteção dos conectores no manual. Verifique cartão compatível e condições da nuvem antes de escolher.",
+   "alternative":"Se precisa ver várias direções simultaneamente, planeje câmeras ou enquadramentos adequados em vez de contar com rotação como imagem panorâmica contínua.",
+   "questions":[["360° mostra todos os lados ao mesmo tempo?","Não. A cobertura anunciada envolve movimentação; a imagem acompanha a posição da lente."],["Preciso pagar assinatura para toda gravação?","Há opção local em microSD. O serviço de nuvem Camera Care tem assinatura; confira acessórios e requisitos."],["IP65 significa que pode ficar submersa?","Não trate proteção contra intempéries como autorização para imersão. Siga a instalação do manual."],["A detecção substitui supervisão ou garante segurança?","Não garantimos detecção de todo evento. Não realizamos teste de vigilância ou proteção patrimonial."]],
+   "description":"Conheça a Mercusys MC510 externa e os limites de pan/tilt, detecção e armazenamento local ou em nuvem antes de escolher.",
+   "basis":"Página oficial brasileira MC510 V1 consultada em 30/10/2026. Sem teste de imagem, vigilância ou clima e sem confirmação de acessórios ou estoque da oferta.",
+   "sources":[{"url":"https://www.mercusys.com.br/product/smart-camera/mc510/","label":"Mercusys — MC510 V1 e requisitos de armazenamento; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"XDnd73z0ZIkihILVyQhX","guard":"LG.*34G600A.?B","expectedListing":"MLB6142924384",
+   "title":"LG 34G600A-B: UltraWide 160 Hz e condições do modo 1 ms MBR",
+   "publicSummary":"O LG 34G600A-B tem tela curva UltraWide de 34 polegadas, resolução 3440 × 1440 e até 160 Hz anunciados. O modo 1 ms MBR tem condições: a LG alerta para redução de brilho e incompatibilidade com FreeSync Premium e DAS enquanto ativado. Não é uma medição da equipe.",
+   "fit":"Para quem quer avaliar uma tela larga para jogos ou janelas lado a lado e pode conferir espaço, conexão e capacidade gráfica do computador.",
+   "tradeoff":"Tela larga e alta taxa de atualização exigem avaliar suporte do jogo, resolução e conexão. O número máximo não garante que tudo opere nessa condição.",
+   "advantages":["Formato 21:9 e resolução 3440 × 1440 documentados para o modelo.","Taxa de até 160 Hz anunciada, a considerar com o equipamento e a conexão usados."],
+   "limitations":["Segundo a LG, 1 ms MBR reduz luminância e não opera com FreeSync Premium ou DAS ativados ao mesmo tempo; pode haver flicker.","Não medimos resposta, atraso de entrada, cores ou desempenho HDR. A indicação HDR10 não é avaliação de qualidade feita por nós."],
+   "check":"Confirme se placa, cabo, entrada e jogo suportam a combinação desejada de resolução e taxa. Meça a mesa e avalie se o formato 21:9 atende seus programas.",
+   "alternative":"Se prioriza uma função específica, compare suas condições de uso e não some todos os números máximos como se funcionassem simultaneamente.",
+   "questions":[["1 ms MBR pode ser usado com FreeSync?","A LG informa que FreeSync Premium e DAS não podem ser utilizados enquanto o modo 1 ms MBR estiver ativado."],["160 Hz garante 160 quadros por segundo?","Não. A taxa do monitor não garante o desempenho do computador ou do jogo."],["UltraWide funciona em todo jogo sem barras?","Não presumimos. Confira o suporte ao formato e à resolução nos programas usados."],["HDR10 garante imagem HDR de alta qualidade?","Não é suficiente para essa conclusão. Não medimos brilho, contraste ou resultado HDR deste monitor."]],
+   "description":"Entenda o LG 34G600A-B UltraWide, os requisitos para 160 Hz e as condições do modo 1 ms MBR antes de comparar os números máximos.",
+   "basis":"Página oficial LG Brasil do 34G600A-B consultada em 30/10/2026, incluindo ressalvas do MBR. Sem teste de painel, jogos, cores ou latência.",
+   "sources":[{"url":"https://www.lg.com/br/monitores/monitores-ultragear/34g600a-b/","label":"LG — 34G600A-B e restrições do modo MBR; consulta em 30/10/2026"}],"links":[]
+  },
+  {
+   "id":"9P123IBTTYnSCMilPvXB","guard":"Amazfit.*Bip.*6","expectedListing":"MLB6739814208",
+   "title":"Amazfit Bip 6: GPS integrado, chamadas Bluetooth e limites de uso",
+   "publicSummary":"O Amazfit Bip 6 tem GPS integrado, tela AMOLED de 1,97 polegada e chamadas Bluetooth documentados pela fabricante. Chamadas dependem da conexão com o celular. As durações de bateria anunciadas mudam conforme o uso; medições do relógio não são diagnóstico médico.",
+   "fit":"Para quem quer acompanhar atividades e notificações no pulso, conferindo compatibilidade do celular, aplicativo e tamanho antes de escolher.",
+   "tradeoff":"GPS integrado e chamadas Bluetooth são recursos diferentes: localizar uma atividade não transforma o relógio em telefone independente.",
+   "advantages":["GPS integrado e tela AMOLED de 1,97 polegada documentados pela Amazfit.","Suporte a chamadas Bluetooth e aplicativo Zepp descritos pela fabricante."],
+   "limitations":["O relógio e o aplicativo Zepp não são dispositivos médicos; os dados não devem ser usados como diagnóstico.","Não medimos precisão, conforto ou autonomia. O modo de uso altera a bateria, e funções regionais precisam ser conferidas."],
+   "check":"Confira requisitos do Zepp, permissões e compatibilidade do celular. Leia as restrições da classificação 5 ATM no manual; não a interprete como autorização para toda atividade aquática.",
+   "alternative":"Se precisa de chamada sem celular, confirme explicitamente conectividade independente em outro modelo, em vez de inferi-la pela presença de microfone ou GPS.",
+   "questions":[["Posso atender chamadas deixando o celular em casa?","Chamadas Bluetooth exigem a conexão com o celular. Não prometemos telefonia independente para o Bip 6."],["GPS integrado significa que toda função funciona sem celular?","Não. GPS, notificações, sincronização e chamadas têm requisitos diferentes."],["Os sensores diagnosticam alguma doença?","Não. A fabricante informa que o produto e o aplicativo não são dispositivos médicos; não usamos leituras como diagnóstico."],["A bateria sempre dura o máximo anunciado?","Não. GPS, chamadas, tela, sensores e notificações mudam o consumo; não fizemos medição de autonomia."]],
+   "description":"Veja o Amazfit Bip 6 com GPS e chamadas Bluetooth e entenda dependência do celular, condições de bateria e limites dos dados de bem-estar.",
+   "basis":"Página oficial Amazfit dos EUA consultada em 30/10/2026. Fonte regional, sem generalizar disponibilidade de serviços no Brasil; sem teste prático nem avaliação médica.",
+   "sources":[{"url":"https://us.amazfit.com/products/bip-6","label":"Amazfit — Bip 6, fonte dos EUA e condições dos recursos; consulta em 30/10/2026"}],"links":[]
+  }
+ ]
+}

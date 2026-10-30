@@ -146,16 +146,39 @@
     "results": "all success; five HTTP 200 pages with expected review and source links; 551 products, 604 URLs and protected affiliate/operational fields preserved",
     "reviewedAt": "2026-10-30",
     "sourceFile": "home-analysis-20261030.json",
-    "ids": ["yxqaNbV9fYlB5zQKWLqj", "DNqszoYPu5LLhotuYNKp", "wyofwkDoOxUtpmtG9uhf", "nsOTlMwVIdo8dNOdpShY", "Ng9qQNFdPCPMTgUYzfEJ"],
+    "ids": [
+      "yxqaNbV9fYlB5zQKWLqj",
+      "DNqszoYPu5LLhotuYNKp",
+      "wyofwkDoOxUtpmtG9uhf",
+      "nsOTlMwVIdo8dNOdpShY",
+      "Ng9qQNFdPCPMTgUYzfEJ"
+    ],
     "scope": "Five pending home-appliance reviews with official documentation; no practical tests, new stock check, price or affiliate edits.",
-    "limits": ["AWD01 total versus useful capacities distinguished; not an extractor", "AFON power differs by voltage; suffix is not proof of bivolt", "E-01 25 W not independently confirmed due to inconsistent official table", "VSP40C suffix unresolved; NB specifications not silently transferred; unproven no-noise promise removed", "EAF90 portions, accessories and delivered voltage not assumed"],
+    "limits": [
+      "AWD01 total versus useful capacities distinguished; not an extractor",
+      "AFON power differs by voltage; suffix is not proof of bivolt",
+      "E-01 25 W not independently confirmed due to inconsistent official table",
+      "VSP40C suffix unresolved; NB specifications not silently transferred; unproven no-noise promise removed",
+      "EAF90 portions, accessories and delivered voltage not assumed"
+    ],
     "tests": "1226 passing; general validator and invariants passed; responsive QA passed; AWD01 mobile screenshot inspected",
     "noRepetitionProof": "Compared all catalogue fingerprints with previous checkpoint: only these five changed; prior 58 unchanged.",
     "remaining": "488 pending; 63 structured reviews to preserve."
   },
+  "eighthBatch": {
+    "status": "pending_publication",
+    "reviewedAt": "2026-10-30",
+    "sourceFile": "connected-devices-analysis-20261030.json",
+    "ids": ["mlMLB6907306094", "Wny29umvm2bXCrY9WGqg", "XDnd73z0ZIkihILVyQhX", "9P123IBTTYnSCMilPvXB"],
+    "scope": "Four pending connected-device reviews with official documentation; no practical tests, new stock checks, prices or affiliate edits.",
+    "limits": ["BE3 incorrect units removed from public page and search; theoretical rates and unequal port speeds explained", "MC510 pan/tilt is not simultaneous 360-degree video; cloud subscription distinguished", "LG MBR cannot be assumed simultaneous with FreeSync/DAS", "Bip 6 calls depend on phone; US source does not confirm Brazilian services; not a medical device"],
+    "tests": "1229 passing; general validator and invariants passed; responsive QA passed; BE3 mobile screenshot inspected",
+    "noRepetitionProof": "Compared all catalogue fingerprints with previous checkpoint: only these four changed; prior 63 unchanged.",
+    "remaining": "484 pending; 67 structured reviews to preserve."
+  },
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-30T19:18:40.231Z",
-  "catalogueGeneratedAt": "2026-10-30T19:18:30.596Z",
+  "updatedAt": "2026-10-30T19:53:48.765Z",
+  "catalogueGeneratedAt": "2026-10-30T19:53:39.055Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -167,8 +190,8 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "pending": 488,
-    "preserve_prior_review": 63
+    "pending": 484,
+    "preserve_prior_review": 67
   },
   "items": [
     {
@@ -2558,12 +2581,16 @@
       "id": "mlMLB6907306094",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6907306094-20260810-1.html",
       "title": "HUAWEI WiFi BE3 3.6 Gpbs Dual-Band Wi-Fi 7 I Visualização de diagnóstico WiFi I Controle parental Preto",
-      "fingerprint": "e854131237f85afd3eb002afc60d3b1b172830c33997e762d2307ae3a30d8042",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "cb04bcf0a342d97b3a02d91458c2740d4b7be52dd937c871c50c34af3e1644ba",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://consumer.huawei.com/br/routers/wifi-be3/specs/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "EmrdwlcDgCCM5suoz8dB",
@@ -3528,12 +3555,16 @@
       "id": "Wny29umvm2bXCrY9WGqg",
       "url": "https://rankingdacompra.com.br/produto/Wny29umvm2bXCrY9WGqg-20260810-1.html",
       "title": "Mercusys MC510 Câmera Segurança Wifi 2K 360° Externo por TP-Link",
-      "fingerprint": "527b5c6ba6dac30334604c62b8f822eb252c274fef702c915bfb1f076b5d0d3e",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "e495891e51ca3ba5b9ce2b176f0d69bb469ef00aac9609e0df2a27917674df8a",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.mercusys.com.br/product/smart-camera/mc510/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "e2JrkBA5LBbERAqFunqx",
@@ -3671,12 +3702,16 @@
       "id": "XDnd73z0ZIkihILVyQhX",
       "url": "https://rankingdacompra.com.br/produto/XDnd73z0ZIkihILVyQhX-20260810-1.html",
       "title": "Monitor Gamer LG UltraGear Curvo 34G600A-B 34\" QuadHD 2K, UltraWide 1800R, 160Hz, 1ms (MBR), AMD FreeSync Premium, HDR10, MaxxAudio",
-      "fingerprint": "4e5ae38ab589538a4aa989f9551970bbb7b36e7af4289c8a34d80219a4561a8b",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "ca361c31ec826c801477aacb7bdb36fcda1113465ef67510c0098d6aa312bfeb",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://www.lg.com/br/monitores/monitores-ultragear/34g600a-b/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "b052WcTAD3j2UDZHQiXY",
@@ -5254,12 +5289,16 @@
       "id": "9P123IBTTYnSCMilPvXB",
       "url": "https://rankingdacompra.com.br/produto/9P123IBTTYnSCMilPvXB-20260810-1.html",
       "title": "Smartwatch Amazfit Bip 6 com GPS e tela AMOLED de 1,97 polegada",
-      "fingerprint": "a969f10aa67fff1e59af1d80bf69d89ee4546d716d164e1deab05298b79063bc",
-      "status": "pending",
-      "previousReviewPresent": false,
+      "fingerprint": "f6d0efe21a086a5470c035ed79a5a3e0894d91c462d7b07f9fab6ee1e141ab24",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
-      "sourceLinks": []
+      "sourceLinks": [
+        "https://us.amazfit.com/products/bip-6"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "cSmjEdmFugRGDdJHkMcR",

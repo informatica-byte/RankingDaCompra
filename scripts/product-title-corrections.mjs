@@ -8,6 +8,13 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB6907306094', {
+    model:/huawei.*\bbe3\b/i,
+    summary:'A Huawei documenta o WiFi BE3 com bandas de 2,4 e 5 GHz, Wi-Fi 7, uma interface Ethernet de até 2,5 Gb/s e três interfaces Gigabit. As taxas sem fio são teóricas e não garantem velocidade real da internet. A descrição anterior continha unidades inconsistentes de velocidade e dimensões; esses valores foram retirados. A ficha oficial fornece dimensões em milímetros. Confira a versão, as conexões e os requisitos dos equipamentos. Não testamos cobertura, latência ou velocidade.',
+    positiveNotes:['Wi-Fi 7 dual band e interfaces Ethernet documentados pela Huawei.'],
+    negativeNotes:['Taxas teóricas não são velocidade garantida; não testamos a rede.', 'Não presumimos banda de 6 GHz ou que todas as portas sejam de 2,5 Gb/s.'],
+    sourceUrl:'https://consumer.huawei.com/br/routers/wifi-be3/specs/',sourceLabel:'Huawei — WiFi BE3, especificações oficiais',reviewedAt:'2026-10-30',suppressRating:true,
+  }],
   ['mlMLB4330065589', {
     model:/^c[âa]mera(?=.*seguran[cç]a)(?=.*wi-fi)(?=.*dupla lente)(?=.*(?:8\s*mp|resolu[cç][aã]o a confirmar))/i,
     correct:'Câmera de segurança Wi-Fi PTZ com dupla lente — resolução a confirmar',
