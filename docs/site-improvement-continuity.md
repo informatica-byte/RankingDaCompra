@@ -5,7 +5,7 @@ Segundo lote PUBLICADO E VERIFICADO em 30/10: commit fbea35ce5338209d72b9dbf7c16
 
 O usuário autorizou a retomada (“pode dar andamento”). Não pedir novamente a troca de modelo por rotina; pedir apenas se uma NOVA mudança de nível/modelo for necessária.
 
-Terceiro lote em validação: metodologia ampliada para distinguir ficha descritiva, análise documental e informação do fabricante; explica que a data editorial não confirma estoque e que a seleção não cobre todo o mercado. Não atribui novas credenciais ou autoria a pessoas. 1.214 testes aprovados; confirmar QA e publicação antes de marcar como concluído. GLOBAL-08 parcialmente atendido, sem alegar revisão factual completa do catálogo.
+Terceiro lote PUBLICADO E VERIFICADO: commit 47777a4f9, integridade 41088716681, sitemap 41088716688 e Pages final 41088816310 concluídos com sucesso. Metodologia ampliada para distinguir ficha descritiva, análise documental e informação do fabricante; explica que a data editorial não confirma estoque e que a seleção não cobre todo o mercado. Não atribui novas credenciais ou autoria a pessoas. 1.214 testes aprovados; QA e inspeção visual da metodologia aprovados em 360, 390, 768 e 1366 pixels. Página pública retornou HTTP 200 com novo conteúdo. GLOBAL-08 parcialmente atendido, sem alegar revisão factual completa do catálogo.
 
 O primeiro lote está PUBLICADO E VERIFICADO: commit 25dfbd284b55883583368900c077154b8de1161f, seguido de 6a47e4c31 (lista esperada de gatilhos no teste). A validação GitHub 41084569798 terminou com sucesso. As falhas das execuções antigas 41084266241/41084266254 foram causadas pela lista de gatilhos anterior aos dois novos módulos, não devem ser rerodadas no commit antigo.
 
@@ -81,5 +81,5 @@ Quando tudo estiver concluído e verificado, remover apenas a agenda de continui
 
 ## Publicação
 
-Os dois lotes descritos no resumo prioritário foram publicados e verificados em produção. O checkpoint JSON registra commits, execuções e escopo; a base de proteção e os logs locais ficam em outputs/melhorias-integrais-20261030. Não apresentar o trabalho restante como concluído. As alterações de documentação posteriores à prova de produção podem ser publicadas em commit apenas documental, sem regenerar o catálogo ou consultar o Firestore.
+Os três lotes descritos no resumo prioritário foram publicados e verificados em produção. O checkpoint JSON registra commits, execuções e escopo; a base de proteção e os logs locais ficam em outputs/melhorias-integrais-20261030. Não apresentar o trabalho restante como concluído. As alterações de documentação posteriores à prova de produção podem ser publicadas em commit apenas documental, sem regenerar o catálogo ou consultar o Firestore.
 
