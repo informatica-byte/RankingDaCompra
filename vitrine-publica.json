@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-30T19:56:04.917Z",
+  "generatedAt": "2026-10-30T20:05:57.231Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -1613,8 +1613,8 @@
     },
     {
       "id": "a77W30LAOCEPjWdkcAlU",
-      "titulo": "Notebook ASUS VivoBook Go 15 AMD Ryzen 5 7520U 8GB 512GB SSD KeepOS Tela 15,6\" FHD Mixed Black - E1504FA-NJ732",
-      "comentario": "O Notebook ASUS Vivobook Go 15 é uma excelente opção para quem busca produtividade e ótimo custo-benefício no dia a dia. Equipado com processador AMD Ryzen 5, 8GB de RAM e SSD de 512GB, ele oferece bom desempenho para estudos e tarefas cotidianas. Conta com tela Full HD de 15,6 polegadas, design leve, dobradiça plana de 180° e certificação de resistência militar MIL-STD-810H, garantindo maior durabilidade. O sistema operacional instalado de fábrica é o KeepOS (Linux), exigindo eventual alteração caso prefira o Windows.",
+      "titulo": "Notebook ASUS Vivobook Go 15 E1504FA-NJ732 — processador a confirmar",
+      "comentario": "O cadastro identifica o ASUS Vivobook Go 15 E1504FA-NJ732 com 8 GB de RAM, SSD de 512 GB e KeepOS. O título anterior anunciava Ryzen 5 7520U, mas a página oficial atual do mesmo código informa Ryzen 5 40. Não presumimos equivalência entre os nomes nem qual unidade será entregue. Confirme processador, identificação completa e configuração com o vendedor. Não testamos desempenho, expansão ou autonomia e não mudamos os links do cadastro.",
       "categoria": "notebook",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_737034-MLU75570682760_042024-F.webp",
       "preco": "3.088,00",
@@ -1631,8 +1631,8 @@
       "precoConferenciaId": "6244682a-9854-4151-8209-f1e860a775bb",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": "3088",
-      "pros": "",
-      "contras": "",
+      "pros": "Código E1504FA-NJ732 e configuração de memória/armazenamento identificados na fonte oficial.",
+      "contras": "Processador divergente entre cadastro e página oficial atual; confirmar a unidade.\nSem teste de desempenho ou confirmação de expansão.",
       "notaInformada": ""
     },
     {
