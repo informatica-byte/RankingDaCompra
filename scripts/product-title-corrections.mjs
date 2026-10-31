@@ -8,6 +8,39 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['iAFknp54AGEJMCkVkbtP', {
+    syncInformationalSchema:true,
+    model:/auxiliar.*partida.*vigomot/i,
+    summary:'O cadastro descreve um auxiliar de partida VIGOMOT com compressor, lanterna LED de três modos e porta USB. Informa bateria de 8000 mAh, pressão de 150 PSI e aplicação anunciada para veículos de até 3 L. PSI é uma unidade de pressão, não de vazão; não há vazão confirmada nesta ficha. Esses números são declarações do cadastro, não resultados de teste. Confirme o modelo e a compatibilidade com o veículo nas instruções do fornecedor; não garantimos partida ou calibração.',
+    positiveNotes:['Compressor, lanterna e USB descritos no cadastro; confira os itens da unidade oferecida.'],
+    negativeNotes:['Vazão não confirmada; os 150 PSI anunciados se referem a pressão.', 'Compatibilidade com o veículo e desempenho de partida não foram verificados.'],
+    suppressRating:true,
+  }],
+  ['WcV6iy1IS12dL74uflws', {
+    syncInformationalSchema:true,
+    model:/auxiliar.*partida.*port[aá]til.*carro.*moto/i,
+    summary:'O cadastro apresenta um auxiliar de partida portátil anunciado como VIGOMOT, com compressor de ar, lanterna LED e função power bank. Não informa nesta ficha uma vazão medida nem documentação suficiente para assegurar compatibilidade por cilindrada. Não tratamos a expressão alta vazão ou a indicação genérica para carros e motos como comprovação de desempenho. Confira o modelo exato, a aplicação ao veículo e as instruções do fornecedor antes de escolher.',
+    positiveNotes:['Funções de compressor, lanterna e power bank descritas no cadastro.'],
+    negativeNotes:['Vazão e compatibilidade por veículo não confirmadas.', 'Não testamos partida, calibração ou autonomia; não garantimos atendimento a qualquer carro ou moto.'],
+    suppressRating:true,
+  }],
+  ['ZcFzy9nXCVEZCsuz9SB3', {
+    syncInformationalSchema:true,
+    model:/auxiliar.*partida.*port[aá]til.*veicular/i,
+    category:'carro',
+    summary:'O cadastro apresenta um auxiliar de partida veicular anunciado como VIGOMOT, com compressor, iluminação LED de três modos e função power bank USB. Os 150 PSI, 8000 mAh e aplicação para veículos de até 3 L são dados anunciados, não verificados em teste pela equipe. Confira o modelo exato e as instruções de compatibilidade do fornecedor; esta ficha não garante partida, calibração ou autonomia. O produto pertence à categoria automotiva, não à seleção de utensílios de casa.',
+    positiveNotes:['Conjunto de funções automotivas descrito no cadastro.'],
+    negativeNotes:['Aplicação ao veículo e desempenho não foram testados.', 'Confirme o modelo exato e o conteúdo da embalagem, sem presumir equivalência entre anúncios VIGOMOT.'],
+    suppressRating:true,
+  }],
+  ['JaEIKKAz742WyLDV6Oqr', {
+    syncInformationalSchema:true,
+    model:/balan[cç]a.*bioimped[aâ]ncia.*8.*relaxmedic/i,
+    summary:'O cadastro identifica uma balança Relaxmedic de bioimpedância com oito sensores e anuncia capacidade de 180 kg e dimensões de 30 × 30 cm. O código exato do modelo, a alimentação e a aplicação por faixa etária não foram confirmados nesta revisão. Por isso, não afirmamos alimentação 127/220 V nem indicação para acompanhar o crescimento infantil com base nesses campos. Não testamos precisão ou estimativas de composição corporal. Confira a identificação da unidade e o manual correspondente antes de decidir.',
+    positiveNotes:['Marca Relaxmedic e oito sensores identificados no título cadastrado.'],
+    negativeNotes:['Modelo exato, alimentação e faixa etária a confirmar no manual da unidade.', 'Capacidade e medidas são dados anunciados; precisão e estimativas de composição corporal não foram testadas.'],
+    suppressRating:true,
+  }],
   ['Mdyju6zRmHsKRpOYqz51', {
     syncInformationalSchema:true,
     model:/inova.*(?:gancho|fone)/i,
@@ -758,14 +791,16 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
         if (!sourceUrl || !matchesExistingOffer({link: sourceUrl.replace(/&amp;/g, '&')}, correction.expectedListing)) continue;
       }
       if (correction.correct) corrected = applyVerifiedTitle(corrected, correction.correct, correction.syncInformationalSchema);
-      if (correction.category === 'informatica') {
-        corrected = corrected.replace(/(<span>Categoria<\/span>)[^<]*(<\/div>)/, '$1Informática$2');
-        corrected = corrected.replace(/(<nav class="crumb"[^>]*>[\s\S]*?<\/a>\s*\/\s*)<a[^>]*>[^<]*<\/a>/, '$1<a href="https://rankingdacompra.com.br/analises.html#informatica">Informática</a>');
+      const categoryLabel = {informatica:'Informática',carro:'Carro'}[correction.category];
+      if (categoryLabel) {
+        const categoryUrl = 'https://rankingdacompra.com.br/analises.html#'+correction.category;
+        corrected = corrected.replace(/(<span>Categoria<\/span>)[^<]*(<\/div>)/, '$1'+categoryLabel+'$2');
+        corrected = corrected.replace(/(<nav class="crumb"[^>]*>[\s\S]*?<\/a>\s*\/\s*)<a[^>]*>[^<]*<\/a>/, '$1<a href="'+categoryUrl+'">'+categoryLabel+'</a>');
         corrected = corrected.replace(/(<script\b[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/g, (full, a, source, b) => {
           let payload; try { payload = JSON.parse(source); } catch { return full; }
           for (const node of payload['@graph'] || [payload]) {
-            if (node['@type'] === 'Product') node.category = 'Informática';
-            if (node['@type'] === 'BreadcrumbList') for (const item of node.itemListElement || []) if (item.position === 2) {item.name = 'Informática'; item.item = 'https://rankingdacompra.com.br/analises.html#informatica';}
+            if (node['@type'] === 'Product') node.category = categoryLabel;
+            if (node['@type'] === 'BreadcrumbList') for (const item of node.itemListElement || []) if (item.position === 2) {item.name = categoryLabel; item.item = categoryUrl;}
           }
           return a + JSON.stringify(payload).replace(/</g, '\\u003c') + b;
         });

@@ -4191,7 +4191,7 @@
     {
       "id": "iAFknp54AGEJMCkVkbtP",
       "titulo": "Auxiliar Partida Bateria Compressor Ar Automotivo Vigomot",
-      "comentario": "O Auxiliar Partida Bateria Compressor Ar Automotivo Vigomot é um dispositivo portátil multifuncional com capacidade de 8000 mAh. Ele é desenvolvido para veículos de até 3L, integrando compressor de ar com 150 PSI de vazão, lanterna LED com três modos de operação e uma porta USB para o carregamento de dispositivos eletrônicos.",
+      "comentario": "O cadastro descreve um auxiliar de partida VIGOMOT com compressor, lanterna LED de três modos e porta USB. Informa bateria de 8000 mAh, pressão de 150 PSI e aplicação anunciada para veículos de até 3 L. PSI é uma unidade de pressão, não de vazão; não há vazão confirmada nesta ficha. Esses números são declarações do cadastro, não resultados de teste. Confirme o modelo e a compatibilidade com o veículo nas instruções do fornecedor; não garantimos partida ou calibração.",
       "categoria": "carro",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_736633-MLB113129490920_072026-F-auxiliar-partida-bateria-compressor-ar-automotivo-vigomot.webp",
       "preco": "197,34",
@@ -4206,8 +4206,8 @@
       "precoConferenciaId": "97116a6c-3c47-4159-8246-e3b57c48c7d4",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 197.34,
-      "pros": "",
-      "contras": "",
+      "pros": "Compressor, lanterna e USB descritos no cadastro; confira os itens da unidade oferecida.",
+      "contras": "Vazão não confirmada; os 150 PSI anunciados se referem a pressão.\nCompatibilidade com o veículo e desempenho de partida não foram verificados.",
       "notaInformada": ""
     },
     {
@@ -4546,7 +4546,7 @@
     {
       "id": "JaEIKKAz742WyLDV6Oqr",
       "titulo": "Balança De Bioimpedância 8 Sensores Relaxmedic Digital Preto",
-      "comentario": "A Balança De Bioimpedância 8 Sensores Relaxmedic Digital Preto possui capacidade para até 180kg e mede a gordura corporal. Com dimensões de 30cm de largura por 30cm de comprimento, o modelo apresenta voltagem de 127/220V (descrita como 'oltagem') e é indicada para o controle do crescimento de crianças. Cabe notar que suas imagens podem ser ilustrativas.",
+      "comentario": "O cadastro identifica uma balança Relaxmedic de bioimpedância com oito sensores e anuncia capacidade de 180 kg e dimensões de 30 × 30 cm. O código exato do modelo, a alimentação e a aplicação por faixa etária não foram confirmados nesta revisão. Por isso, não afirmamos alimentação 127/220 V nem indicação para acompanhar o crescimento infantil com base nesses campos. Não testamos precisão ou estimativas de composição corporal. Confira a identificação da unidade e o manual correspondente antes de decidir.",
       "categoria": "belezaecuidados",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_893907-MLA107580271409_022026-F.webp",
       "preco": "387,96",
@@ -4563,8 +4563,8 @@
       "precoConferenciaId": "5fa4fd10-d83a-4dfc-a129-1ae71c65f593",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 387.96,
-      "pros": "",
-      "contras": "",
+      "pros": "Marca Relaxmedic e oito sensores identificados no título cadastrado.",
+      "contras": "Modelo exato, alimentação e faixa etária a confirmar no manual da unidade.\nCapacidade e medidas são dados anunciados; precisão e estimativas de composição corporal não foram testadas.",
       "notaInformada": ""
     },
     {
@@ -11508,7 +11508,7 @@
     {
       "id": "WcV6iy1IS12dL74uflws",
       "titulo": "Auxiliar Partida Bateria Portátil Rápido Para Carro Moto",
-      "comentario": "O auxiliar de partida portátil VIGOMOT é um equipamento versátil para emergências automotivas. Conta com compressor de ar de alta vazão, lanterna LED multifuncional e bateria recarregável que funciona como powerbank para celulares e tablets. É compacto, prático para motoristas e ideal para o uso em carros de passeio de baixa e média cilindrada.",
+      "comentario": "O cadastro apresenta um auxiliar de partida portátil anunciado como VIGOMOT, com compressor de ar, lanterna LED e função power bank. Não informa nesta ficha uma vazão medida nem documentação suficiente para assegurar compatibilidade por cilindrada. Não tratamos a expressão alta vazão ou a indicação genérica para carros e motos como comprovação de desempenho. Confira o modelo exato, a aplicação ao veículo e as instruções do fornecedor antes de escolher.",
       "categoria": "carro",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_702786-MLB108397554481_032026-F-auxiliar-partida-bateria-portatil-rapido-para-carro-moto.webp",
       "preco": "178,93",
@@ -11526,8 +11526,8 @@
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 178.93,
       "anuncioSubstituidoEm": "2026-10-07T11:05:12.831Z",
-      "pros": "",
-      "contras": "",
+      "pros": "Funções de compressor, lanterna e power bank descritas no cadastro.",
+      "contras": "Vazão e compatibilidade por veículo não confirmadas.\nNão testamos partida, calibração ou autonomia; não garantimos atendimento a qualquer carro ou moto.",
       "notaInformada": ""
     },
     {
@@ -12672,8 +12672,8 @@
     {
       "id": "ZcFzy9nXCVEZCsuz9SB3",
       "titulo": "Auxiliar Partida Portátil Veicular Compressor Ar Emergência",
-      "comentario": "O Auxiliar Partida Portátil Veicular Compressor Ar Emergência da VIGOMOT é um dispositivo multifuncional projetado para veículos de até 3L. Ele integra funções de arrancador de partida rápida, compressor de ar de 150 PSI e banco de energia de 8000 mAh com porta USB. Conta ainda com sistema de iluminação LED de 3 modos.",
-      "categoria": "casa",
+      "comentario": "O cadastro apresenta um auxiliar de partida veicular anunciado como VIGOMOT, com compressor, iluminação LED de três modos e função power bank USB. Os 150 PSI, 8000 mAh e aplicação para veículos de até 3 L são dados anunciados, não verificados em teste pela equipe. Confira o modelo exato e as instruções de compatibilidade do fornecedor; esta ficha não garante partida, calibração ou autonomia. O produto pertence à categoria automotiva, não à seleção de utensílios de casa.",
+      "categoria": "carro",
       "foto": "https://http2.mlstatic.com/D_NQ_NP_2X_952601-MLB104060579421_012026-F-auxiliar-partida-portatil-veicular-compressor-ar-emergencia.webp",
       "preco": "174,02",
       "precoAnterior": "299,00",
@@ -12687,8 +12687,8 @@
       "precoConferenciaId": "6c0214d0-6580-47b4-8250-946cd4bbc9c9",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 174.02,
-      "pros": "",
-      "contras": "",
+      "pros": "Conjunto de funções automotivas descrito no cadastro.",
+      "contras": "Aplicação ao veículo e desempenho não foram testados.\nConfirme o modelo exato e o conteúdo da embalagem, sem presumir equivalência entre anúncios VIGOMOT.",
       "notaInformada": ""
     },
     {

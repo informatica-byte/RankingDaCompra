@@ -1,0 +1,17 @@
+{
+  "date":"2026-10-31",
+  "policy":"Triagem individual de oito próximos itens pending; intervir só em defeito concreto, sem nova conferência de anúncios ou validação técnica das alegações. Nenhuma fonte nova ou teste prático foi inventado.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"zev1LogqUFpJ3cLlIXyy","decision":"screened_no_change","reason":"Revisão de campos existente já atribui USB-C ao anúncio e mantém carga rápida não confirmada; sem reescrever texto ou repetir pesquisa anterior. O rótulo de navegação Bicicletas diverge do categoryId ferramentas; defeito de geração separado, sem mudar esta ficha agora."},
+    {"id":"iAFknp54AGEJMCkVkbtP","decision":"targeted_correction_complete","reason":"O texto chamava 150 PSI de vazão e assegurava aplicação por cilindrada. Corrigida a unidade para pressão e atribuídos os dados ao cadastro, sem inventar vazão ou teste de compatibilidade."},
+    {"id":"mlMLB5263835391","decision":"screened_no_change","reason":"Resumo já se limita ao cadastro e não adiciona autonomia ou compatibilidade. Ausência de análise extensa não é motivo para reescrever sem evidência nova."},
+    {"id":"WcV6iy1IS12dL74uflws","decision":"targeted_correction_complete","reason":"Alta vazão e indicação para carros de baixa/média cilindrada apareciam como conclusões. Retiradas garantias genéricas, mantendo somente funções descritas no cadastro e lacunas explícitas."},
+    {"id":"ZcFzy9nXCVEZCsuz9SB3","decision":"targeted_correction_complete","reason":"Auxiliar de partida veicular estava na categoria Casa. Corrigida a categoria para Carro e atribuídos números anunciados ao cadastro; não presumida equivalência a outros conjuntos VIGOMOT."},
+    {"id":"t4cAWb59UILzYeRHO0qk","decision":"needs_source","reason":"Tripé sem código exato suficiente para confirmar oito seções, 37 cm fechado e compatibilidade com câmeras. Não preencher capacidade de carga ou estabilidade por suposição; aguardar identificação/manual específico antes de ampliar a ficha."},
+    {"id":"bad7xcvnBitbrXvi4GNE","decision":"screened_no_change","reason":"Dados de boneca, material e faixa etária já são atribuídos ao anúncio. Nenhum novo defeito editorial prioritário identificado nesta leitura; não significa certificação ou teste de segurança."},
+    {"id":"JaEIKKAz742WyLDV6Oqr","decision":"targeted_correction_complete","reason":"A ficha afirmava 127/220 V e indicação para crescimento infantil sem código/manual confirmado. Retiradas essas conclusões; medidas e capacidade ficam como dados anunciados, sem alegação clínica ou precisão comprovada."}
+  ],
+  "counts":{"screened":8,"targetedCorrections":4,"noEditorialChange":3,"needsSource":1},
+  "resume":"Retomar próximo pending. Não repetir 98 análises nem a triagem anterior. As quatro correções não aumentam a contagem de análises profundas. Rever needs_source apenas com evidência nova. Investigar separadamente rótulo de categoria gerado de zev1LogqUFpJ3cLlIXyy sem refazer seu conteúdo."
+}

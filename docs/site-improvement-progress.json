@@ -366,6 +366,22 @@
     "noRepetitionProof": "Only seven fingerprints changed against preceding checkpoint; prior 91 reviews identical.",
     "remaining": "453 pending; 98 structured reviews public and to preserve."
   },
+  "fifteenthPass": {
+    "status":"validated_awaiting_publication",
+    "tests":"1251 passing; mobile QA without errors; Relaxmedic screenshot inspected; 551 products, 604 URLs and operational/affiliate invariants preserved.",
+    "noRepetitionProof":"Exactly four fingerprints changed. Prior 98 deep reviews and all 12 items screened in the previous pass identical.",
+    "nextPendingId":"qAkENABz4tpPjLGpyPEw",
+    "separateFollowUp":"zev1LogqUFpJ3cLlIXyy: generated category label Bicicletas contradicts categoryId ferramentas; investigate renderer without repeating prior content review.",
+    "date":"2026-10-31",
+    "manifest":"docs/targeted-triage-20261031.json",
+    "screened":8,
+    "targetedChanges":4,
+    "unchanged":3,
+    "needsSource":1,
+    "deepReviewCount":98,
+    "scope":"Four concrete editorial defects; no new practical tests, manufacturer verification, affiliate modifications or price conferences.",
+    "remaining":"433 pending plus six awaiting source. Do not reopen the 98 deep reviews or unchanged prior screening decisions."
+  },
   "fourteenthPass": {
     "status": "published_verified",
     "sourceCommit": "d29457792",
@@ -391,8 +407,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-30T21:20:30.323Z",
-  "catalogueGeneratedAt": "2026-10-30T21:19:46.650Z",
+  "updatedAt": "2026-10-31T09:06:56.008Z",
+  "catalogueGeneratedAt": "2026-10-31T09:06:26.247Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -404,11 +420,11 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "screened_no_change": 2,
-    "needs_source": 5,
-    "targeted_correction_complete": 5,
+    "screened_no_change": 5,
+    "needs_source": 6,
+    "targeted_correction_complete": 9,
     "preserve_prior_review": 98,
-    "pending": 441
+    "pending": 433
   },
   "items": [
     {
@@ -674,65 +690,83 @@
       "url": "https://rankingdacompra.com.br/produto/zev1LogqUFpJ3cLlIXyy-20260810-1.html",
       "title": "Auxiliar de Partida e Compressor de Ar Portátil 6 em 1 Inteligente para Carro, Moto e Bicicleta com Lanterna e Power Bank",
       "fingerprint": "9ae04bff22cdac6dd387412c00ce74eb9e8ebdab8580e58e6562375f3f6c3400",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva: Revisão de campos existente já atribui USB-C ao anúncio e mantém carga rápida não confirmada; sem reescrever texto ou repetir pesquisa anterior. O rótulo de navegação Bicicletas diverge do categoryId ferramentas; defeito de geração separado, sem mudar esta ficha agora."
+      ],
       "sourceLinks": []
     },
     {
       "id": "iAFknp54AGEJMCkVkbtP",
       "url": "https://rankingdacompra.com.br/produto/iAFknp54AGEJMCkVkbtP-20260810-1.html",
       "title": "Auxiliar Partida Bateria Compressor Ar Automotivo Vigomot",
-      "fingerprint": "e31a6f57e990fa5f85ae71026052e21cf5ff6e3e3e0e2c90286239d73e4efc3e",
-      "status": "pending",
+      "fingerprint": "c9ce068e2702fca83767fe16d05a751dfe2d4d4eaaba569c0be74e84363a8621",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva: O texto chamava 150 PSI de vazão e assegurava aplicação por cilindrada. Corrigida a unidade para pressão e atribuídos os dados ao cadastro, sem inventar vazão ou teste de compatibilidade."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5263835391",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5263835391-20260810-1.html",
       "title": "Auxiliar Partida Bateria Compressor Ar Emergência Portátil",
       "fingerprint": "a7807fe9f326b76380d44d876ee2fc3c86a58b96d16284be9fe548a5c5d5f092",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva: Resumo já se limita ao cadastro e não adiciona autonomia ou compatibilidade. Ausência de análise extensa não é motivo para reescrever sem evidência nova."
+      ],
       "sourceLinks": []
     },
     {
       "id": "WcV6iy1IS12dL74uflws",
       "url": "https://rankingdacompra.com.br/produto/WcV6iy1IS12dL74uflws-20260810-1.html",
       "title": "Auxiliar Partida Bateria Portátil Rápido Para Carro Moto",
-      "fingerprint": "bb88fcaf41e798fc610c2d585f05bd133232b61a0fb3441d021e383b009da4e8",
-      "status": "pending",
+      "fingerprint": "66ef89d885ac0b7fc14dc285a7be6c9d27880b98dde47a8cb7eae0ca8bc457f0",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva: Alta vazão e indicação para carros de baixa/média cilindrada apareciam como conclusões. Retiradas garantias genéricas, mantendo somente funções descritas no cadastro e lacunas explícitas."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "ZcFzy9nXCVEZCsuz9SB3",
       "url": "https://rankingdacompra.com.br/produto/ZcFzy9nXCVEZCsuz9SB3-20260810-1.html",
       "title": "Auxiliar Partida Portátil Veicular Compressor Ar Emergência",
-      "fingerprint": "b6f5ee1af420d2bda80a8f9a735f3b53cb3f569bf2e65276313c1fc7b83c6883",
-      "status": "pending",
+      "fingerprint": "4082d2614d7f975cf976ba0d4176e5fd6f95b94e6ce3a2b0af1c9fa33133bdfe",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva: Auxiliar de partida veicular estava na categoria Casa. Corrigida a categoria para Carro e atribuídos números anunciados ao cadastro; não presumida equivalência a outros conjuntos VIGOMOT."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "t4cAWb59UILzYeRHO0qk",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "fingerprint": "09fdb19707b5da5051160f63f8685f056cd6037cf4fd0e7f83b3436a6da29253",
-      "status": "pending",
+      "status": "needs_source",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
+      "workNotes": [
+        "31/10/2026 — triagem seletiva: Tripé sem código exato suficiente para confirmar oito seções, 37 cm fechado e compatibilidade com câmeras. Não preencher capacidade de carga ou estabilidade por suposição; aguardar identificação/manual específico antes de ampliar a ficha."
+      ],
       "sourceLinks": []
     },
     {
@@ -740,22 +774,28 @@
       "url": "https://rankingdacompra.com.br/produto/bad7xcvnBitbrXvi4GNE-20260810-1.html",
       "title": "Baby Brink Boneca 1291 Ana Castela 55cm +3",
       "fingerprint": "039418eb689cfbc7aba1f7079500a75cca09fd445cd70a3902649e5813055d27",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva: Dados de boneca, material e faixa etária já são atribuídos ao anúncio. Nenhum novo defeito editorial prioritário identificado nesta leitura; não significa certificação ou teste de segurança."
+      ],
       "sourceLinks": []
     },
     {
       "id": "JaEIKKAz742WyLDV6Oqr",
       "url": "https://rankingdacompra.com.br/produto/JaEIKKAz742WyLDV6Oqr-20260810-1.html",
       "title": "Balança De Bioimpedância 8 Sensores Relaxmedic Digital Preto",
-      "fingerprint": "771ac48e6700b9b3a9a7fbaae6cf54aa977b2b6cdb0b6eaa8e30729d80f1c611",
-      "status": "pending",
+      "fingerprint": "4fedb7af86f80f860bdec3ffbccb2f0be4e39c0483dacffc3ecdd8794c4b520a",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva: A ficha afirmava 127/220 V e indicação para crescimento infantil sem código/manual confirmado. Retiradas essas conclusões; medidas e capacidade ficam como dados anunciados, sem alegação clínica ou precisão comprovada."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "qAkENABz4tpPjLGpyPEw",

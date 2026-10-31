@@ -1,4 +1,8 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 15 — 31/10/2026, validação em andamento
+
+Oito próximos itens pending foram lidos individualmente, sem reabrir as 98 análises ou os 12 itens da passagem anterior. Manifesto docs/targeted-triage-20261031.json. Quatro ajustes necessários preparados: unidade pressão/vazão no auxiliar VIGOMOT iAFknp54AGEJMCkVkbtP; compatibilidade genérica em WcV6iy1IS12dL74uflws; categoria automotiva e limites anunciados em ZcFzy9nXCVEZCsuz9SB3; alimentação e uso infantil não confirmados da balança JaEIKKAz742WyLDV6Oqr. Três fichas mantidas sem reescrita e um tripé aguardando identificação. Não são novas análises profundas: continuam 98. Verificar testes, QA e publicação antes de declarar concluído. Rótulo de categoria do auxiliar zev1LogqUFpJ3cLlIXyy diverge do categoryId ferramentas: pendência de geração separada, não repetir sua revisão USB-C já existente.
+
 ## Estado vigente — 31/10/2026, passagem 14 concluída
 
 Cinco correções pontuais PUBLICADAS E VERIFICADAS: fone Inova Cases (autonomia/marca incertas no título), mangueira Marqs Home (grafia e título legível), carrinho RC (velocidade anunciada não testada), escorredor (sem garantia não comprovada de carga/corrosão), perfume Attracione Men (sem comprovação de composição/efeitos). Nenhuma informação nova foi inventada. Fonte d29457792; geração 82374fad0. Integridade 41186747614, sitemap 41186747696 e Pages final 41186781811 com sucesso. Pages inicial cancelado por substituição, não é falha pendente.
