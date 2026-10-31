@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-31T11:21:57.155Z",
+  "generatedAt": "2026-10-31T16:30:56.489Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -5894,6 +5894,19 @@
       "precoConferenciaId": "dd8efc8f-6e10-4dd0-b514-d026ec250702",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 96.9,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB4443112343",
+      "titulo": "Fone de Ouvido Gamer In-ear Vellon TWS Bluetooth 5.0, com Microfone e Estojo de Carregamento",
+      "comentario": "Fone de Ouvido Gamer In-ear Vellon TWS Bluetooth 5.0, com Microfone e Estojo de Carregamento. Quantidade de pares: 1. A tecnologia Bluetooth 5.0 mantém a conexão estável em um raio de 10 m de distância do seu dispositivo. A bateria de 40 mAh oferece 6 h de uso contínuo com recarga completa realizada em 1 h no estojo. O estojo com bateria de 320 mAh garante ciclos de carga adicionais e permite o transporte dos fones.",
+      "categoria": "fonesdeouvido",
+      "foto": "https://http2.mlstatic.com/D_NQ_NP_882931-MLA112539958288_062026-F.jpg",
+      "nota": "",
+      "promocaoAtiva": false,
+      "ofertaRelampagoAtiva": false,
       "pros": "",
       "contras": "",
       "notaInformada": ""
