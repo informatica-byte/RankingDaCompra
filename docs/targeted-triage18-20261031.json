@@ -1,0 +1,15 @@
+{
+  "date":"2026-10-31",
+  "policy":"Seis próximos pending lidos individualmente; corrigir somente defeitos concretos. Sem nova consulta de anúncios, validação de fabricante ou teste prático; preservar dados operacionais e afiliados.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"VfMW16M9t5lgB6JcDJYp","decision":"targeted_correction_complete","reason":"Spinning em beleza/cuidados e título 20 kg sem identificar o que pesa isso. Categoria esportiva e título alinhados à roda de inércia anunciada; carga e leituras qualificadas sem testar ou assegurar adequação."},
+    {"id":"PmWA6Y2vHwbiT6rEfc7l","decision":"targeted_correction_complete","reason":"Indicação ideal para pessoas de até 1,75 m era apresentada como garantia. Altura e carga ficam como declarações do cadastro, sem assegurar conforto ou ajuste individual."},
+    {"id":"liYhKi9ZlLnwNTT1uvBl","decision":"targeted_correction_complete","reason":"Spinning WCT 13 kg estava em beleza/cuidados. Corrigida somente categoria pública para Esporte e Lazer, sem reescrever especificações ou presumir equivalência à WCT 20 kg."},
+    {"id":"mlMLB7006667338","decision":"targeted_correction_complete","reason":"Body splash Perfect Pear avulso de 200 ml estava classificado como kit masculino. Corrigida somente categoria para Perfumes, sem inferir gênero, composição ou desempenho."},
+    {"id":"5ybTTfU4uFUesMEPrTMK","decision":"targeted_correction_complete","reason":"Título e descrição asseguravam condição oficial, resistência e visibilidade sem comprovação. Homologação explicitamente a confirmar; medidas, peso e materiais ficam como anunciados, sem alegar aprovação esportiva."},
+    {"id":"mlMLB7688686428","decision":"targeted_correction_complete","reason":"Título informa Barbour’s Beauty e descrição marca Moon. Sinalizada marca a confirmar sem escolher fabricante ou trocar produto; categoria avulsa Perfumes em vez de kit."}
+  ],
+  "counts":{"screened":6,"targetedCorrections":6,"noEditorialChange":0,"needsSource":0},
+  "resume":"Pular as 98 análises e os 33 itens anteriores enquanto conteúdo/fontes não mudarem. Retomar o próximo pending individualmente; não forçar reescrita genérica. As seis correções não são análises profundas nem validação técnica das declarações."
+}

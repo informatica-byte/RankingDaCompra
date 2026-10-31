@@ -8,6 +8,51 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['VfMW16M9t5lgB6JcDJYp', {
+    syncInformationalSchema:true,
+    model:/^(?=.*wct)(?=.*20\s*kg)(?:bicicleta.*spinning|spinning wct)/i,
+    correct:'Spinning WCT Fitness — roda de inércia anunciada de 20 kg',
+    category:'esporte-e-lazer',
+    summary:'O cadastro apresenta uma bicicleta de spinning WCT Fitness e anuncia roda de inércia de 20 kg; esse valor não identifica nesta ficha o peso total do equipamento. Também descreve resistência mecânica, transmissão por correia, ajustes de assento e guidão e painel com tempo, velocidade, distância, calorias, odômetro e pulso. A carga de 120 kg é anunciada, não testada pela equipe. Confira o modelo, a montagem, os ajustes e o limite de carga na documentação da unidade. Não verificamos conforto, estabilidade ou precisão das leituras do painel.',
+    positiveNotes:['Resistência mecânica, correia e ajustes de assento e guidão descritos no cadastro.'],
+    negativeNotes:['Os 20 kg são anunciados para a roda de inércia, não como peso total confirmado.', 'Carga, estabilidade, ajustes e leituras do painel não foram testados pela equipe.'],
+    suppressRating:true,
+  }],
+  ['PmWA6Y2vHwbiT6rEfc7l', {
+    syncInformationalSchema:true,
+    model:/^bicicleta.*spinning.*velocron.*v500/i,
+    summary:'O cadastro identifica a bicicleta de spinning Velocron V500, com roda de inércia anunciada de 5 kg, resistência mecânica por botão, assento ajustável e squeeze anunciado no conjunto. Informa capacidade de 120 kg e indicação para pessoas de até 1,75 m, mas não verificamos limite de carga ou ajuste por estatura. Essa indicação do cadastro não é garantia de conforto ou adequação individual. Confira medidas e alcance dos ajustes, montagem e itens incluídos na unidade. Não testamos estabilidade ou resistência.',
+    positiveNotes:['Resistência mecânica e assento ajustável descritos no cadastro.'],
+    negativeNotes:['Estatura de até 1,75 m e carga de 120 kg são indicações anunciadas, não verificadas pela equipe.', 'Confira ajustes e conjunto da unidade; não garantimos conforto ou adequação a qualquer pessoa nessa altura.'],
+    suppressRating:true,
+  }],
+  ['liYhKi9ZlLnwNTT1uvBl', {
+    model:/^bicicleta.*spinning.*13\s*kg.*wct/i,
+    category:'esporte-e-lazer',
+  }],
+  ['mlMLB7006667338', {
+    model:/^body splash.*perfect pear.*wepink/i,
+    category:'perfumes',
+  }],
+  ['5ybTTfU4uFUesMEPrTMK', {
+    syncInformationalSchema:true,
+    model:/^bola.*(?:futebol|society).*penalty/i,
+    correct:'Bola society anunciada como Penalty — homologação a confirmar',
+    summary:'O cadastro apresenta uma bola society anunciada como Penalty 8 X Gomos Termotec. Informa uma unidade, circunferência de 66 a 69 cm, peso de 420 a 450 g, revestimento em poliuretano e construção sem costura. Esses dados são declarações do cadastro, não medições ou comprovação de homologação. Não confirmamos adequação a competições oficiais por esse título nem testamos resistência, controle ou visibilidade. Confira o modelo exato, a documentação e as exigências da competição antes de escolher para essa finalidade.',
+    positiveNotes:['Formato society e construção sem costura descritos no cadastro.'],
+    negativeNotes:['Homologação e adequação a competições oficiais não confirmadas.', 'Medidas e peso são anunciados; resistência, controle e visibilidade não foram testados.'],
+    suppressRating:true,
+  }],
+  ['mlMLB7688686428', {
+    syncInformationalSchema:true,
+    model:/^(?:bold.*homme.*body splash|body splash.*bold homme)/i,
+    correct:'Body splash Bold Homme 200 ml — marca a confirmar',
+    category:'perfumes',
+    summary:'O título do cadastro apresenta um body splash Bold Homme de 200 ml como Barbour’s Beauty, mas a descrição informa marca Moon e código de catálogo MLBU5245269935. Não escolhemos uma marca nem tratamos esses nomes como equivalentes. Confira rótulo, fabricante e identificação da unidade no anúncio antes de escolher. O volume de 200 ml é anunciado; não verificamos composição, fixação, projeção ou procedência nesta revisão.',
+    positiveNotes:['Volume de 200 ml identificado no cadastro; conferir no rótulo da unidade.'],
+    negativeNotes:['Marca divergente entre título e descrição: Barbour’s Beauty e Moon, sem confirmação de equivalência.', 'Composição, fixação, projeção e procedência não foram verificadas.'],
+    suppressRating:true,
+  }],
   ['hYk6ccUgsn1KL36RxXrY', {
     syncInformationalSchema:true,
     model:/^t[eê]nis.*on running.*cloud/i,
@@ -869,7 +914,7 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
         if (!sourceUrl || !matchesExistingOffer({link: sourceUrl.replace(/&amp;/g, '&')}, correction.expectedListing)) continue;
       }
       if (correction.correct) corrected = applyVerifiedTitle(corrected, correction.correct, correction.syncInformationalSchema);
-      const categoryLabel = {informatica:'Informática',carro:'Carro',bicicletas:'Bicicletas'}[correction.category];
+      const categoryLabel = {informatica:'Informática',carro:'Carro',bicicletas:'Bicicletas','esporte-e-lazer':'Esporte e Lazer',perfumes:'Perfumes'}[correction.category];
       if (categoryLabel) {
         const categoryUrl = 'https://rankingdacompra.com.br/analises.html#'+correction.category;
         corrected = corrected.replace(/(<span>Categoria<\/span>)[^<]*(<\/div>)/, '$1'+categoryLabel+'$2');
