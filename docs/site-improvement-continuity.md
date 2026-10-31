@@ -1,4 +1,16 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 23 por visualizações — 31/10/2026, PUBLICADA E VERIFICADA
+
+Três primeiros pending da prioridade GA4 tratados individualmente. mlMLB4222763449 (Oster): remove pressupostos de resistência e preparos sem manual/código específico; tensão e modelo não foram inferidos da página oficial OSAN500. mlMLB5259893582 (Bigens): retira promessas de absorção, energia e efeitos mentais/imunológicos; apresentação atribuída ao cadastro, sem validar fórmula, lote ou orientar dose. 4qfOr9o2qNFtHLcRZzRC (lixeira): torna explícito o conflito de 15/16 L, sem escolher capacidade; sensor/USB-C continuam como anunciados, não testados. Manifesto docs/targeted-triage23-20261031.json. São três correções pontuais, não novas análises profundas ou validações técnicas; dependências factuais permanecem nas notas por ID.
+
+Fonte 9d7f9c1e5, geração 479d57cbb. Integridade 41254510971, sitemap 41254510610 e Pages final 41254539903 com sucesso; Pages inicial substituído/cancelado normalmente. 1.281 testes locais e CI aprovados; validate-site aprovado com 553 produtos e 606 URLs (cadastro adicional já existia no remoto antes deste lote). Prova pública às 23:57 UTC: três páginas HTTP 200 e catálogo/Article correspondentes, 550 outras entradas editoriais e as 98 análises profundas iguais. Invariantes aprovadas em todos os 553 IDs/afiliados/preços/campos operacionais e 606 URLs. Arquivo outputs/melhorias-integrais-20261030/verificacao-publicada-triagem23.json.
+
+Adicionado modo opt-in [editorial-local] à publicação: somente pushes com essa marca reutilizam os arquivos públicos gerados, pulam autenticação/leitura Firestore, exigem a trava de preços e preservam todos os testes/validadores. Fluxo manual/agendado normal não foi desativado. Log desta execução confirma EDITORIAL_LOCAL=true, PRESERVE_PUBLISHED_PRICES=true e etapa de autenticação skipped. Não repetir conferências ou consultar Firebase para texto editorial.
+
+QA geral local de celular/desktop também aprovado, sem erros JavaScript e sem visitar afiliados/Firebase; log outputs/melhorias-integrais-20261030/qa-triagem23.log. Teste automatizado não equivale a teste físico no celular nem valida os três produtos.
+
+PRÓXIMA PENDING: 7QHXFlimzdpfKr7yfo0T (tênis Olimp); depois 8a8Iat0nPiQxNPVcJqTU (Reserva), iw5yKjD39u1kQ8Vm8ybv (carregador), M0Zj2K84Q8PX0YTQMIHz (smartwatch), Q89e0KvH53UoCpELiwiW (Asics), seguindo a fila GA4 datada até haver atualização consolidada. Totais: 98 preserve_prior_review, 38 targeted_correction_complete, 21 screened_no_change, sete needs_source, 389 pending. Nenhuma outra ficha lida deve ser marcada concluída sem trabalho verificado; não repetir as já concluídas.
+
 ## Prioridade atualizada pelo usuário — 31/10/2026
 
 Priorizar as fichas pendentes por visualizações GA4, da maior para a menor, em vez da ordem de cadastro. Ler individualmente e alterar só falha concreta ou lacuna necessária e confirmável; não repetir revisões concluídas de conteúdo inalterado, nem alterar afiliados. Nenhuma nova ficha foi concluída nesta reorganização.

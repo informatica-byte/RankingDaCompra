@@ -4,9 +4,18 @@
     "userInstructionAt": "2026-10-31",
     "rule": "Order pending product reviews by descending GA4 screen_page_views. Read one at a time and change only a documented necessary defect. Skip unchanged completed reviews even when highly viewed; never rewrite to increase counts.",
     "source": "Windsor.ai / GA4 property 545546219, hostname rankingdacompra.com.br or www.rankingdacompra.com.br, product pages only",
-    "measurementWindow": {"from": "2026-10-01", "to": "2026-10-28"},
+    "measurementWindow": {
+      "from": "2026-10-01",
+      "to": "2026-10-28"
+    },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
-    "nextPendingIds": ["mlMLB4222763449", "mlMLB5259893582", "4qfOr9o2qNFtHLcRZzRC", "7QHXFlimzdpfKr7yfo0T", "8a8Iat0nPiQxNPVcJqTU", "iw5yKjD39u1kQ8Vm8ybv", "M0Zj2K84Q8PX0YTQMIHz", "Q89e0KvH53UoCpELiwiW"],
+    "nextPendingIds": [
+      "7QHXFlimzdpfKr7yfo0T",
+      "8a8Iat0nPiQxNPVcJqTU",
+      "iw5yKjD39u1kQ8Vm8ybv",
+      "M0Zj2K84Q8PX0YTQMIHz",
+      "Q89e0KvH53UoCpELiwiW"
+    ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
     "refresh": "Use the most recent available 28 complete consolidated days when accessible; record dates and evidence, no recurring exports or new costs. If unavailable, use the dated saved queue transparently, never guess."
@@ -612,8 +621,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-31T11:26:08.352Z",
-  "catalogueGeneratedAt": "2026-10-31T11:22:03.447Z",
+  "updatedAt": "2026-10-31T23:57:13.699Z",
+  "catalogueGeneratedAt": "2026-10-31T23:55:41.116Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -624,12 +633,12 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 552,
+    "total": 553,
     "screened_no_change": 21,
     "needs_source": 7,
-    "targeted_correction_complete": 35,
+    "targeted_correction_complete": 38,
     "preserve_prior_review": 98,
-    "pending": 391
+    "pending": 389
   },
   "items": [
     {
@@ -1173,17 +1182,6 @@
       "sourceLinks": [],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "oVBbvfcldF36EbyYex8y",
-      "url": "https://rankingdacompra.com.br/produto/oVBbvfcldF36EbyYex8y-20260810-1.html",
-      "title": "Scooter elétrica Xplore 48 V/12 Ah/500 W — classificação a confirmar",
-      "fingerprint": "75f7fcf0c5ee39b8a975446947ebb4639877b885667e47abba1f0fa75adfb052",
-      "status": "preserve_prior_review",
-      "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "liYhKi9ZlLnwNTT1uvBl",
@@ -2353,12 +2351,18 @@
       "id": "mlMLB5259893582",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5259893582-20260810-1.html",
       "title": "Complexo B Ultra Vegano Em Gotas | 30ml | Sabor Frutas Amarelas | Bigens",
-      "fingerprint": "4b5f7d8d2c84e425d9fccb06fb41d95629b98118184f110683085ab790cc04a2",
-      "status": "pending",
+      "fingerprint": "a1ff00f17a627c7a6c03fb22e86fa6ce027d774b8527c6ad5e29a06b7d37ca17",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31T23:57:13.670Z",
+      "workNotes": [
+        "Retiradas promessas não documentadas de alta absorção, energia, bem-estar e efeitos mentais/imunológicos. Apresentação é atribuída ao anúncio; composição, quantidades, regularidade e adequação individual não são validadas. Sem dose ou alegação terapêutica.",
+        "Fonte específica de fabricante/rótulo não confirmada; remoção de alegações não é análise clínica ou validação de composição.",
+        "Targeted claim correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "OwXKuXw3ZMFmcvx7jF4v",
@@ -2831,17 +2835,6 @@
       "sourceLinks": []
     },
     {
-      "id": "ZVVdy8TuP0yW0XNIyiEA",
-      "url": "https://rankingdacompra.com.br/produto/ZVVdy8TuP0yW0XNIyiEA-20260810-1.html",
-      "title": "soundcore P30i da Anker — fones TWS com ANC",
-      "fingerprint": "0df7905c8866ebd3df5cd8e56870cac3c3168bb8334b1caf76224f1c31ce9a7d",
-      "status": "preserve_prior_review",
-      "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "z507ObVuMlSEBSnK40Uc",
       "url": "https://rankingdacompra.com.br/produto/z507ObVuMlSEBSnK40Uc-20260810-1.html",
       "title": "Fone de Ouvido Bluetooth 5.3 Tws Sem Fio Esportivo Compatível Com iPhone Samsung Xiaomi Motorola Com Gancho Premium KAPBOM Preto",
@@ -2881,6 +2874,17 @@
       "fingerprint": "e93ad02fb6d9782738eed797ef95bfa75e1522040b42fa996f11d35fffc359ac",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
+      "id": "mlMLB4443112343",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4443112343-20260810-1.html",
+      "title": "Fone de Ouvido Gamer In-ear Vellon TWS Bluetooth 5.0, com Microfone e Estojo de Carregamento",
+      "fingerprint": "70f0991025ba0f8dfa3e6a126c8d0c745c350bce80c1ddd70c50ed09886dc7d3",
+      "status": "pending",
+      "previousReviewPresent": false,
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
@@ -3937,6 +3941,17 @@
       "sourceLinks": []
     },
     {
+      "id": "xdMGqRvHv2lJ95LaBG9F",
+      "url": "https://rankingdacompra.com.br/produto/xdMGqRvHv2lJ95LaBG9F-20260810-1.html",
+      "title": "Lanterna LED T9 recarregável — alcance e proteção a confirmar",
+      "fingerprint": "dd4be3f3bc82127b066cc6a8d0234e381b66af12fcdc63391efc43557f815289",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
       "id": "sEmIjHvnB3y4J7UZWBe2",
       "url": "https://rankingdacompra.com.br/produto/sEmIjHvnB3y4J7UZWBe2-20260810-1.html",
       "title": "Lanterna Tatica Aluminio Led Laser Canhao Luz Mais Potente Lanterna Potente Com Zoom De Longo Alcance, Lanterna Tática Militar Para Acampamento, Caminhada, Pesca Preto",
@@ -3954,17 +3969,6 @@
       "fingerprint": "88f1cda6776c2a0916a4ca5f2c84f0092e30fc031824415f6ba18e5162ea1918",
       "status": "pending",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "xdMGqRvHv2lJ95LaBG9F",
-      "url": "https://rankingdacompra.com.br/produto/xdMGqRvHv2lJ95LaBG9F-20260810-1.html",
-      "title": "Lanterna LED T9 recarregável — alcance e proteção a confirmar",
-      "fingerprint": "dd4be3f3bc82127b066cc6a8d0234e381b66af12fcdc63391efc43557f815289",
-      "status": "preserve_prior_review",
-      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
@@ -4159,12 +4163,18 @@
       "id": "4qfOr9o2qNFtHLcRZzRC",
       "url": "https://rankingdacompra.com.br/produto/4qfOr9o2qNFtHLcRZzRC-20260810-1.html",
       "title": "Lixeira Inteligente Automática Redonda Recarregável USB‐C Sensor para Cozinha Banheiro Escritório",
-      "fingerprint": "17c19253dfda808b66a45db424cf0ce9ddc9de1efc9bbbbbd217e1811a71bd4a",
-      "status": "pending",
+      "fingerprint": "256f7f002fac6b07ab08760e6e9a5eab30292fee56ddb7d4e703b80da95c4d57",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31T23:57:13.670Z",
+      "workNotes": [
+        "Descrição local tinha 15 L e 16 L conflitantes. Nenhum escolhido como correto. Capacidade útil, dimensões, alcance, autonomia e proteção continuam a confirmar; sensor/USB-C apresentados como anunciados, não testados.",
+        "Sem manual específico; não inferir capacidade a partir da foto nem prometer uso seguro em ambiente úmido.",
+        "Targeted claim correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Q9UWVUsXl8sIvWyM1hKt",
@@ -4770,17 +4780,6 @@
       "sourceLinks": []
     },
     {
-      "id": "MCdK7VlagX4qYFEKn6D9",
-      "url": "https://rankingdacompra.com.br/produto/MCdK7VlagX4qYFEKn6D9-20260810-1.html",
-      "title": "Parafusadeira/furadeira anunciada como 48 V — duas baterias, modelo a confirmar",
-      "fingerprint": "9a3e282636e42e0e8f346fe8d72b1b4d9302d4edee2b1e2d2c744af5fe48b709",
-      "status": "preserve_prior_review",
-      "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "fQAJIJDeSjtSvdevGCQm",
       "url": "https://rankingdacompra.com.br/produto/fQAJIJDeSjtSvdevGCQm-20260810-1.html",
       "title": "Parafusadeira Furadeira De Impacto A Bateria 21V 3/8” Bivolt 1400 Rpm Com Acessórios E Maleta TB-21PZW The Black Tools",
@@ -4822,6 +4821,17 @@
       "url": "https://rankingdacompra.com.br/produto/CCnmlZjBf8P0nhSyHOmm-20260810-1.html",
       "title": "Parafusadeira Furadeira The Black Tools TB12A 3/8 a Bateria Cor Amarelo Frequência 60Hz",
       "fingerprint": "ea5b5c59c00a6486336efac778c3c30fdafbcb761740a36a5de7c80ce1c079b8",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
+      "id": "MCdK7VlagX4qYFEKn6D9",
+      "url": "https://rankingdacompra.com.br/produto/MCdK7VlagX4qYFEKn6D9-20260810-1.html",
+      "title": "Parafusadeira/furadeira anunciada como 48 V — duas baterias, modelo a confirmar",
+      "fingerprint": "9a3e282636e42e0e8f346fe8d72b1b4d9302d4edee2b1e2d2c744af5fe48b709",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
       "lastCompletedAt": null,
@@ -5714,12 +5724,20 @@
       "id": "mlMLB4222763449",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4222763449-20260810-1.html",
       "title": "Sanduicheira Inox Multiuso Oster Preto/inox",
-      "fingerprint": "155c701aa757245aa08d0bd20d7df27c9bdf8099d2d2b6b87b8a6042742e6de9",
-      "status": "pending",
+      "fingerprint": "ac22c7882f1dc7517b4b2c893b8a9e09032549ce470e78b3cd635af67644e80e",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31T23:57:13.670Z",
+      "workNotes": [
+        "Nome comercial sem código da variante não permite importar dados técnicos OSAN500. Removidas resistência presumida do material e recomendação de carnes/legumes sem manual específico. Tensão e código continuam a confirmar.",
+        "Página oficial consultada identifica OSAN500-127/220, mas não prova que a unidade cadastrada corresponde a essa versão. Nenhuma especificação dessa página foi importada.",
+        "Targeted claim correction only, not a new deep review."
+      ],
+      "sourceLinks": [
+        "https://www.oster.com.br/sanduicheira-inox-multiuso-oster/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "tKPMnMHGe8qlcFn4nNdC",
@@ -5750,6 +5768,17 @@
       "fingerprint": "549c9432728ae8312a2459fae36191050ff9d5a24d59313da97244106f0cf250",
       "status": "pending",
       "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
+      "id": "oVBbvfcldF36EbyYex8y",
+      "url": "https://rankingdacompra.com.br/produto/oVBbvfcldF36EbyYex8y-20260810-1.html",
+      "title": "Scooter elétrica Xplore 48 V/12 Ah/500 W — classificação a confirmar",
+      "fingerprint": "75f7fcf0c5ee39b8a975446947ebb4639877b885667e47abba1f0fa75adfb052",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
@@ -6159,6 +6188,17 @@
       "fingerprint": "367f72b54990796983ac577e9df591fe61a59cc3c3b5f1cf3826461f6d0e1ac2",
       "status": "pending",
       "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
+      "id": "ZVVdy8TuP0yW0XNIyiEA",
+      "url": "https://rankingdacompra.com.br/produto/ZVVdy8TuP0yW0XNIyiEA-20260810-1.html",
+      "title": "soundcore P30i da Anker — fones TWS com ANC",
+      "fingerprint": "0df7905c8866ebd3df5cd8e56870cac3c3168bb8334b1caf76224f1c31ce9a7d",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
@@ -7196,5 +7236,37 @@
       "previousState": "pending",
       "changedSinceCheckpoint": true
     }
-  ]
+  ],
+  "triage23": {
+    "status": "published_verified",
+    "sourceCommit": "9d7f9c1e5c0af43305f8ab441bf1fdb824f03841",
+    "generatedCommit": "479d57cbb717e8d018373cb0f1c24a6bfb0e313c",
+    "integrityRun": 41254510971,
+    "sitemapRun": 41254510610,
+    "pagesRun": 41254539903,
+    "testsPassed": 1281,
+    "localVisualQA": "Existing general mobile/desktop QA passed with no JS errors and no affiliate/Firebase access. This is not physical-device testing of the three listings.",
+    "verifiedAt": "2026-10-31T23:57:13.670Z",
+    "changedIds": [
+      "4qfOr9o2qNFtHLcRZzRC",
+      "mlMLB4222763449",
+      "mlMLB5259893582"
+    ],
+    "newDeepReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem23.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4222763449",
+        "note": "Página oficial consultada identifica OSAN500-127/220, mas não prova que a unidade cadastrada corresponde a essa versão. Nenhuma especificação dessa página foi importada."
+      },
+      {
+        "id": "mlMLB5259893582",
+        "note": "Fonte específica de fabricante/rótulo não confirmada; remoção de alegações não é análise clínica ou validação de composição."
+      },
+      {
+        "id": "4qfOr9o2qNFtHLcRZzRC",
+        "note": "Sem manual específico; não inferir capacidade a partir da foto nem prometer uso seguro em ambiente úmido."
+      }
+    ]
+  }
 }
