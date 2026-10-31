@@ -367,7 +367,15 @@
     "remaining": "453 pending; 98 structured reviews public and to preserve."
   },
   "sixteenthPass": {
-    "status": "validated_awaiting_publication",
+    "status": "published_verified",
+    "sourceCommit": "f9f7dfcc3",
+    "generatedCommit": "ce39aac2f",
+    "integrityRun": 41188256004,
+    "sitemapRun": 41188256208,
+    "pagesRun": 41188298539,
+    "results": "All success; initial Pages superseded by generated commit, final Pages successful. Five pages HTTP 200 with aligned H1, Article data, catalogue and search; affiliate anchors unchanged.",
+    "productionVerifiedAt": "2026-10-31T09:21:29.835Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem16.json",
     "tests": "1254 passing; mobile QA without errors; selim screenshot inspected after shortening truncated title without removing validations; 551 products, 604 URLs and protected fields preserved.",
     "noRepetitionProof": "Only five fingerprints changed; previous 98 deep reviews and 20 screened records identical.",
     "nextPendingId": "xUz3eJJ8CDLhc5sW47BB",
