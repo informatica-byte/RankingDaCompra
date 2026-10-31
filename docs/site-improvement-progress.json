@@ -367,7 +367,15 @@
     "remaining": "453 pending; 98 structured reviews public and to preserve."
   },
   "twentiethPass": {
-    "status": "validated_awaiting_publication",
+    "status": "published_verified",
+    "sourceCommit": "e6d8d8319",
+    "generatedCommit": "bfb317701",
+    "integrityRun": 41191282561,
+    "sitemapRun": 41191282615,
+    "pagesRun": 41191325657,
+    "results": "All success; initial Pages superseded normally. Three public pages HTTP 200 with aligned summaries/Article data and corrected chair titles, unchanged affiliate anchors. Published catalogue comparison confirmed only these three changed; other three screened records, prior 98 deep reviews and 45 earlier screening decisions identical.",
+    "productionVerifiedAt": "2026-10-31T10:06:32.916Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem20.json",
     "tests": "1267 passing; mobile QA without errors; Brastoy viewport screenshot inspected. Model/accessory and exact scale/code guards, 551 products, 604 URLs, operational fields and affiliate invariants preserved.",
     "date": "2026-10-31",
     "manifest": "docs/targeted-triage20-20261031.json",
