@@ -367,7 +367,15 @@
     "remaining": "453 pending; 98 structured reviews public and to preserve."
   },
   "twentyFirstPass": {
-    "status": "validated_awaiting_publication",
+    "status": "published_verified",
+    "sourceCommit": "be16a93be",
+    "generatedCommit": "80345e5a9",
+    "integrityRun": 41191899450,
+    "sitemapRun": 41191899445,
+    "pagesRun": 41191928740,
+    "results": "All success; initial Pages superseded normally. Four public pages HTTP 200 with aligned H1, Article and search descriptions, affiliates unchanged. Published catalogue comparison confirmed only these four changed; other two screened records, 98 deep reviews and 51 earlier screening decisions identical.",
+    "productionVerifiedAt": "2026-10-31T10:15:15.199Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem21.json",
     "tests": "1270 passing; mobile QA without errors; camping chair viewport screenshot inspected. Exact model/generation and accessory guards, 551 products, 604 URLs, operational fields and affiliate invariants preserved.",
     "date": "2026-10-31",
     "manifest": "docs/targeted-triage21-20261031.json",
