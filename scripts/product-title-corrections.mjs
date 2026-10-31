@@ -8,6 +8,42 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['u8AujPhW3B7Z3N0aF6VS', {
+    syncInformationalSchema:true,
+    model:/^cadeira.*dobr[aá]vel.*(?:camping|pesca)/i,
+    correct:'Cadeira dobrável para camping com porta-copo — carga a confirmar',
+    summary:'O cadastro apresenta uma cadeira dobrável para camping, pesca e lazer, com apoio de braços, porta-copo e bolsa de transporte anunciados. O título informa carga de até 120 kg, mas esse limite não foi confirmado por documentação específica ou teste nesta revisão. Não garantimos resistência, estabilidade ou adequação a qualquer piso pelo nome comercial. Confira identificação da unidade, medidas, montagem e limite de carga com o fornecedor antes de escolher.',
+    positiveNotes:['Formato dobrável, porta-copo e bolsa de transporte descritos no cadastro.'],
+    negativeNotes:['Carga máxima a confirmar para a unidade; os 120 kg são uma declaração do título.', 'Resistência e estabilidade não foram testadas; confira montagem e condições de uso.'],
+    suppressRating:true,
+  }],
+  ['eJn1Xl8uCPLxKCObXB6r', {
+    syncInformationalSchema:true,
+    model:/^caixa.*som.*basike.*(?:ba[- ]?rad207|rad207)/i,
+    correct:'Caixa de som Basike BA-RAD207 — potência e bateria anunciadas',
+    summary:'O cadastro identifica a Basike BA-RAD207 e anuncia potência de 80 W, bateria de 9000 mAh, Bluetooth 5.3, rádio FM, TWS, RGB e Bass Boost. Esses dados são declarações do cadastro, não resultados de medição. A capacidade em mAh não foi convertida em horas de uso, nem usada para prometer autonomia prolongada. Não testamos volume, cobertura em ambientes amplos, estabilidade da conexão ou funcionamento das luzes. Confira modelo, recursos e documentação da unidade no anúncio.',
+    positiveNotes:['Rádio FM, Bluetooth, TWS e iluminação RGB anunciados no cadastro.'],
+    negativeNotes:['Potência e bateria não foram medidas; não garantimos cobertura ou horas de uso a partir desses números.', 'Não foram testados som, conexão ou comportamento das luzes; não inventamos limitações específicas sem evidência.'],
+    suppressRating:true,
+  }],
+  ['XWXtgVSsCBCwOtcMCdO3', {
+    syncInformationalSchema:true,
+    model:/^caixa.*som.*jbl.*go\s*5.*amarela/i,
+    correct:'Caixa de som anunciada como JBL Go 5 amarela — modelo a confirmar',
+    summary:'O cadastro anuncia uma caixa de som amarela como JBL Go 5, mas não confirmamos nesta revisão o código exato da unidade ou o manual aplicável. Por isso, não prometemos pareamento rápido nem afirmamos ausência de recursos avançados com base no texto genérico anterior. Confira etiqueta, modelo e descrição da unidade no anúncio. Não aplicamos especificações de outras gerações JBL Go e não testamos som, conexão ou autonomia.',
+    positiveNotes:['Cor amarela identificada no cadastro; confira a unidade oferecida.'],
+    negativeNotes:['Identificação exata e recursos a confirmar; não copiamos especificações de outro JBL Go.', 'Não testamos pareamento, áudio ou autonomia, nem autenticamos o produto nesta revisão.'],
+    suppressRating:true,
+  }],
+  ['vEHXKQ4q4UbcFfjPhtTa', {
+    syncInformationalSchema:true,
+    model:/^(?:caixa.*som.*philco.*pbx01|philco.*pbx01)/i,
+    correct:'Philco Extreme PBX01 — potência anunciada de 300 W',
+    summary:'O cadastro identifica uma caixa de som Philco Extreme PBX01 e anuncia potência de 300 W e Bluetooth 5.4. Esses dados não foram medidos ou confirmados em documentação específica nesta revisão. Não usamos watts como medida de volume sonoro nem afirmamos que a caixa supera 300 W ou modelos de entrada sem teste comparativo. Confira identificação, potência declarada, conexões e condições de uso da unidade no anúncio. Não testamos volume, cobertura, estabilidade da conexão ou autonomia.',
+    positiveNotes:['Modelo PBX01 e conectividade Bluetooth identificados no cadastro.'],
+    negativeNotes:['Potência anunciada não é medição de volume ou prova de superioridade sobre outra caixa.', 'Não foram testados som, alcance, conexão ou autonomia; confira a documentação da unidade.'],
+    suppressRating:true,
+  }],
   ['NmI6KXBT8ibSc1r5Fwqy', {
     syncInformationalSchema:true,
     model:/^(?=.*1\s*:\s*20)(?=.*d[- ]?342)(?:brastoy.*escavadeira|escavadeira.*brastoy)/i,

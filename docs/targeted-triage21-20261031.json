@@ -1,0 +1,15 @@
+{
+  "date":"2026-10-31",
+  "policy":"Seis próximos pending examinados individualmente; alterar somente defeito concreto, sem consulta nova de anúncios, autenticação, teste prático ou especificação de outro modelo.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"u8AujPhW3B7Z3N0aF6VS","decision":"targeted_correction_complete","reason":"Título garante resistência/carga de 120 kg sem confirmação específica nesta revisão. Carga explicitamente a confirmar, preservando os recursos anunciados. Nome do arquivo da imagem contém 150 kg, mas não foi tratado como prova técnica nem usado para escolher outro limite."},
+    {"id":"wcAVjwAmyrgadW3vyPBC","decision":"screened_no_change","reason":"Cadeira gamer vermelha tem descrição de material, ajuste e medidas sem contradição nova concreta detectada. Sem reescrita por ausência de manual; não valida ergonomia, conforto, carga ou material."},
+    {"id":"hRsH9zCaHoAnMci7e45x","decision":"screened_no_change","reason":"Mini Me descreve cápsulas, reservatório e bandeja sem promessa de desempenho ou conflito de unidade nesta leitura. Não confirma potência, tensão, acessórios ou variante; sem alteração editorial prioritária."},
+    {"id":"eJn1Xl8uCPLxKCObXB6r","decision":"targeted_correction_complete","reason":"Autonomia prolongada e cobertura ampla eram inferidas de mAh/watts, com observação genérica sobre RGB sem evidência. Mantidos dados anunciados sem calcular horas ou inventar desempenho/limitações."},
+    {"id":"XWXtgVSsCBCwOtcMCdO3","decision":"targeted_correction_complete","reason":"Texto genérico prometia pareamento eficiente e ausência de recursos sem identificação exata confirmada. Modelo anunciado explicitamente a confirmar; não copiados dados do Go 4 ou outra geração, nem negada a existência de Go 5."},
+    {"id":"vEHXKQ4q4UbcFfjPhtTa","decision":"targeted_correction_complete","reason":"Texto afirmava volume superior aos 300 W e superioridade a modelos de entrada sem teste. Separada potência anunciada de volume/desempenho, sem inventar medição ou comparação."}
+  ],
+  "counts":{"screened":6,"targetedCorrections":4,"noEditorialChange":2,"needsSource":0},
+  "resume":"Preservar 98 análises e 51 triagens anteriores. Correções não são análises profundas. Retomar próximo pending, pular concluídos e alterar só defeito concreto ou lacuna útil confirmável. A identificação JBL Go 5 permanece sem confirmação, não é prova de inexistência ou falsificação."
+}

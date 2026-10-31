@@ -1,4 +1,8 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 21 — 31/10/2026, em validação
+
+Seis próximos pending lidos individualmente. Quatro ajustes: cadeira camping u8AujPhW3B7Z3N0aF6VS (carga não confirmada; nome de imagem não serve de prova para escolher 150 em vez de 120 kg); Basike eJn1Xl8uCPLxKCObXB6r (não inferir horas/cobertura de mAh/watts nem inventar problema de RGB); JBL XWXtgVSsCBCwOtcMCdO3 (modelo Go 5 anunciado a confirmar, sem copiar Go 4, garantir pareamento ou afirmar recursos ausentes); Philco vEHXKQ4q4UbcFfjPhtTa (não tratar watts como volume ou provar superioridade sem teste). Cadeira gamer wcAVjwAmyrgadW3vyPBC e cafeteira hRsH9zCaHoAnMci7e45x mantidas sem reescrita; não é confirmação técnica. Manifesto docs/targeted-triage21-20261031.json. Continuam 98 análises; não repetir 51 triagens anteriores. Verificar publicação antes de declarar pública.
+
 ## Passagem 20 — 31/10/2026, PUBLICADA E VERIFICADA — retomar daqui
 
 Seis próximos pending lidos individualmente. Três correções necessárias publicadas: escavadeira Brastoy D342 1:20 NmI6KXBT8ibSc1r5Fwqy (benefício à coordenação e uso externo não comprovados); cadeira R1ZoQbG2PXeGXmYHQITH (não atribuir carga do conjunto à classe do pistão e não perpetuar restrição antiga de unidades por pedido); Glorious L7O3i93VZRAebbsssgJd (referência NR17/carga sem comprovação documental específica). Cabo mlMLB3826105589, cadeira Mônaco Y50ZvW7bI3HJBgSiQEfp e Nitro pLR3sGHZfroFDK4s0SFd mantidos sem reescrita: não equivale a confirmar técnica, material ou carga. Manifesto docs/targeted-triage20-20261031.json. São correções editoriais pontuais, não novas análises profundas: continuam 98.
