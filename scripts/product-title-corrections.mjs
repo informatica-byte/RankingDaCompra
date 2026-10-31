@@ -8,6 +8,41 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['hYk6ccUgsn1KL36RxXrY', {
+    syncInformationalSchema:true,
+    model:/^t[eê]nis.*on running.*cloud/i,
+    correct:'Tênis anunciado como On Running Cloud — modelo exato a confirmar',
+    summary:'O cadastro apresenta um tênis anunciado como On Running Cloud e informa código de catálogo MLB6223010170. O nome comercial não identifica nesta ficha o modelo completo ou a variante. Não confirmamos autenticidade, amortecimento ou adequação esportiva por esse título. O percentual promocional antigo não foi mantido como informação atual. Confira identificação, numeração e descrição da unidade no anúncio antes de escolher.',
+    positiveNotes:['Nome comercial e código de catálogo identificados no cadastro, sem comprovar modelo ou procedência.'],
+    negativeNotes:['Modelo exato e variante a confirmar; não usamos o título para afirmar desempenho ou autenticidade.', 'Não testamos conforto, amortecimento ou resistência e não mantemos desconto percentual antigo como informação atual.'],
+    suppressRating:true,
+  }],
+  ['xUz3eJJ8CDLhc5sW47BB', {
+    syncInformationalSchema:true,
+    model:/^basike\b.*bluetooth.*tws/i,
+    correct:'Basike BA-FON240B — Bluetooth 5.4 anunciado, TWS com formato a confirmar',
+  }],
+  ['eWSvbRDlCUBkWhNx5s6T', {
+    model:/^bicicleta.*gts.*dexter/i,
+    category:'bicicletas',
+  }],
+  ['YOLXINIYLDE2vnlgq8aR', {
+    syncInformationalSchema:true,
+    model:/^bicicleta.*gts.*lavy/i,
+    summary:'O cadastro apresenta uma bicicleta GTS Lavy aro 29 com quadro de alumínio, 21 marchas, câmbio anunciado como Shimano, freios a disco e aro de parede dupla. O título informa quadro 17 e a descrição usa M; não confirmamos a equivalência nem o ajuste para uma pessoa específica. A carga de 120 kg é anunciada, não verificada em teste pela equipe. Confira identificação do quadro, componentes, limite de carga e montagem com o fornecedor; não tratamos a presença de um anúncio no Mercado Livre como confirmação do fabricante.',
+    positiveNotes:['Quadro de alumínio, 21 marchas e freios a disco descritos no cadastro.'],
+    negativeNotes:['Tamanho 17 e classificação M precisam ser conferidos para a unidade; não presumimos equivalência.', 'Carga, resistência e precisão das trocas não foram testadas; componentes anunciados não foram autenticados pela equipe.'],
+    suppressRating:true,
+  }],
+  ['qSwfFcX2XaFU4QLIb8bN', {
+    syncInformationalSchema:true,
+    model:/^(?:bicicleta.*(?:scooter|bikelete).*mt2|bikelete smart mt2)/i,
+    correct:'Bikelete Smart MT2 — capacidade da bateria a confirmar',
+    summary:'O cadastro apresenta uma Bikelete Smart MT2 anunciada com motor de 500 W e sistema de 48 V. Há divergência na capacidade da bateria: o título informa 15 Ah e a descrição 12 Ah; não escolhemos um dos valores nem calculamos autonomia a partir deles. Tipo de bateria, velocidade de 32 km/h e carga de 120 kg também são declarações do cadastro, não medições da equipe. Confira etiqueta, manual e configuração da unidade com o fornecedor antes de escolher; não confirmamos autonomia ou desempenho.',
+    positiveNotes:['Modelo Smart MT2 identificado no cadastro; motor e tensão anunciados.'],
+    negativeNotes:['Capacidade da bateria divergente: 15 Ah no título e 12 Ah na descrição, sem valor confirmado.', 'Autonomia, velocidade e limite de carga não foram testados; confira a configuração da unidade.'],
+    suppressRating:true,
+  }],
   ['qAkENABz4tpPjLGpyPEw', {
     syncInformationalSchema:true,
     model:/balan[cç]a.*bioimped[aâ]ncia.*bluetooth.*corporal/i,
@@ -494,6 +529,8 @@ const PRODUCT_CORRECTIONS = new Map([
     ],
   }],
   ["avV2oOE8xcX9ioG4GNnT", {
+    model:/^bicicleta.*gts.*rdx/i,
+    category:'bicicletas',
     fileReplacements: [
       ["apenas que é alumínio.", "O anúncio informa que o quadro é de alumínio, mas não especifica a liga utilizada."],
     ],
@@ -832,7 +869,7 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
         if (!sourceUrl || !matchesExistingOffer({link: sourceUrl.replace(/&amp;/g, '&')}, correction.expectedListing)) continue;
       }
       if (correction.correct) corrected = applyVerifiedTitle(corrected, correction.correct, correction.syncInformationalSchema);
-      const categoryLabel = {informatica:'Informática',carro:'Carro'}[correction.category];
+      const categoryLabel = {informatica:'Informática',carro:'Carro',bicicletas:'Bicicletas'}[correction.category];
       if (categoryLabel) {
         const categoryUrl = 'https://rankingdacompra.com.br/analises.html#'+correction.category;
         corrected = corrected.replace(/(<span>Categoria<\/span>)[^<]*(<\/div>)/, '$1'+categoryLabel+'$2');

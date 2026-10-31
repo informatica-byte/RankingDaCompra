@@ -1,0 +1,16 @@
+{
+  "date":"2026-10-31",
+  "policy":"Seis próximos pending e um defeito adicional de título detectado durante a geração, todos examinados individualmente. Preservar revisões existentes; só corrigir defeito concreto. Sem nova consulta de anúncios, conferência de preços ou teste de produtos.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"xUz3eJJ8CDLhc5sW47BB","decision":"targeted_correction_complete","reason":"Título público ainda indicava Bluetooth 5.3, mas a revisão de campos existente e o cadastro já indicam 5.4 anunciado. Alinhado somente o título, mantendo resumo, dúvidas de formato/autonomia/IP e fonte anterior; sem refazer pesquisa ou transformar ENC em ANC."},
+    {"id":"1OfMg1pRePuvTqXaLiV6","decision":"screened_no_change","reason":"Batedeira B-44-W já tem identificação, capacidade, velocidades e função turbo em texto sem garantia absoluta de resultado. Nenhum defeito prioritário novo identificado nesta triagem; não é confirmação das especificações no fabricante."},
+    {"id":"avV2oOE8xcX9ioG4GNnT","decision":"targeted_correction_complete","reason":"Bicicleta GTS RDX classificada como beleza/cuidados. Corrigida apenas a categoria pública para Bicicletas, sem alterar descrição, preço ou componentes."},
+    {"id":"YOLXINIYLDE2vnlgq8aR","decision":"targeted_correction_complete","reason":"Quadro 17 no título e M na descrição não devem virar equivalência automática. Carga, desempenho e expressão anúncio oficial também não comprovam validação do fabricante. Mantidos recursos como anunciados, sem inventar medida ou limite de carga."},
+    {"id":"eWSvbRDlCUBkWhNx5s6T","decision":"targeted_correction_complete","reason":"Bicicleta GTS Dexter estava na categoria Casa. Corrigida somente a categoria pública para Bicicletas, sem alterar capacidades ou ficha técnica."},
+    {"id":"qSwfFcX2XaFU4QLIb8bN","decision":"targeted_correction_complete","reason":"Título anuncia 15 Ah e descrição 12 Ah para a Smart MT2. Capacidade explicitamente a confirmar, sem escolher número ou inventar autonomia. Título alinhado à incerteza; outras declarações são atribuídas ao cadastro."},
+    {"id":"hYk6ccUgsn1KL36RxXrY","decision":"targeted_correction_complete","reason":"Pendência adicional detectada na comparação da geração: título antigo tinha -70% Off e virava frase cortada. Retirada a promoção sem confirmação e sinalizado modelo exato desconhecido, sem alegar autenticidade ou desempenho. Não era ficha concluída e foi examinada individualmente antes de alterar."}
+  ],
+  "counts":{"screened":7,"targetedCorrections":6,"noEditorialChange":1,"needsSource":0},
+  "resume":"Não repetir as 98 análises nem os 26 itens triados anteriormente. Próximo pending deve ser lido individualmente; só alterar problema objetivo ou lacuna útil confirmável. Correções de categoria e título não são novas análises profundas."
+}

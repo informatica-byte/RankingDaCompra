@@ -134,11 +134,18 @@ try{
   await review.screenshot({path:resolve(out,'analise-'+entry.id+'.png')});
  }
  await page.setViewportSize({width:360,height:800});await check('ficha 360px');
- for(const id of ['Mdyju6zRmHsKRpOYqz51','MWjfkNgY4oXJD8NhCOQn','jGYvacocpYFsksmL0eAG','5FQyewGiYpron6Bn32d1','CXMWhCkfWah2EmRBTFtF','iAFknp54AGEJMCkVkbtP','WcV6iy1IS12dL74uflws','ZcFzy9nXCVEZCsuz9SB3','JaEIKKAz742WyLDV6Oqr','qAkENABz4tpPjLGpyPEw','QqhF1Rgq1LcKQMhFr50j','ICxKGrUEwJIcuNHBKQ6z','LGW7J8fPa6f2lwsNDYOM','GpoXj5YCjA93hBDg5L0v']){
+ for(const id of ['Mdyju6zRmHsKRpOYqz51','MWjfkNgY4oXJD8NhCOQn','jGYvacocpYFsksmL0eAG','5FQyewGiYpron6Bn32d1','CXMWhCkfWah2EmRBTFtF','iAFknp54AGEJMCkVkbtP','WcV6iy1IS12dL74uflws','ZcFzy9nXCVEZCsuz9SB3','JaEIKKAz742WyLDV6Oqr','qAkENABz4tpPjLGpyPEw','QqhF1Rgq1LcKQMhFr50j','ICxKGrUEwJIcuNHBKQ6z','LGW7J8fPa6f2lwsNDYOM','GpoXj5YCjA93hBDg5L0v','xUz3eJJ8CDLhc5sW47BB','qSwfFcX2XaFU4QLIb8bN']){
   const item=feed.products.find(p=>p.id===id);assert.ok(item);
   await page.goto(base+new URL(item.url).pathname,{waitUntil:'domcontentloaded'});
   assert.equal(await page.locator('h1').innerText(),item.title);
   await check('correção pontual 360px: '+id);
+  await page.screenshot({path:resolve(out,'triagem-'+id+'-mobile.png'),fullPage:true});
+ }
+ {
+  const id='hYk6ccUgsn1KL36RxXrY',item=feed.products.find(p=>p.id===id);assert.ok(item);
+  await page.goto(base+new URL(item.url).pathname,{waitUntil:'domcontentloaded'});
+  assert.equal(await page.locator('h1').innerText(),item.title);
+  await check('título sem promoção antiga 360px');
   await page.screenshot({path:resolve(out,'triagem-'+id+'-mobile.png'),fullPage:true});
  }
  for(const id of ['Bf3ccSwSiVkLw1Z8k2Hu','SnMMDq9bDXiMWX0IXYdO','DjihMK3g3rkBHHTPbOwp','pO6CZCNo99YwtpIW0UB8']){

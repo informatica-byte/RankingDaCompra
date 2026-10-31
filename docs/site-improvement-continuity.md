@@ -1,4 +1,8 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 17 — 31/10/2026, em validação
+
+Seis próximos pending lidos individualmente. Basike xUz3eJJ8CDLhc5sW47BB: só alinhar título público à revisão existente de Bluetooth 5.4 anunciado, sem repetir a pesquisa nem mudar formato/autonomia/IP/ANC. Bicicletas RDX avV2oOE8xcX9ioG4GNnT e Dexter eWSvbRDlCUBkWhNx5s6T: corrigir categorias de beleza/Casa para Bicicletas. Lavy YOLXINIYLDE2vnlgq8aR: sinalizar 17/M sem conversão, atribuir carga/componentes ao cadastro. MT2 qSwfFcX2XaFU4QLIb8bN: capacidade divergente 15/12 Ah, sem escolher número ou autonomia. Batedeira 1OfMg1pRePuvTqXaLiV6 mantida, sem necessidade editorial nova. Manifesto docs/targeted-triage17-20261031.json. Preservar 98 análises e os 26 itens anteriores. Não declarar publicação antes de teste/QA/prova pública.
+
 ## Passagem 16 — 31/10/2026, PUBLICADA E VERIFICADA — retomar daqui
 
 Seis próximos pending lidos individualmente, sem repetir os 98 reviews ou os 20 itens triados antes. Manifesto docs/targeted-triage16-20261031.json. Cinco correções objetivas PUBLICADAS: qAkENABz4tpPjLGpyPEw (alta precisão/uso por toda a família não comprovados); QqhF1Rgq1LcKQMhFr50j (medidas suspeitas, prevenção de assaduras e título antes truncado); ICxKGrUEwJIcuNHBKQ6z (posicionamento absoluto do subwoofer); LGW7J8fPa6f2lwsNDYOM (idade 0–99 e conteúdo incoerente); GpoXj5YCjA93hBDg5L0v (garantia de chuva não testada). Relaxmedic O6sfkmnugDGyVCAnNtyN aguarda código/modelo; não presumir equivalência à outra balança. Não são novas análises profundas; contagem permanece 98. Pendência separada do rótulo de categoria zev1LogqUFpJ3cLlIXyy continua registrada na passagem 15.
