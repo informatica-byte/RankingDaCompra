@@ -367,7 +367,15 @@
     "remaining": "453 pending; 98 structured reviews public and to preserve."
   },
   "fifteenthPass": {
-    "status":"validated_awaiting_publication",
+    "status":"published_verified",
+    "sourceCommit":"3f5171ea4",
+    "generatedCommit":"5000653d7",
+    "integrityRun":41187478563,
+    "sitemapRun":41187478557,
+    "pagesRun":41187516540,
+    "results":"All success; initial Pages superseded by generated commit, final Pages successful. Four public pages HTTP 200 with matching catalogue/search/Article description and unchanged affiliate anchors; category Carro verified for the misplaced automotive item.",
+    "productionVerifiedAt":"2026-10-31T09:11:02.402Z",
+    "proof":"outputs/melhorias-integrais-20261030/verificacao-publicada-triagem15.json",
     "tests":"1251 passing; mobile QA without errors; Relaxmedic screenshot inspected; 551 products, 604 URLs and operational/affiliate invariants preserved.",
     "noRepetitionProof":"Exactly four fingerprints changed. Prior 98 deep reviews and all 12 items screened in the previous pass identical.",
     "nextPendingId":"qAkENABz4tpPjLGpyPEw",
