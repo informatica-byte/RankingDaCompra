@@ -1,5 +1,16 @@
 {
   "version": 1,
+  "editorialPriority": {
+    "userInstructionAt": "2026-10-31",
+    "rule": "Order pending product reviews by descending GA4 screen_page_views. Read one at a time and change only a documented necessary defect. Skip unchanged completed reviews even when highly viewed; never rewrite to increase counts.",
+    "source": "Windsor.ai / GA4 property 545546219, hostname rankingdacompra.com.br or www.rankingdacompra.com.br, product pages only",
+    "measurementWindow": {"from": "2026-10-01", "to": "2026-10-28"},
+    "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
+    "nextPendingIds": ["mlMLB4222763449", "mlMLB5259893582", "4qfOr9o2qNFtHLcRZzRC", "7QHXFlimzdpfKr7yfo0T", "8a8Iat0nPiQxNPVcJqTU", "iw5yKjD39u1kQ8Vm8ybv", "M0Zj2K84Q8PX0YTQMIHz", "Q89e0KvH53UoCpELiwiW"],
+    "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
+    "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
+    "refresh": "Use the most recent available 28 complete consolidated days when accessible; record dates and evidence, no recurring exports or new costs. If unavailable, use the dated saved queue transparently, never guess."
+  },
   "sitemapIdentityTestRepair": {
     "status": "published_verified",
     "verifiedAt": "2026-10-31T11:26:02.932Z",

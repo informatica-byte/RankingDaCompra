@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Prioridade atualizada pelo usuário — 31/10/2026
+
+Priorizar as fichas pendentes por visualizações GA4, da maior para a menor, em vez da ordem de cadastro. Ler individualmente e alterar só falha concreta ou lacuna necessária e confirmável; não repetir revisões concluídas de conteúdo inalterado, nem alterar afiliados. Nenhuma nova ficha foi concluída nesta reorganização.
+
+Windsor.ai consultado somente em leitura, propriedade 545546219, páginas /produto/ nos hostnames do site, período completo de 01 a 28/10/2026 (28 dias com margem de consolidação). Prova privada: outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json. Não enviar métricas brutas ao repositório público. Visualizações podem incluir repetições e testes; não são pessoas únicas, pesquisas de mercado nem vendas. Fichas já revistas mais acessadas continuam preservadas, sem retrabalho. Empates não indicam popularidade diferente; desempate estável pelo ID.
+
+PRÓXIMA FILA: mlMLB4222763449 (sanduicheira Oster), mlMLB5259893582 (Complexo B Bigens), 4qfOr9o2qNFtHLcRZzRC (lixeira automática), 7QHXFlimzdpfKr7yfo0T (tênis Olimp), 8a8Iat0nPiQxNPVcJqTU (tênis Reserva), iw5yKjD39u1kQ8Vm8ybv (carregador), M0Zj2K84Q8PX0YTQMIHz (smartwatch), Q89e0KvH53UoCpELiwiW (Asics). Atualizar pela mesma métrica em janela recente de 28 dias consolidados quando disponível; manter a data explícita se só houver a fila salva. Sem acessos GA4 novos, não presumir popularidade. Body Splash e cama elástica permanecem pendentes, mas não são mais os primeiros por mera ordem do catálogo.
+
+Antes desta reorganização, Git sincronizado até 11215f263; última publicação Pages 41253583303 confirmada com sucesso e nenhuma rodada concorrente em execução na consulta. Nenhuma conferência, geração Firestore ou alteração de site executada nesta etapa de prioridade.
+
 ## Correção emergencial do sitemap — 31/10/2026, PUBLICADA E VERIFICADA
 
 Corrigidos quatro testes das triagens 19–22 que exigiam exatamente 551 produtos e bloqueavam o cadastro legítimo 552. Agora comparam identidades exatas entre catálogo e busca, rejeitam duplicações e IDs desconhecidos e conferem URLs; as validações de conteúdo, 98 análises, segurança e publicação continuam mantidas. Novas regressões aceitam crescimento legítimo sem teto fixo. 1.277 testes aprovados localmente e no GitHub.
