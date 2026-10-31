@@ -1,0 +1,15 @@
+{
+  "date":"2026-10-31",
+  "policy":"Seis próximos pending lidos individualmente; intervir somente por defeito concreto. Usar o cadastro como declaração do anúncio, sem fingir nova fonte, autenticação, teste ou interpretação normativa.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"NmI6KXBT8ibSc1r5Fwqy","decision":"targeted_correction_complete","reason":"Escavadeira D342 1:20 tinha benefício de coordenação motora e indicação externa apresentados sem comprovação. Mantidos recursos como anunciados; faixa etária, conjunto e desempenho não foram inventados. Guarda rejeita outro Brastoy/escala/modelo."},
+    {"id":"mlMLB3826105589","decision":"screened_no_change","reason":"Cabo Cat 5e tem descrição técnica coerente nesta leitura, sem defeito novo concreto. Não autentica fabricante, cobre ou classe CMX, nem confirma adequação a instalação; sem reescrever só por ausência de manual novo."},
+    {"id":"R1ZoQbG2PXeGXmYHQITH","decision":"targeted_correction_complete","reason":"Carga de 150 kg era atribuída ao pistão classe 3. Separadas declarações de pistão/carga, sem inferir capacidade do conjunto. Limite antigo de unidades por pedido não foi mantido como regra atual de venda."},
+    {"id":"Y50ZvW7bI3HJBgSiQEfp","decision":"screened_no_change","reason":"Mônaco BT07 possui identificação e descrição de ajustes sem contradição concreta detectada nesta triagem. Não confirma estrutura, carga de 200 kg ou conforto; não acrescentar teste, certificação ou instruções sem evidência."},
+    {"id":"L7O3i93VZRAebbsssgJd","decision":"targeted_correction_complete","reason":"Referência NR17 e carga de 180 kg não têm comprovação específica no cadastro. Título e resumo sinalizam conformidade/carga a confirmar; não interpretada norma nem prometida adequação ergonômica."},
+    {"id":"pLR3sGHZfroFDK4s0SFd","decision":"screened_no_change","reason":"Nitro Luvinco descreve componentes e ajustes, sem novo conflito objetivo detectado. Sem confirmar carga, classe de pistão, material ou adequação individual; não reescrever apenas para produzir análise longa."}
+  ],
+  "counts":{"screened":6,"targetedCorrections":3,"noEditorialChange":3,"needsSource":0},
+  "resume":"Pular 98 análises e 45 triagens anteriores. screened_no_change não é confirmação técnica. Retomar próximo pending; alterar apenas defeito concreto ou lacuna útil confirmável, sem modificar preços ou afiliados."
+}

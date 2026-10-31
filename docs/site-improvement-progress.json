@@ -366,6 +366,22 @@
     "noRepetitionProof": "Only seven fingerprints changed against preceding checkpoint; prior 91 reviews identical.",
     "remaining": "453 pending; 98 structured reviews public and to preserve."
   },
+  "twentiethPass": {
+    "status": "validated_awaiting_publication",
+    "tests": "1267 passing; mobile QA without errors; Brastoy viewport screenshot inspected. Model/accessory and exact scale/code guards, 551 products, 604 URLs, operational fields and affiliate invariants preserved.",
+    "date": "2026-10-31",
+    "manifest": "docs/targeted-triage20-20261031.json",
+    "noRepetitionProof": "Exactly three catalogue entries/fingerprints changed. Other three screened records, all 98 deep reviews and 45 prior screening decisions identical.",
+    "nextPendingId": "u8AujPhW3B7Z3N0aF6VS",
+    "remaining": "402 pending and seven awaiting source; thirty targeted corrections and fourteen screened_no_change are not additional deep reviews.",
+    "screened": 6,
+    "targetedChanges": 3,
+    "unchanged": 3,
+    "needsSource": 0,
+    "deepReviewCount": 98,
+    "scope": "Toy developmental claim, chair piston/load inference and unverified NR17 reference only. No new technical validation, normative interpretation, authenticity claim or affiliate modification.",
+    "resume": "Skip unchanged completed and screened records; read next pending individually and only edit a concrete defect or useful confirmed gap."
+  },
   "nineteenthPass": {
     "status": "published_verified",
     "sourceCommit": "a9113d09a",
@@ -511,8 +527,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-31T09:54:25.941Z",
-  "catalogueGeneratedAt": "2026-10-31T09:53:22.572Z",
+  "updatedAt": "2026-10-31T10:03:37.470Z",
+  "catalogueGeneratedAt": "2026-10-31T10:02:29.490Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -524,11 +540,11 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "screened_no_change": 11,
+    "screened_no_change": 14,
     "needs_source": 7,
-    "targeted_correction_complete": 27,
+    "targeted_correction_complete": 30,
     "preserve_prior_review": 98,
-    "pending": 408
+    "pending": 402
   },
   "items": [
     {
@@ -1228,33 +1244,28 @@
       "id": "NmI6KXBT8ibSc1r5Fwqy",
       "url": "https://rankingdacompra.com.br/produto/NmI6KXBT8ibSc1r5Fwqy-20260810-1.html",
       "title": "Brastoy Escavadeira De Controle Remoto Escala 1:20 Amarelo Brinquedo 2x Baterias-d342",
-      "fingerprint": "4189bbef240c8d07e72046158879be0134c7898958fb0c7d7796fcaf20b78602",
-      "status": "pending",
+      "fingerprint": "4636f3cb42865c886a9e3348a365160636b05260b02edc039f595db809636fe3",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 20: Escavadeira D342 1:20 tinha benefício de coordenação motora e indicação externa apresentados sem comprovação. Mantidos recursos como anunciados; faixa etária, conjunto e desempenho não foram inventados. Guarda rejeita outro Brastoy/escala/modelo."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB3826105589",
       "url": "https://rankingdacompra.com.br/produto/mlMLB3826105589-20260810-1.html",
       "title": "Cabo De Rede Furukawa Cat 5e Caixa 305m Cmx Soho Plus",
       "fingerprint": "09a3498d35be6346b09f2a0d4cc06588318d9ec948495b2073054368e61d741c",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "R1ZoQbG2PXeGXmYHQITH",
-      "url": "https://rankingdacompra.com.br/produto/R1ZoQbG2PXeGXmYHQITH-20260810-1.html",
-      "title": "Cadeira De Escritório Até 150kg Executiva Presidente Office",
-      "fingerprint": "8529f657d76d8a154b08d28fd1ba21b17cbccac52a7932945e9a62d35b8c003f",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 20: Cabo Cat 5e tem descrição técnica coerente nesta leitura, sem defeito novo concreto. Não autentica fabricante, cobre ou classe CMX, nem confirma adequação a instalação; sem reescrever só por ausência de manual novo."
+      ],
       "sourceLinks": []
     },
     {
@@ -1262,21 +1273,12 @@
       "url": "https://rankingdacompra.com.br/produto/Y50ZvW7bI3HJBgSiQEfp-20260810-1.html",
       "title": "Cadeira De Escritório Ergonômica Mônaco Bt07 Luvinco Malha Respirável Com Suporte Lombar Adaptável Apoio Para Pés Retrátil Encosto Ajustável Seis Posições Cor Preta Suporta 200kg",
       "fingerprint": "87d37f148d50b541ab3b495f30d883415a04101545a66872afb162e7f0df54f3",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "L7O3i93VZRAebbsssgJd",
-      "url": "https://rankingdacompra.com.br/produto/L7O3i93VZRAebbsssgJd-20260810-1.html",
-      "title": "Cadeira De Escritorio Ergonomica Nr17 Glorious Marqs Home Giratoria Resistente Reforçada 180kg Confortavel Reuniao Mesh Preta",
-      "fingerprint": "6b6ac941d3a64da80fc573d4a96c356f633ebc481e630e81c498903b5a664778",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 20: Mônaco BT07 possui identificação e descrição de ajustes sem contradição concreta detectada nesta triagem. Não confirma estrutura, carga de 200 kg ou conforto; não acrescentar teste, certificação ou instruções sem evidência."
+      ],
       "sourceLinks": []
     },
     {
@@ -1284,10 +1286,12 @@
       "url": "https://rankingdacompra.com.br/produto/pLR3sGHZfroFDK4s0SFd-20260810-1.html",
       "title": "Cadeira De Escritório Gamer Nitro Ergonômica Estofado Couro Sintético Reclinável Altura Ajustável Apoio Para Pés Cor Preto Luvinco",
       "fingerprint": "3087a2af09dfad80978ec9287f2da0d563756e4646e3201f4266307b460940ab",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 20: Nitro Luvinco descreve componentes e ajustes, sem novo conflito objetivo detectado. Sem confirmar carga, classe de pistão, material ou adequação individual; não reescrever apenas para produzir análise longa."
+      ],
       "sourceLinks": []
     },
     {
@@ -1302,6 +1306,21 @@
       "sourceLinks": []
     },
     {
+      "id": "R1ZoQbG2PXeGXmYHQITH",
+      "url": "https://rankingdacompra.com.br/produto/R1ZoQbG2PXeGXmYHQITH-20260810-1.html",
+      "title": "Cadeira executiva presidente — carga anunciada de 150 kg",
+      "fingerprint": "87ffde473da4fbec636fcfd0d5cf8befb3765a2b93817421962c7a83ee9cdb8a",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 20: Carga de 150 kg era atribuída ao pistão classe 3. Separadas declarações de pistão/carga, sem inferir capacidade do conjunto. Limite antigo de unidades por pedido não foi mantido como regra atual de venda."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "wcAVjwAmyrgadW3vyPBC",
       "url": "https://rankingdacompra.com.br/produto/wcAVjwAmyrgadW3vyPBC-20260810-1.html",
       "title": "Cadeira Gamer Escritório Ergonômica Confortável Reclinável Vermelho Couro Sintético",
@@ -1311,6 +1330,21 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "L7O3i93VZRAebbsssgJd",
+      "url": "https://rankingdacompra.com.br/produto/L7O3i93VZRAebbsssgJd-20260810-1.html",
+      "title": "Cadeira Glorious Marqs Home — conformidade e carga a confirmar",
+      "fingerprint": "d3deb73bf92cc33e3ff7bf318c8991b2da55bc2d9241562f01f6940c7e55c1b4",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 20: Referência NR17 e carga de 180 kg não têm comprovação específica no cadastro. Título e resumo sinalizam conformidade/carga a confirmar; não interpretada norma nem prometida adequação ergonômica."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "MBhoRb0kSLsHrhutbTLN",

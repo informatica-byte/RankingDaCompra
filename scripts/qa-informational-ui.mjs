@@ -162,6 +162,13 @@ try{
   await check('triagem 19 360px: bota sem promoção antiga');
   await page.screenshot({path:resolve(out,'triagem19-'+id+'-mobile.png'),fullPage:false});
  }
+ for(const id of ['NmI6KXBT8ibSc1r5Fwqy','R1ZoQbG2PXeGXmYHQITH','L7O3i93VZRAebbsssgJd']){
+  const item=feed.products.find(p=>p.id===id);assert.ok(item);
+  await page.goto(base+new URL(item.url).pathname,{waitUntil:'domcontentloaded'});
+  if(id!=='NmI6KXBT8ibSc1r5Fwqy')assert.equal(await page.locator('h1').innerText(),item.title);
+  await check('triagem 20 360px: '+id);
+  await page.screenshot({path:resolve(out,'triagem20-'+id+'-mobile.png'),fullPage:false});
+ }
  for(const id of ['Bf3ccSwSiVkLw1Z8k2Hu','SnMMDq9bDXiMWX0IXYdO','DjihMK3g3rkBHHTPbOwp','pO6CZCNo99YwtpIW0UB8']){
   const item=feed.products.find(p=>p.id===id);if(!item)continue;
   await page.goto(base+new URL(item.url).pathname,{waitUntil:'domcontentloaded'});

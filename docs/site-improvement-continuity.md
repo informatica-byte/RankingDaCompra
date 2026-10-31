@@ -1,4 +1,8 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 20 — 31/10/2026, em validação
+
+Seis próximos pending lidos individualmente. Três correções necessárias: escavadeira Brastoy D342 1:20 NmI6KXBT8ibSc1r5Fwqy (benefício à coordenação e uso externo não comprovados); cadeira R1ZoQbG2PXeGXmYHQITH (não atribuir carga do conjunto à classe do pistão e não perpetuar restrição antiga de unidades por pedido); Glorious L7O3i93VZRAebbsssgJd (referência NR17/carga sem comprovação documental específica). Cabo mlMLB3826105589, cadeira Mônaco Y50ZvW7bI3HJBgSiQEfp e Nitro pLR3sGHZfroFDK4s0SFd mantidos sem reescrita: não equivale a confirmar técnica, material ou carga. Manifesto docs/targeted-triage20-20261031.json. Preservar 98 análises e 45 triagens anteriores. Não declarar publicação antes da prova pública.
+
 ## Passagem 19 — 31/10/2026, PUBLICADA E VERIFICADA — retomar daqui
 
 Seis próximos pending lidos individualmente. Só uma alteração necessária, já publicada: mlMLB4467674377, título promocional antigo de bota e erro couto legitimo; material continua como declaração do anúncio, sem autenticar marca ou testar desempenho. Bolsa Tche Amo ZRkf5zIEicv1a47qGXXw, boné mlMLB4987441207 e botas mlMLB4614572907/mlMLB5022549056/mlMLB4960241923 mantidos sem reescrita por ausência de defeito prioritário novo; isso não confirma tecnicamente seus dados. Manifesto docs/targeted-triage19-20261031.json. Continuam 98 análises profundas, sem acréscimo por esta correção.

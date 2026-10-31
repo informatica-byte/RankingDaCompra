@@ -8,6 +8,32 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['NmI6KXBT8ibSc1r5Fwqy', {
+    syncInformationalSchema:true,
+    model:/^(?=.*1\s*:\s*20)(?=.*d[- ]?342)(?:brastoy.*escavadeira|escavadeira.*brastoy)/i,
+    summary:'O cadastro apresenta uma escavadeira de controle remoto Brastoy D342, em escala anunciada de 1:20, com 11 canais, cabine rotativa e esteiras descritas como de borracha. O título também anuncia duas baterias; confira o conteúdo do conjunto e a alimentação do controle. Não testamos movimentos, alcance, autonomia ou resistência em ambientes externos. Faixa etária e instruções de uso precisam ser conferidas na identificação da unidade. Não avaliamos nem garantimos benefícios à coordenação motora por esse brinquedo.',
+    positiveNotes:['Movimentos por controle remoto, cabine rotativa e esteiras descritos no cadastro.'],
+    negativeNotes:['Faixa etária, alimentação e conteúdo do conjunto precisam ser conferidos na unidade.', 'Alcance, autonomia, resistência externa e benefícios ao desenvolvimento não foram testados pela equipe.'],
+    suppressRating:true,
+  }],
+  ['R1ZoQbG2PXeGXmYHQITH', {
+    syncInformationalSchema:true,
+    model:/^(?=.*150\s*kg)cadeira.*(?:executiva.*presidente|presidente.*executiva)/i,
+    correct:'Cadeira executiva presidente — carga anunciada de 150 kg',
+    summary:'O cadastro descreve uma cadeira executiva com encosto em tela mesh, sistema relax, apoio de cabeça removível e braços reguláveis. Informa pistão classe 3 e carga de 150 kg, mas não verificamos essa capacidade nem a documentação do conjunto; não usamos a classe anunciada do pistão como comprovação da carga da cadeira. O produto é descrito como entregue desmontado. Confira identificação, montagem e limite de carga com o fornecedor. Condições de envio e quantidade por pedido devem ser conferidas no anúncio atual. Não testamos estabilidade ou conforto.',
+    positiveNotes:['Encosto em mesh, sistema relax e ajustes descritos no cadastro.'],
+    negativeNotes:['Carga de 150 kg anunciada, sem teste do conjunto; classe do pistão não foi usada como comprovação.', 'Montagem, condições de envio e identificação da unidade precisam ser conferidas; estabilidade e conforto não foram testados.'],
+    suppressRating:true,
+  }],
+  ['L7O3i93VZRAebbsssgJd', {
+    syncInformationalSchema:true,
+    model:/^cadeira.*(?:glorious.*marqs|marqs.*glorious)/i,
+    correct:'Cadeira Glorious Marqs Home — conformidade e carga a confirmar',
+    summary:'O cadastro identifica uma cadeira Glorious Marqs Home e anuncia estrutura de metal galvanizado, espuma de densidade 35, encosto mesh com reclinação de até 130 graus e apoios de cabeça e lombar ajustáveis. A carga de 180 kg e a referência NR17 do título não foram verificadas nesta revisão por documentação específica da unidade. Não apresentamos essa referência comercial como comprovação de conformidade nem garantimos adequação individual. Confira identificação, documentação, montagem, ajustes e limite de carga com o fornecedor. Não testamos estabilidade, conforto ou resistência.',
+    positiveNotes:['Ajustes de cabeça, lombar e reclinação descritos no cadastro.'],
+    negativeNotes:['Conformidade e carga máxima a confirmar por documentação da unidade; o título não foi tratado como comprovação.', 'Não testamos estabilidade, resistência ou conforto e não garantimos adequação individual.'],
+    suppressRating:true,
+  }],
   ['mlMLB4467674377', {
     syncInformationalSchema:true,
     model:/^bota.*(?:coturno|botina).*caterpillar/i,
