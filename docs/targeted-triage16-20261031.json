@@ -1,0 +1,15 @@
+{
+  "date":"2026-10-31",
+  "policy":"Seis próximas fichas pending, lidas individualmente; corrigir somente defeitos concretos usando o conteúdo existente. Sem nova conferência de anúncios, comprovação de fabricante ou teste prático.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"qAkENABz4tpPjLGpyPEw","decision":"targeted_correction_complete","reason":"Alta precisão e adequação para toda a família eram apresentadas como fatos. Mantidos os recursos anunciados com limites explícitos, sem validar precisão, aplicativo ou uso por qualquer pessoa."},
+    {"id":"O6sfkmnugDGyVCAnNtyN","decision":"needs_source","reason":"Relaxmedic sem código exato: não é possível confirmar Fitdays, limite de usuários e alimentação sem atribuir a ficha de outro modelo. Não reescrever apenas por ausência de análise longa; aguardar identificação/manual específico."},
+    {"id":"QqhF1Rgq1LcKQMhFr50j","decision":"targeted_correction_complete","reason":"Medidas cadastradas de 2 cm e 2,5 cm e promessa de prevenir assaduras não têm confirmação. Sinalizada a incerteza, sem inventar valores de substituição ou garantir conforto. Título antes truncado foi reduzido a menos de 100 caracteres e alinhado ao catálogo e metadados, sem remover validações."},
+    {"id":"ICxKGrUEwJIcuNHBKQ6z","decision":"targeted_correction_complete","reason":"Subwoofer era apresentado como instalável em qualquer local; retirada a garantia absoluta e separadas ligação sem fio, alimentação e instalação. Potência e recursos ficam atribuídos ao cadastro, não a teste ou manual consultado."},
+    {"id":"LGW7J8fPa6f2lwsNDYOM","decision":"targeted_correction_complete","reason":"Faixa de 0 a 99 anos e jogador de beisebol eram campos incoerentes para a barraca infantil. Não usados como recomendação ou item incluído; faixa etária e conjunto permanecem a confirmar."},
+    {"id":"GpoXj5YCjA93hBDg5L0v","decision":"targeted_correction_complete","reason":"Indicação para chuva leve era uma conclusão não testada a partir de coluna de água anunciada. Retirada a garantia climática, preservadas medidas/capacidade como declarações do cadastro."}
+  ],
+  "counts":{"screened":6,"targetedCorrections":5,"noEditorialChange":0,"needsSource":1},
+  "resume":"Não repetir as 98 análises nem os 20 itens triados antes desta passagem. As cinco correções não são análises profundas novas. Retomar o próximo pending, alterando somente se houver defeito concreto ou lacuna útil confirmável."
+}

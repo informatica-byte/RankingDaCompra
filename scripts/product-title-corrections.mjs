@@ -8,6 +8,47 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['qAkENABz4tpPjLGpyPEw', {
+    syncInformationalSchema:true,
+    model:/balan[cç]a.*bioimped[aâ]ncia.*bluetooth.*corporal/i,
+    summary:'O cadastro apresenta uma balança corporal Bluetooth anunciada como Davely e informa capacidade de 140 kg e conexão com aplicativo para Android e iOS. Também anuncia estimativas de composição corporal e histórico no celular. Não verificamos o modelo exato, o aplicativo ou a precisão dessas estimativas. A expressão alta precisão e a indicação para toda a família não são conclusões comprovadas pela equipe. Confira a identificação da unidade, o aplicativo e as restrições do manual antes de escolher.',
+    positiveNotes:['Conexão Bluetooth e acompanhamento por aplicativo anunciados no cadastro.'],
+    negativeNotes:['Precisão, aplicativo e compatibilidade não foram testados.', 'Capacidade de 140 kg é um dado anunciado, não comprovação de adequação a qualquer pessoa.'],
+    suppressRating:true,
+  }],
+  ['QqhF1Rgq1LcKQMhFr50j', {
+    syncInformationalSchema:true,
+    model:/(?:banco.*bike.*selim|selim.*(?:super comfort|bicicleta))/i,
+    correct:'Selim para bicicleta com molas, abertura central e refletor — medidas a confirmar',
+    summary:'O cadastro apresenta um selim para bicicleta com molas, abertura central e refletor traseiro anunciados. Os campos de largura de 2 cm e comprimento de 2,5 cm não foram confirmados e não devem orientar a escolha do tamanho; não presumimos uma unidade ou medida corrigida. Também não testamos conforto, absorção de impactos ou resistência. A descrição de gel e a promessa de prevenir assaduras não foram verificadas. Confira medidas reais, material e encaixe na bicicleta antes de escolher.',
+    positiveNotes:['Molas, abertura central e refletor descritos no cadastro, a conferir na unidade oferecida.'],
+    negativeNotes:['Medidas de 2 cm e 2,5 cm a confirmar; nenhuma conversão foi presumida.', 'Não garantimos prevenção de assaduras, conforto individual ou compatibilidade com qualquer bicicleta.'],
+    suppressRating:true,
+  }],
+  ['ICxKGrUEwJIcuNHBKQ6z', {
+    syncInformationalSchema:true,
+    model:/ultimea.*poseidon.*r3t/i,
+    summary:'O cadastro identifica uma barra de som ULTIMEA Poseidon R3T e anuncia sistema 2.1, potência de 240 W, faixa de 50 Hz a 18 kHz, alimentação 127/220 V e processamento VoiceMX. Esses dados não foram confirmados nesta revisão no manual exato da unidade. O subwoofer é anunciado com ligação sem fio à barra; isso não comprova funcionamento sem alimentação elétrica nem permite garantir posicionamento em qualquer ponto da sala. Não medimos potência ou clareza de diálogos. Confira alimentação, conexões e condições de instalação no manual antes de escolher.',
+    positiveNotes:['Sistema 2.1 e subwoofer com ligação sem fio anunciados no cadastro.'],
+    negativeNotes:['Potência, alimentação e recursos precisam ser conferidos para a unidade exata.', 'Ligação sem fio não é garantia de instalação em qualquer local; alimentação e alcance devem ser verificados.'],
+    suppressRating:true,
+  }],
+  ['LGW7J8fPa6f2lwsNDYOM', {
+    syncInformationalSchema:true,
+    model:/barraca.*3.*1.*t[uú]nel.*foguete/i,
+    summary:'O cadastro apresenta uma barraca infantil 3 em 1 com túnel e tema de foguete. Anuncia poliéster, estrutura dobrável e medidas de 1,35 m de altura, 2,9 m de comprimento e 1,2 m de largura, ainda não medidas pela equipe. Os campos genéricos de idade de 0 a 99 anos e a expressão jogador de beisebol não confirmam faixa etária nem conteúdo do conjunto e não são usados como recomendação. Confira embalagem, dimensões montadas, faixa etária e itens incluídos na identificação do fabricante ou vendedor.',
+    positiveNotes:['Formato de barraca com túnel e estrutura dobrável descrito no cadastro.'],
+    negativeNotes:['Faixa etária e conteúdo do conjunto a confirmar; o intervalo 0 a 99 anos não é recomendação verificada.', 'Medidas anunciadas, não aferidas; confira espaço disponível e identificação do conjunto.'],
+    suppressRating:true,
+  }],
+  ['GpoXj5YCjA93hBDg5L0v', {
+    syncInformationalSchema:true,
+    model:/barraca.*4.*pessoas.*homefy/i,
+    summary:'O cadastro apresenta uma barraca iglu Homefy anunciada para até quatro pessoas, com base de 2,1 × 2,1 m, altura central de 1,3 m, peso de 900 g e tela mosquiteiro. Esses dados são declarações do cadastro, não medições. A coluna de água de 300 mm anunciada não foi verificada em teste e não é usada nesta ficha para garantir proteção contra chuva. Confira material, montagem, medidas úteis e condições de uso informadas para a unidade; a acomodação depende também do espaço ocupado por pessoas e bagagens.',
+    positiveNotes:['Formato iglu e tela mosquiteiro descritos no cadastro.'],
+    negativeNotes:['Não testamos resistência à chuva, estabilidade ou vedação.', 'Capacidade, dimensões e peso são anunciados; confira espaço útil e documentação do conjunto.'],
+    suppressRating:true,
+  }],
   ['iAFknp54AGEJMCkVkbtP', {
     syncInformationalSchema:true,
     model:/auxiliar.*partida.*vigomot/i,

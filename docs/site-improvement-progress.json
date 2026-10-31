@@ -366,29 +366,45 @@
     "noRepetitionProof": "Only seven fingerprints changed against preceding checkpoint; prior 91 reviews identical.",
     "remaining": "453 pending; 98 structured reviews public and to preserve."
   },
+  "sixteenthPass": {
+    "status": "validated_awaiting_publication",
+    "tests": "1254 passing; mobile QA without errors; selim screenshot inspected after shortening truncated title without removing validations; 551 products, 604 URLs and protected fields preserved.",
+    "noRepetitionProof": "Only five fingerprints changed; previous 98 deep reviews and 20 screened records identical.",
+    "nextPendingId": "xUz3eJJ8CDLhc5sW47BB",
+    "remaining": "427 pending and seven waiting for source; five screened_no_change and 14 targeted corrections are not additional deep reviews.",
+    "date": "2026-10-31",
+    "manifest": "docs/targeted-triage16-20261031.json",
+    "screened": 6,
+    "targetedChanges": 5,
+    "unchanged": 0,
+    "needsSource": 1,
+    "deepReviewCount": 98,
+    "scope": "Only concrete unsupported guarantees, incoherent dimensions/age fields and installation overclaims. No new practical tests or source verification claimed. Affiliate and price fields preserved.",
+    "resume": "Skip all unchanged completed items. Continue the next pending individually; only edit an objective defect or a useful confirmed gap. Await model identification for O6sfkmnugDGyVCAnNtyN."
+  },
   "fifteenthPass": {
-    "status":"published_verified",
-    "sourceCommit":"3f5171ea4",
-    "generatedCommit":"5000653d7",
-    "integrityRun":41187478563,
-    "sitemapRun":41187478557,
-    "pagesRun":41187516540,
-    "results":"All success; initial Pages superseded by generated commit, final Pages successful. Four public pages HTTP 200 with matching catalogue/search/Article description and unchanged affiliate anchors; category Carro verified for the misplaced automotive item.",
-    "productionVerifiedAt":"2026-10-31T09:11:02.402Z",
-    "proof":"outputs/melhorias-integrais-20261030/verificacao-publicada-triagem15.json",
-    "tests":"1251 passing; mobile QA without errors; Relaxmedic screenshot inspected; 551 products, 604 URLs and operational/affiliate invariants preserved.",
-    "noRepetitionProof":"Exactly four fingerprints changed. Prior 98 deep reviews and all 12 items screened in the previous pass identical.",
-    "nextPendingId":"qAkENABz4tpPjLGpyPEw",
-    "separateFollowUp":"zev1LogqUFpJ3cLlIXyy: generated category label Bicicletas contradicts categoryId ferramentas; investigate renderer without repeating prior content review.",
-    "date":"2026-10-31",
-    "manifest":"docs/targeted-triage-20261031.json",
-    "screened":8,
-    "targetedChanges":4,
-    "unchanged":3,
-    "needsSource":1,
-    "deepReviewCount":98,
-    "scope":"Four concrete editorial defects; no new practical tests, manufacturer verification, affiliate modifications or price conferences.",
-    "remaining":"433 pending plus six awaiting source. Do not reopen the 98 deep reviews or unchanged prior screening decisions."
+    "status": "published_verified",
+    "sourceCommit": "3f5171ea4",
+    "generatedCommit": "5000653d7",
+    "integrityRun": 41187478563,
+    "sitemapRun": 41187478557,
+    "pagesRun": 41187516540,
+    "results": "All success; initial Pages superseded by generated commit, final Pages successful. Four public pages HTTP 200 with matching catalogue/search/Article description and unchanged affiliate anchors; category Carro verified for the misplaced automotive item.",
+    "productionVerifiedAt": "2026-10-31T09:11:02.402Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem15.json",
+    "tests": "1251 passing; mobile QA without errors; Relaxmedic screenshot inspected; 551 products, 604 URLs and operational/affiliate invariants preserved.",
+    "noRepetitionProof": "Exactly four fingerprints changed. Prior 98 deep reviews and all 12 items screened in the previous pass identical.",
+    "nextPendingId": "qAkENABz4tpPjLGpyPEw",
+    "separateFollowUp": "zev1LogqUFpJ3cLlIXyy: generated category label Bicicletas contradicts categoryId ferramentas; investigate renderer without repeating prior content review.",
+    "date": "2026-10-31",
+    "manifest": "docs/targeted-triage-20261031.json",
+    "screened": 8,
+    "targetedChanges": 4,
+    "unchanged": 3,
+    "needsSource": 1,
+    "deepReviewCount": 98,
+    "scope": "Four concrete editorial defects; no new practical tests, manufacturer verification, affiliate modifications or price conferences.",
+    "remaining": "433 pending plus six awaiting source. Do not reopen the 98 deep reviews or unchanged prior screening decisions."
   },
   "fourteenthPass": {
     "status": "published_verified",
@@ -415,8 +431,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-31T09:06:56.008Z",
-  "catalogueGeneratedAt": "2026-10-31T09:06:26.247Z",
+  "updatedAt": "2026-10-31T09:18:40.858Z",
+  "catalogueGeneratedAt": "2026-10-31T09:18:07.246Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -429,10 +445,10 @@
   "counts": {
     "total": 551,
     "screened_no_change": 5,
-    "needs_source": 6,
-    "targeted_correction_complete": 9,
+    "needs_source": 7,
+    "targeted_correction_complete": 14,
     "preserve_prior_review": 98,
-    "pending": 433
+    "pending": 427
   },
   "items": [
     {
@@ -809,33 +825,28 @@
       "id": "qAkENABz4tpPjLGpyPEw",
       "url": "https://rankingdacompra.com.br/produto/qAkENABz4tpPjLGpyPEw-20260810-1.html",
       "title": "Balança Digital Bioimpedância Bluetooth Corporal",
-      "fingerprint": "41891f6455654e76b2f5935fca3e8a5bc3c78f5de9522a7dea987b11421c9ff8",
-      "status": "pending",
+      "fingerprint": "1f6dcc7619fd01e738f4eacbe9d2a31cf800948048b0e596fd4a941bc658894c",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 16: Alta precisão e adequação para toda a família eram apresentadas como fatos. Mantidos os recursos anunciados com limites explícitos, sem validar precisão, aplicativo ou uso por qualquer pessoa."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "O6sfkmnugDGyVCAnNtyN",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "fingerprint": "799f152db77c4a01804c2731ef811ade9dd877d73f45c85566592a8cdc31cec1",
-      "status": "pending",
+      "status": "needs_source",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "QqhF1Rgq1LcKQMhFr50j",
-      "url": "https://rankingdacompra.com.br/produto/QqhF1Rgq1LcKQMhFr50j-20260810-1.html",
-      "title": "Banco Bike Selim Grande Para Bicicleta Super Comfort Molas Vazado Gel Tech Com Refletor Spinning Mtb Confortável Resistente Cor Preto Sign",
-      "fingerprint": "65b952ebe82bd98bbb391a68d2cdc865b8c3b104bca45e6523c56626e29c132b",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 16: Relaxmedic sem código exato: não é possível confirmar Fitdays, limite de usuários e alimentação sem atribuir a ficha de outro modelo. Não reescrever apenas por ausência de análise longa; aguardar identificação/manual específico."
+      ],
       "sourceLinks": []
     },
     {
@@ -857,34 +868,46 @@
       "id": "ICxKGrUEwJIcuNHBKQ6z",
       "url": "https://rankingdacompra.com.br/produto/ICxKGrUEwJIcuNHBKQ6z-20260810-1.html",
       "title": "Barra de Som ULTIMEA Poseidon R3T 2.1 240W Subwoofer Sem Fio",
-      "fingerprint": "68722efc3725d0ca93870f5b9b1aa0f6bf512aa6db121b55a43b8123dbddda73",
-      "status": "pending",
+      "fingerprint": "b09bff905c5cef47ab19a5823c9fa051757fb3d75a469c9b514c05fe6085b8b2",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 16: Subwoofer era apresentado como instalável em qualquer local; retirada a garantia absoluta e separadas ligação sem fio, alimentação e instalação. Potência e recursos ficam atribuídos ao cadastro, não a teste ou manual consultado."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "LGW7J8fPa6f2lwsNDYOM",
       "url": "https://rankingdacompra.com.br/produto/LGW7J8fPa6f2lwsNDYOM-20260810-1.html",
       "title": "Barraca 3 Em 1 Túnel Menino Foguete Azul Toca Tenda Infantil",
-      "fingerprint": "ba4812dbdc2726c2b09e84e696dd731f161073f44b82814975f3b272ba6e923a",
-      "status": "pending",
+      "fingerprint": "b8dc2efc50b64131eaa74aeb8d6b0a94cd9aebae1917eca6bf9d3a31a3e677d7",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 16: Faixa de 0 a 99 anos e jogador de beisebol eram campos incoerentes para a barraca infantil. Não usados como recomendação ou item incluído; faixa etária e conjunto permanecem a confirmar."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "GpoXj5YCjA93hBDg5L0v",
       "url": "https://rankingdacompra.com.br/produto/GpoXj5YCjA93hBDg5L0v-20260810-1.html",
       "title": "Barraca Para Até 4 Pessoas Camping Iglu Homefy",
-      "fingerprint": "42fdd84d3ac09acad18ecd3f5f5eb8269f68d7abc0c1e3793e8a7d9d8b7442b9",
-      "status": "pending",
+      "fingerprint": "f2d0311b59a725a3eca947575f77499ba2291be966fecbe8f69fcb9feb717540",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 16: Indicação para chuva leve era uma conclusão não testada a partir de coluna de água anunciada. Retirada a garantia climática, preservadas medidas/capacidade como declarações do cadastro."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "xUz3eJJ8CDLhc5sW47BB",
@@ -5460,6 +5483,21 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "QqhF1Rgq1LcKQMhFr50j",
+      "url": "https://rankingdacompra.com.br/produto/QqhF1Rgq1LcKQMhFr50j-20260810-1.html",
+      "title": "Selim para bicicleta com molas, abertura central e refletor — medidas a confirmar",
+      "fingerprint": "eaf6b8deaa048983c121c9b4a2bc5c1256591a10b2df6e797aa386107837522c",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 16: Medidas cadastradas de 2 cm e 2,5 cm e promessa de prevenir assaduras não têm confirmação. Sinalizada a incerteza, sem inventar valores de substituição ou garantir conforto. Título antes truncado foi reduzido a menos de 100 caracteres e alinhado ao catálogo e metadados, sem remover validações."
+      ],
+      "sourceLinks": [],
+      "previousState": "targeted_correction_complete",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "6Yj2zf1J51bnYAvt9ykY",

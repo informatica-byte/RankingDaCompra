@@ -1,4 +1,8 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 16 — 31/10/2026, validação em andamento
+
+Seis próximos pending lidos individualmente, sem repetir os 98 reviews ou os 20 itens triados antes. Manifesto docs/targeted-triage16-20261031.json. Cinco correções objetivas preparadas: qAkENABz4tpPjLGpyPEw (alta precisão/uso por toda a família não comprovados); QqhF1Rgq1LcKQMhFr50j (medidas suspeitas e prevenção de assaduras); ICxKGrUEwJIcuNHBKQ6z (posicionamento absoluto do subwoofer); LGW7J8fPa6f2lwsNDYOM (idade 0–99 e conteúdo incoerente); GpoXj5YCjA93hBDg5L0v (garantia de chuva não testada). Relaxmedic O6sfkmnugDGyVCAnNtyN aguarda código/modelo; não presumir equivalência à outra balança. Não são novas análises profundas; contagem permanece 98. Não declarar publicação antes da prova pública. Pendência separada do rótulo de categoria zev1LogqUFpJ3cLlIXyy continua registrada na passagem 15.
+
 ## Passagem 15 — 31/10/2026, PUBLICADA E VERIFICADA — retomar daqui
 
 Oito próximos itens pending foram lidos individualmente, sem reabrir as 98 análises ou os 12 itens da passagem anterior. Manifesto docs/targeted-triage-20261031.json. Quatro ajustes necessários publicados: unidade pressão/vazão no auxiliar VIGOMOT iAFknp54AGEJMCkVkbtP; compatibilidade genérica em WcV6iy1IS12dL74uflws; categoria automotiva e limites anunciados em ZcFzy9nXCVEZCsuz9SB3; alimentação e uso infantil não confirmados da balança JaEIKKAz742WyLDV6Oqr. Três fichas mantidas sem reescrita e um tripé aguardando identificação. Não são novas análises profundas: continuam 98. Rótulo de categoria do auxiliar zev1LogqUFpJ3cLlIXyy diverge do categoryId ferramentas: pendência de geração separada, não repetir sua revisão USB-C já existente.
