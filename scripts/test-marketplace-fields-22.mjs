@@ -16,7 +16,10 @@ test('31 revisões são específicas, preservam cadastros e não viram preços o
     const p=product(id),before=JSON.stringify(p);assert.ok(p,id);
     assert.ok(listingReviewFor(p),id);assert.ok(documentedSpecifications(p),id);
     const after=correctProductData(p);
-    for(const [key,value]of Object.entries(p))if(!['comentario','pros','contras','nota','notaInformada'].includes(key)&&!(id==='FWRyLtto1bKeKurNikKq'&&key==='titulo'))assert.deepEqual(after[key],value,id+':'+key);
+    for(const [key,value]of Object.entries(p)){
+      if(id==='Mdyju6zRmHsKRpOYqz51'&&key==='titulo')assert.equal(after[key],'Anunciado como Inova Cases — fone com gancho, marca e autonomia a confirmar');
+      else if(!['comentario','pros','contras','nota','notaInformada'].includes(key)&&!(id==='FWRyLtto1bKeKurNikKq'&&key==='titulo'))assert.deepEqual(after[key],value,id+':'+key);
+    }
     assert.equal(JSON.stringify(p),before);assert.deepEqual(correctProductData(after),after);
     assert.equal(listingReviewFor({...p,id:'outro'}),null);
     assert.equal(listingReviewFor({...p,titulo:'Produto diferente'}),null);

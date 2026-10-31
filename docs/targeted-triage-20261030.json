@@ -1,0 +1,21 @@
+{
+  "date":"2026-10-30",
+  "policy":"Leitura individual e intervenção somente por defeito concreto; não reescrever para completar volume. Não é teste prático nem validação técnica de todas as declarações do anúncio.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"mlMLB7448186850","decision":"screened_no_change","reason":"Resumo já limita os dados ao anúncio e não acrescenta eficácia clínica. Nenhuma correção objetiva nesta leitura; não comprova composição, regularidade ou eficácia."},
+    {"id":"40SKVMiLnqTYwYcP2duQ","decision":"needs_source","reason":"Controle genérico sem identificação suficiente para comprovar compatibilidade. Não preencher universalidade ou recursos por suposição."},
+    {"id":"Mdyju6zRmHsKRpOYqz51","decision":"targeted_correction_complete","reason":"Título prometia 40 h, mas revisão anterior já documentava marca e autonomia divergentes. Corrigido somente o título; preservada a revisão de campos existente."},
+    {"id":"jGYvacocpYFsksmL0eAG","decision":"targeted_correction_complete","reason":"Velocidade do anúncio não medida era apresentada sem ressalva no título. Título e resumo qualificam a declaração, sem inventar velocidade real ou desempenho."},
+    {"id":"5FQyewGiYpron6Bn32d1","decision":"targeted_correction_complete","reason":"Carga e resistência à corrosão eram apresentadas como vantagens confirmadas. Mantidos os dados declarados, com limites explícitos e sem garantir fixação ou carga."},
+    {"id":"mlMLB5239190177","decision":"needs_source","reason":"Preservada pendência anterior de fonte exata CM209. Não foi repetida a pesquisa já registrada nem reescrita a ficha sem evidência nova."},
+    {"id":"MWjfkNgY4oXJD8NhCOQn","decision":"targeted_correction_complete","reason":"Corrigida a letra M ausente e reduzido o título ao limite de 100 caracteres exigido pelo validador, sem remover essa validação. Descrição e pontos positivos/atenção mantidos."},
+    {"id":"mlMLB4656461981","decision":"needs_source","reason":"Sem manual/modelo exato suficiente para confirmar a alimentação indicada no cadastro. Não inventar compatibilidade elétrica ou instruções."},
+    {"id":"jdxZ0gYEI0XGOPYbWh78","decision":"needs_source","reason":"Carga máxima declarada no anúncio sem documentação exata recuperada. Não apresentar certificação, segurança ou desempenho como verificados."},
+    {"id":"mlMLB7285394626","decision":"screened_no_change","reason":"Resumo examinado já identifica os dados como extraídos do anúncio; sem novo desempenho comprovado. Não reescrito por falta de defeito editorial prioritário. Não é validação técnica de capacidades ou acessórios."},
+    {"id":"mlMLB4186778677","decision":"needs_source","reason":"Sem documentação exata suficiente para confirmar peso e composição do conjunto. Nenhuma instrução de uso ou desempenho acrescentada."},
+    {"id":"CXMWhCkfWah2EmRBTFtF","decision":"targeted_correction_complete","reason":"Composição e feromônios apareciam como vantagem comprovada. Separada expressão comercial de composição e efeitos não verificados; sem alegar eficácia ou ineficácia científica."}
+  ],
+  "counts":{"screened":12,"targetedCorrections":5,"noEditorialChange":2,"needsSource":5},
+  "resume":"Não repetir a triagem enquanto fingerprint e fontes não mudarem. Somente needs_source exige nova evidência; screened_no_change não significa análise aprofundada ou validação de fatos. Próximo item não triado permanece na fila pending."
+}

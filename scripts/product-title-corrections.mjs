@@ -8,6 +8,42 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['Mdyju6zRmHsKRpOYqz51', {
+    syncInformationalSchema:true,
+    model:/inova.*(?:gancho|fone)/i,
+    correct:'Anunciado como Inova Cases — fone com gancho, marca e autonomia a confirmar',
+  }],
+  ['MWjfkNgY4oXJD8NhCOQn', {
+    syncInformationalSchema:true,
+    model:/^(?:m?angueira jardim 20m|mangueira de jardim marqs home 20 m)/i,
+    correct:'Mangueira de jardim Marqs Home 20 m com esguicho 7/16',
+  }],
+  ['jGYvacocpYFsksmL0eAG', {
+    syncInformationalSchema:true,
+    model:/(?:50\s*km.?h.*carro|carro.*controle remoto)/i,
+    correct:'Carro de controle remoto off-road — velocidade anunciada não testada',
+    summary:'O cadastro anuncia um carro de controle remoto off-road com velocidade de 50 km/h e escala 1:16. Esses dados são declarações do anúncio, não medições da equipe. Não testamos velocidade, autonomia ou resistência do conjunto. Confirme modelo, faixa etária, montagem, alimentação e conteúdo da embalagem antes de escolher; não presumimos que a velocidade anunciada seja atingida em qualquer terreno.',
+    positiveNotes:['Carrinho off-road com controle remoto identificado no cadastro; confira a unidade oferecida.'],
+    negativeNotes:['Velocidade de 50 km/h anunciada, não testada pela equipe.', 'Faixa etária, alimentação e itens da embalagem precisam ser conferidos para esse conjunto.'],
+    suppressRating:true,
+  }],
+  ['5FQyewGiYpron6Bn32d1', {
+    syncInformationalSchema:true,
+    model:/(?:85\s*cm.*escorredor|escorredor.*lou[cç]a)/i,
+    summary:'O cadastro descreve um escorredor de louça para organização sobre a pia, com medidas anunciadas de 85 × 80 × 30 cm e aço com pintura epóxi. Não medimos a peça nem testamos carga, resistência à corrosão ou fixação. A carga anunciada e a expressão antiferrugem não são garantias verificadas pela equipe. Confira medidas, espaço da torneira, fixação e instruções do fornecedor antes de instalar ou apoiar utensílios.',
+    positiveNotes:['Formato organizador sobre a pia e medidas declarados no cadastro, a conferir no conjunto.'],
+    negativeNotes:['Carga, resistência à corrosão e fixação não foram testadas; não tratamos as declarações do anúncio como garantias.', 'Confira medidas reais, espaço disponível e instruções de instalação.'],
+    suppressRating:true,
+  }],
+  ['CXMWhCkfWah2EmRBTFtF', {
+    syncInformationalSchema:true,
+    model:/attracione/i,
+    correct:'Perfume Attracione Men 25 ml — composição e efeitos não verificados',
+    summary:'O cadastro identifica o perfume Attracione Men em frasco anunciado de 25 ml. A expressão feromônios ativados faz parte da apresentação comercial, mas não verificamos a composição nem comprovamos qualquer efeito de atração. Não testamos fixação, projeção ou tolerância individual. Confira embalagem, procedência, composição e instruções do fabricante; esta ficha não garante efeitos sobre outras pessoas.',
+    positiveNotes:['Frasco de 25 ml identificado no cadastro; confira embalagem e procedência.'],
+    negativeNotes:['Composição e efeitos de atração não verificados; a expressão comercial não é prova de resultado.', 'Fixação, projeção e tolerância individual não foram testadas.'],
+    suppressRating:true,
+  }],
   ['PfU3x9udsDbmj7DXjaCk', {
     model:/(?=.*mondial)(?=.*vsp[- ]?30[- ]?b)/i,
     correct:'Ventilador de Mesa Mondial VSP-30-B 30 cm — potência a confirmar',
@@ -721,7 +757,7 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
         const sourceUrl = corrected.match(/<meta\b[^>]*name=["']rdc-offer-url["'][^>]*content=["']([^"']+)["']/i)?.[1];
         if (!sourceUrl || !matchesExistingOffer({link: sourceUrl.replace(/&amp;/g, '&')}, correction.expectedListing)) continue;
       }
-      if (correction.correct) corrected = applyVerifiedTitle(corrected, correction.correct);
+      if (correction.correct) corrected = applyVerifiedTitle(corrected, correction.correct, correction.syncInformationalSchema);
       if (correction.category === 'informatica') {
         corrected = corrected.replace(/(<span>Categoria<\/span>)[^<]*(<\/div>)/, '$1Informática$2');
         corrected = corrected.replace(/(<nav class="crumb"[^>]*>[\s\S]*?<\/a>\s*\/\s*)<a[^>]*>[^<]*<\/a>/, '$1<a href="https://rankingdacompra.com.br/analises.html#informatica">Informática</a>');
@@ -765,7 +801,7 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
   return updatedFiles;
 }
 
-function applyVerifiedTitle(content, title) {
+function applyVerifiedTitle(content, title, syncInformationalSchema = false) {
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   content = content.replace(/<h1\b[^>]*>[\s\S]*?<\/h1>/, `<h1>${esc(title)}</h1>`)
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)} | Ranking da Compra</title>`)
@@ -777,6 +813,10 @@ function applyVerifiedTitle(content, title) {
     let payload; try { payload = JSON.parse(source); } catch { return full; }
     for (const node of payload['@graph'] || [payload]) {
       if (node['@type'] === 'Product') node.name = title;
+      if (syncInformationalSchema && node['@type'] === 'Article' && ['Product','Thing'].includes(node.about?.['@type'])) {
+        node.about.name = title;
+        node.headline = title;
+      }
       if (node['@type'] === 'BreadcrumbList') for (const item of node.itemListElement || []) if (item.position === 3) item.name = title;
     }
     return a + JSON.stringify(payload).replace(/</g, '\\u003c') + b;
@@ -791,7 +831,13 @@ function applyVerifiedSummary(content, correction) {
   content = content.replace(/(<script\b[^>]*type=["']application\/ld\+json["'][^>]*>)([\s\S]*?)(<\/script>)/gi, (full, a, source, b) => {
     let payload; try { payload = JSON.parse(source); } catch { return full; }
     const nodes = payload['@graph'] || [payload], product = nodes.find(n => n['@type'] === 'Product');
-    if (!product) return full;
+    if (!product) {
+      if (!correction.syncInformationalSchema) return full;
+      const article = nodes.find(n=>n['@type']==='Article' && ['Product','Thing'].includes(n.about?.['@type']));
+      if (!article) return full;
+      article.description = correction.summary;
+      return a + JSON.stringify(payload).replace(/</g, "\\u003c") + b;
+    }
     product.description = correction.summary;
     for (const review of Array.isArray(product.review) ? product.review : product.review ? [product.review] : []) review.reviewBody = correction.summary;
     return a + JSON.stringify(payload).replace(/</g, "\\u003c") + b;

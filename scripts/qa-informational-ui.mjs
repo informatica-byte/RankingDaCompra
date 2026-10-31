@@ -134,6 +134,13 @@ try{
   await review.screenshot({path:resolve(out,'analise-'+entry.id+'.png')});
  }
  await page.setViewportSize({width:360,height:800});await check('ficha 360px');
+ for(const id of ['Mdyju6zRmHsKRpOYqz51','MWjfkNgY4oXJD8NhCOQn','jGYvacocpYFsksmL0eAG','5FQyewGiYpron6Bn32d1','CXMWhCkfWah2EmRBTFtF']){
+  const item=feed.products.find(p=>p.id===id);assert.ok(item);
+  await page.goto(base+new URL(item.url).pathname,{waitUntil:'domcontentloaded'});
+  assert.equal(await page.locator('h1').innerText(),item.title);
+  await check('correção pontual 360px: '+id);
+  await page.screenshot({path:resolve(out,'triagem-'+id+'-mobile.png'),fullPage:true});
+ }
  for(const id of ['Bf3ccSwSiVkLw1Z8k2Hu','SnMMDq9bDXiMWX0IXYdO','DjihMK3g3rkBHHTPbOwp','pO6CZCNo99YwtpIW0UB8']){
   const item=feed.products.find(p=>p.id===id);if(!item)continue;
   await page.goto(base+new URL(item.url).pathname,{waitUntil:'domcontentloaded'});
