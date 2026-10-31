@@ -1,4 +1,8 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 22 — 31/10/2026, em validação
+
+Seis próximos pending lidos individualmente. Somente Inova CqcFkZIu8ozeDLwRHAEG alterada: modelo genérico não comprova IP67, flutuação, alimentação, alcance ou 12 horas; não copiar ficha de outra caixa. AIWA uV26AV1iY1DMOTH0TJtx e WAAW UKgaZuJb7nXBb1ED38NA mantidas: consulta pontual das páginas oficiais respalda dados básicos existentes, sem teste ou autenticação da unidade. Páginas exatas registradas em docs/targeted-triage22-20261031.json; o manual WAAW excedeu tamanho e não foi tratado como lido. Três calças EdXwh6B1zkESrUZtnNXQ/VxAQJWjW19TX8tv7XdqE/xl3Lu9wu6NJqDUpGmBsV mantidas sem necessidade editorial nova. Não ampliar a contagem de 98 análises ou repetir 57 triagens anteriores. Validar publicação antes de declarar pública.
+
 ## Passagem 21 — 31/10/2026, PUBLICADA E VERIFICADA — retomar daqui
 
 Seis próximos pending lidos individualmente. Quatro ajustes publicados: cadeira camping u8AujPhW3B7Z3N0aF6VS (carga não confirmada; nome de imagem não serve de prova para escolher 150 em vez de 120 kg); Basike eJn1Xl8uCPLxKCObXB6r (não inferir horas/cobertura de mAh/watts nem inventar problema de RGB); JBL XWXtgVSsCBCwOtcMCdO3 (modelo Go 5 anunciado a confirmar, sem copiar Go 4, garantir pareamento ou afirmar recursos ausentes); Philco vEHXKQ4q4UbcFfjPhtTa (não tratar watts como volume ou provar superioridade sem teste). Cadeira gamer wcAVjwAmyrgadW3vyPBC e cafeteira hRsH9zCaHoAnMci7e45x mantidas sem reescrita; não é confirmação técnica. Manifesto docs/targeted-triage21-20261031.json. Continuam 98 análises profundas; os quatro ajustes não são novas análises documentais.

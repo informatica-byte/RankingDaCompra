@@ -366,6 +366,22 @@
     "noRepetitionProof": "Only seven fingerprints changed against preceding checkpoint; prior 91 reviews identical.",
     "remaining": "453 pending; 98 structured reviews public and to preserve."
   },
+  "twentySecondPass": {
+    "status": "validated_awaiting_publication",
+    "tests": "1273 passing; mobile QA without errors; Inova viewport screenshot inspected. Model/accessory guards, 551 products, 604 URLs, operational fields and affiliate invariants preserved.",
+    "date": "2026-10-31",
+    "manifest": "docs/targeted-triage22-20261031.json",
+    "noRepetitionProof": "Exactly one catalogue entry/fingerprint changed, CqcFkZIu8ozeDLwRHAEG. Other five screened records, 98 deep reviews and 57 earlier screening decisions identical. Two official source URLs stored in work notes only, without new deep-review claims.",
+    "nextPendingId": "UCDnByA5YaWN9eiyA5IM",
+    "remaining": "390 pending and seven awaiting source; 35 targeted corrections and 21 screened_no_change are not additional deep reviews.",
+    "screened": 6,
+    "targetedChanges": 1,
+    "unchanged": 5,
+    "needsSource": 0,
+    "deepReviewCount": 98,
+    "scope": "Only Inova unverified model-dependent claims. AIWA and WAAW basic existing data checked on official product pages without importing new features or implying unit authenticity. Three clothes descriptions left unchanged.",
+    "resume": "Skip completed records; consult the stored source notes rather than repeating the same searches. Read next pending individually and only edit a concrete defect or useful confirmed gap."
+  },
   "twentyFirstPass": {
     "status": "published_verified",
     "sourceCommit": "be16a93be",
@@ -560,8 +576,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-31T10:12:27.002Z",
-  "catalogueGeneratedAt": "2026-10-31T10:11:26.560Z",
+  "updatedAt": "2026-10-31T10:23:20.643Z",
+  "catalogueGeneratedAt": "2026-10-31T10:22:17.124Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -573,11 +589,11 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 551,
-    "screened_no_change": 16,
+    "screened_no_change": 21,
     "needs_source": 7,
-    "targeted_correction_complete": 34,
+    "targeted_correction_complete": 35,
     "preserve_prior_review": 98,
-    "pending": 396
+    "pending": 390
   },
   "items": [
     {
@@ -1450,43 +1466,57 @@
       "url": "https://rankingdacompra.com.br/produto/uV26AV1iY1DMOTH0TJtx-20260810-1.html",
       "title": "Caixa de Som Boombox Plus AIWA BBS-01-LBL 200W Bluetooth 30H IP66 USB RGB",
       "fingerprint": "81577b077b5cb4b105b7810667fd76e6fce800198bfd8e614f99078864a82f58",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 22: Página oficial AWS-BBS-01-LBL confirma os dados básicos já registrados de potência, proteção e autonomia máxima declaradas. Sem reescrita necessária. A condição de 30 h a 50% do volume consta na fonte; não equivale a teste da equipe ou autonomia em qualquer volume."
+      ],
+      "sourceLinks": [
+        "https://www.aiwa.com.br/boombox-c--luzes-aws-bbs-01-lbl-bivolt/p"
+      ]
     },
     {
       "id": "UKgaZuJb7nXBb1ED38NA",
       "url": "https://rankingdacompra.com.br/produto/UKgaZuJb7nXBb1ED38NA-20260810-1.html",
       "title": "Caixa de Som Boombox Waaw by Alok Hyperboom 1000 Bluetooth À Prova d'Água 180W RMS Até 12h de Autonomia",
       "fingerprint": "88b98e153b03a71007f56107239884d91b4ce09567160b80fab0c2bd59a04f95",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 22: Página oficial HYPERBOOM 1000 respalda os dados básicos já presentes: potência, proteção e autonomia máxima anunciadas. Não importados outros recursos da página nova nem presumida equivalência integral entre revisões. PDF de manual retornou limite de tamanho e não foi tratado como lido."
+      ],
+      "sourceLinks": [
+        "https://waaw.com.br/products/caixa-de-som-hyperboom-1000"
+      ]
     },
     {
       "id": "CqcFkZIu8ozeDLwRHAEG",
       "url": "https://rankingdacompra.com.br/produto/CqcFkZIu8ozeDLwRHAEG-20260810-1.html",
-      "title": "Caixa De Som Portatil Inova Caixinha Com Rgb Tws Recarregável Subwoofer, Potente Caixas Bluetooth Ideal Festas Ao Ar Livre E Uso Diário, Preto",
-      "fingerprint": "1edafd24efcd64c00a79a1e8fcef03d78d53ede04c50369b81103fd696554765",
-      "status": "pending",
+      "title": "Caixa de som portátil anunciada como Inova — modelo a confirmar",
+      "fingerprint": "b2f07c51b867ffd48d927b76e89be49c7403840a822d30a42494e30eb2aa99b4",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 22: Caixa Inova sem modelo exato apresentava IP67, flutuação, alimentação, alcance e autonomia como confirmados. Campos permanecem não verificados, sem atribuir outra ficha ou escolher voltagem/bateria. Título curto identifica incerteza."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "EdXwh6B1zkESrUZtnNXQ",
       "url": "https://rankingdacompra.com.br/produto/EdXwh6B1zkESrUZtnNXQ-20260810-1.html",
       "title": "Calça Balão Jeans Masculina Marmorizada Streetwear Larga Bag",
       "fingerprint": "743d21c1f6be12154ac8b782aa5152da82d50f535197dfc5bc32dde2249db7e0",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 22: Calça balão descreve corte, tecido e tamanhos sem conflito novo concreto nesta leitura. Sem alterar composição, caimento ou disponibilidade por suposição; triagem não valida medidas ou estoque."
+      ],
       "sourceLinks": []
     },
     {
@@ -1494,10 +1524,12 @@
       "url": "https://rankingdacompra.com.br/produto/VxAQJWjW19TX8tv7XdqE-20260810-1.html",
       "title": "Calça Jeans Wide Leg Feminina Cintura Alta Sem Lycra Stillge",
       "fingerprint": "a5b3045ed2232f0640e9bf834bd0bc23b0691f2e298d9d63561a06950bcad1d3",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 22: Wide leg tem identificação comercial e dados limitados ao anúncio. Não inferida outra marca por abreviação do título nem acrescentadas medidas/composição; sem alteração editorial prioritária."
+      ],
       "sourceLinks": []
     },
     {
@@ -1505,10 +1537,12 @@
       "url": "https://rankingdacompra.com.br/produto/xl3Lu9wu6NJqDUpGmBsV-20260810-1.html",
       "title": "Calça Social Alfaiataria Masculina Malha Elastano Stretch",
       "fingerprint": "b52ad687d1c0ca50eefcd5c6b287ec5db6de10f8d88a5a2089a54ee95b23033d",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-10-31",
+      "workNotes": [
+        "31/10/2026 — triagem seletiva 22: Calça social descreve modelagem, tamanhos e bolsos sem promessa de resultado ou contradição nova detectada. Não acrescentar percentual de elastano, ajuste individual ou instruções sem fonte."
+      ],
       "sourceLinks": []
     },
     {

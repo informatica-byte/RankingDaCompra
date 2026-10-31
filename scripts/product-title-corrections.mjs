@@ -8,6 +8,15 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['CqcFkZIu8ozeDLwRHAEG', {
+    syncInformationalSchema:true,
+    model:/^caixa.*som.*(?:port[aá]til.*)?inova/i,
+    correct:'Caixa de som portátil anunciada como Inova — modelo a confirmar',
+    summary:'O cadastro anuncia uma caixa de som portátil Inova, recarregável, com Bluetooth, RGB e TWS. Não foi identificado nesta revisão um código exato de modelo ou manual que permita confirmar as alegações de IP67, flutuação, alimentação 127/220 V, Bluetooth 5.4, alcance de 25 m e reprodução de 12 horas. Esses campos não são apresentados como recursos verificados. Confira etiqueta, modelo, alimentação e documentação da unidade no anúncio. Não copiamos especificações de outra caixa semelhante e não testamos proteção, alcance ou autonomia.',
+    positiveNotes:['Bluetooth, iluminação RGB, TWS e recarga anunciados no cadastro.'],
+    negativeNotes:['Modelo e documentação a confirmar; proteção, flutuação e alimentação não foram verificadas.', 'Não garantimos horas de reprodução, alcance ou uso externo com base nos campos genéricos do anúncio.'],
+    suppressRating:true,
+  }],
   ['u8AujPhW3B7Z3N0aF6VS', {
     syncInformationalSchema:true,
     model:/^cadeira.*dobr[aá]vel.*(?:camping|pesca)/i,

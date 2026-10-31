@@ -1,0 +1,15 @@
+{
+  "date":"2026-10-31",
+  "policy":"Seis próximos pending lidos individualmente; uma correção de alegações sem modelo exato. Consulta pontual de páginas oficiais para evitar reescrever AIWA/WAAW já coerentes. Não é teste prático, autenticação da unidade ou nova análise profunda.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"uV26AV1iY1DMOTH0TJtx","decision":"screened_no_change","reason":"Página oficial AWS-BBS-01-LBL confirma os dados básicos já registrados de potência, proteção e autonomia máxima declaradas. Sem reescrita necessária. A condição de 30 h a 50% do volume consta na fonte; não equivale a teste da equipe ou autonomia em qualquer volume.","sourceLinks":["https://www.aiwa.com.br/boombox-c--luzes-aws-bbs-01-lbl-bivolt/p"]},
+    {"id":"UKgaZuJb7nXBb1ED38NA","decision":"screened_no_change","reason":"Página oficial HYPERBOOM 1000 respalda os dados básicos já presentes: potência, proteção e autonomia máxima anunciadas. Não importados outros recursos da página nova nem presumida equivalência integral entre revisões. PDF de manual retornou limite de tamanho e não foi tratado como lido.","sourceLinks":["https://waaw.com.br/products/caixa-de-som-hyperboom-1000"]},
+    {"id":"CqcFkZIu8ozeDLwRHAEG","decision":"targeted_correction_complete","reason":"Caixa Inova sem modelo exato apresentava IP67, flutuação, alimentação, alcance e autonomia como confirmados. Campos permanecem não verificados, sem atribuir outra ficha ou escolher voltagem/bateria. Título curto identifica incerteza."},
+    {"id":"EdXwh6B1zkESrUZtnNXQ","decision":"screened_no_change","reason":"Calça balão descreve corte, tecido e tamanhos sem conflito novo concreto nesta leitura. Sem alterar composição, caimento ou disponibilidade por suposição; triagem não valida medidas ou estoque."},
+    {"id":"VxAQJWjW19TX8tv7XdqE","decision":"screened_no_change","reason":"Wide leg tem identificação comercial e dados limitados ao anúncio. Não inferida outra marca por abreviação do título nem acrescentadas medidas/composição; sem alteração editorial prioritária."},
+    {"id":"xl3Lu9wu6NJqDUpGmBsV","decision":"screened_no_change","reason":"Calça social descreve modelagem, tamanhos e bolsos sem promessa de resultado ou contradição nova detectada. Não acrescentar percentual de elastano, ajuste individual ou instruções sem fonte."}
+  ],
+  "counts":{"screened":6,"targetedCorrections":1,"noEditorialChange":5,"needsSource":0},
+  "resume":"Pular 98 análises e 57 triagens anteriores. A consulta limitada de fonte em screened_no_change não transforma a ficha em análise profunda nem valida toda unidade vendida. Retomar próximo pending e alterar só defeito concreto ou lacuna útil confirmável."
+}
