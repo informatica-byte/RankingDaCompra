@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## Estado vigente — 31/10/2026, passagem 14 concluída
+
+Cinco correções pontuais PUBLICADAS E VERIFICADAS: fone Inova Cases (autonomia/marca incertas no título), mangueira Marqs Home (grafia e título legível), carrinho RC (velocidade anunciada não testada), escorredor (sem garantia não comprovada de carga/corrosão), perfume Attracione Men (sem comprovação de composição/efeitos). Nenhuma informação nova foi inventada. Fonte d29457792; geração 82374fad0. Integridade 41186747614, sitemap 41186747696 e Pages final 41186781811 com sucesso. Pages inicial cancelado por substituição, não é falha pendente.
+
+Às 09:00 UTC, as cinco páginas responderam HTTP 200 com H1, dados Article e busca coerentes; afiliados preservados. Prova independente: outputs/melhorias-integrais-20261030/verificacao-publicada-triagem14.json. Preservados 551 produtos, 604 URLs, todos os campos operacionais e as 98 análises profundas, verificadas uma a uma por igualdade de conteúdo. 1.248 testes aprovados, inclusive após conciliar a atualização automática remota; QA móvel sem erros e captura do perfume inspecionada.
+
+RETOMADA: 12 fichas triadas individualmente nesta passagem: cinco corrigidas, duas mantidas e cinco aguardando fonte. Não são 103 análises profundas: continuam 98. A fila ainda não triada tem 441 itens. Ver decisões/IDs em docs/targeted-triage-20261030.json e estados no JSON de progresso. Pular preserve_prior_review, targeted_correction_complete e screened_no_change se não houver mudança real; reabrir needs_source somente com evidência nova. Na próxima execução, examinar UMA ficha pending por vez e alterar apenas se houver defeito objetivo ou lacuna útil confirmável. Não produzir texto genérico só para aumentar contagem. Não alterar links, preços, cadastros, regras nem repetir conferências. Os estados abaixo são histórico superado por este checkpoint.
+
 ## Atualização prioritária de 30/10/2026 — retomar daqui
 
 31/10/2026 — passagem 14 validada localmente: 1.248 testes aprovados, QA móvel sem erros e invariantes preservadas. Publicar as cinco correções já preparadas e verificar o resultado público antes de iniciar outra ficha. Não contar as cinco correções pontuais como novas análises profundas: continuam 98. Registro individual da triagem em docs/targeted-triage-20261030.json. Os parágrafos históricos abaixo não substituem este ponto de retomada.

@@ -367,7 +367,17 @@
     "remaining": "453 pending; 98 structured reviews public and to preserve."
   },
   "fourteenthPass": {
-    "status": "validated_awaiting_publication",
+    "status": "published_verified",
+    "sourceCommit": "d29457792",
+    "publicationDate": "2026-10-31",
+    "generatedCommit": "82374fad0",
+    "integrityRun": 41186747614,
+    "sitemapRun": 41186747696,
+    "pagesRun": 41186781811,
+    "results": "All success; initial Pages superseded by generated commit, final Pages successful. Five public pages HTTP 200 with H1, Article metadata and affiliate anchors verified.",
+    "productionVerifiedAt": "2026-10-31T09:00:21.655Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem14.json",
+    "nextAction": "Screen the next pending item individually. Skip all 98 deep reviews and unchanged screened/targeted items; revisit needs_source only with new evidence. Edit only an objective defect or a useful confirmed gap. Do not run price or affiliate link conferences.",
     "tests": "1248 passing; mobile QA without errors; protected fields and affiliate invariants passed. Only five fingerprints changed; the prior 98 are identical.",
     "policy": "User requested item-by-item screening and edits only for concrete need, not mandatory long analyses. Preserve 98 deep reviews and all affiliates.",
     "manifest": "docs/targeted-triage-20261030.json",
