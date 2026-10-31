@@ -1,4 +1,8 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 19 — 31/10/2026, em validação
+
+Seis próximos pending lidos individualmente. Só uma alteração necessária: mlMLB4467674377, título promocional antigo de bota e erro couto legitimo; material continua como declaração do anúncio, sem autenticar marca ou testar desempenho. Bolsa Tche Amo ZRkf5zIEicv1a47qGXXw, boné mlMLB4987441207 e botas mlMLB4614572907/mlMLB5022549056/mlMLB4960241923 mantidos sem reescrita por ausência de defeito prioritário novo; isso não confirma tecnicamente seus dados. Manifesto docs/targeted-triage19-20261031.json. Preservar 98 análises e 39 triagens anteriores. Verificar publicação antes de declarar pública.
+
 ## Passagem 18 — 31/10/2026, PUBLICADA E VERIFICADA — retomar daqui
 
 Seis próximos pending examinados individualmente e corrigidos, sem reabrir as 98 análises ou os 33 itens anteriores. Manifesto docs/targeted-triage18-20261031.json. WCT 20 kg VfMW16M9t5lgB6JcDJYp: categoria esportiva e título distinguindo roda anunciada de peso total. Velocron V500 PmWA6Y2vHwbiT6rEfc7l: estatura anunciada não vira garantia de ajuste. WCT 13 kg liYhKi9ZlLnwNTT1uvBl: somente categoria esportiva. Perfect Pear mlMLB7006667338: somente categoria Perfumes, produto avulso não é kit. Bola 5ybTTfU4uFUesMEPrTMK: homologação a confirmar, sem assegurar competição oficial. Bold mlMLB7688686428: marca divergente Barbour’s Beauty/Moon, sem escolher fabricante; categoria Perfumes. Seis correções pontuais, não novas análises profundas: continuam 98.

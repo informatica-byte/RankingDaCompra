@@ -1,0 +1,15 @@
+{
+  "date":"2026-10-31",
+  "policy":"Seis próximos pending examinados individualmente; mudar apenas defeito concreto. Ausência de análise extensa não justifica reescrita. Sem nova consulta a anúncios ou validação técnica, de marca ou de fabricante.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"ZRkf5zIEicv1a47qGXXw","decision":"screened_no_change","reason":"Bolsa térmica já descreve compartimentos, revestimento e alça sem prometer duração em horas ou temperatura específica. Sem correção prioritária nova; não significa teste de conservação, capacidade ou segurança dos alimentos."},
+    {"id":"mlMLB4987441207","decision":"screened_no_change","reason":"Ficha de boné se limita a identificação, marca/cor anunciadas e código de catálogo. Texto do produto não foi interpretado como confirmação de cargo político nem reescrito como propaganda; sem alteração necessária nesta triagem."},
+    {"id":"mlMLB4614572907","decision":"screened_no_change","reason":"Bota Street Walker com identificação e dados atribuídos ao anúncio, sem certificação de proteção declarada no resumo. Não inferir EPI, impermeabilidade ou segurança pelo termo Trabalho; sem nova informação para acrescentar."},
+    {"id":"mlMLB5022549056","decision":"screened_no_change","reason":"Bota 2113 tem identificação comercial e dados limitados ao cadastro. Ausência de confirmação de autenticidade não é prova de falsificação, nem motivo para reescrever sem evidência nova. Sem alteração editorial prioritária."},
+    {"id":"mlMLB4960241923","decision":"screened_no_change","reason":"Não foi presumida contradição entre couro/PVC: podem descrever partes distintas e o cadastro não esclarece. Sem especificações novas confirmadas, não inventar composição, proteção ou correção de material. Mantida ficha sem reescrita."},
+    {"id":"mlMLB4467674377","decision":"targeted_correction_complete","reason":"Título apresentava Promoção como atual e descrição continha couto legitimo. Removida indicação promocional e limpo o erro, mantendo couro como declaração do anúncio, sem autenticar marca, inventar material ou garantir desempenho."}
+  ],
+  "counts":{"screened":6,"targetedCorrections":1,"noEditorialChange":5,"needsSource":0},
+  "resume":"Não repetir as 98 análises nem as 39 triagens anteriores. screened_no_change é apenas triagem editorial, não confirmação técnica. Retomar próximo pending; só alterar defeito concreto ou lacuna útil confirmável."
+}

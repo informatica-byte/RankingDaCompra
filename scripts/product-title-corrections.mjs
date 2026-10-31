@@ -8,6 +8,15 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB4467674377', {
+    syncInformationalSchema:true,
+    model:/^bota.*(?:coturno|botina).*caterpillar/i,
+    correct:'Bota coturno anunciada como Caterpillar, com palmilha',
+    summary:'O cadastro apresenta uma bota coturno anunciada como Caterpillar, com palmilha, cor preta e código de catálogo MLBU3776969793. O material é descrito como couro no anúncio e não foi verificado nesta revisão. Confira identificação, material e numeração da unidade no anúncio antes de escolher. Não testamos conforto ou resistência.',
+    positiveNotes:['Palmilha e cor preta descritas no cadastro, a conferir na unidade oferecida.'],
+    negativeNotes:['Material, conforto e resistência não foram verificados pela equipe.', 'Confira identificação e numeração; o título comercial não comprova procedência.'],
+    suppressRating:true,
+  }],
   ['VfMW16M9t5lgB6JcDJYp', {
     syncInformationalSchema:true,
     model:/^(?=.*wct)(?=.*20\s*kg)(?:bicicleta.*spinning|spinning wct)/i,
