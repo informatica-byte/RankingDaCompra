@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-31",
+  "policy": "Three pending products selected by measured GA4 view order. Targeted removal of unsupported or contradictory claims, not new deep documentary reviews. No price, product identity, variant or affiliate changes.",
+  "protectedDeepReviews": 98,
+  "items": [
+    {"id":"mlMLB4222763449","decision":"targeted_correction_complete","reason":"Nome comercial sem código da variante não permite importar dados técnicos OSAN500. Removidas resistência presumida do material e recomendação de carnes/legumes sem manual específico. Tensão e código continuam a confirmar.","sourceLinks":["https://www.oster.com.br/sanduicheira-inox-multiuso-oster/p"],"sourceLimit":"Página oficial consultada identifica OSAN500-127/220, mas não prova que a unidade cadastrada corresponde a essa versão. Nenhuma especificação dessa página foi importada."},
+    {"id":"mlMLB5259893582","decision":"targeted_correction_complete","reason":"Retiradas promessas não documentadas de alta absorção, energia, bem-estar e efeitos mentais/imunológicos. Apresentação é atribuída ao anúncio; composição, quantidades, regularidade e adequação individual não são validadas. Sem dose ou alegação terapêutica.","sourceLinks":[],"sourceLimit":"Fonte específica de fabricante/rótulo não confirmada; remoção de alegações não é análise clínica ou validação de composição."},
+    {"id":"4qfOr9o2qNFtHLcRZzRC","decision":"targeted_correction_complete","reason":"Descrição local tinha 15 L e 16 L conflitantes. Nenhum escolhido como correto. Capacidade útil, dimensões, alcance, autonomia e proteção continuam a confirmar; sensor/USB-C apresentados como anunciados, não testados.","sourceLinks":[],"sourceLimit":"Sem manual específico; não inferir capacidade a partir da foto nem prometer uso seguro em ambiente úmido."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":3,"newDeepReviews":0},
+  "resume":"Next GA4-prioritized pending: 7QHXFlimzdpfKr7yfo0T (tênis Olimp); skip unchanged completed entries and reopen only for material change/new source."
+}

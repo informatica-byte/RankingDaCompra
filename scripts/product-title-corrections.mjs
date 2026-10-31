@@ -8,6 +8,30 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB4222763449', {
+    syncInformationalSchema:true,
+    model:/sanduicheira.*inox.*multiuso.*oster/i,
+    summary:'O cadastro anuncia uma Sanduicheira Inox Multiuso Oster. Para escolher a unidade, confira o código do modelo e a tensão no anúncio e na etiqueta: o nome comercial, sozinho, não confirma a versão elétrica. A descrição anterior apresentava resistência do material e preparo de carnes e legumes sem documentação específica da unidade. Por isso, não usamos essas alegações como vantagens comprovadas nem copiamos potência, dimensões ou recursos de outra versão Oster. Confira os preparos permitidos e os cuidados de limpeza no manual do modelo comprado. Não testamos aquecimento, durabilidade ou desempenho deste aparelho.',
+    positiveNotes:['Sanduicheira Oster identificada pelo nome comercial no cadastro; confira a unidade oferecida.'],
+    negativeNotes:['Código do modelo, tensão e recursos da unidade precisam de confirmação no anúncio e no manual.', 'Não foram testados desempenho, durabilidade ou facilidade de limpeza.'],
+    suppressRating:true,
+  }],
+  ['mlMLB5259893582', {
+    syncInformationalSchema:true,
+    model:/complexo\s*b.*(?:ultra|vegano).*bigens/i,
+    summary:'O cadastro anuncia um suplemento Complexo B Ultra Bigens em gotas, frasco de 30 mL e sabor frutas amarelas. Essas são informações do anúncio, não confirmação independente do conteúdo do frasco. Removemos as promessas de alta absorção, energia, bem-estar e benefícios à saúde mental ou imunológica: esta ficha não apresenta comprovação específica para esses resultados. Confira no rótulo a composição, as quantidades por porção, as advertências, o fabricante e as condições de conservação. Não confirmamos fórmula, adequação individual, regularidade ou autenticidade deste lote, não prometemos prevenção ou tratamento de doenças e não orientamos dose. Procure um profissional de saúde para avaliar a necessidade individual.',
+    positiveNotes:['Apresentação em gotas, volume de 30 mL e sabor frutas amarelas anunciados no cadastro.'],
+    negativeNotes:['Composição, quantidades e advertências precisam ser conferidas no rótulo da unidade.', 'Não há comprovação específica de benefícios à saúde nesta revisão; não indicamos dose ou adequação individual.'],
+    suppressRating:true,
+  }],
+  ['4qfOr9o2qNFtHLcRZzRC', {
+    syncInformationalSchema:true,
+    model:/lixeira.*(?:autom[aá]tica|inteligente).*sensor/i,
+    summary:'O cadastro anuncia uma lixeira redonda com abertura automática por sensor e recarga USB-C, identificada como Correia na cor preta. A descrição anterior informava tanto 15 L quanto 16 L; a capacidade permanece a confirmar, sem escolher um dos valores por suposição. Também não verificamos o alcance anunciado de 30 cm, a autonomia ou resistência à umidade. Antes de escolher, confira a capacidade útil, as dimensões externas, o espaço necessário para abrir a tampa, a alimentação e os acessórios no anúncio e no manual. Não testamos sensor, recarga, vedação ou uso em áreas úmidas.',
+    positiveNotes:['Abertura por sensor e recarga USB-C anunciadas no cadastro; confirme a unidade oferecida.'],
+    negativeNotes:['Capacidade a confirmar: o texto anterior divergia entre 15 L e 16 L.', 'Alcance do sensor, autonomia, acessórios e resistência à umidade não verificados nesta revisão.'],
+    suppressRating:true,
+  }],
   ['CqcFkZIu8ozeDLwRHAEG', {
     syncInformationalSchema:true,
     model:/^caixa.*som.*(?:port[aá]til.*)?inova/i,

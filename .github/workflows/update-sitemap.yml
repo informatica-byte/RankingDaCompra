@@ -97,6 +97,7 @@ jobs:
           node-version: "24"
 
       - name: Autenticar leitura do Firestore sem chave permanente
+        if: ${{ !(github.event_name == 'push' && contains(github.event.head_commit.message, '[editorial-local]')) }}
         id: firestore-auth
         uses: ./.github/actions/firestore-read-auth
 
@@ -106,6 +107,7 @@ jobs:
           RDC_FIRESTORE_AUTH_REQUIRED: "true"
           PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices || contains(github.event.head_commit.message, '[preservar-precos]') }}
           VERIFY_REVIEW_PAUSES: ${{ contains(github.event.head_commit.message, '[verificar-pausas]') }}
+          EDITORIAL_LOCAL: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[editorial-local]') }}
           # Nunca restaurar este cache entre publicações: uma nova execução lê
           # os dados atuais. Só retentativas da mesma execução reaproveitam páginas.
           RDC_FIRESTORE_READ_CACHE_SCOPE: ${{ github.run_id }}-${{ github.run_attempt }}
@@ -113,6 +115,15 @@ jobs:
           if [[ "$PRESERVE_PUBLISHED_PRICES" == "true" ]]; then
             git show HEAD:vitrine-publica.json > "$RUNNER_TEMP/rdc-before-publication.json"
           fi
+          if [[ "$EDITORIAL_LOCAL" == "true" ]]; then
+            # Editorial only: current published files, no Firestore authentication/read.
+            # An opt-in cannot silently disable price preservation or validators.
+            if [[ "$PRESERVE_PUBLISHED_PRICES" != "true" ]]; then
+              echo "::error::Publicação editorial exige a trava de preços."
+              exit 1
+            fi
+            node --input-type=module -e "import fs from 'node:fs';import {assertCurrentProductIdentities} from './scripts/fixtures/assert-current-product-identities.mjs';const j=f=>JSON.parse(fs.readFileSync(f,'utf8'));assertCurrentProductIdentities(j('informational-catalogue.json'),j('search-index.json'),j('vitrine-publica.json'));"
+          else
           generated=false
           for attempt in 1 2 3; do
             if timeout 100s node scripts/generate-sitemap.mjs; then
@@ -125,6 +136,7 @@ jobs:
           if [[ "$generated" != "true" ]]; then
             echo "::error::O gerador principal falhou após três tentativas. A publicação foi bloqueada para preservar o site."
             exit 1
+          fi
           fi
           if [[ -f .ranking-generation-partial ]]; then
             echo "::warning::Firebase indisponível: a publicação atual foi preservada; a geração completa será tentada na próxima janela."
