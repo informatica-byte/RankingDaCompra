@@ -1,5 +1,22 @@
 {
   "version": 1,
+  "sitemapIdentityTestRepair": {
+    "status": "published_verified",
+    "verifiedAt": "2026-10-31T11:26:02.932Z",
+    "sourceCommit": "747c38794580a8459183ee3de268b5660c2a3351",
+    "generatedCommit": "ab78de2f7d4f5292f4fbc8e45738e0d88446214d",
+    "sitemapRun": 41196537765,
+    "pagesRun": 41196581883,
+    "testsPassed": 1277,
+    "products": 552,
+    "sitemapUrls": 605,
+    "existingProductsPricesAndAffiliatesPreserved": 551,
+    "deepReviewsPreserved": 98,
+    "newProductPending": "mlMLB4748589927",
+    "previousNextPendingStillQueued": "UCDnByA5YaWN9eiyA5IM",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-correcao-testes.json",
+    "note": "Only four brittle historical-count tests repaired; exact identity and duplicate checks added. No new editorial review or availability check."
+  },
   "firstBatch": {
     "status": "published_verified",
     "sourceCommit": "25dfbd284b55883583368900c077154b8de1161f",
@@ -584,8 +601,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-31T10:23:20.643Z",
-  "catalogueGeneratedAt": "2026-10-31T10:22:17.124Z",
+  "updatedAt": "2026-10-31T11:26:08.352Z",
+  "catalogueGeneratedAt": "2026-10-31T11:22:03.447Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -596,12 +613,12 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 551,
+    "total": 552,
     "screened_no_change": 21,
     "needs_source": 7,
     "targeted_correction_complete": 35,
     "preserve_prior_review": 98,
-    "pending": 390
+    "pending": 391
   },
   "items": [
     {
@@ -1147,6 +1164,17 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "oVBbvfcldF36EbyYex8y",
+      "url": "https://rankingdacompra.com.br/produto/oVBbvfcldF36EbyYex8y-20260810-1.html",
+      "title": "Scooter elétrica Xplore 48 V/12 Ah/500 W — classificação a confirmar",
+      "fingerprint": "75f7fcf0c5ee39b8a975446947ebb4639877b885667e47abba1f0fa75adfb052",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
       "id": "liYhKi9ZlLnwNTT1uvBl",
       "url": "https://rankingdacompra.com.br/produto/liYhKi9ZlLnwNTT1uvBl-20260810-1.html",
       "title": "Bicicleta Spinning Com Roda De Inércia De 13kg Wct Fitness Cor Preto",
@@ -1188,6 +1216,17 @@
       "sourceLinks": [],
       "previousState": "pending",
       "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB4748589927",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4748589927-20260810-1.html",
+      "title": "Body Splash Masculino Vibration 200ml - Primacial Perfume Bergamota Fresco",
+      "fingerprint": "3ab2d97e49eb4e000c2782d7f646dd96f1038bb12dfe1360ad43a615a85cbd7d",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
     },
     {
       "id": "mlMLB7006667338",
@@ -2781,6 +2820,17 @@
       "sourceLinks": []
     },
     {
+      "id": "ZVVdy8TuP0yW0XNIyiEA",
+      "url": "https://rankingdacompra.com.br/produto/ZVVdy8TuP0yW0XNIyiEA-20260810-1.html",
+      "title": "soundcore P30i da Anker — fones TWS com ANC",
+      "fingerprint": "0df7905c8866ebd3df5cd8e56870cac3c3168bb8334b1caf76224f1c31ce9a7d",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
       "id": "z507ObVuMlSEBSnK40Uc",
       "url": "https://rankingdacompra.com.br/produto/z507ObVuMlSEBSnK40Uc-20260810-1.html",
       "title": "Fone de Ouvido Bluetooth 5.3 Tws Sem Fio Esportivo Compatível Com iPhone Samsung Xiaomi Motorola Com Gancho Premium KAPBOM Preto",
@@ -3876,17 +3926,6 @@
       "sourceLinks": []
     },
     {
-      "id": "xdMGqRvHv2lJ95LaBG9F",
-      "url": "https://rankingdacompra.com.br/produto/xdMGqRvHv2lJ95LaBG9F-20260810-1.html",
-      "title": "Lanterna LED T9 recarregável — alcance e proteção a confirmar",
-      "fingerprint": "dd4be3f3bc82127b066cc6a8d0234e381b66af12fcdc63391efc43557f815289",
-      "status": "preserve_prior_review",
-      "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "sEmIjHvnB3y4J7UZWBe2",
       "url": "https://rankingdacompra.com.br/produto/sEmIjHvnB3y4J7UZWBe2-20260810-1.html",
       "title": "Lanterna Tatica Aluminio Led Laser Canhao Luz Mais Potente Lanterna Potente Com Zoom De Longo Alcance, Lanterna Tática Militar Para Acampamento, Caminhada, Pesca Preto",
@@ -3904,6 +3943,17 @@
       "fingerprint": "88f1cda6776c2a0916a4ca5f2c84f0092e30fc031824415f6ba18e5162ea1918",
       "status": "pending",
       "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
+      "id": "xdMGqRvHv2lJ95LaBG9F",
+      "url": "https://rankingdacompra.com.br/produto/xdMGqRvHv2lJ95LaBG9F-20260810-1.html",
+      "title": "Lanterna LED T9 recarregável — alcance e proteção a confirmar",
+      "fingerprint": "dd4be3f3bc82127b066cc6a8d0234e381b66af12fcdc63391efc43557f815289",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
@@ -4709,6 +4759,17 @@
       "sourceLinks": []
     },
     {
+      "id": "MCdK7VlagX4qYFEKn6D9",
+      "url": "https://rankingdacompra.com.br/produto/MCdK7VlagX4qYFEKn6D9-20260810-1.html",
+      "title": "Parafusadeira/furadeira anunciada como 48 V — duas baterias, modelo a confirmar",
+      "fingerprint": "9a3e282636e42e0e8f346fe8d72b1b4d9302d4edee2b1e2d2c744af5fe48b709",
+      "status": "preserve_prior_review",
+      "previousReviewPresent": true,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
       "id": "fQAJIJDeSjtSvdevGCQm",
       "url": "https://rankingdacompra.com.br/produto/fQAJIJDeSjtSvdevGCQm-20260810-1.html",
       "title": "Parafusadeira Furadeira De Impacto A Bateria 21V 3/8” Bivolt 1400 Rpm Com Acessórios E Maleta TB-21PZW The Black Tools",
@@ -4750,17 +4811,6 @@
       "url": "https://rankingdacompra.com.br/produto/CCnmlZjBf8P0nhSyHOmm-20260810-1.html",
       "title": "Parafusadeira Furadeira The Black Tools TB12A 3/8 a Bateria Cor Amarelo Frequência 60Hz",
       "fingerprint": "ea5b5c59c00a6486336efac778c3c30fdafbcb761740a36a5de7c80ce1c079b8",
-      "status": "preserve_prior_review",
-      "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "MCdK7VlagX4qYFEKn6D9",
-      "url": "https://rankingdacompra.com.br/produto/MCdK7VlagX4qYFEKn6D9-20260810-1.html",
-      "title": "Parafusadeira/furadeira anunciada como 48 V — duas baterias, modelo a confirmar",
-      "fingerprint": "9a3e282636e42e0e8f346fe8d72b1b4d9302d4edee2b1e2d2c744af5fe48b709",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
       "lastCompletedAt": null,
@@ -5694,17 +5744,6 @@
       "sourceLinks": []
     },
     {
-      "id": "oVBbvfcldF36EbyYex8y",
-      "url": "https://rankingdacompra.com.br/produto/oVBbvfcldF36EbyYex8y-20260810-1.html",
-      "title": "Scooter elétrica Xplore 48 V/12 Ah/500 W — classificação a confirmar",
-      "fingerprint": "75f7fcf0c5ee39b8a975446947ebb4639877b885667e47abba1f0fa75adfb052",
-      "status": "preserve_prior_review",
-      "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "kfLnRJzsg88rUfJxMtb6",
       "url": "https://rankingdacompra.com.br/produto/kfLnRJzsg88rUfJxMtb6-20260810-1.html",
       "title": "Secador de Cabelos Mondial Preto 2000W SCN-01",
@@ -6109,17 +6148,6 @@
       "fingerprint": "367f72b54990796983ac577e9df591fe61a59cc3c3b5f1cf3826461f6d0e1ac2",
       "status": "pending",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "ZVVdy8TuP0yW0XNIyiEA",
-      "url": "https://rankingdacompra.com.br/produto/ZVVdy8TuP0yW0XNIyiEA-20260810-1.html",
-      "title": "soundcore P30i da Anker — fones TWS com ANC",
-      "fingerprint": "0df7905c8866ebd3df5cd8e56870cac3c3168bb8334b1caf76224f1c31ce9a7d",
-      "status": "preserve_prior_review",
-      "previousReviewPresent": true,
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []

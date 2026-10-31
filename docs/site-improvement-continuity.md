@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## Correção emergencial do sitemap — 31/10/2026, PUBLICADA E VERIFICADA
+
+Corrigidos quatro testes das triagens 19–22 que exigiam exatamente 551 produtos e bloqueavam o cadastro legítimo 552. Agora comparam identidades exatas entre catálogo e busca, rejeitam duplicações e IDs desconhecidos e conferem URLs; as validações de conteúdo, 98 análises, segurança e publicação continuam mantidas. Novas regressões aceitam crescimento legítimo sem teto fixo. 1.277 testes aprovados localmente e no GitHub.
+
+Fonte 747c38794, geração ab78de2f7. Integridade 41196404191, sitemap 41196537765 e Pages final 41196581883 com sucesso. Trava PRESERVE_PUBLISHED_PRICES=true confirmada no log. Verificação pública independente às 11:26 UTC: 552 produtos e 605 URLs; os 551 produtos informativos anteriores, seus preços salvos, campos operacionais e afiliados permaneceram iguais, e todas as 604 URLs anteriores foram preservadas. Nova página mlMLB4748589927 (Body Splash Vibration Primacial) HTTP 200 com canonical e H1. Isso comprova publicação, não indexação pelo Google. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-correcao-testes.json e captura sitemap-publicado-20261031.png.
+
+Nenhuma ficha adicional revisada nesta correção. Permanecem 98 preserve_prior_review, 35 targeted_correction_complete, 21 screened_no_change e sete needs_source. Agora 391 pending (inclui o cadastro novo). Próximo pending na ordem atual: mlMLB4748589927; a Cama Elástica UCDnByA5YaWN9eiyA5IM continua na fila, sem revisão repetida. Não repetir análises concluídas; alterar somente defeito necessário e documentado. Preços, cadastros e links de afiliados não devem ser alterados na retomada editorial.
+
 ## Passagem 22 — 31/10/2026, PUBLICADA E VERIFICADA — retomar daqui
 
 Seis próximos pending lidos individualmente. Somente Inova CqcFkZIu8ozeDLwRHAEG alterada e publicada: modelo genérico não comprova IP67, flutuação, alimentação, alcance ou 12 horas; não copiar ficha de outra caixa. AIWA uV26AV1iY1DMOTH0TJtx e WAAW UKgaZuJb7nXBb1ED38NA mantidas: consulta pontual das páginas oficiais respalda dados básicos existentes, sem teste ou autenticação da unidade. Páginas exatas e URLs nos registros sourceLinks de docs/targeted-triage22-20261031.json e do progresso; o manual WAAW excedeu tamanho e não foi tratado como lido. Três calças EdXwh6B1zkESrUZtnNXQ/VxAQJWjW19TX8tv7XdqE/xl3Lu9wu6NJqDUpGmBsV mantidas sem necessidade editorial nova. A consulta limitada de fonte e a correção pontual não ampliam as 98 análises profundas.
