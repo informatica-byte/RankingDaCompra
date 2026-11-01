@@ -8,6 +8,15 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['sZGVRAGBdFaBYSOQbSO8', {
+    syncInformationalSchema:true,
+    model:/^teclado.*mec[aâ]nico.*abnt2.*switch\s*red/i,
+    correct:'Teclado mecânico ABNT2 anunciado com switch red — iluminação a conferir',
+    summary:'O cadastro anuncia um teclado mecânico ABNT2 com switch red. O título menciona RGB, enquanto a descrição usa Rainbow; não confirmamos o tipo de iluminação nem seus ajustes. As expressões silencioso e impermeável também aparecem sem documentação específica registrada nesta revisão, por isso não são apresentadas como garantias. Antes de escolher, confira a marca, o modelo, o layout das teclas, a conexão e a compatibilidade com seu sistema no anúncio e no manual. Não presumimos funcionamento sem ruído ou resistência a líquidos e não testamos digitação, switches, iluminação ou durabilidade. Recursos de um teclado parecido não foram usados para completar esta ficha.',
+    positiveNotes:['Layout ABNT2 e switch red identificados no cadastro; confirme o modelo e a disposição das teclas no anúncio.'],
+    negativeNotes:['Iluminação a confirmar: o título menciona RGB e a descrição usa Rainbow.', 'Silêncio e resistência a líquidos não comprovados; conexão, compatibilidade e especificações exigem confirmação do modelo.'],
+    suppressRating:true,
+  }],
   ['SFcayTGVGtzWrkpt4uFw', {
     syncInformationalSchema:true,
     model:/^t[eê]nis\s+(?:puma\s+)?rbd\s*game\s*low(?:\s+puma)?$/i,

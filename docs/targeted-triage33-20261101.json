@@ -1,0 +1,11 @@
+{
+  "date":"2026-11-01",
+  "policy":"Next two pending in saved GA4 view order; qualify concrete conflicting and unsupported claims, preserving coherent prior editorial work.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"sZGVRAGBdFaBYSOQbSO8","decision":"targeted_correction_complete","reason":"Título e resumo conflitavam entre RGB e Rainbow e afirmavam silêncio/impermeabilidade sem documentação específica registrada. Nome público e texto passam a atribuir ABNT2/switch red ao cadastro e deixam iluminação, ruído, resistência a líquidos e modelo como pendências, sem escolher especificações de outro teclado.","sourceLinks":[],"sourceLimit":"Revisão do snapshot público local; marca e modelo exatos não identificados. Não há nova leitura de anúncio, teste de produto, certificação de proteção contra líquidos ou confirmação de switches/iluminação. Dados operacionais e afiliados preservados."},
+    {"id":"W309Bngb9vy88pxNSAn5","decision":"screened_no_change","reason":"Rexona já tem correção anterior: quantidade 2 x 58 g atribuída ao cadastro, instruções remetidas ao rótulo e limites de testes/proteção/tolerância explícitos. Nenhum defeito novo que justifique repetir ou reescrever; título, corpo e demais dados mantidos integralmente.","sourceLinks":[],"sourceLimit":"Triagem da ficha pública e da correção anterior, não nova avaliação clínica ou consulta da composição. Sem acrescentar duração, eficácia, adequação individual ou alegações dermatológicas por suposição."}
+  ],
+  "counts":{"screened":2,"targetedCorrections":1,"newDeepReviews":0},
+  "resume":"Next pending w4grNjrGMy69omEzW0QP (Maison Salem Nayef), then saved GA4 view order; skip unchanged completed IDs."
+}
