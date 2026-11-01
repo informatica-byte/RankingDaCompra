@@ -15,7 +15,7 @@ for(const id of manifest.preserveExceptTitleIds||[])assert.deepEqual(stripTitle(
 for(const id of manifest.preserveExceptTitleAndNeutralFamilyIds||[])assertTitleAndNeutralFamilyChange(before.products.find(p=>p.id===id),current.get(id));
 const get=async url=>{const r=await fetch(url+'?triage'+batch+'='+Date.now());assert.equal(r.status,200,url);return r.text();};
 const live=JSON.parse(await get('https://rankingdacompra.com.br/informational-catalogue.json')),byId=new Map(live.products.map(p=>[p.id,p]));
-const baseline=await json(out+'invariantes-triagem'+batch+'.json'),search=JSON.parse(await get('https://rankingdacompra.com.br/search-index.json'));
+const baseline=await json(out+'invariantes-triagem'+batches[0]+'.json'),search=JSON.parse(await get('https://rankingdacompra.com.br/search-index.json'));
 const pages=[];
 for(const id of ids){
  const p=current.get(id);assert.deepEqual(byId.get(id),p,'live mismatch '+id);
@@ -33,10 +33,10 @@ const xml=await get('https://rankingdacompra.com.br/sitemap.xml'),urls=[...xml.m
 const proof={at:new Date().toISOString(),products:live.products.length,sitemapUrls:urls.length,protectedRecords:protectedData.length,changedIds:ids,unchangedProducts:before.products.length-ids.length,deepReviews:live.products.filter(p=>p.decisionBrief?.reviewed).length,pages,noFirestoreEditorial:true};assert.equal(proof.deepReviews,98);
 await writeFile(out+'verificacao-publicada-triagem'+batch+'.json',JSON.stringify(proof,null,2)+'\n');
 const progress=refreshLedger(local,await json('docs/site-improvement-progress.json'));
-for(const d of manifest.items){const i=progress.items.find(x=>x.id===d.id);i.status=d.decision;i.lastCompletedAt=proof.at;i.workNotes=[d.reason,d.sourceLimit,'Targeted necessary correction only, not a new deep review.'];i.sourceLinks=d.sourceLinks;}
+for(const d of manifest.items){const i=progress.items.find(x=>x.id===d.id);if(i.status===d.decision)continue;assert.equal(i.status,'prepared_awaiting_publication','Do not overwrite another review state '+d.id);i.status=d.decision;i.lastCompletedAt=proof.at;i.workNotes=[d.reason,d.sourceLimit,'Targeted necessary correction only, not a new deep review.'];i.sourceLinks=d.sourceLinks;}
 progress.counts=progress.items.reduce((a,p)=>{a[p.status]=(a[p.status]||0)+1;return a},{total:progress.items.length});
 for(const [index,n] of batches.entries())progress['triage'+n]={...progress['triage'+n],status:'published_verified',verifiedAt:proof.at,changedIds:manifests[index].items.filter(p=>p.decision==='targeted_correction_complete').map(p=>p.id),jointReleaseBatches:batches,newDeepReviews:0,proof:'outputs/melhorias-integrais-20261030/verificacao-publicada-triagem'+batch+'.json',remainingDependencies:manifests[index].items.map(p=>({id:p.id,note:p.sourceLimit}))};
-if(progress.preparedRelease?.ids?.every(id=>ids.includes(id)))progress.preparedRelease={...progress.preparedRelease,status:'published_verified',verifiedAt:proof.at,proof:'outputs/melhorias-integrais-20261030/verificacao-publicada-triagem'+batch+'.json'};
+if(progress.preparedRelease?.ids?.every(id=>ids.includes(id)))progress.preparedRelease={...progress.preparedRelease,status:'published_verified',verifiedAt:proof.at,confirmedPublishedIds:ids,pendingPublicationIds:[],proof:'outputs/melhorias-integrais-20261030/verificacao-publicada-triagem'+batch+'.json'};
 const traffic=await json(out+'ga4-prioridade-visualizacoes-20261031.json'),views=new Map();for(const row of traffic.response.data){const id=row.page_path.match(/^\/produto\/([^/]+)-20260810-1\.html$/)?.[1];if(id)views.set(id,(views.get(id)||0)+Number(row.screen_page_views));}
 progress.editorialPriority.nextPendingIds=progress.items.filter(p=>p.status==='pending').sort((a,b)=>(views.get(b.id)||0)-(views.get(a.id)||0)||a.id.localeCompare(b.id)).slice(0,8).map(p=>p.id);
 await writeFile('docs/site-improvement-progress.json',JSON.stringify(progress,null,2)+'\n');
