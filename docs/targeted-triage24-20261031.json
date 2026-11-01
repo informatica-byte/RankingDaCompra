@@ -1,0 +1,12 @@
+{
+  "date":"2026-10-31",
+  "policy":"Next three pending IDs in saved GA4 view order. Only targeted necessary claim/title corrections; no fresh availability check, inferred specifications or deep reviews.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"7QHXFlimzdpfKr7yfo0T","decision":"targeted_correction_complete","reason":"Remove Promoção do título informativo e esclarece que Olimp no título e Vili no campo de marca não comprovam outra marca. Nenhuma inferência para Olympikus, amortecimento ou aptidão esportiva.","sourceLinks":[],"sourceLimit":"Etiqueta, marca exata, materiais, tabela de medidas e desempenho continuam sem confirmação independente."},
+    {"id":"8a8Iat0nPiQxNPVcJqTU","decision":"targeted_correction_complete","reason":"Retira antiderrapante como propriedade comprovada do título. Marca Reserva e formato casual/cano baixo atribuídos ao anúncio, sem autenticar a unidade ou prometer conforto/proteção.","sourceLinks":[],"sourceLimit":"Sem código específico, fonte de aderência, tabela de medidas ou comprovação de materiais/procedência."},
+    {"id":"iw5yKjD39u1kQ8Vm8ybv","decision":"targeted_correction_complete","reason":"200 W vira potência anunciada a confirmar; saída cadastrada de 5 V não usada para calcular potência ou prometer compatibilidade. Removida lista genérica de celulares como verificação e sinalizada ausência de documentação elétrica.","sourceLinks":[],"sourceLimit":"Modelo, perfis de saída, cabo, potência, compatibilidade e documentação da unidade não comprovados. Não declarar que o produto é necessariamente falso ou inseguro sem evidência."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":3,"newDeepReviews":0},
+  "resume":"Next saved GA4 pending: M0Zj2K84Q8PX0YTQMIHz (smartwatch), then Q89e0KvH53UoCpELiwiW (Asics). Do not repeat completed entries without material change."
+}

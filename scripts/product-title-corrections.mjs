@@ -8,6 +8,33 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['7QHXFlimzdpfKr7yfo0T', {
+    syncInformationalSchema:true,
+    model:/^t[eê]nis.*(?:feminino.*olimp|olimp.*feminino)/i,
+    correct:'Tênis feminino anunciado como Olimp — caminhada e academia',
+    summary:'O anúncio cadastrado apresenta um tênis feminino como Olimp para caminhada e academia, enquanto o campo de marca informa Vili. Essa identificação precisa ser conferida na etiqueta e no anúncio: não tratamos Olimp como Olympikus nem confirmamos a marca da unidade. Retiramos a palavra Promoção do título porque esta é uma ficha informativa sem acompanhamento de preços. Antes de escolher, confira a tabela de medidas do vendedor, os materiais, o tipo de solado e as condições de troca. Não testamos ajuste, amortecimento, aderência ou durabilidade e não indicamos este modelo para uma atividade específica apenas pelo nome comercial.',
+    positiveNotes:['Tênis feminino anunciado para caminhada e academia; identificação comercial preservada como declaração do anúncio.'],
+    negativeNotes:['Título e campo de marca usam identificações diferentes; confira a etiqueta antes de decidir.', 'Ajuste, amortecimento, aderência e durabilidade não foram testados; medidas e materiais precisam de confirmação.'],
+    suppressRating:true,
+  }],
+  ['8a8Iat0nPiQxNPVcJqTU', {
+    syncInformationalSchema:true,
+    model:/^t[eê]nis.*reserva.*masculino.*casual/i,
+    correct:'Tênis Reserva masculino casual de cano baixo — características a conferir',
+    summary:'O cadastro anuncia um tênis masculino casual de cano baixo como Reserva. A marca é informação do anúncio; não autenticamos a unidade. Retiramos Antiderrapante do título público como característica comprovada, pois esta revisão não dispõe de teste ou documentação específica de aderência do modelo. Para decidir, confira o código do produto, a tabela de medidas, os materiais e as condições de troca com o vendedor. Não deduzimos conforto, durabilidade, uso esportivo ou proteção contra escorregões a partir da foto ou do nome comercial, e não testamos este calçado.',
+    positiveNotes:['Modelo masculino casual de cano baixo identificado no cadastro como Reserva.'],
+    negativeNotes:['Aderência e propriedade antiderrapante não comprovadas nesta revisão.', 'Código, materiais, medidas e procedência precisam ser conferidos na unidade anunciada.'],
+    suppressRating:true,
+  }],
+  ['iw5yKjD39u1kQ8Vm8ybv', {
+    syncInformationalSchema:true,
+    model:/^carregador.*200\s*w/i,
+    correct:'Carregador USB-C anunciado como 200 W — potência a confirmar',
+    summary:'O cadastro anuncia um carregador USB-C como 200 W e bivolt, com cabo incluído, e informa saída de 5 V. Esses dados, sozinhos, não comprovam a potência anunciada nem a compatibilidade de carregamento rápido com cada aparelho listado anteriormente. Não confirmamos nesta revisão o modelo, os perfis de saída, o cabo ou a documentação elétrica da unidade. Antes de comprar, confira a etiqueta, as saídas e conexões especificadas, o conteúdo da embalagem e as exigências do fabricante do seu aparelho. Não apresentamos a lista genérica de celulares como compatibilidade verificada, não garantimos 200 W e não testamos velocidade de carga ou segurança elétrica.',
+    positiveNotes:['Conexão USB-C, alimentação bivolt e cabo incluído anunciados no cadastro; confira a unidade e o conteúdo da caixa.'],
+    negativeNotes:['Potência de 200 W e compatibilidade de carga rápida não confirmadas por documentação específica.', 'Modelo, perfis de saída, cabo e documentação elétrica devem ser conferidos antes do uso; não houve teste de segurança ou desempenho.'],
+    suppressRating:true,
+  }],
   ['mlMLB4222763449', {
     syncInformationalSchema:true,
     model:/sanduicheira.*inox.*multiuso.*oster/i,
