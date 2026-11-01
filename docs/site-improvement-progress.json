@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "3yIHMxCIF9QgqjNOrSXC",
-      "41xTWhFAFp82XNFL5V87",
-      "4DLJoHbBXNFffpz3DNcv",
       "4eal5Q0HLTcrspjkUwee",
       "51ek2WOgqwYGnIqBAEPP",
       "5628K1uP7AHSdoBGcgZ1",
       "5eAXaJha93EuQsvd2SJn",
-      "5FMVdsnRQIuJYsUfNJU9"
+      "5FMVdsnRQIuJYsUfNJU9",
+      "5G8Rs89UnBehBYVatnan",
+      "5LA4CuIHLWigh48x3qaW",
+      "5Nr0nOkBvYhG9KXxeyZL"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T21:56:12.904Z",
-  "catalogueGeneratedAt": "2026-11-01T21:56:04.288Z",
+  "updatedAt": "2026-11-01T21:58:51.616Z",
+  "catalogueGeneratedAt": "2026-11-01T21:57:08.296Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,10 +639,9 @@
     "total": 560,
     "screened_no_change": 45,
     "needs_source": 8,
-    "targeted_correction_complete": 99,
+    "targeted_correction_complete": 102,
     "preserve_prior_review": 98,
-    "pending": 307,
-    "prepared_awaiting_publication": 3
+    "pending": 307
   },
   "items": [
     {
@@ -2356,12 +2355,13 @@
       "url": "https://rankingdacompra.com.br/produto/3yIHMxCIF9QgqjNOrSXC-20260810-1.html",
       "title": "Colchão Emma Original casal 138 × 188 cm, três camadas de espuma",
       "fingerprint": "c33482f7b6f8df3f5bbf281d4f4a0b5dc23231b3ab1e96679bf2c58bcb536876",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T21:58:51.586Z",
       "workNotes": [
         "Emma Original: título encurtado sem promessa para coluna; altura, espumas, capa e limite por lado atribuídos ao anúncio, sem garantia clínica ou de conforto universal. Mantida medida casal.",
-        "Snapshot local da oferta. Busca não forneceu fonte primária específica suficiente para validar a variante; não usadas fichas de outros varejistas ou manuais de Emma One/Original Light. Sem teste físico ou transferência de garantia de outro canal."
+        "Snapshot local da oferta. Busca não forneceu fonte primária específica suficiente para validar a variante; não usadas fichas de outros varejistas ou manuais de Emma One/Original Light. Sem teste físico ou transferência de garantia de outro canal.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB18724648?pdp_filters=item_id%3AMLB2171368181"
@@ -3787,12 +3787,13 @@
       "url": "https://rankingdacompra.com.br/produto/4DLJoHbBXNFffpz3DNcv-20260810-1.html",
       "title": "Kit 10 Pote De Vidro Marmita Hermético 640ml Freezer Fitness Rishon",
       "fingerprint": "b706a97c7123fc4b1d5c9076d74d4a61e16a62f2ea434c97e5be23a207bd45fd",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T21:58:51.586Z",
       "workNotes": [
         "Rishon: substitui eficiência e resistência garantidas por atribuição ao anúncio, repara frase incompleta sobre travas e separa uso anunciado no freezer de compatibilidade não confirmada com forno/tampas/micro-ondas.",
-        "Fonte local só identifica catálogo, não anúncio individual. Nenhuma tentativa de resolver ou alterar link. Não importados vidro borossilicato, limites de temperatura ou instruções de outros kits de 370/640 ml; sem testes de vedação ou choque térmico."
+        "Fonte local só identifica catálogo, não anúncio individual. Nenhuma tentativa de resolver ou alterar link. Não importados vidro borossilicato, limites de temperatura ou instruções de outros kits de 370/640 ml; sem testes de vedação ou choque térmico.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB63904966"
@@ -5999,12 +6000,13 @@
       "url": "https://rankingdacompra.com.br/produto/41xTWhFAFp82XNFL5V87-20260810-1.html",
       "title": "Rastreador GPS veicular 4G com app — compatibilidade e serviço a conferir",
       "fingerprint": "8109448c550c2c409b3f17314c58b6364a12401e99ec4deb0cb744e7e5a1d1d6",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T21:58:51.586Z",
       "workNotes": [
         "Rastreador 4G: retira ideal para todos os veículos e deixa identificação, instalação, cobertura e condições do chip/plataforma pendentes. Não presume que chip incluso significa serviço gratuito nem confirma rastreamento ininterrupto.",
-        "Só snapshot local; código exato, manual e contrato do serviço não disponíveis. Não confirma homologação, bands, precisão, aplicativo ou voltagem na unidade; dados citados são do vendedor. Sem consultas à plataforma ou rastreamento de pessoas."
+        "Só snapshot local; código exato, manual e contrato do serviço não disponíveis. Não confirma homologação, bands, precisão, aplicativo ou voltagem na unidade; dados citados são do vendedor. Sem consultas à plataforma ou rastreamento de pessoas.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB63990262?pdp_filters=item_id%3AMLB4742623935"
@@ -9334,12 +9336,44 @@
     "backendWrites": 0
   },
   "triage51": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "3yIHMxCIF9QgqjNOrSXC",
       "41xTWhFAFp82XNFL5V87",
       "4DLJoHbBXNFffpz3DNcv"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-01T21:58:51.586Z",
+    "changedIds": [
+      "3yIHMxCIF9QgqjNOrSXC",
+      "41xTWhFAFp82XNFL5V87",
+      "4DLJoHbBXNFffpz3DNcv"
+    ],
+    "jointReleaseBatches": [
+      51
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem51.json",
+    "remainingDependencies": [
+      {
+        "id": "3yIHMxCIF9QgqjNOrSXC",
+        "note": "Snapshot local da oferta. Busca não forneceu fonte primária específica suficiente para validar a variante; não usadas fichas de outros varejistas ou manuais de Emma One/Original Light. Sem teste físico ou transferência de garantia de outro canal."
+      },
+      {
+        "id": "41xTWhFAFp82XNFL5V87",
+        "note": "Só snapshot local; código exato, manual e contrato do serviço não disponíveis. Não confirma homologação, bands, precisão, aplicativo ou voltagem na unidade; dados citados são do vendedor. Sem consultas à plataforma ou rastreamento de pessoas."
+      },
+      {
+        "id": "4DLJoHbBXNFffpz3DNcv",
+        "note": "Fonte local só identifica catálogo, não anúncio individual. Nenhuma tentativa de resolver ou alterar link. Não importados vidro borossilicato, limites de temperatura ou instruções de outros kits de 370/640 ml; sem testes de vedação ou choque térmico."
+      }
+    ],
+    "sourceCommit": "7407a0f038605cbd74561406a07679f6232aad6d",
+    "generatedCommit": "b03cf3636c82c7059c5f72261d4bcd18313f5eea",
+    "sitemapRun": 41354578692,
+    "integrityRun": 41354578616,
+    "pagesRun": 41354620288,
+    "testsPassed": 1416,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
