@@ -8,6 +8,36 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['3AiculsXxRCfEkCx7Qin', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB5084785712',
+    model:/^(?:furadeira\s*de\s*impacto\s*13mm\s*750w\s*profissional|furadeira\s*the\s*black\s*tools\s*tbf750)/i,
+    correct:'Furadeira The Black Tools TBF750 750 W, 13 mm — kit de 300 peças anunciado',
+  }],
+  ['2vFXQV4acjGHUTy8Lsk1', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5460277774',
+    model:/^câmera\s*veicular\s*ddpai\s*n1\s*dual/i,
+    summary:'A DDPAI N1 Dual pode interessar a quem procura registrar a frente e a traseira do veículo. A referência oficial informa 1296P na câmera frontal, 1080P na traseira e ângulos de 135° e 125°, respectivamente. A marca também descreve supercapacitor e conexão ao aplicativo. O cartão de 128 GB citado na oferta depende do kit do vendedor: não o tratamos como acessório incluído em toda N1 Dual. A afirmação anterior de gravação de áudio nas duas câmeras após atualização não foi confirmada nesta revisão; confira firmware e funções da unidade. O fabricante informa que o monitoramento de estacionamento requer kit de alimentação específico adquirido separadamente; confirme sua presença na oferta e os requisitos de instalação. Não testamos imagem noturna, leitura de placas, áudio ou instalação e não prometemos eliminar pontos cegos ou impedir incidentes.',
+    positiveNotes:['Referência da DDPAI documenta gravação frontal 1296P e traseira 1080P, com ângulos de 135° e 125°.', 'Supercapacitor e conexão ao aplicativo descritos pelo fabricante; confirme a unidade ofertada.'],
+    negativeNotes:['Cartão de 128 GB depende do kit; áudio nas duas câmeras após atualização não confirmado nesta revisão.', 'Monitoramento de estacionamento exige kit específico segundo a marca; imagem noturna e instalação não testadas pela equipe.'],
+    contextSourceUrl:'https://www.ddpai.com/pages/n1-dual-dash-cam',
+    contextSourceLabel:'DDPAI N1 Dual: referência oficial, sem autenticar unidade ou kit do vendedor',
+    suppressRating:true,
+  }],
+  ['347WUiAlueVscYKR7Emm', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB6968682598',
+    model:/^robô\s*aspirador\s*de\s*piscina\s*(?:automático\s*)?redroad\s*s1/i,
+    correct:'Robô aspirador de piscina Redroad S1 — área e recarga a conferir',
+    summary:'O Redroad S1 é apresentado como robô de piscina sem fio, alimentado por bateria. Há divergências a esclarecer: a oferta menciona 102 m² e recarga de 3 a 4 horas, enquanto a página oficial consultada informa cobertura de 100 m² e recarga de 4 a 5 horas. Não escolhemos um desses números como garantia da unidade do vendedor. A referência oficial anuncia autonomia máxima de 130 minutos, bateria de 5200 mAh e inclinação máxima de 18°; são limites declarados, não resultados medidos pela equipe. Antes de escolher, confirme versão, manual e compatibilidade com formato, revestimento, inclinação e dimensões da sua piscina. Não inferimos limpeza de paredes ou escadas. A descrição sem fio não dispensa conferir as instruções específicas de carga, operação e retirada do aparelho. Não testamos cobertura, autonomia, filtragem ou qualidade da limpeza.',
+    positiveNotes:['Formato de robô de piscina sem fio e bateria identificados no cadastro e na referência oficial.', 'Autonomia máxima de 130 minutos anunciada pela marca, não aferida pela equipe.'],
+    negativeNotes:['Área e tempo de recarga divergem entre oferta e referência oficial; confirmar versão e manual antes de escolher.', 'Compatibilidade com a piscina e limpeza de paredes ou escadas não confirmadas; sem teste de cobertura ou limpeza.'],
+    contextSourceUrl:'https://redroadofficial.com/products/redroad-s1-cordless-self-cleaning-robotic-pool-cleaner',
+    contextSourceLabel:'Redroad S1: referência oficial com dados divergentes da oferta, não garantia da unidade',
+    suppressRating:true,
+  }],
   ['1WM5CLqoLFN2yEUguuVY', {
     syncInformationalSchema:true,
     allowTruncatedHeading:true,

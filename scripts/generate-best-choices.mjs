@@ -1,4 +1,5 @@
-import {readFile,writeFile,readdir} from 'node:fs/promises';
+import {readFile,readdir} from 'node:fs/promises';
+import {writeGeneratedFile as writeFile} from './generated-file-write.mjs';
 import {resolve} from 'node:path';
 import choices from '../best-choices.js';
 import titles from '../promotion-title.js';

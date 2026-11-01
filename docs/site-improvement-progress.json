@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T21:21:51.791Z",
-  "catalogueGeneratedAt": "2026-11-01T21:20:05.972Z",
+  "updatedAt": "2026-11-01T21:26:45.742Z",
+  "catalogueGeneratedAt": "2026-11-01T21:26:37.129Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -641,7 +641,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 96,
     "preserve_prior_review": 98,
-    "pending": 313
+    "pending": 310,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -1860,12 +1861,20 @@
       "id": "2vFXQV4acjGHUTy8Lsk1",
       "url": "https://rankingdacompra.com.br/produto/2vFXQV4acjGHUTy8Lsk1-20260810-1.html",
       "title": "Câmera Veicular Ddpai N1 Dual 1296p+1080p 135° Nightvis App",
-      "fingerprint": "f1f63d207a47eeb4def4edb03fea2bcb6584564d293c5b59164db87fcd768906",
-      "status": "pending",
+      "fingerprint": "91834fef38e5e510b968b5d7e899eba2476e7b733da7e6e26e9e2c3278f9cb4d",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "DDPAI N1 Dual: distingue recursos documentados do kit do vendedor, condiciona cartão de 128 GB e retira confirmação de áudio nas duas câmeras após atualização sem prova. Explicita kit exigido para estacionamento, sem garantia de imagem/segurança.",
+        "Referência oficial consultada em 01/11/2026; não autentica unidade, firmware, áudio duplo, cartão incluído ou instalação. Não importa percentuais de compressão, horas de gravação ou desempenho noturno de laboratório."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3263626856?pdp_filters=item_id%3AMLB5460277774",
+        "https://www.ddpai.com/pages/n1-dual-dash-cam"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "qN6qOlF1Re6ltU5WRdaE",
@@ -3280,17 +3289,6 @@
       "sourceLinks": []
     },
     {
-      "id": "3AiculsXxRCfEkCx7Qin",
-      "url": "https://rankingdacompra.com.br/produto/3AiculsXxRCfEkCx7Qin-20260810-1.html",
-      "title": "Furadeira De Impacto 13mm 750w Profissional Com Kit Brocas Buchas E Bits 300 Peças The Black Tools",
-      "fingerprint": "e284b6ee23bc09f3b60820bcfd252ceea123bffbaa6b9f28d4e3bc2a79f09562",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "YZvcITogQcf1bnnARlRx",
       "url": "https://rankingdacompra.com.br/produto/YZvcITogQcf1bnnARlRx-20260810-1.html",
       "title": "Furadeira Parafusadeira De Impacto 2 Baterias 21v + 46 Peças",
@@ -3300,6 +3298,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "3AiculsXxRCfEkCx7Qin",
+      "url": "https://rankingdacompra.com.br/produto/3AiculsXxRCfEkCx7Qin-20260810-1.html",
+      "title": "Furadeira The Black Tools TBF750 750 W, 13 mm — kit de 300 peças anunciado",
+      "fingerprint": "2b07984b91debcd31ab4b1cc3ad1794142e80b048cd1ed2fabc06037f440453a",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Furadeira The Black Tools TBF750: teste móvel revelou H1 truncado antes de Tools. Apenas título encurtado para mostrar marca/modelo e kit anunciado por inteiro; corpo, ficha e resumo preservados. Retira profissional como qualificação implícita do título sem inferir regime de uso.",
+        "Triagem local, não nova análise profunda nem confirmação física de 300 peças, impacto ou potência. Não inferidos voltagem, materiais perfuráveis, capacidade por material, desempenho ou regime profissional contínuo."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB41168545?pdp_filters=item_id%3AMLB5084785712"
+      ],
+      "previousState": "prepared_awaiting_publication",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "FlqPY3yHJ2xPoNgnhSTE",
@@ -6050,13 +6066,21 @@
     {
       "id": "347WUiAlueVscYKR7Emm",
       "url": "https://rankingdacompra.com.br/produto/347WUiAlueVscYKR7Emm-20260810-1.html",
-      "title": "Robô Aspirador De Piscina Automático Redroad S1 Área 102 M2",
-      "fingerprint": "3790eb83ae87c62e21b1e6b1c63917225b74c38206f9498d1193b903af299211",
-      "status": "pending",
+      "title": "Robô aspirador de piscina Redroad S1 — área e recarga a conferir",
+      "fingerprint": "d3ae6b9dfbb17890353b18f75aebbda4ac4a96df142dade91e61904a91db50fc",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Redroad S1: sinaliza 102 m²/3–4 h da oferta versus 100 m²/4–5 h oficiais sem escolher número como garantia. Retira ideal universal e trata autonomia como máxima declarada, sem prometer limpar paredes.",
+        "Fonte oficial e snapshot da oferta consultados em 01/11/2026. Divergência não resolve a variante entregue; exige manual. Sem teste físico, cobertura/limpeza ou transferência de garantia internacional."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4109228610?pdp_filters=item_id%3AMLB6968682598",
+        "https://redroadofficial.com/products/redroad-s1-cordless-self-cleaning-robotic-pool-cleaner"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "2V7q6nC2mg54DN9anaYi",
@@ -9243,5 +9267,14 @@
     "testsPassed": 1408,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage50": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "2vFXQV4acjGHUTy8Lsk1",
+      "347WUiAlueVscYKR7Emm",
+      "3AiculsXxRCfEkCx7Qin"
+    ],
+    "newDeepReviews": 0
   }
 }
