@@ -8,6 +8,20 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['M0Zj2K84Q8PX0YTQMIHz', {
+    syncInformationalSchema:true,
+    model:/^smartwatch.*novante/i,
+    correct:'Smartwatch Novante — recursos conforme o anúncio',
+  }],
+  ['Q89e0KvH53UoCpELiwiW', {
+    syncInformationalSchema:true,
+    model:/^t[eê]nis.*asics.*trabuco.*terra\s*3/i,
+    correct:'Tênis ASICS Trabuco Terra 3 feminino — trilha',
+    summary:'O cadastro anuncia um tênis ASICS Trabuco Terra 3 feminino para trilha. A palavra Escalada do título anterior não é usada como indicação técnica comprovada: a referência oficial da ASICS consultada apresenta a linha na categoria de corrida em trilha, não demonstra adequação da unidade a escalada. Essa referência de contexto não autentica o calçado anunciado nem confirma cor, código, numeração ou materiais da variante. Antes de escolher, confira a etiqueta, a tabela de medidas, o solado, a finalidade de uso e as condições de troca com o vendedor. Não testamos ajuste, aderência, amortecimento ou durabilidade e não prometemos desempenho ou proteção contra quedas.',
+    positiveNotes:['Modelo Trabuco Terra 3 feminino e uso em trilha identificados no anúncio; confirme a variante oferecida.'],
+    negativeNotes:['Aptidão para escalada não comprovada nesta revisão.', 'Variante, medidas, materiais e procedência precisam de confirmação; desempenho e conforto não foram testados.'],
+    suppressRating:true,
+  }],
   ['7QHXFlimzdpfKr7yfo0T', {
     syncInformationalSchema:true,
     model:/^t[eê]nis.*(?:feminino.*olimp|olimp.*feminino)/i,

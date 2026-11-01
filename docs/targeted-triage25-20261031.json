@@ -1,0 +1,11 @@
+{
+  "date":"2026-10-31",
+  "policy":"Two next pending products from saved GA4 view priority. No repeated listing verification or new deep reviews; only concrete title/claim corrections.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"M0Zj2K84Q8PX0YTQMIHz","decision":"targeted_correction_complete","reason":"Encurta título excessivo sem repetir alegações de proteção/autonomia como garantias. Conserva integralmente a análise declaratória da oferta lida em 22/10, tabela, fontes e ressalvas já existentes; não há nova confirmação de recursos.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB65117366?pdp_filters=item_id%3AMLB6208101802"],"sourceLimit":"Fonte preservada do trabalho anterior de 22/10; não relida nesta passagem. Peso, autonomia, sensores e condições de proteção continuam não validados."},
+    {"id":"Q89e0KvH53UoCpELiwiW","decision":"targeted_correction_complete","reason":"Remove Escalada como indicação comprovada do título e descrição; mantém identidade comercial e trilha. Página oficial ASICS identifica a linha como Trail Running, sem comprovar variante/autenticidade da unidade do anúncio. Nenhuma especificação foi importada de outra cor ou mercado.","sourceLinks":["https://www.asics.com/gb/en-gb/gel-trabuco-terra-3/p/1012B925-400.html"],"sourceLimit":"Consultado somente contexto oficial de linha/categoria; sem manual específico ou confirmação de código/numeração da oferta. Página brasileira retornou conteúdo inicialmente, mas releitura falhou; não usada para acrescentar recursos."}
+  ],
+  "counts":{"screened":2,"targetedCorrections":2,"newDeepReviews":0},
+  "resume":"Rebuild pending order from the saved private GA4 snapshot, descending measured views, preserving completed states and stable ID tie-break. Do not return to registration order."
+}
