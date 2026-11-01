@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T21:06:42.141Z",
-  "catalogueGeneratedAt": "2026-11-01T21:05:13.098Z",
+  "updatedAt": "2026-11-01T21:19:05.491Z",
+  "catalogueGeneratedAt": "2026-11-01T21:19:02.561Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -636,12 +636,13 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 559,
-    "screened_no_change": 44,
+    "total": 560,
+    "screened_no_change": 45,
     "needs_source": 8,
     "targeted_correction_complete": 94,
     "preserve_prior_review": 98,
-    "pending": 315
+    "pending": 313,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -2618,12 +2619,20 @@
       "id": "2bvf1eThLNTx4TSWmm6j",
       "url": "https://rankingdacompra.com.br/produto/2bvf1eThLNTx4TSWmm6j-20260810-1.html",
       "title": "Cpu Monitor Dell Optiplex Core I5 4570 8gb 240gb Ssd Win 11",
-      "fingerprint": "9e91e1a534f012cba33ee92d58aa93681877d51369c6ac6ab066d82e3243150d",
-      "status": "pending",
+      "fingerprint": "211e55518395f66f902a88aaede1f2e82675b176545ebb72e86a682fdb1e7885",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Dell: separa Windows 11 anunciado de compatibilidade e suporte oficiais, sem inferir série do OptiPlex, TPM, licença ou desempenho. Configuração atribuída ao vendedor.",
+        "Microsoft consultada em 01/11/2026: lista para novos dispositivos, não prova de elegibilidade desta unidade. Não conclui licença irregular ou impossibilidade de rodar o sistema; sem teste de hardware."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3139026181?pdp_filters=item_id%3AMLB5363320228",
+        "https://learn.microsoft.com/en-us/windows-hardware/design/minimum/supported/windows-11-supported-intel-processors"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "qeH6DeH4aWWppBpaRPYc",
@@ -7266,6 +7275,17 @@
       "sourceLinks": []
     },
     {
+      "id": "mlMLB4151024813",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4151024813-20260810-1.html",
+      "title": "Tênis Mizuno Nirvana 9 Leve Caminhada Academia Treino",
+      "fingerprint": "7f7ad2380ef1c447240e2cf8207104692e86fe4a09955aa93d4add52f53a68e8",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
       "id": "NQyo56LcUgwwA2tz8YCF",
       "url": "https://rankingdacompra.com.br/produto/NQyo56LcUgwwA2tz8YCF-20260810-1.html",
       "title": "Tênis Mizuno Wave Dynasty 5 Masculino Treino Original",
@@ -7325,11 +7345,16 @@
       "url": "https://rankingdacompra.com.br/produto/2CwDkIClWXzNIUFxZVVo-20260810-1.html",
       "title": "Tênis Nike Flex Experience Run 12 Masculino",
       "fingerprint": "9b51e007101d08bd081eb47e76f75a26b6ea1f75b62f56fbff4786f114e384d4",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T21:19:05.494Z",
+      "workNotes": [
+        "Nike Flex Experience Run 12: identificação e descrição curta já atribuídas ao anúncio; nenhuma contradição específica demonstrada que justifique mudar o conteúdo. Preservado integralmente.",
+        "Triagem do snapshot local, não análise aprofundada. Sem autenticação, teste de conforto, ajuste, materiais ou desempenho esportivo; não acrescenta especificações."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3971542488?wid=MLB6768230622"
+      ]
     },
     {
       "id": "mlMLB4763500131",
@@ -7476,13 +7501,21 @@
     {
       "id": "1WM5CLqoLFN2yEUguuVY",
       "url": "https://rankingdacompra.com.br/produto/1WM5CLqoLFN2yEUguuVY-20260810-1.html",
-      "title": "TESTO ESSENCIAL - Fórmula Exclusiva com Feno Grego + Boro + Arginina + ZMA + Vitamina B6 - Precursor da Testosterona - 60 cápsulas",
-      "fingerprint": "6e1012b9082df879029ad1c2c05b09d77a7f43f4dc6414962d6415c070521ae7",
-      "status": "pending",
+      "title": "TESTO ESSENCIAL 60 cápsulas — alegação sobre testosterona não verificada",
+      "fingerprint": "f508c1f270048f0bed13d0579860a1d59c568493c8b14084f2f7981c48f5ee93",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "TESTO ESSENCIAL: retira promessa hormonal não comprovada do título público, atribui composição à oferta e deixa dose/glúten sem confirmação. Não declara produto irregular nem prescreve consumo.",
+        "Snapshot local da oferta; Anvisa consultada em 01/11/2026 como orientação geral, sem aprovação deste produto. Rótulo, regularização, autenticidade e efeitos não verificados."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB58582424?pdp_filters=item_id%3AMLB5761677016",
+        "https://www.gov.br/anvisa/pt-br/assuntos/alimentos/suplementos-alimentares/perguntas-frequentes"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "c1R3iVzduEndTWAhxXvO",
@@ -9170,5 +9203,13 @@
     "backendWrites": 0,
     "historyPreserved": true,
     "existingAffiliatesPreserved": 558
+  },
+  "triage49": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "1WM5CLqoLFN2yEUguuVY",
+      "2bvf1eThLNTx4TSWmm6j"
+    ],
+    "newDeepReviews": 0
   }
 }

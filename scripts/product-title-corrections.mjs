@@ -8,6 +8,30 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['1WM5CLqoLFN2yEUguuVY', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB5761677016',
+    model:/^testo\s*essencial(?:\s*-|\s*60\s*cápsulas)/i,
+    correct:'TESTO ESSENCIAL 60 cápsulas — alegação sobre testosterona não verificada',
+    summary:'O anúncio apresenta TESTO ESSENCIAL em embalagem de 60 cápsulas e cita feno-grego, boro, arginina, ZMA e vitamina B6. A composição, as quantidades e as advertências precisam ser conferidas no rótulo da unidade. A expressão precursor da testosterona do título comercial não foi comprovada nesta revisão e não é apresentada como benefício garantido. Não prometemos aumento hormonal, libido, ganho muscular ou tratamento. A orientação geral da Anvisa sobre suplementos não é aprovação deste produto. Não verificamos sua regularização, autenticidade ou eficácia e não concluímos que seja irregular. Ausência de glúten e consumo de duas cápsulas por dia, mencionados antes, não são confirmados nem prescritos por esta ficha. Confira ingredientes, alergênicos, restrições, origem e validade e procure orientação profissional para decidir sobre uso; não testamos o produto.',
+    positiveNotes:['Embalagem de 60 cápsulas e ingredientes citados na oferta; composição e quantidades dependem de confirmação no rótulo.'],
+    negativeNotes:['Alegação sobre testosterona sem comprovação nesta revisão; sem promessa de efeito hormonal ou terapêutico.', 'Rótulo, regularização, autenticidade, eficácia e adequação individual não verificados; a ficha não prescreve consumo.'],
+    contextSourceUrl:'https://www.gov.br/anvisa/pt-br/assuntos/alimentos/suplementos-alimentares/perguntas-frequentes',
+    contextSourceLabel:'Anvisa: orientação geral sobre suplementos, não aprovação do TESTO ESSENCIAL',
+    suppressRating:true,
+  }],
+  ['2bvf1eThLNTx4TSWmm6j', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5363320228',
+    model:/^cpu\s*monitor\s*dell\s*optiplex\s*core\s*i5\s*4570/i,
+    summary:'A oferta identifica um conjunto Dell OptiPlex com Core i5-4570, 8 GB de RAM e SSD de 240 GB. A descrição anuncia monitor Dell de 19 polegadas, Windows 11 e portas USB, VGA e DisplayPort; confirme o conteúdo e o gabinete exatos com o vendedor. Windows 11 anunciado ou instalado não comprova, por si só, compatibilidade e suporte oficiais. A referência da Microsoft lista processadores para novos dispositivos Windows 11 e orienta consultar o fornecedor sobre suporte específico; ela não certifica este computador. Não verificamos TPM, firmware, licença, compatibilidade integral ou condições de atualização desta unidade. Também não inferimos a série exata do OptiPlex ou o modelo do monitor pelo processador. Confirme estado de conservação, especificações e condições de suporte antes de escolher. Não testamos desempenho, jogos, ruído, consumo ou durabilidade.',
+    positiveNotes:['Conjunto com Core i5-4570, 8 GB de RAM e SSD de 240 GB identificado na oferta.', 'Monitor Dell de 19 polegadas anunciado; confirme modelo, estado e itens incluídos.'],
+    negativeNotes:['Windows 11 anunciado não é comprovação de compatibilidade, licença ou suporte; unidade não verificada pela equipe.', 'Série do gabinete, monitor, conexões e estado precisam de confirmação; sem teste de desempenho.'],
+    contextSourceUrl:'https://learn.microsoft.com/en-us/windows-hardware/design/minimum/supported/windows-11-supported-intel-processors',
+    contextSourceLabel:'Microsoft: requisitos de processadores Windows 11, sem certificar a unidade da oferta',
+    suppressRating:true,
+  }],
   ['1c9dmLesD1G0pPTCYrjt', {
     syncInformationalSchema:true,
     allowTruncatedHeading:true,
