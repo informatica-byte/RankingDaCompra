@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "r2AJAqnKZR0UvB1V4MRz",
-      "UxB7AJhrBhm36FCTachh",
-      "wDxxKZn5CFPm3f34ziP2",
       "1RCE8RtBHkc6aVkKZ6xB",
       "BhacwzAPIbDglRkNCoyz",
       "zpNUAIiuFr5Eo0TbkaKm",
       "28xGyV66fEYlx6CnRxIq",
-      "7W5TZBLUNQOGfenrgEtg"
+      "7W5TZBLUNQOGfenrgEtg",
+      "DjihMK3g3rkBHHTPbOwp",
+      "gpeMPTTE5kt9e7kYc0MC",
+      "hC5H8O2mjGMYXFMH5jic"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T00:13:03.348Z",
-  "catalogueGeneratedAt": "2026-11-01T00:11:15.161Z",
+  "updatedAt": "2026-11-01T00:19:03.804Z",
+  "catalogueGeneratedAt": "2026-11-01T00:17:33.282Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,11 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 554,
-    "screened_no_change": 21,
+    "screened_no_change": 22,
     "needs_source": 7,
-    "targeted_correction_complete": 43,
+    "targeted_correction_complete": 45,
     "preserve_prior_review": 98,
-    "pending": 385
+    "pending": 382
   },
   "items": [
     {
@@ -3339,13 +3339,19 @@
     {
       "id": "r2AJAqnKZR0UvB1V4MRz",
       "url": "https://rankingdacompra.com.br/produto/r2AJAqnKZR0UvB1V4MRz-20260810-1.html",
-      "title": "Impressora Térmica Bluetooth USB 110mm Código De Barras E Etiquetas + 2 Rolo De Etiqueta Adesivas Portátil",
-      "fingerprint": "2a97fe95e1c2b295f774e163f150238264255bd4faa62791950ac6299ae93cde",
-      "status": "pending",
+      "title": "Impressora térmica anunciada como 110 mm — Bluetooth e USB",
+      "fingerprint": "f0d165781d2846eae624905e7b9193316aeda493dc889affeebdd2e2ec6f1bba",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T00:19:03.782Z",
+      "workNotes": [
+        "Só encurta título excessivo e não presume quantidade de rolos. Texto, prós/contras e limites anteriores de drivers, sistemas e etiquetas mantidos integralmente, sem nova promessa de compatibilidade.",
+        "Modelo, drivers, largura útil e rolos do kit continuam a conferir no anúncio/manual; não foram testados.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "1Iyoc1zKTUsDEQGbvIM3",
@@ -4938,13 +4944,19 @@
     {
       "id": "UxB7AJhrBhm36FCTachh",
       "url": "https://rankingdacompra.com.br/produto/UxB7AJhrBhm36FCTachh-20260810-1.html",
-      "title": "Patinete Infantil 3 Rodas Com Luz Led Menino Menina 40 Kg",
-      "fingerprint": "93377dea780ee29b986346aaa42749c95b7c704c317d2a15bc6f1625f63f6eb1",
-      "status": "pending",
+      "title": "Patinete infantil de três rodas com LED — características a conferir",
+      "fingerprint": "73e8486f6acc884c4c0ee44109f619d20ee41187064bf0667d8df59f8abd3718",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T00:19:03.782Z",
+      "workNotes": [
+        "Remove classificação pública elétrica não comprovada, apresentando como brinquedo infantil sem afirmar ausência de motor. Qualifica carga 40 kg como não verificada e não confunde peso do produto com carga admitida. Sem escolher idade/carga por suposição.",
+        "Modelo, propulsão, carga, idade, montagem e instruções de segurança continuam sem manual específico. Alterada só apresentação pública, não cadastro no Firestore.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "xayABmLUPEj8yOPOfzA9",
@@ -6684,10 +6696,14 @@
       "url": "https://rankingdacompra.com.br/produto/wDxxKZn5CFPm3f34ziP2-20260810-1.html",
       "title": "Tênis Masculino Vili Urban Sportstyle Sapatenis Casual",
       "fingerprint": "7add6fa5f6ddfb3b1059281c596dc9c0fd48788ac690dff920dc0778415b4e08",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-11-01T00:19:03.782Z",
+      "workNotes": [
+        "Nome Vili Urban casual e marca no resumo coerentes na leitura; não há promessa específica de desempenho para remover. Nenhuma reescrita necessária, nem autenticação de marca/unidade ou confirmação técnica de materiais e conforto.",
+        "Triagem de texto inalterado, não revisão factual completa, validação de medidas ou estoque.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
       "sourceLinks": []
     },
     {
@@ -7374,6 +7390,39 @@
       {
         "id": "Q89e0KvH53UoCpELiwiW",
         "note": "Consultado somente contexto oficial de linha/categoria; sem manual específico ou confirmação de código/numeração da oferta. Página brasileira retornou conteúdo inicialmente, mas releitura falhou; não usada para acrescentar recursos."
+      }
+    ]
+  },
+  "triage26": {
+    "status": "published_verified",
+    "sourceCommit": "10e7623a8a2b886e73e9b44f3d7e894b4f40caea",
+    "generatedCommit": "353f44ec364fb663774b54adf1341786e127cf80",
+    "integrityRun": 41256087061,
+    "sitemapRun": 41256087185,
+    "pagesRun": 41256115623,
+    "testsPassed": 1290,
+    "printerBodyAndPriorLimitsPreserved": true,
+    "viliProductUnchanged": true,
+    "localVisualQA": "Three local static pages at 360/390px passed. External requests blocked; not an image loading, live-script, physical-device or product test. Patinete screenshot inspected.",
+    "verifiedAt": "2026-11-01T00:19:03.782Z",
+    "changedIds": [
+      "UxB7AJhrBhm36FCTachh",
+      "r2AJAqnKZR0UvB1V4MRz"
+    ],
+    "newDeepReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem26.json",
+    "remainingDependencies": [
+      {
+        "id": "r2AJAqnKZR0UvB1V4MRz",
+        "note": "Modelo, drivers, largura útil e rolos do kit continuam a conferir no anúncio/manual; não foram testados."
+      },
+      {
+        "id": "UxB7AJhrBhm36FCTachh",
+        "note": "Modelo, propulsão, carga, idade, montagem e instruções de segurança continuam sem manual específico. Alterada só apresentação pública, não cadastro no Firestore."
+      },
+      {
+        "id": "wDxxKZn5CFPm3f34ziP2",
+        "note": "Triagem de texto inalterado, não revisão factual completa, validação de medidas ou estoque."
       }
     ]
   }
