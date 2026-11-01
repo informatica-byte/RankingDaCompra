@@ -1,0 +1,13 @@
+{
+  "date":"2026-11-01",
+  "policy":"Next four pending in saved GA4 01–28 October order; necessary targeted changes only. Preserve prior body when only the title is inconsistent.",
+  "protectedDeepReviews":98,
+  "preserveExceptTitleIds":["NJipazuMXMzOH9YZbxwu"],
+  "items":[
+    {"id":"mlMLB7502068112","decision":"targeted_correction_complete","reason":"Pix-Link: não trata 300 Mbps como velocidade entregue; atribui características ao anúncio e explicita falta de modelo/revisão sem inventar portas, Mesh, banda ou cobertura.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU4936922308?pdp_filters=item_id%3AMLB7502068112"],"sourceLimit":"Snapshot público local. Não houve consulta de manual exato, teste de rede ou conferência de disponibilidade. Nenhuma garantia de alcance/estabilidade/velocidade adicionada."},
+    {"id":"mlMLB7746533434","decision":"screened_no_change","reason":"PC TECNOPOLIS: resumo mínimo reproduz identificação da oferta sem prometer FPS, jogos, geração de CPU ou modelo de GPU. Sem defeito adicional concreto a corrigir agora; preservar em vez de preencher por suposição.","sourceLinks":["https://produto.mercadolivre.com.br/MLB-7746533434-_JM?searchVariation=207697494473"],"sourceLimit":"Modelo/geração do i7, GPU, componentes e especificações do monitor continuam não confirmados. Não é análise de desempenho ou recomendação para jogos; dados ausentes permanecem explícitos no aviso de informações limitadas."},
+    {"id":"NJipazuMXMzOH9YZbxwu","decision":"targeted_correction_complete","reason":"Dapon: somente título deixa de afirmar 22 h e passa a sinalizar divergência de autonomia/recarga já documentada; corpo, resumo, comparação, fatos e fontes anteriores intactos.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB24117280?pdp_filters=item_id%3AMLB4587377807"],"sourceLimit":"Sem nova revisão do anúncio, teste ou escolha entre 22/35 h e Micro-USB/USB-C. Mantém todas as ressalvas anteriores; não repete revisão de 20/10."},
+    {"id":"rJhe4VyyDiFudQmQmXCV","decision":"targeted_correction_complete","reason":"TCG21CX-2B: qualifica potência/rotação/corte anunciados, retira adequação profissional como certeza e não promete maior autonomia ou conforto por ter duas baterias e ajustes.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB54058680"],"sourceLimit":"Snapshot público local, sem manual específico ou teste. Endereço só identifica catálogo; não inventado item do vendedor. Não acrescenta instruções técnicas de operação/carga ou acessórios compatíveis."}
+  ],
+  "counts":{"screened":4,"targetedCorrections":3,"screenedNoChange":1,"newDeepReviews":0}
+}

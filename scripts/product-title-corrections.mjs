@@ -8,6 +8,31 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB7502068112', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB7502068112',
+    model:/^repetidor\s*de\s*sinal\s*extensor\s*internet\s*wifi/i,
+    summary:'O anúncio identifica um repetidor Pix-Link com duas antenas externas e informa Wi-Fi b/g/n em 2,4 GHz e 300 Mbps. Esse número é uma declaração da oferta, não uma medição de velocidade de internet entregue pela equipe. Pode interessar a quem procura ampliar o alcance de uma rede existente, mas não prometemos cobertura total, eliminação de pontos sem sinal ou aumento da velocidade do plano. O modelo completo e a revisão não estão confirmados nesta ficha; por isso não atribuímos portas, modos de operação, recursos Mesh ou outra faixa de frequência. Confira compatibilidade com seu roteador, requisitos de configuração e local de instalação no manual do modelo oferecido. Não testamos alcance, estabilidade, desempenho ou funcionamento com a rede do comprador.',
+    positiveNotes:['Duas antenas e Wi-Fi b/g/n em 2,4 GHz anunciados no cadastro; confirme o modelo.'],
+    negativeNotes:['300 Mbps não é velocidade de internet medida ou garantida pela equipe.', 'Modelo/revisão, cobertura, estabilidade e compatibilidade com sua rede não confirmados; sem promessa de eliminar todo ponto sem sinal.'],
+    suppressRating:true,
+  }],
+  ['NJipazuMXMzOH9YZbxwu', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4587377807',
+    model:/^(?:fone.*|headphone\s*)dapon\s*h02d/i,
+    correct:'Headphone Dapon H02D Bluetooth 5.1 — autonomia e porta de recarga divergentes',
+  }],
+  ['rJhe4VyyDiFudQmQmXCV', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    model:/^(?:ro[cç]adeira\s*aparador\s*grama.*tcg21cx[-\s]*2b.*the\s*black\s*tools|aparador\s*the\s*black\s*tools\s*tcg21cx[-\s]*2b)/i,
+    correct:'Aparador The Black Tools TCG21CX-2B — duas baterias e 21 V anunciados',
+    summary:'O cadastro identifica o aparador The Black Tools TCG21CX-2B sem fio, com duas baterias de 21 V, cabo regulável e guiador ajustável anunciados. A descrição também informa 750 W, 6000 rpm e diâmetro de corte de 25 cm; são dados do anúncio, não medições da equipe. Duas baterias não informam, por si só, quantos minutos o equipamento funcionará nem garantem trabalho contínuo. Os ajustes não comprovam conforto ou ergonomia para toda pessoa. Antes de escolher, confirme o modelo, a capacidade das baterias, o carregador, os acessórios incluídos e os usos permitidos no manual específico. Não inferimos adequação profissional ou para qualquer vegetação. Não testamos corte, autonomia, resistência ou segurança; para montagem, carregamento, proteções e operação, siga o manual do modelo e não apenas a descrição comercial.',
+    positiveNotes:['Duas baterias, formato sem fio e ajustes de cabo/guiador anunciados; confirme o conjunto vendido.'],
+    negativeNotes:['750 W, 6000 rpm e corte de 25 cm são declarações do anúncio, não medições independentes.', 'Capacidade, autonomia, compatibilidade dos acessórios e adequação profissional não confirmadas nesta ficha.', 'Conforto, ergonomia, corte e segurança não foram testados pela equipe.'],
+    suppressRating:true,
+  }],
   ['mlMLB6472086508', {
     syncInformationalSchema:true,
     expectedListing:'MLB6472086508',

@@ -27,6 +27,7 @@ test('31 revisões são específicas, preservam cadastros e não viram preços o
       else if(id==='U52A4gBWWLEmfCzONtHb'&&key==='titulo')assert.equal(after[key],'Fone PRO PHONE SEE TWS — Bluetooth 5.3 anunciado; proteção e ANC a confirmar');
       else if(id==='z507ObVuMlSEBSnK40Uc'&&key==='titulo')assert.equal(after[key],'Fone KAPBOM KA-790/KA790D TWS com gancho — versão Bluetooth divergente no anúncio');
       else if(id==='1tIzUpXs4udqZOZwpQX7'&&key==='titulo')assert.equal(after[key],'Headset HXZ-B39 — conexão com fio ou sem fio divergente no anúncio');
+      else if(id==='NJipazuMXMzOH9YZbxwu'&&key==='titulo')assert.equal(after[key],'Headphone Dapon H02D Bluetooth 5.1 — autonomia e porta de recarga divergentes');
       else if(!['comentario','pros','contras','nota','notaInformada'].includes(key))assert.deepEqual(after[key],value,id+':'+key);
     }
     assert.equal(JSON.stringify(p),before);assert.deepEqual(correctProductData(after),after);
