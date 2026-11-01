@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "DjihMK3g3rkBHHTPbOwp",
-      "gpeMPTTE5kt9e7kYc0MC",
       "hC5H8O2mjGMYXFMH5jic",
       "kiQqRnm6rDj50U2HaOb3",
       "kYzXt8BeErDzXsC6BlwB",
       "mlMLB4513080577",
       "rERcfIbgG1c0uUdNlQ4o",
-      "SFcayTGVGtzWrkpt4uFw"
+      "SFcayTGVGtzWrkpt4uFw",
+      "sZGVRAGBdFaBYSOQbSO8",
+      "W309Bngb9vy88pxNSAn5"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T00:41:30.685Z",
-  "catalogueGeneratedAt": "2026-11-01T00:39:44.597Z",
+  "updatedAt": "2026-11-01T00:49:08.423Z",
+  "catalogueGeneratedAt": "2026-11-01T00:47:35.098Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,9 +639,9 @@
     "total": 554,
     "screened_no_change": 22,
     "needs_source": 7,
-    "targeted_correction_complete": 50,
+    "targeted_correction_complete": 52,
     "preserve_prior_review": 98,
-    "pending": 377
+    "pending": 375
   },
   "items": [
     {
@@ -3786,12 +3786,20 @@
       "id": "DjihMK3g3rkBHHTPbOwp",
       "url": "https://rankingdacompra.com.br/produto/DjihMK3g3rkBHHTPbOwp-20260810-1.html",
       "title": "Kit de limpeza e hidratação Principia — anúncio MLB4247892213",
-      "fingerprint": "e0588686a5be4dce02cd6f66f5007cdea3b574bb72a9489c94ad7b1ddb9bd166",
-      "status": "pending",
+      "fingerprint": "3594836a75b2d5ce5dcbc3a617fafdcf14068153688b42c7418b66a8ed079063",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T00:49:08.400Z",
+      "workNotes": [
+        "Mantém rótulo público com anúncio MLB4247892213 e qualifica indicação universal/faixa etária como não sendo orientação individual. Catálogo oficial identifica CH-01/OL-01/GL-02 como creme/óleo/gel, sem importar volumes ou composição de outra oferta.",
+        "Fonte de catálogo e identificação das linhas apenas. Sem validação do kit individual, rótulos, volumes, adequação, autenticidade ou resultados. Homepage retornou timeout, mas página de montagem de kit foi aberta e lida.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [
+        "https://www.principiaskin.com/monte-seu-kit.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "pO6CZCNo99YwtpIW0UB8",
@@ -6894,13 +6902,22 @@
     {
       "id": "gpeMPTTE5kt9e7kYc0MC",
       "url": "https://rankingdacompra.com.br/produto/gpeMPTTE5kt9e7kYc0MC-20260810-1.html",
-      "title": "Tênis Torx Ultra Max Corrida Placa Propulsão 220g Laranja",
-      "fingerprint": "84c42ddb57ed0d182d01b96995e972f4c977c6a924c8fb3f851b58d1ab107a07",
-      "status": "pending",
+      "title": "Tênis Torx Ultra Max laranja — peso e versão a conferir",
+      "fingerprint": "6e28a9c37f4cc42b72ec9a33e5a6f52a50e5b8db9bbedebcba83e8e8908e387d",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T00:49:08.400Z",
+      "workNotes": [
+        "Qualifica peso 220 g não confirmado para tamanho/variante e não promete propulsão como ganho individual. Referência oficial descreve placa TPU-PA na linha; link visível é de contexto, não evidência de outra variante aplicada à unidade cadastrada.",
+        "Código e construção exatos da oferta não validados. Não importados drop (páginas gerais/específica diferem), outros materiais, numeração ou atributos de outra cor. Sem teste ou autenticação da unidade.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [
+        "https://www.torxbrasil.com.br/produto/tenis-torx-ultra-max-preto-laranja/",
+        "https://www.torxbrasil.com.br/pagina/ultra-max/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4699180013",
@@ -7516,6 +7533,35 @@
       {
         "id": "7W5TZBLUNQOGfenrgEtg",
         "note": "Quantidade, volumes individuais, variantes, composição, autenticidade e atributos declarados dependem do anúncio/rótulos; sem comprovação de teste ou certificação nesta revisão."
+      }
+    ]
+  },
+  "triage29": {
+    "status": "published_verified",
+    "sourceCommit": "35dcd51c1e937542fd234e808e790609b576615d",
+    "generatedCommit": "4a96f6e1a3895af36310f7567a13b013b970c816",
+    "integrityRun": 41258278640,
+    "sitemapRun": 41258278630,
+    "pagesRun": 41258313708,
+    "testsPassed": 1299,
+    "principiaPublicOfferLabelPreserved": true,
+    "publicContextReferencesVerified": true,
+    "localVisualQA": "Both local static pages passed at 360/390px; all external requests blocked. TORX screenshot inspected. Not a physical-device, image-loading, live-script or product performance test.",
+    "verifiedAt": "2026-11-01T00:49:08.400Z",
+    "changedIds": [
+      "DjihMK3g3rkBHHTPbOwp",
+      "gpeMPTTE5kt9e7kYc0MC"
+    ],
+    "newDeepReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem29.json",
+    "remainingDependencies": [
+      {
+        "id": "DjihMK3g3rkBHHTPbOwp",
+        "note": "Fonte de catálogo e identificação das linhas apenas. Sem validação do kit individual, rótulos, volumes, adequação, autenticidade ou resultados. Homepage retornou timeout, mas página de montagem de kit foi aberta e lida."
+      },
+      {
+        "id": "gpeMPTTE5kt9e7kYc0MC",
+        "note": "Código e construção exatos da oferta não validados. Não importados drop (páginas gerais/específica diferem), outros materiais, numeração ou atributos de outra cor. Sem teste ou autenticação da unidade."
       }
     ]
   }
