@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T16:41:15.630Z",
-  "catalogueGeneratedAt": "2026-11-01T16:39:48.376Z",
+  "updatedAt": "2026-11-01T16:48:38.991Z",
+  "catalogueGeneratedAt": "2026-11-01T16:48:29.041Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 558,
-    "screened_no_change": 32,
+    "screened_no_change": 35,
     "needs_source": 7,
     "targeted_correction_complete": 76,
     "preserve_prior_review": 98,
-    "pending": 345
+    "pending": 341,
+    "prepared_awaiting_publication": 1
   },
   "items": [
     {
@@ -2037,11 +2038,16 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4592797876-20260810-1.html",
       "title": "Carrinho De Controle Remoto 37cm Off Road 4x4",
       "fingerprint": "63823a281d30e5551457d6447fb5be68d29fd77034f6a39b553718c48cc855cf",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T16:48:38.994Z",
+      "workNotes": [
+        "Carrinho 37 cm 4x4: resumo apenas identifica o título da oferta e marca Genérica, sem inventar alcance, bateria, tração testada ou robustez. Nenhum defeito concreto novo justifica alterar.",
+        "Conteúdo público local limitado. Nenhuma confirmação de tração, dimensões medidas, autonomia ou segurança; não é análise técnica completa nem novo teste de anúncio."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4592797876-_JM"
+      ]
     },
     {
       "id": "Vgm0UKQmBdAvSbO683Yj",
@@ -2552,11 +2558,16 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6119148470-20260810-1.html",
       "title": "Coturno Caterpillar Adventure Camping Conforto E Estilo",
       "fingerprint": "d59f9c40ad6ee1f2a82cf7009b9784463de82d0215a14f6232c79cf304859818",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T16:48:38.994Z",
+      "workNotes": [
+        "Coturno: identificação mínima conforme título/campo de marca do anúncio, sem acrescentar impermeabilidade, certificação de segurança ou garantia de desempenho. Nenhuma evidência nova para corrigir ou ampliar.",
+        "Somente cadastro público local, não autenticidade da marca, identificação exata do modelo ou teste de trilha. Não significa validação de conforto, proteção ou segurança."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6119148470-_JM"
+      ]
     },
     {
       "id": "ye0EVvhX1qjcRDsb9Srw",
@@ -4602,11 +4613,16 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4857635335-20260810-1.html",
       "title": "Mini Soprador Ar Turbo Recarregável Led Limpeza Pc",
       "fingerprint": "d722babd5d371ea8f698d6d1af7ffef410e7bedbe5965f1435e9f1016665e39b",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T16:48:38.994Z",
+      "workNotes": [
+        "Mini soprador: resumo só identifica produto genérico e operação sem fio anunciada, sem atribuir potência, autonomia ou segurança de limpeza. Preservar em vez de ampliar sem fonte.",
+        "Snapshot público local. Modelo, manual e especificações não confirmados; nenhuma orientação de limpeza de eletrônicos ou teste independente acrescentado."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4228158831"
+      ]
     },
     {
       "id": "RiCj7wC1QDBSMgPUQWD1",
@@ -6869,12 +6885,19 @@
       "id": "mlMLB4407094781",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4407094781-20260810-1.html",
       "title": "Tênis Masculino Adrun Calce Fácil Esportivo Conforto Origina",
-      "fingerprint": "b44a98d1902235f9a2d2eca2f14a8eac28b19aba7d9bf938c94d5037aed09d9f",
-      "status": "pending",
+      "fingerprint": "11c6b29b43fd123835d5f2f9bcba40dda6e16cd019be753d8f8a03bba2f50257",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Adrun: qualifica conforto, amortecimento e estabilidade e não transforma termos ortholight/goufre do anúncio em tecnologia confirmada. Conserva nome, variante e dados realmente presentes.",
+        "Snapshot público local, sem manual, código completo ou testes de calçado. URL só identifica catálogo MLBU, sem item do vendedor: não inventado expectedListing. Não confirma autenticidade, tecnologia, desempenho ou indicação ortopédica."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/tenis-masculino-adrun-calce-facil-esportivo-conforto-origina/up/MLBU3708716035"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "1RCE8RtBHkc6aVkKZ6xB",
@@ -8581,5 +8604,12 @@
     "localMobileChecks": 8,
     "backendWrites": 0,
     "historyPreserved": true
+  },
+  "triage41": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB4407094781"
+    ],
+    "newDeepReviews": 0
   }
 }

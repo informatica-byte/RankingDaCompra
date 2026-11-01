@@ -8,6 +8,14 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB4407094781', {
+    syncInformationalSchema:true,
+    model:/^t[eê]nis\s*masculino\s*adrun\s*calce\s*f[aá]cil/i,
+    summary:'O cadastro identifica um tênis masculino Adrun de calce fácil. A descrição informa interior têxtil e palmilhas removíveis; confirme esses detalhes na variante escolhida. Pode interessar a quem procura praticidade para calçar, mas a expressão calce fácil não garante ajuste ou conforto para todos os pés. O texto do anúncio também associa a entressola a maior amortecimento e estabilidade, sem documentação técnica registrada nesta ficha para comprovar esses benefícios. Não usamos os termos ortholight e goufre, presentes na descrição, como confirmação de tecnologia específica. Não testamos amortecimento, aderência, estabilidade, conforto ou durabilidade. Confira o modelo completo, composição, tabela de medidas e indicação de uso antes de escolher; não presumimos adequação para corrida ou finalidade ortopédica pelo título esportivo.',
+    positiveNotes:['Proposta de calce fácil, interior têxtil e palmilhas removíveis informados na descrição; confirme a variante.'],
+    negativeNotes:['Benefícios de amortecimento e estabilidade e tecnologia da entressola sem comprovação registrada nesta ficha.', 'Modelo completo, composição e ajuste precisam de confirmação; não há teste de conforto ou indicação ortopédica da equipe.'],
+    suppressRating:true,
+  }],
   ['8NEAHWVWDbRD0jFU4YSn', {
     syncInformationalSchema:true,
     expectedListing:'MLB4359093019',

@@ -1,0 +1,12 @@
+{
+  "date":"2026-11-01",
+  "policy":"Next four pending in dated saved GA4 view order. Only change a concrete defect; limited information is not an excuse for invented specifications or a generic rewrite.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"mlMLB4407094781","decision":"targeted_correction_complete","reason":"Adrun: qualifica conforto, amortecimento e estabilidade e não transforma termos ortholight/goufre do anúncio em tecnologia confirmada. Conserva nome, variante e dados realmente presentes.","sourceLinks":["https://www.mercadolivre.com.br/tenis-masculino-adrun-calce-facil-esportivo-conforto-origina/up/MLBU3708716035"],"sourceLimit":"Snapshot público local, sem manual, código completo ou testes de calçado. URL só identifica catálogo MLBU, sem item do vendedor: não inventado expectedListing. Não confirma autenticidade, tecnologia, desempenho ou indicação ortopédica."},
+    {"id":"mlMLB4592797876","decision":"screened_no_change","reason":"Carrinho 37 cm 4x4: resumo apenas identifica o título da oferta e marca Genérica, sem inventar alcance, bateria, tração testada ou robustez. Nenhum defeito concreto novo justifica alterar.","sourceLinks":["https://produto.mercadolivre.com.br/MLB-4592797876-_JM"],"sourceLimit":"Conteúdo público local limitado. Nenhuma confirmação de tração, dimensões medidas, autonomia ou segurança; não é análise técnica completa nem novo teste de anúncio."},
+    {"id":"mlMLB4857635335","decision":"screened_no_change","reason":"Mini soprador: resumo só identifica produto genérico e operação sem fio anunciada, sem atribuir potência, autonomia ou segurança de limpeza. Preservar em vez de ampliar sem fonte.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU4228158831"],"sourceLimit":"Snapshot público local. Modelo, manual e especificações não confirmados; nenhuma orientação de limpeza de eletrônicos ou teste independente acrescentado."},
+    {"id":"mlMLB6119148470","decision":"screened_no_change","reason":"Coturno: identificação mínima conforme título/campo de marca do anúncio, sem acrescentar impermeabilidade, certificação de segurança ou garantia de desempenho. Nenhuma evidência nova para corrigir ou ampliar.","sourceLinks":["https://produto.mercadolivre.com.br/MLB-6119148470-_JM"],"sourceLimit":"Somente cadastro público local, não autenticidade da marca, identificação exata do modelo ou teste de trilha. Não significa validação de conforto, proteção ou segurança."}
+  ],
+  "counts":{"screened":4,"targetedCorrections":1,"screenedNoChange":3,"newDeepReviews":0}
+}
