@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T11:12:17.743Z",
-  "catalogueGeneratedAt": "2026-11-01T11:10:42.982Z",
+  "updatedAt": "2026-11-01T14:27:13.050Z",
+  "catalogueGeneratedAt": "2026-11-01T14:14:34.637Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -636,12 +636,12 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 554,
+    "total": 558,
     "screened_no_change": 29,
     "needs_source": 7,
     "targeted_correction_complete": 71,
     "preserve_prior_review": 98,
-    "pending": 349
+    "pending": 353
   },
   "items": [
     {
@@ -3687,17 +3687,6 @@
       "sourceLinks": []
     },
     {
-      "id": "z3tHbOuX0kaa90FEyIvS",
-      "url": "https://rankingdacompra.com.br/produto/z3tHbOuX0kaa90FEyIvS-20260810-1.html",
-      "title": "Kit 3 Bermuda Masculina Short Tactel Secagem Rápida Academia",
-      "fingerprint": "36f0af328db7b7e79febbd80b1cc3da5ca0a95d21304327f1d63191da3b25b43",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB4835180937",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4835180937-20260810-1.html",
       "title": "Kit 3 Body Splash Masculino Vibration + Blunn + Infalível Fero By Primacial Body Man",
@@ -4799,6 +4788,17 @@
       "url": "https://rankingdacompra.com.br/produto/TEaC0vVXmdvp4s8QMqpn-20260810-1.html",
       "title": "Notebook Acer Aspire 5 A515-45-R2A3 AMD Ryzen 5 Windows 11 Home 8GB 512GB SSD 15,6' Full HD",
       "fingerprint": "428cc83218d190342725c76f200897b960183050010f651f11bd93fba0a64dba",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
+      "id": "mlMLB4144557655",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4144557655-20260810-1.html",
+      "title": "Notebook Acer Aspire Go 15 com Processador Intel Core i3 13ª Geração 8GB de Memória RAM DDR5 Armazenamento 256GB",
+      "fingerprint": "2785fd5544c6f7d2bb7a5d041b7a01aec73cb816cc931e44062062eda913757c",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -6786,6 +6786,28 @@
       "sourceLinks": []
     },
     {
+      "id": "d31e9yty1t0dekViXbAi",
+      "url": "https://rankingdacompra.com.br/produto/d31e9yty1t0dekViXbAi-20260810-1.html",
+      "title": "Tênis Kappa Pulse Rx Unissex Corrida Conforto",
+      "fingerprint": "53a7be65cf60ed8f70a235938ff7fdeb6ae4f96b8f6b72642b788b4ab38e2847",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
+      "id": "mWlmlmg15okWqGyIc5bh",
+      "url": "https://rankingdacompra.com.br/produto/mWlmlmg15okWqGyIc5bh-20260810-1.html",
+      "title": "Tênis Kappa Pulse Rx Unissex Corrida Conforto",
+      "fingerprint": "53a7be65cf60ed8f70a235938ff7fdeb6ae4f96b8f6b72642b788b4ab38e2847",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
       "id": "mlMLB4028845341",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4028845341-20260810-1.html",
       "title": "Tênis Kappa Run 200 Original Caminhada Academia",
@@ -6823,6 +6845,17 @@
       "sourceLinks": [],
       "previousState": "pending",
       "changedSinceCheckpoint": true
+    },
+    {
+      "id": "8NEAHWVWDbRD0jFU4YSn",
+      "url": "https://rankingdacompra.com.br/produto/8NEAHWVWDbRD0jFU4YSn-20260810-1.html",
+      "title": "Tênis Masculino Casual Aramis Daily Slip Confortável Moderno",
+      "fingerprint": "fff268407bbf3ebf67a341616ee6f17a2e03956322bca6aadc7263f6360a364c",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
     },
     {
       "id": "UqO48Rj9I0f8SpOqabpv",
@@ -6987,6 +7020,17 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB3966936389-20260810-1.html",
       "title": "Tênis Mormaii Urban Free Masculino Casual Original Skate Nfe",
       "fingerprint": "4272de01b2afce13987e3beda3ff5295fb690c8a058cba3cc84751b84db256f5",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
+      "id": "B3HTtYZQAYonACif4tW1",
+      "url": "https://rankingdacompra.com.br/produto/B3HTtYZQAYonACif4tW1-20260810-1.html",
+      "title": "Tênis New Speed Esporte Masculino 100% Original Caminhada",
+      "fingerprint": "ed8154e85516b84907c2d00d82d861dc8711f2683e734ecdaa0a64b2ab7b764f",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -8359,5 +8403,38 @@
       37,
       38
     ]
+  },
+  "outOfPublicSelection": [
+    {
+      "id": "z3tHbOuX0kaa90FEyIvS",
+      "url": "https://rankingdacompra.com.br/produto/z3tHbOuX0kaa90FEyIvS-20260810-1.html",
+      "title": "Kit 3 Bermuda Masculina Short Tactel Secagem Rápida Academia",
+      "fingerprint": "36f0af328db7b7e79febbd80b1cc3da5ca0a95d21304327f1d63191da3b25b43",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": [],
+      "selectionNote": "Already paused in user backup 2026-11-01; record not deleted or edited by this publication."
+    }
+  ],
+  "publicationIdentityRepair20261101": {
+    "status": "published_verified",
+    "verifiedAt": "2026-11-01T14:17:14.462Z",
+    "sourceCommit": "3f070d38a8341e1445aa85ff3b4ce67ed0b3aa8a",
+    "generatedCommit": "9fa395a5056870a8dfbbe15ee0efc738c2de19cc",
+    "integrityRun": 41315188153,
+    "sitemapRun": 41315188004,
+    "pagesRun": 41315223386,
+    "testsPassed": 1356,
+    "backupRecords": 594,
+    "publicProducts": 558,
+    "sitemapUrls": 611,
+    "proof": "outputs/melhorias-integrais-20261030/prova-publicada-conflitos1398.json",
+    "editorialReviewsAdded": 0,
+    "backendWrites": 0,
+    "historyPreserved": true,
+    "affiliateLinksPreserved": true,
+    "notes": "Exact reviewed identity alternatives fix fone/refletor canonical continuity. Explicit different seller variations remain separate, with narrowly bound ID/title/listing/variation/affiliate proofs. Security collision validation remains mandatory. Five current public additions come from user backup; previously paused record remains archived in continuity, not deleted. No availability checks repeated."
   }
 }
