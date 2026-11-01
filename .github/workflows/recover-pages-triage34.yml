@@ -1,4 +1,5 @@
 name: Recuperar somente implantação Pages presa da passagem 34
+# One bounded follow-up records the safe API error message if cancellation is refused.
 on:
   push:
     branches: [main]
