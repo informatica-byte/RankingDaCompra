@@ -8,6 +8,33 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['8NEAHWVWDbRD0jFU4YSn', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4359093019',
+    model:/^t[eê]nis\s*masculino\s*casual\s*aramis\s*daily\s*slip/i,
+    summary:'O cadastro identifica o Aramis Daily Slip, um tênis casual slip-on, sem cadarços. O texto da oferta informa lona têxtil, palmilha de poliuretano e solado de borracha; confirme esses materiais na variante escolhida. Pode interessar a quem procura esse formato para ocasiões informais, mas conforto e ajuste dependem do pé e da numeração. A alegação de propriedade antibacteriana da palmilha não tem comprovação técnica registrada nesta ficha. Não testamos conforto, aderência, resistência ou durabilidade e não apresentamos o modelo como calçado esportivo ou ortopédico. Confira tabela de medidas, composição, orientações de conservação e condições da oferta antes de escolher.',
+    positiveNotes:['Formato casual slip-on sem cadarços identificado no cadastro.', 'Lona têxtil, palmilha de poliuretano e solado de borracha informados na descrição; confirme a variante.'],
+    negativeNotes:['Propriedade antibacteriana da palmilha sem comprovação técnica registrada nesta ficha.', 'Conforto, aderência e durabilidade não testados; numeração e ajuste precisam de conferência.'],
+    suppressRating:true,
+  }],
+  ['MgDXTGUyMBcJUtTahZIY', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5085157465',
+    model:/^patinete\s*el[eé]trico\s*500\s*w/i,
+    summary:'O cadastro anuncia um patinete elétrico dobrável com motor de 500 W, autonomia de 37 km, indicação IPX4 e aplicativo. A descrição também informa bateria de íon de lítio, recarga em 5 horas, velocidade de 35 km/h e carga suportada de 120 kg. São declarações do anúncio, não medições da equipe. Autonomia, velocidade e recarga reais dependem das condições de uso; não prometemos esses resultados em todo trajeto. Marca, modelo exato, manual, aplicativo compatível e condições da classificação IPX4 precisam de confirmação. Essa indicação não será tratada como garantia de uso na chuva ou submersão. Não testamos freios, estabilidade, bateria ou segurança. Antes de escolher para deslocamentos, confira as instruções do modelo e as regras aplicáveis ao local de uso; a idade citada pelo vendedor não comprova autorização para circular.',
+    positiveNotes:['Formato dobrável e aplicativo anunciados; confirme modelo e compatibilidade.'],
+    negativeNotes:['500 W, 37 km, 35 km/h, recarga em 5 horas e 120 kg são dados declarados, não resultados verificados.', 'Marca/modelo e manual não confirmados nesta ficha; IPX4 não é garantia irrestrita de resistência à água.', 'Freios, estabilidade, segurança e condições de circulação não foram validados pela equipe.'],
+    suppressRating:true,
+  }],
+  ['mlMLB4024139675', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4024139675',
+    model:/^kit\s*3\s*pares\s*meia\s*antiderrapante/i,
+    summary:'O anúncio identifica um kit de três pares de meias esportivas, descritas como antiderrapantes para futebol e treino. O campo de marca traz uma sequência de termos genéricos, sem identificar claramente um fabricante; não a apresentamos como marca confirmada. Pode interessar a quem procura esse tipo de meia, mas confira tamanho, composição, altura do cano, quantidade de pares e acabamento da variante escolhida. A expressão antiderrapante não garante evitar escorregões ou lesões nem comprova melhora de desempenho. Não testamos aderência, ajuste, conforto, costuras ou resistência à lavagem. Confirme materiais e instruções de conservação diretamente no anúncio e na embalagem.',
+    positiveNotes:['Kit de três pares e proposta de uso esportivo identificados no título do anúncio.'],
+    negativeNotes:['Fabricante, composição e medidas não confirmados nesta ficha.', 'Aderência, conforto e resistência à lavagem não testados; sem promessa de prevenir escorregões ou lesões.'],
+    suppressRating:true,
+  }],
   ['fCw8R0SRDFhAWXIT2sZ0', {
     syncInformationalSchema:true,
     expectedListing:'MLB6555831758',

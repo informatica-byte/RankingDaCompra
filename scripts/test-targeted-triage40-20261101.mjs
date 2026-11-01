@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {correctProductData} from './product-title-corrections.mjs';
+const rows=[{id:'8NEAHWVWDbRD0jFU4YSn',titulo:'Tênis Masculino Casual Aramis Daily Slip Confortável Moderno',listing:'MLB4359093019'},{id:'MgDXTGUyMBcJUtTahZIY',titulo:'Patinete Elétrico 500w Autonomia 37km Dobrável Ipx4 App 10',listing:'MLB5085157465'},{id:'mlMLB4024139675',titulo:'Kit 3 Pares Meia Antiderrapante Esportiva Futebol Treino Pro',listing:'MLB4024139675'}];
+test('triagem40 preserva títulos, variantes, preços e afiliados; rejeita outro anúncio e acessórios',()=>{
+ for(const r of rows){const p={...r,link:'https://www.mercadolivre.com.br/p/MLB12345678?wid='+r.listing,linkAfiliado:'https://meli.la/preservado',preco:'99,99',variation_id:'original'};const x=correctProductData(p);for(const k of Object.keys(p))assert.equal(x[k],p[k]);assert.deepEqual(correctProductData(x),x);for(const alt of [{titulo:'Capa para '+r.titulo},{link:'https://www.mercadolivre.com.br/p/MLB12345678?wid=MLB9999999999'}])assert.equal(correctProductData({...p,comentario:'preservar',...alt}).comentario,'preservar');}
+});
+test('Aramis sem valor antigo ou antibacteriano como certeza',()=>{const x=correctProductData(rows[0]);assert.doesNotMatch(x.comentario,/156,31|R\$/);assert.match(x.comentario,/não tem comprovação técnica/);assert.doesNotMatch(x.pros,/antibacter|ortopéd|garant/);});
+test('patinete não promete medições ou circulação legal',()=>{const x=correctProductData(rows[1]);assert.match(x.comentario,/declarações do anúncio, não medições/);assert.match(x.comentario,/não comprova autorização para circular/);assert.match(x.comentario,/não será tratada como garantia/);assert.doesNotMatch(x.pros,/segur|garant|37 km|35 km/);});
+test('meias sem marca genérica validada ou prevenção de lesão',()=>{const x=correctProductData(rows[2]);assert.match(x.comentario,/sem identificar claramente um fabricante/);assert.match(x.comentario,/não garante evitar escorregões ou lesões/);assert.doesNotMatch(x.pros,/profissiona|garant|previne|algodão|silicone/i);});

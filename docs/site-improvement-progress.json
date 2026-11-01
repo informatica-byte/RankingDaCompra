@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T15:02:44.694Z",
-  "catalogueGeneratedAt": "2026-11-01T15:00:46.937Z",
+  "updatedAt": "2026-11-01T16:38:35.533Z",
+  "catalogueGeneratedAt": "2026-11-01T16:38:26.009Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 558,
-    "screened_no_change": 31,
+    "screened_no_change": 32,
     "needs_source": 7,
     "targeted_correction_complete": 73,
     "preserve_prior_review": 98,
-    "pending": 349
+    "pending": 345,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2904,11 +2905,16 @@
       "url": "https://rankingdacompra.com.br/produto/mGfjcGRX5FvusGGZMYJL-20260810-1.html",
       "title": "Fone De Ouvido Bluetooth In-ear Gamer Sem Fio Earcuffs",
       "fingerprint": "5e23dc31763827b22238c761cf59f060de381d7a29fb87257f045882004147ae",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T16:38:35.537Z",
+      "workNotes": [
+        "IIKOSMAX M145 já registra contradições de formato/conexão e não transfere Bluetooth/bateria de outra marca. Nenhuma nova evidência para resolver contradições; entrada editorial preservada.",
+        "Triagem do conteúdo já revisado em 20/10; nenhuma nova conferência de anúncio ou teste de hardware."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3887866793?pdp_filters=item_id%3AMLB4596924785"
+      ]
     },
     {
       "id": "ARscPKCMZs3D8k22qltl",
@@ -3738,12 +3744,19 @@
       "id": "mlMLB4024139675",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4024139675-20260810-1.html",
       "title": "Kit 3 Pares Meia Antiderrapante Esportiva Futebol Treino Pro",
-      "fingerprint": "80e19ba52d76480ccb476455e007f046c1437799a1fc6eba21d244f79337a80c",
-      "status": "pending",
+      "fingerprint": "65529a4b2b661bb22babd080a9bf86795ad141c58417d64086bf1a44a2fb7aa2",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Kit de meias: não apresenta sequência genérica do campo marca como fabricante; limita antiderrapante a declaração da oferta e não promete prevenir lesões ou melhorar desempenho.",
+        "Título e campos do snapshot público local. Sem marca/material/medidas confirmados ou teste de aderência. Quantidade e variante não alteradas."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4024139675-_JM?searchVariation=204417125839"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "QUKhd39js4LdwLXNbh0u",
@@ -5087,12 +5100,19 @@
       "id": "MgDXTGUyMBcJUtTahZIY",
       "url": "https://rankingdacompra.com.br/produto/MgDXTGUyMBcJUtTahZIY-20260810-1.html",
       "title": "Patinete Elétrico 500w Autonomia 37km Dobrável Ipx4 App 10",
-      "fingerprint": "ede75c214753310466f7cccbb5c23c36949dbe5ad8151d03eb32d24356ce164e",
-      "status": "pending",
+      "fingerprint": "b20048dc09c167230bd34aa7526bef60aca8ac9835701e987f4a487aaf3194fa",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Patinete: distingue números anunciados de medições e evita garantia de autonomia, resistência à água e autorização de circulação derivada da idade do vendedor.",
+        "Somente informação local do anúncio. Modelo/manual, testes de bateria/freios e regras de circulação não verificados. Não é orientação jurídica ou garantia de segurança."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4774408875?pdp_filters=item_id%3AMLB5085157465"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "xbXvQNhfLeV7MLszyz6X",
@@ -6876,12 +6896,19 @@
       "id": "8NEAHWVWDbRD0jFU4YSn",
       "url": "https://rankingdacompra.com.br/produto/8NEAHWVWDbRD0jFU4YSn-20260810-1.html",
       "title": "Tênis Masculino Casual Aramis Daily Slip Confortável Moderno",
-      "fingerprint": "fff268407bbf3ebf67a341616ee6f17a2e03956322bca6aadc7263f6360a364c",
-      "status": "pending",
+      "fingerprint": "06a676edb459830d589c7cefac1187c148d3c1d6932107924fe0658b074b15bc",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Aramis: remove valor monetário antigo do comentário e qualifica a alegação antibacteriana; materiais atribuídos ao anúncio, sem prometer conforto ou desempenho.",
+        "Snapshot público local. Sem laudo antibacteriano, teste de calçado ou confirmação de composição da unidade. Título e variante preservados para não alterar identidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4359093019-_JM?searchVariation=201545712649"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "UqO48Rj9I0f8SpOqabpv",
@@ -8506,5 +8533,14 @@
     "localMobileChecks": 8,
     "backendWrites": 0,
     "historyPreserved": true
+  },
+  "triage40": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "8NEAHWVWDbRD0jFU4YSn",
+      "MgDXTGUyMBcJUtTahZIY",
+      "mlMLB4024139675"
+    ],
+    "newDeepReviews": 0
   }
 }

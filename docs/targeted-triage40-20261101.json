@@ -1,0 +1,12 @@
+{
+  "date":"2026-11-01",
+  "policy":"Four pending IDs in saved GA4 01–28 October order; concrete necessary corrections only. Preserve all completed reviews and exact variants.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"8NEAHWVWDbRD0jFU4YSn","decision":"targeted_correction_complete","reason":"Aramis: remove valor monetário antigo do comentário e qualifica a alegação antibacteriana; materiais atribuídos ao anúncio, sem prometer conforto ou desempenho.","sourceLinks":["https://produto.mercadolivre.com.br/MLB-4359093019-_JM?searchVariation=201545712649"],"sourceLimit":"Snapshot público local. Sem laudo antibacteriano, teste de calçado ou confirmação de composição da unidade. Título e variante preservados para não alterar identidade."},
+    {"id":"MgDXTGUyMBcJUtTahZIY","decision":"targeted_correction_complete","reason":"Patinete: distingue números anunciados de medições e evita garantia de autonomia, resistência à água e autorização de circulação derivada da idade do vendedor.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU4774408875?pdp_filters=item_id%3AMLB5085157465"],"sourceLimit":"Somente informação local do anúncio. Modelo/manual, testes de bateria/freios e regras de circulação não verificados. Não é orientação jurídica ou garantia de segurança."},
+    {"id":"mGfjcGRX5FvusGGZMYJL","decision":"screened_no_change","reason":"IIKOSMAX M145 já registra contradições de formato/conexão e não transfere Bluetooth/bateria de outra marca. Nenhuma nova evidência para resolver contradições; entrada editorial preservada.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU3887866793?pdp_filters=item_id%3AMLB4596924785"],"sourceLimit":"Triagem do conteúdo já revisado em 20/10; nenhuma nova conferência de anúncio ou teste de hardware."},
+    {"id":"mlMLB4024139675","decision":"targeted_correction_complete","reason":"Kit de meias: não apresenta sequência genérica do campo marca como fabricante; limita antiderrapante a declaração da oferta e não promete prevenir lesões ou melhorar desempenho.","sourceLinks":["https://produto.mercadolivre.com.br/MLB-4024139675-_JM?searchVariation=204417125839"],"sourceLimit":"Título e campos do snapshot público local. Sem marca/material/medidas confirmados ou teste de aderência. Quantidade e variante não alteradas."}
+  ],
+  "counts":{"screened":4,"targetedCorrections":3,"screenedNoChange":1,"newDeepReviews":0}
+}
