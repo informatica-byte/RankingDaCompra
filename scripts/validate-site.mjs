@@ -4,6 +4,7 @@ import "./validate-blueprint.mjs";
 import {verifyRemovals} from './product-removals.mjs';
 await verifyRemovals();
 import offerReplacement from '../product-offer-replacement.js';
+import {reviewedPublicationVariation,distinctReviewedPublicationVariations} from './product-deduplication.mjs';
 import {assertInformationalHtml} from './informational-site.mjs';
 
 const SITE = "https://rankingdacompra.com.br/";
@@ -558,13 +559,13 @@ for (const url of urls) {
   has(html, /id="mobile-affiliate-offer"/, "botão fixo de preço ausente no celular", relative);
   has(html, /growth-tools\.js\?v=(?:20260913-seo1|20260919-video1|20260919-video2|20260919-title-ai1|20260919-video-min3|20260919-video-fields1|20260919-title-fallback1|20260919-title-fallback2|20260919-video-overlay1|20260919-metrics-compat1|20260920-config-sync1|20260923-manual-price1|20260923-audit-fix1|20260929-video-max20|20260929-firebase-precos|20260929-presentes|20261003-five|20261004-repairs|20261005-choices|20261005-ux|20261006-audit|20261007-counters|20261008-consent|20261011-ux)(?=$|["'&<>\s])/, "versão visual desconhecida carregada", relative);
 
+  const metadata=[...html.matchAll(/<meta\b[^>]*>/gi)].map(m=>Object.fromEntries([...m[0].matchAll(/([\w-]+)\s*=\s*(["'])([\s\S]*?)\2/g)].map(a=>[a[1].toLowerCase(),a[3].replace(/&amp;/g,'&')])));
+  const primary=[...html.matchAll(/<a\b[^>]*>/gi)].find(m=>/\bid=["']affiliate-offer["']/.test(m[0]))?.[0];
+  const variation=reviewedPublicationVariation({id:relative.match(/^produto\/([^/]+)-\d{8}-\d+\.html$/)?.[1],titulo:html.match(/<h1\b[^>]*>([^<]*)<\/h1>/i)?.[1],link:metadata.find(m=>m.name==='rdc-offer-url')?.content,linkAfiliado:primary?.match(/href=["']([^"']+)/)?.[1]});
   for (const identity of productIdentityKeys(html)) {
-    const previous = identities.get(identity);
-    if (previous && previous !== relative) {
-      fail("Produto duplicado (" + identity + "): " + previous + " e " + relative);
-    } else {
-      identities.set(identity, relative);
-    }
+    const previous = identities.get(identity)||[];
+    for(const prior of previous)if(prior.file!==relative&&!((identity.startsWith('mlb:')||identity.startsWith('affiliate:'))&&distinctReviewedPublicationVariations(prior.variation,variation)))fail("Produto duplicado ("+identity+"): "+prior.file+" e "+relative);
+    identities.set(identity,[...previous,{file:relative,variation}]);
   }
 }
 

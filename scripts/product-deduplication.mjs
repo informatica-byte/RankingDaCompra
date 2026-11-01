@@ -21,7 +21,7 @@ export const REVIEWED_PUBLICATION_PAIRS = Object.freeze([
     ['LrJn9p8N4KF5HhsvGNL2','Smartphone Motorola Moto G06 - 128gb 4gb Ram'],
     ['uRfZSbUKT8yjArcSlGPL','Smartphone Motorola Moto G06']],
   ['MLB5105857793','MLBU4893834428','https://meli.la/2Ysb3QH',
-    ['U52A4gBWWLEmfCzONtHb','Fone Ouvido Bluetooth Sem Fio Prova DAgua Wireless Tipo Light Cancelamento Ruido Celular'],
+    ['U52A4gBWWLEmfCzONtHb','Fone Ouvido Bluetooth Sem Fio Prova DAgua Wireless Tipo Light Cancelamento Ruido Celular','Fone PRO PHONE SEE TWS — Bluetooth 5.3 anunciado; proteção e ANC a confirmar'],
     ['WpCGzZDy0ND4DZmvKbwj','Fone Ouvido Bluetooth Compatível Com Iphone X Xr 11 12 13 14 15 16 17 Xs Pro Max Plus Samsung S20 S23 S24 Xiaomi Motorola Android Ios Sem Fio Prova DAgua Wireless Tipo Light Cancelamento Ruido Celular']],
   ['MLB4108132843','MLB47106610','https://meli.la/1w5SMxk',
     ['l7Z9wjqB0dHSHYJ6IVMA','Celular Samsung Galaxy A36 5g 256gb 8gb Ram Branco'],
@@ -30,13 +30,49 @@ export const REVIEWED_PUBLICATION_PAIRS = Object.freeze([
   ['MLB7533453778','MLB40656539','https://meli.la/1BDxmV4',
     ['6mZ1ahzme9kUH1UdSkJw','Kit Starlink MINI Internet Via Satélite'],
     ['mlMLB7533453778','Starlink Mini Kit Antena Satélite com Roteador Wi-Fi']],
+  ['MLB6797156948','MLB57490176','https://meli.la/32aiNcb',
+    ['XRKv9OGoKrBbcDP0GxER','Kit de dois refletores LED — 6500 K, bivolt e IP67 anunciados',"Kit 2 Refletor Super Led 400w Ip67 Holofote Bivolt Prova D'água Branco Frio 6500k Preto"],
+    ['eb6zL5KD6hGwH5SdE6Ua',"Kit 2 Refletor Super Led 400w Ip67 Holofote Bivolt Prova D'água Branco Frio 6500k Preto"]],
 ].map(group => Object.freeze(group.map(value => Array.isArray(value) ? Object.freeze(value) : value))));
+
+// Exact records from the current backup, with explicit seller variations.
+// A shared affiliate is allowed only within this reviewed same-listing set.
+// Unknown/missing/changed proof still blocks; no generic variant exemption.
+const REVIEWED_VARIATIONS = [
+  ['1RCE8RtBHkc6aVkKZ6xB','MLB5157546240','207161735289','https://meli.la/33X4bbf',
+    'Tênis New Speed Esporte Masculino 100% Original Caminhada','Tênis masculino anunciado como New Speed — caminhada'],
+  ['B3HTtYZQAYonACif4tW1','MLB5157546240','187320292345','https://meli.la/1CVi5wv',
+    'Tênis New Speed Esporte Masculino 100% Original Caminhada'],
+  ['CO1tCKBzr6q79BOpdBZW','MLB5532075156','200557607865','https://meli.la/1ipvXiB','Tênis Kappa Pulse Rx Unissex Corrida Conforto'],
+  ['d31e9yty1t0dekViXbAi','MLB5532075156','184470902110','https://meli.la/1ipvXiB','Tênis Kappa Pulse Rx Unissex Corrida Conforto'],
+  ['mWlmlmg15okWqGyIc5bh','MLB5532075156','200557607873','https://meli.la/1ipvXiB','Tênis Kappa Pulse Rx Unissex Corrida Conforto'],
+  ['8NEAHWVWDbRD0jFU4YSn','MLB4359093019','201545712649','https://meli.la/2zzQqEV','Tênis Masculino Casual Aramis Daily Slip Confortável Moderno'],
+  ['UqO48Rj9I0f8SpOqabpv','MLB4359093019','201545712661','https://meli.la/2zzQqEV','Tênis Masculino Casual Aramis Daily Slip Confortável Moderno'],
+];
+export function explicitPublicationVariation(value) {
+  const u=new URL(value),values=[];
+  for(const params of [u.searchParams,new URLSearchParams(u.hash.slice(1))])for(const key of ['searchVariation','variation_id'])values.push(...params.getAll(key));
+  if(!values.length)return '';
+  if(values.some(v=>!/^\d{1,30}$/.test(v)||/^0+$/.test(v))||new Set(values).size!==1)throw Error('Variação de anúncio ambígua; publicação recusada.');
+  return values[0];
+}
+export function reviewedPublicationVariation(product) {
+  try {
+    const identity=publicationIdentity(product);if(!identity)return null;
+    const row=REVIEWED_VARIATIONS.find(([id,listing,variation,affiliate,...titles])=>product.id===id&&identity.listingId===listing&&identity.variationId===variation&&String(product.linkAfiliado||'').trim()===affiliate&&titles.some(t=>normalizedTitle(t)===identity.title));
+    return row?{id:row[0],listingId:identity.listingId,variationId:row[2]}:null;
+  } catch {return null;}
+}
+export function distinctReviewedPublicationVariations(left,right) {
+  const valid=p=>p&&REVIEWED_VARIATIONS.some(([id,listing,variation])=>p.id===id&&p.listingId===listing&&p.variationId===variation);
+  return Boolean(valid(left)&&valid(right)&&left.listingId===right.listingId&&left.id!==right.id&&left.variationId!==right.variationId);
+}
 
 function reviewedIdentity(product, identity) {
   for (const [listingId, catalogueId, affiliate, ...records] of REVIEWED_PUBLICATION_PAIRS) {
     if (identity.listingId !== listingId || identity.catalogueId !== catalogueId
         || String(product.linkAfiliado || '').trim() !== affiliate) continue;
-    if (records.some(([id,title]) => product.id === id && identity.title === normalizedTitle(title))) {
+    if (records.some(([id,...titles]) => product.id === id && titles.some(title=>identity.title===normalizedTitle(title)))) {
       return records.map(([id]) => id).join(':');
     }
   }
@@ -59,7 +95,7 @@ export function publicationIdentity(product) {
     // A missing catalogue is compatible with a direct seller URL, but two
     // explicitly different catalogues must not be bridged by that record.
     const catalogueId = source.pathname.match(/\/(?:p|up)\/(MLBU?\d+)(?:\/|$)/i)?.[1]?.toUpperCase() || '';
-    const identity = { listingId, catalogueId, title };
+    const identity = { listingId, catalogueId, title, variationId:explicitPublicationVariation(source.href) };
     const reviewed = reviewedIdentity(product, identity);
     return reviewed ? {...identity, reviewed} : identity;
   } catch { return null; } // Preserve ambiguous records separately; never guess.
@@ -67,6 +103,7 @@ export function publicationIdentity(product) {
 
 export function samePublicationProduct(left, right) {
   return Boolean(left && right && left.listingId === right.listingId
+    && (left.variationId||'') === (right.variationId||'')
     && (left.title === right.title || (left.reviewed && left.reviewed === right.reviewed))
     && (!left.catalogueId || !right.catalogueId || left.catalogueId === right.catalogueId));
 }
@@ -89,6 +126,8 @@ export function publicationProductGroups(products) {
     group.products.push(product);
     if (identity) group.identities.push(identity);
   }
+  // Preserve the established reviewed page, but only inside a proven group.
+  for(const group of groups)if(group.identities.length>1&&group.identities.every(i=>i.reviewed&&i.reviewed===group.identities[0].reviewed))group.preferredId=['U52A4gBWWLEmfCzONtHb','XRKv9OGoKrBbcDP0GxER'].find(id=>group.products.some(p=>p.id===id));
   return groups;
 }
 

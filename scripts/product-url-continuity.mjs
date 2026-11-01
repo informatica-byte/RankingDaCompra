@@ -4,7 +4,7 @@ import { sameHistoricalListing } from './product-deduplication.mjs';
 export function selectCanonicalProducts(groups, scoreProduct) {
   const aliases = new Map();
   const selected = [...groups].map((group) => {
-    const best = group.products.reduce((winner, product) =>
+    const best = group.products.find(product=>product.id===group.preferredId) || group.products.reduce((winner, product) =>
       !winner || scoreProduct(product) > scoreProduct(winner) ? product : winner, null);
     for (const product of group.products) {
       if (product.id !== best.id) aliases.set(product.id, best);
