@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T18:38:37.811Z",
-  "catalogueGeneratedAt": "2026-11-01T18:36:46.894Z",
+  "updatedAt": "2026-11-01T18:49:15.451Z",
+  "catalogueGeneratedAt": "2026-11-01T18:49:06.572Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 558,
-    "screened_no_change": 42,
+    "screened_no_change": 44,
     "needs_source": 8,
     "targeted_correction_complete": 89,
     "preserve_prior_review": 98,
-    "pending": 321
+    "pending": 317,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -1816,17 +1817,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "0vNEHjhD3cm0iTyBCZRe",
-      "url": "https://rankingdacompra.com.br/produto/0vNEHjhD3cm0iTyBCZRe-20260810-1.html",
-      "title": "Câmera Lâmpada De Segurança Wifi Ip App Yoosee Visão Noturna Câmera Lâmpada De Segurança Wifi",
-      "fingerprint": "795cd6da41bd2cfb03e41f8aaf6f7e554d367814cd12d7ee28f176c4a1cdb8d8",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "zuvOrERyR2wVRA9ZmYGe",
       "url": "https://rankingdacompra.com.br/produto/zuvOrERyR2wVRA9ZmYGe-20260810-1.html",
       "title": "Câmera Lâmpada IP Wi-Fi Raytechno Full HD 1080p com Visão Noturna e Sensor de Movimento",
@@ -1836,6 +1826,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "0vNEHjhD3cm0iTyBCZRe",
+      "url": "https://rankingdacompra.com.br/produto/0vNEHjhD3cm0iTyBCZRe-20260810-1.html",
+      "title": "Câmera lâmpada Wi-Fi — app Yoosee e visão noturna anunciados",
+      "fingerprint": "47ed92f16ecdaa86423d1d57ab4f3c143349052ac0dd6e9d5247cc98021dc391",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Câmera lâmpada: remove repetição do título e qualifica resolução/identificação de detalhes e transmissão como dados declarados, não desempenho comprovado. Não inventa fabricante, IP, armazenamento ou plano do app.",
+        "Snapshot público local, sem modelo/manual exatos ou teste de imagem, transmissão ou segurança. Não confirma gravação, serviço gratuito, resistência externa ou compatibilidade elétrica."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB69762894?wid=MLB4765036111"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "8oHSkf32jY7LKS2WSv36",
@@ -2887,11 +2895,16 @@
       "url": "https://rankingdacompra.com.br/produto/0UsruHJ405ImvUXyhYgW-20260810-1.html",
       "title": "Fogareiro P/ Camping Pesca Fogão A Gás Portátil 1 Boca",
       "fingerprint": "c6d6c25b289322c5f1af5ee368354020db546b2dc8a515884789cb1645bca65e",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T18:49:15.453Z",
+      "workNotes": [
+        "Fogareiro: descrição apenas informa dados do anúncio, uma boca, gás, dimensões/peso, chama ajustável e mala; não promete segurança, compatibilidade universal ou consumo. Não há erro novo comprovado para justificar reescrever.",
+        "Sem teste ou manual exato; combustível/cartucho, condições de instalação e segurança não confirmados. Nenhuma instrução operacional inventada ou transferência da ficha de outro fogareiro."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU1982149421?pdp_filters=item_id%3AMLB4031566272"
+      ]
     },
     {
       "id": "5Kojn8DcrLoydOBjq4vd",
@@ -3291,11 +3304,16 @@
       "url": "https://rankingdacompra.com.br/produto/0pP7JpudV4nPsUekxfeH-20260810-1.html",
       "title": "Garrafa Térmica Água 1,2 Litro Inox Tampa 2 Em 1 Com Canudo",
       "fingerprint": "42d4e483e04c7607252044c69e7fcec4411569217ac884a0c9dfc4340b5c18ae",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T18:49:15.453Z",
+      "workNotes": [
+        "Garrafa 1,2 L: resumo identifica capacidade, tampa/canudo e materiais do anúncio, sem prometer horas de conservação, vedação ou grau do inox. Nenhum defeito concreto novo; preservar.",
+        "Só triagem local. Não confirma materiais, retenção térmica, vedação ou segurança alimentar por teste; não inventa classificação do aço ou instruções de temperatura."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5227274240"
+      ]
     },
     {
       "id": "MEkEjNiiDdi5MpmlP07R",
@@ -5789,12 +5807,20 @@
       "id": "0TQPS3z5Mj1mWyEjdcjd",
       "url": "https://rankingdacompra.com.br/produto/0TQPS3z5Mj1mWyEjdcjd-20260810-1.html",
       "title": "Principia Kit Protetor Solar Facial Ps-01 Fps60",
-      "fingerprint": "d640ca4e4fef8af47536dfd206e2b2f595cfd63fc39082327c96ce6e96d85113",
-      "status": "pending",
+      "fingerprint": "47d009a0dd6ee7a551e1da13758a74f1a6a48be595a1ba7d21a05702535188d9",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Principia: retira totalmente resistente à água e certeza de tolerância individual. Fonte oficial declara resistência e avaliação de hipoalergenicidade; distingue referência do fabricante de autenticação do kit. Não presume 40 ml por unidade sem confirmação.",
+        "Página oficial PS-01 FPS60 consultada em 01/11/2026, seções de comprovações. Não valida a unidade do vendedor, composição/conteúdo do kit ou pele individual. Sem dosagem, intervalos de reaplicação inventados ou indicação clínica. URL do cadastro só contém catálogo, sem item de vendedor: não inventado expectedListing."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB54456751",
+        "https://www.principiaskin.com/protetor-solar-facial-ps-01-filtros-uv-niacinamida.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "uVSddfqWEhUv6l94yiMK",
@@ -9000,5 +9026,13 @@
     "testsPassed": 1381,
     "localMobileChecks": 8,
     "backendWrites": 0
+  },
+  "triage47": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "0TQPS3z5Mj1mWyEjdcjd",
+      "0vNEHjhD3cm0iTyBCZRe"
+    ],
+    "newDeepReviews": 0
   }
 }

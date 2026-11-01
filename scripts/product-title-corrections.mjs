@@ -8,6 +8,26 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['0TQPS3z5Mj1mWyEjdcjd', {
+    syncInformationalSchema:true,
+    model:/^principia\s*kit\s*protetor\s*solar\s*facial\s*ps[-\s]*01\s*fps\s*60/i,
+    summary:'O cadastro anuncia um kit Principia PS-01 FPS 60 com duas unidades e indicação de 40 ml; confirme o conteúdo do kit e o volume de cada unidade na oferta. A página oficial do PS-01 FPS 60 declara resistência à água e ao suor. Não interpretamos essa declaração como proteção total ou ilimitada: siga as instruções de aplicação e reaplicação do rótulo da unidade recebida. A fabricante também apresenta avaliação que sustenta o termo hipoalergênico, mas esta ficha não é teste próprio nem comprovação de tolerância individual. Não autenticamos as unidades do vendedor nem avaliamos desempenho, textura ou adaptação à pele. Confira versão, embalagem, validade e procedência; não substituímos orientações do rótulo ou avaliação individual por uma promessa comercial.',
+    positiveNotes:['Kit PS-01 FPS 60 identificado no cadastro; a fabricante declara resistência à água e ao suor para o produto de referência.'],
+    negativeNotes:['Resistência à água não é apresentada aqui como proteção total ou ilimitada; aplicação e reaplicação dependem do rótulo.', 'Conteúdo/volume por unidade, procedência e tolerância individual não verificados pela equipe; não é teste próprio.'],
+    contextSourceUrl:'https://www.principiaskin.com/protetor-solar-facial-ps-01-filtros-uv-niacinamida.html',
+    contextSourceLabel:'Principia PS-01 FPS 60: página oficial do produto de referência, não confirmação do kit do vendedor',
+    suppressRating:true,
+  }],
+  ['0vNEHjhD3cm0iTyBCZRe', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4765036111',
+    model:/^c[aâ]mera\s*l[aâ]mpada.*(?:yoosee|seguran[cç]a)/i,
+    correct:'Câmera lâmpada Wi-Fi — app Yoosee e visão noturna anunciados',
+    summary:'O cadastro anuncia uma câmera no formato de lâmpada com Wi-Fi em 2,4 GHz, aplicativo Yoosee, visão noturna e movimentação PTZ. A descrição informa resolução de 1080p; esse é um dado anunciado, não uma medição de imagem da equipe. Não garantimos identificar rostos, placas ou detalhes em qualquer distância ou iluminação. Marca, modelo exato e instruções não estão confirmados nesta ficha. Antes de escolher, confira alimentação, instalação compatível, recursos do aplicativo, armazenamento e eventuais condições de serviços do modelo oferecido. Não inferimos uso externo ou resistência à água pelo formato de lâmpada. Não testamos qualidade de imagem, atraso da transmissão, cobertura de movimento, visão noturna, estabilidade ou segurança do aplicativo; não apresentamos a câmera como garantia de prevenção de incidentes.',
+    positiveNotes:['Wi-Fi em 2,4 GHz, aplicativo Yoosee, visão noturna e PTZ anunciados no cadastro.'],
+    negativeNotes:['1080p é resolução declarada, não comprovação de identificação de detalhes em qualquer cenário.', 'Modelo, armazenamento, condições do aplicativo e instalação precisam de confirmação; imagem, transmissão e resistência não testadas pela equipe.'],
+    suppressRating:true,
+  }],
   ['xayABmLUPEj8yOPOfzA9', {
     syncInformationalSchema:true,
     expectedListing:'MLB7573890658',

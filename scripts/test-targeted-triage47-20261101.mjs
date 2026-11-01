@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {correctProductData} from './product-title-corrections.mjs';
+const rows=[{id:'0TQPS3z5Mj1mWyEjdcjd',titulo:'Principia Kit Protetor Solar Facial Ps-01 Fps60'},{id:'0vNEHjhD3cm0iTyBCZRe',titulo:'Câmera Lâmpada De Segurança Wifi Ip App Yoosee Visão Noturna Câmera Lâmpada De Segurança Wifi',listing:'MLB4765036111'}];
+test('triagem47 preserva identidade preços e links e rejeita acessórios e outro anúncio',()=>{
+ for(const r of rows){const p={...r,preco:'99,99',linkAfiliado:'https://meli.la/preservado',variation_id:'original'},x=correctProductData(p);for(const k of Object.keys(p).filter(k=>k!=='titulo'))assert.equal(x[k],p[k]);assert.deepEqual(correctProductData(x),x);assert.equal(correctProductData({...p,titulo:'Capa para '+r.titulo,comentario:'preservar'}).comentario,'preservar');if(r.listing)assert.equal(correctProductData({...p,link:'https://www.mercadolivre.com.br/p/MLB12345678?wid=MLB9999999999',comentario:'preservar'}).comentario,'preservar');assert.ok(x.titulo.length<=100);}
+});
+test('Principia não promete proteção total ou tolerância pessoal',()=>{const x=correctProductData(rows[0]);assert.match(x.comentario,/Não interpretamos.*proteção total ou ilimitada/);assert.match(x.comentario,/não é teste próprio nem comprovação de tolerância individual/);assert.match(x.comentario,/confirme.*volume de cada unidade/);assert.doesNotMatch(x.pros,/totalmente|100%|garant|sem alergia|\d+\s*horas|\d+\s*minutos/i);});
+test('câmera não promete detalhes universais ou inventa armazenamento e proteção',()=>{const x=correctProductData(rows[1]);assert.equal((x.titulo.match(/Câmera/g)||[]).length,1);assert.match(x.comentario,/Não garantimos identificar rostos/);assert.match(x.comentario,/Não inferimos uso externo/);assert.doesNotMatch(x.pros,/garant|4K|IP\d|cartão|nuvem grátis|preven/i);});
