@@ -3552,82 +3552,6 @@
       "url": "https://rankingdacompra.com.br/produto/kYzXt8BeErDzXsC6BlwB-20260810-1.html"
     },
     {
-      "id": "U52A4gBWWLEmfCzONtHb",
-      "title": "Fone Ouvido Bluetooth Sem Fio Prova DAgua Wireless Tipo Light Cancelamento Ruido Celular",
-      "summary": "A ficha do anúncio PRO PHONE SEE informa Bluetooth 5.3, tecnologia TWS, microfone e estojo de recarga. Os campos de formato, proteção e conectores contêm termos misturados, e o cancelamento de ruído não é identificado como ANC. A tabela menciona 4 h sem esclarecer as condições ou o total com estojo; não completamos esses dados por suposição. Não testamos áudio, resistência ou bateria.",
-      "category": "Fones de ouvido",
-      "image": "https://rankingdacompra.com.br/produto/imagens/U52A4gBWWLEmfCzONtHb-7b0a2381e3ad.jpg?v=20260810-1",
-      "price": null,
-      "checkedAt": null,
-      "recordedPrice": null,
-      "rating": 0,
-      "ranking": 0,
-      "comparison": {
-        "family": "fone-tws",
-        "features": [
-          {
-            "label": "Formato",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro",
-            "reason": "O anúncio não informa este dado com clareza para este produto.",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Versão Bluetooth",
-            "value": "Bluetooth 5.3, segundo o anúncio",
-            "state": "yes",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro",
-            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Microfone",
-            "value": "Microfone integrado, segundo o anúncio",
-            "state": "yes",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Autonomia no fone",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "reason": "A tabela informa 4 h sem descrição que esclareça a condição e a separação entre fones e estojo.",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Autonomia com estojo",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "reason": "Não há duração total com estojo informada de forma inequívoca.",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
-            "checkedAt": "2026-10-20"
-          }
-        ]
-      },
-      "url": "https://rankingdacompra.com.br/produto/U52A4gBWWLEmfCzONtHb-20260810-1.html"
-    },
-    {
       "id": "DlFv98xnrCPIAeFfbRFv",
       "title": "Fone PRO PHONE SEE — Bluetooth 5.4 anunciado; ANC e resistência a confirmar",
       "summary": "A oferta PRO PHONE SEE informa fones TWS intra-auriculares, Bluetooth 5.4, microfone integrado e duração de 3 a 5 horas de uso contínuo, variável conforme volume e utilização. O estojo é anunciado com 300 mAh, mas isso não informa horas totais de reprodução. O anúncio menciona cancelamento de ruído sem esclarecer ANC. Não reproduzimos termos de outras marcas ou classificações IP misturadas nos campos; som, conforto e bateria não foram testados.",
@@ -3700,6 +3624,82 @@
         ]
       },
       "url": "https://rankingdacompra.com.br/produto/DlFv98xnrCPIAeFfbRFv-20260810-1.html"
+    },
+    {
+      "id": "U52A4gBWWLEmfCzONtHb",
+      "title": "Fone PRO PHONE SEE TWS — Bluetooth 5.3 anunciado; proteção e ANC a confirmar",
+      "summary": "A ficha do anúncio PRO PHONE SEE informa Bluetooth 5.3, tecnologia TWS, microfone e estojo de recarga. Os campos de formato, proteção e conectores contêm termos misturados, e o cancelamento de ruído não é identificado como ANC. A tabela menciona 4 h sem esclarecer as condições ou o total com estojo; não completamos esses dados por suposição. Não testamos áudio, resistência ou bateria.",
+      "category": "Fones de ouvido",
+      "image": "https://rankingdacompra.com.br/produto/imagens/U52A4gBWWLEmfCzONtHb-7b0a2381e3ad.jpg?v=20260810-1",
+      "price": null,
+      "checkedAt": null,
+      "recordedPrice": null,
+      "rating": 0,
+      "ranking": 0,
+      "comparison": {
+        "family": "fone-tws",
+        "features": [
+          {
+            "label": "Formato",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro",
+            "reason": "O anúncio não informa este dado com clareza para este produto.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Versão Bluetooth",
+            "value": "Bluetooth 5.3, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Cancelamento ativo de ruído",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Microfone",
+            "value": "Microfone integrado, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia no fone",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "A tabela informa 4 h sem descrição que esclareça a condição e a separação entre fones e estojo.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "Não há duração total com estojo informada de forma inequívoca.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793",
+            "checkedAt": "2026-10-20"
+          }
+        ]
+      },
+      "url": "https://rankingdacompra.com.br/produto/U52A4gBWWLEmfCzONtHb-20260810-1.html"
     },
     {
       "id": "BhacwzAPIbDglRkNCoyz",
@@ -7807,8 +7807,8 @@
     },
     {
       "id": "SctMie0hqocPmrWupQLO",
-      "title": "Roçadeira Lateral A Gasolina 4 Em 1 52cc Capacidade de 1200ml 9500 Rpm Com Acessórios The Black Tools",
-      "summary": "A Roçadeira Lateral A Gasolina BRO520 da The Black Tools possui motor de 2 tempos, deslocamento de 52CC e potência de 1,55KW. O modelo oferece capacidade de 1200ml para combustível, velocidade de 9500 RPM e ignição CDI. O produto também se destaca por possuir estrutura bipartida e carburador do tipo diafragma.",
+      "title": "Roçadeira The Black Tools BRO520 — 52 cc e kit 4 em 1 anunciados",
+      "summary": "O cadastro anuncia a roçadeira a gasolina The Black Tools BRO520, com motor de dois tempos e 52 cc. A página consultada da The Black Tools também declara 1,55 kW e tanque de 1200 ml; esses números não são medições da equipe. O conjunto de referência lista cabeçote de náilon e lâminas, mas a expressão 4 em 1 não comprova que todos esses itens acompanham a oferta cadastrada. Confira a lista exata, o modelo e a compatibilidade dos acessórios antes de escolher. Não importamos os óculos, luvas ou condições comerciais de outro kit. Para montagem, combustível, proteções e equipamentos de segurança, siga o manual específico do modelo; não deduzimos instruções pela cilindrada. Não testamos potência, ruído, vibração, ergonomia ou durabilidade e não prometemos uso profissional ou trabalho contínuo garantido.",
       "category": "Ferramentas",
       "image": "https://rankingdacompra.com.br/produto/imagens/SctMie0hqocPmrWupQLO-d5da51df116b.jpg?v=20260810-1",
       "price": null,

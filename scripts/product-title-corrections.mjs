@@ -8,6 +8,25 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['SctMie0hqocPmrWupQLO', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB5254673406',
+    model:/^ro[cç]adeira.*(?:the\s*black\s*tools|bro\s*520)/i,
+    correct:'Roçadeira The Black Tools BRO520 — 52 cc e kit 4 em 1 anunciados',
+    summary:'O cadastro anuncia a roçadeira a gasolina The Black Tools BRO520, com motor de dois tempos e 52 cc. A página consultada da The Black Tools também declara 1,55 kW e tanque de 1200 ml; esses números não são medições da equipe. O conjunto de referência lista cabeçote de náilon e lâminas, mas a expressão 4 em 1 não comprova que todos esses itens acompanham a oferta cadastrada. Confira a lista exata, o modelo e a compatibilidade dos acessórios antes de escolher. Não importamos os óculos, luvas ou condições comerciais de outro kit. Para montagem, combustível, proteções e equipamentos de segurança, siga o manual específico do modelo; não deduzimos instruções pela cilindrada. Não testamos potência, ruído, vibração, ergonomia ou durabilidade e não prometemos uso profissional ou trabalho contínuo garantido.',
+    positiveNotes:['BRO520, motor de dois tempos e 52 cc identificados no cadastro e na página de referência da The Black Tools.', 'A página de referência lista cabeçote de náilon e lâminas; confira o conteúdo do kit efetivamente vendido.'],
+    negativeNotes:['Potência e capacidade são declarações da fonte, não resultados de teste; ruído, vibração, peso em uso e ergonomia não foram avaliados.', 'Conteúdo, acessórios compatíveis e instruções precisam ser confirmados no manual e na oferta; sem promessa de trabalho contínuo ou adequação profissional.'],
+    contextSourceUrl:'https://theblacktools.com/produtos/rocadeira-a-gasolina-profissional-52cc-2hp-4-em-1-completa-acessorios/',
+    contextSourceLabel:'The Black Tools BRO520: página de um kit de referência, sem confirmar a unidade ou todos os acessórios da oferta',
+    suppressRating:true,
+  }],
+  ['U52A4gBWWLEmfCzONtHb', {
+    syncInformationalSchema:true,
+    model:/^fone.*(?:bluetooth|pro\s*phone\s*see)/i,
+    expectedListing:'MLB5105857793',
+    correct:'Fone PRO PHONE SEE TWS — Bluetooth 5.3 anunciado; proteção e ANC a confirmar',
+  }],
   ['cjtpmssewHcTpdqJlbS6', {
     syncInformationalSchema:true,
     model:/^(?:tablet\s+)?positivo\s+vision\s+tab\s*10\b.*\bt3010\b/i,

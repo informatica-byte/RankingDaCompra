@@ -24,6 +24,7 @@ test('31 revisões são específicas, preservam cadastros e não viram preços o
       else if(id==='kYzXt8BeErDzXsC6BlwB'&&key==='titulo')assert.equal(after[key],'Fone Havit TW982 ENC Bluetooth 5.4 preto');
       else if(id==='DlFv98xnrCPIAeFfbRFv'&&key==='titulo')assert.equal(after[key],'Fone PRO PHONE SEE — Bluetooth 5.4 anunciado; ANC e resistência a confirmar');
       else if(id==='FWRyLtto1bKeKurNikKq'&&key==='titulo')assert.equal(after[key],'Fone FORESTORY X5 — Bluetooth 5.3, formato e autonomia a confirmar');
+      else if(id==='U52A4gBWWLEmfCzONtHb'&&key==='titulo')assert.equal(after[key],'Fone PRO PHONE SEE TWS — Bluetooth 5.3 anunciado; proteção e ANC a confirmar');
       else if(!['comentario','pros','contras','nota','notaInformada'].includes(key))assert.deepEqual(after[key],value,id+':'+key);
     }
     assert.equal(JSON.stringify(p),before);assert.deepEqual(correctProductData(after),after);

@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "SctMie0hqocPmrWupQLO",
-      "SJRf3jhIFlr1BQadDNnH",
-      "U52A4gBWWLEmfCzONtHb",
-      "VgB90DThWdh8uyXUeE3U",
       "XRKv9OGoKrBbcDP0GxER",
       "z507ObVuMlSEBSnK40Uc",
       "1tIzUpXs4udqZOZwpQX7",
-      "51cYaPGtvus2ayLrbFwH"
+      "51cYaPGtvus2ayLrbFwH",
+      "5Kojn8DcrLoydOBjq4vd",
+      "CEVlNR7lM1QTwgcn0tRu",
+      "CFEyN1hdeMSM6BS89h5o",
+      "cSmjEdmFugRGDdJHkMcR"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T09:32:32.190Z",
-  "catalogueGeneratedAt": "2026-11-01T09:29:18.354Z",
+  "updatedAt": "2026-11-01T10:02:42.222Z",
+  "catalogueGeneratedAt": "2026-11-01T10:01:58.820Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,12 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 554,
-    "screened_no_change": 26,
+    "screened_no_change": 28,
     "needs_source": 7,
     "targeted_correction_complete": 57,
     "preserve_prior_review": 98,
-    "pending": 361,
-    "prepared_awaiting_publication": 5
+    "pending": 357,
+    "prepared_awaiting_publication": 7
   },
   "items": [
     {
@@ -2994,17 +2994,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "U52A4gBWWLEmfCzONtHb",
-      "url": "https://rankingdacompra.com.br/produto/U52A4gBWWLEmfCzONtHb-20260810-1.html",
-      "title": "Fone Ouvido Bluetooth Sem Fio Prova DAgua Wireless Tipo Light Cancelamento Ruido Celular",
-      "fingerprint": "f946ea0a6d1bf85163f5d2785dddd3721a2d3eb90e4e72ee7bb7e88cc843cd47",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "DlFv98xnrCPIAeFfbRFv",
       "url": "https://rankingdacompra.com.br/produto/DlFv98xnrCPIAeFfbRFv-20260810-1.html",
       "title": "Fone PRO PHONE SEE — Bluetooth 5.4 anunciado; ANC e resistência a confirmar",
@@ -3024,6 +3013,27 @@
       "changedSinceCheckpoint": true,
       "preparedAt": "2026-11-01T09:32:32.191Z",
       "preparedBatch": 35
+    },
+    {
+      "id": "U52A4gBWWLEmfCzONtHb",
+      "url": "https://rankingdacompra.com.br/produto/U52A4gBWWLEmfCzONtHb-20260810-1.html",
+      "title": "Fone PRO PHONE SEE TWS — Bluetooth 5.3 anunciado; proteção e ANC a confirmar",
+      "fingerprint": "688728d367029c4c9487512a6e15d0c39616a3ff419c1b6eb31292a8b1fd794e",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Somente título: água/cancelamento deixam de ser afirmações comprovadas e Light deixa de sugerir conector confirmado. Mantém PRO PHONE SEE/TWS/Bluetooth 5.3 atribuídos ao anúncio, com proteção/ANC pendentes. Corpo, características, família e fontes da revisão anterior iguais.",
+        "Não repetida consulta do anúncio registrado em 20/10 ou teste de produto. Não escolhidos formato, conector, proteção IP, duração por carga ou total do estojo; preservado anúncio distinto do PRO PHONE SEE 5.4 anterior.",
+        "Prepared locally only; production verification is still required."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T10:02:42.223Z",
+      "preparedBatch": 36
     },
     {
       "id": "BhacwzAPIbDglRkNCoyz",
@@ -3277,11 +3287,16 @@
       "url": "https://rankingdacompra.com.br/produto/VgB90DThWdh8uyXUeE3U-20260810-1.html",
       "title": "Headset Gamer Com Fio Mageon Vermelho Com Microfone Ajustável",
       "fingerprint": "58a4b5216988b7638a5749fb8addf16000a95539e84599ef58dbbef5ccef3f3b",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T10:02:42.223Z",
+      "workNotes": [
+        "Mageon já especifica headset analógico com dois plugs, ausência de Bluetooth atribuída ao anúncio e eventual necessidade de adaptador. Sem promessa universal ou autonomia fictícia. Nenhuma alteração necessária; ficha preservada.",
+        "Triagem da ficha anteriormente revisada, sem repetir conferência ou validar áudio, encaixe, microfone e compatibilidade por teste. Não acrescentados formato on-ear/over-ear ou adaptador incluso."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB57322445?pdp_filters=item_id%3AMLB4959327979"
+      ]
     },
     {
       "id": "sX3K2gzcggu9lkVSke0Q",
@@ -4800,11 +4815,16 @@
       "url": "https://rankingdacompra.com.br/produto/SJRf3jhIFlr1BQadDNnH-20260810-1.html",
       "title": "Notebook Gamer Lenovo LOQ 15IRX9 Intel Core i5-13450HX RTX 3050 8GB 512GB SSD windows 11",
       "fingerprint": "bac9239a69576916628a53b5fa513be1543430d45a7b7ef84e3cd6cfc6281bee",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T10:02:42.223Z",
+      "workNotes": [
+        "LOQ já identifica 83KH0001BR informado pelo responsável, separa RAM/VRAM e condiciona especificações à configuração de fábrica. Não há defeito concreto novo; título, resumo, tabela e dados permanecem iguais.",
+        "Triagem do conteúdo e da revisão anterior de 20/10, sem nova consulta de anúncio, confirmação de estoque, benchmark ou validação da unidade. Não transferidas configurações de outro LOQ."
+      ],
+      "sourceLinks": [
+        "https://www.lenovo.com/br/pt/p/laptops/loq-laptops/88lq3001926/83kh0001br"
+      ]
     },
     {
       "id": "OJulxennkkhusiTWA3Wt",
@@ -5738,13 +5758,23 @@
     {
       "id": "SctMie0hqocPmrWupQLO",
       "url": "https://rankingdacompra.com.br/produto/SctMie0hqocPmrWupQLO-20260810-1.html",
-      "title": "Roçadeira Lateral A Gasolina 4 Em 1 52cc Capacidade de 1200ml 9500 Rpm Com Acessórios The Black Tools",
-      "fingerprint": "60304604d199df55d8868c7d8bfe8457b3ab93684514f4d2503f89bb8e6bc964",
-      "status": "pending",
+      "title": "Roçadeira The Black Tools BRO520 — 52 cc e kit 4 em 1 anunciados",
+      "fingerprint": "a6d18c850bc91ab710f6bba135f14a8c6c9c03c2e8572c16d5d314a4323f8116",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Substitui ficha que apresentava números sem atribuição/limites por resumo da BRO520 com dados declarados e escopo do kit a confirmar. Título identifica o modelo já presente no corpo. Não transfere acessórios extras, garantia ou a alegação de 120 h contínuas para a oferta.",
+        "Página The Black Tools aberta e lida, referente ao kit SKU KIT23636_19458_22463. Não foi confirmada identidade desse conjunto com a unidade do anúncio. Sem medições de potência, rotação, ruído, vibração, peso em uso ou ergonomia; sem recomendar lâminas, mistura de combustível ou uso profissional. Manual específico não substituído por inferência.",
+        "Prepared locally only; production verification is still required."
+      ],
+      "sourceLinks": [
+        "https://theblacktools.com/produtos/rocadeira-a-gasolina-profissional-52cc-2hp-4-em-1-completa-acessorios/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T10:02:42.223Z",
+      "preparedBatch": 36
     },
     {
       "id": "ik7zBiCAAqDLqr9Di5Ue",
@@ -7857,7 +7887,10 @@
     "localOnly": true,
     "reviewedOneByOne": true,
     "nextEditorialId": "SctMie0hqocPmrWupQLO",
-    "headingRecoveryScope": ["DlFv98xnrCPIAeFfbRFv", "mlMLB5212483469"],
+    "headingRecoveryScope": [
+      "DlFv98xnrCPIAeFfbRFv",
+      "mlMLB5212483469"
+    ],
     "newDeepReviews": 0,
     "batches": [
       34,
@@ -7916,18 +7949,78 @@
     "status": "awaiting_github_pages_release",
     "batches": [
       34,
-      35
+      35,
+      36
     ],
     "manifestDate": "20261101",
     "ids": [
       "DlFv98xnrCPIAeFfbRFv",
       "FWRyLtto1bKeKurNikKq",
+      "SctMie0hqocPmrWupQLO",
+      "U52A4gBWWLEmfCzONtHb",
       "cjtpmssewHcTpdqJlbS6",
       "mlMLB5212483469",
       "w4grNjrGMy69omEzW0QP"
     ],
-    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35 20261101",
+    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35,36 20261101",
     "supportTicket": "4935458",
     "doNotRepeatReviews": true
+  },
+  "triage36": {
+    "at": "2026-11-01T10:02:42.223Z",
+    "status": "prepared_awaiting_publication",
+    "batches": [
+      34,
+      35,
+      36
+    ],
+    "preparedIds": [
+      "DlFv98xnrCPIAeFfbRFv",
+      "FWRyLtto1bKeKurNikKq",
+      "SctMie0hqocPmrWupQLO",
+      "U52A4gBWWLEmfCzONtHb",
+      "cjtpmssewHcTpdqJlbS6",
+      "mlMLB5212483469",
+      "w4grNjrGMy69omEzW0QP"
+    ],
+    "newPreparedIds": [
+      "SctMie0hqocPmrWupQLO",
+      "U52A4gBWWLEmfCzONtHb"
+    ],
+    "screenedNoChangeIds": [
+      "SJRf3jhIFlr1BQadDNnH",
+      "VgB90DThWdh8uyXUeE3U"
+    ],
+    "newDeepReviews": 0,
+    "products": 554,
+    "protectedRecords": 554,
+    "sitemapUrls": 607,
+    "unchangedOutsideRelease": 547,
+    "protectedDeepReviews": 98,
+    "testsPassed": 1331,
+    "staticMobileChecks": 8,
+    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35,36 20261101",
+    "productionVerified": false,
+    "publicationAttempted": false,
+    "noFirestoreEditorial": true,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-local-triagem36.json",
+    "remainingDependencies": [
+      {
+        "id": "SctMie0hqocPmrWupQLO",
+        "note": "Página The Black Tools aberta e lida, referente ao kit SKU KIT23636_19458_22463. Não foi confirmada identidade desse conjunto com a unidade do anúncio. Sem medições de potência, rotação, ruído, vibração, peso em uso ou ergonomia; sem recomendar lâminas, mistura de combustível ou uso profissional. Manual específico não substituído por inferência."
+      },
+      {
+        "id": "SJRf3jhIFlr1BQadDNnH",
+        "note": "Triagem do conteúdo e da revisão anterior de 20/10, sem nova consulta de anúncio, confirmação de estoque, benchmark ou validação da unidade. Não transferidas configurações de outro LOQ."
+      },
+      {
+        "id": "U52A4gBWWLEmfCzONtHb",
+        "note": "Não repetida consulta do anúncio registrado em 20/10 ou teste de produto. Não escolhidos formato, conector, proteção IP, duração por carga ou total do estojo; preservado anúncio distinto do PRO PHONE SEE 5.4 anterior."
+      },
+      {
+        "id": "VgB90DThWdh8uyXUeE3U",
+        "note": "Triagem da ficha anteriormente revisada, sem repetir conferência ou validar áudio, encaixe, microfone e compatibilidade por teste. Não acrescentados formato on-ear/over-ear ou adaptador incluso."
+      }
+    ]
   }
 }
