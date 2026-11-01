@@ -8075,6 +8075,10 @@
   "triage37": {
     "at": "2026-11-01T10:34:35.871Z",
     "status": "prepared_awaiting_publication",
+    "sourceCommit": "48f5b80ffad67c8944d023dbe5616bf1868e752f",
+    "localOnly": true,
+    "reviewedOneByOne": true,
+    "nextEditorialId": "5Kojn8DcrLoydOBjq4vd",
     "batches": [
       34,
       35,
