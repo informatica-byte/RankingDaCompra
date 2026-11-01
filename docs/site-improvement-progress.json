@@ -10,8 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "M0Zj2K84Q8PX0YTQMIHz",
-      "Q89e0KvH53UoCpELiwiW"
+      "r2AJAqnKZR0UvB1V4MRz",
+      "UxB7AJhrBhm36FCTachh",
+      "wDxxKZn5CFPm3f34ziP2",
+      "1RCE8RtBHkc6aVkKZ6xB",
+      "BhacwzAPIbDglRkNCoyz",
+      "zpNUAIiuFr5Eo0TbkaKm",
+      "28xGyV66fEYlx6CnRxIq",
+      "7W5TZBLUNQOGfenrgEtg"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -618,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T00:04:38.409Z",
-  "catalogueGeneratedAt": "2026-11-01T00:03:18.145Z",
+  "updatedAt": "2026-11-01T00:13:03.348Z",
+  "catalogueGeneratedAt": "2026-11-01T00:11:15.161Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -630,12 +636,12 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 553,
+    "total": 554,
     "screened_no_change": 21,
     "needs_source": 7,
-    "targeted_correction_complete": 41,
+    "targeted_correction_complete": 43,
     "preserve_prior_review": 98,
-    "pending": 386
+    "pending": 385
   },
   "items": [
     {
@@ -2132,6 +2138,17 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB6794388344",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6794388344-20260810-1.html",
+      "title": "Celular Samsung Galaxy A37 5G 128GB, 6GB RAM",
+      "fingerprint": "eb2b1111ef9ec4755c2a9be73fd29720d94a6165d3bfd4e18ef595367ba36223",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
     },
     {
       "id": "35hImqo3QJm6moaV4OzO",
@@ -6130,6 +6147,25 @@
       "sourceLinks": []
     },
     {
+      "id": "M0Zj2K84Q8PX0YTQMIHz",
+      "url": "https://rankingdacompra.com.br/produto/M0Zj2K84Q8PX0YTQMIHz-20260810-1.html",
+      "title": "Smartwatch Novante — recursos conforme o anúncio",
+      "fingerprint": "864b1f522e8c29360c8f8607a2b5caf1a9b22ead48c356a4dd7ce22c779128c8",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-11-01T00:13:03.325Z",
+      "workNotes": [
+        "Encurta título excessivo sem repetir alegações de proteção/autonomia como garantias. Conserva integralmente a análise declaratória da oferta lida em 22/10, tabela, fontes e ressalvas já existentes; não há nova confirmação de recursos.",
+        "Fonte preservada do trabalho anterior de 22/10; não relida nesta passagem. Peso, autonomia, sensores e condições de proteção continuam não validados.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65117366?pdp_filters=item_id%3AMLB6208101802"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "Znhr4d5uhDKsj5poLEmZ",
       "url": "https://rankingdacompra.com.br/produto/Znhr4d5uhDKsj5poLEmZ-20260810-1.html",
       "title": "Smartwatch NOVANTE Alexa e chamadas Bluetooth — anúncio MLB4460735385",
@@ -6147,17 +6183,6 @@
       "fingerprint": "a98b79ffa4f737570caa82eb5f42e6e5e8a8ab238d3d261974b6068423795c47",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "M0Zj2K84Q8PX0YTQMIHz",
-      "url": "https://rankingdacompra.com.br/produto/M0Zj2K84Q8PX0YTQMIHz-20260810-1.html",
-      "title": "Smartwatch Relógio Inteligente Gps Chamadas Bluetooth Novante Masculino Feminino Moda Esportivo Digital Preto Ipx8 Água Tela Hd 1.83 480mah Android Ios Notificações Instantâneas Com Lanterna Bússola",
-      "fingerprint": "2764dcc8ea6619efdab746533146226532f6167ba1c313adcb2626cc3cd035a9",
-      "status": "pending",
-      "previousReviewPresent": false,
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
@@ -6324,13 +6349,21 @@
     {
       "id": "Q89e0KvH53UoCpELiwiW",
       "url": "https://rankingdacompra.com.br/produto/Q89e0KvH53UoCpELiwiW-20260810-1.html",
-      "title": "Tênis Asics Trabuco Terra 3 Trilha Feminino Escalada",
-      "fingerprint": "8607a97e87e300d95055e634065ece41287a63fb4ef9ff043d9072289f9d9b42",
-      "status": "pending",
+      "title": "Tênis ASICS Trabuco Terra 3 feminino — trilha",
+      "fingerprint": "8b71fab726adece25d984ef6ccc987815658984d6335079c4682236f8da897b9",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T00:13:03.325Z",
+      "workNotes": [
+        "Remove Escalada como indicação comprovada do título e descrição; mantém identidade comercial e trilha. Página oficial ASICS identifica a linha como Trail Running, sem comprovar variante/autenticidade da unidade do anúncio. Nenhuma especificação foi importada de outra cor ou mercado.",
+        "Consultado somente contexto oficial de linha/categoria; sem manual específico ou confirmação de código/numeração da oferta. Página brasileira retornou conteúdo inicialmente, mas releitura falhou; não usada para acrescentar recursos.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [
+        "https://www.asics.com/gb/en-gb/gel-trabuco-terra-3/p/1012B925-400.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "ypj5xGtjDkHWV6xVFgfd",
@@ -7313,6 +7346,34 @@
       {
         "id": "iw5yKjD39u1kQ8Vm8ybv",
         "note": "Modelo, perfis de saída, cabo, potência, compatibilidade e documentação da unidade não comprovados. Não declarar que o produto é necessariamente falso ou inseguro sem evidência."
+      }
+    ]
+  },
+  "triage25": {
+    "status": "published_verified",
+    "sourceCommit": "a08a86c26ebb2bb7ea032fa6b0a9ad36d9f18c58",
+    "generatedCommit": "8d4b0235fd51d09f12f78f97ec22789096807bb8",
+    "integrityRun": 41255614472,
+    "sitemapRun": 41255614349,
+    "pagesRun": 41255647371,
+    "testsPassed": 1287,
+    "novanteBodyComparisonAndPriorSourcesPreserved": true,
+    "localVisualQA": "Two local static pages at 360 and 390px; no overflow, price or title mismatch. All external requests blocked; not an image loading, live-script, physical-device or product test. Asics screenshot inspected.",
+    "verifiedAt": "2026-11-01T00:13:03.325Z",
+    "changedIds": [
+      "M0Zj2K84Q8PX0YTQMIHz",
+      "Q89e0KvH53UoCpELiwiW"
+    ],
+    "newDeepReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem25.json",
+    "remainingDependencies": [
+      {
+        "id": "M0Zj2K84Q8PX0YTQMIHz",
+        "note": "Fonte preservada do trabalho anterior de 22/10; não relida nesta passagem. Peso, autonomia, sensores e condições de proteção continuam não validados."
+      },
+      {
+        "id": "Q89e0KvH53UoCpELiwiW",
+        "note": "Consultado somente contexto oficial de linha/categoria; sem manual específico ou confirmação de código/numeração da oferta. Página brasileira retornou conteúdo inicialmente, mas releitura falhou; não usada para acrescentar recursos."
       }
     ]
   }
