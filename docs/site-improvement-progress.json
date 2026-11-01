@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "kYzXt8BeErDzXsC6BlwB",
-      "mlMLB4513080577",
       "rERcfIbgG1c0uUdNlQ4o",
       "SFcayTGVGtzWrkpt4uFw",
       "sZGVRAGBdFaBYSOQbSO8",
       "W309Bngb9vy88pxNSAn5",
       "w4grNjrGMy69omEzW0QP",
-      "YdPOVmrHVJ8EO7fmgyXu"
+      "YdPOVmrHVJ8EO7fmgyXu",
+      "cjtpmssewHcTpdqJlbS6",
+      "DlFv98xnrCPIAeFfbRFv"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T01:02:12.869Z",
-  "catalogueGeneratedAt": "2026-11-01T00:55:01.278Z",
+  "updatedAt": "2026-11-01T01:11:07.951Z",
+  "catalogueGeneratedAt": "2026-11-01T01:09:58.703Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,11 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 554,
-    "screened_no_change": 22,
+    "screened_no_change": 23,
     "needs_source": 7,
-    "targeted_correction_complete": 54,
+    "targeted_correction_complete": 55,
     "preserve_prior_review": 98,
-    "pending": 373
+    "pending": 371
   },
   "items": [
     {
@@ -2950,13 +2950,22 @@
     {
       "id": "kYzXt8BeErDzXsC6BlwB",
       "url": "https://rankingdacompra.com.br/produto/kYzXt8BeErDzXsC6BlwB-20260810-1.html",
-      "title": "Fone De Ouvido Sem Fio Havit Tw982 Enc Bluetooth 5.3 Cor Preto",
-      "fingerprint": "d891204ee8dc696f6ad45ab604cbb8aeea94c20daba0c55b8414298c2bace75b",
-      "status": "pending",
+      "title": "Fone Havit TW982 ENC Bluetooth 5.4 preto",
+      "fingerprint": "a440228ea597041aa7922dee1e3e304943dbdb5523d435a97eb249cec19d6548",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T01:11:07.912Z",
+      "workNotes": [
+        "Alinha o título público Bluetooth 5.3 à versão 5.4 já documentada na ficha e no snapshot. Preserva integralmente o resumo, a tabela técnica, as ressalvas ENC/ANC e a revisão anterior; não importa TW982 Pro. Restringe o identificador para não atingir acessórios.",
+        "Página oficial do TW982 reaberta; especificações ilustradas já registradas em 20/10 foram preservadas. Não houve novo teste do fone, autenticação da unidade ou revisão da disponibilidade do anúncio.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [
+        "https://havitsmart.com/es/products/havit-life-01t-true-wireless-stereo-earbuds-tw982",
+        "https://cdn.shopify.com/s/files/1/0755/1365/9703/files/01T-_TW982_-page_-_-2024.05_14.jpg?v=1788255515"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "DlFv98xnrCPIAeFfbRFv",
@@ -6494,11 +6503,17 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4513080577-20260810-1.html",
       "title": "Tênis Em Couro Sneaker Masculino Casual Matteo Classic Ease",
       "fingerprint": "9991015a1fc5c3fad443ab8d7fb01df90b60c2bced60a2b4c3de2415b3b90b62",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T01:11:07.912Z",
+      "workNotes": [
+        "Ficha limitada, mas já explicita falta de evidência, atribui as informações ao anúncio e não promete conforto ou desempenho. Nome, marca e uso casual são coerentes com o resultado indexado do próprio anúncio MLB4513080577. Sem defeito novo que justifique reescrever; permanece sem análise documental aprofundada.",
+        "Abertura direta retornou 403; o resultado indexado do anúncio não confirma a condição atual, materiais da unidade, medidas, conforto ou durabilidade. Não completados forro e solado, cujas seções indexadas diferem. Nenhuma especificação de outro Matteo foi transferida.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4513080577-tnis-em-couro-sneaker-masculino-casual-matteo-classic-ease-_JM"
+      ]
     },
     {
       "id": "7QHXFlimzdpfKr7yfo0T",
@@ -7586,7 +7601,11 @@
     "pagesRun": 41258853429,
     "testsPassed": 1302,
     "phoneOnlyTitleChanged": true,
-    "publicationRecovery": {"supersededRun":41258815505,"action":"Canceled only the superseded initial Pages execution through the authenticated GitHub UI after it kept the newer validated run pending. No artifact/product/data deletion; latest run completed successfully.","proof":"outputs/melhorias-integrais-20261030/pages-publicado-triagem30.png"},
+    "publicationRecovery": {
+      "supersededRun": 41258815505,
+      "action": "Canceled only the superseded initial Pages execution through the authenticated GitHub UI after it kept the newer validated run pending. No artifact/product/data deletion; latest run completed successfully.",
+      "proof": "outputs/melhorias-integrais-20261030/pages-publicado-triagem30.png"
+    },
     "localVisualQA": "Both static local pages passed at 360/390px, external requests blocked; HY320 screenshot inspected. Not a physical-device, image-loading, live-script or product performance verification.",
     "verifiedAt": "2026-11-01T01:02:12.844Z",
     "changedIds": [
@@ -7603,6 +7622,34 @@
       {
         "id": "kiQqRnm6rDj50U2HaOb3",
         "note": "Sem manual específico confirmado para marca/revisão da unidade. Brilho, resolução, sistema, conexões e serviços continuam a conferir; resultados de outras marcas não completam a ficha. Nenhum cadastro no Firestore foi alterado."
+      }
+    ]
+  },
+  "triage31": {
+    "status": "published_verified",
+    "sourceCommit": "ee863a702",
+    "generatedCommit": "a78614fc87a37a409533b482dd09a886d98663ac",
+    "integrityRun": 41259891938,
+    "sitemapRun": 41259892039,
+    "pagesRun": 41259927767,
+    "testsPassed": 1305,
+    "havitOnlyTitleChanged": true,
+    "matteoUnchanged": true,
+    "localVisualQA": "Both static local pages passed at 360/390px, external requests blocked; Havit screenshot inspected. Not a physical-device, image-loading, live-script or product performance verification.",
+    "verifiedAt": "2026-11-01T01:11:07.912Z",
+    "changedIds": [
+      "kYzXt8BeErDzXsC6BlwB"
+    ],
+    "newDeepReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem31.json",
+    "remainingDependencies": [
+      {
+        "id": "kYzXt8BeErDzXsC6BlwB",
+        "note": "Página oficial do TW982 reaberta; especificações ilustradas já registradas em 20/10 foram preservadas. Não houve novo teste do fone, autenticação da unidade ou revisão da disponibilidade do anúncio."
+      },
+      {
+        "id": "mlMLB4513080577",
+        "note": "Abertura direta retornou 403; o resultado indexado do anúncio não confirma a condição atual, materiais da unidade, medidas, conforto ou durabilidade. Não completados forro e solado, cujas seções indexadas diferem. Nenhuma especificação de outro Matteo foi transferida."
       }
     ]
   }
