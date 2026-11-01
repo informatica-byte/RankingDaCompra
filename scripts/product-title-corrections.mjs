@@ -8,6 +8,15 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['xayABmLUPEj8yOPOfzA9', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB7573890658',
+    model:/^patinete\s*infantil\s*triciclo\s*dobr[aá]vel\s*scooter/i,
+    summary:'O anúncio identifica um patinete infantil de três rodas, dobrável e com LED, e informa materiais em metal e PVC e necessidade de montagem. O campo de marca reúne termos descritivos, sem identificar claramente um fabricante; não o tratamos como marca confirmada. O limite de 70 kg aparece no título, mas não é resultado de teste da equipe nem comprova adequação para uma criança de qualquer idade ou altura. Antes de escolher, confira faixa etária, dimensões, ajustes, sistema de freio e instruções de montagem e supervisão do modelo específico. Não deduzimos estabilidade, resistência ou segurança apenas pela presença de três rodas. Não testamos o produto nem confirmamos certificações; consulte as informações da embalagem, o manual e o vendedor, sem substituir as restrições do fabricante por esta descrição.',
+    positiveNotes:['Três rodas, formato dobrável, LED e montagem necessária anunciados no cadastro; confirme o conjunto vendido.'],
+    negativeNotes:['Fabricante, faixa etária, dimensões, freios e certificações não confirmados nesta ficha.', '70 kg é um limite anunciado, não aprovação de uso para toda criança; estabilidade, resistência e segurança não foram testadas.'],
+    suppressRating:true,
+  }],
   ['vDQlmcCO0HZUBNi2DUxd', {
     syncInformationalSchema:true,
     allowTruncatedHeading:true,

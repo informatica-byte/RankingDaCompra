@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T18:29:16.069Z",
-  "catalogueGeneratedAt": "2026-11-01T18:27:34.840Z",
+  "updatedAt": "2026-11-01T18:33:59.494Z",
+  "catalogueGeneratedAt": "2026-11-01T18:33:51.672Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 558,
-    "screened_no_change": 40,
-    "needs_source": 7,
+    "screened_no_change": 42,
+    "needs_source": 8,
     "targeted_correction_complete": 88,
     "preserve_prior_review": 98,
-    "pending": 325
+    "pending": 321,
+    "prepared_awaiting_publication": 1
   },
   "items": [
     {
@@ -2834,11 +2835,16 @@
       "url": "https://rankingdacompra.com.br/produto/0ME2VNUjuL6XoxtKE8ur-20260810-1.html",
       "title": "Expositor Mdf Para Miniaturas Hot Wheels Brinquedo Com Led",
       "fingerprint": "634aedfc23447c290da48410bca7145d1e0455332a52ec17d8665863188c29e1",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T18:33:59.496Z",
+      "workNotes": [
+        "Expositor MDF: resumo cadastral contém dimensões/material/prateleiras atribuídos aos dados do anúncio, sem promessa de resistência, escala universal, licenciamento ou miniaturas incluídas. Não ampliar sem fonte.",
+        "Informação pública local limitada; medidas, montagem, alimentação do LED, carga e itens incluídos não verificados. Não é teste de brinquedo ou recomendação etária."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3476022430?pdp_filters=item_id%3AMLB5772919296"
+      ]
     },
     {
       "id": "6C1vEnfqaRRxkR4DIGa6",
@@ -4545,11 +4551,16 @@
       "url": "https://rankingdacompra.com.br/produto/0o2cubZBfwlgcwFokAWY-20260810-1.html",
       "title": "Maquininha De Cartao Pro 3 Mercado Pago Point Amarela Claro 4gwifinfc",
       "fingerprint": "6b4bb339b39a92748d26709b31af9966d19e7fa6a7dc2a796fe1e0eb705c15bb",
-      "status": "pending",
+      "status": "needs_source",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Maquininha Point Pro 3: título do cadastro cita Claro; o endereço original tem Vivo no slug. O slug sozinho não confirma a operadora atual, portanto não escolher, trocar variante ou editar cadastro.",
+        "Pendente confirmar o campo atual da operadora na oferta específica MLB6040467738. Texto, links, título e variante mantidos. Não concluir como revisado ou importar especificações de outra versão."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/maquininha-de-cartao-pro-3-mercado-pago-point-amarela-vivo-4gwifinfc/p/MLB50744233?pdp_filters=item_id%3AMLB6040467738"
+      ]
     },
     {
       "id": "gmzJCKnbLsVLIZilQGSe",
@@ -5266,12 +5277,19 @@
       "id": "xayABmLUPEj8yOPOfzA9",
       "url": "https://rankingdacompra.com.br/produto/xayABmLUPEj8yOPOfzA9-20260810-1.html",
       "title": "Patinete Infantil Triciclo Dobrável Scooter 3 Rodas Led 70kg",
-      "fingerprint": "e5cc92e9a7034c23622307e4b9aeb662767327e0d3f3010b1ea468e204c894aa",
-      "status": "pending",
+      "fingerprint": "c1095644d7227d6a097f74e46d1c78bc7b437a1eb4ddae3a4ef7ccb19e739d0e",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Patinete infantil: campo de marca descritivo não vira fabricante confirmado; limite de 70 kg fica atribuído ao anúncio e não comprova idade/altura ou segurança. Sem inventar freios, certificações ou faixa etária.",
+        "Snapshot público local. Não foi testado, montado ou certificado pela equipe; sem manual específico ou fabricante inequívoco. Não acrescenta instrução de uso/montagem ou recomendação etária."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5088119812?pdp_filters=item_id%3AMLB7573890658"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "DatIY5m4eQ3X4KOykiAY",
@@ -6567,11 +6585,16 @@
       "url": "https://rankingdacompra.com.br/produto/Znhr4d5uhDKsj5poLEmZ-20260810-1.html",
       "title": "Smartwatch NOVANTE Alexa e chamadas Bluetooth — anúncio MLB4460735385",
       "fingerprint": "417473229789a4ca00928f0fb11d9d2514867053ab5fc5e2bcc5a5f9baf7d9b9",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T18:33:59.496Z",
+      "workNotes": [
+        "Novante HT-1303 já distingue GPS ausente, IP68 declarado e falta de validação de sensores/ECG/autonomia. Sem defeito novo: preservar integralmente e não repetir revisão de 22/10.",
+        "Triagem local do texto anterior, não novo teste ou autenticação do anúncio/modelo. Sem promessa de natação, banho ou diagnóstico."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65974451?pdp_filters=item_id%3AMLB4460735385"
+      ]
     },
     {
       "id": "UkgpEmnU2nSDUmOujW6W",
@@ -8936,5 +8959,12 @@
     "testsPassed": 1379,
     "localMobileChecks": 8,
     "backendWrites": 0
+  },
+  "triage46": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "xayABmLUPEj8yOPOfzA9"
+    ],
+    "newDeepReviews": 0
   }
 }

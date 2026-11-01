@@ -17,7 +17,7 @@ if(mode==='before'){
  assert.deepEqual(before.products.filter(x=>JSON.stringify(x)!==JSON.stringify(byId.get(x.id))).map(x=>x.id).sort(),changed);
  const old=await json('docs/site-improvement-progress.json'),p=refreshLedger(c,old);
  if(mode==='refresh-prepared')assert.equal(old['triage'+batch]?.status,'prepared_awaiting_publication');
- for(const r of m.items){const prior=old.items.find(x=>x.id===r.id);assert.equal(prior.status,mode==='prepare'?'pending':r.decision==='screened_no_change'?'screened_no_change':'prepared_awaiting_publication');const x=p.items.find(x=>x.id===r.id);x.status=r.decision==='screened_no_change'?r.decision:'prepared_awaiting_publication';x.workNotes=[r.reason,r.sourceLimit];x.sourceLinks=r.sourceLinks;if(x.status==='screened_no_change')x.lastCompletedAt=prior.lastCompletedAt||new Date().toISOString();}
+ for(const r of m.items){assert.ok(['targeted_correction_complete','screened_no_change','needs_source'].includes(r.decision));const state=r.decision==='targeted_correction_complete'?'prepared_awaiting_publication':r.decision;const prior=old.items.find(x=>x.id===r.id);assert.equal(prior.status,mode==='prepare'?'pending':state);const x=p.items.find(x=>x.id===r.id);x.status=state;x.workNotes=[r.reason,r.sourceLimit];x.sourceLinks=r.sourceLinks;if(x.status==='screened_no_change')x.lastCompletedAt=prior.lastCompletedAt||new Date().toISOString();}
  for(const prior of old.items.filter(x=>['targeted_correction_complete','preserve_prior_review'].includes(x.status)))assert.deepEqual(p.items.find(x=>x.id===prior.id),prior);
  p.counts=p.items.reduce((a,x)=>(a[x.status]=(a[x.status]||0)+1,a),{total:p.items.length});
  p['triage'+batch]={status:'prepared_awaiting_publication',ids:changed,newDeepReviews:0};
