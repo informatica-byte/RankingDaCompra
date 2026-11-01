@@ -8,6 +8,29 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['1RCE8RtBHkc6aVkKZ6xB', {
+    syncInformationalSchema:true,
+    model:/^t[eê]nis.*new\s*speed/i,
+    correct:'Tênis masculino anunciado como New Speed — caminhada',
+    summary:'O cadastro anuncia um tênis masculino como New Speed para caminhada. A expressão 100% original do título anterior não é usada como comprovação de autenticidade: não verificamos a procedência da unidade. Antes de escolher, confira a identificação na etiqueta, a tabela de medidas, os materiais e as condições de troca com o vendedor. A finalidade anunciada não comprova ajuste, amortecimento, aderência ou adequação ao seu uso. Não testamos conforto, durabilidade ou desempenho deste calçado e não presumimos recursos de outro modelo da marca.',
+    positiveNotes:['Tênis masculino anunciado como New Speed para caminhada; confira a identificação da unidade.'],
+    negativeNotes:['Autenticidade e procedência não verificadas nesta revisão.', 'Medidas e materiais precisam de confirmação; ajuste, amortecimento e aderência não foram testados.'],
+    suppressRating:true,
+  }],
+  ['BhacwzAPIbDglRkNCoyz', {
+    syncInformationalSchema:true,
+    model:/^(?:fones?|fone[s]? esportivo).*miniso.*x15\s*pro/i,
+    correct:'Fones anunciados como MINISO X15 Pro — recursos a conferir',
+  }],
+  ['zpNUAIiuFr5Eo0TbkaKm', {
+    syncInformationalSchema:true,
+    model:/^s[eé]rum.*(?:ghk[\s-]*cu.*zencial|zencial.*ghk[\s-]*cu)/i,
+    correct:'Sérum anunciado como Zencial GHK-Cu + Colágeno — 30 mL',
+    summary:'O cadastro anuncia um sérum facial Zencial identificado como GHK-Cu + Colágeno em frasco de 30 mL. Nome e apresentação são informações do anúncio, não análise do conteúdo do frasco. Não confirmamos bioestimulação, ação anti-idade ou adequação para todo tipo de pele a partir desse texto. Composição, concentrações, advertências, procedência e instruções precisam ser conferidas no rótulo da unidade. Não indicamos frequência de aplicação, combinação com outros produtos ou adequação individual, nem confirmamos regularidade ou autenticidade deste lote. Não testamos efeitos ou tolerância na pele. Se houver dúvida sobre o uso individual, procure orientação profissional.',
+    positiveNotes:['Sérum facial anunciado como Zencial GHK-Cu + Colágeno, em apresentação de 30 mL.'],
+    negativeNotes:['Composição, concentrações e benefícios não foram comprovados nesta revisão.', 'Não há confirmação de adequação para todo tipo de pele, procedência ou regularidade do lote; confira o rótulo da unidade.'],
+    suppressRating:true,
+  }],
   ['UxB7AJhrBhm36FCTachh', {
     syncInformationalSchema:true,
     model:/^patinete.*infantil.*(?:3|tr[eê]s).*rodas/i,

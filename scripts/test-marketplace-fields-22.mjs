@@ -20,6 +20,7 @@ test('31 revisões são específicas, preservam cadastros e não viram preços o
       if(id==='Mdyju6zRmHsKRpOYqz51'&&key==='titulo')assert.equal(after[key],'Anunciado como Inova Cases — fone com gancho, marca e autonomia a confirmar');
       else if(id==='xUz3eJJ8CDLhc5sW47BB'&&key==='titulo')assert.equal(after[key],'Basike BA-FON240B — Bluetooth 5.4 anunciado, TWS com formato a confirmar');
       else if(id==='M0Zj2K84Q8PX0YTQMIHz'&&key==='titulo')assert.equal(after[key],'Smartwatch Novante — recursos conforme o anúncio');
+      else if(id==='BhacwzAPIbDglRkNCoyz'&&key==='titulo')assert.equal(after[key],'Fones anunciados como MINISO X15 Pro — recursos a conferir');
       else if(!['comentario','pros','contras','nota','notaInformada'].includes(key)&&!(id==='FWRyLtto1bKeKurNikKq'&&key==='titulo'))assert.deepEqual(after[key],value,id+':'+key);
     }
     assert.equal(JSON.stringify(p),before);assert.deepEqual(correctProductData(after),after);

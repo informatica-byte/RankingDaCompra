@@ -1,0 +1,12 @@
+{
+  "date":"2026-10-31",
+  "policy":"Next three pending IDs in the saved GA4 view order. Necessary claim/title corrections only, no new deep review, source recheck or product test.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"1RCE8RtBHkc6aVkKZ6xB","decision":"targeted_correction_complete","reason":"Remove 100% Original como prova de autenticidade e qualifica uso anunciado para caminhada, sem inferir material, conforto ou amortecimento. Marca e procedência não autenticadas.","sourceLinks":[],"sourceLimit":"Sem comprovação de procedência, materiais, medidas ou desempenho; consultar identificação da unidade e vendedor."},
+    {"id":"BhacwzAPIbDglRkNCoyz","decision":"targeted_correction_complete","reason":"Apenas título ajustado para identificar recursos como pendentes; análise do anúncio de 20/10 preservada, incluindo autonomia contraditória e limites de tradução/ANC. Não reaberta a consulta ou validada autenticidade.","sourceLinks":["https://produto.mercadolivre.com.br/MLB-6877799706-fones-esportivo-bluetooth-60-tradutor-ai-miniso-x15pro-ipx5-_JM"],"sourceLimit":"Fonte anterior de 20/10, não relida; aplicativo/serviço de tradução, autonomia e autenticidade continuam não confirmados."},
+    {"id":"zpNUAIiuFr5Eo0TbkaKm","decision":"targeted_correction_complete","reason":"Retira bioestimulação/anti-idade e adequação universal como promessas comprovadas. Nome e volume atribuídos ao anúncio; sem inventar composição, concentração ou instrução individual de uso.","sourceLinks":[],"sourceLimit":"Sem rótulo/fonte específica confirmada para fórmula, benefícios, tolerância, procedência ou regularidade do lote. Correção não valida o cosmético."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":3,"newDeepReviews":0},
+  "resume":"Next pending in the same measured order: 28xGyV66fEYlx6CnRxIq (vara de pesca), then 7W5TZBLUNQOGfenrgEtg (kit body splash)."
+}
