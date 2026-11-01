@@ -639,10 +639,10 @@
     "total": 554,
     "screened_no_change": 29,
     "needs_source": 7,
-    "targeted_correction_complete": 57,
+    "targeted_correction_complete": 58,
     "preserve_prior_review": 98,
     "pending": 349,
-    "prepared_awaiting_publication": 14
+    "prepared_awaiting_publication": 13
   },
   "items": [
     {
@@ -5256,13 +5256,13 @@
       "url": "https://rankingdacompra.com.br/produto/w4grNjrGMy69omEzW0QP-20260810-1.html",
       "title": "Perfume Árabe Maison Salem Nayef Masculino Edp - 100ml",
       "fingerprint": "1afeba65aa2cfa36536a61311b057bd7ce6e0c005a79f2e9104258a378a2077d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:01:58.751Z",
       "workNotes": [
         "Substitui resumo puramente cadastral por perfil de escolha e notas atribuídos à marca. Página específica confirma Nayef EDP 100 ml e pirâmide; catálogo classifica oriental amadeirado, mas texto promocional cita íris/néroli ausentes da pirâmide. Não combinadas listas divergentes. Título e identidade preservados, sem alegar duração, equivalência, concentração percentual ou autenticar a unidade.",
         "Duas fontes da marca abertas e lidas. Pirâmide olfativa não é composição da fórmula nem teste laboratorial. Não copiados 15–20%, 6–8 h, longevidade garantida, ingredientes genéricos de toda a marca ou alegações de origem industrial. Sem confirmação de lote, autenticidade, fixação, projeção, tolerância ou equivalência a Prada.",
-        "Prepared locally only; do not repeat review or mark published until joint production verification."
+        "Publicado e verificado em 01/11 na tentativa única 2 da execução 41292153828. Catálogo e HTML iguais ao commit e4d4f2bf7 e à revisão local do Nayef; não refazer revisão. Restam 13 outros IDs locais não publicados."
       ],
       "sourceLinks": [
         "https://maisonsalem.com.br/produtos/perfume-maison-salem-nayef-edp-100ml",
@@ -7936,7 +7936,7 @@
         "proof": "outputs/melhorias-integrais-20261030/github-suporte-4935458.png",
         "record": "outputs/melhorias-integrais-20261030/GITHUB-SUPORTE-4935458.md"
       },
-      "requiredNextStep": "Ticket reopened with comment tc-55190154047764; await official response or safe guidance. No technical escalation confirmed. Do not create duplicate tickets, publish a Community discussion without authorization, redo reviews or repeat identical retries. After safe release, deploy latest preserved content and run verify-targeted-editorial.mjs 34,35,36,37,38 20261101."
+      "requiredNextStep": "Authorized single deploy-only retry succeeded: run 41292153828 attempt 2, SHA e4d4f2bf7. Nayef verified public; 13 local corrections remain unpublished. Stop further dispatches; do not infer root cause or publish remaining changes without authorization. Preserve support ticket 4935458 and partial-release guards."
     },
     "sourceCommit": "b6c771d57",
     "generatedCommit": "7c559fb66a4d2148fcda70a8a3a8effaf6551e4a",
@@ -8028,7 +8028,13 @@
     ]
   },
   "preparedRelease": {
-    "status": "awaiting_github_pages_release",
+    "status": "partially_published_single_retry_succeeded",
+    "confirmedPublishedIds": ["w4grNjrGMy69omEzW0QP"],
+    "pendingPublicationIds": ["CFEyN1hdeMSM6BS89h5o","5Kojn8DcrLoydOBjq4vd","FWRyLtto1bKeKurNikKq","z507ObVuMlSEBSnK40Uc","DlFv98xnrCPIAeFfbRFv","U52A4gBWWLEmfCzONtHb","1tIzUpXs4udqZOZwpQX7","CEVlNR7lM1QTwgcn0tRu","XRKv9OGoKrBbcDP0GxER","51cYaPGtvus2ayLrbFwH","mlMLB5212483469","SctMie0hqocPmrWupQLO","cjtpmssewHcTpdqJlbS6"],
+    "singleRetryProof": "outputs/melhorias-integrais-20261030/resultado-tentativa-unica-pages-20261101.json",
+    "singleRetryRun": 41292153828,
+    "singleRetryAttempt": 2,
+    "noAdditionalPublicationAuthorized": true,
     "batches": [
       34,
       35,

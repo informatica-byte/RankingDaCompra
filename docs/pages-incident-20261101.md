@@ -1,5 +1,11 @@
 # Evidência para suporte GitHub — bloqueio interno de Pages
 
+## Resultado posterior: tentativa única bem-sucedida
+
+Em 01/11/2026, às 11:00 UTC, o usuário autorizou uma repetição somente de deploy. Run 41292153828, tentativa 2, job 124828604550: success em 26 s com artefato 13077588513 já existente, SHA e4d4f2bf7210057ba00fbf8df2dc6a59aaf0efec. Nenhum novo build ou push disparado. A causa raiz não foi confirmada; o erro não se repetiu nesta tentativa. Não tratar o histórico abaixo como bloqueio atual comprovado.
+
+Produção verificada: home, sitemap e Nayef HTTP 200; catálogo e snapshot dos 554 registros iguais ao commit publicado; HTML Nayef integralmente igual ao arquivo do commit. Nayef confirmado publicado; 13 outros ajustes locais não foram enviados. Prova em outputs/melhorias-integrais-20261030/resultado-tentativa-unica-pages-20261101.json e captura github-pages-tentativa-unica-20261101.png. Encerrada a ação autorizada, sem segunda tentativa, mudanças de segurança, banco, afiliados, hospedagem ou mensagem ao suporte. Próxima publicação depende de nova autorização.
+
 Repositório público: https://github.com/informatica-byte/RankingDaCompra
 Site: https://rankingdacompra.com.br/
 
