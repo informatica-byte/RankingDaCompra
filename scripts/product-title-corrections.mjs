@@ -8,6 +8,16 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['SFcayTGVGtzWrkpt4uFw', {
+    syncInformationalSchema:true,
+    model:/^t[eê]nis\s+(?:puma\s+)?rbd\s*game\s*low(?:\s+puma)?$/i,
+    summary:'O cadastro identifica o tênis PUMA RBD Game Low. A PUMA apresenta essa linha como casual, com visual retrô inspirado no basquete; essa inspiração não comprova adequação a jogos ou corrida. É uma opção para considerar se você procura esse estilo no dia a dia, mas o ajuste depende do seu pé e da numeração. A referência oficial consultada é a 391759_07: não confirmamos que esse é o código da unidade anunciada. Por isso, não transferimos materiais, palmilha, cor, peso ou medidas dessa variante para a oferta. Confira o código, a tabela de medidas e as condições de troca no anúncio. Não testamos conforto, aderência, amortecimento ou durabilidade e a referência de linha não autentica a unidade.',
+    positiveNotes:['Linha RBD Game Low apresentada pela PUMA como casual, com visual retrô inspirado no basquete.'],
+    negativeNotes:['Código e características da unidade anunciada não confirmados; não copiamos especificações de outra variante.', 'Conforto, aderência e durabilidade não foram testados; inspiração no basquete não confirma desempenho esportivo.'],
+    contextSourceUrl:'https://br.puma.com/pd/tenis-rbd-game-low/391759.html',
+    contextSourceLabel:'PUMA RBD Game Low 391759_07: contexto da linha, sem confirmar a variante da oferta',
+    suppressRating:true,
+  }],
   ['hC5H8O2mjGMYXFMH5jic', {
     syncInformationalSchema:true,
     model:/^(?:celular.*positivo.*s675|positivo.*s675)/i,

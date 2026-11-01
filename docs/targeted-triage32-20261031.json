@@ -1,0 +1,11 @@
+{
+  "date":"2026-10-31",
+  "policy":"Next two pending in saved GA4 view order; only improve a generic summary when a primary source supports useful context, preserving coherent previous reviews.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"rERcfIbgG1c0uUdNlQ4o","decision":"screened_no_change","reason":"LP40 já possui resumo específico, Bluetooth e autonomia atribuídos ao anúncio, ANC desconhecido e capacidade do estojo separada de horas. Não há falha concreta nova; preservados título, corpo, tabela e ressalvas, sem importar LP40 Pro.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB61405511?pdp_filters=item_id%3AMLB5947242720"],"sourceLimit":"Triagem do conteúdo local e da revisão de anúncio de 20/10; não é nova conferência de disponibilidade, autenticação da unidade ou teste de produto. Ausências de ANC e autonomia total continuam explícitas."},
+    {"id":"SFcayTGVGtzWrkpt4uFw","decision":"targeted_correction_complete","reason":"Substitui resumo puramente cadastral por contexto útil da linha casual PUMA RBD Game Low, sem tratar inspiração no basquete como desempenho esportivo. Explica perfil de escolha e limites, preserva título e identifica a referência 391759_07 como contexto, não como variante da oferta.","sourceLinks":["https://br.puma.com/pd/tenis-rbd-game-low/391759.html"],"publicContextUrl":"https://br.puma.com/pd/tenis-rbd-game-low/391759.html","sourceLimit":"Página oficial aberta e lida; confirma apenas o posicionamento da linha. Sem código completo da unidade anunciada, não transferidos SoftFoam+, conteúdo reciclado, materiais, medidas, peso ou cor. Não testados conforto, aderência, amortecimento e durabilidade; não autenticada a unidade."}
+  ],
+  "counts":{"screened":2,"targetedCorrections":1,"newDeepReviews":0},
+  "resume":"Next pending sZGVRAGBdFaBYSOQbSO8 (teclado mecânico ABNT2), then saved GA4 view order; skip unchanged completed IDs."
+}
