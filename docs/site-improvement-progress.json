@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "fCw8R0SRDFhAWXIT2sZ0",
-      "FpO2EOBfcTy3F04Jk6pY",
-      "goH2juydLAa3JYXzctkH",
-      "jpfsQDwQMrok9k3UQ66e",
+      "8NEAHWVWDbRD0jFU4YSn",
       "MgDXTGUyMBcJUtTahZIY",
       "mGfjcGRX5FvusGGZMYJL",
       "mlMLB4024139675",
-      "mlMLB4407094781"
+      "mlMLB4407094781",
+      "mlMLB4592797876",
+      "mlMLB4857635335",
+      "mlMLB6119148470"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T14:58:03.227Z",
-  "catalogueGeneratedAt": "2026-11-01T14:57:54.755Z",
+  "updatedAt": "2026-11-01T15:02:44.694Z",
+  "catalogueGeneratedAt": "2026-11-01T15:00:46.937Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,10 +639,9 @@
     "total": 558,
     "screened_no_change": 31,
     "needs_source": 7,
-    "targeted_correction_complete": 71,
+    "targeted_correction_complete": 73,
     "preserve_prior_review": 98,
-    "pending": 349,
-    "prepared_awaiting_publication": 2
+    "pending": 349
   },
   "items": [
     {
@@ -2416,12 +2415,13 @@
       "url": "https://rankingdacompra.com.br/produto/jpfsQDwQMrok9k3UQ66e-20260810-1.html",
       "title": "Conjunto de panelas antiaderente 10 peças Coffee cappuccino Imperial",
       "fingerprint": "2f43f3d348ad1f5eb9819faf3fc0cd1ce0f17f54f4295552ff964e54e713159b",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T15:02:44.654Z",
       "workNotes": [
         "Panelas Imperial: remove garantia de cozinhar sem grudar e limpeza fácil; dez peças atribuídas ao anúncio sem presumir dez panelas, materiais ou compatibilidade.",
-        "Identidade e composição anunciadas no snapshot público local. Sem manual específico ou testes; material, capacidades, calor e compatibilidade ficam pendentes."
+        "Identidade e composição anunciadas no snapshot público local. Sem manual específico ou testes; material, capacidades, calor e compatibilidade ficam pendentes.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB62276281?wid=MLB4709294547"
@@ -2467,12 +2467,13 @@
       "url": "https://rankingdacompra.com.br/produto/fCw8R0SRDFhAWXIT2sZ0-20260810-1.html",
       "title": "Controle Gamesir Nova Lite 2 Sem Fio Pc Switch Celular Hall - Branco",
       "fingerprint": "72fec1e0aeb65f2c78b6c5f5f6b94e66b7787b2278c10484d2149be4cc0ecc35",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T15:02:44.654Z",
       "workNotes": [
         "GameSir Nova Lite 2: qualifica polling rate e Hall Effect, retira alta performance/antidrift como garantias; distingue capacidade de bateria de autonomia e base de recarga do conjunto vendido.",
-        "Fonte oficial de referência consultada em 01/11. Não comprova autenticidade/unidade, taxa por conexão, autonomia ou conteúdo da oferta. Sem teste independente."
+        "Fonte oficial de referência consultada em 01/11. Não comprova autenticidade/unidade, taxa por conexão, autonomia ou conteúdo da oferta. Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://gamesir.com/products/gamesir-nova-lite2/buy"
@@ -8463,11 +8464,47 @@
     "notes": "Exact reviewed identity alternatives fix fone/refletor canonical continuity. Explicit different seller variations remain separate, with narrowly bound ID/title/listing/variation/affiliate proofs. Security collision validation remains mandatory. Five current public additions come from user backup; previously paused record remains archived in continuity, not deleted. No availability checks repeated."
   },
   "triage39": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "fCw8R0SRDFhAWXIT2sZ0",
       "jpfsQDwQMrok9k3UQ66e"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-01T15:02:44.654Z",
+    "changedIds": [
+      "fCw8R0SRDFhAWXIT2sZ0",
+      "jpfsQDwQMrok9k3UQ66e"
+    ],
+    "jointReleaseBatches": [
+      39
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem39.json",
+    "remainingDependencies": [
+      {
+        "id": "fCw8R0SRDFhAWXIT2sZ0",
+        "note": "Fonte oficial de referência consultada em 01/11. Não comprova autenticidade/unidade, taxa por conexão, autonomia ou conteúdo da oferta. Sem teste independente."
+      },
+      {
+        "id": "FpO2EOBfcTy3F04Jk6pY",
+        "note": "Triagem do conteúdo público local já revisado em 20/10; não houve nova visita ao anúncio nem confirmação de hardware."
+      },
+      {
+        "id": "goH2juydLAa3JYXzctkH",
+        "note": "Triagem local da ficha existente, sem repetir revisão de anúncio ou afirmar encaixe, autonomia ou ANC."
+      },
+      {
+        "id": "jpfsQDwQMrok9k3UQ66e",
+        "note": "Identidade e composição anunciadas no snapshot público local. Sem manual específico ou testes; material, capacidades, calor e compatibilidade ficam pendentes."
+      }
+    ],
+    "sourceCommit": "f45b1ed88489edca1bb13204f510a9090fae7feb",
+    "generatedCommit": "d43378b15ec111130f360e1421b5493848ed72e3",
+    "sitemapRun": 41318995080,
+    "integrityRun": 41318995177,
+    "pagesRun": 41319034976,
+    "testsPassed": 1359,
+    "localMobileChecks": 8,
+    "backendWrites": 0,
+    "historyPreserved": true
   }
 }
