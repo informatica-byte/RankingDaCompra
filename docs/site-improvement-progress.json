@@ -7758,8 +7758,20 @@
       "newRecoveryTestsPassed": 4,
       "lastPublicCheck": "2026-11-01T09:13:05.723Z",
       "supportDraft": "docs/pages-incident-20261101.md",
-      "supportContacted": false,
-      "requiredNextStep": "Get user direction for GitHub support or new external evidence. Do not redo editorial work or repeat identical retries."
+      "supportContacted": true,
+      "supportTicket": {
+        "number": "4935458",
+        "url": "https://help.github.com/ticket/personal/0/4935458",
+        "subject": "GitHub Pages lock references a finished deployment (HTTP 400) (Repositories)",
+        "statusObserved": "Open",
+        "priority": "Normal",
+        "createdDisplayed": "2026-11-01 06:18 BRT",
+        "confirmedSubmitted": true,
+        "tokensOrCredentialsSent": false,
+        "proof": "outputs/melhorias-integrais-20261030/github-suporte-4935458.png",
+        "record": "outputs/melhorias-integrais-20261030/GITHUB-SUPORTE-4935458.md"
+      },
+      "requiredNextStep": "Await or inspect response in existing GitHub ticket 4935458; do not create duplicate tickets, redo reviews or repeat identical retries. After safe release, deploy latest preserved content and run verify-targeted-editorial.mjs 34 20261101."
     },
     "sourceCommit": "b6c771d57",
     "generatedCommit": "7c559fb66a4d2148fcda70a8a3a8effaf6551e4a",

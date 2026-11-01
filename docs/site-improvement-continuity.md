@@ -1,4 +1,10 @@
 # Continuidade prioritária — Ranking da Compra
+## Suporte GitHub aberto — 01/11/2026, PROTOCOLO 4935458
+
+Usuário autorizou abrir o chamado com as evidências e sem credenciais. Envio concluído no portal oficial, confirmação “Sua mensagem foi enviada com sucesso”. Ticket https://help.github.com/ticket/personal/0/4935458, assunto GitHub Pages lock references a finished deployment (HTTP 400) (Repositories), status Open, prioridade Normal, criação exibida 01/11/2026 06:18 BRT. Conta proprietária já autenticada; não inseridas senhas/códigos. Não enviados tokens, headers de autorização, dados de compradores ou logs brutos. Não contratados plano, assinatura ou teste pago. Categoria disponível Repository features / Branches, com nota explícita de que o problema é Pages publicado de main e pedido de encaminhamento para Pages, pois essa categoria não estava disponível no formulário. Não alterar proteção de branch.
+
+Protocolo e comprovante salvos em outputs/melhorias-integrais-20261030/GITHUB-SUPORTE-4935458.md e github-suporte-4935458.png. Navegador ficou aberto no ticket. Atualização de rastreamento é local; não publicar documentação só para gerar outra implantação enquanto o bloqueio persistir. Nayef continua awaiting_publication, não concluído. Não repetir revisão ou abrir ticket duplicado. Próxima ação: conferir a resposta neste protocolo, executar somente orientação segura/autorizada e retentar deploy atual após liberação. Verificar produção com node scripts/verify-targeted-editorial.mjs 34 20261101 antes de encerrar. Próxima edição depois disso permanece Positivo Vision TAB10 T3010 (cjtpmssewHcTpdqJlbS6). Nenhuma agenda nova ou promessa de prazo de resposta criada.
+
 ## Retomada da implantação 34 — 01/11/2026, OPERAÇÃO OFICIAL RECUSADA PELO GITHUB
 
 Não houve revisão editorial nova. Reaproveitados exatamente os arquivos Nayef/PC do lote 34 e os snapshots de invariantes. Não alterados preços, cadastros, afiliados, domínios, ambiente, HTTPS ou validações. A publicação do Nayef continua pendente; NÃO marcar como concluída, repetir sua revisão ou executar record-triage34-publication-block.mjs novamente.
