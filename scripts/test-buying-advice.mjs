@@ -44,7 +44,7 @@ test('uncertain sales claims are qualified without changing price or offer ident
     ['ARscPKCMZs3D8k22qltl','Redmi Buds 6 Play',/não comprova proteção contra poeira/],
   ];
   for (const [id,titulo,expected] of fixtures) {
-    const original = {id,titulo,preco:91.23,link:'https://mercadolivre.com.br/oferta',foto:'image',precoAtualizadoManualmenteEm:'2026-10-14T10:00:00Z'};
+    const original = {id,titulo,preco:91.23,link:id==='VzQgxGhowdzlfNshI3ZC'?'https://www.mercadolivre.com.br/p/MLB65588451?wid=MLB6756757832':'https://mercadolivre.com.br/oferta',foto:'image',precoAtualizadoManualmenteEm:'2026-10-14T10:00:00Z'};
     const before = JSON.stringify(original), revised = correctProductData(original);
     assert.match(revised.comentario,expected);
     for (const key of ['id','preco','link','foto','precoAtualizadoManualmenteEm']) assert.equal(revised[key],original[key]);

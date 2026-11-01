@@ -8,6 +8,23 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['vDQlmcCO0HZUBNi2DUxd', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB6205717194',
+    model:/^(?:liftness\s*bicicleta\s*ergom[eé]trica\s*fitness\s*sp50ptvm|bicicleta\s*ergom[eé]trica\s*liftness\s*sp50ptvm)/i,
+    correct:'Bicicleta ergométrica Liftness SP50PTVM — ajustes e resistência mecânica anunciados',
+    summary:'O anúncio identifica a bicicleta ergométrica Liftness SP50PTVM e informa resistência mecânica por botão, assento e guidão ajustáveis e rodas de transporte. O limite de 100 kg é declarado pelo vendedor, não resultado de teste da equipe. Pode interessar a quem procura uma bicicleta estacionária, mas confira as medidas, os ajustes disponíveis e a indicação de uso do modelo antes de escolher. Ajustes não garantem conforto ou encaixe adequado para toda pessoa. Não apresentamos o equipamento como exercício sem impacto, garantia de melhora da saúde ou substituto de avaliação individual. Não testamos estabilidade, ruído, resistência, conforto, durabilidade ou segurança. Confirme montagem, restrições, manutenção e condições de uso no manual específico e com o vendedor; não inferimos adequação para musculação ou uso de academia apenas pelo título.',
+    positiveNotes:['Resistência mecânica por botão, ajustes de assento/guidão e rodas de transporte anunciados na oferta.'],
+    negativeNotes:['Limite de 100 kg é declarado pelo vendedor; estabilidade, conforto e durabilidade não testados pela equipe.', 'Dimensões, ajustes e indicação de uso precisam de confirmação no manual; sem garantia de benefício de saúde ou adequação a qualquer pessoa.'],
+    suppressRating:true,
+  }],
+  ['WO6BdDxEWWCCjBVJ0ygB', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB7213068268',
+    model:/^fone.*ear\s*clip.*6[.,]0/i,
+    correct:'Fone ear clip OWS Bluetooth 6.0 — autonomia e resistência à água divergentes',
+  }],
   ['sinwoGjrsJl5UMA13pES', {
     syncInformationalSchema:true,
     expectedListing:'MLB6204416228',
@@ -824,7 +841,11 @@ const PRODUCT_CORRECTIONS = new Map([
     sourceUrl:'https://www.mercusys.com.br/product/wifi-router/mr80x/v4/',sourceLabel:'MERCUSYS MR80X V4 — página oficial brasileira',reviewedAt:'2026-10-20',suppressRating:true,
   }],
   ['VzQgxGhowdzlfNshI3ZC', {
-    model:/power\s*bank.*20000mah/i,
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB6756757832',
+    model:/^(?:carregador\s*port[aá]til\s*)?power\s*bank.*20000\s*mah/i,
+    correct:'Power bank Hardline 20000 mAh — potência e compatibilidade a confirmar',
     summary:'O cadastro identifica um power bank anunciado como 20.000 mAh. A potência está a confirmar: o título anterior informava 22,5 W e o resumo citava 20 W. Confirme o modelo, a potência por porta, os protocolos e o cabo necessários ao seu aparelho. Não medimos capacidade útil, velocidade de carga ou segurança elétrica e não comprovamos carregamento simultâneo de três aparelhos.',
     positiveNotes:['Capacidade nominal de 20.000 mAh informada no cadastro; não equivale à capacidade útil medida.'],
     negativeNotes:['Potência, protocolos e quantidade de saídas simultâneas precisam de confirmação no modelo oferecido.'], suppressRating:true,

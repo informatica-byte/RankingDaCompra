@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T17:55:16.191Z",
-  "catalogueGeneratedAt": "2026-11-01T17:53:33.984Z",
+  "updatedAt": "2026-11-01T18:26:52.211Z",
+  "catalogueGeneratedAt": "2026-11-01T18:26:25.260Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 558,
-    "screened_no_change": 39,
+    "screened_no_change": 40,
     "needs_source": 7,
     "targeted_correction_complete": 85,
     "preserve_prior_review": 98,
-    "pending": 329
+    "prepared_awaiting_publication": 3,
+    "pending": 325
   },
   "items": [
     {
@@ -1189,6 +1190,24 @@
         "31/10/2026 — triagem seletiva 17: Bicicleta GTS Dexter estava na categoria Casa. Corrigida somente a categoria pública para Bicicletas, sem alterar capacidades ou ficha técnica."
       ],
       "sourceLinks": []
+    },
+    {
+      "id": "vDQlmcCO0HZUBNi2DUxd",
+      "url": "https://rankingdacompra.com.br/produto/vDQlmcCO0HZUBNi2DUxd-20260810-1.html",
+      "title": "Bicicleta ergométrica Liftness SP50PTVM — ajustes e resistência mecânica anunciados",
+      "fingerprint": "6e4596c0174cdb64af5b0a9a0d35793fc0a117989738d80c677d6283e38cb25a",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Liftness SP50PTVM: retira garantia de exercício sem impacto e melhora integral da saúde, atribui ajustes/resistência/100 kg ao anúncio sem prometer conforto, estabilidade ou adequação profissional. Título encurtado sem perda de identidade para corrigir corte no celular.",
+        "Snapshot público local. Sem teste, manual específico ou avaliação individual; não acrescenta orientação médica, benefício clínico ou indicação de academia/musculação."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB35331298?wid=MLB6205717194"
+      ],
+      "previousState": "prepared_awaiting_publication",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "PmWA6Y2vHwbiT6rEfc7l",
@@ -1973,17 +1992,6 @@
       "url": "https://rankingdacompra.com.br/produto/ZGxs2yoDgmpnMApDWyHn-20260810-1.html",
       "title": "Carregador Fonte Iphone Original 20w Apple Tipo C Turbo",
       "fingerprint": "aa28fe9c730444e4ab8cee29968112a33269ffdecc78f402af1f316a3c9b4e44",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "VzQgxGhowdzlfNshI3ZC",
-      "url": "https://rankingdacompra.com.br/produto/VzQgxGhowdzlfNshI3ZC-20260810-1.html",
-      "title": "Carregador Portátil Power Bank Turbo 20000mah 22.5w Universal Para iPhone Samsung Motorola Xiaomi Com Display Digital Preto ou Branco- Hardline",
-      "fingerprint": "844c1cedf5ffa117c174f0f4a70d0b04791c34d468f2e9ec92165b6256b4bbe6",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -2918,17 +2926,6 @@
       ]
     },
     {
-      "id": "WO6BdDxEWWCCjBVJ0ygB",
-      "url": "https://rankingdacompra.com.br/produto/WO6BdDxEWWCCjBVJ0ygB-20260810-1.html",
-      "title": "Fone de Ouvido Bluetooth com Ear Clip OWS Bluetooth 6.0 com Microfone e Bateria 30H Preto",
-      "fingerprint": "1994c64069576f6a2fe98b9f461dc9fdff3fb696e1eb3870b3bd74f0999504ad",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mGfjcGRX5FvusGGZMYJL",
       "url": "https://rankingdacompra.com.br/produto/mGfjcGRX5FvusGGZMYJL-20260810-1.html",
       "title": "Fone De Ouvido Bluetooth In-ear Gamer Sem Fio Earcuffs",
@@ -3008,6 +3005,24 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5415345146?pdp_filters=item_id%3AMLB7757427584"
       ]
+    },
+    {
+      "id": "WO6BdDxEWWCCjBVJ0ygB",
+      "url": "https://rankingdacompra.com.br/produto/WO6BdDxEWWCCjBVJ0ygB-20260810-1.html",
+      "title": "Fone ear clip OWS Bluetooth 6.0 — autonomia e resistência à água divergentes",
+      "fingerprint": "9490a3a3a2cd76397a992e0b6fe80bb694705c418e049da57bb8c790cfc9a0a4",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "OWS INOVA FON-13025F: só título deixa de tratar 30 h em espera como bateria de uso, sinalizando divergências já explicadas na ficha. Resumo, comparação, fatos/fontes e ressalvas anteriores preservados.",
+        "Sem novo teste ou revisão do anúncio; não resolve 5/8 h, capacidade 300/400 mAh ou resistência por suposição. Bluetooth 6.0 continua apenas anunciado, não autenticado."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB75615487?pdp_filters=item_id%3AMLB7213068268"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "FWRyLtto1bKeKurNikKq",
@@ -3708,11 +3723,16 @@
       "url": "https://rankingdacompra.com.br/produto/x6DSqhiaMQCjR3uXG5QV-20260810-1.html",
       "title": "Kit 10 Unidades Lousa Magica Tablet Lcd 8.5 Polegadas",
       "fingerprint": "773d8ff7013a28ac923343c682c4f4475738aed6cbe5258e5ba0d18e34679351",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T18:24:25.108Z",
+      "workNotes": [
+        "Kit de lousas: descrição mínima identifica quantidade/tamanho/material do anúncio, sem promessa de aprendizagem, resistência ou recursos de tablet convencional. Sem defeito novo comprovado para justificar ampliar o texto.",
+        "Triagem local, não validação de medidas, material, faixa etária ou funcionamento. Medidas não verificadas independentemente; não acrescenta instruções ou características ausentes."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3178533748?pdp_filters=item_id%3AMLB5387656446"
+      ]
     },
     {
       "id": "mlMLB5158506809",
@@ -4355,17 +4375,6 @@
       "changedSinceCheckpoint": true,
       "preparedAt": "2026-11-01T09:32:32.191Z",
       "preparedBatch": 35
-    },
-    {
-      "id": "vDQlmcCO0HZUBNi2DUxd",
-      "url": "https://rankingdacompra.com.br/produto/vDQlmcCO0HZUBNi2DUxd-20260810-1.html",
-      "title": "Liftness Bicicleta Ergométrica Fitness SP50PTVM Para Cardio E Musculação Academia Com Base Cor Preto E Vermelho",
-      "fingerprint": "3d3c262dd8b35fb9b7c99fe54fdcb3d4f99c1905ddc022c5b498774dbb19f7f8",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "oO9KBr39gclvEu1LfKEj",
@@ -5712,6 +5721,24 @@
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB63033418?wid=MLB6204416228"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "VzQgxGhowdzlfNshI3ZC",
+      "url": "https://rankingdacompra.com.br/produto/VzQgxGhowdzlfNshI3ZC-20260810-1.html",
+      "title": "Power bank Hardline 20000 mAh — potência e compatibilidade a confirmar",
+      "fingerprint": "0409a8b2fcb73864192a179bc2bd93e58790f856ed69b3b7617948cdaeb68bb1",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Hardline: só título deixa de afirmar 22,5 W/universal, alinhando-se à divergência de potência já registrada. Resumo, prós, contras e demais campos editoriais anteriores preservados.",
+        "Não mede capacidade, potência, protocolo ou segurança; não escolhe entre 20/22,5 W nem altera o histórico. Sem refazer análise anterior."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65588451?pdp_filters=item_id%3AMLB6756757832"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -8862,5 +8889,14 @@
     "testsPassed": 1376,
     "localMobileChecks": 8,
     "backendWrites": 0
+  },
+  "triage45": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "VzQgxGhowdzlfNshI3ZC",
+      "WO6BdDxEWWCCjBVJ0ygB",
+      "vDQlmcCO0HZUBNi2DUxd"
+    ],
+    "newDeepReviews": 0
   }
 }

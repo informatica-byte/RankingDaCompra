@@ -1,0 +1,13 @@
+{
+  "date":"2026-11-01",
+  "policy":"Next four pending in dated GA4 01–28 October order; preserve already cautious bodies and change titles only where inconsistent.",
+  "protectedDeepReviews":98,
+  "preserveExceptTitleIds":["VzQgxGhowdzlfNshI3ZC","WO6BdDxEWWCCjBVJ0ygB"],
+  "items":[
+    {"id":"vDQlmcCO0HZUBNi2DUxd","decision":"targeted_correction_complete","reason":"Liftness SP50PTVM: retira garantia de exercício sem impacto e melhora integral da saúde, atribui ajustes/resistência/100 kg ao anúncio sem prometer conforto, estabilidade ou adequação profissional. Título encurtado sem perda de identidade para corrigir corte no celular.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB35331298?wid=MLB6205717194"],"sourceLimit":"Snapshot público local. Sem teste, manual específico ou avaliação individual; não acrescenta orientação médica, benefício clínico ou indicação de academia/musculação."},
+    {"id":"VzQgxGhowdzlfNshI3ZC","decision":"targeted_correction_complete","reason":"Hardline: só título deixa de afirmar 22,5 W/universal, alinhando-se à divergência de potência já registrada. Resumo, prós, contras e demais campos editoriais anteriores preservados.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB65588451?pdp_filters=item_id%3AMLB6756757832"],"sourceLimit":"Não mede capacidade, potência, protocolo ou segurança; não escolhe entre 20/22,5 W nem altera o histórico. Sem refazer análise anterior."},
+    {"id":"WO6BdDxEWWCCjBVJ0ygB","decision":"targeted_correction_complete","reason":"OWS INOVA FON-13025F: só título deixa de tratar 30 h em espera como bateria de uso, sinalizando divergências já explicadas na ficha. Resumo, comparação, fatos/fontes e ressalvas anteriores preservados.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB75615487?pdp_filters=item_id%3AMLB7213068268"],"sourceLimit":"Sem novo teste ou revisão do anúncio; não resolve 5/8 h, capacidade 300/400 mAh ou resistência por suposição. Bluetooth 6.0 continua apenas anunciado, não autenticado."},
+    {"id":"x6DSqhiaMQCjR3uXG5QV","decision":"screened_no_change","reason":"Kit de lousas: descrição mínima identifica quantidade/tamanho/material do anúncio, sem promessa de aprendizagem, resistência ou recursos de tablet convencional. Sem defeito novo comprovado para justificar ampliar o texto.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU3178533748?pdp_filters=item_id%3AMLB5387656446"],"sourceLimit":"Triagem local, não validação de medidas, material, faixa etária ou funcionamento. Medidas não verificadas independentemente; não acrescenta instruções ou características ausentes."}
+  ],
+  "counts":{"screened":4,"targetedCorrections":3,"screenedNoChange":1,"newDeepReviews":0}
+}
