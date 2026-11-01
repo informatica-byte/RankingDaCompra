@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "xayABmLUPEj8yOPOfzA9",
-      "Znhr4d5uhDKsj5poLEmZ",
-      "0ME2VNUjuL6XoxtKE8ur",
-      "0o2cubZBfwlgcwFokAWY",
       "0pP7JpudV4nPsUekxfeH",
       "0TQPS3z5Mj1mWyEjdcjd",
       "0UsruHJ405ImvUXyhYgW",
-      "0vNEHjhD3cm0iTyBCZRe"
+      "0vNEHjhD3cm0iTyBCZRe",
+      "1c9dmLesD1G0pPTCYrjt",
+      "1Iyoc1zKTUsDEQGbvIM3",
+      "1VMzq0ovRkap3dGQ7ikC",
+      "1WM5CLqoLFN2yEUguuVY"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T18:33:59.494Z",
-  "catalogueGeneratedAt": "2026-11-01T18:33:51.672Z",
+  "updatedAt": "2026-11-01T18:38:37.811Z",
+  "catalogueGeneratedAt": "2026-11-01T18:36:46.894Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,10 +639,9 @@
     "total": 558,
     "screened_no_change": 42,
     "needs_source": 8,
-    "targeted_correction_complete": 88,
+    "targeted_correction_complete": 89,
     "preserve_prior_review": 98,
-    "pending": 321,
-    "prepared_awaiting_publication": 1
+    "pending": 321
   },
   "items": [
     {
@@ -5278,12 +5277,13 @@
       "url": "https://rankingdacompra.com.br/produto/xayABmLUPEj8yOPOfzA9-20260810-1.html",
       "title": "Patinete Infantil Triciclo Dobrável Scooter 3 Rodas Led 70kg",
       "fingerprint": "c1095644d7227d6a097f74e46d1c78bc7b437a1eb4ddae3a4ef7ccb19e739d0e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T18:38:37.790Z",
       "workNotes": [
         "Patinete infantil: campo de marca descritivo não vira fabricante confirmado; limite de 70 kg fica atribuído ao anúncio e não comprova idade/altura ou segurança. Sem inventar freios, certificações ou faixa etária.",
-        "Snapshot público local. Não foi testado, montado ou certificado pela equipe; sem manual específico ou fabricante inequívoco. Não acrescenta instrução de uso/montagem ou recomendação etária."
+        "Snapshot público local. Não foi testado, montado ou certificado pela equipe; sem manual específico ou fabricante inequívoco. Não acrescenta instrução de uso/montagem ou recomendação etária.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5088119812?pdp_filters=item_id%3AMLB7573890658"
@@ -8961,10 +8961,44 @@
     "backendWrites": 0
   },
   "triage46": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "xayABmLUPEj8yOPOfzA9"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-01T18:38:37.790Z",
+    "changedIds": [
+      "xayABmLUPEj8yOPOfzA9"
+    ],
+    "jointReleaseBatches": [
+      46
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem46.json",
+    "remainingDependencies": [
+      {
+        "id": "xayABmLUPEj8yOPOfzA9",
+        "note": "Snapshot público local. Não foi testado, montado ou certificado pela equipe; sem manual específico ou fabricante inequívoco. Não acrescenta instrução de uso/montagem ou recomendação etária."
+      },
+      {
+        "id": "Znhr4d5uhDKsj5poLEmZ",
+        "note": "Triagem local do texto anterior, não novo teste ou autenticação do anúncio/modelo. Sem promessa de natação, banho ou diagnóstico."
+      },
+      {
+        "id": "0ME2VNUjuL6XoxtKE8ur",
+        "note": "Informação pública local limitada; medidas, montagem, alimentação do LED, carga e itens incluídos não verificados. Não é teste de brinquedo ou recomendação etária."
+      },
+      {
+        "id": "0o2cubZBfwlgcwFokAWY",
+        "note": "Pendente confirmar o campo atual da operadora na oferta específica MLB6040467738. Texto, links, título e variante mantidos. Não concluir como revisado ou importar especificações de outra versão."
+      }
+    ],
+    "sourceCommit": "a7e117144b8ca7bca3a4a6a970543e416d74397c",
+    "generatedCommit": "e88c2c706f05f9ff99eddf151b646addf58be1a8",
+    "sitemapRun": 41337493671,
+    "integrityRun": 41337493749,
+    "pagesRun": 41337536551,
+    "testsPassed": 1381,
+    "localMobileChecks": 8,
+    "backendWrites": 0
   }
 }
