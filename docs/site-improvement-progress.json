@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB6472086508",
-      "mlMLB6553684470",
-      "mlMLB6795714040",
-      "mlMLB7482222950",
       "mlMLB7502068112",
       "mlMLB7746533434",
       "NJipazuMXMzOH9YZbxwu",
-      "rJhe4VyyDiFudQmQmXCV"
+      "rJhe4VyyDiFudQmQmXCV",
+      "rMsMd9YWawi1darKVapn",
+      "sinwoGjrsJl5UMA13pES",
+      "sX3K2gzcggu9lkVSke0Q",
+      "TEaC0vVXmdvp4s8QMqpn"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T17:11:30.071Z",
-  "catalogueGeneratedAt": "2026-11-01T17:11:22.159Z",
+  "updatedAt": "2026-11-01T17:15:15.433Z",
+  "catalogueGeneratedAt": "2026-11-01T17:13:18.103Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,10 +639,9 @@
     "total": 558,
     "screened_no_change": 36,
     "needs_source": 7,
-    "targeted_correction_complete": 77,
+    "targeted_correction_complete": 80,
     "preserve_prior_review": 98,
-    "pending": 337,
-    "prepared_awaiting_publication": 3
+    "pending": 337
   },
   "items": [
     {
@@ -4199,12 +4198,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6795714040-20260810-1.html",
       "title": "Lanterna Voxo T9 com zoom e recarga USB anunciados — autonomia e proteção a confirmar",
       "fingerprint": "32c486c9b3317c73dac675791e2c2251ed07b3bf56d571d835d200a2a49a3ff0",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T17:15:15.412Z",
       "workNotes": [
         "Voxo T9: título deixa de prometer potência/duração/proteção e uso militar/defesa. Resumo diferencia declarações de medições e explicita ambiguidade da alimentação e do campo 10 lm.",
-        "Snapshot local sem manual ou ensaio. Não inventa lúmens, watts, autonomia, alcance, IP ou compatibilidade de pilhas. Guardas por ID/modelo/anúncio; cabeçalho antigo longo reconhecido com opt-in de truncamento."
+        "Snapshot local sem manual ou ensaio. Não inventa lúmens, watts, autonomia, alcance, IP ou compatibilidade de pilhas. Guardas por ID/modelo/anúncio; cabeçalho antigo longo reconhecido com opt-in de truncamento.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB59322362?wid=MLB6795714040"
@@ -4669,12 +4669,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB7482222950-20260810-1.html",
       "title": "Mochila Escolar Reforçada Xiaobang BW-1904D Preto 40L Para Notebook 17 Polegadas",
       "fingerprint": "ea3dfbc71212b2a7c006bcceee96ff9cff1e185749197b61f8875ae061bf0c58",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T17:15:15.412Z",
       "workNotes": [
         "Xiaobang BW-1904D: retira impermeabilidade/durabilidade como certezas; 40 L e notebook 17 polegadas ficam atribuídos ao anúncio e condicionados às medidas, sem garantir proteção de eletrônicos.",
-        "Somente dados do snapshot público local. Sem medidas internas, limite de carga, teste de chuva, costura, conforto ou certificação de proteção confirmados."
+        "Somente dados do snapshot público local. Sem medidas internas, limite de carga, teste de chuva, costura, conforto ou certificação de proteção confirmados.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB57351944?wid=MLB7482222950"
@@ -5315,12 +5316,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6472086508-20260810-1.html",
       "title": "Perfume Árabe Ameerati Feminino Eau De Parfum 100 Ml Com Nf lipx",
       "fingerprint": "65506ba26da066466d5c59ace0c199d416d37e8dfd60d7da2d0b0d56cfb1fcff",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T17:15:15.412Z",
       "workNotes": [
         "Ameerati: troca a expressão anúncio oficial por atribuição ao vendedor; não autentica origem/marca, não copia notas de outro perfume e não trata com NF como emissão confirmada.",
-        "Somente snapshot público local do anúncio. Sem fabricante autenticado, composição, notas ou teste de fragrância. Marca Lipx mantida apenas como campo declarado na oferta; não substituída por outra marca."
+        "Somente snapshot público local do anúncio. Sem fabricante autenticado, composição, notas ou teste de fragrância. Marca Lipx mantida apenas como campo declarado na oferta; não substituída por outra marca.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB66782595?wid=MLB6472086508"
@@ -8674,12 +8676,48 @@
     "backendWrites": 0
   },
   "triage42": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB6472086508",
       "mlMLB6795714040",
       "mlMLB7482222950"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-01T17:15:15.412Z",
+    "changedIds": [
+      "mlMLB6472086508",
+      "mlMLB6795714040",
+      "mlMLB7482222950"
+    ],
+    "jointReleaseBatches": [
+      42
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem42.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB6472086508",
+        "note": "Somente snapshot público local do anúncio. Sem fabricante autenticado, composição, notas ou teste de fragrância. Marca Lipx mantida apenas como campo declarado na oferta; não substituída por outra marca."
+      },
+      {
+        "id": "mlMLB6553684470",
+        "note": "Triagem local, não teste de sensor, ergonomia, botões ou programação. Modelo completo e software não confirmados; não ampliar com ficha de outro mouse E-Yooso."
+      },
+      {
+        "id": "mlMLB6795714040",
+        "note": "Snapshot local sem manual ou ensaio. Não inventa lúmens, watts, autonomia, alcance, IP ou compatibilidade de pilhas. Guardas por ID/modelo/anúncio; cabeçalho antigo longo reconhecido com opt-in de truncamento."
+      },
+      {
+        "id": "mlMLB7482222950",
+        "note": "Somente dados do snapshot público local. Sem medidas internas, limite de carga, teste de chuva, costura, conforto ou certificação de proteção confirmados."
+      }
+    ],
+    "sourceCommit": "a00a0093baf2854c4b16ddda08725f5f9087a1d6",
+    "generatedCommit": "9ee2cd48fd20cb99616b8e1f0462e155531250f3",
+    "sitemapRun": 41330333541,
+    "integrityRun": 41330333584,
+    "pagesRun": 41330373636,
+    "testsPassed": 1369,
+    "localMobileChecks": 8,
+    "backendWrites": 0
   }
 }
