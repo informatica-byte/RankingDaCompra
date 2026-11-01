@@ -1,4 +1,5 @@
-import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, unlink } from "node:fs/promises";
+import {writeGeneratedFile as writeFile} from './generated-file-write.mjs';
 import { basename, resolve } from "node:path";
 import { correctProductData } from "./product-title-corrections.mjs";
 import {ANALYSES_DESCRIPTION, publicProductName} from './public-seo-labels.mjs';

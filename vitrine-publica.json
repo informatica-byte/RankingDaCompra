@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-01T14:04:31.685Z",
+  "generatedAt": "2026-11-01T21:01:11.426Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -6283,6 +6283,19 @@
       "precoConferenciaId": "1345e11d-6034-4637-be16-c295ee215311",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 70.69,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB4763500131",
+      "titulo": "Tênis Nike Revolution 8 Masculino",
+      "comentario": "O Tênis Nike Revolution 8 Masculino possui entressola de espuma com geometria de balancim focada no conforto. Sua estrutura traz parte de cima em tela mais ventilada que a versão anterior, sulcos flexíveis no antepé, drop de 10 mm e peso aproximado de 292 g no tamanho 42 no Brasil.",
+      "categoria": "roupas-e-calcados",
+      "foto": "https://rankingdacompra.com.br/produto/imagens/mlMLB4763500131-local-cd325a0f669c955b800633b8fa92aff92f167f24d4c373525cdc2087dd9eac29.jpg",
+      "nota": "",
+      "promocaoAtiva": false,
+      "ofertaRelampagoAtiva": false,
       "pros": "",
       "contras": "",
       "notaInformada": ""

@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createGeneratedWriter} from './generated-file-write.mjs';
+test('gravação gerada repete no Windows com mesmos bytes e opções, sem alterar permissões',async()=>{
+ const calls=[],waits=[],args=['produto/prova.html','conteúdo preservado','utf8'];const write=createGeneratedWriter({platform:'win32',wait:async n=>waits.push(n),write:async(...a)=>{calls.push(a);if(calls.length<3)throw Object.assign(Error('ocupado'),{code:'UNKNOWN'});}});await write(...args);assert.deepEqual(calls,[args,args,args]);assert.deepEqual(waits,[25,50]);
+});
+test('falha persistente de gravação continua erro após no máximo três tentativas',async()=>{const error=Object.assign(Error('ocupado'),{code:'EBUSY'});let count=0;const write=createGeneratedWriter({platform:'win32',wait:async()=>{},write:async()=>{count++;throw error;}});await assert.rejects(write('arquivo','bytes'),e=>e===error);assert.equal(count,3);});
+test('disco cheio caminho ausente e acesso negado não são ocultados nem retentados',async()=>{for(const code of ['ENOSPC','ENOENT','EACCES']){let count=0;const error=Object.assign(Error(code),{code});const write=createGeneratedWriter({platform:'win32',wait:async()=>{},write:async()=>{count++;throw error;}});await assert.rejects(write('arquivo','bytes'),e=>e===error);assert.equal(count,1);}});
+test('sem erro não há espera e Linux não recebe retentativa específica de Windows',async()=>{let calls=0;const write=createGeneratedWriter({platform:'linux',wait:async()=>{throw Error('não esperar');},write:async()=>{calls++;throw Object.assign(Error('falha'),{code:'UNKNOWN'});}});await assert.rejects(write('arquivo','bytes'),/falha/);assert.equal(calls,1);const ok=createGeneratedWriter({write:async()=>42,wait:async()=>{throw Error('não esperar');}});assert.equal(await ok('arquivo','bytes'),42);});

@@ -8,6 +8,10 @@ const normalizedTitle = value => String(value || '').normalize('NFD')
 // its catalogue and the same affiliate destination. A later edit invalidates
 // the exception. No fuzzy matching, catalogue-only or affiliate-only fallback.
 export const REVIEWED_PUBLICATION_PAIRS = Object.freeze([
+  ['MLB4587377807','MLB24117280','https://meli.la/2K1ekie',
+    ['NJipazuMXMzOH9YZbxwu','Headphone Dapon H02D Bluetooth 5.1 — autonomia e porta de recarga divergentes','Fone De Ouvido Headphone Dapon H02D Bluetooth 5.1 Over-ear 22h Preto'],
+    ['JuHTAByi0pSeuxzlBCy4','Fone De Ouvido Headphone Dapon H02D Bluetooth 5.1 Over-ear 22h Preto'],
+    ['Y6Ty2gcU1ktmmGyznDWs','Fone De Ouvido Headphone Dapon H02D Bluetooth 5.1 Over-ear 22h Preto']],
   ['MLB2171368181','MLB18724648','https://meli.la/1wxDsG2',
     ['05S6aRd5qQ8i4L37P6qN','Colchão Casal Emma Original 138x188cm'],
     ['3yIHMxCIF9QgqjNOrSXC','Colchão Casal Emma Original 138x188cm 3 Camadas de Espuma, Embalado à Vácuo, Suporte para Coluna, Alta Respirabilidade, Capa Lavável']],
@@ -127,7 +131,7 @@ export function publicationProductGroups(products) {
     if (identity) group.identities.push(identity);
   }
   // Preserve the established reviewed page, but only inside a proven group.
-  for(const group of groups)if(group.identities.length>1&&group.identities.every(i=>i.reviewed&&i.reviewed===group.identities[0].reviewed))group.preferredId=['U52A4gBWWLEmfCzONtHb','XRKv9OGoKrBbcDP0GxER'].find(id=>group.products.some(p=>p.id===id));
+  for(const group of groups)if(group.identities.length>1&&group.identities.every(i=>i.reviewed&&i.reviewed===group.identities[0].reviewed))group.preferredId=['U52A4gBWWLEmfCzONtHb','XRKv9OGoKrBbcDP0GxER','NJipazuMXMzOH9YZbxwu'].find(id=>group.products.some(p=>p.id===id));
   return groups;
 }
 

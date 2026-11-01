@@ -1,4 +1,5 @@
-import {readFile, writeFile} from 'node:fs/promises';
+import {readFile} from 'node:fs/promises';
+import {writeGeneratedFile as writeFile} from './generated-file-write.mjs';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {POPULAR_ANALYSES,NEXT_POPULAR_ANALYSES,POPULAR_BATCHES,matchesPopularAnalysis,registeredOfferUrl} from './popular-analysis.mjs';
