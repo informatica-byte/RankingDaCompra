@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "28xGyV66fEYlx6CnRxIq",
-      "7W5TZBLUNQOGfenrgEtg",
       "DjihMK3g3rkBHHTPbOwp",
       "gpeMPTTE5kt9e7kYc0MC",
       "hC5H8O2mjGMYXFMH5jic",
       "kiQqRnm6rDj50U2HaOb3",
       "kYzXt8BeErDzXsC6BlwB",
-      "mlMLB4513080577"
+      "mlMLB4513080577",
+      "rERcfIbgG1c0uUdNlQ4o",
+      "SFcayTGVGtzWrkpt4uFw"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T00:34:32.000Z",
-  "catalogueGeneratedAt": "2026-11-01T00:30:38.873Z",
+  "updatedAt": "2026-11-01T00:41:30.685Z",
+  "catalogueGeneratedAt": "2026-11-01T00:39:44.597Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,9 +639,9 @@
     "total": 554,
     "screened_no_change": 22,
     "needs_source": 7,
-    "targeted_correction_complete": 48,
+    "targeted_correction_complete": 50,
     "preserve_prior_review": 98,
-    "pending": 379
+    "pending": 377
   },
   "items": [
     {
@@ -3733,17 +3733,6 @@
       "sourceLinks": []
     },
     {
-      "id": "7W5TZBLUNQOGfenrgEtg",
-      "url": "https://rankingdacompra.com.br/produto/7W5TZBLUNQOGfenrgEtg-20260810-1.html",
-      "title": "Kit Body Splash Masculino 3un 200ml Perfume De Luxo For Men",
-      "fingerprint": "2093d21be2a26ae04a52dd239803c94872602c2de470b3af24adab22790fea8c",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB4645102377",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4645102377-20260810-1.html",
       "title": "Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml",
@@ -3777,6 +3766,23 @@
       "sourceLinks": []
     },
     {
+      "id": "7W5TZBLUNQOGfenrgEtg",
+      "url": "https://rankingdacompra.com.br/produto/7W5TZBLUNQOGfenrgEtg-20260810-1.html",
+      "title": "Kit de body splash masculino anunciado como Yllenot — volumes a conferir",
+      "fingerprint": "185169430a7794015279f7d86c3b093f5564c91ed0df34b570d4f617a462dcbc",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-11-01T00:41:30.664Z",
+      "workNotes": [
+        "Não confunde três unidades de 200 mL do título com campo de 600 mL por unidade. Remove luxo como caracterização editorial e qualifica alegações vegano/livre de crueldade como não verificadas, sem prometer fixação ou equivalência a outro perfume.",
+        "Quantidade, volumes individuais, variantes, composição, autenticidade e atributos declarados dependem do anúncio/rótulos; sem comprovação de teste ou certificação nesta revisão.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "DjihMK3g3rkBHHTPbOwp",
       "url": "https://rankingdacompra.com.br/produto/DjihMK3g3rkBHHTPbOwp-20260810-1.html",
       "title": "Kit de limpeza e hidratação Principia — anúncio MLB4247892213",
@@ -3797,6 +3803,23 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "28xGyV66fEYlx6CnRxIq",
+      "url": "https://rankingdacompra.com.br/produto/28xGyV66fEYlx6CnRxIq-20260810-1.html",
+      "title": "Kit de pesca verde com vara e carretilha — medidas a conferir",
+      "fingerprint": "f57aeecf37b628a31b9892e6066ced24ef062691d7aa2781c994c2cc21b8c896",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-11-01T00:41:30.664Z",
+      "workNotes": [
+        "Qualifica conflito 180 m no título versus 1,80 m na descrição, sem escolher medida; carbono, ação leve e guias de cerâmica deixam de ser vantagens comprovadas sem documentação. Kit e cor atribuídos ao anúncio, não trocados.",
+        "Sem modelo/manual específico confirmados para comprimento, material, ação, guias, compatibilidade ou lista exata de peças.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB6118982036",
@@ -7063,17 +7086,6 @@
       "sourceLinks": []
     },
     {
-      "id": "28xGyV66fEYlx6CnRxIq",
-      "url": "https://rankingdacompra.com.br/produto/28xGyV66fEYlx6CnRxIq-20260810-1.html",
-      "title": "Vara De Pesca Completo 180m Carretilha E Linhaacessorios Cor Verde",
-      "fingerprint": "99dcb4a7b527ab143004db3cbfc5c083cf47eefbaccc8e8b933fa0dff244aaaa",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "o6oq1IPOS41xUDtF3TG7",
       "url": "https://rankingdacompra.com.br/produto/o6oq1IPOS41xUDtF3TG7-20260810-1.html",
       "title": "Varal Aço Inox Suspenso Roupa Íntima 40 Prendedor Calcinha",
@@ -7476,6 +7488,34 @@
       {
         "id": "zpNUAIiuFr5Eo0TbkaKm",
         "note": "Sem rótulo/fonte específica confirmada para fórmula, benefícios, tolerância, procedência ou regularidade do lote. Correção não valida o cosmético."
+      }
+    ]
+  },
+  "triage28": {
+    "status": "published_verified",
+    "sourceCommit": "ee9d99752ba6ea42b3bb8e5be7e0d87b9ccd16d5",
+    "generatedCommit": "b38a5910ad62f6bcbc22261628f69ed5df22675e",
+    "integrityRun": 41257703068,
+    "sitemapRun": 41257703102,
+    "pagesRun": 41257726469,
+    "testsPassed": 1296,
+    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 28",
+    "localVisualQA": "Both local static pages passed at 360/390px with all external requests blocked. Fishing screenshot inspected; no image-loading, live-script, physical-device or product performance verification claimed.",
+    "verifiedAt": "2026-11-01T00:41:30.664Z",
+    "changedIds": [
+      "28xGyV66fEYlx6CnRxIq",
+      "7W5TZBLUNQOGfenrgEtg"
+    ],
+    "newDeepReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem28.json",
+    "remainingDependencies": [
+      {
+        "id": "28xGyV66fEYlx6CnRxIq",
+        "note": "Sem modelo/manual específico confirmados para comprimento, material, ação, guias, compatibilidade ou lista exata de peças."
+      },
+      {
+        "id": "7W5TZBLUNQOGfenrgEtg",
+        "note": "Quantidade, volumes individuais, variantes, composição, autenticidade e atributos declarados dependem do anúncio/rótulos; sem comprovação de teste ou certificação nesta revisão."
       }
     ]
   }
