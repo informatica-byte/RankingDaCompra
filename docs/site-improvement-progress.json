@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "sZGVRAGBdFaBYSOQbSO8",
-      "W309Bngb9vy88pxNSAn5",
       "w4grNjrGMy69omEzW0QP",
       "YdPOVmrHVJ8EO7fmgyXu",
       "cjtpmssewHcTpdqJlbS6",
       "DlFv98xnrCPIAeFfbRFv",
       "FWRyLtto1bKeKurNikKq",
-      "mlMLB5212483469"
+      "mlMLB5212483469",
+      "SctMie0hqocPmrWupQLO",
+      "SJRf3jhIFlr1BQadDNnH"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T01:16:02.387Z",
-  "catalogueGeneratedAt": "2026-11-01T01:14:57.274Z",
+  "updatedAt": "2026-11-01T08:54:33.761Z",
+  "catalogueGeneratedAt": "2026-11-01T08:53:23.800Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,11 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 554,
-    "screened_no_change": 24,
+    "screened_no_change": 25,
     "needs_source": 7,
-    "targeted_correction_complete": 56,
+    "targeted_correction_complete": 57,
     "preserve_prior_review": 98,
-    "pending": 369
+    "pending": 367
   },
   "items": [
     {
@@ -3565,10 +3565,14 @@
       "url": "https://rankingdacompra.com.br/produto/W309Bngb9vy88pxNSAn5-20260810-1.html",
       "title": "Kit 2 Desodorante Creme Rexona Clinical Classic 58g",
       "fingerprint": "c4581afa32ba0ede771c20341e7e147ac3600765c1781490b3a3e90cb2d723d6",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-11-01T08:54:33.728Z",
+      "workNotes": [
+        "Rexona já tem correção anterior: quantidade 2 x 58 g atribuída ao cadastro, instruções remetidas ao rótulo e limites de testes/proteção/tolerância explícitos. Nenhum defeito novo que justifique repetir ou reescrever; título, corpo e demais dados mantidos integralmente.",
+        "Triagem da ficha pública e da correção anterior, não nova avaliação clínica ou consulta da composição. Sem acrescentar duração, eficácia, adequação individual ou alegações dermatológicas por suposição.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
       "sourceLinks": []
     },
     {
@@ -6381,13 +6385,19 @@
     {
       "id": "sZGVRAGBdFaBYSOQbSO8",
       "url": "https://rankingdacompra.com.br/produto/sZGVRAGBdFaBYSOQbSO8-20260810-1.html",
-      "title": "Teclado Gamer Mecanico Abnt2 Rgb Switch Red Silenciosoimpermeavel Teclado Para Pc Portugues Brasil",
-      "fingerprint": "668c26a13657df0d72fd0d1ed48b799f9299f3c3c4fbabba8c10c93f24b12617",
-      "status": "pending",
+      "title": "Teclado mecânico ABNT2 anunciado com switch red — iluminação a conferir",
+      "fingerprint": "b90440743b1fed7b6d5e6df66e138d5596651b2eebde87eeb6e79e12794cde9a",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T08:54:33.728Z",
+      "workNotes": [
+        "Título e resumo conflitavam entre RGB e Rainbow e afirmavam silêncio/impermeabilidade sem documentação específica registrada. Nome público e texto passam a atribuir ABNT2/switch red ao cadastro e deixam iluminação, ruído, resistência a líquidos e modelo como pendências, sem escolher especificações de outro teclado.",
+        "Revisão do snapshot público local; marca e modelo exatos não identificados. Não há nova leitura de anúncio, teste de produto, certificação de proteção contra líquidos ou confirmação de switches/iluminação. Dados operacionais e afiliados preservados.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4801704305",
@@ -7692,6 +7702,33 @@
       {
         "id": "SFcayTGVGtzWrkpt4uFw",
         "note": "Página oficial aberta e lida; confirma apenas o posicionamento da linha. Sem código completo da unidade anunciada, não transferidos SoftFoam+, conteúdo reciclado, materiais, medidas, peso ou cor. Não testados conforto, aderência, amortecimento e durabilidade; não autenticada a unidade."
+      }
+    ]
+  },
+  "triage33": {
+    "status": "published_verified",
+    "sourceCommit": "01498d1ab",
+    "generatedCommit": "eed0e63ca55604f4df531cbc04b0f23f155f6ab2",
+    "integrityRun": 41290707824,
+    "sitemapRun": 41290707742,
+    "pagesRun": 41290736637,
+    "testsPassed": 1311,
+    "rexonaUnchanged": true,
+    "localVisualQA": "Both static local pages passed at 360/390px, external requests blocked; keyboard screenshot inspected. Not a physical-device, image-loading, live-script or product performance verification.",
+    "verifiedAt": "2026-11-01T08:54:33.728Z",
+    "changedIds": [
+      "sZGVRAGBdFaBYSOQbSO8"
+    ],
+    "newDeepReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem33.json",
+    "remainingDependencies": [
+      {
+        "id": "sZGVRAGBdFaBYSOQbSO8",
+        "note": "Revisão do snapshot público local; marca e modelo exatos não identificados. Não há nova leitura de anúncio, teste de produto, certificação de proteção contra líquidos ou confirmação de switches/iluminação. Dados operacionais e afiliados preservados."
+      },
+      {
+        "id": "W309Bngb9vy88pxNSAn5",
+        "note": "Triagem da ficha pública e da correção anterior, não nova avaliação clínica ou consulta da composição. Sem acrescentar duração, eficácia, adequação individual ou alegações dermatológicas por suposição."
       }
     ]
   }
