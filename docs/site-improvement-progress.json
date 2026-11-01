@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "vDQlmcCO0HZUBNi2DUxd",
-      "VzQgxGhowdzlfNshI3ZC",
-      "WO6BdDxEWWCCjBVJ0ygB",
-      "x6DSqhiaMQCjR3uXG5QV",
       "xayABmLUPEj8yOPOfzA9",
       "Znhr4d5uhDKsj5poLEmZ",
       "0ME2VNUjuL6XoxtKE8ur",
-      "0o2cubZBfwlgcwFokAWY"
+      "0o2cubZBfwlgcwFokAWY",
+      "0pP7JpudV4nPsUekxfeH",
+      "0TQPS3z5Mj1mWyEjdcjd",
+      "0UsruHJ405ImvUXyhYgW",
+      "0vNEHjhD3cm0iTyBCZRe"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T18:26:52.211Z",
-  "catalogueGeneratedAt": "2026-11-01T18:26:25.260Z",
+  "updatedAt": "2026-11-01T18:29:16.069Z",
+  "catalogueGeneratedAt": "2026-11-01T18:27:34.840Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,9 +639,8 @@
     "total": 558,
     "screened_no_change": 40,
     "needs_source": 7,
-    "targeted_correction_complete": 85,
+    "targeted_correction_complete": 88,
     "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 3,
     "pending": 325
   },
   "items": [
@@ -1196,12 +1195,13 @@
       "url": "https://rankingdacompra.com.br/produto/vDQlmcCO0HZUBNi2DUxd-20260810-1.html",
       "title": "Bicicleta ergométrica Liftness SP50PTVM — ajustes e resistência mecânica anunciados",
       "fingerprint": "6e4596c0174cdb64af5b0a9a0d35793fc0a117989738d80c677d6283e38cb25a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T18:29:16.048Z",
       "workNotes": [
         "Liftness SP50PTVM: retira garantia de exercício sem impacto e melhora integral da saúde, atribui ajustes/resistência/100 kg ao anúncio sem prometer conforto, estabilidade ou adequação profissional. Título encurtado sem perda de identidade para corrigir corte no celular.",
-        "Snapshot público local. Sem teste, manual específico ou avaliação individual; não acrescenta orientação médica, benefício clínico ou indicação de academia/musculação."
+        "Snapshot público local. Sem teste, manual específico ou avaliação individual; não acrescenta orientação médica, benefício clínico ou indicação de academia/musculação.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB35331298?wid=MLB6205717194"
@@ -3011,12 +3011,13 @@
       "url": "https://rankingdacompra.com.br/produto/WO6BdDxEWWCCjBVJ0ygB-20260810-1.html",
       "title": "Fone ear clip OWS Bluetooth 6.0 — autonomia e resistência à água divergentes",
       "fingerprint": "9490a3a3a2cd76397a992e0b6fe80bb694705c418e049da57bb8c790cfc9a0a4",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T18:29:16.048Z",
       "workNotes": [
         "OWS INOVA FON-13025F: só título deixa de tratar 30 h em espera como bateria de uso, sinalizando divergências já explicadas na ficha. Resumo, comparação, fatos/fontes e ressalvas anteriores preservados.",
-        "Sem novo teste ou revisão do anúncio; não resolve 5/8 h, capacidade 300/400 mAh ou resistência por suposição. Bluetooth 6.0 continua apenas anunciado, não autenticado."
+        "Sem novo teste ou revisão do anúncio; não resolve 5/8 h, capacidade 300/400 mAh ou resistência por suposição. Bluetooth 6.0 continua apenas anunciado, não autenticado.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB75615487?pdp_filters=item_id%3AMLB7213068268"
@@ -5730,12 +5731,13 @@
       "url": "https://rankingdacompra.com.br/produto/VzQgxGhowdzlfNshI3ZC-20260810-1.html",
       "title": "Power bank Hardline 20000 mAh — potência e compatibilidade a confirmar",
       "fingerprint": "0409a8b2fcb73864192a179bc2bd93e58790f856ed69b3b7617948cdaeb68bb1",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T18:29:16.048Z",
       "workNotes": [
         "Hardline: só título deixa de afirmar 22,5 W/universal, alinhando-se à divergência de potência já registrada. Resumo, prós, contras e demais campos editoriais anteriores preservados.",
-        "Não mede capacidade, potência, protocolo ou segurança; não escolhe entre 20/22,5 W nem altera o histórico. Sem refazer análise anterior."
+        "Não mede capacidade, potência, protocolo ou segurança; não escolhe entre 20/22,5 W nem altera o histórico. Sem refazer análise anterior.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB65588451?pdp_filters=item_id%3AMLB6756757832"
@@ -8891,12 +8893,48 @@
     "backendWrites": 0
   },
   "triage45": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "VzQgxGhowdzlfNshI3ZC",
       "WO6BdDxEWWCCjBVJ0ygB",
       "vDQlmcCO0HZUBNi2DUxd"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-01T18:29:16.048Z",
+    "changedIds": [
+      "vDQlmcCO0HZUBNi2DUxd",
+      "VzQgxGhowdzlfNshI3ZC",
+      "WO6BdDxEWWCCjBVJ0ygB"
+    ],
+    "jointReleaseBatches": [
+      45
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem45.json",
+    "remainingDependencies": [
+      {
+        "id": "vDQlmcCO0HZUBNi2DUxd",
+        "note": "Snapshot público local. Sem teste, manual específico ou avaliação individual; não acrescenta orientação médica, benefício clínico ou indicação de academia/musculação."
+      },
+      {
+        "id": "VzQgxGhowdzlfNshI3ZC",
+        "note": "Não mede capacidade, potência, protocolo ou segurança; não escolhe entre 20/22,5 W nem altera o histórico. Sem refazer análise anterior."
+      },
+      {
+        "id": "WO6BdDxEWWCCjBVJ0ygB",
+        "note": "Sem novo teste ou revisão do anúncio; não resolve 5/8 h, capacidade 300/400 mAh ou resistência por suposição. Bluetooth 6.0 continua apenas anunciado, não autenticado."
+      },
+      {
+        "id": "x6DSqhiaMQCjR3uXG5QV",
+        "note": "Triagem local, não validação de medidas, material, faixa etária ou funcionamento. Medidas não verificadas independentemente; não acrescenta instruções ou características ausentes."
+      }
+    ],
+    "sourceCommit": "63d93c18a9d9c9ddc598073cefa496a8320b95ce",
+    "generatedCommit": "1332e094359dcdd1aa15a474218396ffc52b2c6d",
+    "sitemapRun": 41336704148,
+    "integrityRun": 41336704136,
+    "pagesRun": 41336745925,
+    "testsPassed": 1379,
+    "localMobileChecks": 8,
+    "backendWrites": 0
   }
 }
