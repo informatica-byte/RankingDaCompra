@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB4407094781",
-      "mlMLB4592797876",
-      "mlMLB4857635335",
-      "mlMLB6119148470",
       "mlMLB6472086508",
       "mlMLB6553684470",
       "mlMLB6795714040",
-      "mlMLB7482222950"
+      "mlMLB7482222950",
+      "mlMLB7502068112",
+      "mlMLB7746533434",
+      "NJipazuMXMzOH9YZbxwu",
+      "rJhe4VyyDiFudQmQmXCV"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T16:48:38.991Z",
-  "catalogueGeneratedAt": "2026-11-01T16:48:29.041Z",
+  "updatedAt": "2026-11-01T17:04:12.264Z",
+  "catalogueGeneratedAt": "2026-11-01T16:54:21.549Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,10 +639,9 @@
     "total": 558,
     "screened_no_change": 35,
     "needs_source": 7,
-    "targeted_correction_complete": 76,
+    "targeted_correction_complete": 77,
     "preserve_prior_review": 98,
-    "pending": 341,
-    "prepared_awaiting_publication": 1
+    "pending": 341
   },
   "items": [
     {
@@ -6886,12 +6885,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4407094781-20260810-1.html",
       "title": "Tênis Masculino Adrun Calce Fácil Esportivo Conforto Origina",
       "fingerprint": "11c6b29b43fd123835d5f2f9bcba40dda6e16cd019be753d8f8a03bba2f50257",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T17:04:12.244Z",
       "workNotes": [
         "Adrun: qualifica conforto, amortecimento e estabilidade e não transforma termos ortholight/goufre do anúncio em tecnologia confirmada. Conserva nome, variante e dados realmente presentes.",
-        "Snapshot público local, sem manual, código completo ou testes de calçado. URL só identifica catálogo MLBU, sem item do vendedor: não inventado expectedListing. Não confirma autenticidade, tecnologia, desempenho ou indicação ortopédica."
+        "Snapshot público local, sem manual, código completo ou testes de calçado. URL só identifica catálogo MLBU, sem item do vendedor: não inventado expectedListing. Não confirma autenticidade, tecnologia, desempenho ou indicação ortopédica.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/tenis-masculino-adrun-calce-facil-esportivo-conforto-origina/up/MLBU3708716035"
@@ -8606,10 +8606,44 @@
     "historyPreserved": true
   },
   "triage41": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB4407094781"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-01T17:04:12.244Z",
+    "changedIds": [
+      "mlMLB4407094781"
+    ],
+    "jointReleaseBatches": [
+      41
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem41.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4407094781",
+        "note": "Snapshot público local, sem manual, código completo ou testes de calçado. URL só identifica catálogo MLBU, sem item do vendedor: não inventado expectedListing. Não confirma autenticidade, tecnologia, desempenho ou indicação ortopédica."
+      },
+      {
+        "id": "mlMLB4592797876",
+        "note": "Conteúdo público local limitado. Nenhuma confirmação de tração, dimensões medidas, autonomia ou segurança; não é análise técnica completa nem novo teste de anúncio."
+      },
+      {
+        "id": "mlMLB4857635335",
+        "note": "Snapshot público local. Modelo, manual e especificações não confirmados; nenhuma orientação de limpeza de eletrônicos ou teste independente acrescentado."
+      },
+      {
+        "id": "mlMLB6119148470",
+        "note": "Somente cadastro público local, não autenticidade da marca, identificação exata do modelo ou teste de trilha. Não significa validação de conforto, proteção ou segurança."
+      }
+    ],
+    "sourceCommit": "0facf89f2d8dc1c55c6e2221353009ec0c3e5ad1",
+    "generatedCommit": "4cf7200a89ac53f745c9535834041a3ff280c447",
+    "sitemapRun": 41328676906,
+    "integrityRun": 41328676846,
+    "pagesRun": 41328715341,
+    "testsPassed": 1365,
+    "localMobileChecks": 8,
+    "backendWrites": 0
   }
 }
