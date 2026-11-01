@@ -1,0 +1,12 @@
+{
+  "date":"2026-10-31",
+  "policy":"Next three pending IDs in saved GA4 view order. Two necessary corrections and one unchanged screening; not new deep documentary reviews or availability checks.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"r2AJAqnKZR0UvB1V4MRz","decision":"targeted_correction_complete","reason":"Só encurta título excessivo e não presume quantidade de rolos. Texto, prós/contras e limites anteriores de drivers, sistemas e etiquetas mantidos integralmente, sem nova promessa de compatibilidade.","sourceLinks":[],"sourceLimit":"Modelo, drivers, largura útil e rolos do kit continuam a conferir no anúncio/manual; não foram testados."},
+    {"id":"UxB7AJhrBhm36FCTachh","decision":"targeted_correction_complete","reason":"Remove classificação pública elétrica não comprovada, apresentando como brinquedo infantil sem afirmar ausência de motor. Qualifica carga 40 kg como não verificada e não confunde peso do produto com carga admitida. Sem escolher idade/carga por suposição.","sourceLinks":[],"sourceLimit":"Modelo, propulsão, carga, idade, montagem e instruções de segurança continuam sem manual específico. Alterada só apresentação pública, não cadastro no Firestore."},
+    {"id":"wDxxKZn5CFPm3f34ziP2","decision":"screened_no_change","reason":"Nome Vili Urban casual e marca no resumo coerentes na leitura; não há promessa específica de desempenho para remover. Nenhuma reescrita necessária, nem autenticação de marca/unidade ou confirmação técnica de materiais e conforto.","sourceLinks":[],"sourceLimit":"Triagem de texto inalterado, não revisão factual completa, validação de medidas ou estoque."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":2,"noEditorialChange":1,"newDeepReviews":0},
+  "resume":"Next measured pending: 1RCE8RtBHkc6aVkKZ6xB (New Speed), then BhacwzAPIbDglRkNCoyz (Miniso X15pro); skip all unchanged completed entries."
+}

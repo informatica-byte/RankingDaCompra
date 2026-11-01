@@ -8,6 +8,16 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['UxB7AJhrBhm36FCTachh', {
+    syncInformationalSchema:true,
+    model:/^patinete.*infantil.*(?:3|tr[eê]s).*rodas/i,
+    correct:'Patinete infantil de três rodas com LED — características a conferir',
+    category:'brinquedos',
+    summary:'O cadastro anuncia um patinete infantil de três rodas com luzes LED e marca genérica. A categoria anterior de patinetes elétricos não está sustentada pelos dados disponíveis: luzes LED, por si só, não confirmam propulsão elétrica. Esta ficha é apresentada entre brinquedos, sem afirmar que o modelo tem ou não motor. O título anterior mencionava 40 kg, mas não há manual específico registrado nesta revisão para confirmar a carga admitida; o peso do produto não deve ser confundido com a capacidade de carga. Antes de escolher, confira modelo, dimensões, faixa etária, carga máxima, ajuste, montagem e orientações de uso e supervisão no manual e com o vendedor. Não testamos estabilidade, freio, resistência ou segurança deste patinete.',
+    positiveNotes:['Formato infantil de três rodas e luzes LED anunciados no cadastro; confira a unidade oferecida.'],
+    negativeNotes:['Propulsão e carga admitida não confirmadas por documentação específica; 40 kg não é tratado como limite verificado.', 'Faixa etária, dimensões, montagem e orientações de uso precisam de confirmação no manual; não houve teste de segurança.'],
+    suppressRating:true,
+  }],
   ['M0Zj2K84Q8PX0YTQMIHz', {
     syncInformationalSchema:true,
     model:/^smartwatch.*novante/i,
@@ -638,7 +648,9 @@ const PRODUCT_CORRECTIONS = new Map([
     negativeNotes: ["Vazão, ruído e autonomia não foram medidos pela equipe.", "Confira recarga, suporte e orientações para uso ao ar livre."],
   }],
   ["r2AJAqnKZR0UvB1V4MRz", {
-    model: /impressora.*t[eé]rmica.*110\s*mm/i,
+    syncInformationalSchema:true,
+    model: /^impressora.*t[eé]rmica.*110\s*mm/i,
+    correct:'Impressora térmica anunciada como 110 mm — Bluetooth e USB',
     summary: "O anúncio identifica uma impressora térmica para etiquetas de até 110 mm com Bluetooth e USB. Confirme a largura aceita, aplicativo, drivers e compatibilidade com seu sistema. Não testamos etiquetas de transportadoras, códigos de barras ou conexão em Android, iOS, Windows e macOS; não há garantia de compatibilidade universal. Confira tamanho e quantidade dos rolos incluídos.",
     positiveNotes: ["Bluetooth, USB e largura de 110 mm identificados no anúncio; confira o manual."],
     negativeNotes: ["Drivers, aplicativos e etiquetas de transportadoras não foram testados.", "Confirme sistema operacional, largura das etiquetas e consumíveis antes da compra."],
@@ -1059,7 +1071,7 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
         if (!sourceUrl || !matchesExistingOffer({link: sourceUrl.replace(/&amp;/g, '&')}, correction.expectedListing)) continue;
       }
       if (correction.correct) corrected = applyVerifiedTitle(corrected, correction.correct, correction.syncInformationalSchema);
-      const categoryLabel = {informatica:'Informática',carro:'Carro',bicicletas:'Bicicletas','esporte-e-lazer':'Esporte e Lazer',perfumes:'Perfumes'}[correction.category];
+      const categoryLabel = {informatica:'Informática',carro:'Carro',bicicletas:'Bicicletas','esporte-e-lazer':'Esporte e Lazer',perfumes:'Perfumes',brinquedos:'Brinquedos'}[correction.category];
       if (categoryLabel) {
         const categoryUrl = 'https://rankingdacompra.com.br/analises.html#'+correction.category;
         corrected = corrected.replace(/(<span>Categoria<\/span>)[^<]*(<\/div>)/, '$1'+categoryLabel+'$2');
