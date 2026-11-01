@@ -7969,6 +7969,10 @@
   "triage36": {
     "at": "2026-11-01T10:02:42.223Z",
     "status": "prepared_awaiting_publication",
+    "sourceCommit": "f084c490297c79439f88540191b04424f7355add",
+    "localOnly": true,
+    "reviewedOneByOne": true,
+    "nextEditorialId": "XRKv9OGoKrBbcDP0GxER",
     "batches": [
       34,
       35,
