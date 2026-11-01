@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "rMsMd9YWawi1darKVapn",
-      "sinwoGjrsJl5UMA13pES",
-      "sX3K2gzcggu9lkVSke0Q",
-      "TEaC0vVXmdvp4s8QMqpn",
       "vDQlmcCO0HZUBNi2DUxd",
       "VzQgxGhowdzlfNshI3ZC",
       "WO6BdDxEWWCCjBVJ0ygB",
-      "x6DSqhiaMQCjR3uXG5QV"
+      "x6DSqhiaMQCjR3uXG5QV",
+      "xayABmLUPEj8yOPOfzA9",
+      "Znhr4d5uhDKsj5poLEmZ",
+      "0ME2VNUjuL6XoxtKE8ur",
+      "0o2cubZBfwlgcwFokAWY"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T17:52:40.388Z",
-  "catalogueGeneratedAt": "2026-11-01T17:52:32.261Z",
+  "updatedAt": "2026-11-01T17:55:16.191Z",
+  "catalogueGeneratedAt": "2026-11-01T17:53:33.984Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,10 +639,9 @@
     "total": 558,
     "screened_no_change": 39,
     "needs_source": 7,
-    "targeted_correction_complete": 83,
+    "targeted_correction_complete": 85,
     "preserve_prior_review": 98,
-    "pending": 329,
-    "prepared_awaiting_publication": 2
+    "pending": 329
   },
   "items": [
     {
@@ -3411,12 +3410,13 @@
       "url": "https://rankingdacompra.com.br/produto/sX3K2gzcggu9lkVSke0Q-20260810-1.html",
       "title": "Heaven Extraordinary Collection 100ml - Wepink",
       "fingerprint": "7d48b947f4d788af57ad3e123df9a1e5a7d904069089fac618b85d4b4151ffb0",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T17:55:16.170Z",
       "workNotes": [
         "Wepink Heaven: remove rendimento como benefício confirmado e juízo de sofisticação como argumento de qualidade. Mantém só identidade/100 ml e limites, sem inventar notas, concentração ou fixação.",
-        "Somente snapshot local. Sem pirâmide olfativa ou autenticação da variante; não consultado/testado outro Heaven. URL só contém catálogo; não inventado item de vendedor."
+        "Somente snapshot local. Sem pirâmide olfativa ou autenticação da variante; não consultado/testado outro Heaven. URL só contém catálogo; não inventado item de vendedor.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB63650193"
@@ -5702,12 +5702,13 @@
       "url": "https://rankingdacompra.com.br/produto/sinwoGjrsJl5UMA13pES-20260810-1.html",
       "title": "Power Bank Basike 20000mAh para Notebook e Celular com Cabo USB-C 65W",
       "fingerprint": "b8a6c645a4b967600ec6014688f51e7ae25787326c5fe8edb3c2de2eea9af545",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T17:55:16.170Z",
       "workNotes": [
         "Basike 20000 mAh/65 W: retira ótimo desempenho, compatibilidade irrestrita com notebooks exigentes e excelente aceitação sem avaliações registradas. Características ficam atribuídas à oferta, sem converter capacidade em autonomia medida.",
-        "Snapshot público local, sem código de modelo completo, ficha de saída, teste de carga ou avaliações verificadas. Não inventa protocolos, capacidade útil, potência por porta ou instruções de segurança."
+        "Snapshot público local, sem código de modelo completo, ficha de saída, teste de carga ou avaliações verificadas. Não inventa protocolos, capacidade útil, potência por porta ou instruções de segurança.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB63033418?wid=MLB6204416228"
@@ -8820,11 +8821,46 @@
     "backendWrites": 0
   },
   "triage44": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "sX3K2gzcggu9lkVSke0Q",
       "sinwoGjrsJl5UMA13pES"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-01T17:55:16.170Z",
+    "changedIds": [
+      "sinwoGjrsJl5UMA13pES",
+      "sX3K2gzcggu9lkVSke0Q"
+    ],
+    "jointReleaseBatches": [
+      44
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem44.json",
+    "remainingDependencies": [
+      {
+        "id": "rMsMd9YWawi1darKVapn",
+        "note": "Triagem local de texto já prudente. Não autentica unidade, mede calçado ou confirma materiais/numeração."
+      },
+      {
+        "id": "sinwoGjrsJl5UMA13pES",
+        "note": "Snapshot público local, sem código de modelo completo, ficha de saída, teste de carga ou avaliações verificadas. Não inventa protocolos, capacidade útil, potência por porta ou instruções de segurança."
+      },
+      {
+        "id": "sX3K2gzcggu9lkVSke0Q",
+        "note": "Somente snapshot local. Sem pirâmide olfativa ou autenticação da variante; não consultado/testado outro Heaven. URL só contém catálogo; não inventado item de vendedor."
+      },
+      {
+        "id": "TEaC0vVXmdvp4s8QMqpn",
+        "note": "Triagem do conteúdo público local, não validação de fábrica, materiais, configuração da unidade ou medições. Não acrescentadas especificações de outra revisão do Aspire 5."
+      }
+    ],
+    "sourceCommit": "becc65ae0bfe11e99d30fb05946b987accd1cb25",
+    "generatedCommit": "ddd59540d1992abb66adefbb78f48d51469e26c8",
+    "sitemapRun": 41333749264,
+    "integrityRun": 41333749202,
+    "pagesRun": 41333786224,
+    "testsPassed": 1376,
+    "localMobileChecks": 8,
+    "backendWrites": 0
   }
 }
