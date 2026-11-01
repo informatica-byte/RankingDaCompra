@@ -1,0 +1,14 @@
+{
+  "date":"2026-11-01",
+  "policy":"Only next three requested IDs. Preserve existing documented comparison in Redmi; change only incorrect summary and truncated title. No repeated deep review or operational changes.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"4eal5Q0HLTcrspjkUwee","decision":"targeted_correction_complete","reason":"Redmi Buds 6 Play azul: resumo distingue 7,5 h nos fones de 36 h com recargas e assistente do celular de assistente integrado. Alinha limites de IPX4/ANC com a tabela já documentada, sem refazer ou modificar os sete campos de comparação.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB75637724?pdp_filters=item_id%3AMLB5096586835","https://www.mi.com/global/product/redmi-buds-6-play/","https://www.mi.com/global/support/faq/details/KA-309446/"],"sourceLimit":"Fontes Xiaomi consultadas em 01/11/2026. Não importar resultados laboratoriais como teste próprio, alcance garantido, áudio superior, latência ou funcionalidades independentes. Cor e comparação existentes preservadas; não autentica unidade.","publicContextUrl":"https://www.mi.com/global/product/redmi-buds-6-play/"},
+    {"id":"51ek2WOgqwYGnIqBAEPP","decision":"targeted_correction_complete","reason":"TBKIT17: H1 existente cortava o nome do modelo. Somente título encurtado, com quantidade de peças e duas baterias atribuídas à oferta; corpo e resumo preservados, sem qualificação profissional inferida.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB68028763?pdp_filters=item_id%3AMLB6644496628"],"sourceLimit":"Snapshot local. Não é nova verificação de torque, tensão de baterias, mandril ou quantidade entregue. Sem importar especificações ou regime de uso de outro kit."},
+    {"id":"5628K1uP7AHSdoBGcgZ1","decision":"screened_no_change","reason":"Atlas Agile Up: resumo conciso identifica cooktop a gás, instalação de embutir, cinco bocas e código; título não cortado e nenhuma contradição comprovada nesta triagem. Preservado integralmente.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB50829128?wid=MLB4082731117"],"sourceLimit":"Snapshot local, não nova análise aprofundada. Não confirma nicho, gás, conversão, instalação ou rendimento; não oferece instruções de ligação ou transfere dados de outra versão."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":2,"screenedNoChange":1,"newDeepReviews":0},
+  "preserveExceptTitleIds":["51ek2WOgqwYGnIqBAEPP"],
+  "preserveComparisonIds":["4eal5Q0HLTcrspjkUwee"],
+  "generationNote":"Checagem extra detectou família genérica fone antes da publicação, sem mudança nos sete campos. Resumo manteve TWS/True Wireless explícito e foi regenerado; teste e verificador agora exigem categoria e comparação integral iguais à base. Nenhuma publicação intermediária defeituosa."
+}

@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T21:58:51.616Z",
-  "catalogueGeneratedAt": "2026-11-01T21:57:08.296Z",
+  "updatedAt": "2026-11-01T22:06:05.450Z",
+  "catalogueGeneratedAt": "2026-11-01T22:05:56.355Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 560,
-    "screened_no_change": 45,
+    "screened_no_change": 46,
     "needs_source": 8,
     "targeted_correction_complete": 102,
     "preserve_prior_review": 98,
-    "pending": 307
+    "pending": 304,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -2576,11 +2577,16 @@
       "url": "https://rankingdacompra.com.br/produto/5628K1uP7AHSdoBGcgZ1-20260810-1.html",
       "title": "Cooktop 5 Bocas A Gás Atlas Agile Up Mega Chama Preto",
       "fingerprint": "204b510bd02867f3afa10c5f1a03d753660ab8a5321a4019b924ced0af7048c0",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T22:04:12.361Z",
+      "workNotes": [
+        "Atlas Agile Up: resumo conciso identifica cooktop a gás, instalação de embutir, cinco bocas e código; título não cortado e nenhuma contradição comprovada nesta triagem. Preservado integralmente.",
+        "Snapshot local, não nova análise aprofundada. Não confirma nicho, gás, conversão, instalação ou rendimento; não oferece instruções de ligação ou transfere dados de outra versão."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB50829128?wid=MLB4082731117"
+      ]
     },
     {
       "id": "mlMLB7304557578",
@@ -4252,6 +4258,24 @@
       "sourceLinks": []
     },
     {
+      "id": "51ek2WOgqwYGnIqBAEPP",
+      "url": "https://rankingdacompra.com.br/produto/51ek2WOgqwYGnIqBAEPP-20260810-1.html",
+      "title": "Kit The Black Tools TBKIT17 — parafusadeira/furadeira, duas baterias e 147 peças anunciadas",
+      "fingerprint": "dc2db7f36aca5937ae9344c134d690e4a06ce3f0b9d0a3e31f9e66096fc13cdd",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "TBKIT17: H1 existente cortava o nome do modelo. Somente título encurtado, com quantidade de peças e duas baterias atribuídas à oferta; corpo e resumo preservados, sem qualificação profissional inferida.",
+        "Snapshot local. Não é nova verificação de torque, tensão de baterias, mandril ou quantidade entregue. Sem importar especificações ou regime de uso de outro kit."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB68028763?pdp_filters=item_id%3AMLB6644496628"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "fflXJkY0fRQJg8t2QZqn",
       "url": "https://rankingdacompra.com.br/produto/fflXJkY0fRQJg8t2QZqn-20260810-1.html",
       "title": "Kit Ventilador Portatil 8'' + Luz Led 4'' 2 Baterias Recarregável Lanterna Refletor Lampada Luz Led",
@@ -5208,17 +5232,6 @@
       "sourceLinks": []
     },
     {
-      "id": "51ek2WOgqwYGnIqBAEPP",
-      "url": "https://rankingdacompra.com.br/produto/51ek2WOgqwYGnIqBAEPP-20260810-1.html",
-      "title": "Parafusadeira Furadeira De Impacto The Black Tools Com Maleta + Kit Acessórios 147 Peças 2 Baterias Profissional Tbkit17",
-      "fingerprint": "dd49b9ac12416d89821cc048e4c684142baf268168ab2a9f808abb1be0749549",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "UnTwhXqatX5MyoPnl6DN",
       "url": "https://rankingdacompra.com.br/produto/UnTwhXqatX5MyoPnl6DN-20260810-1.html",
       "title": "Parafusadeira Furadeira Sem Fio 12V WAP BPF 12K3 Kit Maleta",
@@ -6018,12 +6031,21 @@
       "id": "4eal5Q0HLTcrspjkUwee",
       "url": "https://rankingdacompra.com.br/produto/4eal5Q0HLTcrspjkUwee-20260810-1.html",
       "title": "Redmi Buds 6 Play Fone De Ouvido Bluetooth Sem Fio Cor Azul",
-      "fingerprint": "2b9de8ff0a77fd864757ef23fd3cbf0b828b2981a4be637c9daa86181cd8ad80",
-      "status": "pending",
+      "fingerprint": "33286943d64127622f2ad89adad4fe68c836b7c5d093a3c111900a7df8b06a68",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Redmi Buds 6 Play azul: resumo distingue 7,5 h nos fones de 36 h com recargas e assistente do celular de assistente integrado. Alinha limites de IPX4/ANC com a tabela já documentada, sem refazer ou modificar os sete campos de comparação.",
+        "Fontes Xiaomi consultadas em 01/11/2026. Não importar resultados laboratoriais como teste próprio, alcance garantido, áudio superior, latência ou funcionalidades independentes. Cor e comparação existentes preservadas; não autentica unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB75637724?pdp_filters=item_id%3AMLB5096586835",
+        "https://www.mi.com/global/product/redmi-buds-6-play/",
+        "https://www.mi.com/global/support/faq/details/KA-309446/"
+      ],
+      "previousState": "prepared_awaiting_publication",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "qPNJGNmzPbZzprZanGOC",
@@ -9375,5 +9397,13 @@
     "testsPassed": 1416,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage52": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "4eal5Q0HLTcrspjkUwee",
+      "51ek2WOgqwYGnIqBAEPP"
+    ],
+    "newDeepReviews": 0
   }
 }

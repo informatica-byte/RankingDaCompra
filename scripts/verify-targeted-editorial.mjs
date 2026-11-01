@@ -12,6 +12,7 @@ const ids=manifest.items.filter(p=>p.decision==='targeted_correction_complete').
 assert.deepEqual(before.products.filter(p=>JSON.stringify(p)!==JSON.stringify(current.get(p.id))).map(p=>p.id).sort(),ids);
 const stripTitle=p=>Object.fromEntries(Object.entries(p).filter(([k])=>k!=='title'));
 for(const id of manifest.preserveExceptTitleIds||[])assert.deepEqual(stripTitle(current.get(id)),stripTitle(before.products.find(p=>p.id===id)),'Prior body or facts changed '+id);
+for(const id of manifest.preserveComparisonIds||[])assert.deepEqual(current.get(id)?.comparison,before.products.find(p=>p.id===id)?.comparison,'Documented comparison changed '+id);
 for(const id of manifest.preserveExceptTitleAndNeutralFamilyIds||[])assertTitleAndNeutralFamilyChange(before.products.find(p=>p.id===id),current.get(id));
 const get=async url=>{const r=await fetch(url+'?triage'+batch+'='+Date.now());assert.equal(r.status,200,url);return r.text();};
 const live=JSON.parse(await get('https://rankingdacompra.com.br/informational-catalogue.json')),byId=new Map(live.products.map(p=>[p.id,p]));

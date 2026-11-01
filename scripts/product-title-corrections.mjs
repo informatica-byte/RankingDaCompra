@@ -8,6 +8,24 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['4eal5Q0HLTcrspjkUwee', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5096586835',
+    model:/^redmi\s*buds\s*6\s*play\s*fone\s*de\s*ouvido/i,
+    summary:'O Redmi Buds 6 Play é um fone TWS (True Wireless) intra-auricular; este cadastro corresponde à cor azul. Para quem busca ouvir música e atender chamadas, a distinção importante é a autonomia: a Xiaomi anuncia até 7,5 horas por carga nos fones e até 36 horas somando recargas do estojo, não 1,5 dia de reprodução contínua nos fones. Os testes declarados pela marca usam volume de 50% e codec SBC; o resultado real pode variar. O comando de voz aciona o assistente do celular, não um assistente Xiaomi independente integrado ao fone. A redução de ruído é para chamadas, não ANC para ouvir música. A proteção IPX4 se aplica aos fones, não ao estojo, e não é indicação para banho ou imersão. A tabela documentada já existente foi preservada; não testamos autonomia, áudio, encaixe ou a autenticidade da unidade do vendedor.',
+    positiveNotes:['Formato intra-auricular, Bluetooth 5.4 e controles pelo aplicativo documentados pela Xiaomi.'],
+    negativeNotes:['36 horas anunciadas incluem recargas do estojo; não são autonomia contínua dos fones.', 'Sem ANC para ouvir música; assistente depende do celular e IPX4 não abrange o estojo.'],
+    contextSourceUrl:'https://www.mi.com/global/product/redmi-buds-6-play/',
+    contextSourceLabel:'Xiaomi Redmi Buds 6 Play: referência oficial, não teste próprio ou autenticação da oferta',
+    suppressRating:true,
+  }],
+  ['51ek2WOgqwYGnIqBAEPP', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB6644496628',
+    model:/^(?:parafusadeira\s*furadeira\s*de\s*impacto\s*the\s*black\s*tools|kit\s*the\s*black\s*tools\s*tbkit17)/i,
+    correct:'Kit The Black Tools TBKIT17 — parafusadeira/furadeira, duas baterias e 147 peças anunciadas',
+  }],
   ['3yIHMxCIF9QgqjNOrSXC', {
     syncInformationalSchema:true,
     allowTruncatedHeading:true,
