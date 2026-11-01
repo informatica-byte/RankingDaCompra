@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T20:42:21.513Z",
-  "catalogueGeneratedAt": "2026-11-01T20:41:13.323Z",
+  "updatedAt": "2026-11-01T21:06:42.141Z",
+  "catalogueGeneratedAt": "2026-11-01T21:05:13.098Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -636,12 +636,12 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 558,
+    "total": 559,
     "screened_no_change": 44,
     "needs_source": 8,
     "targeted_correction_complete": 94,
     "preserve_prior_review": 98,
-    "pending": 314
+    "pending": 315
   },
   "items": [
     {
@@ -7332,6 +7332,17 @@
       "sourceLinks": []
     },
     {
+      "id": "mlMLB4763500131",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4763500131-20260810-1.html",
+      "title": "Tênis Nike Revolution 8 Masculino",
+      "fingerprint": "28b7bd1cf95d3d2ed93154c488b9cb60a39fd41bc3c9568a93417d91f48bb1e5",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
       "id": "of7SzAJ9klKkySvWpSsO",
       "url": "https://rankingdacompra.com.br/produto/of7SzAJ9klKkySvWpSsO-20260810-1.html",
       "title": "Tênis Nike Revolution 8 Masculino",
@@ -9136,5 +9147,28 @@
     "testsPassed": 1388,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "daponSitemapRepair": {
+    "status": "published_verified",
+    "verifiedAt": "2026-11-01T21:06:41.937Z",
+    "sourceCommit": "df49eedc2d007e30e2f0f94ddf11b9a53575a429",
+    "generatedCommit": "2bcb9ff4d5121cc761ae192c7bc6d3eae57103e7",
+    "generationRun": 41350118410,
+    "integrityRun": 41350118416,
+    "pagesRun": 41350171310,
+    "testsPassed": 1404,
+    "newEditorialReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/dapon-sitemap-live.json",
+    "publicProducts": 559,
+    "sitemapUrls": 612,
+    "backupRecords": 595,
+    "canonical": "https://rankingdacompra.com.br/produto/NJipazuMXMzOH9YZbxwu-20260810-1.html",
+    "aliases": [
+      "https://rankingdacompra.com.br/produto/JuHTAByi0pSeuxzlBCy4-20260810-1.html",
+      "https://rankingdacompra.com.br/produto/Y6Ty2gcU1ktmmGyznDWs-20260810-1.html"
+    ],
+    "backendWrites": 0,
+    "historyPreserved": true,
+    "existingAffiliatesPreserved": 558
   }
 }
