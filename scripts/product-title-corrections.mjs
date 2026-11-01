@@ -8,6 +8,16 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['w4grNjrGMy69omEzW0QP', {
+    syncInformationalSchema:true,
+    model:/^perfume(?:\s+[aá]rabe)?\s+maison\s+salem\s+nayef\b/i,
+    summary:'O Maison Salem Nayef é apresentado pela marca como Eau de Parfum de 100 ml, classificado no catálogo como oriental amadeirado. A página específica lista bergamota da Calábria e almíscar na saída, gerânios no coração e benjoim, bálsamo do Peru e madeira guaiac na base. Esse perfil serve como referência de escolha, não como garantia de que a fragrância vai agradar na sua pele. As notas são descrições da marca, não uma análise laboratorial da fórmula. O texto promocional do catálogo cita notas que não aparecem nessa pirâmide; usamos a página específica como referência, sem completar ou combinar as listas. Não testamos fixação, projeção, tolerância ou semelhança com outro perfume e não autenticamos a unidade anunciada. Confira volume, lote, rótulo e condições do anúncio antes de comprar.',
+    positiveNotes:['Nayef EDP de 100 ml identificado na página da marca; família oriental amadeirada declarada no catálogo.'],
+    negativeNotes:['Notas olfativas declaradas não comprovam a composição da fórmula, autenticidade ou resultado na sua pele.', 'Fixação, projeção e tolerância não testadas; não prometemos duração nem equivalência a outro perfume.'],
+    contextSourceUrl:'https://maisonsalem.com.br/produtos/perfume-maison-salem-nayef-edp-100ml',
+    contextSourceLabel:'Maison Salem Nayef EDP 100 ml: descrição da marca, sem autenticar a unidade da oferta',
+    suppressRating:true,
+  }],
   ['sZGVRAGBdFaBYSOQbSO8', {
     syncInformationalSchema:true,
     model:/^teclado.*mec[aâ]nico.*abnt2.*switch\s*red/i,

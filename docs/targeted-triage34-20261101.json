@@ -1,0 +1,11 @@
+{
+  "date":"2026-11-01",
+  "policy":"Next two pending in saved GA4 view order; improve only a generic fragrance record using primary sources and preserve an already coherent computer review.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"w4grNjrGMy69omEzW0QP","decision":"targeted_correction_complete","reason":"Substitui resumo puramente cadastral por perfil de escolha e notas atribuídos à marca. Página específica confirma Nayef EDP 100 ml e pirâmide; catálogo classifica oriental amadeirado, mas texto promocional cita íris/néroli ausentes da pirâmide. Não combinadas listas divergentes. Título e identidade preservados, sem alegar duração, equivalência, concentração percentual ou autenticar a unidade.","sourceLinks":["https://maisonsalem.com.br/produtos/perfume-maison-salem-nayef-edp-100ml","https://catalogo.maisonsalem.com.br/index.html"],"publicContextUrl":"https://maisonsalem.com.br/produtos/perfume-maison-salem-nayef-edp-100ml","sourceLimit":"Duas fontes da marca abertas e lidas. Pirâmide olfativa não é composição da fórmula nem teste laboratorial. Não copiados 15–20%, 6–8 h, longevidade garantida, ingredientes genéricos de toda a marca ou alegações de origem industrial. Sem confirmação de lote, autenticidade, fixação, projeção, tolerância ou equivalência a Prada."},
+    {"id":"YdPOVmrHVJ8EO7fmgyXu","decision":"screened_no_change","reason":"PC i5 de sexta geração já tem correção anterior: SSD de 240 GB e 8 GB de RAM atribuídos ao cadastro, CPU exata e componentes a confirmar, sem prometer desempenho. Não há novo defeito concreto que justifique repetir ou reescrever; título, texto e demais dados mantidos.","sourceLinks":[],"sourceLimit":"Triagem do snapshot e da correção anterior; não identifica CPU a partir de sexta geração, completa placa-mãe/GPU/fonte/monitor ou confirma licença e compatibilidade de sistema. Sem benchmark, autenticação ou nova conferência do anúncio."}
+  ],
+  "counts":{"screened":2,"targetedCorrections":1,"newDeepReviews":0},
+  "resume":"Next pending cjtpmssewHcTpdqJlbS6 (Positivo Vision TAB10 T3010), then saved GA4 view order; skip unchanged completed IDs."
+}
