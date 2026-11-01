@@ -8,6 +8,23 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['5Kojn8DcrLoydOBjq4vd', {
+    syncInformationalSchema:true,
+    model:/^fogareiro\s+port[aá]til\s+usd\b/i,
+    summary:'O cadastro anuncia um fogareiro portátil USD de uma boca, com acendimento automático, maleta e uso de cartucho de gás butano. Essas são informações do anúncio, não resultados de teste. Pode interessar a quem procura esse formato para camping, mas confirme o modelo, o cartucho específico compatível, os itens incluídos, as dimensões e as condições de uso no manual e com o vendedor. A presença de maleta e acendimento automático não comprova segurança do conjunto. Não avaliamos estabilidade, consumo, resistência da maleta, desempenho ou dispositivos de segurança; também não classificamos o produto como ideal para toda viagem, trilha ou pescaria. Para instalação, ventilação, combustível e uso, siga o manual específico; não substituímos essas instruções por suposições baseadas na foto ou no nome.',
+    positiveNotes:['Uma boca, acendimento automático e maleta anunciados no cadastro; confira o conjunto vendido.'],
+    negativeNotes:['Modelo e cartucho compatível precisam de confirmação no manual; não presumimos compatibilidade universal com butano.', 'Segurança, estabilidade, consumo e resistência da maleta não foram testados pela equipe.'],
+    suppressRating:true,
+  }],
+  ['CEVlNR7lM1QTwgcn0tRu', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4053860172',
+    model:/^jogo\s+banco\s+imobili[aá]rio.*brasil.*estrela/i,
+    summary:'O cadastro identifica o Banco Imobiliário Brasil da Estrela, um jogo de tabuleiro com tema de compra e venda de propriedades. Pode ser considerado por quem procura esse tipo de jogo para reunir participantes, mas gostar da proposta depende das preferências do grupo. O tema de negociação não comprova melhoria de planejamento financeiro, estratégia ou raciocínio lógico. Confira a edição Brasil, a faixa etária, o número de jogadores, as regras, os componentes incluídos e as advertências da embalagem antes de escolher. Não transferimos esses dados de outra edição do Banco Imobiliário. Não testamos as peças, a duração das partidas, a experiência do grupo ou resultados educacionais.',
+    positiveNotes:['Edição Brasil da Estrela e tema de compra e venda de propriedades identificados no cadastro.'],
+    negativeNotes:['Faixa etária, número de participantes e componentes desta edição precisam de confirmação na embalagem ou no anúncio.', 'Não há teste da equipe que comprove benefícios educacionais, duração das partidas ou resistência das peças.'],
+    suppressRating:true,
+  }],
   ['XRKv9OGoKrBbcDP0GxER', {
     syncInformationalSchema:true,
     expectedListing:'MLB6797156948',
@@ -804,8 +821,11 @@ const PRODUCT_CORRECTIONS = new Map([
     sourceUrl: "https://loja.wap.ind.br/wap-power-speed-max--1/p", sourceLabel: "WAP Power Speed Max",
   }],
   ["CFEyN1hdeMSM6BS89h5o", {
-    model: /creatina.*dark\s*lab/i,
-    summary: "O anúncio identifica creatina monohidratada Dark Lab em pote de 300 g. Confira fabricante, lote, lacre, ingredientes e procedência na embalagem recebida. Esta revisão não verificou laudos laboratoriais, percentuais de pureza nem autenticidade do lote; não usamos esses números como motivo de recomendação. Não há garantia de ganho de força ou desempenho e esta página não substitui orientação profissional. O preço válido é o exibido com a data de conferência, não uma cotação fixa no texto.",
+    syncInformationalSchema:true,
+    expectedListing:'MLB3817089255',
+    model: /^creatina\b.*dark\s*lab/i,
+    correct:'Creatina monohidratada Dark Lab 300 g — pureza do lote não verificada',
+    summary: "O anúncio identifica creatina monohidratada Dark Lab em pote de 300 g. Confira fabricante, lote, lacre, ingredientes e procedência na embalagem recebida. Esta revisão não verificou laudos laboratoriais, percentuais de pureza nem autenticidade do lote; não usamos esses números como motivo de recomendação. Não há garantia de ganho de força ou desempenho e esta página não substitui orientação profissional.",
     positiveNotes: ["Embalagem de 300 g identificada no cadastro; confirme a unidade oferecida."],
     negativeNotes: ["Laudos, pureza e autenticidade do lote não foram comprovados nesta revisão.", "Resultados individuais não foram avaliados; não há orientação de dose nesta análise."],
   }],

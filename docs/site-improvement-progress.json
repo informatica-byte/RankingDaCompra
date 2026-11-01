@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "5Kojn8DcrLoydOBjq4vd",
-      "CEVlNR7lM1QTwgcn0tRu",
-      "CFEyN1hdeMSM6BS89h5o",
-      "cSmjEdmFugRGDdJHkMcR",
       "fCw8R0SRDFhAWXIT2sZ0",
       "FpO2EOBfcTy3F04Jk6pY",
       "goH2juydLAa3JYXzctkH",
-      "jpfsQDwQMrok9k3UQ66e"
+      "jpfsQDwQMrok9k3UQ66e",
+      "MgDXTGUyMBcJUtTahZIY",
+      "mGfjcGRX5FvusGGZMYJL",
+      "mlMLB4024139675",
+      "mlMLB4407094781"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T10:34:35.869Z",
-  "catalogueGeneratedAt": "2026-11-01T10:33:58.722Z",
+  "updatedAt": "2026-11-01T10:43:07.302Z",
+  "catalogueGeneratedAt": "2026-11-01T10:42:01.204Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,12 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 554,
-    "screened_no_change": 28,
+    "screened_no_change": 29,
     "needs_source": 7,
     "targeted_correction_complete": 57,
     "preserve_prior_review": 98,
-    "pending": 353,
-    "prepared_awaiting_publication": 11
+    "pending": 349,
+    "prepared_awaiting_publication": 14
   },
   "items": [
     {
@@ -2612,13 +2612,23 @@
     {
       "id": "CFEyN1hdeMSM6BS89h5o",
       "url": "https://rankingdacompra.com.br/produto/CFEyN1hdeMSM6BS89h5o-20260810-1.html",
-      "title": "Creatina Monohidratada em Pote 300g 100% Pura Dark Lab",
-      "fingerprint": "77522a032e3ccf3377202367faae51fdc26b1fd3f11300f450a5e3e15c049863",
-      "status": "pending",
+      "title": "Creatina monohidratada Dark Lab 300 g — pureza do lote não verificada",
+      "fingerprint": "d251d1d25e873461a4fbe17c4e4bd0cf474a387402b4a5cdb79874b82fd1cd9b",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Creatina Dark Lab: retira 100% pura como certeza do título e remove somente a frase final antiga sobre preço conferido. Restante do resumo, pontos positivos/limitações e identidade preservados; não reescreve análise já prudente nem orienta doses.",
+        "Correção de incoerência editorial em conteúdo local existente, sem análise de laboratório, nova consulta de saúde ou anúncio. Pureza e autenticidade continuam não verificadas; não confirma resultados ou adequação de uso. Não foi alterado nenhum valor salvo.",
+        "Prepared locally only; production verification is still required."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB19506691?pdp_filters=item_id%3AMLB3817089255"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T10:43:07.303Z",
+      "preparedBatch": 38
     },
     {
       "id": "jABp2HpfTmQNwXsPgrYQ",
@@ -2830,12 +2840,22 @@
       "id": "5Kojn8DcrLoydOBjq4vd",
       "url": "https://rankingdacompra.com.br/produto/5Kojn8DcrLoydOBjq4vd-20260810-1.html",
       "title": "Fogareiro Portátil Usd Camping Acendimento Automático Com Maleta",
-      "fingerprint": "31ad253535f72c641eb44cf56790316de4068a915383748ee04c641a6f7a24e0",
-      "status": "pending",
+      "fingerprint": "72f1a7306235ebac2749fedda77564b55b1edbd041779d87a5c603d91db35c80",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Fogareiro USD: atribui uma boca, acendimento, maleta e butano ao cadastro; retira promessa de segurança, maleta resistente e excelência de custo-benefício sem testes. Não inventa modelo/cartucho, compatibilidade, consumo, instruções ou certificação.",
+        "Somente snapshot público local, sem nova conferência do anúncio. Endereço identifica catálogo, sem item de vendedor no snapshot; não inventado expectedListing. Modelo/manual, cartucho, segurança e desempenho continuam a confirmar. Não é teste de gás ou instrução operacional.",
+        "Prepared locally only; production verification is still required."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/fogareiro-portatil-usd-camping-acendimento-automatico-com-maleta/p/MLB51139997"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T10:43:07.303Z",
+      "preparedBatch": 38
     },
     {
       "id": "goH2juydLAa3JYXzctkH",
@@ -3510,12 +3530,22 @@
       "id": "CEVlNR7lM1QTwgcn0tRu",
       "url": "https://rankingdacompra.com.br/produto/CEVlNR7lM1QTwgcn0tRu-20260810-1.html",
       "title": "Jogo Banco Imobiliário - Brasil - Brinquedos Estrela",
-      "fingerprint": "635c8c086198ac52ac7da0581535188199e05beb480c3129925af2ea8241d7f5",
-      "status": "pending",
+      "fingerprint": "de72764ac947a614de6112a736e95029ea45ca34a2537885ab6e806db46eb47b",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Banco Imobiliário Brasil: mantém identidade e tema de propriedades, substitui benefícios cognitivos garantidos por interesse condicionado à preferência do grupo. Não inventa idade, jogadores, peças, regras, duração ou melhorias educacionais.",
+        "Título, texto e URL do snapshot local; anúncio MLB4053860172 protegido. Não foram consultadas regras nem validada embalagem desta edição. Não transfere dados de outras edições Estrela, não repete conferência e não afirma teste de aprendizagem.",
+        "Prepared locally only; production verification is still required."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB8992714?wid=MLB4053860172"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T10:43:07.303Z",
+      "preparedBatch": 38
     },
     {
       "id": "fOI4O124KZd2vLCx8Fmj",
@@ -6322,11 +6352,16 @@
       "url": "https://rankingdacompra.com.br/produto/cSmjEdmFugRGDdJHkMcR-20260810-1.html",
       "title": "Smartwatch Esportivo Masculina Relógio Inteligente Redondo",
       "fingerprint": "93923af3e55b956b249fbfdefe23ffcbf8d0d6cd5f3113480c04313c081f9b3d",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T10:43:07.303Z",
+      "workNotes": [
+        "FoxBox BW0223 já distingue chamadas Bluetooth, ausência de GPS e IP67 declarado com restrição do próprio vendedor a banho/natação. Sem promessa médica, de autonomia ou sensores testados. Não há defeito novo que justifique reescrever: entrada editorial inteira preservada.",
+        "Triagem da revisão já documentada em 22/10, sem repetir consulta, medir sensores, confirmar bateria ou permitir uso submerso. Dados de fabricante/unidade não autenticados; não é nova análise profunda."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3793292751-smartwatch-esportivo-masculina-relogio-inteligente-redondo-_JM"
+      ]
     },
     {
       "id": "5MGE98tYssH9nEfBeHoW",
@@ -7991,12 +8026,16 @@
       34,
       35,
       36,
-      37
+      37,
+      38
     ],
     "manifestDate": "20261101",
     "ids": [
       "1tIzUpXs4udqZOZwpQX7",
       "51cYaPGtvus2ayLrbFwH",
+      "5Kojn8DcrLoydOBjq4vd",
+      "CEVlNR7lM1QTwgcn0tRu",
+      "CFEyN1hdeMSM6BS89h5o",
       "DlFv98xnrCPIAeFfbRFv",
       "FWRyLtto1bKeKurNikKq",
       "SctMie0hqocPmrWupQLO",
@@ -8007,7 +8046,7 @@
       "w4grNjrGMy69omEzW0QP",
       "z507ObVuMlSEBSnK40Uc"
     ],
-    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35,36,37 20261101",
+    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35,36,37,38 20261101",
     "supportTicket": "4935458",
     "doNotRepeatReviews": true
   },
@@ -8134,6 +8173,72 @@
       {
         "id": "51cYaPGtvus2ayLrbFwH",
         "note": "Base pública local: kit Mini, roteador integrado e formato compacto como anunciados. Starlink /br/roam aberta sem texto legível e /br/specifications?spec=5 inacessível; nenhuma especificação nova atribuída a essas tentativas. Não confirmadas cobertura, ativação, conteúdo, velocidade ou condição da unidade; sem conferência diária repetida."
+      }
+    ]
+  },
+  "triage38": {
+    "at": "2026-11-01T10:43:07.303Z",
+    "status": "prepared_awaiting_publication",
+    "batches": [
+      34,
+      35,
+      36,
+      37,
+      38
+    ],
+    "preparedIds": [
+      "1tIzUpXs4udqZOZwpQX7",
+      "51cYaPGtvus2ayLrbFwH",
+      "5Kojn8DcrLoydOBjq4vd",
+      "CEVlNR7lM1QTwgcn0tRu",
+      "CFEyN1hdeMSM6BS89h5o",
+      "DlFv98xnrCPIAeFfbRFv",
+      "FWRyLtto1bKeKurNikKq",
+      "SctMie0hqocPmrWupQLO",
+      "U52A4gBWWLEmfCzONtHb",
+      "XRKv9OGoKrBbcDP0GxER",
+      "cjtpmssewHcTpdqJlbS6",
+      "mlMLB5212483469",
+      "w4grNjrGMy69omEzW0QP",
+      "z507ObVuMlSEBSnK40Uc"
+    ],
+    "newPreparedIds": [
+      "5Kojn8DcrLoydOBjq4vd",
+      "CEVlNR7lM1QTwgcn0tRu",
+      "CFEyN1hdeMSM6BS89h5o"
+    ],
+    "screenedNoChangeIds": [
+      "cSmjEdmFugRGDdJHkMcR"
+    ],
+    "newDeepReviews": 0,
+    "products": 554,
+    "protectedRecords": 554,
+    "sitemapUrls": 607,
+    "unchangedOutsideRelease": 540,
+    "protectedDeepReviews": 98,
+    "testsPassed": 1341,
+    "staticMobileChecks": 8,
+    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35,36,37,38 20261101",
+    "productionVerified": false,
+    "publicationAttempted": false,
+    "noFirestoreEditorial": true,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-local-triagem38.json",
+    "remainingDependencies": [
+      {
+        "id": "5Kojn8DcrLoydOBjq4vd",
+        "note": "Somente snapshot público local, sem nova conferência do anúncio. Endereço identifica catálogo, sem item de vendedor no snapshot; não inventado expectedListing. Modelo/manual, cartucho, segurança e desempenho continuam a confirmar. Não é teste de gás ou instrução operacional."
+      },
+      {
+        "id": "CEVlNR7lM1QTwgcn0tRu",
+        "note": "Título, texto e URL do snapshot local; anúncio MLB4053860172 protegido. Não foram consultadas regras nem validada embalagem desta edição. Não transfere dados de outras edições Estrela, não repete conferência e não afirma teste de aprendizagem."
+      },
+      {
+        "id": "CFEyN1hdeMSM6BS89h5o",
+        "note": "Correção de incoerência editorial em conteúdo local existente, sem análise de laboratório, nova consulta de saúde ou anúncio. Pureza e autenticidade continuam não verificadas; não confirma resultados ou adequação de uso. Não foi alterado nenhum valor salvo."
+      },
+      {
+        "id": "cSmjEdmFugRGDdJHkMcR",
+        "note": "Triagem da revisão já documentada em 22/10, sem repetir consulta, medir sensores, confirmar bateria ou permitir uso submerso. Dados de fabricante/unidade não autenticados; não é nova análise profunda."
       }
     ]
   }
