@@ -8,6 +8,21 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['hC5H8O2mjGMYXFMH5jic', {
+    syncInformationalSchema:true,
+    model:/^(?:celular.*positivo.*s675|positivo.*s675)/i,
+    correct:'Positivo S675 — 4 GB de RAM e 128 GB anunciados',
+  }],
+  ['kiQqRnm6rDj50U2HaOb3', {
+    syncInformationalSchema:true,
+    model:/^projetor.*(?:hy\s*320.*hardline|hardline.*hy\s*320)/i,
+    correct:'Projetor anunciado como Hardline HY320 — resolução e brilho a conferir',
+    category:'informatica',
+    summary:'O cadastro anuncia um projetor Hardline HY320 com Android, Wi-Fi, Bluetooth, alto-falante e controle remoto. O título anterior informava Full HD e 390 ANSI, mas a descrição registrava apenas 1280 no campo de resolução nativa, sem a medida completa. O tamanho de imagem também aparece de formas diferentes entre título e descrição. Não escolhemos uma resolução, brilho ou tamanho como confirmado. Antes de decidir, confira o código da unidade, a resolução nativa, os sinais aceitos, o brilho documentado, as conexões e a alimentação no manual e no anúncio. Não usamos a ficha de outro HY320 de marca ou revisão diferente para preencher essas lacunas. Android anunciado não é confirmação de funcionamento de cada aplicativo ou serviço; não testamos streaming, imagem, ruído ou brilho deste aparelho.',
+    positiveNotes:['Projetor anunciado como Hardline HY320, com conectividade e controle remoto descritos no cadastro; confirme a unidade e o kit.'],
+    negativeNotes:['Resolução nativa, brilho e tamanho de projeção não confirmados: há campos incompletos ou divergentes no cadastro.', 'Versão do sistema, conexões, alimentação e serviços compatíveis precisam de confirmação; não copiamos dados de outro HY320.'],
+    suppressRating:true,
+  }],
   ['DjihMK3g3rkBHHTPbOwp', {
     syncInformationalSchema:true,
     model:/^(?:principia.*kit.*limpeza.*hidrata|kit.*limpeza.*hidrata.*principia)/i,

@@ -1,0 +1,12 @@
+{
+  "date":"2026-10-31",
+  "policy":"Next two pending products in saved GA4 view order. Title-only clarification for a coherent phone record and necessary incomplete/conflicting projector claims; no new deep review or source transfer from another variant.",
+  "protectedDeepReviews":98,
+  "preserveExceptTitleIds":["hC5H8O2mjGMYXFMH5jic"],
+  "items":[
+    {"id":"hC5H8O2mjGMYXFMH5jic","decision":"targeted_correction_complete","reason":"Apenas título excessivo encurtado, mantendo configuração anunciada 4 GB/128 GB e sem reescrever resumo coerente com o cadastro. Não completa NFC, versão Android, processador ou política de atualizações por inferência.","sourceLinks":[],"sourceLimit":"Busca oficial limitada não encontrou documentação específica utilizável; resultados de varejo não foram usados como prova de fabricante. Recursos e desempenho não foram validados nesta passagem."},
+    {"id":"kiQqRnm6rDj50U2HaOb3","decision":"targeted_correction_complete","reason":"Qualifica resolução nativa incompleta 1280, título Full HD/390 ANSI e tamanhos divergentes, sem escolher valor. Projetor passa publicamente a Informática, sem ser tratado como Smart TV. Não transfere ficha de Magcubic ou outro HY320 ao Hardline cadastrado.","sourceLinks":[],"sourceLimit":"Sem manual específico confirmado para marca/revisão da unidade. Brilho, resolução, sistema, conexões e serviços continuam a conferir; resultados de outras marcas não completam a ficha. Nenhum cadastro no Firestore foi alterado."}
+  ],
+  "counts":{"screened":2,"targetedCorrections":2,"newDeepReviews":0},
+  "resume":"Next measured pending: kYzXt8BeErDzXsC6BlwB (Havit TW982), then mlMLB4513080577. Skip unchanged completed products and avoid repeating missing-source searches without new evidence."
+}
