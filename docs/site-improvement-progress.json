@@ -8179,6 +8179,10 @@
   "triage38": {
     "at": "2026-11-01T10:43:07.303Z",
     "status": "prepared_awaiting_publication",
+    "sourceCommit": "a931274d8404a78fa0639e6e2aa35ca541269056",
+    "localOnly": true,
+    "reviewedOneByOne": true,
+    "nextEditorialId": "fCw8R0SRDFhAWXIT2sZ0",
     "batches": [
       34,
       35,
