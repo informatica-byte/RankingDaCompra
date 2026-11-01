@@ -1,0 +1,11 @@
+{
+  "date":"2026-10-31",
+  "policy":"Two next pending products in saved GA4 view order. Necessary contradictions/unsupported claim corrections only; no new factual certification or deep reviews.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"28xGyV66fEYlx6CnRxIq","decision":"targeted_correction_complete","reason":"Qualifica conflito 180 m no título versus 1,80 m na descrição, sem escolher medida; carbono, ação leve e guias de cerâmica deixam de ser vantagens comprovadas sem documentação. Kit e cor atribuídos ao anúncio, não trocados.","sourceLinks":[],"sourceLimit":"Sem modelo/manual específico confirmados para comprimento, material, ação, guias, compatibilidade ou lista exata de peças."},
+    {"id":"7W5TZBLUNQOGfenrgEtg","decision":"targeted_correction_complete","reason":"Não confunde três unidades de 200 mL do título com campo de 600 mL por unidade. Remove luxo como caracterização editorial e qualifica alegações vegano/livre de crueldade como não verificadas, sem prometer fixação ou equivalência a outro perfume.","sourceLinks":[],"sourceLimit":"Quantidade, volumes individuais, variantes, composição, autenticidade e atributos declarados dependem do anúncio/rótulos; sem comprovação de teste ou certificação nesta revisão."}
+  ],
+  "counts":{"screened":2,"targetedCorrections":2,"newDeepReviews":0},
+  "resume":"Next pending in same GA4 priority: DjihMK3g3rkBHHTPbOwp, then gpeMPTTE5kt9e7kYc0MC. Do not repeat unchanged completed entries."
+}

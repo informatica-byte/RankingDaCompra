@@ -8,6 +8,24 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['28xGyV66fEYlx6CnRxIq', {
+    syncInformationalSchema:true,
+    model:/^(?:vara.*pesca|kit.*pesca.*vara)/i,
+    correct:'Kit de pesca verde com vara e carretilha — medidas a conferir',
+    summary:'O cadastro anuncia um kit de pesca verde com vara, carretilha, linha e acessórios. O título anterior mencionava 180 m, enquanto a descrição informava 1,80 m para a vara. A medida precisa de confirmação: não publicamos 180 m como comprimento comprovado nem escolhemos 1,80 m por suposição. Material em fibra de carbono, ação leve e guias de cerâmica também apareciam no texto sem documentação específica registrada nesta revisão, por isso não são tratados como vantagens verificadas. Confira o modelo, o comprimento, os materiais, as especificações de uso e a lista exata de peças do kit no anúncio e no manual. Não testamos resistência, arremesso, montagem ou compatibilidade dos componentes.',
+    positiveNotes:['Kit verde com vara e carretilha identificado no anúncio; confira linha, acessórios e conteúdo da embalagem.'],
+    negativeNotes:['Comprimento a confirmar: título e descrição apresentavam medidas diferentes.', 'Material, ação, guias e compatibilidade das peças não foram comprovados por documentação específica ou teste.'],
+    suppressRating:true,
+  }],
+  ['7W5TZBLUNQOGfenrgEtg', {
+    syncInformationalSchema:true,
+    model:/^kit.*body\s*splash.*(?:masculino|yllenot)/i,
+    correct:'Kit de body splash masculino anunciado como Yllenot — volumes a conferir',
+    summary:'O cadastro anuncia um kit de body splash masculino como Yllenot. O título anterior mencionava três unidades de 200 mL, mas o campo volume da unidade informava 600 mL. Não assumimos que esse campo represente o total do conjunto nem o volume de cada frasco; confirme quantidade, volumes e variantes no anúncio e nos rótulos. As alegações de produto vegano e livre de crueldade animal constavam no anúncio, mas não foram verificadas nesta revisão. Não autenticamos a unidade ou a composição, não testamos fragrância, fixação ou tolerância na pele e não garantimos semelhança com outro perfume. Confira a identificação dos frascos, os ingredientes e as condições do vendedor antes de decidir.',
+    positiveNotes:['Kit masculino anunciado como Yllenot; confirme os frascos e as variantes incluídas.'],
+    negativeNotes:['Quantidade e volume de cada frasco precisam ser conferidos: título e campo de volume não são inequívocos.', 'Atributos vegano/livre de crueldade, composição e autenticidade não foram verificados; fragrância, fixação e tolerância não foram testadas.'],
+    suppressRating:true,
+  }],
   ['1RCE8RtBHkc6aVkKZ6xB', {
     syncInformationalSchema:true,
     model:/^t[eê]nis.*new\s*speed/i,
