@@ -7853,6 +7853,11 @@
   "triage35": {
     "at": "2026-11-01T09:32:32.191Z",
     "status": "prepared_awaiting_publication",
+    "sourceCommit": "11486b872e2000334197664de2fd31501f9837f8",
+    "localOnly": true,
+    "reviewedOneByOne": true,
+    "nextEditorialId": "SctMie0hqocPmrWupQLO",
+    "headingRecoveryScope": ["DlFv98xnrCPIAeFfbRFv", "mlMLB5212483469"],
     "newDeepReviews": 0,
     "batches": [
       34,
