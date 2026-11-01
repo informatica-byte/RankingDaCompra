@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-31T16:30:56.489Z",
+  "generatedAt": "2026-11-01T00:04:39.350Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -7090,6 +7090,19 @@
       "precoConferenciaId": "dfffac4a-66c9-48cc-ad63-f8f73ea19e17",
       "precoConferenciaCampo": "precoPromocional",
       "precoConferenciaValor": 279.27,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB6794388344",
+      "titulo": "Celular Samsung Galaxy A37 5G 128GB, 6GB RAM",
+      "comentario": "O Samsung Galaxy A37 5G 128GB, 6GB RAM é um dispositivo desbloqueado que oferece conectividade 5G e uma tela Super AMOLED de 6.7\". O modelo integra um conjunto de três câmeras traseiras de 50MP, 8MP e 5MP, além de contar com uma câmera frontal de 12Mpx.",
+      "categoria": "celular",
+      "foto": "https://rankingdacompra.com.br/produto/imagens/mlMLB6794388344-local-ffc4a90a9c9469fe83c0a5774d8083de551d71780bdd2b253e9b25388b94d02b.jpg",
+      "nota": "",
+      "promocaoAtiva": false,
+      "ofertaRelampagoAtiva": false,
       "pros": "",
       "contras": "",
       "notaInformada": ""
