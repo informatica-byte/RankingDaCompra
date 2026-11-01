@@ -1,0 +1,30 @@
+name: Recuperar somente implantação Pages presa da passagem 34
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/recover-pages-triage34.yml']
+permissions: {}
+concurrency:
+  group: recover-pages-triage34-once
+  cancel-in-progress: false
+jobs:
+  recover:
+    if: github.repository == 'informatica-byte/RankingDaCompra' && contains(github.event.head_commit.message, '[recuperar-pages-34]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      pages: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Testar limites da recuperação sem acessar API
+        run: node --test scripts/test-recover-pages-triage34.mjs
+      - name: Cancelar somente SHA antigo citado no bloqueio
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/recover-pages-triage34.mjs
