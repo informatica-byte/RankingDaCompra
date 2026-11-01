@@ -1,0 +1,11 @@
+{
+  "date":"2026-11-01",
+  "policy":"Only three requested pending IDs from saved GA4 order; necessary corrections based on local public offer snapshots, without importing specifications from other variants or sellers.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"3yIHMxCIF9QgqjNOrSXC","decision":"targeted_correction_complete","reason":"Emma Original: título encurtado sem promessa para coluna; altura, espumas, capa e limite por lado atribuídos ao anúncio, sem garantia clínica ou de conforto universal. Mantida medida casal.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB18724648?pdp_filters=item_id%3AMLB2171368181"],"sourceLimit":"Snapshot local da oferta. Busca não forneceu fonte primária específica suficiente para validar a variante; não usadas fichas de outros varejistas ou manuais de Emma One/Original Light. Sem teste físico ou transferência de garantia de outro canal."},
+    {"id":"41xTWhFAFp82XNFL5V87","decision":"targeted_correction_complete","reason":"Rastreador 4G: retira ideal para todos os veículos e deixa identificação, instalação, cobertura e condições do chip/plataforma pendentes. Não presume que chip incluso significa serviço gratuito nem confirma rastreamento ininterrupto.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB63990262?pdp_filters=item_id%3AMLB4742623935"],"sourceLimit":"Só snapshot local; código exato, manual e contrato do serviço não disponíveis. Não confirma homologação, bands, precisão, aplicativo ou voltagem na unidade; dados citados são do vendedor. Sem consultas à plataforma ou rastreamento de pessoas."},
+    {"id":"4DLJoHbBXNFffpz3DNcv","decision":"targeted_correction_complete","reason":"Rishon: substitui eficiência e resistência garantidas por atribuição ao anúncio, repara frase incompleta sobre travas e separa uso anunciado no freezer de compatibilidade não confirmada com forno/tampas/micro-ondas.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB63904966"],"sourceLimit":"Fonte local só identifica catálogo, não anúncio individual. Nenhuma tentativa de resolver ou alterar link. Não importados vidro borossilicato, limites de temperatura ou instruções de outros kits de 370/640 ml; sem testes de vedação ou choque térmico."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":3,"screenedNoChange":0,"newDeepReviews":0}
+}

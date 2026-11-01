@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T21:29:43.411Z",
-  "catalogueGeneratedAt": "2026-11-01T21:27:42.070Z",
+  "updatedAt": "2026-11-01T21:56:12.904Z",
+  "catalogueGeneratedAt": "2026-11-01T21:56:04.288Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -641,7 +641,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 99,
     "preserve_prior_review": 98,
-    "pending": 310
+    "pending": 307,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2353,13 +2354,20 @@
     {
       "id": "3yIHMxCIF9QgqjNOrSXC",
       "url": "https://rankingdacompra.com.br/produto/3yIHMxCIF9QgqjNOrSXC-20260810-1.html",
-      "title": "Colchão Casal Emma Original 138x188cm 3 Camadas de Espuma, Embalado à Vácuo, Suporte para Coluna, Alta Respirabilidade, Capa Lavável",
-      "fingerprint": "e3f03e494146e0d2108c7c195dcc585063bad24c11d24882e9ced36de0fd3ef7",
-      "status": "pending",
+      "title": "Colchão Emma Original casal 138 × 188 cm, três camadas de espuma",
+      "fingerprint": "c33482f7b6f8df3f5bbf281d4f4a0b5dc23231b3ab1e96679bf2c58bcb536876",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Emma Original: título encurtado sem promessa para coluna; altura, espumas, capa e limite por lado atribuídos ao anúncio, sem garantia clínica ou de conforto universal. Mantida medida casal.",
+        "Snapshot local da oferta. Busca não forneceu fonte primária específica suficiente para validar a variante; não usadas fichas de outros varejistas ou manuais de Emma One/Original Light. Sem teste físico ou transferência de garantia de outro canal."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB18724648?pdp_filters=item_id%3AMLB2171368181"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "nzEaLDNocvF6GDH6InIH",
@@ -3778,12 +3786,19 @@
       "id": "4DLJoHbBXNFffpz3DNcv",
       "url": "https://rankingdacompra.com.br/produto/4DLJoHbBXNFffpz3DNcv-20260810-1.html",
       "title": "Kit 10 Pote De Vidro Marmita Hermético 640ml Freezer Fitness Rishon",
-      "fingerprint": "ac9e3243af18cdbf5b67bc75afc1bccece292863810fc1fe997332b8e3161f95",
-      "status": "pending",
+      "fingerprint": "b706a97c7123fc4b1d5c9076d74d4a61e16a62f2ea434c97e5be23a207bd45fd",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Rishon: substitui eficiência e resistência garantidas por atribuição ao anúncio, repara frase incompleta sobre travas e separa uso anunciado no freezer de compatibilidade não confirmada com forno/tampas/micro-ondas.",
+        "Fonte local só identifica catálogo, não anúncio individual. Nenhuma tentativa de resolver ou alterar link. Não importados vidro borossilicato, limites de temperatura ou instruções de outros kits de 370/640 ml; sem testes de vedação ou choque térmico."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB63904966"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "x6DSqhiaMQCjR3uXG5QV",
@@ -5982,13 +5997,20 @@
     {
       "id": "41xTWhFAFp82XNFL5V87",
       "url": "https://rankingdacompra.com.br/produto/41xTWhFAFp82XNFL5V87-20260810-1.html",
-      "title": "Rastreador GPS Veicular 4G com App em Tempo Real | Ideal para Frotas, Carro, Moto, Caminhão e Veículos Elétricos",
-      "fingerprint": "f936c582767e86d4ab03b759f86d76c5df9041cca0c6e5fdc075e93c38991ea9",
-      "status": "pending",
+      "title": "Rastreador GPS veicular 4G com app — compatibilidade e serviço a conferir",
+      "fingerprint": "8109448c550c2c409b3f17314c58b6364a12401e99ec4deb0cb744e7e5a1d1d6",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Rastreador 4G: retira ideal para todos os veículos e deixa identificação, instalação, cobertura e condições do chip/plataforma pendentes. Não presume que chip incluso significa serviço gratuito nem confirma rastreamento ininterrupto.",
+        "Só snapshot local; código exato, manual e contrato do serviço não disponíveis. Não confirma homologação, bands, precisão, aplicativo ou voltagem na unidade; dados citados são do vendedor. Sem consultas à plataforma ou rastreamento de pessoas."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB63990262?pdp_filters=item_id%3AMLB4742623935"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "4eal5Q0HLTcrspjkUwee",
@@ -9310,5 +9332,14 @@
     "testsPassed": 1412,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage51": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "3yIHMxCIF9QgqjNOrSXC",
+      "41xTWhFAFp82XNFL5V87",
+      "4DLJoHbBXNFffpz3DNcv"
+    ],
+    "newDeepReviews": 0
   }
 }

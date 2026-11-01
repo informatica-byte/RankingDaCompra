@@ -8,6 +8,36 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['3yIHMxCIF9QgqjNOrSXC', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB2171368181',
+    model:/^colchão\s*(?:casal\s*emma\s*original|emma\s*original\s*casal)/i,
+    correct:'Colchão Emma Original casal 138 × 188 cm, três camadas de espuma',
+    summary:'O anúncio identifica o Emma Original casal de 138 × 188 cm, com três camadas de espuma. Pode ser uma opção para quem procura um colchão de espuma nessa medida; confira se a versão e a base correspondem ao que você precisa. A descrição informa altura de 25 cm, espumas Airgocell e viscoelástica, limite de 130 kg por lado e capa removível e lavável. Esses dados são atribuídos à oferta, não a medições da equipe ou a todas as versões Emma. Confira etiqueta, limite por pessoa e instruções de lavagem da unidade. A expressão suporte para coluna não é apresentada como garantia de aliviar dor ou de adaptação a qualquer pessoa. Não testamos firmeza, conforto, ventilação, durabilidade ou efeitos sobre a saúde. Verifique também as condições de entrega, devolução e garantia aplicáveis ao vendedor; não presumimos que condições de outro canal valham nesta compra.',
+    positiveNotes:['Medida casal de 138 × 188 cm e construção em três camadas de espuma anunciadas.', 'Capa removível e lavável descrita na oferta; confirme instruções da unidade.'],
+    negativeNotes:['Altura, espumas e limite por lado são dados do anúncio, não medições ou confirmação de todas as versões Emma.', 'Conforto, firmeza e benefício para a coluna não testados; condições de devolução e garantia dependem da oferta.'],
+    suppressRating:true,
+  }],
+  ['41xTWhFAFp82XNFL5V87', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB4742623935',
+    model:/^rastreador\s*gps\s*veicular\s*4g/i,
+    correct:'Rastreador GPS veicular 4G com app — compatibilidade e serviço a conferir',
+    summary:'A oferta apresenta um rastreador GPS veicular 4G com acompanhamento pelo aplicativo BRASILSAT GPS. Pode interessar a quem busca acompanhar um veículo, mas a indicação genérica para carros, motos, caminhões e elétricos não comprova compatibilidade com cada instalação. O anúncio informa alimentação de 9 a 90 V, dimensões de 80 × 28 × 14 mm, chip M2M, cerca virtual e histórico. Não identificamos nesta ficha um código exato de modelo ou manual que permita confirmar esses recursos na unidade. Antes de escolher, peça ao vendedor a identificação do aparelho, compatibilidade elétrica, requisitos de instalação, cobertura e condições de ativação do chip e do aplicativo. Confira eventuais cobranças e duração do serviço incluído: chip anunciado não é garantia de serviço gratuito permanente. Não medimos precisão, intervalo de atualização, disponibilidade da plataforma ou recuperação de veículo e não prometemos rastreamento ininterrupto.',
+    positiveNotes:['App BRASILSAT GPS, chip M2M, cerca virtual e histórico descritos na oferta, ainda dependentes de confirmação da unidade e do serviço.'],
+    negativeNotes:['Sem código exato ou manual confirmado nesta ficha; compatibilidade não é universal para todos os veículos.', 'Conferir ativação, cobertura e eventuais cobranças; precisão, disponibilidade e recuperação de veículo não testadas.'],
+    suppressRating:true,
+  }],
+  ['4DLJoHbBXNFffpz3DNcv', {
+    syncInformationalSchema:true,
+    model:/^kit\s*10\s*pote\s*de\s*vidro\s*marmita\s*hermético\s*640\s*ml.*rishon/i,
+    summary:'A oferta apresenta um kit Rishon com dez potes de vidro e capacidade anunciada de 640 ml por pote. Pode ajudar quem procura recipientes para separar refeições, mas a quantidade adequada de alimento depende do seu uso e das medidas internas. O título anuncia fechamento hermético e uso no freezer; não testamos vedação ou resistência e não os apresentamos como garantia de ausência de vazamento ou quebra. Confira quantidade de recipientes e tampas, dimensões e instruções específicas antes de comprar. O uso anunciado no freezer não confirma, por si só, uso em forno, micro-ondas, lava-louças ou a resistência da tampa às mesmas condições do vidro. Consulte os limites e cuidados indicados para o conjunto; não inferimos tipo de vidro, temperatura suportada ou resistência a choque térmico. O texto anterior sobre travas estava incompleto e não é uma instrução de segurança do fabricante.',
+    positiveNotes:['Kit com dez potes de vidro e capacidade individual de 640 ml anunciados.', 'Fechamento hermético e uso no freezer citados na oferta; condições específicas precisam de confirmação.'],
+    negativeNotes:['Vedação, vazamento e resistência não testados pela equipe.', 'Compatibilidade de tampas e vidro com aquecimento, lavagem e mudanças de temperatura não confirmada nesta ficha.'],
+    suppressRating:true,
+  }],
   ['3AiculsXxRCfEkCx7Qin', {
     syncInformationalSchema:true,
     allowTruncatedHeading:true,
