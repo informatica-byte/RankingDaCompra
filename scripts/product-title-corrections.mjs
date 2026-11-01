@@ -541,7 +541,9 @@ const PRODUCT_CORRECTIONS = new Map([
     sourceUrl:'https://news.samsung.com/br/samsung-anuncia-galaxy-buds-core-no-brasil-cancelamento-de-ruido-e-integracao-com-galaxy-ai-para-todos', sourceLabel:'Samsung — Galaxy Buds Core, recursos e condições de autonomia', reviewedAt:'2026-10-19', suppressRating:true,
   }],
   ['kYzXt8BeErDzXsC6BlwB', {
-    model:/\bhavit\b.*\btw\s*982\b(?!\s*(?:pro|plus)\b)/i,
+    syncInformationalSchema:true,
+    model:/^(?:fone.*\b|)havit\b.*\btw\s*982\b(?!\s*(?:pro|plus)\b)/i,
+    correct:'Fone Havit TW982 ENC Bluetooth 5.4 preto',
     summary:'O HAVIT LIFE 01T, modelo TW982, é um fone TWS com Bluetooth 5.4 e formato intra-auricular com ponteiras na apresentação oficial. A tabela da fabricante anuncia até 7,5 horas nos fones e 33 horas com recargas no estojo, a 60% do volume. O estojo usa USB-C. ENC anunciado para chamadas não comprova ANC para ouvir; não copiamos os recursos do TW982 Pro. Não testamos som, chamadas, conforto ou autonomia real.',
     positiveNotes:['Bluetooth 5.4 documentado na tabela oficial do TW982.', 'Até 7,5 horas nos fones e 33 horas com estojo anunciadas a 60% do volume.'],
     negativeNotes:['As 33 horas incluem recargas; a duração real depende do uso e do volume.', 'ANC para ouvir continua sem confirmação; não é a ficha do TW982 Pro.'],

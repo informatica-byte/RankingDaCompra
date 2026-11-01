@@ -1,0 +1,12 @@
+{
+  "date":"2026-10-31",
+  "policy":"Next two pending in saved GA4 view order; change only a concrete inconsistency. Preserve previous documented body and do not manufacture a review from thin catalogue data.",
+  "protectedDeepReviews":98,
+  "preserveExceptTitleIds":["kYzXt8BeErDzXsC6BlwB"],
+  "items":[
+    {"id":"kYzXt8BeErDzXsC6BlwB","decision":"targeted_correction_complete","reason":"Alinha o título público Bluetooth 5.3 à versão 5.4 já documentada na ficha e no snapshot. Preserva integralmente o resumo, a tabela técnica, as ressalvas ENC/ANC e a revisão anterior; não importa TW982 Pro. Restringe o identificador para não atingir acessórios.","sourceLinks":["https://havitsmart.com/es/products/havit-life-01t-true-wireless-stereo-earbuds-tw982","https://cdn.shopify.com/s/files/1/0755/1365/9703/files/01T-_TW982_-page_-_-2024.05_14.jpg?v=1788255515"],"sourceLimit":"Página oficial do TW982 reaberta; especificações ilustradas já registradas em 20/10 foram preservadas. Não houve novo teste do fone, autenticação da unidade ou revisão da disponibilidade do anúncio."},
+    {"id":"mlMLB4513080577","decision":"screened_no_change","reason":"Ficha limitada, mas já explicita falta de evidência, atribui as informações ao anúncio e não promete conforto ou desempenho. Nome, marca e uso casual são coerentes com o resultado indexado do próprio anúncio MLB4513080577. Sem defeito novo que justifique reescrever; permanece sem análise documental aprofundada.","sourceLinks":["https://produto.mercadolivre.com.br/MLB-4513080577-tnis-em-couro-sneaker-masculino-casual-matteo-classic-ease-_JM"],"sourceLimit":"Abertura direta retornou 403; o resultado indexado do anúncio não confirma a condição atual, materiais da unidade, medidas, conforto ou durabilidade. Não completados forro e solado, cujas seções indexadas diferem. Nenhuma especificação de outro Matteo foi transferida."}
+  ],
+  "counts":{"screened":2,"targetedCorrections":1,"newDeepReviews":0},
+  "resume":"Rebuild next pending from saved GA4 01–28/10, skipping unchanged completed IDs."
+}

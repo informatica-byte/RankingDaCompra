@@ -52,7 +52,10 @@ test('nova revisão é idempotente, não troca título, produto, preço, foto ou
   for(const id of ['kYzXt8BeErDzXsC6BlwB','AweCTxq7vwVQ7VmN4IIg','SJRf3jhIFlr1BQadDNnH']){
     const p=product(id),original=JSON.stringify(p),revised=correctProductData(p);
     assert.deepEqual(correctProductData(revised),revised);
-    for(const [key,value]of Object.entries(p))if(!['comentario','pros','contras','nota','notaInformada'].includes(key))assert.deepEqual(revised[key],value,key);
+    for(const [key,value]of Object.entries(p)){
+      if(id==='kYzXt8BeErDzXsC6BlwB'&&key==='titulo')assert.equal(revised[key],'Fone Havit TW982 ENC Bluetooth 5.4 preto');
+      else if(!['comentario','pros','contras','nota','notaInformada'].includes(key))assert.deepEqual(revised[key],value,key);
+    }
     assert.equal(JSON.stringify(p),original);
     assert.equal(correctProductData({...p,titulo:'Outro produto',comentario:'Preservado'}).comentario,'Preservado');
   }
