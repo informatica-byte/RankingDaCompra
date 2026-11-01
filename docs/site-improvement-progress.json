@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "rERcfIbgG1c0uUdNlQ4o",
-      "SFcayTGVGtzWrkpt4uFw",
       "sZGVRAGBdFaBYSOQbSO8",
       "W309Bngb9vy88pxNSAn5",
       "w4grNjrGMy69omEzW0QP",
       "YdPOVmrHVJ8EO7fmgyXu",
       "cjtpmssewHcTpdqJlbS6",
-      "DlFv98xnrCPIAeFfbRFv"
+      "DlFv98xnrCPIAeFfbRFv",
+      "FWRyLtto1bKeKurNikKq",
+      "mlMLB5212483469"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T01:11:07.951Z",
-  "catalogueGeneratedAt": "2026-11-01T01:09:58.703Z",
+  "updatedAt": "2026-11-01T01:16:02.387Z",
+  "catalogueGeneratedAt": "2026-11-01T01:14:57.274Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,11 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 554,
-    "screened_no_change": 23,
+    "screened_no_change": 24,
     "needs_source": 7,
-    "targeted_correction_complete": 55,
+    "targeted_correction_complete": 56,
     "preserve_prior_review": 98,
-    "pending": 371
+    "pending": 369
   },
   "items": [
     {
@@ -3013,11 +3013,17 @@
       "url": "https://rankingdacompra.com.br/produto/rERcfIbgG1c0uUdNlQ4o-20260810-1.html",
       "title": "Fones De Ouvido Bluetooth Intra-auriculares Lenovo Lp40 Cor Preto",
       "fingerprint": "7e6dc5fc76af5b6a79267c599704f6a171f1f23080beeb18fce90b54f5c88294",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T01:16:02.357Z",
+      "workNotes": [
+        "LP40 já possui resumo específico, Bluetooth e autonomia atribuídos ao anúncio, ANC desconhecido e capacidade do estojo separada de horas. Não há falha concreta nova; preservados título, corpo, tabela e ressalvas, sem importar LP40 Pro.",
+        "Triagem do conteúdo local e da revisão de anúncio de 20/10; não é nova conferência de disponibilidade, autenticação da unidade ou teste de produto. Ausências de ANC e autonomia total continuam explícitas.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB61405511?pdp_filters=item_id%3AMLB5947242720"
+      ]
     },
     {
       "id": "FWRyLtto1bKeKurNikKq",
@@ -6902,12 +6908,20 @@
       "id": "SFcayTGVGtzWrkpt4uFw",
       "url": "https://rankingdacompra.com.br/produto/SFcayTGVGtzWrkpt4uFw-20260810-1.html",
       "title": "Tênis Rbd Game Low Puma",
-      "fingerprint": "4cac6b0ab7d79fb15fb92135009dcf0400b2f7d22a21170bda9f9641ae3af322",
-      "status": "pending",
+      "fingerprint": "2088c0789a3b8ee9d398e15365f3cf3634ed0a0933002c76bd665d2350510ed0",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T01:16:02.357Z",
+      "workNotes": [
+        "Substitui resumo puramente cadastral por contexto útil da linha casual PUMA RBD Game Low, sem tratar inspiração no basquete como desempenho esportivo. Explica perfil de escolha e limites, preserva título e identifica a referência 391759_07 como contexto, não como variante da oferta.",
+        "Página oficial aberta e lida; confirma apenas o posicionamento da linha. Sem código completo da unidade anunciada, não transferidos SoftFoam+, conteúdo reciclado, materiais, medidas, peso ou cor. Não testados conforto, aderência, amortecimento e durabilidade; não autenticada a unidade.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [
+        "https://br.puma.com/pd/tenis-rbd-game-low/391759.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "8a8Iat0nPiQxNPVcJqTU",
@@ -7650,6 +7664,34 @@
       {
         "id": "mlMLB4513080577",
         "note": "Abertura direta retornou 403; o resultado indexado do anúncio não confirma a condição atual, materiais da unidade, medidas, conforto ou durabilidade. Não completados forro e solado, cujas seções indexadas diferem. Nenhuma especificação de outro Matteo foi transferida."
+      }
+    ]
+  },
+  "triage32": {
+    "status": "published_verified",
+    "sourceCommit": "054d7cfd2",
+    "generatedCommit": "9a6aeb3c266f48262a4b8286f63cdad2ef179b54",
+    "integrityRun": 41260260632,
+    "sitemapRun": 41260260631,
+    "pagesRun": 41260292796,
+    "testsPassed": 1308,
+    "lenovoLP40Unchanged": true,
+    "pumaTitlePreserved": true,
+    "localVisualQA": "Both static local pages passed at 360/390px, external requests blocked; Puma screenshot inspected. Not a physical-device, image-loading, live-script or product performance verification.",
+    "verifiedAt": "2026-11-01T01:16:02.357Z",
+    "changedIds": [
+      "SFcayTGVGtzWrkpt4uFw"
+    ],
+    "newDeepReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem32.json",
+    "remainingDependencies": [
+      {
+        "id": "rERcfIbgG1c0uUdNlQ4o",
+        "note": "Triagem do conteúdo local e da revisão de anúncio de 20/10; não é nova conferência de disponibilidade, autenticação da unidade ou teste de produto. Ausências de ANC e autonomia total continuam explícitas."
+      },
+      {
+        "id": "SFcayTGVGtzWrkpt4uFw",
+        "note": "Página oficial aberta e lida; confirma apenas o posicionamento da linha. Sem código completo da unidade anunciada, não transferidos SoftFoam+, conteúdo reciclado, materiais, medidas, peso ou cor. Não testados conforto, aderência, amortecimento e durabilidade; não autenticada a unidade."
       }
     ]
   }
