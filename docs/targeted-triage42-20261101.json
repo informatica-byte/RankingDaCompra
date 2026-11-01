@@ -1,0 +1,12 @@
+{
+  "date":"2026-11-01",
+  "policy":"Next four pending in saved GA4 01–28 October view order. Concrete corrections only; no invented specifications, new availability checks or backend writes.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"mlMLB6472086508","decision":"targeted_correction_complete","reason":"Ameerati: troca a expressão anúncio oficial por atribuição ao vendedor; não autentica origem/marca, não copia notas de outro perfume e não trata com NF como emissão confirmada.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB66782595?wid=MLB6472086508"],"sourceLimit":"Somente snapshot público local do anúncio. Sem fabricante autenticado, composição, notas ou teste de fragrância. Marca Lipx mantida apenas como campo declarado na oferta; não substituída por outra marca."},
+    {"id":"mlMLB6553684470","decision":"screened_no_change","reason":"Mouse MMO: resumo já atribui cabo, sensor óptico e 24000 dpi aos dados públicos do anúncio; não promete precisão, velocidade ou compatibilidade de software. Sem defeito novo concreto, preservar.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU3873340185?pdp_filters=item_id%3AMLB6553684470"],"sourceLimit":"Triagem local, não teste de sensor, ergonomia, botões ou programação. Modelo completo e software não confirmados; não ampliar com ficha de outro mouse E-Yooso."},
+    {"id":"mlMLB6795714040","decision":"targeted_correction_complete","reason":"Voxo T9: título deixa de prometer potência/duração/proteção e uso militar/defesa. Resumo diferencia declarações de medições e explicita ambiguidade da alimentação e do campo 10 lm.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB59322362?wid=MLB6795714040"],"sourceLimit":"Snapshot local sem manual ou ensaio. Não inventa lúmens, watts, autonomia, alcance, IP ou compatibilidade de pilhas. Guardas por ID/modelo/anúncio; cabeçalho antigo longo reconhecido com opt-in de truncamento."},
+    {"id":"mlMLB7482222950","decision":"targeted_correction_complete","reason":"Xiaobang BW-1904D: retira impermeabilidade/durabilidade como certezas; 40 L e notebook 17 polegadas ficam atribuídos ao anúncio e condicionados às medidas, sem garantir proteção de eletrônicos.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB57351944?wid=MLB7482222950"],"sourceLimit":"Somente dados do snapshot público local. Sem medidas internas, limite de carga, teste de chuva, costura, conforto ou certificação de proteção confirmados."}
+  ],
+  "counts":{"screened":4,"targetedCorrections":3,"screenedNoChange":1,"newDeepReviews":0}
+}

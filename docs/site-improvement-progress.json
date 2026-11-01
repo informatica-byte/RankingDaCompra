@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T17:04:12.264Z",
-  "catalogueGeneratedAt": "2026-11-01T16:54:21.549Z",
+  "updatedAt": "2026-11-01T17:11:30.071Z",
+  "catalogueGeneratedAt": "2026-11-01T17:11:22.159Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 558,
-    "screened_no_change": 35,
+    "screened_no_change": 36,
     "needs_source": 7,
     "targeted_correction_complete": 77,
     "preserve_prior_review": 98,
-    "pending": 341
+    "pending": 337,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4196,13 +4197,20 @@
     {
       "id": "mlMLB6795714040",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6795714040-20260810-1.html",
-      "title": "Lanterna Tática Voxo Militar T9 Zoom Ultra Potente Bateria Longa Duração Recarregável Usb Resistente Água Poeira Defesa Caça Camping",
-      "fingerprint": "a8bc515583a288f0816a01a6a108554baa7af83f52ea6827cc9a535d0bd3637e",
-      "status": "pending",
+      "title": "Lanterna Voxo T9 com zoom e recarga USB anunciados — autonomia e proteção a confirmar",
+      "fingerprint": "32c486c9b3317c73dac675791e2c2251ed07b3bf56d571d835d200a2a49a3ff0",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Voxo T9: título deixa de prometer potência/duração/proteção e uso militar/defesa. Resumo diferencia declarações de medições e explicita ambiguidade da alimentação e do campo 10 lm.",
+        "Snapshot local sem manual ou ensaio. Não inventa lúmens, watts, autonomia, alcance, IP ou compatibilidade de pilhas. Guardas por ID/modelo/anúncio; cabeçalho antigo longo reconhecido com opt-in de truncamento."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB59322362?wid=MLB6795714040"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "LQ12PkH1sbM7Uu0geBQf",
@@ -4660,12 +4668,19 @@
       "id": "mlMLB7482222950",
       "url": "https://rankingdacompra.com.br/produto/mlMLB7482222950-20260810-1.html",
       "title": "Mochila Escolar Reforçada Xiaobang BW-1904D Preto 40L Para Notebook 17 Polegadas",
-      "fingerprint": "b698e815e58d1d085d9066699cc662aaabd5b55e28ae76c70300d7f7958b6127",
-      "status": "pending",
+      "fingerprint": "ea3dfbc71212b2a7c006bcceee96ff9cff1e185749197b61f8875ae061bf0c58",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Xiaobang BW-1904D: retira impermeabilidade/durabilidade como certezas; 40 L e notebook 17 polegadas ficam atribuídos ao anúncio e condicionados às medidas, sem garantir proteção de eletrônicos.",
+        "Somente dados do snapshot público local. Sem medidas internas, limite de carga, teste de chuva, costura, conforto ou certificação de proteção confirmados."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB57351944?wid=MLB7482222950"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "XDnd73z0ZIkihILVyQhX",
@@ -4713,11 +4728,16 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6553684470-20260810-1.html",
       "title": "Mouse Gamer Mmo Com Fio 18 Botões Programáveis 24000 Dpi Rgb",
       "fingerprint": "fd89a017fda78e83fc79fce1fefbb5b820a01701fd04400cc958e699b86e53aa",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T17:11:30.072Z",
+      "workNotes": [
+        "Mouse MMO: resumo já atribui cabo, sensor óptico e 24000 dpi aos dados públicos do anúncio; não promete precisão, velocidade ou compatibilidade de software. Sem defeito novo concreto, preservar.",
+        "Triagem local, não teste de sensor, ergonomia, botões ou programação. Modelo completo e software não confirmados; não ampliar com ficha de outro mouse E-Yooso."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3873340185?pdp_filters=item_id%3AMLB6553684470"
+      ]
     },
     {
       "id": "mlMLB5626051922",
@@ -5294,12 +5314,19 @@
       "id": "mlMLB6472086508",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6472086508-20260810-1.html",
       "title": "Perfume Árabe Ameerati Feminino Eau De Parfum 100 Ml Com Nf lipx",
-      "fingerprint": "9b3d6b0050ecf2d65dea4670d19036e840391aa4b471f02af132a152481ab8c6",
-      "status": "pending",
+      "fingerprint": "65506ba26da066466d5c59ace0c199d416d37e8dfd60d7da2d0b0d56cfb1fcff",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Ameerati: troca a expressão anúncio oficial por atribuição ao vendedor; não autentica origem/marca, não copia notas de outro perfume e não trata com NF como emissão confirmada.",
+        "Somente snapshot público local do anúncio. Sem fabricante autenticado, composição, notas ou teste de fragrância. Marca Lipx mantida apenas como campo declarado na oferta; não substituída por outra marca."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB66782595?wid=MLB6472086508"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7748620676",
@@ -8645,5 +8672,14 @@
     "testsPassed": 1365,
     "localMobileChecks": 8,
     "backendWrites": 0
+  },
+  "triage42": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB6472086508",
+      "mlMLB6795714040",
+      "mlMLB7482222950"
+    ],
+    "newDeepReviews": 0
   }
 }

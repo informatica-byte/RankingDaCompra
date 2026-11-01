@@ -8,6 +8,35 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB6472086508', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB6472086508',
+    model:/^perfume\s*[aá]rabe\s*ameerati\b/i,
+    summary:'O anúncio identifica Ameerati como perfume feminino Eau de Parfum de 100 ml e informa Lipx no campo de marca. O vendedor também declara origem nos Emirados Árabes Unidos e frasco não recarregável. Esses são dados da oferta, não validação de fabricante, procedência ou autenticidade pela equipe. O nome Ameerati, sozinho, não permite copiar a composição ou as notas olfativas de outro perfume com nome parecido. Se estiver considerando esta opção, confira fabricante, embalagem, identificação da unidade e descrição da fragrância com o vendedor. A expressão com NF do título não substitui a confirmação das condições de emissão da nota fiscal. Não testamos fragrância, fixação ou projeção e não prometemos duração específica na pele.',
+    positiveNotes:['Volume de 100 ml e classificação Eau de Parfum informados na oferta; confirme a unidade.'],
+    negativeNotes:['Fabricante, procedência e autenticidade não verificados pela equipe; campo de marca do anúncio não é validação independente.', 'Notas olfativas, fixação e projeção não confirmadas; não usamos a ficha de outro perfume de nome parecido.'],
+    suppressRating:true,
+  }],
+  ['mlMLB6795714040', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB6795714040',
+    model:/^lanterna.*voxo.*\bt9\b/i,
+    correct:'Lanterna Voxo T9 com zoom e recarga USB anunciados — autonomia e proteção a confirmar',
+    summary:'O anúncio identifica a lanterna Voxo T9 com zoom, iluminação LED, recarga USB e cinco modos. A descrição menciona bateria ou pilhas AA/AAA, sem esclarecer inequivocamente a configuração e os acessórios da unidade; confirme no manual e com o vendedor antes de escolher. O campo chamado potência traz 10 lm, mas não há informação técnica suficiente nesta ficha para tratar esse número como potência elétrica ou fluxo luminoso verificado. As expressões ultra potente, longa duração, militar e resistente à água e poeira não comprovam alcance, autonomia, certificação ou grau de proteção. Não testamos iluminação, bateria, resistência ou durabilidade e não indicamos o produto como equipamento de defesa ou de segurança. Confira tipo de alimentação compatível, carregamento, conteúdo da caixa e restrições de uso no manual específico.',
+    positiveNotes:['Zoom, recarga USB, LED e cinco modos anunciados; confirme a configuração da oferta.'],
+    negativeNotes:['Autonomia, alcance e grau de proteção não confirmados; não há garantia de resistência irrestrita à água e poeira.', 'Alimentação e acessórios precisam de confirmação; não presumimos equivalência entre bateria, AA e AAA.', 'Valor 10 lm do anúncio sem medição independente; sem validação de uso militar, defesa ou segurança.'],
+    suppressRating:true,
+  }],
+  ['mlMLB7482222950', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB7482222950',
+    model:/^mochila\s*escolar\s*refor[cç]ada\s*xiaobang\s*bw[-\s]*1904d/i,
+    summary:'O anúncio identifica a mochila Xiaobang BW-1904D de 40 litros, com compartimento anunciado para notebook de até 17 polegadas, poliéster e bolso para garrafa. A descrição informa 18 cm de profundidade; confirme todas as medidas e o espaço interno antes de escolher para o seu aparelho. A diagonal de 17 polegadas não garante que qualquer notebook desse tamanho caiba. As expressões reforçada e à prova d’água são declarações do vendedor, sem ensaio ou classificação de proteção registrados nesta ficha. Não prometemos impermeabilidade do conjunto, proteção dos eletrônicos ou maior durabilidade. Não testamos costuras, zíperes, conforto com carga ou resistência à água. Confira dimensões do compartimento, limite de carga, materiais e orientações de conservação no anúncio e com o vendedor.',
+    positiveNotes:['Modelo BW-1904D, capacidade de 40 litros e compartimento para notebook anunciados.', 'Bolso para garrafa e material em poliéster informados na descrição; confirme a variante.'],
+    negativeNotes:['Compatibilidade com notebook depende das medidas internas e do aparelho, não apenas da diagonal da tela.', 'Impermeabilidade, resistência, durabilidade e conforto com carga não testados pela equipe.'],
+    suppressRating:true,
+  }],
   ['mlMLB4407094781', {
     syncInformationalSchema:true,
     model:/^t[eê]nis\s*masculino\s*adrun\s*calce\s*f[aá]cil/i,
