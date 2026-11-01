@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T18:52:38.380Z",
-  "catalogueGeneratedAt": "2026-11-01T18:50:31.673Z",
+  "updatedAt": "2026-11-01T20:40:12.530Z",
+  "catalogueGeneratedAt": "2026-11-01T20:40:08.995Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -641,7 +641,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 91,
     "preserve_prior_review": 98,
-    "pending": 317
+    "pending": 314,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -3233,12 +3234,19 @@
       "id": "1VMzq0ovRkap3dGQ7ikC",
       "url": "https://rankingdacompra.com.br/produto/1VMzq0ovRkap3dGQ7ikC-20260810-1.html",
       "title": "Fritadeira Air Fryer Philco 16 Litros Paf16c Preto 220v",
-      "fingerprint": "f75851caa6c1dd1bb3820f6dc2e7e08d42d25bfb5f0dcc9ea551ef577d55a3c4",
-      "status": "pending",
+      "fingerprint": "d42c32a8b741fbfa8ae6bb8e9785d1b5398a3f1bb6336c9f97b38700ace3152e",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Philco: retira preparo rápido, estrutura robusta e ideal para famílias como conclusões sem teste; 16 L/1900 W/touch atribuídos ao anúncio. Preserva PAF16C 220 V e não infere bivolt, porções ou economia.",
+        "Snapshot público local. Manual oficial localizado na busca, mas não usado para importar especificações de outra voltagem; sem teste ou confirmação de dimensões, consumo/temperatura/acessórios. Não modificada variante ou dados salvos."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB66895633?wid=MLB4604524273"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "k82L2iy2Q6giFdCHVbSg",
@@ -3563,12 +3571,20 @@
       "id": "1Iyoc1zKTUsDEQGbvIM3",
       "url": "https://rankingdacompra.com.br/produto/1Iyoc1zKTUsDEQGbvIM3-20260810-1.html",
       "title": "Inalador Nebulizador Aero Tech Portátil Tec. Mesh Relaxmedic",
-      "fingerprint": "3f04ed7500beca04c14a0d9505e5b6b0587d3f043d97809930a525b6649bc19c",
-      "status": "pending",
+      "fingerprint": "8a2a53bfe45f0a164d04426e67577cf30f58ba45840675ce0b122905bab8eafa",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Aero Tech: fabricante identifica referência RM-IP0135A e modos; display/ajuste de intensidade não confirmados não viram garantia. Recursos não são indicação clínica universal e não há promessa de eficácia terapêutica da equipe.",
+        "Fonte oficial consultada em 01/11/2026 para identificação/Mesh/modos. Não importa tempos de modo, limpeza, doses, medicamentos ou indicações clínicas para a unidade do vendedor; não autentica variante. Manual específico e orientação profissional continuam necessários."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3750650384?pdp_filters=item_id%3AMLB4435213175",
+        "https://www.gruporelaxmedic.com.br/produto/inalador-nebulizador-aero-tech/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5336183061",
@@ -3796,17 +3812,6 @@
       "sourceLinks": []
     },
     {
-      "id": "1c9dmLesD1G0pPTCYrjt",
-      "url": "https://rankingdacompra.com.br/produto/1c9dmLesD1G0pPTCYrjt-20260810-1.html",
-      "title": "Kit 2 Suporte Porta Shampoo Sabonete Prateleira Banheiro Adesivo Parede Sem Furar Box Luxo Cor Preto Homeroarte",
-      "fingerprint": "b166bad099b273e1a9cc49d96603a9e134aa57e52deae07b44076127bcbaa21d",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB4835180937",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4835180937-20260810-1.html",
       "title": "Kit 3 Body Splash Masculino Vibration + Blunn + Infalível Fero By Primacial Body Man",
@@ -4005,6 +4010,24 @@
       "changedSinceCheckpoint": true,
       "preparedAt": "2026-11-01T10:34:35.871Z",
       "preparedBatch": 37
+    },
+    {
+      "id": "1c9dmLesD1G0pPTCYrjt",
+      "url": "https://rankingdacompra.com.br/produto/1c9dmLesD1G0pPTCYrjt-20260810-1.html",
+      "title": "Kit de dois suportes adesivos Homeroarte para banheiro — fixação a conferir",
+      "fingerprint": "17978cd7d5a146165ea2ddc168d0dc43e056ba9ffbdb74c577bca16e16dfc992",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Homeroarte: encurta título repetitivo e cortado, substitui luxo por identificação funcional e não faz da limpeza prova suficiente de fixação. Sem inventar carga, material ou remoção sem marcas.",
+        "Snapshot público local, sem instrução exata ou teste de aderência/umidade. Quantidade de dois suportes preservada; não fornece método de instalação ou tempo de cura inventado."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB60049155?pdp_filters=item_id%3AMLB4951174502"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "DjihMK3g3rkBHHTPbOwp",
@@ -9070,5 +9093,14 @@
     "testsPassed": 1384,
     "localMobileChecks": 8,
     "backendWrites": 0
+  },
+  "triage48": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "1Iyoc1zKTUsDEQGbvIM3",
+      "1VMzq0ovRkap3dGQ7ikC",
+      "1c9dmLesD1G0pPTCYrjt"
+    ],
+    "newDeepReviews": 0
   }
 }

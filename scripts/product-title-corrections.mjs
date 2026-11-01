@@ -8,6 +8,37 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['1c9dmLesD1G0pPTCYrjt', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB4951174502',
+    model:/^(?:kit\s*2\s*suporte\s*porta\s*shampoo|kit\s*de\s*dois\s*suportes\s*adesivos\s*homeroarte)/i,
+    correct:'Kit de dois suportes adesivos Homeroarte para banheiro — fixação a conferir',
+    summary:'O cadastro anuncia um kit Homeroarte com dois suportes adesivos para organizar shampoo e sabonete no banheiro, sem perfuração anunciada. Pode interessar a quem procura esse formato, mas a proposta adesiva não garante fixação em toda parede ou dentro de qualquer box. Antes de escolher, confira superfícies compatíveis, preparação, instalação, tempo de espera e carga permitida nas instruções específicas da oferta. A limpeza da superfície é apenas um dos aspectos a verificar, não comprovação de aderência. Não há limite de peso confirmado nesta ficha e não testamos fixação, resistência à umidade, durabilidade ou remoção sem marcas. Confirme também dimensões e itens necessários à instalação; não inferimos material, acessórios ou capacidade pelo termo luxo do título anterior.',
+    positiveNotes:['Kit com dois suportes e fixação adesiva sem perfuração anunciados no cadastro.'],
+    negativeNotes:['Superfície, instalação e carga permitida precisam de confirmação; não há teste de fixação ou umidade da equipe.', 'Remoção sem marcas, material e durabilidade não confirmados nesta ficha.'],
+    suppressRating:true,
+  }],
+  ['1Iyoc1zKTUsDEQGbvIM3', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4435213175',
+    model:/^inalador\s*nebulizador\s*aero\s*tech.*relaxmedic/i,
+    summary:'O cadastro identifica o inalador nebulizador Aero Tech da Relaxmedic, anunciado como portátil e com tecnologia Mesh. A página oficial de referência identifica o modelo RM-IP0135A e descreve modos adulto, infantil e limpeza; confirme o código da unidade e os acessórios incluídos na oferta. A existência desses modos não é indicação clínica individual nem prescrição de tratamento. O ajuste de intensidade e o display citados no texto anterior não foram confirmados nesta revisão e não são apresentados como recursos garantidos. Não testamos nebulização, ruído, autonomia, conforto ou resultados terapêuticos. Para indicação de uso, substâncias compatíveis, quantidade, duração e higienização, siga orientação profissional e o manual específico, não uma descrição comercial. Esta ficha não escolhe medicamentos, doses ou tratamento e não autentica a unidade do vendedor.',
+    positiveNotes:['Aero Tech e tecnologia Mesh identificados no cadastro e na referência da Relaxmedic.', 'A página do fabricante descreve modos adulto, infantil e limpeza para o modelo de referência.'],
+    negativeNotes:['Confirme código, acessórios e instruções da unidade; display e ajuste de intensidade não confirmados nesta revisão.', 'Desempenho e adequação clínica não testados pela equipe; a ficha não substitui orientação profissional ou manual.'],
+    contextSourceUrl:'https://www.gruporelaxmedic.com.br/produto/inalador-nebulizador-aero-tech/',
+    contextSourceLabel:'Relaxmedic Aero Tech RM-IP0135A: referência oficial, sem autenticar a unidade da oferta',
+    suppressRating:true,
+  }],
+  ['1VMzq0ovRkap3dGQ7ikC', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4604524273',
+    model:/^fritadeira\s*air\s*fryer\s*philco\s*16\s*litros\s*paf16c.*220\s*v/i,
+    summary:'O cadastro identifica a air fryer Philco PAF16C de 16 litros, preta, na versão 220 V. A descrição anuncia potência de 1900 W e painel touch; são dados da oferta, não medições da equipe. Pode interessar a quem procura esse formato de aparelho, mas a capacidade anunciada não informa, sozinha, quantas porções cabem em cada preparo. Não prometemos preparo mais rápido, economia de energia, robustez ou resultado uniforme para qualquer receita. Antes de escolher, confira dimensões, espaço necessário, capacidade dos acessórios, conteúdo da caixa e requisitos elétricos no manual da versão oferecida. Não tratamos esta unidade como bivolt e não transferimos dados de outra voltagem. Não testamos tempo de preparo, consumo, temperatura, limpeza ou durabilidade.',
+    positiveNotes:['PAF16C, capacidade de 16 litros e versão 220 V identificados no cadastro.', 'Potência de 1900 W e painel touch anunciados na descrição; confirme a unidade.'],
+    negativeNotes:['Capacidade por preparo e adequação ao espaço dependem de medidas e acessórios; não foram testadas pela equipe.', 'Rapidez, consumo, uniformidade, robustez e durabilidade não medidos; versão cadastrada é 220 V, não presumida bivolt.'],
+    suppressRating:true,
+  }],
   ['0TQPS3z5Mj1mWyEjdcjd', {
     syncInformationalSchema:true,
     model:/^principia\s*kit\s*protetor\s*solar\s*facial\s*ps[-\s]*01\s*fps\s*60/i,

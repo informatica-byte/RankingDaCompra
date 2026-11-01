@@ -1,0 +1,12 @@
+{
+  "date":"2026-11-01",
+  "policy":"Only the three requested next pending IDs in dated GA4 01–28 October queue. Correct documented unsupported claims without importing specifications or changing variants.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"1c9dmLesD1G0pPTCYrjt","decision":"targeted_correction_complete","reason":"Homeroarte: encurta título repetitivo e cortado, substitui luxo por identificação funcional e não faz da limpeza prova suficiente de fixação. Sem inventar carga, material ou remoção sem marcas.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB60049155?pdp_filters=item_id%3AMLB4951174502"],"sourceLimit":"Snapshot público local, sem instrução exata ou teste de aderência/umidade. Quantidade de dois suportes preservada; não fornece método de instalação ou tempo de cura inventado."},
+    {"id":"1Iyoc1zKTUsDEQGbvIM3","decision":"targeted_correction_complete","reason":"Aero Tech: fabricante identifica referência RM-IP0135A e modos; display/ajuste de intensidade não confirmados não viram garantia. Recursos não são indicação clínica universal e não há promessa de eficácia terapêutica da equipe.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU3750650384?pdp_filters=item_id%3AMLB4435213175","https://www.gruporelaxmedic.com.br/produto/inalador-nebulizador-aero-tech/"],"sourceLimit":"Fonte oficial consultada em 01/11/2026 para identificação/Mesh/modos. Não importa tempos de modo, limpeza, doses, medicamentos ou indicações clínicas para a unidade do vendedor; não autentica variante. Manual específico e orientação profissional continuam necessários.","publicContextUrl":"https://www.gruporelaxmedic.com.br/produto/inalador-nebulizador-aero-tech/"},
+    {"id":"1VMzq0ovRkap3dGQ7ikC","decision":"targeted_correction_complete","reason":"Philco: retira preparo rápido, estrutura robusta e ideal para famílias como conclusões sem teste; 16 L/1900 W/touch atribuídos ao anúncio. Preserva PAF16C 220 V e não infere bivolt, porções ou economia.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB66895633?wid=MLB4604524273"],"sourceLimit":"Snapshot público local. Manual oficial localizado na busca, mas não usado para importar especificações de outra voltagem; sem teste ou confirmação de dimensões, consumo/temperatura/acessórios. Não modificada variante ou dados salvos."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":3,"screenedNoChange":0,"newDeepReviews":0},
+  "resumeNote":"The next supplement TESTO ESSENCIAL was only identified in queue, not reviewed, changed or completed in this batch."
+}
