@@ -22,7 +22,9 @@ test('31 revisões são específicas, preservam cadastros e não viram preços o
       else if(id==='M0Zj2K84Q8PX0YTQMIHz'&&key==='titulo')assert.equal(after[key],'Smartwatch Novante — recursos conforme o anúncio');
       else if(id==='BhacwzAPIbDglRkNCoyz'&&key==='titulo')assert.equal(after[key],'Fones anunciados como MINISO X15 Pro — recursos a conferir');
       else if(id==='kYzXt8BeErDzXsC6BlwB'&&key==='titulo')assert.equal(after[key],'Fone Havit TW982 ENC Bluetooth 5.4 preto');
-      else if(!['comentario','pros','contras','nota','notaInformada'].includes(key)&&!(id==='FWRyLtto1bKeKurNikKq'&&key==='titulo'))assert.deepEqual(after[key],value,id+':'+key);
+      else if(id==='DlFv98xnrCPIAeFfbRFv'&&key==='titulo')assert.equal(after[key],'Fone PRO PHONE SEE — Bluetooth 5.4 anunciado; ANC e resistência a confirmar');
+      else if(id==='FWRyLtto1bKeKurNikKq'&&key==='titulo')assert.equal(after[key],'Fone FORESTORY X5 — Bluetooth 5.3, formato e autonomia a confirmar');
+      else if(!['comentario','pros','contras','nota','notaInformada'].includes(key))assert.deepEqual(after[key],value,id+':'+key);
     }
     assert.equal(JSON.stringify(p),before);assert.deepEqual(correctProductData(after),after);
     assert.equal(listingReviewFor({...p,id:'outro'}),null);

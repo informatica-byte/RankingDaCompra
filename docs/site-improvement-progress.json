@@ -10,13 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "w4grNjrGMy69omEzW0QP",
-      "cjtpmssewHcTpdqJlbS6",
-      "DlFv98xnrCPIAeFfbRFv",
-      "FWRyLtto1bKeKurNikKq",
-      "mlMLB5212483469",
       "SctMie0hqocPmrWupQLO",
-      "SJRf3jhIFlr1BQadDNnH"
+      "SJRf3jhIFlr1BQadDNnH",
+      "U52A4gBWWLEmfCzONtHb",
+      "VgB90DThWdh8uyXUeE3U",
+      "XRKv9OGoKrBbcDP0GxER",
+      "z507ObVuMlSEBSnK40Uc",
+      "1tIzUpXs4udqZOZwpQX7",
+      "51cYaPGtvus2ayLrbFwH"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -623,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T09:04:23.234Z",
-  "catalogueGeneratedAt": "2026-11-01T08:53:23.800Z",
+  "updatedAt": "2026-11-01T09:32:32.190Z",
+  "catalogueGeneratedAt": "2026-11-01T09:29:18.354Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -640,7 +641,8 @@
     "needs_source": 7,
     "targeted_correction_complete": 57,
     "preserve_prior_review": 98,
-    "pending": 366
+    "pending": 361,
+    "prepared_awaiting_publication": 5
   },
   "items": [
     {
@@ -2951,6 +2953,27 @@
       "sourceLinks": []
     },
     {
+      "id": "FWRyLtto1bKeKurNikKq",
+      "url": "https://rankingdacompra.com.br/produto/FWRyLtto1bKeKurNikKq-20260810-1.html",
+      "title": "Fone FORESTORY X5 — Bluetooth 5.3, formato e autonomia a confirmar",
+      "fingerprint": "cf845111e983bac4397a78f87aa9d684f7d47c0d72b1ed26b16a0fdb91118049",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Título retira formato open-ear/gancho como confirmado e promessa de grave potente; mantém 5.3 já documentado e sinaliza formato/autonomia contraditórios. Família do comparador passa de fone-tws para fone genérico, sem escolher formato. Corpo, características da tabela e fontes anteriores preservados.",
+        "Não repetida revisão do anúncio de 22/10. Não escolhido um dos formatos ou números de bateria divergentes nem atribuída ficha de outro X5. Apenas o rótulo da família foi neutralizado; características e motivos permanecem iguais.",
+        "Prepared locally only; do not repeat review or mark published until joint production verification."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB68085605?pdp_filters=item_id%3AMLB4840111509"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T09:32:32.191Z",
+      "preparedBatch": 35
+    },
+    {
       "id": "kYzXt8BeErDzXsC6BlwB",
       "url": "https://rankingdacompra.com.br/produto/kYzXt8BeErDzXsC6BlwB-20260810-1.html",
       "title": "Fone Havit TW982 ENC Bluetooth 5.4 preto",
@@ -2971,17 +2994,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "DlFv98xnrCPIAeFfbRFv",
-      "url": "https://rankingdacompra.com.br/produto/DlFv98xnrCPIAeFfbRFv-20260810-1.html",
-      "title": "Fone Ouvido Bluetooth 5.3 Sem Fio Estojo De Carregamento Anti Ruido A Prova Dagua Compatível Com Ios Samsung Galaxy Android Tws Wireless Air Premium Microfone Touch Marca Pro Phone See",
-      "fingerprint": "23b0a63120df83e57cbfa56a32bf2bae876baf84fc7b4cbb02ed2eb5a9a02165",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "U52A4gBWWLEmfCzONtHb",
       "url": "https://rankingdacompra.com.br/produto/U52A4gBWWLEmfCzONtHb-20260810-1.html",
       "title": "Fone Ouvido Bluetooth Sem Fio Prova DAgua Wireless Tipo Light Cancelamento Ruido Celular",
@@ -2991,6 +3003,27 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "DlFv98xnrCPIAeFfbRFv",
+      "url": "https://rankingdacompra.com.br/produto/DlFv98xnrCPIAeFfbRFv-20260810-1.html",
+      "title": "Fone PRO PHONE SEE — Bluetooth 5.4 anunciado; ANC e resistência a confirmar",
+      "fingerprint": "f5b9194efa08fc07438897b6333ed371bdae5d37b11101e4b22feb16049ad327",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Somente título: substitui 5.3 por 5.4 anunciado já documentado no corpo/tabela e retira água/antirruído como garantias. Resumo, tabela, fontes e limites da revisão anterior ficam iguais.",
+        "Reutiliza a revisão de anúncio registrada em 20/10; não houve nova conferência, autenticação ou teste. Não se deduz ANC, classificação IP ou compatibilidade universal.",
+        "Prepared locally only; do not repeat review or mark published until joint production verification."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB58519492?pdp_filters=item_id%3AMLB5758097762"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T09:32:32.191Z",
+      "preparedBatch": 35
     },
     {
       "id": "BhacwzAPIbDglRkNCoyz",
@@ -3027,17 +3060,6 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB61405511?pdp_filters=item_id%3AMLB5947242720"
       ]
-    },
-    {
-      "id": "FWRyLtto1bKeKurNikKq",
-      "url": "https://rankingdacompra.com.br/produto/FWRyLtto1bKeKurNikKq-20260810-1.html",
-      "title": "FORESTORY Fone de Ouvido Bluetooth 5.3 OWS TWS Sem Fio X5 Open Ear Esportivo com Gancho Display LED HD Microfone Grave Potente para Academia Corrida Compatível iPhone Samsung Xiaomi Motorola Android",
-      "fingerprint": "040730ac453123d886596fa5919d8923a40c4dc16ad43d7ac607113701b5cffe",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "nsOTlMwVIdo8dNOdpShY",
@@ -4149,6 +4171,27 @@
       "sourceLinks": []
     },
     {
+      "id": "mlMLB5212483469",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5212483469-20260810-1.html",
+      "title": "Lenovo IdeaPad Slim 3 15IRH10 83NS0003BR — configuração a conferir na oferta",
+      "fingerprint": "1a176015a650f1317077f8f67de983484c6c69fdaecf179299c72733520e30bc",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira resumo herdado do ThinkPad X13 G1 recondicionado, incompatível com título/endereço original cadastrados do IdeaPad 83NS0003BR. Mantém identidade do SKU anunciado e referência de fábrica já registrada, sempre condicionada à confirmação da oferta. Não une variantes ou muda links/condição do cadastro.",
+        "PSREF reaberto, mas sem linhas legíveis nesta consulta; reutilizada somente a referência anterior específica do SKU, não tratada como nova confirmação. Não expandido afiliado ou trocado destino. Condição e alterações do vendedor continuam a confirmar.",
+        "Prepared locally only; do not repeat review or mark published until joint production verification."
+      ],
+      "sourceLinks": [
+        "https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0003BR"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T09:32:32.191Z",
+      "preparedBatch": 35
+    },
+    {
       "id": "vDQlmcCO0HZUBNi2DUxd",
       "url": "https://rankingdacompra.com.br/produto/vDQlmcCO0HZUBNi2DUxd-20260810-1.html",
       "title": "Liftness Bicicleta Ergométrica Fitness SP50PTVM Para Cardio E Musculação Academia Com Base Cor Preto E Vermelho",
@@ -4764,17 +4807,6 @@
       "sourceLinks": []
     },
     {
-      "id": "mlMLB5212483469",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5212483469-20260810-1.html",
-      "title": "Notebook Lenovo Ideapad Slim 3 15irh10 Intel Core i5-13420h 8gb 256gb Ssd Windows 11 15.3 - 83ns0003br Luna Grey",
-      "fingerprint": "b53922e8fdab044dd0b08999ed866cc687bc4a7c0d097f74b8205c574c7b6491",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "OJulxennkkhusiTWA3Wt",
       "url": "https://rankingdacompra.com.br/produto/OJulxennkkhusiTWA3Wt-20260810-1.html",
       "title": "Notebook Lenovo IdeaPad Slim 3 15IRH10 Intel Core i5-13420H 8GB 512GB SSD Windows 11 15.3\" - 83NS0002BR Luna Grey",
@@ -5133,18 +5165,23 @@
       "id": "w4grNjrGMy69omEzW0QP",
       "url": "https://rankingdacompra.com.br/produto/w4grNjrGMy69omEzW0QP-20260810-1.html",
       "title": "Perfume Árabe Maison Salem Nayef Masculino Edp - 100ml",
-      "fingerprint": "eee6f624bf601c86682a225f1ac0ddbdca54f420b23430b91b251a77a72db958",
-      "status": "pending",
+      "fingerprint": "1afeba65aa2cfa36536a61311b057bd7ce6e0c005a79f2e9104258a378a2077d",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
       "workNotes": [
-        "Editorial correction prepared and committed in b6c771d57 / generated 7c559fb66; not served yet. Do not redo the review or claim it published.",
-        "Resume only the failed Pages deployment after the stale eed0e63ca lock is resolved, then run node scripts/verify-targeted-editorial.mjs 34 20261101."
+        "Substitui resumo puramente cadastral por perfil de escolha e notas atribuídos à marca. Página específica confirma Nayef EDP 100 ml e pirâmide; catálogo classifica oriental amadeirado, mas texto promocional cita íris/néroli ausentes da pirâmide. Não combinadas listas divergentes. Título e identidade preservados, sem alegar duração, equivalência, concentração percentual ou autenticar a unidade.",
+        "Duas fontes da marca abertas e lidas. Pirâmide olfativa não é composição da fórmula nem teste laboratorial. Não copiados 15–20%, 6–8 h, longevidade garantida, ingredientes genéricos de toda a marca ou alegações de origem industrial. Sem confirmação de lote, autenticidade, fixação, projeção, tolerância ou equivalência a Prada.",
+        "Prepared locally only; do not repeat review or mark published until joint production verification."
       ],
       "sourceLinks": [
         "https://maisonsalem.com.br/produtos/perfume-maison-salem-nayef-edp-100ml",
         "https://catalogo.maisonsalem.com.br/index.html"
-      ]
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T09:32:32.191Z",
+      "preparedBatch": 34
     },
     {
       "id": "mlMLB6785015658",
@@ -5412,17 +5449,6 @@
       "sourceLinks": [],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "cjtpmssewHcTpdqJlbS6",
-      "url": "https://rankingdacompra.com.br/produto/cjtpmssewHcTpdqJlbS6-20260810-1.html",
-      "title": "Positivo Vision TAB10 T3010 4GB RAM 128GB SSD com Capa Teclado Octa-Core 5 13MP Bateria 6000mAh Tela 10.1“ HD Wifi AC e 4G Full Lamination - Preto",
-      "fingerprint": "7f0d96b617abf091bc41f6980f6b52062cb8d34a38ced6d2ab838f6ff9343159",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "wYxgVNIJeeWmGhcToFLP",
@@ -6364,6 +6390,27 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "cjtpmssewHcTpdqJlbS6",
+      "url": "https://rankingdacompra.com.br/produto/cjtpmssewHcTpdqJlbS6-20260810-1.html",
+      "title": "Tablet Positivo Vision TAB10 T3010 — 4 GB de RAM e 128 GB de armazenamento",
+      "fingerprint": "c18cdbb6560f1f65cd2d62e1df431522403bfa63f715ca613f383a9c62d06f18",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Remove SSD de notebook e promessa de boa autonomia/desempenho como fatos testados. Título usa armazenamento; referência oficial descreve NAND e distingue a memória RAM. Texto explica o kit e limites, sem preencher requisitos de aplicativos, expansão ou atualização por suposição.",
+        "Página específica do kit Positivo aberta e lida. Referência de linha, sem comprovar SKU/versão ou conteúdo da unidade vendida. Sem testes de teclado, bateria, multitarefa ou rede; mAh não convertidos em horas.",
+        "Prepared locally only; do not repeat review or mark published until joint production verification."
+      ],
+      "sourceLinks": [
+        "https://loja.meupositivo.com.br/tablet-positivo-vision-tab-10-capa-teclado-4gb-128gb-5-13mp-6000mah-tela-10-1-hd-wifi-ac-4g-preto-3801470/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T09:32:32.191Z",
+      "preparedBatch": 35
     },
     {
       "id": "Bp4dNosktHQXiSy3r9S0",
@@ -7746,12 +7793,18 @@
     "status": "awaiting_publication",
     "officialRecoveryInvestigation": {
       "status": "official_cancellation_refused",
-      "attemptRuns": [41291820393, 41291988576],
+      "attemptRuns": [
+        41291820393,
+        41291988576
+      ],
       "exactEvidenceJob": 124804934188,
       "getStatus": "succeed",
       "cancelHttp": 400,
       "cancelMessage": "Unable to cancel deployment eed0e63ca55604f4df531cbc04b0f23f155f6ab2 as it's finished.",
-      "recoveryCommits": ["58a55f1ae", "7662071b1"],
+      "recoveryCommits": [
+        "58a55f1ae",
+        "7662071b1"
+      ],
       "recoveryDisabledCommit": "e4d4f2bf7",
       "recoveryNowDisabled": true,
       "noActiveWriteGrant": true,
@@ -7796,5 +7849,80 @@
     "proof": "outputs/melhorias-integrais-20261030/verificacao-parcial-triagem34.json",
     "newDeepReviews": 0,
     "resume": "Do not edit the two records again. Resolve stale Pages deployment and retry only latest deploy, then verify-targeted-editorial.mjs 34 20261101 before marking Nayef complete."
+  },
+  "triage35": {
+    "at": "2026-11-01T09:32:32.191Z",
+    "status": "prepared_awaiting_publication",
+    "newDeepReviews": 0,
+    "batches": [
+      34,
+      35
+    ],
+    "preparedIds": [
+      "DlFv98xnrCPIAeFfbRFv",
+      "FWRyLtto1bKeKurNikKq",
+      "cjtpmssewHcTpdqJlbS6",
+      "mlMLB5212483469",
+      "w4grNjrGMy69omEzW0QP"
+    ],
+    "newPreparedIds": [
+      "DlFv98xnrCPIAeFfbRFv",
+      "FWRyLtto1bKeKurNikKq",
+      "cjtpmssewHcTpdqJlbS6",
+      "mlMLB5212483469"
+    ],
+    "products": 554,
+    "unchangedOutsideRelease": 549,
+    "protectedDeepReviews": 98,
+    "testsPassed": 1326,
+    "staticMobileChecks": 8,
+    "headphoneBodiesUnchanged": [
+      "DlFv98xnrCPIAeFfbRFv",
+      "FWRyLtto1bKeKurNikKq"
+    ],
+    "neutralFamilyIds": [
+      "FWRyLtto1bKeKurNikKq"
+    ],
+    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35 20261101",
+    "productionVerified": false,
+    "publicationAttempted": false,
+    "noFirestoreEditorial": true,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-local-triagem35.json",
+    "remainingDependencies": [
+      {
+        "id": "cjtpmssewHcTpdqJlbS6",
+        "note": "Página específica do kit Positivo aberta e lida. Referência de linha, sem comprovar SKU/versão ou conteúdo da unidade vendida. Sem testes de teclado, bateria, multitarefa ou rede; mAh não convertidos em horas."
+      },
+      {
+        "id": "DlFv98xnrCPIAeFfbRFv",
+        "note": "Reutiliza a revisão de anúncio registrada em 20/10; não houve nova conferência, autenticação ou teste. Não se deduz ANC, classificação IP ou compatibilidade universal."
+      },
+      {
+        "id": "FWRyLtto1bKeKurNikKq",
+        "note": "Não repetida revisão do anúncio de 22/10. Não escolhido um dos formatos ou números de bateria divergentes nem atribuída ficha de outro X5. Apenas o rótulo da família foi neutralizado; características e motivos permanecem iguais."
+      },
+      {
+        "id": "mlMLB5212483469",
+        "note": "PSREF reaberto, mas sem linhas legíveis nesta consulta; reutilizada somente a referência anterior específica do SKU, não tratada como nova confirmação. Não expandido afiliado ou trocado destino. Condição e alterações do vendedor continuam a confirmar."
+      }
+    ]
+  },
+  "preparedRelease": {
+    "status": "awaiting_github_pages_release",
+    "batches": [
+      34,
+      35
+    ],
+    "manifestDate": "20261101",
+    "ids": [
+      "DlFv98xnrCPIAeFfbRFv",
+      "FWRyLtto1bKeKurNikKq",
+      "cjtpmssewHcTpdqJlbS6",
+      "mlMLB5212483469",
+      "w4grNjrGMy69omEzW0QP"
+    ],
+    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35 20261101",
+    "supportTicket": "4935458",
+    "doNotRepeatReviews": true
   }
 }

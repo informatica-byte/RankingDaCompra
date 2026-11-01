@@ -8,6 +8,41 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['cjtpmssewHcTpdqJlbS6', {
+    syncInformationalSchema:true,
+    model:/^(?:tablet\s+)?positivo\s+vision\s+tab\s*10\b.*\bt3010\b/i,
+    correct:'Tablet Positivo Vision TAB10 T3010 — 4 GB de RAM e 128 GB de armazenamento',
+    summary:'O cadastro anuncia o Positivo Vision TAB10 T3010 com 4 GB de RAM, 128 GB de armazenamento e capa com teclado. Na referência da loja Positivo para o kit Vision Tab 10, o armazenamento é descrito como NAND; não tratamos os 128 GB como um SSD de notebook. A página também informa tela de 10,1 polegadas, Android 13 e bateria de 6000 mAh. São características declaradas, não garantia de velocidade ou horas de uso. A capa com teclado pode interessar a quem prefere digitar nesse formato, mas confirme os itens incluídos na oferta e os requisitos dos seus aplicativos. Não testamos multitarefa, teclado, conexão móvel, desempenho ou autonomia e não prometemos compatibilidade com todo programa de computador. Confira o modelo e a versão da unidade antes de comprar.',
+    positiveNotes:['4 GB de RAM e 128 GB de armazenamento identificados no cadastro e na referência da linha; o kit oficial inclui capa com teclado.'],
+    negativeNotes:['128 GB são descritos como armazenamento NAND na referência oficial, não como SSD de notebook.', 'Autonomia, desempenho, teclado e compatibilidade com aplicativos não foram testados; confira o modelo e o kit da oferta.'],
+    contextSourceUrl:'https://loja.meupositivo.com.br/tablet-positivo-vision-tab-10-capa-teclado-4gb-128gb-5-13mp-6000mah-tela-10-1-hd-wifi-ac-4g-preto-3801470/p',
+    contextSourceLabel:'Loja Positivo Vision Tab 10 com capa teclado: referência da linha, sem autenticar a unidade da oferta',
+    suppressRating:true,
+  }],
+  ['DlFv98xnrCPIAeFfbRFv', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    model:/^(?:fone\s+pro\s*phone\s*see\b|fone\s+ouvido.*\bpro\s*phone\s*see\b)/i,
+    expectedListing:'MLB5758097762',
+    correct:'Fone PRO PHONE SEE — Bluetooth 5.4 anunciado; ANC e resistência a confirmar',
+  }],
+  ['FWRyLtto1bKeKurNikKq', {
+    syncInformationalSchema:true,
+    model:/^(?:fone\s+)?forestory\b.*\bx5\b/i,
+    expectedListing:'MLB4840111509',
+    correct:'Fone FORESTORY X5 — Bluetooth 5.3, formato e autonomia a confirmar',
+  }],
+  ['mlMLB5212483469', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    model:/^(?:notebook\s+)?lenovo\b.*\bideapad\b.*\b83ns0003br\b/i,
+    expectedListing:'MLB5759767112',
+    correct:'Lenovo IdeaPad Slim 3 15IRH10 83NS0003BR — configuração a conferir na oferta',
+    summary:'O título e o endereço original cadastrados identificam o Lenovo IdeaPad Slim 3 15IRH10, código 83NS0003BR. A descrição antiga falava de um ThinkPad X13 G1 recondicionado, com outra memória e outro processador; esses dados não foram combinados com a ficha do IdeaPad. A referência de fábrica já registrada para o código 83NS0003BR informa Core i5-13420H, 8 GB de RAM e SSD de 256 GB, mas não autentica a unidade anunciada nem confirma mudanças feitas pelo vendedor. Confira o SKU, o conjunto, a condição do produto e o destino do link antes de comprar. Não classificamos o IdeaPad como recondicionado com base no texto antigo. Não testamos desempenho, tela, bateria ou durabilidade e não transferimos a configuração do código 83NS0002BR.',
+    positiveNotes:['Referência de fábrica específica do código 83NS0003BR já registrada, com 8 GB de RAM e SSD de 256 GB; confirme o SKU da oferta.'],
+    negativeNotes:['Havia descrição de outro modelo no cadastro; não usamos os dados do ThinkPad para caracterizar este IdeaPad.', 'Condição da unidade, alterações do vendedor e correspondência final da oferta precisam de confirmação; desempenho não foi testado.'],
+    suppressRating:true,
+  }],
   ['w4grNjrGMy69omEzW0QP', {
     syncInformationalSchema:true,
     model:/^perfume(?:\s+[aá]rabe)?\s+maison\s+salem\s+nayef\b/i,
@@ -1117,6 +1152,18 @@ function suppressUnreliableRating(content) {
   );
 }
 
+export function headingForCorrection(content, model) {
+  const nodes = (() => {try {const j=JSON.parse(content.match(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i)?.[1]||'{}');return j['@graph']||[j];}catch{return [];}})();
+  const heading=visibleText(content.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || content.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || nodes.find(n=>n['@type']==='Product')?.name || '');
+  if(!model || model.test(heading) || !/(?:…|\.{3})\s*$/.test(heading))return heading;
+  const prefix=heading.replace(/(?:…|\.{3})\s*$/,'').trim().toLowerCase();
+  // Only recover a truncated heading from the matching primary structured name.
+  // A related-product name or a different heading must not identify this record.
+  const article=nodes.find(n=>n['@type']==='Article'),product=nodes.find(n=>n['@type']==='Product');
+  const full=visibleText(article?.about?.name || product?.name || '');
+  return prefix && full.toLowerCase().startsWith(prefix) && model.test(full) ? full : heading;
+}
+
 export async function correctGeneratedProductTitles(rootDirectory = process.cwd()) {
   const files = [resolve(rootDirectory, "analises.html"), resolve(rootDirectory, "top5-semanal.json")];
   const productDirectory = resolve(rootDirectory, "produto");
@@ -1171,9 +1218,7 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
     const fileName = basename(file);
     for (const [productId, correction] of PRODUCT_CORRECTIONS) {
       if (!fileName.startsWith(productId + "-")) continue;
-      const heading = visibleText(corrected.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]
-        || corrected.match(/<title>([\s\S]*?)<\/title>/i)?.[1]
-        || (() => { try { const payload = JSON.parse(corrected.match(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i)?.[1] || '{}'); return (payload['@graph'] || [payload]).find(n => n['@type'] === 'Product')?.name || ''; } catch { return ''; } })());
+      const heading = headingForCorrection(corrected, correction.allowTruncatedHeading ? correction.model : null);
       if (correction.model && !correction.model.test(heading)) continue;
       if (correction.expectedListing) {
         const sourceUrl = corrected.match(/<meta\b[^>]*name=["']rdc-offer-url["'][^>]*content=["']([^"']+)["']/i)?.[1];
