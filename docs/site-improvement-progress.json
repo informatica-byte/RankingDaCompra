@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T10:43:07.302Z",
-  "catalogueGeneratedAt": "2026-11-01T10:42:01.204Z",
+  "updatedAt": "2026-11-01T11:12:17.743Z",
+  "catalogueGeneratedAt": "2026-11-01T11:10:42.982Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,10 +639,9 @@
     "total": 554,
     "screened_no_change": 29,
     "needs_source": 7,
-    "targeted_correction_complete": 58,
+    "targeted_correction_complete": 71,
     "preserve_prior_review": 98,
-    "pending": 349,
-    "prepared_awaiting_publication": 13
+    "pending": 349
   },
   "items": [
     {
@@ -2614,13 +2613,13 @@
       "url": "https://rankingdacompra.com.br/produto/CFEyN1hdeMSM6BS89h5o-20260810-1.html",
       "title": "Creatina monohidratada Dark Lab 300 g — pureza do lote não verificada",
       "fingerprint": "d251d1d25e873461a4fbe17c4e4bd0cf474a387402b4a5cdb79874b82fd1cd9b",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Creatina Dark Lab: retira 100% pura como certeza do título e remove somente a frase final antiga sobre preço conferido. Restante do resumo, pontos positivos/limitações e identidade preservados; não reescreve análise já prudente nem orienta doses.",
         "Correção de incoerência editorial em conteúdo local existente, sem análise de laboratório, nova consulta de saúde ou anúncio. Pureza e autenticidade continuam não verificadas; não confirma resultados ou adequação de uso. Não foi alterado nenhum valor salvo.",
-        "Prepared locally only; production verification is still required."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB19506691?pdp_filters=item_id%3AMLB3817089255"
@@ -2841,13 +2840,13 @@
       "url": "https://rankingdacompra.com.br/produto/5Kojn8DcrLoydOBjq4vd-20260810-1.html",
       "title": "Fogareiro Portátil Usd Camping Acendimento Automático Com Maleta",
       "fingerprint": "72f1a7306235ebac2749fedda77564b55b1edbd041779d87a5c603d91db35c80",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Fogareiro USD: atribui uma boca, acendimento, maleta e butano ao cadastro; retira promessa de segurança, maleta resistente e excelência de custo-benefício sem testes. Não inventa modelo/cartucho, compatibilidade, consumo, instruções ou certificação.",
         "Somente snapshot público local, sem nova conferência do anúncio. Endereço identifica catálogo, sem item de vendedor no snapshot; não inventado expectedListing. Modelo/manual, cartucho, segurança e desempenho continuam a confirmar. Não é teste de gás ou instrução operacional.",
-        "Prepared locally only; production verification is still required."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/fogareiro-portatil-usd-camping-acendimento-automatico-com-maleta/p/MLB51139997"
@@ -2966,13 +2965,13 @@
       "url": "https://rankingdacompra.com.br/produto/FWRyLtto1bKeKurNikKq-20260810-1.html",
       "title": "Fone FORESTORY X5 — Bluetooth 5.3, formato e autonomia a confirmar",
       "fingerprint": "cf845111e983bac4397a78f87aa9d684f7d47c0d72b1ed26b16a0fdb91118049",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Título retira formato open-ear/gancho como confirmado e promessa de grave potente; mantém 5.3 já documentado e sinaliza formato/autonomia contraditórios. Família do comparador passa de fone-tws para fone genérico, sem escolher formato. Corpo, características da tabela e fontes anteriores preservados.",
         "Não repetida revisão do anúncio de 22/10. Não escolhido um dos formatos ou números de bateria divergentes nem atribuída ficha de outro X5. Apenas o rótulo da família foi neutralizado; características e motivos permanecem iguais.",
-        "Prepared locally only; do not repeat review or mark published until joint production verification."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB68085605?pdp_filters=item_id%3AMLB4840111509"
@@ -3007,13 +3006,13 @@
       "url": "https://rankingdacompra.com.br/produto/z507ObVuMlSEBSnK40Uc-20260810-1.html",
       "title": "Fone KAPBOM KA-790/KA790D TWS com gancho — versão Bluetooth divergente no anúncio",
       "fingerprint": "4d506ab408145a6f7e27b5dfa0494c1a208b673f6306183d937e343d4ab96ddf",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Somente título: substitui Bluetooth 5.3 como certeza pela divergência 5.3/5.4 já registrada; identifica KA-790/KA790D sem promessa premium ou compatibilidade universal. Corpo, comparação e fontes da revisão anterior exatamente iguais.",
         "Reutiliza revisão documentada de 20/10, sem nova consulta ou teste de áudio, bateria e compatibilidade. Não escolhe versão Bluetooth nem transfere ficha Lenovo XT80. Cabeçalho legado truncado antes de KAPBOM exige recuperação opt-in do nome principal coerente, preservando guardas de ID, modelo e anúncio.",
-        "Prepared locally only; production verification is still required."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000"
@@ -3028,13 +3027,13 @@
       "url": "https://rankingdacompra.com.br/produto/DlFv98xnrCPIAeFfbRFv-20260810-1.html",
       "title": "Fone PRO PHONE SEE — Bluetooth 5.4 anunciado; ANC e resistência a confirmar",
       "fingerprint": "f5b9194efa08fc07438897b6333ed371bdae5d37b11101e4b22feb16049ad327",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Somente título: substitui 5.3 por 5.4 anunciado já documentado no corpo/tabela e retira água/antirruído como garantias. Resumo, tabela, fontes e limites da revisão anterior ficam iguais.",
         "Reutiliza a revisão de anúncio registrada em 20/10; não houve nova conferência, autenticação ou teste. Não se deduz ANC, classificação IP ou compatibilidade universal.",
-        "Prepared locally only; do not repeat review or mark published until joint production verification."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB58519492?pdp_filters=item_id%3AMLB5758097762"
@@ -3049,13 +3048,13 @@
       "url": "https://rankingdacompra.com.br/produto/U52A4gBWWLEmfCzONtHb-20260810-1.html",
       "title": "Fone PRO PHONE SEE TWS — Bluetooth 5.3 anunciado; proteção e ANC a confirmar",
       "fingerprint": "688728d367029c4c9487512a6e15d0c39616a3ff419c1b6eb31292a8b1fd794e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Somente título: água/cancelamento deixam de ser afirmações comprovadas e Light deixa de sugerir conector confirmado. Mantém PRO PHONE SEE/TWS/Bluetooth 5.3 atribuídos ao anúncio, com proteção/ANC pendentes. Corpo, características, família e fontes da revisão anterior iguais.",
         "Não repetida consulta do anúncio registrado em 20/10 ou teste de produto. Não escolhidos formato, conector, proteção IP, duração por carga ou total do estojo; preservado anúncio distinto do PRO PHONE SEE 5.4 anterior.",
-        "Prepared locally only; production verification is still required."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4893834428?pdp_filters=item_id%3AMLB5105857793"
@@ -3322,13 +3321,13 @@
       "url": "https://rankingdacompra.com.br/produto/1tIzUpXs4udqZOZwpQX7-20260810-1.html",
       "title": "Headset HXZ-B39 — conexão com fio ou sem fio divergente no anúncio",
       "fingerprint": "814f578ec3b2ce9884981622a33f05ae9b227e38fd3a9680a2303b293baaf6c1",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Somente título do HXZ-B39: explicita divergência de conexão já registrada em vez de afirmar com fio. Mantém corpo, características, família, categoria e fontes; não transforma ENC em ANC nem promete aptidão gamer.",
         "Revisão anterior preservada, sem nova conferência do anúncio ou ensaio de som, latência, bateria e conforto. Não resolve conexão contraditória por inferência nem muda cadastro/categoria nesta passagem.",
-        "Prepared locally only; production verification is still required."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362"
@@ -3531,13 +3530,13 @@
       "url": "https://rankingdacompra.com.br/produto/CEVlNR7lM1QTwgcn0tRu-20260810-1.html",
       "title": "Jogo Banco Imobiliário - Brasil - Brinquedos Estrela",
       "fingerprint": "de72764ac947a614de6112a736e95029ea45ca34a2537885ab6e806db46eb47b",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Banco Imobiliário Brasil: mantém identidade e tema de propriedades, substitui benefícios cognitivos garantidos por interesse condicionado à preferência do grupo. Não inventa idade, jogadores, peças, regras, duração ou melhorias educacionais.",
         "Título, texto e URL do snapshot local; anúncio MLB4053860172 protegido. Não foram consultadas regras nem validada embalagem desta edição. Não transfere dados de outras edições Estrela, não repete conferência e não afirma teste de aprendizagem.",
-        "Prepared locally only; production verification is still required."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB8992714?wid=MLB4053860172"
@@ -3874,13 +3873,13 @@
       "url": "https://rankingdacompra.com.br/produto/XRKv9OGoKrBbcDP0GxER-20260810-1.html",
       "title": "Kit de dois refletores LED — 6500 K, bivolt e IP67 anunciados",
       "fingerprint": "40b37bf401a58c01c11158c9b420434d2e4367042a6e773033a460a6e8f95b1d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Kit de dois refletores: remove certeza de 400 W por unidade e proteção irrestrita à água; atribui 6500 K, bivolt e IP67 ao cadastro. Não inventa lúmens, consumo, cobertura, certificação ou instruções elétricas.",
         "Somente título, descrição e endereço do snapshot público local. Não consultado anúncio novamente nem confirmada documentação do modelo; potência por unidade, fluxo luminoso e proteção real continuam pendentes. Não equivale a nova análise documental profunda ou teste de segurança.",
-        "Prepared locally only; production verification is still required."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB57490176?pdp_filters=item_id%3AMLB6797156948"
@@ -4041,13 +4040,13 @@
       "url": "https://rankingdacompra.com.br/produto/51cYaPGtvus2ayLrbFwH-20260810-1.html",
       "title": "Kit Starlink MINI Internet Via Satélite",
       "fingerprint": "2b5ba6264ab0e3183bd53be32602e32f164d48032fd3708d776a7e4c3b945021",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Retira promessa de conexão estável e alta performance da Starlink Mini. Distingue identificação do kit de condições de cobertura, plano e ativação não comprovadas; preserva título, oferta e afiliado sem transferir dados de outros kits.",
         "Base pública local: kit Mini, roteador integrado e formato compacto como anunciados. Starlink /br/roam aberta sem texto legível e /br/specifications?spec=5 inacessível; nenhuma especificação nova atribuída a essas tentativas. Não confirmadas cobertura, ativação, conteúdo, velocidade ou condição da unidade; sem conferência diária repetida.",
-        "Prepared locally only; production verification is still required."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB40656539?pdp_filters=item_id%3AMLB7458807728"
@@ -4260,13 +4259,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5212483469-20260810-1.html",
       "title": "Lenovo IdeaPad Slim 3 15IRH10 83NS0003BR — configuração a conferir na oferta",
       "fingerprint": "1a176015a650f1317077f8f67de983484c6c69fdaecf179299c72733520e30bc",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Retira resumo herdado do ThinkPad X13 G1 recondicionado, incompatível com título/endereço original cadastrados do IdeaPad 83NS0003BR. Mantém identidade do SKU anunciado e referência de fábrica já registrada, sempre condicionada à confirmação da oferta. Não une variantes ou muda links/condição do cadastro.",
         "PSREF reaberto, mas sem linhas legíveis nesta consulta; reutilizada somente a referência anterior específica do SKU, não tratada como nova confirmação. Não expandido afiliado ou trocado destino. Condição e alterações do vendedor continuam a confirmar.",
-        "Prepared locally only; do not repeat review or mark published until joint production verification."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://psref.lenovo.com/Detail/IdeaPad_Slim_3_15IRH10?M=83NS0003BR"
@@ -5830,13 +5829,13 @@
       "url": "https://rankingdacompra.com.br/produto/SctMie0hqocPmrWupQLO-20260810-1.html",
       "title": "Roçadeira The Black Tools BRO520 — 52 cc e kit 4 em 1 anunciados",
       "fingerprint": "a6d18c850bc91ab710f6bba135f14a8c6c9c03c2e8572c16d5d314a4323f8116",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Substitui ficha que apresentava números sem atribuição/limites por resumo da BRO520 com dados declarados e escopo do kit a confirmar. Título identifica o modelo já presente no corpo. Não transfere acessórios extras, garantia ou a alegação de 120 h contínuas para a oferta.",
         "Página The Black Tools aberta e lida, referente ao kit SKU KIT23636_19458_22463. Não foi confirmada identidade desse conjunto com a unidade do anúncio. Sem medições de potência, rotação, ruído, vibração, peso em uso ou ergonomia; sem recomendar lâminas, mistura de combustível ou uso profissional. Manual específico não substituído por inferência.",
-        "Prepared locally only; production verification is still required."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://theblacktools.com/produtos/rocadeira-a-gasolina-profissional-52cc-2hp-4-em-1-completa-acessorios/"
@@ -6501,13 +6500,13 @@
       "url": "https://rankingdacompra.com.br/produto/cjtpmssewHcTpdqJlbS6-20260810-1.html",
       "title": "Tablet Positivo Vision TAB10 T3010 — 4 GB de RAM e 128 GB de armazenamento",
       "fingerprint": "c18cdbb6560f1f65cd2d62e1df431522403bfa63f715ca613f383a9c62d06f18",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-01T11:12:17.723Z",
       "workNotes": [
         "Remove SSD de notebook e promessa de boa autonomia/desempenho como fatos testados. Título usa armazenamento; referência oficial descreve NAND e distingue a memória RAM. Texto explica o kit e limites, sem preencher requisitos de aplicativos, expansão ou atualização por suposição.",
         "Página específica do kit Positivo aberta e lida. Referência de linha, sem comprovar SKU/versão ou conteúdo da unidade vendida. Sem testes de teclado, bateria, multitarefa ou rede; mAh não convertidos em horas.",
-        "Prepared locally only; do not repeat review or mark published until joint production verification."
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://loja.meupositivo.com.br/tablet-positivo-vision-tab-10-capa-teclado-4gb-128gb-5-13mp-6000mah-tela-10-1-hd-wifi-ac-4g-preto-3801470/p"
@@ -7895,7 +7894,7 @@
   },
   "triage34": {
     "at": "2026-11-01T09:04:23.234Z",
-    "status": "awaiting_publication",
+    "status": "published_verified",
     "officialRecoveryInvestigation": {
       "status": "official_cancellation_refused",
       "attemptRuns": [
@@ -7958,13 +7957,34 @@
     "screenedNoChangeId": "YdPOVmrHVJ8EO7fmgyXu",
     "screenshot": "outputs/melhorias-integrais-20261030/pages-bloqueio-triagem34.png",
     "nextEditorialIdAfterPublication": "cjtpmssewHcTpdqJlbS6",
-    "proof": "outputs/melhorias-integrais-20261030/verificacao-parcial-triagem34.json",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem34-35-36-37-38.json",
     "newDeepReviews": 0,
-    "resume": "Do not edit the two records again. Resolve stale Pages deployment and retry only latest deploy, then verify-targeted-editorial.mjs 34 20261101 before marking Nayef complete."
+    "resume": "Do not edit the two records again. Resolve stale Pages deployment and retry only latest deploy, then verify-targeted-editorial.mjs 34 20261101 before marking Nayef complete.",
+    "verifiedAt": "2026-11-01T11:12:17.723Z",
+    "changedIds": [
+      "w4grNjrGMy69omEzW0QP"
+    ],
+    "jointReleaseBatches": [
+      34,
+      35,
+      36,
+      37,
+      38
+    ],
+    "remainingDependencies": [
+      {
+        "id": "w4grNjrGMy69omEzW0QP",
+        "note": "Duas fontes da marca abertas e lidas. Pirâmide olfativa não é composição da fórmula nem teste laboratorial. Não copiados 15–20%, 6–8 h, longevidade garantida, ingredientes genéricos de toda a marca ou alegações de origem industrial. Sem confirmação de lote, autenticidade, fixação, projeção, tolerância ou equivalência a Prada."
+      },
+      {
+        "id": "YdPOVmrHVJ8EO7fmgyXu",
+        "note": "Triagem do snapshot e da correção anterior; não identifica CPU a partir de sexta geração, completa placa-mãe/GPU/fonte/monitor ou confirma licença e compatibilidade de sistema. Sem benchmark, autenticação ou nova conferência do anúncio."
+      }
+    ]
   },
   "triage35": {
     "at": "2026-11-01T09:32:32.191Z",
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "sourceCommit": "11486b872e2000334197664de2fd31501f9837f8",
     "localOnly": true,
     "reviewedOneByOne": true,
@@ -8007,7 +8027,7 @@
     "productionVerified": false,
     "publicationAttempted": false,
     "noFirestoreEditorial": true,
-    "proof": "outputs/melhorias-integrais-20261030/verificacao-local-triagem35.json",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem34-35-36-37-38.json",
     "remainingDependencies": [
       {
         "id": "cjtpmssewHcTpdqJlbS6",
@@ -8025,12 +8045,52 @@
         "id": "mlMLB5212483469",
         "note": "PSREF reaberto, mas sem linhas legíveis nesta consulta; reutilizada somente a referência anterior específica do SKU, não tratada como nova confirmação. Não expandido afiliado ou trocado destino. Condição e alterações do vendedor continuam a confirmar."
       }
+    ],
+    "verifiedAt": "2026-11-01T11:12:17.723Z",
+    "changedIds": [
+      "cjtpmssewHcTpdqJlbS6",
+      "DlFv98xnrCPIAeFfbRFv",
+      "FWRyLtto1bKeKurNikKq",
+      "mlMLB5212483469"
+    ],
+    "jointReleaseBatches": [
+      34,
+      35,
+      36,
+      37,
+      38
     ]
   },
   "preparedRelease": {
-    "status": "partially_published_single_retry_succeeded",
-    "confirmedPublishedIds": ["w4grNjrGMy69omEzW0QP"],
-    "pendingPublicationIds": ["CFEyN1hdeMSM6BS89h5o","5Kojn8DcrLoydOBjq4vd","FWRyLtto1bKeKurNikKq","z507ObVuMlSEBSnK40Uc","DlFv98xnrCPIAeFfbRFv","U52A4gBWWLEmfCzONtHb","1tIzUpXs4udqZOZwpQX7","CEVlNR7lM1QTwgcn0tRu","XRKv9OGoKrBbcDP0GxER","51cYaPGtvus2ayLrbFwH","mlMLB5212483469","SctMie0hqocPmrWupQLO","cjtpmssewHcTpdqJlbS6"],
+    "status": "published_verified",
+    "sourceCommit": "8d11a9c5e51ed13743df1a1fc1a58379333742db",
+    "generatedCommit": "b14229704393c93f0e827a681ab185838cee3eb8",
+    "integrityRun": 41300707351,
+    "generationRun": 41300707215,
+    "deploymentRun": 41300739582,
+    "publication13TestsPassed": 1343,
+    "mobileChecksPassed": 26,
+    "desktopPagesChecked": 13,
+    "mobileProof": "outputs/melhorias-integrais-20261030/verificacao-celular-publicada13.json",
+    "desktopProof": "outputs/melhorias-integrais-20261030/verificacao-desktop-publicada13.json",
+    "publicationScreenshot": "outputs/melhorias-integrais-20261030/publicacao13-github-sucesso.png",
+    "confirmedPublishedIds": [
+      "1tIzUpXs4udqZOZwpQX7",
+      "51cYaPGtvus2ayLrbFwH",
+      "5Kojn8DcrLoydOBjq4vd",
+      "CEVlNR7lM1QTwgcn0tRu",
+      "CFEyN1hdeMSM6BS89h5o",
+      "DlFv98xnrCPIAeFfbRFv",
+      "FWRyLtto1bKeKurNikKq",
+      "SctMie0hqocPmrWupQLO",
+      "U52A4gBWWLEmfCzONtHb",
+      "XRKv9OGoKrBbcDP0GxER",
+      "cjtpmssewHcTpdqJlbS6",
+      "mlMLB5212483469",
+      "w4grNjrGMy69omEzW0QP",
+      "z507ObVuMlSEBSnK40Uc"
+    ],
+    "pendingPublicationIds": [],
     "singleRetryProof": "outputs/melhorias-integrais-20261030/resultado-tentativa-unica-pages-20261101.json",
     "singleRetryRun": 41292153828,
     "singleRetryAttempt": 2,
@@ -8061,11 +8121,13 @@
     ],
     "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35,36,37,38 20261101",
     "supportTicket": "4935458",
-    "doNotRepeatReviews": true
+    "doNotRepeatReviews": true,
+    "verifiedAt": "2026-11-01T11:12:17.723Z",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem34-35-36-37-38.json"
   },
   "triage36": {
     "at": "2026-11-01T10:02:42.223Z",
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "sourceCommit": "f084c490297c79439f88540191b04424f7355add",
     "localOnly": true,
     "reviewedOneByOne": true,
@@ -8104,7 +8166,7 @@
     "productionVerified": false,
     "publicationAttempted": false,
     "noFirestoreEditorial": true,
-    "proof": "outputs/melhorias-integrais-20261030/verificacao-local-triagem36.json",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem34-35-36-37-38.json",
     "remainingDependencies": [
       {
         "id": "SctMie0hqocPmrWupQLO",
@@ -8122,11 +8184,23 @@
         "id": "VgB90DThWdh8uyXUeE3U",
         "note": "Triagem da ficha anteriormente revisada, sem repetir conferência ou validar áudio, encaixe, microfone e compatibilidade por teste. Não acrescentados formato on-ear/over-ear ou adaptador incluso."
       }
+    ],
+    "verifiedAt": "2026-11-01T11:12:17.723Z",
+    "changedIds": [
+      "SctMie0hqocPmrWupQLO",
+      "U52A4gBWWLEmfCzONtHb"
+    ],
+    "jointReleaseBatches": [
+      34,
+      35,
+      36,
+      37,
+      38
     ]
   },
   "triage37": {
     "at": "2026-11-01T10:34:35.871Z",
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "sourceCommit": "48f5b80ffad67c8944d023dbe5616bf1868e752f",
     "localOnly": true,
     "reviewedOneByOne": true,
@@ -8169,7 +8243,7 @@
     "productionVerified": false,
     "publicationAttempted": false,
     "noFirestoreEditorial": true,
-    "proof": "outputs/melhorias-integrais-20261030/verificacao-local-triagem37.json",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem34-35-36-37-38.json",
     "remainingDependencies": [
       {
         "id": "XRKv9OGoKrBbcDP0GxER",
@@ -8187,11 +8261,25 @@
         "id": "51cYaPGtvus2ayLrbFwH",
         "note": "Base pública local: kit Mini, roteador integrado e formato compacto como anunciados. Starlink /br/roam aberta sem texto legível e /br/specifications?spec=5 inacessível; nenhuma especificação nova atribuída a essas tentativas. Não confirmadas cobertura, ativação, conteúdo, velocidade ou condição da unidade; sem conferência diária repetida."
       }
+    ],
+    "verifiedAt": "2026-11-01T11:12:17.723Z",
+    "changedIds": [
+      "XRKv9OGoKrBbcDP0GxER",
+      "z507ObVuMlSEBSnK40Uc",
+      "1tIzUpXs4udqZOZwpQX7",
+      "51cYaPGtvus2ayLrbFwH"
+    ],
+    "jointReleaseBatches": [
+      34,
+      35,
+      36,
+      37,
+      38
     ]
   },
   "triage38": {
     "at": "2026-11-01T10:43:07.303Z",
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "sourceCommit": "a931274d8404a78fa0639e6e2aa35ca541269056",
     "localOnly": true,
     "reviewedOneByOne": true,
@@ -8239,7 +8327,7 @@
     "productionVerified": false,
     "publicationAttempted": false,
     "noFirestoreEditorial": true,
-    "proof": "outputs/melhorias-integrais-20261030/verificacao-local-triagem38.json",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem34-35-36-37-38.json",
     "remainingDependencies": [
       {
         "id": "5Kojn8DcrLoydOBjq4vd",
@@ -8257,6 +8345,19 @@
         "id": "cSmjEdmFugRGDdJHkMcR",
         "note": "Triagem da revisão já documentada em 22/10, sem repetir consulta, medir sensores, confirmar bateria ou permitir uso submerso. Dados de fabricante/unidade não autenticados; não é nova análise profunda."
       }
+    ],
+    "verifiedAt": "2026-11-01T11:12:17.723Z",
+    "changedIds": [
+      "5Kojn8DcrLoydOBjq4vd",
+      "CEVlNR7lM1QTwgcn0tRu",
+      "CFEyN1hdeMSM6BS89h5o"
+    ],
+    "jointReleaseBatches": [
+      34,
+      35,
+      36,
+      37,
+      38
     ]
   }
 }

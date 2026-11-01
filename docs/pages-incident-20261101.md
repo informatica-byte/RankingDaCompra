@@ -1,5 +1,9 @@
 # Evidência para suporte GitHub — bloqueio interno de Pages
 
+## Encerramento da publicação pendente — 01/11/2026
+
+Após a tentativa única bem-sucedida, usuário autorizou publicar os 13 ajustes locais restantes. Fonte 8d11a9c5e, geração b14229704; CI de integridade 41300707351 e geração 41300707215 aprovados (Firestore auth skipped). Pages FINAL 41300739582 SUCCESS, deploy em 8 s, sem nova retentativa. Verificação conjunta dos lotes 34–38 em produção aprovada: 14 IDs esperados iguais ao local, demais 540 entradas editoriais preservadas, preços/afiliados/554 registros e 607 URLs iguais às bases. QA no Chrome: 13 páginas desktop e 26 verificações responsivas 360/390 px aprovadas; não é celular físico ou teste do produto. Registro em site-improvement-progress.json e provas em outputs. Não há pendência de publicação destes 14 ajustes. A causa raiz do incidente anterior continua não confirmada oficialmente. Não foram apagados hospedagem, ambiente ou dados, nem modificadas configurações de segurança ou links. Nenhuma mensagem adicional ao suporte nesta etapa.
+
 ## Resultado posterior: tentativa única bem-sucedida
 
 Em 01/11/2026, às 11:00 UTC, o usuário autorizou uma repetição somente de deploy. Run 41292153828, tentativa 2, job 124828604550: success em 26 s com artefato 13077588513 já existente, SHA e4d4f2bf7210057ba00fbf8df2dc6a59aaf0efec. Nenhum novo build ou push disparado. A causa raiz não foi confirmada; o erro não se repetiu nesta tentativa. Não tratar o histórico abaixo como bloqueio atual comprovado.
