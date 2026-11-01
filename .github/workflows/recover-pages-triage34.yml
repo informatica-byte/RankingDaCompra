@@ -1,5 +1,6 @@
-name: Recuperar somente implantação Pages presa da passagem 34
-# One bounded follow-up records the safe API error message if cancellation is refused.
+name: Diagnóstico Pages 34 encerrado - não executar
+# Official cancellation was refused because the deployment is already finished.
+# Do not retry or grant write permission without new evidence and authorization.
 on:
   push:
     branches: [main]
@@ -10,12 +11,12 @@ concurrency:
   cancel-in-progress: false
 jobs:
   recover:
-    if: github.repository == 'informatica-byte/RankingDaCompra' && contains(github.event.head_commit.message, '[recuperar-pages-34]')
+    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     permissions:
       contents: read
-      pages: write
+      pages: read
     steps:
       - uses: actions/checkout@v5
         with:

@@ -16,6 +16,6 @@ test('estado desconhecido ou leitura negada não cancela nada; já cancelado é 
  for(const r of [{status:403,body:{}},{status:404,body:{}},{status:200,body:{status:'unknown_state'}}]){let i=0;await assert.rejects(recover({repository:REPO,request:async()=>++i===1?run:r}));assert.equal(i,2);}
  let i=0;assert.equal((await recover({repository:REPO,request:async()=>++i===1?run:{status:200,body:{status:'canceled'}}})).action,'already_canceled');assert.equal(i,2);
 });
-test('workflow é pontual, sem agenda, credenciais persistidas ou mutações de catálogo',async()=>{
- const y=await readFile(new URL('../.github/workflows/recover-pages-triage34.yml',import.meta.url),'utf8');assert.match(y,/permissions: \{\}/);assert.match(y,/pages: write/);assert.match(y,/persist-credentials: false/);assert.match(y,/\[recuperar-pages-34\]/);assert.doesNotMatch(y,/schedule:|pull_request|id-token:|contents: write|secrets\./);
+test('recuperação encerrada permanece desativada, sem escrita Pages, agenda ou credenciais persistidas',async()=>{
+ const y=await readFile(new URL('../.github/workflows/recover-pages-triage34.yml',import.meta.url),'utf8');assert.match(y,/permissions: \{\}/);assert.match(y,/if: \$\{\{ false \}\}/);assert.match(y,/pages: read/);assert.match(y,/persist-credentials: false/);assert.doesNotMatch(y,/pages: write|schedule:|pull_request|id-token:|contents: write|secrets\./);
 });
