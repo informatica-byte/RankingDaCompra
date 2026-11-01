@@ -10,9 +10,6 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "7QHXFlimzdpfKr7yfo0T",
-      "8a8Iat0nPiQxNPVcJqTU",
-      "iw5yKjD39u1kQ8Vm8ybv",
       "M0Zj2K84Q8PX0YTQMIHz",
       "Q89e0KvH53UoCpELiwiW"
     ],
@@ -621,8 +618,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-10-31T23:57:13.699Z",
-  "catalogueGeneratedAt": "2026-10-31T23:55:41.116Z",
+  "updatedAt": "2026-11-01T00:04:38.409Z",
+  "catalogueGeneratedAt": "2026-11-01T00:03:18.145Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -636,9 +633,9 @@
     "total": 553,
     "screened_no_change": 21,
     "needs_source": 7,
-    "targeted_correction_complete": 38,
+    "targeted_correction_complete": 41,
     "preserve_prior_review": 98,
-    "pending": 389
+    "pending": 386
   },
   "items": [
     {
@@ -1982,13 +1979,19 @@
     {
       "id": "iw5yKjD39u1kQ8Vm8ybv",
       "url": "https://rankingdacompra.com.br/produto/iw5yKjD39u1kQ8Vm8ybv-20260810-1.html",
-      "title": "Carregador Turbo 200w Usb-c Compatível Xiaomi Samsung Bivolt",
-      "fingerprint": "47d5b55488b4187e76d4bb9d0bf2f2de6de1deccc759c1bad61ce31eed4ca0c6",
-      "status": "pending",
+      "title": "Carregador USB-C anunciado como 200 W — potência a confirmar",
+      "fingerprint": "531c461f3d7fb0212c30a84741a8a9e105e34d9fcc7cbf8969632d8117606c93",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T00:04:38.387Z",
+      "workNotes": [
+        "200 W vira potência anunciada a confirmar; saída cadastrada de 5 V não usada para calcular potência ou prometer compatibilidade. Removida lista genérica de celulares como verificação e sinalizada ausência de documentação elétrica.",
+        "Modelo, perfis de saída, cabo, potência, compatibilidade e documentação da unidade não comprovados. Não declarar que o produto é necessariamente falso ou inseguro sem evidência.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "r7HSFtoP8OEdijhRMIDk",
@@ -6396,6 +6399,23 @@
       "sourceLinks": []
     },
     {
+      "id": "7QHXFlimzdpfKr7yfo0T",
+      "url": "https://rankingdacompra.com.br/produto/7QHXFlimzdpfKr7yfo0T-20260810-1.html",
+      "title": "Tênis feminino anunciado como Olimp — caminhada e academia",
+      "fingerprint": "510225f135966f9c9c69133fff3c0f10b4c93e95f0a17584d6a949e5f2eeae2f",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-11-01T00:04:38.387Z",
+      "workNotes": [
+        "Remove Promoção do título informativo e esclarece que Olimp no título e Vili no campo de marca não comprovam outra marca. Nenhuma inferência para Olympikus, amortecimento ou aptidão esportiva.",
+        "Etiqueta, marca exata, materiais, tabela de medidas e desempenho continuam sem confirmação independente.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "mlMLB6989366460",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6989366460-20260810-1.html",
       "title": "Tênis Feminino Casual Confortavel Plataforma Tratorado",
@@ -6435,17 +6455,6 @@
       "fingerprint": "313fccc68839ed4de80754134b67ab58c8eb460980229d5b9d2163f328bf4872",
       "status": "preserve_prior_review",
       "previousReviewPresent": true,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "7QHXFlimzdpfKr7yfo0T",
-      "url": "https://rankingdacompra.com.br/produto/7QHXFlimzdpfKr7yfo0T-20260810-1.html",
-      "title": "Tênis Feminino Olimp Para Caminhada Academia Promoção",
-      "fingerprint": "bd76eb1b909754ce1b793b5174b0e55d2b9705e002899c01684c91a55d5afd3b",
-      "status": "pending",
-      "previousReviewPresent": false,
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
@@ -6776,13 +6785,19 @@
     {
       "id": "8a8Iat0nPiQxNPVcJqTU",
       "url": "https://rankingdacompra.com.br/produto/8a8Iat0nPiQxNPVcJqTU-20260810-1.html",
-      "title": "Tênis Reserva Masculino Casual Cano Baixo Antiderrapante",
-      "fingerprint": "12f9e19c28c5a2482eb5613d0805c60bebf424d8f74ae530bc9b521fc85e7655",
-      "status": "pending",
+      "title": "Tênis Reserva masculino casual de cano baixo — características a conferir",
+      "fingerprint": "b6f0b48629c132db3c0841cda06c008d52fe3fb638a6075048d8d55bc8beb65d",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T00:04:38.387Z",
+      "workNotes": [
+        "Retira antiderrapante como propriedade comprovada do título. Marca Reserva e formato casual/cano baixo atribuídos ao anúncio, sem autenticar a unidade ou prometer conforto/proteção.",
+        "Sem código específico, fonte de aderência, tabela de medidas ou comprovação de materiais/procedência.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "gpeMPTTE5kt9e7kYc0MC",
@@ -7266,6 +7281,38 @@
       {
         "id": "4qfOr9o2qNFtHLcRZzRC",
         "note": "Sem manual específico; não inferir capacidade a partir da foto nem prometer uso seguro em ambiente úmido."
+      }
+    ]
+  },
+  "triage24": {
+    "status": "published_verified",
+    "sourceCommit": "b66b2861977b146d0f751b69051f5dca68b3e7f9",
+    "generatedCommit": "4a52905810cfd961939ac3cf5e14a58a8a86e6fb",
+    "integrityRun": 41255023889,
+    "sitemapRun": 41255023881,
+    "pagesRun": 41255059398,
+    "testsPassed": 1284,
+    "localVisualQA": "Three static local product pages checked at 360 and 390px with all external requests blocked; no horizontal overflow, visible prices or title mismatch. Images/network/live scripts deliberately not validated by this check. Screenshot Olimp inspected; no physical-device or product performance test.",
+    "verifiedAt": "2026-11-01T00:04:38.387Z",
+    "changedIds": [
+      "7QHXFlimzdpfKr7yfo0T",
+      "8a8Iat0nPiQxNPVcJqTU",
+      "iw5yKjD39u1kQ8Vm8ybv"
+    ],
+    "newDeepReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem24.json",
+    "remainingDependencies": [
+      {
+        "id": "7QHXFlimzdpfKr7yfo0T",
+        "note": "Etiqueta, marca exata, materiais, tabela de medidas e desempenho continuam sem confirmação independente."
+      },
+      {
+        "id": "8a8Iat0nPiQxNPVcJqTU",
+        "note": "Sem código específico, fonte de aderência, tabela de medidas ou comprovação de materiais/procedência."
+      },
+      {
+        "id": "iw5yKjD39u1kQ8Vm8ybv",
+        "note": "Modelo, perfis de saída, cabo, potência, compatibilidade e documentação da unidade não comprovados. Não declarar que o produto é necessariamente falso ou inseguro sem evidência."
       }
     ]
   }
