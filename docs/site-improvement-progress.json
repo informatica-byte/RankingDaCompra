@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "XRKv9OGoKrBbcDP0GxER",
-      "z507ObVuMlSEBSnK40Uc",
-      "1tIzUpXs4udqZOZwpQX7",
-      "51cYaPGtvus2ayLrbFwH",
       "5Kojn8DcrLoydOBjq4vd",
       "CEVlNR7lM1QTwgcn0tRu",
       "CFEyN1hdeMSM6BS89h5o",
-      "cSmjEdmFugRGDdJHkMcR"
+      "cSmjEdmFugRGDdJHkMcR",
+      "fCw8R0SRDFhAWXIT2sZ0",
+      "FpO2EOBfcTy3F04Jk6pY",
+      "goH2juydLAa3JYXzctkH",
+      "jpfsQDwQMrok9k3UQ66e"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T10:02:42.222Z",
-  "catalogueGeneratedAt": "2026-11-01T10:01:58.820Z",
+  "updatedAt": "2026-11-01T10:34:35.869Z",
+  "catalogueGeneratedAt": "2026-11-01T10:33:58.722Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -641,8 +641,8 @@
     "needs_source": 7,
     "targeted_correction_complete": 57,
     "preserve_prior_review": 98,
-    "pending": 357,
-    "prepared_awaiting_publication": 7
+    "pending": 353,
+    "prepared_awaiting_publication": 11
   },
   "items": [
     {
@@ -2849,17 +2849,6 @@
       "sourceLinks": []
     },
     {
-      "id": "z507ObVuMlSEBSnK40Uc",
-      "url": "https://rankingdacompra.com.br/produto/z507ObVuMlSEBSnK40Uc-20260810-1.html",
-      "title": "Fone de Ouvido Bluetooth 5.3 Tws Sem Fio Esportivo Compatível Com iPhone Samsung Xiaomi Motorola Com Gancho Premium KAPBOM Preto",
-      "fingerprint": "9897a8888eba4aeeb3fc749d7d7d46aeddb3db105bd501dd7b57c84d23f456cd",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "WO6BdDxEWWCCjBVJ0ygB",
       "url": "https://rankingdacompra.com.br/produto/WO6BdDxEWWCCjBVJ0ygB-20260810-1.html",
       "title": "Fone de Ouvido Bluetooth com Ear Clip OWS Bluetooth 6.0 com Microfone e Bateria 30H Preto",
@@ -2992,6 +2981,27 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
+    },
+    {
+      "id": "z507ObVuMlSEBSnK40Uc",
+      "url": "https://rankingdacompra.com.br/produto/z507ObVuMlSEBSnK40Uc-20260810-1.html",
+      "title": "Fone KAPBOM KA-790/KA790D TWS com gancho — versão Bluetooth divergente no anúncio",
+      "fingerprint": "4d506ab408145a6f7e27b5dfa0494c1a208b673f6306183d937e343d4ab96ddf",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Somente título: substitui Bluetooth 5.3 como certeza pela divergência 5.3/5.4 já registrada; identifica KA-790/KA790D sem promessa premium ou compatibilidade universal. Corpo, comparação e fontes da revisão anterior exatamente iguais.",
+        "Reutiliza revisão documentada de 20/10, sem nova consulta ou teste de áudio, bateria e compatibilidade. Não escolhe versão Bluetooth nem transfere ficha Lenovo XT80. Cabeçalho legado truncado antes de KAPBOM exige recuperação opt-in do nome principal coerente, preservando guardas de ID, modelo e anúncio.",
+        "Prepared locally only; production verification is still required."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T10:34:35.871Z",
+      "preparedBatch": 37
     },
     {
       "id": "DlFv98xnrCPIAeFfbRFv",
@@ -3272,17 +3282,6 @@
       "sourceLinks": []
     },
     {
-      "id": "1tIzUpXs4udqZOZwpQX7",
-      "url": "https://rankingdacompra.com.br/produto/1tIzUpXs4udqZOZwpQX7-20260810-1.html",
-      "title": "Headset Com Fio Hxz-b39 Fone De Ouvido Headset Gamer Bege Preto",
-      "fingerprint": "6bccbcff271847bd53129d7d9da4f8ed634feac6a48d5145618ce5b1b43a7609",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "VgB90DThWdh8uyXUeE3U",
       "url": "https://rankingdacompra.com.br/produto/VgB90DThWdh8uyXUeE3U-20260810-1.html",
       "title": "Headset Gamer Com Fio Mageon Vermelho Com Microfone Ajustável",
@@ -3297,6 +3296,27 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB57322445?pdp_filters=item_id%3AMLB4959327979"
       ]
+    },
+    {
+      "id": "1tIzUpXs4udqZOZwpQX7",
+      "url": "https://rankingdacompra.com.br/produto/1tIzUpXs4udqZOZwpQX7-20260810-1.html",
+      "title": "Headset HXZ-B39 — conexão com fio ou sem fio divergente no anúncio",
+      "fingerprint": "814f578ec3b2ce9884981622a33f05ae9b227e38fd3a9680a2303b293baaf6c1",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Somente título do HXZ-B39: explicita divergência de conexão já registrada em vez de afirmar com fio. Mantém corpo, características, família, categoria e fontes; não transforma ENC em ANC nem promete aptidão gamer.",
+        "Revisão anterior preservada, sem nova conferência do anúncio ou ensaio de som, latência, bateria e conforto. Não resolve conexão contraditória por inferência nem muda cadastro/categoria nesta passagem.",
+        "Prepared locally only; production verification is still required."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T10:34:35.871Z",
+      "preparedBatch": 37
     },
     {
       "id": "sX3K2gzcggu9lkVSke0Q",
@@ -3627,17 +3647,6 @@
       "sourceLinks": []
     },
     {
-      "id": "XRKv9OGoKrBbcDP0GxER",
-      "url": "https://rankingdacompra.com.br/produto/XRKv9OGoKrBbcDP0GxER-20260810-1.html",
-      "title": "Kit 2 Refletor Super Led 400w Ip67 Holofote Bivolt Prova D'água Branco Frio 6500k Preto",
-      "fingerprint": "7d2aed59c26ab096b0cf071fca4aa50b2a3d9e21df6ffbe725f0615ccdbb1d5a",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "1c9dmLesD1G0pPTCYrjt",
       "url": "https://rankingdacompra.com.br/produto/1c9dmLesD1G0pPTCYrjt-20260810-1.html",
       "title": "Kit 2 Suporte Porta Shampoo Sabonete Prateleira Banheiro Adesivo Parede Sem Furar Box Luxo Cor Preto Homeroarte",
@@ -3831,6 +3840,27 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "XRKv9OGoKrBbcDP0GxER",
+      "url": "https://rankingdacompra.com.br/produto/XRKv9OGoKrBbcDP0GxER-20260810-1.html",
+      "title": "Kit de dois refletores LED — 6500 K, bivolt e IP67 anunciados",
+      "fingerprint": "40b37bf401a58c01c11158c9b420434d2e4367042a6e773033a460a6e8f95b1d",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Kit de dois refletores: remove certeza de 400 W por unidade e proteção irrestrita à água; atribui 6500 K, bivolt e IP67 ao cadastro. Não inventa lúmens, consumo, cobertura, certificação ou instruções elétricas.",
+        "Somente título, descrição e endereço do snapshot público local. Não consultado anúncio novamente nem confirmada documentação do modelo; potência por unidade, fluxo luminoso e proteção real continuam pendentes. Não equivale a nova análise documental profunda ou teste de segurança.",
+        "Prepared locally only; production verification is still required."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB57490176?pdp_filters=item_id%3AMLB6797156948"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T10:34:35.871Z",
+      "preparedBatch": 37
+    },
+    {
       "id": "DjihMK3g3rkBHHTPbOwp",
       "url": "https://rankingdacompra.com.br/produto/DjihMK3g3rkBHHTPbOwp-20260810-1.html",
       "title": "Kit de limpeza e hidratação Principia — anúncio MLB4247892213",
@@ -3980,12 +4010,22 @@
       "id": "51cYaPGtvus2ayLrbFwH",
       "url": "https://rankingdacompra.com.br/produto/51cYaPGtvus2ayLrbFwH-20260810-1.html",
       "title": "Kit Starlink MINI Internet Via Satélite",
-      "fingerprint": "44e742ed51194a6b314556ac9a930a63efb4b8d868d31cd348252ab6cc7a9f32",
-      "status": "pending",
+      "fingerprint": "2b5ba6264ab0e3183bd53be32602e32f164d48032fd3708d776a7e4c3b945021",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira promessa de conexão estável e alta performance da Starlink Mini. Distingue identificação do kit de condições de cobertura, plano e ativação não comprovadas; preserva título, oferta e afiliado sem transferir dados de outros kits.",
+        "Base pública local: kit Mini, roteador integrado e formato compacto como anunciados. Starlink /br/roam aberta sem texto legível e /br/specifications?spec=5 inacessível; nenhuma especificação nova atribuída a essas tentativas. Não confirmadas cobertura, ativação, conteúdo, velocidade ou condição da unidade; sem conferência diária repetida.",
+        "Prepared locally only; production verification is still required."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB40656539?pdp_filters=item_id%3AMLB7458807728"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true,
+      "preparedAt": "2026-11-01T10:34:35.871Z",
+      "preparedBatch": 37
     },
     {
       "id": "y0k4BCvQKQ3oyN0VMz7B",
@@ -7950,19 +7990,24 @@
     "batches": [
       34,
       35,
-      36
+      36,
+      37
     ],
     "manifestDate": "20261101",
     "ids": [
+      "1tIzUpXs4udqZOZwpQX7",
+      "51cYaPGtvus2ayLrbFwH",
       "DlFv98xnrCPIAeFfbRFv",
       "FWRyLtto1bKeKurNikKq",
       "SctMie0hqocPmrWupQLO",
       "U52A4gBWWLEmfCzONtHb",
+      "XRKv9OGoKrBbcDP0GxER",
       "cjtpmssewHcTpdqJlbS6",
       "mlMLB5212483469",
-      "w4grNjrGMy69omEzW0QP"
+      "w4grNjrGMy69omEzW0QP",
+      "z507ObVuMlSEBSnK40Uc"
     ],
-    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35,36 20261101",
+    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35,36,37 20261101",
     "supportTicket": "4935458",
     "doNotRepeatReviews": true
   },
@@ -8024,6 +8069,67 @@
       {
         "id": "VgB90DThWdh8uyXUeE3U",
         "note": "Triagem da ficha anteriormente revisada, sem repetir conferência ou validar áudio, encaixe, microfone e compatibilidade por teste. Não acrescentados formato on-ear/over-ear ou adaptador incluso."
+      }
+    ]
+  },
+  "triage37": {
+    "at": "2026-11-01T10:34:35.871Z",
+    "status": "prepared_awaiting_publication",
+    "batches": [
+      34,
+      35,
+      36,
+      37
+    ],
+    "preparedIds": [
+      "1tIzUpXs4udqZOZwpQX7",
+      "51cYaPGtvus2ayLrbFwH",
+      "DlFv98xnrCPIAeFfbRFv",
+      "FWRyLtto1bKeKurNikKq",
+      "SctMie0hqocPmrWupQLO",
+      "U52A4gBWWLEmfCzONtHb",
+      "XRKv9OGoKrBbcDP0GxER",
+      "cjtpmssewHcTpdqJlbS6",
+      "mlMLB5212483469",
+      "w4grNjrGMy69omEzW0QP",
+      "z507ObVuMlSEBSnK40Uc"
+    ],
+    "newPreparedIds": [
+      "1tIzUpXs4udqZOZwpQX7",
+      "51cYaPGtvus2ayLrbFwH",
+      "XRKv9OGoKrBbcDP0GxER",
+      "z507ObVuMlSEBSnK40Uc"
+    ],
+    "screenedNoChangeIds": [],
+    "newDeepReviews": 0,
+    "products": 554,
+    "protectedRecords": 554,
+    "sitemapUrls": 607,
+    "unchangedOutsideRelease": 543,
+    "protectedDeepReviews": 98,
+    "testsPassed": 1336,
+    "staticMobileChecks": 8,
+    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35,36,37 20261101",
+    "productionVerified": false,
+    "publicationAttempted": false,
+    "noFirestoreEditorial": true,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-local-triagem37.json",
+    "remainingDependencies": [
+      {
+        "id": "XRKv9OGoKrBbcDP0GxER",
+        "note": "Somente título, descrição e endereço do snapshot público local. Não consultado anúncio novamente nem confirmada documentação do modelo; potência por unidade, fluxo luminoso e proteção real continuam pendentes. Não equivale a nova análise documental profunda ou teste de segurança."
+      },
+      {
+        "id": "z507ObVuMlSEBSnK40Uc",
+        "note": "Reutiliza revisão documentada de 20/10, sem nova consulta ou teste de áudio, bateria e compatibilidade. Não escolhe versão Bluetooth nem transfere ficha Lenovo XT80. Cabeçalho legado truncado antes de KAPBOM exige recuperação opt-in do nome principal coerente, preservando guardas de ID, modelo e anúncio."
+      },
+      {
+        "id": "1tIzUpXs4udqZOZwpQX7",
+        "note": "Revisão anterior preservada, sem nova conferência do anúncio ou ensaio de som, latência, bateria e conforto. Não resolve conexão contraditória por inferência nem muda cadastro/categoria nesta passagem."
+      },
+      {
+        "id": "51cYaPGtvus2ayLrbFwH",
+        "note": "Base pública local: kit Mini, roteador integrado e formato compacto como anunciados. Starlink /br/roam aberta sem texto legível e /br/specifications?spec=5 inacessível; nenhuma especificação nova atribuída a essas tentativas. Não confirmadas cobertura, ativação, conteúdo, velocidade ou condição da unidade; sem conferência diária repetida."
       }
     ]
   }

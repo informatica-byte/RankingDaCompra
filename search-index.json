@@ -2762,80 +2762,6 @@
       "url": "https://rankingdacompra.com.br/produto/goH2juydLAa3JYXzctkH-20260810-1.html"
     },
     {
-      "id": "z507ObVuMlSEBSnK40Uc",
-      "title": "Fone de Ouvido Bluetooth 5.3 Tws Sem Fio Esportivo Compatível Com iPhone Samsung Xiaomi Motorola Com Gancho Premium KAPBOM Preto",
-      "summary": "O anúncio informa fabricante Kapbom, marca Scorpion e modelo KA-790/KA790D, com formato intra-auricular com gancho, microfone e cerca de 4 a 6 horas de música por carga. O estojo é anunciado com 620 mAh, sem duração total informada. A tabela nega cancelamento de ruído e diverge da descrição na versão Bluetooth, entre 5.4 e 5.3. Não usamos a ficha do Lenovo XT80 e não testamos áudio, conforto ou bateria.",
-      "category": "Fones de ouvido",
-      "image": "https://rankingdacompra.com.br/produto/imagens/z507ObVuMlSEBSnK40Uc-5f41bca4dde5.jpg?v=20260810-1",
-      "price": null,
-      "checkedAt": null,
-      "recordedPrice": null,
-      "rating": 0,
-      "ranking": 0,
-      "comparison": {
-        "family": "fone-tws",
-        "features": [
-          {
-            "label": "Formato",
-            "value": "Intra-auricular com gancho, segundo o anúncio",
-            "state": "yes",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Versão Bluetooth",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "reason": "Título e descrição informam Bluetooth 5.3, mas a tabela informa 5.4.",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Cancelamento ativo de ruído",
-            "value": "Sem cancelamento de ruído, conforme o campo específico da tabela, segundo o anúncio",
-            "state": "no",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Microfone",
-            "value": "Microfone para chamadas, segundo o anúncio",
-            "state": "yes",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Autonomia no fone",
-            "value": "Aproximadamente 4 a 6 h de música por carga, dependendo do volume, segundo o anúncio",
-            "state": "yes",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Autonomia com estojo",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "reason": "O estojo é anunciado com 620 mAh, sem duração total de reprodução informada.",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
-            "checkedAt": "2026-10-20"
-          }
-        ]
-      },
-      "url": "https://rankingdacompra.com.br/produto/z507ObVuMlSEBSnK40Uc-20260810-1.html"
-    },
-    {
       "id": "WO6BdDxEWWCCjBVJ0ygB",
       "title": "Fone de Ouvido Bluetooth com Ear Clip OWS Bluetooth 6.0 com Microfone e Bateria 30H Preto",
       "summary": "O anúncio identifica o INOVA FON-13025F como ear clip TWS com Bluetooth 6.0, microfone e recarga USB-C. A autonomia permanece sem valor único: a tabela informa 8 h e a descrição aproximadamente 5 h de música, além de 30 h em espera. Espera não equivale a reprodução. A resistência à água também apresenta dados conflitantes. Não confirmamos ANC nem testamos conforto, som, bateria ou impermeabilidade.",
@@ -3552,6 +3478,80 @@
       "url": "https://rankingdacompra.com.br/produto/kYzXt8BeErDzXsC6BlwB-20260810-1.html"
     },
     {
+      "id": "z507ObVuMlSEBSnK40Uc",
+      "title": "Fone KAPBOM KA-790/KA790D TWS com gancho — versão Bluetooth divergente no anúncio",
+      "summary": "O anúncio informa fabricante Kapbom, marca Scorpion e modelo KA-790/KA790D, com formato intra-auricular com gancho, microfone e cerca de 4 a 6 horas de música por carga. O estojo é anunciado com 620 mAh, sem duração total informada. A tabela nega cancelamento de ruído e diverge da descrição na versão Bluetooth, entre 5.4 e 5.3. Não usamos a ficha do Lenovo XT80 e não testamos áudio, conforto ou bateria.",
+      "category": "Fones de ouvido",
+      "image": "https://rankingdacompra.com.br/produto/imagens/z507ObVuMlSEBSnK40Uc-5f41bca4dde5.jpg?v=20260810-1",
+      "price": null,
+      "checkedAt": null,
+      "recordedPrice": null,
+      "rating": 0,
+      "ranking": 0,
+      "comparison": {
+        "family": "fone-tws",
+        "features": [
+          {
+            "label": "Formato",
+            "value": "Intra-auricular com gancho, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Versão Bluetooth",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "Título e descrição informam Bluetooth 5.3, mas a tabela informa 5.4.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Cancelamento ativo de ruído",
+            "value": "Sem cancelamento de ruído, conforme o campo específico da tabela, segundo o anúncio",
+            "state": "no",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Microfone",
+            "value": "Microfone para chamadas, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia no fone",
+            "value": "Aproximadamente 4 a 6 h de música por carga, dependendo do volume, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia com estojo",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "reason": "O estojo é anunciado com 620 mAh, sem duração total de reprodução informada.",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB69395726?pdp_filters=item_id%3AMLB6549129000",
+            "checkedAt": "2026-10-20"
+          }
+        ]
+      },
+      "url": "https://rankingdacompra.com.br/produto/z507ObVuMlSEBSnK40Uc-20260810-1.html"
+    },
+    {
       "id": "DlFv98xnrCPIAeFfbRFv",
       "title": "Fone PRO PHONE SEE — Bluetooth 5.4 anunciado; ANC e resistência a confirmar",
       "summary": "A oferta PRO PHONE SEE informa fones TWS intra-auriculares, Bluetooth 5.4, microfone integrado e duração de 3 a 5 horas de uso contínuo, variável conforme volume e utilização. O estojo é anunciado com 300 mAh, mas isso não informa horas totais de reprodução. O anúncio menciona cancelamento de ruído sem esclarecer ANC. Não reproduzimos termos de outras marcas ou classificações IP misturadas nos campos; som, conforto e bateria não foram testados.",
@@ -4137,70 +4137,6 @@
       "url": "https://rankingdacompra.com.br/produto/WO8eJVPACXCORVzrdNVh-20260810-1.html"
     },
     {
-      "id": "1tIzUpXs4udqZOZwpQX7",
-      "title": "Headset Com Fio Hxz-b39 Fone De Ouvido Headset Gamer Bege Preto",
-      "summary": "O anúncio do HXZ-B39 informa formato over-ear, Bluetooth 5.3, microfone com ENC para chamadas e até 60 horas de uso contínuo. O título menciona “com fio”, enquanto a tabela e a descrição apresentam conexão sem fio; essa divergência permanece sinalizada. ENC no microfone não confirma ANC para ouvir. São informações do vendedor, sem teste de som, latência, conforto ou bateria pela equipe.",
-      "category": "Celular",
-      "image": "https://rankingdacompra.com.br/produto/imagens/1tIzUpXs4udqZOZwpQX7-d8da74c16726.jpg?v=20260810-1",
-      "price": null,
-      "checkedAt": null,
-      "recordedPrice": null,
-      "rating": 0,
-      "ranking": 0,
-      "comparison": {
-        "family": "headset",
-        "features": [
-          {
-            "label": "Formato",
-            "value": "Over-ear (ao redor das orelhas), segundo o anúncio",
-            "state": "yes",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Versão Bluetooth",
-            "value": "Bluetooth 5.3, segundo o anúncio",
-            "state": "yes",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Cancelamento ativo de ruído",
-            "value": "Não informado / a confirmar",
-            "state": "unknown",
-            "basis": "cadastro",
-            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Microfone",
-            "value": "Microfone integrado com ENC para chamadas, segundo o anúncio",
-            "state": "yes",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
-            "checkedAt": "2026-10-20"
-          },
-          {
-            "label": "Autonomia no fone",
-            "value": "Até 60 h de uso contínuo anunciadas, segundo o anúncio",
-            "state": "yes",
-            "basis": "cadastro",
-            "sourceKind": "marketplace-listing",
-            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
-            "checkedAt": "2026-10-20"
-          }
-        ]
-      },
-      "url": "https://rankingdacompra.com.br/produto/1tIzUpXs4udqZOZwpQX7-20260810-1.html"
-    },
-    {
       "id": "VgB90DThWdh8uyXUeE3U",
       "title": "Headset Gamer Com Fio Mageon Vermelho Com Microfone Ajustável",
       "summary": "O anúncio do headset Mageon informa conexão com fio por dois plugs de 3,5 mm, microfone ajustável, cabo de 1,8 m e controle de volume no cabo. A tabela nega Bluetooth e cancelamento de ruído. Bateria e estojo de recarga não se aplicam à conexão analógica anunciada. Confira as entradas do aparelho: dois plugs separados podem exigir adaptador para uma entrada combinada. Não testamos áudio, microfone ou conforto.",
@@ -4263,6 +4199,70 @@
         ]
       },
       "url": "https://rankingdacompra.com.br/produto/VgB90DThWdh8uyXUeE3U-20260810-1.html"
+    },
+    {
+      "id": "1tIzUpXs4udqZOZwpQX7",
+      "title": "Headset HXZ-B39 — conexão com fio ou sem fio divergente no anúncio",
+      "summary": "O anúncio do HXZ-B39 informa formato over-ear, Bluetooth 5.3, microfone com ENC para chamadas e até 60 horas de uso contínuo. O título menciona “com fio”, enquanto a tabela e a descrição apresentam conexão sem fio; essa divergência permanece sinalizada. ENC no microfone não confirma ANC para ouvir. São informações do vendedor, sem teste de som, latência, conforto ou bateria pela equipe.",
+      "category": "Celular",
+      "image": "https://rankingdacompra.com.br/produto/imagens/1tIzUpXs4udqZOZwpQX7-d8da74c16726.jpg?v=20260810-1",
+      "price": null,
+      "checkedAt": null,
+      "recordedPrice": null,
+      "rating": 0,
+      "ranking": 0,
+      "comparison": {
+        "family": "headset",
+        "features": [
+          {
+            "label": "Formato",
+            "value": "Over-ear (ao redor das orelhas), segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Versão Bluetooth",
+            "value": "Bluetooth 5.3, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Cancelamento ativo de ruído",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro",
+            "reason": "O anúncio não confirma cancelamento ativo para ouvir. Redução de ruído no microfone, ENC ou “cancelamento de ruído” sem tipo não comprovam ANC.",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Microfone",
+            "value": "Microfone integrado com ENC para chamadas, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
+            "checkedAt": "2026-10-20"
+          },
+          {
+            "label": "Autonomia no fone",
+            "value": "Até 60 h de uso contínuo anunciadas, segundo o anúncio",
+            "state": "yes",
+            "basis": "cadastro",
+            "sourceKind": "marketplace-listing",
+            "sourceUrl": "https://www.mercadolivre.com.br/p/MLB68000685?pdp_filters=item_id%3AMLB6660301362",
+            "checkedAt": "2026-10-20"
+          }
+        ]
+      },
+      "url": "https://rankingdacompra.com.br/produto/1tIzUpXs4udqZOZwpQX7-20260810-1.html"
     },
     {
       "id": "sX3K2gzcggu9lkVSke0Q",
@@ -4643,20 +4643,6 @@
       "url": "https://rankingdacompra.com.br/produto/eFH6DoZM48JWTDwQIImg-20260810-1.html"
     },
     {
-      "id": "XRKv9OGoKrBbcDP0GxER",
-      "title": "Kit 2 Refletor Super Led 400w Ip67 Holofote Bivolt Prova D'água Branco Frio 6500k Preto",
-      "summary": "Este kit contém duas unidades de refletores LED com potência de 400W cada, projetados para iluminação em áreas externas. Os dispositivos operam em voltagem bivolt 127/220V, possuem carcaça preta em alumínio e emitem luz branco-frio com temperatura de 6500K.",
-      "category": "Casa",
-      "image": "https://rankingdacompra.com.br/produto/imagens/XRKv9OGoKrBbcDP0GxER-ceafe04a1b21.jpg?v=20260810-1",
-      "price": null,
-      "checkedAt": null,
-      "recordedPrice": null,
-      "rating": 0,
-      "ranking": 0,
-      "comparison": null,
-      "url": "https://rankingdacompra.com.br/produto/XRKv9OGoKrBbcDP0GxER-20260810-1.html"
-    },
-    {
       "id": "1c9dmLesD1G0pPTCYrjt",
       "title": "Kit 2 Suporte Porta Shampoo Sabonete Prateleira Banheiro Adesivo Parede Sem Furar Box Luxo Cor Preto Homeroarte",
       "summary": "Kit 2 Suporte Porta Shampoo Sabonete Prateleira Banheiro Adesivo Parede Sem Furar Box Luxo Cor Preto Homeroarte: Acompanha duas unidades para maior organização. Características informadas no cadastro: Kit 2 Suporte Porta Shampoo Sabonete Prateleira. Pontos de atenção registrados: A eficácia da fixação depende da limpeza correta da superfície.",
@@ -4895,6 +4881,20 @@
       "url": "https://rankingdacompra.com.br/produto/7W5TZBLUNQOGfenrgEtg-20260810-1.html"
     },
     {
+      "id": "XRKv9OGoKrBbcDP0GxER",
+      "title": "Kit de dois refletores LED — 6500 K, bivolt e IP67 anunciados",
+      "summary": "O cadastro anuncia um kit de dois refletores LED, com luz branco-frio de 6500 K, alimentação bivolt e indicação IP67 no título. A descrição anterior tratava 400 W por unidade como um dado confirmado; não há documentação nesta ficha que comprove essa potência ou esclareça se o número se refere a cada refletor ou ao conjunto. Não medimos consumo, fluxo luminoso, área iluminada ou durabilidade. A indicação IP67 é uma declaração do anúncio, não uma certificação verificada pela equipe nem garantia sobre a instalação completa. Antes de escolher para quintal, fachada ou outra área, confirme potência por unidade, lúmens, tensão, dimensões, itens incluídos e instruções de instalação com o vendedor e o manual específico. Não prometemos iluminar uma área determinada nem resistência irrestrita à água.",
+      "category": "Casa",
+      "image": "https://rankingdacompra.com.br/produto/imagens/XRKv9OGoKrBbcDP0GxER-ceafe04a1b21.jpg?v=20260810-1",
+      "price": null,
+      "checkedAt": null,
+      "recordedPrice": null,
+      "rating": 0,
+      "ranking": 0,
+      "comparison": null,
+      "url": "https://rankingdacompra.com.br/produto/XRKv9OGoKrBbcDP0GxER-20260810-1.html"
+    },
+    {
       "id": "DjihMK3g3rkBHHTPbOwp",
       "title": "Kit de limpeza e hidratação Principia — anúncio MLB4247892213",
       "summary": "O anúncio identifica um kit Principia de limpeza e hidratação com os códigos CH-01, OL-01 e GL-02. No catálogo da marca, esses códigos identificam creme hidratante, óleo de limpeza e gel de limpeza, respectivamente. Essa referência ajuda a reconhecer as linhas, mas não confirma volumes, formulação ou conteúdo da oferta específica. As expressões todo tipo de pele, dia/noite e idade acima de 14 anos do cadastro não são usadas aqui como orientação individual de uso. Confira os produtos e as instruções nos rótulos da unidade e no anúncio, sem substituir componentes por outro kit de nome parecido. Não testamos tolerância, resultados ou autenticidade da unidade e não montamos uma rotina personalizada; em caso de dúvida individual, procure orientação profissional.",
@@ -5065,7 +5065,7 @@
     {
       "id": "51cYaPGtvus2ayLrbFwH",
       "title": "Kit Starlink MINI Internet Via Satélite",
-      "summary": "O Kit Starlink Mini oferece internet via satélite portátil de alta performance para áreas remotas. Com design compacto e roteador integrado, garante conectividade estável onde redes tradicionais não alcançam, facilitando o trabalho e entretenimento em viagens ou locais isolados.",
+      "summary": "O cadastro anuncia um Kit Starlink Mini para internet via satélite e descreve roteador integrado e formato compacto. Pode ser uma opção a investigar para locais sem conexão fixa adequada, mas a compra do kit não comprova serviço disponível no endereço nem inclui, por si só, plano ou ativação. Confira cobertura, plano aplicável, possibilidade de ativar a unidade, procedência, alimentação, acessórios e condições de uso diretamente com a Starlink e o vendedor. Não garantimos conexão estável, velocidade, funcionamento em movimento ou atendimento em qualquer lugar. Não testamos o equipamento e não confirmamos o conteúdo completo da caixa ou a situação de ativação desta unidade.",
       "category": "Roteador",
       "image": "https://rankingdacompra.com.br/produto/imagens/51cYaPGtvus2ayLrbFwH-0170506f1843.jpg?v=20260810-1",
       "price": null,

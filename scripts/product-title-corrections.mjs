@@ -8,6 +8,38 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['XRKv9OGoKrBbcDP0GxER', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB6797156948',
+    model:/^kit\s*(?:2|de dois)\s*refletor(?:es)?.*led/i,
+    correct:'Kit de dois refletores LED — 6500 K, bivolt e IP67 anunciados',
+    summary:'O cadastro anuncia um kit de dois refletores LED, com luz branco-frio de 6500 K, alimentação bivolt e indicação IP67 no título. A descrição anterior tratava 400 W por unidade como um dado confirmado; não há documentação nesta ficha que comprove essa potência ou esclareça se o número se refere a cada refletor ou ao conjunto. Não medimos consumo, fluxo luminoso, área iluminada ou durabilidade. A indicação IP67 é uma declaração do anúncio, não uma certificação verificada pela equipe nem garantia sobre a instalação completa. Antes de escolher para quintal, fachada ou outra área, confirme potência por unidade, lúmens, tensão, dimensões, itens incluídos e instruções de instalação com o vendedor e o manual específico. Não prometemos iluminar uma área determinada nem resistência irrestrita à água.',
+    positiveNotes:['Duas unidades, luz de 6500 K e alimentação bivolt anunciadas no cadastro; confirme a oferta selecionada.'],
+    negativeNotes:['Potência de 400 W por unidade não comprovada; consumo e fluxo luminoso não foram medidos.', 'IP67 consta no anúncio, sem documentação verificada nesta ficha; instalação e proteção do conjunto precisam de confirmação.'],
+    suppressRating:true,
+  }],
+  ['z507ObVuMlSEBSnK40Uc', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB6549129000',
+    model:/^fone.*kapbom/i,
+    correct:'Fone KAPBOM KA-790/KA790D TWS com gancho — versão Bluetooth divergente no anúncio',
+  }],
+  ['1tIzUpXs4udqZOZwpQX7', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB6660301362',
+    model:/^headset.*hxz[-\s]*b39/i,
+    correct:'Headset HXZ-B39 — conexão com fio ou sem fio divergente no anúncio',
+  }],
+  ['51cYaPGtvus2ayLrbFwH', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB7458807728',
+    model:/^kit\s+starlink\s+mini\b/i,
+    summary:'O cadastro anuncia um Kit Starlink Mini para internet via satélite e descreve roteador integrado e formato compacto. Pode ser uma opção a investigar para locais sem conexão fixa adequada, mas a compra do kit não comprova serviço disponível no endereço nem inclui, por si só, plano ou ativação. Confira cobertura, plano aplicável, possibilidade de ativar a unidade, procedência, alimentação, acessórios e condições de uso diretamente com a Starlink e o vendedor. Não garantimos conexão estável, velocidade, funcionamento em movimento ou atendimento em qualquer lugar. Não testamos o equipamento e não confirmamos o conteúdo completo da caixa ou a situação de ativação desta unidade.',
+    positiveNotes:['Kit identificado no cadastro como Starlink Mini, com roteador integrado anunciado; confirme o modelo e os itens da oferta.'],
+    negativeNotes:['Cobertura, plano, ativação da unidade e acessórios precisam de confirmação; não inferimos assinatura incluída.', 'Velocidade, estabilidade, uso em movimento e conteúdo do kit não foram verificados pela equipe.'],
+    suppressRating:true,
+  }],
   ['SctMie0hqocPmrWupQLO', {
     syncInformationalSchema:true,
     allowTruncatedHeading:true,
