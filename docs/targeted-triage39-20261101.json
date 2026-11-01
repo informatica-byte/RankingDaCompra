@@ -1,0 +1,12 @@
+{
+  "date":"2026-11-01",
+  "policy":"Next four pending by saved GA4 views 01–28 October; change only concrete unsupported claims. No repeated availability checks or backend changes.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"fCw8R0SRDFhAWXIT2sZ0","decision":"targeted_correction_complete","reason":"GameSir Nova Lite 2: qualifica polling rate e Hall Effect, retira alta performance/antidrift como garantias; distingue capacidade de bateria de autonomia e base de recarga do conjunto vendido.","sourceLinks":["https://gamesir.com/products/gamesir-nova-lite2/buy"],"sourceLimit":"Fonte oficial de referência consultada em 01/11. Não comprova autenticidade/unidade, taxa por conexão, autonomia ou conteúdo da oferta. Sem teste independente.","publicContextUrl":"https://gamesir.com/products/gamesir-nova-lite2/buy"},
+    {"id":"FpO2EOBfcTy3F04Jk6pY","decision":"screened_no_change","reason":"Fone genérico já distingue marca Genérica de JBL Tune 760NC, não transfere ANC ou bateria e sinaliza áudio/conforto não testados. Sem defeito concreto novo; conteúdo preservado.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU5415345146?pdp_filters=item_id%3AMLB7757427584"],"sourceLimit":"Triagem do conteúdo público local já revisado em 20/10; não houve nova visita ao anúncio nem confirmação de hardware."},
+    {"id":"goH2juydLAa3JYXzctkH","decision":"screened_no_change","reason":"Basike BA-FON240B já informa contradições de formato/autonomia e distingue ENC de ANC. Não há evidência nova para escolher um dos valores; conteúdo preservado.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB67513507?pdp_filters=item_id%3AMLB6587035878"],"sourceLimit":"Triagem local da ficha existente, sem repetir revisão de anúncio ou afirmar encaixe, autonomia ou ANC."},
+    {"id":"jpfsQDwQMrok9k3UQ66e","decision":"targeted_correction_complete","reason":"Panelas Imperial: remove garantia de cozinhar sem grudar e limpeza fácil; dez peças atribuídas ao anúncio sem presumir dez panelas, materiais ou compatibilidade.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB62276281?wid=MLB4709294547"],"sourceLimit":"Identidade e composição anunciadas no snapshot público local. Sem manual específico ou testes; material, capacidades, calor e compatibilidade ficam pendentes."}
+  ],
+  "counts":{"screened":4,"targetedCorrections":2,"screenedNoChange":2,"newDeepReviews":0}
+}

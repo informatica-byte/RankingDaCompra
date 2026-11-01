@@ -8,6 +8,26 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['fCw8R0SRDFhAWXIT2sZ0', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB6555831758',
+    model:/^controle\s*gamesir\s*nova\s*lite\s*2\b/i,
+    summary:'O cadastro identifica o GameSir Nova Lite 2 branco. A GameSir anuncia conexão por Bluetooth, receptor sem fio ou cabo, analógicos e gatilhos Hall Effect e dois botões traseiros para macros. Pode interessar a quem procura um controle para PC, Switch ou celular, mas confira o sistema, o jogo e o modo de conexão compatível antes de escolher. A taxa de 1000 Hz anunciada não é uma medição nossa nem comprova essa taxa em todas as conexões. Hall Effect não é garantia de ausência de drift ou desgaste. A bateria de 600 mAh não informa, sozinha, quantas horas o controle funcionará. A base de recarga é vendida separadamente na referência oficial; confirme os acessórios da oferta do vendedor. Não testamos latência, autonomia, conforto ou durabilidade.',
+    positiveNotes:['Hall Effect nos analógicos e gatilhos e dois botões traseiros para macros anunciados pela GameSir.', 'Conexões Bluetooth, receptor sem fio e cabo documentadas para o modelo; compatibilidade depende do dispositivo e do modo.'],
+    negativeNotes:['1000 Hz não foi medido pela equipe nem confirmado para todas as conexões; Hall Effect não garante ausência de drift.', 'Autonomia real não verificada; capacidade de 600 mAh não equivale a horas de uso. Base de recarga vendida separadamente na referência oficial.'],
+    contextSourceUrl:'https://gamesir.com/products/gamesir-nova-lite2/buy',
+    contextSourceLabel:'GameSir Nova Lite 2: especificações anunciadas e conteúdo do conjunto de referência',
+    suppressRating:true,
+  }],
+  ['jpfsQDwQMrok9k3UQ66e', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4709294547',
+    model:/^conjunto\s*de\s*panelas\s*antiaderente\s*10\s*pe[cç]as\s*coffee/i,
+    summary:'O cadastro anuncia o conjunto de panelas Imperial Coffee cappuccino com dez peças e revestimento antiaderente. Pode interessar a quem procura um conjunto para a cozinha, mas dez peças não significa necessariamente dez panelas: confirme a relação de recipientes, tampas e acessórios do anúncio. A indicação antiaderente não comprova que alimentos nunca grudem nem garante facilidade de limpeza em todo uso. Antes de escolher, confira material, diâmetros, capacidades, tipos de fogão compatíveis e instruções de limpeza com o vendedor e o manual específico. Não presumimos compatibilidade com indução, forno ou lava-louças. Não testamos distribuição de calor, resistência do revestimento, durabilidade ou segurança dos materiais.',
+    positiveNotes:['Conjunto de dez peças e revestimento antiaderente anunciados no cadastro; confirme a composição exata da oferta.'],
+    negativeNotes:['Material, dimensões, capacidades e compatibilidade com fogões precisam de confirmação; não presumimos uso em indução, forno ou lava-louças.', 'Antiaderência, limpeza, distribuição de calor e durabilidade não foram testadas pela equipe.'],
+    suppressRating:true,
+  }],
   ['5Kojn8DcrLoydOBjq4vd', {
     syncInformationalSchema:true,
     model:/^fogareiro\s+port[aá]til\s+usd\b/i,
