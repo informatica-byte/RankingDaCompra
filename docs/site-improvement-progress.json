@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "hC5H8O2mjGMYXFMH5jic",
-      "kiQqRnm6rDj50U2HaOb3",
       "kYzXt8BeErDzXsC6BlwB",
       "mlMLB4513080577",
       "rERcfIbgG1c0uUdNlQ4o",
       "SFcayTGVGtzWrkpt4uFw",
       "sZGVRAGBdFaBYSOQbSO8",
-      "W309Bngb9vy88pxNSAn5"
+      "W309Bngb9vy88pxNSAn5",
+      "w4grNjrGMy69omEzW0QP",
+      "YdPOVmrHVJ8EO7fmgyXu"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T00:49:08.423Z",
-  "catalogueGeneratedAt": "2026-11-01T00:47:35.098Z",
+  "updatedAt": "2026-11-01T01:02:12.869Z",
+  "catalogueGeneratedAt": "2026-11-01T00:55:01.278Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,9 +639,9 @@
     "total": 554,
     "screened_no_change": 22,
     "needs_source": 7,
-    "targeted_correction_complete": 52,
+    "targeted_correction_complete": 54,
     "preserve_prior_review": 98,
-    "pending": 375
+    "pending": 373
   },
   "items": [
     {
@@ -2085,17 +2085,6 @@
       "url": "https://rankingdacompra.com.br/produto/TLWfr8q21DK8xDKMh01u-20260810-1.html",
       "title": "Celimax Retinal Shot Tightening Booster 15 ml",
       "fingerprint": "6af2e655d8e51ce4ecd8a0eb9454568bcae805f3f24b82357df34374037c01a6",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "hC5H8O2mjGMYXFMH5jic",
-      "url": "https://rankingdacompra.com.br/produto/hC5H8O2mjGMYXFMH5jic-20260810-1.html",
-      "title": "Celular Positivo S675 4GB RAM 128GB ROM Smartphone 4G Tela HD+ 6,75\" Câmera 50MP NFC Bateria 5000mAh Desbloqueado Android",
-      "fingerprint": "c2bc201c2769baab4988ee6d76742b8c00bba54815a4dedbfa84435faa8c11a2",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -5380,6 +5369,23 @@
       "sourceLinks": []
     },
     {
+      "id": "hC5H8O2mjGMYXFMH5jic",
+      "url": "https://rankingdacompra.com.br/produto/hC5H8O2mjGMYXFMH5jic-20260810-1.html",
+      "title": "Positivo S675 — 4 GB de RAM e 128 GB anunciados",
+      "fingerprint": "caa552f968e88750f34e7dfb287f299429edc785d39b9e0157481d030a83e3a9",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-11-01T01:02:12.844Z",
+      "workNotes": [
+        "Apenas título excessivo encurtado, mantendo configuração anunciada 4 GB/128 GB e sem reescrever resumo coerente com o cadastro. Não completa NFC, versão Android, processador ou política de atualizações por inferência.",
+        "Busca oficial limitada não encontrou documentação específica utilizável; resultados de varejo não foram usados como prova de fabricante. Recursos e desempenho não foram validados nesta passagem.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "cjtpmssewHcTpdqJlbS6",
       "url": "https://rankingdacompra.com.br/produto/cjtpmssewHcTpdqJlbS6-20260810-1.html",
       "title": "Positivo Vision TAB10 T3010 4GB RAM 128GB SSD com Capa Teclado Octa-Core 5 13MP Bateria 6000mAh Tela 10.1“ HD Wifi AC e 4G Full Lamination - Preto",
@@ -5470,13 +5476,19 @@
     {
       "id": "kiQqRnm6rDj50U2HaOb3",
       "url": "https://rankingdacompra.com.br/produto/kiQqRnm6rDj50U2HaOb3-20260810-1.html",
-      "title": "Projetor HY320 Mini Portátil Hardline Smart TV Android WiFi 6 390 ANSI Lumens Full HD Suporte K HMI Bluetooth 85-200 Polegadas Alto Falante Com Controle Remoto Bivolt",
-      "fingerprint": "6a9bdf750e4b5a70e7d55315c62b4af0419909742df48a677b531656a64a1941",
-      "status": "pending",
+      "title": "Projetor anunciado como Hardline HY320 — resolução e brilho a conferir",
+      "fingerprint": "14283117709a7f88d4ce2ae74a2b19115024bdf785c2746c7544ff4fd9d1683f",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T01:02:12.844Z",
+      "workNotes": [
+        "Qualifica resolução nativa incompleta 1280, título Full HD/390 ANSI e tamanhos divergentes, sem escolher valor. Projetor passa publicamente a Informática, sem ser tratado como Smart TV. Não transfere ficha de Magcubic ou outro HY320 ao Hardline cadastrado.",
+        "Sem manual específico confirmado para marca/revisão da unidade. Brilho, resolução, sistema, conexões e serviços continuam a conferir; resultados de outras marcas não completam a ficha. Nenhum cadastro no Firestore foi alterado.",
+        "Targeted necessary correction only, not a new deep review."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "u3QrSb6J4YcZTM5ehgRb",
@@ -7562,6 +7574,35 @@
       {
         "id": "gpeMPTTE5kt9e7kYc0MC",
         "note": "Código e construção exatos da oferta não validados. Não importados drop (páginas gerais/específica diferem), outros materiais, numeração ou atributos de outra cor. Sem teste ou autenticação da unidade."
+      }
+    ]
+  },
+  "triage30": {
+    "status": "published_verified",
+    "sourceCommit": "2908d2780cbb5775558c7a5d21227d4287249dfc",
+    "generatedCommit": "5160961df73285890b033877820c7be34865cf99",
+    "integrityRun": 41258815541,
+    "sitemapRun": 41258815514,
+    "pagesRun": 41258853429,
+    "testsPassed": 1302,
+    "phoneOnlyTitleChanged": true,
+    "publicationRecovery": {"supersededRun":41258815505,"action":"Canceled only the superseded initial Pages execution through the authenticated GitHub UI after it kept the newer validated run pending. No artifact/product/data deletion; latest run completed successfully.","proof":"outputs/melhorias-integrais-20261030/pages-publicado-triagem30.png"},
+    "localVisualQA": "Both static local pages passed at 360/390px, external requests blocked; HY320 screenshot inspected. Not a physical-device, image-loading, live-script or product performance verification.",
+    "verifiedAt": "2026-11-01T01:02:12.844Z",
+    "changedIds": [
+      "hC5H8O2mjGMYXFMH5jic",
+      "kiQqRnm6rDj50U2HaOb3"
+    ],
+    "newDeepReviews": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem30.json",
+    "remainingDependencies": [
+      {
+        "id": "hC5H8O2mjGMYXFMH5jic",
+        "note": "Busca oficial limitada não encontrou documentação específica utilizável; resultados de varejo não foram usados como prova de fabricante. Recursos e desempenho não foram validados nesta passagem."
+      },
+      {
+        "id": "kiQqRnm6rDj50U2HaOb3",
+        "note": "Sem manual específico confirmado para marca/revisão da unidade. Brilho, resolução, sistema, conexões e serviços continuam a conferir; resultados de outras marcas não completam a ficha. Nenhum cadastro no Firestore foi alterado."
       }
     ]
   }
