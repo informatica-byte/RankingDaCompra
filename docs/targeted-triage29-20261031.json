@@ -1,0 +1,11 @@
+{
+  "date":"2026-10-31",
+  "policy":"Two next pending IDs in saved GA4 view order; targeted contextual clarification with primary sources, not exact-offer certification, new deep reviews, medical advice or product tests.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"DjihMK3g3rkBHHTPbOwp","decision":"targeted_correction_complete","reason":"Mantém rótulo público com anúncio MLB4247892213 e qualifica indicação universal/faixa etária como não sendo orientação individual. Catálogo oficial identifica CH-01/OL-01/GL-02 como creme/óleo/gel, sem importar volumes ou composição de outra oferta.","sourceLinks":["https://www.principiaskin.com/monte-seu-kit.html"],"sourceLimit":"Fonte de catálogo e identificação das linhas apenas. Sem validação do kit individual, rótulos, volumes, adequação, autenticidade ou resultados. Homepage retornou timeout, mas página de montagem de kit foi aberta e lida."},
+    {"id":"gpeMPTTE5kt9e7kYc0MC","decision":"targeted_correction_complete","reason":"Qualifica peso 220 g não confirmado para tamanho/variante e não promete propulsão como ganho individual. Referência oficial descreve placa TPU-PA na linha; link visível é de contexto, não evidência de outra variante aplicada à unidade cadastrada.","sourceLinks":["https://www.torxbrasil.com.br/produto/tenis-torx-ultra-max-preto-laranja/","https://www.torxbrasil.com.br/pagina/ultra-max/"],"sourceLimit":"Código e construção exatos da oferta não validados. Não importados drop (páginas gerais/específica diferem), outros materiais, numeração ou atributos de outra cor. Sem teste ou autenticação da unidade."}
+  ],
+  "counts":{"screened":2,"targetedCorrections":2,"newDeepReviews":0},
+  "resume":"Next measured pending: hC5H8O2mjGMYXFMH5jic, then kiQqRnm6rDj50U2HaOb3; preserve unchanged completed entries."
+}

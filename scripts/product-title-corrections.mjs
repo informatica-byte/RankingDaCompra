@@ -8,6 +8,28 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['DjihMK3g3rkBHHTPbOwp', {
+    syncInformationalSchema:true,
+    model:/^(?:principia.*kit.*limpeza.*hidrata|kit.*limpeza.*hidrata.*principia)/i,
+    expectedListing:'MLB4247892213',
+    summary:'O anúncio identifica um kit Principia de limpeza e hidratação com os códigos CH-01, OL-01 e GL-02. No catálogo da marca, esses códigos identificam creme hidratante, óleo de limpeza e gel de limpeza, respectivamente. Essa referência ajuda a reconhecer as linhas, mas não confirma volumes, formulação ou conteúdo da oferta específica. As expressões todo tipo de pele, dia/noite e idade acima de 14 anos do cadastro não são usadas aqui como orientação individual de uso. Confira os produtos e as instruções nos rótulos da unidade e no anúncio, sem substituir componentes por outro kit de nome parecido. Não testamos tolerância, resultados ou autenticidade da unidade e não montamos uma rotina personalizada; em caso de dúvida individual, procure orientação profissional.',
+    positiveNotes:['Kit anunciado com os códigos CH-01, OL-01 e GL-02, distinguindo as linhas de hidratação e limpeza.'],
+    negativeNotes:['Volumes, composição e itens efetivamente incluídos precisam de confirmação no anúncio e nos rótulos.', 'Não confirmamos adequação individual, faixa etária, tolerância ou resultados; a referência de catálogo não autentica a unidade.'],
+    contextSourceUrl:'https://www.principiaskin.com/monte-seu-kit.html',
+    contextSourceLabel:'Catálogo PRINCIPIA: identificação das linhas, não validação desta oferta',
+    suppressRating:true,
+  }],
+  ['gpeMPTTE5kt9e7kYc0MC', {
+    syncInformationalSchema:true,
+    model:/^t[eê]nis.*torx.*ultra\s*max/i,
+    correct:'Tênis Torx Ultra Max laranja — peso e versão a conferir',
+    summary:'O cadastro anuncia um tênis Torx Ultra Max laranja para corrida. A TORX descreve placa TPU-PA na linha Ultra Max; isso é uma declaração do fabricante sobre a construção, não comprovação de melhora de desempenho para cada pessoa. O peso de 220 g informado no título anterior não foi confirmado para a numeração e a versão desta oferta. Também não transferimos drop, materiais ou outras especificações de uma página de outra variante: confira o código, o tamanho e a etiqueta da unidade com o vendedor. A referência de linha não autentica o calçado anunciado. Não testamos ajuste, amortecimento, aderência, durabilidade ou economia de esforço e não prometemos ganho de velocidade.',
+    positiveNotes:['Linha Ultra Max anunciada para corrida; cor laranja identificada no cadastro.', 'Placa TPU-PA descrita pela TORX como contexto da linha; confirme a construção da variante oferecida.'],
+    negativeNotes:['Peso de 220 g, numeração e especificações da unidade precisam ser confirmados; não copiamos dados de outra variante.', 'Ajuste, desempenho, aderência e autenticidade não foram verificados nesta revisão.'],
+    contextSourceUrl:'https://www.torxbrasil.com.br/produto/tenis-torx-ultra-max-preto-laranja/',
+    contextSourceLabel:'TORX Ultra Max Preto Laranja: referência de linha, sem confirmar a variante da oferta',
+    suppressRating:true,
+  }],
   ['28xGyV66fEYlx6CnRxIq', {
     syncInformationalSchema:true,
     model:/^(?:vara.*pesca|kit.*pesca.*vara)/i,
@@ -1198,12 +1220,14 @@ function applyVerifiedSummary(content, correction) {
     for (const review of Array.isArray(product.review) ? product.review : product.review ? [product.review] : []) review.reviewBody = correction.summary;
     return a + JSON.stringify(payload).replace(/</g, "\\u003c") + b;
   });
-  const source = correction.sourceKind==='marketplace-listing' && correction.sourceUrl
+  const source = correction.contextSourceUrl
+    ? `<p class="fine" data-editorial-context>Referência de contexto: <a href="${esc(correction.contextSourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(correction.contextSourceLabel)}</a>. Não confirma a variante ou a autenticidade da unidade anunciada e não é teste independente.</p>`
+    : correction.sourceKind==='marketplace-listing' && correction.sourceUrl
     ? `<p class="fine" data-verified-listing>Fonte: <a href="${esc(correction.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(correction.sourceLabel)}</a>. Informações do anúncio do vendedor, não validação independente ou teste do produto.</p>`
     : correction.sourceUrl
     ? `<p class="fine" data-verified-manufacturer>Fonte do fabricante: <a href="${esc(correction.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(correction.sourceLabel)}</a>${correction.specUrl ? ` e <a href="${esc(correction.specUrl)}" target="_blank" rel="noopener noreferrer">ficha técnica oficial</a>` : ''}. Especificações anunciadas, não medição independente.</p>`
     : `<p class="fine" data-editorial-limit>Esta revisão remove afirmações sem comprovação; não significa validação técnica ou teste do produto.</p>`;
-  content = content.replace(/<p class="fine" data-(?:verified-manufacturer|verified-listing|editorial-limit)>[\s\S]*?<\/p>/g, "");
+  content = content.replace(/<p class="fine" data-(?:verified-manufacturer|verified-listing|editorial-limit|editorial-context)>[\s\S]*?<\/p>/g, "");
   return content.replace(/(<p class="fine source">[\s\S]*?<\/p>)/, "$1" + source);
 }
 
