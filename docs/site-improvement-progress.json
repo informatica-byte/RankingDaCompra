@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T17:25:11.148Z",
-  "catalogueGeneratedAt": "2026-11-01T17:23:23.733Z",
+  "updatedAt": "2026-11-01T17:52:40.388Z",
+  "catalogueGeneratedAt": "2026-11-01T17:52:32.261Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 558,
-    "screened_no_change": 37,
+    "screened_no_change": 39,
     "needs_source": 7,
     "targeted_correction_complete": 83,
     "preserve_prior_review": 98,
-    "pending": 333
+    "pending": 329,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -3409,12 +3410,19 @@
       "id": "sX3K2gzcggu9lkVSke0Q",
       "url": "https://rankingdacompra.com.br/produto/sX3K2gzcggu9lkVSke0Q-20260810-1.html",
       "title": "Heaven Extraordinary Collection 100ml - Wepink",
-      "fingerprint": "69ac2c827bd660cf75df4b477a2320130da7b91ea94cfddc1885ddda0d8b217d",
-      "status": "pending",
+      "fingerprint": "7d48b947f4d788af57ad3e123df9a1e5a7d904069089fac618b85d4b4151ffb0",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Wepink Heaven: remove rendimento como benefício confirmado e juízo de sofisticação como argumento de qualidade. Mantém só identidade/100 ml e limites, sem inventar notas, concentração ou fixação.",
+        "Somente snapshot local. Sem pirâmide olfativa ou autenticação da variante; não consultado/testado outro Heaven. URL só contém catálogo; não inventado item de vendedor."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB63650193"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Z4BxOInHt44ImemttzRQ",
@@ -4890,11 +4898,16 @@
       "url": "https://rankingdacompra.com.br/produto/TEaC0vVXmdvp4s8QMqpn-20260810-1.html",
       "title": "Notebook Acer Aspire 5 A515-45-R2A3 AMD Ryzen 5 Windows 11 Home 8GB 512GB SSD 15,6' Full HD",
       "fingerprint": "428cc83218d190342725c76f200897b960183050010f651f11bd93fba0a64dba",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T17:52:40.390Z",
+      "workNotes": [
+        "Acer A515-45-R2A3: texto cadastral identifica SKU e configuração sem promessa de FPS/autonomia/desempenho. Não há contradição nova documentada que justifique reescrita nesta triagem.",
+        "Triagem do conteúdo público local, não validação de fábrica, materiais, configuração da unidade ou medições. Não acrescentadas especificações de outra revisão do Aspire 5."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5407062026?wid=MLB7753368634"
+      ]
     },
     {
       "id": "mlMLB4144557655",
@@ -5688,12 +5701,19 @@
       "id": "sinwoGjrsJl5UMA13pES",
       "url": "https://rankingdacompra.com.br/produto/sinwoGjrsJl5UMA13pES-20260810-1.html",
       "title": "Power Bank Basike 20000mAh para Notebook e Celular com Cabo USB-C 65W",
-      "fingerprint": "7b385f0854b3a6fcc50cb38cef36b6637aa673fc0cccde7faed7cb2098ddf7b4",
-      "status": "pending",
+      "fingerprint": "b8a6c645a4b967600ec6014688f51e7ae25787326c5fe8edb3c2de2eea9af545",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Basike 20000 mAh/65 W: retira ótimo desempenho, compatibilidade irrestrita com notebooks exigentes e excelente aceitação sem avaliações registradas. Características ficam atribuídas à oferta, sem converter capacidade em autonomia medida.",
+        "Snapshot público local, sem código de modelo completo, ficha de saída, teste de carga ou avaliações verificadas. Não inventa protocolos, capacidade útil, potência por porta ou instruções de segurança."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB63033418?wid=MLB6204416228"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "6NYYO2l4QTGUagl47PKh",
@@ -7248,11 +7268,16 @@
       "url": "https://rankingdacompra.com.br/produto/rMsMd9YWawi1darKVapn-20260810-1.html",
       "title": "Tênis Puma Flyer Runner Mesh feminino — anúncio MLB6254967576",
       "fingerprint": "b59bddfb2fffbd1bd17a4151c887d090ea1a5b9dcfc15b7f433f7063dc6c4c97",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-01T17:52:40.390Z",
+      "workNotes": [
+        "Puma Flyer Runner já distingue oferta por código e não presume outra cor/modelo; limita conforto, aderência, medidas e tecnologias. Conteúdo inteiro preservado, sem refazer a correção anterior.",
+        "Triagem local de texto já prudente. Não autentica unidade, mede calçado ou confirma materiais/numeração."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65637634?wid=MLB6254967576"
+      ]
     },
     {
       "id": "SFcayTGVGtzWrkpt4uFw",
@@ -8793,5 +8818,13 @@
     "testsPassed": 1373,
     "localMobileChecks": 8,
     "backendWrites": 0
+  },
+  "triage44": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "sX3K2gzcggu9lkVSke0Q",
+      "sinwoGjrsJl5UMA13pES"
+    ],
+    "newDeepReviews": 0
   }
 }

@@ -8,6 +8,23 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['sinwoGjrsJl5UMA13pES', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB6204416228',
+    model:/^power\s*bank\s*basike\s*20000\s*mah/i,
+    summary:'O anúncio identifica um power bank Basike de 20000 mAh com cabo USB-C e indicação de 65 W. São características declaradas na oferta, não capacidade útil ou potência medidas pela equipe. Pode interessar a quem procura alimentação portátil, mas a menção a notebook no título não comprova compatibilidade com todo computador ou carregamento em potência máxima. Antes de escolher, confira o modelo exato, os protocolos, os perfis de tensão e corrente, as portas e o cabo exigidos pelo aparelho. Não confirmamos 65 W em todas as saídas ou em uso simultâneo. Não testamos velocidade de carga, autonomia, aquecimento ou durabilidade, nem dispomos de avaliações verificadas para afirmar excelente aceitação dos usuários. Confira também o conteúdo do conjunto e as instruções específicas de uso e recarga.',
+    positiveNotes:['20000 mAh, cabo USB-C e 65 W anunciados no cadastro; confirme o modelo e a configuração da oferta.'],
+    negativeNotes:['Compatibilidade com notebook/celular e potência disponível dependem dos requisitos do aparelho, porta e cabo; não foram testadas pela equipe.', 'Capacidade útil, velocidade de carga, autonomia e desempenho simultâneo não medidos; sem avaliação de usuários verificada nesta ficha.'],
+    suppressRating:true,
+  }],
+  ['sX3K2gzcggu9lkVSke0Q', {
+    syncInformationalSchema:true,
+    model:/^heaven\s*extraordinary\s*collection\s*100\s*ml\s*[-–—]?\s*wepink/i,
+    summary:'O cadastro identifica Heaven Extraordinary Collection da Wepink em frasco de 100 ml. A descrição disponível nesta ficha não detalha a pirâmide olfativa; por isso não atribuímos notas, concentração ou semelhança com outra fragrância por suposição. Se estiver considerando esta opção, confira a identificação exata da versão, a descrição do fabricante e as informações da embalagem oferecida. Volume de 100 ml não comprova bom rendimento ou duração na pele. Não testamos fragrância, fixação ou projeção, e a aparência da embalagem não é prova de autenticidade ou qualidade. A escolha do aroma depende da preferência pessoal; não apresentamos esta ficha como experiência de uso ou garantia de que a fragrância agradará a todos.',
+    positiveNotes:['Nome Heaven Extraordinary Collection, marca Wepink e frasco de 100 ml identificados no cadastro.'],
+    negativeNotes:['Pirâmide olfativa, concentração, autenticidade e características da versão não verificadas nesta revisão.', 'Rendimento, fixação, projeção e experiência de uso não testados; sem promessa de duração ou aceitação universal.'],
+    suppressRating:true,
+  }],
   ['mlMLB7502068112', {
     syncInformationalSchema:true,
     expectedListing:'MLB7502068112',

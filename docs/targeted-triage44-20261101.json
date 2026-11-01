@@ -1,0 +1,12 @@
+{
+  "date":"2026-11-01",
+  "policy":"Next four pending in dated GA4 01–28 October view order. Correct only unsupported claims; do not repeat earlier reviews or fill missing product information by assumption.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"rMsMd9YWawi1darKVapn","decision":"screened_no_change","reason":"Puma Flyer Runner já distingue oferta por código e não presume outra cor/modelo; limita conforto, aderência, medidas e tecnologias. Conteúdo inteiro preservado, sem refazer a correção anterior.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB65637634?wid=MLB6254967576"],"sourceLimit":"Triagem local de texto já prudente. Não autentica unidade, mede calçado ou confirma materiais/numeração."},
+    {"id":"sinwoGjrsJl5UMA13pES","decision":"targeted_correction_complete","reason":"Basike 20000 mAh/65 W: retira ótimo desempenho, compatibilidade irrestrita com notebooks exigentes e excelente aceitação sem avaliações registradas. Características ficam atribuídas à oferta, sem converter capacidade em autonomia medida.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB63033418?wid=MLB6204416228"],"sourceLimit":"Snapshot público local, sem código de modelo completo, ficha de saída, teste de carga ou avaliações verificadas. Não inventa protocolos, capacidade útil, potência por porta ou instruções de segurança."},
+    {"id":"sX3K2gzcggu9lkVSke0Q","decision":"targeted_correction_complete","reason":"Wepink Heaven: remove rendimento como benefício confirmado e juízo de sofisticação como argumento de qualidade. Mantém só identidade/100 ml e limites, sem inventar notas, concentração ou fixação.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB63650193"],"sourceLimit":"Somente snapshot local. Sem pirâmide olfativa ou autenticação da variante; não consultado/testado outro Heaven. URL só contém catálogo; não inventado item de vendedor."},
+    {"id":"TEaC0vVXmdvp4s8QMqpn","decision":"screened_no_change","reason":"Acer A515-45-R2A3: texto cadastral identifica SKU e configuração sem promessa de FPS/autonomia/desempenho. Não há contradição nova documentada que justifique reescrita nesta triagem.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU5407062026?wid=MLB7753368634"],"sourceLimit":"Triagem do conteúdo público local, não validação de fábrica, materiais, configuração da unidade ou medições. Não acrescentadas especificações de outra revisão do Aspire 5."}
+  ],
+  "counts":{"screened":4,"targetedCorrections":2,"screenedNoChange":2,"newDeepReviews":0}
+}
