@@ -11,7 +11,6 @@
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
       "w4grNjrGMy69omEzW0QP",
-      "YdPOVmrHVJ8EO7fmgyXu",
       "cjtpmssewHcTpdqJlbS6",
       "DlFv98xnrCPIAeFfbRFv",
       "FWRyLtto1bKeKurNikKq",
@@ -624,7 +623,7 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-01T08:54:33.761Z",
+  "updatedAt": "2026-11-01T09:04:23.234Z",
   "catalogueGeneratedAt": "2026-11-01T08:53:23.800Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
@@ -637,11 +636,11 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 554,
-    "screened_no_change": 25,
+    "screened_no_change": 26,
     "needs_source": 7,
     "targeted_correction_complete": 57,
     "preserve_prior_review": 98,
-    "pending": 367
+    "pending": 366
   },
   "items": [
     {
@@ -2400,10 +2399,14 @@
       "url": "https://rankingdacompra.com.br/produto/YdPOVmrHVJ8EO7fmgyXu-20260810-1.html",
       "title": "Computador Pc Completo Intel I5-6º Ssd 240gb 8gb Ram Ddr4",
       "fingerprint": "8f27045378692e4c547b7f69072637fb071a672fb58b2ca1f81d44e4e5883d5c",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
+      "lastCompletedAt": "2026-11-01T09:04:23.234Z",
+      "workNotes": [
+        "PC i5 de sexta geração já tem correção anterior: SSD de 240 GB e 8 GB de RAM atribuídos ao cadastro, CPU exata e componentes a confirmar, sem prometer desempenho. Não há novo defeito concreto que justifique repetir ou reescrever; título, texto e demais dados mantidos.",
+        "Triagem do snapshot e da correção anterior; não identifica CPU a partir de sexta geração, completa placa-mãe/GPU/fonte/monitor ou confirma licença e compatibilidade de sistema. Sem benchmark, autenticação ou nova conferência do anúncio.",
+        "Local and live product content remain identical; no rewrite needed."
+      ],
       "sourceLinks": []
     },
     {
@@ -5134,8 +5137,14 @@
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Editorial correction prepared and committed in b6c771d57 / generated 7c559fb66; not served yet. Do not redo the review or claim it published.",
+        "Resume only the failed Pages deployment after the stale eed0e63ca lock is resolved, then run node scripts/verify-targeted-editorial.mjs 34 20261101."
+      ],
+      "sourceLinks": [
+        "https://maisonsalem.com.br/produtos/perfume-maison-salem-nayef-edp-100ml",
+        "https://catalogo.maisonsalem.com.br/index.html"
+      ]
     },
     {
       "id": "mlMLB6785015658",
@@ -7731,5 +7740,32 @@
         "note": "Triagem da ficha pública e da correção anterior, não nova avaliação clínica ou consulta da composição. Sem acrescentar duração, eficácia, adequação individual ou alegações dermatológicas por suposição."
       }
     ]
+  },
+  "triage34": {
+    "at": "2026-11-01T09:04:23.234Z",
+    "status": "awaiting_publication",
+    "sourceCommit": "b6c771d57",
+    "generatedCommit": "7c559fb66a4d2148fcda70a8a3a8effaf6551e4a",
+    "testsPassed": 1314,
+    "integrityRun": 41291080447,
+    "sitemapRun": 41291080436,
+    "pagesRun": 41291112610,
+    "pagesAttempts": 3,
+    "failedDeployJobs": [
+      124802504373,
+      124802884624,
+      124803174930
+    ],
+    "blocker": "GitHub Pages HTTP 400: in progress deployment eed0e63ca55604f4df531cbc04b0f23f155f6ab2, although that earlier Actions run is completed/success. No cancellation control exposed in inspected deployments/Pages UI.",
+    "liveCatalogueStillPrevious": true,
+    "liveProductsUnchanged": 554,
+    "protectedDeepReviews": 98,
+    "preparedId": "w4grNjrGMy69omEzW0QP",
+    "screenedNoChangeId": "YdPOVmrHVJ8EO7fmgyXu",
+    "screenshot": "outputs/melhorias-integrais-20261030/pages-bloqueio-triagem34.png",
+    "nextEditorialIdAfterPublication": "cjtpmssewHcTpdqJlbS6",
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-parcial-triagem34.json",
+    "newDeepReviews": 0,
+    "resume": "Do not edit the two records again. Resolve stale Pages deployment and retry only latest deploy, then verify-targeted-editorial.mjs 34 20261101 before marking Nayef complete."
   }
 }
