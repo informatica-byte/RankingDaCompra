@@ -8,6 +8,30 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['aQjR3wSqj9aObPqMJp10', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5242031295',
+    model:/^óculos\s*inteligente\s*ai\s*bv200\s*chatgpt\s*câmera\s*8mp\s*bluetooth$/i,
+    category:'informatica',
+    summary:'A oferta identifica os óculos inteligentes Blackview BV200 com câmera anunciada de 8 MP e Bluetooth. São apresentados como um acessório vestível, não como uma câmera de segurança para vigilância contínua. A referência oficial da Blackview também descreve o BV200 como óculos inteligentes com câmera, chamadas e funções de IA; isso não autentica a unidade do vendedor nem é um teste da equipe. Se procura capturar momentos ou usar funções conectadas, confira antes o aplicativo exigido, a compatibilidade com seu celular e as condições de acesso aos serviços citados. A menção a ChatGPT no título não é confirmação nossa de conta, assinatura, recursos disponíveis ou funcionamento sem conexão. Não testamos qualidade das imagens, tradução, autonomia, privacidade ou estabilidade. Confira também o tipo de lente, a armação e os acessórios desta variante; não presumimos proteção UV, correção de grau ou resistência à água.',
+    positiveNotes:['BV200, câmera de 8 MP e Bluetooth identificados na oferta; referência oficial apresenta a linha de óculos inteligentes.'],
+    negativeNotes:['Não é tratado como equipamento de vigilância contínua; imagem, autonomia e funções de IA não testadas.', 'Aplicativo, compatibilidade, serviços e tipo de lente precisam ser conferidos para a variante anunciada.'],
+    contextSourceUrl:'https://de.blackview.hk/en/products/bv200-price',
+    contextSourceLabel:'Blackview BV200: referência oficial regional, não teste da integração ou autenticação da unidade',
+    suppressRating:true,
+  }],
+  ['AUot5FOcnAXK9wLKfANM', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5598860072',
+    model:/^vaporizador\s*portátil\s*de\s*roupas\s*e\s*tecidos\s*wap\s*wapore\s*fast\s*1250\s*com\s*vapor\s*quente$/i,
+    category:'casa',
+    summary:'A oferta identifica o vaporizador portátil WAP Wapore Fast 1250 para cuidados com roupas e tecidos. A WAP o apresenta para peças levemente amassadas, com potência de 1250 W, cabo de 1,8 m e aquecimento anunciado em 25 segundos; esses números são informações do fabricante, não medições da equipe. A marca informa que ele não substitui o ferro de passar e recomenda uso vertical. A restrição geral a jeans presente no texto anterior não foi confirmada na referência consultada; isso não significa que qualquer tecido possa receber vapor. Confira a etiqueta da peça e as instruções específicas do aparelho antes de usar. A referência oficial distingue versões de 127 V e 220 V: confirme a tensão da unidade e não presuma bivolt. Não testamos remoção de vincos, aquecimento, acabamento ou desempenho e não prometemos resultado igual em tecidos diferentes. Confira também o código e os acessórios da oferta, sem transferir informações de outro Wapore.',
+    positiveNotes:['Formato portátil para roupas levemente amassadas, conforme a proposta descrita pela WAP.', 'Potência, cabo e tempo de aquecimento informados pelo fabricante, sem medição própria.'],
+    negativeNotes:['Não substitui ferro de passar; aplicação depende do tecido e das instruções da unidade.', 'Versões 127 V e 220 V distintas; desempenho, aquecimento e acabamento não testados pela equipe.'],
+    contextSourceUrl:'https://loja.wap.ind.br/vaporizador-portatil-wap-wapore-fast-1250/p',
+    contextSourceLabel:'WAP Wapore Fast 1250: referência oficial do modelo, com tensão da oferta a confirmar',
+    suppressRating:true,
+  }],
   ['aIFZHrVtBLCNlrEdxIud', {
     syncInformationalSchema:true,
     expectedListing:'MLB6191360194',
