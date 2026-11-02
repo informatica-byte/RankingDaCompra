@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "88kDU9mSlJdWzZPx4bim",
-      "8oHSkf32jY7LKS2WSv36",
       "8RopqzkV8UyasWEZxMB8",
       "8sDa6bmYd25zEEKRnQJn",
       "96Pf23TdUYjzKH9stEXS",
       "9MH0XlaLQuIqWe1dlAHz",
       "9mrh9VQEs49ewAlruh38",
-      "AF2AykzSppuQzGXdmvlT"
+      "AF2AykzSppuQzGXdmvlT",
+      "aIFZHrVtBLCNlrEdxIud",
+      "aIWLmzyxlViGPWt6Mctg"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T12:42:18.943Z",
-  "catalogueGeneratedAt": "2026-11-02T12:42:10.542Z",
+  "updatedAt": "2026-11-02T12:45:53.221Z",
+  "catalogueGeneratedAt": "2026-11-02T12:43:19.435Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 52,
     "needs_source": 8,
-    "targeted_correction_complete": 117,
+    "targeted_correction_complete": 119,
     "preserve_prior_review": 98,
-    "pending": 284,
-    "prepared_awaiting_publication": 2
+    "pending": 284
   },
   "items": [
     {
@@ -1686,12 +1685,13 @@
       "url": "https://rankingdacompra.com.br/produto/8oHSkf32jY7LKS2WSv36-20260810-1.html",
       "title": "Câmera A28 Wi-Fi com app iCSee — recursos a confirmar",
       "fingerprint": "751e49e9c916f3d3fef02139f4dbcfc155a0a25b70c3e69091b4a443273f6f7d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T12:45:53.193Z",
       "workNotes": [
         "A28: título e descrição divergiam entre A28 e A28B. Retira a equivalência presumida e mantém recursos, proteção e integração como pendentes de identificação específica.",
-        "Snapshot local sem manual ou fabricante exato. Não importa 6 MP, 64 usuários, ONVIF, grau IP ou recursos de outro modelo e não autentica a unidade."
+        "Snapshot local sem manual ou fabricante exato. Não importa 6 MP, 64 usuários, ONVIF, grau IP ou recursos de outro modelo e não autentica a unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3403280878?wid=MLB4188994271"
@@ -2780,12 +2780,13 @@
       "url": "https://rankingdacompra.com.br/produto/88kDU9mSlJdWzZPx4bim-20260810-1.html",
       "title": "Creatina monohidratada Soldiers Nutrition em pó 1 kg",
       "fingerprint": "69e57c5561e155a03af2f51fc24907b47ac8b8828afabf3b2ce244178dc4feec",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T12:45:53.193Z",
       "workNotes": [
         "Soldiers: descrição terminava cortada. Corrige a frase incompleta e separa identificação da oferta de pureza, dissolução e desempenho não testados, sem recomendar dose.",
-        "Snapshot local e orientação geral Anvisa consultada em 02/11/2026, não aprovação, análise de lote ou confirmação de composição. Sem importar laudo de 300 g ou dados de outra embalagem."
+        "Snapshot local e orientação geral Anvisa consultada em 02/11/2026, não aprovação, análise de lote ou confirmação de composição. Sem importar laudo de 300 g ou dados de outra embalagem.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB18725310?wid=MLB2766771378",
@@ -9857,11 +9858,42 @@
     "backendWrites": 0
   },
   "triage59": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "88kDU9mSlJdWzZPx4bim",
       "8oHSkf32jY7LKS2WSv36"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T12:45:53.193Z",
+    "changedIds": [
+      "88kDU9mSlJdWzZPx4bim",
+      "8oHSkf32jY7LKS2WSv36"
+    ],
+    "jointReleaseBatches": [
+      59
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem59.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4846664026",
+        "note": "Triagem do snapshot público, não teste de conforto, material, autenticidade ou adequação esportiva. Sem fonte técnica exata para aprofundar; não adicionados benefícios."
+      },
+      {
+        "id": "88kDU9mSlJdWzZPx4bim",
+        "note": "Snapshot local e orientação geral Anvisa consultada em 02/11/2026, não aprovação, análise de lote ou confirmação de composição. Sem importar laudo de 300 g ou dados de outra embalagem."
+      },
+      {
+        "id": "8oHSkf32jY7LKS2WSv36",
+        "note": "Snapshot local sem manual ou fabricante exato. Não importa 6 MP, 64 usuários, ONVIF, grau IP ou recursos de outro modelo e não autentica a unidade."
+      }
+    ],
+    "sourceCommit": "3a293bb6c8b56c203e91324fdc0bf3241cc1703a",
+    "generatedCommit": "122f1edab5388ea44329fec801c931ab7b23b338",
+    "sitemapRun": 41446972283,
+    "integrityRun": 41446972239,
+    "pagesRun": 41447021432,
+    "testsPassed": 1454,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
