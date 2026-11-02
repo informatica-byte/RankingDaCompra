@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 69 — 20261102, PUBLICADA E VERIFICADA
+
+- DatIY5m4eQ3X4KOykiAY: screened_no_change. Patins: descrição já atribuída ao anúncio, sem defeito concreto demonstrado. Preservada integralmente. Limite: Não confirma segurança, faixa etária, carga, ajustes, materiais ou certificação da unidade; não importar dados de outro patins.
+- dgcv2JkW8bL6DBSEqB9V: targeted_correction_complete. Retira 100% Pure como garantia e qualifica porção e alergênicos sem rótulo confirmado. Limite: Snapshot local, sem análise laboratorial ou rótulo específico confirmado. Sem prescrição, laudo de outra creatina ou promessa de resultado.
+- dNFcgW7f0gXpuucpEemY: targeted_correction_complete. Separa interface SATA de transferência USB; retira 6 Gbps como desempenho externo garantido. Limite: Sem manual exato ou teste. Não atribui nova taxa USB, capacidade medida, compatibilidade universal ou disco incluído.
+
+Fonte bc32d73f3ae1e5c320af10540da630e9f9bb8679; geração 4124312ba850a7c849ebf7a28db6550b21c5ad5a; sitemap 41527080044, integridade 41527079973, Pages 41527163548: SUCCESS. 1480 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 559 entradas editoriais inalteradas. Preservados 561 IDs/afiliados/campos operacionais e 614 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem69.json.
+
+Totais: {"total":561,"screened_no_change":60,"needs_source":8,"targeted_correction_complete":141,"preserve_prior_review":98,"pending":254}. Próximos pendentes: DuqIf8kBMwEZzRskn9LR — Poco X8 Pro Max 512gb 12gb Ram Global Bateria 8.500mah; dVcHtGhQTqXzldhTAOVv — Perfume Natura Kaiak extremo deo colônia 100 ml; e2JrkBA5LBbERAqFunqx — Micro-ondas 20l Prata Porta Espelhada Mastercook Midea. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 68 — 20261102, PUBLICADA E VERIFICADA
 
 - CvM3xyDY4t5BF7XdPjF6: targeted_correction_complete. Retira militar/tático/defesa como qualificação e atribui mecanismo e materiais ao anúncio sem teste próprio. Limite: Snapshot local sem manual exato. Sem técnica de combate, indicação de uso como arma, certificação ou orientação jurídica sobre porte.
