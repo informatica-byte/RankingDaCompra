@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "6CiOb7YKL9YmF8Sqg1wT",
-      "6kC1jJj7i4kRtYyp3SZr",
-      "6NYYO2l4QTGUagl47PKh",
       "6owUOP0UqtNt3y5pFzgW",
       "6rPnzKJkUk5676DoZ9ng",
       "6tvLptYK5kpEu3H8wQXJ",
       "6Yj2zf1J51bnYAvt9ykY",
-      "7cl224x4LF75c4vXGA5J"
+      "7cl224x4LF75c4vXGA5J",
+      "7CSQkSXeUHn9yzYR29hF",
+      "7EgFgcD6NyeoMB8KW4Pp",
+      "7evzZBujin11TlbT8hvm"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T10:37:54.712Z",
-  "catalogueGeneratedAt": "2026-11-02T10:37:52.346Z",
+  "updatedAt": "2026-11-02T10:41:06.331Z",
+  "catalogueGeneratedAt": "2026-11-02T10:39:08.445Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,10 +639,9 @@
     "total": 560,
     "screened_no_change": 47,
     "needs_source": 8,
-    "targeted_correction_complete": 110,
+    "targeted_correction_complete": 112,
     "preserve_prior_review": 98,
-    "pending": 295,
-    "prepared_awaiting_publication": 2
+    "pending": 295
   },
   "items": [
     {
@@ -5380,12 +5379,13 @@
       "url": "https://rankingdacompra.com.br/produto/6kC1jJj7i4kRtYyp3SZr-20260810-1.html",
       "title": "Patinete Elétrico Ydtech M187 Dobrável com Bluetooth",
       "fingerprint": "b79d1ac9f2a865f96a2533d04cfc8b75027d09b460ef43d3d53aebefc75a7222",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T10:41:06.304Z",
       "workNotes": [
         "Ydtech: retira comparação sem teste com 450 W, estabilidade assegurada, ausência de problemas com pneus e transporte universal. Mantém nome do cadastro, exige confirmar código da unidade e não transfere especificações de outro M187.",
-        "Snapshot local do anúncio vinculado. Busca não localizou manual primário exato suficiente; não importados 12,5 kg, E-ABS, carga, velocidade ou autonomia como confirmados. Sem teste físico, orientação jurídica de circulação ou troca de produto."
+        "Snapshot local do anúncio vinculado. Busca não localizou manual primário exato suficiente; não importados 12,5 kg, E-ABS, carga, velocidade ou autonomia como confirmados. Sem teste físico, orientação jurídica de circulação ou troca de produto.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB62867767?pdp_filters=item_id%3AMLB7389762032"
@@ -5917,12 +5917,13 @@
       "url": "https://rankingdacompra.com.br/produto/6NYYO2l4QTGUagl47PKh-20260810-1.html",
       "title": "Prancha Lizze Profissional 480 Extreme",
       "fingerprint": "33d121a31fa794dbe437f54eb447b4779142959ba5373e2ba8b0df71595f70e4",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T10:41:06.304Z",
       "workNotes": [
         "Lizze: retira garantia de adequação a todo cabelo, distingue alegação antiestática de teste e esclarece 480 °F na referência, sem recomendar ajuste térmico. Não presume bivolt ou autentica unidade.",
-        "HTML oficial consultado em 02/11/2026: página apresenta variantes de tensão e informa máximo 250 °C (480 °F). Não confirma variante do vendedor, desempenho, aplicação ou segurança individual; não importa dados da Extreme Slim/Lizz Pro."
+        "HTML oficial consultado em 02/11/2026: página apresenta variantes de tensão e informa máximo 250 °C (480 °F). Não confirma variante do vendedor, desempenho, aplicação ou segurança individual; não importa dados da Extreme Slim/Lizz Pro.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB24086423",
@@ -9593,11 +9594,42 @@
     "backendWrites": 0
   },
   "triage55": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "6NYYO2l4QTGUagl47PKh",
       "6kC1jJj7i4kRtYyp3SZr"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T10:41:06.304Z",
+    "changedIds": [
+      "6kC1jJj7i4kRtYyp3SZr",
+      "6NYYO2l4QTGUagl47PKh"
+    ],
+    "jointReleaseBatches": [
+      55
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem55.json",
+    "remainingDependencies": [
+      {
+        "id": "6CiOb7YKL9YmF8Sqg1wT",
+        "note": "Só snapshot local, não teste ou nova revisão aprofundada. Sem manual/modelo específico; não confirma seis horas, recepção, bandas, bateria ou alimentação da unidade."
+      },
+      {
+        "id": "6kC1jJj7i4kRtYyp3SZr",
+        "note": "Snapshot local do anúncio vinculado. Busca não localizou manual primário exato suficiente; não importados 12,5 kg, E-ABS, carga, velocidade ou autonomia como confirmados. Sem teste físico, orientação jurídica de circulação ou troca de produto."
+      },
+      {
+        "id": "6NYYO2l4QTGUagl47PKh",
+        "note": "HTML oficial consultado em 02/11/2026: página apresenta variantes de tensão e informa máximo 250 °C (480 °F). Não confirma variante do vendedor, desempenho, aplicação ou segurança individual; não importa dados da Extreme Slim/Lizz Pro."
+      }
+    ],
+    "sourceCommit": "8045320fadd8ee05802650b2046e689b61f6971c",
+    "generatedCommit": "13eb03b88b5838295a5414a8107b4aeda2d3cb13",
+    "sitemapRun": 41430451117,
+    "integrityRun": 41430451192,
+    "pagesRun": 41430540418,
+    "testsPassed": 1433,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
