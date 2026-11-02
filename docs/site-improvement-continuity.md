@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 65 — 20261102, PUBLICADA E VERIFICADA
+
+- Bf3ccSwSiVkLw1Z8k2Hu: targeted_correction_complete. Distingue capacidade total de limite de preparo; retira recursos não confirmados como garantias. Limite: Manual específico lido; não confirma tensão ou unidade do vendedor. Sem teste físico.
+- bjRcUhAfXiIDliNXbqwE: targeted_correction_complete. Retira prescrição e superlativos sem rótulo; preserva par de páginas e cadastros. Limite: Sem rótulo específico confirmado; não inferir dose, pureza, alergênicos ou duração.
+- Bp4dNosktHQXiSy3r9S0: targeted_correction_complete. Qualifica materiais e retira garantia universal de aderência. Limite: Snapshot local, sem ensaio de aderência ou manual de conservação específico.
+
+Fonte ee43ac979fafe5bbd7a7a0bbf30686b414d658e0; geração dc66b2efd50157de6b07959ffbcb091949f4619d; sitemap 41522426388, integridade 41522426617, Pages 41522498886: SUCCESS. 1476 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 558 entradas editoriais inalteradas. Preservados 561 IDs/afiliados/campos operacionais e 614 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem65.json.
+
+Totais: {"total":561,"screened_no_change":55,"needs_source":8,"targeted_correction_complete":134,"preserve_prior_review":98,"pending":266}. Próximos pendentes: bpuXfDB4cwTrjlMUINRi — Capa Protetora Colchão Box Casal Padrão Matelado Impermeável; bufeMWJJrnyiM5TBcKXW — Ventilador de Coluna Ventisol Turbo 6 Pás 30cm Preto 8234; c1R3iVzduEndTWAhxXvO — Torneira Elétrica De Parede - Loren Easy Lorenzetti Acabamento Branco Cor Branco 220v 5.5KW. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 64 — 20261102, PUBLICADA E VERIFICADA
 
 - b2ejp8pkiWYOgBAdeXto: targeted_correction_complete. S26: título extenso e processador de última geração sem identificação. Encurta título sem mudar 256 GB/12 GB/preto; substitui qualificação temporal por especificações atribuídas à Samsung sem importar recursos do Ultra/Plus. Limite: Referência oficial brasileira de lançamento consultada em 02/11/2026; não autentica unidade, oferta ou acessórios. Sem novos preços, promoções, autonomia, testes de imagem, processador do Ultra ou disponibilidade universal de IA.

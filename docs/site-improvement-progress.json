@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "Bf3ccSwSiVkLw1Z8k2Hu",
-      "bjRcUhAfXiIDliNXbqwE",
-      "Bp4dNosktHQXiSy3r9S0",
       "bpuXfDB4cwTrjlMUINRi",
       "bufeMWJJrnyiM5TBcKXW",
       "c1R3iVzduEndTWAhxXvO",
       "C5b5fKstKDUgNDUxnQkP",
-      "C8VXX9MfKS8ULwDiDWXn"
+      "C8VXX9MfKS8ULwDiDWXn",
+      "CO1tCKBzr6q79BOpdBZW",
+      "CvM3xyDY4t5BF7XdPjF6",
+      "d31e9yty1t0dekViXbAi"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T20:47:01.851Z",
-  "catalogueGeneratedAt": "2026-11-02T20:47:00.007Z",
+  "updatedAt": "2026-11-02T20:50:30.816Z",
+  "catalogueGeneratedAt": "2026-11-02T20:47:45.807Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 55,
     "needs_source": 8,
-    "targeted_correction_complete": 131,
+    "targeted_correction_complete": 134,
     "preserve_prior_review": 98,
-    "pending": 266,
-    "prepared_awaiting_publication": 3
+    "pending": 266
   },
   "items": [
     {
@@ -4675,12 +4674,13 @@
       "url": "https://rankingdacompra.com.br/produto/Bf3ccSwSiVkLw1Z8k2Hu-20260810-1.html",
       "title": "Liquidificador Turbo Power Mondial 550W - L-99 FB — anúncio MLB4297760749",
       "fingerprint": "e135046161a8f644ca014bfb8aeea1e8646c2ed85364be514a22be2d6d962ad9",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T20:50:30.791Z",
       "workNotes": [
         "Distingue capacidade total de limite de preparo; retira recursos não confirmados como garantias.",
-        "Manual específico lido; não confirma tensão ou unidade do vendedor. Sem teste físico."
+        "Manual específico lido; não confirma tensão ou unidade do vendedor. Sem teste físico.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://manuais.emondial.com/Manual-L-99-FB.pdf"
@@ -5112,12 +5112,13 @@
       "url": "https://rankingdacompra.com.br/produto/bjRcUhAfXiIDliNXbqwE-20260810-1.html",
       "title": "NAC 600 mg anunciado — 60 cápsulas, rótulo a confirmar",
       "fingerprint": "c100a2bac58f85e9ae463220a4cd14ae89d5d790d60e097e9ba33171f55baa78",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T20:50:30.791Z",
       "workNotes": [
         "Retira prescrição e superlativos sem rótulo; preserva par de páginas e cadastros.",
-        "Sem rótulo específico confirmado; não inferir dose, pureza, alergênicos ou duração."
+        "Sem rótulo específico confirmado; não inferir dose, pureza, alergênicos ou duração.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB58579835?wid=MLB5761715520"
@@ -7119,12 +7120,13 @@
       "url": "https://rankingdacompra.com.br/produto/Bp4dNosktHQXiSy3r9S0-20260810-1.html",
       "title": "Tapete felpudo Casa Laura Enxovais 2,00 × 1,50 m — cinza",
       "fingerprint": "d652544981e1fb63326b19fd25d1a2eb7b57fa916afcd098e7084b1492201fb3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T20:50:30.791Z",
       "workNotes": [
         "Qualifica materiais e retira garantia universal de aderência.",
-        "Snapshot local, sem ensaio de aderência ou manual de conservação específico."
+        "Snapshot local, sem ensaio de aderência ou manual de conservação específico.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB46020977?wid=MLB5337833154"
@@ -10238,12 +10240,44 @@
     "backendWrites": 0
   },
   "triage65": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "Bf3ccSwSiVkLw1Z8k2Hu",
       "Bp4dNosktHQXiSy3r9S0",
       "bjRcUhAfXiIDliNXbqwE"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T20:50:30.791Z",
+    "changedIds": [
+      "Bf3ccSwSiVkLw1Z8k2Hu",
+      "bjRcUhAfXiIDliNXbqwE",
+      "Bp4dNosktHQXiSy3r9S0"
+    ],
+    "jointReleaseBatches": [
+      65
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem65.json",
+    "remainingDependencies": [
+      {
+        "id": "Bf3ccSwSiVkLw1Z8k2Hu",
+        "note": "Manual específico lido; não confirma tensão ou unidade do vendedor. Sem teste físico."
+      },
+      {
+        "id": "bjRcUhAfXiIDliNXbqwE",
+        "note": "Sem rótulo específico confirmado; não inferir dose, pureza, alergênicos ou duração."
+      },
+      {
+        "id": "Bp4dNosktHQXiSy3r9S0",
+        "note": "Snapshot local, sem ensaio de aderência ou manual de conservação específico."
+      }
+    ],
+    "sourceCommit": "ee43ac979fafe5bbd7a7a0bbf30686b414d658e0",
+    "generatedCommit": "dc66b2efd50157de6b07959ffbcb091949f4619d",
+    "sitemapRun": 41522426388,
+    "integrityRun": 41522426617,
+    "pagesRun": 41522498886,
+    "testsPassed": 1476,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
