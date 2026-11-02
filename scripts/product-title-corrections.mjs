@@ -8,6 +8,30 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['8RopqzkV8UyasWEZxMB8', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB3998743869',
+    model:/^(?:perfume\s*lattafa\s*asad\s*100ml\s*eau\s*de\s*parfum\s*original\s*árabe\s*original\s*com\s*nota\s*fiscal\s*e\s*selo\s*original\s*lataffa|perfume\s*lattafa\s*asad\s*eau\s*de\s*parfum\s*100\s*ml)$/i,
+    correct:'Perfume Lattafa Asad Eau de Parfum 100 ml',
+    summary:'O anúncio identifica o perfume Lattafa Asad Eau de Parfum de 100 ml. A marca descreve Asad como uma fragrância ambarada; isso é uma descrição do fabricante, não uma avaliação olfativa da equipe. Para escolher, confira se deseja o Asad desta oferta, sem confundi-lo com Asad Zanzibar ou outras versões da linha. Volume e concentração identificam a apresentação, mas não garantem rendimento, intensidade ou duração na sua pele. Não testamos aroma, fixação ou projeção e não prometemos resultado igual entre pessoas. As expressões original, selo e nota fiscal do título anterior não representam autenticação da unidade por nós. Confira procedência, embalagem e condições do vendedor antes de decidir; a referência da marca não comprova o conteúdo do frasco anunciado.',
+    positiveNotes:['Apresentação Asad Eau de Parfum de 100 ml identificada na oferta.', 'Referência oficial descreve a linha Asad; não é teste ou autenticação da unidade.'],
+    negativeNotes:['Aroma, rendimento, fixação e projeção não testados pela equipe.', 'Selo e nota fiscal anunciados não substituem confirmação de procedência; não confundir com outras versões Asad.'],
+    contextSourceUrl:'https://lattafa.com/product/asad/',
+    contextSourceLabel:'Lattafa Asad: referência oficial da linha, não autenticação do frasco do vendedor',
+    suppressRating:true,
+  }],
+  ['96Pf23TdUYjzKH9stEXS', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB6433211634',
+    model:/^(?:mini\s*aspirador\s*de\s*pó\s*portátil\s*recarregável\s*chrome\s*technology\s*soprador\s*usb\s*automotivo\s*3em1\s*sem\s*fio\s*premium\s*vácuo\s*limpeza\s*carro\s*multifuncional\s*casa|mini\s*aspirador\s*chrome\s*technology\s*usb\s*com\s*soprador\s*—\s*3\s*em\s*1\s*anunciado)$/i,
+    correct:'Mini aspirador Chrome Technology USB com soprador — 3 em 1 anunciado',
+    summary:'A oferta apresenta um mini aspirador Chrome Technology sem fio, recarregável por USB e com função soprador. Pode interessar a quem busca um aparelho compacto para pequenas limpezas, mas não fizemos teste de sucção ou remoção de sujeira. A descrição informa 50 W e filtro reutilizável; são dados anunciados, não medições da equipe. Potência elétrica informada não é um resultado de teste de sucção. O título usa 3 em 1, porém esta ficha só identifica as funções de aspirar e soprar; confirme a terceira função e os acessórios da unidade. Antes de usar em eletrônicos, estofados ou no carro, confira no manual quais superfícies e tipos de sujeira são permitidos. Não presumimos uso com líquidos, filtro lavável, autonomia, capacidade do reservatório ou carregador incluído. Sem código técnico ou manual específico confirmado, esses pontos permanecem pendentes; não transferimos dados de outro mini aspirador parecido.',
+    positiveNotes:['Formato compacto sem fio, recarga USB e função soprador descritos na oferta.'],
+    negativeNotes:['50 W e filtro reutilizável anunciados, sem teste de sucção; reutilizável não comprova que o filtro seja lavável.', 'Terceira função, autonomia, reservatório, superfícies permitidas e acessórios precisam de confirmação específica.'],
+    suppressRating:true,
+  }],
   ['7EgFgcD6NyeoMB8KW4Pp', {
     syncInformationalSchema:true,
     expectedListing:'MLB6880438906',

@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T12:45:53.221Z",
-  "catalogueGeneratedAt": "2026-11-02T12:43:19.435Z",
+  "updatedAt": "2026-11-02T12:49:50.932Z",
+  "catalogueGeneratedAt": "2026-11-02T12:49:47.924Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -653,11 +653,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 561,
-    "screened_no_change": 52,
+    "screened_no_change": 53,
     "needs_source": 8,
     "targeted_correction_complete": 119,
     "preserve_prior_review": 98,
-    "pending": 284
+    "pending": 281,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -2182,11 +2183,18 @@
       "url": "https://rankingdacompra.com.br/produto/8sDa6bmYd25zEEKRnQJn-20260810-1.html",
       "title": "Celular Samsung Galaxy A17",
       "fingerprint": "54da4005c484b42af03fab221822070ba1d64eb2c6c1ce6b800ff191092da1a7",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-02T12:49:50.934Z",
+      "workNotes": [
+        "Galaxy A17: resumo curto identifica tela, armazenamento, câmeras e bateria, com resistência atribuída ao vendedor. Sem contradição concreta demonstrada; conteúdo e título mantidos.",
+        "Snapshot local e referências oficiais de família consultadas em 02/11/2026. Não identifica código exato ou confirma unidade LTE/5G, RAM, cor, autonomia ou imersão. Não adiciona especificações de outra variante ou conta como novo teste profundo."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB55254425?wid=MLB5732599082",
+        "https://shop.samsung.com/br/galaxy-a17-256gb/p",
+        "https://news.samsung.com/br/feitos-para-durar-samsung-apresenta-galaxy-a17-e-galaxy-a07-no-brasil-com-armazenamento-robusto-recursos-ai-processador-de-alto-desempenho-e-ate-6-anos-de-atualizacoes"
+      ]
     },
     {
       "id": "VIm8Tf6PT9I5VlI8BdRa",
@@ -4826,13 +4834,20 @@
     {
       "id": "96Pf23TdUYjzKH9stEXS",
       "url": "https://rankingdacompra.com.br/produto/96Pf23TdUYjzKH9stEXS-20260810-1.html",
-      "title": "Mini Aspirador De Pó Portátil Recarregável Chrome Technology Soprador Usb Automotivo 3em1 Sem Fio Premium Vácuo Limpeza Carro Multifuncional Casa",
-      "fingerprint": "483f422f7ed61cf973f54dc2ef28a45bad28cd0944f93c1716f2640175fbe5a4",
-      "status": "pending",
+      "title": "Mini aspirador Chrome Technology USB com soprador — 3 em 1 anunciado",
+      "fingerprint": "77de74dc6a30c5e28ed8d575076b15c64fb779a3394f64f719c985fa07eed70b",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Mini aspirador: título extenso e H1 cortado; atribui 50 W e filtro à oferta, sem tratar potência como desempenho testado. Explicita terceira função e manual ausentes, sem inventar capacidades.",
+        "Somente snapshot local, sem manual/código técnico exato confirmado. Não importa sucção, autonomia, tipo de filtro, capacidade ou acessórios de outro aparelho visualmente semelhante."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB44701480?wid=MLB6433211634"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4812800951",
@@ -5740,13 +5755,21 @@
     {
       "id": "8RopqzkV8UyasWEZxMB8",
       "url": "https://rankingdacompra.com.br/produto/8RopqzkV8UyasWEZxMB8-20260810-1.html",
-      "title": "Perfume Lattafa Asad 100ml Eau De Parfum Original Árabe Original Com Nota Fiscal E Selo Original Lataffa",
-      "fingerprint": "e01ecc1585651f43038d607410230a2c5ea2f29ad1a8c56ed8e21f11ce7c33af",
-      "status": "pending",
+      "title": "Perfume Lattafa Asad Eau de Parfum 100 ml",
+      "fingerprint": "ba99ffec5bed8bcc81fd54d0c099f68a7b56ce14f28dd6fe616d03cd6bdd6b59",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Asad: título repetitivo e H1 cortado; resumo público genérico e promessa de rendimento/impacto sem teste. Identifica apresentação e distingue referência da marca de autenticação da oferta.",
+        "Página oficial consultada em 02/11/2026 descreve Asad e 100 ml, não autentica vendedor ou frasco. Não importa avaliações de clientes (incluem referência Zanzibar), duração, originalidade, sensação ou condições de outro canal."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3063059862?wid=MLB3998743869",
+        "https://lattafa.com/product/asad/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "x75GETnbI3P4zycAKwOI",
@@ -9895,5 +9918,13 @@
     "testsPassed": 1454,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage60": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "8RopqzkV8UyasWEZxMB8",
+      "96Pf23TdUYjzKH9stEXS"
+    ],
+    "newDeepReviews": 0
   }
 }

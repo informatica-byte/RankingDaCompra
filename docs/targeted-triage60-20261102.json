@@ -1,0 +1,13 @@
+{
+  "date":"2026-11-02",
+  "policy":"Requested next three in saved GA4 01–28/10 order. Correct only documented defects, preserve coherent Galaxy A17 summary. No new availability checks or operational changes.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"8RopqzkV8UyasWEZxMB8","decision":"targeted_correction_complete","reason":"Asad: título repetitivo e H1 cortado; resumo público genérico e promessa de rendimento/impacto sem teste. Identifica apresentação e distingue referência da marca de autenticação da oferta.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU3063059862?wid=MLB3998743869","https://lattafa.com/product/asad/"],"sourceLimit":"Página oficial consultada em 02/11/2026 descreve Asad e 100 ml, não autentica vendedor ou frasco. Não importa avaliações de clientes (incluem referência Zanzibar), duração, originalidade, sensação ou condições de outro canal.","publicContextUrl":"https://lattafa.com/product/asad/"},
+    {"id":"8sDa6bmYd25zEEKRnQJn","decision":"screened_no_change","reason":"Galaxy A17: resumo curto identifica tela, armazenamento, câmeras e bateria, com resistência atribuída ao vendedor. Sem contradição concreta demonstrada; conteúdo e título mantidos.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB55254425?wid=MLB5732599082","https://shop.samsung.com/br/galaxy-a17-256gb/p","https://news.samsung.com/br/feitos-para-durar-samsung-apresenta-galaxy-a17-e-galaxy-a07-no-brasil-com-armazenamento-robusto-recursos-ai-processador-de-alto-desempenho-e-ate-6-anos-de-atualizacoes"],"sourceLimit":"Snapshot local e referências oficiais de família consultadas em 02/11/2026. Não identifica código exato ou confirma unidade LTE/5G, RAM, cor, autonomia ou imersão. Não adiciona especificações de outra variante ou conta como novo teste profundo."},
+    {"id":"96Pf23TdUYjzKH9stEXS","decision":"targeted_correction_complete","reason":"Mini aspirador: título extenso e H1 cortado; atribui 50 W e filtro à oferta, sem tratar potência como desempenho testado. Explicita terceira função e manual ausentes, sem inventar capacidades.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB44701480?wid=MLB6433211634"],"sourceLimit":"Somente snapshot local, sem manual/código técnico exato confirmado. Não importa sucção, autonomia, tipo de filtro, capacidade ou acessórios de outro aparelho visualmente semelhante."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":2,"screenedNoChange":1,"newDeepReviews":0},
+  "preserveComparisonIds":["8sDa6bmYd25zEEKRnQJn"],
+  "manualDependencies":[{"id":"96Pf23TdUYjzKH9stEXS","pending":"Manual ou código técnico exato para confirmar terceira função, superfícies, filtro, autonomia e acessórios; não depende de trocar afiliado."}]
+}
