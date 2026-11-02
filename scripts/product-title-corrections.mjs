@@ -8,6 +8,21 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['dgcv2JkW8bL6DBSEqB9V', {
+    syncInformationalSchema:true, expectedListing:'MLB2622679749',
+    model:/^Strong Creatine 300g - Fisionutri(?: 100% Pure)?$/i,
+    correct:'Strong Creatine 300g - Fisionutri',
+    summary:'A oferta identifica Strong Creatine Fisionutri em pote de 300 g, anunciado como sem sabor. A expressão 100% Pure do título anterior não representa análise de pureza ou autenticação do lote por nossa equipe. Confira composição, alergênicos, lote, validade e advertências no rótulo da unidade. A porção de 3 g e a ausência de glúten ou lactose mencionadas no cadastro precisam ser confirmadas nessa embalagem; não são apresentadas como orientação própria de consumo. Não prescrevemos dose, duração ou resultado físico. O peso do pote não determina adequação individual, e não transferimos laudos ou formulações de outra creatina. Siga as informações específicas do fabricante e orientação profissional quando necessário.',
+    positiveNotes:['Apresentação de 300 g e identificação Fisionutri informadas na oferta.'],
+    negativeNotes:['Pureza, composição e alergênicos do lote não verificados pela equipe.', 'Sem prescrição de dose, duração ou garantia de resultado.'],suppressRating:true,
+  }],
+  ['dNFcgW7f0gXpuucpEemY', {
+    syncInformationalSchema:true, expectedListing:'MLB7276126962',
+    model:/^Case para HD SSD de 2\.5" USB 3\.0 Transparente da Divanstor$/i,
+    summary:'A oferta apresenta um case transparente Divanstor para HD ou SSD de 2,5 polegadas, com interface interna SATA e conexão USB 3.0 anunciadas. Pode interessar a quem pretende usar uma unidade compatível como armazenamento externo; confira o conector, a espessura aceita, a alimentação e o sistema utilizado antes de escolher. A referência a SATA III não comprova transferência externa de 6 Gbps pelo USB, por isso essa velocidade não é apresentada como desempenho do conjunto. UASP e suporte a até 3 TB são declarações da oferta que precisam ser conferidas para o modelo e a unidade escolhida. Não testamos compatibilidade, velocidade ou integridade de dados e não presumimos suporte a SSD M.2 ou NVMe apenas pelo nome SSD. Confira também os itens incluídos: esta descrição não afirma que acompanhe um disco.',
+    positiveNotes:['Formato de 2,5 polegadas, SATA e conexão USB 3.0 identificados na oferta.'],
+    negativeNotes:['SATA III não é medição da transferência USB; desempenho real não testado.', 'Confirmar conector, espessura, capacidade suportada, UASP e acessórios da unidade.'],suppressRating:true,
+  }],
   ['CvM3xyDY4t5BF7XdPjF6', {
     syncInformationalSchema:true, expectedListing:'MLB6256129898',
     model:/^(?:Canivete Militar Tático Defesa Bolso Aço Inox Caça Ec-713|Canivete dobrável EC-713 — materiais e mecanismo a confirmar)$/i,
