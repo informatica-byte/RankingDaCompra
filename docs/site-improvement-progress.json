@@ -1,5 +1,21 @@
 {
   "version": 1,
+  "emmaYdtechPublicationRepair": {
+    "status": "published_verified",
+    "verifiedAt": "2026-11-02",
+    "generatedCommit": "318ca002fc27940d674fe4dd033717b14591eb4e",
+    "pagesRun": 41444913376,
+    "publicChecks": "Sitemap and three Emma/Ydtech paths HTTP200 and exact local match. All 560 catalogue records unchanged except generatedAt. No manual Firestore rerun performed.",
+    "sourceCommit": "50b7862421a3f18fd72900129e08e2d7e0a5040c",
+    "failedManualRun": 41441890450,
+    "sitemapRun": 41444841400,
+    "integrityRun": 41444841359,
+    "testsPassed": 1451,
+    "recordsChanged": 0,
+    "affiliateLinksChanged": 0,
+    "nextEditorialBatchUnchanged": 59,
+    "note": "Exact title recognition only; Emma existing public canonical and alias preserved. No database merges, removals, price/history edits or daily checks."
+  },
   "editorialPriority": {
     "userInstructionAt": "2026-10-31",
     "rule": "Order pending product reviews by descending GA4 screen_page_views. Read one at a time and change only a documented necessary defect. Skip unchanged completed reviews even when highly viewed; never rewrite to increase counts.",
