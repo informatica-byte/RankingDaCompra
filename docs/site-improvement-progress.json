@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T21:08:25.370Z",
-  "catalogueGeneratedAt": "2026-11-02T21:04:52.675Z",
+  "updatedAt": "2026-11-02T21:11:36.239Z",
+  "catalogueGeneratedAt": "2026-11-02T21:11:28.001Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -653,11 +653,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 561,
-    "screened_no_change": 58,
+    "screened_no_change": 59,
     "needs_source": 8,
     "targeted_correction_complete": 137,
     "preserve_prior_review": 98,
-    "pending": 260
+    "pending": 257,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -2000,13 +2001,20 @@
     {
       "id": "CvM3xyDY4t5BF7XdPjF6",
       "url": "https://rankingdacompra.com.br/produto/CvM3xyDY4t5BF7XdPjF6-20260810-1.html",
-      "title": "Canivete Militar Tático Defesa Bolso Aço Inox Caça Ec-713",
-      "fingerprint": "15d068091e2603e0db41728cf617dea864c63cad7be53fd8763b2bc17fcd598d",
-      "status": "pending",
+      "title": "Canivete dobrável EC-713 — materiais e mecanismo a confirmar",
+      "fingerprint": "bc64998e52efa50ea7aa16a7dcf9896927fa0ad5f4d6a28659a6aacf07525ad6",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira militar/tático/defesa como qualificação e atribui mecanismo e materiais ao anúncio sem teste próprio.",
+        "Snapshot local sem manual exato. Sem técnica de combate, indicação de uso como arma, certificação ou orientação jurídica sobre porte."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3790424421?wid=MLB6256129898"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "nkBZlP0jQEwoMIj6VDbG",
@@ -5154,12 +5162,19 @@
       "id": "d6VCoNciFGrUwOkaNoDU",
       "url": "https://rankingdacompra.com.br/produto/d6VCoNciFGrUwOkaNoDU-20260810-1.html",
       "title": "Natura Ilía Completa 50ml Feminino Parfum Spray",
-      "fingerprint": "6d06f5df22b7130ce03a552af64c68a9d12812751a964c16cc125bacce7ded3e",
-      "status": "pending",
+      "fingerprint": "3d54567c0566d73a1a65447c2db25f4e79bf29d8df150eb91782b85ec44298b7",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Ilía: retira intensidade e duração como garantias e qualifica declarações específicas da embalagem sem autenticar o frasco.",
+        "Snapshot local; sem fonte primária específica para esta unidade. Não transfere notas, duração, refil ou composição de outra versão Ilía."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB26097602?wid=MLB4261795739"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "XXf1jGItNH4xwlZ136z3",
@@ -7429,11 +7444,16 @@
       "url": "https://rankingdacompra.com.br/produto/d31e9yty1t0dekViXbAi-20260810-1.html",
       "title": "Tênis Kappa Pulse Rx Unissex Corrida Conforto",
       "fingerprint": "53a7be65cf60ed8f70a235938ff7fdeb6ae4f96b8f6b72642b788b4ab38e2847",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-02T21:11:36.241Z",
+      "workNotes": [
+        "Kappa: mesma descrição técnica já triada em outra variante, sem novo defeito. Preserva este registro e variação 184470902110, sem repetir pesquisa ou unir produtos.",
+        "Não autentica unidade, confirma ajuste ou transfere numeração de outra variante. Conteúdo preservado integralmente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5532075156-_JM?searchVariation=184470902110"
+      ]
     },
     {
       "id": "mWlmlmg15okWqGyIc5bh",
@@ -10396,5 +10416,13 @@
     "testsPassed": 1478,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage68": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "CvM3xyDY4t5BF7XdPjF6",
+      "d6VCoNciFGrUwOkaNoDU"
+    ],
+    "newDeepReviews": 0
   }
 }

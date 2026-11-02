@@ -8,6 +8,21 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['CvM3xyDY4t5BF7XdPjF6', {
+    syncInformationalSchema:true, expectedListing:'MLB6256129898',
+    model:/^(?:Canivete Militar Tático Defesa Bolso Aço Inox Caça Ec-713|Canivete dobrável EC-713 — materiais e mecanismo a confirmar)$/i,
+    correct:'Canivete dobrável EC-713 — materiais e mecanismo a confirmar',
+    summary:'A oferta identifica um canivete dobrável EC-713 e descreve lâmina de aço inoxidável com cabo de plástico e metal. São informações do anúncio, não verificação da liga, construção ou qualidade pela equipe. O mecanismo de abertura é anunciado como automático, mas não foi confirmado por manual ou inspeção da unidade. Confira identificação, materiais e instruções específicas do fabricante. Não testamos corte, travamento, resistência ou durabilidade. As expressões militar, tático e defesa do título anterior não representam certificação ou recomendação de uso como arma. Esta ficha não orienta técnicas de defesa, porte ou uso contra pessoas e não afirma que o produto seja permitido em qualquer local.',
+    positiveNotes:['Modelo EC-713 e formato dobrável identificados na oferta.'],
+    negativeNotes:['Materiais, mecanismo e travamento não verificados pela equipe.', 'Sem certificação militar ou recomendação para defesa; conferir instruções e condições aplicáveis.'],suppressRating:true,
+  }],
+  ['d6VCoNciFGrUwOkaNoDU', {
+    syncInformationalSchema:true, expectedListing:'MLB4261795739',
+    model:/^Natura Ilía Completa 50ml Feminino Parfum Spray$/i,
+    summary:'A oferta identifica Natura Ilía Completa em apresentação spray de 50 ml. A descrição anuncia perfil floral e amadeirado; essa caracterização não é uma avaliação olfativa da equipe. Não testamos aroma, intensidade, fixação ou duração na pele e não tratamos sofisticada e duradouro como resultados comprovados. Confira a identificação exata da versão, a embalagem e as condições do vendedor antes de escolher, sem usar dados de outra fragrância Ilía. As declarações sobre origem, possibilidade de refil, composição vegana e testes em animais precisam corresponder à apresentação específica; não foram verificadas para a unidade anunciada nesta revisão. A ficha não autentica o frasco nem garante que o perfume agrade ou tenha o mesmo desempenho para todas as pessoas.',
+    positiveNotes:['Apresentação Ilía Completa spray de 50 ml identificada na oferta.'],
+    negativeNotes:['Intensidade, fixação e duração não testadas pela equipe.', 'Procedência, versão e declarações da embalagem precisam de confirmação específica.'],suppressRating:true,
+  }],
   ['C8VXX9MfKS8ULwDiDWXn', {
     syncInformationalSchema:true, expectedListing:'MLB3905003519',
     model:/^Collagen Renew Sabor Laranja - Nutrify 300g$/i,
