@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "CvM3xyDY4t5BF7XdPjF6",
-      "d31e9yty1t0dekViXbAi",
-      "d6VCoNciFGrUwOkaNoDU",
       "DatIY5m4eQ3X4KOykiAY",
       "dgcv2JkW8bL6DBSEqB9V",
       "dNFcgW7f0gXpuucpEemY",
       "DuqIf8kBMwEZzRskn9LR",
-      "dVcHtGhQTqXzldhTAOVv"
+      "dVcHtGhQTqXzldhTAOVv",
+      "e2JrkBA5LBbERAqFunqx",
+      "e2xjzhLqo2TSHdOKUEaB",
+      "E4L1IqNlovRGggmaVOHW"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T21:11:36.239Z",
-  "catalogueGeneratedAt": "2026-11-02T21:11:28.001Z",
+  "updatedAt": "2026-11-02T21:14:25.720Z",
+  "catalogueGeneratedAt": "2026-11-02T21:12:15.706Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 59,
     "needs_source": 8,
-    "targeted_correction_complete": 137,
+    "targeted_correction_complete": 139,
     "preserve_prior_review": 98,
-    "pending": 257,
-    "prepared_awaiting_publication": 2
+    "pending": 257
   },
   "items": [
     {
@@ -2003,12 +2002,13 @@
       "url": "https://rankingdacompra.com.br/produto/CvM3xyDY4t5BF7XdPjF6-20260810-1.html",
       "title": "Canivete dobrável EC-713 — materiais e mecanismo a confirmar",
       "fingerprint": "bc64998e52efa50ea7aa16a7dcf9896927fa0ad5f4d6a28659a6aacf07525ad6",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T21:14:25.689Z",
       "workNotes": [
         "Retira militar/tático/defesa como qualificação e atribui mecanismo e materiais ao anúncio sem teste próprio.",
-        "Snapshot local sem manual exato. Sem técnica de combate, indicação de uso como arma, certificação ou orientação jurídica sobre porte."
+        "Snapshot local sem manual exato. Sem técnica de combate, indicação de uso como arma, certificação ou orientação jurídica sobre porte.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3790424421?wid=MLB6256129898"
@@ -5163,12 +5163,13 @@
       "url": "https://rankingdacompra.com.br/produto/d6VCoNciFGrUwOkaNoDU-20260810-1.html",
       "title": "Natura Ilía Completa 50ml Feminino Parfum Spray",
       "fingerprint": "3d54567c0566d73a1a65447c2db25f4e79bf29d8df150eb91782b85ec44298b7",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T21:14:25.689Z",
       "workNotes": [
         "Ilía: retira intensidade e duração como garantias e qualifica declarações específicas da embalagem sem autenticar o frasco.",
-        "Snapshot local; sem fonte primária específica para esta unidade. Não transfere notas, duração, refil ou composição de outra versão Ilía."
+        "Snapshot local; sem fonte primária específica para esta unidade. Não transfere notas, duração, refil ou composição de outra versão Ilía.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB26097602?wid=MLB4261795739"
@@ -10418,11 +10419,42 @@
     "backendWrites": 0
   },
   "triage68": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "CvM3xyDY4t5BF7XdPjF6",
       "d6VCoNciFGrUwOkaNoDU"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T21:14:25.689Z",
+    "changedIds": [
+      "CvM3xyDY4t5BF7XdPjF6",
+      "d6VCoNciFGrUwOkaNoDU"
+    ],
+    "jointReleaseBatches": [
+      68
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem68.json",
+    "remainingDependencies": [
+      {
+        "id": "CvM3xyDY4t5BF7XdPjF6",
+        "note": "Snapshot local sem manual exato. Sem técnica de combate, indicação de uso como arma, certificação ou orientação jurídica sobre porte."
+      },
+      {
+        "id": "d31e9yty1t0dekViXbAi",
+        "note": "Não autentica unidade, confirma ajuste ou transfere numeração de outra variante. Conteúdo preservado integralmente."
+      },
+      {
+        "id": "d6VCoNciFGrUwOkaNoDU",
+        "note": "Snapshot local; sem fonte primária específica para esta unidade. Não transfere notas, duração, refil ou composição de outra versão Ilía."
+      }
+    ],
+    "sourceCommit": "cbd70965c39db55bae65689025e409e93d3af3a8",
+    "generatedCommit": "4e9229b237e6fb7d4f81f758170ba3d73e70ae50",
+    "sitemapRun": 41526150950,
+    "integrityRun": 41526150739,
+    "pagesRun": 41526209939,
+    "testsPassed": 1479,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

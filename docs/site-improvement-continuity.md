@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 68 — 20261102, PUBLICADA E VERIFICADA
+
+- CvM3xyDY4t5BF7XdPjF6: targeted_correction_complete. Retira militar/tático/defesa como qualificação e atribui mecanismo e materiais ao anúncio sem teste próprio. Limite: Snapshot local sem manual exato. Sem técnica de combate, indicação de uso como arma, certificação ou orientação jurídica sobre porte.
+- d31e9yty1t0dekViXbAi: screened_no_change. Kappa: mesma descrição técnica já triada em outra variante, sem novo defeito. Preserva este registro e variação 184470902110, sem repetir pesquisa ou unir produtos. Limite: Não autentica unidade, confirma ajuste ou transfere numeração de outra variante. Conteúdo preservado integralmente.
+- d6VCoNciFGrUwOkaNoDU: targeted_correction_complete. Ilía: retira intensidade e duração como garantias e qualifica declarações específicas da embalagem sem autenticar o frasco. Limite: Snapshot local; sem fonte primária específica para esta unidade. Não transfere notas, duração, refil ou composição de outra versão Ilía.
+
+Fonte cbd70965c39db55bae65689025e409e93d3af3a8; geração 4e9229b237e6fb7d4f81f758170ba3d73e70ae50; sitemap 41526150950, integridade 41526150739, Pages 41526209939: SUCCESS. 1479 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 559 entradas editoriais inalteradas. Preservados 561 IDs/afiliados/campos operacionais e 614 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem68.json.
+
+Totais: {"total":561,"screened_no_change":59,"needs_source":8,"targeted_correction_complete":139,"preserve_prior_review":98,"pending":257}. Próximos pendentes: DatIY5m4eQ3X4KOykiAY — Patins Quad Infantil Ajustável 4 Rodas Com Luz Led; dgcv2JkW8bL6DBSEqB9V — Strong Creatine 300g - Fisionutri 100% Pure; dNFcgW7f0gXpuucpEemY — Case para HD SSD de 2.5" USB 3.0 Transparente da Divanstor. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 67 — 20261102, PUBLICADA E VERIFICADA
 
 - C5b5fKstKDUgNDUxnQkP: screened_no_change. Basike já distingue capacidade nominal, desempenho não medido e divergências. Preservado integralmente sem repetir revisão de anúncio. Limite: Reaproveita texto já revisado; modelo, portas e valores elétricos continuam divergentes. Sem nova conferência ou teste.
