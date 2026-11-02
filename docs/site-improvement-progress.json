@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T21:19:38.724Z",
-  "catalogueGeneratedAt": "2026-11-02T21:18:19.900Z",
+  "updatedAt": "2026-11-02T21:23:33.727Z",
+  "catalogueGeneratedAt": "2026-11-02T21:23:25.881Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -653,11 +653,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 561,
-    "screened_no_change": 60,
+    "screened_no_change": 61,
     "needs_source": 8,
     "targeted_correction_complete": 141,
     "preserve_prior_review": 98,
-    "pending": 254
+    "pending": 251,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -4861,12 +4862,19 @@
       "id": "e2JrkBA5LBbERAqFunqx",
       "url": "https://rankingdacompra.com.br/produto/e2JrkBA5LBbERAqFunqx-20260810-1.html",
       "title": "Micro-ondas 20l Prata Porta Espelhada Mastercook Midea",
-      "fingerprint": "3caedaecff94c095de1fa006cf55b884f6ca3f036949a761e5af16b94c968be4",
-      "status": "pending",
+      "fingerprint": "8d856349de0e137e9d8b4bfb51e08ec5dbcc22ccb6ae7b1c511600d7e7f2ce40",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira encaixe universal de 26 cm e autolimpeza garantida; distingue potência nominal de potência de micro-ondas.",
+        "Código exato da unidade não confirmado. Manual primário MasterCook localizado distingue potências; não importados valores, tensão ou acessórios de outro modelo."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB53782017?wid=MLB7658837282"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "oE4gHinZ6CfelSwfLDWk",
@@ -5914,11 +5922,16 @@
       "url": "https://rankingdacompra.com.br/produto/dVcHtGhQTqXzldhTAOVv-20260810-1.html",
       "title": "Perfume Natura Kaiak extremo deo colônia 100 ml",
       "fingerprint": "bf4626937b0f8a8d9eae9f3b04cc3173b437dc185621ab7857b07dbd81171df1",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-02T21:23:33.729Z",
+      "workNotes": [
+        "Kaiak: descrição já atribuída ao anúncio sem promessa de duração ou desempenho; preservada sem reescrever.",
+        "Snapshot local; não autentica frasco nem confirma origem, refil, formulação ou declarações específicas da embalagem."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB20963051?wid=MLB3981338469"
+      ]
     },
     {
       "id": "GT9gxxxsfkbjOfDG2uIM",
@@ -6005,12 +6018,20 @@
       "id": "DuqIf8kBMwEZzRskn9LR",
       "url": "https://rankingdacompra.com.br/produto/DuqIf8kBMwEZzRskn9LR-20260810-1.html",
       "title": "Poco X8 Pro Max 512gb 12gb Ram Global Bateria 8.500mah",
-      "fingerprint": "4fc127acd0422e188a09b711e944da670f6564ac072b615078c2ecb3739c115f",
-      "status": "pending",
+      "fingerprint": "07b31b19d5c67f844603a2088d6771413ce760793baa8bea6490f2dfaad41382",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira superlativos e superioridade sobre rivais sem teste; qualifica bateria e resistência.",
+        "Referência global consultada; não verifica unidade, autonomia ou superioridade. Não transfere dados de Pro para Pro Max."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB69116953?wid=MLB6930924132",
+        "https://www.mi.com/global/product/poco-x8-pro-max/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Evo4CPaNJPvGuj1ILt5u",
@@ -10516,5 +10537,13 @@
     "testsPassed": 1480,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage70": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "DuqIf8kBMwEZzRskn9LR",
+      "e2JrkBA5LBbERAqFunqx"
+    ],
+    "newDeepReviews": 0
   }
 }

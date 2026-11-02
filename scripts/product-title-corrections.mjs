@@ -8,6 +8,21 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['DuqIf8kBMwEZzRskn9LR', {
+    syncInformationalSchema:true, expectedListing:'MLB6930924132',
+    model:/^Poco X8 Pro Max 512gb 12gb Ram Global Bateria 8\.500mah$/i,
+    summary:'A oferta identifica o POCO X8 Pro Max global com 512 GB de armazenamento e 12 GB de RAM. A referência global da Xiaomi informa bateria de capacidade típica de 8.500 mAh; esse valor não determina sozinho a duração no seu uso. Não realizamos comparativos com rivais, e as expressões performance de ponta, investimento ideal e carcaça ultrarresistente do texto anterior não são conclusões de teste da equipe. Confira a versão, a configuração e os acessórios da unidade. Brilho de pico e classificações de resistência dependem das condições declaradas pelo fabricante, não significam brilho constante ou ausência de danos em qualquer situação. Não testamos autonomia, desempenho, tela ou proteção e não transferimos características do X8 Pro para o Pro Max. Compare a proposta do aparelho com sua rotina sem tomar os números como garantia de resultado.',
+    positiveNotes:['Configuração de 512 GB e 12 GB identificada na oferta; bateria típica de 8.500 mAh na referência global.'],
+    negativeNotes:['Autonomia e superioridade sobre rivais não testadas pela equipe.', 'Confirmar versão, acessórios e condições das especificações; resistência não é garantia contra qualquer dano.'],
+    contextSourceUrl:'https://www.mi.com/global/product/poco-x8-pro-max/',contextSourceLabel:'Xiaomi global: referência POCO X8 Pro Max, não teste ou autenticação da unidade',suppressRating:true,
+  }],
+  ['e2JrkBA5LBbERAqFunqx', {
+    syncInformationalSchema:true, expectedListing:'MLB7658837282',
+    model:/^Micro-ondas 20l Prata Porta Espelhada Mastercook Midea$/i,
+    summary:'A oferta identifica um micro-ondas Midea MasterCook de 20 litros, prata, com porta espelhada. Confira o código e a tensão na etiqueta da unidade antes de comparar especificações. A capacidade anunciada não garante que qualquer recipiente caiba: confira as medidas internas e a possibilidade de girar livremente. O diâmetro do prato não confirma sozinho o diâmetro máximo de um recipiente, por isso não mantemos a afirmação genérica de que comporta peças de até 26 cm. Potência elétrica nominal e potência de micro-ondas são grandezas distintas; os 1,05 kW do cadastro não são apresentados como potência de aquecimento comprovada. Funções de limpeza e tira odor, se presentes na versão, não dispensam a limpeza indicada no manual. Não verificamos revestimento autolimpante da unidade nem testamos aquecimento, consumo ou remoção de resíduos. Não presumimos bivolt ou transferimos dados de outro MasterCook.',
+    positiveNotes:['Apresentação de 20 litros, prata e porta espelhada identificada na oferta.'],
+    negativeNotes:['Confirmar modelo, tensão, medidas internas e funções específicas antes da compra.', 'Capacidade, potência elétrica e prato não são garantia de encaixe ou resultado de aquecimento.'],suppressRating:true,
+  }],
   ['dgcv2JkW8bL6DBSEqB9V', {
     syncInformationalSchema:true, expectedListing:'MLB2622679749',
     model:/^Strong Creatine 300g - Fisionutri(?: 100% Pure)?$/i,
