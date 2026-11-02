@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "aQjR3wSqj9aObPqMJp10",
-      "aqN9d0IKYi8X1yUcyFy9",
-      "AUot5FOcnAXK9wLKfANM",
       "b2ejp8pkiWYOgBAdeXto",
       "B3HTtYZQAYonACif4tW1",
       "BcfEuX1oed02O8pYXKyg",
       "Bf3ccSwSiVkLw1Z8k2Hu",
-      "bjRcUhAfXiIDliNXbqwE"
+      "bjRcUhAfXiIDliNXbqwE",
+      "Bp4dNosktHQXiSy3r9S0",
+      "bpuXfDB4cwTrjlMUINRi",
+      "bufeMWJJrnyiM5TBcKXW"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T15:44:05.552Z",
-  "catalogueGeneratedAt": "2026-11-02T15:43:57.698Z",
+  "updatedAt": "2026-11-02T15:48:29.214Z",
+  "catalogueGeneratedAt": "2026-11-02T15:45:00.320Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 55,
     "needs_source": 8,
-    "targeted_correction_complete": 126,
+    "targeted_correction_complete": 128,
     "preserve_prior_review": 98,
-    "pending": 272,
-    "prepared_awaiting_publication": 2
+    "pending": 272
   },
   "items": [
     {
@@ -5322,12 +5321,13 @@
       "url": "https://rankingdacompra.com.br/produto/aQjR3wSqj9aObPqMJp10-20260810-1.html",
       "title": "Óculos Inteligente Ai Bv200 Chatgpt Câmera 8mp Bluetooth",
       "fingerprint": "eeaa6971cb1f0f1e7e723bcd5558a2950490b851f060a1ec835a7bdeab7c9f33",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T15:48:29.179Z",
       "workNotes": [
         "BV200: óculos vestíveis estavam em câmeras de segurança. Corrige apenas classificação editorial pública para informática e distingue anúncio de recursos conectados de teste ou equipamento de vigilância contínua.",
-        "Página oficial regional consultada em 02/11/2026, não identifica variante/unidade do vendedor. Não importa 4K versus 1200P, autonomia, idiomas, lente, proteção UV, conta ou plano de IA como confirmados. Não testa integração e não solicita credenciais."
+        "Página oficial regional consultada em 02/11/2026, não identifica variante/unidade do vendedor. Não importa 4K versus 1200P, autonomia, idiomas, lente, proteção UV, conta ou plano de IA como confirmados. Não testa integração e não solicita credenciais.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5216651642?wid=MLB5242031295",
@@ -8004,12 +8004,13 @@
       "url": "https://rankingdacompra.com.br/produto/AUot5FOcnAXK9wLKfANM-20260810-1.html",
       "title": "Vaporizador Portátil de Roupas e Tecidos WAP WAPORE FAST 1250 com Vapor Quente",
       "fingerprint": "cfa7fb9075d20b793a277b5ae8bd12e43edf725a278e277c1bb2937f5741f5b3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T15:48:29.179Z",
       "workNotes": [
         "WAP: classificado como vestuário, com alta performance e restrição geral a jeans sem fonte específica. Corrige categoria editorial pública para casa, atribui especificações à marca e separa tensão/tecido de promessa universal.",
-        "HTML oficial consultado em 02/11/2026; PDF primário localizado, mas acesso não disponível nesta consulta. Não confirma tensão da unidade, não transfere especificações de outro Wapore, não promete higienização microbiológica, temperatura real ou resultado físico."
+        "HTML oficial consultado em 02/11/2026; PDF primário localizado, mas acesso não disponível nesta consulta. Não confirma tensão da unidade, não transfere especificações de outro Wapore, não promete higienização microbiológica, temperatura real ou resultado físico.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB53897164?wid=MLB5598860072",
@@ -10110,11 +10111,42 @@
     "backendWrites": 0
   },
   "triage63": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "AUot5FOcnAXK9wLKfANM",
       "aQjR3wSqj9aObPqMJp10"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T15:48:29.179Z",
+    "changedIds": [
+      "aQjR3wSqj9aObPqMJp10",
+      "AUot5FOcnAXK9wLKfANM"
+    ],
+    "jointReleaseBatches": [
+      63
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem63.json",
+    "remainingDependencies": [
+      {
+        "id": "aQjR3wSqj9aObPqMJp10",
+        "note": "Página oficial regional consultada em 02/11/2026, não identifica variante/unidade do vendedor. Não importa 4K versus 1200P, autonomia, idiomas, lente, proteção UV, conta ou plano de IA como confirmados. Não testa integração e não solicita credenciais."
+      },
+      {
+        "id": "aqN9d0IKYi8X1yUcyFy9",
+        "note": "Referência oficial consultada em 02/11/2026 é de um combo identificado, não prova dos quatro itens da oferta vinculada. Não importa composição, volumes, versão refil, duração ou resultados de outro conjunto; não repete correção já presente no conteúdo."
+      },
+      {
+        "id": "AUot5FOcnAXK9wLKfANM",
+        "note": "HTML oficial consultado em 02/11/2026; PDF primário localizado, mas acesso não disponível nesta consulta. Não confirma tensão da unidade, não transfere especificações de outro Wapore, não promete higienização microbiológica, temperatura real ou resultado físico."
+      }
+    ],
+    "sourceCommit": "bc1cd23339f36b1aa0bdf6569b63ee5e30793e94",
+    "generatedCommit": "b7bcc02371187867d66fc784a2a9ae987752e45a",
+    "sitemapRun": 41474595327,
+    "integrityRun": 41474595361,
+    "pagesRun": 41474681729,
+    "testsPassed": 1471,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
