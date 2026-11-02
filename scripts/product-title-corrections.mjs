@@ -25,6 +25,7 @@ const PRODUCT_CORRECTIONS = new Map([
     expectedListing:'MLB5598860072',
     model:/^vaporizador\s*portátil\s*de\s*roupas\s*e\s*tecidos\s*wap\s*wapore\s*fast\s*1250\s*com\s*vapor\s*quente$/i,
     category:'casa',
+    publicCategoryLabel:'Casa',
     summary:'A oferta identifica o vaporizador portátil WAP Wapore Fast 1250 para cuidados com roupas e tecidos. A WAP o apresenta para peças levemente amassadas, com potência de 1250 W, cabo de 1,8 m e aquecimento anunciado em 25 segundos; esses números são informações do fabricante, não medições da equipe. A marca informa que ele não substitui o ferro de passar e recomenda uso vertical. A restrição geral a jeans presente no texto anterior não foi confirmada na referência consultada; isso não significa que qualquer tecido possa receber vapor. Confira a etiqueta da peça e as instruções específicas do aparelho antes de usar. A referência oficial distingue versões de 127 V e 220 V: confirme a tensão da unidade e não presuma bivolt. Não testamos remoção de vincos, aquecimento, acabamento ou desempenho e não prometemos resultado igual em tecidos diferentes. Confira também o código e os acessórios da oferta, sem transferir informações de outro Wapore.',
     positiveNotes:['Formato portátil para roupas levemente amassadas, conforme a proposta descrita pela WAP.', 'Potência, cabo e tempo de aquecimento informados pelo fabricante, sem medição própria.'],
     negativeNotes:['Não substitui ferro de passar; aplicação depende do tecido e das instruções da unidade.', 'Versões 127 V e 220 V distintas; desempenho, aquecimento e acabamento não testados pela equipe.'],
@@ -1855,7 +1856,7 @@ export async function correctGeneratedProductTitles(rootDirectory = process.cwd(
         if (!sourceUrl || !matchesExistingOffer({link: sourceUrl.replace(/&amp;/g, '&')}, correction.expectedListing)) continue;
       }
       if (correction.correct) corrected = applyVerifiedTitle(corrected, correction.correct, correction.syncInformationalSchema);
-      const categoryLabel = {informatica:'Informática',carro:'Carro',bicicletas:'Bicicletas','esporte-e-lazer':'Esporte e Lazer',perfumes:'Perfumes',brinquedos:'Brinquedos'}[correction.category];
+      const categoryLabel = correction.publicCategoryLabel || {informatica:'Informática',carro:'Carro',bicicletas:'Bicicletas','esporte-e-lazer':'Esporte e Lazer',perfumes:'Perfumes',brinquedos:'Brinquedos'}[correction.category];
       if (categoryLabel) {
         const categoryUrl = 'https://rankingdacompra.com.br/analises.html#'+correction.category;
         corrected = corrected.replace(/(<span>Categoria<\/span>)[^<]*(<\/div>)/, '$1'+categoryLabel+'$2');
