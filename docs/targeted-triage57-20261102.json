@@ -1,0 +1,11 @@
+{
+  "date":"2026-11-02",
+  "policy":"Next three requested IDs in saved GA4 01–28/10 order. Only one demonstrated necessary correction; preserve shirt and existing pendrive correction, without repeating analysis.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"6Yj2zf1J51bnYAvt9ykY","decision":"targeted_correction_complete","reason":"Lixeira: remove expressão basura e esclarece contradição entre formato retangular e diâmetro de 23 cm, sem adivinhar largura/altura. USB não vira comprovação de bateria, carregamento ou autonomia.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB74722078?wid=MLB5155902053"],"sourceLimit":"Snapshot local sem modelo/manual exato. Não converte diâmetro em dimensão nem mede capacidade, sensor, vedação ou alimentação; recursos permanecem atribuídos à oferta."},
+    {"id":"7cl224x4LF75c4vXGA5J","decision":"screened_no_change","reason":"Camisa Brasil: título completo e descrição curta já atribuem marca, cor e número ao anúncio. Sem defeito concreto demonstrado que exija mudar a ficha; conteúdo preservado integralmente.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU3944498561?pdp_filters=item_id%3AMLB4664223995"],"sourceLimit":"Triagem local, não revisão aprofundada. Não confirma composição percentual, licença, medidas, conforto ou autenticidade, nem acrescenta mensagem política ou inferência sobre o comprador."},
+    {"id":"7CSQkSXeUHn9yzYR29hF","decision":"screened_no_change","reason":"Pen drive: já havia correção documentada no conteúdo, com 64 GB/USB 2.0 atribuídos ao anúncio e velocidades/resistência não comprovadas. Preservado sem reescrever, buscar novamente ou contar como nova análise.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB57380648?pdp_filters=item_id%3AMLB7513712862"],"sourceLimit":"Triagem do conteúdo existente, não teste de capacidade, transferência, resistência, autenticidade ou integridade. Não importa dados de outro dispositivo nem modifica ressalvas anteriores."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":1,"screenedNoChange":2,"newDeepReviews":0}
+}

@@ -8,6 +8,15 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['6Yj2zf1J51bnYAvt9ykY', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5155902053',
+    model:/^sensor\s*infravermelho\s*automático\s*lixeira\s*retangular\s*16l\s*usb\s*branco/i,
+    summary:'A oferta apresenta uma lixeira branca retangular com capacidade anunciada de 16 litros e abertura automática por sensor infravermelho. Pode interessar a quem procura abertura sem acionar a tampa com a mão, mas confira o funcionamento e as instruções do modelo vendido. A descrição anterior citava 23 cm de diâmetro apesar de identificar formato retangular; essa informação não permite confirmar largura, profundidade ou altura e não foi convertida em outra medida por suposição. Peça as três dimensões e o espaço necessário para a tampa abrir antes de escolher o local. O termo USB do anúncio não esclarece sozinho alimentação, carregamento, bateria incluída ou autonomia. Confirme também quantidade de unidades, acessórios e orientações de limpeza. Não testamos alcance ou precisão do sensor, vedação, resistência à água, autonomia ou durabilidade da tampa.',
+    positiveNotes:['Formato retangular, capacidade de 16 litros e abertura por sensor infravermelho anunciados.'],
+    negativeNotes:['Dimensões externas não confirmadas: o dado de diâmetro da descrição anterior é ambíguo para o formato informado.', 'Alimentação, bateria, acessórios e funcionamento do sensor precisam de confirmação; sem teste próprio.'],
+    suppressRating:true,
+  }],
   ['6owUOP0UqtNt3y5pFzgW', {
     syncInformationalSchema:true,
     allowTruncatedHeading:true,
