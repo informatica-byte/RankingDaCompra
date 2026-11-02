@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T10:53:29.977Z",
-  "catalogueGeneratedAt": "2026-11-02T10:51:39.331Z",
+  "updatedAt": "2026-11-02T10:58:53.116Z",
+  "catalogueGeneratedAt": "2026-11-02T10:58:45.584Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 560,
-    "screened_no_change": 50,
+    "screened_no_change": 51,
     "needs_source": 8,
     "targeted_correction_complete": 115,
     "preserve_prior_review": 98,
-    "pending": 289
+    "pending": 286,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -5172,11 +5173,16 @@
       "url": "https://rankingdacompra.com.br/produto/7evzZBujin11TlbT8hvm-20260810-1.html",
       "title": "Notebook Dell Dc15-i51334u-a50 15.6 Fhd I5 8gb 512gb Win 11",
       "fingerprint": "aef12f69558cf2661c9552322889d2df2310c6b06113525b8386bda559318109",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-02T10:58:53.118Z",
+      "workNotes": [
+        "Dell DC15: resumo objetivo identifica configuração e sistema sem promessa de desempenho; nenhuma contradição específica comprovada nesta triagem. Preservados resumo, variante e três campos do comparador.",
+        "Snapshot local. Busca não localizou fonte primária específica suficiente para validar esta configuração; não usadas fichas de terceiros ou outro DC15 para adicionar RAM, tela ou garantia. Não é nova análise aprofundada ou teste físico."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB70040749?pdp_filters=item_id%3AMLB6972021044"
+      ]
     },
     {
       "id": "SJRf3jhIFlr1BQadDNnH",
@@ -5336,12 +5342,20 @@
       "id": "87Q6AMHZ8ZFd06OzATcs",
       "url": "https://rankingdacompra.com.br/produto/87Q6AMHZ8ZFd06OzATcs-20260810-1.html",
       "title": "Patinete Dobrável Infantil Juvenil 2 Rodas 2fly Replay Kids",
-      "fingerprint": "9c507b9d88d0a6ffd19387d77398a21f2be9cd332b9c0c853fe7ed13a3510d57",
-      "status": "pending",
+      "fingerprint": "dcf12e55f3fa43c4de27fe78c723d3242411186f47dcb0d8cc22235634c073a0",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "2Fly: muda somente classificação editorial pública de patinetes elétricos para brinquedos e retira base antiderrapante como garantia de segurança. Exige identificação e limites específicos sem importar números de outra referência.",
+        "Registro oficial consultado em 02/11/2026 inclui 2Fly em família de brinquedos, mas não identifica o exemplar vinculado. Não transfere faixa etária, 80 kg de varejista, medidas, certificação ou material de cada roda. Sem teste de segurança, alteração do banco ou afirmação definitiva sobre motor."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB27675378?wid=MLB4147979056",
+        "https://registro.inmetro.gov.br/consulta/detalhe.aspx?NumeroRegistro=006039%2F2023&pag=1"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "OTYBW2oIlOWx1MeHpF1u",
@@ -5651,13 +5665,21 @@
     {
       "id": "7EgFgcD6NyeoMB8KW4Pp",
       "url": "https://rankingdacompra.com.br/produto/7EgFgcD6NyeoMB8KW4Pp-20260810-1.html",
-      "title": "Perfume Carolina Herrera 212 VIP Black Eau de Parfum 200 ml masculino",
-      "fingerprint": "10b6381a4114d919c93458137ba1a0c617d4922fdcfe9803f86289eaa71794c2",
-      "status": "pending",
+      "title": "Perfume Carolina Herrera 212 VIP Black Eau de Parfum — volume a confirmar",
+      "fingerprint": "16aa74fd04cdc20e95cce3eac21649772d2b84943eddaf9c70a0ebf057d210d1",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "212 VIP Black: cadastro informa 200 ml e URL menciona 100 ml. Não escolhe volume, troca produto ou link; título público deixa apresentação pendente. Retira preferência/performance comercial como teste da equipe.",
+        "Referência oficial consultada em 02/11/2026 confirma linha com vários tamanhos, não a unidade do vendedor. O slug não é confirmação de entrega de 100 ml. Volume/variante permanecem pendentes; sem autenticação ou transferência de notas, reformulação ou condições de compra do fabricante."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/perfume-212-vip-black-eau-de-parfum-100ml-masculino-aromatico-ambarado-carolina-herrera/up/MLBU4042818274?pdp_filters=item_id%3AMLB6880438906",
+        "https://www.carolinaherrera.com/br/pt/p-fragrance/212-vip-black?sku=000000000065224438"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "KHQKsjwv2MzJGObyoZkd",
@@ -9747,5 +9769,13 @@
     "testsPassed": 1441,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage58": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "7EgFgcD6NyeoMB8KW4Pp",
+      "87Q6AMHZ8ZFd06OzATcs"
+    ],
+    "newDeepReviews": 0
   }
 }

@@ -8,6 +8,30 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['7EgFgcD6NyeoMB8KW4Pp', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB6880438906',
+    model:/^perfume\s*carolina\s*herrera\s*212\s*vip\s*black/i,
+    correct:'Perfume Carolina Herrera 212 VIP Black Eau de Parfum — volume a confirmar',
+    summary:'O cadastro identifica o perfume Carolina Herrera 212 VIP Black Eau de Parfum como 200 ml, mas o endereço do anúncio vinculado inclui 100 ml no nome. Isso exige conferir o volume da opção selecionada: o endereço, sozinho, não comprova qual frasco será entregue. Não escolhemos um dos volumes como confirmado nem trocamos o produto ou o link. A página da marca apresenta mais de um tamanho para a linha; ela não autentica a unidade nem resolve a opção do vendedor. Antes de decidir, confira volume, concentração, identificação e procedência na oferta e na embalagem. Descrições como sensual, sofisticado ou ideal para festas são avaliações comerciais, não conclusões de teste da equipe. Não testamos aroma, fixação, projeção ou tolerância e não garantimos preferência pessoal. As notas e a possibilidade de recarga precisam ser conferidas na apresentação específica.',
+    positiveNotes:['Identificação 212 VIP Black Eau de Parfum registrada na oferta; confirmar apresentação e unidade.'],
+    negativeNotes:['Cadastro indica 200 ml, mas o endereço menciona 100 ml: volume permanece pendente de confirmação.', 'Autenticidade, aroma, fixação e projeção não testados pela equipe; sem garantia de preferência individual.'],
+    contextSourceUrl:'https://www.carolinaherrera.com/br/pt/p-fragrance/212-vip-black?sku=000000000065224438',
+    contextSourceLabel:'Carolina Herrera: referência da linha, sem confirmar o volume ou a unidade do vendedor',
+    suppressRating:true,
+  }],
+  ['87Q6AMHZ8ZFd06OzATcs', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4147979056',
+    model:/^patinete\s*dobrável\s*infantil\s*juvenil\s*2\s*rodas\s*2fly\s*replay\s*kids/i,
+    category:'brinquedos',
+    summary:'A oferta identifica um patinete 2Fly Replay Kids de duas rodas, dobrável, com guidão ajustável e base anunciada como antiderrapante. Pode interessar a quem procura esse formato de brinquedo, mas a expressão infantil juvenil não define sozinha idade, altura ou capacidade de carga adequadas. A categoria anterior de patinetes elétricos não está sustentada pelos dados disponíveis; a apresentação pública foi movida para brinquedos, sem afirmar presença ou ausência de motor na unidade. O registro Inmetro consultado inclui uma referência 2Fly em brinquedos para atividades físicas, mas não comprova correspondência, certificação ou segurança deste exemplar do vendedor. Confira código, faixa etária, carga máxima, dimensões, montagem e orientações de uso e supervisão na embalagem e no manual específicos. Não transferimos limites de outro patinete 2Fly. Base antiderrapante não é garantia de evitar quedas; não testamos estabilidade, freio, rodas ou resistência.',
+    positiveNotes:['Duas rodas, formato dobrável e guidão ajustável anunciados; conferir versão e manual da unidade.'],
+    negativeNotes:['Faixa etária, capacidade de carga e correspondência da unidade com a referência documental não confirmadas.', 'Sem teste de estabilidade, frenagem ou segurança; base anunciada como antiderrapante não garante ausência de quedas.'],
+    contextSourceUrl:'https://registro.inmetro.gov.br/consulta/detalhe.aspx?NumeroRegistro=006039%2F2023&pag=1',
+    contextSourceLabel:'Inmetro: registro de referência que inclui 2Fly, não verificação desta unidade',
+    suppressRating:true,
+  }],
   ['6Yj2zf1J51bnYAvt9ykY', {
     syncInformationalSchema:true,
     expectedListing:'MLB5155902053',

@@ -21,7 +21,7 @@ const pages=[];
 for(const id of ids){
  const p=current.get(id);assert.deepEqual(byId.get(id),p,'live mismatch '+id);
  const h=await get(p.url);assert.match(h,/<h1\b/);
- const context=manifest.items.find(p=>p.id===id)?.publicContextUrl;if(context){assert.ok(h.includes('href="'+context+'"'),'Missing context reference '+id);assert.match(h,/data-editorial-context/);}
+ const context=manifest.items.find(p=>p.id===id)?.publicContextUrl;if(context){const escapedContext=context.replace(/&/g,'&amp;').replace(/"/g,'&quot;');assert.ok(h.includes('href="'+escapedContext+'"'),'Missing context reference '+id);assert.match(h,/data-editorial-context/);}
  const nodes=[...h.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});
  const article=nodes.find(n=>n['@type']==='Article'),found=search.products.find(x=>x.id===id);assert.equal(article.about.name,p.title);assert.equal(found.title,p.title);assert.equal(found.summary,article.description);
  const affiliates=[...h.matchAll(/<a\b[^>]*\bid=["']((?:mobile-)?affiliate-offer(?:-shopee)?)["'][^>]*>/g)].map(m=>[m[1],m[0].match(/href=["']([^"']+)/)?.[1]]).sort();assert.deepEqual(affiliates,baseline.pages.find(p=>p.id===id).affiliate);
