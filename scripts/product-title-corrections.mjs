@@ -8,6 +8,40 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['9MH0XlaLQuIqWe1dlAHz', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5872060016',
+    model:/^(?:creatina\s*monohidratada\s*250g\s*growth\s*supplements\s*-\s*sem\s*sabor\s*em\s*pó\s*100%|creatina\s*monohidratada\s*growth\s*supplements\s*250\s*g\s*sem\s*sabor)$/i,
+    correct:'Creatina monohidratada Growth Supplements 250 g sem sabor',
+    summary:'A oferta identifica creatina monohidratada Growth Supplements em pó, sem sabor, em pote de 250 g. Compare a apresentação e confira no rótulo da unidade ingredientes, alergênicos, lote, validade e advertências antes de escolher. A indicação sem sabor não confirma ausência de glúten, pureza ou adequação individual. Não verificamos a composição deste lote nem autenticamos a unidade do vendedor. A orientação anterior de ingerir junto com alimentos para facilitar a assimilação não foi confirmada nesta revisão e não é mantida como recomendação da equipe. O peso do pote não define dose ou duração do uso. Esta ficha não prescreve consumo e não promete corrigir uma dieta insuficiente ou produzir resultado físico específico; siga as informações da embalagem e procure orientação profissional quando necessário.',
+    positiveNotes:['Apresentação em pó sem sabor de 250 g e marca Growth Supplements identificadas na oferta.'],
+    negativeNotes:['Composição, pureza, alergênicos e autenticidade da unidade não confirmados nesta revisão.', 'Sem prescrição de dose, forma de consumo, duração do pote ou promessa de resultado.'],
+    contextSourceUrl:'https://www.gov.br/anvisa/pt-br/assuntos/alimentos/suplementos-alimentares/perguntas-frequentes',
+    contextSourceLabel:'Anvisa: orientação geral de rotulagem de suplementos, não aprovação desta unidade ou lote',
+    suppressRating:true,
+  }],
+  ['9mrh9VQEs49ewAlruh38', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB3909103951',
+    model:/^(?:colágeno\s*tipo\s*2\s*com\s*45mg\s*-\s*fórmula\s*exclusiva\s*para\s*a\s*articulação\s*com\s*máxima\s*concentração\s*e\s*biodisponibilidade\s*-\s*60\s*cápsulas|colágeno\s*tipo\s*2\s*essencial\s*labs\s*—\s*45\s*mg\s*anunciados,\s*60\s*cápsulas)$/i,
+    correct:'Colágeno tipo 2 Essencial Labs — 45 mg anunciados, 60 cápsulas',
+    summary:'A oferta identifica um suplemento de colágeno tipo 2 Essencial Labs com 60 cápsulas e menção a 45 mg no título. Antes de comparar fórmulas, confira no rótulo a composição e a quantidade declarada por porção; o título sozinho não esclarece a que os 45 mg correspondem. Não confirmamos nesta revisão o tipo de matéria-prima, a quantidade de colágeno não desnaturado, a presença de outros ingredientes ou de alergênicos. Sessenta cápsulas indicam a quantidade da embalagem, não garantem 60 doses ou 60 dias de uso. Retiramos a recomendação anterior de uma cápsula com as refeições e a faixa etária como orientação própria, pois não foi confirmado o rótulo específico. Máxima concentração, biodisponibilidade e benefícios para articulações não são resultados medidos pela equipe. Esta ficha não recomenda tratamento ou dose; confira advertências e orientação profissional para adequação individual.',
+    positiveNotes:['Embalagem de 60 cápsulas e identificação Essencial Labs descritas na oferta.'],
+    negativeNotes:['45 mg anunciados precisam de confirmação no rótulo; composição e matéria-prima não verificadas.', 'Não há garantia de 60 doses, duração, benefício para articulações ou adequação individual.'],
+    contextSourceUrl:'https://www.gov.br/anvisa/pt-br/assuntos/alimentos/suplementos-alimentares/perguntas-frequentes',
+    contextSourceLabel:'Anvisa: orientação geral para ler rótulos de suplementos, não validação deste produto ou promessa terapêutica',
+    suppressRating:true,
+  }],
+  ['AF2AykzSppuQzGXdmvlT', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4371605519',
+    model:/^kit\s*10\s*pote\s*de\s*vidro\s*marmita\s*hermético\s*370ml\s*freezer\s*fitness\s*rishon$/i,
+    summary:'O anúncio apresenta um kit Rishon com 10 potes de vidro de 370 ml cada, descritos como herméticos. Pode interessar a quem quer separar pequenas porções ou organizar alimentos; confira se a capacidade de cada pote atende ao seu uso. A descrição menciona vidro borossilicato, vedação em silicone e uso em micro-ondas, freezer e lava-louças, mas não dispomos nesta ficha de manual específico que confirme as condições e os limites dessas utilizações. Confira separadamente as instruções do recipiente e da tampa, inclusive para aquecimento, congelamento e lavagem. Não presumimos resistência a choque térmico ou passagem direta do freezer ao aquecimento. Não testamos vedação, vazamento, retenção de odores ou durabilidade. A descrição hermético não é garantia da equipe de conservação prolongada ou segurança de qualquer alimento; siga as condições adequadas de armazenamento para cada preparo. Quantidade, capacidade, material e acessórios precisam corresponder ao kit do vendedor.',
+    positiveNotes:['Kit de 10 recipientes de 370 ml cada identificado na oferta, para avaliar organização de pequenas porções.'],
+    negativeNotes:['Condições de uso no micro-ondas, freezer e lava-louças dependem de instruções específicas do pote e da tampa.', 'Choque térmico, vedação, odores e conservação prolongada não testados pela equipe.'],
+    suppressRating:true,
+  }],
   ['8RopqzkV8UyasWEZxMB8', {
     syncInformationalSchema:true,
     allowTruncatedHeading:true,
