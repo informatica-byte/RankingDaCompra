@@ -8,6 +8,13 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['C8VXX9MfKS8ULwDiDWXn', {
+    syncInformationalSchema:true, expectedListing:'MLB3905003519',
+    model:/^Collagen Renew Sabor Laranja - Nutrify 300g$/i,
+    summary:'A oferta identifica o suplemento alimentar em pó Collagen Renew Nutrify sabor laranja, em embalagem de 300 g. A descrição registrada menciona colágeno hidrolisado, Verisol, vitaminas, minerais e estévia; confira a composição no rótulo da unidade, pois uma ficha de outra edição não confirma o lote anunciado. Ausência de glúten, faixa etária, alergênicos e advertências também precisam ser conferidos na embalagem específica. Não prescrevemos dose nem deduzimos duração de uso a partir dos 300 g. A presença de um ingrediente não é uma garantia da equipe de resultado estético, absorção ou adequação individual. Não verificamos composição laboratorial, autenticidade ou efeitos do produto; siga as informações do fabricante e orientação profissional quando necessário.',
+    positiveNotes:['Apresentação em pó, sabor laranja e embalagem de 300 g identificados na oferta.'],
+    negativeNotes:['Composição, alergênicos, faixa etária e advertências dependem do rótulo da unidade.', 'Sem prescrição de dose, duração ou garantia de resultado estético pela equipe.'],suppressRating:true,
+  }],
   ['bufeMWJJrnyiM5TBcKXW', {
     syncInformationalSchema:true, expectedListing:'MLB4116164126',
     model:/^Ventilador de Coluna Ventisol Turbo 6 Pás 30cm Preto 8234$/i,

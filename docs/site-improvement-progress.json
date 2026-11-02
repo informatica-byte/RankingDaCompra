@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T21:01:11.129Z",
-  "catalogueGeneratedAt": "2026-11-02T20:59:03.034Z",
+  "updatedAt": "2026-11-02T21:04:10.436Z",
+  "catalogueGeneratedAt": "2026-11-02T21:04:02.504Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -653,11 +653,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 561,
-    "screened_no_change": 56,
+    "screened_no_change": 58,
     "needs_source": 8,
     "targeted_correction_complete": 136,
     "preserve_prior_review": 98,
-    "pending": 263
+    "pending": 260,
+    "prepared_awaiting_publication": 1
   },
   "items": [
     {
@@ -2451,12 +2452,19 @@
       "id": "C8VXX9MfKS8ULwDiDWXn",
       "url": "https://rankingdacompra.com.br/produto/C8VXX9MfKS8ULwDiDWXn-20260810-1.html",
       "title": "Collagen Renew Sabor Laranja - Nutrify 300g",
-      "fingerprint": "5979629464425a61ae21b90c24671b1bfd3e875172dc82ca43ccd4336e1553d5",
-      "status": "pending",
+      "fingerprint": "d07ebf459e1b17f9be0f46aab56e6a9776d2d264446a639997eb244fda4fa059",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Atribui composição à oferta e exige rótulo da unidade para alergênicos e faixa etária; não trata descrição como verificação do lote.",
+        "Ficha primária histórica localizada não confirma formulação do lote atual. Não importa dose, efeitos ou composição quantitativa de outra edição."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB23059264?wid=MLB3905003519"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "WZIrFRxgOFZ1skyzk5SS",
@@ -6041,11 +6049,16 @@
       "url": "https://rankingdacompra.com.br/produto/C5b5fKstKDUgNDUxnQkP-20260810-1.html",
       "title": "Power Bank Basike 20000mAh",
       "fingerprint": "e7f3b51168508010f7b196cf80b71b4c909b08c80781ef5f810b9ebd08b6f70c",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-02T21:04:10.439Z",
+      "workNotes": [
+        "Basike já distingue capacidade nominal, desempenho não medido e divergências. Preservado integralmente sem repetir revisão de anúncio.",
+        "Reaproveita texto já revisado; modelo, portas e valores elétricos continuam divergentes. Sem nova conferência ou teste."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB63849175?wid=MLB4407942173"
+      ]
     },
     {
       "id": "sinwoGjrsJl5UMA13pES",
@@ -7399,11 +7412,17 @@
       "url": "https://rankingdacompra.com.br/produto/CO1tCKBzr6q79BOpdBZW-20260810-1.html",
       "title": "Tênis Kappa Pulse Rx Unissex Corrida Conforto",
       "fingerprint": "53a7be65cf60ed8f70a235938ff7fdeb6ae4f96b8f6b72642b788b4ab38e2847",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-02T21:04:10.439Z",
+      "workNotes": [
+        "Kappa: descrição técnica sem promessa de resultado pessoal; não demonstrada contradição necessária. Preserva variante e conteúdo.",
+        "Referência de catálogo identifica Pulse RX, Ultraknit e EVA-K; não autentica unidade nem confirma ajuste, conforto, numeração ou desempenho. Não transfere dados de Park ou outra linha."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5532075156-_JM?searchVariation=200557607865",
+        "https://kmgestaodemarcas.com.br/wp-content/uploads/2025/02/CATALOGO-KAPPA-2025.pdf"
+      ]
     },
     {
       "id": "d31e9yty1t0dekViXbAi",
@@ -10340,5 +10359,12 @@
     "testsPassed": 1477,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage67": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "C8VXX9MfKS8ULwDiDWXn"
+    ],
+    "newDeepReviews": 0
   }
 }
