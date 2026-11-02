@@ -1,0 +1,12 @@
+{
+  "date":"2026-11-02",
+  "policy":"Three requested pending IDs from saved GA4 01–28/10 view order. Correct only truncated title and incomplete/overstated camera summary; preserve coherent Galaxy facts and all operational fields.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"6owUOP0UqtNt3y5pFzgW","decision":"targeted_correction_complete","reason":"Cortina: título longo cortava Casa Laura Enxovais. Apenas título encurtado preservando marca, gelo e medidas anunciadas; corpo e resumo mantidos, sem inventar percentual de bloqueio ou composição.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB29614964?pdp_filters=item_id%3AMLB4008202207"],"sourceLimit":"Snapshot local. Sem medição, teste de bloqueio ou confirmação de largura por folha/quantidade de partes. Não importa tecido, forro ou acessórios de outra cortina."},
+    {"id":"6rPnzKJkUk5676DoZ9ng","decision":"targeted_correction_complete","reason":"Câmera-lâmpada: corrige frase cortada e retira instalação facilitada/cobertura 360° como garantias. Separa recursos anunciados de teste, sem presumir cartão, armazenamento gratuito, funcionamento contínuo ou prevenção de incidentes.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB50368081?pdp_filters=item_id%3AMLB4162108123"],"sourceLimit":"Snapshot local sem manual/código técnico exato suficiente. Não confirma compatibilidade elétrica, app, protocolo, privacidade, resolução ou serviços, nem fornece ligação elétrica ou dados de outro modelo HW."},
+    {"id":"6tvLptYK5kpEu3H8wQXJ","decision":"screened_no_change","reason":"Galaxy A36: 128 GB/6 GB, 5G, Super AMOLED, IP67 e câmera principal de 50 MP estão coerentes com referência primária Samsung. Não identificada contradição necessária a corrigir; ficha preservada integralmente.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB65952157?pdp_filters=item_id%3AMLB5244646737","https://news.samsung.com/br/o-seu-primeiro-smartphone-galaxy-com-ai-samsung-apresenta-galaxy-a56-a36-e-a26-com-evolucao-da-inteligencia-artificial"],"sourceLimit":"Fonte oficial de lançamento consultada em 02/11/2026, não autentica unidade ou atualiza preço/estoque. Não transfere 256 GB/8 GB, disponibilidade atual, promoções antigas ou desempenho de outra variante; não é novo teste profundo."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":2,"screenedNoChange":1,"newDeepReviews":0},
+  "preserveExceptTitleIds":["6owUOP0UqtNt3y5pFzgW"]
+}

@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T10:41:06.331Z",
-  "catalogueGeneratedAt": "2026-11-02T10:39:08.445Z",
+  "updatedAt": "2026-11-02T10:44:13.461Z",
+  "catalogueGeneratedAt": "2026-11-02T10:44:05.979Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 560,
-    "screened_no_change": 47,
+    "screened_no_change": 48,
     "needs_source": 8,
     "targeted_correction_complete": 112,
     "preserve_prior_review": 98,
-    "pending": 295
+    "pending": 292,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -1695,12 +1696,19 @@
       "id": "6rPnzKJkUk5676DoZ9ng",
       "url": "https://rankingdacompra.com.br/produto/6rPnzKJkUk5676DoZ9ng-20260810-1.html",
       "title": "Câmera de Segurança IP Wi-Fi Lâmpada E27 HW 360° Full HD com Visão Noturna e Áudio - HW",
-      "fingerprint": "19ff7336158a5b8ee94a60d15c97af8584a0681775ec17e15afc23991f2e0d63",
-      "status": "pending",
+      "fingerprint": "55cf202ba3790779de387ba5a8c8dc8bef2e093a3389e909ac36cb18bdb53e59",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Câmera-lâmpada: corrige frase cortada e retira instalação facilitada/cobertura 360° como garantias. Separa recursos anunciados de teste, sem presumir cartão, armazenamento gratuito, funcionamento contínuo ou prevenção de incidentes.",
+        "Snapshot local sem manual/código técnico exato suficiente. Não confirma compatibilidade elétrica, app, protocolo, privacidade, resolução ou serviços, nem fornece ligação elétrica ou dados de outro modelo HW."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB50368081?pdp_filters=item_id%3AMLB4162108123"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "LDzmbLcaHUVNztsXyp52",
@@ -2610,13 +2618,20 @@
     {
       "id": "6owUOP0UqtNt3y5pFzgW",
       "url": "https://rankingdacompra.com.br/produto/6owUOP0UqtNt3y5pFzgW-20260810-1.html",
-      "title": "Cortina 3,00x2,80 Metros Blackout Blecaute Gelo Corta Luz Em Tecido Grosso Para Quarto E Sala Casa Laura Enxovais",
-      "fingerprint": "af9b2668bddfbd775daa8b8b0434197b72f194383366466151a4774466ca9814",
-      "status": "pending",
+      "title": "Cortina Casa Laura Enxovais blackout gelo — 3,00 × 2,80 m",
+      "fingerprint": "713f9b31cdd17693cd32f1c434a7f1e0f9148c8b277d2bb4bea80c810c0e9175",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Cortina: título longo cortava Casa Laura Enxovais. Apenas título encurtado preservando marca, gelo e medidas anunciadas; corpo e resumo mantidos, sem inventar percentual de bloqueio ou composição.",
+        "Snapshot local. Sem medição, teste de bloqueio ou confirmação de largura por folha/quantidade de partes. Não importa tecido, forro ou acessórios de outra cortina."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB29614964?pdp_filters=item_id%3AMLB4008202207"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB6119148470",
@@ -6701,11 +6716,17 @@
       "url": "https://rankingdacompra.com.br/produto/6tvLptYK5kpEu3H8wQXJ-20260810-1.html",
       "title": "Smartphone Samsung Galaxy A36 5G 128GB 6GB RAM",
       "fingerprint": "c76a172e41109ed9885ef38dcd0266597ebffb8e4582493d5f89dcf7cd317ac9",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-02T10:44:13.464Z",
+      "workNotes": [
+        "Galaxy A36: 128 GB/6 GB, 5G, Super AMOLED, IP67 e câmera principal de 50 MP estão coerentes com referência primária Samsung. Não identificada contradição necessária a corrigir; ficha preservada integralmente.",
+        "Fonte oficial de lançamento consultada em 02/11/2026, não autentica unidade ou atualiza preço/estoque. Não transfere 256 GB/8 GB, disponibilidade atual, promoções antigas ou desempenho de outra variante; não é novo teste profundo."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65952157?pdp_filters=item_id%3AMLB5244646737",
+        "https://news.samsung.com/br/o-seu-primeiro-smartphone-galaxy-com-ai-samsung-apresenta-galaxy-a56-a36-e-a26-com-evolucao-da-inteligencia-artificial"
+      ]
     },
     {
       "id": "mlMLB4474695467",
@@ -9631,5 +9652,13 @@
     "testsPassed": 1433,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage56": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "6owUOP0UqtNt3y5pFzgW",
+      "6rPnzKJkUk5676DoZ9ng"
+    ],
+    "newDeepReviews": 0
   }
 }

@@ -8,6 +8,22 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['6owUOP0UqtNt3y5pFzgW', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB4008202207',
+    model:/^cortina\s*(?:3,00x2,80|casa\s*laura\s*enxovais\s*blackout\s*gelo)/i,
+    correct:'Cortina Casa Laura Enxovais blackout gelo — 3,00 × 2,80 m',
+  }],
+  ['6rPnzKJkUk5676DoZ9ng', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4162108123',
+    model:/^câmera\s*de\s*segurança\s*ip\s*wi-fi\s*lâmpada\s*e27\s*hw/i,
+    summary:'A oferta apresenta uma câmera-lâmpada HW com encaixe E27, Wi-Fi, Full HD, visão noturna e áudio anunciados. Pode interessar a quem procura esse formato, mas o encaixe E27 não confirma, sozinho, compatibilidade elétrica, espaço disponível ou facilidade de instalação em qualquer local. O termo 360° do título não comprova visão simultânea de todo o ambiente nem ausência de pontos cegos; confirme o movimento e o campo de visão do modelo exato. Não temos manual específico suficiente nesta ficha para validar resolução, gravação noturna, funções de áudio ou funcionamento sem conexão. Confira aplicativo, frequência de Wi-Fi, armazenamento, itens incluídos e condições de eventuais serviços em nuvem na oferta. Não presumimos cartão incluído ou gravação gratuita permanente. Não testamos imagem, estabilidade, instalação, segurança do aplicativo ou continuidade da gravação. Esta descrição não fornece instruções de ligação e não garante prevenção de incidentes.',
+    positiveNotes:['Formato E27 e recursos Wi-Fi, Full HD, visão noturna e áudio anunciados; conferir a unidade e o manual.'],
+    negativeNotes:['360° anunciado não é comprovação de cobertura simultânea sem pontos cegos.', 'Compatibilidade, armazenamento, aplicativo e gravação não testados; serviços e acessórios precisam de confirmação.'],
+    suppressRating:true,
+  }],
   ['6kC1jJj7i4kRtYyp3SZr', {
     syncInformationalSchema:true,
     expectedListing:'MLB7389762032',
