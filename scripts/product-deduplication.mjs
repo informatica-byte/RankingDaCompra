@@ -14,7 +14,7 @@ export const REVIEWED_PUBLICATION_PAIRS = Object.freeze([
     ['Y6Ty2gcU1ktmmGyznDWs','Fone De Ouvido Headphone Dapon H02D Bluetooth 5.1 Over-ear 22h Preto']],
   ['MLB2171368181','MLB18724648','https://meli.la/1wxDsG2',
     ['05S6aRd5qQ8i4L37P6qN','Colchão Casal Emma Original 138x188cm'],
-    ['3yIHMxCIF9QgqjNOrSXC','Colchão Casal Emma Original 138x188cm 3 Camadas de Espuma, Embalado à Vácuo, Suporte para Coluna, Alta Respirabilidade, Capa Lavável']],
+    ['3yIHMxCIF9QgqjNOrSXC','Colchão Casal Emma Original 138x188cm 3 Camadas de Espuma, Embalado à Vácuo, Suporte para Coluna, Alta Respirabilidade, Capa Lavável','Colchão Emma Original casal 138 × 188 cm, três camadas de espuma']],
   ['MLB4812143184','MLB26796581','https://meli.la/1mHmMpu',
     ['fui9uff5MTKnVydSsaIR','Creatina Monohidratada Pura 500g Dark Lab Unidade 100%'],
     ['jABp2HpfTmQNwXsPgrYQ','Creatina Monohidratada Pura 500g Dark Lab Unidade']],
@@ -131,7 +131,7 @@ export function publicationProductGroups(products) {
     if (identity) group.identities.push(identity);
   }
   // Preserve the established reviewed page, but only inside a proven group.
-  for(const group of groups)if(group.identities.length>1&&group.identities.every(i=>i.reviewed&&i.reviewed===group.identities[0].reviewed))group.preferredId=['U52A4gBWWLEmfCzONtHb','XRKv9OGoKrBbcDP0GxER','NJipazuMXMzOH9YZbxwu'].find(id=>group.products.some(p=>p.id===id));
+  for(const group of groups)if(group.identities.length>1&&group.identities.every(i=>i.reviewed&&i.reviewed===group.identities[0].reviewed))group.preferredId=['U52A4gBWWLEmfCzONtHb','XRKv9OGoKrBbcDP0GxER','NJipazuMXMzOH9YZbxwu','3yIHMxCIF9QgqjNOrSXC'].find(id=>group.products.some(p=>p.id===id));
   return groups;
 }
 

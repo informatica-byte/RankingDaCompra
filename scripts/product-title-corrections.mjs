@@ -60,7 +60,7 @@ const PRODUCT_CORRECTIONS = new Map([
   ['6kC1jJj7i4kRtYyp3SZr', {
     syncInformationalSchema:true,
     expectedListing:'MLB7389762032',
-    model:/^patinete\s*elétrico(?:$|\s*ydtech\s*m187\s*dobrável\s*com\s*bluetooth$)/i,
+    model:/^patinete\s*elétrico(?:$|\s*ydtech\s*m187\s*dobrável\s*com\s*bluetooth$|\s*scooter\s*dobrável\s*bluetooth\s*ydtech$)/i,
     incorrect:'Patinete Elétrico',
     correct:'Patinete Elétrico Ydtech M187 Dobrável com Bluetooth',
     fileReplacements:[
