@@ -8,6 +8,29 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['EbNVkHXOor6py78Wgl8X', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB5643705886',
+    model:/^(?:Tripé Inteligente 1\.8m com Rastreamento Facial AI Estável 360° para Celular、Câmera、Vlog E Gopro, Basike Tripé Celular Profissional Universal Bastão Selfie Com Controle Remoto Bluetooth|Tripé Basike 1,8 m com rastreamento facial anunciado e controle Bluetooth)$/i,
+    correct:'Tripé Basike 1,8 m com rastreamento facial anunciado e controle Bluetooth',
+    summary:'A oferta apresenta um tripé Basike com altura anunciada de 1,8 m, rastreamento facial e controle remoto Bluetooth. Pode interessar a quem procura apoio para gravar com o celular; confira o modelo, as dimensões e a carga aceita antes de escolher. Rotação de acompanhamento não comprova estabilização de imagem: não confirmamos que seja um gimbal estabilizador. O anúncio menciona uso como bastão de selfie, mas encaixe em celular, câmera ou GoPro depende dos suportes e adaptadores incluídos. Não tratamos universal ou profissional como garantia de compatibilidade ou desempenho. Materiais, recarga do controle por USB-C e tipo de montagem precisam ser confirmados no manual da unidade; a expressão sapata de 1/4 do texto anterior não esclarece o conector. Não testamos estabilidade, rastreamento ou resistência.',
+    positiveNotes:['Altura de 1,8 m, rastreamento facial e controle Bluetooth anunciados; conferir modelo e acessórios.'],
+    negativeNotes:['Rastreamento não comprova estabilização de imagem ou desempenho testado.', 'Confirmar carga, encaixes, adaptadores e alimentação do controle; compatibilidade não é universal.'],suppressRating:true,
+  }],
+  ['eFH6DoZM48JWTDwQIImg', {
+    syncInformationalSchema:true, expectedListing:'MLB5353515677',
+    model:/^Kit 2 Refil Ntk Gás Butano \+ Maçarico Camping Fogareiro 227g$/i,
+    summary:'O título da oferta anuncia dois refis NTK de 227 g e um maçarico. A presença da palavra fogareiro no título não confirma que um fogareiro completo acompanhe o conjunto; confira a relação de itens e as fotos da oferta antes de escolher. Os 454 g mencionados no cadastro correspondem à soma nominal de dois refis de 227 g, não à massa total comprovada do kit com maçarico e embalagens. A marca NTK indicada para os refis não confirma a marca ou o modelo do maçarico. Sem identificação e manual específicos, não afirmamos compatibilidade de conectores, composição detalhada do gás, autonomia ou adequação a um aparelho. Esta ficha não orienta adaptações, recarga ou manuseio do combustível; siga as advertências e instruções próprias dos componentes. Não testamos funcionamento ou segurança da unidade.',
+    positiveNotes:['Dois refis de 227 g e maçarico identificados no título da oferta; conteúdo a confirmar.'],
+    negativeNotes:['Inclusão de fogareiro completo, modelo do maçarico e compatibilidade não confirmados.', '454 g não são apresentados como peso total medido do kit; sem teste de segurança ou autonomia.'],suppressRating:true,
+  }],
+  ['ERUkcWCy7XxGVEyDizZ2', {
+    syncInformationalSchema:true, expectedListing:'MLB5325840582',
+    model:/^Controlador Gamesir Galileo G8 Plus Com Bluetooth Para Cel$/i,
+    summary:'A oferta identifica um GameSir G8 Plus com Bluetooth para celular. A referência oficial do G8 Plus diferencia plataformas, modos de conexão e suporte dos jogos; conectar o controle não garante que todos os jogos reconheçam seus comandos. Antes de escolher, confira a versão Bluetooth, o aparelho, o encaixe e o jogo pretendido. Não confirmamos a compatibilidade com Alexa mencionada no cadastro anterior. No PC, o modo e o suporte do jogo precisam ser verificados, sem prometer funcionamento universal. A fabricante descreve motores de vibração, mas isso não comprova que o recurso funcione em todo jogo ou plataforma. Não transferimos características do G8 Galileo ou do G8+ MFi para esta oferta. Não testamos conexão, latência, autonomia ou funcionamento da unidade; a expressão diversão garantida não representa avaliação da equipe.',
+    positiveNotes:['G8 Plus Bluetooth identificado na oferta; fabricante disponibiliza referência de modos e compatibilidade.'],
+    negativeNotes:['Conexão não garante suporte de todos os jogos; conferir aparelho, encaixe e modo.', 'Compatibilidade com Alexa não confirmada; vibração e desempenho não testados na unidade.'],
+    contextSourceUrl:'https://gamesir.com/pages/faq-questions-about-g8-plus',contextSourceLabel:'GameSir: referência G8 Plus, não teste ou autenticação da unidade anunciada',suppressRating:true,
+  }],
   ['e2xjzhLqo2TSHdOKUEaB', {
     syncInformationalSchema:true, expectedListing:'MLB5039813441',
     model:/^Deo Colônia Natura Hoje Masculino 100ml$/i,
