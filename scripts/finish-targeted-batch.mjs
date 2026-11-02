@@ -1,15 +1,20 @@
 // Record a small editorial batch only after production and CI evidence exists.
 import assert from 'node:assert/strict';
 import {readFile,writeFile} from 'node:fs/promises';
-const [batch,date,source]=process.argv.slice(2);assert.match(batch||'',/^\d+$/);assert.match(date||'',/^\d{8}$/);assert.match(source||'',/^[a-f0-9]{40}$/);
+const [batch,date,source,pagesRunId]=process.argv.slice(2);assert.match(batch||'',/^\d+$/);assert.match(date||'',/^\d{8}$/);assert.match(source||'',/^[a-f0-9]{40}$/);if(pagesRunId)assert.match(pagesRunId,/^\d+$/);
 const out='../../outputs/melhorias-integrais-20261030/',json=async f=>JSON.parse(await readFile(f,'utf8'));
 const p=await json('docs/site-improvement-progress.json'),manifest=await json(`docs/targeted-triage${batch}-${date}.json`),proof=await json(out+`verificacao-publicada-triagem${batch}.json`);
 const changed=manifest.items.filter(x=>x.decision==='targeted_correction_complete').map(x=>x.id).sort();
 assert.equal(p['triage'+batch].status,'published_verified');assert.deepEqual(proof.changedIds,changed);assert.equal(proof.deepReviews,98);
 const tests=await readFile(out+`testes-triagem${batch}.log`,'utf8');assert.match(tests,/ℹ fail 0/);const passed=Number(tests.match(/ℹ pass (\d+)/)?.[1]);assert.ok(passed>0);
 const qa=await json(out+`qa-triagem${batch}.log`);assert.equal(qa.checked.length,manifest.items.length*2);assert.ok(qa.checked.every(x=>x.passed));
-const r=await fetch('https://api.github.com/repos/informatica-byte/RankingDaCompra/actions/runs?per_page=8');assert.ok(r.ok);const {workflow_runs:runs}=await r.json();
-const sitemap=runs.find(x=>x.name==='Atualizar sitemap automaticamente'&&x.head_sha===source),integrity=runs.find(x=>x.name==='Validar integridade do site'&&x.head_sha===source),pages=runs.find(x=>x.name==='pages build and deployment'&&x.conclusion==='success'&&new Date(x.created_at)>=new Date(sitemap?.created_at));
+const api='https://api.github.com/repos/informatica-byte/RankingDaCompra/actions/runs';
+const getRunData=async url=>{const r=await fetch(url);assert.ok(r.ok);return r.json();};
+// Resuming a prior day's checkpoint must not depend on its runs remaining in the latest eight.
+const {workflow_runs:runs}=await getRunData(api+'?head_sha='+source+'&per_page=8');
+const sitemap=runs.find(x=>x.name==='Atualizar sitemap automaticamente'&&x.head_sha===source),integrity=runs.find(x=>x.name==='Validar integridade do site'&&x.head_sha===source);
+const pages=pagesRunId?await getRunData(api+'/'+pagesRunId):(await getRunData(api+'?per_page=8')).workflow_runs.find(x=>x.name==='pages build and deployment'&&x.conclusion==='success'&&new Date(x.created_at)>=new Date(sitemap?.created_at));
+assert.equal(pages?.name,'pages build and deployment');assert.equal(pages?.conclusion,'success');assert.ok(new Date(pages.created_at)>=new Date(sitemap?.created_at));
 assert.equal(sitemap?.conclusion,'success');assert.equal(integrity?.conclusion,'success');assert.ok(pages);
 p['triage'+batch]={...p['triage'+batch],sourceCommit:source,generatedCommit:pages.head_sha,sitemapRun:sitemap.id,integrityRun:integrity.id,pagesRun:pages.id,testsPassed:passed,localMobileChecks:qa.checked.length,backendWrites:0};
 const next=p.editorialPriority.nextPendingIds.slice(0,3).map(id=>p.items.find(x=>x.id===id)).map(x=>({id:x.id,title:x.title}));
