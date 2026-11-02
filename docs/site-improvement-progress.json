@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "5eAXaJha93EuQsvd2SJn",
-      "5FMVdsnRQIuJYsUfNJU9",
-      "5G8Rs89UnBehBYVatnan",
       "5LA4CuIHLWigh48x3qaW",
       "5Nr0nOkBvYhG9KXxeyZL",
       "6C1vEnfqaRRxkR4DIGa6",
       "6CiOb7YKL9YmF8Sqg1wT",
-      "6kC1jJj7i4kRtYyp3SZr"
+      "6kC1jJj7i4kRtYyp3SZr",
+      "6NYYO2l4QTGUagl47PKh",
+      "6owUOP0UqtNt3y5pFzgW",
+      "6rPnzKJkUk5676DoZ9ng"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T10:21:29.627Z",
-  "catalogueGeneratedAt": "2026-11-02T10:21:22.050Z",
+  "updatedAt": "2026-11-02T10:24:48.206Z",
+  "catalogueGeneratedAt": "2026-11-02T10:22:30.993Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,10 +639,9 @@
     "total": 560,
     "screened_no_change": 46,
     "needs_source": 8,
-    "targeted_correction_complete": 104,
+    "targeted_correction_complete": 107,
     "preserve_prior_review": 98,
-    "pending": 301,
-    "prepared_awaiting_publication": 3
+    "pending": 301
   },
   "items": [
     {
@@ -4103,12 +4102,13 @@
       "url": "https://rankingdacompra.com.br/produto/5G8Rs89UnBehBYVatnan-20260810-1.html",
       "title": "Kit de nove pares de meias anunciado como Puma, modelo invisível",
       "fingerprint": "bf142d4edecdf2db773b4572597f21277475a24a6a1c74d0e52988d475d09440",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T10:24:48.178Z",
       "workNotes": [
         "Meias: apresenta Puma como identificação da oferta, não autenticidade certificada pela equipe. Distingue nove pares e variantes de numeração, sem transformar 34–46 em ajuste universal.",
-        "Snapshot local, sem verificação de procedência, código exato ou composição da unidade; não afirma falsificação nem importa informação de outro kit."
+        "Snapshot local, sem verificação de procedência, código exato ou composição da unidade; não afirma falsificação nem importa informação de outro kit.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-3240424598-kit-9-pares-meias-puma-sapatilha-soquete-invisivel-original-_JM?searchVariation=183973673677"
@@ -5211,12 +5211,13 @@
       "url": "https://rankingdacompra.com.br/produto/5eAXaJha93EuQsvd2SJn-20260810-1.html",
       "title": "Ômega 3 Epa Dha 120 Cápsulas Dark Lab",
       "fingerprint": "12b32b5600e500bbdb61c976b29123ca5219a60e2469b63c6058f28a94e23345",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T10:24:48.178Z",
       "workNotes": [
         "Ômega 3: retira qualidade e benefícios de saúde sem comprovação específica, sem prescrever consumo ou transferir formulação de Omega Plus. Quantidade de cápsulas não equivale à concentração EPA/DHA.",
-        "Snapshot da oferta e orientação geral Anvisa consultada em 02/11/2026. Não obtido rótulo específico suficiente; sem confirmação de dose, glúten, regularização ou efeitos. Não afirma irregularidade ou autentica produto."
+        "Snapshot da oferta e orientação geral Anvisa consultada em 02/11/2026. Não obtido rótulo específico suficiente; sem confirmação de dose, glúten, regularização ou efeitos. Não afirma irregularidade ou autentica produto.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB60940040?pdp_filters=item_id%3AMLB5864818802",
@@ -7476,12 +7477,13 @@
       "url": "https://rankingdacompra.com.br/produto/5FMVdsnRQIuJYsUfNJU9-20260810-1.html",
       "title": "Tênis PM anunciado como Suede Couro XL",
       "fingerprint": "1bbe62a9a1d4bce69d776893591899331c295d16511ae58c3ec85235ab8ce3f0",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T10:24:48.178Z",
       "workNotes": [
         "Tênis PM: remove promessa temporal envio já e indicação presumida para diversas atividades; mantém PM sem expandir para outra marca e não certifica couro por nome/foto.",
-        "Só snapshot local. Não interpreta PM como Puma, não troca variante ou autentica a unidade; materiais, conforto e finalidade esportiva não confirmados."
+        "Só snapshot local. Não interpreta PM como Puma, não troca variante ou autentica a unidade; materiais, conforto e finalidade esportiva não confirmados.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-5049422013-tenis-caminhada-academia-skate-suede-couro-xl-envio-ja-_JM?searchVariation=206325258011"
@@ -9462,12 +9464,44 @@
     "backendWrites": 0
   },
   "triage53": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "5FMVdsnRQIuJYsUfNJU9",
       "5G8Rs89UnBehBYVatnan",
       "5eAXaJha93EuQsvd2SJn"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T10:24:48.178Z",
+    "changedIds": [
+      "5eAXaJha93EuQsvd2SJn",
+      "5FMVdsnRQIuJYsUfNJU9",
+      "5G8Rs89UnBehBYVatnan"
+    ],
+    "jointReleaseBatches": [
+      53
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem53.json",
+    "remainingDependencies": [
+      {
+        "id": "5eAXaJha93EuQsvd2SJn",
+        "note": "Snapshot da oferta e orientação geral Anvisa consultada em 02/11/2026. Não obtido rótulo específico suficiente; sem confirmação de dose, glúten, regularização ou efeitos. Não afirma irregularidade ou autentica produto."
+      },
+      {
+        "id": "5FMVdsnRQIuJYsUfNJU9",
+        "note": "Só snapshot local. Não interpreta PM como Puma, não troca variante ou autentica a unidade; materiais, conforto e finalidade esportiva não confirmados."
+      },
+      {
+        "id": "5G8Rs89UnBehBYVatnan",
+        "note": "Snapshot local, sem verificação de procedência, código exato ou composição da unidade; não afirma falsificação nem importa informação de outro kit."
+      }
+    ],
+    "sourceCommit": "444f3cab7cd733343875c239900598308e781f0d",
+    "generatedCommit": "0fb8078260cfb63e43dbd9f60987ee04de0c0a7f",
+    "sitemapRun": 41428261420,
+    "integrityRun": 41428261299,
+    "pagesRun": 41428325892,
+    "testsPassed": 1425,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
