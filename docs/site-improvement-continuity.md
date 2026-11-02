@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## Painel móvel — botão Criar páginas, 02/11/2026, PUBLICADO E VERIFICADO
+
+Adicionado atalho “📄 Criar páginas agora ↗” no mesmo bloco da Publicação Expressa, logo abaixo de Preparar publicação. Reutiliza o workflow update-sitemap.yml já disponível no dashboard. É um link em nova aba, sem submit, JavaScript de disparo, token, leitura/escrita Firestore ou alteração de rascunho. Orientação visível: salvar primeiro, escolher main no GitHub, confirmar Run workflow e aguardar geração/implantação. Não executada criação de páginas durante o teste. Login do painel e validações de cadastro/duplicidade preservados.
+
+Fonte 21ada5184b484440425675d6b30303d8fb2d77b3. Integridade 41441334937 e Pages 41441334925: SUCCESS. Painel publicado HTTP200, HTML idêntico ao arquivo local após normalizar CRLF, link exato confirmado. 1.448 testes e validate-site passaram. QA estática 360/390/768 px sem requests externos: botão visível, sem overflow e com foco de teclado; não é teste de sessão autenticada real. Evidências outputs/melhorias-integrais-20261030/mobile-create-pages-qa.json e imagens mobile-create-pages-*.png. Só painel-celular.html e dois scripts de teste/QA alterados neste commit; sem editar robô, preços, produtos, afiliados ou catálogo. Não houve novo workflow de sitemap no deploy deste botão.
+
+Ponto editorial mantido na passagem 58 abaixo: próximos creatina Soldiers 1 kg, câmera A28 e Lattafa Asad. Volume do 212 VIP Black ainda pendente. Não repetir as fichas concluídas. Checkpoint final local, sem push documental extra.
+
 ## Passagem 58 — 20261102, PUBLICADA E VERIFICADA
 
 - 7EgFgcD6NyeoMB8KW4Pp: targeted_correction_complete. 212 VIP Black: cadastro informa 200 ml e URL menciona 100 ml. Não escolhe volume, troca produto ou link; título público deixa apresentação pendente. Retira preferência/performance comercial como teste da equipe. Limite: Referência oficial consultada em 02/11/2026 confirma linha com vários tamanhos, não a unidade do vendedor. O slug não é confirmação de entrega de 100 ml. Volume/variante permanecem pendentes; sem autenticação ou transferência de notas, reformulação ou condições de compra do fabricante.
