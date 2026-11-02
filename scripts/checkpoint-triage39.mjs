@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {refreshLedger} from './site-improvement-ledger.mjs';
 const out='../../outputs/melhorias-integrais-20261030/',mode=process.argv[2];
 const batch=process.argv[3]||'39';assert.match(batch,/^\d+$/);
+const date=process.argv[4]||'20261101';assert.match(date,/^\d{8}$/);
 const json=async f=>JSON.parse(await readFile(f,'utf8'));
 const files=['historico-precos.json','historico-precos-indice.json'];
 const hash=async()=>Object.fromEntries(await Promise.all(files.map(async f=>[f,createHash('sha256').update(await readFile(f)).digest('hex')])));
@@ -12,7 +13,7 @@ if(mode==='before'){
  await writeFile(out+`historicos-triagem${batch}.json`,JSON.stringify(await hash()));
 }else if(mode==='prepare'||mode==='refresh-prepared'){
  assert.deepEqual(await hash(),await json(out+`historicos-triagem${batch}.json`));
- const c=await json('informational-catalogue.json'),before=await json(out+`catalogo-antes-triagem${batch}.json`),m=await json(`docs/targeted-triage${batch}-20261101.json`);
+ const c=await json('informational-catalogue.json'),before=await json(out+`catalogo-antes-triagem${batch}.json`),m=await json(`docs/targeted-triage${batch}-${date}.json`);
  const changed=m.items.filter(x=>x.decision==='targeted_correction_complete').map(x=>x.id).sort(),byId=new Map(c.products.map(x=>[x.id,x]));
  assert.deepEqual(before.products.filter(x=>JSON.stringify(x)!==JSON.stringify(byId.get(x.id))).map(x=>x.id).sort(),changed);
  const old=await json('docs/site-improvement-progress.json'),p=refreshLedger(c,old);

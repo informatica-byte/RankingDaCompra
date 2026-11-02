@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T10:17:49.779Z",
-  "catalogueGeneratedAt": "2026-11-01T22:06:57.407Z",
+  "updatedAt": "2026-11-02T10:21:29.627Z",
+  "catalogueGeneratedAt": "2026-11-02T10:21:22.050Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -641,7 +641,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 104,
     "preserve_prior_review": 98,
-    "pending": 304
+    "pending": 301,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -3978,17 +3979,6 @@
       "sourceLinks": []
     },
     {
-      "id": "5G8Rs89UnBehBYVatnan",
-      "url": "https://rankingdacompra.com.br/produto/5G8Rs89UnBehBYVatnan-20260810-1.html",
-      "title": "Kit 9 Pares Meias Puma Sapatilha Soquete Invisível Original",
-      "fingerprint": "72386e5db40ea5e43cfa5b0a623e8c05f1d890f4c3ae96b206f4b2e28605f412",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB4645102377",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4645102377-20260810-1.html",
       "title": "Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml",
@@ -4107,6 +4097,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "5G8Rs89UnBehBYVatnan",
+      "url": "https://rankingdacompra.com.br/produto/5G8Rs89UnBehBYVatnan-20260810-1.html",
+      "title": "Kit de nove pares de meias anunciado como Puma, modelo invisível",
+      "fingerprint": "bf142d4edecdf2db773b4572597f21277475a24a6a1c74d0e52988d475d09440",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Meias: apresenta Puma como identificação da oferta, não autenticidade certificada pela equipe. Distingue nove pares e variantes de numeração, sem transformar 34–46 em ajuste universal.",
+        "Snapshot local, sem verificação de procedência, código exato ou composição da unidade; não afirma falsificação nem importa informação de outro kit."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3240424598-kit-9-pares-meias-puma-sapatilha-soquete-invisivel-original-_JM?searchVariation=183973673677"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "28xGyV66fEYlx6CnRxIq",
@@ -5202,12 +5210,20 @@
       "id": "5eAXaJha93EuQsvd2SJn",
       "url": "https://rankingdacompra.com.br/produto/5eAXaJha93EuQsvd2SJn-20260810-1.html",
       "title": "Ômega 3 Epa Dha 120 Cápsulas Dark Lab",
-      "fingerprint": "7123ec2a0042b3e64e9bfcd76edf674a8ddb0daea79752278a65a5add07e3e8b",
-      "status": "pending",
+      "fingerprint": "12b32b5600e500bbdb61c976b29123ca5219a60e2469b63c6058f28a94e23345",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Ômega 3: retira qualidade e benefícios de saúde sem comprovação específica, sem prescrever consumo ou transferir formulação de Omega Plus. Quantidade de cápsulas não equivale à concentração EPA/DHA.",
+        "Snapshot da oferta e orientação geral Anvisa consultada em 02/11/2026. Não obtido rótulo específico suficiente; sem confirmação de dose, glúten, regularização ou efeitos. Não afirma irregularidade ou autentica produto."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB60940040?pdp_filters=item_id%3AMLB5864818802",
+        "https://www.gov.br/anvisa/pt-br/assuntos/alimentos/suplementos-alimentares/perguntas-frequentes"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "OOVD3lkaaSXJTSAAdywm",
@@ -6958,17 +6974,6 @@
       "sourceLinks": []
     },
     {
-      "id": "5FMVdsnRQIuJYsUfNJU9",
-      "url": "https://rankingdacompra.com.br/produto/5FMVdsnRQIuJYsUfNJU9-20260810-1.html",
-      "title": "Tenis Caminhada Academia Skate Suede Couro Xl Envio Já",
-      "fingerprint": "ad54d5de186c7e21e6f496716e69f6254388c6c51ee3f49d321dfc0ae64a822d",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB5408593708",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5408593708-20260810-1.html",
       "title": "Tênis Casual Kappa Zenit Masculino Unissex Conforto",
@@ -7462,6 +7467,24 @@
       "workNotes": [],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/tenis-masculino-olympikus-dynamic-original/up/MLBU4423018526?wid=MLB7238925036"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "5FMVdsnRQIuJYsUfNJU9",
+      "url": "https://rankingdacompra.com.br/produto/5FMVdsnRQIuJYsUfNJU9-20260810-1.html",
+      "title": "Tênis PM anunciado como Suede Couro XL",
+      "fingerprint": "1bbe62a9a1d4bce69d776893591899331c295d16511ae58c3ec85235ab8ce3f0",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Tênis PM: remove promessa temporal envio já e indicação presumida para diversas atividades; mantém PM sem expandir para outra marca e não certifica couro por nome/foto.",
+        "Só snapshot local. Não interpreta PM como Puma, não troca variante ou autentica a unidade; materiais, conforto e finalidade esportiva não confirmados."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5049422013-tenis-caminhada-academia-skate-suede-couro-xl-envio-ja-_JM?searchVariation=206325258011"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -9437,5 +9460,14 @@
     "testsPassed": 1421,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage53": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "5FMVdsnRQIuJYsUfNJU9",
+      "5G8Rs89UnBehBYVatnan",
+      "5eAXaJha93EuQsvd2SJn"
+    ],
+    "newDeepReviews": 0
   }
 }

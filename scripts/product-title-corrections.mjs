@@ -8,6 +8,37 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['5eAXaJha93EuQsvd2SJn', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5864818802',
+    model:/^ômega\s*3\s*epa\s*dha\s*120\s*cápsulas\s*dark\s*lab/i,
+    summary:'A oferta identifica um suplemento Dark Lab de ômega 3 com EPA e DHA em embalagem de 120 cápsulas. Antes de escolher, confira no rótulo a quantidade de EPA e DHA por porção, a lista de ingredientes, alergênicos, restrições e validade. O número de cápsulas não informa sozinho a concentração ou a duração do frasco. A qualificação alta qualidade e os benefícios cardiovascular, cerebral e imunológico citados anteriormente não foram comprovados nesta revisão e não são garantidos pela equipe. Não confirmamos a declaração de ausência de glúten nem prescrevemos idade, dose ou horário de consumo com base no anúncio. A orientação geral da Anvisa sobre suplementos não é aprovação deste produto; não verificamos regularização, autenticidade ou eficácia da unidade, nem concluímos que seja irregular. Para decidir sobre consumo, procure orientação profissional e siga o rótulo específico.',
+    positiveNotes:['Embalagem de 120 cápsulas e identificação EPA/DHA anunciadas; concentração por porção deve ser conferida no rótulo.'],
+    negativeNotes:['Benefícios e qualidade não comprovados nesta revisão; sem teste próprio ou prescrição de consumo.', 'Concentração, alergênicos, restrições e autenticidade da unidade não confirmados.'],
+    contextSourceUrl:'https://www.gov.br/anvisa/pt-br/assuntos/alimentos/suplementos-alimentares/perguntas-frequentes',
+    contextSourceLabel:'Anvisa: orientação geral sobre suplementos, não aprovação do produto Dark Lab',
+    suppressRating:true,
+  }],
+  ['5FMVdsnRQIuJYsUfNJU9', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5049422013',
+    model:/^(?:tenis\s*caminhada\s*academia\s*skate\s*suede\s*couro\s*xl|tênis\s*pm\s*anunciado\s*como\s*suede\s*couro\s*xl)/i,
+    correct:'Tênis PM anunciado como Suede Couro XL',
+    summary:'O cadastro identifica a marca como PM e apresenta este tênis com o nome comercial Suede Couro XL. Não interpretamos PM como outra marca nem confirmamos material ou autenticidade apenas pelo nome ou pela foto. Os termos caminhada, academia e skate do anúncio não comprovam desempenho ou adequação para essas atividades. Confira o código do modelo, composição, tabela de medidas e variante escolhida com o vendedor. Não testamos ajuste, conforto, aderência ou durabilidade. A expressão envio já foi retirada do título informativo: disponibilidade e prazo dependem das condições atuais da oferta e do endereço de entrega.',
+    positiveNotes:['Nome comercial e marca PM registrados no anúncio; confira a identificação da unidade.'],
+    negativeNotes:['Material e adequação para caminhada, academia ou skate não confirmados nesta ficha.', 'Sem teste de conforto ou aderência; disponibilidade e entrega não são promessas do site.'],
+    suppressRating:true,
+  }],
+  ['5G8Rs89UnBehBYVatnan', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB3240424598',
+    model:/^(?:kit\s*9\s*pares\s*meias\s*puma|kit\s*de\s*nove\s*pares\s*de\s*meias\s*anunciado\s*como\s*puma)/i,
+    correct:'Kit de nove pares de meias anunciado como Puma, modelo invisível',
+    summary:'A oferta anuncia nove pares de meias como Puma, em formato invisível, com algodão e poliamida e costura fina na descrição. Pode interessar a quem procura esse formato para usar com calçados, mas confirme composição, altura e quantidade de pares e não apenas o total de peças. A faixa de tamanhos de 34 a 46 indicada no anúncio não significa que uma única variante sirva em toda essa faixa; confira a numeração selecionada e a tabela do vendedor. A palavra original do título comercial não foi verificada pela equipe: não autenticamos o kit nem concluímos que seja falsificado. Não testamos ajuste, resistência, conforto ou comportamento após lavagem. Confira identificação, procedência e instruções de conservação da embalagem antes de decidir.',
+    positiveNotes:['Kit com nove pares e formato invisível anunciados pelo vendedor.'],
+    negativeNotes:['Autenticidade e composição da unidade não verificadas pela equipe.', 'Conferir variante e tabela de tamanhos; faixa anunciada não garante ajuste universal.'],
+    suppressRating:true,
+  }],
   ['4eal5Q0HLTcrspjkUwee', {
     syncInformationalSchema:true,
     expectedListing:'MLB5096586835',
