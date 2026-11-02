@@ -1,0 +1,13 @@
+{
+  "date":"2026-11-02",
+  "policy":"Newly published Ohio first, then pending saved GA4 01–28/10 order. Only demonstrated defects; no new availability checks or operational edits.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"mlMLB4846664026","decision":"screened_no_change","reason":"Ohio: novo produto revisado primeiro; identificação e marca são explicitamente atribuídas ao anúncio. Nenhum defeito factual concreto demonstrado que justifique reescrever a ficha.","sourceLinks":[],"sourceLimit":"Triagem do snapshot público, não teste de conforto, material, autenticidade ou adequação esportiva. Sem fonte técnica exata para aprofundar; não adicionados benefícios."},
+    {"id":"88kDU9mSlJdWzZPx4bim","decision":"targeted_correction_complete","reason":"Soldiers: descrição terminava cortada. Corrige a frase incompleta e separa identificação da oferta de pureza, dissolução e desempenho não testados, sem recomendar dose.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB18725310?wid=MLB2766771378","https://www.gov.br/anvisa/pt-br/assuntos/alimentos/suplementos-alimentares/perguntas-frequentes"],"sourceLimit":"Snapshot local e orientação geral Anvisa consultada em 02/11/2026, não aprovação, análise de lote ou confirmação de composição. Sem importar laudo de 300 g ou dados de outra embalagem.","publicContextUrl":"https://www.gov.br/anvisa/pt-br/assuntos/alimentos/suplementos-alimentares/perguntas-frequentes"},
+    {"id":"8oHSkf32jY7LKS2WSv36","decision":"targeted_correction_complete","reason":"A28: título e descrição divergiam entre A28 e A28B. Retira a equivalência presumida e mantém recursos, proteção e integração como pendentes de identificação específica.","sourceLinks":["https://www.mercadolivre.com.br/up/MLBU3403280878?wid=MLB4188994271"],"sourceLimit":"Snapshot local sem manual ou fabricante exato. Não importa 6 MP, 64 usuários, ONVIF, grau IP ou recursos de outro modelo e não autentica a unidade."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":2,"screenedNoChange":1,"newDeepReviews":0},
+  "preserveComparisonIds":["mlMLB4846664026"],
+  "manualDependencies":[{"id":"8oHSkf32jY7LKS2WSv36","pending":"Código completo e manual da unidade A28 para confirmar recursos; A28B não é substituto automático."}]
+}
