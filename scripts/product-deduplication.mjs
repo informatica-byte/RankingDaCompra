@@ -46,7 +46,7 @@ const REVIEWED_VARIATIONS = [
   ['1RCE8RtBHkc6aVkKZ6xB','MLB5157546240','207161735289','https://meli.la/33X4bbf',
     'Tênis New Speed Esporte Masculino 100% Original Caminhada','Tênis masculino anunciado como New Speed — caminhada'],
   ['B3HTtYZQAYonACif4tW1','MLB5157546240','187320292345','https://meli.la/1CVi5wv',
-    'Tênis New Speed Esporte Masculino 100% Original Caminhada'],
+    'Tênis New Speed Esporte Masculino 100% Original Caminhada','Tênis masculino anunciado como New Speed — caminhada'],
   ['CO1tCKBzr6q79BOpdBZW','MLB5532075156','200557607865','https://meli.la/1ipvXiB','Tênis Kappa Pulse Rx Unissex Corrida Conforto'],
   ['d31e9yty1t0dekViXbAi','MLB5532075156','184470902110','https://meli.la/1ipvXiB','Tênis Kappa Pulse Rx Unissex Corrida Conforto'],
   ['mWlmlmg15okWqGyIc5bh','MLB5532075156','200557607873','https://meli.la/1ipvXiB','Tênis Kappa Pulse Rx Unissex Corrida Conforto'],

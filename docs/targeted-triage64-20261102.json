@@ -1,0 +1,13 @@
+{
+  "date":"2026-11-02",
+  "policy":"Requested next three pending IDs in saved GA4 01–28/10 order. Remove vague temporal processor claim, unsupported authenticity guarantee and oversized flashlight title. Preserve previously reviewed flashlight body and comparison exactly.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"b2ejp8pkiWYOgBAdeXto","decision":"targeted_correction_complete","reason":"S26: título extenso e processador de última geração sem identificação. Encurta título sem mudar 256 GB/12 GB/preto; substitui qualificação temporal por especificações atribuídas à Samsung sem importar recursos do Ultra/Plus.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB65560106?wid=MLB6501275666","https://news.samsung.com/br/samsung-anuncia-galaxy-s26-o-galaxy-ai-phone-mais-intuitivo"],"sourceLimit":"Referência oficial brasileira de lançamento consultada em 02/11/2026; não autentica unidade, oferta ou acessórios. Sem novos preços, promoções, autonomia, testes de imagem, processador do Ultra ou disponibilidade universal de IA.","publicContextUrl":"https://news.samsung.com/br/samsung-anuncia-galaxy-s26-o-galaxy-ai-phone-mais-intuitivo"},
+    {"id":"B3HTtYZQAYonACif4tW1","decision":"targeted_correction_complete","reason":"New Speed: retira 100% original como garantia e código de anúncio como modelo técnico. Mantém variante explícita 187320292345 e cadastro separado; título editorial exato adicionado somente à exceção revisada desse ID para evitar regressão de identidade.","sourceLinks":["https://produto.mercadolivre.com.br/MLB-5157546240-_JM?searchVariation=187320292345"],"sourceLimit":"Snapshot local sem fabricante/manual específico. Não transfere materiais, medidas, conforto ou desempenho de outro registro New Speed; preserva o outro cadastro e sua variação 207161735289 e afiliados distintos."},
+    {"id":"BcfEuX1oed02O8pYXKyg","decision":"targeted_correction_complete","reason":"Lanterna: somente título encurtado, retirando 100000 lumens, power bank e proteção como destaques não confirmados. Corpo, vantagens/limites e três campos do comparador já revisados permanecem idênticos; sem refazer conferência.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB63116023?wid=MLB6038239378"],"sourceLimit":"Reaproveita revisão de anúncio de 22/10 sem nova busca ou teste. Modelo exato, USB-C, carga rápida, intensidade e autonomia continuam pendentes. Não repete pergunta de modelo já respondida pelo usuário nem usa ficha de outra lanterna."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":3,"screenedNoChange":0,"newDeepReviews":0},
+  "preserveExceptTitleIds":["BcfEuX1oed02O8pYXKyg"],
+  "preserveComparisonIds":["BcfEuX1oed02O8pYXKyg"]
+}

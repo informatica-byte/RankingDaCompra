@@ -8,6 +8,36 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['b2ejp8pkiWYOgBAdeXto', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB6501275666',
+    model:/^(?:celular\s*samsung\s*galaxy\s*s26\s*5g,\s*256gb,\s*12gb\s*ram,\s*galaxy\s*ai,\s*câmera\s*tripla\s*de\s*50\+12\+10,\s*tela\s*de\s*6\.3"\s*preto|samsung\s*galaxy\s*s26\s*5g\s*256\s*gb\/12\s*gb\s*—\s*preto)$/i,
+    correct:'Samsung Galaxy S26 5G 256 GB/12 GB — preto',
+    summary:'A oferta identifica o Samsung Galaxy S26 5G preto com 256 GB de armazenamento e 12 GB de RAM. A referência brasileira da Samsung descreve o S26 com tela AMOLED Dinâmico 2X de 6,3 polegadas, atualização adaptável de 1 a 120 Hz e câmeras traseiras de 50, 12 e 10 MP. São especificações da marca, não resultados de teste da equipe. Retiramos a expressão processador de última geração, que não identifica o componente e pode perder o sentido com o tempo. Antes de escolher, confira o código e a configuração da unidade, o espaço disponível e os acessórios da oferta. Não transferimos funções do S26+ ou do Ultra para este aparelho e não prometemos velocidade, autonomia ou qualidade de imagem apenas pelos números da ficha. A disponibilidade de recursos Galaxy AI precisa ser conferida para a versão e as condições de uso. Não testamos desempenho, câmera ou bateria desta unidade.',
+    positiveNotes:['Configuração de 256 GB e 12 GB, na cor preta, identificada na oferta.', 'Tela e conjunto de câmeras descritos na referência oficial do S26, sem teste próprio.'],
+    negativeNotes:['Números de tela, memória e câmera não são medições de desempenho ou qualidade pela equipe.', 'Confirmar código da unidade, acessórios e condições dos recursos de IA; não importar recursos do Plus ou Ultra.'],
+    contextSourceUrl:'https://news.samsung.com/br/samsung-anuncia-galaxy-s26-o-galaxy-ai-phone-mais-intuitivo',
+    contextSourceLabel:'Samsung Brasil: referência de lançamento do Galaxy S26, não teste ou confirmação da unidade do vendedor',
+    suppressRating:true,
+  }],
+  ['B3HTtYZQAYonACif4tW1', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB5157546240',
+    model:/^(?:tênis\s*new\s*speed\s*esporte\s*masculino\s*100%\s*original\s*caminhada|tênis\s*masculino\s*anunciado\s*como\s*new\s*speed\s*—\s*caminhada)$/i,
+    correct:'Tênis masculino anunciado como New Speed — caminhada',
+    summary:'A oferta identifica um tênis masculino anunciado como New Speed para caminhada. A expressão 100% original do título anterior não representa verificação de procedência por nossa equipe. Confira a etiqueta, a numeração e a tabela de medidas da variante selecionada antes de escolher. O código presente no endereço identifica o anúncio; não é usado aqui como modelo técnico do calçado. Não confirmamos materiais, tecnologias de amortecimento ou adequação a modalidades esportivas específicas e não importamos dados de outro tênis New Speed. Caminhada é a finalidade anunciada, não garantia de conforto, ajuste ou aderência para toda pessoa. Não testamos desempenho ou durabilidade. Este cadastro mantém sua própria variante e condições da oferta, sem ser unido a outro registro da mesma marca.',
+    positiveNotes:['Tênis masculino anunciado como New Speed para caminhada; conferir identificação e numeração da variante.'],
+    negativeNotes:['Autenticidade, materiais, ajuste e desempenho não confirmados pela equipe.', 'Não transferir medidas ou recursos de outro tênis; variante e condições precisam corresponder à oferta.'],
+    suppressRating:true,
+  }],
+  ['BcfEuX1oed02O8pYXKyg', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB6038239378',
+    model:/lanterna.*cabe[cç]a.*12\s*modos/i,
+    correct:'Lanterna de cabeça recarregável com 12 modos — especificações a confirmar',
+  }],
   ['aQjR3wSqj9aObPqMJp10', {
     syncInformationalSchema:true,
     expectedListing:'MLB5242031295',

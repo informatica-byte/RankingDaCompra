@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T15:48:29.214Z",
-  "catalogueGeneratedAt": "2026-11-02T15:45:00.320Z",
+  "updatedAt": "2026-11-02T15:53:35.523Z",
+  "catalogueGeneratedAt": "2026-11-02T15:53:26.942Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -657,7 +657,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 128,
     "preserve_prior_review": 98,
-    "pending": 272
+    "pending": 269,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2252,17 +2253,6 @@
       "url": "https://rankingdacompra.com.br/produto/vfoOrRV7xpu2EgJ8aIUy-20260810-1.html",
       "title": "Celular Samsung Galaxy S25 Fe 5g, 128gb, 8gb Ram, Câmera Tripla De 50+12+8, Tela Grande De 6.7 Azul Marinho",
       "fingerprint": "110302df1cc5d93e892425ba44633bd7c54e40e3d041c584201b0b06a2740798",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "b2ejp8pkiWYOgBAdeXto",
-      "url": "https://rankingdacompra.com.br/produto/b2ejp8pkiWYOgBAdeXto-20260810-1.html",
-      "title": "Celular Samsung Galaxy S26 5G, 256GB, 12GB RAM, Galaxy AI, Câmera Tripla de 50+12+10, Tela de 6.3\" Preto",
-      "fingerprint": "a3056c1bcf8d1e860aaac00565c399800de9a33be8a7f621c43bd67f13f996af",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -4438,13 +4428,20 @@
     {
       "id": "BcfEuX1oed02O8pYXKyg",
       "url": "https://rankingdacompra.com.br/produto/BcfEuX1oed02O8pYXKyg-20260810-1.html",
-      "title": "Lanterna De Cabeça Led Sensor Movimento 12 Modos Recarregável Power Bank Usb Alta Potência Ciclismo Camping Pesca Reparo Noturna Zoom Ajustável Ipx4 Resistente Mãos Livres Frontal 100000 Lumens",
-      "fingerprint": "b675270dd14aafeeb740313a663405f1a5fa5941dd9ee5c60c03cca0b55c81b2",
-      "status": "pending",
+      "title": "Lanterna de cabeça recarregável com 12 modos — especificações a confirmar",
+      "fingerprint": "a8c90f5338ab2bf0e7065c5225ef601a3f2bc779ffe76be2c89678efb2aa2d67",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Lanterna: somente título encurtado, retirando 100000 lumens, power bank e proteção como destaques não confirmados. Corpo, vantagens/limites e três campos do comparador já revisados permanecem idênticos; sem refazer conferência.",
+        "Reaproveita revisão de anúncio de 22/10 sem nova busca ou teste. Modelo exato, USB-C, carga rápida, intensidade e autonomia continuam pendentes. Não repete pergunta de modelo já respondida pelo usuário nem usa ficha de outra lanterna."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB63116023?wid=MLB6038239378"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "gNcq5nSqWbfqYi1M9c23",
@@ -6488,6 +6485,25 @@
       "sourceLinks": []
     },
     {
+      "id": "b2ejp8pkiWYOgBAdeXto",
+      "url": "https://rankingdacompra.com.br/produto/b2ejp8pkiWYOgBAdeXto-20260810-1.html",
+      "title": "Samsung Galaxy S26 5G 256 GB/12 GB — preto",
+      "fingerprint": "49e32a0507f108f39f83cb95f9dd76fb2e1a15ed3fe02e24f9622accfd05780c",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "S26: título extenso e processador de última geração sem identificação. Encurta título sem mudar 256 GB/12 GB/preto; substitui qualificação temporal por especificações atribuídas à Samsung sem importar recursos do Ultra/Plus.",
+        "Referência oficial brasileira de lançamento consultada em 02/11/2026; não autentica unidade, oferta ou acessórios. Sem novos preços, promoções, autonomia, testes de imagem, processador do Ultra ou disponibilidade universal de IA."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65560106?wid=MLB6501275666",
+        "https://news.samsung.com/br/samsung-anuncia-galaxy-s26-o-galaxy-ai-phone-mais-intuitivo"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "wiLibtvJlFYtSbDWLtcv",
       "url": "https://rankingdacompra.com.br/produto/wiLibtvJlFYtSbDWLtcv-20260810-1.html",
       "title": "Sandália Ortopédica Boaonda Adventure Super Leve Conforto",
@@ -7429,6 +7445,24 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "B3HTtYZQAYonACif4tW1",
+      "url": "https://rankingdacompra.com.br/produto/B3HTtYZQAYonACif4tW1-20260810-1.html",
+      "title": "Tênis masculino anunciado como New Speed — caminhada",
+      "fingerprint": "667da21fa8e5fe080c7ffb1ba17c61724c7bfe7bc83d494191a560818dd2fc6f",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "New Speed: retira 100% original como garantia e código de anúncio como modelo técnico. Mantém variante explícita 187320292345 e cadastro separado; título editorial exato adicionado somente à exceção revisada desse ID para evitar regressão de identidade.",
+        "Snapshot local sem fabricante/manual específico. Não transfere materiais, medidas, conforto ou desempenho de outro registro New Speed; preserva o outro cadastro e sua variação 207161735289 e afiliados distintos."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5157546240-_JM?searchVariation=187320292345"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "8NEAHWVWDbRD0jFU4YSn",
       "url": "https://rankingdacompra.com.br/produto/8NEAHWVWDbRD0jFU4YSn-20260810-1.html",
       "title": "Tênis Masculino Casual Aramis Daily Slip Confortável Moderno",
@@ -7610,17 +7644,6 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB3966936389-20260810-1.html",
       "title": "Tênis Mormaii Urban Free Masculino Casual Original Skate Nfe",
       "fingerprint": "4272de01b2afce13987e3beda3ff5295fb690c8a058cba3cc84751b84db256f5",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "B3HTtYZQAYonACif4tW1",
-      "url": "https://rankingdacompra.com.br/produto/B3HTtYZQAYonACif4tW1-20260810-1.html",
-      "title": "Tênis New Speed Esporte Masculino 100% Original Caminhada",
-      "fingerprint": "ed8154e85516b84907c2d00d82d861dc8711f2683e734ecdaa0a64b2ab7b764f",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -10148,5 +10171,14 @@
     "testsPassed": 1471,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage64": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "B3HTtYZQAYonACif4tW1",
+      "BcfEuX1oed02O8pYXKyg",
+      "b2ejp8pkiWYOgBAdeXto"
+    ],
+    "newDeepReviews": 0
   }
 }
