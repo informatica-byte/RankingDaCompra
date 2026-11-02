@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 66 — 20261102, PUBLICADA E VERIFICADA
+
+- bpuXfDB4cwTrjlMUINRi: screened_no_change. Capa: texto já atribui identificação ao anúncio; nenhuma contradição comprovada que exija reescrita. Limite: Snapshot local, sem confirmar impermeabilidade, medidas, altura, material ou conservação. Não importar dados de outro protetor.
+- bufeMWJJrnyiM5TBcKXW: targeted_correction_complete. Retira excelente eficiência e boa ventilação como desempenho comprovado; atribui recursos à oferta. Limite: Sem fonte primária exata localizada para unidade; não transfere tensão, potência ou ruído de outro Turbo 6.
+- c1R3iVzduEndTWAhxXvO: targeted_correction_complete. Retira instalação prática e eficiência como garantias; preserva parede, branca, 220 V e 5500 W. Limite: Referência oficial específica consultada; não avalia instalação ou unidade. Sem dimensionamento, teste, bivolt ou dados de versão de mesa.
+
+Fonte df566f4f8f884334ce3c3fff2487efd60654952b; geração 17a1d1584ca0c7aef61a510c2b11b258dc087d3c; sitemap 41524110404, integridade 41524110442, Pages 41524181782: SUCCESS. 1477 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 559 entradas editoriais inalteradas. Preservados 561 IDs/afiliados/campos operacionais e 614 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem66.json.
+
+Totais: {"total":561,"screened_no_change":56,"needs_source":8,"targeted_correction_complete":136,"preserve_prior_review":98,"pending":263}. Próximos pendentes: C5b5fKstKDUgNDUxnQkP — Power Bank Basike 20000mAh; C8VXX9MfKS8ULwDiDWXn — Collagen Renew Sabor Laranja - Nutrify 300g; CO1tCKBzr6q79BOpdBZW — Tênis Kappa Pulse Rx Unissex Corrida Conforto. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 65 — 20261102, PUBLICADA E VERIFICADA
 
 - Bf3ccSwSiVkLw1Z8k2Hu: targeted_correction_complete. Distingue capacidade total de limite de preparo; retira recursos não confirmados como garantias. Limite: Manual específico lido; não confirma tensão ou unidade do vendedor. Sem teste físico.
