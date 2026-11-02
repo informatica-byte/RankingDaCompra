@@ -10,14 +10,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "7EgFgcD6NyeoMB8KW4Pp",
-      "7evzZBujin11TlbT8hvm",
-      "87Q6AMHZ8ZFd06OzATcs",
       "88kDU9mSlJdWzZPx4bim",
       "8oHSkf32jY7LKS2WSv36",
       "8RopqzkV8UyasWEZxMB8",
       "8sDa6bmYd25zEEKRnQJn",
-      "96Pf23TdUYjzKH9stEXS"
+      "96Pf23TdUYjzKH9stEXS",
+      "9MH0XlaLQuIqWe1dlAHz",
+      "9mrh9VQEs49ewAlruh38",
+      "AF2AykzSppuQzGXdmvlT"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T10:58:53.116Z",
-  "catalogueGeneratedAt": "2026-11-02T10:58:45.584Z",
+  "updatedAt": "2026-11-02T11:03:07.146Z",
+  "catalogueGeneratedAt": "2026-11-02T11:00:47.223Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -639,10 +639,9 @@
     "total": 560,
     "screened_no_change": 51,
     "needs_source": 8,
-    "targeted_correction_complete": 115,
+    "targeted_correction_complete": 117,
     "preserve_prior_review": 98,
-    "pending": 286,
-    "prepared_awaiting_publication": 2
+    "pending": 286
   },
   "items": [
     {
@@ -5343,12 +5342,13 @@
       "url": "https://rankingdacompra.com.br/produto/87Q6AMHZ8ZFd06OzATcs-20260810-1.html",
       "title": "Patinete Dobrável Infantil Juvenil 2 Rodas 2fly Replay Kids",
       "fingerprint": "dcf12e55f3fa43c4de27fe78c723d3242411186f47dcb0d8cc22235634c073a0",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T11:03:07.126Z",
       "workNotes": [
         "2Fly: muda somente classificação editorial pública de patinetes elétricos para brinquedos e retira base antiderrapante como garantia de segurança. Exige identificação e limites específicos sem importar números de outra referência.",
-        "Registro oficial consultado em 02/11/2026 inclui 2Fly em família de brinquedos, mas não identifica o exemplar vinculado. Não transfere faixa etária, 80 kg de varejista, medidas, certificação ou material de cada roda. Sem teste de segurança, alteração do banco ou afirmação definitiva sobre motor."
+        "Registro oficial consultado em 02/11/2026 inclui 2Fly em família de brinquedos, mas não identifica o exemplar vinculado. Não transfere faixa etária, 80 kg de varejista, medidas, certificação ou material de cada roda. Sem teste de segurança, alteração do banco ou afirmação definitiva sobre motor.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB27675378?wid=MLB4147979056",
@@ -5667,12 +5667,13 @@
       "url": "https://rankingdacompra.com.br/produto/7EgFgcD6NyeoMB8KW4Pp-20260810-1.html",
       "title": "Perfume Carolina Herrera 212 VIP Black Eau de Parfum — volume a confirmar",
       "fingerprint": "16aa74fd04cdc20e95cce3eac21649772d2b84943eddaf9c70a0ebf057d210d1",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T11:03:07.126Z",
       "workNotes": [
         "212 VIP Black: cadastro informa 200 ml e URL menciona 100 ml. Não escolhe volume, troca produto ou link; título público deixa apresentação pendente. Retira preferência/performance comercial como teste da equipe.",
-        "Referência oficial consultada em 02/11/2026 confirma linha com vários tamanhos, não a unidade do vendedor. O slug não é confirmação de entrega de 100 ml. Volume/variante permanecem pendentes; sem autenticação ou transferência de notas, reformulação ou condições de compra do fabricante."
+        "Referência oficial consultada em 02/11/2026 confirma linha com vários tamanhos, não a unidade do vendedor. O slug não é confirmação de entrega de 100 ml. Volume/variante permanecem pendentes; sem autenticação ou transferência de notas, reformulação ou condições de compra do fabricante.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/perfume-212-vip-black-eau-de-parfum-100ml-masculino-aromatico-ambarado-carolina-herrera/up/MLBU4042818274?pdp_filters=item_id%3AMLB6880438906",
@@ -9771,11 +9772,42 @@
     "backendWrites": 0
   },
   "triage58": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "7EgFgcD6NyeoMB8KW4Pp",
       "87Q6AMHZ8ZFd06OzATcs"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T11:03:07.126Z",
+    "changedIds": [
+      "7EgFgcD6NyeoMB8KW4Pp",
+      "87Q6AMHZ8ZFd06OzATcs"
+    ],
+    "jointReleaseBatches": [
+      58
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem58.json",
+    "remainingDependencies": [
+      {
+        "id": "7EgFgcD6NyeoMB8KW4Pp",
+        "note": "Referência oficial consultada em 02/11/2026 confirma linha com vários tamanhos, não a unidade do vendedor. O slug não é confirmação de entrega de 100 ml. Volume/variante permanecem pendentes; sem autenticação ou transferência de notas, reformulação ou condições de compra do fabricante."
+      },
+      {
+        "id": "7evzZBujin11TlbT8hvm",
+        "note": "Snapshot local. Busca não localizou fonte primária específica suficiente para validar esta configuração; não usadas fichas de terceiros ou outro DC15 para adicionar RAM, tela ou garantia. Não é nova análise aprofundada ou teste físico."
+      },
+      {
+        "id": "87Q6AMHZ8ZFd06OzATcs",
+        "note": "Registro oficial consultado em 02/11/2026 inclui 2Fly em família de brinquedos, mas não identifica o exemplar vinculado. Não transfere faixa etária, 80 kg de varejista, medidas, certificação ou material de cada roda. Sem teste de segurança, alteração do banco ou afirmação definitiva sobre motor."
+      }
+    ],
+    "sourceCommit": "0a3d67aee708057efcb47b7ea0adb8a5e58cbdf5",
+    "generatedCommit": "982a438f92d9d725f5792f40727a85c4b216efdc",
+    "sitemapRun": 41433293699,
+    "integrityRun": 41433294076,
+    "pagesRun": 41433363133,
+    "testsPassed": 1445,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
