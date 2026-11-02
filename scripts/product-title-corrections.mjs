@@ -8,6 +8,20 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['e2xjzhLqo2TSHdOKUEaB', {
+    syncInformationalSchema:true, expectedListing:'MLB5039813441',
+    model:/^Deo Colônia Natura Hoje Masculino 100ml$/i,
+    summary:'A oferta identifica a deo colônia Natura Hoje masculina de 100 ml. O anúncio descreve perfil amadeirado com cardamomo e cedro; são informações da oferta, não avaliação olfativa da equipe. As expressões ideal para ocasiões diversas e sofisticação não são critérios medidos nem garantem que a fragrância agrade a todas as pessoas. Não testamos aroma, intensidade, fixação ou duração na pele. Confira a versão e a embalagem antes de escolher, sem importar notas ou características de outra fragrância Natura. Origem e declarações sobre testes em animais precisam corresponder à apresentação específica; esta ficha não autentica a unidade do vendedor.',
+    positiveNotes:['Apresentação Natura Hoje masculina de 100 ml identificada na oferta.'],
+    negativeNotes:['Preferência, intensidade e duração não testadas pela equipe.', 'Confirmar versão e procedência; descrição do anúncio não autentica o frasco.'],suppressRating:true,
+  }],
+  ['E4L1IqNlovRGggmaVOHW', {
+    syncInformationalSchema:true, expectedListing:'MLB5885455180',
+    model:/^Principia Kit Essencial Gl-03 \+ Ch \+ Vc \+ Ps Sensível Dia\/noite$/i,
+    summary:'A oferta identifica um kit Principia Essencial com quatro itens, indicados no título como GL-03, CH, VC e PS. Confira os códigos completos, volumes e rótulos de cada embalagem: as abreviações não confirmam sozinhas a composição do conjunto. O FPS pertence ao protetor solar específico, não ao kit inteiro; confirme sua versão e as instruções de uso antes de considerar FPS 60 como característica da oferta. Não generalizamos hipoalergênico, ausência de fragrância ou de óleos para todos os itens sem verificar os rótulos. A indicação para pele sensível e a idade do cadastro não são garantia de tolerância individual. Não testamos eficácia, irritação ou resultados e não prescrevemos rotina diurna ou noturna. Confira as advertências de cada produto e procure orientação profissional quando necessário, sem importar formulações de outro kit Principia.',
+    positiveNotes:['Kit de quatro itens com identificação GL-03, CH, VC e PS anunciada; conferir códigos completos.'],
+    negativeNotes:['FPS e alegações de composição dependem de cada produto e versão, não do conjunto inteiro.', 'Sem garantia de tolerância individual, teste de eficácia ou prescrição de rotina.'],suppressRating:true,
+  }],
   ['DuqIf8kBMwEZzRskn9LR', {
     syncInformationalSchema:true, expectedListing:'MLB6930924132',
     model:/^Poco X8 Pro Max 512gb 12gb Ram Global Bateria 8\.500mah$/i,
