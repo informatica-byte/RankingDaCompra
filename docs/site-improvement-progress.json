@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "9MH0XlaLQuIqWe1dlAHz",
-      "9mrh9VQEs49ewAlruh38",
-      "AF2AykzSppuQzGXdmvlT",
       "aIFZHrVtBLCNlrEdxIud",
       "aIWLmzyxlViGPWt6Mctg",
       "aozkBGONt1bYjzktRNP7",
       "aQjR3wSqj9aObPqMJp10",
-      "aqN9d0IKYi8X1yUcyFy9"
+      "aqN9d0IKYi8X1yUcyFy9",
+      "AUot5FOcnAXK9wLKfANM",
+      "b2ejp8pkiWYOgBAdeXto",
+      "B3HTtYZQAYonACif4tW1"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T15:21:24.783Z",
-  "catalogueGeneratedAt": "2026-11-02T15:21:21.935Z",
+  "updatedAt": "2026-11-02T15:24:29.971Z",
+  "catalogueGeneratedAt": "2026-11-02T15:22:20.393Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 53,
     "needs_source": 8,
-    "targeted_correction_complete": 121,
+    "targeted_correction_complete": 124,
     "preserve_prior_review": 98,
-    "pending": 278,
-    "prepared_awaiting_publication": 3
+    "pending": 278
   },
   "items": [
     {
@@ -2398,12 +2397,13 @@
       "url": "https://rankingdacompra.com.br/produto/9mrh9VQEs49ewAlruh38-20260810-1.html",
       "title": "Colágeno tipo 2 Essencial Labs — 45 mg anunciados, 60 cápsulas",
       "fingerprint": "aa4b92ad557aa6d030e8b6090c7e3414779e3ee5142b4a137123c7628a02f4b8",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T15:24:29.923Z",
       "workNotes": [
         "Colágeno: título com superlativos e H1 cortado; resumo prescreve uma cápsula diária e garante 60 doses. Corrige para identificação da oferta com 45 mg a esclarecer no rótulo, sem inferir matéria-prima ou efeito terapêutico.",
-        "Sem rótulo primário específico suficiente. Não usa outro produto de 40/45 mg, UC-II, R-GEN2 ou outra marca para confirmar colágeno não desnaturado, dose, faixa etária, duração ou benefícios. Anvisa é contexto geral, não aprovação da oferta."
+        "Sem rótulo primário específico suficiente. Não usa outro produto de 40/45 mg, UC-II, R-GEN2 ou outra marca para confirmar colágeno não desnaturado, dose, faixa etária, duração ou benefícios. Anvisa é contexto geral, não aprovação da oferta.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB43057072?wid=MLB3909103951",
@@ -2774,12 +2774,13 @@
       "url": "https://rankingdacompra.com.br/produto/9MH0XlaLQuIqWe1dlAHz-20260810-1.html",
       "title": "Creatina monohidratada Growth Supplements 250 g sem sabor",
       "fingerprint": "950193b4bfbd1e0f2948944f52dcc16074a0bd8b7be2115d31d7cfb0eed3c634",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T15:24:29.923Z",
       "workNotes": [
         "Growth: recomenda ingerir com alimentos para assimilação e afirma glúten/adequação sem rótulo específico. Retira prescrição e promessa, preserva identificação 250 g sem sabor e explicita limite de lote.",
-        "Snapshot local e orientação geral Anvisa consultada em 02/11/2026. Busca Growth confirmou existência de apresentação, mas não rótulo/lote da oferta; não importa Creapure, laudos, dose, disponibilidade ou benefícios de outra embalagem."
+        "Snapshot local e orientação geral Anvisa consultada em 02/11/2026. Busca Growth confirmou existência de apresentação, mas não rótulo/lote da oferta; não importa Creapure, laudos, dose, disponibilidade ou benefícios de outra embalagem.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB19603205?wid=MLB5872060016",
@@ -3866,12 +3867,13 @@
       "url": "https://rankingdacompra.com.br/produto/AF2AykzSppuQzGXdmvlT-20260810-1.html",
       "title": "Kit 10 Pote De Vidro Marmita Hermético 370ml Freezer Fitness Rishon",
       "fingerprint": "8a8c5233e809307ec6e97cc773d995ebde31637df778ab1cdbd4becbe135c472",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T15:24:29.923Z",
       "workNotes": [
         "Rishon: retira segurança, tolerância a variações térmicas, conservação prolongada e ausência de odores como garantias. Mantém 10 potes/370 ml atribuídos à oferta e pede instruções específicas para pote e tampa.",
-        "Snapshot local sem manual exato localizado. Não transfere limites de temperatura ou instruções de outra marca, kit Rishon ou tamanho; sem teste térmico, de vedação ou de conservação."
+        "Snapshot local sem manual exato localizado. Não transfere limites de temperatura ou instruções de outra marca, kit Rishon ou tamanho; sem teste térmico, de vedação ou de conservação.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB66060206?wid=MLB4371605519"
@@ -9984,12 +9986,44 @@
     "backendWrites": 0
   },
   "triage61": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "9MH0XlaLQuIqWe1dlAHz",
       "9mrh9VQEs49ewAlruh38",
       "AF2AykzSppuQzGXdmvlT"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T15:24:29.923Z",
+    "changedIds": [
+      "9MH0XlaLQuIqWe1dlAHz",
+      "9mrh9VQEs49ewAlruh38",
+      "AF2AykzSppuQzGXdmvlT"
+    ],
+    "jointReleaseBatches": [
+      61
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem61.json",
+    "remainingDependencies": [
+      {
+        "id": "9MH0XlaLQuIqWe1dlAHz",
+        "note": "Snapshot local e orientação geral Anvisa consultada em 02/11/2026. Busca Growth confirmou existência de apresentação, mas não rótulo/lote da oferta; não importa Creapure, laudos, dose, disponibilidade ou benefícios de outra embalagem."
+      },
+      {
+        "id": "9mrh9VQEs49ewAlruh38",
+        "note": "Sem rótulo primário específico suficiente. Não usa outro produto de 40/45 mg, UC-II, R-GEN2 ou outra marca para confirmar colágeno não desnaturado, dose, faixa etária, duração ou benefícios. Anvisa é contexto geral, não aprovação da oferta."
+      },
+      {
+        "id": "AF2AykzSppuQzGXdmvlT",
+        "note": "Snapshot local sem manual exato localizado. Não transfere limites de temperatura ou instruções de outra marca, kit Rishon ou tamanho; sem teste térmico, de vedação ou de conservação."
+      }
+    ],
+    "sourceCommit": "ba3615c65b3b97c5e11ba0feead9da288aab4681",
+    "generatedCommit": "dc629e7a7cb11aee69f81a3921be120204faac2a",
+    "sitemapRun": 41470883980,
+    "integrityRun": 41470883984,
+    "pagesRun": 41470974849,
+    "testsPassed": 1462,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
