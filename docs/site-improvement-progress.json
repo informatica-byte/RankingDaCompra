@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "DuqIf8kBMwEZzRskn9LR",
-      "dVcHtGhQTqXzldhTAOVv",
-      "e2JrkBA5LBbERAqFunqx",
       "e2xjzhLqo2TSHdOKUEaB",
       "E4L1IqNlovRGggmaVOHW",
       "E4SDe0v0L4ztydHzIbRw",
       "EbNVkHXOor6py78Wgl8X",
-      "eFH6DoZM48JWTDwQIImg"
+      "eFH6DoZM48JWTDwQIImg",
+      "ERUkcWCy7XxGVEyDizZ2",
+      "eTB1rffOxFexqoubCObQ",
+      "Evo4CPaNJPvGuj1ILt5u"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T21:23:33.727Z",
-  "catalogueGeneratedAt": "2026-11-02T21:23:25.881Z",
+  "updatedAt": "2026-11-02T21:26:27.008Z",
+  "catalogueGeneratedAt": "2026-11-02T21:24:22.620Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 61,
     "needs_source": 8,
-    "targeted_correction_complete": 141,
+    "targeted_correction_complete": 143,
     "preserve_prior_review": 98,
-    "pending": 251,
-    "prepared_awaiting_publication": 2
+    "pending": 251
   },
   "items": [
     {
@@ -4863,12 +4862,13 @@
       "url": "https://rankingdacompra.com.br/produto/e2JrkBA5LBbERAqFunqx-20260810-1.html",
       "title": "Micro-ondas 20l Prata Porta Espelhada Mastercook Midea",
       "fingerprint": "8d856349de0e137e9d8b4bfb51e08ec5dbcc22ccb6ae7b1c511600d7e7f2ce40",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T21:26:26.979Z",
       "workNotes": [
         "Retira encaixe universal de 26 cm e autolimpeza garantida; distingue potência nominal de potência de micro-ondas.",
-        "Código exato da unidade não confirmado. Manual primário MasterCook localizado distingue potências; não importados valores, tensão ou acessórios de outro modelo."
+        "Código exato da unidade não confirmado. Manual primário MasterCook localizado distingue potências; não importados valores, tensão ou acessórios de outro modelo.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB53782017?wid=MLB7658837282"
@@ -6019,12 +6019,13 @@
       "url": "https://rankingdacompra.com.br/produto/DuqIf8kBMwEZzRskn9LR-20260810-1.html",
       "title": "Poco X8 Pro Max 512gb 12gb Ram Global Bateria 8.500mah",
       "fingerprint": "07b31b19d5c67f844603a2088d6771413ce760793baa8bea6490f2dfaad41382",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T21:26:26.979Z",
       "workNotes": [
         "Retira superlativos e superioridade sobre rivais sem teste; qualifica bateria e resistência.",
-        "Referência global consultada; não verifica unidade, autonomia ou superioridade. Não transfere dados de Pro para Pro Max."
+        "Referência global consultada; não verifica unidade, autonomia ou superioridade. Não transfere dados de Pro para Pro Max.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB69116953?wid=MLB6930924132",
@@ -10539,11 +10540,42 @@
     "backendWrites": 0
   },
   "triage70": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "DuqIf8kBMwEZzRskn9LR",
       "e2JrkBA5LBbERAqFunqx"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T21:26:26.979Z",
+    "changedIds": [
+      "DuqIf8kBMwEZzRskn9LR",
+      "e2JrkBA5LBbERAqFunqx"
+    ],
+    "jointReleaseBatches": [
+      70
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem70.json",
+    "remainingDependencies": [
+      {
+        "id": "DuqIf8kBMwEZzRskn9LR",
+        "note": "Referência global consultada; não verifica unidade, autonomia ou superioridade. Não transfere dados de Pro para Pro Max."
+      },
+      {
+        "id": "dVcHtGhQTqXzldhTAOVv",
+        "note": "Snapshot local; não autentica frasco nem confirma origem, refil, formulação ou declarações específicas da embalagem."
+      },
+      {
+        "id": "e2JrkBA5LBbERAqFunqx",
+        "note": "Código exato da unidade não confirmado. Manual primário MasterCook localizado distingue potências; não importados valores, tensão ou acessórios de outro modelo."
+      }
+    ],
+    "sourceCommit": "8cf563c39deb23dcbbfce61d7915a732626cd612",
+    "generatedCommit": "8f624537f68ee9433177a1a3badde3fbdc0cefc5",
+    "sitemapRun": 41527999364,
+    "integrityRun": 41527998995,
+    "pagesRun": 41528081730,
+    "testsPassed": 1481,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

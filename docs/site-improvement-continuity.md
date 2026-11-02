@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 70 — 20261102, PUBLICADA E VERIFICADA
+
+- DuqIf8kBMwEZzRskn9LR: targeted_correction_complete. Retira superlativos e superioridade sobre rivais sem teste; qualifica bateria e resistência. Limite: Referência global consultada; não verifica unidade, autonomia ou superioridade. Não transfere dados de Pro para Pro Max.
+- dVcHtGhQTqXzldhTAOVv: screened_no_change. Kaiak: descrição já atribuída ao anúncio sem promessa de duração ou desempenho; preservada sem reescrever. Limite: Snapshot local; não autentica frasco nem confirma origem, refil, formulação ou declarações específicas da embalagem.
+- e2JrkBA5LBbERAqFunqx: targeted_correction_complete. Retira encaixe universal de 26 cm e autolimpeza garantida; distingue potência nominal de potência de micro-ondas. Limite: Código exato da unidade não confirmado. Manual primário MasterCook localizado distingue potências; não importados valores, tensão ou acessórios de outro modelo.
+
+Fonte 8cf563c39deb23dcbbfce61d7915a732626cd612; geração 8f624537f68ee9433177a1a3badde3fbdc0cefc5; sitemap 41527999364, integridade 41527998995, Pages 41528081730: SUCCESS. 1481 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 559 entradas editoriais inalteradas. Preservados 561 IDs/afiliados/campos operacionais e 614 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem70.json.
+
+Totais: {"total":561,"screened_no_change":61,"needs_source":8,"targeted_correction_complete":143,"preserve_prior_review":98,"pending":251}. Próximos pendentes: e2xjzhLqo2TSHdOKUEaB — Deo Colônia Natura Hoje Masculino 100ml; E4L1IqNlovRGggmaVOHW — Principia Kit Essencial Gl-03 + Ch + Vc + Ps Sensível Dia/noite; E4SDe0v0L4ztydHzIbRw — Chuveiro Ducha Lorenzetti Loren Shower Eletrônico Branco 6800w 220V. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 69 — 20261102, PUBLICADA E VERIFICADA
 
 - DatIY5m4eQ3X4KOykiAY: screened_no_change. Patins: descrição já atribuída ao anúncio, sem defeito concreto demonstrado. Preservada integralmente. Limite: Não confirma segurança, faixa etária, carga, ajustes, materiais ou certificação da unidade; não importar dados de outro patins.
