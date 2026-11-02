@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "C5b5fKstKDUgNDUxnQkP",
-      "C8VXX9MfKS8ULwDiDWXn",
-      "CO1tCKBzr6q79BOpdBZW",
       "CvM3xyDY4t5BF7XdPjF6",
       "d31e9yty1t0dekViXbAi",
       "d6VCoNciFGrUwOkaNoDU",
       "DatIY5m4eQ3X4KOykiAY",
-      "dgcv2JkW8bL6DBSEqB9V"
+      "dgcv2JkW8bL6DBSEqB9V",
+      "dNFcgW7f0gXpuucpEemY",
+      "DuqIf8kBMwEZzRskn9LR",
+      "dVcHtGhQTqXzldhTAOVv"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T21:04:10.436Z",
-  "catalogueGeneratedAt": "2026-11-02T21:04:02.504Z",
+  "updatedAt": "2026-11-02T21:08:25.370Z",
+  "catalogueGeneratedAt": "2026-11-02T21:04:52.675Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 58,
     "needs_source": 8,
-    "targeted_correction_complete": 136,
+    "targeted_correction_complete": 137,
     "preserve_prior_review": 98,
-    "pending": 260,
-    "prepared_awaiting_publication": 1
+    "pending": 260
   },
   "items": [
     {
@@ -2453,12 +2452,13 @@
       "url": "https://rankingdacompra.com.br/produto/C8VXX9MfKS8ULwDiDWXn-20260810-1.html",
       "title": "Collagen Renew Sabor Laranja - Nutrify 300g",
       "fingerprint": "d07ebf459e1b17f9be0f46aab56e6a9776d2d264446a639997eb244fda4fa059",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T21:08:25.339Z",
       "workNotes": [
         "Atribui composição à oferta e exige rótulo da unidade para alergênicos e faixa etária; não trata descrição como verificação do lote.",
-        "Ficha primária histórica localizada não confirma formulação do lote atual. Não importa dose, efeitos ou composição quantitativa de outra edição."
+        "Ficha primária histórica localizada não confirma formulação do lote atual. Não importa dose, efeitos ou composição quantitativa de outra edição.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB23059264?wid=MLB3905003519"
@@ -10361,10 +10361,40 @@
     "backendWrites": 0
   },
   "triage67": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "C8VXX9MfKS8ULwDiDWXn"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T21:08:25.339Z",
+    "changedIds": [
+      "C8VXX9MfKS8ULwDiDWXn"
+    ],
+    "jointReleaseBatches": [
+      67
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem67.json",
+    "remainingDependencies": [
+      {
+        "id": "C5b5fKstKDUgNDUxnQkP",
+        "note": "Reaproveita texto já revisado; modelo, portas e valores elétricos continuam divergentes. Sem nova conferência ou teste."
+      },
+      {
+        "id": "C8VXX9MfKS8ULwDiDWXn",
+        "note": "Ficha primária histórica localizada não confirma formulação do lote atual. Não importa dose, efeitos ou composição quantitativa de outra edição."
+      },
+      {
+        "id": "CO1tCKBzr6q79BOpdBZW",
+        "note": "Referência de catálogo identifica Pulse RX, Ultraknit e EVA-K; não autentica unidade nem confirma ajuste, conforto, numeração ou desempenho. Não transfere dados de Park ou outra linha."
+      }
+    ],
+    "sourceCommit": "a6e995442f7c469fe7285ed239a06927099004e1",
+    "generatedCommit": "2e139d3cc9e636f8e4f461bdd76517503329fb93",
+    "sitemapRun": 41524998784,
+    "integrityRun": 41524998812,
+    "pagesRun": 41525080101,
+    "testsPassed": 1478,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

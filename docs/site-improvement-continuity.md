@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 67 — 20261102, PUBLICADA E VERIFICADA
+
+- C5b5fKstKDUgNDUxnQkP: screened_no_change. Basike já distingue capacidade nominal, desempenho não medido e divergências. Preservado integralmente sem repetir revisão de anúncio. Limite: Reaproveita texto já revisado; modelo, portas e valores elétricos continuam divergentes. Sem nova conferência ou teste.
+- C8VXX9MfKS8ULwDiDWXn: targeted_correction_complete. Atribui composição à oferta e exige rótulo da unidade para alergênicos e faixa etária; não trata descrição como verificação do lote. Limite: Ficha primária histórica localizada não confirma formulação do lote atual. Não importa dose, efeitos ou composição quantitativa de outra edição.
+- CO1tCKBzr6q79BOpdBZW: screened_no_change. Kappa: descrição técnica sem promessa de resultado pessoal; não demonstrada contradição necessária. Preserva variante e conteúdo. Limite: Referência de catálogo identifica Pulse RX, Ultraknit e EVA-K; não autentica unidade nem confirma ajuste, conforto, numeração ou desempenho. Não transfere dados de Park ou outra linha.
+
+Fonte a6e995442f7c469fe7285ed239a06927099004e1; geração 2e139d3cc9e636f8e4f461bdd76517503329fb93; sitemap 41524998784, integridade 41524998812, Pages 41525080101: SUCCESS. 1478 testes, validate-site e invariantes aprovados. 1 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 561 IDs/afiliados/campos operacionais e 614 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem67.json.
+
+Totais: {"total":561,"screened_no_change":58,"needs_source":8,"targeted_correction_complete":137,"preserve_prior_review":98,"pending":260}. Próximos pendentes: CvM3xyDY4t5BF7XdPjF6 — Canivete Militar Tático Defesa Bolso Aço Inox Caça Ec-713; d31e9yty1t0dekViXbAi — Tênis Kappa Pulse Rx Unissex Corrida Conforto; d6VCoNciFGrUwOkaNoDU — Natura Ilía Completa 50ml Feminino Parfum Spray. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 66 — 20261102, PUBLICADA E VERIFICADA
 
 - bpuXfDB4cwTrjlMUINRi: screened_no_change. Capa: texto já atribui identificação ao anúncio; nenhuma contradição comprovada que exija reescrita. Limite: Snapshot local, sem confirmar impermeabilidade, medidas, altura, material ou conservação. Não importar dados de outro protetor.
