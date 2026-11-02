@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T20:50:30.816Z",
-  "catalogueGeneratedAt": "2026-11-02T20:47:45.807Z",
+  "updatedAt": "2026-11-02T20:57:45.117Z",
+  "catalogueGeneratedAt": "2026-11-02T20:57:37.084Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -653,11 +653,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 561,
-    "screened_no_change": 55,
+    "screened_no_change": 56,
     "needs_source": 8,
     "targeted_correction_complete": 134,
     "preserve_prior_review": 98,
-    "pending": 266
+    "pending": 263,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -2024,11 +2025,16 @@
       "url": "https://rankingdacompra.com.br/produto/bpuXfDB4cwTrjlMUINRi-20260810-1.html",
       "title": "Capa Protetora Colchão Box Casal Padrão Matelado Impermeável",
       "fingerprint": "5c9bb71492f49c60f82d79704acf8522fff12828749400ecfb486e3143925d3a",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-02T20:57:45.119Z",
+      "workNotes": [
+        "Capa: texto já atribui identificação ao anúncio; nenhuma contradição comprovada que exija reescrita.",
+        "Snapshot local, sem confirmar impermeabilidade, medidas, altura, material ou conservação. Não importar dados de outro protetor."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4002919471-_JM?searchVariation=183132347986"
+      ]
     },
     {
       "id": "oYoalVz8s4bR2iumSyhW",
@@ -7910,17 +7916,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "c1R3iVzduEndTWAhxXvO",
-      "url": "https://rankingdacompra.com.br/produto/c1R3iVzduEndTWAhxXvO-20260810-1.html",
-      "title": "Torneira Elétrica De Parede - Loren Easy Lorenzetti Acabamento Branco Cor Branco 220v 5.5KW",
-      "fingerprint": "2c3244c36284c77796d5ff680b137f7436e79a108f5adc27c54f7dd33cc228b1",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "g3QWQpsMAD73Kg7gMUzm",
       "url": "https://rankingdacompra.com.br/produto/g3QWQpsMAD73Kg7gMUzm-20260810-1.html",
       "title": "Torneira Gourmet Luxo Flexível Cozinha Parede 2 Jatos Pia Metal Cor Aço Inox e Preto- Marca Camperluz",
@@ -7941,6 +7936,25 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "c1R3iVzduEndTWAhxXvO",
+      "url": "https://rankingdacompra.com.br/produto/c1R3iVzduEndTWAhxXvO-20260810-1.html",
+      "title": "Torneira Lorenzetti Loren Easy de parede 220 V 5.500 W branca",
+      "fingerprint": "cf5e7763282d60adc9f472d53e671fd5e8c50938d18028239436103746504959",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira instalação prática e eficiência como garantias; preserva parede, branca, 220 V e 5500 W.",
+        "Referência oficial específica consultada; não avalia instalação ou unidade. Sem dimensionamento, teste, bivolt ou dados de versão de mesa."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB32229073?wid=MLB4470192989",
+        "https://www.lorenzetti.com.br/produto/loren-easy-parede"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "LUsq533hX6lTuHwnZbhz",
@@ -8109,12 +8123,19 @@
       "id": "bufeMWJJrnyiM5TBcKXW",
       "url": "https://rankingdacompra.com.br/produto/bufeMWJJrnyiM5TBcKXW-20260810-1.html",
       "title": "Ventilador de Coluna Ventisol Turbo 6 Pás 30cm Preto 8234",
-      "fingerprint": "147b00be359f4a64ba7d02f5d17929760e7690d042ed78b0e6389f2e8600599b",
-      "status": "pending",
+      "fingerprint": "75578b221d2927a13ebcc8f44579f6abe5cc7bdb9647241c3166f456a6ef870c",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira excelente eficiência e boa ventilação como desempenho comprovado; atribui recursos à oferta.",
+        "Sem fonte primária exata localizada para unidade; não transfere tensão, potência ou ruído de outro Turbo 6."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB18971071?wid=MLB4116164126"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "hLiaQWog1dogQ2OpMDSt",
@@ -10279,5 +10300,13 @@
     "testsPassed": 1476,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage66": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "bufeMWJJrnyiM5TBcKXW",
+      "c1R3iVzduEndTWAhxXvO"
+    ],
+    "newDeepReviews": 0
   }
 }

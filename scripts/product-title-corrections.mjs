@@ -8,6 +8,22 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['bufeMWJJrnyiM5TBcKXW', {
+    syncInformationalSchema:true, expectedListing:'MLB4116164126',
+    model:/^Ventilador de Coluna Ventisol Turbo 6 Pás 30cm Preto 8234$/i,
+    summary:'A oferta identifica o ventilador de coluna Ventisol Turbo 6, de 30 cm, preto, com código 8234. A descrição anuncia três velocidades e oscilação horizontal. Esses recursos permitem avaliar a proposta de circulação de ar, mas não comprovam eficiência, silêncio ou desempenho em determinado ambiente. Não medimos vazão, ruído, consumo ou durabilidade. Antes de escolher, confira a tensão da unidade, as dimensões da base, os ajustes e o manual específico. Não presumimos bivolt nem transferimos potência ou características de outro ventilador Turbo 6 de mesa ou de tamanho diferente.',
+    positiveNotes:['Formato de coluna, 30 cm, três velocidades e oscilação descritos na oferta.'],
+    negativeNotes:['Vazão, ruído, consumo e desempenho não medidos pela equipe.', 'Confirmar tensão, código e ajustes da unidade; não presumir bivolt.'], suppressRating:true,
+  }],
+  ['c1R3iVzduEndTWAhxXvO', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB4470192989',
+    model:/^(?:Torneira Elétrica De Parede - Loren Easy Lorenzetti Acabamento Branco Cor Branco 220v 5\.5KW|Torneira Lorenzetti Loren Easy de parede 220 V 5.500 W branca)$/i,
+    correct:'Torneira Lorenzetti Loren Easy de parede 220 V 5.500 W branca',
+    summary:'A oferta identifica a torneira elétrica Lorenzetti Loren Easy de parede, branca, na versão 220 V de 5.500 W. A referência oficial apresenta essa combinação de tensão e potência; isso não confirma a compatibilidade com a instalação da sua casa. A expressão instalação prática do texto anterior não substitui a avaliação dos requisitos elétricos e hidráulicos do manual por profissional qualificado. Confirme a etiqueta da unidade e o modelo de parede, sem confundir com a versão de mesa ou presumir bivolt. Potência nominal não é um teste de eficiência ou garantia de temperatura em qualquer condição. Não medimos aquecimento, consumo ou desempenho e não fornecemos dimensionamento elétrico nesta ficha.',
+    positiveNotes:['Versão de parede 220 V e 5.500 W identificada na oferta e na referência oficial.'],
+    negativeNotes:['Compatibilidade elétrica e hidráulica depende de avaliação específica; não presumir bivolt.', 'Aquecimento, consumo e desempenho não testados pela equipe.'],
+    contextSourceUrl:'https://www.lorenzetti.com.br/produto/loren-easy-parede',contextSourceLabel:'Lorenzetti Loren Easy parede: referência oficial, não avaliação da instalação ou da unidade',suppressRating:true,
+  }],
   ['Bf3ccSwSiVkLw1Z8k2Hu', {
     syncInformationalSchema:true,
     expectedListing:'MLB4297760749',
