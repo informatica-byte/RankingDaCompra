@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "EbNVkHXOor6py78Wgl8X",
-      "eFH6DoZM48JWTDwQIImg",
-      "ERUkcWCy7XxGVEyDizZ2",
       "eTB1rffOxFexqoubCObQ",
       "Evo4CPaNJPvGuj1ILt5u",
       "f3MOXgokgTifrolFYOhc",
       "F8RXRAtxM4QOCg5hbFh9",
-      "f9oPhNSAdi4gqtwPJbJh"
+      "f9oPhNSAdi4gqtwPJbJh",
+      "FeYsjVKPd6nzosN6U8QB",
+      "fflXJkY0fRQJg8t2QZqn",
+      "FlQInLlTCwVdemK0g3rZ"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T21:39:41.734Z",
-  "catalogueGeneratedAt": "2026-11-02T21:39:32.910Z",
+  "updatedAt": "2026-11-02T21:42:39.277Z",
+  "catalogueGeneratedAt": "2026-11-02T21:40:33.623Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 62,
     "needs_source": 8,
-    "targeted_correction_complete": 145,
+    "targeted_correction_complete": 148,
     "preserve_prior_review": 98,
-    "pending": 245,
-    "prepared_awaiting_publication": 3
+    "pending": 245
   },
   "items": [
     {
@@ -2600,12 +2599,13 @@
       "url": "https://rankingdacompra.com.br/produto/ERUkcWCy7XxGVEyDizZ2-20260810-1.html",
       "title": "Controlador Gamesir Galileo G8 Plus Com Bluetooth Para Cel",
       "fingerprint": "63f7df85b209223c415ed9f443db625d130c8cf700088fab39d71ed7ae3d3966",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T21:42:39.249Z",
       "workNotes": [
         "Retira diversão garantida e compatibilidade genérica; distingue conexão, jogo e versão do controle.",
-        "FAQ primária consultada, sem teste da unidade ou autenticação. Sem transferir especificações de G8 Galileo ou G8+ MFi."
+        "FAQ primária consultada, sem teste da unidade ou autenticação. Sem transferir especificações de G8 Galileo ou G8+ MFi.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3085181112?wid=MLB5325840582",
@@ -4005,12 +4005,13 @@
       "url": "https://rankingdacompra.com.br/produto/eFH6DoZM48JWTDwQIImg-20260810-1.html",
       "title": "Kit 2 Refil Ntk Gás Butano + Maçarico Camping Fogareiro 227g",
       "fingerprint": "0290dca71531ebafb9111c6df0a07d1a776d39ea7c74aa452cbfb5b7889fd426",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T21:42:39.249Z",
       "workNotes": [
         "Retira inclusão garantida de fogareiro e peso total não comprovado; distingue refis e maçarico.",
-        "Snapshot local; conteúdo e modelo do maçarico a confirmar. Sem instruções de adaptação, recarga ou manuseio, nem garantia de segurança."
+        "Snapshot local; conteúdo e modelo do maçarico a confirmar. Sem instruções de adaptação, recarga ou manuseio, nem garantia de segurança.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5399158069?wid=MLB5353515677"
@@ -8144,12 +8145,13 @@
       "url": "https://rankingdacompra.com.br/produto/EbNVkHXOor6py78Wgl8X-20260810-1.html",
       "title": "Tripé Basike 1,8 m com rastreamento facial anunciado e controle Bluetooth",
       "fingerprint": "bc05fd439b69b7ad8db63b6b95f6d6d96a56a8ee3ca6e418889df5c96d9985ff",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T21:42:39.249Z",
       "workNotes": [
         "Encurta título e distingue rastreamento de estabilização; qualifica universalidade e montagem não verificadas.",
-        "Snapshot local; modelo e manual exatos ausentes. Sem importar materiais, carga, conector ou recarga de outro tripé."
+        "Snapshot local; modelo e manual exatos ausentes. Sem importar materiais, carga, conector ou recarga de outro tripé.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB54097914?wid=MLB5643705886"
@@ -10663,12 +10665,44 @@
     "backendWrites": 0
   },
   "triage72": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "ERUkcWCy7XxGVEyDizZ2",
       "EbNVkHXOor6py78Wgl8X",
       "eFH6DoZM48JWTDwQIImg"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T21:42:39.249Z",
+    "changedIds": [
+      "EbNVkHXOor6py78Wgl8X",
+      "eFH6DoZM48JWTDwQIImg",
+      "ERUkcWCy7XxGVEyDizZ2"
+    ],
+    "jointReleaseBatches": [
+      72
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem72.json",
+    "remainingDependencies": [
+      {
+        "id": "EbNVkHXOor6py78Wgl8X",
+        "note": "Snapshot local; modelo e manual exatos ausentes. Sem importar materiais, carga, conector ou recarga de outro tripé."
+      },
+      {
+        "id": "eFH6DoZM48JWTDwQIImg",
+        "note": "Snapshot local; conteúdo e modelo do maçarico a confirmar. Sem instruções de adaptação, recarga ou manuseio, nem garantia de segurança."
+      },
+      {
+        "id": "ERUkcWCy7XxGVEyDizZ2",
+        "note": "FAQ primária consultada, sem teste da unidade ou autenticação. Sem transferir especificações de G8 Galileo ou G8+ MFi."
+      }
+    ],
+    "sourceCommit": "4d6de1612b4b18c169be3759388dc593d18c486e",
+    "generatedCommit": "7e62be6a35f54be7833c1fe712bdbfb9ec64d766",
+    "sitemapRun": 41530463023,
+    "integrityRun": 41530462802,
+    "pagesRun": 41530545520,
+    "testsPassed": 1483,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

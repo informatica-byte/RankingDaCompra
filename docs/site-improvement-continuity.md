@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 72 — 20261102, PUBLICADA E VERIFICADA
+
+- EbNVkHXOor6py78Wgl8X: targeted_correction_complete. Encurta título e distingue rastreamento de estabilização; qualifica universalidade e montagem não verificadas. Limite: Snapshot local; modelo e manual exatos ausentes. Sem importar materiais, carga, conector ou recarga de outro tripé.
+- eFH6DoZM48JWTDwQIImg: targeted_correction_complete. Retira inclusão garantida de fogareiro e peso total não comprovado; distingue refis e maçarico. Limite: Snapshot local; conteúdo e modelo do maçarico a confirmar. Sem instruções de adaptação, recarga ou manuseio, nem garantia de segurança.
+- ERUkcWCy7XxGVEyDizZ2: targeted_correction_complete. Retira diversão garantida e compatibilidade genérica; distingue conexão, jogo e versão do controle. Limite: FAQ primária consultada, sem teste da unidade ou autenticação. Sem transferir especificações de G8 Galileo ou G8+ MFi.
+
+Fonte 4d6de1612b4b18c169be3759388dc593d18c486e; geração 7e62be6a35f54be7833c1fe712bdbfb9ec64d766; sitemap 41530463023, integridade 41530462802, Pages 41530545520: SUCCESS. 1483 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 558 entradas editoriais inalteradas. Preservados 561 IDs/afiliados/campos operacionais e 614 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem72.json.
+
+Totais: {"total":561,"screened_no_change":62,"needs_source":8,"targeted_correction_complete":148,"preserve_prior_review":98,"pending":245}. Próximos pendentes: eTB1rffOxFexqoubCObQ — Samsung Galaxy A07 128gb 4gb Ram Preto; Evo4CPaNJPvGuj1ILt5u — POLARES Z20 Patinete Elétrico Premium 500w Pneu Aderente Velocidade Máxima 32km/h Motorizado Até 30km De Autonomia Polares; f3MOXgokgTifrolFYOhc — Politriz Eletrica Roto Orbital 15mm 5 E 6 Pol 950w PRO950 The Black Tools. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 71 — 20261102, PUBLICADA E VERIFICADA
 
 - e2xjzhLqo2TSHdOKUEaB: targeted_correction_complete. Retira ideal e sofisticação como qualificação da equipe; atribui perfil olfativo ao anúncio. Limite: Snapshot local; sem teste de aroma ou confirmação específica da unidade, origem e declarações da embalagem.
