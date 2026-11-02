@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "8RopqzkV8UyasWEZxMB8",
-      "8sDa6bmYd25zEEKRnQJn",
-      "96Pf23TdUYjzKH9stEXS",
       "9MH0XlaLQuIqWe1dlAHz",
       "9mrh9VQEs49ewAlruh38",
       "AF2AykzSppuQzGXdmvlT",
       "aIFZHrVtBLCNlrEdxIud",
-      "aIWLmzyxlViGPWt6Mctg"
+      "aIWLmzyxlViGPWt6Mctg",
+      "aozkBGONt1bYjzktRNP7",
+      "aQjR3wSqj9aObPqMJp10",
+      "aqN9d0IKYi8X1yUcyFy9"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T12:49:50.932Z",
-  "catalogueGeneratedAt": "2026-11-02T12:49:47.924Z",
+  "updatedAt": "2026-11-02T12:53:04.533Z",
+  "catalogueGeneratedAt": "2026-11-02T12:50:39.424Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 53,
     "needs_source": 8,
-    "targeted_correction_complete": 119,
+    "targeted_correction_complete": 121,
     "preserve_prior_review": 98,
-    "pending": 281,
-    "prepared_awaiting_publication": 2
+    "pending": 281
   },
   "items": [
     {
@@ -4836,12 +4835,13 @@
       "url": "https://rankingdacompra.com.br/produto/96Pf23TdUYjzKH9stEXS-20260810-1.html",
       "title": "Mini aspirador Chrome Technology USB com soprador — 3 em 1 anunciado",
       "fingerprint": "77de74dc6a30c5e28ed8d575076b15c64fb779a3394f64f719c985fa07eed70b",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T12:53:04.508Z",
       "workNotes": [
         "Mini aspirador: título extenso e H1 cortado; atribui 50 W e filtro à oferta, sem tratar potência como desempenho testado. Explicita terceira função e manual ausentes, sem inventar capacidades.",
-        "Somente snapshot local, sem manual/código técnico exato confirmado. Não importa sucção, autonomia, tipo de filtro, capacidade ou acessórios de outro aparelho visualmente semelhante."
+        "Somente snapshot local, sem manual/código técnico exato confirmado. Não importa sucção, autonomia, tipo de filtro, capacidade ou acessórios de outro aparelho visualmente semelhante.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB44701480?wid=MLB6433211634"
@@ -5757,12 +5757,13 @@
       "url": "https://rankingdacompra.com.br/produto/8RopqzkV8UyasWEZxMB8-20260810-1.html",
       "title": "Perfume Lattafa Asad Eau de Parfum 100 ml",
       "fingerprint": "ba99ffec5bed8bcc81fd54d0c099f68a7b56ce14f28dd6fe616d03cd6bdd6b59",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T12:53:04.508Z",
       "workNotes": [
         "Asad: título repetitivo e H1 cortado; resumo público genérico e promessa de rendimento/impacto sem teste. Identifica apresentação e distingue referência da marca de autenticação da oferta.",
-        "Página oficial consultada em 02/11/2026 descreve Asad e 100 ml, não autentica vendedor ou frasco. Não importa avaliações de clientes (incluem referência Zanzibar), duração, originalidade, sensação ou condições de outro canal."
+        "Página oficial consultada em 02/11/2026 descreve Asad e 100 ml, não autentica vendedor ou frasco. Não importa avaliações de clientes (incluem referência Zanzibar), duração, originalidade, sensação ou condições de outro canal.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3063059862?wid=MLB3998743869",
@@ -9920,11 +9921,42 @@
     "backendWrites": 0
   },
   "triage60": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "8RopqzkV8UyasWEZxMB8",
       "96Pf23TdUYjzKH9stEXS"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T12:53:04.508Z",
+    "changedIds": [
+      "8RopqzkV8UyasWEZxMB8",
+      "96Pf23TdUYjzKH9stEXS"
+    ],
+    "jointReleaseBatches": [
+      60
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem60.json",
+    "remainingDependencies": [
+      {
+        "id": "8RopqzkV8UyasWEZxMB8",
+        "note": "Página oficial consultada em 02/11/2026 descreve Asad e 100 ml, não autentica vendedor ou frasco. Não importa avaliações de clientes (incluem referência Zanzibar), duração, originalidade, sensação ou condições de outro canal."
+      },
+      {
+        "id": "8sDa6bmYd25zEEKRnQJn",
+        "note": "Snapshot local e referências oficiais de família consultadas em 02/11/2026. Não identifica código exato ou confirma unidade LTE/5G, RAM, cor, autonomia ou imersão. Não adiciona especificações de outra variante ou conta como novo teste profundo."
+      },
+      {
+        "id": "96Pf23TdUYjzKH9stEXS",
+        "note": "Somente snapshot local, sem manual/código técnico exato confirmado. Não importa sucção, autonomia, tipo de filtro, capacidade ou acessórios de outro aparelho visualmente semelhante."
+      }
+    ],
+    "sourceCommit": "6eb539de9c8ce710c7e55048fabbedf090cdafa5",
+    "generatedCommit": "37704372716e010b337f5862aeba9571b55534cb",
+    "sitemapRun": 41447958889,
+    "integrityRun": 41447958584,
+    "pagesRun": 41448018602,
+    "testsPassed": 1458,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
