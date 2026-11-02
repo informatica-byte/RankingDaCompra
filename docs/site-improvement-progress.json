@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "e2xjzhLqo2TSHdOKUEaB",
-      "E4L1IqNlovRGggmaVOHW",
-      "E4SDe0v0L4ztydHzIbRw",
       "EbNVkHXOor6py78Wgl8X",
       "eFH6DoZM48JWTDwQIImg",
       "ERUkcWCy7XxGVEyDizZ2",
       "eTB1rffOxFexqoubCObQ",
-      "Evo4CPaNJPvGuj1ILt5u"
+      "Evo4CPaNJPvGuj1ILt5u",
+      "f3MOXgokgTifrolFYOhc",
+      "F8RXRAtxM4QOCg5hbFh9",
+      "f9oPhNSAdi4gqtwPJbJh"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T21:28:25.808Z",
-  "catalogueGeneratedAt": "2026-11-02T21:28:18.162Z",
+  "updatedAt": "2026-11-02T21:32:04.294Z",
+  "catalogueGeneratedAt": "2026-11-02T21:29:09.464Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 62,
     "needs_source": 8,
-    "targeted_correction_complete": 143,
+    "targeted_correction_complete": 145,
     "preserve_prior_review": 98,
-    "pending": 248,
-    "prepared_awaiting_publication": 2
+    "pending": 248
   },
   "items": [
     {
@@ -2883,12 +2882,13 @@
       "url": "https://rankingdacompra.com.br/produto/e2xjzhLqo2TSHdOKUEaB-20260810-1.html",
       "title": "Deo Colônia Natura Hoje Masculino 100ml",
       "fingerprint": "d2fcc0a01986935f5d80d26771db45d72092aa0947275ea2813456abc00dd46f",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T21:32:04.268Z",
       "workNotes": [
         "Retira ideal e sofisticação como qualificação da equipe; atribui perfil olfativo ao anúncio.",
-        "Snapshot local; sem teste de aroma ou confirmação específica da unidade, origem e declarações da embalagem."
+        "Snapshot local; sem teste de aroma ou confirmação específica da unidade, origem e declarações da embalagem.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB19380821?wid=MLB5039813441"
@@ -6188,12 +6188,13 @@
       "url": "https://rankingdacompra.com.br/produto/E4L1IqNlovRGggmaVOHW-20260810-1.html",
       "title": "Principia Kit Essencial Gl-03 + Ch + Vc + Ps Sensível Dia/noite",
       "fingerprint": "9efe10fa80b5386b6a247ba874048c2b5a8b77204e7f7e7dc30b9b3266323900",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T21:32:04.268Z",
       "workNotes": [
         "Distingue FPS do protetor de características do kit; qualifica hipoalergênico, idade, composição e tolerância sem rótulos específicos.",
-        "Referência oficial localizada menciona outra identificação de PS; não transfere fórmula, FPS, volume ou instruções entre kits. Sem prescrição dermatológica ou teste de eficácia."
+        "Referência oficial localizada menciona outra identificação de PS; não transfere fórmula, FPS, volume ou instruções entre kits. Sem prescrição dermatológica ou teste de eficácia.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB60968045?wid=MLB5885455180"
@@ -10600,11 +10601,42 @@
     "backendWrites": 0
   },
   "triage71": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "E4L1IqNlovRGggmaVOHW",
       "e2xjzhLqo2TSHdOKUEaB"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T21:32:04.268Z",
+    "changedIds": [
+      "e2xjzhLqo2TSHdOKUEaB",
+      "E4L1IqNlovRGggmaVOHW"
+    ],
+    "jointReleaseBatches": [
+      71
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem71.json",
+    "remainingDependencies": [
+      {
+        "id": "e2xjzhLqo2TSHdOKUEaB",
+        "note": "Snapshot local; sem teste de aroma ou confirmação específica da unidade, origem e declarações da embalagem."
+      },
+      {
+        "id": "E4L1IqNlovRGggmaVOHW",
+        "note": "Referência oficial localizada menciona outra identificação de PS; não transfere fórmula, FPS, volume ou instruções entre kits. Sem prescrição dermatológica ou teste de eficácia."
+      },
+      {
+        "id": "E4SDe0v0L4ztydHzIbRw",
+        "note": "Referência oficial compatível com 220 V/6800 W e controle gradual; não confirma unidade, instalação, vazão, consumo ou desempenho. Sem dimensionamento elétrico ou transferência de outra versão."
+      }
+    ],
+    "sourceCommit": "e1e1dba9c19d9cf64ed1b22413b708188a6cb864",
+    "generatedCommit": "b57263fd8c0de85448d29073061ddccb32ba5ccd",
+    "sitemapRun": 41528721154,
+    "integrityRun": 41528721215,
+    "pagesRun": 41528799022,
+    "testsPassed": 1482,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

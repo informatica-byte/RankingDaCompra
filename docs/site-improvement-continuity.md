@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 71 — 20261102, PUBLICADA E VERIFICADA
+
+- e2xjzhLqo2TSHdOKUEaB: targeted_correction_complete. Retira ideal e sofisticação como qualificação da equipe; atribui perfil olfativo ao anúncio. Limite: Snapshot local; sem teste de aroma ou confirmação específica da unidade, origem e declarações da embalagem.
+- E4L1IqNlovRGggmaVOHW: targeted_correction_complete. Distingue FPS do protetor de características do kit; qualifica hipoalergênico, idade, composição e tolerância sem rótulos específicos. Limite: Referência oficial localizada menciona outra identificação de PS; não transfere fórmula, FPS, volume ou instruções entre kits. Sem prescrição dermatológica ou teste de eficácia.
+- E4SDe0v0L4ztydHzIbRw: screened_no_change. Loren Shower: descrição objetiva de tensão, potência e controle eletrônico, sem defeito concreto demonstrado. Preservada integralmente. Limite: Referência oficial compatível com 220 V/6800 W e controle gradual; não confirma unidade, instalação, vazão, consumo ou desempenho. Sem dimensionamento elétrico ou transferência de outra versão.
+
+Fonte e1e1dba9c19d9cf64ed1b22413b708188a6cb864; geração b57263fd8c0de85448d29073061ddccb32ba5ccd; sitemap 41528721154, integridade 41528721215, Pages 41528799022: SUCCESS. 1482 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 559 entradas editoriais inalteradas. Preservados 561 IDs/afiliados/campos operacionais e 614 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem71.json.
+
+Totais: {"total":561,"screened_no_change":62,"needs_source":8,"targeted_correction_complete":145,"preserve_prior_review":98,"pending":248}. Próximos pendentes: EbNVkHXOor6py78Wgl8X — Tripé Inteligente 1.8m com Rastreamento Facial AI Estável 360° para Celular、Câmera、Vlog E Gopro, Basike Tripé Celular Profissional Universal Bastão Selfie Com Controle Remoto Bluetooth; eFH6DoZM48JWTDwQIImg — Kit 2 Refil Ntk Gás Butano + Maçarico Camping Fogareiro 227g; ERUkcWCy7XxGVEyDizZ2 — Controlador Gamesir Galileo G8 Plus Com Bluetooth Para Cel. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 70 — 20261102, PUBLICADA E VERIFICADA
 
 - DuqIf8kBMwEZzRskn9LR: targeted_correction_complete. Retira superlativos e superioridade sobre rivais sem teste; qualifica bateria e resistência. Limite: Referência global consultada; não verifica unidade, autonomia ou superioridade. Não transfere dados de Pro para Pro Max.
