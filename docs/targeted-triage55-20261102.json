@@ -1,0 +1,11 @@
+{
+  "date":"2026-11-02",
+  "policy":"Three requested next pending IDs from saved GA4 01–28/10 views. Correct only necessary defects; radio kept unchanged without a demonstrated contradiction.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"6CiOb7YKL9YmF8Sqg1wT","decision":"screened_no_change","reason":"Rádio retrô: resumo identifica recursos da oferta e anuncia autonomia máxima, sem nova contradição comprovada nesta triagem. Título completo e conteúdo preservados; não inventar fabricante ou código para expandir análise.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB64535898?pdp_filters=item_id%3AMLB7247186486"],"sourceLimit":"Só snapshot local, não teste ou nova revisão aprofundada. Sem manual/modelo específico; não confirma seis horas, recepção, bandas, bateria ou alimentação da unidade."},
+    {"id":"6kC1jJj7i4kRtYyp3SZr","decision":"targeted_correction_complete","reason":"Ydtech: retira comparação sem teste com 450 W, estabilidade assegurada, ausência de problemas com pneus e transporte universal. Mantém nome do cadastro, exige confirmar código da unidade e não transfere especificações de outro M187.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB62867767?pdp_filters=item_id%3AMLB7389762032"],"sourceLimit":"Snapshot local do anúncio vinculado. Busca não localizou manual primário exato suficiente; não importados 12,5 kg, E-ABS, carga, velocidade ou autonomia como confirmados. Sem teste físico, orientação jurídica de circulação ou troca de produto."},
+    {"id":"6NYYO2l4QTGUagl47PKh","decision":"targeted_correction_complete","reason":"Lizze: retira garantia de adequação a todo cabelo, distingue alegação antiestática de teste e esclarece 480 °F na referência, sem recomendar ajuste térmico. Não presume bivolt ou autentica unidade.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB24086423","https://lizze.com.br/produto/prancha-lizze-extreme"],"sourceLimit":"HTML oficial consultado em 02/11/2026: página apresenta variantes de tensão e informa máximo 250 °C (480 °F). Não confirma variante do vendedor, desempenho, aplicação ou segurança individual; não importa dados da Extreme Slim/Lizz Pro.","publicContextUrl":"https://lizze.com.br/produto/prancha-lizze-extreme"}
+  ],
+  "counts":{"screened":3,"targetedCorrections":2,"screenedNoChange":1,"newDeepReviews":0}
+}

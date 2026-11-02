@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T10:33:35.816Z",
-  "catalogueGeneratedAt": "2026-11-02T10:31:01.499Z",
+  "updatedAt": "2026-11-02T10:37:54.712Z",
+  "catalogueGeneratedAt": "2026-11-02T10:37:52.346Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -637,11 +637,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 560,
-    "screened_no_change": 46,
+    "screened_no_change": 47,
     "needs_source": 8,
     "targeted_correction_complete": 110,
     "preserve_prior_review": 98,
-    "pending": 298
+    "pending": 295,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -5378,12 +5379,19 @@
       "id": "6kC1jJj7i4kRtYyp3SZr",
       "url": "https://rankingdacompra.com.br/produto/6kC1jJj7i4kRtYyp3SZr-20260810-1.html",
       "title": "Patinete Elétrico Ydtech M187 Dobrável com Bluetooth",
-      "fingerprint": "99bfbee8c7e5f0ec647df2317d9fe7da5f7f8e6cc267d3a2ed694192d51e9c43",
-      "status": "pending",
+      "fingerprint": "b79d1ac9f2a865f96a2533d04cfc8b75027d09b460ef43d3d53aebefc75a7222",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Ydtech: retira comparação sem teste com 450 W, estabilidade assegurada, ausência de problemas com pneus e transporte universal. Mantém nome do cadastro, exige confirmar código da unidade e não transfere especificações de outro M187.",
+        "Snapshot local do anúncio vinculado. Busca não localizou manual primário exato suficiente; não importados 12,5 kg, E-ABS, carga, velocidade ou autonomia como confirmados. Sem teste físico, orientação jurídica de circulação ou troca de produto."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB62867767?pdp_filters=item_id%3AMLB7389762032"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Yc8WKEmLYvUlf1em3nGt",
@@ -5908,12 +5916,20 @@
       "id": "6NYYO2l4QTGUagl47PKh",
       "url": "https://rankingdacompra.com.br/produto/6NYYO2l4QTGUagl47PKh-20260810-1.html",
       "title": "Prancha Lizze Profissional 480 Extreme",
-      "fingerprint": "07b6af14dbcb8602c0c4bb86a99e422952f2880eb2a812f7ffdcc14dfc77379a",
-      "status": "pending",
+      "fingerprint": "33d121a31fa794dbe437f54eb447b4779142959ba5373e2ba8b0df71595f70e4",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Lizze: retira garantia de adequação a todo cabelo, distingue alegação antiestática de teste e esclarece 480 °F na referência, sem recomendar ajuste térmico. Não presume bivolt ou autentica unidade.",
+        "HTML oficial consultado em 02/11/2026: página apresenta variantes de tensão e informa máximo 250 °C (480 °F). Não confirma variante do vendedor, desempenho, aplicação ou segurança individual; não importa dados da Extreme Slim/Lizz Pro."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB24086423",
+        "https://lizze.com.br/produto/prancha-lizze-extreme"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "E4L1IqNlovRGggmaVOHW",
@@ -6045,11 +6061,16 @@
       "url": "https://rankingdacompra.com.br/produto/6CiOb7YKL9YmF8Sqg1wT-20260810-1.html",
       "title": "Rádio Am Fm Retrô Antigo Bluetooth Recarregável Bivolt Azul",
       "fingerprint": "7481f9e524dffdbe434a50f60000881d9c43a82d871615f18af0637ab5449eca",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-02T10:37:54.715Z",
+      "workNotes": [
+        "Rádio retrô: resumo identifica recursos da oferta e anuncia autonomia máxima, sem nova contradição comprovada nesta triagem. Título completo e conteúdo preservados; não inventar fabricante ou código para expandir análise.",
+        "Só snapshot local, não teste ou nova revisão aprofundada. Sem manual/modelo específico; não confirma seis horas, recepção, bandas, bateria ou alimentação da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB64535898?pdp_filters=item_id%3AMLB7247186486"
+      ]
     },
     {
       "id": "41xTWhFAFp82XNFL5V87",
@@ -9570,5 +9591,13 @@
     "testsPassed": 1429,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage55": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "6NYYO2l4QTGUagl47PKh",
+      "6kC1jJj7i4kRtYyp3SZr"
+    ],
+    "newDeepReviews": 0
   }
 }

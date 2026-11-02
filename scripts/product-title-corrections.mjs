@@ -8,6 +8,33 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['6kC1jJj7i4kRtYyp3SZr', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB7389762032',
+    model:/^patinete\s*elétrico(?:$|\s*ydtech\s*m187\s*dobrável\s*com\s*bluetooth$)/i,
+    incorrect:'Patinete Elétrico',
+    correct:'Patinete Elétrico Ydtech M187 Dobrável com Bluetooth',
+    fileReplacements:[
+      ['Patinete Elétrico Ydtech M187 Dobrável com Bluetooth Ydtech M187 Dobrável com Bluetooth','Patinete Elétrico Ydtech M187 Dobrável com Bluetooth'],
+      ['<span>Categoria</span>Patinete Elétrico Ydtech M187 Dobrável com Bluetooth','<span>Categoria</span>Patinete Elétrico'],
+      ['"position":2,"name":"Patinete Elétrico Ydtech M187 Dobrável com Bluetooth","item"','"position":2,"name":"Patinete Elétrico","item"'],
+      ['"category":"Patinete Elétrico Ydtech M187 Dobrável com Bluetooth","url"','"category":"Patinete Elétrico","url"'],
+    ],
+    summary:'O cadastro identifica o patinete Ydtech M187; o anúncio vinculado apresenta um patinete Ydtech dobrável com Bluetooth. Confirme o código exato da unidade e o manual antes de escolher. Esse formato pode interessar a quem precisa guardar o aparelho em pouco espaço, mas não comprova facilidade de transporte para toda pessoa ou trajeto. Peso, freios E-ABS e características dos pneus mencionados anteriormente não foram confirmados nesta revisão para a unidade vinculada. Não prometemos estabilidade, ausência de furos ou desempenho superior ou inferior a modelos de outra potência sem teste comparativo. Confira carga suportada, autonomia nas condições de uso, freios, pneus, carregador e suporte oferecido pelo vendedor. Não testamos condução, frenagem, bateria ou durabilidade. Esta ficha não confirma autorização de uso em ciclovias ou orlas nem aceitação em ônibus ou metrô; confira as condições aplicáveis ao trajeto e ao transporte.',
+    positiveNotes:['Formato dobrável e Bluetooth anunciados; confirme código e funções da unidade com o vendedor.'],
+    negativeNotes:['Sem manual exato confirmado nesta revisão; peso, freios, pneus e desempenho precisam de comprovação específica.', 'Sem teste de estabilidade, autonomia ou frenagem e sem promessa de aceitação em transporte público.'],
+    suppressRating:true,
+  }],
+  ['6NYYO2l4QTGUagl47PKh', {
+    syncInformationalSchema:true,
+    model:/^prancha\s*lizze\s*profissional\s*480\s*extreme/i,
+    summary:'A oferta identifica a prancha Lizze Extreme. A página oficial descreve placas de titânio e temperatura máxima anunciada de 250 °C (480 °F); o número 480 do nome comercial não significa 480 °C. Temperatura máxima é uma especificação da marca, não recomendação de ajuste para qualquer cabelo. A descrição anterior de atendimento a todos os tipos de cabelo não foi comprovada nesta revisão e não é tratada como garantia de adequação individual. O efeito antiestático é uma alegação comercial, não resultado medido pela equipe. A referência oficial apresenta opções de tensão; confirme na oferta e na etiqueta a versão correta, sem presumir bivolt. Consulte instruções específicas e orientação profissional para uso e adequação aos fios. Não testamos temperatura real, uniformidade de aquecimento, frizz, durabilidade ou dano aos cabelos, nem autenticamos a unidade do vendedor.',
+    positiveNotes:['Placas de titânio e temperatura máxima descritas pela referência oficial da Lizze Extreme; não são medições da equipe.'],
+    negativeNotes:['480 corresponde a °F na referência da marca, não a °C ou a ajuste recomendado para qualquer cabelo.', 'Confirmar tensão e versão; efeito antiestático e adequação individual não testados pela equipe.'],
+    contextSourceUrl:'https://lizze.com.br/produto/prancha-lizze-extreme',
+    contextSourceLabel:'Lizze Extreme: referência oficial, sem autenticar a unidade ou recomendar temperatura de uso',
+    suppressRating:true,
+  }],
   ['5LA4CuIHLWigh48x3qaW', {
     syncInformationalSchema:true,
     model:/^chuveiro\s*elétrico\s*de\s*parede\s*lorenzetti\s*futura\s*multitemperaturas\s*branco\s*6800w/i,
@@ -1354,17 +1381,6 @@ const PRODUCT_CORRECTIONS = new Map([
     ],
     negativeNotes: [
       "Confirme no anúncio a compatibilidade de acessórios e a versão do sistema antes da compra.",
-    ],
-  }],
-  ["6kC1jJj7i4kRtYyp3SZr", {
-    incorrect: "Patinete Elétrico",
-    correct: "Patinete Elétrico Ydtech M187 Dobrável com Bluetooth",
-    suppressRating: true,
-    fileReplacements: [
-      ["Patinete Elétrico Ydtech M187 Dobrável com Bluetooth Ydtech M187 Dobrável com Bluetooth", "Patinete Elétrico Ydtech M187 Dobrável com Bluetooth"],
-      ["<span>Categoria</span>Patinete Elétrico Ydtech M187 Dobrável com Bluetooth", "<span>Categoria</span>Patinete Elétrico"],
-      ["\"position\":2,\"name\":\"Patinete Elétrico Ydtech M187 Dobrável com Bluetooth\",\"item\"", "\"position\":2,\"name\":\"Patinete Elétrico\",\"item\""],
-      ["\"category\":\"Patinete Elétrico Ydtech M187 Dobrável com Bluetooth\",\"url\"", "\"category\":\"Patinete Elétrico\",\"url\""],
     ],
   }],
   ["VyYiww5HVcBRIH8SD5SD", {
