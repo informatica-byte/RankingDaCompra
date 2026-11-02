@@ -8,6 +8,28 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['Bf3ccSwSiVkLw1Z8k2Hu', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4297760749',
+    model:/^liquidificador turbo power mondial 550w - l-99 fb(?: — anúncio MLB4297760749)?$/i,
+    summary:'A oferta identifica o liquidificador Mondial Turbo Power L-99 FB de 550 W. Os 2,2 litros anunciados são a capacidade total, não o limite de preparo: o manual específico indica nível máximo de 1.600 ml e limites próprios para misturas quentes. Confira as marcações do copo e as instruções antes de usar. O manual descreve filtro e lâmina de aço inox; isso não confirma todos os acessórios da unidade do vendedor. Não apresentamos trava de segurança ou ausência de BPA como verificadas nesta revisão. O uso com gelo tem condições no manual, não significa capacidade irrestrita para ingredientes duros. Confirme a tensão da unidade, sem presumir bivolt. Não testamos trituração, ruído, resistência ou desempenho.',
+    positiveNotes:['Capacidade total anunciada de 2,2 L; manual distingue nível máximo de preparo.', 'Filtro e lâmina de aço inox descritos no manual específico.'],
+    negativeNotes:['Respeitar marcações e limites específicos, inclusive para preparos quentes e gelo.', 'Tensão, acessórios e unidade precisam de confirmação; sem teste próprio.'],
+    contextSourceUrl:'https://manuais.emondial.com/Manual-L-99-FB.pdf',
+    contextSourceLabel:'Manual Mondial L-99 FB: referência do modelo, não confirmação da unidade anunciada',
+    suppressRating:true,
+  }],
+  ['bjRcUhAfXiIDliNXbqwE', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB5761715520',
+    model:/^NAC (?:600mg - Fórmula Exclusiva com Máxima Concentração e Pureza - N|600 mg anunciado — 60 cápsulas, rótulo a confirmar)$/i,
+    correct:'NAC 600 mg anunciado — 60 cápsulas, rótulo a confirmar',
+    summary:'A oferta identifica NAC da Essencial Labs em embalagem de 60 cápsulas, com menção a 600 mg. Confira no rótulo a quantidade por porção, os ingredientes e as advertências: o título não esclarece sozinho a concentração por cápsula. A recomendação anterior de duas cápsulas diárias não é mantida como orientação da equipe sem confirmação do rótulo específico. Faixa etária, composição da cápsula e ausência de glúten ou lactose também precisam de confirmação na embalagem. Não verificamos pureza, máxima concentração ou adequação individual e não prometemos efeitos terapêuticos. Quantidade de cápsulas não define duração de uso; siga as informações específicas do fabricante e orientação profissional quando necessário.',
+    positiveNotes:['Embalagem anunciada com 60 cápsulas e identificação NAC.'],
+    negativeNotes:['600 mg precisam de contexto por porção no rótulo; sem prescrição de dose ou duração.', 'Pureza, alergênicos e adequação individual não confirmados nesta revisão.'],
+    suppressRating:true,
+  }],
   ['b2ejp8pkiWYOgBAdeXto', {
     syncInformationalSchema:true,
     allowTruncatedHeading:true,
@@ -1343,6 +1365,14 @@ const PRODUCT_CORRECTIONS = new Map([
     negativeNotes:['Modelo exato do processador e componentes do conjunto a confirmar.'], suppressRating:true,
   }],
   ["Bp4dNosktHQXiSy3r9S0", {
+    allowTruncatedHeading:true,
+    correct:'Tapete felpudo Casa Laura Enxovais 2,00 × 1,50 m — cinza',
+    syncInformationalSchema:true,
+    expectedListing:'MLB5337833154',
+    summary:'A oferta apresenta um tapete Casa Laura Enxovais cinza de 2,00 × 1,50 m, descrito como felpudo. Composição em poliéster, pelos de aproximadamente 30 a 40 mm e base de látex são informações do cadastro, não medições ou ensaios da equipe. A base anunciada não é garantia de que a peça não deslize em qualquer piso. Confira medidas, material da base e instruções de conservação da unidade antes de escolher. Não testamos conforto, aderência, desprendimento de fibras ou durabilidade e não presumimos lavagem em máquina ou outras instruções de um tapete diferente.',
+    positiveNotes:['Medida de 2,00 × 1,50 m e cor cinza identificadas na oferta.'],
+    negativeNotes:['Composição, altura dos pelos e base precisam corresponder à unidade.', 'Aderência e conforto não testados; conferir conservação específica.'],
+    suppressRating:true,
     model: /(?:t?apete).*Casa Laura/i,
     replacements: [["apete Decorativo", "Tapete Decorativo"]],
   }],

@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T16:05:08.393Z",
-  "catalogueGeneratedAt": "2026-11-02T16:02:00.947Z",
+  "updatedAt": "2026-11-02T20:47:01.851Z",
+  "catalogueGeneratedAt": "2026-11-02T20:47:00.007Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -657,7 +657,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 131,
     "preserve_prior_review": 98,
-    "pending": 269
+    "pending": 266,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4673,12 +4674,19 @@
       "id": "Bf3ccSwSiVkLw1Z8k2Hu",
       "url": "https://rankingdacompra.com.br/produto/Bf3ccSwSiVkLw1Z8k2Hu-20260810-1.html",
       "title": "Liquidificador Turbo Power Mondial 550W - L-99 FB — anúncio MLB4297760749",
-      "fingerprint": "36188d04eb9930daae3d28037d9a5d3a1c7f0aa6c7767ff77e141da558ecc423",
-      "status": "pending",
+      "fingerprint": "e135046161a8f644ca014bfb8aeea1e8646c2ed85364be514a22be2d6d962ad9",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue capacidade total de limite de preparo; retira recursos não confirmados como garantias.",
+        "Manual específico lido; não confirma tensão ou unidade do vendedor. Sem teste físico."
+      ],
+      "sourceLinks": [
+        "https://manuais.emondial.com/Manual-L-99-FB.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "IIBNXuN1JmBc0Ol6iO6O",
@@ -5102,13 +5110,20 @@
     {
       "id": "bjRcUhAfXiIDliNXbqwE",
       "url": "https://rankingdacompra.com.br/produto/bjRcUhAfXiIDliNXbqwE-20260810-1.html",
-      "title": "NAC 600mg - Fórmula Exclusiva com Máxima Concentração e Pureza - N",
-      "fingerprint": "f597a3a6ff4a0d7e437b9ded503b8941bf3c37a63280f097eac7b5d1331527a7",
-      "status": "pending",
+      "title": "NAC 600 mg anunciado — 60 cápsulas, rótulo a confirmar",
+      "fingerprint": "c100a2bac58f85e9ae463220a4cd14ae89d5d790d60e097e9ba33171f55baa78",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira prescrição e superlativos sem rótulo; preserva par de páginas e cadastros.",
+        "Sem rótulo específico confirmado; não inferir dose, pureza, alergênicos ou duração."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB58579835?wid=MLB5761715520"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "UTXc1AEUdk18yttkAXMb",
@@ -7102,13 +7117,20 @@
     {
       "id": "Bp4dNosktHQXiSy3r9S0",
       "url": "https://rankingdacompra.com.br/produto/Bp4dNosktHQXiSy3r9S0-20260810-1.html",
-      "title": "Tapete Decorativo Felpudo 2,00x1,50 Sala Quarto Escritório Cor Cinza Liso Pelo Alto Casa Laura Enxovais",
-      "fingerprint": "51b272afa1b84b1d4b77ad9e1a80b2e9e63c8b8fe98aff3e368854783dab2bc4",
-      "status": "pending",
+      "title": "Tapete felpudo Casa Laura Enxovais 2,00 × 1,50 m — cinza",
+      "fingerprint": "d652544981e1fb63326b19fd25d1a2eb7b57fa916afcd098e7084b1492201fb3",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Qualifica materiais e retira garantia universal de aderência.",
+        "Snapshot local, sem ensaio de aderência ou manual de conservação específico."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB46020977?wid=MLB5337833154"
+      ],
+      "previousState": "prepared_awaiting_publication",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "vMno2u6iDC5eZJug2sOH",
@@ -10214,5 +10236,14 @@
     "testsPassed": 1475,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage65": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "Bf3ccSwSiVkLw1Z8k2Hu",
+      "Bp4dNosktHQXiSy3r9S0",
+      "bjRcUhAfXiIDliNXbqwE"
+    ],
+    "newDeepReviews": 0
   }
 }

@@ -19,7 +19,7 @@ export const REVIEWED_PUBLICATION_PAIRS = Object.freeze([
     ['fui9uff5MTKnVydSsaIR','Creatina Monohidratada Pura 500g Dark Lab Unidade 100%'],
     ['jABp2HpfTmQNwXsPgrYQ','Creatina Monohidratada Pura 500g Dark Lab Unidade']],
   ['MLB5761715520','MLB58579835','https://meli.la/26U7gYW',
-    ['bjRcUhAfXiIDliNXbqwE','NAC 600mg - Fórmula Exclusiva com Máxima Concentração e Pureza - N'],
+    ['bjRcUhAfXiIDliNXbqwE','NAC 600mg - Fórmula Exclusiva com Máxima Concentração e Pureza - N','NAC 600 mg anunciado — 60 cápsulas, rótulo a confirmar'],
     ['JY36kE95u7uCT7UJWvpt','NAC 600mg - Fórmula Exclusiva com Máxima Concentração e Pureza - N-Acetil L-Cisteína - 60 Cápsulas']],
   ['MLB4228627923','MLB58353028','https://meli.la/1yWdyaS',
     ['LrJn9p8N4KF5HhsvGNL2','Smartphone Motorola Moto G06 - 128gb 4gb Ram'],
