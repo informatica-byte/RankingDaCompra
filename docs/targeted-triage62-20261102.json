@@ -1,0 +1,13 @@
+{
+  "date":"2026-11-02",
+  "policy":"Requested next three pending IDs in saved GA4 01–28/10 order. Correct duplicated toy dimensions and unsupported manufacturer attribution; do not rewrite coherent LG description without a proven defect.",
+  "protectedDeepReviews":98,
+  "items":[
+    {"id":"aIFZHrVtBLCNlrEdxIud","decision":"targeted_correction_complete","reason":"Patrulha: medidas repetidas em valores precisos e arredondados; texto não distingue conjunto/embalagem de cada boneco. Esclarece limite sem inventar dimensões, personagens ou certificação.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB54179137?wid=MLB6191360194"],"sourceLimit":"Snapshot local do anúncio. Não obtido manual/identificação exata para confirmar medidas por peça, faixa etária ou materiais; 3 anos é atribuído à oferta e não substitui embalagem. Sem transferir certificação ou conteúdo de outro playset Sunny."},
+    {"id":"aIWLmzyxlViGPWt6Mctg","decision":"screened_no_change","reason":"LG: resumo objetivo identifica modelo, resolução, processador, sistema e som virtual sem prometer desempenho ou confundir canais virtuais com caixas físicas. Não demonstrada contradição necessária a corrigir; título e corpo preservados.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB55927567?wid=MLB6224960422"],"sourceLimit":"Snapshot local. Busca não localizou fonte LG exata suficiente; resultado oficial 32LR651CBSA não foi usado como se fosse 32RL601CBSA. Não confirma acessórios, aplicativos atuais, atualização, portas, garantia, variante ou teste de imagem."},
+    {"id":"aozkBGONt1bYjzktRNP7","decision":"targeted_correction_complete","reason":"Kappa: retira original como certificação própria e indicação atribuída ao fabricante sem fonte específica. Mantém identificação e materiais como declarados pela oferta, sem importar especificações de outra linha.","sourceLinks":["https://produto.mercadolivre.com.br/MLB-4049279695-_JM?searchVariation=200022329787"],"sourceLimit":"Snapshot local; catálogo Kappa localizado contém Pulse/Pulse RX/Supra/Evo e não confirma Park 2.0. Não importa tecnologia EVA-K, grade, desempenho ou dados de outro modelo. Variante, numeração e afiliado preservados; sem teste ou autenticação."}
+  ],
+  "counts":{"screened":3,"targetedCorrections":2,"screenedNoChange":1,"newDeepReviews":0},
+  "preserveComparisonIds":["aIWLmzyxlViGPWt6Mctg"],
+  "manualDependencies":[{"id":"aIFZHrVtBLCNlrEdxIud","pending":"Identificação da embalagem para confirmar dimensões de cada componente, conteúdo e advertências."}]
+}

@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T15:24:29.971Z",
-  "catalogueGeneratedAt": "2026-11-02T15:22:20.393Z",
+  "updatedAt": "2026-11-02T15:31:45.044Z",
+  "catalogueGeneratedAt": "2026-11-02T15:31:36.865Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -653,11 +653,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 561,
-    "screened_no_change": 53,
+    "screened_no_change": 54,
     "needs_source": 8,
     "targeted_correction_complete": 124,
     "preserve_prior_review": 98,
-    "pending": 278
+    "pending": 275,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -5564,12 +5565,19 @@
       "id": "aIFZHrVtBLCNlrEdxIud",
       "url": "https://rankingdacompra.com.br/produto/aIFZHrVtBLCNlrEdxIud-20260810-1.html",
       "title": "Patrulha Canina - Playset De Acampamento Com Bag E 3 Bonecos Lilás",
-      "fingerprint": "448b2cff4791aa1e1a9e8607706e47a2ff062457a849c604f123b16817ae26ce",
-      "status": "pending",
+      "fingerprint": "204e1902aecd9ab93e2dc767af664345e41aa03edc497c32a1b232a29ec9225a",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Patrulha: medidas repetidas em valores precisos e arredondados; texto não distingue conjunto/embalagem de cada boneco. Esclarece limite sem inventar dimensões, personagens ou certificação.",
+        "Snapshot local do anúncio. Não obtido manual/identificação exata para confirmar medidas por peça, faixa etária ou materiais; 3 anos é atribuído à oferta e não substitui embalagem. Sem transferir certificação ou conteúdo de outro playset Sunny."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB54179137?wid=MLB6191360194"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5389928608",
@@ -6692,11 +6700,16 @@
       "url": "https://rankingdacompra.com.br/produto/aIWLmzyxlViGPWt6Mctg-20260810-1.html",
       "title": "Smart TV Profissional LG 32\" LED HD - 32RL601CBSA",
       "fingerprint": "e3026125062e4377b1a6c90fbd19a4c6959fff25f67a65f860c09550bd0c16e5",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-02T15:31:45.047Z",
+      "workNotes": [
+        "LG: resumo objetivo identifica modelo, resolução, processador, sistema e som virtual sem prometer desempenho ou confundir canais virtuais com caixas físicas. Não demonstrada contradição necessária a corrigir; título e corpo preservados.",
+        "Snapshot local. Busca não localizou fonte LG exata suficiente; resultado oficial 32LR651CBSA não foi usado como se fosse 32RL601CBSA. Não confirma acessórios, aplicativos atuais, atualização, portas, garantia, variante ou teste de imagem."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB55927567?wid=MLB6224960422"
+      ]
     },
     {
       "id": "OADfHMMVftq1AKtGgcaP",
@@ -7302,6 +7315,24 @@
       "sourceLinks": []
     },
     {
+      "id": "aozkBGONt1bYjzktRNP7",
+      "url": "https://rankingdacompra.com.br/produto/aozkBGONt1bYjzktRNP7-20260810-1.html",
+      "title": "Tênis Kappa Park 2.0 unissex",
+      "fingerprint": "e75dbbd679fb8d8f21afad2e379c00e9e51ce628e59d74d981c433c5d4ba98c9",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Kappa: retira original como certificação própria e indicação atribuída ao fabricante sem fonte específica. Mantém identificação e materiais como declarados pela oferta, sem importar especificações de outra linha.",
+        "Snapshot local; catálogo Kappa localizado contém Pulse/Pulse RX/Supra/Evo e não confirma Park 2.0. Não importa tecnologia EVA-K, grade, desempenho ou dados de outro modelo. Variante, numeração e afiliado preservados; sem teste ou autenticação."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4049279695-_JM?searchVariation=200022329787"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "CO1tCKBzr6q79BOpdBZW",
       "url": "https://rankingdacompra.com.br/produto/CO1tCKBzr6q79BOpdBZW-20260810-1.html",
       "title": "Tênis Kappa Pulse Rx Unissex Corrida Conforto",
@@ -7493,17 +7524,6 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5217026798-20260810-1.html",
       "title": "Tenis Masculino Estilo Bota Adventure Nobuck Wonder",
       "fingerprint": "f6cbc8f3cbd5ca78ba83d369ace54191ecf4a6e3493c00ec891ac354063fe91f",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "aozkBGONt1bYjzktRNP7",
-      "url": "https://rankingdacompra.com.br/produto/aozkBGONt1bYjzktRNP7-20260810-1.html",
-      "title": "Tênis Masculino Feminino Kappa Park 2.0 Original",
-      "fingerprint": "d12b742e39b0a3e0aab480a0b09210d01010c461657ab57538a7817bfa3a01dc",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -10025,5 +10045,13 @@
     "testsPassed": 1462,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage62": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "aIFZHrVtBLCNlrEdxIud",
+      "aozkBGONt1bYjzktRNP7"
+    ],
+    "newDeepReviews": 0
   }
 }

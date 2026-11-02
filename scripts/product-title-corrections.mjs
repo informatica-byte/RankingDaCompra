@@ -8,6 +8,25 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['aIFZHrVtBLCNlrEdxIud', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB6191360194',
+    model:/^patrulha\s*canina\s*-\s*playset\s*de\s*acampamento\s*com\s*bag\s*e\s*3\s*bonecos\s*lilás$/i,
+    summary:'O anúncio apresenta um playset de acampamento Patrulha Canina com bag e três bonecos, identificado como Sunny na cor lilás. Pode interessar a quem procura um conjunto de personagens para brincadeiras de faz de conta; confira quais peças acompanham esta versão. A oferta informa medidas de 23,1 × 8,4 × 32,5 cm, também repetidas com arredondamento, mas esta ficha não confirma se correspondem ao conjunto ou à embalagem. Por isso, não atribuímos essas dimensões a cada boneco. A idade mínima de 3 anos é informada no anúncio e precisa ser conferida na embalagem específica, junto com as advertências e a identificação do produto. Não verificamos certificação, materiais ou segurança física da unidade e não presumimos personagens, funções ou acessórios além dos descritos. Antes de escolher, confira conteúdo, tamanho real e faixa etária da versão oferecida.',
+    positiveNotes:['Bag e três bonecos anunciados em conjunto de acampamento Patrulha Canina; conferir conteúdo da versão.'],
+    negativeNotes:['Dimensões anunciadas não confirmadas como sendo dos bonecos; podem se referir ao conjunto ou à embalagem.', 'Faixa etária, advertências, materiais e identificação específica precisam de confirmação na unidade.'],
+    suppressRating:true,
+  }],
+  ['aozkBGONt1bYjzktRNP7', {
+    syncInformationalSchema:true,
+    expectedListing:'MLB4049279695',
+    model:/^(?:tênis\s*masculino\s*feminino\s*kappa\s*park\s*2\.0\s*original|tênis\s*kappa\s*park\s*2\.0\s*unissex)$/i,
+    correct:'Tênis Kappa Park 2.0 unissex',
+    summary:'O anúncio identifica o tênis Kappa Park 2.0 unissex. A descrição registrada menciona cabedal em mesh, EVA e pontos de borracha no solado; esses dados são atribuídos à oferta, pois não foi confirmada nesta revisão uma ficha específica do fabricante para esta unidade. O texto anterior atribuía ao fabricante a indicação para caminhada e uso urbano, mas essa origem não foi comprovada e não é apresentada como recomendação oficial. Se busca um tênis para a rotina, confira numeração, medidas internas e materiais antes de escolher; formato e conforto dependem do ajuste individual. Não testamos amortecimento, ventilação, aderência ou durabilidade e não garantimos adequação para corrida ou outras modalidades. A palavra original do título anterior não representa autenticação por nossa equipe. Confirme procedência e a variante selecionada no anúncio, sem usar informações de outros modelos Kappa para preencher as lacunas.',
+    positiveNotes:['Modelo Park 2.0 e apresentação unissex identificados na oferta.', 'Mesh, EVA e pontos de borracha descritos no cadastro; conferir materiais da unidade.'],
+    negativeNotes:['Sem ficha primária específica confirmada; indicação de caminhada não tratada como recomendação oficial do fabricante.', 'Conforto, aderência, amortecimento e autenticidade não testados ou certificados pela equipe.'],
+    suppressRating:true,
+  }],
   ['9MH0XlaLQuIqWe1dlAHz', {
     syncInformationalSchema:true,
     expectedListing:'MLB5872060016',
