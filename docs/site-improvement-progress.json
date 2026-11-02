@@ -624,8 +624,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T10:24:48.206Z",
-  "catalogueGeneratedAt": "2026-11-02T10:22:30.993Z",
+  "updatedAt": "2026-11-02T10:29:25.505Z",
+  "catalogueGeneratedAt": "2026-11-02T10:29:18.415Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -641,7 +641,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 107,
     "preserve_prior_review": 98,
-    "pending": 301
+    "pending": 298,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2284,12 +2285,20 @@
       "id": "5LA4CuIHLWigh48x3qaW",
       "url": "https://rankingdacompra.com.br/produto/5LA4CuIHLWigh48x3qaW-20260810-1.html",
       "title": "Chuveiro elétrico de parede Lorenzetti Futura Multitemperaturas branco 6800W",
-      "fingerprint": "17835ab6c93f9f476c8b55dd0604274bb3d91a4849a4afa266bd9814f15bac29",
-      "status": "pending",
+      "fingerprint": "76adde8ad5e17ceded82a59a63fa3e9e5bfe2ee5e84065d2c5927d57599bb071",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Futura: separa instalação sem braço de ausência de requisitos. Referência oficial associa 6800 W/220 V, exigindo conferência da etiqueta; não presume bivolt ou compatibilidade universal com aquecimento externo.",
+        "HTML oficial consultado em 02/11/2026. Manual PDF localizado, mas não usado para importar dimensionamento. Sem identificação de anúncio individual na URL local, confirmação da unidade ou avaliação de instalação; sem instrução de ligação."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB15480890",
+        "https://www.lorenzetti.com.br/en/product/multitemperature-futura"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "kNmf4r3kzbgWX6Fz3Y0x",
@@ -2887,13 +2896,21 @@
     {
       "id": "6C1vEnfqaRRxkR4DIGa6",
       "url": "https://rankingdacompra.com.br/produto/6C1vEnfqaRRxkR4DIGa6-20260810-1.html",
-      "title": "Extensao Eletrica 30 Metros Reforcada 3 Tomadas Cabo Resistente 10a 20a Bivolt Uso Profissional Residencial Obra Alta Durabilidade",
-      "fingerprint": "561792433e70c304f704c5848cf290e8e0df23d5d80eafd2910a66089b12ff4b",
-      "status": "pending",
+      "title": "Extensão elétrica de 30 m, três tomadas — capacidade a confirmar",
+      "fingerprint": "4a9e65e82a36c272364620dcd8ea3bda3c5935da80281c06397e6597e91d657c",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Extensão: encurta título e retira carga/uso profissional/durabilidade como qualificação confirmada. Sinaliza combinação ambígua 10 A/20 A, cabo e potências sem certificar unidade ou autorizar uso por encaixe.",
+        "Snapshot local e orientação geral Inmetro consultados em 02/11/2026. Fabricante/modelo e marcações não disponíveis; não calcula limite seguro, não afirma irregularidade ou certificação e não recomenda circuito, adaptação ou carga."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB68929894?wid=MLB4646190273",
+        "https://www.gov.br/inmetro/pt-br/centrais-de-conteudo/noticias/2026/dia-do-consumidor-15-orientacoes-do-inmetro-para-evitar-prejuizos-e-riscos-nas-compras"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Oelq1fEuR41tSXxHj8cp",
@@ -4298,12 +4315,19 @@
       "id": "5Nr0nOkBvYhG9KXxeyZL",
       "url": "https://rankingdacompra.com.br/produto/5Nr0nOkBvYhG9KXxeyZL-20260810-1.html",
       "title": "Kit Wella Brilliance Sh 250ml + Cond 200ml + Másc 150ml",
-      "fingerprint": "eb477217b3c0eb559c17b385c81831d995df7aa174e189a196c3d2d6c20e6178",
-      "status": "pending",
+      "fingerprint": "b1fcc40ca2a658c1473fe5427e6fe42b7dce59ac66a569202a20dc53817625ca",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Wella: atribui kit e volumes à oferta, sem afirmar como comprovados desbotamento/selagem/reposição de nutrientes. Não transfere composição ou resultado de outra versão Brilliance.",
+        "Snapshot local. Linha oficial localizada, mas fonte não identifica estes três frascos/variante; não importados ensaios, ingredientes ou duração de proteção. Sem autenticação ou teste de tolerância/desempenho."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB37818093"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "J6WCPaTR5KOqjsAC1nM7",
@@ -9503,5 +9527,14 @@
     "testsPassed": 1425,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage54": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "5LA4CuIHLWigh48x3qaW",
+      "5Nr0nOkBvYhG9KXxeyZL",
+      "6C1vEnfqaRRxkR4DIGa6"
+    ],
+    "newDeepReviews": 0
   }
 }

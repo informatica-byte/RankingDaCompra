@@ -8,6 +8,37 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['5LA4CuIHLWigh48x3qaW', {
+    syncInformationalSchema:true,
+    model:/^chuveiro\s*elétrico\s*de\s*parede\s*lorenzetti\s*futura\s*multitemperaturas\s*branco\s*6800w/i,
+    summary:'O cadastro anuncia a ducha Lorenzetti Futura Multitemperaturas branca de 6800 W. A página oficial descreve quatro opções de temperatura e instalação sem braço de extensão do chuveiro; isso não significa instalação sem requisitos hidráulicos ou elétricos. A referência da Lorenzetti associa 6800 W a 220 V: confirme a tensão na etiqueta e na variante vendida, sem tratar este aparelho como bivolt. A compatibilidade com aquecimento solar, boiler ou gás mencionada na oferta não foi confirmada para qualquer instalação. Consulte o manual específico e um profissional qualificado para verificar a adequação ao local, inclusive às condições da água e da alimentação elétrica. Esta ficha não dimensiona circuito, condutores ou proteção e não fornece instruções de ligação. Não testamos vazão, aquecimento, consumo ou durabilidade.',
+    positiveNotes:['Linha Futura Multitemperaturas e quatro opções de temperatura descritas pela Lorenzetti.', 'Formato de parede sem braço de extensão descrito pelo fabricante; conferir requisitos da instalação.'],
+    negativeNotes:['A referência oficial associa 6800 W a 220 V; confirmar etiqueta e variante, sem presumir bivolt.', 'Adequação hidráulica/elétrica e uso com aquecimento externo precisam de verificação específica; sem teste próprio.'],
+    contextSourceUrl:'https://www.lorenzetti.com.br/en/product/multitemperature-futura',
+    contextSourceLabel:'Lorenzetti Futura Multitemperaturas: referência oficial, sem validar a instalação ou unidade',
+    suppressRating:true,
+  }],
+  ['5Nr0nOkBvYhG9KXxeyZL', {
+    syncInformationalSchema:true,
+    model:/^kit\s*wella\s*brilliance\s*sh\s*250ml\s*\+\s*cond\s*200ml\s*\+\s*másc\s*150ml/i,
+    summary:'A oferta apresenta um kit Wella Brilliance com shampoo de 250 ml, condicionador de 200 ml e máscara de 150 ml, voltado a cabelos coloridos. Pode interessar a quem procura esses três tipos de produto, mas confirme a versão de cada frasco e sua adequação ao seu cabelo. As afirmações de combater desbotamento, selar cutículas e repor nutrientes vieram da descrição comercial e não foram verificadas pela equipe para este kit. Não apresentamos resultado, duração da cor ou recuperação dos fios como garantidos. Confira composição, advertências, instruções de uso, validade e identificação dos três itens na embalagem. Não testamos textura, perfume, desempenho ou tolerância individual e não autenticamos as unidades do vendedor. Não transferimos composição ou benefícios de outra versão da linha Brilliance.',
+    positiveNotes:['Três itens anunciados: shampoo 250 ml, condicionador 200 ml e máscara 150 ml.'],
+    negativeNotes:['Versão e composição de cada unidade precisam de confirmação; não foram autenticadas pela equipe.', 'Proteção da cor, selagem e reposição de nutrientes não verificadas neste kit; sem garantia de resultado individual.'],
+    suppressRating:true,
+  }],
+  ['6C1vEnfqaRRxkR4DIGa6', {
+    syncInformationalSchema:true,
+    allowTruncatedHeading:true,
+    expectedListing:'MLB4646190273',
+    model:/^(?:extensao\s*eletrica\s*30\s*metros|extensão\s*elétrica\s*de\s*30\s*m,)/i,
+    correct:'Extensão elétrica de 30 m, três tomadas — capacidade a confirmar',
+    summary:'O anúncio apresenta uma extensão elétrica de 30 metros com três tomadas. Antes de escolher para um equipamento, é necessário confirmar a identificação e a capacidade do conjunto. O título reúne 10 A e 20 A, enquanto a descrição cita cabo PP 2x1 mm e limites de potência; esses dados não foram verificados e não permitem a esta ficha assegurar a carga admissível ou o aterramento. O encaixe de um plugue e o termo bivolt não confirmam, sozinhos, adequação elétrica, capacidade ou segurança de uso. Peça ao vendedor marca, modelo, marcações do conjunto e documentação de conformidade aplicável; um profissional qualificado deve avaliar a adequação ao equipamento e ao local. Não use os números desta descrição comercial como dimensionamento ou autorização para ligar ferramentas, chuveiros ou outras cargas. Não testamos aquecimento, queda de tensão, isolamento ou durabilidade e não certificamos uso profissional, em obra ou ao ar livre.',
+    positiveNotes:['Comprimento de 30 metros e três tomadas anunciados; identificação e capacidade do conjunto ainda precisam ser conferidas.'],
+    negativeNotes:['Corrente, cabo, limites de carga e aterramento não confirmados; não recomendamos carga com base nesta ficha.', 'Sem ensaio de segurança ou certificação verificada da unidade; encaixe não comprova adequação ao equipamento.'],
+    contextSourceUrl:'https://www.gov.br/inmetro/pt-br/centrais-de-conteudo/noticias/2026/dia-do-consumidor-15-orientacoes-do-inmetro-para-evitar-prejuizos-e-riscos-nas-compras',
+    contextSourceLabel:'Inmetro: orientação geral de segurança nas compras, não certificação desta extensão',
+    suppressRating:true,
+  }],
   ['5eAXaJha93EuQsvd2SJn', {
     syncInformationalSchema:true,
     expectedListing:'MLB5864818802',
