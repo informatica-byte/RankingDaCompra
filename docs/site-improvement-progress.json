@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "aIFZHrVtBLCNlrEdxIud",
-      "aIWLmzyxlViGPWt6Mctg",
-      "aozkBGONt1bYjzktRNP7",
       "aQjR3wSqj9aObPqMJp10",
       "aqN9d0IKYi8X1yUcyFy9",
       "AUot5FOcnAXK9wLKfANM",
       "b2ejp8pkiWYOgBAdeXto",
-      "B3HTtYZQAYonACif4tW1"
+      "B3HTtYZQAYonACif4tW1",
+      "BcfEuX1oed02O8pYXKyg",
+      "Bf3ccSwSiVkLw1Z8k2Hu",
+      "bjRcUhAfXiIDliNXbqwE"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T15:31:45.044Z",
-  "catalogueGeneratedAt": "2026-11-02T15:31:36.865Z",
+  "updatedAt": "2026-11-02T15:35:08.438Z",
+  "catalogueGeneratedAt": "2026-11-02T15:32:51.230Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 54,
     "needs_source": 8,
-    "targeted_correction_complete": 124,
+    "targeted_correction_complete": 126,
     "preserve_prior_review": 98,
-    "pending": 275,
-    "prepared_awaiting_publication": 2
+    "pending": 275
   },
   "items": [
     {
@@ -5566,12 +5565,13 @@
       "url": "https://rankingdacompra.com.br/produto/aIFZHrVtBLCNlrEdxIud-20260810-1.html",
       "title": "Patrulha Canina - Playset De Acampamento Com Bag E 3 Bonecos Lilás",
       "fingerprint": "204e1902aecd9ab93e2dc767af664345e41aa03edc497c32a1b232a29ec9225a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T15:35:08.409Z",
       "workNotes": [
         "Patrulha: medidas repetidas em valores precisos e arredondados; texto não distingue conjunto/embalagem de cada boneco. Esclarece limite sem inventar dimensões, personagens ou certificação.",
-        "Snapshot local do anúncio. Não obtido manual/identificação exata para confirmar medidas por peça, faixa etária ou materiais; 3 anos é atribuído à oferta e não substitui embalagem. Sem transferir certificação ou conteúdo de outro playset Sunny."
+        "Snapshot local do anúncio. Não obtido manual/identificação exata para confirmar medidas por peça, faixa etária ou materiais; 3 anos é atribuído à oferta e não substitui embalagem. Sem transferir certificação ou conteúdo de outro playset Sunny.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB54179137?wid=MLB6191360194"
@@ -7319,12 +7319,13 @@
       "url": "https://rankingdacompra.com.br/produto/aozkBGONt1bYjzktRNP7-20260810-1.html",
       "title": "Tênis Kappa Park 2.0 unissex",
       "fingerprint": "e75dbbd679fb8d8f21afad2e379c00e9e51ce628e59d74d981c433c5d4ba98c9",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-02T15:35:08.409Z",
       "workNotes": [
         "Kappa: retira original como certificação própria e indicação atribuída ao fabricante sem fonte específica. Mantém identificação e materiais como declarados pela oferta, sem importar especificações de outra linha.",
-        "Snapshot local; catálogo Kappa localizado contém Pulse/Pulse RX/Supra/Evo e não confirma Park 2.0. Não importa tecnologia EVA-K, grade, desempenho ou dados de outro modelo. Variante, numeração e afiliado preservados; sem teste ou autenticação."
+        "Snapshot local; catálogo Kappa localizado contém Pulse/Pulse RX/Supra/Evo e não confirma Park 2.0. Não importa tecnologia EVA-K, grade, desempenho ou dados de outro modelo. Variante, numeração e afiliado preservados; sem teste ou autenticação.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-4049279695-_JM?searchVariation=200022329787"
@@ -10047,11 +10048,42 @@
     "backendWrites": 0
   },
   "triage62": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "aIFZHrVtBLCNlrEdxIud",
       "aozkBGONt1bYjzktRNP7"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-02T15:35:08.409Z",
+    "changedIds": [
+      "aIFZHrVtBLCNlrEdxIud",
+      "aozkBGONt1bYjzktRNP7"
+    ],
+    "jointReleaseBatches": [
+      62
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem62.json",
+    "remainingDependencies": [
+      {
+        "id": "aIFZHrVtBLCNlrEdxIud",
+        "note": "Snapshot local do anúncio. Não obtido manual/identificação exata para confirmar medidas por peça, faixa etária ou materiais; 3 anos é atribuído à oferta e não substitui embalagem. Sem transferir certificação ou conteúdo de outro playset Sunny."
+      },
+      {
+        "id": "aIWLmzyxlViGPWt6Mctg",
+        "note": "Snapshot local. Busca não localizou fonte LG exata suficiente; resultado oficial 32LR651CBSA não foi usado como se fosse 32RL601CBSA. Não confirma acessórios, aplicativos atuais, atualização, portas, garantia, variante ou teste de imagem."
+      },
+      {
+        "id": "aozkBGONt1bYjzktRNP7",
+        "note": "Snapshot local; catálogo Kappa localizado contém Pulse/Pulse RX/Supra/Evo e não confirma Park 2.0. Não importa tecnologia EVA-K, grade, desempenho ou dados de outro modelo. Variante, numeração e afiliado preservados; sem teste ou autenticação."
+      }
+    ],
+    "sourceCommit": "3085657e79016b993a7db26521b2d35fe4556958",
+    "generatedCommit": "b7be4e9c52477275606b2627008a38fda6ba90c4",
+    "sitemapRun": 41472567111,
+    "integrityRun": 41472567303,
+    "pagesRun": 41472691327,
+    "testsPassed": 1466,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
