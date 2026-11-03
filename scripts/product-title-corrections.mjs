@@ -8,6 +8,14 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['Evo4CPaNJPvGuj1ILt5u', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB7216247932',
+    model:/^(?:POLARES Z20 Patinete Elétrico Premium 500w Pneu Aderente Velocidade Máxima 32km\/h Motorizado Até 30km De Autonomia Polares|Patinete elétrico Polares Z20 — 500 W anunciados)$/i,
+    correct:'Patinete elétrico Polares Z20 — 500 W anunciados',
+    summary:'A oferta identifica um patinete elétrico Polares Z20 com potência anunciada de 500 W. Pode interessar a quem compara opções de mobilidade, mas a adequação depende das condições de uso e das especificações da unidade. Velocidade de até 32 km/h e alcance de até 30 km são declarações do anúncio, não medições da equipe ou garantias para qualquer percurso. A capacidade anunciada de 10.500 mAh não comprova sozinha a autonomia. O texto da oferta descreve rodas sólidas de 8,5 polegadas e freios eletrônico e a disco; confira esses componentes no modelo e no manual. Não mantemos a afirmação de que seja seguro em qualquer terreno, nem tratamos pneu resistente a furos como garantia de aderência ou ausência de riscos. Proteção contra sobrecarga, carga máxima e acessórios precisam ser confirmados na documentação específica. Não testamos frenagem, bateria, resistência ou segurança e não presumimos adequação a toda via ou usuário.',
+    positiveNotes:['Modelo Z20 e potência de 500 W identificados na oferta; especificações a conferir.'],
+    negativeNotes:['Velocidade e autonomia anunciadas não são resultados de teste ou garantias para qualquer percurso.', 'Sem garantia de segurança em qualquer terreno; confirmar componentes e limites no manual.'],suppressRating:true,
+  }],
   ['EbNVkHXOor6py78Wgl8X', {
     syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB5643705886',
     model:/^(?:Tripé Inteligente 1\.8m com Rastreamento Facial AI Estável 360° para Celular、Câmera、Vlog E Gopro, Basike Tripé Celular Profissional Universal Bastão Selfie Com Controle Remoto Bluetooth|Tripé Basike 1,8 m com rastreamento facial anunciado e controle Bluetooth)$/i,

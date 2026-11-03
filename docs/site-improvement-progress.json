@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-02T21:42:39.277Z",
-  "catalogueGeneratedAt": "2026-11-02T21:40:33.623Z",
+  "updatedAt": "2026-11-03T14:52:46.668Z",
+  "catalogueGeneratedAt": "2026-11-03T14:52:43.057Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -653,11 +653,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 561,
-    "screened_no_change": 62,
+    "screened_no_change": 64,
     "needs_source": 8,
     "targeted_correction_complete": 148,
     "preserve_prior_review": 98,
-    "pending": 245
+    "pending": 242,
+    "prepared_awaiting_publication": 1
   },
   "items": [
     {
@@ -5577,6 +5578,24 @@
       "sourceLinks": []
     },
     {
+      "id": "Evo4CPaNJPvGuj1ILt5u",
+      "url": "https://rankingdacompra.com.br/produto/Evo4CPaNJPvGuj1ILt5u-20260810-1.html",
+      "title": "Patinete elétrico Polares Z20 — 500 W anunciados",
+      "fingerprint": "ebc45737f28a174e974b9cca82579f162d4c6ac9403352d92d98c0cbeec86d84",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira segurança universal e superlativos; diferencia autonomia e velocidade anunciadas de resultados medidos. Encurta título.",
+        "Snapshot local; sem manual exato ou teste. Sem garantir segurança, aderência, autonomia, proteção elétrica ou adequação legal."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB62833119?wid=MLB7216247932"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "VyYiww5HVcBRIH8SD5SD",
       "url": "https://rankingdacompra.com.br/produto/VyYiww5HVcBRIH8SD5SD-20260810-1.html",
       "title": "Patinete Elétrico V01premium 500w7.8a Amortecedor Hidráulico",
@@ -6066,26 +6085,20 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "Evo4CPaNJPvGuj1ILt5u",
-      "url": "https://rankingdacompra.com.br/produto/Evo4CPaNJPvGuj1ILt5u-20260810-1.html",
-      "title": "POLARES Z20 Patinete Elétrico Premium 500w Pneu Aderente Velocidade Máxima 32km/h Motorizado Até 30km De Autonomia Polares",
-      "fingerprint": "596f3b02a3208c5eccde9200ba034a708fd744cf246b18c77de7c0d3adc93902",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "f3MOXgokgTifrolFYOhc",
       "url": "https://rankingdacompra.com.br/produto/f3MOXgokgTifrolFYOhc-20260810-1.html",
       "title": "Politriz Eletrica Roto Orbital 15mm 5 E 6 Pol 950w PRO950 The Black Tools",
       "fingerprint": "006fcdcd46a6086731b1e5e4bd779e0142503ed1100a839a61090af113f1c1ad",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-03T14:52:46.670Z",
+      "workNotes": [
+        "PRO950: texto técnico objetivo sem promessa de resultado; preservado sem revisão cosmética.",
+        "Snapshot local; dados anunciados não equivalem a teste. Não acrescentadas tensão, acessórios, instruções ou especificações de outro modelo."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB40611772?wid=MLB5087782018"
+      ]
     },
     {
       "id": "ucknzxk5UJWl0GnOXadP",
@@ -6602,11 +6615,16 @@
       "url": "https://rankingdacompra.com.br/produto/eTB1rffOxFexqoubCObQ-20260810-1.html",
       "title": "Samsung Galaxy A07 128gb 4gb Ram Preto",
       "fingerprint": "5a5bf1d1eaacf47afb3919574ec5f50f63013d179856f2f7d20c58e7a338d09f",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-03T14:52:46.670Z",
+      "workNotes": [
+        "Galaxy A07: descrição objetiva da configuração anunciada; sem contradição demonstrada que justifique reescrita.",
+        "Snapshot local; sem teste ou autenticação da unidade. Não acrescentadas especificações de outra versão."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB55034955?wid=MLB6646376566"
+      ]
     },
     {
       "id": "b2ejp8pkiWYOgBAdeXto",
@@ -10704,5 +10722,12 @@
     "testsPassed": 1483,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage73": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "Evo4CPaNJPvGuj1ILt5u"
+    ],
+    "newDeepReviews": 0
   }
 }
