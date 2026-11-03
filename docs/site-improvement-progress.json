@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "eTB1rffOxFexqoubCObQ",
-      "Evo4CPaNJPvGuj1ILt5u",
-      "f3MOXgokgTifrolFYOhc",
       "F8RXRAtxM4QOCg5hbFh9",
       "f9oPhNSAdi4gqtwPJbJh",
       "FeYsjVKPd6nzosN6U8QB",
       "fflXJkY0fRQJg8t2QZqn",
-      "FlQInLlTCwVdemK0g3rZ"
+      "FlQInLlTCwVdemK0g3rZ",
+      "fMwDJ0aYUKjwcpHFiRus",
+      "fQAJIJDeSjtSvdevGCQm",
+      "g3QWQpsMAD73Kg7gMUzm"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-03T14:52:46.668Z",
-  "catalogueGeneratedAt": "2026-11-03T14:52:43.057Z",
+  "updatedAt": "2026-11-03T14:55:51.356Z",
+  "catalogueGeneratedAt": "2026-11-03T14:54:26.693Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 561,
     "screened_no_change": 64,
     "needs_source": 8,
-    "targeted_correction_complete": 148,
+    "targeted_correction_complete": 149,
     "preserve_prior_review": 98,
-    "pending": 242,
-    "prepared_awaiting_publication": 1
+    "pending": 242
   },
   "items": [
     {
@@ -5582,12 +5581,13 @@
       "url": "https://rankingdacompra.com.br/produto/Evo4CPaNJPvGuj1ILt5u-20260810-1.html",
       "title": "Patinete elétrico Polares Z20 — 500 W anunciados",
       "fingerprint": "ebc45737f28a174e974b9cca82579f162d4c6ac9403352d92d98c0cbeec86d84",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-03T14:55:51.317Z",
       "workNotes": [
         "Retira segurança universal e superlativos; diferencia autonomia e velocidade anunciadas de resultados medidos. Encurta título.",
-        "Snapshot local; sem manual exato ou teste. Sem garantir segurança, aderência, autonomia, proteção elétrica ou adequação legal."
+        "Snapshot local; sem manual exato ou teste. Sem garantir segurança, aderência, autonomia, proteção elétrica ou adequação legal.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB62833119?wid=MLB7216247932"
@@ -10724,10 +10724,40 @@
     "backendWrites": 0
   },
   "triage73": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "Evo4CPaNJPvGuj1ILt5u"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-03T14:55:51.317Z",
+    "changedIds": [
+      "Evo4CPaNJPvGuj1ILt5u"
+    ],
+    "jointReleaseBatches": [
+      73
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem73.json",
+    "remainingDependencies": [
+      {
+        "id": "eTB1rffOxFexqoubCObQ",
+        "note": "Snapshot local; sem teste ou autenticação da unidade. Não acrescentadas especificações de outra versão."
+      },
+      {
+        "id": "Evo4CPaNJPvGuj1ILt5u",
+        "note": "Snapshot local; sem manual exato ou teste. Sem garantir segurança, aderência, autonomia, proteção elétrica ou adequação legal."
+      },
+      {
+        "id": "f3MOXgokgTifrolFYOhc",
+        "note": "Snapshot local; dados anunciados não equivalem a teste. Não acrescentadas tensão, acessórios, instruções ou especificações de outro modelo."
+      }
+    ],
+    "sourceCommit": "31e0973493cb8392d59815d87da9f53406c98a88",
+    "generatedCommit": "20311acf83023d5775a11d3da4eb8526d2c9e64b",
+    "sitemapRun": 41658284413,
+    "integrityRun": 41658284522,
+    "pagesRun": 41658377272,
+    "testsPassed": 1484,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

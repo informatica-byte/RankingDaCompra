@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 73 — 20261103, PUBLICADA E VERIFICADA
+
+- eTB1rffOxFexqoubCObQ: screened_no_change. Galaxy A07: descrição objetiva da configuração anunciada; sem contradição demonstrada que justifique reescrita. Limite: Snapshot local; sem teste ou autenticação da unidade. Não acrescentadas especificações de outra versão.
+- Evo4CPaNJPvGuj1ILt5u: targeted_correction_complete. Retira segurança universal e superlativos; diferencia autonomia e velocidade anunciadas de resultados medidos. Encurta título. Limite: Snapshot local; sem manual exato ou teste. Sem garantir segurança, aderência, autonomia, proteção elétrica ou adequação legal.
+- f3MOXgokgTifrolFYOhc: screened_no_change. PRO950: texto técnico objetivo sem promessa de resultado; preservado sem revisão cosmética. Limite: Snapshot local; dados anunciados não equivalem a teste. Não acrescentadas tensão, acessórios, instruções ou especificações de outro modelo.
+
+Fonte 31e0973493cb8392d59815d87da9f53406c98a88; geração 20311acf83023d5775a11d3da4eb8526d2c9e64b; sitemap 41658284413, integridade 41658284522, Pages 41658377272: SUCCESS. 1484 testes, validate-site e invariantes aprovados. 1 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 561 IDs/afiliados/campos operacionais e 614 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem73.json.
+
+Totais: {"total":561,"screened_no_change":64,"needs_source":8,"targeted_correction_complete":149,"preserve_prior_review":98,"pending":242}. Próximos pendentes: F8RXRAtxM4QOCg5hbFh9 — Chaleira Eletrica Atacama Inox 1,8 Litros 220v Unitermi Cor Cinza-escuro; f9oPhNSAdi4gqtwPJbJh — Mixer Philco Pmx2000 3 Em 1 Inox 800w cor preto; FeYsjVKPd6nzosN6U8QB — Uomini Black Desodorante Colônia O Boticário - 100ml. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 72 — 20261102, PUBLICADA E VERIFICADA
 
 - EbNVkHXOor6py78Wgl8X: targeted_correction_complete. Encurta título e distingue rastreamento de estabilização; qualifica universalidade e montagem não verificadas. Limite: Snapshot local; modelo e manual exatos ausentes. Sem importar materiais, carga, conector ou recarga de outro tripé.
