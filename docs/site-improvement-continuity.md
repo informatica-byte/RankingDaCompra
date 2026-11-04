@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 75 — 20261104, PUBLICADA E VERIFICADA
+
+- ufHw7Y6qN2oc8ePqgHkj: targeted_correction_complete. Alerta confirmado: pureza apresentada como verificada sem laudo do lote; qualifica composição, idade e alegação de desempenho sem rótulo específico. Limite: Snapshot local e catálogo primário consultado. Catálogo inclui apresentações distintas e não autentica esta unidade; não importados dose, ingredientes, idade, tabela ou laudos de outro pote, kit ou refil.
+
+Fonte c886ee165e56ded4b4c9c30d6bfb47f7e20d00e3; geração 253dc87178a2f431f30daccc2c62d7ec51ce81a7; sitemap 41870404973, integridade 41870404379, Pages 41870559591: SUCCESS. 1489 testes, validate-site e invariantes aprovados. 1 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 562 IDs/afiliados/campos operacionais e 615 URLs; histórico comparado por hash durante preparação. 2 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem75.json.
+
+Totais: {"total":562,"screened_no_change":64,"needs_source":8,"targeted_correction_complete":153,"preserve_prior_review":98,"pending":239}. Próximos pendentes: fflXJkY0fRQJg8t2QZqn — Kit Ventilador Portatil 8'' + Luz Led 4'' 2 Baterias Recarregável Lanterna Refletor Lampada Luz Led; FlQInLlTCwVdemK0g3rZ — Kit 5 Potes De Vidro Marmita C/ Tampa Hermético 640ml; fMwDJ0aYUKjwcpHFiRus — Kit 50 Cabide Adulto Preto Reforçado Organizador Combate. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Ajuste global da IA editorial — 04/11/2026, PUBLICADO E VERIFICADO
 
 - Pedido prioritário substituiu a revisão dos três próximos produtos. Política compartilhada aplicada aos geradores/revisores existentes nos dois painéis; modelos e número de chamadas preservados. Checagens locais adicionais de promessas absolutas em rascunhos, mantendo as validações anteriores. Não garante equivalência com revisão humana nem verifica semanticamente toda afirmação.
