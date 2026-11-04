@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T22:09:27.503Z",
+  "generatedAt": "2026-11-04T22:16:18.681Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 219
+    "screening": 216
   },
   "items": [
     {
@@ -27,27 +27,6 @@
       "title": "3 Kit Controle Remoto Eletrônico 433mhz Alarme Universal",
       "url": "https://rankingdacompra.com.br/produto/40SKVMiLnqTYwYcP2duQ-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "hVTGYQmARQt2fyDqPZDa",
-      "title": "Sapatênis Microfibra Atanado Pinhão Navy Pegada",
-      "url": "https://rankingdacompra.com.br/produto/hVTGYQmARQt2fyDqPZDa-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "iFRhxwa7Jugs5n2BSQJD",
-      "title": "Kit 8 Latas Refil Nautika Ntk 227g Camping Maçarico Fogareiro Fogão Recarga Gás Acampamento Portátil Cozinha Flambar Cozinhar Vivara Laranja-claro Kit 8 Latas Refil Nautika Ntk 22",
-      "url": "https://rankingdacompra.com.br/produto/iFRhxwa7Jugs5n2BSQJD-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "IIBNXuN1JmBc0Ol6iO6O",
-      "title": "Lixeira Inteligente 16l Sensor Automático Tampa Touch Casa",
-      "url": "https://rankingdacompra.com.br/produto/IIBNXuN1JmBc0Ol6iO6O-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

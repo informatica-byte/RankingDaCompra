@@ -8,6 +8,29 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['hVTGYQmARQt2fyDqPZDa', {
+    syncInformationalSchema:true, expectedListing:'MLB6427849268',
+    model:/^(?:Sapatênis Microfibra Atanado Pinhão Navy Pegada|Sapatênis Pegada de microfibra anunciado — cor e variação a confirmar)$/i,
+    correct:'Sapatênis Pegada de microfibra anunciado — cor e variação a confirmar',
+    summary:'A oferta identifica um sapatênis anunciado como Pegada, com microfibra no título. Há divergência de cor: o título menciona pinhão/navy, enquanto a descrição informa preto. Confira fotos da variação selecionada, cor, numeração e código do modelo na embalagem antes de escolher; não presumimos que os termos descrevam a mesma apresentação. O código de catálogo antigo do texto também não coincide com o endereço atual, por isso não o usamos como confirmação de identidade. A menção a microfibra não comprova couro natural nem características de outra linha Pegada. Não testamos ajuste, conforto, aderência ou durabilidade e não autenticamos a unidade do vendedor. A condição novo é informação da oferta, não inspeção realizada pela equipe.',
+    positiveNotes:['Identificação Pegada e material anunciado como microfibra presentes no título da oferta.'],
+    negativeNotes:['Cor divergente entre título e descrição; confirmar variação, numeração e modelo.', 'Composição, procedência e conforto da unidade não verificados; sem tecnologias importadas de outra linha.'],suppressRating:true,
+  }],
+  ['iFRhxwa7Jugs5n2BSQJD', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB7770241922',
+    model:/^(?:Kit 8 Latas Refil Nautika Ntk 227g Camping Maçarico Fogareiro Fogão Recarga Gás Acampamento Portátil Cozinha Flambar Cozinhar Vivara Laranja-claro Kit 8 Latas Refil Nautika Ntk 22|Kit de oito refis de gás de 227 g anunciados — marca a confirmar)$/i,
+    correct:'Kit de oito refis de gás de 227 g anunciados — marca a confirmar',
+    summary:'A oferta anuncia um kit de oito refis de gás, com 227 g indicados no título. A identificação da marca é divergente: o título menciona Nautika/NTK e o campo de marca informa Vivara. Confirme a marca e a identificação impressas nas latas da unidade antes de escolher; não tratamos a referência a NTK como autenticação do conjunto. Os 227 g anunciados não são apresentados como peso bruto total das oito latas. As palavras fogareiro, maçarico e fogão não comprovam que esses aparelhos estejam incluídos ou que qualquer conector seja compatível. Confira o conteúdo do kit e as instruções específicas dos cartuchos e do aparelho. Esta ficha não orienta recarga, transferência de gás, adaptação de conexão ou manuseio do combustível. Não verificamos composição, vedação, duração ou segurança, e estar no Mercado Livre não comprova vendedor oficial.',
+    positiveNotes:['Quantidade anunciada de oito refis, com identificação de 227 g no título; conteúdo a confirmar.'],
+    negativeNotes:['Marca divergente entre título e cadastro; conferir embalagem e procedência.', 'Sem compatibilidade universal ou aparelhos incluídos presumidos; seguir instruções específicas, sem adaptações.'],suppressRating:true,
+  }],
+  ['IIBNXuN1JmBc0Ol6iO6O', {
+    syncInformationalSchema:true, expectedListing:'MLB4505827975',
+    model:/^Lixeira Inteligente 16l Sensor Automático Tampa Touch Casa$/i,
+    summary:'A oferta identifica uma lixeira de capacidade anunciada de 16 litros, com abertura e fechamento por sensor e tampa touch descritos no cadastro. Pode interessar a quem compara opções para ambientes internos, mas confirme as dimensões, o mecanismo e os itens incluídos na unidade. A alimentação por pilhas é informação do anúncio; sem marca, modelo ou manual específico confirmados, não afirmamos que seja a única forma de alimentação de toda versão semelhante. Confira tipo e quantidade de pilhas e se acompanham o produto, sem presumir bateria recarregável ou conexão USB. A indicação para cozinha ou banheiro não comprova proteção contra água ou adequação a qualquer condição de umidade. Não testamos resposta do sensor, vedação de odores, autonomia ou resistência e não importamos recursos de outra lixeira de 16 litros.',
+    positiveNotes:['Capacidade de 16 litros e tampa com sensor informadas na oferta.'],
+    negativeNotes:['Confirmar modelo, dimensões, alimentação e itens incluídos; sem exclusividade de alimentação presumida.', 'Sensor, vedação e proteção contra água não testados; uso interno não é garantia para toda umidade.'],suppressRating:true,
+  }],
   ['hhnKX4x5l2ab7gguVoYU', {
     syncInformationalSchema:true, expectedListing:'MLB7173279944',
     model:/^(?:Piscina Inflável Pvc Espessa Resistente Família Grande|Piscina inflável de PVC — capacidade de 3\.000 litros anunciada)$/i,

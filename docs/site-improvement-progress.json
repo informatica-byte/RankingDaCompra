@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:11:12.562Z",
-  "catalogueGeneratedAt": "2026-11-04T22:09:27.503Z",
+  "updatedAt": "2026-11-04T22:16:27.194Z",
+  "catalogueGeneratedAt": "2026-11-04T22:16:18.681Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -691,7 +691,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 171,
     "preserve_prior_review": 98,
-    "pending": 219
+    "pending": 216,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4207,17 +4208,6 @@
       "sourceLinks": []
     },
     {
-      "id": "iFRhxwa7Jugs5n2BSQJD",
-      "url": "https://rankingdacompra.com.br/produto/iFRhxwa7Jugs5n2BSQJD-20260810-1.html",
-      "title": "Kit 8 Latas Refil Nautika Ntk 227g Camping Maçarico Fogareiro Fogão Recarga Gás Acampamento Portátil Cozinha Flambar Cozinhar Vivara Laranja-claro Kit 8 Latas Refil Nautika Ntk 22",
-      "fingerprint": "9c7d1cc29446957442bb003efdd6da9f994df4d8a258f3cc028a84481bbd6653",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB4645102377",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4645102377-20260810-1.html",
       "title": "Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml",
@@ -4352,6 +4342,24 @@
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-3240424598-kit-9-pares-meias-puma-sapatilha-soquete-invisivel-original-_JM?searchVariation=183973673677"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "iFRhxwa7Jugs5n2BSQJD",
+      "url": "https://rankingdacompra.com.br/produto/iFRhxwa7Jugs5n2BSQJD-20260810-1.html",
+      "title": "Kit de oito refis de gás de 227 g anunciados — marca a confirmar",
+      "fingerprint": "957026f6ce0a159cad85997d9e04d889d021a7a488c9367c3cd1f9a617d3d799",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Sinaliza marca NTK/Vivara, diferencia peso indicado de peso total e não presume equipamentos ou conectores. Encurta título repetido.",
+        "Snapshot local, sem identificação de embalagem ou manual exato. Sem composição, certificação, compatibilidade, recarga, transferência ou manuseio de gás inferidos."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB79651808?wid=MLB7770241922"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -4856,12 +4864,19 @@
       "id": "IIBNXuN1JmBc0Ol6iO6O",
       "url": "https://rankingdacompra.com.br/produto/IIBNXuN1JmBc0Ol6iO6O-20260810-1.html",
       "title": "Lixeira Inteligente 16l Sensor Automático Tampa Touch Casa",
-      "fingerprint": "4d59185e49e6154284b6a4e3f4ec2840eafe996033da54adf15ff6666e42bee7",
-      "status": "pending",
+      "fingerprint": "ef39e085f1d3ab8b29bee2b4a8a74f21c6d440ed3813d581de6601aa703f9dd5",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Qualifica alimentação exclusiva sem modelo/manual exato e distingue uso interno de proteção contra água.",
+        "Snapshot genérico; pilhas e capacidade permanecem anunciadas. Não acrescenta USB, bateria recarregável, resistência à água ou vedação de outra lixeira."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB66154165?wid=MLB4505827975"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "4qfOr9o2qNFtHLcRZzRC",
@@ -6911,13 +6926,20 @@
     {
       "id": "hVTGYQmARQt2fyDqPZDa",
       "url": "https://rankingdacompra.com.br/produto/hVTGYQmARQt2fyDqPZDa-20260810-1.html",
-      "title": "Sapatênis Microfibra Atanado Pinhão Navy Pegada",
-      "fingerprint": "549c9432728ae8312a2459fae36191050ff9d5a24d59313da97244106f0cf250",
-      "status": "pending",
+      "title": "Sapatênis Pegada de microfibra anunciado — cor e variação a confirmar",
+      "fingerprint": "ec9df9898ddeca476b1aad4c89a4adedb8bd0fe8077c9b642548a9239b6aae1c",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Sinaliza cor pinhão/navy versus preto e catálogo antigo divergente; preserva seleção sem afirmar outra cor.",
+        "Snapshot local; sem código alfanumérico do calçado ou confirmação da variação. Não autentica unidade nem acrescenta couro, conforto ou tecnologia de outro Pegada."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU2965915888?wid=MLB6427849268"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "oVBbvfcldF36EbyYex8y",
@@ -11365,5 +11387,14 @@
     "testsPassed": 1505,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage83": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "IIBNXuN1JmBc0Ol6iO6O",
+      "hVTGYQmARQt2fyDqPZDa",
+      "iFRhxwa7Jugs5n2BSQJD"
+    ],
+    "newDeepReviews": 0
   }
 }
