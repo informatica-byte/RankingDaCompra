@@ -8,6 +8,30 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['hhnKX4x5l2ab7gguVoYU', {
+    syncInformationalSchema:true, expectedListing:'MLB7173279944',
+    model:/^(?:Piscina Inflável Pvc Espessa Resistente Família Grande|Piscina inflável de PVC — capacidade de 3\.000 litros anunciada)$/i,
+    correct:'Piscina inflável de PVC — capacidade de 3.000 litros anunciada',
+    summary:'A oferta identifica uma piscina inflável de marca genérica, descrita como de PVC, com capacidade anunciada de 3.000 litros. As expressões espessa, resistente e família grande não comprovam espessura do material, durabilidade ou quantidade de pessoas adequada. Confirme o modelo, as dimensões, os componentes e as instruções da unidade antes de escolher; o cadastro avisa que as imagens podem ser ilustrativas. A capacidade anunciada não determina sozinha o nível de enchimento recomendado, a carga sobre a superfície de apoio ou a adequação ao local. Não fornecemos dimensionamento de instalação, rotina de tratamento da água ou orientação de uso sem manual específico. Não testamos material, vedação, resistência ou segurança e não transferimos especificações de outra piscina visualmente semelhante.',
+    positiveNotes:['Piscina inflável de PVC com capacidade de 3.000 litros informada na oferta; modelo a confirmar.'],
+    negativeNotes:['Sem espessura, dimensões ou resistência verificadas; imagens podem ser ilustrativas.', 'Capacidade nominal não define instalação ou ocupação; seguir instruções específicas da unidade.'],suppressRating:true,
+  }],
+  ['hLiaQWog1dogQ2OpMDSt', {
+    syncInformationalSchema:true, expectedListing:'MLB5799991832',
+    model:/^Ventilador De Mesa 40cm Turbo NVT-40-BL MONDIAL$/i,
+    summary:'A oferta identifica o ventilador de mesa Mondial NVT-40-BL de 40 cm, com oito pás plásticas azuis e estrutura preta informadas no cadastro. A frequência anunciada é de 60 Hz. Essas características vêm da oferta, não de inspeção da unidade pela equipe. A página estar no Mercado Livre não comprova que o vendedor seja oficial da Mondial. Confira a tensão e a identificação na etiqueta do aparelho antes da escolha, sem presumir que seja bivolt. Não acrescentamos potência, nível de ruído, vazão ou recursos de outra versão. Não testamos ventilação, consumo, silêncio ou durabilidade; a palavra Turbo do nome não representa um resultado de comparação medido por nós.',
+    positiveNotes:['Modelo NVT-40-BL, diâmetro de 40 cm e oito pás informados na oferta.'],
+    negativeNotes:['Confirmar tensão e versão da unidade; vendedor oficial não comprovado apenas pela plataforma.', 'Ruído, consumo e ventilação não testados; sem especificações importadas de outro Mondial.'],suppressRating:true,
+  }],
+  ['htLzwGXLZpkVa0eXWdkr', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB3705389546',
+    model:/^(?:Soprador de folhas lateral Fak260S 2T 26Cc 0,90Hp Carbon Fak cor laranja profissional a gasolina|Soprador lateral Carbon Fak FAK260S — motor 2 tempos de 26 cc)$/i,
+    correct:'Soprador lateral Carbon Fak FAK260S — motor 2 tempos de 26 cc',
+    summary:'A oferta identifica o soprador lateral Carbon Fak FAK260S, a gasolina, com motor de dois tempos de 26 cc e potência anunciada de 0,9 HP. A referência da marca informa tanque de 650 ml, velocidade de ar de até 280 km/h e autonomia aproximada de uma hora; são dados declarados, não medições da equipe. Não confirmamos o consumo de 0,650 litro por hora do cadastro como resultado real da unidade. A indicação de 470 m³ aparece sem uma unidade de tempo na referência consultada; não a transformamos por suposição em vazão por hora para comparar com outros sopradores. A qualificação profissional não comprova adequação a qualquer tarefa ou duração de trabalho. Confira instruções, acessórios e requisitos de segurança no manual específico. Não testamos ruído, desempenho, consumo ou resistência e não fornecemos proporção de combustível, adaptação ou procedimento de manutenção.',
+    positiveNotes:['Identificação FAK260S e motor de dois tempos de 26 cc, com 0,9 HP anunciados.'],
+    negativeNotes:['Autonomia e velocidade são declaradas; consumo real não medido e unidade temporal da vazão não esclarecida.', 'Adequação à tarefa e segurança dependem das instruções específicas; sem teste ou orientação de combustível.'],
+    contextSourceUrl:'https://www.carbonfak.com.br/produto/soprador-de-folhas-lateral-26cc-fak260s-3',contextSourceLabel:'Carbon Fak FAK260S: referência de dados declarados, não teste de desempenho ou da unidade',suppressRating:true,
+  }],
   ['Hd0FWwNPR8uVXWLwPz3A', {
     syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB6755589412',
     model:/^(?:Carrinho Controle Remoto Recarregavel Storm Racer Turbo Potente Luz Led Alta Velocidade Preto Amorelancia|Carrinho de controle remoto Storm Racer recarregável, preto)$/i,
