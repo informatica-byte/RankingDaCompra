@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 85 — 20261104, PUBLICADA E VERIFICADA
+
+- iXzsMyqf9ilSKwbLDtk7: targeted_correction_complete. Corrige código de anúncio rotulado como catálogo e não transforma molas/atividades do título em desempenho comprovado. Limite: Snapshot local e formato do endereço; sem código técnico, material, amortecimento ou teste. Marca Wave permanece atribuída ao cadastro, sem associação a outra fabricante.
+- J6WCPaTR5KOqjsAC1nM7: targeted_correction_complete. Distingue alimentação do aparelho de eventual carregador; qualifica potência, recarga solar e uso externo não testados. Encurta título. Limite: Snapshot sem modelo/manual exato. Não acrescenta tensão de entrada, fonte, potência medida, tempo de carga, lumens ou proteção contra água.
+- j8z58qFPJKTUJogf5HTM: targeted_correction_complete. Retira resistência genérica como garantia e fonte dita oficial; atribui configuração/IP54 à oferta sem importar outros realme. Encurta título. Limite: Busca em fontes primárias não confirmou documentação exata suficiente; isso não prova inexistência do modelo. Não usa especificações de C63 ou outro Note, nem afirma IP54 como certificado/testado nesta unidade.
+
+Fonte aedcf90205bdbd1c8b24ad163360a34ddaf30b38; geração b262dd7085dc36dd4bbb138dc3b9abd3afe5b382; sitemap 41926568573, integridade 41926568549, Pages 41926637567: SUCCESS. 1508 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem85.json.
+
+Totais: {"total":563,"screened_no_change":67,"needs_source":8,"targeted_correction_complete":180,"preserve_prior_review":98,"pending":210}. Próximos pendentes: jABp2HpfTmQNwXsPgrYQ — Creatina Monohidratada Pura 500g Dark Lab Unidade; jffyLJv2cImsjfarZ1pi — Ventilador de Teto Ventisol Aires Inverter Aires Inverter 14222 Teto Bivolt; JWp7l6fsqNkkSsBCAosW — Tênis Masculino Couro Nobuck Casual Minimalista Urbano Top. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 84 — 20261104, PUBLICADA E VERIFICADA
 
 - ik7zBiCAAqDLqr9Di5Ue: targeted_correction_complete. Distingue alimentação USB do stick de pilhas do controle e qualifica assistentes; preserva categoria existente e encurta título. Limite: Suporte primário geral consultado; não confirma tipo de pilhas, itens do kit ou funcionalidades de todas as integrações do 3840BR. Não importa tensão, instruções ou recursos de Express, Plus ou 4K.

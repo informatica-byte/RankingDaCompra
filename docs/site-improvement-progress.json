@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "iXzsMyqf9ilSKwbLDtk7",
-      "J6WCPaTR5KOqjsAC1nM7",
-      "j8z58qFPJKTUJogf5HTM",
       "jABp2HpfTmQNwXsPgrYQ",
       "jffyLJv2cImsjfarZ1pi",
       "JWp7l6fsqNkkSsBCAosW",
       "k0fHNRurzCmYEdcHcn1V",
-      "k82L2iy2Q6giFdCHVbSg"
+      "k82L2iy2Q6giFdCHVbSg",
+      "K8hXvUkqAAnbt0Om6wRj",
+      "KHQKsjwv2MzJGObyoZkd",
+      "KjczAN39YiZOmTgmzwIt"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:29:20.940Z",
-  "catalogueGeneratedAt": "2026-11-04T22:29:11.177Z",
+  "updatedAt": "2026-11-04T22:36:51.643Z",
+  "catalogueGeneratedAt": "2026-11-04T22:35:27.662Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 67,
     "needs_source": 8,
-    "targeted_correction_complete": 177,
+    "targeted_correction_complete": 180,
     "preserve_prior_review": 98,
-    "pending": 210,
-    "prepared_awaiting_publication": 3
+    "pending": 210
   },
   "items": [
     {
@@ -4575,12 +4574,13 @@
       "url": "https://rankingdacompra.com.br/produto/J6WCPaTR5KOqjsAC1nM7-20260810-1.html",
       "title": "Lâmpada LED Several — recarga USB e solar anunciada",
       "fingerprint": "e2cdba33ce3027662f039f21172faae89b4b92669c116a78b16784c3bff82c8d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:36:51.616Z",
       "workNotes": [
         "Distingue alimentação do aparelho de eventual carregador; qualifica potência, recarga solar e uso externo não testados. Encurta título.",
-        "Snapshot sem modelo/manual exato. Não acrescenta tensão de entrada, fonte, potência medida, tempo de carga, lumens ou proteção contra água."
+        "Snapshot sem modelo/manual exato. Não acrescenta tensão de entrada, fonte, potência medida, tempo de carga, lumens ou proteção contra água.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB67146235?wid=MLB6513365616"
@@ -6617,12 +6617,13 @@
       "url": "https://rankingdacompra.com.br/produto/j8z58qFPJKTUJogf5HTM-20260810-1.html",
       "title": "Realme Note 80s 128 GB e 4 GB de RAM — especificações anunciadas",
       "fingerprint": "b181d8bb1dcf88a1e694fb89358bffbebdc8d1b20e1d07a820a6a4778b739816",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:36:51.616Z",
       "workNotes": [
         "Retira resistência genérica como garantia e fonte dita oficial; atribui configuração/IP54 à oferta sem importar outros realme. Encurta título.",
-        "Busca em fontes primárias não confirmou documentação exata suficiente; isso não prova inexistência do modelo. Não usa especificações de C63 ou outro Note, nem afirma IP54 como certificado/testado nesta unidade."
+        "Busca em fontes primárias não confirmou documentação exata suficiente; isso não prova inexistência do modelo. Não usa especificações de C63 ou outro Note, nem afirma IP54 como certificado/testado nesta unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB67629858?wid=MLB6655269258"
@@ -8029,12 +8030,13 @@
       "url": "https://rankingdacompra.com.br/produto/iXzsMyqf9ilSKwbLDtk7-20260810-1.html",
       "title": "Tênis Masculino Esportivo Creation Molas Academia Caminhada",
       "fingerprint": "cf85326c5e9435c665116170235733981592872a109043f8889b38f265b87652",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:36:51.616Z",
       "workNotes": [
         "Corrige código de anúncio rotulado como catálogo e não transforma molas/atividades do título em desempenho comprovado.",
-        "Snapshot local e formato do endereço; sem código técnico, material, amortecimento ou teste. Marca Wave permanece atribuída ao cadastro, sem associação a outra fabricante."
+        "Snapshot local e formato do endereço; sem código técnico, material, amortecimento ou teste. Marca Wave permanece atribuída ao cadastro, sem associação a outra fabricante.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-7105555314"
@@ -11520,12 +11522,44 @@
     "backendWrites": 0
   },
   "triage85": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "J6WCPaTR5KOqjsAC1nM7",
       "iXzsMyqf9ilSKwbLDtk7",
       "j8z58qFPJKTUJogf5HTM"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T22:36:51.616Z",
+    "changedIds": [
+      "iXzsMyqf9ilSKwbLDtk7",
+      "J6WCPaTR5KOqjsAC1nM7",
+      "j8z58qFPJKTUJogf5HTM"
+    ],
+    "jointReleaseBatches": [
+      85
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem85.json",
+    "remainingDependencies": [
+      {
+        "id": "iXzsMyqf9ilSKwbLDtk7",
+        "note": "Snapshot local e formato do endereço; sem código técnico, material, amortecimento ou teste. Marca Wave permanece atribuída ao cadastro, sem associação a outra fabricante."
+      },
+      {
+        "id": "J6WCPaTR5KOqjsAC1nM7",
+        "note": "Snapshot sem modelo/manual exato. Não acrescenta tensão de entrada, fonte, potência medida, tempo de carga, lumens ou proteção contra água."
+      },
+      {
+        "id": "j8z58qFPJKTUJogf5HTM",
+        "note": "Busca em fontes primárias não confirmou documentação exata suficiente; isso não prova inexistência do modelo. Não usa especificações de C63 ou outro Note, nem afirma IP54 como certificado/testado nesta unidade."
+      }
+    ],
+    "sourceCommit": "aedcf90205bdbd1c8b24ad163360a34ddaf30b38",
+    "generatedCommit": "b262dd7085dc36dd4bbb138dc3b9abd3afe5b382",
+    "sitemapRun": 41926568573,
+    "integrityRun": 41926568549,
+    "pagesRun": 41926637567,
+    "testsPassed": 1508,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
