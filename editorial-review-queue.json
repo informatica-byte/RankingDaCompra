@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T23:29:12.293Z",
+  "generatedAt": "2026-11-04T23:35:42.777Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 189
+    "screening": 186
   },
   "items": [
     {
@@ -34,27 +34,6 @@
       "title": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
       "url": "https://rankingdacompra.com.br/produto/jdxZ0gYEI0XGOPYbWh78-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mhz9cN2MnCkxuSW5OPlv",
-      "title": "Pistola Fixação Finca Pino Ação Direta",
-      "url": "https://rankingdacompra.com.br/produto/mhz9cN2MnCkxuSW5OPlv-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB1921632393",
-      "title": "Pc Gamer Completo I7 Gtx1650 Ssd120 Hd1tb 16gb Fonte 750w",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB1921632393-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB2088799901",
-      "title": "Kit Reparo Pneu Tubeless Para Bike Bicileta",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB2088799901-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

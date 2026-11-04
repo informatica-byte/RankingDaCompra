@@ -8,6 +8,28 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mhz9cN2MnCkxuSW5OPlv', {
+    syncInformationalSchema:true,
+    model:/^Pistola Fixação Finca Pino Ação Direta$/i,
+    summary:'A oferta identifica uma ferramenta anunciada como finca-pino de ação direta. A descrição reúne aplicações em concreto, aço, gesso, drywall e PVC, mas não fornece marca, modelo técnico ou manual específico que confirme essas compatibilidades. Não apresentamos fixação rápida e eficiente em qualquer parede como resultado comprovado. Os termos grampeador, rebitador e pregador do anúncio também não demonstram que a unidade cumpra todas essas funções. Confira identificação, documentação e conteúdo exato do kit antes de escolher; maleta e EPI mencionados não comprovam certificação ou proteção suficiente. Esta ficha corresponde a este cadastro, sem transferir características da outra finca-pino revisada. Não testamos fixação ou segurança e não orientamos acionamento, carga, pinos ou uso em estruturas por suposição.',
+    positiveNotes:['Oferta identificada como finca-pino; conferir modelo e conteúdo do kit específico.'],
+    negativeNotes:['Compatibilidade com materiais e funções não confirmada por manual específico.', 'Fixação e segurança não testadas; EPI anunciado não comprova certificação ou proteção suficiente.'],suppressRating:true,
+  }],
+  ['mlMLB1921632393', {
+    syncInformationalSchema:true, expectedListing:'MLB1921632393',
+    model:/^Pc Gamer Completo I7 Gtx1650 Ssd120 Hd1tb 16gb Fonte 750w$/i,
+    summary:'A oferta identifica um computador anunciado com Intel Core i7, GTX 1650, 16 GB de RAM, SSD de 120 GB, HD de 1 TB e fonte indicada como 750 W. São dados do cadastro, não inspeção dos componentes. O nome Core i7 não informa sozinho a geração e o código do processador; confirme também placa-mãe, modelo da placa de vídeo, fonte e condição das peças antes de comparar. A potência anunciada da fonte não comprova eficiência, qualidade ou potência medida pela equipe. Completo no título não esclarece por si quais monitor, periféricos, sistema e acessórios estão incluídos. Não testamos jogos, estabilidade ou desempenho e não prometemos taxa de quadros ou compatibilidade com qualquer jogo. Mantemos as capacidades anunciadas sem substituir componentes por uma configuração parecida.',
+    positiveNotes:['Configuração anunciada de Core i7, GTX 1650 e 16 GB de RAM identificada na oferta.'],
+    negativeNotes:['Código e geração do processador, modelos das peças e conteúdo do conjunto a confirmar.', 'Fonte e desempenho não testados; sem FPS, eficiência ou compatibilidade universal prometidos.'],suppressRating:true,
+  }],
+  ['mlMLB2088799901', {
+    syncInformationalSchema:true, expectedListing:'MLB2088799901',
+    model:/^(?:Kit Reparo Pneu Tubeless Para Bike Bicileta|Kit de reparo tubeless Cyclingbox para bicicleta — sem inflador anunciado)$/i,
+    correct:'Kit de reparo tubeless Cyclingbox para bicicleta — sem inflador anunciado',
+    summary:'A oferta identifica um kit Cyclingbox para reparo de pneu tubeless de bicicleta, com inflador não incluído segundo o cadastro. Pode interessar a quem compara ferramentas para esse tipo de pneu, mas confirme itens, quantidades e compatibilidade com seu conjunto antes de escolher. O código de catálogo MLB2062216813 aparece no endereço da oferta; ele não autentica a unidade ou demonstra que o vendedor seja oficial da marca. A condição novo é informação do anúncio, não inspeção da equipe. Não testamos vedação, durabilidade ou adequação a um dano específico e não garantimos reparo de qualquer furo. A ficha não fornece instruções de reparo ou autoriza continuar usando um pneu danificado sem avaliação adequada.',
+    positiveNotes:['Proposta de kit para tubeless de bicicleta identificada; inflador anunciado como não incluído.'],
+    negativeNotes:['Conferir itens, quantidades e compatibilidade; vedação e durabilidade não testadas.', 'Catálogo e condição anunciada não comprovam autenticidade ou vendedor oficial.'],suppressRating:true,
+  }],
   ['MEkEjNiiDdi5MpmlP07R', {
     syncInformationalSchema:true,
     model:/^Garrafa térmica Termolar Lúmina Bomba de Pressão 1L$/i,
