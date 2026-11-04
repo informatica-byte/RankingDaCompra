@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "h0a3vchlbGQbAnHdbujA",
-      "H0bw2eYqi6yqdyBF1Ufl",
-      "H17ykC6IlHMpWBEMnEQ7",
       "Hd0FWwNPR8uVXWLwPz3A",
       "hDRgi7LAJobY4o5W9ipJ",
       "HEP91TkP4BHCEvBWmTHq",
       "hhnKX4x5l2ab7gguVoYU",
-      "hLiaQWog1dogQ2OpMDSt"
+      "hLiaQWog1dogQ2OpMDSt",
+      "htLzwGXLZpkVa0eXWdkr",
+      "hVTGYQmARQt2fyDqPZDa",
+      "iFRhxwa7Jugs5n2BSQJD"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T21:52:24.778Z",
-  "catalogueGeneratedAt": "2026-11-04T21:52:15.504Z",
+  "updatedAt": "2026-11-04T21:55:04.150Z",
+  "catalogueGeneratedAt": "2026-11-04T21:53:20.338Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 67,
     "needs_source": 8,
-    "targeted_correction_complete": 164,
+    "targeted_correction_complete": 165,
     "preserve_prior_review": 98,
-    "pending": 225,
-    "prepared_awaiting_publication": 1
+    "pending": 225
   },
   "items": [
     {
@@ -4925,12 +4924,13 @@
       "url": "https://rankingdacompra.com.br/produto/H17ykC6IlHMpWBEMnEQ7-20260810-1.html",
       "title": "Mala Miami com frasqueira e rodas 360° anunciadas — tamanho a confirmar",
       "fingerprint": "6c19b2ecdc454792af6682d0ea1fdabc370b1026755db18ae0dce0f112708408",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T21:55:04.122Z",
       "workNotes": [
         "Sinaliza divergência 10 kg/tamanho M, retira promoção do título e qualifica expansão e TSA não confirmados.",
-        "Snapshot local; sem manual exato, medida, carga, expansão ou cadeado confirmados. Não classifica como cabine, autentica TSA, troca variante ou garante aceitação em viagem."
+        "Snapshot local; sem manual exato, medida, carga, expansão ou cadeado confirmados. Não classifica como cabine, autentica TSA, troca variante ou garante aceitação em viagem.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/mala-de-viagem-miami-tamanho-m-frasqueira-designer-moderno/up/MLBU3371822498?pdp_filters=item_id%3AMLB5598192576"
@@ -11197,10 +11197,40 @@
     "backendWrites": 0
   },
   "triage80": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "H17ykC6IlHMpWBEMnEQ7"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T21:55:04.122Z",
+    "changedIds": [
+      "H17ykC6IlHMpWBEMnEQ7"
+    ],
+    "jointReleaseBatches": [
+      80
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem80.json",
+    "remainingDependencies": [
+      {
+        "id": "h0a3vchlbGQbAnHdbujA",
+        "note": "Snapshot local; referência primária de família AG15-51P localizada não confirma o sufixo 379H. Sem teste ou transferência de configurações de outro Aspire. Ausência de fonte exata não é prova de erro."
+      },
+      {
+        "id": "H0bw2eYqi6yqdyBF1Ufl",
+        "note": "Referência do modelo LS consultada; não valida unidade, compatibilidade de qualquer periférico ou desempenho. Não importados recursos do UN32H5000FGXZD."
+      },
+      {
+        "id": "H17ykC6IlHMpWBEMnEQ7",
+        "note": "Snapshot local; sem manual exato, medida, carga, expansão ou cadeado confirmados. Não classifica como cabine, autentica TSA, troca variante ou garante aceitação em viagem."
+      }
+    ],
+    "sourceCommit": "1bd9563cf9fc7f6c81dca45fd9180201785a4ea0",
+    "generatedCommit": "4021c624f419efb36d67eb33bbb9eaac18713508",
+    "sitemapRun": 41920202234,
+    "integrityRun": 41920202358,
+    "pagesRun": 41920285290,
+    "testsPassed": 1503,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
