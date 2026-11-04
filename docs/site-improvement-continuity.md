@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 83 — 20261104, PUBLICADA E VERIFICADA
+
+- hVTGYQmARQt2fyDqPZDa: targeted_correction_complete. Sinaliza cor pinhão/navy versus preto e catálogo antigo divergente; preserva seleção sem afirmar outra cor. Limite: Snapshot local; sem código alfanumérico do calçado ou confirmação da variação. Não autentica unidade nem acrescenta couro, conforto ou tecnologia de outro Pegada.
+- iFRhxwa7Jugs5n2BSQJD: targeted_correction_complete. Sinaliza marca NTK/Vivara, diferencia peso indicado de peso total e não presume equipamentos ou conectores. Encurta título repetido. Limite: Snapshot local, sem identificação de embalagem ou manual exato. Sem composição, certificação, compatibilidade, recarga, transferência ou manuseio de gás inferidos.
+- IIBNXuN1JmBc0Ol6iO6O: targeted_correction_complete. Qualifica alimentação exclusiva sem modelo/manual exato e distingue uso interno de proteção contra água. Limite: Snapshot genérico; pilhas e capacidade permanecem anunciadas. Não acrescenta USB, bateria recarregável, resistência à água ou vedação de outra lixeira.
+
+Fonte 7c4f9266e42575c02af6897d51392fdcef6d4a8c; geração dfa8c648fddef6f29dd7d483b5a885e048281ab2; sitemap 41923925254, integridade 41923925913, Pages 41924011283: SUCCESS. 1506 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem83.json.
+
+Totais: {"total":563,"screened_no_change":67,"needs_source":8,"targeted_correction_complete":174,"preserve_prior_review":98,"pending":216}. Próximos pendentes: ik7zBiCAAqDLqr9Di5Ue — Roku Streaming Stick 2025 Para Tv Hd/fhd Controle Por Voz Preto De Voz 3ª geração 3840BR; IQP6np7muXjwAQ6aN20M — Smartphone Samsung Galaxy A17 5g 128gb 4gb Super Amoled 6.7'' Câmera 50mp Selfie 13 Mp 5000 Mah Nfc Dual Sim Recursos Ia - Cinza; iSyPxYQcVUDjHvjIHLhS — Mini Mixer Misturador De Bebidas Elétrico 2 Em 1 Portátil Recarregável Mexedor De Ovos Whey Leite Café Espuma Shake Drinks Capuccino Suco Comica. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 82 — 20261104, PUBLICADA E VERIFICADA
 
 - hhnKX4x5l2ab7gguVoYU: targeted_correction_complete. Retira espessura/resistência e ocupação implícita como garantias; capacidade permanece anunciada. Limite: Snapshot genérico sem manual, dimensões ou material medido. Não define ocupação, carga, instalação, enchimento ou tratamento de água.
