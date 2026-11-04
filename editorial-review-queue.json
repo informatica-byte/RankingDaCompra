@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T21:06:58.161Z",
+  "generatedAt": "2026-11-04T21:16:54.127Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 234
+    "screening": 231
   },
   "items": [
     {
@@ -27,27 +27,6 @@
       "title": "3 Kit Controle Remoto Eletrônico 433mhz Alarme Universal",
       "url": "https://rankingdacompra.com.br/produto/40SKVMiLnqTYwYcP2duQ-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "gNcq5nSqWbfqYi1M9c23",
-      "title": "Lanterna LED Apfer recarregável",
-      "url": "https://rankingdacompra.com.br/produto/gNcq5nSqWbfqYi1M9c23-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "GPORGqPOixfgh38bVrXX",
-      "title": "Smartphone Motorola Edge 70 Pro 5g - 256gb 24gb (12gb Ram+12gb Ram Boost), 4 Câmeras De 50mp, Tela 1.5k Extreme Amoled 144hz, Bateria 6500 Mah, Ip68/ip69 - Azul Escuro",
-      "url": "https://rankingdacompra.com.br/produto/GPORGqPOixfgh38bVrXX-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "GQiP9vBIhECa4I5CuzkB",
-      "title": "Tênis Flyer Runner Mesh Bdp Puma",
-      "url": "https://rankingdacompra.com.br/produto/GQiP9vBIhECa4I5CuzkB-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
@@ -362,6 +341,13 @@
       "id": "mlMLB1921632393",
       "title": "Pc Gamer Completo I7 Gtx1650 Ssd120 Hd1tb 16gb Fonte 750w",
       "url": "https://rankingdacompra.com.br/produto/mlMLB1921632393-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "mlMLB2088799901",
+      "title": "Kit Reparo Pneu Tubeless Para Bike Bicileta",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB2088799901-20260810-1.html",
       "state": "screening",
       "reasons": []
     },
@@ -1692,13 +1678,6 @@
       "id": "zuvOrERyR2wVRA9ZmYGe",
       "title": "Câmera Lâmpada IP Wi-Fi Raytechno Full HD 1080p com Visão Noturna e Sensor de Movimento",
       "url": "https://rankingdacompra.com.br/produto/zuvOrERyR2wVRA9ZmYGe-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB2088799901",
-      "title": "Kit Reparo Pneu Tubeless Para Bike Bicileta",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB2088799901-20260810-1.html",
       "state": "screening",
       "reasons": []
     }

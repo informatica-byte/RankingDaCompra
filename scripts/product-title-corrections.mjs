@@ -8,6 +8,22 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['GPORGqPOixfgh38bVrXX', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB6760902576',
+    model:/^(?:Smartphone Motorola Edge 70 Pro 5g - 256gb 24gb \(12gb Ram\+12gb Ram Boost\), 4 Câmeras De 50mp, Tela 1\.5k Extreme Amoled 144hz, Bateria 6500 Mah, Ip68\/ip69 - Azul Escuro|Motorola Edge 70 Pro 5G 256 GB — 12 GB de RAM e RAM Boost, azul escuro)$/i,
+    correct:'Motorola Edge 70 Pro 5G 256 GB — 12 GB de RAM e RAM Boost, azul escuro',
+    summary:'A oferta identifica o Motorola Edge 70 Pro 5G de 256 GB, azul escuro, com 12 GB de RAM física. A fabricante esclarece que a indicação de até 24 GB soma a RAM física ao recurso RAM Boost; não são 24 GB de memória física. Confira a configuração da unidade e as condições do recurso antes de comparar aparelhos. O anúncio menciona quatro câmeras de 50 MP no total, sendo três traseiras e uma frontal; isso não significa quatro câmeras traseiras nem comprova qualidade de imagem. Tela de 144 Hz, bateria de 6.500 mAh e classificações IP68/IP69 são dados anunciados, não medições da equipe. Não testamos fluidez, autonomia, fotografia ou resistência; confirme condições e limites na documentação da versão. A hospedagem da oferta no Mercado Livre não confirma que o vendedor seja oficial da Motorola. Não transferimos características de outra versão Edge.',
+    positiveNotes:['Configuração anunciada de 256 GB e 12 GB de RAM física; RAM Boost identificado separadamente.'],
+    negativeNotes:['RAM Boost não equivale a RAM física adicional; conferir configuração da unidade.', 'Autonomia, câmeras e resistência não testadas; anúncio não autentica vendedor ou unidade.'],
+    contextSourceUrl:'https://www.motorola.com.br/smartphone-motorola-edge-70-pro-5g-256gb/p',contextSourceLabel:'Motorola Brasil: referência de RAM física e RAM Boost, não teste da unidade anunciada',suppressRating:true,
+  }],
+  ['GQiP9vBIhECa4I5CuzkB', {
+    syncInformationalSchema:true, expectedListing:'MLB3806655487',
+    model:/^Tênis Flyer Runner Mesh Bdp Puma$/i,
+    summary:'A oferta identifica o tênis Puma Flyer Runner Mesh BDP, anunciado na cor preta. O código MLB3806655487 identifica o anúncio do vendedor, não um código de catálogo confirmado. Confira a numeração e a variação selecionadas antes de escolher: o nome do modelo não confirma sozinho o ajuste ao seu pé. A condição novo é uma informação da oferta, não inspeção da unidade pela equipe. Não testamos conforto, durabilidade, aderência ou desempenho e não importamos materiais, tecnologias de amortecimento ou indicações esportivas de outro Flyer Runner. Confira a tabela de medidas, os detalhes da apresentação e a procedência com o vendedor. Esta ficha não autentica o produto nem garante adequação a qualquer atividade.',
+    positiveNotes:['Identificação Flyer Runner Mesh BDP e cor preta informadas na oferta.'],
+    negativeNotes:['Confirmar tamanho e variação selecionada; ajuste e desempenho não testados.', 'Condição e procedência não verificadas na unidade; sem especificações de outro Flyer Runner.'],suppressRating:true,
+  }],
   ['fQAJIJDeSjtSvdevGCQm', {
     syncInformationalSchema:true, allowTruncatedHeading:true,
     model:/^(?:Parafusadeira Furadeira De Impacto A Bateria 21V 3\/8” Bivolt 1400 Rpm Com Acessórios E Maleta TB-21PZW The Black Tools|Parafusadeira de impacto TB-21PZW The Black Tools — bateria 21 V anunciada|Parafusadeira\/furadeira TB-21PZW The Black Tools — 21 V anunciados)$/i,

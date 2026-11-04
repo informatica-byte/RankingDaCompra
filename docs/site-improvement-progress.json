@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T17:02:29.973Z",
-  "catalogueGeneratedAt": "2026-11-04T16:59:16.631Z",
+  "updatedAt": "2026-11-04T21:17:03.537Z",
+  "catalogueGeneratedAt": "2026-11-04T21:16:54.127Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -686,12 +686,13 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 562,
-    "screened_no_change": 64,
+    "total": 563,
+    "screened_no_change": 65,
     "needs_source": 8,
     "targeted_correction_complete": 159,
     "preserve_prior_review": 98,
-    "pending": 233
+    "pending": 231,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -4468,6 +4469,17 @@
       "sourceLinks": []
     },
     {
+      "id": "mlMLB2088799901",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB2088799901-20260810-1.html",
+      "title": "Kit Reparo Pneu Tubeless Para Bike Bicileta",
+      "fingerprint": "24981db0cf90593cb6cb65c758b7387d3afb573e524823dbb0314dc5157432e6",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
       "id": "51cYaPGtvus2ayLrbFwH",
       "url": "https://rankingdacompra.com.br/produto/51cYaPGtvus2ayLrbFwH-20260810-1.html",
       "title": "Kit Starlink MINI Internet Via Satélite",
@@ -4591,11 +4603,16 @@
       "url": "https://rankingdacompra.com.br/produto/gNcq5nSqWbfqYi1M9c23-20260810-1.html",
       "title": "Lanterna LED Apfer recarregável",
       "fingerprint": "56dacb7b3c0792a5f2d19786c961670382f31940a7ad3fff4f2cbe3a681cfc54",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-04T21:17:03.539Z",
+      "workNotes": [
+        "Texto Apfer já qualifica fluxo, alcance, autonomia e superlativo; preservado sem reescrever.",
+        "Reaproveita conteúdo local já cauteloso; modelo, bateria e desempenho continuam não verificados. Sem repetir conferência do anúncio."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65530475?wid=MLB6191335498"
+      ]
     },
     {
       "id": "xdMGqRvHv2lJ95LaBG9F",
@@ -5172,6 +5189,25 @@
       "workNotes": [],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/mop-esfregao-giratorio-condor-balde-inox-13-litros-refil-microfibra-cabo-longo-14-metros/p/MLB47285674?pdp_filters=item_id%3AMLB7674543452"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "GPORGqPOixfgh38bVrXX",
+      "url": "https://rankingdacompra.com.br/produto/GPORGqPOixfgh38bVrXX-20260810-1.html",
+      "title": "Motorola Edge 70 Pro 5G 256 GB — 12 GB de RAM e RAM Boost, azul escuro",
+      "fingerprint": "5cc552511663edab7e15ba9ceec384136727ca9052bcdfee7178d914b061b9ec",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue RAM física de RAM Boost, câmeras totais de traseiras e retira indicação de anúncio oficial sem prova. Encurta título.",
+        "Referência primária indexada informa 12 GB físicos mais RAM Boost; página dinâmica não forneceu corpo legível. Sem teste, autenticação ou importação de outra versão. Demais especificações atribuídas ao anúncio."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB69322382?wid=MLB6760902576",
+        "https://www.motorola.com.br/smartphone-motorola-edge-70-pro-5g-256gb/p"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -7046,17 +7082,6 @@
       "sourceLinks": []
     },
     {
-      "id": "GPORGqPOixfgh38bVrXX",
-      "url": "https://rankingdacompra.com.br/produto/GPORGqPOixfgh38bVrXX-20260810-1.html",
-      "title": "Smartphone Motorola Edge 70 Pro 5g - 256gb 24gb (12gb Ram+12gb Ram Boost), 4 Câmeras De 50mp, Tela 1.5k Extreme Amoled 144hz, Bateria 6500 Mah, Ip68/ip69 - Azul Escuro",
-      "fingerprint": "444e02d74c0c256ce23ba5df5a6badb6f33ea772bef04547098cc55da480a70f",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "uRfZSbUKT8yjArcSlGPL",
       "url": "https://rankingdacompra.com.br/produto/uRfZSbUKT8yjArcSlGPL-20260810-1.html",
       "title": "Smartphone Motorola Moto G06",
@@ -7607,12 +7632,19 @@
       "id": "GQiP9vBIhECa4I5CuzkB",
       "url": "https://rankingdacompra.com.br/produto/GQiP9vBIhECa4I5CuzkB-20260810-1.html",
       "title": "Tênis Flyer Runner Mesh Bdp Puma",
-      "fingerprint": "b1a1df8d5564f7045539ab19a9872a471abe06f0664857631ffc27ef7b05539e",
-      "status": "pending",
+      "fingerprint": "6f6622d8da116b2187ac852a9b56819d54098c3d3200e2dc5776721ddcafc065",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige código de vendedor rotulado como catálogo e qualifica condição da oferta sem inspeção.",
+        "Snapshot local e formato do endereço de anúncio; sem fonte técnica exata ou teste. Preservada variação 185930355975. Não acrescentados materiais, amortecimento, desempenho ou autenticidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3806655487-_JM?searchVariation=185930355975"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "aozkBGONt1bYjzktRNP7",
@@ -11037,5 +11069,13 @@
     "testsPassed": 1491,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage78": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "GPORGqPOixfgh38bVrXX",
+      "GQiP9vBIhECa4I5CuzkB"
+    ],
+    "newDeepReviews": 0
   }
 }
