@@ -8,6 +8,29 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['jABp2HpfTmQNwXsPgrYQ', {
+    syncInformationalSchema:true, expectedListing:'MLB4812143184',
+    model:/^Creatina Monohidratada Pura 500g Dark Lab Unidade$/i,
+    summary:'A oferta identifica creatina monohidratada Dark Lab em apresentação anunciada de 500 g. Confira rótulo, ingredientes, lote, validade e apresentação da unidade antes de escolher. A palavra pura no título e referências a matérias-primas importadas ou a avaliações de terceiros não comprovam a composição e a pureza do lote vendido. Não foi confirmado nesta revisão um laudo específico que vincule os percentuais citados anteriormente à unidade da oferta; por isso não os apresentamos como resultado comprovado. Não testamos o suplemento, não autenticamos a unidade e não prescrevemos dose ou uso individual. As orientações e restrições devem ser conferidas no rótulo específico; esta ficha não substitui avaliação profissional nem promete resultados.',
+    positiveNotes:['Apresentação de 500 g e creatina monohidratada Dark Lab identificadas na oferta.'],
+    negativeNotes:['Pureza, procedência e composição do lote não verificadas por laudo específico nesta revisão.', 'Conferir rótulo, lote, validade e restrições; sem dose ou resultado individual prometido.'],suppressRating:true,
+  }],
+  ['jffyLJv2cImsjfarZ1pi', {
+    syncInformationalSchema:true, expectedListing:'MLB3824682239',
+    model:/^(?:Ventilador de Teto Ventisol Aires Inverter Aires Inverter 14222 Teto Bivolt|Ventisol Aires Inverter 14222 — ventilador de teto bivolt com controle)$/i,
+    correct:'Ventisol Aires Inverter 14222 — ventilador de teto bivolt com controle',
+    summary:'O Ventisol Aires Inverter, referência 14222, é identificado pela fabricante como ventilador de teto branco, bivolt e com controle remoto. Pode interessar a quem prefere ajustar a ventilação sem alcançar o aparelho. A página da Ventisol informa seis velocidades e função Wave, que alterna velocidades; não se trata de uma medição de conforto feita pela equipe. A fabricante informa que não acompanha lâmpada: a menção a luminária no cadastro não deve ser confundida com lâmpada incluída. Os 30 W do texto da oferta não são medição nossa, e não usamos essa indicação para prometer economia na sua conta. Não medimos ruído, vazão, consumo ou cobertura do ambiente; silêncio e adequação a qualquer espaço não estão garantidos. Confira referência, conteúdo do kit e requisitos no manual específico antes da instalação.',
+    publicContextUrl:'https://www.ventisol.com.br/ventilador-de-teto-ventisol-aires-127v220v-inverter-branco',
+    positiveNotes:['Controle remoto, seis velocidades e função Wave documentados pela fabricante para o Aires Inverter 14222.'],
+    negativeNotes:['Não acompanha lâmpada, segundo a fabricante; confirmar conteúdo do kit da oferta.', 'Ruído, consumo e adequação ao ambiente não medidos; sem promessa de silêncio ou economia individual.'],suppressRating:true,
+  }],
+  ['JWp7l6fsqNkkSsBCAosW', {
+    syncInformationalSchema:true, expectedListing:'MLB5652036470',
+    model:/^Tênis Masculino Couro Nobuck Casual Minimalista Urbano Top$/i,
+    summary:'A oferta identifica um tênis masculino casual, com marca artoro e couro nobuck informados no cadastro. O código MLB5652036470 identifica o anúncio do vendedor, não um código de catálogo confirmado. Pode interessar a quem procura um visual casual, mas minimalista e urbano são descrições de estilo, não evidências de conforto ou desempenho. Confira código do modelo, numeração, cor e composição da variação escolhida; não verificamos fisicamente o material da unidade. Não testamos ajuste, aderência, resistência ou impermeabilidade e não atribuímos tecnologia de outro calçado a esta oferta. A condição novo é informação do anúncio, não inspeção da equipe.',
+    positiveNotes:['Identificação casual, marca artoro e nobuck informados na oferta; confirmar variação.'],
+    negativeNotes:['Código do anúncio não confirma catálogo ou composição da unidade.', 'Ajuste, aderência e durabilidade não testados; conferir numeração e material.'],suppressRating:true,
+  }],
   ['iXzsMyqf9ilSKwbLDtk7', {
     syncInformationalSchema:true, expectedListing:'MLB7105555314',
     model:/^Tênis Masculino Esportivo Creation Molas Academia Caminhada$/i,

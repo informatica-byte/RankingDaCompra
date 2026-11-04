@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T22:35:27.662Z",
+  "generatedAt": "2026-11-04T22:40:02.419Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 210
+    "screening": 207
   },
   "items": [
     {
@@ -30,31 +30,10 @@
       "reasons": []
     },
     {
-      "id": "jABp2HpfTmQNwXsPgrYQ",
-      "title": "Creatina Monohidratada Pura 500g Dark Lab Unidade",
-      "url": "https://rankingdacompra.com.br/produto/jABp2HpfTmQNwXsPgrYQ-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
       "id": "jdxZ0gYEI0XGOPYbWh78",
       "title": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
       "url": "https://rankingdacompra.com.br/produto/jdxZ0gYEI0XGOPYbWh78-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "jffyLJv2cImsjfarZ1pi",
-      "title": "Ventilador de Teto Ventisol Aires Inverter Aires Inverter 14222 Teto Bivolt",
-      "url": "https://rankingdacompra.com.br/produto/jffyLJv2cImsjfarZ1pi-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "JWp7l6fsqNkkSsBCAosW",
-      "title": "Tênis Masculino Couro Nobuck Casual Minimalista Urbano Top",
-      "url": "https://rankingdacompra.com.br/produto/JWp7l6fsqNkkSsBCAosW-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

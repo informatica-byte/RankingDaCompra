@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:36:51.643Z",
-  "catalogueGeneratedAt": "2026-11-04T22:35:27.662Z",
+  "updatedAt": "2026-11-04T22:40:11.311Z",
+  "catalogueGeneratedAt": "2026-11-04T22:40:02.419Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -691,7 +691,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 180,
     "preserve_prior_review": 98,
-    "pending": 210
+    "pending": 207,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2874,12 +2875,19 @@
       "id": "jABp2HpfTmQNwXsPgrYQ",
       "url": "https://rankingdacompra.com.br/produto/jABp2HpfTmQNwXsPgrYQ-20260810-1.html",
       "title": "Creatina Monohidratada Pura 500g Dark Lab Unidade",
-      "fingerprint": "dfc50be103ad6e2b9f4952aba35c779dca0c9ef25145b1eb2b91587c381557fe",
-      "status": "pending",
+      "fingerprint": "747df3cedcca14bd52f41f05fe9ea4b0a3a89cae5e2dcdff3e0647fb5513c6d0",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira preço do texto informativo e percentuais de pureza sem laudo vinculado ao lote; preserva título do par revisado e apresentação.",
+        "Snapshot local; sem laudo específico do lote. Não declara aprovação, pureza, dose, eficácia ou procedência comprovadas por texto de terceiros ou outro produto."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB26796581?wid=MLB4812143184"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "88kDU9mSlJdWzZPx4bim",
@@ -7985,12 +7993,19 @@
       "id": "JWp7l6fsqNkkSsBCAosW",
       "url": "https://rankingdacompra.com.br/produto/JWp7l6fsqNkkSsBCAosW-20260810-1.html",
       "title": "Tênis Masculino Couro Nobuck Casual Minimalista Urbano Top",
-      "fingerprint": "af038d7df14e89959ebb726cf3f9ec60f2ccaf09fb33e03d350dbabed27cd465",
-      "status": "pending",
+      "fingerprint": "173afb505cb8cbaf356d132e811d963982b8a42a89bf124c5d42f2b328fdd5da",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige código de anúncio rotulado como catálogo e atribui marca/material à oferta, sem garantir conforto ou desempenho.",
+        "Snapshot sem código técnico ou inspeção do material. Não inventa composição, amortecimento, impermeabilidade ou autenticidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5652036470"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Y9pvF6r8j4nJdGwU4ht4",
@@ -8654,17 +8669,6 @@
       "sourceLinks": []
     },
     {
-      "id": "jffyLJv2cImsjfarZ1pi",
-      "url": "https://rankingdacompra.com.br/produto/jffyLJv2cImsjfarZ1pi-20260810-1.html",
-      "title": "Ventilador de Teto Ventisol Aires Inverter Aires Inverter 14222 Teto Bivolt",
-      "fingerprint": "85ac3029d28a22532e21db0cb76f1960ac989fa9a30f28dd0eafae2aad2389ba",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "yJAghLjqy4ystXibSU2F",
       "url": "https://rankingdacompra.com.br/produto/yJAghLjqy4ystXibSU2F-20260810-1.html",
       "title": "Ventilador De Teto Ventisol Fênix E-27 Branco 130w Com 3 Pás De Plástico",
@@ -8674,6 +8678,25 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "jffyLJv2cImsjfarZ1pi",
+      "url": "https://rankingdacompra.com.br/produto/jffyLJv2cImsjfarZ1pi-20260810-1.html",
+      "title": "Ventisol Aires Inverter 14222 — ventilador de teto bivolt com controle",
+      "fingerprint": "f7b6013aacbd7662ec74189a4a35aa5ddeb59cd36643f50cf9557e690303e6ae",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Remove repetição no título e promessas de silêncio/economia; distingue luminária de lâmpada incluída e documenta controle, velocidades e Wave.",
+        "Fonte primária da referência 14222 consultada. Sem medição de ruído, consumo, vazão ou adequação do local; não transfere percentuais, instruções elétricas ou cobertura de outro modelo."
+      ],
+      "sourceLinks": [
+        "https://www.ventisol.com.br/ventilador-de-teto-ventisol-aires-127v220v-inverter-branco",
+        "https://www.mercadolivre.com.br/p/MLB20963980?wid=MLB3824682239"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Uh8jBpd9D8uEtK4Q3X43",
@@ -11561,5 +11584,14 @@
     "testsPassed": 1508,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage86": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "JWp7l6fsqNkkSsBCAosW",
+      "jABp2HpfTmQNwXsPgrYQ",
+      "jffyLJv2cImsjfarZ1pi"
+    ],
+    "newDeepReviews": 0
   }
 }
