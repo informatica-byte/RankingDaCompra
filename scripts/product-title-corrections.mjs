@@ -8,6 +8,22 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['IQP6np7muXjwAQ6aN20M', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB5249120331',
+    model:/^(?:Smartphone Samsung Galaxy A17 5g 128gb 4gb Super Amoled 6\.7'' Câmera 50mp Selfie 13 Mp 5000 Mah Nfc Dual Sim Recursos Ia - Cinza|Samsung Galaxy A17 5G 128 GB e 4 GB de RAM cinza — configuração anunciada)$/i,
+    correct:'Samsung Galaxy A17 5G 128 GB e 4 GB de RAM cinza — configuração anunciada',
+    summary:'A oferta identifica o Samsung Galaxy A17 5G cinza, com 128 GB de armazenamento e 4 GB de RAM anunciados. Tela Super AMOLED de 6,7 polegadas, câmera traseira de 50 MP, frontal de 13 MP, bateria de 5.000 mAh, NFC e dual SIM são informações do cadastro, não teste ou inspeção da unidade. Confira o código completo do modelo e a configuração antes de escolher; não transferimos características do A17 4G ou de outra capacidade. Recursos de IA mencionados no título precisam ser identificados na versão e no software específicos; não prometemos funções apenas pela sigla. Não testamos fotografia, desempenho, autonomia ou compatibilidade com sua operadora. O fato de o anúncio estar no Mercado Livre não confirma que o vendedor seja oficial da Samsung nem autentica o aparelho.',
+    positiveNotes:['Configuração anunciada de 128 GB e 4 GB de RAM, modelo A17 5G e cor cinza identificados.'],
+    negativeNotes:['Confirmar código do modelo, configuração e funções de IA da versão específica.', 'Autonomia, fotografia e compatibilidade não testadas; vendedor oficial não comprovado pela plataforma.'],suppressRating:true,
+  }],
+  ['iSyPxYQcVUDjHvjIHLhS', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB6519291232',
+    model:/^(?:Mini Mixer Misturador De Bebidas Elétrico 2 Em 1 Portátil Recarregável Mexedor De Ovos Whey Leite Café Espuma Shake Drinks Capuccino Suco Comica|Mini mixer Comica 2 em 1 recarregável — acessórios a confirmar)$/i,
+    correct:'Mini mixer Comica 2 em 1 recarregável — acessórios a confirmar',
+    summary:'A oferta identifica um mini mixer anunciado como Comica, portátil, recarregável e 2 em 1. Pode interessar a quem compara pequenos misturadores de bebidas, mas a expressão 2 em 1 não confirma sozinha quais hastes e acessórios acompanham a unidade. Confira conteúdo, alimentação e instruções específicas antes de escolher. A lista de bebidas e alimentos do título não comprova capacidade de processar qualquer ingrediente ou equivalência a um liquidificador. A suposta sensibilidade dos encaixes do texto anterior não foi confirmada por teste ou fonte específica e não é mantida como defeito comprovado. Também não prescrevemos ciclos de carga sem documentação da bateria. Não testamos espuma, mistura, resistência, autonomia ou limpeza e não importamos potência ou proteção contra água de outro aparelho.',
+    positiveNotes:['Proposta de mini mixer 2 em 1 portátil e recarregável informada na oferta.'],
+    negativeNotes:['Confirmar acessórios e limites de uso; não equivale a processar todo ingrediente.', 'Encaixes e bateria não testados; sem rotina de carga ou resistência à água presumida.'],suppressRating:true,
+  }],
   ['hVTGYQmARQt2fyDqPZDa', {
     syncInformationalSchema:true, expectedListing:'MLB6427849268',
     model:/^(?:Sapatênis Microfibra Atanado Pinhão Navy Pegada|Sapatênis Pegada de microfibra anunciado — cor e variação a confirmar)$/i,
@@ -1740,7 +1756,15 @@ const PRODUCT_CORRECTIONS = new Map([
     category: "informatica",
     categoryReplacements: [["<span>Categoria</span>Notebook", "<span>Categoria</span>Informática"], ["\"category\":\"Notebook\"", "\"category\":\"Informática\""], ["\"name\":\"Notebook\",\"item\":\"https://rankingdacompra.com.br/melhores-notebook.html\"", "\"name\":\"Informática\",\"item\":\"https://rankingdacompra.com.br/analises.html#informatica\""], ["href=\"https://rankingdacompra.com.br/melhores-notebook.html\">Notebook</a>", "href=\"https://rankingdacompra.com.br/analises.html#informatica\">Informática</a>"]],
   }],
-  ["ik7zBiCAAqDLqr9Di5Ue", {model: /roku.*streaming\s*stick/i, category: 'informatica'}],
+  ['ik7zBiCAAqDLqr9Di5Ue', {
+    syncInformationalSchema:true, category:'informatica', allowTruncatedHeading:true,
+    model:/^(?:Roku Streaming Stick 2025 Para Tv Hd\/fhd Controle Por Voz Preto De Voz 3ª geração 3840BR|Roku Streaming Stick 3840BR HD\/Full HD com controle por voz anunciado)$/i,
+    correct:'Roku Streaming Stick 3840BR HD/Full HD com controle por voz anunciado',
+    summary:'A oferta identifica o Roku Streaming Stick 3840BR para streaming em HD/Full HD, com controle por voz anunciado. Pode interessar a quem procura acesso a aplicativos em uma TV compatível; confira conexões, rede e os serviços desejados antes de escolher. O suporte da Roku distingue alimentação do dispositivo por cabo USB das pilhas do controle remoto; não apresentamos pilhas AAA como fonte de alimentação do stick. Tipo de pilhas e itens incluídos precisam ser conferidos na unidade. Assistentes de voz dependem de compatibilidade, configuração e recursos disponíveis; não garantimos integração completa com Alexa, Siri e Google Assistant apenas pelo anúncio. Não presumimos recursos de versões 4K ou Plus nem acesso gratuito a todo conteúdo. Não testamos conexão, desempenho ou comandos e não transferimos instruções elétricas de outro modelo.',
+    positiveNotes:['Identificação 3840BR, HD/Full HD e controle por voz anunciados na oferta.'],
+    negativeNotes:['Alimentação do stick e pilhas do controle são distintas; confirmar itens e documentação do modelo.', 'Aplicativos e comandos dependem de compatibilidade; não há garantia de todo conteúdo gratuito ou recursos 4K.'],
+    contextSourceUrl:'https://support.roku.com/pt-br/article/general-setup-instructions-for-any-model',contextSourceLabel:'Suporte Roku: referência geral que distingue dispositivo e controle; conferir documentação do 3840BR',suppressRating:true,
+  }],
   ["6mZ1ahzme9kUH1UdSkJw", {model: /starlink/i, category: 'informatica'}],
   ["uIZQISdVd0NEyClG29Qv", {model: /access\s*point.*grandstream/i, category: 'informatica'}],
   ["HJcpaZe94VZRnomC2hH1", {

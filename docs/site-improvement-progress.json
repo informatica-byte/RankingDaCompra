@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:19:16.924Z",
-  "catalogueGeneratedAt": "2026-11-04T22:17:31.616Z",
+  "updatedAt": "2026-11-04T22:23:05.404Z",
+  "catalogueGeneratedAt": "2026-11-04T22:22:55.774Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -691,7 +691,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 174,
     "preserve_prior_review": 98,
-    "pending": 216
+    "pending": 213,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -5107,13 +5108,20 @@
     {
       "id": "iSyPxYQcVUDjHvjIHLhS",
       "url": "https://rankingdacompra.com.br/produto/iSyPxYQcVUDjHvjIHLhS-20260810-1.html",
-      "title": "Mini Mixer Misturador De Bebidas Elétrico 2 Em 1 Portátil Recarregável Mexedor De Ovos Whey Leite Café Espuma Shake Drinks Capuccino Suco Comica",
-      "fingerprint": "be30e6d90e09bb22919c8ed4b8e26e5ab33d1516f168a6e40a5d92a47b8d5a88",
-      "status": "pending",
+      "title": "Mini mixer Comica 2 em 1 recarregável — acessórios a confirmar",
+      "fingerprint": "13856181a851604f6e316ed9121aadd7c21e060686dda7a953326424a2477f57",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira fragilidade dos encaixes sem fonte e rotina de carga não documentada; qualifica acessórios e aplicações.",
+        "Snapshot local; sem modelo alfanumérico/manual ou teste de bateria, encaixes ou preparo. Não acrescenta potência, impermeabilidade, acessórios ou ciclos de outro mixer."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB67146264?wid=MLB6519291232"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4857635335",
@@ -6750,13 +6758,21 @@
     {
       "id": "ik7zBiCAAqDLqr9Di5Ue",
       "url": "https://rankingdacompra.com.br/produto/ik7zBiCAAqDLqr9Di5Ue-20260810-1.html",
-      "title": "Roku Streaming Stick 2025 Para Tv Hd/fhd Controle Por Voz Preto De Voz 3ª geração 3840BR",
-      "fingerprint": "383d4e3b165f2fa82c941e424738624e6e463929d330a2a8e53f7166e9abec25",
-      "status": "pending",
+      "title": "Roku Streaming Stick 3840BR HD/Full HD com controle por voz anunciado",
+      "fingerprint": "4c1ceeadcd95cb624f274ccf2707033e46d6cdc6544e4f9cdcc8818e9975f274",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue alimentação USB do stick de pilhas do controle e qualifica assistentes; preserva categoria existente e encurta título.",
+        "Suporte primário geral consultado; não confirma tipo de pilhas, itens do kit ou funcionalidades de todas as integrações do 3840BR. Não importa tensão, instruções ou recursos de Express, Plus ou 4K."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB54014512",
+        "https://support.roku.com/pt-br/article/general-setup-instructions-for-any-model"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "YuOWci2UixF5GuQE6IYS",
@@ -6851,6 +6867,24 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB55034955?wid=MLB6646376566"
       ]
+    },
+    {
+      "id": "IQP6np7muXjwAQ6aN20M",
+      "url": "https://rankingdacompra.com.br/produto/IQP6np7muXjwAQ6aN20M-20260810-1.html",
+      "title": "Samsung Galaxy A17 5G 128 GB e 4 GB de RAM cinza — configuração anunciada",
+      "fingerprint": "678896ffafce719307ef7855b9933b34c6540c6a1fc03555ef0ca93f5f1485a1",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira vendedor oficial sem prova e qualifica funções de IA e desempenho; preserva configuração e cor anunciadas.",
+        "Snapshot local; sem código completo da unidade confirmado ou teste. Não transfere funções de A17 4G, outra RAM/capacidade ou software."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB55521828?wid=MLB5249120331"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "b2ejp8pkiWYOgBAdeXto",
@@ -7244,17 +7278,6 @@
       "url": "https://rankingdacompra.com.br/produto/VJ0UNCYoJYS4gSEKpZKQ-20260810-1.html",
       "title": "Smartphone Realme C75 5g 256gb 8gb Ram Dual Sim",
       "fingerprint": "9e2591befbbbd893ad9e0e0fdd485993560b67bc9af458787b8b5cb7be0faa83",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "IQP6np7muXjwAQ6aN20M",
-      "url": "https://rankingdacompra.com.br/produto/IQP6np7muXjwAQ6aN20M-20260810-1.html",
-      "title": "Smartphone Samsung Galaxy A17 5g 128gb 4gb Super Amoled 6.7'' Câmera 50mp Selfie 13 Mp 5000 Mah Nfc Dual Sim Recursos Ia - Cinza",
-      "fingerprint": "d552b350af1178346dd7b0fbfcc6e348fbe27e6279966315d078b81630cee68a",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -11430,5 +11453,14 @@
     "testsPassed": 1506,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage84": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "IQP6np7muXjwAQ6aN20M",
+      "iSyPxYQcVUDjHvjIHLhS",
+      "ik7zBiCAAqDLqr9Di5Ue"
+    ],
+    "newDeepReviews": 0
   }
 }
