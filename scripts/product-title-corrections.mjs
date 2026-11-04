@@ -8,6 +8,30 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['kNmf4r3kzbgWX6Fz3Y0x', {
+    syncInformationalSchema:true, expectedListing:'MLB4213547319',
+    model:/^Chuveiro Lorenzetti Bella Ducha 4T Ultra para Parede$/i,
+    summary:'A Bella Ducha 4T Ultra, da Lorenzetti, oferece quatro opções de temperatura e espalhador de grandes dimensões, segundo a fabricante. Pode interessar a quem compara duchas elétricas com seleção de temperaturas, mas a versão precisa ser conferida antes da escolha. Os 6,8 kW citados no cadastro correspondem à opção de 220 V na tabela da marca, não a todas as versões da linha. Isso não confirma que a unidade do anúncio seja a opção de 220 V: confira tensão, potência e identificação na embalagem e na seleção da oferta. A ficha não substitui avaliação da instalação e o manual específico; não definimos fiação, disjuntor, ligação ou troca de resistência por suposição. Não testamos aquecimento, vazão, consumo ou adequação ao seu banheiro e não prometemos economia ou pressão de água.',
+    publicContextUrl:'https://www.lorenzetti.com.br/produto/bella-ducha-4t/',
+    positiveNotes:['Quatro opções de temperatura e grande espalhador documentados pela fabricante.'],
+    negativeNotes:['6.800 W correspondem à versão 220 V na tabela da marca; confirmar a unidade selecionada.', 'Instalação e compatibilidade precisam de avaliação específica; aquecimento e consumo não testados.'],suppressRating:true,
+  }],
+  ['KtvIJ0CLFVYesONQSS8I', {
+    syncInformationalSchema:true, expectedListing:'MLB4477083023',
+    model:/^Tênis Nike Court Vision Low Masculino$/i,
+    summary:'A oferta identifica um tênis masculino anunciado como Nike Court Vision Low. O código MLB4477083023 identifica o anúncio do vendedor, não um código de catálogo confirmado. Confira código completo do modelo, numeração, cor e composição da variação escolhida; o nome da linha não comprova sozinho os materiais ou a autenticidade da unidade. Pode interessar a quem procura esse modelo, mas não transferimos amortecimento, conteúdo reciclado ou outras tecnologias de uma versão Court Vision diferente. Não testamos ajuste, conforto, aderência ou resistência e não presumimos adequação a corrida ou prática esportiva pelo nome do calçado. A condição novo é informação da oferta, não inspeção realizada pela equipe.',
+    positiveNotes:['Linha Court Vision Low masculina identificada na oferta; conferir código e variação.'],
+    negativeNotes:['Código do anúncio não confirma catálogo, materiais ou autenticidade da unidade.', 'Ajuste e desempenho não testados; sem tecnologias transferidas de outra versão.'],suppressRating:true,
+  }],
+  ['kyK4G9Uov6eBaFnNVED7', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB5011962698',
+    model:/^(?:Perfume Feminino L' Eau de Parfum Fragrância Floral Gourmand Inebriante com Notas de Íris Nobre, Baunilha e Pralinê La Vie Est Belle Lancôme, Frasco com 100ml|Lancôme La Vie Est Belle Eau de Parfum 100 ml — versão do frasco a confirmar)$/i,
+    correct:'Lancôme La Vie Est Belle Eau de Parfum 100 ml — versão do frasco a confirmar',
+    summary:'A oferta identifica La Vie Est Belle Eau de Parfum, da Lancôme, em apresentação anunciada de 100 ml. O perfil floral gourmand, com íris, baunilha e pralinê mencionados no anúncio, pode interessar a quem procura essa família olfativa; não representa avaliação sensorial da equipe. A marca apresenta versões recarregáveis e refis, mas isso não comprova que qualquer frasco de 100 ml anunciado seja recarregável ou que inclua refil. Confira versão, embalagem e indicação de recarga da unidade; não autenticamos o produto do vendedor. A expressão design de cristal do texto anterior não é mantida como confirmação de material. Não testamos projeção, fixação ou preferência individual e não prometemos intensidade ou duração na pele. Não transferimos características de outras variações de La Vie Est Belle para este anúncio.',
+    publicContextUrl:'https://www.lancome.com.br/perfume-feminino-la-vie-est-belle-eau-de-parfum/LABR3614273694797.html',
+    positiveNotes:['Identificação La Vie Est Belle Eau de Parfum e apresentação de 100 ml informadas na oferta.'],
+    negativeNotes:['Confirmar versão recarregável e conteúdo; existência de refil não prova compatibilidade da unidade.', 'Material do frasco, autenticidade, projeção e fixação não verificados pela equipe.'],suppressRating:true,
+  }],
   ['KHQKsjwv2MzJGObyoZkd', {
     syncInformationalSchema:true,
     model:/^Perfume Carolina Herrera Very Good Girl Glam Parfum 50ml feminino$/i,

@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T22:52:48.149Z",
+  "generatedAt": "2026-11-04T22:58:31.646Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 201
+    "screening": 198
   },
   "items": [
     {
@@ -34,27 +34,6 @@
       "title": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
       "url": "https://rankingdacompra.com.br/produto/jdxZ0gYEI0XGOPYbWh78-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "kNmf4r3kzbgWX6Fz3Y0x",
-      "title": "Chuveiro Lorenzetti Bella Ducha 4T Ultra para Parede",
-      "url": "https://rankingdacompra.com.br/produto/kNmf4r3kzbgWX6Fz3Y0x-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "KtvIJ0CLFVYesONQSS8I",
-      "title": "Tênis Nike Court Vision Low Masculino",
-      "url": "https://rankingdacompra.com.br/produto/KtvIJ0CLFVYesONQSS8I-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "kyK4G9Uov6eBaFnNVED7",
-      "title": "Perfume Feminino L' Eau de Parfum Fragrância Floral Gourmand Inebriante com Notas de Íris Nobre, Baunilha e Pralinê La Vie Est Belle Lancôme, Frasco com 100ml",
-      "url": "https://rankingdacompra.com.br/produto/kyK4G9Uov6eBaFnNVED7-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

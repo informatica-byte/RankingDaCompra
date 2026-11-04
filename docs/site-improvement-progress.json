@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:54:57.685Z",
-  "catalogueGeneratedAt": "2026-11-04T22:52:48.149Z",
+  "updatedAt": "2026-11-04T22:58:33.885Z",
+  "catalogueGeneratedAt": "2026-11-04T22:58:31.646Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -691,7 +691,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 189,
     "preserve_prior_review": 98,
-    "pending": 201
+    "pending": 198,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2411,12 +2412,20 @@
       "id": "kNmf4r3kzbgWX6Fz3Y0x",
       "url": "https://rankingdacompra.com.br/produto/kNmf4r3kzbgWX6Fz3Y0x-20260810-1.html",
       "title": "Chuveiro Lorenzetti Bella Ducha 4T Ultra para Parede",
-      "fingerprint": "dc5effbffbbf41415a2c67f62099be1e22cfab8eae3cb21fa016855521f208c5",
-      "status": "pending",
+      "fingerprint": "0f28fec6dda5391ccac843bda10cc5394420287975c91b444295c53f7763e35b",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Associa 6.800 W à versão 220 V da tabela primária, sem afirmar versão da oferta; conserva quatro temperaturas e não prescreve instalação.",
+        "Tabela primária consultada, sem inspeção da seleção ou instalação. Não define condutores, disjuntor, ligação, resistência ou economia individual."
+      ],
+      "sourceLinks": [
+        "https://www.lorenzetti.com.br/produto/bella-ducha-4t/",
+        "https://www.mercadolivre.com.br/p/MLB49609713?wid=MLB4213547319"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "poypkDuJgaW37aCZlswN",
@@ -4650,6 +4659,25 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "kyK4G9Uov6eBaFnNVED7",
+      "url": "https://rankingdacompra.com.br/produto/kyK4G9Uov6eBaFnNVED7-20260810-1.html",
+      "title": "Lancôme La Vie Est Belle Eau de Parfum 100 ml — versão do frasco a confirmar",
+      "fingerprint": "3d61158ff7d3b686b2204909cb8eb60d97db9931da23c6d0585eba01bbf48ea2",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Qualifica recarga por versão e retira cristal e alta projeção como garantias; encurta título preservando identidade e volume.",
+        "Marca informa versões recarregáveis, mas não autentica esta unidade nem prova recarga ou refil incluído na oferta. Sem teste de projeção, duração ou material."
+      ],
+      "sourceLinks": [
+        "https://www.lancome.com.br/perfume-feminino-la-vie-est-belle-eau-de-parfum/LABR3614273694797.html",
+        "https://www.mercadolivre.com.br/p/MLB6140723?wid=MLB5011962698"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "BcfEuX1oed02O8pYXKyg",
       "url": "https://rankingdacompra.com.br/produto/BcfEuX1oed02O8pYXKyg-20260810-1.html",
       "title": "Lanterna de cabeça recarregável com 12 modos — especificações a confirmar",
@@ -6178,17 +6206,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "kyK4G9Uov6eBaFnNVED7",
-      "url": "https://rankingdacompra.com.br/produto/kyK4G9Uov6eBaFnNVED7-20260810-1.html",
-      "title": "Perfume Feminino L' Eau de Parfum Fragrância Floral Gourmand Inebriante com Notas de Íris Nobre, Baunilha e Pralinê La Vie Est Belle Lancôme, Frasco com 100ml",
-      "fingerprint": "a3d8d3f11ed413c61d86ec6cca7fef8cdecb25b013ada479a63e48a0432a7533",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "8RopqzkV8UyasWEZxMB8",
@@ -8207,12 +8224,19 @@
       "id": "KtvIJ0CLFVYesONQSS8I",
       "url": "https://rankingdacompra.com.br/produto/KtvIJ0CLFVYesONQSS8I-20260810-1.html",
       "title": "Tênis Nike Court Vision Low Masculino",
-      "fingerprint": "285f8f3b163e7f4a6c41ac5728675743a00ee363d2c7c2ea52bea2fdadf69f0e",
-      "status": "pending",
+      "fingerprint": "4ff8dc746a887877c65399463d26164e648e4346225eb8383816de4197a1586b",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige código de anúncio rotulado como catálogo e não transfere composição/tecnologia de outra versão Court Vision.",
+        "Snapshot sem código técnico exato da variação ou inspeção. Sem autenticação, materiais, conteúdo reciclado, amortecimento ou uso esportivo garantidos."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4477083023"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "2CwDkIClWXzNIUFxZVVo",
@@ -11760,5 +11784,14 @@
     "testsPassed": 1511,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage89": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "KtvIJ0CLFVYesONQSS8I",
+      "kNmf4r3kzbgWX6Fz3Y0x",
+      "kyK4G9Uov6eBaFnNVED7"
+    ],
+    "newDeepReviews": 0
   }
 }
