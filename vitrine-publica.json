@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T21:06:51.557Z",
+  "generatedAt": "2026-11-04T23:41:55.071Z",
   "products": [
     {
       "id": "0ME2VNUjuL6XoxtKE8ur",
@@ -7190,6 +7190,19 @@
       "precoConferenciaId": "c4276916-9a08-4521-b8eb-dea6ce393b39",
       "precoConferenciaCampo": "preco",
       "precoConferenciaValor": 2089.05,
+      "pros": "",
+      "contras": "",
+      "notaInformada": ""
+    },
+    {
+      "id": "mlMLB6666191918",
+      "titulo": "Computador Completo Top Intel Core i7 4770, 16GB RAM, SSD 512GB, Bivolt, Preto, Windows 10 Pro, Monitor 23\" Full HD - BluePC CD2E-0135TO",
+      "comentario": "Este computador completo da BluePC é voltado para tarefas diárias e multitarefas corporativas ou domésticas. Acompanha processador Intel Core i7 de quarta geração, 16GB de RAM, SSD de 512GB, Windows 10 Pro Trial e monitor Full HD de 23 polegadas, além de acessórios básicos de entrada inclusos na caixa.",
+      "categoria": "informatica",
+      "foto": "https://rankingdacompra.com.br/produto/imagens/mlMLB6666191918-local-87e5c639f7bf03e3f4abecc2c36abaf32197466598cad7c829fd44856cb09a0c.jpg",
+      "nota": "",
+      "promocaoAtiva": false,
+      "ofertaRelampagoAtiva": false,
       "pros": "",
       "contras": "",
       "notaInformada": ""
