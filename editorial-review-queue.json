@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T22:59:28.004Z",
+  "generatedAt": "2026-11-04T23:13:13.814Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 198
+    "screening": 195
   },
   "items": [
     {
@@ -34,27 +34,6 @@
       "title": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
       "url": "https://rankingdacompra.com.br/produto/jdxZ0gYEI0XGOPYbWh78-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "Kyw9WRrxRLj36DL50JfQ",
-      "title": "Console PlayStation 5 Slim Disk 1 TB — Astro Bot e Gran Turismo 7",
-      "url": "https://rankingdacompra.com.br/produto/Kyw9WRrxRLj36DL50JfQ-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "L6r4zuqqN2t7yWZsQUxo",
-      "title": "Ventilador De Acampamento Recarregável Portátil Com Led Luz Cor Laranja",
-      "url": "https://rankingdacompra.com.br/produto/L6r4zuqqN2t7yWZsQUxo-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "LAPIX3Gs1DA6iyK26qTM",
-      "title": "Kit 6 Cuecas Lupo Boxer Box Sem Costura Basic Microfibra",
-      "url": "https://rankingdacompra.com.br/produto/LAPIX3Gs1DA6iyK26qTM-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

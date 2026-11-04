@@ -1840,10 +1840,12 @@ const PRODUCT_CORRECTIONS = new Map([
     suppressRating: true,
   }],
   ["Kyw9WRrxRLj36DL50JfQ", {
-    model: /playstation\s*5/i,
-    summary: "Este anúncio identifica um PlayStation 5 Edição Digital Slim CFI 2114B. A capacidade, os acessórios e a quantidade de controles deste kit devem ser conferidos diretamente na variante e na descrição do vendedor: a análise anterior não comprovava a inclusão de quatro controles. A edição digital não deve ser confundida com um pacote com leitor de discos. Confira modelo exato, procedência, garantia e conteúdo da caixa. Não realizamos testes deste aparelho.",
-    positiveNotes: ["Modelo PS5 Edição Digital Slim identificado no cadastro; confira o código da unidade."],
-    negativeNotes: ["Capacidade, quantidade de controles e conteúdo da caixa do kit não foram comprovados nesta revisão.", "Procedência, garantia e condição do aparelho precisam ser conferidas com o vendedor."],
+    syncInformationalSchema:true, expectedListing:'MLB7351045720',
+    model: /^(?:Console PlayStation 5 Slim Disk 1 TB — Astro Bot e Gran Turismo 7|PS5 Slim anunciado — edição e conteúdo do kit a confirmar)$/i,
+    correct:'PS5 Slim anunciado — edição e conteúdo do kit a confirmar',
+    summary: "A oferta apresenta um PlayStation 5 Slim, mas há divergência entre os dados disponíveis: o título anterior mencionava Disk, 1 TB, Astro Bot e Gran Turismo 7, enquanto a descrição identificava edição digital CFI 2114B. Essa diferença não comprova qual unidade o vendedor entrega. Confirme código completo, presença de leitor, capacidade e conteúdo da caixa na variação escolhida antes de decidir. Não tratamos os jogos ou quatro controles como incluídos sem confirmação específica; também não substituímos a edição por suposição. Pode interessar a quem procura um PS5 Slim, desde que a versão e o pacote sejam esclarecidos. Não testamos o console, não autenticamos a unidade e não verificamos procedência, condição ou garantia do vendedor nesta revisão.",
+    positiveNotes: ["Oferta identificada como PS5 Slim; edição e conteúdo exatos precisam ser esclarecidos."],
+    negativeNotes: ["Título com Disk/1 TB/jogos diverge da descrição digital CFI 2114B; não presumir versão.", "Leitor, capacidade, jogos e controles incluídos precisam de confirmação; unidade não testada."],
     suppressRating: true,
   }],
 

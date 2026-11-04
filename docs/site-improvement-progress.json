@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T23:01:41.731Z",
-  "catalogueGeneratedAt": "2026-11-04T22:59:28.004Z",
+  "updatedAt": "2026-11-04T23:13:21.961Z",
+  "catalogueGeneratedAt": "2026-11-04T23:13:13.814Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -687,11 +687,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 563,
-    "screened_no_change": 67,
+    "screened_no_change": 69,
     "needs_source": 8,
     "targeted_correction_complete": 192,
     "preserve_prior_review": 98,
-    "pending": 198
+    "pending": 195,
+    "prepared_awaiting_publication": 1
   },
   "items": [
     {
@@ -2640,17 +2641,6 @@
       "sourceLinks": []
     },
     {
-      "id": "Kyw9WRrxRLj36DL50JfQ",
-      "url": "https://rankingdacompra.com.br/produto/Kyw9WRrxRLj36DL50JfQ-20260810-1.html",
-      "title": "Console PlayStation 5 Slim Disk 1 TB — Astro Bot e Gran Turismo 7",
-      "fingerprint": "b37a1ceb9a7e2d287910ad9311a54e43e7ad76d6929b6e1d8c3475f0a38e15f7",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "ERUkcWCy7XxGVEyDizZ2",
       "url": "https://rankingdacompra.com.br/produto/ERUkcWCy7XxGVEyDizZ2-20260810-1.html",
       "title": "Controlador Gamesir Galileo G8 Plus Com Bluetooth Para Cel",
@@ -4250,11 +4240,16 @@
       "url": "https://rankingdacompra.com.br/produto/LAPIX3Gs1DA6iyK26qTM-20260810-1.html",
       "title": "Kit 6 Cuecas Lupo Boxer Box Sem Costura Basic Microfibra",
       "fingerprint": "1c28ebeb98e63fbb2ed555940803eff7957ce8af86feb3fb1312f87125de81e1",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-04T23:13:21.965Z",
+      "workNotes": [
+        "Descrição objetiva do kit e composição anunciados, sem contradição concreta identificada; preservada sem reescrita por falta de fonte exata.",
+        "Snapshot sem código técnico exato confirmado. Busca primária não confirma esta variação; ausência de fonte exata não prova erro. Sem autenticação, inspeção da etiqueta ou teste de ajuste."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-1010954920"
+      ]
     },
     {
       "id": "mlMLB4645102377",
@@ -6591,6 +6586,24 @@
       "sourceLinks": []
     },
     {
+      "id": "Kyw9WRrxRLj36DL50JfQ",
+      "url": "https://rankingdacompra.com.br/produto/Kyw9WRrxRLj36DL50JfQ-20260810-1.html",
+      "title": "PS5 Slim anunciado — edição e conteúdo do kit a confirmar",
+      "fingerprint": "5458bde453b1ccb4060f1c3819fc7f95e95e79678abe93164278e6d3ec7263ed",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Sinaliza conflito Disk/1 TB/jogos no título versus digital CFI 2114B no texto; título neutro sem escolher edição ou pacote por suposição.",
+        "Snapshot conflitante; código da unidade, leitor, capacidade, jogos e controles precisam de confirmação. Não altera variante, anúncio ou afiliado e não confirma pacote por imagem."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4631341726?pdp_filters=item_id%3AMLB7351045720"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "48oRcQNlH00KgNLHkvsG",
       "url": "https://rankingdacompra.com.br/produto/48oRcQNlH00KgNLHkvsG-20260810-1.html",
       "title": "Pulseira Inteligente Xiaomi Smart Band 9 Active Global",
@@ -8659,11 +8672,16 @@
       "url": "https://rankingdacompra.com.br/produto/L6r4zuqqN2t7yWZsQUxo-20260810-1.html",
       "title": "Ventilador De Acampamento Recarregável Portátil Com Led Luz Cor Laranja",
       "fingerprint": "145600a1cbb43608a33ccd7c48346123cb094c7460a317ecef42568459f165f9",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-04T23:13:21.964Z",
+      "workNotes": [
+        "Descrição existente já atribui características ao cadastro e ressalva vazão, ruído, autonomia e proteção contra água. Nenhuma correção necessária demonstrada; preservada.",
+        "Snapshot sem ensaio ou manual específico. Não acrescenta capacidade de bateria, potência, tempo de recarga ou proteção."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65802852?wid=MLB6839001730"
+      ]
     },
     {
       "id": "Ng9qQNFdPCPMTgUYzfEJ",
@@ -11827,5 +11845,12 @@
     "testsPassed": 1512,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage90": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "Kyw9WRrxRLj36DL50JfQ"
+    ],
+    "newDeepReviews": 0
   }
 }
