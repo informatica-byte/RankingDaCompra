@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "kNmf4r3kzbgWX6Fz3Y0x",
-      "KtvIJ0CLFVYesONQSS8I",
-      "kyK4G9Uov6eBaFnNVED7",
       "Kyw9WRrxRLj36DL50JfQ",
       "L6r4zuqqN2t7yWZsQUxo",
       "LAPIX3Gs1DA6iyK26qTM",
       "LDzmbLcaHUVNztsXyp52",
-      "lfGwhT6zO5b7LOPvqkuL"
+      "lfGwhT6zO5b7LOPvqkuL",
+      "LQ12PkH1sbM7Uu0geBQf",
+      "LS2YLo5zNF7RptrFMYgB",
+      "MEkEjNiiDdi5MpmlP07R"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:58:33.885Z",
-  "catalogueGeneratedAt": "2026-11-04T22:58:31.646Z",
+  "updatedAt": "2026-11-04T23:01:41.731Z",
+  "catalogueGeneratedAt": "2026-11-04T22:59:28.004Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 67,
     "needs_source": 8,
-    "targeted_correction_complete": 189,
+    "targeted_correction_complete": 192,
     "preserve_prior_review": 98,
-    "pending": 198,
-    "prepared_awaiting_publication": 3
+    "pending": 198
   },
   "items": [
     {
@@ -2413,12 +2412,13 @@
       "url": "https://rankingdacompra.com.br/produto/kNmf4r3kzbgWX6Fz3Y0x-20260810-1.html",
       "title": "Chuveiro Lorenzetti Bella Ducha 4T Ultra para Parede",
       "fingerprint": "0f28fec6dda5391ccac843bda10cc5394420287975c91b444295c53f7763e35b",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T23:01:41.705Z",
       "workNotes": [
         "Associa 6.800 W à versão 220 V da tabela primária, sem afirmar versão da oferta; conserva quatro temperaturas e não prescreve instalação.",
-        "Tabela primária consultada, sem inspeção da seleção ou instalação. Não define condutores, disjuntor, ligação, resistência ou economia individual."
+        "Tabela primária consultada, sem inspeção da seleção ou instalação. Não define condutores, disjuntor, ligação, resistência ou economia individual.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.lorenzetti.com.br/produto/bella-ducha-4t/",
@@ -4663,12 +4663,13 @@
       "url": "https://rankingdacompra.com.br/produto/kyK4G9Uov6eBaFnNVED7-20260810-1.html",
       "title": "Lancôme La Vie Est Belle Eau de Parfum 100 ml — versão do frasco a confirmar",
       "fingerprint": "3d61158ff7d3b686b2204909cb8eb60d97db9931da23c6d0585eba01bbf48ea2",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T23:01:41.705Z",
       "workNotes": [
         "Qualifica recarga por versão e retira cristal e alta projeção como garantias; encurta título preservando identidade e volume.",
-        "Marca informa versões recarregáveis, mas não autentica esta unidade nem prova recarga ou refil incluído na oferta. Sem teste de projeção, duração ou material."
+        "Marca informa versões recarregáveis, mas não autentica esta unidade nem prova recarga ou refil incluído na oferta. Sem teste de projeção, duração ou material.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.lancome.com.br/perfume-feminino-la-vie-est-belle-eau-de-parfum/LABR3614273694797.html",
@@ -8225,12 +8226,13 @@
       "url": "https://rankingdacompra.com.br/produto/KtvIJ0CLFVYesONQSS8I-20260810-1.html",
       "title": "Tênis Nike Court Vision Low Masculino",
       "fingerprint": "4ff8dc746a887877c65399463d26164e648e4346225eb8383816de4197a1586b",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T23:01:41.705Z",
       "workNotes": [
         "Corrige código de anúncio rotulado como catálogo e não transfere composição/tecnologia de outra versão Court Vision.",
-        "Snapshot sem código técnico exato da variação ou inspeção. Sem autenticação, materiais, conteúdo reciclado, amortecimento ou uso esportivo garantidos."
+        "Snapshot sem código técnico exato da variação ou inspeção. Sem autenticação, materiais, conteúdo reciclado, amortecimento ou uso esportivo garantidos.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-4477083023"
@@ -11786,12 +11788,44 @@
     "backendWrites": 0
   },
   "triage89": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "KtvIJ0CLFVYesONQSS8I",
       "kNmf4r3kzbgWX6Fz3Y0x",
       "kyK4G9Uov6eBaFnNVED7"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T23:01:41.705Z",
+    "changedIds": [
+      "kNmf4r3kzbgWX6Fz3Y0x",
+      "KtvIJ0CLFVYesONQSS8I",
+      "kyK4G9Uov6eBaFnNVED7"
+    ],
+    "jointReleaseBatches": [
+      89
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem89.json",
+    "remainingDependencies": [
+      {
+        "id": "kNmf4r3kzbgWX6Fz3Y0x",
+        "note": "Tabela primária consultada, sem inspeção da seleção ou instalação. Não define condutores, disjuntor, ligação, resistência ou economia individual."
+      },
+      {
+        "id": "KtvIJ0CLFVYesONQSS8I",
+        "note": "Snapshot sem código técnico exato da variação ou inspeção. Sem autenticação, materiais, conteúdo reciclado, amortecimento ou uso esportivo garantidos."
+      },
+      {
+        "id": "kyK4G9Uov6eBaFnNVED7",
+        "note": "Marca informa versões recarregáveis, mas não autentica esta unidade nem prova recarga ou refil incluído na oferta. Sem teste de projeção, duração ou material."
+      }
+    ],
+    "sourceCommit": "12258ac9be325d286794af8f6942fa79d56ebec2",
+    "generatedCommit": "80cfc007cb10dfb21e464b81a85a670f3b021824",
+    "sitemapRun": 41929964721,
+    "integrityRun": 41929964642,
+    "pagesRun": 41930033677,
+    "testsPassed": 1512,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

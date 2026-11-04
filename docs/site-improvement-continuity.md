@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 89 — 20261104, PUBLICADA E VERIFICADA
+
+- kNmf4r3kzbgWX6Fz3Y0x: targeted_correction_complete. Associa 6.800 W à versão 220 V da tabela primária, sem afirmar versão da oferta; conserva quatro temperaturas e não prescreve instalação. Limite: Tabela primária consultada, sem inspeção da seleção ou instalação. Não define condutores, disjuntor, ligação, resistência ou economia individual.
+- KtvIJ0CLFVYesONQSS8I: targeted_correction_complete. Corrige código de anúncio rotulado como catálogo e não transfere composição/tecnologia de outra versão Court Vision. Limite: Snapshot sem código técnico exato da variação ou inspeção. Sem autenticação, materiais, conteúdo reciclado, amortecimento ou uso esportivo garantidos.
+- kyK4G9Uov6eBaFnNVED7: targeted_correction_complete. Qualifica recarga por versão e retira cristal e alta projeção como garantias; encurta título preservando identidade e volume. Limite: Marca informa versões recarregáveis, mas não autentica esta unidade nem prova recarga ou refil incluído na oferta. Sem teste de projeção, duração ou material.
+
+Fonte 12258ac9be325d286794af8f6942fa79d56ebec2; geração 80cfc007cb10dfb21e464b81a85a670f3b021824; sitemap 41929964721, integridade 41929964642, Pages 41930033677: SUCCESS. 1512 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem89.json.
+
+Totais: {"total":563,"screened_no_change":67,"needs_source":8,"targeted_correction_complete":192,"preserve_prior_review":98,"pending":198}. Próximos pendentes: Kyw9WRrxRLj36DL50JfQ — Console PlayStation 5 Slim Disk 1 TB — Astro Bot e Gran Turismo 7; L6r4zuqqN2t7yWZsQUxo — Ventilador De Acampamento Recarregável Portátil Com Led Luz Cor Laranja; LAPIX3Gs1DA6iyK26qTM — Kit 6 Cuecas Lupo Boxer Box Sem Costura Basic Microfibra. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 88 — 20261104, PUBLICADA E VERIFICADA
 
 - KHQKsjwv2MzJGObyoZkd: targeted_correction_complete. Completa frase truncada e retira intensidade/concentração como garantia; descreve perfil atribuído à marca sem teste próprio. Limite: Fonte primária de perfil e frasco consultada; sem autenticação da unidade, percentual de concentração, fixação ou teste de tolerância. Não prescreve teste a partir de concentração presumida.
