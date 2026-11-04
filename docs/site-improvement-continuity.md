@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 91 — 20261104, PUBLICADA E VERIFICADA
+
+- LDzmbLcaHUVNztsXyp52: targeted_correction_complete. Sinaliza 4K/Full HD e aplicativos não confirmados; retira cobertura total e proteção externa como garantias. Encurta título. Limite: Snapshot sem manual exato, resolução por lente ou proteção certificada confirmados. Não acrescenta armazenamento, assinatura, frequência Wi-Fi ou instruções de instalação.
+- lfGwhT6zO5b7LOPvqkuL: targeted_correction_complete. Distingue 12 GB físicos de até 12 GB RAM Boost, sem somar como 24 GB físicos; qualifica limites de proteção e dados não testados. Limite: Fonte primária da configuração/Boost consultada; sem ensaio ou autenticação da unidade. Não transfere recursos de Pro/Fusion, não garante autonomia ou impermeabilidade.
+- LQ12PkH1sbM7Uu0geBQf: targeted_correction_complete. Explicita limites de carga dos ciclos rápidos e separa capacidade de lavagem/secagem; retira economia, silêncio e esterilização como garantias universais. Limite: Página primária WD11M e condições dos ciclos consultadas; código completo/tensão da unidade não confirmados. Sem instruções elétricas, medição de consumo ou garantia de higienização de toda carga.
+
+Fonte c93d2483e60f31f24b0c31d305f69043e62f9570; geração f0932ff99e272e1a794fe6804a4b551d8bc32a0b; sitemap 41933323176, integridade 41933323120, Pages 41933387523: SUCCESS. 1514 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem91.json.
+
+Totais: {"total":563,"screened_no_change":69,"needs_source":8,"targeted_correction_complete":196,"preserve_prior_review":98,"pending":192}. Próximos pendentes: LS2YLo5zNF7RptrFMYgB — Smart Tv 32 Philco Roku Tv Dolby Áudio Hdr10 P32crb; MEkEjNiiDdi5MpmlP07R — Garrafa térmica Termolar Lúmina Bomba de Pressão 1L; MHUka27wtlYZaI8FiHWi — iPhone 17 Pro Max 256GB — Laranja-cósmico. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 90 — 20261104, PUBLICADA E VERIFICADA
 
 - Kyw9WRrxRLj36DL50JfQ: targeted_correction_complete. Sinaliza conflito Disk/1 TB/jogos no título versus digital CFI 2114B no texto; título neutro sem escolher edição ou pacote por suposição. Limite: Snapshot conflitante; código da unidade, leitor, capacidade, jogos e controles precisam de confirmação. Não altera variante, anúncio ou afiliado e não confirma pacote por imagem.
