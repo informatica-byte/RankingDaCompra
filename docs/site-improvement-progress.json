@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "GSeid2PryzC2aiQwnv3h",
-      "GT9gxxxsfkbjOfDG2uIM",
-      "GzjyGVKcBkoiKgQEo4p9",
       "h0a3vchlbGQbAnHdbujA",
       "H0bw2eYqi6yqdyBF1Ufl",
       "H17ykC6IlHMpWBEMnEQ7",
       "Hd0FWwNPR8uVXWLwPz3A",
-      "hDRgi7LAJobY4o5W9ipJ"
+      "hDRgi7LAJobY4o5W9ipJ",
+      "HEP91TkP4BHCEvBWmTHq",
+      "hhnKX4x5l2ab7gguVoYU",
+      "hLiaQWog1dogQ2OpMDSt"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T21:46:29.984Z",
-  "catalogueGeneratedAt": "2026-11-04T21:46:20.940Z",
+  "updatedAt": "2026-11-04T21:49:06.352Z",
+  "catalogueGeneratedAt": "2026-11-04T21:47:23.415Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 65,
     "needs_source": 8,
-    "targeted_correction_complete": 161,
+    "targeted_correction_complete": 164,
     "preserve_prior_review": 98,
-    "pending": 228,
-    "prepared_awaiting_publication": 3
+    "pending": 228
   },
   "items": [
     {
@@ -6135,12 +6134,13 @@
       "url": "https://rankingdacompra.com.br/produto/GT9gxxxsfkbjOfDG2uIM-20260810-1.html",
       "title": "Perfume Vf Bloom Virginia Fonseca 75ml - Wepink Volume da unidade 75 mL",
       "fingerprint": "4c6fc6940be6779f633c5966cfb8d3376019e28acfe76d3d9f5dc2fad9bd8dd3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T21:49:06.322Z",
       "workNotes": [
         "Retira preço do texto informativo e associação de volume com durabilidade; preserva valores operacionais.",
-        "Snapshot local, sem perfil olfativo específico confirmado ou teste. Não acrescenta notas, fixação, autenticidade ou duração."
+        "Snapshot local, sem perfil olfativo específico confirmado ou teste. Não acrescenta notas, fixação, autenticidade ou duração.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB35506412"
@@ -6483,12 +6483,13 @@
       "url": "https://rankingdacompra.com.br/produto/GSeid2PryzC2aiQwnv3h-20260810-1.html",
       "title": "Purificador Electrolux PE12G cinza bivolt — três opções de temperatura anunciadas",
       "fingerprint": "19afbb71bd849be4e30e01c7e34b6cc146b05237fcb111ecf8118c73e2412aaf",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T21:49:06.322Z",
       "workNotes": [
         "Esclarece condições da vida útil do refil e encurta título; não apresenta duração como garantia universal.",
-        "Referência primária PE12G consultada; não verifica unidade, filtragem, vazão, temperatura ou instalação. Não acrescenta tratamento de qualquer água ou desempenho medido."
+        "Referência primária PE12G consultada; não verifica unidade, filtragem, vazão, temperatura ou instalação. Não acrescenta tratamento de qualquer água ou desempenho medido.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB24804661?wid=MLB4780018962",
@@ -6975,12 +6976,13 @@
       "url": "https://rankingdacompra.com.br/produto/GzjyGVKcBkoiKgQEo4p9-20260810-1.html",
       "title": "Shampoo Grecin Control GX redutor de grisalhos 118 ml — versão a confirmar",
       "fingerprint": "46c7c04871e8ee243a06e54cd8e1409818a13ece982d063841529f597144eeba",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T21:49:06.322Z",
       "workNotes": [
         "Retira todos os tons e tempo de aplicação não confirmado; diferencia versões e aponta advertências da referência primária.",
-        "Página brasileira do fabricante consultada, sem confirmação da embalagem/lote do vendedor. Não transfere versão tons claros, não prescreve rotina ou garante cobertura/tolerância; instruções completas continuam na embalagem."
+        "Página brasileira do fabricante consultada, sem confirmação da embalagem/lote do vendedor. Não transfere versão tons claros, não prescreve rotina ou garante cobertura/tolerância; instruções completas continuam na embalagem.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB25708528?wid=MLB3556275459",
@@ -11135,12 +11137,44 @@
     "backendWrites": 0
   },
   "triage79": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "GSeid2PryzC2aiQwnv3h",
       "GT9gxxxsfkbjOfDG2uIM",
       "GzjyGVKcBkoiKgQEo4p9"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T21:49:06.322Z",
+    "changedIds": [
+      "GSeid2PryzC2aiQwnv3h",
+      "GT9gxxxsfkbjOfDG2uIM",
+      "GzjyGVKcBkoiKgQEo4p9"
+    ],
+    "jointReleaseBatches": [
+      79
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem79.json",
+    "remainingDependencies": [
+      {
+        "id": "GSeid2PryzC2aiQwnv3h",
+        "note": "Referência primária PE12G consultada; não verifica unidade, filtragem, vazão, temperatura ou instalação. Não acrescenta tratamento de qualquer água ou desempenho medido."
+      },
+      {
+        "id": "GT9gxxxsfkbjOfDG2uIM",
+        "note": "Snapshot local, sem perfil olfativo específico confirmado ou teste. Não acrescenta notas, fixação, autenticidade ou duração."
+      },
+      {
+        "id": "GzjyGVKcBkoiKgQEo4p9",
+        "note": "Página brasileira do fabricante consultada, sem confirmação da embalagem/lote do vendedor. Não transfere versão tons claros, não prescreve rotina ou garante cobertura/tolerância; instruções completas continuam na embalagem."
+      }
+    ],
+    "sourceCommit": "25d71c9d20ae63f1c7e33e4b955a85cfbee8ae1f",
+    "generatedCommit": "b6dae715c6bd9bd7a2f1ad0e610d8643eca5a284",
+    "sitemapRun": 41919304839,
+    "integrityRun": 41919305084,
+    "pagesRun": 41919365539,
+    "testsPassed": 1502,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 79 — 20261104, PUBLICADA E VERIFICADA
+
+- GSeid2PryzC2aiQwnv3h: targeted_correction_complete. Esclarece condições da vida útil do refil e encurta título; não apresenta duração como garantia universal. Limite: Referência primária PE12G consultada; não verifica unidade, filtragem, vazão, temperatura ou instalação. Não acrescenta tratamento de qualquer água ou desempenho medido.
+- GT9gxxxsfkbjOfDG2uIM: targeted_correction_complete. Retira preço do texto informativo e associação de volume com durabilidade; preserva valores operacionais. Limite: Snapshot local, sem perfil olfativo específico confirmado ou teste. Não acrescenta notas, fixação, autenticidade ou duração.
+- GzjyGVKcBkoiKgQEo4p9: targeted_correction_complete. Retira todos os tons e tempo de aplicação não confirmado; diferencia versões e aponta advertências da referência primária. Limite: Página brasileira do fabricante consultada, sem confirmação da embalagem/lote do vendedor. Não transfere versão tons claros, não prescreve rotina ou garante cobertura/tolerância; instruções completas continuam na embalagem.
+
+Fonte 25d71c9d20ae63f1c7e33e4b955a85cfbee8ae1f; geração b6dae715c6bd9bd7a2f1ad0e610d8643eca5a284; sitemap 41919304839, integridade 41919305084, Pages 41919365539: SUCCESS. 1502 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem79.json.
+
+Totais: {"total":563,"screened_no_change":65,"needs_source":8,"targeted_correction_complete":164,"preserve_prior_review":98,"pending":228}. Próximos pendentes: h0a3vchlbGQbAnHdbujA — Notebook Acer Aspire Go 15 Intel Core I3 1215u 8gb 256gb Ssd Linux Prateado; H0bw2eYqi6yqdyBF1Ufl — Smart Tv Samsung 32 Ls32h5000fgxzd Hd Led Wifi Hdmi 110/220v; H17ykC6IlHMpWBEMnEQ7 — Mala De Viagem 10kg Promoção Rodas 360° Miami Com Frasqueira. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 78 — 20261104, PUBLICADA E VERIFICADA
 
 - gNcq5nSqWbfqYi1M9c23: screened_no_change. Texto Apfer já qualifica fluxo, alcance, autonomia e superlativo; preservado sem reescrever. Limite: Reaproveita conteúdo local já cauteloso; modelo, bateria e desempenho continuam não verificados. Sem repetir conferência do anúncio.
