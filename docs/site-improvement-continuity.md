@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 78 — 20261104, PUBLICADA E VERIFICADA
+
+- gNcq5nSqWbfqYi1M9c23: screened_no_change. Texto Apfer já qualifica fluxo, alcance, autonomia e superlativo; preservado sem reescrever. Limite: Reaproveita conteúdo local já cauteloso; modelo, bateria e desempenho continuam não verificados. Sem repetir conferência do anúncio.
+- GPORGqPOixfgh38bVrXX: targeted_correction_complete. Distingue RAM física de RAM Boost, câmeras totais de traseiras e retira indicação de anúncio oficial sem prova. Encurta título. Limite: Referência primária indexada informa 12 GB físicos mais RAM Boost; página dinâmica não forneceu corpo legível. Sem teste, autenticação ou importação de outra versão. Demais especificações atribuídas ao anúncio.
+- GQiP9vBIhECa4I5CuzkB: targeted_correction_complete. Corrige código de vendedor rotulado como catálogo e qualifica condição da oferta sem inspeção. Limite: Snapshot local e formato do endereço de anúncio; sem fonte técnica exata ou teste. Preservada variação 185930355975. Não acrescentados materiais, amortecimento, desempenho ou autenticidade.
+
+Fonte c33782686dc6d4d28cb47a330ac9a13ede01dec8; geração 4f667a77e3d39f93f68990e172d033f8582198c7; sitemap 41914723634, integridade 41914723624, Pages 41914800187: SUCCESS. 1501 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem78.json.
+
+Totais: {"total":563,"screened_no_change":65,"needs_source":8,"targeted_correction_complete":161,"preserve_prior_review":98,"pending":231}. Próximos pendentes: GSeid2PryzC2aiQwnv3h — Purificador de Água Gelada Fria e Natural Elétrico Compacto Eletrônico placa Filtro refil 6 meses ou 3000l Painel Touch Bivolt Cinza PE12G Electrolux; GT9gxxxsfkbjOfDG2uIM — Perfume Vf Bloom Virginia Fonseca 75ml - Wepink Volume da unidade 75 mL; GzjyGVKcBkoiKgQEo4p9 — Shampoo Redutor de Grisalhos Grecin Control GX Para Todas os Tons Cabelo 118ml. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Reparo de publicação Camperluz — 04/11/2026, PUBLICADO E VERIFICADO
 
 - Falha 41911062020: validate-site detectou duas páginas para MLB3954862383 / afiliado 1WbosCJ após a mudança editorial do título principal. Todos os testes daquela execução passaram; validação bloqueou a publicação como esperado.

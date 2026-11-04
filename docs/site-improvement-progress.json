@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "gNcq5nSqWbfqYi1M9c23",
-      "GPORGqPOixfgh38bVrXX",
-      "GQiP9vBIhECa4I5CuzkB",
       "GSeid2PryzC2aiQwnv3h",
       "GT9gxxxsfkbjOfDG2uIM",
       "GzjyGVKcBkoiKgQEo4p9",
       "h0a3vchlbGQbAnHdbujA",
-      "H0bw2eYqi6yqdyBF1Ufl"
+      "H0bw2eYqi6yqdyBF1Ufl",
+      "H17ykC6IlHMpWBEMnEQ7",
+      "Hd0FWwNPR8uVXWLwPz3A",
+      "hDRgi7LAJobY4o5W9ipJ"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T21:17:03.537Z",
-  "catalogueGeneratedAt": "2026-11-04T21:16:54.127Z",
+  "updatedAt": "2026-11-04T21:20:13.813Z",
+  "catalogueGeneratedAt": "2026-11-04T21:17:55.581Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 65,
     "needs_source": 8,
-    "targeted_correction_complete": 159,
+    "targeted_correction_complete": 161,
     "preserve_prior_review": 98,
-    "pending": 231,
-    "prepared_awaiting_publication": 2
+    "pending": 231
   },
   "items": [
     {
@@ -5198,12 +5197,13 @@
       "url": "https://rankingdacompra.com.br/produto/GPORGqPOixfgh38bVrXX-20260810-1.html",
       "title": "Motorola Edge 70 Pro 5G 256 GB — 12 GB de RAM e RAM Boost, azul escuro",
       "fingerprint": "5cc552511663edab7e15ba9ceec384136727ca9052bcdfee7178d914b061b9ec",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T21:20:13.782Z",
       "workNotes": [
         "Distingue RAM física de RAM Boost, câmeras totais de traseiras e retira indicação de anúncio oficial sem prova. Encurta título.",
-        "Referência primária indexada informa 12 GB físicos mais RAM Boost; página dinâmica não forneceu corpo legível. Sem teste, autenticação ou importação de outra versão. Demais especificações atribuídas ao anúncio."
+        "Referência primária indexada informa 12 GB físicos mais RAM Boost; página dinâmica não forneceu corpo legível. Sem teste, autenticação ou importação de outra versão. Demais especificações atribuídas ao anúncio.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB69322382?wid=MLB6760902576",
@@ -7633,12 +7633,13 @@
       "url": "https://rankingdacompra.com.br/produto/GQiP9vBIhECa4I5CuzkB-20260810-1.html",
       "title": "Tênis Flyer Runner Mesh Bdp Puma",
       "fingerprint": "6f6622d8da116b2187ac852a9b56819d54098c3d3200e2dc5776721ddcafc065",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T21:20:13.782Z",
       "workNotes": [
         "Corrige código de vendedor rotulado como catálogo e qualifica condição da oferta sem inspeção.",
-        "Snapshot local e formato do endereço de anúncio; sem fonte técnica exata ou teste. Preservada variação 185930355975. Não acrescentados materiais, amortecimento, desempenho ou autenticidade."
+        "Snapshot local e formato do endereço de anúncio; sem fonte técnica exata ou teste. Preservada variação 185930355975. Não acrescentados materiais, amortecimento, desempenho ou autenticidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-3806655487-_JM?searchVariation=185930355975"
@@ -11071,11 +11072,42 @@
     "backendWrites": 0
   },
   "triage78": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "GPORGqPOixfgh38bVrXX",
       "GQiP9vBIhECa4I5CuzkB"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T21:20:13.782Z",
+    "changedIds": [
+      "GPORGqPOixfgh38bVrXX",
+      "GQiP9vBIhECa4I5CuzkB"
+    ],
+    "jointReleaseBatches": [
+      78
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem78.json",
+    "remainingDependencies": [
+      {
+        "id": "gNcq5nSqWbfqYi1M9c23",
+        "note": "Reaproveita conteúdo local já cauteloso; modelo, bateria e desempenho continuam não verificados. Sem repetir conferência do anúncio."
+      },
+      {
+        "id": "GPORGqPOixfgh38bVrXX",
+        "note": "Referência primária indexada informa 12 GB físicos mais RAM Boost; página dinâmica não forneceu corpo legível. Sem teste, autenticação ou importação de outra versão. Demais especificações atribuídas ao anúncio."
+      },
+      {
+        "id": "GQiP9vBIhECa4I5CuzkB",
+        "note": "Snapshot local e formato do endereço de anúncio; sem fonte técnica exata ou teste. Preservada variação 185930355975. Não acrescentados materiais, amortecimento, desempenho ou autenticidade."
+      }
+    ],
+    "sourceCommit": "c33782686dc6d4d28cb47a330ac9a13ede01dec8",
+    "generatedCommit": "4f667a77e3d39f93f68990e172d033f8582198c7",
+    "sitemapRun": 41914723634,
+    "integrityRun": 41914723624,
+    "pagesRun": 41914800187,
+    "testsPassed": 1501,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
