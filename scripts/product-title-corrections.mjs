@@ -8,6 +8,29 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['fQAJIJDeSjtSvdevGCQm', {
+    syncInformationalSchema:true, allowTruncatedHeading:true,
+    model:/^(?:Parafusadeira Furadeira De Impacto A Bateria 21V 3\/8” Bivolt 1400 Rpm Com Acessórios E Maleta TB-21PZW The Black Tools|Parafusadeira de impacto TB-21PZW The Black Tools — bateria 21 V anunciada|Parafusadeira\/furadeira TB-21PZW The Black Tools — 21 V anunciados)$/i,
+    correct:'Parafusadeira/furadeira TB-21PZW The Black Tools — 21 V anunciados',
+    summary:'A oferta identifica a parafusadeira/furadeira de impacto The Black Tools TB-21PZW, com bateria anunciada de 21 V, mandril de 3/8 de polegada (10 mm) e rotação de até 1.400 rpm. Pode interessar a quem compara ferramentas a bateria; a adequação ao serviço depende das capacidades e dos limites do modelo. A indicação 18 + 3 do cadastro não é uma medição de torque nem informa sozinha o torque máximo; confirme a distinção entre ajustes e modos no manual. A palavra bivolt da oferta precisa ser conferida no carregador, sem presumir alimentação direta da ferramenta pela rede. Acessórios e maleta são anunciados, mas confira a composição exata do conjunto e a quantidade de baterias. Não testamos torque, perfuração, autonomia ou resistência e não transferimos capacidades de outro modelo The Black Tools.',
+    positiveNotes:['Modelo TB-21PZW, bateria de 21 V, mandril de 10 mm e rotação de até 1.400 rpm identificados na oferta.'],
+    negativeNotes:['Ajustes 18 + 3 não equivalem a torque máximo medido; confirmar modos e limites no manual.', 'Confirmar carregador e itens do kit; sem autonomia ou desempenho testados.'],suppressRating:true,
+  }],
+  ['g3QWQpsMAD73Kg7gMUzm', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB3954862383',
+    model:/^(?:Torneira Gourmet Luxo Flexível Cozinha Parede 2 Jatos Pia Metal Cor Aço Inox e Preto- Marca Camperluz|Torneira Camperluz de parede flexível com dois jatos anunciados)$/i,
+    correct:'Torneira Camperluz de parede flexível com dois jatos anunciados',
+    summary:'A oferta identifica uma torneira Camperluz de parede, flexível, com dois tipos de jato anunciados. Pode interessar a quem procura esse formato para a cozinha; confira medidas, conexão e espaço disponível antes de escolher. Há divergência entre a cor aço inox e preto do título e o acabamento cromado da descrição: confirme a apresentação da unidade. A indicação de cor não comprova que todo o corpo seja de aço inoxidável. As conexões de 1/2 e 3/4 de polegada, o bico giratório e o fechamento cerâmico são informações do cadastro, não verificação da equipe; confira se há adaptador e quais peças acompanham o conjunto. Não medimos economia de água, força do jato ou vedação. Não mantemos elogios de compradores sem documentação nem facilidade de instalação ou custo-benefício como conclusões próprias. Não garantimos compatibilidade com toda instalação.',
+    positiveNotes:['Formato de parede, identificação Camperluz e dois tipos de jato anunciados.'],
+    negativeNotes:['Acabamento divergente no cadastro; confirmar cor, material, conexão e acessórios da unidade.', 'Economia, pressão, vedação e instalação não testadas; sem recomendação baseada em elogios não documentados.'],suppressRating:true,
+  }],
+  ['GhxvMZYaZM60wLsGuNdw', {
+    syncInformationalSchema:true,
+    model:/^Esfregão Perfect Pro Mop 360° Balde Inox Cabo Longo Microfibra 16L$/i,
+    summary:'A oferta identifica um mop Perfect Pro com giro de 360 graus, cabo longo, refil descrito como de microfibra e capacidade de balde anunciada de 16 litros. Pode interessar a quem procura um conjunto para limpeza; confira dimensões, itens incluídos e instruções para o piso pretendido. O cadastro não esclarece quais partes do balde são de inox, por isso não afirmamos que toda a estrutura seja desse material. A palavra inox não comprova maior resistência ou durabilidade em comparação com outro conjunto. A capacidade nominal não determina quanto de água deve ser colocado durante o uso; confirme o limite indicado pelo fabricante. Giro e comprimento do cabo não garantem alcance em qualquer espaço. Não testamos centrifugação, limpeza, esforço, resistência ou vida útil do mecanismo e não prescrevemos cuidados específicos sem o manual da unidade.',
+    positiveNotes:['Identificação Perfect Pro, giro de 360 graus e capacidade nominal de 16 litros anunciados.'],
+    negativeNotes:['Partes em inox, limite de enchimento e dimensões precisam ser confirmados.', 'Sem teste de limpeza, resistência ou durabilidade; giro não garante alcance universal.'],suppressRating:true,
+  }],
   ['fflXJkY0fRQJg8t2QZqn', {
     syncInformationalSchema:true, allowTruncatedHeading:true,
     model:/^(?:Kit Ventilador Portatil 8'' \+ Luz Led 4'' 2 Baterias Recarregável Lanterna Refletor Lampada Luz Led|Kit ventilador portátil de 8 polegadas com luz LED e duas baterias anunciadas)$/i,

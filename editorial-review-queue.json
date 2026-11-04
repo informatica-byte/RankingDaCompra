@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T16:50:44.992Z",
+  "generatedAt": "2026-11-04T16:57:47.916Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 236
+    "screening": 233
   },
   "items": [
     {
@@ -27,27 +27,6 @@
       "title": "3 Kit Controle Remoto Eletrônico 433mhz Alarme Universal",
       "url": "https://rankingdacompra.com.br/produto/40SKVMiLnqTYwYcP2duQ-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "fQAJIJDeSjtSvdevGCQm",
-      "title": "Parafusadeira Furadeira De Impacto A Bateria 21V 3/8” Bivolt 1400 Rpm Com Acessórios E Maleta TB-21PZW The Black Tools",
-      "url": "https://rankingdacompra.com.br/produto/fQAJIJDeSjtSvdevGCQm-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "g3QWQpsMAD73Kg7gMUzm",
-      "title": "Torneira Gourmet Luxo Flexível Cozinha Parede 2 Jatos Pia Metal Cor Aço Inox e Preto- Marca Camperluz",
-      "url": "https://rankingdacompra.com.br/produto/g3QWQpsMAD73Kg7gMUzm-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "GhxvMZYaZM60wLsGuNdw",
-      "title": "Esfregão Perfect Pro Mop 360° Balde Inox Cabo Longo Microfibra 16L",
-      "url": "https://rankingdacompra.com.br/produto/GhxvMZYaZM60wLsGuNdw-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

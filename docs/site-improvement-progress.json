@@ -660,8 +660,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T16:52:53.379Z",
-  "catalogueGeneratedAt": "2026-11-04T16:50:44.992Z",
+  "updatedAt": "2026-11-04T16:57:55.342Z",
+  "catalogueGeneratedAt": "2026-11-04T16:57:47.916Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -677,7 +677,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 156,
     "preserve_prior_review": 98,
-    "pending": 236
+    "pending": 233,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2979,12 +2980,19 @@
       "id": "GhxvMZYaZM60wLsGuNdw",
       "url": "https://rankingdacompra.com.br/produto/GhxvMZYaZM60wLsGuNdw-20260810-1.html",
       "title": "Esfregão Perfect Pro Mop 360° Balde Inox Cabo Longo Microfibra 16L",
-      "fingerprint": "c075d3920fa7fb7ac53631286df125c6aa9fee7dafa5f9c9c08cf84b4139fa06",
-      "status": "pending",
+      "fingerprint": "c5653ef25804db118a50b016194f561d45c0221701b7848d65a22d5cd9120de4",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira maior resistência sem teste e generalização de balde todo inox; qualifica capacidade e alcance.",
+        "Snapshot local por ID e título, sem manual exato ou código de anúncio explícito. Não acrescenta materiais, limite de enchimento ou instruções de conservação específicos."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB19969083"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "voyycquYPRJSv4TtyT29",
@@ -5548,17 +5556,6 @@
       "sourceLinks": []
     },
     {
-      "id": "fQAJIJDeSjtSvdevGCQm",
-      "url": "https://rankingdacompra.com.br/produto/fQAJIJDeSjtSvdevGCQm-20260810-1.html",
-      "title": "Parafusadeira Furadeira De Impacto A Bateria 21V 3/8” Bivolt 1400 Rpm Com Acessórios E Maleta TB-21PZW The Black Tools",
-      "fingerprint": "173a5da2c175ca83b7e60578015b4069073f55c9b58a224e2852e2ca24810382",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "UnTwhXqatX5MyoPnl6DN",
       "url": "https://rankingdacompra.com.br/produto/UnTwhXqatX5MyoPnl6DN-20260810-1.html",
       "title": "Parafusadeira Furadeira Sem Fio 12V WAP BPF 12K3 Kit Maleta",
@@ -5594,6 +5591,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "fQAJIJDeSjtSvdevGCQm",
+      "url": "https://rankingdacompra.com.br/produto/fQAJIJDeSjtSvdevGCQm-20260810-1.html",
+      "title": "Parafusadeira/furadeira TB-21PZW The Black Tools — 21 V anunciados",
+      "fingerprint": "663887e3a344534d678940cb94aa1f66d4c7f005dd8229b55f4053ce52db4c5d",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue ajustes de torque máximo e bivolt do carregador; encurta título sem mudar identidade.",
+        "Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Sem torque, capacidade, autonomia, quantidade de baterias ou composição de kit importados."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB60012839"
+      ],
+      "previousState": "prepared_awaiting_publication",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "87Q6AMHZ8ZFd06OzATcs",
@@ -8137,13 +8152,20 @@
     {
       "id": "g3QWQpsMAD73Kg7gMUzm",
       "url": "https://rankingdacompra.com.br/produto/g3QWQpsMAD73Kg7gMUzm-20260810-1.html",
-      "title": "Torneira Gourmet Luxo Flexível Cozinha Parede 2 Jatos Pia Metal Cor Aço Inox e Preto- Marca Camperluz",
-      "fingerprint": "ef3395e8cde7c542771a50335b6e9425f04c9922a7234fe7f63410de19206d2c",
-      "status": "pending",
+      "title": "Torneira Camperluz de parede flexível com dois jatos anunciados",
+      "fingerprint": "308fa3506b739b12877cf8eb70cc45a8d20242dea5b986b377ea707ddf4c376a",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Explicita acabamento divergente e retira elogios sem fonte, economia e instalação como garantias. Encurta título.",
+        "Snapshot local; não confirmado material, acabamento, adaptador ou compatibilidade. Sem teste hidráulico ou orientação de instalação."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB45553868?wid=MLB3954862383"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "SwJrTICSHQ1hJE2aIYz1",
@@ -10958,5 +10980,14 @@
     "testsPassed": 1490,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage77": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "GhxvMZYaZM60wLsGuNdw",
+      "fQAJIJDeSjtSvdevGCQm",
+      "g3QWQpsMAD73Kg7gMUzm"
+    ],
+    "newDeepReviews": 0
   }
 }
