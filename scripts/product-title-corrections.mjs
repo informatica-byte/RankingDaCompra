@@ -8,6 +8,28 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['KHQKsjwv2MzJGObyoZkd', {
+    syncInformationalSchema:true,
+    model:/^Perfume Carolina Herrera Very Good Girl Glam Parfum 50ml feminino$/i,
+    summary:'A oferta identifica Very Good Girl Glam, de Carolina Herrera, em apresentação anunciada de 50 ml. A marca descreve notas de cereja, rosa, vetiver e baunilha e o frasco em formato de salto com glitter. Pode interessar a quem procura esse perfil olfativo, mas a descrição da marca não equivale a teste sensorial da equipe ou garantia de preferência. Parfum no anúncio não permite deduzir um percentual de concentração, intensidade ou duração fixa na sua pele. Confira denominação, volume e embalagem da unidade; não autenticamos o produto do vendedor. Não testamos fixação, projeção ou tolerância e retiramos a frase incompleta do texto anterior. As advertências devem ser consultadas no rótulo específico, sem prescrever teste de pele a partir de uma concentração presumida.',
+    publicContextUrl:'https://www.carolinaherrera.com/es/en/p-fragrance/very-good-girl-glam',
+    positiveNotes:['Perfil de cereja, rosa, vetiver e baunilha descrito pela marca para Very Good Girl Glam.'],
+    negativeNotes:['Fixação, projeção e preferência não testadas; sem concentração percentual presumida.', 'Conferir volume e embalagem; autenticidade e tolerância da unidade não verificadas.'],suppressRating:true,
+  }],
+  ['KjczAN39YiZOmTgmzwIt', {
+    syncInformationalSchema:true,
+    model:/^Cama Elástica Pula Pula Infantil Trampolim 1,4 Metros Atentu$/i,
+    summary:'A oferta identifica uma cama elástica infantil anunciada como Atentu de 1,4 metro. Estrutura de aço, rede lateral com zíper, seis pés e molas de aço são informações do cadastro, não inspeção da equipe. Pode interessar a quem compara dimensões e recursos de trampolins infantis, mas a faixa de 3 a 7 anos do texto anterior não foi confirmada por manual específico nesta revisão. Confira identificação, limites de uso, dimensões e documentação da unidade antes de escolher. Rede e zíper não garantem ausência de acidentes nem comprovam certificação; reforçado e resistente também não substituem ensaio do produto. Não testamos estabilidade, capacidade ou segurança e não definimos carga, número de usuários, montagem ou condições de uso externo por suposição.',
+    positiveNotes:['Dimensão anunciada de 1,4 m e rede lateral com zíper descritas na oferta.'],
+    negativeNotes:['Faixa etária, capacidade e certificação precisam de documentação específica.', 'Rede e estrutura não garantem segurança; sem teste de estabilidade ou resistência.'],suppressRating:true,
+  }],
+  ['kkADU0pbN4LUhcYR1HMH', {
+    syncInformationalSchema:true, expectedListing:'MLB5554213538',
+    model:/^Kit Principia para Rotina de Skincare Pele Sensível com Protetor Solar FPS 60$/i,
+    summary:'A oferta apresenta um kit Principia para pele sensível com protetor solar anunciado como FPS 60. O cadastro cita GL-02, CM-01 e PS-01, mas a página da marca consultada para um kit semelhante identifica GL-02, CH-01 e PS-01 FPS 60. CM-01 e CH-01 não devem ser tratados como o mesmo creme: confirme os códigos, volumes e rótulos dos itens efetivamente incluídos no anúncio antes de escolher. Não substituímos componentes nem transferimos a composição do outro kit para esta oferta. Pode interessar a quem compara conjuntos de limpeza, hidratação e proteção solar, mas pele sensível no título não garante tolerância individual ou ausência de irritação. Não testamos o conjunto, não prescrevemos rotina de aplicação e não asseguramos resultado individual; confira instruções e advertências de cada produto.',
+    positiveNotes:['Proposta de conjunto de cuidados com protetor FPS 60 identificada na oferta.'],
+    negativeNotes:['CM-01 no cadastro versus CH-01 no kit semelhante da marca; conteúdo exato a confirmar.', 'Indicação para pele sensível não garante tolerância; sem teste do conjunto ou composição transferida.'],suppressRating:true,
+  }],
   ['k0fHNRurzCmYEdcHcn1V', {
     syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB5075784673',
     model:/^(?:Pistola Fixação Finca Pino Ação Direta Pregos Epi Maleta Pinador Pregador Grampeador Rebitador De Prego Pressão Ferramenta Para Drywal Gesso Concreto Aço Parede|Ferramenta finca-pino anunciada — modelo e compatibilidade a confirmar)$/i,

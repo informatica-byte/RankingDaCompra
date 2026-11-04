@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:49:05.720Z",
-  "catalogueGeneratedAt": "2026-11-04T22:47:06.615Z",
+  "updatedAt": "2026-11-04T22:51:51.120Z",
+  "catalogueGeneratedAt": "2026-11-04T22:51:43.119Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -691,7 +691,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 186,
     "preserve_prior_review": 98,
-    "pending": 204
+    "pending": 201,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -1707,12 +1708,19 @@
       "id": "KjczAN39YiZOmTgmzwIt",
       "url": "https://rankingdacompra.com.br/produto/KjczAN39YiZOmTgmzwIt-20260810-1.html",
       "title": "Cama Elástica Pula Pula Infantil Trampolim 1,4 Metros Atentu",
-      "fingerprint": "3813ba5f491cd0e2efe0ab0788d5e77966103beff91de54749a6f02e6d42701c",
-      "status": "pending",
+      "fingerprint": "6140ba4ac517768db4e62e5bc55019d72b6c96d68d2f8ccb2ea6bfffe9b9962e",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira diversão segura, resistência e faixa etária como garantias sem manual; atribui características ao cadastro.",
+        "Snapshot sem manual técnico específico ou certificação confirmada. Não define carga, montagem, ocupação ou uso externo seguro e não valida idade apenas por dimensões."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB28717101"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "8oHSkf32jY7LKS2WSv36",
@@ -4506,12 +4514,20 @@
       "id": "kkADU0pbN4LUhcYR1HMH",
       "url": "https://rankingdacompra.com.br/produto/kkADU0pbN4LUhcYR1HMH-20260810-1.html",
       "title": "Kit Principia para Rotina de Skincare Pele Sensível com Protetor Solar FPS 60",
-      "fingerprint": "72df799b76db7cdfd1a3123e52c92e29e123cfd9aff57e141df69b5a792b2c91",
-      "status": "pending",
+      "fingerprint": "ec4870e6a6e92462d8d829cbd2a08c0f69ad464622fd4c94bdc382af0cb13cfa",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Sinaliza CM-01 no cadastro versus CH-01 no kit semelhante da marca e evita transferir composição ou garantir tolerância individual.",
+        "Página primária refere-se a kit semelhante, não prova conteúdo do anúncio. Códigos/volumes da oferta precisam ser confirmados; sem troca de creme, rotina individual ou eficácia do conjunto presumida."
+      ],
+      "sourceLinks": [
+        "https://www.principiaskin.com/produtos/indicacoes/kit-rotina-essencial-1-gl02-gel-de-limpeza-tensoativos-glicerina-pca-sodio-1-ch01-creme-hidratante-manteiga-de-karite-niacinamida-glicerina-1-ps01-protetor-solar-fps60-filtros-uv-niacinamida.html",
+        "https://www.mercadolivre.com.br/p/MLB53618239?wid=MLB5554213538"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB2088799901",
@@ -6146,12 +6162,20 @@
       "id": "KHQKsjwv2MzJGObyoZkd",
       "url": "https://rankingdacompra.com.br/produto/KHQKsjwv2MzJGObyoZkd-20260810-1.html",
       "title": "Perfume Carolina Herrera Very Good Girl Glam Parfum 50ml feminino",
-      "fingerprint": "211188fa606b5934879bb2f9b0522f1342784e93b738623a9ca6ff55eadce91e",
-      "status": "pending",
+      "fingerprint": "2b117357af3e5e92bed814ffb8b0b05b08947c1f9c7aebbc15f656cdec525782",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Completa frase truncada e retira intensidade/concentração como garantia; descreve perfil atribuído à marca sem teste próprio.",
+        "Fonte primária de perfil e frasco consultada; sem autenticação da unidade, percentual de concentração, fixação ou teste de tolerância. Não prescreve teste a partir de concentração presumida."
+      ],
+      "sourceLinks": [
+        "https://www.carolinaherrera.com/es/en/p-fragrance/very-good-girl-glam",
+        "https://www.mercadolivre.com.br/p/MLB28355516"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "kyK4G9Uov6eBaFnNVED7",
@@ -11693,5 +11717,14 @@
     "testsPassed": 1510,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage88": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "KHQKsjwv2MzJGObyoZkd",
+      "KjczAN39YiZOmTgmzwIt",
+      "kkADU0pbN4LUhcYR1HMH"
+    ],
+    "newDeepReviews": 0
   }
 }

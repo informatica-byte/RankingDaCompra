@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T22:47:06.615Z",
+  "generatedAt": "2026-11-04T22:51:43.119Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 204
+    "screening": 201
   },
   "items": [
     {
@@ -34,27 +34,6 @@
       "title": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
       "url": "https://rankingdacompra.com.br/produto/jdxZ0gYEI0XGOPYbWh78-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "KHQKsjwv2MzJGObyoZkd",
-      "title": "Perfume Carolina Herrera Very Good Girl Glam Parfum 50ml feminino",
-      "url": "https://rankingdacompra.com.br/produto/KHQKsjwv2MzJGObyoZkd-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "KjczAN39YiZOmTgmzwIt",
-      "title": "Cama Elástica Pula Pula Infantil Trampolim 1,4 Metros Atentu",
-      "url": "https://rankingdacompra.com.br/produto/KjczAN39YiZOmTgmzwIt-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "kkADU0pbN4LUhcYR1HMH",
-      "title": "Kit Principia para Rotina de Skincare Pele Sensível com Protetor Solar FPS 60",
-      "url": "https://rankingdacompra.com.br/produto/kkADU0pbN4LUhcYR1HMH-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
