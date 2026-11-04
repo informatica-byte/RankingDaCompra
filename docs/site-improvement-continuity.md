@@ -1,7 +1,9 @@
 # Continuidade prioritária — Ranking da Compra
 ## Correção visual de tema — 2026-11-04
 
-Causa: renderSeasonalTheme retornava imediatamente no modo informativo, mesmo com Black Friday manual já salvo no site-config publicado. Corrigido somente o renderer visual, com textos sem preços e contraste preto/dourado, preservando modo off, período e prévia. Nenhuma alteração em catálogo, preços, afiliados, configuração salva, histórico ou leituras Firestore. Cache sincronizado em vitrine/painel/template, com versões exatas ainda validadas. 1517 testes, validate-site e QA local 390/1280 aprovados. Não repetir passagem 93; retomar fila editorial por ID nela registrada. Publicação pendente de confirmação neste registro.
+Causa: renderSeasonalTheme retornava imediatamente no modo informativo, mesmo com Black Friday manual já salvo no site-config publicado. Corrigido o renderer visual, com textos sem preços e contraste preto/dourado, preservando modo off, período e prévia. Cache sincronizado em vitrine/painel/template, com versões exatas ainda validadas. 1517 testes, validate-site e QA local 390/1280 aprovados. Não repetir passagem 93; retomar fila editorial por ID nela registrada.
+
+PUBLICADO E VERIFICADO: fonte 719626078f9f0795bf7fa2e77f03a1ea889ee0fd; geração 5fb2ef85410b8be81eaa68c544e7951dd956d4b0; sitemap 41937290463, integridade 41937290633 e Pages 41937357752 SUCCESS. Teste real no site em 390/1280 confirmou tema black-friday, faixa única, título branco e ausência de overflow, com rede externa bloqueada. Prova outputs/melhorias-integrais-20261030/verificacao-tema-publicado.json. Publicação concorrente e79386053 integrada sem sobrescrever o produto novo; total atual 564 produtos e 617 URLs. Vitrine, históricos e site-config comparados integralmente com essa publicação e preservados; nenhuma leitura/escrita Firestore feita para diagnóstico. Não usar a contagem antiga 563 para sobrescrever os dados atuais.
 
 ## Passagem 93 — 20261104, PUBLICADA E VERIFICADA
 

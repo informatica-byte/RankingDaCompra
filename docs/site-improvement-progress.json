@@ -1,5 +1,18 @@
 {
   "version": 1,
+  "informationalSeasonalTheme20261104": {
+    "status": "published_verified",
+    "sourceCommit": "719626078f9f0795bf7fa2e77f03a1ea889ee0fd",
+    "generatedCommit": "5fb2ef85410b8be81eaa68c544e7951dd956d4b0",
+    "pagesRun": 41937357752,
+    "testsPassed": 1517,
+    "verifiedWidths": [390, 1280],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-tema-publicado.json",
+    "firestoreReads": 0,
+    "backendWrites": 0,
+    "concurrentPublicationPreserved": "e79386053",
+    "note": "Tema visual reativado no modo informativo; fila editorial da passagem 93 preservada. Novo produto remoto integrado, sem repetir revisoes."
+  },
   "camperluzPublicationRepair20261104": {
     "status": "published_verified",
     "sourceCommit": "9832d63aa8a8b5b2a505a13d1cbec2652d07e7ea",
