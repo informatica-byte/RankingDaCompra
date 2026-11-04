@@ -660,8 +660,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T16:46:41.262Z",
-  "catalogueGeneratedAt": "2026-11-04T16:44:43.789Z",
+  "updatedAt": "2026-11-04T16:49:51.122Z",
+  "catalogueGeneratedAt": "2026-11-04T16:49:43.281Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -677,7 +677,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 153,
     "preserve_prior_review": 98,
-    "pending": 239
+    "pending": 236,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4134,23 +4135,37 @@
       "id": "FlQInLlTCwVdemK0g3rZ",
       "url": "https://rankingdacompra.com.br/produto/FlQInLlTCwVdemK0g3rZ-20260810-1.html",
       "title": "Kit 5 Potes De Vidro Marmita C/ Tampa Hermético 640ml",
-      "fingerprint": "6d4c23150e64ef6b52d8e7ceb34d4e4588aabc4c50a7057cd88736276f8e452f",
-      "status": "pending",
+      "fingerprint": "824e92eaeb7b13ce4db7fcc9d631581ff82d6723b4f2301904eda118670bb712",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira compatibilidade térmica e vedação absolutas; distingue potes de tampas sem inventar limites.",
+        "Snapshot local, sem manual ou teste de material, temperatura, lavagem, vedação ou conservação. Nenhum limite térmico ou acessório importado."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB47853797?wid=MLB4071998331"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "fMwDJ0aYUKjwcpHFiRus",
       "url": "https://rankingdacompra.com.br/produto/fMwDJ0aYUKjwcpHFiRus-20260810-1.html",
       "title": "Kit 50 Cabide Adulto Preto Reforçado Organizador Combate",
-      "fingerprint": "be3c2903376d2d8f7772ff5dcdbb77411ed78fce9febb9205bff45fa44f58375",
-      "status": "pending",
+      "fingerprint": "6a8687f1a187183a666963ce2d7b2eaba5da2c08035413ec9a40fa57b9d5f056",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige atenção truncada e retira maior durabilidade como garantia; explicita ausência de carga comprovada.",
+        "Snapshot local; sem material, dimensões ou carga confirmados. Não completa frase antiga por suposição nem promete resistência."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB47770588?wid=MLB4025013215"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "LAPIX3Gs1DA6iyK26qTM",
@@ -4483,13 +4498,20 @@
     {
       "id": "fflXJkY0fRQJg8t2QZqn",
       "url": "https://rankingdacompra.com.br/produto/fflXJkY0fRQJg8t2QZqn-20260810-1.html",
-      "title": "Kit Ventilador Portatil 8'' + Luz Led 4'' 2 Baterias Recarregável Lanterna Refletor Lampada Luz Led",
-      "fingerprint": "6d5025c74124cc6e8d645a050162b341023e9948187df41c433cdce48affa032",
-      "status": "pending",
+      "title": "Kit ventilador portátil de 8 polegadas com luz LED e duas baterias anunciadas",
+      "fingerprint": "f31491f47d09aaaaa07e652452c349e4b8ee11f78e48862caa32a3595463a762",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Qualifica ruído e autonomia sem teste, distingue carregador de aparelho e retira fonte dita oficial sem comprovação. Encurta título.",
+        "Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Não acrescenta especificações, tempo medido, alimentação direta ou compatibilidade de bateria."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB75654491"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "5Nr0nOkBvYhG9KXxeyZL",
@@ -10893,5 +10915,14 @@
     "testsPassed": 1489,
     "localMobileChecks": 2,
     "backendWrites": 0
+  },
+  "triage76": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "FlQInLlTCwVdemK0g3rZ",
+      "fMwDJ0aYUKjwcpHFiRus",
+      "fflXJkY0fRQJg8t2QZqn"
+    ],
+    "newDeepReviews": 0
   }
 }

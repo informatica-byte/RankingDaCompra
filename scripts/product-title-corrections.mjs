@@ -8,6 +8,28 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['fflXJkY0fRQJg8t2QZqn', {
+    syncInformationalSchema:true, allowTruncatedHeading:true,
+    model:/^(?:Kit Ventilador Portatil 8'' \+ Luz Led 4'' 2 Baterias Recarregável Lanterna Refletor Lampada Luz Led|Kit ventilador portátil de 8 polegadas com luz LED e duas baterias anunciadas)$/i,
+    correct:'Kit ventilador portátil de 8 polegadas com luz LED e duas baterias anunciadas',
+    summary:'A oferta identifica um kit com ventilador portátil de 8 polegadas, luz LED e duas baterias recarregáveis anunciadas. Pode interessar a quem procura ventilação e iluminação transportáveis; confira quais componentes e carregadores acompanham a unidade. Os 30 dB e a autonomia de 3 a 4 horas do cadastro são declarações do anúncio, não medições da equipe nem garantia de uso sem incômodo durante o descanso. Não foram confirmadas as condições dessas estimativas. Os valores de 21 V e 2,0 Ah indicados para bateria não comprovam sozinhos a duração. A indicação 127/220 V precisa ser conferida na etiqueta do carregador e no manual, sem presumir alimentação direta do ventilador pela rede ou compatibilidade com outras baterias. Não testamos ruído, ventilação, iluminação, autonomia ou segurança. Página hospedada no Mercado Livre não significa anúncio oficial do fabricante.',
+    positiveNotes:['Ventilador de 8 polegadas, luz LED e duas baterias identificados no título da oferta; confirmar conteúdo.'],
+    negativeNotes:['Ruído e autonomia anunciados não foram medidos e não garantem conforto durante o descanso.', 'Confirmar carregador, valores elétricos, baterias e acessórios específicos; sem compatibilidade presumida.'],suppressRating:true,
+  }],
+  ['FlQInLlTCwVdemK0g3rZ', {
+    syncInformationalSchema:true, expectedListing:'MLB4071998331',
+    model:/^Kit 5 Potes De Vidro Marmita C\/ Tampa Hermético 640ml$/i,
+    summary:'A oferta identifica um conjunto de cinco potes retangulares de vidro com capacidade anunciada de 640 ml por unidade e tampas descritas como herméticas. O anúncio menciona vidro borossilicato, mas não verificamos o material, a vedação ou a resistência da unidade. Pode interessar a quem procura recipientes para organizar alimentos; confira medidas, fechamento e condições de uso. Não tratamos a descrição de vedação como garantia de proteção completa contra ar, umidade ou vazamentos. A compatibilidade com micro-ondas e lava-louças precisa ser confirmada separadamente para os recipientes e as tampas, conforme as instruções específicas. Não presumimos uso em forno, limites de temperatura ou tolerância a choque térmico apenas pelo material anunciado. Não testamos conservação, limpeza ou resistência, e a capacidade nominal não determina o volume indicado para todo uso.',
+    positiveNotes:['Conjunto de cinco recipientes retangulares, com 640 ml por unidade anunciados.'],
+    negativeNotes:['Vedação, material e resistência não testados; hermético não é garantia de ausência de vazamentos.', 'Confirmar instruções de recipientes e tampas para aquecimento e lavagem; sem limites térmicos presumidos.'],suppressRating:true,
+  }],
+  ['fMwDJ0aYUKjwcpHFiRus', {
+    syncInformationalSchema:true, expectedListing:'MLB4025013215',
+    model:/^Kit 50 Cabide Adulto Preto Reforçado Organizador Combate$/i,
+    summary:'A oferta identifica um kit de 50 cabides adultos pretos, descritos como reforçados. Pode interessar a quem precisa de várias unidades para organizar roupas; confira as medidas e o espaço disponível no guarda-roupa antes de escolher. A palavra reforçado no anúncio não comprova carga suportada, resistência ou maior durabilidade. O cadastro não fornece base suficiente para indicar um limite de peso ou afirmar adequação a peças pesadas. Confirme material, formato dos ganchos e dimensões da unidade. Não testamos deformação, quebra, marcas nas roupas ou durabilidade. A frase incompleta de atenção foi substituída por estas limitações explícitas, sem completar o trecho por suposição.',
+    positiveNotes:['Quantidade anunciada de 50 cabides adultos pretos identificada na oferta.'],
+    negativeNotes:['Carga suportada e durabilidade não comprovadas pela descrição reforçado.', 'Confirmar material, medidas e encaixe no guarda-roupa; sem teste de resistência.'],suppressRating:true,
+  }],
   ['ufHw7Y6qN2oc8ePqgHkj', {
     syncInformationalSchema:true, expectedListing:'MLB4555189589',
     model:/^Creatina Monohidratada 500g Growth Supplements - Sem Sabor em Pó$/i,
