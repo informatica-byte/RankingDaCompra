@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "Kyw9WRrxRLj36DL50JfQ",
-      "L6r4zuqqN2t7yWZsQUxo",
-      "LAPIX3Gs1DA6iyK26qTM",
       "LDzmbLcaHUVNztsXyp52",
       "lfGwhT6zO5b7LOPvqkuL",
       "LQ12PkH1sbM7Uu0geBQf",
       "LS2YLo5zNF7RptrFMYgB",
-      "MEkEjNiiDdi5MpmlP07R"
+      "MEkEjNiiDdi5MpmlP07R",
+      "MHUka27wtlYZaI8FiHWi",
+      "mhz9cN2MnCkxuSW5OPlv",
+      "mlMLB1921632393"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T23:13:21.961Z",
-  "catalogueGeneratedAt": "2026-11-04T23:13:13.814Z",
+  "updatedAt": "2026-11-04T23:17:13.555Z",
+  "catalogueGeneratedAt": "2026-11-04T23:15:04.524Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 69,
     "needs_source": 8,
-    "targeted_correction_complete": 192,
+    "targeted_correction_complete": 193,
     "preserve_prior_review": 98,
-    "pending": 195,
-    "prepared_awaiting_publication": 1
+    "pending": 195
   },
   "items": [
     {
@@ -6590,12 +6589,13 @@
       "url": "https://rankingdacompra.com.br/produto/Kyw9WRrxRLj36DL50JfQ-20260810-1.html",
       "title": "PS5 Slim anunciado — edição e conteúdo do kit a confirmar",
       "fingerprint": "5458bde453b1ccb4060f1c3819fc7f95e95e79678abe93164278e6d3ec7263ed",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T23:17:13.530Z",
       "workNotes": [
         "Sinaliza conflito Disk/1 TB/jogos no título versus digital CFI 2114B no texto; título neutro sem escolher edição ou pacote por suposição.",
-        "Snapshot conflitante; código da unidade, leitor, capacidade, jogos e controles precisam de confirmação. Não altera variante, anúncio ou afiliado e não confirma pacote por imagem."
+        "Snapshot conflitante; código da unidade, leitor, capacidade, jogos e controles precisam de confirmação. Não altera variante, anúncio ou afiliado e não confirma pacote por imagem.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4631341726?pdp_filters=item_id%3AMLB7351045720"
@@ -11847,10 +11847,40 @@
     "backendWrites": 0
   },
   "triage90": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "Kyw9WRrxRLj36DL50JfQ"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T23:17:13.530Z",
+    "changedIds": [
+      "Kyw9WRrxRLj36DL50JfQ"
+    ],
+    "jointReleaseBatches": [
+      90
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem90.json",
+    "remainingDependencies": [
+      {
+        "id": "Kyw9WRrxRLj36DL50JfQ",
+        "note": "Snapshot conflitante; código da unidade, leitor, capacidade, jogos e controles precisam de confirmação. Não altera variante, anúncio ou afiliado e não confirma pacote por imagem."
+      },
+      {
+        "id": "L6r4zuqqN2t7yWZsQUxo",
+        "note": "Snapshot sem ensaio ou manual específico. Não acrescenta capacidade de bateria, potência, tempo de recarga ou proteção."
+      },
+      {
+        "id": "LAPIX3Gs1DA6iyK26qTM",
+        "note": "Snapshot sem código técnico exato confirmado. Busca primária não confirma esta variação; ausência de fonte exata não prova erro. Sem autenticação, inspeção da etiqueta ou teste de ajuste."
+      }
+    ],
+    "sourceCommit": "276e0bb09c3ea1118ec15911049b0f2721022be7",
+    "generatedCommit": "ed89dbeb48c79a6e0e0e1634314417f5b5a322b0",
+    "sitemapRun": 41932169394,
+    "integrityRun": 41932169389,
+    "pagesRun": 41932243188,
+    "testsPassed": 1513,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

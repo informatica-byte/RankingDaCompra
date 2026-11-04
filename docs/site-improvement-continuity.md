@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 90 — 20261104, PUBLICADA E VERIFICADA
+
+- Kyw9WRrxRLj36DL50JfQ: targeted_correction_complete. Sinaliza conflito Disk/1 TB/jogos no título versus digital CFI 2114B no texto; título neutro sem escolher edição ou pacote por suposição. Limite: Snapshot conflitante; código da unidade, leitor, capacidade, jogos e controles precisam de confirmação. Não altera variante, anúncio ou afiliado e não confirma pacote por imagem.
+- L6r4zuqqN2t7yWZsQUxo: screened_no_change. Descrição existente já atribui características ao cadastro e ressalva vazão, ruído, autonomia e proteção contra água. Nenhuma correção necessária demonstrada; preservada. Limite: Snapshot sem ensaio ou manual específico. Não acrescenta capacidade de bateria, potência, tempo de recarga ou proteção.
+- LAPIX3Gs1DA6iyK26qTM: screened_no_change. Descrição objetiva do kit e composição anunciados, sem contradição concreta identificada; preservada sem reescrita por falta de fonte exata. Limite: Snapshot sem código técnico exato confirmado. Busca primária não confirma esta variação; ausência de fonte exata não prova erro. Sem autenticação, inspeção da etiqueta ou teste de ajuste.
+
+Fonte 276e0bb09c3ea1118ec15911049b0f2721022be7; geração ed89dbeb48c79a6e0e0e1634314417f5b5a322b0; sitemap 41932169394, integridade 41932169389, Pages 41932243188: SUCCESS. 1513 testes, validate-site e invariantes aprovados. 1 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem90.json.
+
+Totais: {"total":563,"screened_no_change":69,"needs_source":8,"targeted_correction_complete":193,"preserve_prior_review":98,"pending":195}. Próximos pendentes: LDzmbLcaHUVNztsXyp52 — Câmera de Segurança Wi-Fi iCSee/Yoosee A28B 4K Dupla Lente Visão Noturna Colorida Full Hd Externa Prova D'água Ip66 Sensor Movimento Woosh; lfGwhT6zO5b7LOPvqkuL — Smartphone Motorola Edge 60 5g - 512gb 12gb Ram+12gb Ram; LQ12PkH1sbM7Uu0geBQf — Lava E Seca Samsung Wd11m Com Digital Inverter Inox 11kg Cor Inox look. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 89 — 20261104, PUBLICADA E VERIFICADA
 
 - kNmf4r3kzbgWX6Fz3Y0x: targeted_correction_complete. Associa 6.800 W à versão 220 V da tabela primária, sem afirmar versão da oferta; conserva quatro temperaturas e não prescreve instalação. Limite: Tabela primária consultada, sem inspeção da seleção ou instalação. Não define condutores, disjuntor, ligação, resistência ou economia individual.
