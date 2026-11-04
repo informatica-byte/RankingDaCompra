@@ -459,7 +459,8 @@
   }
 
   function renderSeasonalTheme(config) {
-    if(window.RDCInformational?.enabled)return;
+    // A visual theme is compatible with informational mode. Keep price/ranking
+    // features disabled elsewhere; use only the already published site config.
     document.querySelector("[data-seasonal-banner]")?.remove();
     document.body.removeAttribute("data-seasonal-theme");
     for (const property of ["--seasonal-a", "--seasonal-b", "--seasonal-accent"]) document.body.style.removeProperty(property);
@@ -477,7 +478,10 @@
     banner.style.setProperty("--season-a", theme.colors[0]);
     banner.style.setProperty("--season-b", theme.colors[1]);
     banner.style.setProperty("--season-accent", theme.colors[2]);
-    banner.innerHTML = `<div class="seasonal-banner-inner"><div class="seasonal-icon" aria-hidden="true">${escapeHtml(theme.icon)}</div><div class="seasonal-copy"><small>${escapeHtml(theme.name)} no Ranking da Compra</small><h2>${escapeHtml(theme.title)}</h2><p>${escapeHtml(theme.message)}</p></div><a class="seasonal-cta" href="/presentes/">Ver guia da temporada</a></div>${theme.particles.map((particle) => `<span class="seasonal-particle" aria-hidden="true">${escapeHtml(particle)}</span>`).join("")}`;
+    const informative = Boolean(window.RDCInformational?.enabled);
+    const title = informative ? `${theme.name}: escolhas bem informadas` : theme.title;
+    const message = informative ? 'Compare características, vantagens e limitações. Consulte as condições atuais na loja parceira.' : theme.message;
+    banner.innerHTML = `<div class="seasonal-banner-inner"><div class="seasonal-icon" aria-hidden="true">${escapeHtml(theme.icon)}</div><div class="seasonal-copy"><small>${escapeHtml(theme.name)} no Ranking da Compra</small><h2>${escapeHtml(title)}</h2><p>${escapeHtml(message)}</p></div><a class="seasonal-cta" href="/presentes/">Ver guia da temporada</a></div>${theme.particles.map((particle) => `<span class="seasonal-particle" aria-hidden="true">${escapeHtml(particle)}</span>`).join("")}`;
     // Keep the buyer's content and H1 ahead of seasonal promotion.
     const footer = document.querySelector("footer");
     if (footer) footer.insertAdjacentElement("beforebegin", banner);
@@ -744,6 +748,7 @@
       .seasonal-copy small{display:block;margin-bottom:3px;color:var(--season-accent);font-size:.7rem;font-weight:950;letter-spacing:.12em;text-transform:uppercase}.seasonal-copy h2{margin:0;font-size:clamp(1.35rem,3vw,2rem);line-height:1.12;letter-spacing:-.025em;color:#fff}.seasonal-copy p{max-width:720px;margin:6px 0 0;color:rgba(255,255,255,.88);font-size:.92rem}.seasonal-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 15px;border-radius:11px;background:var(--season-accent);color:var(--season-a);font-weight:950;text-decoration:none;white-space:nowrap;box-shadow:0 8px 22px rgba(0,0,0,.16)}
       .seasonal-particle{position:absolute;z-index:-1;color:var(--season-accent);font-weight:950;opacity:.24;pointer-events:none;animation:seasonFloat 7s ease-in-out infinite}.seasonal-particle:nth-child(1){left:3%;top:9%;font-size:1.1rem}.seasonal-particle:nth-child(2){left:19%;bottom:4%;animation-delay:-2s}.seasonal-particle:nth-child(3){right:31%;top:8%;font-size:.72rem;animation-delay:-4s}.seasonal-particle:nth-child(4){right:15%;bottom:5%;font-size:1.2rem;animation-delay:-1s}.seasonal-particle:nth-child(5){right:3%;top:8%;animation-delay:-3s}.seasonal-particle:nth-child(6){left:47%;bottom:1%;animation-delay:-5s}
       body[data-seasonal-theme] .hero{background:radial-gradient(circle at 86% 8%,color-mix(in srgb,var(--seasonal-accent,#ffd166) 36%,transparent),transparent 34%),linear-gradient(145deg,color-mix(in srgb,var(--seasonal-a,#123c69) 8%,#f4f8f2),#f4f8f2)}body[data-seasonal-theme] .hero .primary{background:var(--seasonal-a,#116149)}body[data-seasonal-theme] .daily-deals,body[data-seasonal-theme] .weekly-top{border-color:color-mix(in srgb,var(--seasonal-accent,#ffd166) 45%,#dfe7e2)}
+      body[data-seasonal-theme="black-friday"] .hero{background:radial-gradient(circle at 86% 8%,#594817 0,transparent 38%),linear-gradient(145deg,#050505,#262626);color:#fff}body[data-seasonal-theme="black-friday"] .hero h1{color:#fff}body[data-seasonal-theme="black-friday"] .hero p{color:#eee}body[data-seasonal-theme="black-friday"] .hero .eyebrow{color:#f7c948}body[data-seasonal-theme="black-friday"] .hero .primary{background:#f7c948;color:#111}body[data-seasonal-theme="black-friday"] .hero-proof span{background:#262626;color:#f7c948;border-color:#796428}
       @keyframes seasonGlow{to{transform:rotate(360deg)}}@keyframes seasonFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(6deg)}}
       .growth-admin{margin:24px 0;padding:20px;border:1px solid #96c9aa;border-radius:14px;background:#f1fbf5}
       .growth-admin h2{margin:0 0 5px;color:#0b5b39}.growth-admin p{color:#54675e;margin:0 0 13px}

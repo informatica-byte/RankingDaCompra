@@ -1,4 +1,8 @@
 # Continuidade prioritária — Ranking da Compra
+## Correção visual de tema — 2026-11-04
+
+Causa: renderSeasonalTheme retornava imediatamente no modo informativo, mesmo com Black Friday manual já salvo no site-config publicado. Corrigido somente o renderer visual, com textos sem preços e contraste preto/dourado, preservando modo off, período e prévia. Nenhuma alteração em catálogo, preços, afiliados, configuração salva, histórico ou leituras Firestore. Cache sincronizado em vitrine/painel/template, com versões exatas ainda validadas. 1517 testes, validate-site e QA local 390/1280 aprovados. Não repetir passagem 93; retomar fila editorial por ID nela registrada. Publicação pendente de confirmação neste registro.
+
 ## Passagem 93 — 20261104, PUBLICADA E VERIFICADA
 
 - mhz9cN2MnCkxuSW5OPlv: targeted_correction_complete. Retira fixação rápida/universal e funções presumidas sem manual; mantém cadastro distinto da outra finca-pino. Limite: Snapshot sem marca/modelo/manual exatos. Sem instruções de carga, acionamento, pinos ou estruturas; não certifica EPI e não transfere características de outro cadastro.
