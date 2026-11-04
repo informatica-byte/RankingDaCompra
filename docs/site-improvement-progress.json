@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "hhnKX4x5l2ab7gguVoYU",
-      "hLiaQWog1dogQ2OpMDSt",
-      "htLzwGXLZpkVa0eXWdkr",
       "hVTGYQmARQt2fyDqPZDa",
       "iFRhxwa7Jugs5n2BSQJD",
       "IIBNXuN1JmBc0Ol6iO6O",
       "ik7zBiCAAqDLqr9Di5Ue",
-      "IQP6np7muXjwAQ6aN20M"
+      "IQP6np7muXjwAQ6aN20M",
+      "iSyPxYQcVUDjHvjIHLhS",
+      "iXzsMyqf9ilSKwbLDtk7",
+      "J6WCPaTR5KOqjsAC1nM7"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:08:26.364Z",
-  "catalogueGeneratedAt": "2026-11-04T22:08:18.496Z",
+  "updatedAt": "2026-11-04T22:11:12.562Z",
+  "catalogueGeneratedAt": "2026-11-04T22:09:27.503Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 67,
     "needs_source": 8,
-    "targeted_correction_complete": 168,
+    "targeted_correction_complete": 171,
     "preserve_prior_review": 98,
-    "pending": 219,
-    "prepared_awaiting_publication": 3
+    "pending": 219
   },
   "items": [
     {
@@ -6219,12 +6218,13 @@
       "url": "https://rankingdacompra.com.br/produto/hhnKX4x5l2ab7gguVoYU-20260810-1.html",
       "title": "Piscina inflável de PVC — capacidade de 3.000 litros anunciada",
       "fingerprint": "d477aa19d397bcd39e6c876859c81118653f5a79a03ca1c05b84df8fb6f20c1f",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:11:12.529Z",
       "workNotes": [
         "Retira espessura/resistência e ocupação implícita como garantias; capacidade permanece anunciada.",
-        "Snapshot genérico sem manual, dimensões ou material medido. Não define ocupação, carga, instalação, enchimento ou tratamento de água."
+        "Snapshot genérico sem manual, dimensões ou material medido. Não define ocupação, carga, instalação, enchimento ou tratamento de água.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4332185732?wid=MLB7173279944"
@@ -7380,12 +7380,13 @@
       "url": "https://rankingdacompra.com.br/produto/htLzwGXLZpkVa0eXWdkr-20260810-1.html",
       "title": "Soprador lateral Carbon Fak FAK260S — motor 2 tempos de 26 cc",
       "fingerprint": "1c2ebef6ad314d8280a0bf0ddc7eb6e444e992a9a56f925c60a4d5c44eb1e6cd",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:11:12.529Z",
       "workNotes": [
         "Qualifica consumo e autonomia sem medição e não completa unidade temporal ausente de 470 m³. Retira profissional como qualificação própria.",
-        "Página primária consultada; 470m³ também aparece sem tempo na tabela. Sem teste ou confirmação do lote. Não fornece combustível, adaptação, manutenção ou instrução de operação."
+        "Página primária consultada; 470m³ também aparece sem tempo na tabela. Sem teste ou confirmação do lote. Não fornece combustível, adaptação, manutenção ou instrução de operação.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB23851475?wid=MLB3705389546",
@@ -8537,12 +8538,13 @@
       "url": "https://rankingdacompra.com.br/produto/hLiaQWog1dogQ2OpMDSt-20260810-1.html",
       "title": "Ventilador De Mesa 40cm Turbo NVT-40-BL MONDIAL",
       "fingerprint": "db6d385b0af225f09eaf88ded183e1b391a4a6ff694c2fdf273d0b19d45864df",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:11:12.529Z",
       "workNotes": [
         "Retira anúncio oficial sem prova e distingue características cadastradas de teste próprio, sem alterar o título.",
-        "Snapshot local; referência primária exata não confirmada na busca. Não altera dados por suposição nem acrescenta tensão, potência, ruído ou vazão de outro Mondial."
+        "Snapshot local; referência primária exata não confirmada na busca. Não altera dados por suposição nem acrescenta tensão, potência, ruído ou vazão de outro Mondial.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB57723620?wid=MLB5799991832"
@@ -11324,12 +11326,44 @@
     "backendWrites": 0
   },
   "triage82": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "hLiaQWog1dogQ2OpMDSt",
       "hhnKX4x5l2ab7gguVoYU",
       "htLzwGXLZpkVa0eXWdkr"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T22:11:12.529Z",
+    "changedIds": [
+      "hhnKX4x5l2ab7gguVoYU",
+      "hLiaQWog1dogQ2OpMDSt",
+      "htLzwGXLZpkVa0eXWdkr"
+    ],
+    "jointReleaseBatches": [
+      82
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem82.json",
+    "remainingDependencies": [
+      {
+        "id": "hhnKX4x5l2ab7gguVoYU",
+        "note": "Snapshot genérico sem manual, dimensões ou material medido. Não define ocupação, carga, instalação, enchimento ou tratamento de água."
+      },
+      {
+        "id": "hLiaQWog1dogQ2OpMDSt",
+        "note": "Snapshot local; referência primária exata não confirmada na busca. Não altera dados por suposição nem acrescenta tensão, potência, ruído ou vazão de outro Mondial."
+      },
+      {
+        "id": "htLzwGXLZpkVa0eXWdkr",
+        "note": "Página primária consultada; 470m³ também aparece sem tempo na tabela. Sem teste ou confirmação do lote. Não fornece combustível, adaptação, manutenção ou instrução de operação."
+      }
+    ],
+    "sourceCommit": "974524fc5b005d50bc02a4aee651b937aa5e75b6",
+    "generatedCommit": "11ac243782f7bcf1650ec7c35a6f647ad1393c49",
+    "sitemapRun": 41922686922,
+    "integrityRun": 41922686858,
+    "pagesRun": 41922764365,
+    "testsPassed": 1505,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

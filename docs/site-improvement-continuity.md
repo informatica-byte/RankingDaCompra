@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 82 — 20261104, PUBLICADA E VERIFICADA
+
+- hhnKX4x5l2ab7gguVoYU: targeted_correction_complete. Retira espessura/resistência e ocupação implícita como garantias; capacidade permanece anunciada. Limite: Snapshot genérico sem manual, dimensões ou material medido. Não define ocupação, carga, instalação, enchimento ou tratamento de água.
+- hLiaQWog1dogQ2OpMDSt: targeted_correction_complete. Retira anúncio oficial sem prova e distingue características cadastradas de teste próprio, sem alterar o título. Limite: Snapshot local; referência primária exata não confirmada na busca. Não altera dados por suposição nem acrescenta tensão, potência, ruído ou vazão de outro Mondial.
+- htLzwGXLZpkVa0eXWdkr: targeted_correction_complete. Qualifica consumo e autonomia sem medição e não completa unidade temporal ausente de 470 m³. Retira profissional como qualificação própria. Limite: Página primária consultada; 470m³ também aparece sem tempo na tabela. Sem teste ou confirmação do lote. Não fornece combustível, adaptação, manutenção ou instrução de operação.
+
+Fonte 974524fc5b005d50bc02a4aee651b937aa5e75b6; geração 11ac243782f7bcf1650ec7c35a6f647ad1393c49; sitemap 41922686922, integridade 41922686858, Pages 41922764365: SUCCESS. 1505 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem82.json.
+
+Totais: {"total":563,"screened_no_change":67,"needs_source":8,"targeted_correction_complete":171,"preserve_prior_review":98,"pending":219}. Próximos pendentes: hVTGYQmARQt2fyDqPZDa — Sapatênis Microfibra Atanado Pinhão Navy Pegada; iFRhxwa7Jugs5n2BSQJD — Kit 8 Latas Refil Nautika Ntk 227g Camping Maçarico Fogareiro Fogão Recarga Gás Acampamento Portátil Cozinha Flambar Cozinhar Vivara Laranja-claro Kit 8 Latas Refil Nautika Ntk 22; IIBNXuN1JmBc0Ol6iO6O — Lixeira Inteligente 16l Sensor Automático Tampa Touch Casa. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 81 — 20261104, PUBLICADA E VERIFICADA
 
 - Hd0FWwNPR8uVXWLwPz3A: targeted_correction_complete. Retira qualificação publicitária do título e distingue velocidade, aderência e carga anunciadas de resultados testados. Limite: Snapshot local; sem manual exato, medições ou faixa etária confirmada. Sem prescrever recarga ou importar dados de outro carrinho.
