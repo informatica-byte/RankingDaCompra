@@ -8,6 +8,31 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['GSeid2PryzC2aiQwnv3h', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB4780018962',
+    model:/^(?:Purificador de Água Gelada Fria e Natural Elétrico Compacto Eletrônico placa Filtro refil 6 meses ou 3000l Painel Touch Bivolt Cinza PE12G Electrolux|Purificador Electrolux PE12G cinza bivolt — três opções de temperatura anunciadas)$/i,
+    correct:'Purificador Electrolux PE12G cinza bivolt — três opções de temperatura anunciadas',
+    summary:'A oferta identifica o purificador Electrolux PE12G cinza, bivolt, com seleção de água gelada, fria ou natural pelo painel touch. Pode interessar a quem compara opções para a cozinha; confira dimensões e requisitos de instalação no manual da unidade. O prazo de refil anunciado não é garantia de duração em qualquer condição. A referência da Electrolux recomenda troca com seis meses de uso ou até 3.000 litros e alerta que ela pode ser necessária antes, conforme uso, instalação e tipo de água; observe a indicação do produto. Não testamos filtragem, vazão, temperatura ou capacidade de atender consumo contínuo. A presença de três opções não comprova uma temperatura fixa em toda situação. Não afirmamos que o aparelho torne qualquer água própria para consumo nem transferimos características de outro purificador.',
+    positiveNotes:['Modelo PE12G cinza, bivolt e três opções de temperatura identificados na oferta.'],
+    negativeNotes:['Vida útil do refil depende das condições; a referência admite troca antes do prazo anunciado.', 'Filtragem, vazão e resfriamento não testados; confirmar requisitos de instalação e uso.'],
+    contextSourceUrl:'https://content.electrolux.com.br/brasil/electrolux/pe12g/index.html',contextSourceLabel:'Electrolux PE12G: referência sobre condições de troca do refil, não teste da unidade',suppressRating:true,
+  }],
+  ['GT9gxxxsfkbjOfDG2uIM', {
+    syncInformationalSchema:true,
+    model:/^Perfume Vf Bloom Virginia Fonseca 75ml - Wepink Volume da unidade 75 mL$/i,
+    summary:'A oferta identifica o perfume VF Bloom Virginia Fonseca, Wepink, na apresentação de 75 ml. O volume informa a quantidade anunciada, não a fixação na pele, a intensidade ou quanto tempo o frasco durará em cada rotina. A descrição anterior não fornecia base para uma promessa de duração. Não testamos aroma, projeção ou desempenho e não acrescentamos notas olfativas de outra fragrância da marca. Confira a versão, a embalagem e a procedência da unidade antes de escolher. Esta ficha não autentica o frasco do vendedor nem transforma o nome da marca em garantia de preferência pessoal. Sem uma referência específica confirmada, o perfil olfativo e os demais detalhes permanecem não verificados.',
+    positiveNotes:['Identificação VF Bloom Wepink e apresentação de 75 ml informadas na oferta.'],
+    negativeNotes:['Volume não comprova fixação ou duração; aroma e projeção não testados.', 'Confirmar versão e procedência; perfil olfativo específico não verificado.'],suppressRating:true,
+  }],
+  ['GzjyGVKcBkoiKgQEo4p9', {
+    syncInformationalSchema:true, expectedListing:'MLB3556275459',
+    model:/^(?:Shampoo Redutor de Grisalhos Grecin Control GX Para Todas os Tons Cabelo 118ml|Shampoo Grecin Control GX redutor de grisalhos 118 ml — versão a confirmar)$/i,
+    correct:'Shampoo Grecin Control GX redutor de grisalhos 118 ml — versão a confirmar',
+    summary:'A oferta identifica Grecin Control GX shampoo redutor de grisalhos de 118 ml, anunciado com efeito gradual. Não mantemos a indicação genérica para todos os tons: a referência brasileira do fabricante diferencia versões e informa que o shampoo padrão é mais indicado para castanho médio a preto. Confirme a versão da embalagem; não transferimos a indicação de uma versão para tons claros. A referência também traz restrições para cabelos clareados, descoloridos ou coloridos e orienta teste de alergia 48 horas antes do uso, conforme suas instruções. Leia integralmente as advertências da embalagem específica; esta ficha não substitui essas instruções. O tempo de aplicação de 2 a 3 minutos do cadastro não foi confirmado para a unidade e foi retirado. Não testamos cobertura, maciez, volume ou tolerância, nem prometemos resultado ou ausência de reações.',
+    positiveNotes:['Identificação Control GX shampoo e apresentação de 118 ml informadas na oferta.'],
+    negativeNotes:['Versão e tonalidades indicadas precisam ser conferidas; não há indicação universal.', 'Seguir advertências e teste de alergia do fabricante; resultado e tolerância não testados.'],
+    contextSourceUrl:'https://www.justformen.com/pt-br/cgx-shampoo',contextSourceLabel:'Grecin: referência brasileira sobre versões e advertências, não avaliação individual ou teste da unidade',suppressRating:true,
+  }],
   ['GPORGqPOixfgh38bVrXX', {
     syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB6760902576',
     model:/^(?:Smartphone Motorola Edge 70 Pro 5g - 256gb 24gb \(12gb Ram\+12gb Ram Boost\), 4 Câmeras De 50mp, Tela 1\.5k Extreme Amoled 144hz, Bateria 6500 Mah, Ip68\/ip69 - Azul Escuro|Motorola Edge 70 Pro 5G 256 GB — 12 GB de RAM e RAM Boost, azul escuro)$/i,

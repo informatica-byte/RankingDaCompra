@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T21:20:13.813Z",
-  "catalogueGeneratedAt": "2026-11-04T21:17:55.581Z",
+  "updatedAt": "2026-11-04T21:46:29.984Z",
+  "catalogueGeneratedAt": "2026-11-04T21:46:20.940Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -691,7 +691,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 161,
     "preserve_prior_review": 98,
-    "pending": 231
+    "pending": 228,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -6133,12 +6134,19 @@
       "id": "GT9gxxxsfkbjOfDG2uIM",
       "url": "https://rankingdacompra.com.br/produto/GT9gxxxsfkbjOfDG2uIM-20260810-1.html",
       "title": "Perfume Vf Bloom Virginia Fonseca 75ml - Wepink Volume da unidade 75 mL",
-      "fingerprint": "e53cdb79c9add5d0654868b803cb24e6b87426a44d6de1774cdd9b439086cef0",
-      "status": "pending",
+      "fingerprint": "4c6fc6940be6779f633c5966cfb8d3376019e28acfe76d3d9f5dc2fad9bd8dd3",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira preço do texto informativo e associação de volume com durabilidade; preserva valores operacionais.",
+        "Snapshot local, sem perfil olfativo específico confirmado ou teste. Não acrescenta notas, fixação, autenticidade ou duração."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB35506412"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "PdIYZ9X5RhTbhmKJyZRw",
@@ -6473,13 +6481,21 @@
     {
       "id": "GSeid2PryzC2aiQwnv3h",
       "url": "https://rankingdacompra.com.br/produto/GSeid2PryzC2aiQwnv3h-20260810-1.html",
-      "title": "Purificador de Água Gelada Fria e Natural Elétrico Compacto Eletrônico placa Filtro refil 6 meses ou 3000l Painel Touch Bivolt Cinza PE12G Electrolux",
-      "fingerprint": "cc6c85b6089935195933af46bab8e71184f12d7a07d9cf3545665811c6010872",
-      "status": "pending",
+      "title": "Purificador Electrolux PE12G cinza bivolt — três opções de temperatura anunciadas",
+      "fingerprint": "19afbb71bd849be4e30e01c7e34b6cc146b05237fcb111ecf8118c73e2412aaf",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Esclarece condições da vida útil do refil e encurta título; não apresenta duração como garantia universal.",
+        "Referência primária PE12G consultada; não verifica unidade, filtragem, vazão, temperatura ou instalação. Não acrescenta tratamento de qualquer água ou desempenho medido."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB24804661?wid=MLB4780018962",
+        "https://content.electrolux.com.br/brasil/electrolux/pe12g/index.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "QV00w4vTmt2SwgU8xisL",
@@ -6957,13 +6973,21 @@
     {
       "id": "GzjyGVKcBkoiKgQEo4p9",
       "url": "https://rankingdacompra.com.br/produto/GzjyGVKcBkoiKgQEo4p9-20260810-1.html",
-      "title": "Shampoo Redutor de Grisalhos Grecin Control GX Para Todas os Tons Cabelo 118ml",
-      "fingerprint": "9a21af97d37c8ca10a4e88fc655c382071f7d1214b8fc5f641ed766eac680e13",
-      "status": "pending",
+      "title": "Shampoo Grecin Control GX redutor de grisalhos 118 ml — versão a confirmar",
+      "fingerprint": "46c7c04871e8ee243a06e54cd8e1409818a13ece982d063841529f597144eeba",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira todos os tons e tempo de aplicação não confirmado; diferencia versões e aponta advertências da referência primária.",
+        "Página brasileira do fabricante consultada, sem confirmação da embalagem/lote do vendedor. Não transfere versão tons claros, não prescreve rotina ou garante cobertura/tolerância; instruções completas continuam na embalagem."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB25708528?wid=MLB3556275459",
+        "https://www.justformen.com/pt-br/cgx-shampoo"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Ped2JwDkTqMRNcZ0BhTf",
@@ -11109,5 +11133,14 @@
     "testsPassed": 1501,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage79": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "GSeid2PryzC2aiQwnv3h",
+      "GT9gxxxsfkbjOfDG2uIM",
+      "GzjyGVKcBkoiKgQEo4p9"
+    ],
+    "newDeepReviews": 0
   }
 }

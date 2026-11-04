@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T21:17:55.581Z",
+  "generatedAt": "2026-11-04T21:46:20.940Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 231
+    "screening": 228
   },
   "items": [
     {
@@ -27,27 +27,6 @@
       "title": "3 Kit Controle Remoto Eletrônico 433mhz Alarme Universal",
       "url": "https://rankingdacompra.com.br/produto/40SKVMiLnqTYwYcP2duQ-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "GSeid2PryzC2aiQwnv3h",
-      "title": "Purificador de Água Gelada Fria e Natural Elétrico Compacto Eletrônico placa Filtro refil 6 meses ou 3000l Painel Touch Bivolt Cinza PE12G Electrolux",
-      "url": "https://rankingdacompra.com.br/produto/GSeid2PryzC2aiQwnv3h-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "GT9gxxxsfkbjOfDG2uIM",
-      "title": "Perfume Vf Bloom Virginia Fonseca 75ml - Wepink Volume da unidade 75 mL",
-      "url": "https://rankingdacompra.com.br/produto/GT9gxxxsfkbjOfDG2uIM-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "GzjyGVKcBkoiKgQEo4p9",
-      "title": "Shampoo Redutor de Grisalhos Grecin Control GX Para Todas os Tons Cabelo 118ml",
-      "url": "https://rankingdacompra.com.br/produto/GzjyGVKcBkoiKgQEo4p9-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
