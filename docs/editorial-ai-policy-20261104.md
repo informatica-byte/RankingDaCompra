@@ -10,4 +10,4 @@ Pedido: corrigir as instruções da IA de análises/comparações nos dois pain�
 - Regressão preexistente de data corrigida apenas na fixture de histórico: relógio fixo em 07/10/2026, mantendo janela de 30 dias e todas as asserções.
 - Ponto editorial preservado: kit ventilador/LED `fflXJkY0fRQJg8t2QZqn`, potes `FlQInLlTCwVdemK0g3rZ`, cabides `fMwDJ0aYUKjwcpHFiRus`. Nenhuma dessas fichas revisada neste trabalho global.
 
-Publicação e evidências serão registradas na continuidade após implantação verificada.
+Publicação verificada: fonte `2245522fd35a085cd56018342c6bd0b31ae1b152`, Pages `41868521300` e integridade `41868522563` aprovados. 1.488 testes passaram. Código/JSON públicos HTTP200 e 562 produtos idênticos à base; prova `outputs/melhorias-integrais-20261030/verificacao-politica-editorial.json`. QA local em 360/1280 px, sem sessão autenticada, Firebase ou chamada real à IA. Retomada por ID registrada na continuidade.

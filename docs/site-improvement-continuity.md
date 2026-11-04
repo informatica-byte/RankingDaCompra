@@ -1,4 +1,13 @@
 # Continuidade prioritária — Ranking da Compra
+## Ajuste global da IA editorial — 04/11/2026, PUBLICADO E VERIFICADO
+
+- Pedido prioritário substituiu a revisão dos três próximos produtos. Política compartilhada aplicada aos geradores/revisores existentes nos dois painéis; modelos e número de chamadas preservados. Checagens locais adicionais de promessas absolutas em rascunhos, mantendo as validações anteriores. Não garante equivalência com revisão humana nem verifica semanticamente toda afirmação.
+- Fila `editorial-review-queue.json`: 248 itens separados por ID (1 indício heurístico, 8 dependências de fonte, 239 ainda não triados). Não são 248 erros comprovados. Concluídos inalterados fora da fila; alterações de fingerprint retomam triagem. Ordem salva GA4 01–28/10; métricas brutas não publicadas. Gerador atualiza com snapshots locais e CI reaproveita ordem já salva, sem consultar métricas.
+- Seção “Revisão editorial” nos dois painéis: carregar sob demanda e baixar lista. Sem Firebase/IA para listar. Fonte, versão e limitações detalhadas em `docs/editorial-ai-policy-20261104.md`.
+- Fonte `2245522fd35a085cd56018342c6bd0b31ae1b152`; integridade `41868522563` e Pages `41868521300`: SUCCESS. 1.488 testes aprovados, invariantes e validate-site aprovados; QA local 360/1280 px. Arquivos públicos HTTP200 confirmados, 562 produtos integralmente iguais à base, 615 URLs preservadas. Sem chamadas reais à IA, Firestore, mudanças em preços, links, IDs ou cadastros. Prova `outputs/melhorias-integrais-20261030/verificacao-politica-editorial.json`.
+- Corrigido relógio somente da fixture de histórico para evitar expiração da amostra; janela produtiva de 30 dias e asserções preservadas.
+- Retomada editorial inalterada: `fflXJkY0fRQJg8t2QZqn` ventilador/LED; `FlQInLlTCwVdemK0g3rZ` potes; `fMwDJ0aYUKjwcpHFiRus` cabides. Não foram revisados neste trabalho. Próxima passagem numérica disponível: 75; sua cópia de base foi usada apenas para invariantes deste ajuste, não representa lote editorial concluído. Não repetir as 98 revisões preservadas. Checkpoint final local, sem push documental extra.
+
 ## Passagem 74 — 20261104, PUBLICADA E VERIFICADA
 
 - F8RXRAtxM4QOCg5hbFh9: targeted_correction_complete. Retira rapidez e ausência de odores como garantias; distingue capacidade anunciada de uso previsto. Limite: Snapshot local; sem manual ou teste específico. Não acrescenta proteção, capacidade útil, tempo, materiais ou consumo de outra chaleira.

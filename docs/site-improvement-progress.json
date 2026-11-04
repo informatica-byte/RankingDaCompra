@@ -1,5 +1,17 @@
 {
   "version": 1,
+  "editorialAiPolicy20261104": {
+    "status": "published_verified",
+    "sourceCommit": "2245522fd35a085cd56018342c6bd0b31ae1b152",
+    "integrityRun": 41868522563,
+    "pagesRun": 41868521300,
+    "testsPassed": 1488,
+    "productsUnchanged": 562,
+    "queue": {"flagged": 1, "needs_source": 8, "screening": 239},
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-politica-editorial.json",
+    "limits": "Heuristic flags are not a complete factual audit; no authenticated live AI call was made. No records edited.",
+    "resumeIds": ["fflXJkY0fRQJg8t2QZqn", "FlQInLlTCwVdemK0g3rZ", "fMwDJ0aYUKjwcpHFiRus"]
+  },
   "emmaYdtechPublicationRepair": {
     "status": "published_verified",
     "verifiedAt": "2026-11-02",
