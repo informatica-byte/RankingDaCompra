@@ -8,4 +8,4 @@ A mudança editorial do título no registro g3QWQpsMAD73Kg7gMUzm rompeu a iguald
 
 Reprodução falhou antes do ajuste (2 páginas em vez de 1) e passou após ele. Testes incluem ordem invertida, pontuação maior no secundário e preservação dos objetos; testes genéricos exigem recusa para outro ID, título/modelo, anúncio, catálogo, afiliado ou falta de anúncio explícito. 1.500 testes aprovados. Invariantes preservam 562 produtos e 615 URLs, preços, histórico e afiliados. Publicação editorial usa arquivos locais, sem autenticação/leitura Firestore e sem repetir conferências.
 
-Evidência de implantação será acrescentada à continuidade após confirmação.
+Publicação confirmada: fonte `9832d63aa8a8b5b2a505a13d1cbec2652d07e7ea`, geração `c0922d57a27814f5412afd7cc3021cecbdb4aeab`. Sitemap 41912203272, integridade 41912203325 e Pages 41912285601 aprovados. Principal e alias HTTP200, encaminhamento e afiliado preservados; catálogo público com 562 produtos integralmente iguais à base. Prova `outputs/melhorias-integrais-20261030/verificacao-camperluz-repair.json`. Retomada por ID registrada sem refazer revisões.

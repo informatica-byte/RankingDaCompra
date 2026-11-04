@@ -1,5 +1,19 @@
 {
   "version": 1,
+  "camperluzPublicationRepair20261104": {
+    "status": "published_verified",
+    "sourceCommit": "9832d63aa8a8b5b2a505a13d1cbec2652d07e7ea",
+    "generatedCommit": "c0922d57a27814f5412afd7cc3021cecbdb4aeab",
+    "sitemapRun": 41912203272,
+    "integrityRun": 41912203325,
+    "pagesRun": 41912285601,
+    "testsPassed": 1500,
+    "principalId": "g3QWQpsMAD73Kg7gMUzm",
+    "aliasId": "mMWeLANeahGbxGFHmpie",
+    "productsUnchanged": 562,
+    "backendWrites": 0,
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-camperluz-repair.json"
+  },
   "editorialAiPolicy20261104": {
     "status": "published_verified",
     "sourceCommit": "2245522fd35a085cd56018342c6bd0b31ae1b152",

@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## Reparo de publicação Camperluz — 04/11/2026, PUBLICADO E VERIFICADO
+
+- Falha 41911062020: validate-site detectou duas páginas para MLB3954862383 / afiliado 1WbosCJ após a mudança editorial do título principal. Todos os testes daquela execução passaram; validação bloqueou a publicação como esperado.
+- Prova restrita adicionada aos dois IDs exatos `g3QWQpsMAD73Kg7gMUzm` e `mMWeLANeahGbxGFHmpie`, anúncio MLB3954862383, catálogo MLB45553868 e afiliado já existente. Aceita apenas os títulos explicitamente revisados. Não é correspondência aproximada ou união de cadastros. Principal fixada em g3QWQpsMAD73Kg7gMUzm, preservando o encaminhamento antigo mMWeLANeahGbxGFHmpie. Troca de ID/modelo/anúncio/catálogo/afiliado ou falta de anúncio explícito continua impedindo essa exceção.
+- Reprodução falhou antes e passou depois do ajuste; ordem invertida e pontuação maior no secundário não trocam a principal. 1.500 testes aprovados, invariantes e validate-site aprovados. 562 produtos integralmente inalterados e 615 URLs preservadas. Zero gravações/leitura Firestore, exclusão, alteração de preço, histórico ou afiliados; usado snapshot publicado local. Não reimportar backup antigo.
+- Fonte `9832d63aa8a8b5b2a505a13d1cbec2652d07e7ea`; geração `c0922d57a27814f5412afd7cc3021cecbdb4aeab`; sitemap `41912203272`, integridade `41912203325`, Pages `41912285601`: SUCCESS. Principal e alias HTTP200, canonical e encaminhamento corretos, afiliado preservado. Prova `outputs/melhorias-integrais-20261030/verificacao-camperluz-repair.json`. Detalhes em `docs/camperluz-publication-repair-20261104.md`.
+- Retomada editorial permanece lanterna Apfer `gNcq5nSqWbfqYi1M9c23`, Edge 70 Pro `GPORGqPOixfgh38bVrXX`, Puma Flyer Runner `GQiP9vBIhECa4I5CuzkB`. Nenhuma revisão refeita. Próxima passagem editorial disponível: 78 (cópia de base usada neste reparo não significa lote revisado). Checkpoint final local, sem push documental extra.
+
 ## Passagem 77 — 20261104, PUBLICADA E VERIFICADA
 
 - fQAJIJDeSjtSvdevGCQm: targeted_correction_complete. Distingue ajustes de torque máximo e bivolt do carregador; encurta título sem mudar identidade. Limite: Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Sem torque, capacidade, autonomia, quantidade de baterias ou composição de kit importados.
