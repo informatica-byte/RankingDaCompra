@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-03T14:55:51.356Z",
-  "catalogueGeneratedAt": "2026-11-03T14:54:26.693Z",
+  "updatedAt": "2026-11-04T12:35:07.347Z",
+  "catalogueGeneratedAt": "2026-11-04T12:34:57.541Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -652,12 +652,13 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 561,
+    "total": 562,
     "screened_no_change": 64,
     "needs_source": 8,
     "targeted_correction_complete": 149,
     "preserve_prior_review": 98,
-    "pending": 242
+    "pending": 240,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2294,12 +2295,19 @@
       "id": "F8RXRAtxM4QOCg5hbFh9",
       "url": "https://rankingdacompra.com.br/produto/F8RXRAtxM4QOCg5hbFh9-20260810-1.html",
       "title": "Chaleira Eletrica Atacama Inox 1,8 Litros 220v Unitermi Cor Cinza-escuro",
-      "fingerprint": "a62e418861718afc5e8986927b032695c866f9573dc8e66d60fbec711f806396",
-      "status": "pending",
+      "fingerprint": "1543710b2d1c7bdbf28c1ba04ada7827e6e61824b8097448a1fb0175b93487a3",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira rapidez e ausência de odores como garantias; distingue capacidade anunciada de uso previsto.",
+        "Snapshot local; sem manual ou teste específico. Não acrescenta proteção, capacidade útil, tempo, materiais ou consumo de outra chaleira."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB58523311?wid=MLB4651883940"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "QIAwDGVurh7E0nsu2G7t",
@@ -5029,12 +5037,19 @@
       "id": "f9oPhNSAdi4gqtwPJbJh",
       "url": "https://rankingdacompra.com.br/produto/f9oPhNSAdi4gqtwPJbJh-20260810-1.html",
       "title": "Mixer Philco Pmx2000 3 Em 1 Inox 800w cor preto",
-      "fingerprint": "e1e1a3677c52da75822f020de3304260fc897f20498ada3c8a259851e2d0d4b7",
-      "status": "pending",
+      "fingerprint": "3b7e8ed6db8254b94e4439487b518011013337529c33fcf68dd580a3482e6aaf",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira ideal para toda preparação e qualifica acessórios e potência sem teste.",
+        "Snapshot local; sem manual específico confirmado. Não importa tensão, acessórios, limites ou capacidades de outro mixer."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB28406392?wid=MLB5411374090"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7482222950",
@@ -5382,6 +5397,17 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB5769733060",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5769733060-20260810-1.html",
+      "title": "Notebook Positivo Vision C15M Intel Celeron N4500 Windows 11 Home 4GB RAM 128GB eMMC Tela 15\" Full HD IPS Antirreflexo - Minitela e Tecla Copilot - Cinza",
+      "fingerprint": "f82bed150edaf59fe766a1a3036ffa74d438a7cc548f849ef3172c2181f98528",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
     },
     {
       "id": "y8qOGP907Z3Bry3AI9cc",
@@ -8203,12 +8229,19 @@
       "id": "FeYsjVKPd6nzosN6U8QB",
       "url": "https://rankingdacompra.com.br/produto/FeYsjVKPd6nzosN6U8QB-20260810-1.html",
       "title": "Uomini Black Desodorante Colônia O Boticário - 100ml",
-      "fingerprint": "bf09ed6bbd9e234e5a0f8cf87b4f771c59dcf53861718e3e7663d910023a93bd",
-      "status": "pending",
+      "fingerprint": "c5dea88bb8a6a960f700c443fa7ca57ce698ced5deff243b2c5a87c995b7942e",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira qualificações subjetivas como avaliação própria e atribui perfil olfativo à oferta; qualifica declarações da embalagem.",
+        "Snapshot local; sem teste olfativo, autenticação ou confirmação da embalagem específica. Sem novas notas, duração ou certificação."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB23142528?wid=MLB4304758643"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "AUot5FOcnAXK9wLKfANM",
@@ -10759,5 +10792,14 @@
     "testsPassed": 1484,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage74": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "F8RXRAtxM4QOCg5hbFh9",
+      "FeYsjVKPd6nzosN6U8QB",
+      "f9oPhNSAdi4gqtwPJbJh"
+    ],
+    "newDeepReviews": 0
   }
 }

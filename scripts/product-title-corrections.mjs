@@ -8,6 +8,27 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['F8RXRAtxM4QOCg5hbFh9', {
+    syncInformationalSchema:true, expectedListing:'MLB4651883940',
+    model:/^Chaleira Eletrica Atacama Inox 1,8 Litros 220v Unitermi Cor Cinza-escuro$/i,
+    summary:'A oferta identifica a chaleira elétrica Unitermi Atacama de 1,8 litro, 220 V, na cor cinza-escuro. Pode interessar a quem procura aquecer água; confira no manual o uso previsto e os limites de enchimento. A capacidade anunciada não confirma o volume útil em toda preparação nem indica que bebidas devam ser preparadas diretamente no recipiente. Os 1.200 W do cadastro são potência anunciada, não medição de rapidez ou consumo pela equipe. A descrição em inox não garante ausência de odores, resistência a qualquer condição ou durabilidade comprovada. Confira materiais e cuidados de limpeza específicos da unidade. Não testamos aquecimento, conservação, resistência ou dispositivos de proteção e não presumimos que seja bivolt.',
+    positiveNotes:['Capacidade de 1,8 litro, tensão de 220 V e apresentação Atacama identificadas na oferta.'],
+    negativeNotes:['Rapidez, consumo e ausência de odores não testados; potência não é resultado medido.', 'Confirmar limites de enchimento, materiais e uso previsto no manual da unidade.'],suppressRating:true,
+  }],
+  ['f9oPhNSAdi4gqtwPJbJh', {
+    syncInformationalSchema:true, expectedListing:'MLB5411374090',
+    model:/^Mixer Philco Pmx2000 3 Em 1 Inox 800w cor preto$/i,
+    summary:'A oferta apresenta o mixer Philco PMX2000 3 em 1, preto, com potência anunciada de 800 W e lâminas descritas como de aço inoxidável. Pode interessar a quem compara aparelhos para preparações na cozinha, mas a indicação depende dos ingredientes e dos acessórios previstos no manual. A expressão 3 em 1 não confirma sozinha quais peças acompanham esta unidade; confira a relação de itens da oferta. Não mantemos a afirmação de que seja ideal para todos os tipos de preparações. Potência anunciada não comprova capacidade de processar qualquer alimento, resultado ou durabilidade. Confira tensão, limites de uso e cuidados de limpeza antes de escolher. Não testamos desempenho, ruído ou resistência e não transferimos acessórios ou capacidades de outro mixer Philco.',
+    positiveNotes:['Modelo PMX2000, proposta 3 em 1 e potência de 800 W identificados na oferta.'],
+    negativeNotes:['Não indicado nesta ficha para toda preparação; conferir ingredientes e limites no manual.', 'Acessórios da unidade, tensão e desempenho precisam ser verificados; sem teste próprio.'],suppressRating:true,
+  }],
+  ['FeYsjVKPd6nzosN6U8QB', {
+    syncInformationalSchema:true, expectedListing:'MLB4304758643',
+    model:/^Uomini Black Desodorante Colônia O Boticário - 100ml$/i,
+    summary:'A oferta identifica Uomini Black desodorante colônia O Boticário em frasco de 100 ml. O anúncio descreve perfil oriental especiado e menciona almíscar, âmbar e fava-tonca; são informações da oferta, não avaliação olfativa da equipe. As expressões ideal para homens audaciosos e profunda intensidade não representam critérios medidos nem garantem preferência pessoal. Confira apresentação e versão antes de escolher, sem importar notas de outro Uomini. Não testamos aroma, projeção, fixação ou duração na pele. A condição de não recarregável e as declarações sobre testes em animais ou selo precisam corresponder à embalagem e à apresentação específicas; esta ficha não autentica a unidade ou certifica sua procedência.',
+    positiveNotes:['Apresentação Uomini Black desodorante colônia de 100 ml identificada na oferta.'],
+    negativeNotes:['Notas atribuídas ao anúncio; intensidade, preferência e duração não testadas pela equipe.', 'Confirmar versão, procedência e declarações específicas da embalagem.'],suppressRating:true,
+  }],
   ['Evo4CPaNJPvGuj1ILt5u', {
     syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB7216247932',
     model:/^(?:POLARES Z20 Patinete Elétrico Premium 500w Pneu Aderente Velocidade Máxima 32km\/h Motorizado Até 30km De Autonomia Polares|Patinete elétrico Polares Z20 — 500 W anunciados)$/i,
