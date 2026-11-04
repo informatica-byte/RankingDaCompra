@@ -46,14 +46,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "fflXJkY0fRQJg8t2QZqn",
-      "FlQInLlTCwVdemK0g3rZ",
-      "fMwDJ0aYUKjwcpHFiRus",
       "fQAJIJDeSjtSvdevGCQm",
       "g3QWQpsMAD73Kg7gMUzm",
       "GhxvMZYaZM60wLsGuNdw",
       "gNcq5nSqWbfqYi1M9c23",
-      "GPORGqPOixfgh38bVrXX"
+      "GPORGqPOixfgh38bVrXX",
+      "GQiP9vBIhECa4I5CuzkB",
+      "GSeid2PryzC2aiQwnv3h",
+      "GT9gxxxsfkbjOfDG2uIM"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -660,8 +660,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T16:49:51.122Z",
-  "catalogueGeneratedAt": "2026-11-04T16:49:43.281Z",
+  "updatedAt": "2026-11-04T16:52:53.379Z",
+  "catalogueGeneratedAt": "2026-11-04T16:50:44.992Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -675,10 +675,9 @@
     "total": 562,
     "screened_no_change": 64,
     "needs_source": 8,
-    "targeted_correction_complete": 153,
+    "targeted_correction_complete": 156,
     "preserve_prior_review": 98,
-    "pending": 236,
-    "prepared_awaiting_publication": 3
+    "pending": 236
   },
   "items": [
     {
@@ -4136,12 +4135,13 @@
       "url": "https://rankingdacompra.com.br/produto/FlQInLlTCwVdemK0g3rZ-20260810-1.html",
       "title": "Kit 5 Potes De Vidro Marmita C/ Tampa Hermético 640ml",
       "fingerprint": "824e92eaeb7b13ce4db7fcc9d631581ff82d6723b4f2301904eda118670bb712",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T16:52:53.352Z",
       "workNotes": [
         "Retira compatibilidade térmica e vedação absolutas; distingue potes de tampas sem inventar limites.",
-        "Snapshot local, sem manual ou teste de material, temperatura, lavagem, vedação ou conservação. Nenhum limite térmico ou acessório importado."
+        "Snapshot local, sem manual ou teste de material, temperatura, lavagem, vedação ou conservação. Nenhum limite térmico ou acessório importado.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB47853797?wid=MLB4071998331"
@@ -4154,12 +4154,13 @@
       "url": "https://rankingdacompra.com.br/produto/fMwDJ0aYUKjwcpHFiRus-20260810-1.html",
       "title": "Kit 50 Cabide Adulto Preto Reforçado Organizador Combate",
       "fingerprint": "6a8687f1a187183a666963ce2d7b2eaba5da2c08035413ec9a40fa57b9d5f056",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T16:52:53.352Z",
       "workNotes": [
         "Corrige atenção truncada e retira maior durabilidade como garantia; explicita ausência de carga comprovada.",
-        "Snapshot local; sem material, dimensões ou carga confirmados. Não completa frase antiga por suposição nem promete resistência."
+        "Snapshot local; sem material, dimensões ou carga confirmados. Não completa frase antiga por suposição nem promete resistência.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB47770588?wid=MLB4025013215"
@@ -4500,12 +4501,13 @@
       "url": "https://rankingdacompra.com.br/produto/fflXJkY0fRQJg8t2QZqn-20260810-1.html",
       "title": "Kit ventilador portátil de 8 polegadas com luz LED e duas baterias anunciadas",
       "fingerprint": "f31491f47d09aaaaa07e652452c349e4b8ee11f78e48862caa32a3595463a762",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T16:52:53.352Z",
       "workNotes": [
         "Qualifica ruído e autonomia sem teste, distingue carregador de aparelho e retira fonte dita oficial sem comprovação. Encurta título.",
-        "Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Não acrescenta especificações, tempo medido, alimentação direta ou compatibilidade de bateria."
+        "Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Não acrescenta especificações, tempo medido, alimentação direta ou compatibilidade de bateria.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB75654491"
@@ -10917,12 +10919,44 @@
     "backendWrites": 0
   },
   "triage76": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "FlQInLlTCwVdemK0g3rZ",
       "fMwDJ0aYUKjwcpHFiRus",
       "fflXJkY0fRQJg8t2QZqn"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T16:52:53.352Z",
+    "changedIds": [
+      "fflXJkY0fRQJg8t2QZqn",
+      "FlQInLlTCwVdemK0g3rZ",
+      "fMwDJ0aYUKjwcpHFiRus"
+    ],
+    "jointReleaseBatches": [
+      76
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem76.json",
+    "remainingDependencies": [
+      {
+        "id": "fflXJkY0fRQJg8t2QZqn",
+        "note": "Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Não acrescenta especificações, tempo medido, alimentação direta ou compatibilidade de bateria."
+      },
+      {
+        "id": "FlQInLlTCwVdemK0g3rZ",
+        "note": "Snapshot local, sem manual ou teste de material, temperatura, lavagem, vedação ou conservação. Nenhum limite térmico ou acessório importado."
+      },
+      {
+        "id": "fMwDJ0aYUKjwcpHFiRus",
+        "note": "Snapshot local; sem material, dimensões ou carga confirmados. Não completa frase antiga por suposição nem promete resistência."
+      }
+    ],
+    "sourceCommit": "8e2284c3c1ca26d5c4d8e01dffa74d28045205fd",
+    "generatedCommit": "7d0dd6a01c6ae45264345ddf958d6435653af759",
+    "sitemapRun": 41871540004,
+    "integrityRun": 41871540201,
+    "pagesRun": 41871613041,
+    "testsPassed": 1490,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

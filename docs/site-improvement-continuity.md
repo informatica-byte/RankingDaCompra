@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 76 — 20261104, PUBLICADA E VERIFICADA
+
+- fflXJkY0fRQJg8t2QZqn: targeted_correction_complete. Qualifica ruído e autonomia sem teste, distingue carregador de aparelho e retira fonte dita oficial sem comprovação. Encurta título. Limite: Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Não acrescenta especificações, tempo medido, alimentação direta ou compatibilidade de bateria.
+- FlQInLlTCwVdemK0g3rZ: targeted_correction_complete. Retira compatibilidade térmica e vedação absolutas; distingue potes de tampas sem inventar limites. Limite: Snapshot local, sem manual ou teste de material, temperatura, lavagem, vedação ou conservação. Nenhum limite térmico ou acessório importado.
+- fMwDJ0aYUKjwcpHFiRus: targeted_correction_complete. Corrige atenção truncada e retira maior durabilidade como garantia; explicita ausência de carga comprovada. Limite: Snapshot local; sem material, dimensões ou carga confirmados. Não completa frase antiga por suposição nem promete resistência.
+
+Fonte 8e2284c3c1ca26d5c4d8e01dffa74d28045205fd; geração 7d0dd6a01c6ae45264345ddf958d6435653af759; sitemap 41871540004, integridade 41871540201, Pages 41871613041: SUCCESS. 1490 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 559 entradas editoriais inalteradas. Preservados 562 IDs/afiliados/campos operacionais e 615 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem76.json.
+
+Totais: {"total":562,"screened_no_change":64,"needs_source":8,"targeted_correction_complete":156,"preserve_prior_review":98,"pending":236}. Próximos pendentes: fQAJIJDeSjtSvdevGCQm — Parafusadeira Furadeira De Impacto A Bateria 21V 3/8” Bivolt 1400 Rpm Com Acessórios E Maleta TB-21PZW The Black Tools; g3QWQpsMAD73Kg7gMUzm — Torneira Gourmet Luxo Flexível Cozinha Parede 2 Jatos Pia Metal Cor Aço Inox e Preto- Marca Camperluz; GhxvMZYaZM60wLsGuNdw — Esfregão Perfect Pro Mop 360° Balde Inox Cabo Longo Microfibra 16L. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 75 — 20261104, PUBLICADA E VERIFICADA
 
 - ufHw7Y6qN2oc8ePqgHkj: targeted_correction_complete. Alerta confirmado: pureza apresentada como verificada sem laudo do lote; qualifica composição, idade e alegação de desempenho sem rótulo específico. Limite: Snapshot local e catálogo primário consultado. Catálogo inclui apresentações distintas e não autentica esta unidade; não importados dose, ingredientes, idade, tabela ou laudos de outro pote, kit ou refil.
