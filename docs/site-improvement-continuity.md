@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 74 — 20261104, PUBLICADA E VERIFICADA
+
+- F8RXRAtxM4QOCg5hbFh9: targeted_correction_complete. Retira rapidez e ausência de odores como garantias; distingue capacidade anunciada de uso previsto. Limite: Snapshot local; sem manual ou teste específico. Não acrescenta proteção, capacidade útil, tempo, materiais ou consumo de outra chaleira.
+- f9oPhNSAdi4gqtwPJbJh: targeted_correction_complete. Retira ideal para toda preparação e qualifica acessórios e potência sem teste. Limite: Snapshot local; sem manual específico confirmado. Não importa tensão, acessórios, limites ou capacidades de outro mixer.
+- FeYsjVKPd6nzosN6U8QB: targeted_correction_complete. Retira qualificações subjetivas como avaliação própria e atribui perfil olfativo à oferta; qualifica declarações da embalagem. Limite: Snapshot local; sem teste olfativo, autenticação ou confirmação da embalagem específica. Sem novas notas, duração ou certificação.
+
+Fonte 406df57a5ff1128ea58a4d52b5f11372d40960a9; geração 9462dc69702279b7711e5dee8af31f16caf734cc; sitemap 41830775850, integridade 41830775862, Pages 41830845381: SUCCESS. 1485 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 559 entradas editoriais inalteradas. Preservados 562 IDs/afiliados/campos operacionais e 615 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem74.json.
+
+Totais: {"total":562,"screened_no_change":64,"needs_source":8,"targeted_correction_complete":152,"preserve_prior_review":98,"pending":240}. Próximos pendentes: fflXJkY0fRQJg8t2QZqn — Kit Ventilador Portatil 8'' + Luz Led 4'' 2 Baterias Recarregável Lanterna Refletor Lampada Luz Led; FlQInLlTCwVdemK0g3rZ — Kit 5 Potes De Vidro Marmita C/ Tampa Hermético 640ml; fMwDJ0aYUKjwcpHFiRus — Kit 50 Cabide Adulto Preto Reforçado Organizador Combate. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 73 — 20261103, PUBLICADA E VERIFICADA
 
 - eTB1rffOxFexqoubCObQ: screened_no_change. Galaxy A07: descrição objetiva da configuração anunciada; sem contradição demonstrada que justifique reescrita. Limite: Snapshot local; sem teste ou autenticação da unidade. Não acrescentadas especificações de outra versão.

@@ -26,14 +26,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "F8RXRAtxM4QOCg5hbFh9",
-      "f9oPhNSAdi4gqtwPJbJh",
-      "FeYsjVKPd6nzosN6U8QB",
       "fflXJkY0fRQJg8t2QZqn",
       "FlQInLlTCwVdemK0g3rZ",
       "fMwDJ0aYUKjwcpHFiRus",
       "fQAJIJDeSjtSvdevGCQm",
-      "g3QWQpsMAD73Kg7gMUzm"
+      "g3QWQpsMAD73Kg7gMUzm",
+      "GhxvMZYaZM60wLsGuNdw",
+      "gNcq5nSqWbfqYi1M9c23",
+      "GPORGqPOixfgh38bVrXX"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -640,8 +640,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T12:35:07.347Z",
-  "catalogueGeneratedAt": "2026-11-04T12:34:57.541Z",
+  "updatedAt": "2026-11-04T12:38:44.471Z",
+  "catalogueGeneratedAt": "2026-11-04T12:37:00.604Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -655,10 +655,9 @@
     "total": 562,
     "screened_no_change": 64,
     "needs_source": 8,
-    "targeted_correction_complete": 149,
+    "targeted_correction_complete": 152,
     "preserve_prior_review": 98,
-    "pending": 240,
-    "prepared_awaiting_publication": 3
+    "pending": 240
   },
   "items": [
     {
@@ -2296,12 +2295,13 @@
       "url": "https://rankingdacompra.com.br/produto/F8RXRAtxM4QOCg5hbFh9-20260810-1.html",
       "title": "Chaleira Eletrica Atacama Inox 1,8 Litros 220v Unitermi Cor Cinza-escuro",
       "fingerprint": "1543710b2d1c7bdbf28c1ba04ada7827e6e61824b8097448a1fb0175b93487a3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T12:38:44.440Z",
       "workNotes": [
         "Retira rapidez e ausência de odores como garantias; distingue capacidade anunciada de uso previsto.",
-        "Snapshot local; sem manual ou teste específico. Não acrescenta proteção, capacidade útil, tempo, materiais ou consumo de outra chaleira."
+        "Snapshot local; sem manual ou teste específico. Não acrescenta proteção, capacidade útil, tempo, materiais ou consumo de outra chaleira.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB58523311?wid=MLB4651883940"
@@ -5038,12 +5038,13 @@
       "url": "https://rankingdacompra.com.br/produto/f9oPhNSAdi4gqtwPJbJh-20260810-1.html",
       "title": "Mixer Philco Pmx2000 3 Em 1 Inox 800w cor preto",
       "fingerprint": "3b7e8ed6db8254b94e4439487b518011013337529c33fcf68dd580a3482e6aaf",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T12:38:44.440Z",
       "workNotes": [
         "Retira ideal para toda preparação e qualifica acessórios e potência sem teste.",
-        "Snapshot local; sem manual específico confirmado. Não importa tensão, acessórios, limites ou capacidades de outro mixer."
+        "Snapshot local; sem manual específico confirmado. Não importa tensão, acessórios, limites ou capacidades de outro mixer.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB28406392?wid=MLB5411374090"
@@ -8230,12 +8231,13 @@
       "url": "https://rankingdacompra.com.br/produto/FeYsjVKPd6nzosN6U8QB-20260810-1.html",
       "title": "Uomini Black Desodorante Colônia O Boticário - 100ml",
       "fingerprint": "c5dea88bb8a6a960f700c443fa7ca57ce698ced5deff243b2c5a87c995b7942e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T12:38:44.440Z",
       "workNotes": [
         "Retira qualificações subjetivas como avaliação própria e atribui perfil olfativo à oferta; qualifica declarações da embalagem.",
-        "Snapshot local; sem teste olfativo, autenticação ou confirmação da embalagem específica. Sem novas notas, duração ou certificação."
+        "Snapshot local; sem teste olfativo, autenticação ou confirmação da embalagem específica. Sem novas notas, duração ou certificação.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB23142528?wid=MLB4304758643"
@@ -10794,12 +10796,44 @@
     "backendWrites": 0
   },
   "triage74": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "F8RXRAtxM4QOCg5hbFh9",
       "FeYsjVKPd6nzosN6U8QB",
       "f9oPhNSAdi4gqtwPJbJh"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T12:38:44.440Z",
+    "changedIds": [
+      "F8RXRAtxM4QOCg5hbFh9",
+      "f9oPhNSAdi4gqtwPJbJh",
+      "FeYsjVKPd6nzosN6U8QB"
+    ],
+    "jointReleaseBatches": [
+      74
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem74.json",
+    "remainingDependencies": [
+      {
+        "id": "F8RXRAtxM4QOCg5hbFh9",
+        "note": "Snapshot local; sem manual ou teste específico. Não acrescenta proteção, capacidade útil, tempo, materiais ou consumo de outra chaleira."
+      },
+      {
+        "id": "f9oPhNSAdi4gqtwPJbJh",
+        "note": "Snapshot local; sem manual específico confirmado. Não importa tensão, acessórios, limites ou capacidades de outro mixer."
+      },
+      {
+        "id": "FeYsjVKPd6nzosN6U8QB",
+        "note": "Snapshot local; sem teste olfativo, autenticação ou confirmação da embalagem específica. Sem novas notas, duração ou certificação."
+      }
+    ],
+    "sourceCommit": "406df57a5ff1128ea58a4d52b5f11372d40960a9",
+    "generatedCommit": "9462dc69702279b7711e5dee8af31f16caf734cc",
+    "sitemapRun": 41830775850,
+    "integrityRun": 41830775862,
+    "pagesRun": 41830845381,
+    "testsPassed": 1485,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
