@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "LS2YLo5zNF7RptrFMYgB",
-      "MEkEjNiiDdi5MpmlP07R",
-      "MHUka27wtlYZaI8FiHWi",
       "mhz9cN2MnCkxuSW5OPlv",
       "mlMLB1921632393",
       "mlMLB2088799901",
       "mlMLB3966936389",
-      "mlMLB3973124591"
+      "mlMLB3973124591",
+      "mlMLB4028845341",
+      "mlMLB4031468281",
+      "mlMLB4144557655"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T23:28:18.658Z",
-  "catalogueGeneratedAt": "2026-11-04T23:28:10.233Z",
+  "updatedAt": "2026-11-04T23:30:41.919Z",
+  "catalogueGeneratedAt": "2026-11-04T23:29:12.293Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 71,
     "needs_source": 8,
-    "targeted_correction_complete": 196,
+    "targeted_correction_complete": 197,
     "preserve_prior_review": 98,
-    "pending": 189,
-    "prepared_awaiting_publication": 1
+    "pending": 189
   },
   "items": [
     {
@@ -3626,12 +3625,13 @@
       "url": "https://rankingdacompra.com.br/produto/MEkEjNiiDdi5MpmlP07R-20260810-1.html",
       "title": "Garrafa térmica Termolar Lúmina Bomba de Pressão 1L",
       "fingerprint": "047483ca526e5290783ef212ba027162e0c37fb32b33b5963862cbd9d0d5262d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T23:30:41.892Z",
       "workNotes": [
         "Corrige frase incompleta sobre limitações; mantém 1 L e bomba anunciados sem inventar prazo térmico ou defeito do mecanismo.",
-        "Snapshot sem ensaio térmico ou inspeção do mecanismo. Não acrescenta material interno, quedas, vazamentos, tempo de conservação ou instruções de outro modelo."
+        "Snapshot sem ensaio térmico ou inspeção do mecanismo. Não acrescenta material interno, quedas, vazamentos, tempo de conservação ou instruções de outro modelo.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB9989931"
@@ -11970,10 +11970,40 @@
     "backendWrites": 0
   },
   "triage92": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "MEkEjNiiDdi5MpmlP07R"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T23:30:41.892Z",
+    "changedIds": [
+      "MEkEjNiiDdi5MpmlP07R"
+    ],
+    "jointReleaseBatches": [
+      92
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem92.json",
+    "remainingDependencies": [
+      {
+        "id": "LS2YLo5zNF7RptrFMYgB",
+        "note": "Não inspeciona unidade ou mede imagem, áudio, peso e consumo. Não importa recursos de P32CRA ou outra TV nem usa ausência de fonte de detalhe como prova de erro."
+      },
+      {
+        "id": "MEkEjNiiDdi5MpmlP07R",
+        "note": "Snapshot sem ensaio térmico ou inspeção do mecanismo. Não acrescenta material interno, quedas, vazamentos, tempo de conservação ou instruções de outro modelo."
+      },
+      {
+        "id": "MHUka27wtlYZaI8FiHWi",
+        "note": "Sem novo teste de anúncio, preço, API ou unidade. Não autentica vendedor, altera configuração, cor ou afiliado; mantém análise existente."
+      }
+    ],
+    "sourceCommit": "1f15b355da96357b1c7ec6161b8615741895f194",
+    "generatedCommit": "00e1d0276aa7c3e82423aa482f6e1da7d46b1f4d",
+    "sitemapRun": 41934047808,
+    "integrityRun": 41934047771,
+    "pagesRun": 41934106826,
+    "testsPassed": 1515,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

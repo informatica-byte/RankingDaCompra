@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 92 — 20261104, PUBLICADA E VERIFICADA
+
+- LS2YLo5zNF7RptrFMYgB: screened_no_change. Descrição objetiva da P32CRB; referência primária compatível com identidade Roku/HDR10. Nenhuma contradição concreta demonstrada, sem reescrita cosmética. Limite: Não inspeciona unidade ou mede imagem, áudio, peso e consumo. Não importa recursos de P32CRA ou outra TV nem usa ausência de fonte de detalhe como prova de erro.
+- MEkEjNiiDdi5MpmlP07R: targeted_correction_complete. Corrige frase incompleta sobre limitações; mantém 1 L e bomba anunciados sem inventar prazo térmico ou defeito do mecanismo. Limite: Snapshot sem ensaio térmico ou inspeção do mecanismo. Não acrescenta material interno, quedas, vazamentos, tempo de conservação ou instruções de outro modelo.
+- MHUka27wtlYZaI8FiHWi: screened_no_change. Texto já revisado atribui dados à Apple e explicita ausência de testes e de confirmação do vendedor autorizado; preservado sem repetir revisão. Limite: Sem novo teste de anúncio, preço, API ou unidade. Não autentica vendedor, altera configuração, cor ou afiliado; mantém análise existente.
+
+Fonte 1f15b355da96357b1c7ec6161b8615741895f194; geração 00e1d0276aa7c3e82423aa482f6e1da7d46b1f4d; sitemap 41934047808, integridade 41934047771, Pages 41934106826: SUCCESS. 1515 testes, validate-site e invariantes aprovados. 1 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem92.json.
+
+Totais: {"total":563,"screened_no_change":71,"needs_source":8,"targeted_correction_complete":197,"preserve_prior_review":98,"pending":189}. Próximos pendentes: mhz9cN2MnCkxuSW5OPlv — Pistola Fixação Finca Pino Ação Direta; mlMLB1921632393 — Pc Gamer Completo I7 Gtx1650 Ssd120 Hd1tb 16gb Fonte 750w; mlMLB2088799901 — Kit Reparo Pneu Tubeless Para Bike Bicileta. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 91 — 20261104, PUBLICADA E VERIFICADA
 
 - LDzmbLcaHUVNztsXyp52: targeted_correction_complete. Sinaliza 4K/Full HD e aplicativos não confirmados; retira cobertura total e proteção externa como garantias. Encurta título. Limite: Snapshot sem manual exato, resolução por lente ou proteção certificada confirmados. Não acrescenta armazenamento, assinatura, frequência Wi-Fi ou instruções de instalação.
