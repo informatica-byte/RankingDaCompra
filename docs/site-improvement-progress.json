@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:26:00.998Z",
-  "catalogueGeneratedAt": "2026-11-04T22:24:13.018Z",
+  "updatedAt": "2026-11-04T22:29:20.940Z",
+  "catalogueGeneratedAt": "2026-11-04T22:29:11.177Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -691,7 +691,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 177,
     "preserve_prior_review": 98,
-    "pending": 213
+    "pending": 210,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2315,17 +2316,6 @@
       "url": "https://rankingdacompra.com.br/produto/vfoOrRV7xpu2EgJ8aIUy-20260810-1.html",
       "title": "Celular Samsung Galaxy S25 Fe 5g, 128gb, 8gb Ram, Câmera Tripla De 50+12+8, Tela Grande De 6.7 Azul Marinho",
       "fingerprint": "110302df1cc5d93e892425ba44633bd7c54e40e3d041c584201b0b06a2740798",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "j8z58qFPJKTUJogf5HTM",
-      "url": "https://rankingdacompra.com.br/produto/j8z58qFPJKTUJogf5HTM-20260810-1.html",
-      "title": "Celular Smartphone Realme Note 80s 128gb 4gb Ram Dual Sim Bateria 6000mah Ultrafino 7,94 Mm Resistência À Poeira E Água Ip54",
-      "fingerprint": "dd45316c4269be68c9b9325aef656471a5e142387c6628b615d5b1bc0e846090",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -4583,13 +4573,20 @@
     {
       "id": "J6WCPaTR5KOqjsAC1nM7",
       "url": "https://rankingdacompra.com.br/produto/J6WCPaTR5KOqjsAC1nM7-20260810-1.html",
-      "title": "Lampada Led Solar Recarregável Camping Usb Pesca Jardim Lampiao Viagem Several",
-      "fingerprint": "a9d0fe14a90c2fe5737f0d8d65658fe57bd8c875a5fb7b71ca048726883ef3ab",
-      "status": "pending",
+      "title": "Lâmpada LED Several — recarga USB e solar anunciada",
+      "fingerprint": "e2cdba33ce3027662f039f21172faae89b4b92669c116a78b16784c3bff82c8d",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue alimentação do aparelho de eventual carregador; qualifica potência, recarga solar e uso externo não testados. Encurta título.",
+        "Snapshot sem modelo/manual exato. Não acrescenta tensão de entrada, fonte, potência medida, tempo de carga, lumens ou proteção contra água."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB67146235?wid=MLB6513365616"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "BcfEuX1oed02O8pYXKyg",
@@ -6616,6 +6613,24 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "j8z58qFPJKTUJogf5HTM",
+      "url": "https://rankingdacompra.com.br/produto/j8z58qFPJKTUJogf5HTM-20260810-1.html",
+      "title": "Realme Note 80s 128 GB e 4 GB de RAM — especificações anunciadas",
+      "fingerprint": "b181d8bb1dcf88a1e694fb89358bffbebdc8d1b20e1d07a820a6a4778b739816",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira resistência genérica como garantia e fonte dita oficial; atribui configuração/IP54 à oferta sem importar outros realme. Encurta título.",
+        "Busca em fontes primárias não confirmou documentação exata suficiente; isso não prova inexistência do modelo. Não usa especificações de C63 ou outro Note, nem afirma IP54 como certificado/testado nesta unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB67629858?wid=MLB6655269258"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "4eal5Q0HLTcrspjkUwee",
       "url": "https://rankingdacompra.com.br/produto/4eal5Q0HLTcrspjkUwee-20260810-1.html",
       "title": "Redmi Buds 6 Play Fone De Ouvido Bluetooth Sem Fio Cor Azul",
@@ -8013,12 +8028,19 @@
       "id": "iXzsMyqf9ilSKwbLDtk7",
       "url": "https://rankingdacompra.com.br/produto/iXzsMyqf9ilSKwbLDtk7-20260810-1.html",
       "title": "Tênis Masculino Esportivo Creation Molas Academia Caminhada",
-      "fingerprint": "f7394814a1fdcaed172fb97af4c639b508135d328511088b944540cbcf90789b",
-      "status": "pending",
+      "fingerprint": "cf85326c5e9435c665116170235733981592872a109043f8889b38f265b87652",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige código de anúncio rotulado como catálogo e não transforma molas/atividades do título em desempenho comprovado.",
+        "Snapshot local e formato do endereço; sem código técnico, material, amortecimento ou teste. Marca Wave permanece atribuída ao cadastro, sem associação a outra fabricante."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-7105555314"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5217026798",
@@ -11496,5 +11518,14 @@
     "testsPassed": 1507,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage85": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "J6WCPaTR5KOqjsAC1nM7",
+      "iXzsMyqf9ilSKwbLDtk7",
+      "j8z58qFPJKTUJogf5HTM"
+    ],
+    "newDeepReviews": 0
   }
 }

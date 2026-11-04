@@ -8,6 +8,29 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['iXzsMyqf9ilSKwbLDtk7', {
+    syncInformationalSchema:true, expectedListing:'MLB7105555314',
+    model:/^Tênis Masculino Esportivo Creation Molas Academia Caminhada$/i,
+    summary:'A oferta identifica um tênis masculino anunciado como Creation Molas, com marca Wave informada no cadastro. O código MLB7105555314 identifica o anúncio do vendedor, não um código de catálogo confirmado. Confira marca, código do modelo, numeração e variação na embalagem antes de escolher; esta ficha não associa o produto a outra fabricante pelo nome Creation ou Wave. As palavras molas, academia e caminhada do título não comprovam tecnologia de amortecimento, adequação a uma atividade ou conforto para cada pessoa. Não testamos ajuste, aderência, resistência ou desempenho e não acrescentamos materiais ou tecnologias de outro calçado. A condição novo é informação da oferta, não inspeção da unidade pela equipe.',
+    positiveNotes:['Identificação Creation Molas e marca Wave informadas na oferta; confirmar modelo e apresentação.'],
+    negativeNotes:['Código do anúncio não confirma catálogo, autenticidade ou fabricante da unidade.', 'Ajuste, amortecimento e adequação à atividade não testados; confirmar tamanho e variação.'],suppressRating:true,
+  }],
+  ['J6WCPaTR5KOqjsAC1nM7', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB6513365616',
+    model:/^(?:Lampada Led Solar Recarregável Camping Usb Pesca Jardim Lampiao Viagem Several|Lâmpada LED Several — recarga USB e solar anunciada)$/i,
+    correct:'Lâmpada LED Several — recarga USB e solar anunciada',
+    summary:'A oferta identifica uma lâmpada LED Several portátil, com recarga USB e solar anunciada. Pode interessar a quem compara opções de iluminação transportável, mas confirme modelo, bateria, painel e acessórios da unidade antes de escolher. Os 10 W e a indicação 127/220 V do cadastro não foram verificados em manual específico. Não tratamos esse valor de rede como autorização para ligar a lâmpada diretamente à tomada; é necessário distinguir a entrada do aparelho da especificação de um eventual carregador. A menção a recarga solar não comprova tempo de carga ou autonomia em qualquer condição de luz. Jardim, camping e possibilidade de suspensão não confirmam proteção contra chuva ou uso externo permanente. Não testamos brilho, duração, recarga ou resistência e não acrescentamos valores elétricos de outro lampião.',
+    positiveNotes:['Iluminação LED portátil e recarga por USB/solar informadas na oferta.'],
+    negativeNotes:['Confirmar alimentação e carregador; indicação de rede não define a entrada elétrica da lâmpada.', 'Autonomia, brilho e proteção contra água não testados; recarga solar depende das condições.'],suppressRating:true,
+  }],
+  ['j8z58qFPJKTUJogf5HTM', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB6655269258',
+    model:/^(?:Celular Smartphone Realme Note 80s 128gb 4gb Ram Dual Sim Bateria 6000mah Ultrafino 7,94 Mm Resistência À Poeira E Água Ip54|Realme Note 80s 128 GB e 4 GB de RAM — especificações anunciadas)$/i,
+    correct:'Realme Note 80s 128 GB e 4 GB de RAM — especificações anunciadas',
+    summary:'A oferta identifica um aparelho anunciado como Realme Note 80s, com 128 GB de armazenamento, 4 GB de RAM, dual SIM, tela de 6,7 polegadas e bateria de 6.000 mAh. São informações do cadastro, não inspeção da unidade ou medições da equipe. Confirme o código completo e a versão na embalagem: a busca desta revisão não forneceu fonte primária exata suficiente para validar todas as especificações do Note 80s. A menção a IP54 no anúncio não é tratada como impermeabilidade, autorização para imersão ou garantia contra danos por água; confira condições e limites na documentação específica. Não testamos proteção, espessura, autonomia ou desempenho, e a capacidade da bateria não determina sozinha sua duração. Não transferimos dados de outro Note ou realme C63. Estar no Mercado Livre não comprova que o vendedor seja oficial da marca.',
+    positiveNotes:['Configuração de 128 GB e 4 GB de RAM identificada no anúncio como Note 80s.'],
+    negativeNotes:['Confirmar código e versão: fonte primária exata não verificada para todas as especificações.', 'IP54 e bateria permanecem anunciados; sem teste de proteção, autonomia ou garantia de impermeabilidade.'],suppressRating:true,
+  }],
   ['IQP6np7muXjwAQ6aN20M', {
     syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB5249120331',
     model:/^(?:Smartphone Samsung Galaxy A17 5g 128gb 4gb Super Amoled 6\.7'' Câmera 50mp Selfie 13 Mp 5000 Mah Nfc Dual Sim Recursos Ia - Cinza|Samsung Galaxy A17 5G 128 GB e 4 GB de RAM cinza — configuração anunciada)$/i,

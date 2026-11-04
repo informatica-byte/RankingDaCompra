@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T22:24:13.018Z",
+  "generatedAt": "2026-11-04T22:29:11.177Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 213
+    "screening": 210
   },
   "items": [
     {
@@ -27,27 +27,6 @@
       "title": "3 Kit Controle Remoto Eletrônico 433mhz Alarme Universal",
       "url": "https://rankingdacompra.com.br/produto/40SKVMiLnqTYwYcP2duQ-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "iXzsMyqf9ilSKwbLDtk7",
-      "title": "Tênis Masculino Esportivo Creation Molas Academia Caminhada",
-      "url": "https://rankingdacompra.com.br/produto/iXzsMyqf9ilSKwbLDtk7-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "J6WCPaTR5KOqjsAC1nM7",
-      "title": "Lampada Led Solar Recarregável Camping Usb Pesca Jardim Lampiao Viagem Several",
-      "url": "https://rankingdacompra.com.br/produto/J6WCPaTR5KOqjsAC1nM7-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "j8z58qFPJKTUJogf5HTM",
-      "title": "Celular Smartphone Realme Note 80s 128gb 4gb Ram Dual Sim Bateria 6000mah Ultrafino 7,94 Mm Resistência À Poeira E Água Ip54",
-      "url": "https://rankingdacompra.com.br/produto/j8z58qFPJKTUJogf5HTM-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
