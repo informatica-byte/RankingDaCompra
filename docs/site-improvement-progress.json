@@ -7,10 +7,18 @@
     "pagesRun": 41868521300,
     "testsPassed": 1488,
     "productsUnchanged": 562,
-    "queue": {"flagged": 1, "needs_source": 8, "screening": 239},
+    "queue": {
+      "flagged": 1,
+      "needs_source": 8,
+      "screening": 239
+    },
     "proof": "outputs/melhorias-integrais-20261030/verificacao-politica-editorial.json",
     "limits": "Heuristic flags are not a complete factual audit; no authenticated live AI call was made. No records edited.",
-    "resumeIds": ["fflXJkY0fRQJg8t2QZqn", "FlQInLlTCwVdemK0g3rZ", "fMwDJ0aYUKjwcpHFiRus"]
+    "resumeIds": [
+      "fflXJkY0fRQJg8t2QZqn",
+      "FlQInLlTCwVdemK0g3rZ",
+      "fMwDJ0aYUKjwcpHFiRus"
+    ]
   },
   "emmaYdtechPublicationRepair": {
     "status": "published_verified",
@@ -652,8 +660,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T12:38:44.471Z",
-  "catalogueGeneratedAt": "2026-11-04T12:37:00.604Z",
+  "updatedAt": "2026-11-04T16:43:32.371Z",
+  "catalogueGeneratedAt": "2026-11-04T16:43:24.127Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -669,7 +677,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 152,
     "preserve_prior_review": 98,
-    "pending": 240
+    "pending": 239,
+    "prepared_awaiting_publication": 1
   },
   "items": [
     {
@@ -2794,12 +2803,20 @@
       "id": "ufHw7Y6qN2oc8ePqgHkj",
       "url": "https://rankingdacompra.com.br/produto/ufHw7Y6qN2oc8ePqgHkj-20260810-1.html",
       "title": "Creatina Monohidratada 500g Growth Supplements - Sem Sabor em Pó",
-      "fingerprint": "15afafbdadb21dbc2385151b5619719f541525ed88f59e7623abcaba4a05fb02",
-      "status": "pending",
+      "fingerprint": "ecdb1b37a33df5317511fffb01075a7f9b1411066919cdfeaa44634ca9f82dbd",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Alerta confirmado: pureza apresentada como verificada sem laudo do lote; qualifica composição, idade e alegação de desempenho sem rótulo específico.",
+        "Snapshot local e catálogo primário consultado. Catálogo inclui apresentações distintas e não autentica esta unidade; não importados dose, ingredientes, idade, tabela ou laudos de outro pote, kit ou refil."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB66637233?wid=MLB4555189589",
+        "https://www.gsuplementos.com.br/creatina/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "CFEyN1hdeMSM6BS89h5o",
@@ -10847,5 +10864,12 @@
     "testsPassed": 1485,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage75": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "ufHw7Y6qN2oc8ePqgHkj"
+    ],
+    "newDeepReviews": 0
   }
 }

@@ -8,6 +8,13 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['ufHw7Y6qN2oc8ePqgHkj', {
+    syncInformationalSchema:true, expectedListing:'MLB4555189589',
+    model:/^Creatina Monohidratada 500g Growth Supplements - Sem Sabor em Pó$/i,
+    summary:'A oferta identifica creatina monohidratada Growth Supplements em pó, sem sabor, na apresentação de 500 g. A alegação de pureza do texto anterior não representa análise laboratorial ou autenticação do lote pela equipe. Confira composição, tabela nutricional, alergênicos, lote, validade e advertências no rótulo da unidade. As declarações de ausência de glúten, açúcares, carboidratos e sódio, assim como a faixa etária do cadastro, precisam corresponder à embalagem específica; não as apresentamos como verificadas nesta oferta. Não prescrevemos dose, duração de uso ou adequação individual, nem prometemos desempenho físico. Não transferimos informações de potes de 250 g, kits, refis ou versões Creapure para esta apresentação. O peso anunciado não confirma a procedência ou a qualidade da unidade do vendedor.',
+    positiveNotes:['Apresentação anunciada de 500 g, em pó e sem sabor, identificada como Growth Supplements.'],
+    negativeNotes:['Pureza, procedência e declarações do rótulo do lote não verificadas pela equipe.', 'Confirmar composição, alergênicos e advertências da embalagem; sem prescrição ou garantia de resultado.'],suppressRating:true,
+  }],
   ['F8RXRAtxM4QOCg5hbFh9', {
     syncInformationalSchema:true, expectedListing:'MLB4651883940',
     model:/^Chaleira Eletrica Atacama Inox 1,8 Litros 220v Unitermi Cor Cinza-escuro$/i,

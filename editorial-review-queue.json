@@ -1,12 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T12:37:00.604Z",
+  "generatedAt": "2026-11-04T16:43:24.127Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 239,
-    "flagged": 1
+    "screening": 239
   },
   "items": [
     {
@@ -1380,15 +1379,6 @@
       "url": "https://rankingdacompra.com.br/produto/UCDnByA5YaWN9eiyA5IM-20260810-1.html",
       "state": "screening",
       "reasons": []
-    },
-    {
-      "id": "ufHw7Y6qN2oc8ePqgHkj",
-      "title": "Creatina Monohidratada 500g Growth Supplements - Sem Sabor em Pó",
-      "url": "https://rankingdacompra.com.br/produto/ufHw7Y6qN2oc8ePqgHkj-20260810-1.html",
-      "state": "flagged",
-      "reasons": [
-        "garantia_sem_teste: 100% pura"
-      ]
     },
     {
       "id": "Uh8jBpd9D8uEtK4Q3X43",
