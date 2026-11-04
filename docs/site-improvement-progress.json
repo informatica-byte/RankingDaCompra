@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "k0fHNRurzCmYEdcHcn1V",
-      "k82L2iy2Q6giFdCHVbSg",
-      "K8hXvUkqAAnbt0Om6wRj",
       "KHQKsjwv2MzJGObyoZkd",
       "KjczAN39YiZOmTgmzwIt",
       "kkADU0pbN4LUhcYR1HMH",
       "kNmf4r3kzbgWX6Fz3Y0x",
-      "KtvIJ0CLFVYesONQSS8I"
+      "KtvIJ0CLFVYesONQSS8I",
+      "kyK4G9Uov6eBaFnNVED7",
+      "Kyw9WRrxRLj36DL50JfQ",
+      "L6r4zuqqN2t7yWZsQUxo"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:46:08.849Z",
-  "catalogueGeneratedAt": "2026-11-04T22:46:00.733Z",
+  "updatedAt": "2026-11-04T22:49:05.720Z",
+  "catalogueGeneratedAt": "2026-11-04T22:47:06.615Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 67,
     "needs_source": 8,
-    "targeted_correction_complete": 183,
+    "targeted_correction_complete": 186,
     "preserve_prior_review": 98,
-    "pending": 204,
-    "prepared_awaiting_publication": 3
+    "pending": 204
   },
   "items": [
     {
@@ -3135,12 +3134,13 @@
       "url": "https://rankingdacompra.com.br/produto/k0fHNRurzCmYEdcHcn1V-20260810-1.html",
       "title": "Ferramenta finca-pino anunciada — modelo e compatibilidade a confirmar",
       "fingerprint": "0bc4c47bceba011ecfe4c3cfd5630985afb88e8433e6050346142ebd6368cd0a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:49:05.688Z",
       "workNotes": [
         "Retira compatibilidade universal e eficiência profissional presumidas; encurta título sem equiparar grampeador/rebitador ou certificar EPI.",
-        "Snapshot sem marca/modelo/manual específico. Não fornece instruções de acionamento, carga, pinos ou aplicação em estruturas; segurança e fixação não testadas."
+        "Snapshot sem marca/modelo/manual específico. Não fornece instruções de acionamento, carga, pinos ou aplicação em estruturas; segurança e fixação não testadas.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB77311415?wid=MLB5075784673"
@@ -3481,12 +3481,13 @@
       "url": "https://rankingdacompra.com.br/produto/K8hXvUkqAAnbt0Om6wRj-20260810-1.html",
       "title": "Fritadeira Air Fryer Philco 16 Litros Paf16c Preto",
       "fingerprint": "68d5a412e1938f3e881911466ca31dbe9e0f3feacdb3558231d0f569bd1238e8",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:49:05.688Z",
       "workNotes": [
         "Retira superioridade de fluxo de ar e preparo sem várias rodadas inferidos apenas do volume; mantém modelo e volume anunciados.",
-        "Manual primário exato localizado na busca, mas acesso falhou; sem conteúdo técnico confirmado a partir dele. Não transfere características da PAF16A ou PAF15C."
+        "Manual primário exato localizado na busca, mas acesso falhou; sem conteúdo técnico confirmado a partir dele. Não transfere características da PAF16A ou PAF15C.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB66787599?wid=MLB6609986264"
@@ -3518,12 +3519,13 @@
       "url": "https://rankingdacompra.com.br/produto/k82L2iy2Q6giFdCHVbSg-20260810-1.html",
       "title": "Fritadeira Elétrica Air Fryer WAP Barbecue Heat WC AB1030",
       "fingerprint": "9b633a94cf287f824140cd3151b5fa2cc09678a2cdba5725b3bc1d931afefeb0",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:49:05.688Z",
       "workNotes": [
         "Distingue capacidade total de 6,6 L e cesto de 3,2 L documentados; ressalva versões de tensão e resultados não testados, preservando dados válidos.",
-        "Fonte da fabricante da WC AB1030 consultada; referências 127/220 distintas não significam bivolt automático. Não promete resultado culinário, quantidade ou resistência medida."
+        "Fonte da fabricante da WC AB1030 consultada; referências 127/220 distintas não significam bivolt automático. Não promete resultado culinário, quantidade ou resistência medida.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://parceiros.wap.ind.br/fritadeira-eletrica-air-fryer-wap-barbecue-heat-wc-ab1030-1/p",
@@ -11652,12 +11654,44 @@
     "backendWrites": 0
   },
   "triage87": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "K8hXvUkqAAnbt0Om6wRj",
       "k0fHNRurzCmYEdcHcn1V",
       "k82L2iy2Q6giFdCHVbSg"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T22:49:05.688Z",
+    "changedIds": [
+      "k0fHNRurzCmYEdcHcn1V",
+      "k82L2iy2Q6giFdCHVbSg",
+      "K8hXvUkqAAnbt0Om6wRj"
+    ],
+    "jointReleaseBatches": [
+      87
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem87.json",
+    "remainingDependencies": [
+      {
+        "id": "k0fHNRurzCmYEdcHcn1V",
+        "note": "Snapshot sem marca/modelo/manual específico. Não fornece instruções de acionamento, carga, pinos ou aplicação em estruturas; segurança e fixação não testadas."
+      },
+      {
+        "id": "k82L2iy2Q6giFdCHVbSg",
+        "note": "Fonte da fabricante da WC AB1030 consultada; referências 127/220 distintas não significam bivolt automático. Não promete resultado culinário, quantidade ou resistência medida."
+      },
+      {
+        "id": "K8hXvUkqAAnbt0Om6wRj",
+        "note": "Manual primário exato localizado na busca, mas acesso falhou; sem conteúdo técnico confirmado a partir dele. Não transfere características da PAF16A ou PAF15C."
+      }
+    ],
+    "sourceCommit": "3d2716bb044a01709574b6f0ea435741b506c674",
+    "generatedCommit": "149be4c3240a35eeb60147fea595e576bb927341",
+    "sitemapRun": 41928228778,
+    "integrityRun": 41928229005,
+    "pagesRun": 41928301916,
+    "testsPassed": 1510,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

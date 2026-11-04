@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 87 — 20261104, PUBLICADA E VERIFICADA
+
+- k0fHNRurzCmYEdcHcn1V: targeted_correction_complete. Retira compatibilidade universal e eficiência profissional presumidas; encurta título sem equiparar grampeador/rebitador ou certificar EPI. Limite: Snapshot sem marca/modelo/manual específico. Não fornece instruções de acionamento, carga, pinos ou aplicação em estruturas; segurança e fixação não testadas.
+- k82L2iy2Q6giFdCHVbSg: targeted_correction_complete. Distingue capacidade total de 6,6 L e cesto de 3,2 L documentados; ressalva versões de tensão e resultados não testados, preservando dados válidos. Limite: Fonte da fabricante da WC AB1030 consultada; referências 127/220 distintas não significam bivolt automático. Não promete resultado culinário, quantidade ou resistência medida.
+- K8hXvUkqAAnbt0Om6wRj: targeted_correction_complete. Retira superioridade de fluxo de ar e preparo sem várias rodadas inferidos apenas do volume; mantém modelo e volume anunciados. Limite: Manual primário exato localizado na busca, mas acesso falhou; sem conteúdo técnico confirmado a partir dele. Não transfere características da PAF16A ou PAF15C.
+
+Fonte 3d2716bb044a01709574b6f0ea435741b506c674; geração 149be4c3240a35eeb60147fea595e576bb927341; sitemap 41928228778, integridade 41928229005, Pages 41928301916: SUCCESS. 1510 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem87.json.
+
+Totais: {"total":563,"screened_no_change":67,"needs_source":8,"targeted_correction_complete":186,"preserve_prior_review":98,"pending":204}. Próximos pendentes: KHQKsjwv2MzJGObyoZkd — Perfume Carolina Herrera Very Good Girl Glam Parfum 50ml feminino; KjczAN39YiZOmTgmzwIt — Cama Elástica Pula Pula Infantil Trampolim 1,4 Metros Atentu; kkADU0pbN4LUhcYR1HMH — Kit Principia para Rotina de Skincare Pele Sensível com Protetor Solar FPS 60. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 86 — 20261104, PUBLICADA E VERIFICADA
 
 - jABp2HpfTmQNwXsPgrYQ: targeted_correction_complete. Retira preço do texto informativo e percentuais de pureza sem laudo vinculado ao lote; preserva título do par revisado e apresentação. Limite: Snapshot local; sem laudo específico do lote. Não declara aprovação, pureza, dose, eficácia ou procedência comprovadas por texto de terceiros ou outro produto.
