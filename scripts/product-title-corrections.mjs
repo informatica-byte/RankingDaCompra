@@ -8,6 +8,13 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['MEkEjNiiDdi5MpmlP07R', {
+    syncInformationalSchema:true,
+    model:/^Garrafa térmica Termolar Lúmina Bomba de Pressão 1L$/i,
+    summary:'A oferta identifica uma garrafa térmica Termolar Lúmina de 1 litro com bomba de pressão. Pode interessar a quem prefere servir por acionamento da bomba; confira dimensões e apresentação da unidade antes de escolher. A ficha não informa condições específicas de ensaio de conservação térmica, por isso não prometemos uma duração para bebidas quentes ou frias. O mecanismo de pressão não foi testado pela equipe e não é apresentado como defeito comprovado. Confira as orientações de uso e limpeza do modelo; não acrescentamos material interno, resistência a quedas ou garantia contra vazamentos sem documentação específica.',
+    positiveNotes:['Capacidade anunciada de 1 litro e sistema de bomba de pressão identificados na oferta.'],
+    negativeNotes:['Conservação térmica e mecanismo não testados; sem duração ou resistência presumida.', 'Conferir apresentação e orientações do modelo antes do uso e da limpeza.'],suppressRating:true,
+  }],
   ['LDzmbLcaHUVNztsXyp52', {
     syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB6972453978',
     model:/^(?:Câmera de Segurança Wi-Fi iCSee\/Yoosee A28B 4K Dupla Lente Visão Noturna Colorida Full Hd Externa Prova D'água Ip66 Sensor Movimento Woosh|Câmera Wi-Fi A28B Woosh anunciada — resolução e aplicativo a confirmar)$/i,

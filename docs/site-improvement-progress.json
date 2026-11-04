@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T23:25:04.926Z",
-  "catalogueGeneratedAt": "2026-11-04T23:23:39.850Z",
+  "updatedAt": "2026-11-04T23:28:18.658Z",
+  "catalogueGeneratedAt": "2026-11-04T23:28:10.233Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -687,11 +687,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 563,
-    "screened_no_change": 69,
+    "screened_no_change": 71,
     "needs_source": 8,
     "targeted_correction_complete": 196,
     "preserve_prior_review": 98,
-    "pending": 192
+    "pending": 189,
+    "prepared_awaiting_publication": 1
   },
   "items": [
     {
@@ -3624,12 +3625,19 @@
       "id": "MEkEjNiiDdi5MpmlP07R",
       "url": "https://rankingdacompra.com.br/produto/MEkEjNiiDdi5MpmlP07R-20260810-1.html",
       "title": "Garrafa térmica Termolar Lúmina Bomba de Pressão 1L",
-      "fingerprint": "70907e03f7f92b52a9ffb0f0e83136fd215927990dad9d5f6a9c0b3bf122a7e2",
-      "status": "pending",
+      "fingerprint": "047483ca526e5290783ef212ba027162e0c37fb32b33b5963862cbd9d0d5262d",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige frase incompleta sobre limitações; mantém 1 L e bomba anunciados sem inventar prazo térmico ou defeito do mecanismo.",
+        "Snapshot sem ensaio térmico ou inspeção do mecanismo. Não acrescenta material interno, quedas, vazamentos, tempo de conservação ou instruções de outro modelo."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB9989931"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "N1cKmru7WcRrMBSj4ut7",
@@ -3900,11 +3908,16 @@
       "url": "https://rankingdacompra.com.br/produto/MHUka27wtlYZaI8FiHWi-20260810-1.html",
       "title": "iPhone 17 Pro Max 256GB — Laranja-cósmico",
       "fingerprint": "927aa7df42634caf0c1f10866f11c927beb6406e0d4698ee98facf7322e13290",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-04T23:28:18.659Z",
+      "workNotes": [
+        "Texto já revisado atribui dados à Apple e explicita ausência de testes e de confirmação do vendedor autorizado; preservado sem repetir revisão.",
+        "Sem novo teste de anúncio, preço, API ou unidade. Não autentica vendedor, altera configuração, cor ou afiliado; mantém análise existente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB1055308620?wid=MLB4200316101"
+      ]
     },
     {
       "id": "XGM5P52X6EJc7X55vC8Y",
@@ -7257,11 +7270,17 @@
       "url": "https://rankingdacompra.com.br/produto/LS2YLo5zNF7RptrFMYgB-20260810-1.html",
       "title": "Smart Tv 32 Philco Roku Tv Dolby Áudio Hdr10 P32crb",
       "fingerprint": "a743189e269e04961b2c8edf6f32c42e8813fee61d030eba7fcb3ff0d9e10941",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-04T23:28:18.659Z",
+      "workNotes": [
+        "Descrição objetiva da P32CRB; referência primária compatível com identidade Roku/HDR10. Nenhuma contradição concreta demonstrada, sem reescrita cosmética.",
+        "Não inspeciona unidade ou mede imagem, áudio, peso e consumo. Não importa recursos de P32CRA ou outra TV nem usa ausência de fonte de detalhe como prova de erro."
+      ],
+      "sourceLinks": [
+        "https://www.philco.com.br/smart-tv-32-philco-roku-tv-dolby-audio-hdr10-p32crb/p",
+        "https://www.mercadolivre.com.br/p/MLB66055148"
+      ]
     },
     {
       "id": "mlMLB4367472775",
@@ -11949,5 +11968,12 @@
     "testsPassed": 1514,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage92": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "MEkEjNiiDdi5MpmlP07R"
+    ],
+    "newDeepReviews": 0
   }
 }

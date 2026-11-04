@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T23:23:39.850Z",
+  "generatedAt": "2026-11-04T23:28:10.233Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 192
+    "screening": 189
   },
   "items": [
     {
@@ -34,27 +34,6 @@
       "title": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
       "url": "https://rankingdacompra.com.br/produto/jdxZ0gYEI0XGOPYbWh78-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "LS2YLo5zNF7RptrFMYgB",
-      "title": "Smart Tv 32 Philco Roku Tv Dolby Áudio Hdr10 P32crb",
-      "url": "https://rankingdacompra.com.br/produto/LS2YLo5zNF7RptrFMYgB-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "MEkEjNiiDdi5MpmlP07R",
-      "title": "Garrafa térmica Termolar Lúmina Bomba de Pressão 1L",
-      "url": "https://rankingdacompra.com.br/produto/MEkEjNiiDdi5MpmlP07R-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "MHUka27wtlYZaI8FiHWi",
-      "title": "iPhone 17 Pro Max 256GB — Laranja-cósmico",
-      "url": "https://rankingdacompra.com.br/produto/MHUka27wtlYZaI8FiHWi-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
