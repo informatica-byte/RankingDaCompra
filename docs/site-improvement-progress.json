@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T21:55:04.150Z",
-  "catalogueGeneratedAt": "2026-11-04T21:53:20.338Z",
+  "updatedAt": "2026-11-04T21:59:24.891Z",
+  "catalogueGeneratedAt": "2026-11-04T21:59:15.673Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -691,7 +691,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 165,
     "preserve_prior_review": 98,
-    "pending": 225
+    "pending": 222,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2150,17 +2151,6 @@
       "sourceLinks": []
     },
     {
-      "id": "Hd0FWwNPR8uVXWLwPz3A",
-      "url": "https://rankingdacompra.com.br/produto/Hd0FWwNPR8uVXWLwPz3A-20260810-1.html",
-      "title": "Carrinho Controle Remoto Recarregavel Storm Racer Turbo Potente Luz Led Alta Velocidade Preto Amorelancia",
-      "fingerprint": "f8740faf062abf27ca4eb13e5108cdbe2d468d21bfd2862b9ec62b59a639e094",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB4592797876",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4592797876-20260810-1.html",
       "title": "Carrinho De Controle Remoto 37cm Off Road 4x4",
@@ -2175,6 +2165,24 @@
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-4592797876-_JM"
       ]
+    },
+    {
+      "id": "Hd0FWwNPR8uVXWLwPz3A",
+      "url": "https://rankingdacompra.com.br/produto/Hd0FWwNPR8uVXWLwPz3A-20260810-1.html",
+      "title": "Carrinho de controle remoto Storm Racer recarregável, preto",
+      "fingerprint": "edd54611709cadf119375b3fd6f00876543b3373f3dd1d1ccee7b7bfdd55d3c2",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira qualificação publicitária do título e distingue velocidade, aderência e carga anunciadas de resultados testados.",
+        "Snapshot local; sem manual exato, medições ou faixa etária confirmada. Sem prescrever recarga ou importar dados de outro carrinho."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB69335727?wid=MLB6755589412"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Vgm0UKQmBdAvSbO683Yj",
@@ -3725,17 +3733,6 @@
       "sourceLinks": []
     },
     {
-      "id": "HEP91TkP4BHCEvBWmTHq",
-      "url": "https://rankingdacompra.com.br/produto/HEP91TkP4BHCEvBWmTHq-20260810-1.html",
-      "title": "Honeywhale Rm2 Pro Patinete Elétrico Infantil, 70w-10km/h-11km, Motor-velocidade-autonomia, Triciclo Elétrico Dobrável Com Luzes De Led E Bluetooth, Scooter Para Crianças A Partir De 3 Anos, Rosa",
-      "fingerprint": "323d0d0dd06471e89900fe29d66cab94de0bdc0834d041804f120acc47fdcecb",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB6907306094",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6907306094-20260810-1.html",
       "title": "HUAWEI WiFi BE3 3.6 Gpbs Dual-Band Wi-Fi 7 I Visualização de diagnóstico WiFi I Controle parental Preto",
@@ -3889,17 +3886,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "hDRgi7LAJobY4o5W9ipJ",
-      "url": "https://rankingdacompra.com.br/produto/hDRgi7LAJobY4o5W9ipJ-20260810-1.html",
-      "title": "Jogo 6 Copos Diamond Egipcio 300ml Vidro Grosso Diamante Luxo Transparente Vitrex",
-      "fingerprint": "2055d9ae60f302259654dd1206d176e687f69ab8aa4ea7d39609a61c16bfb1b6",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "CEVlNR7lM1QTwgcn0tRu",
       "url": "https://rankingdacompra.com.br/produto/CEVlNR7lM1QTwgcn0tRu-20260810-1.html",
       "title": "Jogo Banco Imobiliário - Brasil - Brinquedos Estrela",
@@ -3919,6 +3905,24 @@
       "changedSinceCheckpoint": true,
       "preparedAt": "2026-11-01T10:43:07.303Z",
       "preparedBatch": 38
+    },
+    {
+      "id": "hDRgi7LAJobY4o5W9ipJ",
+      "url": "https://rankingdacompra.com.br/produto/hDRgi7LAJobY4o5W9ipJ-20260810-1.html",
+      "title": "Jogo de seis copos Diamond Egípcio 300 ml — marca e material a confirmar",
+      "fingerprint": "42059f713a97f8edf5bad6fd4b2e7a6d2c1e0de8255b08b26e196ba9209bb8df",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Sinaliza Vitrex/Sekbem e vidro/cristal divergentes; retira luxo e anúncio oficial como garantias.",
+        "Snapshot local; marca, material, resistência e cuidados da embalagem não confirmados. Não troca anúncio nem define temperatura ou compatibilidade de lavagem."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/jogo-6-copos-diamond-egipcio-300ml-vidro-grosso-diamante-luxo-transparente-sekbem/p/MLB78414804?wid=MLB5139987445"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "fOI4O124KZd2vLCx8Fmj",
@@ -5809,6 +5813,26 @@
         "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "HEP91TkP4BHCEvBWmTHq",
+      "url": "https://rankingdacompra.com.br/produto/HEP91TkP4BHCEvBWmTHq-20260810-1.html",
+      "title": "Patinete infantil Honeywhale RM2 Pro rosa — idade de uso a confirmar",
+      "fingerprint": "1cd71ae450d69621a214d30d1eb82d5f500fb92e4ae21798777c7e6ec576ee1f",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue potência nominal/pico, mantém alcance como anunciado e retira idade como garantia universal. Encurta título.",
+        "Página primária aberta informa 50/70 W e até 11 km; índice de busca antigo com outro alcance não foi usado como contradição atual. Manual RM2 Pro listado indisponível. Sem confirmar idade, unidade ou segurança, nem importar manual de outro modelo."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB53762459?wid=MLB4973328077",
+        "https://www.honeywhale.com.br/produto/rm2-pro-patinete-eletrico-infantil-dobravel/",
+        "https://www.honeywhale.com.br/manuais-e-videos/"
+      ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
     },
@@ -11232,5 +11256,14 @@
     "testsPassed": 1503,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage81": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "HEP91TkP4BHCEvBWmTHq",
+      "Hd0FWwNPR8uVXWLwPz3A",
+      "hDRgi7LAJobY4o5W9ipJ"
+    ],
+    "newDeepReviews": 0
   }
 }

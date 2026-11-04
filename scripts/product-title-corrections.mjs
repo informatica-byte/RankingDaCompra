@@ -8,6 +8,31 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['Hd0FWwNPR8uVXWLwPz3A', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB6755589412',
+    model:/^(?:Carrinho Controle Remoto Recarregavel Storm Racer Turbo Potente Luz Led Alta Velocidade Preto Amorelancia|Carrinho de controle remoto Storm Racer recarregável, preto)$/i,
+    correct:'Carrinho de controle remoto Storm Racer recarregável, preto',
+    summary:'A oferta identifica um carrinho Storm Racer preto, de controle remoto, com bateria recarregável. Escala de 1:18, conexão de 2,4 GHz e velocidade de até 20 km/h são informações do anúncio, não medições da equipe. Pode interessar a quem procura esse tipo de brinquedo; confira dimensões, faixa etária, bateria e acessórios da unidade. A escala não confirma sozinha as medidas externas, e a frequência não comprova alcance ou ausência de interferências. Rodas descritas como de borracha não garantem aderência em todo piso. O intervalo de carga de 2 a 6 horas do cadastro precisa corresponder às instruções da bateria e do carregador específicos; não é uma rotina de recarga prescrita por esta ficha. Não testamos velocidade, autonomia, alcance, resistência ou estabilidade e não tratamos turbo, potente ou alta velocidade como qualificação comprovada.',
+    positiveNotes:['Storm Racer recarregável, com escala de 1:18 e conexão de 2,4 GHz anunciadas.'],
+    negativeNotes:['Velocidade, alcance e aderência não testados; confirmar idade, dimensões e conteúdo do kit.', 'Tempo de recarga depende das instruções da bateria e do carregador da unidade.'],suppressRating:true,
+  }],
+  ['hDRgi7LAJobY4o5W9ipJ', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB5139987445',
+    model:/^(?:Jogo 6 Copos Diamond Egipcio 300ml Vidro Grosso Diamante Luxo Transparente Vitrex|Jogo de seis copos Diamond Egípcio 300 ml — marca e material a confirmar)$/i,
+    correct:'Jogo de seis copos Diamond Egípcio 300 ml — marca e material a confirmar',
+    summary:'A oferta identifica um jogo de seis copos transparentes Diamond Egípcio, com capacidade anunciada de 300 ml por peça. Há divergências no cadastro: o título menciona Vitrex e vidro grosso, enquanto o endereço do anúncio traz Sekbem e a descrição informa cristal. Confirme marca e material na embalagem da unidade; não tratamos vidro e cristal como identificação confirmada do mesmo conjunto. Pode interessar a quem compara conjuntos de copos, mas as medidas e a capacidade precisam corresponder à apresentação escolhida. Espessura ou a palavra luxo não comprovam resistência, qualidade superior ou tolerância térmica. A indicação de lava-louças precisa ser confirmada nas instruções específicas; não presumimos compatibilidade com aquecimento ou mudanças de temperatura. Não testamos quebra, limpeza ou material, e estar no Mercado Livre não torna o anúncio oficial do fabricante.',
+    positiveNotes:['Conjunto de seis copos Diamond Egípcio transparentes, com 300 ml por peça anunciados.'],
+    negativeNotes:['Marca e material divergentes entre título, descrição e endereço; confirmar embalagem.', 'Resistência e uso em lava-louças não verificados na unidade; sem tolerância térmica presumida.'],suppressRating:true,
+  }],
+  ['HEP91TkP4BHCEvBWmTHq', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB4973328077',
+    model:/^(?:Honeywhale Rm2 Pro Patinete Elétrico Infantil, 70w-10km\/h-11km, Motor-velocidade-autonomia, Triciclo Elétrico Dobrável Com Luzes De Led E Bluetooth, Scooter Para Crianças A Partir De 3 Anos, Rosa|Patinete infantil Honeywhale RM2 Pro rosa — idade de uso a confirmar)$/i,
+    correct:'Patinete infantil Honeywhale RM2 Pro rosa — idade de uso a confirmar',
+    summary:'A oferta identifica o patinete elétrico infantil Honeywhale RM2 Pro rosa. A referência brasileira da marca distingue 50 W nominais de 70 W de pico; os 70 W não são apresentados como potência contínua verificada pela equipe. Velocidade de até 10 km/h e autonomia de até 11 km são valores anunciados, não resultados de teste da unidade. Não confirmamos a indicação a partir de 3 anos do anúncio como adequação a qualquer criança. Antes da escolha, o responsável precisa conferir faixa etária, altura, carga, condições de uso e advertências do manual específico; capacidade de carga não determina idade adequada. O catálogo público de manuais consultado não disponibilizava o PDF do RM2 Pro. Não testamos frenagem, equilíbrio, autonomia ou segurança, nem tratamos três rodas, luzes ou Bluetooth como garantia de proteção. Página no Mercado Livre não comprova vendedor oficial ou autentica a unidade.',
+    positiveNotes:['Modelo RM2 Pro rosa identificado; referência da marca separa potência nominal de pico.'],
+    negativeNotes:['Idade indicada no anúncio precisa de confirmação nas instruções específicas; sem garantia de adequação individual.', 'Velocidade e autonomia anunciadas não são medições; frenagem e segurança não testadas.'],
+    contextSourceUrl:'https://www.honeywhale.com.br/produto/rm2-pro-patinete-eletrico-infantil-dobravel/',contextSourceLabel:'Honeywhale Brasil: referência de potência e valores anunciados, não teste ou indicação individual',suppressRating:true,
+  }],
   ['H17ykC6IlHMpWBEMnEQ7', {
     syncInformationalSchema:true, expectedListing:'MLB5598192576',
     model:/^(?:Mala De Viagem 10kg Promoção Rodas 360° Miami Com Frasqueira|Mala Miami com frasqueira e rodas 360° anunciadas — tamanho a confirmar)$/i,
