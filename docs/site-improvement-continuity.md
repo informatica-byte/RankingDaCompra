@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 86 — 20261104, PUBLICADA E VERIFICADA
+
+- jABp2HpfTmQNwXsPgrYQ: targeted_correction_complete. Retira preço do texto informativo e percentuais de pureza sem laudo vinculado ao lote; preserva título do par revisado e apresentação. Limite: Snapshot local; sem laudo específico do lote. Não declara aprovação, pureza, dose, eficácia ou procedência comprovadas por texto de terceiros ou outro produto.
+- jffyLJv2cImsjfarZ1pi: targeted_correction_complete. Remove repetição no título e promessas de silêncio/economia; distingue luminária de lâmpada incluída e documenta controle, velocidades e Wave. Limite: Fonte primária da referência 14222 consultada. Sem medição de ruído, consumo, vazão ou adequação do local; não transfere percentuais, instruções elétricas ou cobertura de outro modelo.
+- JWp7l6fsqNkkSsBCAosW: targeted_correction_complete. Corrige código de anúncio rotulado como catálogo e atribui marca/material à oferta, sem garantir conforto ou desempenho. Limite: Snapshot sem código técnico ou inspeção do material. Não inventa composição, amortecimento, impermeabilidade ou autenticidade.
+
+Fonte 860e2aa0815a7ff38ef481e6530d64063f30d743; geração cc23ce898a1f421240590554e857ff4e4a243349; sitemap 41927407557, integridade 41927407444, Pages 41927486440: SUCCESS. 1509 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem86.json.
+
+Totais: {"total":563,"screened_no_change":67,"needs_source":8,"targeted_correction_complete":183,"preserve_prior_review":98,"pending":207}. Próximos pendentes: k0fHNRurzCmYEdcHcn1V — Pistola Fixação Finca Pino Ação Direta Pregos Epi Maleta Pinador Pregador Grampeador Rebitador De Prego Pressão Ferramenta Para Drywal Gesso Concreto Aço Parede; k82L2iy2Q6giFdCHVbSg — Fritadeira Elétrica Air Fryer WAP Barbecue Heat WC AB1030; K8hXvUkqAAnbt0Om6wRj — Fritadeira Air Fryer Philco 16 Litros Paf16c Preto. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 85 — 20261104, PUBLICADA E VERIFICADA
 
 - iXzsMyqf9ilSKwbLDtk7: targeted_correction_complete. Corrige código de anúncio rotulado como catálogo e não transforma molas/atividades do título em desempenho comprovado. Limite: Snapshot local e formato do endereço; sem código técnico, material, amortecimento ou teste. Marca Wave permanece atribuída ao cadastro, sem associação a outra fabricante.
