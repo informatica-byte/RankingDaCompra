@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 93 — 20261104, PUBLICADA E VERIFICADA
+
+- mhz9cN2MnCkxuSW5OPlv: targeted_correction_complete. Retira fixação rápida/universal e funções presumidas sem manual; mantém cadastro distinto da outra finca-pino. Limite: Snapshot sem marca/modelo/manual exatos. Sem instruções de carga, acionamento, pinos ou estruturas; não certifica EPI e não transfere características de outro cadastro.
+- mlMLB1921632393: targeted_correction_complete. Traduz campos em espanhol e explicita ausência de geração/código do i7 e conteúdo de completo; preserva capacidades anunciadas sem prometer desempenho. Limite: Snapshot sem modelos exatos de processador, fonte ou demais peças. Não inventa geração, FPS, certificação, acessórios ou condição dos componentes.
+- mlMLB2088799901: targeted_correction_complete. Retira anúncio oficial sem prova, corrige grafia do título e diferencia catálogo de autenticação; mantém inflador não incluído conforme cadastro. Limite: Snapshot sem teste de vedação, conteúdo detalhado ou autenticidade. Não prescreve reparo, tipos de dano ou continuidade de uso de pneu danificado.
+
+Fonte 0c2b61cca25b49e0b8b71318a377377aaa6c96f7; geração b6d0f8ce3527bc071dfb85bdbe1ae529e444ec9d; sitemap 41935059897, integridade 41935059887, Pages 41935116698: SUCCESS. 1516 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem93.json.
+
+Totais: {"total":563,"screened_no_change":71,"needs_source":8,"targeted_correction_complete":200,"preserve_prior_review":98,"pending":186}. Próximos pendentes: mlMLB3966936389 — Tênis Mormaii Urban Free Masculino Casual Original Skate Nfe; mlMLB3973124591 — Sapatênis Masculino Casual Com Cadarço Dia A Dia Versátil; mlMLB4028845341 — Tênis Kappa Run 200 Original Caminhada Academia. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 92 — 20261104, PUBLICADA E VERIFICADA
 
 - LS2YLo5zNF7RptrFMYgB: screened_no_change. Descrição objetiva da P32CRB; referência primária compatível com identidade Roku/HDR10. Nenhuma contradição concreta demonstrada, sem reescrita cosmética. Limite: Não inspeciona unidade ou mede imagem, áudio, peso e consumo. Não importa recursos de P32CRA ou outra TV nem usa ausência de fonte de detalhe como prova de erro.

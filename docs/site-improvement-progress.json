@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mhz9cN2MnCkxuSW5OPlv",
-      "mlMLB1921632393",
-      "mlMLB2088799901",
       "mlMLB3966936389",
       "mlMLB3973124591",
       "mlMLB4028845341",
       "mlMLB4031468281",
-      "mlMLB4144557655"
+      "mlMLB4144557655",
+      "mlMLB4147473207",
+      "mlMLB4151024813",
+      "mlMLB4231915505"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T23:35:45.059Z",
-  "catalogueGeneratedAt": "2026-11-04T23:35:42.777Z",
+  "updatedAt": "2026-11-04T23:38:12.521Z",
+  "catalogueGeneratedAt": "2026-11-04T23:36:44.901Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 71,
     "needs_source": 8,
-    "targeted_correction_complete": 197,
+    "targeted_correction_complete": 200,
     "preserve_prior_review": 98,
-    "pending": 186,
-    "prepared_awaiting_publication": 3
+    "pending": 186
   },
   "items": [
     {
@@ -4452,12 +4451,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB2088799901-20260810-1.html",
       "title": "Kit de reparo tubeless Cyclingbox para bicicleta — sem inflador anunciado",
       "fingerprint": "8b8897313f3971a050140b07cc5a3c8749ef16f13202f10ad8350b4c80e510aa",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T23:38:12.499Z",
       "workNotes": [
         "Retira anúncio oficial sem prova, corrige grafia do título e diferencia catálogo de autenticação; mantém inflador não incluído conforme cadastro.",
-        "Snapshot sem teste de vedação, conteúdo detalhado ou autenticidade. Não prescreve reparo, tipos de dano ou continuidade de uso de pneu danificado."
+        "Snapshot sem teste de vedação, conteúdo detalhado ou autenticidade. Não prescreve reparo, tipos de dano ou continuidade de uso de pneu danificado.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB2062216813?wid=MLB2088799901"
@@ -6087,12 +6087,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB1921632393-20260810-1.html",
       "title": "Pc Gamer Completo I7 Gtx1650 Ssd120 Hd1tb 16gb Fonte 750w",
       "fingerprint": "c35c9277500a8430a5904b53cabe891168d51d6dd74379f1d00e65c094e90e53",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T23:38:12.499Z",
       "workNotes": [
         "Traduz campos em espanhol e explicita ausência de geração/código do i7 e conteúdo de completo; preserva capacidades anunciadas sem prometer desempenho.",
-        "Snapshot sem modelos exatos de processador, fonte ou demais peças. Não inventa geração, FPS, certificação, acessórios ou condição dos componentes."
+        "Snapshot sem modelos exatos de processador, fonte ou demais peças. Não inventa geração, FPS, certificação, acessórios ou condição dos componentes.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU746403850?wid=MLB1921632393"
@@ -6416,12 +6417,13 @@
       "url": "https://rankingdacompra.com.br/produto/mhz9cN2MnCkxuSW5OPlv-20260810-1.html",
       "title": "Pistola Fixação Finca Pino Ação Direta",
       "fingerprint": "846bae86cdb5c6c6dc4cd65adf87717e6c276ca4c146de61db0dcb28c9e8dff9",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T23:38:12.499Z",
       "workNotes": [
         "Retira fixação rápida/universal e funções presumidas sem manual; mantém cadastro distinto da outra finca-pino.",
-        "Snapshot sem marca/modelo/manual exatos. Sem instruções de carga, acionamento, pinos ou estruturas; não certifica EPI e não transfere características de outro cadastro."
+        "Snapshot sem marca/modelo/manual exatos. Sem instruções de carga, acionamento, pinos ou estruturas; não certifica EPI e não transfere características de outro cadastro.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB79749573"
@@ -12029,12 +12031,44 @@
     "backendWrites": 0
   },
   "triage93": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mhz9cN2MnCkxuSW5OPlv",
       "mlMLB1921632393",
       "mlMLB2088799901"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T23:38:12.499Z",
+    "changedIds": [
+      "mhz9cN2MnCkxuSW5OPlv",
+      "mlMLB1921632393",
+      "mlMLB2088799901"
+    ],
+    "jointReleaseBatches": [
+      93
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem93.json",
+    "remainingDependencies": [
+      {
+        "id": "mhz9cN2MnCkxuSW5OPlv",
+        "note": "Snapshot sem marca/modelo/manual exatos. Sem instruções de carga, acionamento, pinos ou estruturas; não certifica EPI e não transfere características de outro cadastro."
+      },
+      {
+        "id": "mlMLB1921632393",
+        "note": "Snapshot sem modelos exatos de processador, fonte ou demais peças. Não inventa geração, FPS, certificação, acessórios ou condição dos componentes."
+      },
+      {
+        "id": "mlMLB2088799901",
+        "note": "Snapshot sem teste de vedação, conteúdo detalhado ou autenticidade. Não prescreve reparo, tipos de dano ou continuidade de uso de pneu danificado."
+      }
+    ],
+    "sourceCommit": "0c2b61cca25b49e0b8b71318a377377aaa6c96f7",
+    "generatedCommit": "b6d0f8ce3527bc071dfb85bdbe1ae529e444ec9d",
+    "sitemapRun": 41935059897,
+    "integrityRun": 41935059887,
+    "pagesRun": 41935116698,
+    "testsPassed": 1516,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
