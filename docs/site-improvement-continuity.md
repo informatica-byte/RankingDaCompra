@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 84 — 20261104, PUBLICADA E VERIFICADA
+
+- ik7zBiCAAqDLqr9Di5Ue: targeted_correction_complete. Distingue alimentação USB do stick de pilhas do controle e qualifica assistentes; preserva categoria existente e encurta título. Limite: Suporte primário geral consultado; não confirma tipo de pilhas, itens do kit ou funcionalidades de todas as integrações do 3840BR. Não importa tensão, instruções ou recursos de Express, Plus ou 4K.
+- IQP6np7muXjwAQ6aN20M: targeted_correction_complete. Retira vendedor oficial sem prova e qualifica funções de IA e desempenho; preserva configuração e cor anunciadas. Limite: Snapshot local; sem código completo da unidade confirmado ou teste. Não transfere funções de A17 4G, outra RAM/capacidade ou software.
+- iSyPxYQcVUDjHvjIHLhS: targeted_correction_complete. Retira fragilidade dos encaixes sem fonte e rotina de carga não documentada; qualifica acessórios e aplicações. Limite: Snapshot local; sem modelo alfanumérico/manual ou teste de bateria, encaixes ou preparo. Não acrescenta potência, impermeabilidade, acessórios ou ciclos de outro mixer.
+
+Fonte 3b4ccf9ebea7d790a8140dad0dcc6d844a15a696; geração 1672a255090ca7255fc49dbc5e362ca4ed5e61c0; sitemap 41924923717, integridade 41924923793, Pages 41925005785: SUCCESS. 1507 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem84.json.
+
+Totais: {"total":563,"screened_no_change":67,"needs_source":8,"targeted_correction_complete":177,"preserve_prior_review":98,"pending":213}. Próximos pendentes: iXzsMyqf9ilSKwbLDtk7 — Tênis Masculino Esportivo Creation Molas Academia Caminhada; J6WCPaTR5KOqjsAC1nM7 — Lampada Led Solar Recarregável Camping Usb Pesca Jardim Lampiao Viagem Several; j8z58qFPJKTUJogf5HTM — Celular Smartphone Realme Note 80s 128gb 4gb Ram Dual Sim Bateria 6000mah Ultrafino 7,94 Mm Resistência À Poeira E Água Ip54. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 83 — 20261104, PUBLICADA E VERIFICADA
 
 - hVTGYQmARQt2fyDqPZDa: targeted_correction_complete. Sinaliza cor pinhão/navy versus preto e catálogo antigo divergente; preserva seleção sem afirmar outra cor. Limite: Snapshot local; sem código alfanumérico do calçado ou confirmação da variação. Não autentica unidade nem acrescenta couro, conforto ou tecnologia de outro Pegada.

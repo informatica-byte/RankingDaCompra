@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "ik7zBiCAAqDLqr9Di5Ue",
-      "IQP6np7muXjwAQ6aN20M",
-      "iSyPxYQcVUDjHvjIHLhS",
       "iXzsMyqf9ilSKwbLDtk7",
       "J6WCPaTR5KOqjsAC1nM7",
       "j8z58qFPJKTUJogf5HTM",
       "jABp2HpfTmQNwXsPgrYQ",
-      "jffyLJv2cImsjfarZ1pi"
+      "jffyLJv2cImsjfarZ1pi",
+      "JWp7l6fsqNkkSsBCAosW",
+      "k0fHNRurzCmYEdcHcn1V",
+      "k82L2iy2Q6giFdCHVbSg"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:23:05.404Z",
-  "catalogueGeneratedAt": "2026-11-04T22:22:55.774Z",
+  "updatedAt": "2026-11-04T22:26:00.998Z",
+  "catalogueGeneratedAt": "2026-11-04T22:24:13.018Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 67,
     "needs_source": 8,
-    "targeted_correction_complete": 174,
+    "targeted_correction_complete": 177,
     "preserve_prior_review": 98,
-    "pending": 213,
-    "prepared_awaiting_publication": 3
+    "pending": 213
   },
   "items": [
     {
@@ -5110,12 +5109,13 @@
       "url": "https://rankingdacompra.com.br/produto/iSyPxYQcVUDjHvjIHLhS-20260810-1.html",
       "title": "Mini mixer Comica 2 em 1 recarregável — acessórios a confirmar",
       "fingerprint": "13856181a851604f6e316ed9121aadd7c21e060686dda7a953326424a2477f57",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:26:00.965Z",
       "workNotes": [
         "Retira fragilidade dos encaixes sem fonte e rotina de carga não documentada; qualifica acessórios e aplicações.",
-        "Snapshot local; sem modelo alfanumérico/manual ou teste de bateria, encaixes ou preparo. Não acrescenta potência, impermeabilidade, acessórios ou ciclos de outro mixer."
+        "Snapshot local; sem modelo alfanumérico/manual ou teste de bateria, encaixes ou preparo. Não acrescenta potência, impermeabilidade, acessórios ou ciclos de outro mixer.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB67146264?wid=MLB6519291232"
@@ -6760,12 +6760,13 @@
       "url": "https://rankingdacompra.com.br/produto/ik7zBiCAAqDLqr9Di5Ue-20260810-1.html",
       "title": "Roku Streaming Stick 3840BR HD/Full HD com controle por voz anunciado",
       "fingerprint": "4c1ceeadcd95cb624f274ccf2707033e46d6cdc6544e4f9cdcc8818e9975f274",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:26:00.965Z",
       "workNotes": [
         "Distingue alimentação USB do stick de pilhas do controle e qualifica assistentes; preserva categoria existente e encurta título.",
-        "Suporte primário geral consultado; não confirma tipo de pilhas, itens do kit ou funcionalidades de todas as integrações do 3840BR. Não importa tensão, instruções ou recursos de Express, Plus ou 4K."
+        "Suporte primário geral consultado; não confirma tipo de pilhas, itens do kit ou funcionalidades de todas as integrações do 3840BR. Não importa tensão, instruções ou recursos de Express, Plus ou 4K.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB54014512",
@@ -6873,12 +6874,13 @@
       "url": "https://rankingdacompra.com.br/produto/IQP6np7muXjwAQ6aN20M-20260810-1.html",
       "title": "Samsung Galaxy A17 5G 128 GB e 4 GB de RAM cinza — configuração anunciada",
       "fingerprint": "678896ffafce719307ef7855b9933b34c6540c6a1fc03555ef0ca93f5f1485a1",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:26:00.965Z",
       "workNotes": [
         "Retira vendedor oficial sem prova e qualifica funções de IA e desempenho; preserva configuração e cor anunciadas.",
-        "Snapshot local; sem código completo da unidade confirmado ou teste. Não transfere funções de A17 4G, outra RAM/capacidade ou software."
+        "Snapshot local; sem código completo da unidade confirmado ou teste. Não transfere funções de A17 4G, outra RAM/capacidade ou software.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB55521828?wid=MLB5249120331"
@@ -11455,12 +11457,44 @@
     "backendWrites": 0
   },
   "triage84": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "IQP6np7muXjwAQ6aN20M",
       "iSyPxYQcVUDjHvjIHLhS",
       "ik7zBiCAAqDLqr9Di5Ue"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T22:26:00.965Z",
+    "changedIds": [
+      "ik7zBiCAAqDLqr9Di5Ue",
+      "IQP6np7muXjwAQ6aN20M",
+      "iSyPxYQcVUDjHvjIHLhS"
+    ],
+    "jointReleaseBatches": [
+      84
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem84.json",
+    "remainingDependencies": [
+      {
+        "id": "ik7zBiCAAqDLqr9Di5Ue",
+        "note": "Suporte primário geral consultado; não confirma tipo de pilhas, itens do kit ou funcionalidades de todas as integrações do 3840BR. Não importa tensão, instruções ou recursos de Express, Plus ou 4K."
+      },
+      {
+        "id": "IQP6np7muXjwAQ6aN20M",
+        "note": "Snapshot local; sem código completo da unidade confirmado ou teste. Não transfere funções de A17 4G, outra RAM/capacidade ou software."
+      },
+      {
+        "id": "iSyPxYQcVUDjHvjIHLhS",
+        "note": "Snapshot local; sem modelo alfanumérico/manual ou teste de bateria, encaixes ou preparo. Não acrescenta potência, impermeabilidade, acessórios ou ciclos de outro mixer."
+      }
+    ],
+    "sourceCommit": "3b4ccf9ebea7d790a8140dad0dcc6d844a15a696",
+    "generatedCommit": "1672a255090ca7255fc49dbc5e362ca4ed5e61c0",
+    "sitemapRun": 41924923717,
+    "integrityRun": 41924923793,
+    "pagesRun": 41925005785,
+    "testsPassed": 1507,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
