@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T21:47:23.415Z",
+  "generatedAt": "2026-11-04T21:52:15.504Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 228
+    "screening": 225
   },
   "items": [
     {
@@ -27,27 +27,6 @@
       "title": "3 Kit Controle Remoto Eletrônico 433mhz Alarme Universal",
       "url": "https://rankingdacompra.com.br/produto/40SKVMiLnqTYwYcP2duQ-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "h0a3vchlbGQbAnHdbujA",
-      "title": "Notebook Acer Aspire Go 15 Intel Core I3 1215u 8gb 256gb Ssd Linux Prateado",
-      "url": "https://rankingdacompra.com.br/produto/h0a3vchlbGQbAnHdbujA-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "H0bw2eYqi6yqdyBF1Ufl",
-      "title": "Smart Tv Samsung 32 Ls32h5000fgxzd Hd Led Wifi Hdmi 110/220v",
-      "url": "https://rankingdacompra.com.br/produto/H0bw2eYqi6yqdyBF1Ufl-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "H17ykC6IlHMpWBEMnEQ7",
-      "title": "Mala De Viagem 10kg Promoção Rodas 360° Miami Com Frasqueira",
-      "url": "https://rankingdacompra.com.br/produto/H17ykC6IlHMpWBEMnEQ7-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

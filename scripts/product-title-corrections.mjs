@@ -8,6 +8,14 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['H17ykC6IlHMpWBEMnEQ7', {
+    syncInformationalSchema:true, expectedListing:'MLB5598192576',
+    model:/^(?:Mala De Viagem 10kg Promoção Rodas 360° Miami Com Frasqueira|Mala Miami com frasqueira e rodas 360° anunciadas — tamanho a confirmar)$/i,
+    correct:'Mala Miami com frasqueira e rodas 360° anunciadas — tamanho a confirmar',
+    summary:'A oferta identifica um conjunto Miami com mala, frasqueira e rodas de 360 graus anunciadas. Há uma divergência que precisa ser esclarecida antes da escolha: o título cadastrado menciona 10 kg, enquanto o endereço do anúncio identifica tamanho M. Não presumimos que seja uma mala de cabine nem que essas informações correspondam à mesma variação. Confirme com o vendedor o tamanho selecionado, as dimensões externas, incluindo rodas e alças, e o peso vazio. A expressão 10 kg não comprova essas medidas ou o limite de carga do produto; confira também as condições de bagagem da sua viagem. A expansão e o cadeado TSA citados na descrição não foram confirmados para a unidade. Não atribuímos uma medida de expansão, certificação ou proteção garantida ao cadeado sem documentação específica. Não testamos rodas, resistência, fechamento ou durabilidade e não trocamos o anúncio por outro tamanho.',
+    positiveNotes:['Mala Miami, frasqueira e rodas de 360 graus identificadas na oferta; confirmar conjunto.'],
+    negativeNotes:['Divergência entre 10 kg no título e tamanho M no endereço; confirmar variação e dimensões.', 'Expansão e cadeado TSA não confirmados; sem teste de resistência ou garantia de aceitação como bagagem.'],suppressRating:true,
+  }],
   ['GSeid2PryzC2aiQwnv3h', {
     syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB4780018962',
     model:/^(?:Purificador de Água Gelada Fria e Natural Elétrico Compacto Eletrônico placa Filtro refil 6 meses ou 3000l Painel Touch Bivolt Cinza PE12G Electrolux|Purificador Electrolux PE12G cinza bivolt — três opções de temperatura anunciadas)$/i,

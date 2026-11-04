@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T21:49:06.352Z",
-  "catalogueGeneratedAt": "2026-11-04T21:47:23.415Z",
+  "updatedAt": "2026-11-04T21:52:24.778Z",
+  "catalogueGeneratedAt": "2026-11-04T21:52:15.504Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -687,11 +687,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 563,
-    "screened_no_change": 65,
+    "screened_no_change": 67,
     "needs_source": 8,
     "targeted_correction_complete": 164,
     "preserve_prior_review": 98,
-    "pending": 228
+    "pending": 225,
+    "prepared_awaiting_publication": 1
   },
   "items": [
     {
@@ -4922,13 +4923,20 @@
     {
       "id": "H17ykC6IlHMpWBEMnEQ7",
       "url": "https://rankingdacompra.com.br/produto/H17ykC6IlHMpWBEMnEQ7-20260810-1.html",
-      "title": "Mala De Viagem 10kg Promoção Rodas 360° Miami Com Frasqueira",
-      "fingerprint": "718fc201606e2fb312ae858640f99c1adbd6cb60e2b2685dd47f28acdafe82f4",
-      "status": "pending",
+      "title": "Mala Miami com frasqueira e rodas 360° anunciadas — tamanho a confirmar",
+      "fingerprint": "6c19b2ecdc454792af6682d0ea1fdabc370b1026755db18ae0dce0f112708408",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Sinaliza divergência 10 kg/tamanho M, retira promoção do título e qualifica expansão e TSA não confirmados.",
+        "Snapshot local; sem manual exato, medida, carga, expansão ou cadeado confirmados. Não classifica como cabine, autentica TSA, troca variante ou garante aceitação em viagem."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/mala-de-viagem-miami-tamanho-m-frasqueira-designer-moderno/up/MLBU3371822498?pdp_filters=item_id%3AMLB5598192576"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "MWjfkNgY4oXJD8NhCOQn",
@@ -5405,11 +5413,16 @@
       "url": "https://rankingdacompra.com.br/produto/h0a3vchlbGQbAnHdbujA-20260810-1.html",
       "title": "Notebook Acer Aspire Go 15 Intel Core I3 1215u 8gb 256gb Ssd Linux Prateado",
       "fingerprint": "e8352c3672e239830b666b14cbfc56657d5d56c8a161cda517b2434733f708b1",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-04T21:52:24.780Z",
+      "workNotes": [
+        "Acer: descrição objetiva da configuração anunciada, sem contradição concreta demonstrada; preservada sem reescrita cosmética.",
+        "Snapshot local; referência primária de família AG15-51P localizada não confirma o sufixo 379H. Sem teste ou transferência de configurações de outro Aspire. Ausência de fonte exata não é prova de erro."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB66357303?wid=MLB6477441212"
+      ]
     },
     {
       "id": "fOQZ2dyrpaoVIulwTufz",
@@ -7073,11 +7086,17 @@
       "url": "https://rankingdacompra.com.br/produto/H0bw2eYqi6yqdyBF1Ufl-20260810-1.html",
       "title": "Smart Tv Samsung 32 Ls32h5000fgxzd Hd Led Wifi Hdmi 110/220v",
       "fingerprint": "3c07ccd4b989a940d72e8275f8d207867dfd7c0201ada870de6be6a59e78829d",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-04T21:52:24.780Z",
+      "workNotes": [
+        "Samsung LS32H5000FGXZD: referência primária compatível com HD, Tizen, duas HDMI, USB, 60 Hz e VESA; nenhuma correção necessária demonstrada.",
+        "Referência do modelo LS consultada; não valida unidade, compatibilidade de qualquer periférico ou desempenho. Não importados recursos do UN32H5000FGXZD."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB66191173",
+        "https://www.samsung.com/br/monitors/flat/h5000-32-inch-ls32h5000fgxzd/"
+      ]
     },
     {
       "id": "UlgA45nNx2rsEykMbv67",
@@ -11176,5 +11195,12 @@
     "testsPassed": 1502,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage80": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "H17ykC6IlHMpWBEMnEQ7"
+    ],
+    "newDeepReviews": 0
   }
 }
