@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 81 — 20261104, PUBLICADA E VERIFICADA
+
+- Hd0FWwNPR8uVXWLwPz3A: targeted_correction_complete. Retira qualificação publicitária do título e distingue velocidade, aderência e carga anunciadas de resultados testados. Limite: Snapshot local; sem manual exato, medições ou faixa etária confirmada. Sem prescrever recarga ou importar dados de outro carrinho.
+- hDRgi7LAJobY4o5W9ipJ: targeted_correction_complete. Sinaliza Vitrex/Sekbem e vidro/cristal divergentes; retira luxo e anúncio oficial como garantias. Limite: Snapshot local; marca, material, resistência e cuidados da embalagem não confirmados. Não troca anúncio nem define temperatura ou compatibilidade de lavagem.
+- HEP91TkP4BHCEvBWmTHq: targeted_correction_complete. Distingue potência nominal/pico, mantém alcance como anunciado e retira idade como garantia universal. Encurta título. Limite: Página primária aberta informa 50/70 W e até 11 km; índice de busca antigo com outro alcance não foi usado como contradição atual. Manual RM2 Pro listado indisponível. Sem confirmar idade, unidade ou segurança, nem importar manual de outro modelo.
+
+Fonte 0c4f74bb0df6eb0485ea4cdd2f332137a1a81a06; geração e76bd1aa259211d2ea0be697e220cab2a911ae34; sitemap 41921273420, integridade 41921273333, Pages 41921355712: SUCCESS. 1504 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem81.json.
+
+Totais: {"total":563,"screened_no_change":67,"needs_source":8,"targeted_correction_complete":168,"preserve_prior_review":98,"pending":222}. Próximos pendentes: hhnKX4x5l2ab7gguVoYU — Piscina Inflável Pvc Espessa Resistente Família Grande; hLiaQWog1dogQ2OpMDSt — Ventilador De Mesa 40cm Turbo NVT-40-BL MONDIAL; htLzwGXLZpkVa0eXWdkr — Soprador de folhas lateral Fak260S 2T 26Cc 0,90Hp Carbon Fak cor laranja profissional a gasolina. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 80 — 20261104, PUBLICADA E VERIFICADA
 
 - h0a3vchlbGQbAnHdbujA: screened_no_change. Acer: descrição objetiva da configuração anunciada, sem contradição concreta demonstrada; preservada sem reescrita cosmética. Limite: Snapshot local; referência primária de família AG15-51P localizada não confirma o sufixo 379H. Sem teste ou transferência de configurações de outro Aspire. Ausência de fonte exata não é prova de erro.
