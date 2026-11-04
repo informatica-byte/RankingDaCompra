@@ -60,14 +60,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "KHQKsjwv2MzJGObyoZkd",
-      "KjczAN39YiZOmTgmzwIt",
-      "kkADU0pbN4LUhcYR1HMH",
       "kNmf4r3kzbgWX6Fz3Y0x",
       "KtvIJ0CLFVYesONQSS8I",
       "kyK4G9Uov6eBaFnNVED7",
       "Kyw9WRrxRLj36DL50JfQ",
-      "L6r4zuqqN2t7yWZsQUxo"
+      "L6r4zuqqN2t7yWZsQUxo",
+      "LAPIX3Gs1DA6iyK26qTM",
+      "LDzmbLcaHUVNztsXyp52",
+      "lfGwhT6zO5b7LOPvqkuL"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:51:51.120Z",
-  "catalogueGeneratedAt": "2026-11-04T22:51:43.119Z",
+  "updatedAt": "2026-11-04T22:54:57.685Z",
+  "catalogueGeneratedAt": "2026-11-04T22:52:48.149Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -689,10 +689,9 @@
     "total": 563,
     "screened_no_change": 67,
     "needs_source": 8,
-    "targeted_correction_complete": 186,
+    "targeted_correction_complete": 189,
     "preserve_prior_review": 98,
-    "pending": 201,
-    "prepared_awaiting_publication": 3
+    "pending": 201
   },
   "items": [
     {
@@ -1709,12 +1708,13 @@
       "url": "https://rankingdacompra.com.br/produto/KjczAN39YiZOmTgmzwIt-20260810-1.html",
       "title": "Cama Elástica Pula Pula Infantil Trampolim 1,4 Metros Atentu",
       "fingerprint": "6140ba4ac517768db4e62e5bc55019d72b6c96d68d2f8ccb2ea6bfffe9b9962e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:54:57.658Z",
       "workNotes": [
         "Retira diversão segura, resistência e faixa etária como garantias sem manual; atribui características ao cadastro.",
-        "Snapshot sem manual técnico específico ou certificação confirmada. Não define carga, montagem, ocupação ou uso externo seguro e não valida idade apenas por dimensões."
+        "Snapshot sem manual técnico específico ou certificação confirmada. Não define carga, montagem, ocupação ou uso externo seguro e não valida idade apenas por dimensões.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB28717101"
@@ -4515,12 +4515,13 @@
       "url": "https://rankingdacompra.com.br/produto/kkADU0pbN4LUhcYR1HMH-20260810-1.html",
       "title": "Kit Principia para Rotina de Skincare Pele Sensível com Protetor Solar FPS 60",
       "fingerprint": "ec4870e6a6e92462d8d829cbd2a08c0f69ad464622fd4c94bdc382af0cb13cfa",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:54:57.658Z",
       "workNotes": [
         "Sinaliza CM-01 no cadastro versus CH-01 no kit semelhante da marca e evita transferir composição ou garantir tolerância individual.",
-        "Página primária refere-se a kit semelhante, não prova conteúdo do anúncio. Códigos/volumes da oferta precisam ser confirmados; sem troca de creme, rotina individual ou eficácia do conjunto presumida."
+        "Página primária refere-se a kit semelhante, não prova conteúdo do anúncio. Códigos/volumes da oferta precisam ser confirmados; sem troca de creme, rotina individual ou eficácia do conjunto presumida.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.principiaskin.com/produtos/indicacoes/kit-rotina-essencial-1-gl02-gel-de-limpeza-tensoativos-glicerina-pca-sodio-1-ch01-creme-hidratante-manteiga-de-karite-niacinamida-glicerina-1-ps01-protetor-solar-fps60-filtros-uv-niacinamida.html",
@@ -6163,12 +6164,13 @@
       "url": "https://rankingdacompra.com.br/produto/KHQKsjwv2MzJGObyoZkd-20260810-1.html",
       "title": "Perfume Carolina Herrera Very Good Girl Glam Parfum 50ml feminino",
       "fingerprint": "2b117357af3e5e92bed814ffb8b0b05b08947c1f9c7aebbc15f656cdec525782",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T22:54:57.658Z",
       "workNotes": [
         "Completa frase truncada e retira intensidade/concentração como garantia; descreve perfil atribuído à marca sem teste próprio.",
-        "Fonte primária de perfil e frasco consultada; sem autenticação da unidade, percentual de concentração, fixação ou teste de tolerância. Não prescreve teste a partir de concentração presumida."
+        "Fonte primária de perfil e frasco consultada; sem autenticação da unidade, percentual de concentração, fixação ou teste de tolerância. Não prescreve teste a partir de concentração presumida.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.carolinaherrera.com/es/en/p-fragrance/very-good-girl-glam",
@@ -11719,12 +11721,44 @@
     "backendWrites": 0
   },
   "triage88": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "KHQKsjwv2MzJGObyoZkd",
       "KjczAN39YiZOmTgmzwIt",
       "kkADU0pbN4LUhcYR1HMH"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T22:54:57.658Z",
+    "changedIds": [
+      "KHQKsjwv2MzJGObyoZkd",
+      "KjczAN39YiZOmTgmzwIt",
+      "kkADU0pbN4LUhcYR1HMH"
+    ],
+    "jointReleaseBatches": [
+      88
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem88.json",
+    "remainingDependencies": [
+      {
+        "id": "KHQKsjwv2MzJGObyoZkd",
+        "note": "Fonte primária de perfil e frasco consultada; sem autenticação da unidade, percentual de concentração, fixação ou teste de tolerância. Não prescreve teste a partir de concentração presumida."
+      },
+      {
+        "id": "KjczAN39YiZOmTgmzwIt",
+        "note": "Snapshot sem manual técnico específico ou certificação confirmada. Não define carga, montagem, ocupação ou uso externo seguro e não valida idade apenas por dimensões."
+      },
+      {
+        "id": "kkADU0pbN4LUhcYR1HMH",
+        "note": "Página primária refere-se a kit semelhante, não prova conteúdo do anúncio. Códigos/volumes da oferta precisam ser confirmados; sem troca de creme, rotina individual ou eficácia do conjunto presumida."
+      }
+    ],
+    "sourceCommit": "72f0b17cce2ca2822c164d93863adcbd7740b9d8",
+    "generatedCommit": "c71446c78890983b74b50f51d31de9e7c4f43541",
+    "sitemapRun": 41929036851,
+    "integrityRun": 41929036840,
+    "pagesRun": 41929105484,
+    "testsPassed": 1511,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

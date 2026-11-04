@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 88 — 20261104, PUBLICADA E VERIFICADA
+
+- KHQKsjwv2MzJGObyoZkd: targeted_correction_complete. Completa frase truncada e retira intensidade/concentração como garantia; descreve perfil atribuído à marca sem teste próprio. Limite: Fonte primária de perfil e frasco consultada; sem autenticação da unidade, percentual de concentração, fixação ou teste de tolerância. Não prescreve teste a partir de concentração presumida.
+- KjczAN39YiZOmTgmzwIt: targeted_correction_complete. Retira diversão segura, resistência e faixa etária como garantias sem manual; atribui características ao cadastro. Limite: Snapshot sem manual técnico específico ou certificação confirmada. Não define carga, montagem, ocupação ou uso externo seguro e não valida idade apenas por dimensões.
+- kkADU0pbN4LUhcYR1HMH: targeted_correction_complete. Sinaliza CM-01 no cadastro versus CH-01 no kit semelhante da marca e evita transferir composição ou garantir tolerância individual. Limite: Página primária refere-se a kit semelhante, não prova conteúdo do anúncio. Códigos/volumes da oferta precisam ser confirmados; sem troca de creme, rotina individual ou eficácia do conjunto presumida.
+
+Fonte 72f0b17cce2ca2822c164d93863adcbd7740b9d8; geração c71446c78890983b74b50f51d31de9e7c4f43541; sitemap 41929036851, integridade 41929036840, Pages 41929105484: SUCCESS. 1511 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 560 entradas editoriais inalteradas. Preservados 563 IDs/afiliados/campos operacionais e 616 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem88.json.
+
+Totais: {"total":563,"screened_no_change":67,"needs_source":8,"targeted_correction_complete":189,"preserve_prior_review":98,"pending":201}. Próximos pendentes: kNmf4r3kzbgWX6Fz3Y0x — Chuveiro Lorenzetti Bella Ducha 4T Ultra para Parede; KtvIJ0CLFVYesONQSS8I — Tênis Nike Court Vision Low Masculino; kyK4G9Uov6eBaFnNVED7 — Perfume Feminino L' Eau de Parfum Fragrância Floral Gourmand Inebriante com Notas de Íris Nobre, Baunilha e Pralinê La Vie Est Belle Lancôme, Frasco com 100ml. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 87 — 20261104, PUBLICADA E VERIFICADA
 
 - k0fHNRurzCmYEdcHcn1V: targeted_correction_complete. Retira compatibilidade universal e eficiência profissional presumidas; encurta título sem equiparar grampeador/rebitador ou certificar EPI. Limite: Snapshot sem marca/modelo/manual específico. Não fornece instruções de acionamento, carga, pinos ou aplicação em estruturas; segurança e fixação não testadas.
