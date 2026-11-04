@@ -62,7 +62,9 @@ test('histórico preserva legado e armazena a procedência da nova confirmação
 test('mínimo comercial exclui legado sem apagar sua observação', () => {
   const growth = read('growth-tools.js');
   const start = growth.indexOf('  function historySummary('), end = growth.indexOf('  function currentPriceFromCard(',start);
-  const ctx = vm.createContext({state:{history:{products:{a:{points:[['2026-10-05',25],['2026-10-06',100]],observations:{'2026-10-06':{verified:true}}}}}},HISTORY_DAYS:30,numberPrice:Number,Date});
+  // A janela desta fixture não pode expirar com a data real da execução.
+  class FixtureDate extends Date { static now(){return Date.parse('2026-10-07T12:00:00Z');} }
+  const ctx = vm.createContext({state:{history:{products:{a:{points:[['2026-10-05',25],['2026-10-06',100]],observations:{'2026-10-06':{verified:true}}}}}},HISTORY_DAYS:30,numberPrice:Number,Date:FixtureDate});
   vm.runInContext(growth.slice(start,end),ctx);
   const result = ctx.historySummary('a',100);
   assert.equal(result.points.length,2);assert.equal(result.minimum,100);assert.equal(result.pendingReview,1);

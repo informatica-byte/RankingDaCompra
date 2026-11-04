@@ -500,6 +500,7 @@
     <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore-compat.js"></script>
 
     <!-- Firebase AI Logic + App Check: a chave do Gemini fica protegida no Firebase. -->
+    <script src="/editorial-ai-policy.js?v=20261104-1"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
         import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app-check.js";
@@ -523,9 +524,10 @@
 
         const ai = getAI(aiApp, { backend: new GoogleAIBackend() });
         // A primeira IA redige; a segunda usa outro modelo para auditar a resposta.
-        const model = getGenerativeModel(ai, { model: "gemini-3.1-flash-lite" });
-        const modelRevisor = getGenerativeModel(ai, { model: "gemini-3.5-flash" });
+        const model = getGenerativeModel(ai, { model: "gemini-3.1-flash-lite", systemInstruction: window.RDCEditorialPolicy.instructions });
+        const modelRevisor = getGenerativeModel(ai, { model: "gemini-3.5-flash", systemInstruction: window.RDCEditorialPolicy.instructions });
         const modelComFontePublica = getGenerativeModel(ai, {
+            systemInstruction: window.RDCEditorialPolicy.instructions,
             model: "gemini-3.1-flash-lite",
             tools: [{ urlContext: {} }]
         });
@@ -593,6 +595,7 @@
         }
 
         function validarRespostaBaseadaNaFonte({ comentario, prosItens, contrasItens, evidencias }, fonteTecnica) {
+            window.RDCEditorialPolicy?.assertDraft([comentario, ...prosItens, ...contrasItens]);
             const fonteNormalizada = normalizarTextoValidacao(fonteTecnica);
             const palavrasFonte = new Set(palavrasComEvidencia(fonteTecnica));
             const textoResposta = [comentario, ...prosItens, ...contrasItens].join(" ");
@@ -684,6 +687,7 @@
             const pros = limitarTexto(`Características registradas: ${itens.slice(0, 3).join("; ")}.`, 300);
             const itensAtencao = itens.slice(-2);
             const contras = limitarTexto(`Pontos para conferência: ${itensAtencao.join("; ")}. A análise se limita à ficha fornecida e não representa teste prático independente.`, 300);
+            window.RDCEditorialPolicy?.assertDraft([comentario, pros, contras]);
 
             return {
                 titulo,
@@ -918,6 +922,7 @@ FORMATO:
 ${formato}`;
             const revisao = await modelRevisor.generateContent(auditoria);
             const auditada = JSON.parse(limparJsonDaIA(revisao.response.text()));
+            window.RDCEditorialPolicy.assertDraft(auditada);
             return { ...auditada, metodo: "gemini_gerador_e_gemini_revisor", fonte };
         };
 

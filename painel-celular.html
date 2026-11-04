@@ -225,6 +225,7 @@
     <script src="/express-existing-product.js?v=20261024-reuse"></script>
     <script src="/conference-pause.js?v=20261009-1"></script>
     <script src="/pending-review-pause.js?v=20261026-1"></script>
+    <script src="/editorial-ai-policy.js?v=20261104-1"></script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
       import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app-check.js";
@@ -254,8 +255,8 @@
       const auth = getAuth(app),
         db = getFirestore(app),
         mobileAI = getAI(aiApp, { backend: new GoogleAIBackend() }),
-        modelRapido = getGenerativeModel(mobileAI, { model: "gemini-3.5-flash-lite", tools: [{ urlContext: {} }] }),
-        modelReserva = getGenerativeModel(mobileAI, { model: "gemini-3.7-flash", tools: [{ urlContext: {} }] }),
+        modelRapido = getGenerativeModel(mobileAI, { model: "gemini-3.5-flash-lite", systemInstruction: window.RDCEditorialPolicy.instructions, tools: [{ urlContext: {} }] }),
+        modelReserva = getGenerativeModel(mobileAI, { model: "gemini-3.7-flash", systemInstruction: window.RDCEditorialPolicy.instructions, tools: [{ urlContext: {} }] }),
         $ = (id) => document.getElementById(id);
       const imagemProdutoMovel = window.RDCProductImagePicker.mount($("foto"), {
         session: () => auth.currentUser?.uid || '',
@@ -2607,6 +2608,7 @@
         };
       }
       function rankingAplicarIA(r, resposta) {
+        window.RDCEditorialPolicy?.assertDraft(resposta);
         const resumo = String(resposta?.resumoGeral || "")
             .replace(/\s+/g, " ")
             .trim(),
@@ -3068,6 +3070,7 @@
           if (!fonte(r.response)) throw Error("Não consegui abrir esse link. Tente o link completo do produto.");
           const d = JSON.parse(json(r.response.text()));
           if (d.status !== "ok") throw Error(d.motivo || "Dados insuficientes.");
+          window.RDCEditorialPolicy.assertDraft({comentario:d.comentario,pros:d.pros,contras:d.contras});
           const t = lista(d.dadosTecnicos),
             p = lista(d.pros),
             c = lista(d.contras);
