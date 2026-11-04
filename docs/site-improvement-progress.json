@@ -46,14 +46,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "fQAJIJDeSjtSvdevGCQm",
-      "g3QWQpsMAD73Kg7gMUzm",
-      "GhxvMZYaZM60wLsGuNdw",
       "gNcq5nSqWbfqYi1M9c23",
       "GPORGqPOixfgh38bVrXX",
       "GQiP9vBIhECa4I5CuzkB",
       "GSeid2PryzC2aiQwnv3h",
-      "GT9gxxxsfkbjOfDG2uIM"
+      "GT9gxxxsfkbjOfDG2uIM",
+      "GzjyGVKcBkoiKgQEo4p9",
+      "h0a3vchlbGQbAnHdbujA",
+      "H0bw2eYqi6yqdyBF1Ufl"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -660,8 +660,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T16:57:55.342Z",
-  "catalogueGeneratedAt": "2026-11-04T16:57:47.916Z",
+  "updatedAt": "2026-11-04T17:02:29.973Z",
+  "catalogueGeneratedAt": "2026-11-04T16:59:16.631Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -675,10 +675,9 @@
     "total": 562,
     "screened_no_change": 64,
     "needs_source": 8,
-    "targeted_correction_complete": 156,
+    "targeted_correction_complete": 159,
     "preserve_prior_review": 98,
-    "pending": 233,
-    "prepared_awaiting_publication": 3
+    "pending": 233
   },
   "items": [
     {
@@ -2981,12 +2980,13 @@
       "url": "https://rankingdacompra.com.br/produto/GhxvMZYaZM60wLsGuNdw-20260810-1.html",
       "title": "Esfregão Perfect Pro Mop 360° Balde Inox Cabo Longo Microfibra 16L",
       "fingerprint": "c5653ef25804db118a50b016194f561d45c0221701b7848d65a22d5cd9120de4",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T17:02:29.949Z",
       "workNotes": [
         "Retira maior resistência sem teste e generalização de balde todo inox; qualifica capacidade e alcance.",
-        "Snapshot local por ID e título, sem manual exato ou código de anúncio explícito. Não acrescenta materiais, limite de enchimento ou instruções de conservação específicos."
+        "Snapshot local por ID e título, sem manual exato ou código de anúncio explícito. Não acrescenta materiais, limite de enchimento ou instruções de conservação específicos.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB19969083"
@@ -5597,12 +5597,13 @@
       "url": "https://rankingdacompra.com.br/produto/fQAJIJDeSjtSvdevGCQm-20260810-1.html",
       "title": "Parafusadeira/furadeira TB-21PZW The Black Tools — 21 V anunciados",
       "fingerprint": "663887e3a344534d678940cb94aa1f66d4c7f005dd8229b55f4053ce52db4c5d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T17:02:29.949Z",
       "workNotes": [
         "Distingue ajustes de torque máximo e bivolt do carregador; encurta título sem mudar identidade.",
-        "Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Sem torque, capacidade, autonomia, quantidade de baterias ou composição de kit importados."
+        "Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Sem torque, capacidade, autonomia, quantidade de baterias ou composição de kit importados.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB60012839"
@@ -8154,12 +8155,13 @@
       "url": "https://rankingdacompra.com.br/produto/g3QWQpsMAD73Kg7gMUzm-20260810-1.html",
       "title": "Torneira Camperluz de parede flexível com dois jatos anunciados",
       "fingerprint": "308fa3506b739b12877cf8eb70cc45a8d20242dea5b986b377ea707ddf4c376a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-04T17:02:29.949Z",
       "workNotes": [
         "Explicita acabamento divergente e retira elogios sem fonte, economia e instalação como garantias. Encurta título.",
-        "Snapshot local; não confirmado material, acabamento, adaptador ou compatibilidade. Sem teste hidráulico ou orientação de instalação."
+        "Snapshot local; não confirmado material, acabamento, adaptador ou compatibilidade. Sem teste hidráulico ou orientação de instalação.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB45553868?wid=MLB3954862383"
@@ -10982,12 +10984,44 @@
     "backendWrites": 0
   },
   "triage77": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "GhxvMZYaZM60wLsGuNdw",
       "fQAJIJDeSjtSvdevGCQm",
       "g3QWQpsMAD73Kg7gMUzm"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-04T17:02:29.949Z",
+    "changedIds": [
+      "fQAJIJDeSjtSvdevGCQm",
+      "g3QWQpsMAD73Kg7gMUzm",
+      "GhxvMZYaZM60wLsGuNdw"
+    ],
+    "jointReleaseBatches": [
+      77
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem77.json",
+    "remainingDependencies": [
+      {
+        "id": "fQAJIJDeSjtSvdevGCQm",
+        "note": "Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Sem torque, capacidade, autonomia, quantidade de baterias ou composição de kit importados."
+      },
+      {
+        "id": "g3QWQpsMAD73Kg7gMUzm",
+        "note": "Snapshot local; não confirmado material, acabamento, adaptador ou compatibilidade. Sem teste hidráulico ou orientação de instalação."
+      },
+      {
+        "id": "GhxvMZYaZM60wLsGuNdw",
+        "note": "Snapshot local por ID e título, sem manual exato ou código de anúncio explícito. Não acrescenta materiais, limite de enchimento ou instruções de conservação específicos."
+      }
+    ],
+    "sourceCommit": "8ffd263c13ff3cf2ade3c837d1d48bfbb5a3a5d9",
+    "generatedCommit": "a31dc02d0c6393c5bfc6b6978be825623a1ae635",
+    "sitemapRun": 41872902120,
+    "integrityRun": 41872902107,
+    "pagesRun": 41873057899,
+    "testsPassed": 1491,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

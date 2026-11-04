@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 77 — 20261104, PUBLICADA E VERIFICADA
+
+- fQAJIJDeSjtSvdevGCQm: targeted_correction_complete. Distingue ajustes de torque máximo e bivolt do carregador; encurta título sem mudar identidade. Limite: Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Sem torque, capacidade, autonomia, quantidade de baterias ou composição de kit importados.
+- g3QWQpsMAD73Kg7gMUzm: targeted_correction_complete. Explicita acabamento divergente e retira elogios sem fonte, economia e instalação como garantias. Encurta título. Limite: Snapshot local; não confirmado material, acabamento, adaptador ou compatibilidade. Sem teste hidráulico ou orientação de instalação.
+- GhxvMZYaZM60wLsGuNdw: targeted_correction_complete. Retira maior resistência sem teste e generalização de balde todo inox; qualifica capacidade e alcance. Limite: Snapshot local por ID e título, sem manual exato ou código de anúncio explícito. Não acrescenta materiais, limite de enchimento ou instruções de conservação específicos.
+
+Fonte 8ffd263c13ff3cf2ade3c837d1d48bfbb5a3a5d9; geração a31dc02d0c6393c5bfc6b6978be825623a1ae635; sitemap 41872902120, integridade 41872902107, Pages 41873057899: SUCCESS. 1491 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 559 entradas editoriais inalteradas. Preservados 562 IDs/afiliados/campos operacionais e 615 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem77.json.
+
+Totais: {"total":562,"screened_no_change":64,"needs_source":8,"targeted_correction_complete":159,"preserve_prior_review":98,"pending":233}. Próximos pendentes: gNcq5nSqWbfqYi1M9c23 — Lanterna LED Apfer recarregável; GPORGqPOixfgh38bVrXX — Smartphone Motorola Edge 70 Pro 5g - 256gb 24gb (12gb Ram+12gb Ram Boost), 4 Câmeras De 50mp, Tela 1.5k Extreme Amoled 144hz, Bateria 6500 Mah, Ip68/ip69 - Azul Escuro; GQiP9vBIhECa4I5CuzkB — Tênis Flyer Runner Mesh Bdp Puma. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 76 — 20261104, PUBLICADA E VERIFICADA
 
 - fflXJkY0fRQJg8t2QZqn: targeted_correction_complete. Qualifica ruído e autonomia sem teste, distingue carregador de aparelho e retira fonte dita oficial sem comprovação. Encurta título. Limite: Snapshot local por ID e título; sem código de anúncio explícito ou manual exato. Não acrescenta especificações, tempo medido, alimentação direta ou compatibilidade de bateria.
