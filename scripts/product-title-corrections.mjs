@@ -8,6 +8,29 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['k0fHNRurzCmYEdcHcn1V', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB5075784673',
+    model:/^(?:Pistola Fixação Finca Pino Ação Direta Pregos Epi Maleta Pinador Pregador Grampeador Rebitador De Prego Pressão Ferramenta Para Drywal Gesso Concreto Aço Parede|Ferramenta finca-pino anunciada — modelo e compatibilidade a confirmar)$/i,
+    correct:'Ferramenta finca-pino anunciada — modelo e compatibilidade a confirmar',
+    summary:'A oferta apresenta uma ferramenta anunciada como finca-pino de ação direta. O cadastro não identifica marca, modelo técnico ou manual específico suficiente para confirmar seu sistema e suas aplicações. A lista de concreto, aço, gesso e drywall no título não comprova compatibilidade com qualquer superfície, e não a mantemos como garantia de fixação. Termos como grampeador, rebitador e pregador não demonstram que a ferramenta execute todas essas funções. Confira identificação, documentação e conteúdo exato do kit antes de escolher; EPI e maleta no título não confirmam certificação ou suficiência dos acessórios. Não testamos resistência da fixação, eficiência ou segurança e não fornecemos instruções de acionamento, carga ou escolha de pinos sem documentação específica.',
+    positiveNotes:['Oferta identificada como ferramenta finca-pino; identificação técnica e kit precisam ser confirmados.'],
+    negativeNotes:['Compatibilidade com superfícies e funções adicionais não comprovadas por manual específico.', 'Sem teste de fixação ou segurança; menção a EPI não comprova certificação ou proteção suficiente.'],suppressRating:true,
+  }],
+  ['k82L2iy2Q6giFdCHVbSg', {
+    syncInformationalSchema:true, expectedListing:'MLB6889668614',
+    model:/^Fritadeira Elétrica Air Fryer WAP Barbecue Heat WC AB1030$/i,
+    summary:'A WAP Barbecue Heat WC AB1030 combina painel digital e oito funções pré-programadas, segundo a fabricante. Pode interessar a quem procura diferentes modos de preparo no mesmo aparelho. A capacidade total informada é de 6,6 litros, enquanto a ficha técnica da marca informa cesto de 3,2 litros: os dois valores não representam o mesmo espaço de uso. A WAP informa ajuste até 230 °C, quatro níveis de grelha e revestimento Graystone; os limites variam conforme a função e devem ser conferidos no manual. Há referências distintas para 127 V e 220 V; isso não deve ser interpretado como bivolt automático. Confirme a versão da unidade e os acessórios do anúncio. Não testamos uniformidade, resultado de churrasco, aderência do revestimento ou capacidade por receita e não garantimos preparo de qualquer quantidade em uma única rodada.',
+    publicContextUrl:'https://parceiros.wap.ind.br/fritadeira-eletrica-air-fryer-wap-barbecue-heat-wc-ab1030-1/p',
+    positiveNotes:['Painel digital e oito funções documentados pela fabricante para a WC AB1030.'],
+    negativeNotes:['6,6 L totais e 3,2 L de cesto são medidas diferentes; avaliar espaço para a receita.', 'Confirmar versão 127 V ou 220 V e limites de cada função; resultados culinários não testados.'],suppressRating:true,
+  }],
+  ['K8hXvUkqAAnbt0Om6wRj', {
+    syncInformationalSchema:true, expectedListing:'MLB6609986264',
+    model:/^Fritadeira Air Fryer Philco 16 Litros Paf16c Preto$/i,
+    summary:'A oferta identifica uma fritadeira air fryer Philco PAF16C preta, com capacidade anunciada de 16 litros. Pode interessar a quem compara aparelhos de maior volume, mas esse número não confirma sozinho a área útil para alimentos ou quantas porções cabem sem sobreposição. O texto anterior associava o tamanho a uma circulação de ar mais eficiente e à dispensa de várias rodadas; não há medição específica nesta ficha que sustente essas garantias. Confira dimensões, acessórios, tensão e capacidade dos recipientes da unidade antes de escolher. O acesso ao manual específico localizado nesta revisão não foi concluído, por isso não acrescentamos funções, potência ou componentes de PAF16A, PAF15C ou outra versão. Não testamos uniformidade, tempo de preparo, consumo ou rendimento por receita.',
+    positiveNotes:['Modelo PAF16C, cor preta e volume anunciado de 16 litros identificados na oferta.'],
+    negativeNotes:['Volume total não determina porções ou dispensa de várias rodadas; espaço útil a confirmar.', 'Manual específico não acessado e desempenho não testado; não importar funções de outros modelos.'],suppressRating:true,
+  }],
   ['jABp2HpfTmQNwXsPgrYQ', {
     syncInformationalSchema:true, expectedListing:'MLB4812143184',
     model:/^Creatina Monohidratada Pura 500g Dark Lab Unidade$/i,

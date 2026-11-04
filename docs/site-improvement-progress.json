@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T22:43:22.759Z",
-  "catalogueGeneratedAt": "2026-11-04T22:41:18.674Z",
+  "updatedAt": "2026-11-04T22:46:08.849Z",
+  "catalogueGeneratedAt": "2026-11-04T22:46:00.733Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -691,7 +691,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 183,
     "preserve_prior_review": 98,
-    "pending": 207
+    "pending": 204,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -3130,6 +3131,24 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "k0fHNRurzCmYEdcHcn1V",
+      "url": "https://rankingdacompra.com.br/produto/k0fHNRurzCmYEdcHcn1V-20260810-1.html",
+      "title": "Ferramenta finca-pino anunciada — modelo e compatibilidade a confirmar",
+      "fingerprint": "0bc4c47bceba011ecfe4c3cfd5630985afb88e8433e6050346142ebd6368cd0a",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira compatibilidade universal e eficiência profissional presumidas; encurta título sem equiparar grampeador/rebitador ou certificar EPI.",
+        "Snapshot sem marca/modelo/manual específico. Não fornece instruções de acionamento, carga, pinos ou aplicação em estruturas; segurança e fixação não testadas."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB77311415?wid=MLB5075784673"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "0UsruHJ405ImvUXyhYgW",
       "url": "https://rankingdacompra.com.br/produto/0UsruHJ405ImvUXyhYgW-20260810-1.html",
       "title": "Fogareiro P/ Camping Pesca Fogão A Gás Portátil 1 Boca",
@@ -3461,12 +3480,19 @@
       "id": "K8hXvUkqAAnbt0Om6wRj",
       "url": "https://rankingdacompra.com.br/produto/K8hXvUkqAAnbt0Om6wRj-20260810-1.html",
       "title": "Fritadeira Air Fryer Philco 16 Litros Paf16c Preto",
-      "fingerprint": "9c5460898e50168e40b89fe47077c97550dfda5e4f7a7ac0734c44fc5971e124",
-      "status": "pending",
+      "fingerprint": "68d5a412e1938f3e881911466ca31dbe9e0f3feacdb3558231d0f569bd1238e8",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira superioridade de fluxo de ar e preparo sem várias rodadas inferidos apenas do volume; mantém modelo e volume anunciados.",
+        "Manual primário exato localizado na busca, mas acesso falhou; sem conteúdo técnico confirmado a partir dele. Não transfere características da PAF16A ou PAF15C."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB66787599?wid=MLB6609986264"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "1VMzq0ovRkap3dGQ7ikC",
@@ -3491,12 +3517,20 @@
       "id": "k82L2iy2Q6giFdCHVbSg",
       "url": "https://rankingdacompra.com.br/produto/k82L2iy2Q6giFdCHVbSg-20260810-1.html",
       "title": "Fritadeira Elétrica Air Fryer WAP Barbecue Heat WC AB1030",
-      "fingerprint": "aa3c4533592749aadf59a478bccb46a4ec1b148f5b2eae096f286ebf3275afab",
-      "status": "pending",
+      "fingerprint": "9b633a94cf287f824140cd3151b5fa2cc09678a2cdba5725b3bc1d931afefeb0",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue capacidade total de 6,6 L e cesto de 3,2 L documentados; ressalva versões de tensão e resultados não testados, preservando dados válidos.",
+        "Fonte da fabricante da WC AB1030 consultada; referências 127/220 distintas não significam bivolt automático. Não promete resultado culinário, quantidade ou resistência medida."
+      ],
+      "sourceLinks": [
+        "https://parceiros.wap.ind.br/fritadeira-eletrica-air-fryer-wap-barbecue-heat-wc-ab1030-1/p",
+        "https://www.mercadolivre.com.br/p/MLB55253153?wid=MLB6889668614"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Q8XN2tGmsU12afIbz1Am",
@@ -6277,17 +6311,6 @@
       "url": "https://rankingdacompra.com.br/produto/mhz9cN2MnCkxuSW5OPlv-20260810-1.html",
       "title": "Pistola Fixação Finca Pino Ação Direta",
       "fingerprint": "b1feb4af7acd3b85c68207859debb345644c7de91ce74453ac1c5fcfb38a3db8",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "k0fHNRurzCmYEdcHcn1V",
-      "url": "https://rankingdacompra.com.br/produto/k0fHNRurzCmYEdcHcn1V-20260810-1.html",
-      "title": "Pistola Fixação Finca Pino Ação Direta Pregos Epi Maleta Pinador Pregador Grampeador Rebitador De Prego Pressão Ferramenta Para Drywal Gesso Concreto Aço Parede",
-      "fingerprint": "e63480582a3cb5b134d75668611ffc31331e8c40782d3b043c5598f5e9ed9d84",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -11627,5 +11650,14 @@
     "testsPassed": 1509,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage87": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "K8hXvUkqAAnbt0Om6wRj",
+      "k0fHNRurzCmYEdcHcn1V",
+      "k82L2iy2Q6giFdCHVbSg"
+    ],
+    "newDeepReviews": 0
   }
 }
