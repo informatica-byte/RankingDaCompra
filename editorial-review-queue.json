@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T23:15:04.524Z",
+  "generatedAt": "2026-11-04T23:22:33.600Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 195
+    "screening": 192
   },
   "items": [
     {
@@ -34,27 +34,6 @@
       "title": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
       "url": "https://rankingdacompra.com.br/produto/jdxZ0gYEI0XGOPYbWh78-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "LDzmbLcaHUVNztsXyp52",
-      "title": "Câmera de Segurança Wi-Fi iCSee/Yoosee A28B 4K Dupla Lente Visão Noturna Colorida Full Hd Externa Prova D'água Ip66 Sensor Movimento Woosh",
-      "url": "https://rankingdacompra.com.br/produto/LDzmbLcaHUVNztsXyp52-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "lfGwhT6zO5b7LOPvqkuL",
-      "title": "Smartphone Motorola Edge 60 5g - 512gb 12gb Ram+12gb Ram",
-      "url": "https://rankingdacompra.com.br/produto/lfGwhT6zO5b7LOPvqkuL-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "LQ12PkH1sbM7Uu0geBQf",
-      "title": "Lava E Seca Samsung Wd11m Com Digital Inverter Inox 11kg Cor Inox look",
-      "url": "https://rankingdacompra.com.br/produto/LQ12PkH1sbM7Uu0geBQf-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

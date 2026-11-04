@@ -674,8 +674,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T23:17:13.555Z",
-  "catalogueGeneratedAt": "2026-11-04T23:15:04.524Z",
+  "updatedAt": "2026-11-04T23:22:42.025Z",
+  "catalogueGeneratedAt": "2026-11-04T23:22:33.600Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -691,7 +691,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 193,
     "preserve_prior_review": 98,
-    "pending": 195
+    "pending": 192,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -1788,17 +1789,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "LDzmbLcaHUVNztsXyp52",
-      "url": "https://rankingdacompra.com.br/produto/LDzmbLcaHUVNztsXyp52-20260810-1.html",
-      "title": "Câmera de Segurança Wi-Fi iCSee/Yoosee A28B 4K Dupla Lente Visão Noturna Colorida Full Hd Externa Prova D'água Ip66 Sensor Movimento Woosh",
-      "fingerprint": "9c02d555666620b254e4bc02c3c0848a081d968a477f8661d6f5921e4b7cbb06",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB4330065589",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4330065589-20260810-1.html",
       "title": "Câmera de segurança Wi-Fi PTZ com dupla lente — resolução a confirmar",
@@ -1946,6 +1936,24 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3263626856?pdp_filters=item_id%3AMLB5460277774",
         "https://www.ddpai.com/pages/n1-dual-dash-cam"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "LDzmbLcaHUVNztsXyp52",
+      "url": "https://rankingdacompra.com.br/produto/LDzmbLcaHUVNztsXyp52-20260810-1.html",
+      "title": "Câmera Wi-Fi A28B Woosh anunciada — resolução e aplicativo a confirmar",
+      "fingerprint": "b99d85bb93f865876a4cc4db402cbdfb7ccd190141a165e3c28a3a77a926173e",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Sinaliza 4K/Full HD e aplicativos não confirmados; retira cobertura total e proteção externa como garantias. Encurta título.",
+        "Snapshot sem manual exato, resolução por lente ou proteção certificada confirmados. Não acrescenta armazenamento, assinatura, frequência Wi-Fi ou instruções de instalação."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB60074213?wid=MLB6972453978"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -4763,12 +4771,20 @@
       "id": "LQ12PkH1sbM7Uu0geBQf",
       "url": "https://rankingdacompra.com.br/produto/LQ12PkH1sbM7Uu0geBQf-20260810-1.html",
       "title": "Lava E Seca Samsung Wd11m Com Digital Inverter Inox 11kg Cor Inox look",
-      "fingerprint": "3fba748532e7d0d28a916b1e13c1005f6a5d07a8599981d1f9fa671e7651ee18",
-      "status": "pending",
+      "fingerprint": "eb115b8f02f07e923521b59cb0e9548abc0136d9b6e87cedaa3a7b76a2fa63c0",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Explicita limites de carga dos ciclos rápidos e separa capacidade de lavagem/secagem; retira economia, silêncio e esterilização como garantias universais.",
+        "Página primária WD11M e condições dos ciclos consultadas; código completo/tensão da unidade não confirmados. Sem instruções elétricas, medição de consumo ou garantia de higienização de toda carga."
+      ],
+      "sourceLinks": [
+        "https://www.samsung.com/br/washers-and-dryers/wd11m/",
+        "https://www.mercadolivre.com.br/p/MLB19055866?wid=MLB3798032968"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4644707253",
@@ -5306,6 +5322,25 @@
       "workNotes": [],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/mop-esfregao-giratorio-condor-balde-inox-13-litros-refil-microfibra-cabo-longo-14-metros/p/MLB47285674?pdp_filters=item_id%3AMLB7674543452"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "lfGwhT6zO5b7LOPvqkuL",
+      "url": "https://rankingdacompra.com.br/produto/lfGwhT6zO5b7LOPvqkuL-20260810-1.html",
+      "title": "Motorola Edge 60 5G 512 GB — 12 GB de RAM e até 12 GB de RAM Boost",
+      "fingerprint": "8f67ad95ff52e064304e7d12dc2d25b27d3758a504bb47ab37f8d35fe0c7537e",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue 12 GB físicos de até 12 GB RAM Boost, sem somar como 24 GB físicos; qualifica limites de proteção e dados não testados.",
+        "Fonte primária da configuração/Boost consultada; sem ensaio ou autenticação da unidade. Não transfere recursos de Pro/Fusion, não garante autonomia ou impermeabilidade."
+      ],
+      "sourceLinks": [
+        "https://colaborador.motorola.com.br/smartphone-motorola-edge-60-5g/p?idsku=1656",
+        "https://www.mercadolivre.com.br/p/MLB48930797?wid=MLB5363840668"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -7314,17 +7349,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "lfGwhT6zO5b7LOPvqkuL",
-      "url": "https://rankingdacompra.com.br/produto/lfGwhT6zO5b7LOPvqkuL-20260810-1.html",
-      "title": "Smartphone Motorola Edge 60 5g - 512gb 12gb Ram+12gb Ram",
-      "fingerprint": "19d5849cb9fc4b12ec48adc2219a18751960a2d66c7719454d26374c7b45e714",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "uRfZSbUKT8yjArcSlGPL",
@@ -11882,5 +11906,14 @@
     "testsPassed": 1513,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage91": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "LDzmbLcaHUVNztsXyp52",
+      "LQ12PkH1sbM7Uu0geBQf",
+      "lfGwhT6zO5b7LOPvqkuL"
+    ],
+    "newDeepReviews": 0
   }
 }

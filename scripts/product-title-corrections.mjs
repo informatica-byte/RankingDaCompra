@@ -8,6 +8,31 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['LDzmbLcaHUVNztsXyp52', {
+    syncInformationalSchema:true, allowTruncatedHeading:true, expectedListing:'MLB6972453978',
+    model:/^(?:Câmera de Segurança Wi-Fi iCSee\/Yoosee A28B 4K Dupla Lente Visão Noturna Colorida Full Hd Externa Prova D'água Ip66 Sensor Movimento Woosh|Câmera Wi-Fi A28B Woosh anunciada — resolução e aplicativo a confirmar)$/i,
+    correct:'Câmera Wi-Fi A28B Woosh anunciada — resolução e aplicativo a confirmar',
+    summary:'A oferta identifica uma câmera Wi-Fi anunciada como A28B Woosh de dupla lente. O título usa 4K e Full HD, sem esclarecer qual resolução corresponde a cada lente ou ao arquivo gravado; não tratamos essas expressões como comprovação de resolução nativa. Confirme identificação, aplicativo e especificações no manual da unidade: mencionar iCSee e Yoosee não garante compatibilidade com ambos. Dupla lente ou movimento do aparelho também não comprovam visão simultânea de 360 graus sem pontos cegos. Áudio bidirecional, rastreamento e visão noturna são características anunciadas, não testes da equipe. A indicação IP66 não foi verificada em documentação específica e não é apresentada como impermeabilidade ou garantia de uso externo permanente. Não testamos imagem, detecção, conexão ou resistência ao tempo.',
+    positiveNotes:['Dupla lente e conexão Wi-Fi informadas na oferta; confirmar modelo e aplicativo.'],
+    negativeNotes:['4K e Full HD coexistem no título sem resolução nativa esclarecida.', 'Aplicativos, cobertura, detecção e proteção IP66 não verificados por teste ou manual específico.'],suppressRating:true,
+  }],
+  ['lfGwhT6zO5b7LOPvqkuL', {
+    syncInformationalSchema:true, expectedListing:'MLB5363840668',
+    model:/^(?:Smartphone Motorola Edge 60 5g - 512gb 12gb Ram\+12gb Ram|Motorola Edge 60 5G 512 GB — 12 GB de RAM e até 12 GB de RAM Boost)$/i,
+    correct:'Motorola Edge 60 5G 512 GB — 12 GB de RAM e até 12 GB de RAM Boost',
+    summary:'A oferta identifica o Motorola Edge 60 5G com 512 GB de armazenamento e 12 GB de RAM. Os 12 GB adicionais mencionados no anúncio correspondem ao RAM Boost: a Motorola distingue memória física de expansão que utiliza armazenamento, portanto não apresentamos a soma como 24 GB de RAM física. Pode interessar a quem procura essa configuração, mas o espaço disponível ao usuário e o funcionamento do Boost dependem da versão e do sistema. Tela pOLED de 6,7 polegadas, 120 Hz, processador Dimensity 7300 e bateria de 5.200 mAh são dados do cadastro, não medições da equipe. As classificações IP68/IP69 não equivalem a impermeabilidade sem limites ou garantia contra qualquer dano por água; confira as condições da versão específica. Não testamos desempenho, autonomia, câmeras ou resistência e não transferimos recursos do Edge 60 Pro ou Fusion.',
+    publicContextUrl:'https://colaborador.motorola.com.br/smartphone-motorola-edge-60-5g/p?idsku=1656',
+    positiveNotes:['Configuração anunciada de 512 GB e 12 GB de RAM, com RAM Boost distinguido da memória física.'],
+    negativeNotes:['RAM Boost utiliza armazenamento e não equivale a RAM física adicional.', 'Proteção, autonomia e desempenho sujeitos às condições da versão; sem teste próprio ou garantia de impermeabilidade.'],suppressRating:true,
+  }],
+  ['LQ12PkH1sbM7Uu0geBQf', {
+    syncInformationalSchema:true, expectedListing:'MLB3798032968',
+    model:/^Lava E Seca Samsung Wd11m Com Digital Inverter Inox 11kg Cor Inox look$/i,
+    summary:'A oferta identifica uma lava e seca Samsung WD11M Inox Look, com capacidades anunciadas de 11 kg para lavagem e 7 kg para secagem. As capacidades são diferentes e não significam lavar e secar 11 kg no mesmo ciclo. Pode interessar a quem busca as duas funções no mesmo aparelho, desde que confira código completo, tensão, dimensões e requisitos do local. A Samsung limita o ciclo rápido de 15 minutos a peças levemente sujas em cargas menores que 2 kg, e o lava e seca de 59 minutos a cargas menores que 1 kg nas condições indicadas pela marca. Esses tempos não são promessa para qualquer carga. A menção a esterilização a seco se refere ao Air Wash e a ensaios específicos divulgados pela fabricante, não a toda lavagem ou garantia de eliminação de todos os agentes. Não medimos ruído, consumo, secagem ou preservação dos tecidos; Digital Inverter e Diamond Drum não são garantias de resultado individual.',
+    publicContextUrl:'https://www.samsung.com/br/washers-and-dryers/wd11m/',
+    positiveNotes:['Lavagem e secagem no mesmo aparelho; capacidades anunciadas de 11 kg e 7 kg diferenciadas.'],
+    negativeNotes:['Ciclos de 15/59 minutos têm limites de carga e condições específicas, não capacidade total.', 'Ruído, consumo e resultado de higienização ou cuidado dos tecidos não testados pela equipe.'],suppressRating:true,
+  }],
   ['kNmf4r3kzbgWX6Fz3Y0x', {
     syncInformationalSchema:true, expectedListing:'MLB4213547319',
     model:/^Chuveiro Lorenzetti Bella Ducha 4T Ultra para Parede$/i,
