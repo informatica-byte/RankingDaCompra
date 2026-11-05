@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T09:52:19.733Z",
+  "generatedAt": "2026-11-05T10:11:06.731Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 154
+    "screening": 151
   },
   "items": [
     {
@@ -48,27 +48,6 @@
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5386749261",
-      "title": "Kit Gamer Teclado E Mouse Led Rgb Usb Para Pc Computador",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5386749261-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5389928608",
-      "title": "Pc Computador Cpu Intel I5 10400, Nvme 500gb, 16gb Ram, 500w",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5389928608-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5408593708",
-      "title": "Tênis Casual Kappa Zenit Masculino Unissex Conforto",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5408593708-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

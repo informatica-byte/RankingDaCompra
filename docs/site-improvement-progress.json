@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T09:54:00.475Z",
-  "catalogueGeneratedAt": "2026-11-05T09:52:19.733Z",
+  "updatedAt": "2026-11-05T10:11:15.987Z",
+  "catalogueGeneratedAt": "2026-11-05T10:11:06.731Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 229,
     "preserve_prior_review": 98,
-    "pending": 154
+    "pending": 151,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4612,12 +4613,19 @@
       "id": "mlMLB5386749261",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5386749261-20260810-1.html",
       "title": "Kit Gamer Teclado E Mouse Led Rgb Usb Para Pc Computador",
-      "fingerprint": "851b9a202855fce2bcac430f6e56637fbb59ff654c74b94c386dc59b464cca6a",
-      "status": "pending",
+      "fingerprint": "4d90e2a401ac955d3038805141a8763e649cfb509aacf43a493ae3583c41ef7a",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira a promessa de adequação a qualquer jogo.",
+        "Dados locais do anúncio, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5473404077"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5299235149",
@@ -6223,17 +6231,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "mlMLB5389928608",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5389928608-20260810-1.html",
-      "title": "Pc Computador Cpu Intel I5 10400, Nvme 500gb, 16gb Ram, 500w",
-      "fingerprint": "06493c1b9f20b5be9716847e53b59b6b509c5ed1b5ac79aa3b5be43c0cfbf1bc",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB7746533434",
       "url": "https://rankingdacompra.com.br/produto/mlMLB7746533434-20260810-1.html",
       "title": "Pc Gamer Completo I7 16gb Ssd512gb Video 4gb Monitor 23 Wifi",
@@ -6264,6 +6261,24 @@
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU746403850?wid=MLB1921632393"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB5389928608",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5389928608-20260810-1.html",
+      "title": "PC Intel Core i5-10400 — 16 GB e NVMe de 500 GB anunciados",
+      "fingerprint": "65407a4e3947060236679531af180a96e9fb267cc5670ca62bfbd4c61b360378",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Esclarece que o Windows informado é de avaliação e delimita o que a oferta confirma sobre os componentes.",
+        "Dados locais do anúncio, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3175552815?pdp_filters=item_id%3AMLB5389928608"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -8017,13 +8032,20 @@
     {
       "id": "mlMLB5408593708",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5408593708-20260810-1.html",
-      "title": "Tênis Casual Kappa Zenit Masculino Unissex Conforto",
-      "fingerprint": "c153ff3c0f19ff706bf26c5f0319e2382d6826d47da3da01b629dfd352d87a36",
-      "status": "pending",
+      "title": "Tênis casual Kappa Zenit",
+      "fingerprint": "205bccc80eb039b1d6c96a1a9fc7105a294c890308583a9c72ed0e661a9cae3c",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Remove a promessa de conforto e distingue código do anúncio de identificação do modelo.",
+        "Dados locais do anúncio, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5408593708-tnis-casual-kappa-zenit-masculino-unissex-conforto-_JM?searchVariation=203864180685"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Z7iMVBFxNAT5eyiMYxwH",
@@ -12794,5 +12816,14 @@
     "testsPassed": 1528,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage105": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB5386749261",
+      "mlMLB5389928608",
+      "mlMLB5408593708"
+    ],
+    "newDeepReviews": 0
   }
 }

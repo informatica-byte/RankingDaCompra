@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correção pontual com base nos dados públicos locais, sem mudar links de afiliados.",
+  "items": [
+    {
+      "id": "mlMLB5386749261",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira a promessa de adequação a qualquer jogo.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5473404077"
+      ],
+      "sourceLimit": "Dados locais do anúncio, sem teste independente."
+    },
+    {
+      "id": "mlMLB5389928608",
+      "decision": "targeted_correction_complete",
+      "reason": "Esclarece que o Windows informado é de avaliação e delimita o que a oferta confirma sobre os componentes.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3175552815?pdp_filters=item_id%3AMLB5389928608"
+      ],
+      "sourceLimit": "Dados locais do anúncio, sem teste independente."
+    },
+    {
+      "id": "mlMLB5408593708",
+      "decision": "targeted_correction_complete",
+      "reason": "Remove a promessa de conforto e distingue código do anúncio de identificação do modelo.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5408593708-tnis-casual-kappa-zenit-masculino-unissex-conforto-_JM?searchVariation=203864180685"
+      ],
+      "sourceLimit": "Dados locais do anúncio, sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
