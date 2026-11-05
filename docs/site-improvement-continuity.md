@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 102 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB4953439757: targeted_correction_complete. Distingue membrana de mecânico e evita confirmar ABNT2 ou compatibilidade universal. Limite: Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas.
+- mlMLB4964975723: targeted_correction_complete. Distingue plano oficial de oferta de terceiro e não garante a ativação ou o prazo. Limite: Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas.
+- mlMLB5136589984: targeted_correction_complete. Registra a divergência de marca e corrige a classificação do número do anúncio. Limite: Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas.
+
+Fonte 501cd5558884a8ccff319bf4f9cca07b64b3baa3; geração 4222c7c260975d84c1924a3877a1e62dac26ed88; sitemap 42001912543, integridade 42001912692, Pages 42001990717: SUCCESS. 1526 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem102.json.
+
+Totais: {"total":564,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":223,"preserve_prior_review":98,"pending":160}. Próximos pendentes: mlMLB5158506809 — Kit 2 Body Splash Masculino Seduction Ocean 200ml Cada; mlMLB5210159957 — Oculos Polarizado De Sol Masculino Casual Pesca Praia Uv400; mlMLB5217026798 — Tenis Masculino Estilo Bota Adventure Nobuck Wonder. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 101 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB4763500131: screened_no_change. A ficha da Nike confirma os dados já registrados, incluindo peso aproximado para tamanho 42 e drop de 10 mm. Limite: Fonte do modelo, sem inspeção da variante ou teste próprio.

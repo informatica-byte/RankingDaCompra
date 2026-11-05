@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB4953439757",
-      "mlMLB4964975723",
-      "mlMLB5136589984",
       "mlMLB5158506809",
       "mlMLB5210159957",
       "mlMLB5217026798",
       "mlMLB5287633095",
-      "mlMLB5299235149"
+      "mlMLB5299235149",
+      "mlMLB5336183061",
+      "mlMLB5386749261",
+      "mlMLB5389928608"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T09:22:18.684Z",
-  "catalogueGeneratedAt": "2026-11-05T09:22:10.121Z",
+  "updatedAt": "2026-11-05T09:25:13.793Z",
+  "catalogueGeneratedAt": "2026-11-05T09:23:17.241Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 564,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 220,
+    "targeted_correction_complete": 223,
     "preserve_prior_review": 98,
-    "pending": 160,
-    "prepared_awaiting_publication": 3
+    "pending": 160
   },
   "items": [
     {
@@ -3720,12 +3719,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4964975723-20260810-1.html",
       "title": "Google AI Pro — oferta de terceiro anuncia 18 meses",
       "fingerprint": "ba87f162f9ac8981a508e743e9331680265b16b635fcf0ab1d5997077dd2f065",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:25:13.758Z",
       "workNotes": [
         "Distingue plano oficial de oferta de terceiro e não garante a ativação ou o prazo.",
-        "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas."
+        "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5499750340?wid=MLB5467769983",
@@ -4622,12 +4622,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4953439757-20260810-1.html",
       "title": "Kit Mobilador Teclado Gamer Rgb 80% Suporte Mouse Hub Cabo",
       "fingerprint": "1a9a05db571a6b2b936ff7a72e891950c72269931be1c9cd9d36de1642790788",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:25:13.758Z",
       "workNotes": [
         "Distingue membrana de mecânico e evita confirmar ABNT2 ou compatibilidade universal.",
-        "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas."
+        "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3131005672?pdp_filters=item_id%3AMLB4953439757"
@@ -8425,12 +8426,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5136589984-20260810-1.html",
       "title": "Tenis Masculino Sapatenis Polo Feet Sapato Casual Promoção",
       "fingerprint": "a6dd11db1556db8d884a7c663ec1d2ece601ad7a94c80b6331c5826c9a953829",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:25:13.758Z",
       "workNotes": [
         "Registra a divergência de marca e corrige a classificação do número do anúncio.",
-        "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas."
+        "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-5136589984"
@@ -12623,12 +12625,44 @@
     "backendWrites": 0
   },
   "triage102": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB4953439757",
       "mlMLB4964975723",
       "mlMLB5136589984"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T09:25:13.758Z",
+    "changedIds": [
+      "mlMLB4953439757",
+      "mlMLB4964975723",
+      "mlMLB5136589984"
+    ],
+    "jointReleaseBatches": [
+      102
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem102.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4953439757",
+        "note": "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas."
+      },
+      {
+        "id": "mlMLB4964975723",
+        "note": "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas."
+      },
+      {
+        "id": "mlMLB5136589984",
+        "note": "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas."
+      }
+    ],
+    "sourceCommit": "501cd5558884a8ccff319bf4f9cca07b64b3baa3",
+    "generatedCommit": "4222c7c260975d84c1924a3877a1e62dac26ed88",
+    "sitemapRun": 42001912543,
+    "integrityRun": 42001912692,
+    "pagesRun": 42001990717,
+    "testsPassed": 1526,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
