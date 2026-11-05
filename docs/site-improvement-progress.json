@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:54:05.595Z",
-  "catalogueGeneratedAt": "2026-11-05T20:52:22.283Z",
+  "updatedAt": "2026-11-05T20:56:19.546Z",
+  "catalogueGeneratedAt": "2026-11-05T20:56:16.365Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -703,11 +703,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 565,
-    "screened_no_change": 75,
+    "screened_no_change": 76,
     "needs_source": 8,
     "targeted_correction_complete": 269,
     "preserve_prior_review": 98,
-    "pending": 115
+    "pending": 112,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -3258,6 +3259,24 @@
       ]
     },
     {
+      "id": "Oelq1fEuR41tSXxHj8cp",
+      "url": "https://rankingdacompra.com.br/produto/Oelq1fEuR41tSXxHj8cp-20260810-1.html",
+      "title": "Extensão elétrica com seis tomadas, USB-A e USB-C anunciados",
+      "fingerprint": "3a150e19eba1bc2a855206692b844b114f84968e0c3968d1b0e02b457b9bda42",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Evita apresentar 2,5 kW como limite seguro sem as condições de uso.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4319551132?pdp_filters=item_id%3AMLB4890245591"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "6C1vEnfqaRRxkR4DIGa6",
       "url": "https://rankingdacompra.com.br/produto/6C1vEnfqaRRxkR4DIGa6-20260810-1.html",
       "title": "Extensão elétrica de 30 m, três tomadas — capacidade a confirmar",
@@ -3276,17 +3295,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "Oelq1fEuR41tSXxHj8cp",
-      "url": "https://rankingdacompra.com.br/produto/Oelq1fEuR41tSXxHj8cp-20260810-1.html",
-      "title": "Extensão Elétrica Tomadas Usb Type-c Bivolt 2m Chave Liga",
-      "fingerprint": "b4cf91558eb67e41c95128d7d265d603e25ec079cdf553bb5a08148985de99bf",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "N3JYVELP3Zqr7KuZYA3n",
@@ -7767,6 +7775,24 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "OADfHMMVftq1AKtGgcaP",
+      "url": "https://rankingdacompra.com.br/produto/OADfHMMVftq1AKtGgcaP-20260810-1.html",
+      "title": "Smart TV AOC Roku de 50″ — 4K UHD anunciado",
+      "fingerprint": "a82704f3be1228d6f704f55ac67301dfca71dd41aefb9ecef3de93f5cf137bda",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira comparação de nitidez baseada apenas no tamanho de tela.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB51202548"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "dMbluI9x5kQ0Gwxg8fOU",
       "url": "https://rankingdacompra.com.br/produto/dMbluI9x5kQ0Gwxg8fOU-20260810-1.html",
       "title": "Smart TV LG 43\"Full HD, Processador A5 Ger6, AI, Alexa e webOS 23 - 43LR6700PSA",
@@ -7798,17 +7824,6 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB55927567?wid=MLB6224960422"
       ]
-    },
-    {
-      "id": "OADfHMMVftq1AKtGgcaP",
-      "url": "https://rankingdacompra.com.br/produto/OADfHMMVftq1AKtGgcaP-20260810-1.html",
-      "title": "Smart Tv Roku Tv 50 7045 4k Uhd Aoc Bivolt",
-      "fingerprint": "b28671822bec625f237c9d81696b5c5d63baddbe3b9f4d5409122225b63f172c",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "H0bw2eYqi6yqdyBF1Ufl",
@@ -8931,11 +8946,16 @@
       "url": "https://rankingdacompra.com.br/produto/of7SzAJ9klKkySvWpSsO-20260810-1.html",
       "title": "Tênis Nike Revolution 8 Masculino",
       "fingerprint": "31e1495c92995836fd4d6fe1fa0faa13dd10216f9a951f5e2c0415c6e17034ca",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-05T20:56:19.549Z",
+      "workNotes": [
+        "A ficha identifica o Nike Revolution 8 masculino sem promessas técnicas que exijam correção.",
+        "Não foram acrescentadas características de outra oferta."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4073266703?wid=MLB4763391693"
+      ]
     },
     {
       "id": "mlMLB4846664026",
@@ -13692,5 +13712,13 @@
     "testsPassed": 1542,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage119": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "OADfHMMVftq1AKtGgcaP",
+      "Oelq1fEuR41tSXxHj8cp"
+    ],
+    "newDeepReviews": 0
   }
 }

@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados públicos locais.",
+  "items": [
+    {
+      "id": "OADfHMMVftq1AKtGgcaP",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira comparação de nitidez baseada apenas no tamanho de tela.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB51202548"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "Oelq1fEuR41tSXxHj8cp",
+      "decision": "targeted_correction_complete",
+      "reason": "Evita apresentar 2,5 kW como limite seguro sem as condições de uso.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4319551132?pdp_filters=item_id%3AMLB4890245591"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "of7SzAJ9klKkySvWpSsO",
+      "decision": "screened_no_change",
+      "reason": "A ficha identifica o Nike Revolution 8 masculino sem promessas técnicas que exijam correção.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4073266703?wid=MLB4763391693"
+      ],
+      "sourceLimit": "Não foram acrescentadas características de outra oferta."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 2,
+    "screenedNoChange": 1,
+    "newDeepReviews": 0
+  }
+}

@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T20:52:22.283Z",
+  "generatedAt": "2026-11-05T20:56:16.365Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 115
+    "screening": 112
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "OADfHMMVftq1AKtGgcaP",
-      "title": "Smart Tv Roku Tv 50 7045 4k Uhd Aoc Bivolt",
-      "url": "https://rankingdacompra.com.br/produto/OADfHMMVftq1AKtGgcaP-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "Oelq1fEuR41tSXxHj8cp",
-      "title": "Extensão Elétrica Tomadas Usb Type-c Bivolt 2m Chave Liga",
-      "url": "https://rankingdacompra.com.br/produto/Oelq1fEuR41tSXxHj8cp-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "of7SzAJ9klKkySvWpSsO",
-      "title": "Tênis Nike Revolution 8 Masculino",
-      "url": "https://rankingdacompra.com.br/produto/of7SzAJ9klKkySvWpSsO-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
