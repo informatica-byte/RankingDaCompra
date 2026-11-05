@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB5626051922",
-      "mlMLB5751316838",
-      "mlMLB5769733060",
       "mlMLB5952869866",
       "mlMLB6118982036",
       "mlMLB6203660830",
       "mlMLB6208948636",
-      "mlMLB6619764606"
+      "mlMLB6619764606",
+      "mlMLB6655583300",
+      "mlMLB6666191918",
+      "mlMLB6778555692"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T10:19:50.976Z",
-  "catalogueGeneratedAt": "2026-11-05T10:19:42.063Z",
+  "updatedAt": "2026-11-05T10:22:18.605Z",
+  "catalogueGeneratedAt": "2026-11-05T10:20:50.649Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,9 +705,8 @@
     "total": 564,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 232,
+    "targeted_correction_complete": 235,
     "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 3,
     "pending": 148
   },
   "items": [
@@ -980,12 +979,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5751316838-20260810-1.html",
       "title": "Asus Vivobook 15 X1504VA-NJ1740W — Core i5, 8 GB e SSD de 512 GB",
       "fingerprint": "b0b5cffce75d9bc7df32197bdb463bdd40bca1b3fc3493c7f66c8da4dcfc2109",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T10:22:18.575Z",
       "workNotes": [
         "Remove promessa de fluidez e explicita a variante anunciada.",
-        "Dados locais do anúncio, sem teste independente."
+        "Dados locais do anúncio, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB48549236?wid=MLB5751316838"
@@ -5626,12 +5626,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5626051922-20260810-1.html",
       "title": "Mouse sem fio Titorion — 12.000 DPI anunciados",
       "fingerprint": "f943853fda657e38285f859e4ea2b60dcdfb28fc1f98a3c66fe9214acc020b4c",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T10:22:18.575Z",
       "workNotes": [
         "Atribui resolução, taxa e autonomia ao anúncio.",
-        "Dados locais do anúncio, sem teste independente."
+        "Dados locais do anúncio, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB53871685?wid=MLB5626051922"
@@ -6687,12 +6688,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5769733060-20260810-1.html",
       "title": "Positivo Vision C15M — Celeron N4500, 4 GB e 128 GB eMMC",
       "fingerprint": "76a313ea7eb83d6de25931c0726f3e6c175024f57cf0d040c59486042da7f9e3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T10:22:18.575Z",
       "workNotes": [
         "Destaca o tipo de armazenamento sem inferir desempenho ou possibilidade de expansão.",
-        "Dados locais do anúncio, sem teste independente."
+        "Dados locais do anúncio, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB54103769?wid=MLB5769733060"
@@ -12883,12 +12885,44 @@
     "backendWrites": 0
   },
   "triage106": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB5626051922",
       "mlMLB5751316838",
       "mlMLB5769733060"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T10:22:18.575Z",
+    "changedIds": [
+      "mlMLB5626051922",
+      "mlMLB5751316838",
+      "mlMLB5769733060"
+    ],
+    "jointReleaseBatches": [
+      106
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem106.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB5626051922",
+        "note": "Dados locais do anúncio, sem teste independente."
+      },
+      {
+        "id": "mlMLB5751316838",
+        "note": "Dados locais do anúncio, sem teste independente."
+      },
+      {
+        "id": "mlMLB5769733060",
+        "note": "Dados locais do anúncio, sem teste independente."
+      }
+    ],
+    "sourceCommit": "246e8c4f7260dbb1ffae33ef3f7e3ba8c1b6eb0f",
+    "generatedCommit": "0afeea5d95b8efdf8a7d510fdbb8d5fedf2e5e8b",
+    "sitemapRun": 42009912578,
+    "integrityRun": 42009912527,
+    "pagesRun": 42009984270,
+    "testsPassed": 1530,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

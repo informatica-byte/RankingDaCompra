@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 106 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB5626051922: targeted_correction_complete. Atribui resolução, taxa e autonomia ao anúncio. Limite: Dados locais do anúncio, sem teste independente.
+- mlMLB5751316838: targeted_correction_complete. Remove promessa de fluidez e explicita a variante anunciada. Limite: Dados locais do anúncio, sem teste independente.
+- mlMLB5769733060: targeted_correction_complete. Destaca o tipo de armazenamento sem inferir desempenho ou possibilidade de expansão. Limite: Dados locais do anúncio, sem teste independente.
+
+Fonte 246e8c4f7260dbb1ffae33ef3f7e3ba8c1b6eb0f; geração 0afeea5d95b8efdf8a7d510fdbb8d5fedf2e5e8b; sitemap 42009912578, integridade 42009912527, Pages 42009984270: SUCCESS. 1530 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem106.json.
+
+Totais: {"total":564,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":235,"preserve_prior_review":98,"pending":148}. Próximos pendentes: mlMLB5952869866 — Escova Dental Oralgos Db781 Cs 4000 Cerdas Cores Variadas; mlMLB6118982036 — Kit De Sobrevivência De Emergência De Acampamento Aventura; mlMLB6203660830 — Kit 4 Shorts 2 Em 1 Duplo Dryfit Masculino Compressão Térmic. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 105 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB5386749261: targeted_correction_complete. Retira a promessa de adequação a qualquer jogo. Limite: Dados locais do anúncio, sem teste independente.
