@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB7748620676",
-      "mlMLB7752259240",
-      "mlMLB7870098964",
       "mlMLB7871750870",
       "mWlmlmg15okWqGyIc5bh",
       "n4IIyDvWZZGMKhBisDSq",
       "N6932yKNTXnAJ98cz9Eo",
-      "N9EnpkbyJeTRuSriAhFn"
+      "N9EnpkbyJeTRuSriAhFn",
+      "NfQ2YF7qf3SL1oehasTi",
+      "nfzTOT5XTvnh8Q8DyLvb",
+      "nkBZlP0jQEwoMIj6VDbG"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:24:44.892Z",
-  "catalogueGeneratedAt": "2026-11-05T20:24:42.855Z",
+  "updatedAt": "2026-11-05T20:28:14.865Z",
+  "catalogueGeneratedAt": "2026-11-05T20:26:28.987Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 254,
+    "targeted_correction_complete": 257,
     "preserve_prior_review": 98,
-    "pending": 127,
-    "prepared_awaiting_publication": 3
+    "pending": 127
   },
   "items": [
     {
@@ -4412,12 +4411,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB7870098964-20260810-1.html",
       "title": "Kit anunciado com três bonecos: Hulk, Homem-Aranha e Capitã",
       "fingerprint": "e2bb8365109ed131d17e1df7110ca3a1e1e4441332ada1b5bd6a0e9a98a091dd",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:28:14.843Z",
       "workNotes": [
         "Separa as alturas anunciadas e não presume articulação ou licenciamento de todo o kit.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5617346059?pdp_filters=item_id%3AMLB7870098964"
@@ -4796,12 +4796,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB7752259240-20260810-1.html",
       "title": "Kit Starlink Mini com dois suportes e cabo anunciados",
       "fingerprint": "a496cd3c4914f123a7b20b1c967f0b33f74300d783bf772b528bb3de46a00703",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:28:14.843Z",
       "workNotes": [
         "Substitui a promessa de kit completo pela lista anunciada e não trata o identificador da etiqueta como prova de homologação.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB2110254597?wid=MLB7752259240"
@@ -6566,12 +6567,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB7748620676-20260810-1.html",
       "title": "Perfume masculino His Confession — 100 mL anunciados",
       "fingerprint": "78a2c6b439ca7a29ee6f27cbaff225c4cf69192d1d1d803642120306400f9ea0",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:28:14.843Z",
       "workNotes": [
         "Retira a afirmação de autenticidade do título e sinaliza as alegações não verificadas.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB78627840?wid=MLB7748620676"
@@ -13388,12 +13390,44 @@
     "backendWrites": 0
   },
   "triage114": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB7748620676",
       "mlMLB7752259240",
       "mlMLB7870098964"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T20:28:14.843Z",
+    "changedIds": [
+      "mlMLB7748620676",
+      "mlMLB7752259240",
+      "mlMLB7870098964"
+    ],
+    "jointReleaseBatches": [
+      114
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem114.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB7748620676",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "mlMLB7752259240",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "mlMLB7870098964",
+        "note": "Dados locais da oferta, sem teste independente."
+      }
+    ],
+    "sourceCommit": "6dd5ff261c32e567b717c7525954b1beac5d4abb",
+    "generatedCommit": "4728b4df35f9cbf848b0e99b7833e33cbb24ebd9",
+    "sitemapRun": 42103354425,
+    "integrityRun": 42103354456,
+    "pagesRun": 42103438808,
+    "testsPassed": 1537,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

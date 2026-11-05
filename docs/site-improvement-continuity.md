@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 114 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB7748620676: targeted_correction_complete. Retira a afirmação de autenticidade do título e sinaliza as alegações não verificadas. Limite: Dados locais da oferta, sem teste independente.
+- mlMLB7752259240: targeted_correction_complete. Substitui a promessa de kit completo pela lista anunciada e não trata o identificador da etiqueta como prova de homologação. Limite: Dados locais da oferta, sem teste independente.
+- mlMLB7870098964: targeted_correction_complete. Separa as alturas anunciadas e não presume articulação ou licenciamento de todo o kit. Limite: Dados locais da oferta, sem teste independente.
+
+Fonte 6dd5ff261c32e567b717c7525954b1beac5d4abb; geração 4728b4df35f9cbf848b0e99b7833e33cbb24ebd9; sitemap 42103354425, integridade 42103354456, Pages 42103438808: SUCCESS. 1537 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem114.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":257,"preserve_prior_review":98,"pending":127}. Próximos pendentes: mlMLB7871750870 — Microfone Lapela A'Gold MCF-38D Sem Fio para iPhone e Android com 2 Microfones; mWlmlmg15okWqGyIc5bh — Tênis Kappa Pulse Rx Unissex Corrida Conforto; n4IIyDvWZZGMKhBisDSq — Lavadora De Alta Pressão Profissional Wap 4100 W2 420l/h Motor De Indução 1650psi 1500w 127V. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 113 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB7304557578: targeted_correction_complete. Delimita a compatibilidade anunciada e retira garantias sobre fixação e funcionamento das portas. Limite: Dados locais da oferta, sem teste independente.
