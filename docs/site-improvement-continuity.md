@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 109 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB6208948636: targeted_correction_complete. Corrige título truncado e retira promessa de conforto. Limite: Dados locais da oferta, sem teste independente.
+- mlMLB6619764606: targeted_correction_complete. Separa conexão USB dos recursos e não interpreta os 360 graus como captação panorâmica. Limite: Dados locais da oferta, sem teste independente.
+- mlMLB6655583300: targeted_correction_complete. Qualifica vazão e peso como dados da oferta e não confunde vazão com pressão. Limite: Dados locais da oferta, sem teste independente.
+
+Fonte d5acb02b9eb6a6753512d3856e4186a1df10dc93; geração 98bc556156d0c7907501aa9a063624fba6d3314a; sitemap 42058670332, integridade 42058670211, Pages 42058778770: SUCCESS. 1532 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem109.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":242,"preserve_prior_review":98,"pending":142}. Próximos pendentes: mlMLB6666191918 — Computador Completo Top Intel Core i7 4770, 16GB RAM, SSD 512GB, Bivolt, Preto, Windows 10 Pro, Monitor 23" Full HD - BluePC CD2E-0135TO; mlMLB6778555692 — SSD Interno PRODRIVE 240GB 2.5" SATA III PROSATA301/240G; mlMLB6785015658 — Perfume Arabe Vulcan Feu EDP 100ML Unisex com NF. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 108 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB4604968203: targeted_correction_complete. Remove redundâncias, corrige título cortado e distingue o armazenamento anunciado de expansão não confirmada. Limite: Dados locais da oferta, sem teste independente.

@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB6208948636",
-      "mlMLB6619764606",
-      "mlMLB6655583300",
       "mlMLB6666191918",
       "mlMLB6778555692",
       "mlMLB6785015658",
       "mlMLB6794388344",
-      "mlMLB6837462690"
+      "mlMLB6837462690",
+      "mlMLB6918814082",
+      "mlMLB6989366460",
+      "mlMLB7011230810"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T15:45:54.408Z",
-  "catalogueGeneratedAt": "2026-11-05T15:45:50.466Z",
+  "updatedAt": "2026-11-05T15:50:22.461Z",
+  "catalogueGeneratedAt": "2026-11-05T15:48:33.822Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 239,
+    "targeted_correction_complete": 242,
     "preserve_prior_review": 98,
-    "pending": 142,
-    "prepared_awaiting_publication": 3
+    "pending": 142
   },
   "items": [
     {
@@ -5021,12 +5020,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6655583300-20260810-1.html",
       "title": "Lavadora Chiaperini LJ14L — vazão anunciada de até 14 L/min",
       "fingerprint": "79a3e56125153deab7cfced34673ff29153267ba9b74d4673269b90e2798fd25",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T15:50:22.430Z",
       "workNotes": [
         "Qualifica vazão e peso como dados da oferta e não confunde vazão com pressão.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB55754694?wid=MLB6655583300"
@@ -8140,12 +8140,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6208948636-20260810-1.html",
       "title": "Tênis Converse CT2834 feminino — rosa, segundo o anúncio",
       "fingerprint": "a4838e007d96b6fe792bf5aed6702bec16d9ab09efcda3ec3ba938c89eecd135",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T15:50:22.430Z",
       "workNotes": [
         "Corrige título truncado e retira promessa de conforto.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3401733117?pdp_filters=item_id%3AMLB6208948644"
@@ -9316,12 +9317,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6619764606-20260810-1.html",
       "title": "Webcam USB com microfone — 1080p anunciados",
       "fingerprint": "c7acbbb32da31a2c5f9e90ff167ddb31777692371f626cac7329c4b2e13ef734",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T15:50:22.430Z",
       "workNotes": [
         "Separa conexão USB dos recursos e não interpreta os 360 graus como captação panorâmica.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3907288120?pdp_filters=item_id%3AMLB6619764606"
@@ -13061,12 +13063,44 @@
     "backendWrites": 0
   },
   "triage109": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB6208948636",
       "mlMLB6619764606",
       "mlMLB6655583300"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T15:50:22.430Z",
+    "changedIds": [
+      "mlMLB6208948636",
+      "mlMLB6619764606",
+      "mlMLB6655583300"
+    ],
+    "jointReleaseBatches": [
+      109
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem109.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB6208948636",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "mlMLB6619764606",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "mlMLB6655583300",
+        "note": "Dados locais da oferta, sem teste independente."
+      }
+    ],
+    "sourceCommit": "d5acb02b9eb6a6753512d3856e4186a1df10dc93",
+    "generatedCommit": "98bc556156d0c7907501aa9a063624fba6d3314a",
+    "sitemapRun": 42058670332,
+    "integrityRun": 42058670211,
+    "pagesRun": 42058778770,
+    "testsPassed": 1532,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
