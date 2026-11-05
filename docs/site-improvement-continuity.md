@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 108 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB4604968203: targeted_correction_complete. Remove redundâncias, corrige título cortado e distingue o armazenamento anunciado de expansão não confirmada. Limite: Dados locais da oferta, sem teste independente.
+
+Fonte bd64911eb8fa5748c105da054f08164a6a33a71e; geração d9f45208d6c46d5752a9f5ba776eaec6709c6ce6; sitemap 42057551874, integridade 42057550995, Pages 42057652679: SUCCESS. 1531 testes, validate-site e invariantes aprovados. 1 fichas publicadas HTTP200; 564 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 2 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem108.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":239,"preserve_prior_review":98,"pending":145}. Próximos pendentes: mlMLB6208948636 — Tênis Converse Feminino Taylor Ct2834 Curto T; mlMLB6619764606 — Webcam 1080p 2mp Full Hd Alta Resolução Com Microfone Usb; mlMLB6655583300 — Lavadora Alta Pressão Portátil Chiaperini Lj14l Cor Azul E Preto. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 107 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB5952869866: targeted_correction_complete. Retira indicação de saúde não validada e distingue quantidade de unidades de contagem de cerdas. Limite: Dados locais do anúncio, sem teste independente.

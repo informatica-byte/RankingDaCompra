@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB4604968203",
       "mlMLB6208948636",
       "mlMLB6619764606",
       "mlMLB6655583300",
       "mlMLB6666191918",
       "mlMLB6778555692",
       "mlMLB6785015658",
-      "mlMLB6794388344"
+      "mlMLB6794388344",
+      "mlMLB6837462690"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T15:39:51.094Z",
-  "catalogueGeneratedAt": "2026-11-05T15:39:45.523Z",
+  "updatedAt": "2026-11-05T15:43:23.998Z",
+  "catalogueGeneratedAt": "2026-11-05T15:41:54.826Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 238,
+    "targeted_correction_complete": 239,
     "preserve_prior_review": 98,
-    "pending": 145,
-    "prepared_awaiting_publication": 1
+    "pending": 145
   },
   "items": [
     {
@@ -6696,12 +6695,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4604968203-20260810-1.html",
       "title": "Positivo Duo C8128E — 2 em 1 com 8 GB e 128 GB eMMC",
       "fingerprint": "575dfbf961a23d464a4bd5ec110d0debd38d46a244411314cfa47e8dd4cb35e0",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T15:43:23.961Z",
       "workNotes": [
         "Remove redundâncias, corrige título cortado e distingue o armazenamento anunciado de expansão não confirmada.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB75680260?wid=MLB4604968203"
@@ -13010,10 +13010,32 @@
     "backendWrites": 0
   },
   "triage108": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB4604968203"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T15:43:23.961Z",
+    "changedIds": [
+      "mlMLB4604968203"
+    ],
+    "jointReleaseBatches": [
+      108
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem108.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4604968203",
+        "note": "Dados locais da oferta, sem teste independente."
+      }
+    ],
+    "sourceCommit": "bd64911eb8fa5748c105da054f08164a6a33a71e",
+    "generatedCommit": "d9f45208d6c46d5752a9f5ba776eaec6709c6ce6",
+    "sitemapRun": 42057551874,
+    "integrityRun": 42057550995,
+    "pagesRun": 42057652679,
+    "testsPassed": 1531,
+    "localMobileChecks": 2,
+    "backendWrites": 0
   }
 }
