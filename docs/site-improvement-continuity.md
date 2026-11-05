@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 118 — 20261105, PUBLICADA E VERIFICADA
+
+- nzEaLDNocvF6GDH6InIH: targeted_correction_complete. Distingue colchonete, saco de transporte e saco de dormir sem presumir isolamento. Limite: Sem teste independente.
+- o6oq1IPOS41xUDtF3TG7: targeted_correction_complete. Distingue número de prendedores de capacidade de carga e retira promessa de durabilidade. Limite: Sem teste independente.
+- O8vB8vB9Kw6NpVqHMt8A: targeted_correction_complete. Distingue RAM física e virtual e retira alegações de superioridade de imagem. Limite: Sem teste independente.
+
+Fonte d2e46bcbb33194464bb66fe8e32899897fe0e3bb; geração b25699d0dc517e4634443a9aaa19947decf05d76; sitemap 42107353182, integridade 42107353084, Pages 42107426249: SUCCESS. 1542 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem118.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":269,"preserve_prior_review":98,"pending":115}. Próximos pendentes: OADfHMMVftq1AKtGgcaP — Smart Tv Roku Tv 50 7045 4k Uhd Aoc Bivolt; Oelq1fEuR41tSXxHj8cp — Extensão Elétrica Tomadas Usb Type-c Bivolt 2m Chave Liga; of7SzAJ9klKkySvWpSsO — Tênis Nike Revolution 8 Masculino. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 117 — 20261105, PUBLICADA E VERIFICADA
 
 - nfzTOT5XTvnh8Q8DyLvb: targeted_correction_complete. Explica o limite da largura anunciada e retira texto repetitivo sobre preço. Limite: Dados locais da oferta, sem teste independente.

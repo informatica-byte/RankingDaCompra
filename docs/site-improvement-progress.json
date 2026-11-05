@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "nzEaLDNocvF6GDH6InIH",
-      "o6oq1IPOS41xUDtF3TG7",
-      "O8vB8vB9Kw6NpVqHMt8A",
       "OADfHMMVftq1AKtGgcaP",
       "Oelq1fEuR41tSXxHj8cp",
       "of7SzAJ9klKkySvWpSsO",
       "OOVD3lkaaSXJTSAAdywm",
-      "OTYBW2oIlOWx1MeHpF1u"
+      "OTYBW2oIlOWx1MeHpF1u",
+      "OwXKuXw3ZMFmcvx7jF4v",
+      "oYoalVz8s4bR2iumSyhW",
+      "P5uw3Q0IjbFoD0of4CSu"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:50:19.361Z",
-  "catalogueGeneratedAt": "2026-11-05T20:50:15.586Z",
+  "updatedAt": "2026-11-05T20:54:05.595Z",
+  "catalogueGeneratedAt": "2026-11-05T20:52:22.283Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 266,
+    "targeted_correction_complete": 269,
     "preserve_prior_review": 98,
-    "pending": 115,
-    "prepared_awaiting_publication": 3
+    "pending": 115
   },
   "items": [
     {
@@ -2656,12 +2655,13 @@
       "url": "https://rankingdacompra.com.br/produto/nzEaLDNocvF6GDH6InIH-20260810-1.html",
       "title": "Colchonete de camping camuflado — 190 × 60 cm anunciados",
       "fingerprint": "9c553b3f5c9f148ea45e22ac4654373efc5275330513bd2d75b214a7906c83ce",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:54:05.564Z",
       "workNotes": [
         "Distingue colchonete, saco de transporte e saco de dormir sem presumir isolamento.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB68897341?wid=MLB4655530173"
@@ -5723,12 +5723,13 @@
       "url": "https://rankingdacompra.com.br/produto/O8vB8vB9Kw6NpVqHMt8A-20260810-1.html",
       "title": "Motorola Moto G17 4G — 128 GB e 4 GB de RAM física",
       "fingerprint": "26953a8735edd2273e61f1f70a6181361e6de939e7ce20e28d25684a639722c7",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:54:05.564Z",
       "workNotes": [
         "Distingue RAM física e virtual e retira alegações de superioridade de imagem.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB65041643?wid=MLB6420227790",
@@ -9311,12 +9312,13 @@
       "url": "https://rankingdacompra.com.br/produto/o6oq1IPOS41xUDtF3TG7-20260810-1.html",
       "title": "Varal suspenso com 40 prendedores — aço inox anunciado",
       "fingerprint": "abe74033439a6a8e282195931d8dbc3d85a4b709b56f0743a2598922e612898e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:54:05.564Z",
       "workNotes": [
         "Distingue número de prendedores de capacidade de carga e retira promessa de durabilidade.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3503517945?pdp_filters=item_id%3AMLB5832558364"
@@ -13651,12 +13653,44 @@
     "backendWrites": 0
   },
   "triage118": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "O8vB8vB9Kw6NpVqHMt8A",
       "nzEaLDNocvF6GDH6InIH",
       "o6oq1IPOS41xUDtF3TG7"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T20:54:05.564Z",
+    "changedIds": [
+      "nzEaLDNocvF6GDH6InIH",
+      "o6oq1IPOS41xUDtF3TG7",
+      "O8vB8vB9Kw6NpVqHMt8A"
+    ],
+    "jointReleaseBatches": [
+      118
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem118.json",
+    "remainingDependencies": [
+      {
+        "id": "nzEaLDNocvF6GDH6InIH",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "o6oq1IPOS41xUDtF3TG7",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "O8vB8vB9Kw6NpVqHMt8A",
+        "note": "Sem teste independente."
+      }
+    ],
+    "sourceCommit": "d2e46bcbb33194464bb66fe8e32899897fe0e3bb",
+    "generatedCommit": "b25699d0dc517e4634443a9aaa19947decf05d76",
+    "sitemapRun": 42107353182,
+    "integrityRun": 42107353084,
+    "pagesRun": 42107426249,
+    "testsPassed": 1542,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
