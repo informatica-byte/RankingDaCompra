@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados locais da oferta.",
+  "items": [
+    {
+      "id": "Q8XN2tGmsU12afIbz1Am",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessas de cozimento e saúde sem evidência.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-1307284888-fritadeira-eletrica-sem-oleo-air-fryer-mondial-1500w-_JM"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "Q9UWVUsXl8sIvWyM1hKt",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira comparação de durabilidade e promessa sobre umidade.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3407282880?pdp_filters=item_id%3AMLB5666993474"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "qeH6DeH4aWWppBpaRPYc",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue massa anunciada de volume e remove afirmações não verificadas sobre pureza.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3368370235?pdp_filters=item_id%3AMLB5604818552",
+        "https://secure.truesource.com.br/produtos"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

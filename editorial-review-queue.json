@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T23:02:25.728Z",
+  "generatedAt": "2026-11-05T23:09:46.914Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 94
+    "screening": 91
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "Q8XN2tGmsU12afIbz1Am",
-      "title": "Fritadeira Elétrica Sem Óleo Air Fryer Mondial 1500w",
-      "url": "https://rankingdacompra.com.br/produto/Q8XN2tGmsU12afIbz1Am-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "Q9UWVUsXl8sIvWyM1hKt",
-      "title": "Lixeira Metal Aramado Telada Cesto De Lixo Escritório 12l Cor Preto",
-      "url": "https://rankingdacompra.com.br/produto/Q9UWVUsXl8sIvWyM1hKt-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "qeH6DeH4aWWppBpaRPYc",
-      "title": "Creatina 100% Monohidratada Micronizada Vegana True Source",
-      "url": "https://rankingdacompra.com.br/produto/qeH6DeH4aWWppBpaRPYc-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

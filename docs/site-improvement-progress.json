@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T23:04:23.477Z",
-  "catalogueGeneratedAt": "2026-11-05T23:02:25.728Z",
+  "updatedAt": "2026-11-05T23:09:51.353Z",
+  "catalogueGeneratedAt": "2026-11-05T23:09:46.914Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 288,
     "preserve_prior_review": 98,
-    "pending": 94
+    "prepared_awaiting_publication": 3,
+    "pending": 91
   },
   "items": [
     {
@@ -827,6 +828,24 @@
       "workNotes": [],
       "sourceLinks": [
         "https://loja.electrolux.com.br/air-fryer-oven-electrolux-rita-lobo-12l-digital-grafite-c--espeto-e-grelhas-antiaderente--eaf90-/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "Q8XN2tGmsU12afIbz1Am",
+      "url": "https://rankingdacompra.com.br/produto/Q8XN2tGmsU12afIbz1Am-20260810-1.html",
+      "title": "Air fryer Mondial — 4 L e 1.500 W anunciados",
+      "fingerprint": "274065b5ceb0468d3390b74d7ff403ecca8abf3b03a28bb3f5bdabccf0109f8d",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira promessas de cozimento e saúde sem evidência.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-1307284888-fritadeira-eletrica-sem-oleo-air-fryer-mondial-1500w-_JM"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -3001,17 +3020,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "qeH6DeH4aWWppBpaRPYc",
-      "url": "https://rankingdacompra.com.br/produto/qeH6DeH4aWWppBpaRPYc-20260810-1.html",
-      "title": "Creatina 100% Monohidratada Micronizada Vegana True Source",
-      "fingerprint": "5178c39bbf094735e26d450f305ddadb9bf586863ce1cfef104c8c52351e41ae",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "ufHw7Y6qN2oc8ePqgHkj",
       "url": "https://rankingdacompra.com.br/produto/ufHw7Y6qN2oc8ePqgHkj-20260810-1.html",
       "title": "Creatina Monohidratada 500g Growth Supplements - Sem Sabor em Pó",
@@ -3107,6 +3115,25 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB18725310?wid=MLB2766771378",
         "https://www.gov.br/anvisa/pt-br/assuntos/alimentos/suplementos-alimentares/perguntas-frequentes"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "qeH6DeH4aWWppBpaRPYc",
+      "url": "https://rankingdacompra.com.br/produto/qeH6DeH4aWWppBpaRPYc-20260810-1.html",
+      "title": "Creatina monohidratada True Source — 300 g anunciados",
+      "fingerprint": "ebe0c19813e70060c43975cfc69ada4988bce78172ea3e5507d5813b6aac63fa",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue massa anunciada de volume e remove afirmações não verificadas sobre pureza.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3368370235?pdp_filters=item_id%3AMLB5604818552",
+        "https://secure.truesource.com.br/produtos"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -3764,17 +3791,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "Q8XN2tGmsU12afIbz1Am",
-      "url": "https://rankingdacompra.com.br/produto/Q8XN2tGmsU12afIbz1Am-20260810-1.html",
-      "title": "Fritadeira Elétrica Sem Óleo Air Fryer Mondial 1500w",
-      "fingerprint": "393d07a9a0fb7ea4e25acce7c02685e5e1ba122e4607d5c0754872fb838fb16b",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "YZvcITogQcf1bnnARlRx",
@@ -5367,6 +5383,24 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "Q9UWVUsXl8sIvWyM1hKt",
+      "url": "https://rankingdacompra.com.br/produto/Q9UWVUsXl8sIvWyM1hKt-20260810-1.html",
+      "title": "Lixeira aramada preta — 12 L anunciados",
+      "fingerprint": "5fbfd43c6fb3cba678f33c15e4070d16afa147141ead061f59ec57dc52a3317a",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira comparação de durabilidade e promessa sobre umidade.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3407282880?pdp_filters=item_id%3AMLB5666993474"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "IIBNXuN1JmBc0Ol6iO6O",
       "url": "https://rankingdacompra.com.br/produto/IIBNXuN1JmBc0Ol6iO6O-20260810-1.html",
       "title": "Lixeira Inteligente 16l Sensor Automático Tampa Touch Casa",
@@ -5401,17 +5435,6 @@
       "sourceLinks": [],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "Q9UWVUsXl8sIvWyM1hKt",
-      "url": "https://rankingdacompra.com.br/produto/Q9UWVUsXl8sIvWyM1hKt-20260810-1.html",
-      "title": "Lixeira Metal Aramado Telada Cesto De Lixo Escritório 12l Cor Preto",
-      "fingerprint": "63ff73cb19e85963813cfb49157332b48565837c4907cdd7969d64c0af0a0e1f",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "TJk9BUtlZ9v02ETWQRuG",
@@ -14131,5 +14154,14 @@
     "testsPassed": 1549,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage126": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "Q8XN2tGmsU12afIbz1Am",
+      "Q9UWVUsXl8sIvWyM1hKt",
+      "qeH6DeH4aWWppBpaRPYc"
+    ],
+    "newDeepReviews": 0
   }
 }
