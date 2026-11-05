@@ -8,6 +8,21 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB4443112343', {
+    syncInformationalSchema:true, expectedListing:'MLB4443112343',
+    model:/^Fone de Ouvido Gamer In-ear Vellon TWS Bluetooth 5\.0, com Microfone e Estojo de Carregamento$/i,
+    summary:'A oferta identifica um par de fones Vellon TWS intra-auriculares, com Bluetooth 5.0, microfone e estojo de carregamento anunciados. O cadastro cita alcance de 10 m, bateria de 40 mAh, seis horas de uso, recarga em uma hora e estojo de 320 mAh; são valores anunciados, sem condições de ensaio documentadas nesta ficha. Não garantimos estabilidade a essa distância, autonomia em qualquer volume ou quantidade de recargas pelo estojo. Gamer no título não comprova baixa latência ou adequação a qualquer jogo. Não testamos som, microfone, conexão ou bateria; confirme modelo, compatibilidade e instruções de recarga antes de escolher.',
+    positiveNotes:['Formato in-ear, Bluetooth 5.0, microfone e estojo informados na oferta.'],
+    negativeNotes:['Alcance, autonomia e tempo de carga anunciados, não medidos pela equipe.', 'Baixa latência e ciclos adicionais não comprovados; confirmar compatibilidade.'],suppressRating:true,
+  }],
+  ['mlMLB4474977007', {
+    syncInformationalSchema:true, expectedListing:'MLB4474977007',
+    model:/^(?:Salvo Maison Alhambra 100ml Eua De Parfum Perfume Original|Salvo Maison Alhambra Eau de Parfum 100 ml anunciado)$/i,
+    correct:'Salvo Maison Alhambra Eau de Parfum 100 ml anunciado',
+    summary:'A oferta identifica Salvo Maison Alhambra em apresentação anunciada de 100 ml, como Eau de Parfum e não recarregável. Confira nome completo, embalagem e volume da unidade antes de escolher. O identificador MLBU3786865269 aparece no endereço da oferta, mas não comprova autenticidade ou origem da unidade; original no título também não é autenticação da equipe. País de origem e declaração livre de crueldade animal são informações do cadastro, não verificações documentadas nesta ficha. Não testamos fragrância, fixação ou projeção e não acrescentamos notas olfativas, certificação ou semelhança com outro perfume por suposição.',
+    positiveNotes:['Nome Salvo Maison Alhambra e apresentação de 100 ml identificados na oferta.'],
+    negativeNotes:['Autenticidade, origem e declaração livre de crueldade não verificadas nesta revisão.', 'Fixação e projeção não testadas; confirmar embalagem e apresentação não recarregável anunciada.'],suppressRating:true,
+  }],
   ['mlMLB4291654613', {
     syncInformationalSchema:true, expectedListing:'MLB4291654613',
     model:/^Tênis Vizzano Feminino Casual Original Confortável Moda 1430$/i,

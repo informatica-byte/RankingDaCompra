@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T00:23:00.234Z",
+  "generatedAt": "2026-11-05T00:27:35.356Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 175
+    "screening": 172
   },
   "items": [
     {
@@ -41,27 +41,6 @@
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4443112343",
-      "title": "Fone de Ouvido Gamer In-ear Vellon TWS Bluetooth 5.0, com Microfone e Estojo de Carregamento",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4443112343-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4474695467",
-      "title": "Smartwatch A Prova D'água Mede Pressão Arterial Gps Strava",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4474695467-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4474977007",
-      "title": "Salvo Maison Alhambra 100ml Eua De Parfum Perfume Original",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4474977007-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
