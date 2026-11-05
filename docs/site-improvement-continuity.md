@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 116 — 20261105, PUBLICADA E VERIFICADA
+
+- N6932yKNTXnAJ98cz9Eo: targeted_correction_complete. Atribui vedação à oferta e remove promessa de conservação sem teste. Limite: Sem teste independente.
+- N9EnpkbyJeTRuSriAhFn: targeted_correction_complete. Corrige identificação do anúncio e explicita dados ausentes. Limite: Sem teste independente.
+- NfQ2YF7qf3SL1oehasTi: targeted_correction_complete. Substitui comparação sem evidência por recursos documentados e explicita uso interno. Limite: Sem teste independente.
+
+Fonte f42021c2082110ef8ee34d40dacfbcb80ac16d7a; geração 37a4f96f236241217f30c8d92650b0512e97de9c; sitemap 42105402870, integridade 42105402781, Pages 42105473812: SUCCESS. 1540 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem116.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":263,"preserve_prior_review":98,"pending":121}. Próximos pendentes: nfzTOT5XTvnh8Q8DyLvb — Tênis Masculino Elevation Fila; nkBZlP0jQEwoMIj6VDbG — Capa Chuva Motoqueiro Pvc Impermeável Motoboy Emborrachada; NQyo56LcUgwwA2tz8YCF — Tênis Mizuno Wave Dynasty 5 Masculino Treino Original. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 115 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB7871750870: targeted_correction_complete. Retira promessa de melhora de áudio e delimita compatibilidade. Limite: Dados locais da oferta, sem teste independente.
