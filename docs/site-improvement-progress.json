@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T09:18:31.539Z",
-  "catalogueGeneratedAt": "2026-11-05T09:16:48.829Z",
+  "updatedAt": "2026-11-05T09:22:18.684Z",
+  "catalogueGeneratedAt": "2026-11-05T09:22:10.121Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 220,
     "preserve_prior_review": 98,
-    "pending": 163
+    "pending": 160,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -3717,13 +3718,21 @@
     {
       "id": "mlMLB4964975723",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4964975723-20260810-1.html",
-      "title": "Google Gemini Ai Pro 18 Meses | Via Link De Ativação",
-      "fingerprint": "6a97d315f39173448c8a69e50924585f8a4fafe6076069bdb4f40ec684dff2f8",
-      "status": "pending",
+      "title": "Google AI Pro — oferta de terceiro anuncia 18 meses",
+      "fingerprint": "ba87f162f9ac8981a508e743e9331680265b16b635fcf0ab1d5997077dd2f065",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue plano oficial de oferta de terceiro e não garante a ativação ou o prazo.",
+        "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5499750340?wid=MLB5467769983",
+        "https://one.google.com/intl/pt-BR_br/about/google-ai-plans/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "QikFoLr76mfU8ijP9Nzr",
@@ -4612,12 +4621,19 @@
       "id": "mlMLB4953439757",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4953439757-20260810-1.html",
       "title": "Kit Mobilador Teclado Gamer Rgb 80% Suporte Mouse Hub Cabo",
-      "fingerprint": "626fbe30f592f7a20fd48805700688e586becb4d3f37243857cf4bbfc57d65de",
-      "status": "pending",
+      "fingerprint": "1a9a05db571a6b2b936ff7a72e891950c72269931be1c9cd9d36de1642790788",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue membrana de mecânico e evita confirmar ABNT2 ou compatibilidade universal.",
+        "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3131005672?pdp_filters=item_id%3AMLB4953439757"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "i1ii8KV1IYFAeAN3SPWH",
@@ -8408,12 +8424,19 @@
       "id": "mlMLB5136589984",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5136589984-20260810-1.html",
       "title": "Tenis Masculino Sapatenis Polo Feet Sapato Casual Promoção",
-      "fingerprint": "ff59123fd08132d97f4d68a4520c9587f0c5c50a581cf8f671a4799338377ace",
-      "status": "pending",
+      "fingerprint": "a6dd11db1556db8d884a7c663ec1d2ece601ad7a94c80b6331c5826c9a953829",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Registra a divergência de marca e corrige a classificação do número do anúncio.",
+        "Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5136589984"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "wDxxKZn5CFPm3f34ziP2",
@@ -12598,5 +12621,14 @@
     "testsPassed": 1525,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage102": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB4953439757",
+      "mlMLB4964975723",
+      "mlMLB5136589984"
+    ],
+    "newDeepReviews": 0
   }
 }

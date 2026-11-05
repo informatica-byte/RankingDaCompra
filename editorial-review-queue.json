@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T09:16:48.829Z",
+  "generatedAt": "2026-11-05T09:22:10.121Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 163
+    "screening": 160
   },
   "items": [
     {
@@ -41,27 +41,6 @@
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4953439757",
-      "title": "Kit Mobilador Teclado Gamer Rgb 80% Suporte Mouse Hub Cabo",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4953439757-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4964975723",
-      "title": "Google Gemini Ai Pro 18 Meses | Via Link De Ativação",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4964975723-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5136589984",
-      "title": "Tenis Masculino Sapatenis Polo Feet Sapato Casual Promoção",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5136589984-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
