@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T15:50:22.461Z",
-  "catalogueGeneratedAt": "2026-11-05T15:48:33.822Z",
+  "updatedAt": "2026-11-05T15:57:23.078Z",
+  "catalogueGeneratedAt": "2026-11-05T15:57:20.529Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 242,
     "preserve_prior_review": 98,
-    "pending": 142
+    "prepared_awaiting_publication": 3,
+    "pending": 139
   },
   "items": [
     {
@@ -1334,6 +1335,24 @@
         "31/10/2026 — triagem seletiva 17: Título anuncia 15 Ah e descrição 12 Ah para a Smart MT2. Capacidade explicitamente a confirmar, sem escolher número ou inventar autonomia. Título alinhado à incerteza; outras declarações são atribuídas ao cadastro."
       ],
       "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB6666191918",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6666191918-20260810-1.html",
+      "title": "BluePC CD2E-0135TO — Core i7-4770, 16 GB e SSD de 512 GB",
+      "fingerprint": "ff8a4fd54677cbf37f445e9bcf1262e46d2d9a5b116a3b71c96ed1e5c2c2b6f1",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Esclarece que o Windows é de avaliação.",
+        "Oferta sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB42364005?wid=MLB6666191918"
+      ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
     },
@@ -2652,17 +2671,6 @@
       "url": "https://rankingdacompra.com.br/produto/RHhkWKxMXBZONt8jx4Ew-20260810-1.html",
       "title": "Computador Completo 20'' BRX Intel Core i5 6ª Geração 8GB SSD 256GB Monitor LED 75Hz Windows Teclado Mouse Kit Completo Desktop Office Home Office Estudo Trabalho",
       "fingerprint": "ce43ebb06f10a950489ccb3571238a2221443c41a88f50e4f566117719af7fc8",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "mlMLB6666191918",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6666191918-20260810-1.html",
-      "title": "Computador Completo Top Intel Core i7 4770, 16GB RAM, SSD 512GB, Bivolt, Preto, Windows 10 Pro, Monitor 23\" Full HD - BluePC CD2E-0135TO",
-      "fingerprint": "a4f171e53b3c1cf6b8cd9a9354d6cd65fbff7063320e461522c7e55c163cdad6",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -6412,17 +6420,6 @@
       "preparedBatch": 34
     },
     {
-      "id": "mlMLB6785015658",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6785015658-20260810-1.html",
-      "title": "Perfume Arabe Vulcan Feu EDP 100ML Unisex com NF",
-      "fingerprint": "d4bcf5ab1203d09030bf52fa8c5fcfd511ba6e8c9a707d626574188a6f35544f",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "CXMWhCkfWah2EmRBTFtF",
       "url": "https://rankingdacompra.com.br/produto/CXMWhCkfWah2EmRBTFtF-20260810-1.html",
       "title": "Perfume Attracione Men 25 ml — composição e efeitos não verificados",
@@ -7935,13 +7932,21 @@
     {
       "id": "mlMLB6778555692",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6778555692-20260810-1.html",
-      "title": "SSD Interno PRODRIVE 240GB 2.5\" SATA III PROSATA301/240G",
-      "fingerprint": "ea9e7e5ec863d2521024813ab915f39e504955e7fcb2c58c7ce81b2cf1a7c9e9",
-      "status": "pending",
+      "title": "SSD Prodrive PROSATA301/240G — 240 GB, SATA III de 2,5″",
+      "fingerprint": "17bdf6bb9615b59f9d5c309123a7c2166f2a34e2c0d5e4a18b66334696e484b5",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige a unidade e a taxa da interface com base na SATA-IO.",
+        "Oferta sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB38482180?wid=MLB6778555692",
+        "https://sata-io.org/sites/default/files/documents/SATA-Revision-3.0-FAQ-FINAL.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "dgcv2JkW8bL6DBSEqB9V",
@@ -9275,6 +9280,24 @@
       "sourceLinks": [
         "https://www.logitechg.com/pt-br/shop/p/driving-force-racing-wheel",
         "https://www.logitechg.com/pt-br/shop/p/driving-force-shifter.941-000119"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB6785015658",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6785015658-20260810-1.html",
+      "title": "Vulcan Feu Eau de Parfum — 100 mL anunciados",
+      "fingerprint": "628a2c50fbf31e806fc52cb77d26117721587bb5758a7cc3bec4555f350dd539",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Não publica fabricante nem alegações éticas como fatos confirmados.",
+        "Oferta sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB80630141?wid=MLB6785015658"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -13102,5 +13125,14 @@
     "testsPassed": 1532,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage110": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB6666191918",
+      "mlMLB6778555692",
+      "mlMLB6785015658"
+    ],
+    "newDeepReviews": 0
   }
 }

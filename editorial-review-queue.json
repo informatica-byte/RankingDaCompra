@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T15:48:33.822Z",
+  "generatedAt": "2026-11-05T15:57:20.529Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 142
+    "screening": 139
   },
   "items": [
     {
@@ -48,27 +48,6 @@
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6666191918",
-      "title": "Computador Completo Top Intel Core i7 4770, 16GB RAM, SSD 512GB, Bivolt, Preto, Windows 10 Pro, Monitor 23\" Full HD - BluePC CD2E-0135TO",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6666191918-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6778555692",
-      "title": "SSD Interno PRODRIVE 240GB 2.5\" SATA III PROSATA301/240G",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6778555692-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6785015658",
-      "title": "Perfume Arabe Vulcan Feu EDP 100ML Unisex com NF",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6785015658-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

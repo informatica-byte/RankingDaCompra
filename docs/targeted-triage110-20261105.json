@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados da oferta e especificação oficial da interface.",
+  "items": [
+    {
+      "id": "mlMLB6666191918",
+      "decision": "targeted_correction_complete",
+      "reason": "Esclarece que o Windows é de avaliação.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB42364005?wid=MLB6666191918"
+      ],
+      "sourceLimit": "Oferta sem teste independente."
+    },
+    {
+      "id": "mlMLB6778555692",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige a unidade e a taxa da interface com base na SATA-IO.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB38482180?wid=MLB6778555692",
+        "https://sata-io.org/sites/default/files/documents/SATA-Revision-3.0-FAQ-FINAL.pdf"
+      ],
+      "sourceLimit": "Oferta sem teste independente."
+    },
+    {
+      "id": "mlMLB6785015658",
+      "decision": "targeted_correction_complete",
+      "reason": "Não publica fabricante nem alegações éticas como fatos confirmados.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB80630141?wid=MLB6785015658"
+      ],
+      "sourceLimit": "Oferta sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
