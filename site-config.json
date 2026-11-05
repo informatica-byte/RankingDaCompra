@@ -88,9 +88,9 @@
       "productUrl": "https://rankingdacompra.com.br/produto/mlMLB6907306094-20260810-1.html"
     }
   ],
-  "seasonalThemeEnd": "",
+  "seasonalThemeEnd": "2026-11-30",
   "seasonalThemeMode": "manual",
-  "seasonalThemeStart": "",
+  "seasonalThemeStart": "2026-11-04",
   "seasonalThemeId": "black-friday",
   "bestChoicesTitle": "Melhores escolhas e rankings de produtos",
   "bestChoicesProductIds": [
@@ -110,7 +110,10 @@
   "bestChoicesGuideUrls": [
     "melhores-fones-de-ouvido.html",
     "melhores-roteador.html",
-    "melhores-relogio-smartwatch.html"
+    "melhores-relogio-smartwatch.html",
+    "melhores-fritadeira-air-fryer-eletrica.html",
+    "melhores-beleza-cuidados-e-saude.html",
+    "melhores-esporte-e-lazer.html"
   ],
   "weeklyComparison": {
     "semana": "2026-10-19",
@@ -147,5 +150,5 @@
   },
   "giftGuideTitle_black_friday": "Black Friday: como escolher produtos sem cair em preço ilusório",
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T23:41:54.578Z"
+  "generatedAt": "2026-11-05T00:22:53.352Z"
 }
