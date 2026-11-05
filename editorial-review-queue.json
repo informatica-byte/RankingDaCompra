@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T09:00:23.326Z",
+  "generatedAt": "2026-11-05T09:06:06.661Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 169
+    "screening": 166
   },
   "items": [
     {
@@ -41,27 +41,6 @@
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4741657351",
-      "title": "Tênis Feminino Kolosh Confortável Macio Ziper Envio Rápido",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4741657351-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4748589927",
-      "title": "Body Splash Masculino Vibration 200ml - Primacial Perfume Bergamota Fresco",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4748589927-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4748674769",
-      "title": "Kit Body Splash Masculino Vibration E Blunn 200ml - Primacial Perfume Bergamota Limão",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4748674769-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

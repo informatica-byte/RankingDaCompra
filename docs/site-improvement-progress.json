@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T09:03:22.519Z",
-  "catalogueGeneratedAt": "2026-11-05T09:00:23.326Z",
+  "updatedAt": "2026-11-05T09:06:09.826Z",
+  "catalogueGeneratedAt": "2026-11-05T09:06:06.661Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 215,
     "preserve_prior_review": 98,
-    "pending": 169
+    "prepared_awaiting_publication": 3,
+    "pending": 166
   },
   "items": [
     {
@@ -1337,12 +1338,19 @@
       "id": "mlMLB4748589927",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4748589927-20260810-1.html",
       "title": "Body Splash Masculino Vibration 200ml - Primacial Perfume Bergamota Fresco",
-      "fingerprint": "3ab2d97e49eb4e000c2782d7f646dd96f1038bb12dfe1360ad43a615a85cbd7d",
-      "status": "pending",
+      "fingerprint": "5e5cb5b0244249b76e0eaa9a7d6ce05b25a6bc6ff3098ead5c333f81a99133e7",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Atribui declarações à oferta e retira a classificação de anúncio oficial sem prova.",
+        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB70449712?wid=MLB4748589927"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7006667338",
@@ -4350,12 +4358,19 @@
       "id": "mlMLB4748674769",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4748674769-20260810-1.html",
       "title": "Kit Body Splash Masculino Vibration E Blunn 200ml - Primacial Perfume Bergamota Limão",
-      "fingerprint": "92f5be7f89c23e62c2b7a75e735f22f039285877721802bbe11fe4a0f5b925bf",
-      "status": "pending",
+      "fingerprint": "2f869bf01c846f9a1bc1ab0c45fb6c2e2171223b36391d01535dd124cfad3f16",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Esclarece o volume anunciado por unidade e não certifica vendedor, origem ou declarações do produto.",
+        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB70654760?wid=MLB4748674769"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "W2fwS2jLu4yjKnRTww98",
@@ -8026,12 +8041,19 @@
       "id": "mlMLB4741657351",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4741657351-20260810-1.html",
       "title": "Tênis Feminino Kolosh Confortável Macio Ziper Envio Rápido",
-      "fingerprint": "e915bb0a31e68b48a55c39bfc23a8d166ecb5d883aa1b6b84b708804b0c6de87",
-      "status": "pending",
+      "fingerprint": "26f140e6bfa4be86af0fe7ca619d79f329322de43ae3be0dba93a56bae112a5b",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Separa características anunciadas de conforto e prazo não confirmados.",
+        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4702359857"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "pvXy1mkDwgkYeeGFQoUd",
@@ -12473,5 +12495,14 @@
     "testsPassed": 1523,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage100": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB4741657351",
+      "mlMLB4748589927",
+      "mlMLB4748674769"
+    ],
+    "newDeepReviews": 0
   }
 }
