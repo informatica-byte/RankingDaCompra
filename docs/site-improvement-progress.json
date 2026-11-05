@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T09:25:13.793Z",
-  "catalogueGeneratedAt": "2026-11-05T09:23:17.241Z",
+  "updatedAt": "2026-11-05T09:33:53.780Z",
+  "catalogueGeneratedAt": "2026-11-05T09:33:45.018Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 223,
     "preserve_prior_review": 98,
-    "pending": 160
+    "pending": 157,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4175,12 +4176,19 @@
       "id": "mlMLB5158506809",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5158506809-20260810-1.html",
       "title": "Kit 2 Body Splash Masculino Seduction Ocean 200ml Cada",
-      "fingerprint": "cb04a53e9dbdc937e9e00a2821f39694a762b99dbda52b6c51dab275cd267e71",
-      "status": "pending",
+      "fingerprint": "87110f5cce5afac829d877a32d9036a35c8b42c699176051d7138421b586b3cd",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Remove código de catálogo incompatível com o link atual.",
+        "Dados locais do anúncio; sem confirmação independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB66688606?pdp_filters=item_id%3AMLB5306223743"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "W309Bngb9vy88pxNSAn5",
@@ -5852,6 +5860,24 @@
       "sourceLinks": []
     },
     {
+      "id": "mlMLB5210159957",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5210159957-20260810-1.html",
+      "title": "Óculos de sol — polarização e UV400 anunciados",
+      "fingerprint": "59b0a2053de82bdeb2fefa1e7a81d708e827006e9473a38fdd4f75c01ed0f90e",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue as alegações do vendedor de uma verificação independente.",
+        "Dados locais do anúncio; sem confirmação independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5121897243?pdp_filters=item_id%3AMLB5210159957"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "aQjR3wSqj9aObPqMJp10",
       "url": "https://rankingdacompra.com.br/produto/aQjR3wSqj9aObPqMJp10-20260810-1.html",
       "title": "Óculos Inteligente Ai Bv200 Chatgpt Câmera 8mp Bluetooth",
@@ -5870,17 +5896,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "mlMLB5210159957",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5210159957-20260810-1.html",
-      "title": "Oculos Polarizado De Sol Masculino Casual Pesca Praia Uv400",
-      "fingerprint": "a22c0c4a6dcffa4bc1c5f5893b4681179a766ec8ce2808f02e55df55df41ed24",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "5eAXaJha93EuQsvd2SJn",
@@ -8403,12 +8418,19 @@
       "id": "mlMLB5217026798",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5217026798-20260810-1.html",
       "title": "Tenis Masculino Estilo Bota Adventure Nobuck Wonder",
-      "fingerprint": "f6cbc8f3cbd5ca78ba83d369ace54191ecf4a6e3493c00ec891ac354063fe91f",
-      "status": "pending",
+      "fingerprint": "08d7dab82759a15d61b5383e97c74a95ada63ae6c79cd0196d77be5597a6dfaa",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira código de anúncio apresentado como catálogo e delimita o uso declarado.",
+        "Dados locais do anúncio; sem confirmação independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5217026798"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "y3sJNKuSXBHScRkQ0wMN",
@@ -12664,5 +12686,14 @@
     "testsPassed": 1526,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage103": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB5158506809",
+      "mlMLB5210159957",
+      "mlMLB5217026798"
+    ],
+    "newDeepReviews": 0
   }
 }

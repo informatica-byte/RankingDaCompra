@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T09:23:17.241Z",
+  "generatedAt": "2026-11-05T09:33:45.018Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 160
+    "screening": 157
   },
   "items": [
     {
@@ -41,27 +41,6 @@
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5158506809",
-      "title": "Kit 2 Body Splash Masculino Seduction Ocean 200ml Cada",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5158506809-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5210159957",
-      "title": "Oculos Polarizado De Sol Masculino Casual Pesca Praia Uv400",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5210159957-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5217026798",
-      "title": "Tenis Masculino Estilo Bota Adventure Nobuck Wonder",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5217026798-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

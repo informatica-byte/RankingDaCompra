@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correção pontual com base nos dados públicos locais. Não altera links de afiliados.",
+  "items": [
+    {
+      "id": "mlMLB5158506809",
+      "decision": "targeted_correction_complete",
+      "reason": "Remove código de catálogo incompatível com o link atual.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB66688606?pdp_filters=item_id%3AMLB5306223743"
+      ],
+      "sourceLimit": "Dados locais do anúncio; sem confirmação independente."
+    },
+    {
+      "id": "mlMLB5210159957",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue as alegações do vendedor de uma verificação independente.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5121897243?pdp_filters=item_id%3AMLB5210159957"
+      ],
+      "sourceLimit": "Dados locais do anúncio; sem confirmação independente."
+    },
+    {
+      "id": "mlMLB5217026798",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira código de anúncio apresentado como catálogo e delimita o uso declarado.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5217026798"
+      ],
+      "sourceLimit": "Dados locais do anúncio; sem confirmação independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
