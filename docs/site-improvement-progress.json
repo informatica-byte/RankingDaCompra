@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB7304557578",
-      "mlMLB7593699030",
-      "mlMLB7678487136",
       "mlMLB7748620676",
       "mlMLB7752259240",
       "mlMLB7870098964",
       "mlMLB7871750870",
-      "mWlmlmg15okWqGyIc5bh"
+      "mWlmlmg15okWqGyIc5bh",
+      "n4IIyDvWZZGMKhBisDSq",
+      "N6932yKNTXnAJ98cz9Eo",
+      "N9EnpkbyJeTRuSriAhFn"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:07:09.519Z",
-  "catalogueGeneratedAt": "2026-11-05T20:07:07.166Z",
+  "updatedAt": "2026-11-05T20:18:22.421Z",
+  "catalogueGeneratedAt": "2026-11-05T20:08:54.255Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,9 +705,8 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 251,
+    "targeted_correction_complete": 254,
     "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 3,
     "pending": 130
   },
   "items": [
@@ -1212,12 +1211,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB7304557578-20260810-1.html",
       "title": "Base refrigeradora Megabyte SR002 com 4 ventoinhas",
       "fingerprint": "62a3f340f179bb319a0ac021bf9abb012be29a7b695939186eeb8bb56cd5fc80",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:18:22.393Z",
       "workNotes": [
         "Delimita a compatibilidade anunciada e retira garantias sobre fixação e funcionamento das portas.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB76169253?wid=MLB7304557578"
@@ -6562,12 +6562,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB7678487136-20260810-1.html",
       "title": "Perfume masculino Monarq Vibrato — 200 mL anunciados",
       "fingerprint": "04c6f9b0b3334cba9b130eac513bb4791e36bcedc28bd77d129d3df5877fa644",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:18:22.393Z",
       "workNotes": [
         "Retira a promessa de alta fixação e sinaliza alegações não verificadas.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5266071440"
@@ -7176,12 +7177,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB7593699030-20260810-1.html",
       "title": "Repetidor Wi-Fi TRQ3 — dual band anunciado",
       "fingerprint": "c58ae1ebcb1b33806c82b62a51106f305194b968cce9df23a477a4bff5397fde",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:18:22.393Z",
       "workNotes": [
         "Remove a indicação ambígua de Gigabit do título e separa a taxa anunciada de desempenho real.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB2115543194?wid=MLB7593699030"
@@ -13323,12 +13325,44 @@
     "backendWrites": 0
   },
   "triage113": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB7304557578",
       "mlMLB7593699030",
       "mlMLB7678487136"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T20:18:22.393Z",
+    "changedIds": [
+      "mlMLB7304557578",
+      "mlMLB7593699030",
+      "mlMLB7678487136"
+    ],
+    "jointReleaseBatches": [
+      113
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem113.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB7304557578",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "mlMLB7593699030",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "mlMLB7678487136",
+        "note": "Dados locais da oferta, sem teste independente."
+      }
+    ],
+    "sourceCommit": "66a9fb7116bb1ff424937c6fb09d5ac143dd2fe4",
+    "generatedCommit": "a1083eecb209f0a8dc6b90fc90c85071ebe9ee62",
+    "sitemapRun": 42100594592,
+    "integrityRun": 42100594290,
+    "pagesRun": 42100678764,
+    "testsPassed": 1536,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

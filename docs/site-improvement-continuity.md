@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 113 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB7304557578: targeted_correction_complete. Delimita a compatibilidade anunciada e retira garantias sobre fixação e funcionamento das portas. Limite: Dados locais da oferta, sem teste independente.
+- mlMLB7593699030: targeted_correction_complete. Remove a indicação ambígua de Gigabit do título e separa a taxa anunciada de desempenho real. Limite: Dados locais da oferta, sem teste independente.
+- mlMLB7678487136: targeted_correction_complete. Retira a promessa de alta fixação e sinaliza alegações não verificadas. Limite: Dados locais da oferta, sem teste independente.
+
+Fonte 66a9fb7116bb1ff424937c6fb09d5ac143dd2fe4; geração a1083eecb209f0a8dc6b90fc90c85071ebe9ee62; sitemap 42100594592, integridade 42100594290, Pages 42100678764: SUCCESS. 1536 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem113.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":254,"preserve_prior_review":98,"pending":130}. Próximos pendentes: mlMLB7748620676 — Perfume Árabe His Confession Masculino Original 100ML; mlMLB7752259240 — Kit Internet Completo Antena Starlink Mini X 2 Suportes Cabo; mlMLB7870098964 — Kit 3 Bonecos Marvel Hulk 22cm Homem Aranha 9cm Capitã 9cm. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 112 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB6989366460: targeted_correction_complete. Retira promessa de conforto e distingue o código do anúncio do modelo. Limite: Dados locais da oferta, sem teste independente.
