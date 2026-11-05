@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB5287633095",
-      "mlMLB5299235149",
-      "mlMLB5336183061",
       "mlMLB5386749261",
       "mlMLB5389928608",
       "mlMLB5408593708",
       "mlMLB5626051922",
-      "mlMLB5751316838"
+      "mlMLB5751316838",
+      "mlMLB5769733060",
+      "mlMLB5952869866",
+      "mlMLB6118982036"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T09:51:15.715Z",
-  "catalogueGeneratedAt": "2026-11-05T09:51:05.308Z",
+  "updatedAt": "2026-11-05T09:54:00.475Z",
+  "catalogueGeneratedAt": "2026-11-05T09:52:19.733Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 564,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 226,
+    "targeted_correction_complete": 229,
     "preserve_prior_review": 98,
-    "pending": 154,
-    "prepared_awaiting_publication": 3
+    "pending": 154
   },
   "items": [
     {
@@ -1982,12 +1981,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5287633095-20260810-1.html",
       "title": "Câmera Wi-Fi Kateluo — 1080p e áudio bidirecional anunciados",
       "fingerprint": "9d2d4eb983fdac6d702a2478bb14ffa620e41cc4c78d474fb0ad2d697aa47806",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:54:00.445Z",
       "workNotes": [
         "Retira a promessa de adequação para monitorar bebês e atribui os recursos ao anúncio.",
-        "Dados locais do anúncio, sem validação independente."
+        "Dados locais do anúncio, sem validação independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB79849891?pdp_filters=item_id%3AMLB5287633095"
@@ -3967,12 +3967,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5336183061-20260810-1.html",
       "title": "Inversor veicular IF-378 — 12 V, até 350 W anunciados",
       "fingerprint": "fca1de2c35058bf42014eeb39a8ac1b982027db381276bf5ed60734d5817d29d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:54:00.445Z",
       "workNotes": [
         "Distingue potência máxima anunciada de potência contínua não confirmada.",
-        "Dados locais do anúncio, sem validação independente."
+        "Dados locais do anúncio, sem validação independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB62888640#wid=MLB5336183061"
@@ -4623,12 +4624,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5299235149-20260810-1.html",
       "title": "Kit Instrumento Musical Bandinha Infantil Presente +4 Anos",
       "fingerprint": "79721b0c4568cb47e6baeff6a3362a353da3234ef6909ce5739ac025ad65dcc0",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:54:00.445Z",
       "workNotes": [
         "Atribui a faixa etária à oferta e explicita os dados ausentes sobre o kit.",
-        "Dados locais do anúncio, sem validação independente."
+        "Dados locais do anúncio, sem validação independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5284064567?pdp_filters=item_id%3AMLB5299235149"
@@ -12753,12 +12755,44 @@
     "backendWrites": 0
   },
   "triage104": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB5287633095",
       "mlMLB5299235149",
       "mlMLB5336183061"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T09:54:00.445Z",
+    "changedIds": [
+      "mlMLB5287633095",
+      "mlMLB5299235149",
+      "mlMLB5336183061"
+    ],
+    "jointReleaseBatches": [
+      104
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem104.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB5287633095",
+        "note": "Dados locais do anúncio, sem validação independente."
+      },
+      {
+        "id": "mlMLB5299235149",
+        "note": "Dados locais do anúncio, sem validação independente."
+      },
+      {
+        "id": "mlMLB5336183061",
+        "note": "Dados locais do anúncio, sem validação independente."
+      }
+    ],
+    "sourceCommit": "3f6d370faf2868b9f149a8cd6c47869094ec3224",
+    "generatedCommit": "c4f634f90271f7b013c1eb7ec1d893242fd49042",
+    "sitemapRun": 42005923799,
+    "integrityRun": 42005923819,
+    "pagesRun": 42005996571,
+    "testsPassed": 1528,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

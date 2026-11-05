@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 104 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB5287633095: targeted_correction_complete. Retira a promessa de adequação para monitorar bebês e atribui os recursos ao anúncio. Limite: Dados locais do anúncio, sem validação independente.
+- mlMLB5299235149: targeted_correction_complete. Atribui a faixa etária à oferta e explicita os dados ausentes sobre o kit. Limite: Dados locais do anúncio, sem validação independente.
+- mlMLB5336183061: targeted_correction_complete. Distingue potência máxima anunciada de potência contínua não confirmada. Limite: Dados locais do anúncio, sem validação independente.
+
+Fonte 3f6d370faf2868b9f149a8cd6c47869094ec3224; geração c4f634f90271f7b013c1eb7ec1d893242fd49042; sitemap 42005923799, integridade 42005923819, Pages 42005996571: SUCCESS. 1528 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem104.json.
+
+Totais: {"total":564,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":229,"preserve_prior_review":98,"pending":154}. Próximos pendentes: mlMLB5386749261 — Kit Gamer Teclado E Mouse Led Rgb Usb Para Pc Computador; mlMLB5389928608 — Pc Computador Cpu Intel I5 10400, Nvme 500gb, 16gb Ram, 500w; mlMLB5408593708 — Tênis Casual Kappa Zenit Masculino Unissex Conforto. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 103 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB5158506809: targeted_correction_complete. Remove código de catálogo incompatível com o link atual. Limite: Dados locais do anúncio; sem confirmação independente.
