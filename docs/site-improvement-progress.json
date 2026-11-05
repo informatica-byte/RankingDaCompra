@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:35:28.229Z",
-  "catalogueGeneratedAt": "2026-11-05T20:33:50.235Z",
+  "updatedAt": "2026-11-05T20:37:55.536Z",
+  "catalogueGeneratedAt": "2026-11-05T20:37:52.758Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 260,
     "preserve_prior_review": 98,
-    "pending": 124
+    "pending": 121,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -1911,6 +1912,25 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "NfQ2YF7qf3SL1oehasTi",
+      "url": "https://rankingdacompra.com.br/produto/NfQ2YF7qf3SL1oehasTi-20260810-1.html",
+      "title": "Câmera Intelbras iM3 C Black — Wi-Fi Full HD para uso interno",
+      "fingerprint": "1d1628babf1e18ac81c9a6040a3b3114ef43012968d01ce4feef6f9f2adf6f69",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Substitui comparação sem evidência por recursos documentados e explicita uso interno.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB18596029?pdp_filters=item_id%3AMLB4595279704",
+        "https://www.intelbras.com/pt-br/camera-interna-wi-fi-full-hd-im3-c"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "yKB6RcYlSxOOCG31HXN2",
       "url": "https://rankingdacompra.com.br/produto/yKB6RcYlSxOOCG31HXN2-20260810-1.html",
       "title": "Câmera Inteligente Full HD iM5 SC com MicroSD 32GB Branca Intelbras",
@@ -1924,17 +1944,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "NfQ2YF7qf3SL1oehasTi",
-      "url": "https://rankingdacompra.com.br/produto/NfQ2YF7qf3SL1oehasTi-20260810-1.html",
-      "title": "Câmera Inteligente iM3 C Black Intelbras",
-      "fingerprint": "0adfa863f3072790edc44ee5012a07c38dc3ab7b33c758dad5dd850c732a0fb0",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "mWdbAKSL36ZpIPwUTbdv",
@@ -4881,6 +4890,24 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "N6932yKNTXnAJ98cz9Eo",
+      "url": "https://rankingdacompra.com.br/produto/N6932yKNTXnAJ98cz9Eo-20260810-1.html",
+      "title": "Kit TUD com 11 potes de vidro e tampas de bambu",
+      "fingerprint": "a366607383bc0754a91bafe04293374b04d4f8c68645b308a51bd9813629eb5b",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Atribui vedação à oferta e remove promessa de conservação sem teste.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB41256184"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "fflXJkY0fRQJg8t2QZqn",
       "url": "https://rankingdacompra.com.br/produto/fflXJkY0fRQJg8t2QZqn-20260810-1.html",
       "title": "Kit ventilador portátil de 8 polegadas com luz LED e duas baterias anunciadas",
@@ -7175,13 +7202,20 @@
     {
       "id": "N9EnpkbyJeTRuSriAhFn",
       "url": "https://rankingdacompra.com.br/produto/N9EnpkbyJeTRuSriAhFn-20260810-1.html",
-      "title": "Relógio De Parede Decorativo Deus E Bom O Tempo Todo Em Mdf",
-      "fingerprint": "9a5155919c21453aac27d701cc272fbf4af2c0622284e8288db85c21e7ee3273",
-      "status": "pending",
+      "title": "Relógio de parede Oca Decora em MDF — Deus é bom o tempo todo",
+      "fingerprint": "bf521216d603649e6af3ed843fc6b5b68f7b6630b5ecf5dc301b854ea8a8a995",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige identificação do anúncio e explicita dados ausentes.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6709937978-relogio-de-parede-decorativo-deus-e-bom-o-tempo-todo-em-mdf-_JM"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "zLqKcRRYNyzrP6t1Erhh",
@@ -9179,17 +9213,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "N6932yKNTXnAJ98cz9Eo",
-      "url": "https://rankingdacompra.com.br/produto/N6932yKNTXnAJ98cz9Eo-20260810-1.html",
-      "title": "TUD Kit 11 Potes Vidro Herméticos Tampa Bambu 200ml a 2L Armazenamento",
-      "fingerprint": "ba70a183ecd80eda6db534a2a929ac6789fb90fa0fb3627972103cb393e1dfc3",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "VgdT8EtzIO0zWeDyEz7E",
@@ -13495,5 +13518,14 @@
     "testsPassed": 1539,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage116": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "N6932yKNTXnAJ98cz9Eo",
+      "N9EnpkbyJeTRuSriAhFn",
+      "NfQ2YF7qf3SL1oehasTi"
+    ],
+    "newDeepReviews": 0
   }
 }

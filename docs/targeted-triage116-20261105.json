@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados locais e fonte oficial quando aplicável.",
+  "items": [
+    {
+      "id": "N6932yKNTXnAJ98cz9Eo",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui vedação à oferta e remove promessa de conservação sem teste.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB41256184"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "N9EnpkbyJeTRuSriAhFn",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige identificação do anúncio e explicita dados ausentes.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6709937978-relogio-de-parede-decorativo-deus-e-bom-o-tempo-todo-em-mdf-_JM"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "NfQ2YF7qf3SL1oehasTi",
+      "decision": "targeted_correction_complete",
+      "reason": "Substitui comparação sem evidência por recursos documentados e explicita uso interno.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB18596029?pdp_filters=item_id%3AMLB4595279704",
+        "https://www.intelbras.com/pt-br/camera-interna-wi-fi-full-hd-im3-c"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
