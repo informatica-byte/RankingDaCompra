@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 124 — 20261105, PUBLICADA E VERIFICADA
+
+- pNwNrsWTQMEyOC4qwff1: targeted_correction_complete. Retira promessas sobre aplicação e duração, usando a classificação da marca. Limite: Sem teste independente.
+- pO6CZCNo99YwtpIW0UB8: targeted_correction_complete. Sinaliza divergência CH-01 e GH-01 sem confirmar a composição. Limite: Referência exata do terceiro item depende do rótulo da oferta.
+- poypkDuJgaW37aCZlswN: targeted_correction_complete. Retira sugestão de ar frio sem medição e atribui os números à oferta. Limite: Sem teste independente.
+
+Fonte 6a7aee5ae0f14f8d0044ce24bc044af746fabd14; geração 2e3e2fb1af93c1208f0a5874e0f44af166b174ee; sitemap 42125553727, integridade 42125553783, Pages 42125632153: SUCCESS. 1548 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem124.json.
+
+Totais: {"total":565,"screened_no_change":77,"needs_source":8,"targeted_correction_complete":285,"preserve_prior_review":98,"pending":97}. Próximos pendentes: PP8JorVbOJNMg5FXOr47 — Esteira Elétrica Ergométrica Dobrável 12km C/tela Led Bivolt; ppQhZEUfZDuGcIZRmFB5 — Serra Tico Tico Profissional 500w 3000 Gpm Lâmina E Protetor Bst500 The Black Tools; q8wxWRl86XmL7Gglikg7 — Kaiak Ultra Natura Colônia Perfume Masculino 100ml Relançamento 2025. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 123 — 20261105, PUBLICADA E VERIFICADA
 
 - PEegqDESPIk3onguTRg8: targeted_correction_complete. Corrige a interpretação de bloqueio de colisões. Limite: Dados locais da oferta, sem teste independente.

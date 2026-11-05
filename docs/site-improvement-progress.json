@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "pNwNrsWTQMEyOC4qwff1",
-      "pO6CZCNo99YwtpIW0UB8",
-      "poypkDuJgaW37aCZlswN",
       "PP8JorVbOJNMg5FXOr47",
       "ppQhZEUfZDuGcIZRmFB5",
       "q8wxWRl86XmL7Gglikg7",
       "Q8XN2tGmsU12afIbz1Am",
-      "Q9UWVUsXl8sIvWyM1hKt"
+      "Q9UWVUsXl8sIvWyM1hKt",
+      "qeH6DeH4aWWppBpaRPYc",
+      "QHCeO6rxelawGpcolRX1",
+      "QIAwDGVurh7E0nsu2G7t"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T22:54:00.681Z",
-  "catalogueGeneratedAt": "2026-11-05T22:53:56.756Z",
+  "updatedAt": "2026-11-05T22:57:41.439Z",
+  "catalogueGeneratedAt": "2026-11-05T22:55:58.068Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 77,
     "needs_source": 8,
-    "targeted_correction_complete": 282,
+    "targeted_correction_complete": 285,
     "preserve_prior_review": 98,
-    "pending": 97,
-    "prepared_awaiting_publication": 3
+    "pending": 97
   },
   "items": [
     {
@@ -2642,12 +2641,13 @@
       "url": "https://rankingdacompra.com.br/produto/poypkDuJgaW37aCZlswN-20260810-1.html",
       "title": "Climatizador evaporativo Ventisol Clin 16",
       "fingerprint": "9151c0c395ab11c81c1a68c2cd2f2bcfe68868e3239e81c2b650213dd3601796",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T22:57:41.406Z",
       "workNotes": [
         "Retira sugestão de ar frio sem medição e atribui os números à oferta.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB26208174?pdp_filters=item_id%3AMLB5054428609"
@@ -4675,12 +4675,13 @@
       "url": "https://rankingdacompra.com.br/produto/pO6CZCNo99YwtpIW0UB8-20260810-1.html",
       "title": "Kit de limpeza e hidratação Principia — anúncio MLB5786186316",
       "fingerprint": "a529bf9ea3579e217cbd9d3ca4496a1893d34c8ed9421c9831b9c1d0e4d1b7d4",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T22:57:41.406Z",
       "workNotes": [
         "Sinaliza divergência CH-01 e GH-01 sem confirmar a composição.",
-        "Referência exata do terceiro item depende do rótulo da oferta."
+        "Referência exata do terceiro item depende do rótulo da oferta.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB59624823?pdp_filters=item_id%3AMLB5786186316"
@@ -6140,12 +6141,13 @@
       "url": "https://rankingdacompra.com.br/produto/pNwNrsWTQMEyOC4qwff1-20260810-1.html",
       "title": "O Boticário Insensatez Deo Colônia 100ml",
       "fingerprint": "446f4b6e71cb799c0fcacf88fbde9cee67565ec44e2c002729706c5f4547575d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T22:57:41.406Z",
       "workNotes": [
         "Retira promessas sobre aplicação e duração, usando a classificação da marca.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB19803789?wid=MLB4515776631",
@@ -14025,12 +14027,44 @@
     "backendWrites": 0
   },
   "triage124": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "pNwNrsWTQMEyOC4qwff1",
       "pO6CZCNo99YwtpIW0UB8",
       "poypkDuJgaW37aCZlswN"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T22:57:41.406Z",
+    "changedIds": [
+      "pNwNrsWTQMEyOC4qwff1",
+      "pO6CZCNo99YwtpIW0UB8",
+      "poypkDuJgaW37aCZlswN"
+    ],
+    "jointReleaseBatches": [
+      124
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem124.json",
+    "remainingDependencies": [
+      {
+        "id": "pNwNrsWTQMEyOC4qwff1",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "pO6CZCNo99YwtpIW0UB8",
+        "note": "Referência exata do terceiro item depende do rótulo da oferta."
+      },
+      {
+        "id": "poypkDuJgaW37aCZlswN",
+        "note": "Sem teste independente."
+      }
+    ],
+    "sourceCommit": "6a7aee5ae0f14f8d0044ce24bc044af746fabd14",
+    "generatedCommit": "2e3e2fb1af93c1208f0a5874e0f44af166b174ee",
+    "sitemapRun": 42125553727,
+    "integrityRun": 42125553783,
+    "pagesRun": 42125632153,
+    "testsPassed": 1548,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
