@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 94 — 20261104, PUBLICADA E VERIFICADA
+
+- mlMLB3966936389: targeted_correction_complete. Corrige anúncio versus catálogo; não usa original/NFE/skate como autenticação ou desempenho comprovados. Limite: Snapshot e formato do endereço; sem referência técnica exata ou inspeção. Não acrescenta materiais, tecnologias ou garantia de uso esportivo de outro Mormaii.
+- mlMLB3973124591: targeted_correction_complete. Corrige tipo de código e atribui marca ao cadastro; mantém estilo sem garantir conforto ou composição. Limite: Snapshot sem código técnico, etiqueta ou teste. Não presume couro, origem ou conforto prolongado.
+- mlMLB4028845341: targeted_correction_complete. Corrige anúncio rotulado como catálogo; qualifica original e atividades como informações da oferta, sem teste de amortecimento. Limite: Snapshot sem autenticação ou inspeção da unidade. Não transfere recursos de outro Kappa nem garante adequação à atividade.
+
+Fonte 418cf634c1c42e317b48fa77632590c02cb4452e; geração e4ba462da992eb46389874b39df2c532d3ce9bef; sitemap 41938416793, integridade 41938416870, Pages 41938494815: SUCCESS. 1518 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem94.json.
+
+Totais: {"total":564,"screened_no_change":71,"needs_source":8,"targeted_correction_complete":203,"preserve_prior_review":98,"pending":184}. Próximos pendentes: mlMLB4031468281 — Tênis Masculino Casual Sapatenis Novo Lançamento Conforto; mlMLB4144557655 — Notebook Acer Aspire Go 15 com Processador Intel Core i3 13ª Geração 8GB de Memória RAM DDR5 Armazenamento 256GB; mlMLB4147473207 — Tênis Feminino Esportivo Actvitta Super Leve Macio Corrida. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Correção visual de tema — 2026-11-04
 
 Causa: renderSeasonalTheme retornava imediatamente no modo informativo, mesmo com Black Friday manual já salvo no site-config publicado. Corrigido o renderer visual, com textos sem preços e contraste preto/dourado, preservando modo off, período e prévia. Cache sincronizado em vitrine/painel/template, com versões exatas ainda validadas. 1517 testes, validate-site e QA local 390/1280 aprovados. Não repetir passagem 93; retomar fila editorial por ID nela registrada.
