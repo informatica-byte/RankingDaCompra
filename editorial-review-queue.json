@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T20:39:40.162Z",
+  "generatedAt": "2026-11-05T20:44:16.897Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 121
+    "screening": 118
   },
   "items": [
     {
@@ -48,27 +48,6 @@
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "nfzTOT5XTvnh8Q8DyLvb",
-      "title": "Tênis Masculino Elevation Fila",
-      "url": "https://rankingdacompra.com.br/produto/nfzTOT5XTvnh8Q8DyLvb-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "nkBZlP0jQEwoMIj6VDbG",
-      "title": "Capa Chuva Motoqueiro Pvc Impermeável Motoboy Emborrachada",
-      "url": "https://rankingdacompra.com.br/produto/nkBZlP0jQEwoMIj6VDbG-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "NQyo56LcUgwwA2tz8YCF",
-      "title": "Tênis Mizuno Wave Dynasty 5 Masculino Treino Original",
-      "url": "https://rankingdacompra.com.br/produto/NQyo56LcUgwwA2tz8YCF-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

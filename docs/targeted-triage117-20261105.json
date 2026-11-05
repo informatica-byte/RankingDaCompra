@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados públicos locais.",
+  "items": [
+    {
+      "id": "nfzTOT5XTvnh8Q8DyLvb",
+      "decision": "targeted_correction_complete",
+      "reason": "Explica o limite da largura anunciada e retira texto repetitivo sobre preço.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3679312383?pdp_filters=item_id%3AMLB6067481206"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "nkBZlP0jQEwoMIj6VDbG",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui a impermeabilidade à oferta e não apresenta o código do anúncio como catálogo.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5298350806-capa-chuva-motoqueiro-pvc-impermeavel-motoboy-emborrachada-_JM?searchVariation=182988333362"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "NQyo56LcUgwwA2tz8YCF",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira especificações atribuídas ao Wave Falcon 5 sem transferi-las ao Dynasty 5.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3384814517-tnis-mizuno-wave-dynasty-5-masculino-treino-original-_JM?searchVariation=179111328315"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

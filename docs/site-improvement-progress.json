@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:41:27.782Z",
-  "catalogueGeneratedAt": "2026-11-05T20:39:40.162Z",
+  "updatedAt": "2026-11-05T20:44:18.869Z",
+  "catalogueGeneratedAt": "2026-11-05T20:44:16.897Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 263,
     "preserve_prior_review": 98,
-    "pending": 121
+    "pending": 118,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2191,13 +2192,20 @@
     {
       "id": "nkBZlP0jQEwoMIj6VDbG",
       "url": "https://rankingdacompra.com.br/produto/nkBZlP0jQEwoMIj6VDbG-20260810-1.html",
-      "title": "Capa Chuva Motoqueiro Pvc Impermeável Motoboy Emborrachada",
-      "fingerprint": "3c99da41f07b30dc9561770b6e2ef78e139ba929aaa7eb6d3b82fdd963f8b1b8",
-      "status": "pending",
+      "title": "Capa de chuva Brascamp em PVC para motociclista",
+      "fingerprint": "7f61c5122f9fba81d1c11fe7b488728642825f0e8141a879ca67f4b007c244e3",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Atribui a impermeabilidade à oferta e não apresenta o código do anúncio como catálogo.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5298350806-capa-chuva-motoqueiro-pvc-impermeavel-motoboy-emborrachada-_JM?searchVariation=182988333362"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "bpuXfDB4cwTrjlMUINRi",
@@ -8684,12 +8692,19 @@
       "id": "nfzTOT5XTvnh8Q8DyLvb",
       "url": "https://rankingdacompra.com.br/produto/nfzTOT5XTvnh8Q8DyLvb-20260810-1.html",
       "title": "Tênis Masculino Elevation Fila",
-      "fingerprint": "5b8e6b1265615d72c5fccd9a59b094fd9161de282534e82a8a2f96cf9aaa8992",
-      "status": "pending",
+      "fingerprint": "86376be349e62a1dc14632b2223517b207862aea26d47cab0c1f5ab487dfeae3",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Explica o limite da largura anunciada e retira texto repetitivo sobre preço.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3679312383?pdp_filters=item_id%3AMLB6067481206"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "iXzsMyqf9ilSKwbLDtk7",
@@ -8739,6 +8754,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "NQyo56LcUgwwA2tz8YCF",
+      "url": "https://rankingdacompra.com.br/produto/NQyo56LcUgwwA2tz8YCF-20260810-1.html",
+      "title": "Tênis masculino Mizuno Wave Dynasty 5 — modelo anunciado",
+      "fingerprint": "1b08c6791e82f92d5008968db7a35e40918b1c2f02797d03b19854c43548692d",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira especificações atribuídas ao Wave Falcon 5 sem transferi-las ao Dynasty 5.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3384814517-tnis-mizuno-wave-dynasty-5-masculino-treino-original-_JM?searchVariation=179111328315"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5136589984",
@@ -8792,17 +8825,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "NQyo56LcUgwwA2tz8YCF",
-      "url": "https://rankingdacompra.com.br/produto/NQyo56LcUgwwA2tz8YCF-20260810-1.html",
-      "title": "Tênis Mizuno Wave Dynasty 5 Masculino Treino Original",
-      "fingerprint": "795e198373ba5fc8eaf92cb422b329269fdbf84d07d1622c0bdabf42b2b8661d",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "mlMLB3966936389",
@@ -13561,5 +13583,14 @@
     "testsPassed": 1540,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage117": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "NQyo56LcUgwwA2tz8YCF",
+      "nfzTOT5XTvnh8Q8DyLvb",
+      "nkBZlP0jQEwoMIj6VDbG"
+    ],
+    "newDeepReviews": 0
   }
 }
