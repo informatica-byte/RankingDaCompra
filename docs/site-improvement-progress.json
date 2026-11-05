@@ -6,7 +6,10 @@
     "generatedCommit": "5fb2ef85410b8be81eaa68c544e7951dd956d4b0",
     "pagesRun": 41937357752,
     "testsPassed": 1517,
-    "verifiedWidths": [390, 1280],
+    "verifiedWidths": [
+      390,
+      1280
+    ],
     "proof": "outputs/melhorias-integrais-20261030/verificacao-tema-publicado.json",
     "firestoreReads": 0,
     "backendWrites": 0,
@@ -687,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-04T23:38:12.521Z",
-  "catalogueGeneratedAt": "2026-11-04T23:36:44.901Z",
+  "updatedAt": "2026-11-05T00:02:23.458Z",
+  "catalogueGeneratedAt": "2026-11-05T00:02:14.844Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -699,12 +702,13 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 563,
+    "total": 564,
     "screened_no_change": 71,
     "needs_source": 8,
     "targeted_correction_complete": 200,
     "preserve_prior_review": 98,
-    "pending": 186
+    "pending": 184,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2609,6 +2613,17 @@
       "url": "https://rankingdacompra.com.br/produto/RHhkWKxMXBZONt8jx4Ew-20260810-1.html",
       "title": "Computador Completo 20'' BRX Intel Core i5 6ª Geração 8GB SSD 256GB Monitor LED 75Hz Windows Teclado Mouse Kit Completo Desktop Office Home Office Estudo Trabalho",
       "fingerprint": "ce43ebb06f10a950489ccb3571238a2221443c41a88f50e4f566117719af7fc8",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
+      "id": "mlMLB6666191918",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6666191918-20260810-1.html",
+      "title": "Computador Completo Top Intel Core i7 4770, 16GB RAM, SSD 512GB, Bivolt, Preto, Windows 10 Pro, Monitor 23\" Full HD - BluePC CD2E-0135TO",
+      "fingerprint": "a4f171e53b3c1cf6b8cd9a9354d6cd65fbff7063320e461522c7e55c163cdad6",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -7146,12 +7161,19 @@
       "id": "mlMLB3973124591",
       "url": "https://rankingdacompra.com.br/produto/mlMLB3973124591-20260810-1.html",
       "title": "Sapatênis Masculino Casual Com Cadarço Dia A Dia Versátil",
-      "fingerprint": "125cb2173a687833e636e541bb034d35d111c176ed59f273d6502f2d70b54ce5",
-      "status": "pending",
+      "fingerprint": "22c3fac8e85fa1da35d3a3883746745825e81c567ac6bc07fe8eaceb147b067d",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige tipo de código e atribui marca ao cadastro; mantém estilo sem garantir conforto ou composição.",
+        "Snapshot sem código técnico, etiqueta ou teste. Não presume couro, origem ou conforto prolongado."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3973124591"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "hVTGYQmARQt2fyDqPZDa",
@@ -8039,12 +8061,19 @@
       "id": "mlMLB4028845341",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4028845341-20260810-1.html",
       "title": "Tênis Kappa Run 200 Original Caminhada Academia",
-      "fingerprint": "a48edc460cd25bf142868b4241e5ff62e033d5105b7016e12959b5d1b0b19027",
-      "status": "pending",
+      "fingerprint": "88c7da14ca556ee4e55be6e92f792d1ab75ab1f846fe8c1de513204e4241aff9",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige anúncio rotulado como catálogo; qualifica original e atividades como informações da oferta, sem teste de amortecimento.",
+        "Snapshot sem autenticação ou inspeção da unidade. Não transfere recursos de outro Kappa nem garante adequação à atividade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4028845341"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4407094781",
@@ -8298,12 +8327,19 @@
       "id": "mlMLB3966936389",
       "url": "https://rankingdacompra.com.br/produto/mlMLB3966936389-20260810-1.html",
       "title": "Tênis Mormaii Urban Free Masculino Casual Original Skate Nfe",
-      "fingerprint": "4272de01b2afce13987e3beda3ff5295fb690c8a058cba3cc84751b84db256f5",
-      "status": "pending",
+      "fingerprint": "285aee8bf0eb8f34e06e0a0cbb46c004d7765eed57825ec5fc352144f851f70a",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige anúncio versus catálogo; não usa original/NFE/skate como autenticação ou desempenho comprovados.",
+        "Snapshot e formato do endereço; sem referência técnica exata ou inspeção. Não acrescenta materiais, tecnologias ou garantia de uso esportivo de outro Mormaii."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3966936389"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "InsaA7npZ9l5Qf6jByiC",
@@ -12083,5 +12119,14 @@
     "testsPassed": 1516,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage94": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB3966936389",
+      "mlMLB3973124591",
+      "mlMLB4028845341"
+    ],
+    "newDeepReviews": 0
   }
 }

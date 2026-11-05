@@ -8,6 +8,27 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB3966936389', {
+    syncInformationalSchema:true, expectedListing:'MLB3966936389',
+    model:/^Tênis Mormaii Urban Free Masculino Casual Original Skate Nfe$/i,
+    summary:'A oferta identifica um tênis masculino anunciado como Mormaii Urban Free. O código MLB3966936389 identifica o anúncio do vendedor, não um código de catálogo confirmado. Confira referência do modelo, numeração, cor e composição da variação escolhida. Original e NFE no título não autenticam a unidade, e a palavra skate não comprova desempenho ou adequação à prática esportiva. Não testamos ajuste, conforto, aderência ou durabilidade nem transferimos materiais e tecnologias de outra linha Mormaii. A condição novo é informação da oferta, não inspeção da equipe.',
+    positiveNotes:['Linha Urban Free masculina identificada na oferta; confirmar referência e variação.'],
+    negativeNotes:['Número do anúncio não é catálogo confirmado nem prova de autenticidade.', 'Ajuste e desempenho não testados; skate no título não garante adequação ao esporte.'],suppressRating:true,
+  }],
+  ['mlMLB3973124591', {
+    syncInformationalSchema:true, expectedListing:'MLB3973124591',
+    model:/^Sapatênis Masculino Casual Com Cadarço Dia A Dia Versátil$/i,
+    summary:'A oferta identifica um sapatênis masculino casual com cadarço, com marca Soled Calçados informada no cadastro. O código MLB3973124591 identifica o anúncio do vendedor, não um código de catálogo confirmado. Pode interessar a quem busca esse estilo, mas dia a dia e versátil não comprovam conforto prolongado ou adequação a qualquer atividade. Confira código do modelo, composição, numeração e cor da variação antes de escolher. Não testamos ajuste, aderência ou resistência e não acrescentamos couro ou tecnologias de outro calçado. A condição novo é informação da oferta, não inspeção da unidade.',
+    positiveNotes:['Formato casual com cadarço e marca informados na oferta.'],
+    negativeNotes:['Código do anúncio não confirma catálogo; modelo e composição precisam ser conferidos.', 'Conforto, ajuste e resistência não testados; sem material ou tecnologia presumidos.'],suppressRating:true,
+  }],
+  ['mlMLB4028845341', {
+    syncInformationalSchema:true, expectedListing:'MLB4028845341',
+    model:/^Tênis Kappa Run 200 Original Caminhada Academia$/i,
+    summary:'A oferta identifica um tênis anunciado como Kappa Run 200. O código MLB4028845341 identifica o anúncio do vendedor, não um código de catálogo confirmado. Confira referência, composição, numeração e cor da variação selecionada. Original no título não autentica a unidade, e caminhada e academia são usos mencionados pelo anúncio, não avaliação de adequação individual feita pela equipe. Não testamos amortecimento, conforto, aderência ou durabilidade e não transferimos características de outros modelos Kappa. A condição novo permanece como informação da oferta, não inspeção do produto.',
+    positiveNotes:['Identificação Run 200 e marca Kappa presentes na oferta; confirmar referência.'],
+    negativeNotes:['Número do anúncio não comprova catálogo ou autenticidade da unidade.', 'Amortecimento e adequação à atividade não testados; conferir tamanho e composição.'],suppressRating:true,
+  }],
   ['mhz9cN2MnCkxuSW5OPlv', {
     syncInformationalSchema:true,
     model:/^Pistola Fixação Finca Pino Ação Direta$/i,

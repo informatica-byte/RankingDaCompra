@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-04T23:54:20.914Z",
+  "generatedAt": "2026-11-05T00:02:14.844Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 187
+    "screening": 184
   },
   "items": [
     {
@@ -34,27 +34,6 @@
       "title": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
       "url": "https://rankingdacompra.com.br/produto/jdxZ0gYEI0XGOPYbWh78-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB3966936389",
-      "title": "Tênis Mormaii Urban Free Masculino Casual Original Skate Nfe",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB3966936389-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB3973124591",
-      "title": "Sapatênis Masculino Casual Com Cadarço Dia A Dia Versátil",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB3973124591-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4028845341",
-      "title": "Tênis Kappa Run 200 Original Caminhada Academia",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4028845341-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
@@ -362,6 +341,13 @@
       "id": "mlMLB6655583300",
       "title": "Lavadora Alta Pressão Portátil Chiaperini Lj14l Cor Azul E Preto",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6655583300-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "mlMLB6666191918",
+      "title": "Computador Completo Top Intel Core i7 4770, 16GB RAM, SSD 512GB, Bivolt, Preto, Windows 10 Pro, Monitor 23\" Full HD - BluePC CD2E-0135TO",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6666191918-20260810-1.html",
       "state": "screening",
       "reasons": []
     },
@@ -1363,13 +1349,6 @@
       "id": "zuvOrERyR2wVRA9ZmYGe",
       "title": "Câmera Lâmpada IP Wi-Fi Raytechno Full HD 1080p com Visão Noturna e Sensor de Movimento",
       "url": "https://rankingdacompra.com.br/produto/zuvOrERyR2wVRA9ZmYGe-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6666191918",
-      "title": "Computador Completo Top Intel Core i7 4770, 16GB RAM, SSD 512GB, Bivolt, Preto, Windows 10 Pro, Monitor 23\" Full HD - BluePC CD2E-0135TO",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6666191918-20260810-1.html",
       "state": "screening",
       "reasons": []
     }
