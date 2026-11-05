@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T02:32:24.400Z",
+  "generatedAt": "2026-11-05T08:59:02.645Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 172
+    "screening": 169
   },
   "items": [
     {
@@ -41,27 +41,6 @@
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4644707253",
-      "title": "Lavadora Alta Pressão Compacta 1400w, 1600psi, 300l/h",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4644707253-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4645102377",
-      "title": "Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4645102377-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4699180013",
-      "title": "Tênis Vans Vr3 Ultrarange Marshmallow Slip Meia Unissex",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4699180013-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T00:30:20.407Z",
-  "catalogueGeneratedAt": "2026-11-05T00:28:44.253Z",
+  "updatedAt": "2026-11-05T08:59:05.799Z",
+  "catalogueGeneratedAt": "2026-11-05T08:59:02.645Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 212,
     "preserve_prior_review": 98,
-    "pending": 172
+    "pending": 169,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4331,12 +4332,19 @@
       "id": "mlMLB4645102377",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4645102377-20260810-1.html",
       "title": "Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml",
-      "fingerprint": "04dfbd4d90b7421d6bbbc05a33d1a64e8ab7c9c1ffed47711bff9d6c89f7d11f",
-      "status": "pending",
+      "fingerprint": "582e1efa379a3e55ccf3ecfdcc3abf29b9df23fff25052616919b81b7dc2bf80",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Atribui volume e declarações de composição à oferta, sem certificar vendedor ou produto.",
+        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB68104527?wid=MLB4645102377"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4748674769",
@@ -4868,12 +4876,19 @@
       "id": "mlMLB4644707253",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4644707253-20260810-1.html",
       "title": "Lavadora Alta Pressão Compacta 1400w, 1600psi, 300l/h",
-      "fingerprint": "b4187f8c00afa2ea737f513b6f58d84aa49a238bff90624a225acd445febd6a6",
-      "status": "pending",
+      "fingerprint": "6e838940da8d511959e4bc25e76a6e7247d4d7d7e6339e1bfb5f6c249afe0c0d",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige a identificação do anúncio e distingue números anunciados de medições.",
+        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4644707253"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB6655583300",
@@ -8626,12 +8641,19 @@
       "id": "mlMLB4699180013",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4699180013-20260810-1.html",
       "title": "Tênis Vans Vr3 Ultrarange Marshmallow Slip Meia Unissex",
-      "fingerprint": "945c9153a8ec35efbd0a73cbfa7fddf8e5890469ee7267245e74b38e8dfdb375",
-      "status": "pending",
+      "fingerprint": "3e22c0d0ad960515d1b0a5234481fa3ec46bf83daf03bc81b319af9bc614c013",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira o código antigo apresentado como catálogo e preserva a variante vinculada.",
+        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5131266163?pdp_filters=item_id%3AMLB5215481527"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4291654613",
@@ -12408,5 +12430,14 @@
     "testsPassed": 1522,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage99": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB4644707253",
+      "mlMLB4645102377",
+      "mlMLB4699180013"
+    ],
+    "newDeepReviews": 0
   }
 }

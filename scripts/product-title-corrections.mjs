@@ -8,6 +8,8 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB4645102377', {syncInformationalSchema:true, expectedListing:'MLB4645102377', model:/^Kit Body Splash Masculino Barbarius \+ Enigma \+ Midtown 200ml$/i, summary:"A oferta identifica um kit Primacial com Barbarius, Enigma e Midtown. O cadastro indica 200 mL por unidade e embalagem não recarregável; confira os rótulos e o conteúdo do conjunto. Origem brasileira, composição vegana e a declaração de produto livre de crueldade animal são informações do anúncio, não verificações desta ficha. Estar no Mercado Livre não comprova que a oferta seja oficial da marca. Não testamos fragrância ou fixação.", positiveNotes:["Três fragrâncias identificadas na oferta."], negativeNotes:["Volume e composição devem ser conferidos nos rótulos; fixação não testada."],suppressRating:true}],
+  ['mlMLB4699180013', {syncInformationalSchema:true, expectedListing:'MLB5215481527', model:/^Tênis Vans Vr3 Ultrarange Marshmallow Slip Meia Unissex$/i, summary:"A oferta identifica um tênis anunciado como Vans UltraRange VR3 Slip, na cor Marshmallow. O código MLB4699180013 citado no texto anterior não identifica o anúncio atualmente vinculado; a ficha não o usa como código de catálogo. Confira referência, numeração e composição da unidade antes de escolher. Não verificamos autenticidade, materiais, conforto ou aderência e não transferimos características de outras versões UltraRange.", positiveNotes:["Linha, formato e cor identificados no anúncio."], negativeNotes:["Referência completa, composição e ajuste a confirmar."],suppressRating:true}],
   ['mlMLB4443112343', {
     syncInformationalSchema:true, expectedListing:'MLB4443112343',
     model:/^Fone de Ouvido Gamer In-ear Vellon TWS Bluetooth 5\.0, com Microfone e Estojo de Carregamento$/i,
@@ -1854,7 +1856,7 @@ const PRODUCT_CORRECTIONS = new Map([
     negativeNotes:['Velocidade real e alcance óptico não foram medidos; a unidade anterior era inconsistente.', 'Compatibilidade com Starlink e com os demais equipamentos não foi confirmada nesta revisão.'],
     suppressRating:true,
   }],
-  ['mlMLB4644707253', {model:/lavadora.*alta\s*press[aã]o/i, category:'ferramentas'}],
+  ['mlMLB4644707253', {syncInformationalSchema:true, expectedListing:'MLB4644707253', model:/^Lavadora Alta Pressão Compacta 1400w, 1600psi, 300l\/h$/i, summary:"A oferta identifica uma lavadora compacta Starmega anunciada com 1.400 W, 1.600 psi e 300 L/h. MLB4644707253 é o número do anúncio do vendedor, não um código de catálogo. A ficha não esclarece se a pressão e a vazão são máximas ou nominais. Confira a referência, a tensão e os acessórios da versão selecionada. Não medimos pressão, vazão ou desempenho.", positiveNotes:["Potência, pressão e vazão informadas no anúncio."], negativeNotes:["Pressão e vazão não medidas; tensão e acessórios a confirmar."],suppressRating:true,category:'ferramentas'}],
   ['5bQKU9inL3pq14yE8K4L', {
     model:/soundcore.*\bp30i\b/i,
     summary:'O soundcore P30i é um fone TWS intra-auricular com ANC e modo transparência anunciados pela fabricante. A duração anunciada é de até 10 horas nos fones e até 45 horas com recargas no estojo; 45 horas não são uma sessão contínua. O estojo também funciona como apoio para celular. Não medimos áudio, conforto, ANC ou bateria real. Recursos ligados, volume e condições de uso alteram a autonomia.',
