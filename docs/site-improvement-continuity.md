@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 107 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB5952869866: targeted_correction_complete. Retira indicação de saúde não validada e distingue quantidade de unidades de contagem de cerdas. Limite: Dados locais do anúncio, sem teste independente.
+- mlMLB6118982036: targeted_correction_complete. Não transforma um campo de quantidade em contagem total de peças. Limite: Dados locais do anúncio, sem teste independente.
+- mlMLB6203660830: targeted_correction_complete. Corrige o título truncado sem repetir alegações de compressão ou desempenho térmico. Limite: Dados locais do anúncio, sem teste independente.
+
+Fonte 5a46328f3d2438b88a275288e910d5158ab4a3ce; geração 9a2785acc8c30a1f50caed9a753ee6a96d1aa207; sitemap 42056577841, integridade 42056577730, Pages 42056650083: SUCCESS. 1531 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem107.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":238,"preserve_prior_review":98,"pending":146}. Próximos pendentes: mlMLB4604968203 — Notebook 2 em 1 Positivo Duo C8128E Intel Celeron N4500 Windows 11 Home 8GB RAM 128GB eMMC 11” LED HD IPS - Cinza; mlMLB6208948636 — Tênis Converse Feminino Taylor Ct2834 Curto T; mlMLB6619764606 — Webcam 1080p 2mp Full Hd Alta Resolução Com Microfone Usb. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 106 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB5626051922: targeted_correction_complete. Atribui resolução, taxa e autonomia ao anúncio. Limite: Dados locais do anúncio, sem teste independente.

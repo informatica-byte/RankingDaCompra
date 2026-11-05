@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB5952869866",
-      "mlMLB6118982036",
-      "mlMLB6203660830",
+      "mlMLB4604968203",
       "mlMLB6208948636",
       "mlMLB6619764606",
       "mlMLB6655583300",
       "mlMLB6666191918",
-      "mlMLB6778555692"
+      "mlMLB6778555692",
+      "mlMLB6785015658",
+      "mlMLB6794388344"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T15:34:01.712Z",
-  "catalogueGeneratedAt": "2026-11-05T15:33:57.888Z",
+  "updatedAt": "2026-11-05T15:38:03.882Z",
+  "catalogueGeneratedAt": "2026-11-05T15:36:02.093Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 235,
+    "targeted_correction_complete": 238,
     "preserve_prior_review": 98,
-    "pending": 146,
-    "prepared_awaiting_publication": 3
+    "pending": 146
   },
   "items": [
     {
@@ -3086,12 +3085,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5952869866-20260810-1.html",
       "title": "Escova dental Oralgos DB781 CS — pacote anunciado com 6 unidades",
       "fingerprint": "2a56f210ed188bf8f7dd5b110a29b35d7fb579647cdbae5d2a819c2f542b6b07",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T15:38:03.857Z",
       "workNotes": [
         "Retira indicação de saúde não validada e distingue quantidade de unidades de contagem de cerdas.",
-        "Dados locais do anúncio, sem teste independente."
+        "Dados locais do anúncio, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3580523497?wid=MLB5952869866"
@@ -4446,12 +4446,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6203660830-20260810-1.html",
       "title": "Kit com 4 shorts masculinos 2 em 1",
       "fingerprint": "00df398ccd7fe8973b4c9e057f234ef9d7a0d89b6c8f84f4f53af9d7a1aa8e55",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T15:38:03.857Z",
       "workNotes": [
         "Corrige o título truncado sem repetir alegações de compressão ou desempenho térmico.",
-        "Dados locais do anúncio, sem teste independente."
+        "Dados locais do anúncio, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-6203660830-kit-4-shorts-2-em-1-duplo-dryfit-masculino-compresso-termic-_JM?searchVariation=196379598601"
@@ -4625,12 +4626,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6118982036-20260810-1.html",
       "title": "Kit De Sobrevivência De Emergência De Acampamento Aventura",
       "fingerprint": "b152abf08042a40845fee83e6ad5e7c7d196719a9a8ce0999b518529e70e6f69",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T15:38:03.857Z",
       "workNotes": [
         "Não transforma um campo de quantidade em contagem total de peças.",
-        "Dados locais do anúncio, sem teste independente."
+        "Dados locais do anúncio, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3700781669?wid=MLB6118982036"
@@ -12959,12 +12961,44 @@
     "backendWrites": 0
   },
   "triage107": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB5952869866",
       "mlMLB6118982036",
       "mlMLB6203660830"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T15:38:03.857Z",
+    "changedIds": [
+      "mlMLB5952869866",
+      "mlMLB6118982036",
+      "mlMLB6203660830"
+    ],
+    "jointReleaseBatches": [
+      107
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem107.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB5952869866",
+        "note": "Dados locais do anúncio, sem teste independente."
+      },
+      {
+        "id": "mlMLB6118982036",
+        "note": "Dados locais do anúncio, sem teste independente."
+      },
+      {
+        "id": "mlMLB6203660830",
+        "note": "Dados locais do anúncio, sem teste independente."
+      }
+    ],
+    "sourceCommit": "5a46328f3d2438b88a275288e910d5158ab4a3ce",
+    "generatedCommit": "9a2785acc8c30a1f50caed9a753ee6a96d1aa207",
+    "sitemapRun": 42056577841,
+    "integrityRun": 42056577730,
+    "pagesRun": 42056650083,
+    "testsPassed": 1531,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
