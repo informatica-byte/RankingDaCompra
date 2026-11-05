@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T23:14:17.613Z",
-  "catalogueGeneratedAt": "2026-11-05T23:11:55.993Z",
+  "updatedAt": "2026-11-05T23:17:06.435Z",
+  "catalogueGeneratedAt": "2026-11-05T23:17:02.237Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 291,
     "preserve_prior_review": 98,
-    "pending": 91
+    "pending": 88,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2208,12 +2209,19 @@
       "id": "QHCeO6rxelawGpcolRX1",
       "url": "https://rankingdacompra.com.br/produto/QHCeO6rxelawGpcolRX1-20260810-1.html",
       "title": "Campainha Sem Fio Intelbras Cib 101 Com Bateria Preta",
-      "fingerprint": "3d489e225b5607c3420cf848ac4f3a36dd4fde7ded827507bbe3b274ba3a557c",
-      "status": "pending",
+      "fingerprint": "2a07cd577ae18d3ebe210d93d9cf590fb659b6c11dc2483aee4f58f0cb3f8727",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira promessa de excelente alcance e não transfere especificações da CIB 101S.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB42998422?wid=MLB6363542818"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "XXQfkSFgQfT2yD1mVrsP",
@@ -2564,13 +2572,20 @@
     {
       "id": "QIAwDGVurh7E0nsu2G7t",
       "url": "https://rankingdacompra.com.br/produto/QIAwDGVurh7E0nsu2G7t-20260810-1.html",
-      "title": "Chinelo Boaonda Ortopédico Bolt Nuvem Palmilha Conforto Leve",
-      "fingerprint": "49fcabe3280041e263081084b15f5581b46f68a085d8798e40653eb7b5e212e2",
-      "status": "pending",
+      "title": "Chinelo Boaonda Bolt Nuvem",
+      "fingerprint": "82d8269bcf2f0dab1eb88e7509cb843e776d2f499f8bc15f2addc98bf227e34e",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira classificação ortopédica não comprovada do título.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3609638507-chinelo-boaonda-ortopedico-bolt-nuvem-palmilha-conforto-leve-_JM?searchVariation=179931182528"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "uvlx1EGGFowAjO3EBgrw",
@@ -3908,12 +3923,20 @@
       "id": "QikFoLr76mfU8ijP9Nzr",
       "url": "https://rankingdacompra.com.br/produto/QikFoLr76mfU8ijP9Nzr-20260810-1.html",
       "title": "Grand Theft Auto VI - PlayStation 5",
-      "fingerprint": "65d8675d421b35398fbd4d8187b4897434f3664f1d6355531014ae001ec44a1b",
-      "status": "pending",
+      "fingerprint": "eecf053d20fce99ff341bac7c88e7832ec8d4059577b1f30ec6e5993423fac63",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Esclarece caixa com código, sem disco, e retira prazos e bônus não confirmados para a oferta.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB74108173?wid=MLB7413456100",
+        "https://support.rockstargames.com/articles/46YkMi4rHxYXMeIHtZiKaE/grand-theft-auto-vi-pre-order-details"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "NUNROG3VOfMVViIW5Rtk",
@@ -14197,5 +14220,14 @@
     "testsPassed": 1550,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage127": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "QHCeO6rxelawGpcolRX1",
+      "QIAwDGVurh7E0nsu2G7t",
+      "QikFoLr76mfU8ijP9Nzr"
+    ],
+    "newDeepReviews": 0
   }
 }

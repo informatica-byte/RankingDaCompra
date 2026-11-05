@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T23:11:55.993Z",
+  "generatedAt": "2026-11-05T23:17:02.237Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 91
+    "screening": 88
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "QHCeO6rxelawGpcolRX1",
-      "title": "Campainha Sem Fio Intelbras Cib 101 Com Bateria Preta",
-      "url": "https://rankingdacompra.com.br/produto/QHCeO6rxelawGpcolRX1-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "QIAwDGVurh7E0nsu2G7t",
-      "title": "Chinelo Boaonda Ortopédico Bolt Nuvem Palmilha Conforto Leve",
-      "url": "https://rankingdacompra.com.br/produto/QIAwDGVurh7E0nsu2G7t-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "QikFoLr76mfU8ijP9Nzr",
-      "title": "Grand Theft Auto VI - PlayStation 5",
-      "url": "https://rankingdacompra.com.br/produto/QikFoLr76mfU8ijP9Nzr-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

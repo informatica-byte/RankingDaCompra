@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Corrigir apenas divergências ou alegações materiais sem confirmação.",
+  "items": [
+    {
+      "id": "QHCeO6rxelawGpcolRX1",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessa de excelente alcance e não transfere especificações da CIB 101S.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB42998422?wid=MLB6363542818"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "QIAwDGVurh7E0nsu2G7t",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira classificação ortopédica não comprovada do título.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3609638507-chinelo-boaonda-ortopedico-bolt-nuvem-palmilha-conforto-leve-_JM?searchVariation=179931182528"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "QikFoLr76mfU8ijP9Nzr",
+      "decision": "targeted_correction_complete",
+      "reason": "Esclarece caixa com código, sem disco, e retira prazos e bônus não confirmados para a oferta.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB74108173?wid=MLB7413456100",
+        "https://support.rockstargames.com/articles/46YkMi4rHxYXMeIHtZiKaE/grand-theft-auto-vi-pre-order-details"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
