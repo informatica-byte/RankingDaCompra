@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T18:45:08.792Z",
+  "generatedAt": "2026-11-05T20:07:07.166Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 133
+    "screening": 130
   },
   "items": [
     {
@@ -48,27 +48,6 @@
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB7304557578",
-      "title": "Cooler para Notebook Gamer Megabyte SR002 com 4 Ventoinhas e LED Azul para Laptop até 17.3\"",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7304557578-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB7593699030",
-      "title": "Repetidor Sinal Wifi Gigab 1200mb 2.4g Dual Band Wireles 6an",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7593699030-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB7678487136",
-      "title": "Perfume Masculino Vibrato 200ml Alta Fixação",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7678487136-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

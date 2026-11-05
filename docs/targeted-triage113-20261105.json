@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correção pontual com base nos dados públicos locais.",
+  "items": [
+    {
+      "id": "mlMLB7304557578",
+      "decision": "targeted_correction_complete",
+      "reason": "Delimita a compatibilidade anunciada e retira garantias sobre fixação e funcionamento das portas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB76169253?wid=MLB7304557578"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "mlMLB7593699030",
+      "decision": "targeted_correction_complete",
+      "reason": "Remove a indicação ambígua de Gigabit do título e separa a taxa anunciada de desempenho real.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB2115543194?wid=MLB7593699030"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "mlMLB7678487136",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira a promessa de alta fixação e sinaliza alegações não verificadas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5266071440"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

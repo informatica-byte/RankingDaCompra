@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T18:47:38.693Z",
-  "catalogueGeneratedAt": "2026-11-05T18:45:08.792Z",
+  "updatedAt": "2026-11-05T20:07:09.519Z",
+  "catalogueGeneratedAt": "2026-11-05T20:07:07.166Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 251,
     "preserve_prior_review": 98,
-    "pending": 133
+    "prepared_awaiting_publication": 3,
+    "pending": 130
   },
   "items": [
     {
@@ -1203,6 +1204,24 @@
         "31/10/2026 — triagem seletiva 16: Indicação para chuva leve era uma conclusão não testada a partir de coluna de água anunciada. Retirada a garantia climática, preservadas medidas/capacidade como declarações do cadastro."
       ],
       "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB7304557578",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB7304557578-20260810-1.html",
+      "title": "Base refrigeradora Megabyte SR002 com 4 ventoinhas",
+      "fingerprint": "62a3f340f179bb319a0ac021bf9abb012be29a7b695939186eeb8bb56cd5fc80",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Delimita a compatibilidade anunciada e retira garantias sobre fixação e funcionamento das portas.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB76169253?wid=MLB7304557578"
+      ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
     },
@@ -2826,17 +2845,6 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB50829128?wid=MLB4082731117"
       ]
-    },
-    {
-      "id": "mlMLB7304557578",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7304557578-20260810-1.html",
-      "title": "Cooler para Notebook Gamer Megabyte SR002 com 4 Ventoinhas e LED Azul para Laptop até 17.3\"",
-      "fingerprint": "334133eee949345e9b0b4ad7c828f2c908ab7526d66f5e8b11b6323c54be3dc8",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "6owUOP0UqtNt3y5pFzgW",
@@ -6550,21 +6558,28 @@
       "sourceLinks": []
     },
     {
+      "id": "mlMLB7678487136",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB7678487136-20260810-1.html",
+      "title": "Perfume masculino Monarq Vibrato — 200 mL anunciados",
+      "fingerprint": "04c6f9b0b3334cba9b130eac513bb4791e36bcedc28bd77d129d3df5877fa644",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira a promessa de alta fixação e sinaliza alegações não verificadas.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5266071440"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "pEszDEGUnKoIpY9xhIdV",
       "url": "https://rankingdacompra.com.br/produto/pEszDEGUnKoIpY9xhIdV-20260810-1.html",
       "title": "Perfume Masculino Premium Midnight Blue 100ml Original Árabe",
       "fingerprint": "f6da2eab245ec689b27de550d99afc909a0a498bb907a32b607fab2e5ffaf656",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "mlMLB7678487136",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7678487136-20260810-1.html",
-      "title": "Perfume Masculino Vibrato 200ml Alta Fixação",
-      "fingerprint": "445fb73f88a26188bff05a2487a780b48ab9ee6999abbe67371fd92234fd3d99",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -7159,13 +7174,20 @@
     {
       "id": "mlMLB7593699030",
       "url": "https://rankingdacompra.com.br/produto/mlMLB7593699030-20260810-1.html",
-      "title": "Repetidor Sinal Wifi Gigab 1200mb 2.4g Dual Band Wireles 6an",
-      "fingerprint": "9a5f418db4ae064f734459389cbf875de521762a245a65934c68dd1dcfb870f6",
-      "status": "pending",
+      "title": "Repetidor Wi-Fi TRQ3 — dual band anunciado",
+      "fingerprint": "c58ae1ebcb1b33806c82b62a51106f305194b968cce9df23a477a4bff5397fde",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Remove a indicação ambígua de Gigabit do título e separa a taxa anunciada de desempenho real.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB2115543194?wid=MLB7593699030"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "347WUiAlueVscYKR7Emm",
@@ -13299,5 +13321,14 @@
     "testsPassed": 1535,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage113": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB7304557578",
+      "mlMLB7593699030",
+      "mlMLB7678487136"
+    ],
+    "newDeepReviews": 0
   }
 }
