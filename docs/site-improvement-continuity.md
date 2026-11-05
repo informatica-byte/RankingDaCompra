@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 127 — 20261105, PUBLICADA E VERIFICADA
+
+- QHCeO6rxelawGpcolRX1: targeted_correction_complete. Retira promessa de excelente alcance e não transfere especificações da CIB 101S. Limite: Sem teste independente.
+- QIAwDGVurh7E0nsu2G7t: targeted_correction_complete. Retira classificação ortopédica não comprovada do título. Limite: Sem teste independente.
+- QikFoLr76mfU8ijP9Nzr: targeted_correction_complete. Esclarece caixa com código, sem disco, e retira prazos e bônus não confirmados para a oferta. Limite: Sem teste independente.
+
+Fonte 80f212318207cbf97f7f442b8e341b85db8f4735; geração c8c05b413a4022b95fc4e7a0d354a423121ddeed; sitemap 42128661361, integridade 42128661351, Pages 42128727604: SUCCESS. 1551 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem127.json.
+
+Totais: {"total":565,"screened_no_change":77,"needs_source":8,"targeted_correction_complete":294,"preserve_prior_review":98,"pending":88}. Próximos pendentes: Ql4iYvaqcH2l6SPpBDsi — Camiseta Dry-fit Preta Caveira Unisex Dark Lab; qN6qOlF1Re6ltU5WRdaE — Caminhão Dinossauro Pista Com 8 Carrinhos Maleta Transporte; QNzmR100ehzO5NSBLhTw — Magnésio Bisglicinato - 60 Cápsulas - Nutrify. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 126 — 20261105, PUBLICADA E VERIFICADA
 
 - Q8XN2tGmsU12afIbz1Am: targeted_correction_complete. Retira promessas de cozimento e saúde sem evidência. Limite: Sem teste independente.
