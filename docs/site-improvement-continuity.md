@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 101 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB4763500131: screened_no_change. A ficha da Nike confirma os dados já registrados, incluindo peso aproximado para tamanho 42 e drop de 10 mm. Limite: Fonte do modelo, sem inspeção da variante ou teste próprio.
+- mlMLB4812800951: targeted_correction_complete. Retira 8K e desempenho profissional como certezas; distingue os recursos anunciados das especificações não verificadas. Limite: Base pública local da oferta, sem ensaio ou confirmação independente da unidade.
+- mlMLB4835180937: targeted_correction_complete. Atribui as declarações ao anúncio e retira a classificação de vendedor oficial sem prova. Limite: Base pública local da oferta, sem ensaio ou confirmação independente da unidade.
+
+Fonte d7e8f8a46f72f6a020078f6da2686b5377807f0a; geração 6f3ff2916ba14f401a27945884f453270794cb97; sitemap 42001036154, integridade 42001036112, Pages 42001106976: SUCCESS. 1525 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem101.json.
+
+Totais: {"total":564,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":220,"preserve_prior_review":98,"pending":163}. Próximos pendentes: mlMLB4953439757 — Kit Mobilador Teclado Gamer Rgb 80% Suporte Mouse Hub Cabo; mlMLB4964975723 — Google Gemini Ai Pro 18 Meses | Via Link De Ativação; mlMLB5136589984 — Tenis Masculino Sapatenis Polo Feet Sapato Casual Promoção. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 100 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB4741657351: targeted_correction_complete. Separa características anunciadas de conforto e prazo não confirmados. Limite: Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.

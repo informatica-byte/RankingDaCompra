@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB4763500131",
-      "mlMLB4812800951",
-      "mlMLB4835180937",
       "mlMLB4953439757",
       "mlMLB4964975723",
       "mlMLB5136589984",
       "mlMLB5158506809",
-      "mlMLB5210159957"
+      "mlMLB5210159957",
+      "mlMLB5217026798",
+      "mlMLB5287633095",
+      "mlMLB5299235149"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T09:14:29.766Z",
-  "catalogueGeneratedAt": "2026-11-05T09:14:26.144Z",
+  "updatedAt": "2026-11-05T09:18:31.539Z",
+  "catalogueGeneratedAt": "2026-11-05T09:16:48.829Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 564,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 218,
+    "targeted_correction_complete": 220,
     "preserve_prior_review": 98,
-    "pending": 163,
-    "prepared_awaiting_publication": 2
+    "pending": 163
   },
   "items": [
     {
@@ -4213,12 +4212,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4835180937-20260810-1.html",
       "title": "Kit 3 Body Splash Masculino Vibration + Blunn + Infalível Fero By Primacial Body Man",
       "fingerprint": "1326ab5ee458cf8b5b80e62504811b44f25d7efd494c288d55ccdab3c37b4d2e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:18:31.506Z",
       "workNotes": [
         "Atribui as declarações ao anúncio e retira a classificação de vendedor oficial sem prova.",
-        "Base pública local da oferta, sem ensaio ou confirmação independente da unidade."
+        "Base pública local da oferta, sem ensaio ou confirmação independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB74085271?wid=MLB4835180937"
@@ -5302,12 +5302,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4812800951-20260810-1.html",
       "title": "Mini drone L900 PRO SE preto — câmera dupla e duas baterias anunciadas",
       "fingerprint": "75bad3fccee99c982759e5ed9c33466768a6397c920f454cf867d0384c647b5a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:18:31.506Z",
       "workNotes": [
         "Retira 8K e desempenho profissional como certezas; distingue os recursos anunciados das especificações não verificadas.",
-        "Base pública local da oferta, sem ensaio ou confirmação independente da unidade."
+        "Base pública local da oferta, sem ensaio ou confirmação independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB27292245?wid=MLB4812800951"
@@ -12560,11 +12561,42 @@
     "backendWrites": 0
   },
   "triage101": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB4812800951",
       "mlMLB4835180937"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T09:18:31.506Z",
+    "changedIds": [
+      "mlMLB4812800951",
+      "mlMLB4835180937"
+    ],
+    "jointReleaseBatches": [
+      101
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem101.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4763500131",
+        "note": "Fonte do modelo, sem inspeção da variante ou teste próprio."
+      },
+      {
+        "id": "mlMLB4812800951",
+        "note": "Base pública local da oferta, sem ensaio ou confirmação independente da unidade."
+      },
+      {
+        "id": "mlMLB4835180937",
+        "note": "Base pública local da oferta, sem ensaio ou confirmação independente da unidade."
+      }
+    ],
+    "sourceCommit": "d7e8f8a46f72f6a020078f6da2686b5377807f0a",
+    "generatedCommit": "6f3ff2916ba14f401a27945884f453270794cb97",
+    "sitemapRun": 42001036154,
+    "integrityRun": 42001036112,
+    "pagesRun": 42001106976,
+    "testsPassed": 1525,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
