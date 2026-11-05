@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T23:19:03.544Z",
+  "generatedAt": "2026-11-05T23:25:15.083Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 88
+    "screening": 85
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "Ql4iYvaqcH2l6SPpBDsi",
-      "title": "Camiseta Dry-fit Preta Caveira Unisex Dark Lab",
-      "url": "https://rankingdacompra.com.br/produto/Ql4iYvaqcH2l6SPpBDsi-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "qN6qOlF1Re6ltU5WRdaE",
-      "title": "Caminhão Dinossauro Pista Com 8 Carrinhos Maleta Transporte",
-      "url": "https://rankingdacompra.com.br/produto/qN6qOlF1Re6ltU5WRdaE-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "QNzmR100ehzO5NSBLhTw",
-      "title": "Magnésio Bisglicinato - 60 Cápsulas - Nutrify",
-      "url": "https://rankingdacompra.com.br/produto/QNzmR100ehzO5NSBLhTw-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

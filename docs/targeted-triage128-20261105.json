@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Corrigir apenas divergências e alegações materiais.",
+  "items": [
+    {
+      "id": "Ql4iYvaqcH2l6SPpBDsi",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige a identificação do anúncio sem presumir a composição do tecido.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3800842215-camiseta-dry-fit-preta-caveira-unisex-dark-lab-_JM?searchVariation=181250232814"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "qN6qOlF1Re6ltU5WRdaE",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira o código de catálogo incompatível com a oferta e não presume pista separada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB77111694?pdp_filters=item_id%3AMLB7399445176"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "QNzmR100ehzO5NSBLhTw",
+      "decision": "targeted_correction_complete",
+      "reason": "Identifica a porção da tabela oficial e retira alegação de absorção não avaliada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB19640094?wid=MLB3905028657",
+        "https://www.nutrify.com.br/magnesio/p"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
