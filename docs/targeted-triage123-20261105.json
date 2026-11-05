@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais sem teste independente.",
+  "items": [
+    {
+      "id": "PEegqDESPIk3onguTRg8",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige a interpretação de bloqueio de colisões.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU1756154230?pdp_filters=item_id%3AMLB5010641270"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "pEszDEGUnKoIpY9xhIdV",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira origem e autenticidade não confirmadas e não reutiliza código de outro catálogo.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3780254973?pdp_filters=item_id%3AMLB4470176627"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "pGWith3ABAHWNTRZG3fM",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira superioridade e posologia sem confirmação pelo rótulo.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB61669343?pdp_filters=item_id%3AMLB4291609113"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

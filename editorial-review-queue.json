@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T22:23:48.989Z",
+  "generatedAt": "2026-11-05T22:47:18.942Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 103
+    "screening": 100
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "PEegqDESPIk3onguTRg8",
-      "title": "Ddpai N1 Dual Câmera Veicular 1296p+1080p Uber Nightvis App",
-      "url": "https://rankingdacompra.com.br/produto/PEegqDESPIk3onguTRg8-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "pEszDEGUnKoIpY9xhIdV",
-      "title": "Perfume Masculino Premium Midnight Blue 100ml Original Árabe",
-      "url": "https://rankingdacompra.com.br/produto/pEszDEGUnKoIpY9xhIdV-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "pGWith3ABAHWNTRZG3fM",
-      "title": "PENTA MAGNÉSIO - Bisglicinato + Dimalato + Citrato + Taurato + Óxido de Magnésio - A Combinação Perfeita de 5 Magnésios com Máxima Pureza e Biodisponibilidade - 60 Cápsulas",
-      "url": "https://rankingdacompra.com.br/produto/pGWith3ABAHWNTRZG3fM-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
