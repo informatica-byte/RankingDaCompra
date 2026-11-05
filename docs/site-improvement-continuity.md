@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 123 — 20261105, PUBLICADA E VERIFICADA
+
+- PEegqDESPIk3onguTRg8: targeted_correction_complete. Corrige a interpretação de bloqueio de colisões. Limite: Dados locais da oferta, sem teste independente.
+- pEszDEGUnKoIpY9xhIdV: targeted_correction_complete. Retira origem e autenticidade não confirmadas e não reutiliza código de outro catálogo. Limite: Dados locais da oferta, sem teste independente.
+- pGWith3ABAHWNTRZG3fM: targeted_correction_complete. Retira superioridade e posologia sem confirmação pelo rótulo. Limite: Dados locais da oferta, sem teste independente.
+
+Fonte 6107b27ee80ae5a477ee2d5ca834e2305a300bd5; geração ebc236c74e745378a3683805563a3f1e858d4458; sitemap 42124664384, integridade 42124664320, Pages 42124730274: SUCCESS. 1547 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem123.json.
+
+Totais: {"total":565,"screened_no_change":77,"needs_source":8,"targeted_correction_complete":282,"preserve_prior_review":98,"pending":100}. Próximos pendentes: pNwNrsWTQMEyOC4qwff1 — O Boticário Insensatez Deo Colônia 100ml; pO6CZCNo99YwtpIW0UB8 — Kit de limpeza e hidratação Principia — anúncio MLB5786186316; poypkDuJgaW37aCZlswN — Climatizador Ar Frio Portátil Evaporativo 16 Litros Umidificador Ventisol Clin 16. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 122 — 20261105, PUBLICADA E VERIFICADA
 
 - Pcye5MBHzWVlBIhtSnXX: targeted_correction_complete. Retira autorização não confirmada de uso em forno e não garante vedação. Limite: Dados da oferta, sem teste independente.

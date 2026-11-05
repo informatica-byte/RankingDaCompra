@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "PEegqDESPIk3onguTRg8",
-      "pEszDEGUnKoIpY9xhIdV",
-      "pGWith3ABAHWNTRZG3fM",
       "pNwNrsWTQMEyOC4qwff1",
       "pO6CZCNo99YwtpIW0UB8",
       "poypkDuJgaW37aCZlswN",
       "PP8JorVbOJNMg5FXOr47",
-      "ppQhZEUfZDuGcIZRmFB5"
+      "ppQhZEUfZDuGcIZRmFB5",
+      "q8wxWRl86XmL7Gglikg7",
+      "Q8XN2tGmsU12afIbz1Am",
+      "Q9UWVUsXl8sIvWyM1hKt"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T22:47:22.538Z",
-  "catalogueGeneratedAt": "2026-11-05T22:47:18.942Z",
+  "updatedAt": "2026-11-05T22:51:07.092Z",
+  "catalogueGeneratedAt": "2026-11-05T22:49:18.825Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 77,
     "needs_source": 8,
-    "targeted_correction_complete": 279,
+    "targeted_correction_complete": 282,
     "preserve_prior_review": 98,
-    "pending": 100,
-    "prepared_awaiting_publication": 3
+    "pending": 100
   },
   "items": [
     {
@@ -2047,12 +2046,13 @@
       "url": "https://rankingdacompra.com.br/produto/PEegqDESPIk3onguTRg8-20260810-1.html",
       "title": "Câmera veicular DDPAI N1 Dual — 1296p frontal e 1080p traseiros anunciados",
       "fingerprint": "d6b647183e02b9df42c3b4325cec4bc528fc39a44c9b4e3b16a41971738e84fb",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T22:51:07.053Z",
       "workNotes": [
         "Corrige a interpretação de bloqueio de colisões.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU1756154230?pdp_filters=item_id%3AMLB5010641270"
@@ -6607,12 +6607,13 @@
       "url": "https://rankingdacompra.com.br/produto/pGWith3ABAHWNTRZG3fM-20260810-1.html",
       "title": "Penta Magnésio Essencial Labs — 60 cápsulas anunciadas",
       "fingerprint": "3e119f165080fadd642515734f4e2f495916db4c7e82afcba6502c3f97f8bf0f",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T22:51:07.053Z",
       "workNotes": [
         "Retira superioridade e posologia sem confirmação pelo rótulo.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB61669343?pdp_filters=item_id%3AMLB4291609113"
@@ -6782,12 +6783,13 @@
       "url": "https://rankingdacompra.com.br/produto/pEszDEGUnKoIpY9xhIdV-20260810-1.html",
       "title": "Perfume masculino Midnight Blue — 100 mL anunciados",
       "fingerprint": "a87128a74495bc8b5d92b89cc6205298a68097b420271380bc6642f0d39aa5d4",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T22:51:07.053Z",
       "workNotes": [
         "Retira origem e autenticidade não confirmadas e não reutiliza código de outro catálogo.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3780254973?pdp_filters=item_id%3AMLB4470176627"
@@ -13959,12 +13961,44 @@
     "backendWrites": 0
   },
   "triage123": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "PEegqDESPIk3onguTRg8",
       "pEszDEGUnKoIpY9xhIdV",
       "pGWith3ABAHWNTRZG3fM"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T22:51:07.053Z",
+    "changedIds": [
+      "PEegqDESPIk3onguTRg8",
+      "pEszDEGUnKoIpY9xhIdV",
+      "pGWith3ABAHWNTRZG3fM"
+    ],
+    "jointReleaseBatches": [
+      123
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem123.json",
+    "remainingDependencies": [
+      {
+        "id": "PEegqDESPIk3onguTRg8",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "pEszDEGUnKoIpY9xhIdV",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "pGWith3ABAHWNTRZG3fM",
+        "note": "Dados locais da oferta, sem teste independente."
+      }
+    ],
+    "sourceCommit": "6107b27ee80ae5a477ee2d5ca834e2305a300bd5",
+    "generatedCommit": "ebc236c74e745378a3683805563a3f1e858d4458",
+    "sitemapRun": 42124664384,
+    "integrityRun": 42124664320,
+    "pagesRun": 42124730274,
+    "testsPassed": 1547,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
