@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 95 — 20261104, PUBLICADA E VERIFICADA
+
+- mlMLB4031468281: targeted_correction_complete. Corrige número de anúncio chamado catálogo e qualifica novo lançamento/conforto sem data ou teste. Limite: Snapshot e endereço direto; sem código técnico, data de lançamento, material ou teste. Não acrescenta couro, amortecimento ou autenticidade.
+- mlMLB4144557655: screened_no_change. Fonte primária do AG15-51P-39MU compatível com i3 13ª, 8 GB DDR5, SSD 256 GB, Windows 11, IPS WUXGA 15,3 e teclado ABNT2 numérico. Nenhuma correção necessária demonstrada. Limite: Fonte exata consultada, sem inspeção da unidade ou medição de desempenho. Não transfere Linux, memória ou tela de outro Aspire; comparador preservado.
+- mlMLB4147473207: targeted_correction_complete. Corrige anúncio versus catálogo e não converte leve/maciez/corrida do título em desempenho comprovado. Limite: Snapshot sem referência técnica ou peso medido. Não inventa material, amortecimento ou adequação individual à atividade.
+
+Fonte 5c8bbc64ff6b18f0e5658e75e98e2b3bae8a6167; geração 6f0554acbdff3d0c09ac219444a698404bfe9391; sitemap 41939235384, integridade 41939236424, Pages 41939302298: SUCCESS. 1519 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem95.json.
+
+Totais: {"total":564,"screened_no_change":72,"needs_source":8,"targeted_correction_complete":205,"preserve_prior_review":98,"pending":181}. Próximos pendentes: mlMLB4151024813 — Tênis Mizuno Nirvana 9 Leve Caminhada Academia Treino; mlMLB4231915505 — Controle Joystick Wireless Compatível C/ Pc Android N-switch; mlMLB4291652941 — CÚRCUMA 130mg + COLÁGENO Tipo II 45mg - Fórmula com Máxima Concentração e Pureza - 60 Cápsulas. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 94 — 20261104, PUBLICADA E VERIFICADA
 
 - mlMLB3966936389: targeted_correction_complete. Corrige anúncio versus catálogo; não usa original/NFE/skate como autenticação ou desempenho comprovados. Limite: Snapshot e formato do endereço; sem referência técnica exata ou inspeção. Não acrescenta materiais, tecnologias ou garantia de uso esportivo de outro Mormaii.

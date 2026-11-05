@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB4031468281",
-      "mlMLB4144557655",
-      "mlMLB4147473207",
       "mlMLB4151024813",
       "mlMLB4231915505",
       "mlMLB4291652941",
       "mlMLB4291654613",
-      "mlMLB4330065589"
+      "mlMLB4330065589",
+      "mlMLB4367472775",
+      "mlMLB4443112343",
+      "mlMLB4474695467"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T00:08:26.456Z",
-  "catalogueGeneratedAt": "2026-11-05T00:08:24.311Z",
+  "updatedAt": "2026-11-05T00:11:27.514Z",
+  "catalogueGeneratedAt": "2026-11-05T00:09:55.180Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 564,
     "screened_no_change": 72,
     "needs_source": 8,
-    "targeted_correction_complete": 203,
+    "targeted_correction_complete": 205,
     "preserve_prior_review": 98,
-    "pending": 181,
-    "prepared_awaiting_publication": 2
+    "pending": 181
   },
   "items": [
     {
@@ -7943,12 +7942,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4147473207-20260810-1.html",
       "title": "Tênis Feminino Esportivo Actvitta Super Leve Macio Corrida",
       "fingerprint": "cbb61836bb154496c660f01cbb92685e6a07aadacb1f5bdcffd30447f0ef1a6f",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T00:11:27.501Z",
       "workNotes": [
         "Corrige anúncio versus catálogo e não converte leve/maciez/corrida do título em desempenho comprovado.",
-        "Snapshot sem referência técnica ou peso medido. Não inventa material, amortecimento ou adequação individual à atividade."
+        "Snapshot sem referência técnica ou peso medido. Não inventa material, amortecimento ou adequação individual à atividade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-4147473207"
@@ -8180,12 +8180,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4031468281-20260810-1.html",
       "title": "Tênis Masculino Casual Sapatenis Novo Lançamento Conforto",
       "fingerprint": "747b654143d49bf6c9fb1927e1a8386a9cd6f3d412cd6c786bac9676faa6f596",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T00:11:27.501Z",
       "workNotes": [
         "Corrige número de anúncio chamado catálogo e qualifica novo lançamento/conforto sem data ou teste.",
-        "Snapshot e endereço direto; sem código técnico, data de lançamento, material ou teste. Não acrescenta couro, amortecimento ou autenticidade."
+        "Snapshot e endereço direto; sem código técnico, data de lançamento, material ou teste. Não acrescenta couro, amortecimento ou autenticidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-4031468281"
@@ -12185,11 +12186,42 @@
     "backendWrites": 0
   },
   "triage95": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB4031468281",
       "mlMLB4147473207"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T00:11:27.501Z",
+    "changedIds": [
+      "mlMLB4031468281",
+      "mlMLB4147473207"
+    ],
+    "jointReleaseBatches": [
+      95
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem95.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4031468281",
+        "note": "Snapshot e endereço direto; sem código técnico, data de lançamento, material ou teste. Não acrescenta couro, amortecimento ou autenticidade."
+      },
+      {
+        "id": "mlMLB4144557655",
+        "note": "Fonte exata consultada, sem inspeção da unidade ou medição de desempenho. Não transfere Linux, memória ou tela de outro Aspire; comparador preservado."
+      },
+      {
+        "id": "mlMLB4147473207",
+        "note": "Snapshot sem referência técnica ou peso medido. Não inventa material, amortecimento ou adequação individual à atividade."
+      }
+    ],
+    "sourceCommit": "5c8bbc64ff6b18f0e5658e75e98e2b3bae8a6167",
+    "generatedCommit": "6f0554acbdff3d0c09ac219444a698404bfe9391",
+    "sitemapRun": 41939235384,
+    "integrityRun": 41939236424,
+    "pagesRun": 41939302298,
+    "testsPassed": 1519,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
