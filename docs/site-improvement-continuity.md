@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 129 — 20261105, PUBLICADA E VERIFICADA
+
+- qPNJGNmzPbZzprZanGOC: targeted_correction_complete. Corrige a autonomia com referência à ficha oficial, sem presumir o módulo da unidade. Limite: Sem teste independente.
+- qsh7YbMSqVuBmaoWlpzn: targeted_correction_complete. Retira o catálogo não vinculado e evita resolver por suposição a divergência de cor. Limite: Sem teste independente.
+- QUKhd39js4LdwLXNbh0u: targeted_correction_complete. Corrige o tipo do código sem adicionar especificações do tecido. Limite: Sem teste independente.
+
+Fonte 26bbd0c44700a0d79353bcc879d460a534dea130; geração 34fe34f4bbf923af681414c9c277f32eece035fe; sitemap 42130329621, integridade 42130329735, Pages 42130404106: SUCCESS. 1553 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem129.json.
+
+Totais: {"total":565,"screened_no_change":77,"needs_source":8,"targeted_correction_complete":300,"preserve_prior_review":98,"pending":82}. Próximos pendentes: QV00w4vTmt2SwgU8xisL — Purificador Hidrofiltros Facile C3 Água Natural Selo Inmetro Preto; Qwej9VDipQviT3wfRoxl — Secador De Cabelos Philco psc3500 4 Em 1 dobrável motor bldc Prateado; r5zUBIo4zXpfIh0HjpdD — Conjunto Moletom Masculino,incluir Casaco Com Capuz E Calças. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 128 — 20261105, PUBLICADA E VERIFICADA
 
 - Ql4iYvaqcH2l6SPpBDsi: targeted_correction_complete. Corrige a identificação do anúncio sem presumir a composição do tecido. Limite: Sem teste independente.

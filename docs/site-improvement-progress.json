@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "qPNJGNmzPbZzprZanGOC",
-      "qsh7YbMSqVuBmaoWlpzn",
-      "QUKhd39js4LdwLXNbh0u",
       "QV00w4vTmt2SwgU8xisL",
       "Qwej9VDipQviT3wfRoxl",
       "r5zUBIo4zXpfIh0HjpdD",
       "r7HSFtoP8OEdijhRMIDk",
-      "rfym6WivFVhxpwn2WF6r"
+      "rfym6WivFVhxpwn2WF6r",
+      "RHhkWKxMXBZONt8jx4Ew",
+      "RiCj7wC1QDBSMgPUQWD1",
+      "rjkXSj5wDd3i4spfoHet"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T23:32:11.800Z",
-  "catalogueGeneratedAt": "2026-11-05T23:32:07.219Z",
+  "updatedAt": "2026-11-05T23:36:00.160Z",
+  "catalogueGeneratedAt": "2026-11-05T23:34:08.399Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 77,
     "needs_source": 8,
-    "targeted_correction_complete": 297,
+    "targeted_correction_complete": 300,
     "preserve_prior_review": 98,
-    "pending": 82,
-    "prepared_awaiting_publication": 3
+    "pending": 82
   },
   "items": [
     {
@@ -4473,12 +4472,13 @@
       "url": "https://rankingdacompra.com.br/produto/QUKhd39js4LdwLXNbh0u-20260810-1.html",
       "title": "Kit 4 Camiseta Dry-fit Sandrini Masculina Academia Caminhada",
       "fingerprint": "cf9acd1236170b188a6ee36f7aa074aa6bef2c8d808ae9a678e54a2cd2b12c46",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:36:00.119Z",
       "workNotes": [
         "Corrige o tipo do código sem adicionar especificações do tecido.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-4592320910-kit-4-camiseta-dry-fit-sandrini-masculina-academia-caminhada-_JM?searchVariation=186408020313"
@@ -7467,12 +7467,13 @@
       "url": "https://rankingdacompra.com.br/produto/qPNJGNmzPbZzprZanGOC-20260810-1.html",
       "title": "Relógio Casio Masculino G-shock Digital Preto Dw-5600bb-1dr",
       "fingerprint": "d050589357773caf3549c7cec5060dbbccec291858a112d1c926f38e7ecb4b79",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:36:00.119Z",
       "workNotes": [
         "Corrige a autonomia com referência à ficha oficial, sem presumir o módulo da unidade.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU1431955641?pdp_filters=item_id%3AMLB2765715868",
@@ -8469,12 +8470,13 @@
       "url": "https://rankingdacompra.com.br/produto/qsh7YbMSqVuBmaoWlpzn-20260810-1.html",
       "title": "Tênis adidas Acelera 2 Preto E Branco",
       "fingerprint": "78f96fcb50e15e38f45389b18eb62a441f1bf64c8f1a4bea6c20bd2b419e2802",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:36:00.119Z",
       "workNotes": [
         "Retira o catálogo não vinculado e evita resolver por suposição a divergência de cor.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-5948982982-tnis-adidas-acelera-2-preto-e-branco-_JM?searchVariation=193164102327"
@@ -14354,12 +14356,44 @@
     "backendWrites": 0
   },
   "triage129": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "QUKhd39js4LdwLXNbh0u",
       "qPNJGNmzPbZzprZanGOC",
       "qsh7YbMSqVuBmaoWlpzn"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T23:36:00.119Z",
+    "changedIds": [
+      "qPNJGNmzPbZzprZanGOC",
+      "qsh7YbMSqVuBmaoWlpzn",
+      "QUKhd39js4LdwLXNbh0u"
+    ],
+    "jointReleaseBatches": [
+      129
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem129.json",
+    "remainingDependencies": [
+      {
+        "id": "qPNJGNmzPbZzprZanGOC",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "qsh7YbMSqVuBmaoWlpzn",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "QUKhd39js4LdwLXNbh0u",
+        "note": "Sem teste independente."
+      }
+    ],
+    "sourceCommit": "26bbd0c44700a0d79353bcc879d460a534dea130",
+    "generatedCommit": "34fe34f4bbf923af681414c9c277f32eece035fe",
+    "sitemapRun": 42130329621,
+    "integrityRun": 42130329735,
+    "pagesRun": 42130404106,
+    "testsPassed": 1553,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
