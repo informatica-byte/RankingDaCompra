@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 117 — 20261105, PUBLICADA E VERIFICADA
+
+- nfzTOT5XTvnh8Q8DyLvb: targeted_correction_complete. Explica o limite da largura anunciada e retira texto repetitivo sobre preço. Limite: Dados locais da oferta, sem teste independente.
+- nkBZlP0jQEwoMIj6VDbG: targeted_correction_complete. Atribui a impermeabilidade à oferta e não apresenta o código do anúncio como catálogo. Limite: Dados locais da oferta, sem teste independente.
+- NQyo56LcUgwwA2tz8YCF: targeted_correction_complete. Retira especificações atribuídas ao Wave Falcon 5 sem transferi-las ao Dynasty 5. Limite: Dados locais da oferta, sem teste independente.
+
+Fonte 59f1a397696ca33512ec50cea64deba9786c1ca6; geração 9f8777b82347b87410580b84015c05734ecaf741; sitemap 42106387378, integridade 42106386893, Pages 42106477462: SUCCESS. 1541 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem117.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":266,"preserve_prior_review":98,"pending":118}. Próximos pendentes: nzEaLDNocvF6GDH6InIH — Colchonete Camping Camuflado Colchao dobravel Saco De Dormir Hezzo Hometech Pesca Acampamento Retiro Trilha C/ Saco De Transporte Mochila; o6oq1IPOS41xUDtF3TG7 — Varal Aço Inox Suspenso Roupa Íntima 40 Prendedor Calcinha; O8vB8vB9Kw6NpVqHMt8A — Smartphone Motorola Moto G17 4g - 128gb 12gb (4gb Ram + 8gb Ram Boost), Camera 50mp Sony Lytia 600, Tela Fhd+ 60hz, Bateria 5200 Mah - Rosa. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 116 — 20261105, PUBLICADA E VERIFICADA
 
 - N6932yKNTXnAJ98cz9Eo: targeted_correction_complete. Atribui vedação à oferta e remove promessa de conservação sem teste. Limite: Sem teste independente.

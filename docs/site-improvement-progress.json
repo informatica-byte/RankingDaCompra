@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "nfzTOT5XTvnh8Q8DyLvb",
-      "nkBZlP0jQEwoMIj6VDbG",
-      "NQyo56LcUgwwA2tz8YCF",
       "nzEaLDNocvF6GDH6InIH",
       "o6oq1IPOS41xUDtF3TG7",
       "O8vB8vB9Kw6NpVqHMt8A",
       "OADfHMMVftq1AKtGgcaP",
-      "Oelq1fEuR41tSXxHj8cp"
+      "Oelq1fEuR41tSXxHj8cp",
+      "of7SzAJ9klKkySvWpSsO",
+      "OOVD3lkaaSXJTSAAdywm",
+      "OTYBW2oIlOWx1MeHpF1u"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:44:18.869Z",
-  "catalogueGeneratedAt": "2026-11-05T20:44:16.897Z",
+  "updatedAt": "2026-11-05T20:47:54.234Z",
+  "catalogueGeneratedAt": "2026-11-05T20:46:05.363Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 263,
+    "targeted_correction_complete": 266,
     "preserve_prior_review": 98,
-    "pending": 118,
-    "prepared_awaiting_publication": 3
+    "pending": 118
   },
   "items": [
     {
@@ -2194,12 +2193,13 @@
       "url": "https://rankingdacompra.com.br/produto/nkBZlP0jQEwoMIj6VDbG-20260810-1.html",
       "title": "Capa de chuva Brascamp em PVC para motociclista",
       "fingerprint": "7f61c5122f9fba81d1c11fe7b488728642825f0e8141a879ca67f4b007c244e3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:47:54.195Z",
       "workNotes": [
         "Atribui a impermeabilidade à oferta e não apresenta o código do anúncio como catálogo.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-5298350806-capa-chuva-motoqueiro-pvc-impermeavel-motoboy-emborrachada-_JM?searchVariation=182988333362"
@@ -8693,12 +8693,13 @@
       "url": "https://rankingdacompra.com.br/produto/nfzTOT5XTvnh8Q8DyLvb-20260810-1.html",
       "title": "Tênis Masculino Elevation Fila",
       "fingerprint": "86376be349e62a1dc14632b2223517b207862aea26d47cab0c1f5ab487dfeae3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:47:54.195Z",
       "workNotes": [
         "Explica o limite da largura anunciada e retira texto repetitivo sobre preço.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3679312383?pdp_filters=item_id%3AMLB6067481206"
@@ -8760,12 +8761,13 @@
       "url": "https://rankingdacompra.com.br/produto/NQyo56LcUgwwA2tz8YCF-20260810-1.html",
       "title": "Tênis masculino Mizuno Wave Dynasty 5 — modelo anunciado",
       "fingerprint": "1b08c6791e82f92d5008968db7a35e40918b1c2f02797d03b19854c43548692d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:47:54.195Z",
       "workNotes": [
         "Retira especificações atribuídas ao Wave Falcon 5 sem transferi-las ao Dynasty 5.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-3384814517-tnis-mizuno-wave-dynasty-5-masculino-treino-original-_JM?searchVariation=179111328315"
@@ -13585,12 +13587,44 @@
     "backendWrites": 0
   },
   "triage117": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "NQyo56LcUgwwA2tz8YCF",
       "nfzTOT5XTvnh8Q8DyLvb",
       "nkBZlP0jQEwoMIj6VDbG"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T20:47:54.195Z",
+    "changedIds": [
+      "nfzTOT5XTvnh8Q8DyLvb",
+      "nkBZlP0jQEwoMIj6VDbG",
+      "NQyo56LcUgwwA2tz8YCF"
+    ],
+    "jointReleaseBatches": [
+      117
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem117.json",
+    "remainingDependencies": [
+      {
+        "id": "nfzTOT5XTvnh8Q8DyLvb",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "nkBZlP0jQEwoMIj6VDbG",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "NQyo56LcUgwwA2tz8YCF",
+        "note": "Dados locais da oferta, sem teste independente."
+      }
+    ],
+    "sourceCommit": "59f1a397696ca33512ec50cea64deba9786c1ca6",
+    "generatedCommit": "9f8777b82347b87410580b84015c05734ecaf741",
+    "sitemapRun": 42106387378,
+    "integrityRun": 42106386893,
+    "pagesRun": 42106477462,
+    "testsPassed": 1541,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
