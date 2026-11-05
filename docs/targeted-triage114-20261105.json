@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correção pontual com base nos dados públicos locais.",
+  "items": [
+    {
+      "id": "mlMLB7748620676",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira a afirmação de autenticidade do título e sinaliza as alegações não verificadas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB78627840?wid=MLB7748620676"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "mlMLB7752259240",
+      "decision": "targeted_correction_complete",
+      "reason": "Substitui a promessa de kit completo pela lista anunciada e não trata o identificador da etiqueta como prova de homologação.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB2110254597?wid=MLB7752259240"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "mlMLB7870098964",
+      "decision": "targeted_correction_complete",
+      "reason": "Separa as alturas anunciadas e não presume articulação ou licenciamento de todo o kit.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5617346059?pdp_filters=item_id%3AMLB7870098964"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

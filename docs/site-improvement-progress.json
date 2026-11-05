@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:18:22.421Z",
-  "catalogueGeneratedAt": "2026-11-05T20:08:54.255Z",
+  "updatedAt": "2026-11-05T20:24:44.892Z",
+  "catalogueGeneratedAt": "2026-11-05T20:24:42.855Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 254,
     "preserve_prior_review": 98,
-    "pending": 130
+    "pending": 127,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4312,17 +4313,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "mlMLB7870098964",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7870098964-20260810-1.html",
-      "title": "Kit 3 Bonecos Marvel Hulk 22cm Homem Aranha 9cm Capitã 9cm",
-      "fingerprint": "224b57754e21d9dddd50508f7e5086984c86253a985dcbc8609bc1572a834f52",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB4024139675",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4024139675-20260810-1.html",
       "title": "Kit 3 Pares Meia Antiderrapante Esportiva Futebol Treino Pro",
@@ -4416,6 +4406,24 @@
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-1010954920"
       ]
+    },
+    {
+      "id": "mlMLB7870098964",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB7870098964-20260810-1.html",
+      "title": "Kit anunciado com três bonecos: Hulk, Homem-Aranha e Capitã",
+      "fingerprint": "e2bb8365109ed131d17e1df7110ca3a1e1e4441332ada1b5bd6a0e9a98a091dd",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Separa as alturas anunciadas e não presume articulação ou licenciamento de todo o kit.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5617346059?pdp_filters=item_id%3AMLB7870098964"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4645102377",
@@ -4723,17 +4731,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "mlMLB7752259240",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7752259240-20260810-1.html",
-      "title": "Kit Internet Completo Antena Starlink Mini X 2 Suportes Cabo",
-      "fingerprint": "d0e8015bc431f0d6de7f60ca6d49bab5aa2931ace37bef237220ecc41f472500",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB4953439757",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4953439757-20260810-1.html",
       "title": "Kit Mobilador Teclado Gamer Rgb 80% Suporte Mouse Hub Cabo",
@@ -4790,6 +4787,24 @@
       "sourceLinks": [
         "https://www.principiaskin.com/produtos/indicacoes/kit-rotina-essencial-1-gl02-gel-de-limpeza-tensoativos-glicerina-pca-sodio-1-ch01-creme-hidratante-manteiga-de-karite-niacinamida-glicerina-1-ps01-protetor-solar-fps60-filtros-uv-niacinamida.html",
         "https://www.mercadolivre.com.br/p/MLB53618239?wid=MLB5554213538"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB7752259240",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB7752259240-20260810-1.html",
+      "title": "Kit Starlink Mini com dois suportes e cabo anunciados",
+      "fingerprint": "a496cd3c4914f123a7b20b1c967f0b33f74300d783bf772b528bb3de46a00703",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Substitui a promessa de kit completo pela lista anunciada e não trata o identificador da etiqueta como prova de homologação.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB2110254597?wid=MLB7752259240"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -6428,17 +6443,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "mlMLB7748620676",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7748620676-20260810-1.html",
-      "title": "Perfume Árabe His Confession Masculino Original 100ML",
-      "fingerprint": "cb11a8680a9ef3ffed1f09b2cdc6cc21733f594eb96f1cf73fb852112f317670",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "w4grNjrGMy69omEzW0QP",
       "url": "https://rankingdacompra.com.br/produto/w4grNjrGMy69omEzW0QP-20260810-1.html",
       "title": "Perfume Árabe Maison Salem Nayef Masculino Edp - 100ml",
@@ -6556,6 +6560,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "mlMLB7748620676",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB7748620676-20260810-1.html",
+      "title": "Perfume masculino His Confession — 100 mL anunciados",
+      "fingerprint": "78a2c6b439ca7a29ee6f27cbaff225c4cf69192d1d1d803642120306400f9ea0",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira a afirmação de autenticidade do título e sinaliza as alegações não verificadas.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB78627840?wid=MLB7748620676"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7678487136",
@@ -13364,5 +13386,14 @@
     "testsPassed": 1536,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage114": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB7748620676",
+      "mlMLB7752259240",
+      "mlMLB7870098964"
+    ],
+    "newDeepReviews": 0
   }
 }

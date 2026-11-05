@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T20:08:54.255Z",
+  "generatedAt": "2026-11-05T20:24:42.855Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 130
+    "screening": 127
   },
   "items": [
     {
@@ -48,27 +48,6 @@
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB7748620676",
-      "title": "Perfume Árabe His Confession Masculino Original 100ML",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7748620676-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB7752259240",
-      "title": "Kit Internet Completo Antena Starlink Mini X 2 Suportes Cabo",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7752259240-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB7870098964",
-      "title": "Kit 3 Bonecos Marvel Hulk 22cm Homem Aranha 9cm Capitã 9cm",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7870098964-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
