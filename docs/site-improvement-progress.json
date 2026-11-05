@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "Q8XN2tGmsU12afIbz1Am",
-      "Q9UWVUsXl8sIvWyM1hKt",
-      "qeH6DeH4aWWppBpaRPYc",
       "QHCeO6rxelawGpcolRX1",
       "QIAwDGVurh7E0nsu2G7t",
       "QikFoLr76mfU8ijP9Nzr",
       "Ql4iYvaqcH2l6SPpBDsi",
-      "qN6qOlF1Re6ltU5WRdaE"
+      "qN6qOlF1Re6ltU5WRdaE",
+      "QNzmR100ehzO5NSBLhTw",
+      "qPNJGNmzPbZzprZanGOC",
+      "qsh7YbMSqVuBmaoWlpzn"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T23:09:51.353Z",
-  "catalogueGeneratedAt": "2026-11-05T23:09:46.914Z",
+  "updatedAt": "2026-11-05T23:14:17.613Z",
+  "catalogueGeneratedAt": "2026-11-05T23:11:55.993Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,9 +705,8 @@
     "total": 565,
     "screened_no_change": 77,
     "needs_source": 8,
-    "targeted_correction_complete": 288,
+    "targeted_correction_complete": 291,
     "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 3,
     "pending": 91
   },
   "items": [
@@ -837,12 +836,13 @@
       "url": "https://rankingdacompra.com.br/produto/Q8XN2tGmsU12afIbz1Am-20260810-1.html",
       "title": "Air fryer Mondial — 4 L e 1.500 W anunciados",
       "fingerprint": "274065b5ceb0468d3390b74d7ff403ecca8abf3b03a28bb3f5bdabccf0109f8d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:14:17.568Z",
       "workNotes": [
         "Retira promessas de cozimento e saúde sem evidência.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-1307284888-fritadeira-eletrica-sem-oleo-air-fryer-mondial-1500w-_JM"
@@ -3124,12 +3124,13 @@
       "url": "https://rankingdacompra.com.br/produto/qeH6DeH4aWWppBpaRPYc-20260810-1.html",
       "title": "Creatina monohidratada True Source — 300 g anunciados",
       "fingerprint": "ebe0c19813e70060c43975cfc69ada4988bce78172ea3e5507d5813b6aac63fa",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:14:17.568Z",
       "workNotes": [
         "Distingue massa anunciada de volume e remove afirmações não verificadas sobre pureza.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3368370235?pdp_filters=item_id%3AMLB5604818552",
@@ -5387,12 +5388,13 @@
       "url": "https://rankingdacompra.com.br/produto/Q9UWVUsXl8sIvWyM1hKt-20260810-1.html",
       "title": "Lixeira aramada preta — 12 L anunciados",
       "fingerprint": "5fbfd43c6fb3cba678f33c15e4070d16afa147141ead061f59ec57dc52a3317a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:14:17.568Z",
       "workNotes": [
         "Retira comparação de durabilidade e promessa sobre umidade.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3407282880?pdp_filters=item_id%3AMLB5666993474"
@@ -14156,12 +14158,44 @@
     "backendWrites": 0
   },
   "triage126": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "Q8XN2tGmsU12afIbz1Am",
       "Q9UWVUsXl8sIvWyM1hKt",
       "qeH6DeH4aWWppBpaRPYc"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T23:14:17.568Z",
+    "changedIds": [
+      "Q8XN2tGmsU12afIbz1Am",
+      "Q9UWVUsXl8sIvWyM1hKt",
+      "qeH6DeH4aWWppBpaRPYc"
+    ],
+    "jointReleaseBatches": [
+      126
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem126.json",
+    "remainingDependencies": [
+      {
+        "id": "Q8XN2tGmsU12afIbz1Am",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "Q9UWVUsXl8sIvWyM1hKt",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "qeH6DeH4aWWppBpaRPYc",
+        "note": "Sem teste independente."
+      }
+    ],
+    "sourceCommit": "073448fd28ef05b93c04316dbdd25d5251c978ff",
+    "generatedCommit": "0fcc584e58bc222c15f2583861f69998b2d648b9",
+    "sitemapRun": 42127709093,
+    "integrityRun": 42127708993,
+    "pagesRun": 42127788035,
+    "testsPassed": 1550,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

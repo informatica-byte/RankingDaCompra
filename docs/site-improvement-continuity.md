@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 126 — 20261105, PUBLICADA E VERIFICADA
+
+- Q8XN2tGmsU12afIbz1Am: targeted_correction_complete. Retira promessas de cozimento e saúde sem evidência. Limite: Sem teste independente.
+- Q9UWVUsXl8sIvWyM1hKt: targeted_correction_complete. Retira comparação de durabilidade e promessa sobre umidade. Limite: Sem teste independente.
+- qeH6DeH4aWWppBpaRPYc: targeted_correction_complete. Distingue massa anunciada de volume e remove afirmações não verificadas sobre pureza. Limite: Sem teste independente.
+
+Fonte 073448fd28ef05b93c04316dbdd25d5251c978ff; geração 0fcc584e58bc222c15f2583861f69998b2d648b9; sitemap 42127709093, integridade 42127708993, Pages 42127788035: SUCCESS. 1550 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem126.json.
+
+Totais: {"total":565,"screened_no_change":77,"needs_source":8,"targeted_correction_complete":291,"preserve_prior_review":98,"pending":91}. Próximos pendentes: QHCeO6rxelawGpcolRX1 — Campainha Sem Fio Intelbras Cib 101 Com Bateria Preta; QIAwDGVurh7E0nsu2G7t — Chinelo Boaonda Ortopédico Bolt Nuvem Palmilha Conforto Leve; QikFoLr76mfU8ijP9Nzr — Grand Theft Auto VI - PlayStation 5. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 125 — 20261105, PUBLICADA E VERIFICADA
 
 - PP8JorVbOJNMg5FXOr47: targeted_correction_complete. Não interpreta 12 km como velocidade confirmada. Limite: Sem teste independente.
