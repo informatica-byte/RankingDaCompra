@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 121 — 20261105, PUBLICADA E VERIFICADA
+
+- oYoalVz8s4bR2iumSyhW: targeted_correction_complete. Retira garantia e autenticidade não verificadas e limita a alegação de recarga rápida. Limite: Sem teste independente.
+- P5uw3Q0IjbFoD0of4CSu: targeted_correction_complete. Retira promessa de funcionamento offline sem condições confirmadas. Limite: Sem teste independente.
+- p9csD1mVQKKLvmFbV1VX: targeted_correction_complete. Corrige texto truncado e distingue rotação anunciada de desempenho do jato. Limite: Sem teste independente.
+
+Fonte a248810cec599515246d13a63b0fad47e59eded2; geração d11c8441fdcf360add926ebce3e43f1f8dfa7cb6; sitemap 42117977496, integridade 42117977425, Pages 42118058069: SUCCESS. 1545 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem121.json.
+
+Totais: {"total":565,"screened_no_change":77,"needs_source":8,"targeted_correction_complete":276,"preserve_prior_review":98,"pending":106}. Próximos pendentes: Pcye5MBHzWVlBIhtSnXX — Kit 10 Pote De Vidro Marmita Hermético 640ml Freezer Fitness Borossilicato 4 Travas Micro-ondas Azul-Escuro; PdIYZ9X5RhTbhmKJyZRw — Perfume Vodka Brasil Amarelo Paris Elysees Masculino Intense 100ml; Ped2JwDkTqMRNcZ0BhTf — Skatenete Max Led Ajustável Patinete 120kg Bandeirante. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 120 — 20261105, PUBLICADA E VERIFICADA
 
 - OOVD3lkaaSXJTSAAdywm: Philco PPP02PI conferida com a ficha da fabricante, sem alteração.
