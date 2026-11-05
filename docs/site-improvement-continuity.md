@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 103 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB5158506809: targeted_correction_complete. Remove código de catálogo incompatível com o link atual. Limite: Dados locais do anúncio; sem confirmação independente.
+- mlMLB5210159957: targeted_correction_complete. Distingue as alegações do vendedor de uma verificação independente. Limite: Dados locais do anúncio; sem confirmação independente.
+- mlMLB5217026798: targeted_correction_complete. Retira código de anúncio apresentado como catálogo e delimita o uso declarado. Limite: Dados locais do anúncio; sem confirmação independente.
+
+Fonte 84e5f0df9919b77b899b479f87c8afcc36b97a44; geração e75893863acc3ee2f610f2bae7f8606bad7194dd; sitemap 42003496302, integridade 42003496290, Pages 42003550155: SUCCESS. 1527 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem103.json.
+
+Totais: {"total":564,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":226,"preserve_prior_review":98,"pending":157}. Próximos pendentes: mlMLB5287633095 — Câmera de Segurança Babá Eletrônica Ip Wifi 1080p Full Hd Visão Noturna Ideal Para Bebê Crianças Idosos Pets Áudio Bidirecional Kateluo; mlMLB5299235149 — Kit Instrumento Musical Bandinha Infantil Presente +4 Anos; mlMLB5336183061 — Inversor Veicular IF-378 350W 12V para com USB e LED. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 102 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB4953439757: targeted_correction_complete. Distingue membrana de mecânico e evita confirmar ABNT2 ou compatibilidade universal. Limite: Base pública local da oferta; sem inspeção, teste ou confirmação independente das condições anunciadas.

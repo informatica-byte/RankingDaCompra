@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB5158506809",
-      "mlMLB5210159957",
-      "mlMLB5217026798",
       "mlMLB5287633095",
       "mlMLB5299235149",
       "mlMLB5336183061",
       "mlMLB5386749261",
-      "mlMLB5389928608"
+      "mlMLB5389928608",
+      "mlMLB5408593708",
+      "mlMLB5626051922",
+      "mlMLB5751316838"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T09:33:53.780Z",
-  "catalogueGeneratedAt": "2026-11-05T09:33:45.018Z",
+  "updatedAt": "2026-11-05T09:36:51.753Z",
+  "catalogueGeneratedAt": "2026-11-05T09:34:42.936Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 564,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 223,
+    "targeted_correction_complete": 226,
     "preserve_prior_review": 98,
-    "pending": 157,
-    "prepared_awaiting_publication": 3
+    "pending": 157
   },
   "items": [
     {
@@ -4177,12 +4176,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5158506809-20260810-1.html",
       "title": "Kit 2 Body Splash Masculino Seduction Ocean 200ml Cada",
       "fingerprint": "87110f5cce5afac829d877a32d9036a35c8b42c699176051d7138421b586b3cd",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:36:51.716Z",
       "workNotes": [
         "Remove código de catálogo incompatível com o link atual.",
-        "Dados locais do anúncio; sem confirmação independente."
+        "Dados locais do anúncio; sem confirmação independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB66688606?pdp_filters=item_id%3AMLB5306223743"
@@ -5864,12 +5864,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5210159957-20260810-1.html",
       "title": "Óculos de sol — polarização e UV400 anunciados",
       "fingerprint": "59b0a2053de82bdeb2fefa1e7a81d708e827006e9473a38fdd4f75c01ed0f90e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:36:51.716Z",
       "workNotes": [
         "Distingue as alegações do vendedor de uma verificação independente.",
-        "Dados locais do anúncio; sem confirmação independente."
+        "Dados locais do anúncio; sem confirmação independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5121897243?pdp_filters=item_id%3AMLB5210159957"
@@ -8419,12 +8420,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5217026798-20260810-1.html",
       "title": "Tenis Masculino Estilo Bota Adventure Nobuck Wonder",
       "fingerprint": "08d7dab82759a15d61b5383e97c74a95ada63ae6c79cd0196d77be5597a6dfaa",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:36:51.716Z",
       "workNotes": [
         "Retira código de anúncio apresentado como catálogo e delimita o uso declarado.",
-        "Dados locais do anúncio; sem confirmação independente."
+        "Dados locais do anúncio; sem confirmação independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-5217026798"
@@ -12688,12 +12690,44 @@
     "backendWrites": 0
   },
   "triage103": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB5158506809",
       "mlMLB5210159957",
       "mlMLB5217026798"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T09:36:51.716Z",
+    "changedIds": [
+      "mlMLB5158506809",
+      "mlMLB5210159957",
+      "mlMLB5217026798"
+    ],
+    "jointReleaseBatches": [
+      103
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem103.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB5158506809",
+        "note": "Dados locais do anúncio; sem confirmação independente."
+      },
+      {
+        "id": "mlMLB5210159957",
+        "note": "Dados locais do anúncio; sem confirmação independente."
+      },
+      {
+        "id": "mlMLB5217026798",
+        "note": "Dados locais do anúncio; sem confirmação independente."
+      }
+    ],
+    "sourceCommit": "84e5f0df9919b77b899b479f87c8afcc36b97a44",
+    "generatedCommit": "e75893863acc3ee2f610f2bae7f8606bad7194dd",
+    "sitemapRun": 42003496302,
+    "integrityRun": 42003496290,
+    "pagesRun": 42003550155,
+    "testsPassed": 1527,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
