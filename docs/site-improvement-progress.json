@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T16:01:04.282Z",
-  "catalogueGeneratedAt": "2026-11-05T15:59:15.716Z",
+  "updatedAt": "2026-11-05T16:03:39.880Z",
+  "catalogueGeneratedAt": "2026-11-05T16:03:37.450Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 245,
     "preserve_prior_review": 98,
-    "pending": 139
+    "pending": 136,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2379,12 +2380,20 @@
       "id": "mlMLB6794388344",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6794388344-20260810-1.html",
       "title": "Celular Samsung Galaxy A37 5G 128GB, 6GB RAM",
-      "fingerprint": "eb2b1111ef9ec4755c2a9be73fd29720d94a6165d3bfd4e18ef595367ba36223",
-      "status": "pending",
+      "fingerprint": "886b460dcd092a25cefad66ad33f0074ddf88f93507a1f1e1294756ad5351e03",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue a variante de 6 GB e 128 GB e retira a indicação de desbloqueio não confirmada.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB68206703?wid=MLB6794388344",
+        "https://news.samsung.com/br/samsung-apresenta-galaxy-a57-5g-e-galaxy-a37-5g-no-brasil-com-recursos-de-nivel-profissional"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "35hImqo3QJm6moaV4OzO",
@@ -4652,12 +4661,19 @@
       "id": "mlMLB6918814082",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6918814082-20260810-1.html",
       "title": "Kit Gamer Mageon Mobilador Teclado Qwerty + Mouse 1200 Dpi Preto",
-      "fingerprint": "931ec93dd6eb3869a9360a576d58a888a9a41e61ae83204d741900a56ab0729d",
-      "status": "pending",
+      "fingerprint": "9ddd37ab1a17bb08029f14cce3e99ce17b544f2efb5aee4cc74170224288b959",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira promessa de instalação universal e redução de ruído sem teste.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4723609338?pdp_filters=item_id%3AMLB7407693118"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5386749261",
@@ -8178,6 +8194,24 @@
       ]
     },
     {
+      "id": "mlMLB6837462690",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6837462690-20260810-1.html",
+      "title": "Tênis esportivo masculino Ravero",
+      "fingerprint": "f3ee38cd2a9e72d766917271b14c8cc43b9d9c3a11d2bf64ee692a6a89d6b342",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira promessas de conforto e leveza e corrige a identificação do anúncio.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6837462690-tnis-masculino-esportivo-corrida-leve-confortavel-macio-_JM?searchVariation=202668186919"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "7QHXFlimzdpfKr7yfo0T",
       "url": "https://rankingdacompra.com.br/produto/7QHXFlimzdpfKr7yfo0T-20260810-1.html",
       "title": "Tênis feminino anunciado como Olimp — caminhada e academia",
@@ -8516,17 +8550,6 @@
       "url": "https://rankingdacompra.com.br/produto/nfzTOT5XTvnh8Q8DyLvb-20260810-1.html",
       "title": "Tênis Masculino Elevation Fila",
       "fingerprint": "5b8e6b1265615d72c5fccd9a59b094fd9161de282534e82a8a2f96cf9aaa8992",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "mlMLB6837462690",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6837462690-20260810-1.html",
-      "title": "Tênis Masculino Esportivo Corrida Leve Confortável Macio",
-      "fingerprint": "62f8949291829f1279123d5ce1c26047a698569e938a969830f73965fb0c1fe0",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -13168,5 +13191,14 @@
     "testsPassed": 1533,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage111": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB6794388344",
+      "mlMLB6837462690",
+      "mlMLB6918814082"
+    ],
+    "newDeepReviews": 0
   }
 }

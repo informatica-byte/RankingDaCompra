@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T15:59:15.716Z",
+  "generatedAt": "2026-11-05T16:03:37.450Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 139
+    "screening": 136
   },
   "items": [
     {
@@ -48,27 +48,6 @@
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6794388344",
-      "title": "Celular Samsung Galaxy A37 5G 128GB, 6GB RAM",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6794388344-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6837462690",
-      "title": "Tênis Masculino Esportivo Corrida Leve Confortável Macio",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6837462690-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6918814082",
-      "title": "Kit Gamer Mageon Mobilador Teclado Qwerty + Mouse 1200 Dpi Preto",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6918814082-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

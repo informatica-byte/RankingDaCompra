@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados da oferta e fonte oficial quando aplicável.",
+  "items": [
+    {
+      "id": "mlMLB6794388344",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue a variante de 6 GB e 128 GB e retira a indicação de desbloqueio não confirmada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB68206703?wid=MLB6794388344",
+        "https://news.samsung.com/br/samsung-apresenta-galaxy-a57-5g-e-galaxy-a37-5g-no-brasil-com-recursos-de-nivel-profissional"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "mlMLB6837462690",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessas de conforto e leveza e corrige a identificação do anúncio.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6837462690-tnis-masculino-esportivo-corrida-leve-confortavel-macio-_JM?searchVariation=202668186919"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "mlMLB6918814082",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessa de instalação universal e redução de ruído sem teste.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4723609338?pdp_filters=item_id%3AMLB7407693118"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
