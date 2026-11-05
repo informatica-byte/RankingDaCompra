@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 122 — 20261105, PUBLICADA E VERIFICADA
+
+- Pcye5MBHzWVlBIhtSnXX: targeted_correction_complete. Retira autorização não confirmada de uso em forno e não garante vedação. Limite: Dados da oferta, sem teste independente.
+- PdIYZ9X5RhTbhmKJyZRw: targeted_correction_complete. Retira promessa de elogios e não trata alegações de conformidade como verificadas. Limite: Dados da oferta, sem teste independente.
+- Ped2JwDkTqMRNcZ0BhTf: targeted_correction_complete. Não apresenta os 120 kg do anúncio como limite de carga verificado. Limite: Dados da oferta, sem teste independente.
+
+Fonte 83553223b3784f660434ce13c78f4955adecc576; geração b7ed040fb7383ad13586c591d1dc18e80e8f3766; sitemap 42121098571, integridade 42121098864, Pages 42121169782: SUCCESS. 1546 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem122.json.
+
+Totais: {"total":565,"screened_no_change":77,"needs_source":8,"targeted_correction_complete":279,"preserve_prior_review":98,"pending":103}. Próximos pendentes: PEegqDESPIk3onguTRg8 — Ddpai N1 Dual Câmera Veicular 1296p+1080p Uber Nightvis App; pEszDEGUnKoIpY9xhIdV — Perfume Masculino Premium Midnight Blue 100ml Original Árabe; pGWith3ABAHWNTRZG3fM — PENTA MAGNÉSIO - Bisglicinato + Dimalato + Citrato + Taurato + Óxido de Magnésio - A Combinação Perfeita de 5 Magnésios com Máxima Pureza e Biodisponibilidade - 60 Cápsulas. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 121 — 20261105, PUBLICADA E VERIFICADA
 
 - oYoalVz8s4bR2iumSyhW: targeted_correction_complete. Retira garantia e autenticidade não verificadas e limita a alegação de recarga rápida. Limite: Sem teste independente.
