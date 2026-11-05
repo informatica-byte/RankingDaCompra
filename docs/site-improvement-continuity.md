@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 96 — 20261104, PUBLICADA E VERIFICADA
+
+- mlMLB4151024813: targeted_correction_complete. Corrige anúncio chamado catálogo e não transforma leve/atividades em teste de desempenho. Limite: Snapshot sem código técnico exato ou inspeção. Não inventa material, peso, amortecimento ou autenticação.
+- mlMLB4231915505: targeted_correction_complete. Retira relato de usuários sem fonte e custo-benefício presumido; qualifica compatibilidade/funções e conteúdo do kit. Mantém anúncio substituto atual. Limite: Snapshot sem manual/modelo específico ou teste. Não presume adaptador ausente, latência, bateria ou recursos por plataforma e não retorna ao anúncio antigo indicado no ID.
+- mlMLB4291652941: targeted_correction_complete. Retira dose diária, longevidade articular, pureza e avaliações como garantias; distingue quantidades anunciadas de porção não confirmada e encurta título. Limite: Sem rótulo/lote/laudo específico confirmado. Não prescreve uso, comprova ausência de glúten, eficácia clínica, pureza ou benefício a partir de avaliações.
+
+Fonte 24152e0d72f7df40f40d96665372a5d6bdef95ef; geração e0bbd0506460195028c816fed47697c5d1cf78a9; sitemap 41939951450, integridade 41939951496, Pages 41940018086: SUCCESS. 1520 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem96.json.
+
+Totais: {"total":564,"screened_no_change":72,"needs_source":8,"targeted_correction_complete":208,"preserve_prior_review":98,"pending":178}. Próximos pendentes: mlMLB4291654613 — Tênis Vizzano Feminino Casual Original Confortável Moda 1430; mlMLB4330065589 — Câmera de segurança Wi-Fi PTZ com dupla lente — resolução a confirmar; mlMLB4367472775 — Smart Tv 43 Philco P43vik Roku Led Dolby Audio Wi-fi Hdmi Hdr Full Hd 110/220v. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 95 — 20261104, PUBLICADA E VERIFICADA
 
 - mlMLB4031468281: targeted_correction_complete. Corrige número de anúncio chamado catálogo e qualifica novo lançamento/conforto sem data ou teste. Limite: Snapshot e endereço direto; sem código técnico, data de lançamento, material ou teste. Não acrescenta couro, amortecimento ou autenticidade.
