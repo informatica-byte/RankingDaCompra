@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 110 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB6666191918: targeted_correction_complete. Esclarece que o Windows é de avaliação. Limite: Oferta sem teste independente.
+- mlMLB6778555692: targeted_correction_complete. Corrige a unidade e a taxa da interface com base na SATA-IO. Limite: Oferta sem teste independente.
+- mlMLB6785015658: targeted_correction_complete. Não publica fabricante nem alegações éticas como fatos confirmados. Limite: Oferta sem teste independente.
+
+Fonte 4ec87d468d263decd8722a8781eb1cfa2570db40; geração 272207181711fb63d3c72f631b89b41d2370173f; sitemap 42060454017, integridade 42060453625, Pages 42060553972: SUCCESS. 1533 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem110.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":245,"preserve_prior_review":98,"pending":139}. Próximos pendentes: mlMLB6794388344 — Celular Samsung Galaxy A37 5G 128GB, 6GB RAM; mlMLB6837462690 — Tênis Masculino Esportivo Corrida Leve Confortável Macio; mlMLB6918814082 — Kit Gamer Mageon Mobilador Teclado Qwerty + Mouse 1200 Dpi Preto. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 109 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB6208948636: targeted_correction_complete. Corrige título truncado e retira promessa de conforto. Limite: Dados locais da oferta, sem teste independente.

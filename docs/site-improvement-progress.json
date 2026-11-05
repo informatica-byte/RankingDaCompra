@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB6666191918",
-      "mlMLB6778555692",
-      "mlMLB6785015658",
       "mlMLB6794388344",
       "mlMLB6837462690",
       "mlMLB6918814082",
       "mlMLB6989366460",
-      "mlMLB7011230810"
+      "mlMLB7011230810",
+      "mlMLB7174618968",
+      "mlMLB7304557578",
+      "mlMLB7593699030"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T15:57:23.078Z",
-  "catalogueGeneratedAt": "2026-11-05T15:57:20.529Z",
+  "updatedAt": "2026-11-05T16:01:04.282Z",
+  "catalogueGeneratedAt": "2026-11-05T15:59:15.716Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,9 +705,8 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 242,
+    "targeted_correction_complete": 245,
     "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 3,
     "pending": 139
   },
   "items": [
@@ -1343,12 +1342,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6666191918-20260810-1.html",
       "title": "BluePC CD2E-0135TO — Core i7-4770, 16 GB e SSD de 512 GB",
       "fingerprint": "ff8a4fd54677cbf37f445e9bcf1262e46d2d9a5b116a3b71c96ed1e5c2c2b6f1",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T16:01:04.251Z",
       "workNotes": [
         "Esclarece que o Windows é de avaliação.",
-        "Oferta sem teste independente."
+        "Oferta sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB42364005?wid=MLB6666191918"
@@ -7934,12 +7934,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6778555692-20260810-1.html",
       "title": "SSD Prodrive PROSATA301/240G — 240 GB, SATA III de 2,5″",
       "fingerprint": "17bdf6bb9615b59f9d5c309123a7c2166f2a34e2c0d5e4a18b66334696e484b5",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T16:01:04.251Z",
       "workNotes": [
         "Corrige a unidade e a taxa da interface com base na SATA-IO.",
-        "Oferta sem teste independente."
+        "Oferta sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB38482180?wid=MLB6778555692",
@@ -9289,12 +9290,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6785015658-20260810-1.html",
       "title": "Vulcan Feu Eau de Parfum — 100 mL anunciados",
       "fingerprint": "628a2c50fbf31e806fc52cb77d26117721587bb5758a7cc3bec4555f350dd539",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T16:01:04.251Z",
       "workNotes": [
         "Não publica fabricante nem alegações éticas como fatos confirmados.",
-        "Oferta sem teste independente."
+        "Oferta sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB80630141?wid=MLB6785015658"
@@ -13127,12 +13129,44 @@
     "backendWrites": 0
   },
   "triage110": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB6666191918",
       "mlMLB6778555692",
       "mlMLB6785015658"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T16:01:04.251Z",
+    "changedIds": [
+      "mlMLB6666191918",
+      "mlMLB6778555692",
+      "mlMLB6785015658"
+    ],
+    "jointReleaseBatches": [
+      110
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem110.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB6666191918",
+        "note": "Oferta sem teste independente."
+      },
+      {
+        "id": "mlMLB6778555692",
+        "note": "Oferta sem teste independente."
+      },
+      {
+        "id": "mlMLB6785015658",
+        "note": "Oferta sem teste independente."
+      }
+    ],
+    "sourceCommit": "4ec87d468d263decd8722a8781eb1cfa2570db40",
+    "generatedCommit": "272207181711fb63d3c72f631b89b41d2370173f",
+    "sitemapRun": 42060454017,
+    "integrityRun": 42060453625,
+    "pagesRun": 42060553972,
+    "testsPassed": 1533,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
