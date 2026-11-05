@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Revisão pontual do cadastro recente com dados públicos locais.",
+  "items": [
+    {
+      "id": "mlMLB4604968203",
+      "decision": "targeted_correction_complete",
+      "reason": "Remove redundâncias, corrige título cortado e distingue o armazenamento anunciado de expansão não confirmada.",
+      "sourceLinks": ["https://www.mercadolivre.com.br/p/MLB75680260?wid=MLB4604968203"],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    }
+  ],
+  "counts": {"screened": 1, "targetedCorrections": 1, "screenedNoChange": 0, "newDeepReviews": 0}
+}

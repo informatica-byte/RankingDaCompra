@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T15:38:03.882Z",
-  "catalogueGeneratedAt": "2026-11-05T15:36:02.093Z",
+  "updatedAt": "2026-11-05T15:39:51.094Z",
+  "catalogueGeneratedAt": "2026-11-05T15:39:45.523Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 238,
     "preserve_prior_review": 98,
-    "pending": 146
+    "pending": 145,
+    "prepared_awaiting_publication": 1
   },
   "items": [
     {
@@ -5762,17 +5763,6 @@
       "sourceLinks": []
     },
     {
-      "id": "mlMLB4604968203",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4604968203-20260810-1.html",
-      "title": "Notebook 2 em 1 Positivo Duo C8128E Intel Celeron N4500 Windows 11 Home 8GB RAM 128GB eMMC 11” LED HD IPS - Cinza",
-      "fingerprint": "7e4040d1ffbbd8be809855d87e107f70de3818d4f784ddde3f5157099d545f9b",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "TEaC0vVXmdvp4s8QMqpn",
       "url": "https://rankingdacompra.com.br/produto/TEaC0vVXmdvp4s8QMqpn-20260810-1.html",
       "title": "Notebook Acer Aspire 5 A515-45-R2A3 AMD Ryzen 5 Windows 11 Home 8GB 512GB SSD 15,6' Full HD",
@@ -6700,6 +6690,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "mlMLB4604968203",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4604968203-20260810-1.html",
+      "title": "Positivo Duo C8128E — 2 em 1 com 8 GB e 128 GB eMMC",
+      "fingerprint": "575dfbf961a23d464a4bd5ec110d0debd38d46a244411314cfa47e8dd4cb35e0",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Remove redundâncias, corrige título cortado e distingue o armazenamento anunciado de expansão não confirmada.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB75680260?wid=MLB4604968203"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "hC5H8O2mjGMYXFMH5jic",
@@ -13000,5 +13008,12 @@
     "testsPassed": 1531,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage108": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB4604968203"
+    ],
+    "newDeepReviews": 0
   }
 }
