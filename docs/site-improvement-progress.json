@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB7871750870",
-      "mWlmlmg15okWqGyIc5bh",
-      "n4IIyDvWZZGMKhBisDSq",
       "N6932yKNTXnAJ98cz9Eo",
       "N9EnpkbyJeTRuSriAhFn",
       "NfQ2YF7qf3SL1oehasTi",
       "nfzTOT5XTvnh8Q8DyLvb",
-      "nkBZlP0jQEwoMIj6VDbG"
+      "nkBZlP0jQEwoMIj6VDbG",
+      "NQyo56LcUgwwA2tz8YCF",
+      "nzEaLDNocvF6GDH6InIH",
+      "o6oq1IPOS41xUDtF3TG7"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:30:44.207Z",
-  "catalogueGeneratedAt": "2026-11-05T20:30:40.945Z",
+  "updatedAt": "2026-11-05T20:35:28.229Z",
+  "catalogueGeneratedAt": "2026-11-05T20:33:50.235Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,8 +705,7 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 257,
-    "prepared_awaiting_publication": 3,
+    "targeted_correction_complete": 260,
     "preserve_prior_review": 98,
     "pending": 124
   },
@@ -757,12 +756,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB7871750870-20260810-1.html",
       "title": "A’Gold MCF-38D — kit sem fio com dois microfones de lapela",
       "fingerprint": "0533b8f39650505cf61354b6eb1f122fbc1303447d83f5e59798cf466ce43bd5",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:35:28.202Z",
       "workNotes": [
         "Retira promessa de melhora de áudio e delimita compatibilidade.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB53816127?wid=MLB7871750870"
@@ -5151,12 +5151,13 @@
       "url": "https://rankingdacompra.com.br/produto/n4IIyDvWZZGMKhBisDSq-20260810-1.html",
       "title": "Lavadora WAP 4100 W2 — variante 127 V anunciada",
       "fingerprint": "253d4ca19562831c5a576836554a0f606ce146102542e8b4214c4c84a2a5c587",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:35:28.202Z",
       "workNotes": [
         "Distingue pressão máxima de pressão em uso e retira recomendação de uso intensivo sem teste.",
-        "Fonte WAP contextualiza a linha 4100, sem confirmar o conteúdo da oferta W2; sem teste independente."
+        "Fonte WAP contextualiza a linha 4100, sem confirmar o conteúdo da oferta W2; sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB69473763?pdp_filters=item_id%3AMLB6842727330",
@@ -8432,12 +8433,13 @@
       "url": "https://rankingdacompra.com.br/produto/mWlmlmg15okWqGyIc5bh-20260810-1.html",
       "title": "Tênis Kappa Pulse RX unissex — anúncio MLB5532075156",
       "fingerprint": "2bf4327d01cc80134de69763e502d1e8d5801383a2b56ea81b4b44b128ffaaa9",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:35:28.202Z",
       "workNotes": [
         "Retira promessa de conforto e distingue esta oferta sem mexer nas outras variantes.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-5532075156-tnis-kappa-pulse-rx-unissex-corrida-conforto-_JM?searchVariation=200557607873"
@@ -13454,12 +13456,44 @@
     "backendWrites": 0
   },
   "triage115": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mWlmlmg15okWqGyIc5bh",
       "mlMLB7871750870",
       "n4IIyDvWZZGMKhBisDSq"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T20:35:28.202Z",
+    "changedIds": [
+      "mlMLB7871750870",
+      "mWlmlmg15okWqGyIc5bh",
+      "n4IIyDvWZZGMKhBisDSq"
+    ],
+    "jointReleaseBatches": [
+      115
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem115.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB7871750870",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "mWlmlmg15okWqGyIc5bh",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "n4IIyDvWZZGMKhBisDSq",
+        "note": "Fonte WAP contextualiza a linha 4100, sem confirmar o conteúdo da oferta W2; sem teste independente."
+      }
+    ],
+    "sourceCommit": "3fd4dafc79415dff6832c0ebcab4419e660cc3ae",
+    "generatedCommit": "84fc5308f3250fde8b1398e3d297c604cdbf2ab3",
+    "sitemapRun": 42104488521,
+    "integrityRun": 42104488333,
+    "pagesRun": 42104591187,
+    "testsPassed": 1539,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

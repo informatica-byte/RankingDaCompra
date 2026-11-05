@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 115 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB7871750870: targeted_correction_complete. Retira promessa de melhora de áudio e delimita compatibilidade. Limite: Dados locais da oferta, sem teste independente.
+- mWlmlmg15okWqGyIc5bh: targeted_correction_complete. Retira promessa de conforto e distingue esta oferta sem mexer nas outras variantes. Limite: Dados locais da oferta, sem teste independente.
+- n4IIyDvWZZGMKhBisDSq: targeted_correction_complete. Distingue pressão máxima de pressão em uso e retira recomendação de uso intensivo sem teste. Limite: Fonte WAP contextualiza a linha 4100, sem confirmar o conteúdo da oferta W2; sem teste independente.
+
+Fonte 3fd4dafc79415dff6832c0ebcab4419e660cc3ae; geração 84fc5308f3250fde8b1398e3d297c604cdbf2ab3; sitemap 42104488521, integridade 42104488333, Pages 42104591187: SUCCESS. 1539 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem115.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":260,"preserve_prior_review":98,"pending":124}. Próximos pendentes: N6932yKNTXnAJ98cz9Eo — TUD Kit 11 Potes Vidro Herméticos Tampa Bambu 200ml a 2L Armazenamento; N9EnpkbyJeTRuSriAhFn — Relógio De Parede Decorativo Deus E Bom O Tempo Todo Em Mdf; NfQ2YF7qf3SL1oehasTi — Câmera Inteligente iM3 C Black Intelbras. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 114 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB7748620676: targeted_correction_complete. Retira a afirmação de autenticidade do título e sinaliza as alegações não verificadas. Limite: Dados locais da oferta, sem teste independente.
