@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 98 — 20261104, PUBLICADA E VERIFICADA
+
+- mlMLB4443112343: targeted_correction_complete. Distingue números anunciados de medidas de alcance/carga/autonomia e não trata gamer como baixa latência comprovada. Limite: Snapshot sem ensaio ou manual exato. Não calcula ciclos pela capacidade do estojo nem converte autonomia desconhecida do comparador em medição.
+- mlMLB4474695467: screened_no_change. Revisão existente já diferencia GPS conectado/integrado e limita proteção/sensores; preservada sem repetir revisão ou conferência. Limite: Sem nova consulta ou teste. Mantém recursos médicos não validados, GPS independente e IP desconhecidos no comparador.
+- mlMLB4474977007: targeted_correction_complete. Corrige Eua para Eau e atribui origem/cruelty-free à oferta sem certificá-las; não usa original/identificador como autenticação. Limite: Snapshot sem inspeção ou prova específica de origem/cruelty-free. Não inventa notas, duração, certificação ou semelhança com outra fragrância.
+
+Fonte e554f45a182913f7193078c4d0b5ee71fefa9504; geração 1d391336c0a78e1139aabdfb6997ec97db0cebc5; sitemap 41941587072, integridade 41941587162, Pages 41941635160: SUCCESS. 1522 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem98.json.
+
+Totais: {"total":564,"screened_no_change":74,"needs_source":8,"targeted_correction_complete":212,"preserve_prior_review":98,"pending":172}. Próximos pendentes: mlMLB4644707253 — Lavadora Alta Pressão Compacta 1400w, 1600psi, 300l/h; mlMLB4645102377 — Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml; mlMLB4699180013 — Tênis Vans Vr3 Ultrarange Marshmallow Slip Meia Unissex. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 97 — 20261104, PUBLICADA E VERIFICADA
 
 - mlMLB4291654613: targeted_correction_complete. Corrige anúncio rotulado catálogo e qualifica original/confortável, sem autenticar ou inventar material. Limite: Snapshot e endereço direto; referência completa e variação não inspecionadas. Sem teste ou tecnologia transferida de outro Vizzano.

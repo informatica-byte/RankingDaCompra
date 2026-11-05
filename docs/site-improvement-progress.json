@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB4443112343",
-      "mlMLB4474695467",
-      "mlMLB4474977007",
       "mlMLB4644707253",
       "mlMLB4645102377",
       "mlMLB4699180013",
       "mlMLB4741657351",
-      "mlMLB4748589927"
+      "mlMLB4748589927",
+      "mlMLB4748674769",
+      "mlMLB4763500131",
+      "mlMLB4812800951"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T00:27:43.566Z",
-  "catalogueGeneratedAt": "2026-11-05T00:27:35.356Z",
+  "updatedAt": "2026-11-05T00:30:20.407Z",
+  "catalogueGeneratedAt": "2026-11-05T00:28:44.253Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 564,
     "screened_no_change": 74,
     "needs_source": 8,
-    "targeted_correction_complete": 210,
+    "targeted_correction_complete": 212,
     "preserve_prior_review": 98,
-    "pending": 172,
-    "prepared_awaiting_publication": 2
+    "pending": 172
   },
   "items": [
     {
@@ -3296,12 +3295,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4443112343-20260810-1.html",
       "title": "Fone de Ouvido Gamer In-ear Vellon TWS Bluetooth 5.0, com Microfone e Estojo de Carregamento",
       "fingerprint": "0858cbc8980c82cb2cc104957449563e8562a7b6f6ee193975b0108bbe303db2",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T00:30:20.382Z",
       "workNotes": [
         "Distingue números anunciados de medidas de alcance/carga/autonomia e não trata gamer como baixa latência comprovada.",
-        "Snapshot sem ensaio ou manual exato. Não calcula ciclos pela capacidade do estojo nem converte autonomia desconhecida do comparador em medição."
+        "Snapshot sem ensaio ou manual exato. Não calcula ciclos pela capacidade do estojo nem converte autonomia desconhecida do comparador em medição.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB74452004?wid=MLB4443112343"
@@ -7089,12 +7089,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4474977007-20260810-1.html",
       "title": "Salvo Maison Alhambra Eau de Parfum 100 ml anunciado",
       "fingerprint": "ef325b3caaddf0c0f6766c473a895faca188975c9a122ebb9b0a0f94ec0864c3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T00:30:20.382Z",
       "workNotes": [
         "Corrige Eua para Eau e atribui origem/cruelty-free à oferta sem certificá-las; não usa original/identificador como autenticação.",
-        "Snapshot sem inspeção ou prova específica de origem/cruelty-free. Não inventa notas, duração, certificação ou semelhança com outra fragrância."
+        "Snapshot sem inspeção ou prova específica de origem/cruelty-free. Não inventa notas, duração, certificação ou semelhança com outra fragrância.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3786865269?wid=MLB4474977007"
@@ -12370,11 +12371,42 @@
     "backendWrites": 0
   },
   "triage98": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB4443112343",
       "mlMLB4474977007"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T00:30:20.382Z",
+    "changedIds": [
+      "mlMLB4443112343",
+      "mlMLB4474977007"
+    ],
+    "jointReleaseBatches": [
+      98
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem98.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4443112343",
+        "note": "Snapshot sem ensaio ou manual exato. Não calcula ciclos pela capacidade do estojo nem converte autonomia desconhecida do comparador em medição."
+      },
+      {
+        "id": "mlMLB4474695467",
+        "note": "Sem nova consulta ou teste. Mantém recursos médicos não validados, GPS independente e IP desconhecidos no comparador."
+      },
+      {
+        "id": "mlMLB4474977007",
+        "note": "Snapshot sem inspeção ou prova específica de origem/cruelty-free. Não inventa notas, duração, certificação ou semelhança com outra fragrância."
+      }
+    ],
+    "sourceCommit": "e554f45a182913f7193078c4d0b5ee71fefa9504",
+    "generatedCommit": "1d391336c0a78e1139aabdfb6997ec97db0cebc5",
+    "sitemapRun": 41941587072,
+    "integrityRun": 41941587162,
+    "pagesRun": 41941635160,
+    "testsPassed": 1522,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
