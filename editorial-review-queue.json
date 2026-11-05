@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T09:07:18.040Z",
+  "generatedAt": "2026-11-05T09:14:26.144Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 166
+    "screening": 163
   },
   "items": [
     {
@@ -41,27 +41,6 @@
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4763500131",
-      "title": "Tênis Nike Revolution 8 Masculino",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4763500131-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4812800951",
-      "title": "Mini drone L900 PRO SE com dual câmera 8K preto 5GHz 2 baterias Motor sem escova profissional",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4812800951-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4835180937",
-      "title": "Kit 3 Body Splash Masculino Vibration + Blunn + Infalível Fero By Primacial Body Man",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4835180937-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

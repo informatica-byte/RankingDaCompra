@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T09:09:27.501Z",
-  "catalogueGeneratedAt": "2026-11-05T09:07:18.040Z",
+  "updatedAt": "2026-11-05T09:14:29.766Z",
+  "catalogueGeneratedAt": "2026-11-05T09:14:26.144Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -703,11 +703,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 564,
-    "screened_no_change": 74,
+    "screened_no_change": 75,
     "needs_source": 8,
     "targeted_correction_complete": 218,
     "preserve_prior_review": 98,
-    "pending": 166
+    "pending": 163,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -4211,12 +4212,19 @@
       "id": "mlMLB4835180937",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4835180937-20260810-1.html",
       "title": "Kit 3 Body Splash Masculino Vibration + Blunn + Infalível Fero By Primacial Body Man",
-      "fingerprint": "bcfc169dd46a0c01b66b0ef8aaa49aad6217b2de68ecbffac08435983937474b",
-      "status": "pending",
+      "fingerprint": "1326ab5ee458cf8b5b80e62504811b44f25d7efd494c288d55ccdab3c37b4d2e",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Atribui as declarações ao anúncio e retira a classificação de vendedor oficial sem prova.",
+        "Base pública local da oferta, sem ensaio ou confirmação independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB74085271?wid=MLB4835180937"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7870098964",
@@ -5292,13 +5300,20 @@
     {
       "id": "mlMLB4812800951",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4812800951-20260810-1.html",
-      "title": "Mini drone L900 PRO SE com dual câmera 8K preto 5GHz 2 baterias Motor sem escova profissional",
-      "fingerprint": "7a65691055d596e344c4da0d52a376f327564364cd4b51db800e8499326b4748",
-      "status": "pending",
+      "title": "Mini drone L900 PRO SE preto — câmera dupla e duas baterias anunciadas",
+      "fingerprint": "75bad3fccee99c982759e5ed9c33466768a6397c920f454cf867d0384c647b5a",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira 8K e desempenho profissional como certezas; distingue os recursos anunciados das especificações não verificadas.",
+        "Base pública local da oferta, sem ensaio ou confirmação independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB27292245?wid=MLB4812800951"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7011230810",
@@ -8514,11 +8529,16 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4763500131-20260810-1.html",
       "title": "Tênis Nike Revolution 8 Masculino",
       "fingerprint": "28b7bd1cf95d3d2ed93154c488b9cb60a39fd41bc3c9568a93417d91f48bb1e5",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-05T09:14:29.768Z",
+      "workNotes": [
+        "A ficha da Nike confirma os dados já registrados, incluindo peso aproximado para tamanho 42 e drop de 10 mm.",
+        "Fonte do modelo, sem inspeção da variante ou teste próprio."
+      ],
+      "sourceLinks": [
+        "https://www.nike.com.br/tenis-nike-revolution-8-masculino-058889.html"
+      ]
     },
     {
       "id": "of7SzAJ9klKkySvWpSsO",
@@ -12538,5 +12558,13 @@
     "testsPassed": 1524,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage101": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB4812800951",
+      "mlMLB4835180937"
+    ],
+    "newDeepReviews": 0
   }
 }
