@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 128 — 20261105, PUBLICADA E VERIFICADA
+
+- Ql4iYvaqcH2l6SPpBDsi: targeted_correction_complete. Corrige a identificação do anúncio sem presumir a composição do tecido. Limite: Sem teste independente.
+- qN6qOlF1Re6ltU5WRdaE: targeted_correction_complete. Retira o código de catálogo incompatível com a oferta e não presume pista separada. Limite: Sem teste independente.
+- QNzmR100ehzO5NSBLhTw: targeted_correction_complete. Identifica a porção da tabela oficial e retira alegação de absorção não avaliada. Limite: Sem teste independente.
+
+Fonte b216182e2b017ebab3d2d5adc818115b2f24df38; geração 9d643387cb1db7e3e47ae91463c55b386a697e22; sitemap 42129319631, integridade 42129319691, Pages 42129433752: SUCCESS. 1552 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem128.json.
+
+Totais: {"total":565,"screened_no_change":77,"needs_source":8,"targeted_correction_complete":297,"preserve_prior_review":98,"pending":85}. Próximos pendentes: qPNJGNmzPbZzprZanGOC — Relógio Casio Masculino G-shock Digital Preto Dw-5600bb-1dr; qsh7YbMSqVuBmaoWlpzn — Tênis adidas Acelera 2 Preto E Branco; QUKhd39js4LdwLXNbh0u — Kit 4 Camiseta Dry-fit Sandrini Masculina Academia Caminhada. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 127 — 20261105, PUBLICADA E VERIFICADA
 
 - QHCeO6rxelawGpcolRX1: targeted_correction_complete. Retira promessa de excelente alcance e não transfere especificações da CIB 101S. Limite: Sem teste independente.

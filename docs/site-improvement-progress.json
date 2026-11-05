@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "Ql4iYvaqcH2l6SPpBDsi",
-      "qN6qOlF1Re6ltU5WRdaE",
-      "QNzmR100ehzO5NSBLhTw",
       "qPNJGNmzPbZzprZanGOC",
       "qsh7YbMSqVuBmaoWlpzn",
       "QUKhd39js4LdwLXNbh0u",
       "QV00w4vTmt2SwgU8xisL",
-      "Qwej9VDipQviT3wfRoxl"
+      "Qwej9VDipQviT3wfRoxl",
+      "r5zUBIo4zXpfIh0HjpdD",
+      "r7HSFtoP8OEdijhRMIDk",
+      "rfym6WivFVhxpwn2WF6r"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T23:25:18.002Z",
-  "catalogueGeneratedAt": "2026-11-05T23:25:15.083Z",
+  "updatedAt": "2026-11-05T23:29:24.676Z",
+  "catalogueGeneratedAt": "2026-11-05T23:27:10.960Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 77,
     "needs_source": 8,
-    "targeted_correction_complete": 294,
+    "targeted_correction_complete": 297,
     "preserve_prior_review": 98,
-    "pending": 85,
-    "prepared_awaiting_publication": 3
+    "pending": 85
   },
   "items": [
     {
@@ -2143,12 +2142,13 @@
       "url": "https://rankingdacompra.com.br/produto/qN6qOlF1Re6ltU5WRdaE-20260810-1.html",
       "title": "Caminhão dinossauro porta-carrinhos — 8 mini carrinhos anunciados",
       "fingerprint": "b76ec314106c0214490fded96f52096e5422d585e388abb64a63e52c42592221",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:29:24.643Z",
       "workNotes": [
         "Retira o código de catálogo incompatível com a oferta e não presume pista separada.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB77111694?pdp_filters=item_id%3AMLB7399445176"
@@ -2188,12 +2188,13 @@
       "url": "https://rankingdacompra.com.br/produto/Ql4iYvaqcH2l6SPpBDsi-20260810-1.html",
       "title": "Camiseta Dry-fit Preta Caveira Unisex Dark Lab",
       "fingerprint": "9833415aed102ed4ed326e661809fbefe07569df8e1e13f7879b7bbe9ab5fc92",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:29:24.643Z",
       "workNotes": [
         "Corrige a identificação do anúncio sem presumir a composição do tecido.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-3800842215-camiseta-dry-fit-preta-caveira-unisex-dark-lab-_JM?searchVariation=181250232814"
@@ -5505,12 +5506,13 @@
       "url": "https://rankingdacompra.com.br/produto/QNzmR100ehzO5NSBLhTw-20260810-1.html",
       "title": "Magnésio Bisglicinato - 60 Cápsulas - Nutrify",
       "fingerprint": "f324cb9adb2078fdc75ea84551627d07515a7b6ffc11603594f303f37827a1fa",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:29:24.643Z",
       "workNotes": [
         "Identifica a porção da tabela oficial e retira alegação de absorção não avaliada.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB19640094?wid=MLB3905028657",
@@ -14288,12 +14290,44 @@
     "backendWrites": 0
   },
   "triage128": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "QNzmR100ehzO5NSBLhTw",
       "Ql4iYvaqcH2l6SPpBDsi",
       "qN6qOlF1Re6ltU5WRdaE"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T23:29:24.643Z",
+    "changedIds": [
+      "Ql4iYvaqcH2l6SPpBDsi",
+      "qN6qOlF1Re6ltU5WRdaE",
+      "QNzmR100ehzO5NSBLhTw"
+    ],
+    "jointReleaseBatches": [
+      128
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem128.json",
+    "remainingDependencies": [
+      {
+        "id": "Ql4iYvaqcH2l6SPpBDsi",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "qN6qOlF1Re6ltU5WRdaE",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "QNzmR100ehzO5NSBLhTw",
+        "note": "Sem teste independente."
+      }
+    ],
+    "sourceCommit": "b216182e2b017ebab3d2d5adc818115b2f24df38",
+    "generatedCommit": "9d643387cb1db7e3e47ae91463c55b386a697e22",
+    "sitemapRun": 42129319631,
+    "integrityRun": 42129319691,
+    "pagesRun": 42129433752,
+    "testsPassed": 1552,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
