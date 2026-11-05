@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T09:34:42.936Z",
+  "generatedAt": "2026-11-05T09:51:05.308Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 157
+    "screening": 154
   },
   "items": [
     {
@@ -48,27 +48,6 @@
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5287633095",
-      "title": "Câmera de Segurança Babá Eletrônica Ip Wifi 1080p Full Hd Visão Noturna Ideal Para Bebê Crianças Idosos Pets Áudio Bidirecional Kateluo",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5287633095-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5299235149",
-      "title": "Kit Instrumento Musical Bandinha Infantil Presente +4 Anos",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5299235149-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5336183061",
-      "title": "Inversor Veicular IF-378 350W 12V para com USB e LED",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5336183061-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correção pontual com base nos dados públicos locais, sem mudar links de afiliados.",
+  "items": [
+    {
+      "id": "mlMLB5287633095",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira a promessa de adequação para monitorar bebês e atribui os recursos ao anúncio.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB79849891?pdp_filters=item_id%3AMLB5287633095"
+      ],
+      "sourceLimit": "Dados locais do anúncio, sem validação independente."
+    },
+    {
+      "id": "mlMLB5299235149",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui a faixa etária à oferta e explicita os dados ausentes sobre o kit.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5284064567?pdp_filters=item_id%3AMLB5299235149"
+      ],
+      "sourceLimit": "Dados locais do anúncio, sem validação independente."
+    },
+    {
+      "id": "mlMLB5336183061",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue potência máxima anunciada de potência contínua não confirmada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB62888640#wid=MLB5336183061"
+      ],
+      "sourceLimit": "Dados locais do anúncio, sem validação independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T09:36:51.753Z",
-  "catalogueGeneratedAt": "2026-11-05T09:34:42.936Z",
+  "updatedAt": "2026-11-05T09:51:15.715Z",
+  "catalogueGeneratedAt": "2026-11-05T09:51:05.308Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 226,
     "preserve_prior_review": 98,
-    "pending": 157
+    "pending": 154,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -1766,17 +1767,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "mlMLB5287633095",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5287633095-20260810-1.html",
-      "title": "Câmera de Segurança Babá Eletrônica Ip Wifi 1080p Full Hd Visão Noturna Ideal Para Bebê Crianças Idosos Pets Áudio Bidirecional Kateluo",
-      "fingerprint": "9b388644e2228bf1518f2c5e37fd94a826761c7a941ab5f269118ab6c6a377a0",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "cq6GYICiBnjXrygHzhaO",
       "url": "https://rankingdacompra.com.br/produto/cq6GYICiBnjXrygHzhaO-20260810-1.html",
       "title": "Câmera de segurança Elsys ESC-WB3F com resolução de 2MP visão noturna incluída branca",
@@ -1983,6 +1973,24 @@
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB60074213?wid=MLB6972453978"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB5287633095",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5287633095-20260810-1.html",
+      "title": "Câmera Wi-Fi Kateluo — 1080p e áudio bidirecional anunciados",
+      "fingerprint": "9d2d4eb983fdac6d702a2478bb14ffa620e41cc4c78d474fb0ad2d697aa47806",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira a promessa de adequação para monitorar bebês e atribui os recursos ao anúncio.",
+        "Dados locais do anúncio, sem validação independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB79849891?pdp_filters=item_id%3AMLB5287633095"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -3957,13 +3965,20 @@
     {
       "id": "mlMLB5336183061",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5336183061-20260810-1.html",
-      "title": "Inversor Veicular IF-378 350W 12V para com USB e LED",
-      "fingerprint": "b0fa08ce757fc7bafc633eeacb4daff16ab97272259626210aca5e8180019a1d",
-      "status": "pending",
+      "title": "Inversor veicular IF-378 — 12 V, até 350 W anunciados",
+      "fingerprint": "fca1de2c35058bf42014eeb39a8ac1b982027db381276bf5ed60734d5817d29d",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue potência máxima anunciada de potência contínua não confirmada.",
+        "Dados locais do anúncio, sem validação independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB62888640#wid=MLB5336183061"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "tb7c733uByymDrSRjT5f",
@@ -4607,12 +4622,19 @@
       "id": "mlMLB5299235149",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5299235149-20260810-1.html",
       "title": "Kit Instrumento Musical Bandinha Infantil Presente +4 Anos",
-      "fingerprint": "840f5bcaad864b7d117ac80c5053402c1a592cc5f025135217476889ec213201",
-      "status": "pending",
+      "fingerprint": "79721b0c4568cb47e6baeff6a3362a353da3234ef6909ce5739ac025ad65dcc0",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Atribui a faixa etária à oferta e explicita os dados ausentes sobre o kit.",
+        "Dados locais do anúncio, sem validação independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5284064567?pdp_filters=item_id%3AMLB5299235149"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7752259240",
@@ -12729,5 +12751,14 @@
     "testsPassed": 1527,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage104": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB5287633095",
+      "mlMLB5299235149",
+      "mlMLB5336183061"
+    ],
+    "newDeepReviews": 0
   }
 }
