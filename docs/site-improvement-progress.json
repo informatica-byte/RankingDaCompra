@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T22:04:58.917Z",
-  "catalogueGeneratedAt": "2026-11-05T22:02:32.477Z",
+  "updatedAt": "2026-11-05T22:21:53.608Z",
+  "catalogueGeneratedAt": "2026-11-05T22:21:50.489Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 276,
     "preserve_prior_review": 98,
-    "pending": 106
+    "pending": 103,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4271,17 +4272,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "Pcye5MBHzWVlBIhtSnXX",
-      "url": "https://rankingdacompra.com.br/produto/Pcye5MBHzWVlBIhtSnXX-20260810-1.html",
-      "title": "Kit 10 Pote De Vidro Marmita Hermético 640ml Freezer Fitness Borossilicato 4 Travas Micro-ondas Azul-Escuro",
-      "fingerprint": "e3d1a8bf14bd50dccf9295420eda067b6f1e576038f6963d33daa034aa6e9c0e",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "4DLJoHbBXNFffpz3DNcv",
       "url": "https://rankingdacompra.com.br/produto/4DLJoHbBXNFffpz3DNcv-20260810-1.html",
       "title": "Kit 10 Pote De Vidro Marmita Hermético 640ml Freezer Fitness Rishon",
@@ -4550,6 +4540,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "Pcye5MBHzWVlBIhtSnXX",
+      "url": "https://rankingdacompra.com.br/produto/Pcye5MBHzWVlBIhtSnXX-20260810-1.html",
+      "title": "Kit com 10 potes de vidro — 640 mL anunciados por unidade",
+      "fingerprint": "d25869be55c1501d78c9d13a8b607b6d8596ff4958db9a8888f67ee511784836",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira autorização não confirmada de uso em forno e não garante vedação.",
+        "Dados da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB55829716?pdp_filters=item_id%3AMLB5724593344"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB6203660830",
@@ -6247,6 +6255,42 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "PdIYZ9X5RhTbhmKJyZRw",
+      "url": "https://rankingdacompra.com.br/produto/PdIYZ9X5RhTbhmKJyZRw-20260810-1.html",
+      "title": "Paris Elysees Vodka Brasil Amarelo — 100 mL anunciados",
+      "fingerprint": "368d38f2402ddd238d32f780050814224105ccc21c4a98ca3e75d57bed1ac11c",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira promessa de elogios e não trata alegações de conformidade como verificadas.",
+        "Dados da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB18948403?pdp_filters=item_id%3AMLB2629291215"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "Ped2JwDkTqMRNcZ0BhTf",
+      "url": "https://rankingdacompra.com.br/produto/Ped2JwDkTqMRNcZ0BhTf-20260810-1.html",
+      "title": "Patinete Bandeirante Skatenete Max LED ajustável",
+      "fingerprint": "039f98e2e867af8baf6128d697f07049c2a45295c77e814c30ffbb57afa671d7",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Não apresenta os 120 kg do anúncio como limite de carga verificado.",
+        "Dados da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3894608627-skatenete-max-led-ajustavel-patinete-120kg-bandeirante-_JM"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "87Q6AMHZ8ZFd06OzATcs",
       "url": "https://rankingdacompra.com.br/produto/87Q6AMHZ8ZFd06OzATcs-20260810-1.html",
       "title": "Patinete Dobrável Infantil Juvenil 2 Rodas 2fly Replay Kids",
@@ -6780,17 +6824,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "PdIYZ9X5RhTbhmKJyZRw",
-      "url": "https://rankingdacompra.com.br/produto/PdIYZ9X5RhTbhmKJyZRw-20260810-1.html",
-      "title": "Perfume Vodka Brasil Amarelo Paris Elysees Masculino Intense 100ml",
-      "fingerprint": "b41e684fdcbb922b5df70c4ad7fdc09af01ee7857990447841faee3c5284d24e",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "vEHXKQ4q4UbcFfjPhtTa",
@@ -7772,17 +7805,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "Ped2JwDkTqMRNcZ0BhTf",
-      "url": "https://rankingdacompra.com.br/produto/Ped2JwDkTqMRNcZ0BhTf-20260810-1.html",
-      "title": "Skatenete Max Led Ajustável Patinete 120kg Bandeirante",
-      "fingerprint": "182299eef770862dfc50aec4043966ad60c8944564cc29d3fbd3694f35c04eee",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "LS2YLo5zNF7RptrFMYgB",
@@ -13870,5 +13892,14 @@
     "testsPassed": 1545,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage122": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "Pcye5MBHzWVlBIhtSnXX",
+      "PdIYZ9X5RhTbhmKJyZRw",
+      "Ped2JwDkTqMRNcZ0BhTf"
+    ],
+    "newDeepReviews": 0
   }
 }

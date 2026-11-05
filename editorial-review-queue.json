@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T22:02:32.477Z",
+  "generatedAt": "2026-11-05T22:21:50.489Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 106
+    "screening": 103
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "Pcye5MBHzWVlBIhtSnXX",
-      "title": "Kit 10 Pote De Vidro Marmita Hermético 640ml Freezer Fitness Borossilicato 4 Travas Micro-ondas Azul-Escuro",
-      "url": "https://rankingdacompra.com.br/produto/Pcye5MBHzWVlBIhtSnXX-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "PdIYZ9X5RhTbhmKJyZRw",
-      "title": "Perfume Vodka Brasil Amarelo Paris Elysees Masculino Intense 100ml",
-      "url": "https://rankingdacompra.com.br/produto/PdIYZ9X5RhTbhmKJyZRw-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "Ped2JwDkTqMRNcZ0BhTf",
-      "title": "Skatenete Max Led Ajustável Patinete 120kg Bandeirante",
-      "url": "https://rankingdacompra.com.br/produto/Ped2JwDkTqMRNcZ0BhTf-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

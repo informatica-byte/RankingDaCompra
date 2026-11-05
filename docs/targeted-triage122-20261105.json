@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados públicos locais.",
+  "items": [
+    {
+      "id": "Pcye5MBHzWVlBIhtSnXX",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira autorização não confirmada de uso em forno e não garante vedação.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB55829716?pdp_filters=item_id%3AMLB5724593344"
+      ],
+      "sourceLimit": "Dados da oferta, sem teste independente."
+    },
+    {
+      "id": "PdIYZ9X5RhTbhmKJyZRw",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessa de elogios e não trata alegações de conformidade como verificadas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB18948403?pdp_filters=item_id%3AMLB2629291215"
+      ],
+      "sourceLimit": "Dados da oferta, sem teste independente."
+    },
+    {
+      "id": "Ped2JwDkTqMRNcZ0BhTf",
+      "decision": "targeted_correction_complete",
+      "reason": "Não apresenta os 120 kg do anúncio como limite de carga verificado.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-3894608627-skatenete-max-led-ajustavel-patinete-120kg-bandeirante-_JM"
+      ],
+      "sourceLimit": "Dados da oferta, sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
