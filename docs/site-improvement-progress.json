@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T10:13:53.463Z",
-  "catalogueGeneratedAt": "2026-11-05T10:12:18.391Z",
+  "updatedAt": "2026-11-05T10:19:50.976Z",
+  "catalogueGeneratedAt": "2026-11-05T10:19:42.063Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 232,
     "preserve_prior_review": 98,
-    "pending": 151
+    "prepared_awaiting_publication": 3,
+    "pending": 148
   },
   "items": [
     {
@@ -973,6 +974,24 @@
         "Triagem editorial individual 30/10/2026: Resumo examinado já identifica os dados como extraídos do anúncio; sem novo desempenho comprovado. Não reescrito por falta de defeito editorial prioritário. Não é validação técnica de capacidades ou acessórios. Não equivale a análise documental aprofundada ou teste prático. Não reabrir sem alteração ou nova evidência."
       ],
       "sourceLinks": []
+    },
+    {
+      "id": "mlMLB5751316838",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5751316838-20260810-1.html",
+      "title": "Asus Vivobook 15 X1504VA-NJ1740W — Core i5, 8 GB e SSD de 512 GB",
+      "fingerprint": "b0b5cffce75d9bc7df32197bdb463bdd40bca1b3fc3493c7f66c8da4dcfc2109",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Remove promessa de fluidez e explicita a variante anunciada.",
+        "Dados locais do anúncio, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB48549236?wid=MLB5751316838"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4186778677",
@@ -5577,17 +5596,6 @@
       ]
     },
     {
-      "id": "mlMLB5626051922",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5626051922-20260810-1.html",
-      "title": "Mouse Gamer Titorion Sem Fio Com Sensor Pixart 3311 E 12000 Dpi",
-      "fingerprint": "6bb2c910fdd021db94ae5a05013093b5d04727c18484e00a33fc2b40f2c4bab7",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "UvxFn4gfaexb8TvcaT5e",
       "url": "https://rankingdacompra.com.br/produto/UvxFn4gfaexb8TvcaT5e-20260810-1.html",
       "title": "Mouse Logitech Sem Fio M170 Rc/nano C/pilha - Preto",
@@ -5609,6 +5617,24 @@
       "workNotes": [],
       "sourceLinks": [
         "https://www.logitech.com/pt-br/shop/p/m280-wireless-mouse"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB5626051922",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5626051922-20260810-1.html",
+      "title": "Mouse sem fio Titorion — 12.000 DPI anunciados",
+      "fingerprint": "f943853fda657e38285f859e4ea2b60dcdfb28fc1f98a3c66fe9214acc020b4c",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Atribui resolução, taxa e autonomia ao anúncio.",
+        "Dados locais do anúncio, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB53871685?wid=MLB5626051922"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -5775,17 +5801,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "mlMLB5751316838",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5751316838-20260810-1.html",
-      "title": "Notebook Asus Vivobook 15 X1504va Intel Core I5 1334u 8gb Ram 512gb Ssd Intel Iris Xe Windows 11 Home Tela 15,6 Fhd Silver - Nj1740w",
-      "fingerprint": "31140665bc2314f6b96dd07fb31b852c85d594b17807c7a918e5fcabc36688d9",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "O6e0R2WtiZfyyf2MJe5Y",
       "url": "https://rankingdacompra.com.br/produto/O6e0R2WtiZfyyf2MJe5Y-20260810-1.html",
       "title": "Notebook ASUS Vivobook Go 15 E1504FA-NJ1288, 16 GB RAM e SSD 512 GB",
@@ -5857,17 +5872,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "mlMLB5769733060",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5769733060-20260810-1.html",
-      "title": "Notebook Positivo Vision C15M Intel Celeron N4500 Windows 11 Home 4GB RAM 128GB eMMC Tela 15\" Full HD IPS Antirreflexo - Minitela e Tecla Copilot - Cinza",
-      "fingerprint": "f82bed150edaf59fe766a1a3036ffa74d438a7cc548f849ef3172c2181f98528",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "y8qOGP907Z3Bry3AI9cc",
@@ -6675,6 +6679,24 @@
         "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB5769733060",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5769733060-20260810-1.html",
+      "title": "Positivo Vision C15M — Celeron N4500, 4 GB e 128 GB eMMC",
+      "fingerprint": "76a313ea7eb83d6de25931c0726f3e6c175024f57cf0d040c59486042da7f9e3",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Destaca o tipo de armazenamento sem inferir desempenho ou possibilidade de expansão.",
+        "Dados locais do anúncio, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB54103769?wid=MLB5769733060"
+      ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
     },
@@ -12859,5 +12881,14 @@
     "testsPassed": 1529,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage106": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB5626051922",
+      "mlMLB5751316838",
+      "mlMLB5769733060"
+    ],
+    "newDeepReviews": 0
   }
 }
