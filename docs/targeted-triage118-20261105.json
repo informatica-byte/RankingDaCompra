@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados públicos locais e documentação do fabricante quando aplicável.",
+  "items": [
+    {
+      "id": "nzEaLDNocvF6GDH6InIH",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue colchonete, saco de transporte e saco de dormir sem presumir isolamento.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB68897341?wid=MLB4655530173"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "o6oq1IPOS41xUDtF3TG7",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue número de prendedores de capacidade de carga e retira promessa de durabilidade.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3503517945?pdp_filters=item_id%3AMLB5832558364"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "O8vB8vB9Kw6NpVqHMt8A",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue RAM física e virtual e retira alegações de superioridade de imagem.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65041643?wid=MLB6420227790",
+        "https://www.motorola.com.br/smartphone-moto-g17-128-gb/p?idsku=1788"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
