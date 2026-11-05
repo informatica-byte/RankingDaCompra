@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correção pontual com base nos dados públicos locais.",
+  "items": [
+    {
+      "id": "mlMLB5952869866",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira indicação de saúde não validada e distingue quantidade de unidades de contagem de cerdas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3580523497?wid=MLB5952869866"
+      ],
+      "sourceLimit": "Dados locais do anúncio, sem teste independente."
+    },
+    {
+      "id": "mlMLB6118982036",
+      "decision": "targeted_correction_complete",
+      "reason": "Não transforma um campo de quantidade em contagem total de peças.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3700781669?wid=MLB6118982036"
+      ],
+      "sourceLimit": "Dados locais do anúncio, sem teste independente."
+    },
+    {
+      "id": "mlMLB6203660830",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige o título truncado sem repetir alegações de compressão ou desempenho térmico.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6203660830-kit-4-shorts-2-em-1-duplo-dryfit-masculino-compresso-termic-_JM?searchVariation=196379598601"
+      ],
+      "sourceLimit": "Dados locais do anúncio, sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

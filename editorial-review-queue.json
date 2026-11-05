@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T11:28:56.320Z",
+  "generatedAt": "2026-11-05T15:33:57.888Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 149
+    "screening": 146
   },
   "items": [
     {
@@ -44,31 +44,17 @@
       "reasons": []
     },
     {
+      "id": "mlMLB4604968203",
+      "title": "Notebook 2 em 1 Positivo Duo C8128E Intel Celeron N4500 Windows 11 Home 8GB RAM 128GB eMMC 11” LED HD IPS - Cinza",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4604968203-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
       "id": "mlMLB5239190177",
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5952869866",
-      "title": "Escova Dental Oralgos Db781 Cs 4000 Cerdas Cores Variadas",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5952869866-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6118982036",
-      "title": "Kit De Sobrevivência De Emergência De Acampamento Aventura",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6118982036-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6203660830",
-      "title": "Kit 4 Shorts 2 Em 1 Duplo Dryfit Masculino Compressão Térmic",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6203660830-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
@@ -1097,13 +1083,6 @@
       "id": "zuvOrERyR2wVRA9ZmYGe",
       "title": "Câmera Lâmpada IP Wi-Fi Raytechno Full HD 1080p com Visão Noturna e Sensor de Movimento",
       "url": "https://rankingdacompra.com.br/produto/zuvOrERyR2wVRA9ZmYGe-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4604968203",
-      "title": "Notebook 2 em 1 Positivo Duo C8128E Intel Celeron N4500 Windows 11 Home 8GB RAM 128GB eMMC 11” LED HD IPS - Cinza",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4604968203-20260810-1.html",
       "state": "screening",
       "reasons": []
     }

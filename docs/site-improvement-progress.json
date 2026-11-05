@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T10:22:18.605Z",
-  "catalogueGeneratedAt": "2026-11-05T10:20:50.649Z",
+  "updatedAt": "2026-11-05T15:34:01.712Z",
+  "catalogueGeneratedAt": "2026-11-05T15:33:57.888Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -702,12 +702,13 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 564,
+    "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
     "targeted_correction_complete": 235,
     "preserve_prior_review": 98,
-    "pending": 148
+    "pending": 146,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -3083,13 +3084,20 @@
     {
       "id": "mlMLB5952869866",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5952869866-20260810-1.html",
-      "title": "Escova Dental Oralgos Db781 Cs 4000 Cerdas Cores Variadas",
-      "fingerprint": "48293973955071c045c241120032958085bd10b250e85fe0f94ce4b4c7901c89",
-      "status": "pending",
+      "title": "Escova dental Oralgos DB781 CS — pacote anunciado com 6 unidades",
+      "fingerprint": "2a56f210ed188bf8f7dd5b110a29b35d7fb579647cdbae5d2a819c2f542b6b07",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira indicação de saúde não validada e distingue quantidade de unidades de contagem de cerdas.",
+        "Dados locais do anúncio, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3580523497?wid=MLB5952869866"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "GhxvMZYaZM60wLsGuNdw",
@@ -4320,17 +4328,6 @@
       "sourceLinks": []
     },
     {
-      "id": "mlMLB6203660830",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6203660830-20260810-1.html",
-      "title": "Kit 4 Shorts 2 Em 1 Duplo Dryfit Masculino Compressão Térmic",
-      "fingerprint": "0b2ace214a4f9969d6423ed02ee5853d37f6471266074f58e25383596e3a67c7",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "u9P6kD78JZexijimIjHN",
       "url": "https://rankingdacompra.com.br/produto/u9P6kD78JZexijimIjHN-20260810-1.html",
       "title": "Kit 5 Camisetas Masculinas Slim Básicas Coloridas Premium",
@@ -4443,6 +4440,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "mlMLB6203660830",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6203660830-20260810-1.html",
+      "title": "Kit com 4 shorts masculinos 2 em 1",
+      "fingerprint": "00df398ccd7fe8973b4c9e057f234ef9d7a0d89b6c8f84f4f53af9d7a1aa8e55",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Corrige o título truncado sem repetir alegações de compressão ou desempenho térmico.",
+        "Dados locais do anúncio, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6203660830-kit-4-shorts-2-em-1-duplo-dryfit-masculino-compresso-termic-_JM?searchVariation=196379598601"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "7W5TZBLUNQOGfenrgEtg",
@@ -4609,12 +4624,19 @@
       "id": "mlMLB6118982036",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6118982036-20260810-1.html",
       "title": "Kit De Sobrevivência De Emergência De Acampamento Aventura",
-      "fingerprint": "f3c2870922062f5edf78f2fef3d089e85bad7294970c183b3a9ed75c74343e4f",
-      "status": "pending",
+      "fingerprint": "b152abf08042a40845fee83e6ad5e7c7d196719a9a8ce0999b518529e70e6f69",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Não transforma um campo de quantidade em contagem total de peças.",
+        "Dados locais do anúncio, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3700781669?wid=MLB6118982036"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB6918814082",
@@ -5731,6 +5753,17 @@
       "url": "https://rankingdacompra.com.br/produto/sIeDtT4BuRsDRnKrSUMR-20260810-1.html",
       "title": "NIVEA SUN Protetor Solar Facial Toque Seco Antissinais FPS70 40ml, Alta Proteção UVA/UVB, Controla a Oleosidade, Previne Envelhecimento, Textura Leve",
       "fingerprint": "42fe01fed14be1376168cdc71a9d2cbe25faae0d2468af8a5e56018dc1f45efa",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
+    },
+    {
+      "id": "mlMLB4604968203",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4604968203-20260810-1.html",
+      "title": "Notebook 2 em 1 Positivo Duo C8128E Intel Celeron N4500 Windows 11 Home 8GB RAM 128GB eMMC 11” LED HD IPS - Cinza",
+      "fingerprint": "7e4040d1ffbbd8be809855d87e107f70de3818d4f784ddde3f5157099d545f9b",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -12924,5 +12957,14 @@
     "testsPassed": 1530,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage107": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB5952869866",
+      "mlMLB6118982036",
+      "mlMLB6203660830"
+    ],
+    "newDeepReviews": 0
   }
 }
