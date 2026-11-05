@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "OADfHMMVftq1AKtGgcaP",
-      "Oelq1fEuR41tSXxHj8cp",
-      "of7SzAJ9klKkySvWpSsO",
       "OOVD3lkaaSXJTSAAdywm",
       "OTYBW2oIlOWx1MeHpF1u",
       "OwXKuXw3ZMFmcvx7jF4v",
       "oYoalVz8s4bR2iumSyhW",
-      "P5uw3Q0IjbFoD0of4CSu"
+      "P5uw3Q0IjbFoD0of4CSu",
+      "p9csD1mVQKKLvmFbV1VX",
+      "Pcye5MBHzWVlBIhtSnXX",
+      "PdIYZ9X5RhTbhmKJyZRw"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:56:19.546Z",
-  "catalogueGeneratedAt": "2026-11-05T20:56:16.365Z",
+  "updatedAt": "2026-11-05T20:59:38.208Z",
+  "catalogueGeneratedAt": "2026-11-05T20:58:12.653Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 76,
     "needs_source": 8,
-    "targeted_correction_complete": 269,
+    "targeted_correction_complete": 271,
     "preserve_prior_review": 98,
-    "pending": 112,
-    "prepared_awaiting_publication": 2
+    "pending": 112
   },
   "items": [
     {
@@ -3263,12 +3262,13 @@
       "url": "https://rankingdacompra.com.br/produto/Oelq1fEuR41tSXxHj8cp-20260810-1.html",
       "title": "Extensão elétrica com seis tomadas, USB-A e USB-C anunciados",
       "fingerprint": "3a150e19eba1bc2a855206692b844b114f84968e0c3968d1b0e02b457b9bda42",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:59:38.177Z",
       "workNotes": [
         "Evita apresentar 2,5 kW como limite seguro sem as condições de uso.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4319551132?pdp_filters=item_id%3AMLB4890245591"
@@ -7779,12 +7779,13 @@
       "url": "https://rankingdacompra.com.br/produto/OADfHMMVftq1AKtGgcaP-20260810-1.html",
       "title": "Smart TV AOC Roku de 50″ — 4K UHD anunciado",
       "fingerprint": "a82704f3be1228d6f704f55ac67301dfca71dd41aefb9ecef3de93f5cf137bda",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T20:59:38.177Z",
       "workNotes": [
         "Retira comparação de nitidez baseada apenas no tamanho de tela.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB51202548"
@@ -13714,11 +13715,42 @@
     "backendWrites": 0
   },
   "triage119": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "OADfHMMVftq1AKtGgcaP",
       "Oelq1fEuR41tSXxHj8cp"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T20:59:38.177Z",
+    "changedIds": [
+      "OADfHMMVftq1AKtGgcaP",
+      "Oelq1fEuR41tSXxHj8cp"
+    ],
+    "jointReleaseBatches": [
+      119
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem119.json",
+    "remainingDependencies": [
+      {
+        "id": "OADfHMMVftq1AKtGgcaP",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "Oelq1fEuR41tSXxHj8cp",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "of7SzAJ9klKkySvWpSsO",
+        "note": "Não foram acrescentadas características de outra oferta."
+      }
+    ],
+    "sourceCommit": "18e122024d5b14d9fda31cdbf451a8f7bbfc2c9b",
+    "generatedCommit": "12305f6a25928cea56f1ebe52d33ca59f05aed95",
+    "sitemapRun": 42108232434,
+    "integrityRun": 42108233724,
+    "pagesRun": 42108301109,
+    "testsPassed": 1543,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

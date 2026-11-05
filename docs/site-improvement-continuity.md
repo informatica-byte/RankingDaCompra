@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 119 — 20261105, PUBLICADA E VERIFICADA
+
+- OADfHMMVftq1AKtGgcaP: targeted_correction_complete. Retira comparação de nitidez baseada apenas no tamanho de tela. Limite: Dados locais da oferta, sem teste independente.
+- Oelq1fEuR41tSXxHj8cp: targeted_correction_complete. Evita apresentar 2,5 kW como limite seguro sem as condições de uso. Limite: Dados locais da oferta, sem teste independente.
+- of7SzAJ9klKkySvWpSsO: screened_no_change. A ficha identifica o Nike Revolution 8 masculino sem promessas técnicas que exijam correção. Limite: Não foram acrescentadas características de outra oferta.
+
+Fonte 18e122024d5b14d9fda31cdbf451a8f7bbfc2c9b; geração 12305f6a25928cea56f1ebe52d33ca59f05aed95; sitemap 42108232434, integridade 42108233724, Pages 42108301109: SUCCESS. 1543 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 563 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem119.json.
+
+Totais: {"total":565,"screened_no_change":76,"needs_source":8,"targeted_correction_complete":271,"preserve_prior_review":98,"pending":112}. Próximos pendentes: OOVD3lkaaSXJTSAAdywm — Panela De Pressão Philco Ppp02pi Inox Multifuncional 5l Cor Preto; OTYBW2oIlOWx1MeHpF1u — Patinete Elétrico 500w 25km/h Dobrável App Bluetooth Rapido; OwXKuXw3ZMFmcvx7jF4v — Compressor Calibrador De Pneus Calibrador B&G Portátil Mini Digital Carro Bike Sem Fio Cor Preto. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 118 — 20261105, PUBLICADA E VERIFICADA
 
 - nzEaLDNocvF6GDH6InIH: targeted_correction_complete. Distingue colchonete, saco de transporte e saco de dormir sem presumir isolamento. Limite: Sem teste independente.
