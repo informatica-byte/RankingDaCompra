@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T00:05:42.416Z",
-  "catalogueGeneratedAt": "2026-11-05T00:03:32.258Z",
+  "updatedAt": "2026-11-05T00:08:26.456Z",
+  "catalogueGeneratedAt": "2026-11-05T00:08:24.311Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -703,11 +703,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 564,
-    "screened_no_change": 71,
+    "screened_no_change": 72,
     "needs_source": 8,
     "targeted_correction_complete": 203,
     "preserve_prior_review": 98,
-    "pending": 184
+    "pending": 181,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -5597,11 +5598,17 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4144557655-20260810-1.html",
       "title": "Notebook Acer Aspire Go 15 com Processador Intel Core i3 13ª Geração 8GB de Memória RAM DDR5 Armazenamento 256GB",
       "fingerprint": "2785fd5544c6f7d2bb7a5d041b7a01aec73cb816cc931e44062062eda913757c",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-05T00:08:26.459Z",
+      "workNotes": [
+        "Fonte primária do AG15-51P-39MU compatível com i3 13ª, 8 GB DDR5, SSD 256 GB, Windows 11, IPS WUXGA 15,3 e teclado ABNT2 numérico. Nenhuma correção necessária demonstrada.",
+        "Fonte exata consultada, sem inspeção da unidade ou medição de desempenho. Não transfere Linux, memória ou tela de outro Aspire; comparador preservado."
+      ],
+      "sourceLinks": [
+        "https://br-store.acer.com/notebook-acer-ag15-51p-39mu-ci31305u-8gb-256gb-ssd-wnhcsl64-gray-lcd-15-3-nx-jh1al-003/p",
+        "https://www.mercadolivre.com.br/p/MLB52936702?wid=MLB4144557655"
+      ]
     },
     {
       "id": "h0a3vchlbGQbAnHdbujA",
@@ -7935,12 +7942,19 @@
       "id": "mlMLB4147473207",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4147473207-20260810-1.html",
       "title": "Tênis Feminino Esportivo Actvitta Super Leve Macio Corrida",
-      "fingerprint": "61430f73480e5e5741b009f9aa7c9a0b530a91b432ec5d4dd828028f838b4d31",
-      "status": "pending",
+      "fingerprint": "cbb61836bb154496c660f01cbb92685e6a07aadacb1f5bdcffd30447f0ef1a6f",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige anúncio versus catálogo e não converte leve/maciez/corrida do título em desempenho comprovado.",
+        "Snapshot sem referência técnica ou peso medido. Não inventa material, amortecimento ou adequação individual à atividade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4147473207"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4741657351",
@@ -8165,12 +8179,19 @@
       "id": "mlMLB4031468281",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4031468281-20260810-1.html",
       "title": "Tênis Masculino Casual Sapatenis Novo Lançamento Conforto",
-      "fingerprint": "5abcca85dacf4f2e11808f6b677372d069a6728f2b28118875a63737414a0b41",
-      "status": "pending",
+      "fingerprint": "747b654143d49bf6c9fb1927e1a8386a9cd6f3d412cd6c786bac9676faa6f596",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige número de anúncio chamado catálogo e qualifica novo lançamento/conforto sem data ou teste.",
+        "Snapshot e endereço direto; sem código técnico, data de lançamento, material ou teste. Não acrescenta couro, amortecimento ou autenticidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4031468281"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "tXFA7nfMsVTOUweO3Twi",
@@ -12162,5 +12183,13 @@
     "testsPassed": 1518,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage95": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB4031468281",
+      "mlMLB4147473207"
+    ],
+    "newDeepReviews": 0
   }
 }

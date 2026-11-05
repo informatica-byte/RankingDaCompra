@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T00:03:32.258Z",
+  "generatedAt": "2026-11-05T00:08:24.311Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 184
+    "screening": 181
   },
   "items": [
     {
@@ -34,27 +34,6 @@
       "title": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
       "url": "https://rankingdacompra.com.br/produto/jdxZ0gYEI0XGOPYbWh78-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4031468281",
-      "title": "Tênis Masculino Casual Sapatenis Novo Lançamento Conforto",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4031468281-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4144557655",
-      "title": "Notebook Acer Aspire Go 15 com Processador Intel Core i3 13ª Geração 8GB de Memória RAM DDR5 Armazenamento 256GB",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4144557655-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4147473207",
-      "title": "Tênis Feminino Esportivo Actvitta Super Leve Macio Corrida",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4147473207-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

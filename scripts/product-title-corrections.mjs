@@ -8,6 +8,20 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB4031468281', {
+    syncInformationalSchema:true, expectedListing:'MLB4031468281',
+    model:/^Tênis Masculino Casual Sapatenis Novo Lançamento Conforto$/i,
+    summary:'A oferta identifica um sapatênis masculino casual, com marca Wayke informada no cadastro. O código MLB4031468281 identifica o anúncio do vendedor, não um código de catálogo confirmado. Novo lançamento é uma expressão do título, sem data de lançamento documentada nesta ficha. Conforto também não é resultado de teste da equipe. Confira referência do modelo, numeração, cor e composição da variação antes de escolher. Não testamos ajuste, aderência ou durabilidade e não acrescentamos couro, amortecimento ou tecnologia de outro calçado. A condição novo é informação da oferta, não inspeção da unidade.',
+    positiveNotes:['Estilo casual masculino e marca Wayke identificados no cadastro.'],
+    negativeNotes:['Código do anúncio não confirma catálogo; data de lançamento não documentada.', 'Conforto, materiais e desempenho da unidade não verificados pela equipe.'],suppressRating:true,
+  }],
+  ['mlMLB4147473207', {
+    syncInformationalSchema:true, expectedListing:'MLB4147473207',
+    model:/^Tênis Feminino Esportivo Actvitta Super Leve Macio Corrida$/i,
+    summary:'A oferta identifica um tênis feminino anunciado como Actvitta. O código MLB4147473207 identifica o anúncio do vendedor, não um código de catálogo confirmado. Super leve, macio e corrida são expressões do título; não temos peso medido, teste de conforto ou avaliação de adequação à corrida nesta ficha. Confira referência do modelo, composição, numeração e cor da variação selecionada. Não testamos amortecimento, aderência ou durabilidade e não transferimos tecnologias de outro Actvitta. A condição novo é informação da oferta, não inspeção realizada pela equipe.',
+    positiveNotes:['Marca Actvitta e apresentação feminina identificadas na oferta; conferir modelo.'],
+    negativeNotes:['Número do anúncio não confirma catálogo; peso e maciez não medidos.', 'Adequação à corrida, amortecimento e ajuste não testados; conferir referência e numeração.'],suppressRating:true,
+  }],
   ['mlMLB3966936389', {
     syncInformationalSchema:true, expectedListing:'MLB3966936389',
     model:/^Tênis Mormaii Urban Free Masculino Casual Original Skate Nfe$/i,

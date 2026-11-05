@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFile,mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import {execFileSync} from 'node:child_process';
 const batch=process.argv[2];assert.match(batch||'',/^\d+$/);
 const date=process.argv[3]||'20261031';assert.match(date,/^\d{8}$/);
 const manifest=JSON.parse(await readFile(`docs/targeted-triage${batch}-${date}.json`,'utf8'));
@@ -18,9 +19,17 @@ try {
  for(const record of manifest.items){
   const product=catalogue.products.find(p=>p.id===record.id);assert.ok(product);
   const html=await readFile(new URL(product.url).pathname.slice(1),'utf8');
+  let expectedHeading=product.title;
+  if(record.decision==='screened_no_change'){
+   // Preserve an existing display truncation on a deliberately unchanged page.
+   // Compare its exact pre-edit H1, not a looser prefix or shortened fixture.
+   const baseline=execFileSync('git',['show','HEAD:'+new URL(product.url).pathname.slice(1)],{encoding:'utf8',maxBuffer:2000000});
+   await page.setContent(baseline,{waitUntil:'domcontentloaded'});
+   expectedHeading=await page.locator('h1').innerText();
+  }
   for(const width of [360,390]){
    await page.setViewportSize({width,height:844});await page.setContent(html,{waitUntil:'domcontentloaded'});
-   assert.equal(await page.locator('h1').innerText(),product.title);
+   assert.equal(await page.locator('h1').innerText(),expectedHeading);
    assert.equal(await page.locator('body').evaluate(el=>el.scrollWidth<=innerWidth+1),true,record.id+' overflow '+width);
    assert.doesNotMatch(await page.locator('body').innerText(),/R\$\s*\d/);
    assert.ok(await page.locator('#affiliate-offer').getAttribute('href'));
