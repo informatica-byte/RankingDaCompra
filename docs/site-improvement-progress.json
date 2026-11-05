@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB6794388344",
-      "mlMLB6837462690",
-      "mlMLB6918814082",
       "mlMLB6989366460",
       "mlMLB7011230810",
       "mlMLB7174618968",
       "mlMLB7304557578",
-      "mlMLB7593699030"
+      "mlMLB7593699030",
+      "mlMLB7678487136",
+      "mlMLB7748620676",
+      "mlMLB7752259240"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T16:03:39.880Z",
-  "catalogueGeneratedAt": "2026-11-05T16:03:37.450Z",
+  "updatedAt": "2026-11-05T16:22:14.404Z",
+  "catalogueGeneratedAt": "2026-11-05T16:19:50.639Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 245,
+    "targeted_correction_complete": 248,
     "preserve_prior_review": 98,
-    "pending": 136,
-    "prepared_awaiting_publication": 3
+    "pending": 136
   },
   "items": [
     {
@@ -2381,12 +2380,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6794388344-20260810-1.html",
       "title": "Celular Samsung Galaxy A37 5G 128GB, 6GB RAM",
       "fingerprint": "886b460dcd092a25cefad66ad33f0074ddf88f93507a1f1e1294756ad5351e03",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T16:22:14.365Z",
       "workNotes": [
         "Distingue a variante de 6 GB e 128 GB e retira a indicação de desbloqueio não confirmada.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB68206703?wid=MLB6794388344",
@@ -4662,12 +4662,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6918814082-20260810-1.html",
       "title": "Kit Gamer Mageon Mobilador Teclado Qwerty + Mouse 1200 Dpi Preto",
       "fingerprint": "9ddd37ab1a17bb08029f14cce3e99ce17b544f2efb5aee4cc74170224288b959",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T16:22:14.365Z",
       "workNotes": [
         "Retira promessa de instalação universal e redução de ruído sem teste.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4723609338?pdp_filters=item_id%3AMLB7407693118"
@@ -8198,12 +8199,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6837462690-20260810-1.html",
       "title": "Tênis esportivo masculino Ravero",
       "fingerprint": "f3ee38cd2a9e72d766917271b14c8cc43b9d9c3a11d2bf64ee692a6a89d6b342",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T16:22:14.365Z",
       "workNotes": [
         "Retira promessas de conforto e leveza e corrige a identificação do anúncio.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-6837462690-tnis-masculino-esportivo-corrida-leve-confortavel-macio-_JM?searchVariation=202668186919"
@@ -13193,12 +13195,44 @@
     "backendWrites": 0
   },
   "triage111": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB6794388344",
       "mlMLB6837462690",
       "mlMLB6918814082"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T16:22:14.365Z",
+    "changedIds": [
+      "mlMLB6794388344",
+      "mlMLB6837462690",
+      "mlMLB6918814082"
+    ],
+    "jointReleaseBatches": [
+      111
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem111.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB6794388344",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "mlMLB6837462690",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "mlMLB6918814082",
+        "note": "Sem teste independente."
+      }
+    ],
+    "sourceCommit": "94f43299a2c1b9914067acc1242df83be31c6476",
+    "generatedCommit": "add679b828570d1ac526044844c935b48328e8eb",
+    "sitemapRun": 42063242743,
+    "integrityRun": 42063242701,
+    "pagesRun": 42063328319,
+    "testsPassed": 1534,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

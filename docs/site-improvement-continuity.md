@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 111 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB6794388344: targeted_correction_complete. Distingue a variante de 6 GB e 128 GB e retira a indicação de desbloqueio não confirmada. Limite: Sem teste independente.
+- mlMLB6837462690: targeted_correction_complete. Retira promessas de conforto e leveza e corrige a identificação do anúncio. Limite: Sem teste independente.
+- mlMLB6918814082: targeted_correction_complete. Retira promessa de instalação universal e redução de ruído sem teste. Limite: Sem teste independente.
+
+Fonte 94f43299a2c1b9914067acc1242df83be31c6476; geração add679b828570d1ac526044844c935b48328e8eb; sitemap 42063242743, integridade 42063242701, Pages 42063328319: SUCCESS. 1534 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem111.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":248,"preserve_prior_review":98,"pending":136}. Próximos pendentes: mlMLB6989366460 — Tênis Feminino Casual Confortavel Plataforma Tratorado; mlMLB7011230810 — Mini Impressora Térmica 58mm Portátil Usb E Bluetooth Fatura; mlMLB7174618968 — Mouse Gamer Branco Profissional Ultra Leve Slits V2 7200 Dpi. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 110 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB6666191918: targeted_correction_complete. Esclarece que o Windows é de avaliação. Limite: Oferta sem teste independente.
