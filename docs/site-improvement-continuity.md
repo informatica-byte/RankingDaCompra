@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 105 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB5386749261: targeted_correction_complete. Retira a promessa de adequação a qualquer jogo. Limite: Dados locais do anúncio, sem teste independente.
+- mlMLB5389928608: targeted_correction_complete. Esclarece que o Windows informado é de avaliação e delimita o que a oferta confirma sobre os componentes. Limite: Dados locais do anúncio, sem teste independente.
+- mlMLB5408593708: targeted_correction_complete. Remove a promessa de conforto e distingue código do anúncio de identificação do modelo. Limite: Dados locais do anúncio, sem teste independente.
+
+Fonte 134349cac9e15586404673293369a6c4a6ec9729; geração af3daab79382686aa052d5a74c782e8ddcc94141; sitemap 42008704996, integridade 42008705048, Pages 42008781150: SUCCESS. 1529 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem105.json.
+
+Totais: {"total":564,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":232,"preserve_prior_review":98,"pending":151}. Próximos pendentes: mlMLB5626051922 — Mouse Gamer Titorion Sem Fio Com Sensor Pixart 3311 E 12000 Dpi; mlMLB5751316838 — Notebook Asus Vivobook 15 X1504va Intel Core I5 1334u 8gb Ram 512gb Ssd Intel Iris Xe Windows 11 Home Tela 15,6 Fhd Silver - Nj1740w; mlMLB5769733060 — Notebook Positivo Vision C15M Intel Celeron N4500 Windows 11 Home 4GB RAM 128GB eMMC Tela 15" Full HD IPS Antirreflexo - Minitela e Tecla Copilot - Cinza. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 104 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB5287633095: targeted_correction_complete. Retira a promessa de adequação para monitorar bebês e atribui os recursos ao anúncio. Limite: Dados locais do anúncio, sem validação independente.

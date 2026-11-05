@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB5386749261",
-      "mlMLB5389928608",
-      "mlMLB5408593708",
       "mlMLB5626051922",
       "mlMLB5751316838",
       "mlMLB5769733060",
       "mlMLB5952869866",
-      "mlMLB6118982036"
+      "mlMLB6118982036",
+      "mlMLB6203660830",
+      "mlMLB6208948636",
+      "mlMLB6619764606"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T10:11:15.987Z",
-  "catalogueGeneratedAt": "2026-11-05T10:11:06.731Z",
+  "updatedAt": "2026-11-05T10:13:53.463Z",
+  "catalogueGeneratedAt": "2026-11-05T10:12:18.391Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 564,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 229,
+    "targeted_correction_complete": 232,
     "preserve_prior_review": 98,
-    "pending": 151,
-    "prepared_awaiting_publication": 3
+    "pending": 151
   },
   "items": [
     {
@@ -4614,12 +4613,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5386749261-20260810-1.html",
       "title": "Kit Gamer Teclado E Mouse Led Rgb Usb Para Pc Computador",
       "fingerprint": "4d90e2a401ac955d3038805141a8763e649cfb509aacf43a493ae3583c41ef7a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T10:13:53.426Z",
       "workNotes": [
         "Retira a promessa de adequação a qualquer jogo.",
-        "Dados locais do anúncio, sem teste independente."
+        "Dados locais do anúncio, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5473404077"
@@ -6270,12 +6270,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5389928608-20260810-1.html",
       "title": "PC Intel Core i5-10400 — 16 GB e NVMe de 500 GB anunciados",
       "fingerprint": "65407a4e3947060236679531af180a96e9fb267cc5670ca62bfbd4c61b360378",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T10:13:53.426Z",
       "workNotes": [
         "Esclarece que o Windows informado é de avaliação e delimita o que a oferta confirma sobre os componentes.",
-        "Dados locais do anúncio, sem teste independente."
+        "Dados locais do anúncio, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3175552815?pdp_filters=item_id%3AMLB5389928608"
@@ -8034,12 +8035,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5408593708-20260810-1.html",
       "title": "Tênis casual Kappa Zenit",
       "fingerprint": "205bccc80eb039b1d6c96a1a9fc7105a294c890308583a9c72ed0e661a9cae3c",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T10:13:53.426Z",
       "workNotes": [
         "Remove a promessa de conforto e distingue código do anúncio de identificação do modelo.",
-        "Dados locais do anúncio, sem teste independente."
+        "Dados locais do anúncio, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-5408593708-tnis-casual-kappa-zenit-masculino-unissex-conforto-_JM?searchVariation=203864180685"
@@ -12818,12 +12820,44 @@
     "backendWrites": 0
   },
   "triage105": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB5386749261",
       "mlMLB5389928608",
       "mlMLB5408593708"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T10:13:53.426Z",
+    "changedIds": [
+      "mlMLB5386749261",
+      "mlMLB5389928608",
+      "mlMLB5408593708"
+    ],
+    "jointReleaseBatches": [
+      105
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem105.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB5386749261",
+        "note": "Dados locais do anúncio, sem teste independente."
+      },
+      {
+        "id": "mlMLB5389928608",
+        "note": "Dados locais do anúncio, sem teste independente."
+      },
+      {
+        "id": "mlMLB5408593708",
+        "note": "Dados locais do anúncio, sem teste independente."
+      }
+    ],
+    "sourceCommit": "134349cac9e15586404673293369a6c4a6ec9729",
+    "generatedCommit": "af3daab79382686aa052d5a74c782e8ddcc94141",
+    "sitemapRun": 42008704996,
+    "integrityRun": 42008705048,
+    "pagesRun": 42008781150,
+    "testsPassed": 1529,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
