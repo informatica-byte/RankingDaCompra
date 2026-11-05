@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 97 — 20261104, PUBLICADA E VERIFICADA
+
+- mlMLB4291654613: targeted_correction_complete. Corrige anúncio rotulado catálogo e qualifica original/confortável, sem autenticar ou inventar material. Limite: Snapshot e endereço direto; referência completa e variação não inspecionadas. Sem teste ou tecnologia transferida de outro Vizzano.
+- mlMLB4330065589: screened_no_change. Descrição já revisada sinaliza resolução contraditória e pede modelo, aplicativo e alimentação; limitações de testes explícitas. Mantida sem repetir revisão. Limite: Sem nova conferência de anúncio, teste ou escolha de resolução. Não acrescenta proteção, conexão ou recursos de outra câmera.
+- mlMLB4367472775: targeted_correction_complete. Retira excelente experiência, navegação fluida, som imersivo e custo-benefício como resultados; atribui especificações ao cadastro e limita serviços incluídos. Limite: Busca primária exata não confirmou ficha da fabricante; não usa comparador de terceiros como fonte técnica. Não importa 4K de série semelhante, mede desempenho ou garante apps/assinaturas.
+
+Fonte 246d1b8a0763325164bdf4303fd0c57dfecf1942; geração 09e4e6d2b0b3cf4461d8ffac3de1d363aa70ab9c; sitemap 41940741547, integridade 41940741490, Pages 41940943133: SUCCESS. 1521 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem97.json.
+
+Totais: {"total":564,"screened_no_change":73,"needs_source":8,"targeted_correction_complete":210,"preserve_prior_review":98,"pending":175}. Próximos pendentes: mlMLB4443112343 — Fone de Ouvido Gamer In-ear Vellon TWS Bluetooth 5.0, com Microfone e Estojo de Carregamento; mlMLB4474695467 — Smartwatch A Prova D'água Mede Pressão Arterial Gps Strava; mlMLB4474977007 — Salvo Maison Alhambra 100ml Eua De Parfum Perfume Original. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 96 — 20261104, PUBLICADA E VERIFICADA
 
 - mlMLB4151024813: targeted_correction_complete. Corrige anúncio chamado catálogo e não transforma leve/atividades em teste de desempenho. Limite: Snapshot sem código técnico exato ou inspeção. Não inventa material, peso, amortecimento ou autenticação.
