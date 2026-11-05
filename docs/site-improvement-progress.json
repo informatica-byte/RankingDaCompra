@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T21:06:12.374Z",
-  "catalogueGeneratedAt": "2026-11-05T21:04:01.491Z",
+  "updatedAt": "2026-11-05T22:00:21.244Z",
+  "catalogueGeneratedAt": "2026-11-05T22:00:17.859Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 273,
     "preserve_prior_review": 98,
-    "pending": 109
+    "pending": 106,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2243,17 +2244,6 @@
       ]
     },
     {
-      "id": "oYoalVz8s4bR2iumSyhW",
-      "url": "https://rankingdacompra.com.br/produto/oYoalVz8s4bR2iumSyhW-20260810-1.html",
-      "title": "Carregador Fonte Apple Ipad Iphone Turbo Original Usb-c 20w",
-      "fingerprint": "64dbcbbb229105fa8e0c91946fe2cdef442d10edfd65f35a0b3ed8a00af5282b",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "ZGxs2yoDgmpnMApDWyHn",
       "url": "https://rankingdacompra.com.br/produto/ZGxs2yoDgmpnMApDWyHn-20260810-1.html",
       "title": "Carregador Fonte Iphone Original 20w Apple Tipo C Turbo",
@@ -2289,6 +2279,25 @@
         "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "oYoalVz8s4bR2iumSyhW",
+      "url": "https://rankingdacompra.com.br/produto/oYoalVz8s4bR2iumSyhW-20260810-1.html",
+      "title": "Carregador USB-C de 20 W anunciado como Apple",
+      "fingerprint": "80c698e8b1301c6e1fc6dfeaf186b057a53ec7981c8269def69ecf66b08d3b87",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira garantia e autenticidade não verificadas e limita a alegação de recarga rápida.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4284032987?pdp_filters=item_id%3AMLB4883864997",
+        "https://support.apple.com/pt-br/102574"
+      ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
     },
@@ -4215,13 +4224,20 @@
     {
       "id": "P5uw3Q0IjbFoD0of4CSu",
       "url": "https://rankingdacompra.com.br/produto/P5uw3Q0IjbFoD0of4CSu-20260810-1.html",
-      "title": "Karaoke Box Azul + Sistema Com Pontuação",
-      "fingerprint": "c077428d7141e15cb7d87566fb64061fba49afecffbb123c0d7535b768c7de12",
-      "status": "pending",
+      "title": "Karaoke Box azul — sistema de pontuação anunciado",
+      "fingerprint": "99db50126a2e650e6f6a4a6785851d2a0bda2f1be610e57828b8c090d2803b24",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira promessa de funcionamento offline sem condições confirmadas.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB60860545?wid=MLB4484863171"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "xLxOtmzGQ48dLjjnJ9g4",
@@ -5605,21 +5621,28 @@
       ]
     },
     {
+      "id": "p9csD1mVQKKLvmFbV1VX",
+      "url": "https://rankingdacompra.com.br/produto/p9csD1mVQKKLvmFbV1VX-20260810-1.html",
+      "title": "Mini soprador Simake sem fio — três níveis anunciados",
+      "fingerprint": "9b045b6f447ee00ebaa5356c55c7400dcd0f96e4f28591e3795d7db3b92797b7",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Corrige texto truncado e distingue rotação anunciada de desempenho do jato.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB67463325?pdp_filters=item_id%3AMLB6549158890"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "RiCj7wC1QDBSMgPUQWD1",
       "url": "https://rankingdacompra.com.br/produto/RiCj7wC1QDBSMgPUQWD1-20260810-1.html",
       "title": "Mini Ventilador Soprador Ar Turbo 130000rpm Assoprador Sem Fio Recarregável Usb 3 Níveis Jato Forte Portátil Multiuso Limpeza Teclado Carro Acende Churrasqueira Davely",
       "fingerprint": "38555eea981dc66539fdd736231f550ee3676803789476640994329048ab8056",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "p9csD1mVQKKLvmFbV1VX",
-      "url": "https://rankingdacompra.com.br/produto/p9csD1mVQKKLvmFbV1VX-20260810-1.html",
-      "title": "Mini Ventilador Soprador Ar Turbo 130000RPM Sem Fio Recarregável USB 3 Níveis Jato Forte Portátil Multiuso Limpeza Teclado Carro Acende Churrasqueira Simake",
-      "fingerprint": "d7877f92e3a8d617fce14d39eaca9471fa104c82d6bfe5504f7feb824ae0393b",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -13804,5 +13827,14 @@
         "note": "Dados locais da oferta, sem teste independente."
       }
     ]
+  },
+  "triage121": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "P5uw3Q0IjbFoD0of4CSu",
+      "oYoalVz8s4bR2iumSyhW",
+      "p9csD1mVQKKLvmFbV1VX"
+    ],
+    "newDeepReviews": 0
   }
 }

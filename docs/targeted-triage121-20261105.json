@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados públicos locais e fonte oficial quando aplicável.",
+  "items": [
+    {
+      "id": "oYoalVz8s4bR2iumSyhW",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira garantia e autenticidade não verificadas e limita a alegação de recarga rápida.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4284032987?pdp_filters=item_id%3AMLB4883864997",
+        "https://support.apple.com/pt-br/102574"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "P5uw3Q0IjbFoD0of4CSu",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessa de funcionamento offline sem condições confirmadas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB60860545?wid=MLB4484863171"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "p9csD1mVQKKLvmFbV1VX",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige texto truncado e distingue rotação anunciada de desempenho do jato.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB67463325?pdp_filters=item_id%3AMLB6549158890"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

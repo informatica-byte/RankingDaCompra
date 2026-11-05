@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T21:04:01.491Z",
+  "generatedAt": "2026-11-05T22:00:17.859Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 109
+    "screening": 106
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "oYoalVz8s4bR2iumSyhW",
-      "title": "Carregador Fonte Apple Ipad Iphone Turbo Original Usb-c 20w",
-      "url": "https://rankingdacompra.com.br/produto/oYoalVz8s4bR2iumSyhW-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "P5uw3Q0IjbFoD0of4CSu",
-      "title": "Karaoke Box Azul + Sistema Com Pontuação",
-      "url": "https://rankingdacompra.com.br/produto/P5uw3Q0IjbFoD0of4CSu-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "p9csD1mVQKKLvmFbV1VX",
-      "title": "Mini Ventilador Soprador Ar Turbo 130000RPM Sem Fio Recarregável USB 3 Níveis Jato Forte Portátil Multiuso Limpeza Teclado Carro Acende Churrasqueira Simake",
-      "url": "https://rankingdacompra.com.br/produto/p9csD1mVQKKLvmFbV1VX-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
