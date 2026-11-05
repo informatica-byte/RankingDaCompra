@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 100 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB4741657351: targeted_correction_complete. Separa características anunciadas de conforto e prazo não confirmados. Limite: Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.
+- mlMLB4748589927: targeted_correction_complete. Atribui declarações à oferta e retira a classificação de anúncio oficial sem prova. Limite: Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.
+- mlMLB4748674769: targeted_correction_complete. Esclarece o volume anunciado por unidade e não certifica vendedor, origem ou declarações do produto. Limite: Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.
+
+Fonte 21b39efff7857071a8bff7c1f0dbcfcad40fcaf3; geração d40da3cda5f80d796772be51156ebf3fb0ead9ed; sitemap 41999731581, integridade 41999731912, Pages 41999802567: SUCCESS. 1524 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem100.json.
+
+Totais: {"total":564,"screened_no_change":74,"needs_source":8,"targeted_correction_complete":218,"preserve_prior_review":98,"pending":166}. Próximos pendentes: mlMLB4763500131 — Tênis Nike Revolution 8 Masculino; mlMLB4812800951 — Mini drone L900 PRO SE com dual câmera 8K preto 5GHz 2 baterias Motor sem escova profissional; mlMLB4835180937 — Kit 3 Body Splash Masculino Vibration + Blunn + Infalível Fero By Primacial Body Man. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 99 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB4644707253: targeted_correction_complete. Corrige a identificação do anúncio e distingue números anunciados de medições. Limite: Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.
