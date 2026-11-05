@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T22:49:18.825Z",
+  "generatedAt": "2026-11-05T22:53:56.756Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 100
+    "screening": 97
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "pNwNrsWTQMEyOC4qwff1",
-      "title": "O Boticário Insensatez Deo Colônia 100ml",
-      "url": "https://rankingdacompra.com.br/produto/pNwNrsWTQMEyOC4qwff1-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "pO6CZCNo99YwtpIW0UB8",
-      "title": "Kit de limpeza e hidratação Principia — anúncio MLB5786186316",
-      "url": "https://rankingdacompra.com.br/produto/pO6CZCNo99YwtpIW0UB8-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "poypkDuJgaW37aCZlswN",
-      "title": "Climatizador Ar Frio Portátil Evaporativo 16 Litros Umidificador Ventisol Clin 16",
-      "url": "https://rankingdacompra.com.br/produto/poypkDuJgaW37aCZlswN-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

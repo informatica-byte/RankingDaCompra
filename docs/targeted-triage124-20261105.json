@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais, sem teste independente.",
+  "items": [
+    {
+      "id": "pNwNrsWTQMEyOC4qwff1",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessas sobre aplicação e duração, usando a classificação da marca.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB19803789?wid=MLB4515776631",
+        "https://www.boticario.com.br/insensatez-desodorante-colonia-100ml-2"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "pO6CZCNo99YwtpIW0UB8",
+      "decision": "targeted_correction_complete",
+      "reason": "Sinaliza divergência CH-01 e GH-01 sem confirmar a composição.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB59624823?pdp_filters=item_id%3AMLB5786186316"
+      ],
+      "sourceLimit": "Referência exata do terceiro item depende do rótulo da oferta."
+    },
+    {
+      "id": "poypkDuJgaW37aCZlswN",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira sugestão de ar frio sem medição e atribui os números à oferta.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB26208174?pdp_filters=item_id%3AMLB5054428609"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
