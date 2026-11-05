@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T16:22:14.404Z",
-  "catalogueGeneratedAt": "2026-11-05T16:19:50.639Z",
+  "updatedAt": "2026-11-05T18:43:02.263Z",
+  "catalogueGeneratedAt": "2026-11-05T18:43:00.369Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 248,
     "preserve_prior_review": 98,
-    "pending": 136
+    "pending": 133,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -5452,13 +5453,20 @@
     {
       "id": "mlMLB7011230810",
       "url": "https://rankingdacompra.com.br/produto/mlMLB7011230810-20260810-1.html",
-      "title": "Mini Impressora Térmica 58mm Portátil Usb E Bluetooth Fatura",
-      "fingerprint": "f28dc19e6e5990ac72e1b7f656af28588925d505062eb55e9790640a733c75e6",
-      "status": "pending",
+      "title": "Mini impressora térmica de 58 mm — USB e Bluetooth anunciados",
+      "fingerprint": "c53d3c760d38f8b39968d4d204a9cbca9af278469741aa8bafe312b385e04ffa",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue os recursos anunciados da compatibilidade não confirmada.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4128815687?pdp_filters=item_id%3AMLB7011230810"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "iSyPxYQcVUDjHvjIHLhS",
@@ -5626,17 +5634,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "mlMLB7174618968",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7174618968-20260810-1.html",
-      "title": "Mouse Gamer Branco Profissional Ultra Leve Slits V2 7200 Dpi",
-      "fingerprint": "6bd53766fcfb7a391fa8335042205fcbf1124811b46deca857dc6ea3a8997c2e",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB6553684470",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6553684470-20260810-1.html",
       "title": "Mouse Gamer Mmo Com Fio 18 Botões Programáveis 24000 Dpi Rgb",
@@ -5693,6 +5690,24 @@
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB53871685?wid=MLB5626051922"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB7174618968",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB7174618968-20260810-1.html",
+      "title": "Mouse Slits V2 branco com fio — 7.200 DPI anunciados",
+      "fingerprint": "d7197587ad553da8199db4d93929efda13c8b6bda7539c8931706a8066a41cfa",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira qualificações promocionais e atribui peso e resolução à oferta.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4333768740?pdp_filters=item_id%3AMLB7174618968"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -8129,6 +8144,24 @@
       "sourceLinks": []
     },
     {
+      "id": "mlMLB6989366460",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6989366460-20260810-1.html",
+      "title": "Tênis casual feminino Amoli com plataforma tratorada",
+      "fingerprint": "d578710a1d903853ef2f0aecc827d0b9d3a63ae7f1eb4e2af81b55366edae817",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira promessa de conforto e distingue o código do anúncio do modelo.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6989366460-tnis-feminino-casual-confortavel-plataforma-tratorado-_JM?searchVariation=204226326167"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "mlMLB5408593708",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5408593708-20260810-1.html",
       "title": "Tênis casual Kappa Zenit",
@@ -8229,17 +8262,6 @@
       "sourceLinks": [],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "mlMLB6989366460",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6989366460-20260810-1.html",
-      "title": "Tênis Feminino Casual Confortavel Plataforma Tratorado",
-      "fingerprint": "c7d62a7814e69553eb019dfdca062723195c105c7ba618f9a39a77316e49a71d",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "mlMLB4147473207",
@@ -13234,5 +13256,14 @@
     "testsPassed": 1534,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage112": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB6989366460",
+      "mlMLB7011230810",
+      "mlMLB7174618968"
+    ],
+    "newDeepReviews": 0
   }
 }

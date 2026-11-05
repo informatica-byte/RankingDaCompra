@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correção pontual com base nos dados públicos locais.",
+  "items": [
+    {
+      "id": "mlMLB6989366460",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessa de conforto e distingue o código do anúncio do modelo.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6989366460-tnis-feminino-casual-confortavel-plataforma-tratorado-_JM?searchVariation=204226326167"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "mlMLB7011230810",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue os recursos anunciados da compatibilidade não confirmada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4128815687?pdp_filters=item_id%3AMLB7011230810"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "mlMLB7174618968",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira qualificações promocionais e atribui peso e resolução à oferta.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4333768740?pdp_filters=item_id%3AMLB7174618968"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
