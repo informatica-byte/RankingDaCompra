@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados locais da oferta.",
+  "items": [
+    {
+      "id": "PP8JorVbOJNMg5FXOr47",
+      "decision": "targeted_correction_complete",
+      "reason": "Não interpreta 12 km como velocidade confirmada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3640141455?pdp_filters=item_id%3AMLB4337879731"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "ppQhZEUfZDuGcIZRmFB5",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessa de encaixe universal e atribui os números à oferta.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB26715512?pdp_filters=item_id%3AMLB4037910198"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "q8wxWRl86XmL7Gglikg7",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira afirmações não verificadas sobre a loja, a autenticidade e a aceitação do público.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB45358161?wid=MLB4085175433"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

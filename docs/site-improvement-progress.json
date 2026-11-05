@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T22:57:41.439Z",
-  "catalogueGeneratedAt": "2026-11-05T22:55:58.068Z",
+  "updatedAt": "2026-11-05T23:00:20.732Z",
+  "catalogueGeneratedAt": "2026-11-05T23:00:16.156Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 285,
     "preserve_prior_review": 98,
-    "pending": 97
+    "pending": 94,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -3249,13 +3250,20 @@
     {
       "id": "PP8JorVbOJNMg5FXOr47",
       "url": "https://rankingdacompra.com.br/produto/PP8JorVbOJNMg5FXOr47-20260810-1.html",
-      "title": "Esteira Elétrica Ergométrica Dobrável 12km C/tela Led Bivolt",
-      "fingerprint": "8dfbb3b8e75a773fc575843eacc581a51a1d097ca2410ca0e7136fe543711ec2",
-      "status": "pending",
+      "title": "Esteira elétrica dobrável com visor LED anunciado",
+      "fingerprint": "2b2d87c68176b85957481009f77a92f6d8b0289a8ecea550839d68587e7d558a",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Não interpreta 12 km como velocidade confirmada.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3640141455?pdp_filters=item_id%3AMLB4337879731"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "aqN9d0IKYi8X1yUcyFy9",
@@ -4225,17 +4233,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "q8wxWRl86XmL7Gglikg7",
-      "url": "https://rankingdacompra.com.br/produto/q8wxWRl86XmL7Gglikg7-20260810-1.html",
-      "title": "Kaiak Ultra Natura Colônia Perfume Masculino 100ml Relançamento 2025",
-      "fingerprint": "168fd0609e4acec7b3dbddbbb70f840d2608557cff4a08093bfab5c850ec107f",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "P5uw3Q0IjbFoD0of4CSu",
@@ -5962,6 +5959,24 @@
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB26097602?wid=MLB4261795739"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "q8wxWRl86XmL7Gglikg7",
+      "url": "https://rankingdacompra.com.br/produto/q8wxWRl86XmL7Gglikg7-20260810-1.html",
+      "title": "Natura Kaiak Ultra masculino — 100 mL anunciados",
+      "fingerprint": "47f69003258c147880effdddc1bca49d25b8f56e588bc62c1900cfe397acdd2b",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira afirmações não verificadas sobre a loja, a autenticidade e a aceitação do público.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB45358161?wid=MLB4085175433"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -7812,13 +7827,20 @@
     {
       "id": "ppQhZEUfZDuGcIZRmFB5",
       "url": "https://rankingdacompra.com.br/produto/ppQhZEUfZDuGcIZRmFB5-20260810-1.html",
-      "title": "Serra Tico Tico Profissional 500w 3000 Gpm Lâmina E Protetor Bst500 The Black Tools",
-      "fingerprint": "9101d1d385c3927f37b533f8ac273597c81767c053bb3dfe4b6218e6fc578a66",
-      "status": "pending",
+      "title": "Serra tico-tico The Black Tools BST500 — 500 W anunciados",
+      "fingerprint": "865b91392638e7c23f64df1d07202d8729f7578e661fb768233a2e201e0b2533",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira promessa de encaixe universal e atribui os números à oferta.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB26715512?pdp_filters=item_id%3AMLB4037910198"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "zpNUAIiuFr5Eo0TbkaKm",
@@ -14066,5 +14088,14 @@
     "testsPassed": 1548,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage125": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "PP8JorVbOJNMg5FXOr47",
+      "ppQhZEUfZDuGcIZRmFB5",
+      "q8wxWRl86XmL7Gglikg7"
+    ],
+    "newDeepReviews": 0
   }
 }

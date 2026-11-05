@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T22:55:58.068Z",
+  "generatedAt": "2026-11-05T23:00:16.156Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 97
+    "screening": 94
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "PP8JorVbOJNMg5FXOr47",
-      "title": "Esteira Elétrica Ergométrica Dobrável 12km C/tela Led Bivolt",
-      "url": "https://rankingdacompra.com.br/produto/PP8JorVbOJNMg5FXOr47-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "ppQhZEUfZDuGcIZRmFB5",
-      "title": "Serra Tico Tico Profissional 500w 3000 Gpm Lâmina E Protetor Bst500 The Black Tools",
-      "url": "https://rankingdacompra.com.br/produto/ppQhZEUfZDuGcIZRmFB5-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "q8wxWRl86XmL7Gglikg7",
-      "title": "Kaiak Ultra Natura Colônia Perfume Masculino 100ml Relançamento 2025",
-      "url": "https://rankingdacompra.com.br/produto/q8wxWRl86XmL7Gglikg7-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
