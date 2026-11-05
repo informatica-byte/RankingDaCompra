@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "OOVD3lkaaSXJTSAAdywm",
-      "OTYBW2oIlOWx1MeHpF1u",
-      "OwXKuXw3ZMFmcvx7jF4v",
       "oYoalVz8s4bR2iumSyhW",
       "P5uw3Q0IjbFoD0of4CSu",
       "p9csD1mVQKKLvmFbV1VX",
       "Pcye5MBHzWVlBIhtSnXX",
-      "PdIYZ9X5RhTbhmKJyZRw"
+      "PdIYZ9X5RhTbhmKJyZRw",
+      "Ped2JwDkTqMRNcZ0BhTf",
+      "PEegqDESPIk3onguTRg8",
+      "pEszDEGUnKoIpY9xhIdV"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T21:02:09.492Z",
-  "catalogueGeneratedAt": "2026-11-05T21:02:06.577Z",
+  "updatedAt": "2026-11-05T21:06:12.374Z",
+  "catalogueGeneratedAt": "2026-11-05T21:04:01.491Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,9 +705,8 @@
     "total": 565,
     "screened_no_change": 77,
     "needs_source": 8,
-    "targeted_correction_complete": 271,
+    "targeted_correction_complete": 273,
     "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 2,
     "pending": 109
   },
   "items": [
@@ -1798,12 +1797,13 @@
       "url": "https://rankingdacompra.com.br/produto/OwXKuXw3ZMFmcvx7jF4v-20260810-1.html",
       "title": "Calibrador portátil B&G sem fio — até 150 PSI anunciados",
       "fingerprint": "31c0c27578458e6c1d6d426a7375e3bca4513bc2cbb872d2b341135a73112a88",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T21:06:12.345Z",
       "workNotes": [
         "Distingue pressão máxima do aparelho da pressão indicada para o pneu e qualifica a vazão.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB21163160?pdp_filters=item_id%3AMLB4705243893"
@@ -6265,12 +6265,13 @@
       "url": "https://rankingdacompra.com.br/produto/OTYBW2oIlOWx1MeHpF1u-20260810-1.html",
       "title": "Patinete elétrico dobrável — 500 W e 25 km/h anunciados",
       "fingerprint": "a5a3baa03cb96df89e73999e3cee5a76d3faf2c1027d6af5663f37f156d6b7b1",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T21:06:12.345Z",
       "workNotes": [
         "Retira apelo de velocidade e distingue especificações anunciadas de desempenho medido.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3976859911?wid=MLB5243705479"
@@ -13774,11 +13775,34 @@
     "backendWrites": 0
   },
   "triage120": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "OTYBW2oIlOWx1MeHpF1u",
       "OwXKuXw3ZMFmcvx7jF4v"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T21:06:12.345Z",
+    "changedIds": [
+      "OTYBW2oIlOWx1MeHpF1u",
+      "OwXKuXw3ZMFmcvx7jF4v"
+    ],
+    "jointReleaseBatches": [
+      120
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem120.json",
+    "remainingDependencies": [
+      {
+        "id": "OOVD3lkaaSXJTSAAdywm",
+        "note": "Conferência documental, sem teste do aparelho."
+      },
+      {
+        "id": "OTYBW2oIlOWx1MeHpF1u",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "OwXKuXw3ZMFmcvx7jF4v",
+        "note": "Dados locais da oferta, sem teste independente."
+      }
+    ]
   }
 }

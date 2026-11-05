@@ -1,4 +1,11 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 120 — 20261105, PUBLICADA E VERIFICADA
+
+- OOVD3lkaaSXJTSAAdywm: Philco PPP02PI conferida com a ficha da fabricante, sem alteração.
+- OTYBW2oIlOWx1MeHpF1u e OwXKuXw3ZMFmcvx7jF4v: patinete e calibrador corrigidos; páginas HTTP 200 com afiliados preservados.
+- Fonte 9dc15f1ec58236e13c154cbf0273657a17b2861e; geração 9576aa3a37d42d2f03c60c8234eedccba9a145cc. Sitemap 42109140278, integridade 42109139876 e Pages 42109208375 aprovados. Os três jobs do Pages foram confirmados pelo conector GitHub após o limite da API pública. 1544 testes e 6 verificações móveis aprovados. Evidência: outputs/melhorias-integrais-20261030/verificacao-publicada-triagem120.json.
+- Restam 109 fichas para triagem. Retomar por oYoalVz8s4bR2iumSyhW (carregador USB-C 20 W), P5uw3Q0IjbFoD0of4CSu (Karaoke Box) e p9csD1mVQKKLvmFbV1VX (mini soprador portátil).
+
 ## Passagem 119 — 20261105, PUBLICADA E VERIFICADA
 
 - OADfHMMVftq1AKtGgcaP: targeted_correction_complete. Retira comparação de nitidez baseada apenas no tamanho de tela. Limite: Dados locais da oferta, sem teste independente.
