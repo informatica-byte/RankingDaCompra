@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T20:26:28.987Z",
+  "generatedAt": "2026-11-05T20:30:40.945Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 127
+    "screening": 124
   },
   "items": [
     {
@@ -48,27 +48,6 @@
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB7871750870",
-      "title": "Microfone Lapela A'Gold MCF-38D Sem Fio para iPhone e Android com 2 Microfones",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7871750870-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mWlmlmg15okWqGyIc5bh",
-      "title": "Tênis Kappa Pulse Rx Unissex Corrida Conforto",
-      "url": "https://rankingdacompra.com.br/produto/mWlmlmg15okWqGyIc5bh-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "n4IIyDvWZZGMKhBisDSq",
-      "title": "Lavadora De Alta Pressão Profissional Wap 4100 W2 420l/h Motor De Indução 1650psi 1500w 127V",
-      "url": "https://rankingdacompra.com.br/produto/n4IIyDvWZZGMKhBisDSq-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

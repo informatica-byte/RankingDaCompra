@@ -52,7 +52,8 @@ const REVIEWED_VARIATIONS = [
     'Tênis New Speed Esporte Masculino 100% Original Caminhada','Tênis masculino anunciado como New Speed — caminhada'],
   ['CO1tCKBzr6q79BOpdBZW','MLB5532075156','200557607865','https://meli.la/1ipvXiB','Tênis Kappa Pulse Rx Unissex Corrida Conforto'],
   ['d31e9yty1t0dekViXbAi','MLB5532075156','184470902110','https://meli.la/1ipvXiB','Tênis Kappa Pulse Rx Unissex Corrida Conforto'],
-  ['mWlmlmg15okWqGyIc5bh','MLB5532075156','200557607873','https://meli.la/1ipvXiB','Tênis Kappa Pulse Rx Unissex Corrida Conforto'],
+  ['mWlmlmg15okWqGyIc5bh','MLB5532075156','200557607873','https://meli.la/1ipvXiB',
+    'Tênis Kappa Pulse Rx Unissex Corrida Conforto','Tênis Kappa Pulse RX unissex — anúncio MLB5532075156'],
   ['8NEAHWVWDbRD0jFU4YSn','MLB4359093019','201545712649','https://meli.la/2zzQqEV','Tênis Masculino Casual Aramis Daily Slip Confortável Moderno'],
   ['UqO48Rj9I0f8SpOqabpv','MLB4359093019','201545712661','https://meli.la/2zzQqEV','Tênis Masculino Casual Aramis Daily Slip Confortável Moderno'],
 ];

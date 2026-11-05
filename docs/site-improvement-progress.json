@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:28:14.865Z",
-  "catalogueGeneratedAt": "2026-11-05T20:26:28.987Z",
+  "updatedAt": "2026-11-05T20:30:44.207Z",
+  "catalogueGeneratedAt": "2026-11-05T20:30:40.945Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -706,8 +706,9 @@
     "screened_no_change": 75,
     "needs_source": 8,
     "targeted_correction_complete": 257,
+    "prepared_awaiting_publication": 3,
     "preserve_prior_review": 98,
-    "pending": 127
+    "pending": 124
   },
   "items": [
     {
@@ -748,6 +749,24 @@
         "Triagem editorial individual 30/10/2026: Carga e resistência à corrosão eram apresentadas como vantagens confirmadas. Mantidos os dados declarados, com limites explícitos e sem garantir fixação ou carga. Não equivale a análise documental aprofundada ou teste prático. Não reabrir sem alteração ou nova evidência."
       ],
       "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB7871750870",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB7871750870-20260810-1.html",
+      "title": "A’Gold MCF-38D — kit sem fio com dois microfones de lapela",
+      "fingerprint": "0533b8f39650505cf61354b6eb1f122fbc1303447d83f5e59798cf466ce43bd5",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira promessa de melhora de áudio e delimita compatibilidade.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB53816127?wid=MLB7871750870"
+      ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
     },
@@ -5117,17 +5136,6 @@
       "sourceLinks": []
     },
     {
-      "id": "n4IIyDvWZZGMKhBisDSq",
-      "url": "https://rankingdacompra.com.br/produto/n4IIyDvWZZGMKhBisDSq-20260810-1.html",
-      "title": "Lavadora De Alta Pressão Profissional Wap 4100 W2 420l/h Motor De Indução 1650psi 1500w 127V",
-      "fingerprint": "bcb68665ebafe1e5e4c11775b0408609347380c9090cbac64e5c78343faa9407",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "SEqRg2PsdNDdUJEB4T3W",
       "url": "https://rankingdacompra.com.br/produto/SEqRg2PsdNDdUJEB4T3W-20260810-1.html",
       "title": "Lavadora Lava Jato Portátil Pressão 2 Baterias + Maleta",
@@ -5137,6 +5145,25 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "n4IIyDvWZZGMKhBisDSq",
+      "url": "https://rankingdacompra.com.br/produto/n4IIyDvWZZGMKhBisDSq-20260810-1.html",
+      "title": "Lavadora WAP 4100 W2 — variante 127 V anunciada",
+      "fingerprint": "253d4ca19562831c5a576836554a0f606ce146102542e8b4214c4c84a2a5c587",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue pressão máxima de pressão em uso e retira recomendação de uso intensivo sem teste.",
+        "Fonte WAP contextualiza a linha 4100, sem confirmar o conteúdo da oferta W2; sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB69473763?pdp_filters=item_id%3AMLB6842727330",
+        "https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/intensivo/lavadora_4100_fw005421_fw005422/arquivos/apresentacao/apresentacao_lavadora_4100.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5212483469",
@@ -5423,17 +5450,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "mlMLB7871750870",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7871750870-20260810-1.html",
-      "title": "Microfone Lapela A'Gold MCF-38D Sem Fio para iPhone e Android com 2 Microfones",
-      "fingerprint": "b6815544c948f4d1e79c3c114179c043129ac5862b96cf261f03b89c521b3592",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "96Pf23TdUYjzKH9stEXS",
@@ -8412,6 +8428,24 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "mWlmlmg15okWqGyIc5bh",
+      "url": "https://rankingdacompra.com.br/produto/mWlmlmg15okWqGyIc5bh-20260810-1.html",
+      "title": "Tênis Kappa Pulse RX unissex — anúncio MLB5532075156",
+      "fingerprint": "2bf4327d01cc80134de69763e502d1e8d5801383a2b56ea81b4b44b128ffaaa9",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira promessa de conforto e distingue esta oferta sem mexer nas outras variantes.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5532075156-tnis-kappa-pulse-rx-unissex-corrida-conforto-_JM?searchVariation=200557607873"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "CO1tCKBzr6q79BOpdBZW",
       "url": "https://rankingdacompra.com.br/produto/CO1tCKBzr6q79BOpdBZW-20260810-1.html",
       "title": "Tênis Kappa Pulse Rx Unissex Corrida Conforto",
@@ -8443,17 +8477,6 @@
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-5532075156-_JM?searchVariation=184470902110"
       ]
-    },
-    {
-      "id": "mWlmlmg15okWqGyIc5bh",
-      "url": "https://rankingdacompra.com.br/produto/mWlmlmg15okWqGyIc5bh-20260810-1.html",
-      "title": "Tênis Kappa Pulse Rx Unissex Corrida Conforto",
-      "fingerprint": "53a7be65cf60ed8f70a235938ff7fdeb6ae4f96b8f6b72642b788b4ab38e2847",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "mlMLB4028845341",
@@ -13429,5 +13452,14 @@
     "testsPassed": 1537,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage115": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mWlmlmg15okWqGyIc5bh",
+      "mlMLB7871750870",
+      "n4IIyDvWZZGMKhBisDSq"
+    ],
+    "newDeepReviews": 0
   }
 }

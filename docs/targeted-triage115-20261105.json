@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correção pontual com base nos dados públicos locais.",
+  "items": [
+    {
+      "id": "mlMLB7871750870",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessa de melhora de áudio e delimita compatibilidade.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB53816127?wid=MLB7871750870"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "mWlmlmg15okWqGyIc5bh",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessa de conforto e distingue esta oferta sem mexer nas outras variantes.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5532075156-tnis-kappa-pulse-rx-unissex-corrida-conforto-_JM?searchVariation=200557607873"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "n4IIyDvWZZGMKhBisDSq",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue pressão máxima de pressão em uso e retira recomendação de uso intensivo sem teste.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB69473763?pdp_filters=item_id%3AMLB6842727330",
+        "https://mais.conteudo.wap.ind.br/wap/produtos/lavadora_de_alta_pressao/intensivo/lavadora_4100_fw005421_fw005422/arquivos/apresentacao/apresentacao_lavadora_4100.pdf"
+      ],
+      "sourceLimit": "Fonte WAP contextualiza a linha 4100, sem confirmar o conteúdo da oferta W2; sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
