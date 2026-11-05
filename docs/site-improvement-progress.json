@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T00:17:47.959Z",
-  "catalogueGeneratedAt": "2026-11-05T00:15:34.037Z",
+  "updatedAt": "2026-11-05T00:20:38.058Z",
+  "catalogueGeneratedAt": "2026-11-05T00:20:35.872Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -703,11 +703,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 564,
-    "screened_no_change": 72,
+    "screened_no_change": 73,
     "needs_source": 8,
     "targeted_correction_complete": 208,
     "preserve_prior_review": 98,
-    "pending": 178
+    "pending": 175,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -1808,11 +1809,16 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4330065589-20260810-1.html",
       "title": "Câmera de segurança Wi-Fi PTZ com dupla lente — resolução a confirmar",
       "fingerprint": "e47f2085aa4e7a74d4dd740f370fdfdc559f7c3f9e6029ffcfd5612b6afad6a5",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": [],
+      "lastCompletedAt": "2026-11-05T00:20:38.060Z",
+      "workNotes": [
+        "Descrição já revisada sinaliza resolução contraditória e pede modelo, aplicativo e alimentação; limitações de testes explícitas. Mantida sem repetir revisão.",
+        "Sem nova conferência de anúncio, teste ou escolha de resolução. Não acrescenta proteção, conexão ou recursos de outra câmera."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB54296739?wid=MLB4330065589"
+      ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
     },
@@ -7367,12 +7373,19 @@
       "id": "mlMLB4367472775",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4367472775-20260810-1.html",
       "title": "Smart Tv 43 Philco P43vik Roku Led Dolby Audio Wi-fi Hdmi Hdr Full Hd 110/220v",
-      "fingerprint": "34ca9a52c5200f5e625e6a78c5887b77d2593474c13d259c46d48ea3413b3ebb",
-      "status": "pending",
+      "fingerprint": "e5b441296badedd86f273176a836ff3e1e99dd5298895f99fc9d709ac1aec427",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira excelente experiência, navegação fluida, som imersivo e custo-benefício como resultados; atribui especificações ao cadastro e limita serviços incluídos.",
+        "Busca primária exata não confirmou ficha da fabricante; não usa comparador de terceiros como fonte técnica. Não importa 4K de série semelhante, mede desempenho ou garante apps/assinaturas."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB63040715?wid=MLB4367472775"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "dMbluI9x5kQ0Gwxg8fOU",
@@ -8603,12 +8616,19 @@
       "id": "mlMLB4291654613",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4291654613-20260810-1.html",
       "title": "Tênis Vizzano Feminino Casual Original Confortável Moda 1430",
-      "fingerprint": "791a49bebca507b1f4d929928c1c6218e5ccf5971c3b3fb14a341244269153a3",
-      "status": "pending",
+      "fingerprint": "e80b6db974b485942e2aa4e1ebb2943a3367f77502d7ae1cfd823fc70e6560e3",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige anúncio rotulado catálogo e qualifica original/confortável, sem autenticar ou inventar material.",
+        "Snapshot e endereço direto; referência completa e variação não inspecionadas. Sem teste ou tecnologia transferida de outro Vizzano."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4291654613"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "1WM5CLqoLFN2yEUguuVY",
@@ -12288,5 +12308,13 @@
     "testsPassed": 1520,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage97": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB4291654613",
+      "mlMLB4367472775"
+    ],
+    "newDeepReviews": 0
   }
 }

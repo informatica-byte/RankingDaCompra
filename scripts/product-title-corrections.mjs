@@ -8,6 +8,20 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB4291654613', {
+    syncInformationalSchema:true, expectedListing:'MLB4291654613',
+    model:/^Tênis Vizzano Feminino Casual Original Confortável Moda 1430$/i,
+    summary:'A oferta identifica um tênis feminino casual anunciado como Vizzano 1430. O código MLB4291654613 identifica o anúncio do vendedor, não um código de catálogo confirmado. Confira referência completa, composição, numeração e cor da variação antes de escolher. Original e confortável no título não comprovam autenticidade ou conforto para cada pessoa. Não testamos ajuste, aderência ou durabilidade e não acrescentamos materiais ou tecnologias de outro Vizzano. A condição novo é informação da oferta, não inspeção da unidade pela equipe.',
+    positiveNotes:['Marca Vizzano e referência anunciada 1430 identificadas; conferir código completo.'],
+    negativeNotes:['Número do anúncio não confirma catálogo ou autenticidade.', 'Conforto, ajuste e material da unidade não verificados pela equipe.'],suppressRating:true,
+  }],
+  ['mlMLB4367472775', {
+    syncInformationalSchema:true, expectedListing:'MLB4367472775',
+    model:/^Smart Tv 43 Philco P43vik Roku Led Dolby Audio Wi-fi Hdmi Hdr Full Hd 110\/220v$/i,
+    summary:'A oferta identifica uma Smart TV Philco P43VIK de 43 polegadas, com Roku, resolução Full HD, Dolby Audio, Wi-Fi, HDMI e HDR anunciados no cadastro. Pode interessar a quem compara uma TV conectada desse tamanho, mas confirme código completo, portas e especificações da unidade antes de escolher. Não testamos navegação, imagem, som ou facilidade de uso; fluidez e som imersivo não são resultados medidos pela equipe. A menção a aplicativos não garante que todos os serviços estejam disponíveis na versão, nem que conteúdo por assinatura esteja incluído. A indicação 110/220 V deve ser conferida na identificação e documentação da unidade, sem orientar ligação por suposição. Não acrescentamos recursos 4K ou de outra série Philco e não classificamos custo-benefício sem comparação documentada.',
+    positiveNotes:['Tela anunciada de 43 polegadas e sistema Roku identificados na oferta.'],
+    negativeNotes:['Imagem, áudio e fluidez não testados; especificações e conexões precisam de confirmação.', 'Aplicativos e assinaturas não presumidos como incluídos; sem comparação de custo-benefício comprovada.'],suppressRating:true,
+  }],
   ['mlMLB4151024813', {
     syncInformationalSchema:true, expectedListing:'MLB4151024813',
     model:/^Tênis Mizuno Nirvana 9 Leve Caminhada Academia Treino$/i,

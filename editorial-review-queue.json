@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T00:15:34.037Z",
+  "generatedAt": "2026-11-05T00:20:35.872Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 178
+    "screening": 175
   },
   "items": [
     {
@@ -41,27 +41,6 @@
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4291654613",
-      "title": "Tênis Vizzano Feminino Casual Original Confortável Moda 1430",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4291654613-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4330065589",
-      "title": "Câmera de segurança Wi-Fi PTZ com dupla lente — resolução a confirmar",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4330065589-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4367472775",
-      "title": "Smart Tv 43 Philco P43vik Roku Led Dolby Audio Wi-fi Hdmi Hdr Full Hd 110/220v",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4367472775-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
