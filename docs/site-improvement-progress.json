@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "PP8JorVbOJNMg5FXOr47",
-      "ppQhZEUfZDuGcIZRmFB5",
-      "q8wxWRl86XmL7Gglikg7",
       "Q8XN2tGmsU12afIbz1Am",
       "Q9UWVUsXl8sIvWyM1hKt",
       "qeH6DeH4aWWppBpaRPYc",
       "QHCeO6rxelawGpcolRX1",
-      "QIAwDGVurh7E0nsu2G7t"
+      "QIAwDGVurh7E0nsu2G7t",
+      "QikFoLr76mfU8ijP9Nzr",
+      "Ql4iYvaqcH2l6SPpBDsi",
+      "qN6qOlF1Re6ltU5WRdaE"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T23:00:20.732Z",
-  "catalogueGeneratedAt": "2026-11-05T23:00:16.156Z",
+  "updatedAt": "2026-11-05T23:04:23.477Z",
+  "catalogueGeneratedAt": "2026-11-05T23:02:25.728Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 77,
     "needs_source": 8,
-    "targeted_correction_complete": 285,
+    "targeted_correction_complete": 288,
     "preserve_prior_review": 98,
-    "pending": 94,
-    "prepared_awaiting_publication": 3
+    "pending": 94
   },
   "items": [
     {
@@ -3252,12 +3251,13 @@
       "url": "https://rankingdacompra.com.br/produto/PP8JorVbOJNMg5FXOr47-20260810-1.html",
       "title": "Esteira elétrica dobrável com visor LED anunciado",
       "fingerprint": "2b2d87c68176b85957481009f77a92f6d8b0289a8ecea550839d68587e7d558a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:04:23.435Z",
       "workNotes": [
         "Não interpreta 12 km como velocidade confirmada.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3640141455?pdp_filters=item_id%3AMLB4337879731"
@@ -5968,12 +5968,13 @@
       "url": "https://rankingdacompra.com.br/produto/q8wxWRl86XmL7Gglikg7-20260810-1.html",
       "title": "Natura Kaiak Ultra masculino — 100 mL anunciados",
       "fingerprint": "47f69003258c147880effdddc1bca49d25b8f56e588bc62c1900cfe397acdd2b",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:04:23.435Z",
       "workNotes": [
         "Retira afirmações não verificadas sobre a loja, a autenticidade e a aceitação do público.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB45358161?wid=MLB4085175433"
@@ -7829,12 +7830,13 @@
       "url": "https://rankingdacompra.com.br/produto/ppQhZEUfZDuGcIZRmFB5-20260810-1.html",
       "title": "Serra tico-tico The Black Tools BST500 — 500 W anunciados",
       "fingerprint": "865b91392638e7c23f64df1d07202d8729f7578e661fb768233a2e201e0b2533",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T23:04:23.435Z",
       "workNotes": [
         "Retira promessa de encaixe universal e atribui os números à oferta.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB26715512?pdp_filters=item_id%3AMLB4037910198"
@@ -14090,12 +14092,44 @@
     "backendWrites": 0
   },
   "triage125": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "PP8JorVbOJNMg5FXOr47",
       "ppQhZEUfZDuGcIZRmFB5",
       "q8wxWRl86XmL7Gglikg7"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T23:04:23.435Z",
+    "changedIds": [
+      "PP8JorVbOJNMg5FXOr47",
+      "ppQhZEUfZDuGcIZRmFB5",
+      "q8wxWRl86XmL7Gglikg7"
+    ],
+    "jointReleaseBatches": [
+      125
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem125.json",
+    "remainingDependencies": [
+      {
+        "id": "PP8JorVbOJNMg5FXOr47",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "ppQhZEUfZDuGcIZRmFB5",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "q8wxWRl86XmL7Gglikg7",
+        "note": "Sem teste independente."
+      }
+    ],
+    "sourceCommit": "2329c017c38fea5704913a321416cd540751549e",
+    "generatedCommit": "025768519f2ab070d142b12637e5e95781c38b71",
+    "sitemapRun": 42126427237,
+    "integrityRun": 42126427114,
+    "pagesRun": 42126481360,
+    "testsPassed": 1549,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

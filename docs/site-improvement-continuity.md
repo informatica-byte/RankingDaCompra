@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 125 — 20261105, PUBLICADA E VERIFICADA
+
+- PP8JorVbOJNMg5FXOr47: targeted_correction_complete. Não interpreta 12 km como velocidade confirmada. Limite: Sem teste independente.
+- ppQhZEUfZDuGcIZRmFB5: targeted_correction_complete. Retira promessa de encaixe universal e atribui os números à oferta. Limite: Sem teste independente.
+- q8wxWRl86XmL7Gglikg7: targeted_correction_complete. Retira afirmações não verificadas sobre a loja, a autenticidade e a aceitação do público. Limite: Sem teste independente.
+
+Fonte 2329c017c38fea5704913a321416cd540751549e; geração 025768519f2ab070d142b12637e5e95781c38b71; sitemap 42126427237, integridade 42126427114, Pages 42126481360: SUCCESS. 1549 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem125.json.
+
+Totais: {"total":565,"screened_no_change":77,"needs_source":8,"targeted_correction_complete":288,"preserve_prior_review":98,"pending":94}. Próximos pendentes: Q8XN2tGmsU12afIbz1Am — Fritadeira Elétrica Sem Óleo Air Fryer Mondial 1500w; Q9UWVUsXl8sIvWyM1hKt — Lixeira Metal Aramado Telada Cesto De Lixo Escritório 12l Cor Preto; qeH6DeH4aWWppBpaRPYc — Creatina 100% Monohidratada Micronizada Vegana True Source. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 124 — 20261105, PUBLICADA E VERIFICADA
 
 - pNwNrsWTQMEyOC4qwff1: targeted_correction_complete. Retira promessas sobre aplicação e duração, usando a classificação da marca. Limite: Sem teste independente.
