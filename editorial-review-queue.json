@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T20:58:12.653Z",
+  "generatedAt": "2026-11-05T21:02:06.577Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 112
+    "screening": 109
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "OOVD3lkaaSXJTSAAdywm",
-      "title": "Panela De Pressão Philco Ppp02pi Inox Multifuncional 5l Cor Preto",
-      "url": "https://rankingdacompra.com.br/produto/OOVD3lkaaSXJTSAAdywm-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "OTYBW2oIlOWx1MeHpF1u",
-      "title": "Patinete Elétrico 500w 25km/h Dobrável App Bluetooth Rapido",
-      "url": "https://rankingdacompra.com.br/produto/OTYBW2oIlOWx1MeHpF1u-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "OwXKuXw3ZMFmcvx7jF4v",
-      "title": "Compressor Calibrador De Pneus Calibrador B&G Portátil Mini Digital Carro Bike Sem Fio Cor Preto",
-      "url": "https://rankingdacompra.com.br/produto/OwXKuXw3ZMFmcvx7jF4v-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

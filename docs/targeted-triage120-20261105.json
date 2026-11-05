@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados públicos locais.",
+  "items": [
+    {
+      "id": "OOVD3lkaaSXJTSAAdywm",
+      "decision": "screened_no_change",
+      "reason": "Capacidade, sistemas de segurança e funções descritos são coerentes com a ficha da Philco.",
+      "sourceLinks": [
+        "https://suporte.philco.com.br/sfsites/c/sfc/servlet.shepherd/document/download/0692T00000EX68vQAD"
+      ],
+      "sourceLimit": "Conferência documental, sem teste do aparelho."
+    },
+    {
+      "id": "OTYBW2oIlOWx1MeHpF1u",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira apelo de velocidade e distingue especificações anunciadas de desempenho medido.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3976859911?wid=MLB5243705479"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "OwXKuXw3ZMFmcvx7jF4v",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue pressão máxima do aparelho da pressão indicada para o pneu e qualifica a vazão.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB21163160?pdp_filters=item_id%3AMLB4705243893"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 2,
+    "screenedNoChange": 1,
+    "newDeepReviews": 0
+  }
+}

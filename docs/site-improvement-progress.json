@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T20:59:38.208Z",
-  "catalogueGeneratedAt": "2026-11-05T20:58:12.653Z",
+  "updatedAt": "2026-11-05T21:02:09.492Z",
+  "catalogueGeneratedAt": "2026-11-05T21:02:06.577Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -703,11 +703,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 565,
-    "screened_no_change": 76,
+    "screened_no_change": 77,
     "needs_source": 8,
     "targeted_correction_complete": 271,
     "preserve_prior_review": 98,
-    "pending": 112
+    "prepared_awaiting_publication": 2,
+    "pending": 109
   },
   "items": [
     {
@@ -1793,6 +1794,24 @@
       "sourceLinks": []
     },
     {
+      "id": "OwXKuXw3ZMFmcvx7jF4v",
+      "url": "https://rankingdacompra.com.br/produto/OwXKuXw3ZMFmcvx7jF4v-20260810-1.html",
+      "title": "Calibrador portátil B&G sem fio — até 150 PSI anunciados",
+      "fingerprint": "31c0c27578458e6c1d6d426a7375e3bca4513bc2cbb872d2b341135a73112a88",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue pressão máxima do aparelho da pressão indicada para o pneu e qualifica a vazão.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB21163160?pdp_filters=item_id%3AMLB4705243893"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "UCDnByA5YaWN9eiyA5IM",
       "url": "https://rankingdacompra.com.br/produto/UCDnByA5YaWN9eiyA5IM-20260810-1.html",
       "title": "Cama Elástica Infantil 3,0m Pula Pula Com Rede De Proteção",
@@ -2726,17 +2745,6 @@
       "sourceLinks": [],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "OwXKuXw3ZMFmcvx7jF4v",
-      "url": "https://rankingdacompra.com.br/produto/OwXKuXw3ZMFmcvx7jF4v-20260810-1.html",
-      "title": "Compressor Calibrador De Pneus Calibrador B&G Portátil Mini Digital Carro Bike Sem Fio Cor Preto",
-      "fingerprint": "7a93d50973be56f17222c95a7932ea3420e9f10d395fd5c8a5853e41dfe69c33",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "RHhkWKxMXBZONt8jx4Ew",
@@ -6146,11 +6154,16 @@
       "url": "https://rankingdacompra.com.br/produto/OOVD3lkaaSXJTSAAdywm-20260810-1.html",
       "title": "Panela De Pressão Philco Ppp02pi Inox Multifuncional 5l Cor Preto",
       "fingerprint": "90770786f0ad01fdc6a63a4125d80ff57d8d76617a037ec5b8d1837aeaa02c72",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-05T21:02:09.494Z",
+      "workNotes": [
+        "Capacidade, sistemas de segurança e funções descritos são coerentes com a ficha da Philco.",
+        "Conferência documental, sem teste do aparelho."
+      ],
+      "sourceLinks": [
+        "https://suporte.philco.com.br/sfsites/c/sfc/servlet.shepherd/document/download/0692T00000EX68vQAD"
+      ]
     },
     {
       "id": "UnTwhXqatX5MyoPnl6DN",
@@ -6229,17 +6242,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "OTYBW2oIlOWx1MeHpF1u",
-      "url": "https://rankingdacompra.com.br/produto/OTYBW2oIlOWx1MeHpF1u-20260810-1.html",
-      "title": "Patinete Elétrico 500w 25km/h Dobrável App Bluetooth Rapido",
-      "fingerprint": "19a265cb1f83aa5b1f8701ef9d1b48a172c3f37b43c0252d1b680725550b3afa",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "MgDXTGUyMBcJUtTahZIY",
       "url": "https://rankingdacompra.com.br/produto/MgDXTGUyMBcJUtTahZIY-20260810-1.html",
       "title": "Patinete Elétrico 500w Autonomia 37km Dobrável Ipx4 App 10",
@@ -6254,6 +6256,24 @@
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4774408875?pdp_filters=item_id%3AMLB5085157465"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "OTYBW2oIlOWx1MeHpF1u",
+      "url": "https://rankingdacompra.com.br/produto/OTYBW2oIlOWx1MeHpF1u-20260810-1.html",
+      "title": "Patinete elétrico dobrável — 500 W e 25 km/h anunciados",
+      "fingerprint": "a5a3baa03cb96df89e73999e3cee5a76d3faf2c1027d6af5663f37f156d6b7b1",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira apelo de velocidade e distingue especificações anunciadas de desempenho medido.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3976859911?wid=MLB5243705479"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -13752,5 +13772,13 @@
     "testsPassed": 1543,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage120": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "OTYBW2oIlOWx1MeHpF1u",
+      "OwXKuXw3ZMFmcvx7jF4v"
+    ],
+    "newDeepReviews": 0
   }
 }
