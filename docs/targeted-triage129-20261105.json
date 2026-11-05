@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Corrigir apenas divergências materiais.",
+  "items": [
+    {
+      "id": "qPNJGNmzPbZzprZanGOC",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige a autonomia com referência à ficha oficial, sem presumir o módulo da unidade.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU1431955641?pdp_filters=item_id%3AMLB2765715868",
+        "https://www.casio.com/br/watches/gshock/product.DW-5600BB-1/"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "qsh7YbMSqVuBmaoWlpzn",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira o catálogo não vinculado e evita resolver por suposição a divergência de cor.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5948982982-tnis-adidas-acelera-2-preto-e-branco-_JM?searchVariation=193164102327"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "QUKhd39js4LdwLXNbh0u",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige o tipo do código sem adicionar especificações do tecido.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4592320910-kit-4-camiseta-dry-fit-sandrini-masculina-academia-caminhada-_JM?searchVariation=186408020313"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

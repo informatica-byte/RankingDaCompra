@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T23:27:10.960Z",
+  "generatedAt": "2026-11-05T23:32:07.219Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 85
+    "screening": 82
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "qPNJGNmzPbZzprZanGOC",
-      "title": "Relógio Casio Masculino G-shock Digital Preto Dw-5600bb-1dr",
-      "url": "https://rankingdacompra.com.br/produto/qPNJGNmzPbZzprZanGOC-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "qsh7YbMSqVuBmaoWlpzn",
-      "title": "Tênis adidas Acelera 2 Preto E Branco",
-      "url": "https://rankingdacompra.com.br/produto/qsh7YbMSqVuBmaoWlpzn-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "QUKhd39js4LdwLXNbh0u",
-      "title": "Kit 4 Camiseta Dry-fit Sandrini Masculina Academia Caminhada",
-      "url": "https://rankingdacompra.com.br/produto/QUKhd39js4LdwLXNbh0u-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
