@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 99 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB4644707253: targeted_correction_complete. Corrige a identificação do anúncio e distingue números anunciados de medições. Limite: Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.
+- mlMLB4645102377: targeted_correction_complete. Atribui volume e declarações de composição à oferta, sem certificar vendedor ou produto. Limite: Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.
+- mlMLB4699180013: targeted_correction_complete. Retira o código antigo apresentado como catálogo e preserva a variante vinculada. Limite: Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.
+
+Fonte b210e5dc2ec74f065061f55231e49e545124943c; geração 30c8898625d0421a34da48e964c620c60f62f03f; sitemap 41998794219, integridade 41998794257, Pages 41998873749: SUCCESS. 1523 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 561 entradas editoriais inalteradas. Preservados 564 IDs/afiliados/campos operacionais e 617 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem99.json.
+
+Totais: {"total":564,"screened_no_change":74,"needs_source":8,"targeted_correction_complete":215,"preserve_prior_review":98,"pending":169}. Próximos pendentes: mlMLB4741657351 — Tênis Feminino Kolosh Confortável Macio Ziper Envio Rápido; mlMLB4748589927 — Body Splash Masculino Vibration 200ml - Primacial Perfume Bergamota Fresco; mlMLB4748674769 — Kit Body Splash Masculino Vibration E Blunn 200ml - Primacial Perfume Bergamota Limão. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 98 — 20261104, PUBLICADA E VERIFICADA
 
 - mlMLB4443112343: targeted_correction_complete. Distingue números anunciados de medidas de alcance/carga/autonomia e não trata gamer como baixa latência comprovada. Limite: Snapshot sem ensaio ou manual exato. Não calcula ciclos pela capacidade do estojo nem converte autonomia desconhecida do comparador em medição.

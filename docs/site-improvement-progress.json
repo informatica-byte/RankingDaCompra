@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB4644707253",
-      "mlMLB4645102377",
-      "mlMLB4699180013",
       "mlMLB4741657351",
       "mlMLB4748589927",
       "mlMLB4748674769",
       "mlMLB4763500131",
-      "mlMLB4812800951"
+      "mlMLB4812800951",
+      "mlMLB4835180937",
+      "mlMLB4953439757",
+      "mlMLB4964975723"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T08:59:05.799Z",
-  "catalogueGeneratedAt": "2026-11-05T08:59:02.645Z",
+  "updatedAt": "2026-11-05T09:03:22.519Z",
+  "catalogueGeneratedAt": "2026-11-05T09:00:23.326Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 564,
     "screened_no_change": 74,
     "needs_source": 8,
-    "targeted_correction_complete": 212,
+    "targeted_correction_complete": 215,
     "preserve_prior_review": 98,
-    "pending": 169,
-    "prepared_awaiting_publication": 3
+    "pending": 169
   },
   "items": [
     {
@@ -4333,12 +4332,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4645102377-20260810-1.html",
       "title": "Kit Body Splash Masculino Barbarius + Enigma + Midtown 200ml",
       "fingerprint": "582e1efa379a3e55ccf3ecfdcc3abf29b9df23fff25052616919b81b7dc2bf80",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:03:22.490Z",
       "workNotes": [
         "Atribui volume e declarações de composição à oferta, sem certificar vendedor ou produto.",
-        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB68104527?wid=MLB4645102377"
@@ -4877,12 +4877,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4644707253-20260810-1.html",
       "title": "Lavadora Alta Pressão Compacta 1400w, 1600psi, 300l/h",
       "fingerprint": "6e838940da8d511959e4bc25e76a6e7247d4d7d7e6339e1bfb5f6c249afe0c0d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:03:22.490Z",
       "workNotes": [
         "Corrige a identificação do anúncio e distingue números anunciados de medições.",
-        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-4644707253"
@@ -8642,12 +8643,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4699180013-20260810-1.html",
       "title": "Tênis Vans Vr3 Ultrarange Marshmallow Slip Meia Unissex",
       "fingerprint": "3e22c0d0ad960515d1b0a5234481fa3ec46bf83daf03bc81b319af9bc614c013",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T09:03:22.490Z",
       "workNotes": [
         "Retira o código antigo apresentado como catálogo e preserva a variante vinculada.",
-        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+        "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5131266163?pdp_filters=item_id%3AMLB5215481527"
@@ -12432,12 +12434,44 @@
     "backendWrites": 0
   },
   "triage99": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB4644707253",
       "mlMLB4645102377",
       "mlMLB4699180013"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T09:03:22.490Z",
+    "changedIds": [
+      "mlMLB4644707253",
+      "mlMLB4645102377",
+      "mlMLB4699180013"
+    ],
+    "jointReleaseBatches": [
+      99
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem99.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4644707253",
+        "note": "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+      },
+      {
+        "id": "mlMLB4645102377",
+        "note": "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+      },
+      {
+        "id": "mlMLB4699180013",
+        "note": "Base pública local do anúncio; sem inspeção, teste ou validação independente da unidade."
+      }
+    ],
+    "sourceCommit": "b210e5dc2ec74f065061f55231e49e545124943c",
+    "generatedCommit": "30c8898625d0421a34da48e964c620c60f62f03f",
+    "sitemapRun": 41998794219,
+    "integrityRun": 41998794257,
+    "pagesRun": 41998873749,
+    "testsPassed": 1523,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }
