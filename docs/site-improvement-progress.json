@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB6989366460",
-      "mlMLB7011230810",
-      "mlMLB7174618968",
       "mlMLB7304557578",
       "mlMLB7593699030",
       "mlMLB7678487136",
       "mlMLB7748620676",
-      "mlMLB7752259240"
+      "mlMLB7752259240",
+      "mlMLB7870098964",
+      "mlMLB7871750870",
+      "mWlmlmg15okWqGyIc5bh"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T18:43:02.263Z",
-  "catalogueGeneratedAt": "2026-11-05T18:43:00.369Z",
+  "updatedAt": "2026-11-05T18:47:38.693Z",
+  "catalogueGeneratedAt": "2026-11-05T18:45:08.792Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 75,
     "needs_source": 8,
-    "targeted_correction_complete": 248,
+    "targeted_correction_complete": 251,
     "preserve_prior_review": 98,
-    "pending": 133,
-    "prepared_awaiting_publication": 3
+    "pending": 133
   },
   "items": [
     {
@@ -5455,12 +5454,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB7011230810-20260810-1.html",
       "title": "Mini impressora térmica de 58 mm — USB e Bluetooth anunciados",
       "fingerprint": "c53d3c760d38f8b39968d4d204a9cbca9af278469741aa8bafe312b385e04ffa",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T18:47:38.664Z",
       "workNotes": [
         "Distingue os recursos anunciados da compatibilidade não confirmada.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4128815687?pdp_filters=item_id%3AMLB7011230810"
@@ -5699,12 +5699,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB7174618968-20260810-1.html",
       "title": "Mouse Slits V2 branco com fio — 7.200 DPI anunciados",
       "fingerprint": "d7197587ad553da8199db4d93929efda13c8b6bda7539c8931706a8066a41cfa",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T18:47:38.664Z",
       "workNotes": [
         "Retira qualificações promocionais e atribui peso e resolução à oferta.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4333768740?pdp_filters=item_id%3AMLB7174618968"
@@ -8148,12 +8149,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6989366460-20260810-1.html",
       "title": "Tênis casual feminino Amoli com plataforma tratorada",
       "fingerprint": "d578710a1d903853ef2f0aecc827d0b9d3a63ae7f1eb4e2af81b55366edae817",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-05T18:47:38.664Z",
       "workNotes": [
         "Retira promessa de conforto e distingue o código do anúncio do modelo.",
-        "Dados locais da oferta, sem teste independente."
+        "Dados locais da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-6989366460-tnis-feminino-casual-confortavel-plataforma-tratorado-_JM?searchVariation=204226326167"
@@ -13258,12 +13260,44 @@
     "backendWrites": 0
   },
   "triage112": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "mlMLB6989366460",
       "mlMLB7011230810",
       "mlMLB7174618968"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-05T18:47:38.664Z",
+    "changedIds": [
+      "mlMLB6989366460",
+      "mlMLB7011230810",
+      "mlMLB7174618968"
+    ],
+    "jointReleaseBatches": [
+      112
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem112.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB6989366460",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "mlMLB7011230810",
+        "note": "Dados locais da oferta, sem teste independente."
+      },
+      {
+        "id": "mlMLB7174618968",
+        "note": "Dados locais da oferta, sem teste independente."
+      }
+    ],
+    "sourceCommit": "5966a92bf543a443c3a795b1b8a3e62c4a1541b6",
+    "generatedCommit": "08744760cd4a6a40a3fb75345bf9e2f67d98cd1e",
+    "sitemapRun": 42087160316,
+    "integrityRun": 42087160214,
+    "pagesRun": 42087294438,
+    "testsPassed": 1535,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

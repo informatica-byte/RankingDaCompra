@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 112 — 20261105, PUBLICADA E VERIFICADA
+
+- mlMLB6989366460: targeted_correction_complete. Retira promessa de conforto e distingue o código do anúncio do modelo. Limite: Dados locais da oferta, sem teste independente.
+- mlMLB7011230810: targeted_correction_complete. Distingue os recursos anunciados da compatibilidade não confirmada. Limite: Dados locais da oferta, sem teste independente.
+- mlMLB7174618968: targeted_correction_complete. Retira qualificações promocionais e atribui peso e resolução à oferta. Limite: Dados locais da oferta, sem teste independente.
+
+Fonte 5966a92bf543a443c3a795b1b8a3e62c4a1541b6; geração 08744760cd4a6a40a3fb75345bf9e2f67d98cd1e; sitemap 42087160316, integridade 42087160214, Pages 42087294438: SUCCESS. 1535 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem112.json.
+
+Totais: {"total":565,"screened_no_change":75,"needs_source":8,"targeted_correction_complete":251,"preserve_prior_review":98,"pending":133}. Próximos pendentes: mlMLB7304557578 — Cooler para Notebook Gamer Megabyte SR002 com 4 Ventoinhas e LED Azul para Laptop até 17.3"; mlMLB7593699030 — Repetidor Sinal Wifi Gigab 1200mb 2.4g Dual Band Wireles 6an; mlMLB7678487136 — Perfume Masculino Vibrato 200ml Alta Fixação. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 111 — 20261105, PUBLICADA E VERIFICADA
 
 - mlMLB6794388344: targeted_correction_complete. Distingue a variante de 6 GB e 128 GB e retira a indicação de desbloqueio não confirmada. Limite: Sem teste independente.
