@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-05",
+  "protectedDeepReviews": 98,
+  "policy": "Correção pontual com base nos dados públicos locais.",
+  "items": [
+    {
+      "id": "mlMLB6208948636",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige título truncado e retira promessa de conforto.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3401733117?pdp_filters=item_id%3AMLB6208948644"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "mlMLB6619764606",
+      "decision": "targeted_correction_complete",
+      "reason": "Separa conexão USB dos recursos e não interpreta os 360 graus como captação panorâmica.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3907288120?pdp_filters=item_id%3AMLB6619764606"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    },
+    {
+      "id": "mlMLB6655583300",
+      "decision": "targeted_correction_complete",
+      "reason": "Qualifica vazão e peso como dados da oferta e não confunde vazão com pressão.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB55754694?wid=MLB6655583300"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}

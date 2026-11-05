@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T15:41:54.826Z",
+  "generatedAt": "2026-11-05T15:45:50.466Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 145
+    "screening": 142
   },
   "items": [
     {
@@ -48,27 +48,6 @@
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6208948636",
-      "title": "Tênis Converse Feminino Taylor Ct2834 Curto T",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6208948636-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6619764606",
-      "title": "Webcam 1080p 2mp Full Hd Alta Resolução Com Microfone Usb",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6619764606-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB6655583300",
-      "title": "Lavadora Alta Pressão Portátil Chiaperini Lj14l Cor Azul E Preto",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6655583300-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

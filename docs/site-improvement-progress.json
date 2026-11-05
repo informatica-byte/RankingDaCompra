@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T15:43:23.998Z",
-  "catalogueGeneratedAt": "2026-11-05T15:41:54.826Z",
+  "updatedAt": "2026-11-05T15:45:54.408Z",
+  "catalogueGeneratedAt": "2026-11-05T15:45:50.466Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 239,
     "preserve_prior_review": 98,
-    "pending": 145
+    "pending": 142,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -5018,13 +5019,20 @@
     {
       "id": "mlMLB6655583300",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6655583300-20260810-1.html",
-      "title": "Lavadora Alta Pressão Portátil Chiaperini Lj14l Cor Azul E Preto",
-      "fingerprint": "fc100634ab53824369d585747cf9b8a7d2d44369b64fd437f93404b69669bea4",
-      "status": "pending",
+      "title": "Lavadora Chiaperini LJ14L — vazão anunciada de até 14 L/min",
+      "fingerprint": "79a3e56125153deab7cfced34673ff29153267ba9b74d4673269b90e2798fd25",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Qualifica vazão e peso como dados da oferta e não confunde vazão com pressão.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB55754694?wid=MLB6655583300"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "huCYMmOsGPKJ8jOiJ1gR",
@@ -8130,13 +8138,20 @@
     {
       "id": "mlMLB6208948636",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6208948636-20260810-1.html",
-      "title": "Tênis Converse Feminino Taylor Ct2834 Curto T",
-      "fingerprint": "386c8e80f9339f07388f0fa77987f2e80c61052a06972f17485a1e7231b33240",
-      "status": "pending",
+      "title": "Tênis Converse CT2834 feminino — rosa, segundo o anúncio",
+      "fingerprint": "a4838e007d96b6fe792bf5aed6702bec16d9ab09efcda3ec3ba938c89eecd135",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige título truncado e retira promessa de conforto.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3401733117?pdp_filters=item_id%3AMLB6208948644"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4513080577",
@@ -9286,17 +9301,6 @@
       "sourceLinks": []
     },
     {
-      "id": "mlMLB6619764606",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6619764606-20260810-1.html",
-      "title": "Webcam 1080p 2mp Full Hd Alta Resolução Com Microfone Usb",
-      "fingerprint": "3daf3f21bbfaecc7ea1108629c5065143e25e2803bbcf97a65f7f78be8af386e",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "SUBPibuHNUsgB6zVTL5r",
       "url": "https://rankingdacompra.com.br/produto/SUBPibuHNUsgB6zVTL5r-20260810-1.html",
       "title": "Webcam Camera Full Hd Zoom 1080p 360 Graus Videoconferencia Streamcam Web Cam Entrada Usb 2.0 Com Microfone- GoodVision",
@@ -9306,6 +9310,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "mlMLB6619764606",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6619764606-20260810-1.html",
+      "title": "Webcam USB com microfone — 1080p anunciados",
+      "fingerprint": "c7acbbb32da31a2c5f9e90ff167ddb31777692371f626cac7329c4b2e13ef734",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Separa conexão USB dos recursos e não interpreta os 360 graus como captação panorâmica.",
+        "Dados locais da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3907288120?pdp_filters=item_id%3AMLB6619764606"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "YprAHdwDVV8lFBm4b77k",
@@ -13037,5 +13059,14 @@
     "testsPassed": 1531,
     "localMobileChecks": 2,
     "backendWrites": 0
+  },
+  "triage109": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB6208948636",
+      "mlMLB6619764606",
+      "mlMLB6655583300"
+    ],
+    "newDeepReviews": 0
   }
 }
