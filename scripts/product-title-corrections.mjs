@@ -8,6 +8,28 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ['mlMLB4151024813', {
+    syncInformationalSchema:true, expectedListing:'MLB4151024813',
+    model:/^Tênis Mizuno Nirvana 9 Leve Caminhada Academia Treino$/i,
+    summary:'A oferta identifica um tênis anunciado como Mizuno Nirvana 9. O código MLB4151024813 identifica o anúncio do vendedor, não um código de catálogo confirmado. Confira referência, numeração, cor e composição da variação selecionada. Leve, caminhada, academia e treino são expressões do título, não peso medido ou avaliação de adequação individual feita pela equipe. Não testamos conforto, amortecimento, aderência ou durabilidade e não transferimos materiais ou tecnologias de outro Mizuno. A condição novo é informação da oferta, não inspeção ou autenticação da unidade.',
+    positiveNotes:['Identificação Nirvana 9 e marca Mizuno informadas na oferta; confirmar referência.'],
+    negativeNotes:['Número do anúncio não comprova catálogo, composição ou autenticidade.', 'Peso e desempenho não testados; atividades do título não garantem adequação individual.'],suppressRating:true,
+  }],
+  ['mlMLB4231915505', {
+    syncInformationalSchema:true, expectedListing:'MLB7763309132',
+    model:/^Controle Joystick Wireless Compatível C\/ Pc Android N-switch$/i,
+    summary:'A oferta apresenta um controle sem fio com compatibilidade anunciada para PC, Android e Nintendo Switch. Confirme marca, modelo, versões de sistema, forma de conexão e jogos aceitos no manual da unidade antes de escolher; a lista de plataformas não garante funcionamento de todos os recursos em cada uma. Botões configuráveis, macro e turbo são informações do cadastro, não funções testadas pela equipe. O texto anterior mencionava usuários relatando falta de adaptador Bluetooth, mas não há fonte identificada nesta ficha para esse relato; confirme o conteúdo do kit diretamente na oferta. Não testamos ergonomia, latência, pareamento, autonomia ou compatibilidade e não transferimos recursos de outro controle.',
+    positiveNotes:['Proposta de controle sem fio para várias plataformas informada na oferta.'],
+    negativeNotes:['Confirmar modelo, conexão e funções por plataforma; compatibilidade não testada.', 'Conteúdo do kit a confirmar; relato de usuários sobre adaptador sem fonte identificada.'],suppressRating:true,
+  }],
+  ['mlMLB4291652941', {
+    syncInformationalSchema:true, expectedListing:'MLB4291652941',
+    model:/^(?:CÚRCUMA 130mg \+ COLÁGENO Tipo II 45mg - Fórmula com Máxima Concentração e Pureza - 60 Cápsulas|Cúrcuma 130 mg e colágeno tipo II 45 mg anunciados — 60 cápsulas)$/i,
+    correct:'Cúrcuma 130 mg e colágeno tipo II 45 mg anunciados — 60 cápsulas',
+    summary:'A oferta identifica um suplemento anunciado como cúrcuma 130 mg com colágeno tipo II 45 mg, em embalagem de 60 cápsulas, com marca Essencial Labs informada no cadastro. Confira rótulo, composição, porção de referência, lote, validade e restrições da unidade: os valores do título não demonstram por si a quantidade por cápsula. Máxima concentração e pureza não são resultados de ensaio comprovados nesta ficha. Não verificamos o lote, a declaração sem glúten ou avaliações de consumidores e não as usamos como prova de qualidade ou benefício. Retiramos a orientação de uma cápsula diária e a promessa de longevidade articular; não prescrevemos dose, não comprovamos eficácia clínica e não prometemos prevenir ou tratar doenças. Para adequação individual, procure orientação de profissional de saúde.',
+    positiveNotes:['Ingredientes e apresentação de 60 cápsulas identificados na oferta, sujeitos à conferência do rótulo.'],
+    negativeNotes:['Porção, composição, pureza e regularidade do lote não verificadas nesta revisão.', 'Sem dose prescrita ou benefício articular garantido; avaliações de consumidores não comprovam eficácia.'],suppressRating:true,
+  }],
   ['mlMLB4031468281', {
     syncInformationalSchema:true, expectedListing:'MLB4031468281',
     model:/^Tênis Masculino Casual Sapatenis Novo Lançamento Conforto$/i,

@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T00:09:55.180Z",
+  "generatedAt": "2026-11-05T00:14:26.307Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 181
+    "screening": 178
   },
   "items": [
     {
@@ -37,31 +37,10 @@
       "reasons": []
     },
     {
-      "id": "mlMLB4151024813",
-      "title": "Tênis Mizuno Nirvana 9 Leve Caminhada Academia Treino",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4151024813-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
       "id": "mlMLB4186778677",
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4231915505",
-      "title": "Controle Joystick Wireless Compatível C/ Pc Android N-switch",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4231915505-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4291652941",
-      "title": "CÚRCUMA 130mg + COLÁGENO Tipo II 45mg - Fórmula com Máxima Concentração e Pureza - 60 Cápsulas",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4291652941-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

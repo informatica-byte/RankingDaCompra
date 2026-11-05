@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T00:11:27.514Z",
-  "catalogueGeneratedAt": "2026-11-05T00:09:55.180Z",
+  "updatedAt": "2026-11-05T00:14:34.089Z",
+  "catalogueGeneratedAt": "2026-11-05T00:14:26.307Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 205,
     "preserve_prior_review": 98,
-    "pending": 181
+    "pending": 178,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2717,12 +2718,19 @@
       "id": "mlMLB4231915505",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4231915505-20260810-1.html",
       "title": "Controle Joystick Wireless Compatível C/ Pc Android N-switch",
-      "fingerprint": "24c68cec7af23b9a5447895828b6dc3d42ed3d46cca050529f0f1d64e3d1bc63",
-      "status": "pending",
+      "fingerprint": "f09a5dc2a08041fe2e4eb367b3042b8bd90f15e0504261c09a2feda697f026e1",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira relato de usuários sem fonte e custo-benefício presumido; qualifica compatibilidade/funções e conteúdo do kit. Mantém anúncio substituto atual.",
+        "Snapshot sem manual/modelo específico ou teste. Não presume adaptador ausente, latência, bateria ou recursos por plataforma e não retorna ao anúncio antigo indicado no ID."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB78878295?wid=MLB7763309132"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4952988337",
@@ -2953,13 +2961,20 @@
     {
       "id": "mlMLB4291652941",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4291652941-20260810-1.html",
-      "title": "CÚRCUMA 130mg + COLÁGENO Tipo II 45mg - Fórmula com Máxima Concentração e Pureza - 60 Cápsulas",
-      "fingerprint": "58fc990be04f504a6d0b18137f19b5cc5ce3efe70a9882d89220dc1797692f83",
-      "status": "pending",
+      "title": "Cúrcuma 130 mg e colágeno tipo II 45 mg anunciados — 60 cápsulas",
+      "fingerprint": "7955afbd2ddff47191bec42e759455e03149b7dd61e79b54f4355c2f55efba5b",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira dose diária, longevidade articular, pureza e avaliações como garantias; distingue quantidades anunciadas de porção não confirmada e encurta título.",
+        "Sem rótulo/lote/laudo específico confirmado. Não prescreve uso, comprova ausência de glúten, eficácia clínica, pureza ou benefício a partir de avaliações."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB61648010?wid=MLB4291652941"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "PEegqDESPIk3onguTRg8",
@@ -8328,12 +8343,19 @@
       "id": "mlMLB4151024813",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4151024813-20260810-1.html",
       "title": "Tênis Mizuno Nirvana 9 Leve Caminhada Academia Treino",
-      "fingerprint": "7f7ad2380ef1c447240e2cf8207104692e86fe4a09955aa93d4add52f53a68e8",
-      "status": "pending",
+      "fingerprint": "84f9bddd5b67e2021aff91b8a9746981d3381d9740cc76b0cd142f59a90fbee2",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige anúncio chamado catálogo e não transforma leve/atividades em teste de desempenho.",
+        "Snapshot sem código técnico exato ou inspeção. Não inventa material, peso, amortecimento ou autenticação."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4151024813"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "NQyo56LcUgwwA2tz8YCF",
@@ -12223,5 +12245,14 @@
     "testsPassed": 1519,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage96": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB4151024813",
+      "mlMLB4231915505",
+      "mlMLB4291652941"
+    ],
+    "newDeepReviews": 0
   }
 }
