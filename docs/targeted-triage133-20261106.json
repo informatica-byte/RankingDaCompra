@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções documentais pontuais.",
+  "items": [
+    {
+      "id": "mlMLB3868708109",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira velocidade sem contexto.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB26578044?wid=MLB3868708109",
+        "https://backend.intelbras.com/sites/default/files/2023-09/Datasheet%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX%20vf_ES.pdf"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "rL4T2UGKrNxcJGZoJVpX",
+      "decision": "targeted_correction_complete",
+      "reason": "Expõe a divergência entre mL e g.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3196092242?wid=MLB4073310979",
+        "https://www.kerastase.com.br/produtos/colecoes/densifique/mascara-densite/KRBR00031.html"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "sCCEJZohlc5e7c4yVrl4",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue identificação do kit de medidas e material sem confirmação.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB75686249?wid=MLB4918003479"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}

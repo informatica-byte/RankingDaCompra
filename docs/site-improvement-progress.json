@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T11:17:59.784Z",
-  "catalogueGeneratedAt": "2026-11-06T11:16:46.381Z",
+  "updatedAt": "2026-11-06T11:20:25.780Z",
+  "catalogueGeneratedAt": "2026-11-06T11:20:23.722Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 308,
     "preserve_prior_review": 98,
-    "pending": 74
+    "pending": 71,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2934,17 +2935,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "mlMLB3868708109",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB3868708109-20260810-1.html",
-      "title": "Conjunto Roteador Mesh Wifi 6 Intelbras Twibi Force Ax 2 Uni Branco",
-      "fingerprint": "8e958fefaf26eb10a73d6ad734264aef166d8d080ed78463b3daf8d7898c8626",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "ERUkcWCy7XxGVEyDizZ2",
       "url": "https://rankingdacompra.com.br/produto/ERUkcWCy7XxGVEyDizZ2-20260810-1.html",
       "title": "Controlador Gamesir Galileo G8 Plus Com Bluetooth Para Cel",
@@ -3244,17 +3234,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "rL4T2UGKrNxcJGZoJVpX",
-      "url": "https://rankingdacompra.com.br/produto/rL4T2UGKrNxcJGZoJVpX-20260810-1.html",
-      "title": "Densifique Masque Densité Máscara 200ml | Kérastase",
-      "fingerprint": "7f3f1ba76e0bba0a0723456eeb805fc3bddc941cf8d6e7aecfb499dba767a2fb",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "e2xjzhLqo2TSHdOKUEaB",
@@ -4367,6 +4346,25 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "rL4T2UGKrNxcJGZoJVpX",
+      "url": "https://rankingdacompra.com.br/produto/rL4T2UGKrNxcJGZoJVpX-20260810-1.html",
+      "title": "Kérastase Densifique Masque Densité — tamanho a conferir",
+      "fingerprint": "8d4d58a72f573668c939c94ec1ed636594a7f35c4314b6508bce754c66b2831a",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Expõe a divergência entre mL e g.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3196092242?wid=MLB4073310979",
+        "https://www.kerastase.com.br/produtos/colecoes/densifique/mascara-densite/KRBR00031.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "xLxOtmzGQ48dLjjnJ9g4",
       "url": "https://rankingdacompra.com.br/produto/xLxOtmzGQ48dLjjnJ9g4-20260810-1.html",
       "title": "Kit 10 Cuecas Boxer Lisa Polo Wear Sortido",
@@ -4958,6 +4956,25 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "mlMLB3868708109",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB3868708109-20260810-1.html",
+      "title": "Kit Intelbras Twibi Force AX — Wi-Fi 6 Mesh, duas unidades",
+      "fingerprint": "445d32d3aacfe78cf6588890c30d9ae616c536714eef06ea06205c24da8adf17",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira velocidade sem contexto.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB26578044?wid=MLB3868708109",
+        "https://backend.intelbras.com/sites/default/files/2023-09/Datasheet%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX%20vf_ES.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "mlMLB4953439757",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4953439757-20260810-1.html",
       "title": "Kit Mobilador Teclado Gamer Rgb 80% Suporte Mouse Hub Cabo",
@@ -4991,12 +5008,19 @@
       "id": "sCCEJZohlc5e7c4yVrl4",
       "url": "https://rankingdacompra.com.br/produto/sCCEJZohlc5e7c4yVrl4-20260810-1.html",
       "title": "Kit Porta Condimentos Vitrex 8 Potes Em Vidro Preto Com Base Giratória",
-      "fingerprint": "2d3bd4d77460af3cd806163333cdd5b68518d163f4590fb1e0d21a67514366a0",
-      "status": "pending",
+      "fingerprint": "068fef373773de3ac605b16138b81d688aaae2c88246843e5c3eae63bd3e4411",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue identificação do kit de medidas e material sem confirmação.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB75686249?wid=MLB4918003479"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "kkADU0pbN4LUhcYR1HMH",
@@ -14590,5 +14614,14 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage133": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "mlMLB3868708109",
+      "rL4T2UGKrNxcJGZoJVpX",
+      "sCCEJZohlc5e7c4yVrl4"
+    ],
+    "newDeepReviews": 0
   }
 }

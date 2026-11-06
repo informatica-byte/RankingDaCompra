@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T11:16:46.381Z",
+  "generatedAt": "2026-11-06T11:20:23.722Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 74
+    "screening": 71
   },
   "items": [
     {
@@ -37,13 +37,6 @@
       "reasons": []
     },
     {
-      "id": "mlMLB3868708109",
-      "title": "Conjunto Roteador Mesh Wifi 6 Intelbras Twibi Force Ax 2 Uni Branco",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB3868708109-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
       "id": "mlMLB4186778677",
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
@@ -62,20 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "rL4T2UGKrNxcJGZoJVpX",
-      "title": "Densifique Masque Densité Máscara 200ml | Kérastase",
-      "url": "https://rankingdacompra.com.br/produto/rL4T2UGKrNxcJGZoJVpX-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "sCCEJZohlc5e7c4yVrl4",
-      "title": "Kit Porta Condimentos Vitrex 8 Potes Em Vidro Preto Com Base Giratória",
-      "url": "https://rankingdacompra.com.br/produto/sCCEJZohlc5e7c4yVrl4-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
