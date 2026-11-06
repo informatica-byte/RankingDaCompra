@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-05T23:36:00.160Z",
-  "catalogueGeneratedAt": "2026-11-05T23:34:08.399Z",
+  "updatedAt": "2026-11-06T10:41:01.414Z",
+  "catalogueGeneratedAt": "2026-11-06T10:40:57.110Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -703,11 +703,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 565,
-    "screened_no_change": 77,
+    "screened_no_change": 78,
     "needs_source": 8,
     "targeted_correction_complete": 300,
     "preserve_prior_review": 98,
-    "pending": 82
+    "pending": 79,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -2882,12 +2883,19 @@
       "id": "r5zUBIo4zXpfIh0HjpdD",
       "url": "https://rankingdacompra.com.br/produto/r5zUBIo4zXpfIh0HjpdD-20260810-1.html",
       "title": "Conjunto Moletom Masculino,incluir Casaco Com Capuz E Calças",
-      "fingerprint": "90b44a614fd2cdd3e66347653bbaa159b1595f7a258d3a35f73760d3530a2772",
-      "status": "pending",
+      "fingerprint": "93b715c8cd334b958af06075b13a662268e123e9e0e1fd82cb86b1695116cc2a",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige a identificação de código do anúncio como catálogo.",
+        "Dados locais da oferta."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6628276288-conjunto-moletom-masculinoincluir-casaco-com-capuz-e-calcas-_JM?searchVariation=200310833273"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "ERUkcWCy7XxGVEyDizZ2",
@@ -7379,13 +7387,21 @@
     {
       "id": "QV00w4vTmt2SwgU8xisL",
       "url": "https://rankingdacompra.com.br/produto/QV00w4vTmt2SwgU8xisL-20260810-1.html",
-      "title": "Purificador Hidrofiltros Facile C3 Água Natural Selo Inmetro Preto",
-      "fingerprint": "75a06886c92c6360bc85cdfcdc645a2132086ff83f1981d16828482ca073ea9b",
-      "status": "pending",
+      "title": "Purificador Hidrofiltros Facile C3 — água natural",
+      "fingerprint": "bd68444d0fcf83390dabd86c0315580ed92e011d742ea5585c97286434128e7e",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue a redução de cloro do C3 da ação bacteriológica do C7 e evita prometer ausência de gotejamento.",
+        "Descrição do fabricante, sem teste da unidade."
+      ],
+      "sourceLinks": [
+        "https://hidrofiltros.com.br/produto/purificador-de-agua-hidrofiltros-facile/",
+        "https://www.mercadolivre.com.br/p/MLB23487354?pdp_filters=item_id%3AMLB3605484231"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "6CiOb7YKL9YmF8Sqg1wT",
@@ -7877,11 +7893,16 @@
       "url": "https://rankingdacompra.com.br/produto/Qwej9VDipQviT3wfRoxl-20260810-1.html",
       "title": "Secador De Cabelos Philco psc3500 4 Em 1 dobrável motor bldc Prateado",
       "fingerprint": "ff6dbf999566c04b7379f75bb8d79ad771c118c42edfeec7929c41ad2d771545",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-06T10:41:01.416Z",
+      "workNotes": [
+        "Potência, motor, formato e acessórios coerentes com a ficha Philco.",
+        "Conferência documental."
+      ],
+      "sourceLinks": [
+        "https://suporte.philco.com.br/sfsites/c/sfc/servlet.shepherd/document/download/069V200000EsmnaIAB"
+      ]
     },
     {
       "id": "QqhF1Rgq1LcKQMhFr50j",
@@ -14395,5 +14416,13 @@
     "testsPassed": 1553,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage130": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "QV00w4vTmt2SwgU8xisL",
+      "r5zUBIo4zXpfIh0HjpdD"
+    ],
+    "newDeepReviews": 0
   }
 }

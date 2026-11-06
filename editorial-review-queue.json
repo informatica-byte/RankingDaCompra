@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T23:34:08.399Z",
+  "generatedAt": "2026-11-06T10:40:57.110Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 82
+    "screening": 79
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "QV00w4vTmt2SwgU8xisL",
-      "title": "Purificador Hidrofiltros Facile C3 Água Natural Selo Inmetro Preto",
-      "url": "https://rankingdacompra.com.br/produto/QV00w4vTmt2SwgU8xisL-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "Qwej9VDipQviT3wfRoxl",
-      "title": "Secador De Cabelos Philco psc3500 4 Em 1 dobrável motor bldc Prateado",
-      "url": "https://rankingdacompra.com.br/produto/Qwej9VDipQviT3wfRoxl-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "r5zUBIo4zXpfIh0HjpdD",
-      "title": "Conjunto Moletom Masculino,incluir Casaco Com Capuz E Calças",
-      "url": "https://rankingdacompra.com.br/produto/r5zUBIo4zXpfIh0HjpdD-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

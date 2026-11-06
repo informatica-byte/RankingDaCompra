@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Corrigir apenas pontos materiais.",
+  "items": [
+    {
+      "id": "QV00w4vTmt2SwgU8xisL",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue a redução de cloro do C3 da ação bacteriológica do C7 e evita prometer ausência de gotejamento.",
+      "sourceLinks": [
+        "https://hidrofiltros.com.br/produto/purificador-de-agua-hidrofiltros-facile/",
+        "https://www.mercadolivre.com.br/p/MLB23487354?pdp_filters=item_id%3AMLB3605484231"
+      ],
+      "sourceLimit": "Descrição do fabricante, sem teste da unidade."
+    },
+    {
+      "id": "Qwej9VDipQviT3wfRoxl",
+      "decision": "screened_no_change",
+      "reason": "Potência, motor, formato e acessórios coerentes com a ficha Philco.",
+      "sourceLinks": [
+        "https://suporte.philco.com.br/sfsites/c/sfc/servlet.shepherd/document/download/069V200000EsmnaIAB"
+      ],
+      "sourceLimit": "Conferência documental."
+    },
+    {
+      "id": "r5zUBIo4zXpfIh0HjpdD",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige a identificação de código do anúncio como catálogo.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-6628276288-conjunto-moletom-masculinoincluir-casaco-com-capuz-e-calcas-_JM?searchVariation=200310833273"
+      ],
+      "sourceLimit": "Dados locais da oferta."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 2,
+    "screenedNoChange": 1,
+    "newDeepReviews": 0
+  }
+}
