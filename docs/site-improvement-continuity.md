@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 138 — 06/11/2026, publicada e verificada no site
+
+- TLWfr8q21DK8xDKMh01u — Celimax: conferido, sem necessidade de alteração.
+- tQpEIHL2QaiZ7xOWZ6py — Snow Foam: pressão e válvula anunciadas, sem teste ou confirmação.
+- tqUaLEFDAafDWemxheMX — pendrive 8 GB: título sem promessa de proteção nem padrão USB sem confirmação.
+
+Fonte cb85960b0, geração 1b5eeaaa8; sitemap 42223318784, integridade 42223318921, implantação 42223392946. Duas fichas HTTP 200 com afiliados preservados; 564 outras fichas inalteradas. 1.565 testes, seis verificações estáticas móveis e invariantes aprovados. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem138.json.
+
+Retomar por tXFA7nfMsVTOUweO3Twi (Under Armour Charged Skyline 5), u2nLyf1iUS18JLn3P9d5 (PS4 Slim 500 GB) e u9P6kD78JZexijimIjHN (kit de cinco camisetas). Restam 56 pendentes e 8 dependentes de fonte.
+
 ## Passagem 137 — 06/11/2026, publicada e verificada
 
 - tb7c733uByymDrSRjT5f — iPhone prateado: distingue teleobjetiva de 4x e 8x com qualidade óptica, atribui autonomia à Apple e não endossa o vendedor.

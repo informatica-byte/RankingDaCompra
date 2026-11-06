@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "TLWfr8q21DK8xDKMh01u",
-      "tQpEIHL2QaiZ7xOWZ6py",
-      "tqUaLEFDAafDWemxheMX",
       "tXFA7nfMsVTOUweO3Twi",
       "u2nLyf1iUS18JLn3P9d5",
       "u9P6kD78JZexijimIjHN",
       "uc5ynLQTGAPKkIMIyzQ2",
-      "UCDnByA5YaWN9eiyA5IM"
+      "UCDnByA5YaWN9eiyA5IM",
+      "Uh8jBpd9D8uEtK4Q3X43",
+      "UqO48Rj9I0f8SpOqabpv",
+      "uRfZSbUKT8yjArcSlGPL"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T13:08:00.161Z",
-  "catalogueGeneratedAt": "2026-11-06T13:07:56.518Z",
+  "updatedAt": "2026-11-06T13:12:37.098Z",
+  "catalogueGeneratedAt": "2026-11-06T13:10:25.199Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 566,
     "screened_no_change": 79,
     "needs_source": 8,
-    "targeted_correction_complete": 323,
+    "targeted_correction_complete": 325,
     "preserve_prior_review": 98,
-    "pending": 56,
-    "prepared_awaiting_publication": 2
+    "pending": 56
   },
   "items": [
     {
@@ -6876,12 +6875,13 @@
       "url": "https://rankingdacompra.com.br/produto/tqUaLEFDAafDWemxheMX-20260810-1.html",
       "title": "Pendrive de 8 GB — USB e USB-C anunciados",
       "fingerprint": "2f453d20c8dc1f9927dcebe3e0443b5e15c8b8f5401a28cf551c566cba499487",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T13:12:37.063Z",
       "workNotes": [
         "Retira do título as alegações de resistência e padrão USB não comprovadas.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4643658890?wid=MLB5015828935"
@@ -7499,12 +7499,13 @@
       "url": "https://rankingdacompra.com.br/produto/tQpEIHL2QaiZ7xOWZ6py-20260810-1.html",
       "title": "Pulverizador elétrico de espuma Snow Foam — 2 L anunciados",
       "fingerprint": "4bf67eafa249d5fba3656204a5cc3381e9965a276c9e8aeea8c6a5f3449c15b1",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T13:12:37.063Z",
       "workNotes": [
         "Retira a garantia implícita de alta pressão e sinaliza pressão e válvula não verificadas.",
-        "Dados locais da oferta, sem manual específico ou teste."
+        "Dados locais da oferta, sem manual específico ou teste.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4367171795?wid=MLB7216680136"
@@ -14906,11 +14907,34 @@
     ]
   },
   "triage138": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "tQpEIHL2QaiZ7xOWZ6py",
       "tqUaLEFDAafDWemxheMX"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T13:12:37.063Z",
+    "changedIds": [
+      "tQpEIHL2QaiZ7xOWZ6py",
+      "tqUaLEFDAafDWemxheMX"
+    ],
+    "jointReleaseBatches": [
+      138
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem138.json",
+    "remainingDependencies": [
+      {
+        "id": "TLWfr8q21DK8xDKMh01u",
+        "note": "Conferência documental, sem teste da unidade."
+      },
+      {
+        "id": "tQpEIHL2QaiZ7xOWZ6py",
+        "note": "Dados locais da oferta, sem manual específico ou teste."
+      },
+      {
+        "id": "tqUaLEFDAafDWemxheMX",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   }
 }
