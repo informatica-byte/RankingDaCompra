@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T19:25:50.618Z",
-  "catalogueGeneratedAt": "2026-11-06T19:24:30.399Z",
+  "updatedAt": "2026-11-06T19:29:43.156Z",
+  "catalogueGeneratedAt": "2026-11-06T19:29:40.268Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 345,
     "preserve_prior_review": 98,
-    "pending": 36
+    "pending": 34,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -3339,13 +3340,20 @@
     {
       "id": "voyycquYPRJSv4TtyT29",
       "url": "https://rankingdacompra.com.br/produto/voyycquYPRJSv4TtyT29-20260810-1.html",
-      "title": "Espelho Orgânico Capela Led 44x64 Para Sala Quarto Banheiro Moldura Capela Led Frio",
-      "fingerprint": "4b1285178529170a9574ba9da793b6b590c98de74670c6fc45d43ed95faf4ca3",
-      "status": "pending",
+      "title": "Espelho orgânico Capela com LED — 44 × 64 cm anunciados",
+      "fingerprint": "3f075857b3f4caec4d1f3140259ad02eef87bb9cf7f5ca1a0ce8c0d9434f4b8a",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Não garante bivolt, fixação inclusa ou adequação a áreas úmidas.",
+        "Dados da oferta, sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB61965929?wid=MLB4296595075"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "wyofwkDoOxUtpmtG9uhf",
@@ -5420,17 +5428,6 @@
       "sourceLinks": []
     },
     {
-      "id": "vP33ptkgz0hzzvmaqx1a",
-      "url": "https://rankingdacompra.com.br/produto/vP33ptkgz0hzzvmaqx1a-20260810-1.html",
-      "title": "Lavadora De Alta Pressão Kärcher Prática Black 1500 Psi/libras 1400w 300l/h Com Aplicador De Detergente E Lança Regulável 127v",
-      "fingerprint": "3316024d12dc78d8499f913349a4168be34ea4792fe1a09a7a8df6e35f53f10d",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "xq3BIapk5fun5CkIrwc1",
       "url": "https://rankingdacompra.com.br/produto/xq3BIapk5fun5CkIrwc1-20260810-1.html",
       "title": "Lavadora De Alta Pressão Philco 1750psi 12 Mpa 1500w Plp2300 220V",
@@ -5440,6 +5437,24 @@
       "lastCompletedAt": null,
       "workNotes": [],
       "sourceLinks": []
+    },
+    {
+      "id": "vP33ptkgz0hzzvmaqx1a",
+      "url": "https://rankingdacompra.com.br/produto/vP33ptkgz0hzzvmaqx1a-20260810-1.html",
+      "title": "Lavadora Kärcher Prática Black — 127 V anunciados",
+      "fingerprint": "afd43757b37307c66538f15185291d7ec9fdf79e789865f8ce9085f61f00f0af",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira promessa de economia de água e certificação não verificada.",
+        "Dados da oferta, sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB47945119"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "SEqRg2PsdNDdUJEB4T3W",
@@ -15354,5 +15369,13 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage146": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "vP33ptkgz0hzzvmaqx1a",
+      "voyycquYPRJSv4TtyT29"
+    ],
+    "newDeepReviews": 0
   }
 }

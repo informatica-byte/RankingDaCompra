@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Novos produtos primeiro; depois fila de visualizações.",
+  "items": [
+    {
+      "id": "voyycquYPRJSv4TtyT29",
+      "decision": "targeted_correction_complete",
+      "reason": "Não garante bivolt, fixação inclusa ou adequação a áreas úmidas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB61965929?wid=MLB4296595075"
+      ],
+      "sourceLimit": "Dados da oferta, sem teste independente da unidade."
+    },
+    {
+      "id": "vP33ptkgz0hzzvmaqx1a",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessa de economia de água e certificação não verificada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB47945119"
+      ],
+      "sourceLimit": "Dados da oferta, sem teste independente da unidade."
+    }
+  ]
+}

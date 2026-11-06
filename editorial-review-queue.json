@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T19:24:30.399Z",
+  "generatedAt": "2026-11-06T19:29:40.268Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 36
+    "screening": 34
   },
   "items": [
     {
@@ -62,20 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "voyycquYPRJSv4TtyT29",
-      "title": "Espelho Orgânico Capela Led 44x64 Para Sala Quarto Banheiro Moldura Capela Led Frio",
-      "url": "https://rankingdacompra.com.br/produto/voyycquYPRJSv4TtyT29-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "vP33ptkgz0hzzvmaqx1a",
-      "title": "Lavadora De Alta Pressão Kärcher Prática Black 1500 Psi/libras 1400w 300l/h Com Aplicador De Detergente E Lança Regulável 127v",
-      "url": "https://rankingdacompra.com.br/produto/vP33ptkgz0hzzvmaqx1a-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
