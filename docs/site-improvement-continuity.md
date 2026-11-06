@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 130 — 20261106, PUBLICADA E VERIFICADA
+
+- QV00w4vTmt2SwgU8xisL: targeted_correction_complete. Distingue a redução de cloro do C3 da ação bacteriológica do C7 e evita prometer ausência de gotejamento. Limite: Descrição do fabricante, sem teste da unidade.
+- Qwej9VDipQviT3wfRoxl: screened_no_change. Potência, motor, formato e acessórios coerentes com a ficha Philco. Limite: Conferência documental.
+- r5zUBIo4zXpfIh0HjpdD: targeted_correction_complete. Corrige a identificação de código do anúncio como catálogo. Limite: Dados locais da oferta.
+
+Fonte afbb564d4aad9cc3e8cbbc284428194595c1d021; geração 57835a1b0526f5374b2709c7448c908b37520b7c; sitemap 42204724154, integridade 42204724225, Pages 42204803737: SUCCESS. 1553 testes, validate-site e invariantes aprovados. 2 fichas publicadas HTTP200; 563 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem130.json.
+
+Totais: {"total":565,"screened_no_change":78,"needs_source":8,"targeted_correction_complete":302,"preserve_prior_review":98,"pending":79}. Próximos pendentes: r7HSFtoP8OEdijhRMIDk — Carretilha Molinete Pesca,18+1 Rolamentos 7.2:1 Pescaria; rfym6WivFVhxpwn2WF6r — Winleve Studio Otimizador Windows 10 E 11 Digital; RHhkWKxMXBZONt8jx4Ew — Computador Completo 20'' BRX Intel Core i5 6ª Geração 8GB SSD 256GB Monitor LED 75Hz Windows Teclado Mouse Kit Completo Desktop Office Home Office Estudo Trabalho. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 129 — 20261105, PUBLICADA E VERIFICADA
 
 - qPNJGNmzPbZzprZanGOC: targeted_correction_complete. Corrige a autonomia com referência à ficha oficial, sem presumir o módulo da unidade. Limite: Sem teste independente.
