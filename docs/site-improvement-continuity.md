@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 134 — 06/11/2026, publicada e verificada no site
+
+- scKXtqgNmOYETwmXi4EP — Ventisol CLIN16: versões de tensão separadas, sem alegar desempenho ou consumo medidos.
+- sEmIjHvnB3y4J7UZWBe2 — Lanterna LED: zoom e modos atribuídos à oferta, sem garantir laser, alcance ou autonomia.
+- SEqRg2PsdNDdUJEB4T3W — Lavadora portátil: duas baterias e maleta anunciadas; vazão e tensão do carregador não verificadas.
+
+Fonte 92e498fd5, geração 35a0b0da7, sitemap 42216149491, implantação 42216214916. Três fichas HTTP 200, 1.565 testes e seis verificações estáticas móveis. Preservadas 563 outras fichas editoriais, 566 IDs e 619 URLs, além de preços, histórico e afiliados. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem134.json.
+
+Retomar por sfV5mG9A2qmqdyJhbQc0 (WAP W200), sIeDtT4BuRsDRnKrSUMR (NIVEA SUN FPS 70) e SJ6VQZLSc4brIArHnkRW (piscina inflável com bomba). Restam 68 pendentes e 8 dependentes de fonte.
+
 ## Passagem 133 — 06/11/2026, publicada e verificada
 
 - mlMLB3868708109 — Twibi Force AX: velocidade sem contexto substituída por especificações documentadas; título mantém a ficha no comparador.

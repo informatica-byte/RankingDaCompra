@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "scKXtqgNmOYETwmXi4EP",
-      "sEmIjHvnB3y4J7UZWBe2",
-      "SEqRg2PsdNDdUJEB4T3W",
       "sfV5mG9A2qmqdyJhbQc0",
       "sIeDtT4BuRsDRnKrSUMR",
       "SJ6VQZLSc4brIArHnkRW",
       "SnMMDq9bDXiMWX0IXYdO",
-      "SUBPibuHNUsgB6zVTL5r"
+      "SUBPibuHNUsgB6zVTL5r",
+      "SwJrTICSHQ1hJE2aIYz1",
+      "tb7c733uByymDrSRjT5f",
+      "TEq7tHMr54vb5Gx3KqXy"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T12:12:50.291Z",
-  "catalogueGeneratedAt": "2026-11-06T12:12:45.687Z",
+  "updatedAt": "2026-11-06T12:16:22.357Z",
+  "catalogueGeneratedAt": "2026-11-06T12:14:45.587Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 566,
     "screened_no_change": 78,
     "needs_source": 8,
-    "targeted_correction_complete": 311,
+    "targeted_correction_complete": 314,
     "preserve_prior_review": 98,
-    "pending": 68,
-    "prepared_awaiting_publication": 3
+    "pending": 68
   },
   "items": [
     {
@@ -2740,12 +2739,13 @@
       "url": "https://rankingdacompra.com.br/produto/scKXtqgNmOYETwmXi4EP-20260810-1.html",
       "title": "Climatizador Portátil 16 Litros 130w Ventisol Clin16 Cor Cinza",
       "fingerprint": "dd1819915d9af28b246a5a2bd28d95571a173c4aa2318d452aa322e892e95ac8",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:16:22.319Z",
       "workNotes": [
         "Distingue climatizador de ar-condicionado e versões elétricas.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB32974346?wid=MLB4722851223",
@@ -5281,12 +5281,13 @@
       "url": "https://rankingdacompra.com.br/produto/sEmIjHvnB3y4J7UZWBe2-20260810-1.html",
       "title": "Lanterna tática LED preta — zoom e cinco modos anunciados",
       "fingerprint": "facaaafeaf15e63550597d2a586799a6abbd99cf497a2317ac6bef7350ac1411",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:16:22.319Z",
       "workNotes": [
         "Remove superlativo e separa LED de laser não comprovado.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3830361452?wid=MLB4507302081"
@@ -5409,12 +5410,13 @@
       "url": "https://rankingdacompra.com.br/produto/SEqRg2PsdNDdUJEB4T3W-20260810-1.html",
       "title": "Lavadora portátil — duas baterias e maleta anunciadas",
       "fingerprint": "9825406b0329ead1a471b9efbde3fc75d7d7293640b3689f2825b64394cce3d8",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:16:22.319Z",
       "workNotes": [
         "Não trata vazão e tensão de entrada como confirmadas.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU605239077?wid=MLB3621404839"
@@ -14674,12 +14676,36 @@
     ]
   },
   "triage134": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "SEqRg2PsdNDdUJEB4T3W",
       "sEmIjHvnB3y4J7UZWBe2",
       "scKXtqgNmOYETwmXi4EP"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T12:16:22.319Z",
+    "changedIds": [
+      "scKXtqgNmOYETwmXi4EP",
+      "sEmIjHvnB3y4J7UZWBe2",
+      "SEqRg2PsdNDdUJEB4T3W"
+    ],
+    "jointReleaseBatches": [
+      134
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem134.json",
+    "remainingDependencies": [
+      {
+        "id": "scKXtqgNmOYETwmXi4EP",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "sEmIjHvnB3y4J7UZWBe2",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "SEqRg2PsdNDdUJEB4T3W",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   }
 }
