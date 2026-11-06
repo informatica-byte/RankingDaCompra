@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com evidência documental.",
+  "items": [
+    {
+      "id": "RiCj7wC1QDBSMgPUQWD1",
+      "decision": "targeted_correction_complete",
+      "reason": "Separa rotação, velocidade do jato e alimentação; não confirma bivolt.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB69649128?pdp_filters=item_id%3AMLB6781687878"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "rjkXSj5wDd3i4spfoHet",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue o que o anúncio oferece de licença e procedência verificadas.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5041220911-software-rede-manutenco-windows-titanium-tech-toolkit-_JM"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "rkEqyfJAguQZwMzfh25s",
+      "decision": "targeted_correction_complete",
+      "reason": "Remove garantia implícita de autenticidade e separa a família oficial da concentração não confirmada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB6138946?pdp_filters=item_id%3AMLB2084718645",
+        "https://paris-elysees.com/collections/billion-dollar"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}

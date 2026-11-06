@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T10:50:25.611Z",
-  "catalogueGeneratedAt": "2026-11-06T10:48:59.853Z",
+  "updatedAt": "2026-11-06T11:14:42.529Z",
+  "catalogueGeneratedAt": "2026-11-06T11:14:38.132Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -702,12 +702,13 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 565,
+    "total": 566,
     "screened_no_change": 78,
     "needs_source": 8,
     "targeted_correction_complete": 305,
     "preserve_prior_review": 98,
-    "pending": 76
+    "prepared_awaiting_publication": 3,
+    "pending": 74
   },
   "items": [
     {
@@ -1391,6 +1392,25 @@
         "31/10/2026 — triagem seletiva 17: Título anuncia 15 Ah e descrição 12 Ah para a Smart MT2. Capacidade explicitamente a confirmar, sem escolher número ou inventar autonomia. Título alinhado à incerteza; outras declarações são atribuídas ao cadastro."
       ],
       "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "rkEqyfJAguQZwMzfh25s",
+      "url": "https://rankingdacompra.com.br/produto/rkEqyfJAguQZwMzfh25s-20260810-1.html",
+      "title": "Billion Casino Royal Paris Elysees — 100 mL anunciados",
+      "fingerprint": "c7dc5c640cb3e18ccba8f684f45a28648523b5c2f4f597f14cf4956bb85ba42e",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Remove garantia implícita de autenticidade e separa a família oficial da concentração não confirmada.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB6138946?pdp_filters=item_id%3AMLB2084718645",
+        "https://paris-elysees.com/collections/billion-dollar"
+      ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
     },
@@ -2912,6 +2932,17 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB3868708109",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB3868708109-20260810-1.html",
+      "title": "Conjunto Roteador Mesh Wifi 6 Intelbras Twibi Force Ax 2 Uni Branco",
+      "fingerprint": "8e958fefaf26eb10a73d6ad734264aef166d8d080ed78463b3daf8d7898c8626",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
     },
     {
       "id": "ERUkcWCy7XxGVEyDizZ2",
@@ -5758,6 +5789,24 @@
       ]
     },
     {
+      "id": "RiCj7wC1QDBSMgPUQWD1",
+      "url": "https://rankingdacompra.com.br/produto/RiCj7wC1QDBSMgPUQWD1-20260810-1.html",
+      "title": "Mini soprador portátil Davely — recarga USB anunciada",
+      "fingerprint": "58c88e89b2809d525a295f255a98d59567a720fbd7ea71f1a8e3777fcda550cb",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Separa rotação, velocidade do jato e alimentação; não confirma bivolt.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB69649128?pdp_filters=item_id%3AMLB6781687878"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "p9csD1mVQKKLvmFbV1VX",
       "url": "https://rankingdacompra.com.br/produto/p9csD1mVQKKLvmFbV1VX-20260810-1.html",
       "title": "Mini soprador Simake sem fio — três níveis anunciados",
@@ -5775,17 +5824,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "RiCj7wC1QDBSMgPUQWD1",
-      "url": "https://rankingdacompra.com.br/produto/RiCj7wC1QDBSMgPUQWD1-20260810-1.html",
-      "title": "Mini Ventilador Soprador Ar Turbo 130000rpm Assoprador Sem Fio Recarregável Usb 3 Níveis Jato Forte Portátil Multiuso Limpeza Teclado Carro Acende Churrasqueira Davely",
-      "fingerprint": "38555eea981dc66539fdd736231f550ee3676803789476640994329048ab8056",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "f9oPhNSAdi4gqtwPJbJh",
@@ -6824,17 +6862,6 @@
       "sourceLinks": [],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "rkEqyfJAguQZwMzfh25s",
-      "url": "https://rankingdacompra.com.br/produto/rkEqyfJAguQZwMzfh25s-20260810-1.html",
-      "title": "Perfume Billion Casino Royal Paris Elysees Masculino Intense 100ml Original",
-      "fingerprint": "70c2457f4158b05819150623a8e9d54cdb0380cf2401270686ab496db7f76a4e",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "7EgFgcD6NyeoMB8KW4Pp",
@@ -8313,12 +8340,19 @@
       "id": "rjkXSj5wDd3i4spfoHet",
       "url": "https://rankingdacompra.com.br/produto/rjkXSj5wDd3i4spfoHet-20260810-1.html",
       "title": "Software Rede Manutenção Windows Titanium Tech Toolkit",
-      "fingerprint": "dec6bbb5436afe86ed6126232cd3c2a32b0eec9c901bb6d5bca9947f50c838c2",
-      "status": "pending",
+      "fingerprint": "39df3623262badd7108ba9e7554f2cf27f9395d4f2a4d6a48a8cc334b440c215",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue o que o anúncio oferece de licença e procedência verificadas.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5041220911-software-rede-manutenco-windows-titanium-tech-toolkit-_JM"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "u2nLyf1iUS18JLn3P9d5",
@@ -14521,5 +14555,14 @@
     "testsPassed": 1554,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage132": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "RiCj7wC1QDBSMgPUQWD1",
+      "rjkXSj5wDd3i4spfoHet",
+      "rkEqyfJAguQZwMzfh25s"
+    ],
+    "newDeepReviews": 0
   }
 }

@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T11:06:33.155Z",
+  "generatedAt": "2026-11-06T11:14:38.132Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 77
+    "screening": 74
   },
   "items": [
     {
@@ -37,6 +37,13 @@
       "reasons": []
     },
     {
+      "id": "mlMLB3868708109",
+      "title": "Conjunto Roteador Mesh Wifi 6 Intelbras Twibi Force Ax 2 Uni Branco",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB3868708109-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
       "id": "mlMLB4186778677",
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
@@ -55,27 +62,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "RiCj7wC1QDBSMgPUQWD1",
-      "title": "Mini Ventilador Soprador Ar Turbo 130000rpm Assoprador Sem Fio Recarregável Usb 3 Níveis Jato Forte Portátil Multiuso Limpeza Teclado Carro Acende Churrasqueira Davely",
-      "url": "https://rankingdacompra.com.br/produto/RiCj7wC1QDBSMgPUQWD1-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "rjkXSj5wDd3i4spfoHet",
-      "title": "Software Rede Manutenção Windows Titanium Tech Toolkit",
-      "url": "https://rankingdacompra.com.br/produto/rjkXSj5wDd3i4spfoHet-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "rkEqyfJAguQZwMzfh25s",
-      "title": "Perfume Billion Casino Royal Paris Elysees Masculino Intense 100ml Original",
-      "url": "https://rankingdacompra.com.br/produto/rkEqyfJAguQZwMzfh25s-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
@@ -593,13 +579,6 @@
       "id": "zuvOrERyR2wVRA9ZmYGe",
       "title": "Câmera Lâmpada IP Wi-Fi Raytechno Full HD 1080p com Visão Noturna e Sensor de Movimento",
       "url": "https://rankingdacompra.com.br/produto/zuvOrERyR2wVRA9ZmYGe-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB3868708109",
-      "title": "Conjunto Roteador Mesh Wifi 6 Intelbras Twibi Force Ax 2 Uni Branco",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB3868708109-20260810-1.html",
       "state": "screening",
       "reasons": []
     }
