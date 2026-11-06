@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Novos produtos primeiro; depois fila de visualizações.",
+  "items": [
+    {
+      "id": "mlMLB4962090958",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige código do anúncio e documenta finalidade do modelo.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4962090958-tnis-nike-air-max-alpha-trainer-6-masculino-_JM",
+        "https://www.nike.com.br/nav/genero/masculino/marca/nike/modelos/alphatrainer"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "V7bn4LXC1XY8jMepUGEp",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira nota e condições comerciais sem respaldo; pilhas a confirmar.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB37863727?wid=MLB5100889784",
+        "https://www.sunnybrinquedos.com.br/pet-interativo-virtual-da-disney-bitzee"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "vdgdhBrdL4pb4rL1YK0x",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue alimentação elétrica de gás e dimensões externas de recorte.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB50661985?wid=MLB4190456415",
+        "https://loja.electrolux.com.br/cooktop-4-bocas-electrolux-gas-efficient-mesa-de-vidro-e-grade-de-aco-fosco--ke4gr-/p"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}

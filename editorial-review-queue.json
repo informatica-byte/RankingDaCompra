@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T18:29:40.404Z",
+  "generatedAt": "2026-11-06T18:33:08.428Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 45
+    "screening": 42
   },
   "items": [
     {
@@ -44,13 +44,6 @@
       "reasons": []
     },
     {
-      "id": "mlMLB4962090958",
-      "title": "Tênis Nike Air Max Alpha Trainer 6 Masculino",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4962090958-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
       "id": "mlMLB5239190177",
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
@@ -69,20 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "V7bn4LXC1XY8jMepUGEp",
-      "title": "Disney Pet Virtual Interativo Bitzee Sunny 3816",
-      "url": "https://rankingdacompra.com.br/produto/V7bn4LXC1XY8jMepUGEp-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "vdgdhBrdL4pb4rL1YK0x",
-      "title": "Cooktop 4 Bocas a Gás Electrolux Mesa de Vidro Efficient Grade de Aço Fosco (KE4GR) Bivolt",
-      "url": "https://rankingdacompra.com.br/produto/vdgdhBrdL4pb4rL1YK0x-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

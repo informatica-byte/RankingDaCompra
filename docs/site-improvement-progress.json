@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T18:30:46.213Z",
-  "catalogueGeneratedAt": "2026-11-06T18:29:40.404Z",
+  "updatedAt": "2026-11-06T18:33:11.145Z",
+  "catalogueGeneratedAt": "2026-11-06T18:33:08.428Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 336,
     "preserve_prior_review": 98,
-    "pending": 45
+    "pending": 42,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -3022,17 +3023,6 @@
       "sourceLinks": []
     },
     {
-      "id": "vdgdhBrdL4pb4rL1YK0x",
-      "url": "https://rankingdacompra.com.br/produto/vdgdhBrdL4pb4rL1YK0x-20260810-1.html",
-      "title": "Cooktop 4 Bocas a Gás Electrolux Mesa de Vidro Efficient Grade de Aço Fosco (KE4GR) Bivolt",
-      "fingerprint": "30584db3e23fdb96c371196d3abc6dc5f442c7379fefe6b6a956ea83f1a2e98f",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "5628K1uP7AHSdoBGcgZ1",
       "url": "https://rankingdacompra.com.br/produto/5628K1uP7AHSdoBGcgZ1-20260810-1.html",
       "title": "Cooktop 5 Bocas A Gás Atlas Agile Up Mega Chama Preto",
@@ -3047,6 +3037,25 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB50829128?wid=MLB4082731117"
       ]
+    },
+    {
+      "id": "vdgdhBrdL4pb4rL1YK0x",
+      "url": "https://rankingdacompra.com.br/produto/vdgdhBrdL4pb4rL1YK0x-20260810-1.html",
+      "title": "Cooktop Electrolux KE4GR a gás — quatro bocas",
+      "fingerprint": "167146f190d4508f87e54e74bbc32082ba1e228be50ef5adcc6470f917ab931a",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue alimentação elétrica de gás e dimensões externas de recorte.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB50661985?wid=MLB4190456415",
+        "https://loja.electrolux.com.br/cooktop-4-bocas-electrolux-gas-efficient-mesa-de-vidro-e-grade-de-aco-fosco--ke4gr-/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "6owUOP0UqtNt3y5pFzgW",
@@ -3276,12 +3285,20 @@
       "id": "V7bn4LXC1XY8jMepUGEp",
       "url": "https://rankingdacompra.com.br/produto/V7bn4LXC1XY8jMepUGEp-20260810-1.html",
       "title": "Disney Pet Virtual Interativo Bitzee Sunny 3816",
-      "fingerprint": "dc9e50dc4e14dd9d197e326470836f54f08aecc811ba72ca6d9f541ab091ea4f",
-      "status": "pending",
+      "fingerprint": "fc0bd0e08cf6630ac5aa36d56f4ade29e2b1a417dd862840a6efb74c57b9dc4f",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira nota e condições comerciais sem respaldo; pilhas a confirmar.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB37863727?wid=MLB5100889784",
+        "https://www.sunnybrinquedos.com.br/pet-interativo-virtual-da-disney-bitzee"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Y0m34sJnzLnojKcK5wAp",
@@ -9405,12 +9422,20 @@
       "id": "mlMLB4962090958",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4962090958-20260810-1.html",
       "title": "Tênis Nike Air Max Alpha Trainer 6 Masculino",
-      "fingerprint": "ba20528e53e3635d119dbce5b6c4da159f611aaab4e0768d2ac86aed5091a153",
-      "status": "pending",
+      "fingerprint": "ecc5017dc4ac83e2c79886b678762a635e235dbbaf4d7cda0c197e5549e9e491",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige código do anúncio e documenta finalidade do modelo.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4962090958-tnis-nike-air-max-alpha-trainer-6-masculino-_JM",
+        "https://www.nike.com.br/nav/genero/masculino/marca/nike/modelos/alphatrainer"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "InsaA7npZ9l5Qf6jByiC",
@@ -15173,5 +15198,14 @@
         "note": "Dados da oferta, sem teste independente."
       }
     ]
+  },
+  "triage143": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "V7bn4LXC1XY8jMepUGEp",
+      "mlMLB4962090958",
+      "vdgdhBrdL4pb4rL1YK0x"
+    ],
+    "newDeepReviews": 0
   }
 }
