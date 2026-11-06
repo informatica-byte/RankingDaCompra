@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T18:04:13.438Z",
-  "catalogueGeneratedAt": "2026-11-06T17:43:18.616Z",
+  "updatedAt": "2026-11-06T18:27:35.617Z",
+  "catalogueGeneratedAt": "2026-11-06T18:27:32.580Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -702,12 +702,13 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 566,
+    "total": 567,
     "screened_no_change": 80,
     "needs_source": 8,
     "targeted_correction_complete": 333,
     "preserve_prior_review": 98,
-    "pending": 47
+    "pending": 45,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2344,17 +2345,6 @@
       "sourceLinks": []
     },
     {
-      "id": "UwYGeOO2ABtDN07iR9ch",
-      "url": "https://rankingdacompra.com.br/produto/UwYGeOO2ABtDN07iR9ch-20260810-1.html",
-      "title": "Carregador Portátil Power Bank Turbo 20000mah universal para iphone samsung motorola xiaomi 20w Com Display Digital DTimp",
-      "fingerprint": "d6547ac5971c93f50d39fe810d4ec0de6bf1e209a7e6723b320f7f6215622ad6",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "iw5yKjD39u1kQ8Vm8ybv",
       "url": "https://rankingdacompra.com.br/produto/iw5yKjD39u1kQ8Vm8ybv-20260810-1.html",
       "title": "Carregador USB-C anunciado como 200 W — potência a confirmar",
@@ -2649,12 +2639,19 @@
       "id": "uvlx1EGGFowAjO3EBgrw",
       "url": "https://rankingdacompra.com.br/produto/uvlx1EGGFowAjO3EBgrw-20260810-1.html",
       "title": "Churrasqueira Portátil Camping Praia Compacta Galvanizada",
-      "fingerprint": "4f191f3f9f2ac947cbf77d4fb34bb5079b848fdb4d23f8c9c8db66e8aa24e5b5",
-      "status": "pending",
+      "fingerprint": "a19e41c495759c92a03d8747a15cfae1c8941957b01a9df8c121573ee5e2f094",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Sinaliza medidas ambíguas e não confirma prazo de garantia.",
+        "Dados da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5442255551?wid=MLB7791362962"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "E4SDe0v0L4ztydHzIbRw",
@@ -7377,6 +7374,24 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "UwYGeOO2ABtDN07iR9ch",
+      "url": "https://rankingdacompra.com.br/produto/UwYGeOO2ABtDN07iR9ch-20260810-1.html",
+      "title": "Power bank DTimp — 20.000 mAh anunciados",
+      "fingerprint": "6548c2b685076495c990ded4e435a5775d7296a7d6b176610b26bdc4b381263e",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Expõe divergência de potência e retira compatibilidade universal.",
+        "Dados da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB54026101?wid=MLB4169895537"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "VzQgxGhowdzlfNshI3ZC",
       "url": "https://rankingdacompra.com.br/produto/VzQgxGhowdzlfNshI3ZC-20260810-1.html",
       "title": "Power bank Hardline 20000 mAh — potência e compatibilidade a confirmar",
@@ -7458,12 +7473,19 @@
       "id": "uVSddfqWEhUv6l94yiMK",
       "url": "https://rankingdacompra.com.br/produto/uVSddfqWEhUv6l94yiMK-20260810-1.html",
       "title": "Principia Kit Trio Limpeza Facial Personalizada",
-      "fingerprint": "aa7e1ea118b92db064d4a3b7cb2296087ded10aa2d6ef6f61a3a077a8a1fbb44",
-      "status": "pending",
+      "fingerprint": "ecff783f8d09a7b4ca9575c3f812e9951f81ef288bf6599408796a6a76271af7",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue fórmulas de composição do kit e retira garantia de tolerância.",
+        "Dados da oferta, sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB74862155?wid=MLB4839435111"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "kiQqRnm6rDj50U2HaOb3",
@@ -9376,6 +9398,17 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB4962090958",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4962090958-20260810-1.html",
+      "title": "Tênis Nike Air Max Alpha Trainer 6 Masculino",
+      "fingerprint": "ba20528e53e3635d119dbce5b6c4da159f611aaab4e0768d2ac86aed5091a153",
+      "status": "pending",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [],
+      "sourceLinks": []
     },
     {
       "id": "InsaA7npZ9l5Qf6jByiC",
@@ -15105,5 +15138,14 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage142": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "UwYGeOO2ABtDN07iR9ch",
+      "uVSddfqWEhUv6l94yiMK",
+      "uvlx1EGGFowAjO3EBgrw"
+    ],
+    "newDeepReviews": 0
   }
 }

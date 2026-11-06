@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções documentais pontuais.",
+  "items": [
+    {
+      "id": "uvlx1EGGFowAjO3EBgrw",
+      "decision": "targeted_correction_complete",
+      "reason": "Sinaliza medidas ambíguas e não confirma prazo de garantia.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5442255551?wid=MLB7791362962"
+      ],
+      "sourceLimit": "Dados da oferta, sem teste independente."
+    },
+    {
+      "id": "uVSddfqWEhUv6l94yiMK",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue fórmulas de composição do kit e retira garantia de tolerância.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB74862155?wid=MLB4839435111"
+      ],
+      "sourceLimit": "Dados da oferta, sem teste independente."
+    },
+    {
+      "id": "UwYGeOO2ABtDN07iR9ch",
+      "decision": "targeted_correction_complete",
+      "reason": "Expõe divergência de potência e retira compatibilidade universal.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB54026101?wid=MLB4169895537"
+      ],
+      "sourceLimit": "Dados da oferta, sem teste independente."
+    }
+  ]
+}
