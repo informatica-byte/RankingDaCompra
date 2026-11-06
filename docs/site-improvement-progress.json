@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "vfoOrRV7xpu2EgJ8aIUy",
-      "VgdT8EtzIO0zWeDyEz7E",
-      "Vgm0UKQmBdAvSbO683Yj",
-      "VIm8Tf6PT9I5VlI8BdRa",
-      "visu8XqPlr740f0W0So0",
-      "VJ0UNCYoJYS4gSEKpZKQ",
       "voyycquYPRJSv4TtyT29",
-      "vP33ptkgz0hzzvmaqx1a"
+      "vP33ptkgz0hzzvmaqx1a",
+      "vr2uogxbiKqrQx1MYdD9",
+      "VyYiww5HVcBRIH8SD5SD",
+      "W2fwS2jLu4yjKnRTww98",
+      "wAsxhijcNyAq9AblyLkN",
+      "wiLibtvJlFYtSbDWLtcv",
+      "WjjOZFdWS3sKRCoFAH7r"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T19:22:26.546Z",
-  "catalogueGeneratedAt": "2026-11-06T19:22:24.681Z",
+  "updatedAt": "2026-11-06T19:25:50.618Z",
+  "catalogueGeneratedAt": "2026-11-06T19:24:30.399Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 567,
     "screened_no_change": 80,
     "needs_source": 8,
-    "targeted_correction_complete": 339,
+    "targeted_correction_complete": 345,
     "preserve_prior_review": 98,
-    "pending": 36,
-    "prepared_awaiting_publication": 6
+    "pending": 36
   },
   "items": [
     {
@@ -2451,12 +2450,13 @@
       "url": "https://rankingdacompra.com.br/produto/Vgm0UKQmBdAvSbO683Yj-20260810-1.html",
       "title": "Carrinho organizador com rodinhas — três níveis anunciados",
       "fingerprint": "972fad806152687a1b6fdc929735c39f14e5b0203b1b8e94626c82d484d5b06f",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T19:25:50.595Z",
       "workNotes": [
         "Corrige a descrição truncada e não generaliza material ou carga.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3732575466?wid=MLB4418866933"
@@ -6064,12 +6064,13 @@
       "url": "https://rankingdacompra.com.br/produto/visu8XqPlr740f0W0So0-20260810-1.html",
       "title": "Motorola Moto G35 5G grafite — 128 GB anunciados",
       "fingerprint": "ee9b1e41d78001643c7eb348328cb3cd6b5bf9a736d52f3f95ca25615dc29c13",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T19:25:50.595Z",
       "workNotes": [
         "Distingue RAM física e virtual, corrige a tela e sinaliza caixa aberta.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB2054732230?wid=MLB6334077238",
@@ -7700,12 +7701,13 @@
       "url": "https://rankingdacompra.com.br/produto/VJ0UNCYoJYS4gSEKpZKQ-20260810-1.html",
       "title": "realme C75 5G — 256 GB anunciados, RAM a confirmar",
       "fingerprint": "a89d0e1692de6a42708ba0328d90e420dc884cbc403dca609cc801ed7a102a15",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T19:25:50.595Z",
       "workNotes": [
         "Sinaliza divergência da RAM sem substituir a variante por suposição.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB51559571?wid=MLB4181539471",
@@ -8044,12 +8046,13 @@
       "url": "https://rankingdacompra.com.br/produto/VIm8Tf6PT9I5VlI8BdRa-20260810-1.html",
       "title": "Samsung Galaxy A17 preto — 128 GB e 4 GB de RAM anunciados",
       "fingerprint": "539b0768d9cc78b7cebf17e6d6ec6dcd4510863be38a387aeb0424dc400f8079",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T19:25:50.595Z",
       "workNotes": [
         "Não confunde LTE com 5G e retira avaliação sem fonte.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB65114795?wid=MLB7293572044",
@@ -8063,12 +8066,13 @@
       "url": "https://rankingdacompra.com.br/produto/vfoOrRV7xpu2EgJ8aIUy-20260810-1.html",
       "title": "Samsung Galaxy S25 FE 5G — 128 GB, azul-marinho",
       "fingerprint": "ff3122b68bae29463c64f1f5424fb2215395eae2b7d1ba23b5bb80a4ace59dea",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T19:25:50.595Z",
       "workNotes": [
         "Retira superioridade de desempenho não testada.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB61655019?wid=MLB6064737210",
@@ -9890,12 +9894,13 @@
       "url": "https://rankingdacompra.com.br/produto/VgdT8EtzIO0zWeDyEz7E-20260810-1.html",
       "title": "Umidificador De Ar Ultrassônico Umi Pop Health 2,3l Dellamed Cor Branco Bivolt",
       "fingerprint": "6538bebb2244b594b98680d5230aabb8521d102607476ad07c763fb97da4006d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T19:25:50.595Z",
       "workNotes": [
         "Corrige a capacidade e retira ação antibacteriana não verificada.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB26908451?wid=MLB5000118226",
@@ -15283,21 +15288,71 @@
     ]
   },
   "triage144": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "VgdT8EtzIO0zWeDyEz7E",
       "Vgm0UKQmBdAvSbO683Yj",
       "vfoOrRV7xpu2EgJ8aIUy"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T19:25:50.595Z",
+    "changedIds": [
+      "vfoOrRV7xpu2EgJ8aIUy",
+      "VgdT8EtzIO0zWeDyEz7E",
+      "Vgm0UKQmBdAvSbO683Yj"
+    ],
+    "jointReleaseBatches": [
+      144,
+      145
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem144-145.json",
+    "remainingDependencies": [
+      {
+        "id": "vfoOrRV7xpu2EgJ8aIUy",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "VgdT8EtzIO0zWeDyEz7E",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "Vgm0UKQmBdAvSbO683Yj",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   },
   "triage145": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "VIm8Tf6PT9I5VlI8BdRa",
       "VJ0UNCYoJYS4gSEKpZKQ",
       "visu8XqPlr740f0W0So0"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T19:25:50.595Z",
+    "changedIds": [
+      "VIm8Tf6PT9I5VlI8BdRa",
+      "visu8XqPlr740f0W0So0",
+      "VJ0UNCYoJYS4gSEKpZKQ"
+    ],
+    "jointReleaseBatches": [
+      144,
+      145
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem144-145.json",
+    "remainingDependencies": [
+      {
+        "id": "VIm8Tf6PT9I5VlI8BdRa",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "visu8XqPlr740f0W0So0",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "VJ0UNCYoJYS4gSEKpZKQ",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   }
 }

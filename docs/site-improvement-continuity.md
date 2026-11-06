@@ -1,5 +1,17 @@
 # Continuidade prioritária — Ranking da Compra
-## Passagem 144 — 06/11/2026
+## Passagem 145 — 06/11/2026, publicada e verificada
+
+Sem novos cadastros publicados desde o lote 144. Retomada por visualizações:
+
+- VIm8Tf6PT9I5VlI8BdRa — Galaxy A17 preto: versão LTE ou 5G e NFC da unidade a confirmar; nota sem fonte retirada.
+- visu8XqPlr740f0W0So0 — Moto G35: RAM física separada da virtual, tela documentada e menção a caixa aberta.
+- VJ0UNCYoJYS4gSEKpZKQ — realme C75 5G: RAM anunciada diverge da ficha brasileira; configuração da unidade a confirmar.
+
+Fonte 320e80c0c, geração f9b82e3c5, implantação 42279394183. Lote 144 também confirmado; seis páginas HTTP 200 com links preservados, 561 fichas inalteradas, 567 IDs e 620 URLs. 1.574 testes e seis verificações estáticas móveis no lote 145. Prova conjunta em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem144-145.json.
+
+Após novos públicos, retomar por voyycquYPRJSv4TtyT29 (espelho orgânico LED) e vP33ptkgz0hzzvmaqx1a (lavadora Kärcher Prática Black), sem refazer os concluídos. Restam 36 pendentes e 8 dependentes de fonte.
+
+## Passagem 144 — 06/11/2026, publicada e verificada
 
 Nenhuma página recém-publicada após o lote 143 no catálogo público conferido. A fila por visualizações avançou pelos três IDs abaixo, sem repetir os concluídos.
 
@@ -7,7 +19,7 @@ Nenhuma página recém-publicada após o lote 143 no catálogo público conferid
 - VgdT8EtzIO0zWeDyEz7E — Dellamed Umi Pop: 2,3 L segundo a marca; retiradas alegações antibacteriana e de ruído não comprovadas.
 - Vgm0UKQmBdAvSbO683Yj — Carrinho: três níveis e rodinhas anunciados; material, medidas e carga a confirmar.
 
-Fonte 8b48f1795, geração e1768ebf1, sitemap 42278189985 e Pages 42278272798. 1.574 testes, seis verificações estáticas móveis e invariantes de preços, IDs, afiliados e URLs aprovados. Confirmar no site com `node scripts/verify-targeted-editorial.mjs 144 20261106` antes de marcar publicado; não refazer as revisões.
+Fonte 8b48f1795, geração e1768ebf1, sitemap 42278189985 e Pages 42278272798. 1.574 testes, seis verificações estáticas móveis e invariantes de preços, IDs, afiliados e URLs aprovados. Confirmado no site, com prova conjunta no lote 145.
 
 Retomar, após priorizar eventuais novos públicos, por VIm8Tf6PT9I5VlI8BdRa (Galaxy A17 preto), visu8XqPlr740f0W0So0 (Moto G35) e VJ0UNCYoJYS4gSEKpZKQ (Realme C75 5G). 39 pendentes e 8 dependentes de fonte, além das três preparadas até a confirmação pública.
 
