@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T17:43:18.616Z",
+  "generatedAt": "2026-11-06T18:05:40.674Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 47
+    "screening": 48
   },
   "items": [
     {
@@ -390,6 +390,13 @@
       "id": "zuvOrERyR2wVRA9ZmYGe",
       "title": "Câmera Lâmpada IP Wi-Fi Raytechno Full HD 1080p com Visão Noturna e Sensor de Movimento",
       "url": "https://rankingdacompra.com.br/produto/zuvOrERyR2wVRA9ZmYGe-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "mlMLB4962090958",
+      "title": "Tênis Nike Air Max Alpha Trainer 6 Masculino",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4962090958-20260810-1.html",
       "state": "screening",
       "reasons": []
     }
