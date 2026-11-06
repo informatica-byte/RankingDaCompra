@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 135 — 06/11/2026, publicada e verificada
+
+- sfV5mG9A2qmqdyJhbQc0 — WAP W200: limitações de mapeamento e aplicativo documentadas pela fabricante.
+- sIeDtT4BuRsDRnKrSUMR — NIVEA SUN FPS 70: reaplicação não implica confirmação nem ausência de resistência ao suor.
+- SJ6VQZLSc4brIArHnkRW — piscina: bomba não confirmada; categoria preservada e correção vinculada ao anúncio.
+
+Fonte b49c525b3, geração 4dbd1f946; sitemap 42217262936, integridade 42217262932 e implantação 42217329094 passaram. 1.565 testes, seis verificações estáticas móveis e invariantes aprovados. Três fichas HTTP 200 com links preservados; 563 outras fichas inalteradas. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem135.json.
+
+Retomar por SnMMDq9bDXiMWX0IXYdO (Mondial L-99 FB, anúncio MLB1793491599), SUBPibuHNUsgB6zVTL5r (webcam GoodVision) e SwJrTICSHQ1hJE2aIYz1 (torneira gourmet). Restam 65 pendentes e 8 dependentes de fonte.
+
 ## Passagem 134 — 06/11/2026, publicada e verificada no site
 
 - scKXtqgNmOYETwmXi4EP — Ventisol CLIN16: versões de tensão separadas, sem alegar desempenho ou consumo medidos.

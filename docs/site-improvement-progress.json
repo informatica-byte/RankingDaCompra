@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "sfV5mG9A2qmqdyJhbQc0",
-      "sIeDtT4BuRsDRnKrSUMR",
-      "SJ6VQZLSc4brIArHnkRW",
       "SnMMDq9bDXiMWX0IXYdO",
       "SUBPibuHNUsgB6zVTL5r",
       "SwJrTICSHQ1hJE2aIYz1",
       "tb7c733uByymDrSRjT5f",
-      "TEq7tHMr54vb5Gx3KqXy"
+      "TEq7tHMr54vb5Gx3KqXy",
+      "TJk9BUtlZ9v02ETWQRuG",
+      "TLWfr8q21DK8xDKMh01u",
+      "tQpEIHL2QaiZ7xOWZ6py"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T12:20:04.612Z",
-  "catalogueGeneratedAt": "2026-11-06T12:20:01.155Z",
+  "updatedAt": "2026-11-06T12:27:13.737Z",
+  "catalogueGeneratedAt": "2026-11-06T12:23:29.173Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 566,
     "screened_no_change": 78,
     "needs_source": 8,
-    "targeted_correction_complete": 314,
+    "targeted_correction_complete": 317,
     "preserve_prior_review": 98,
-    "pending": 65,
-    "prepared_awaiting_publication": 3
+    "pending": 65
   },
   "items": [
     {
@@ -6196,12 +6195,13 @@
       "url": "https://rankingdacompra.com.br/produto/sIeDtT4BuRsDRnKrSUMR-20260810-1.html",
       "title": "NIVEA SUN Toque Seco Antissinais FPS 70 — 40 mL",
       "fingerprint": "70236286a872c7e1339e515d4fe4cbebeaf13003fe7e48a5475af7abdf13edcf",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:27:13.694Z",
       "workNotes": [
         "Retira promessa absoluta do título e não presume ausência de resistência ao suor.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB20741622",
@@ -7107,12 +7107,13 @@
       "url": "https://rankingdacompra.com.br/produto/SJ6VQZLSc4brIArHnkRW-20260810-1.html",
       "title": "Piscina inflável de 2,92 m — quatro câmaras anunciadas",
       "fingerprint": "7851679c85c24f44bdfb2debe27ed795cf38c5b0857c3d38810fe452336cee1e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:27:13.694Z",
       "workNotes": [
         "Retira a garantia de bomba inclusa e qualifica capacidade anunciada.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5282336005?wid=MLB5298257521"
@@ -9921,12 +9922,13 @@
       "url": "https://rankingdacompra.com.br/produto/sfV5mG9A2qmqdyJhbQc0-20260810-1.html",
       "title": "WAP Robô W200 Aspirador Robô 3 em 1 Varre Aspira Passa Pano Bivolt",
       "fingerprint": "f8740aea7d15d173443fb919a5faac72dd30b01722091de4afd0923822ce916c",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:27:13.694Z",
       "workNotes": [
         "Substitui impressão subjetiva de navegação por limitações documentadas.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB64970204?wid=MLB7159098736",
@@ -14733,12 +14735,36 @@
     ]
   },
   "triage135": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "SJ6VQZLSc4brIArHnkRW",
       "sIeDtT4BuRsDRnKrSUMR",
       "sfV5mG9A2qmqdyJhbQc0"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T12:27:13.694Z",
+    "changedIds": [
+      "sfV5mG9A2qmqdyJhbQc0",
+      "sIeDtT4BuRsDRnKrSUMR",
+      "SJ6VQZLSc4brIArHnkRW"
+    ],
+    "jointReleaseBatches": [
+      135
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem135.json",
+    "remainingDependencies": [
+      {
+        "id": "sfV5mG9A2qmqdyJhbQc0",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "sIeDtT4BuRsDRnKrSUMR",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "SJ6VQZLSc4brIArHnkRW",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   }
 }
