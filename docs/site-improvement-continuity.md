@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 133 — 06/11/2026, publicada e verificada
+
+- mlMLB3868708109 — Twibi Force AX: velocidade sem contexto substituída por especificações documentadas; título mantém a ficha no comparador.
+- rL4T2UGKrNxcJGZoJVpX — Densifique: divergência 200 mL na marca e 200 g no endereço do anúncio explicitada.
+- sCCEJZohlc5e7c4yVrl4 — Vitrex: medidas, material da base e vedação não apresentados como comprovados.
+
+Fonte 51759ca41, geração 304708e8f, sitemap 42210174439 e Pages 42210241250 concluídos. Três fichas HTTP 200, 1.565 testes, seis verificações estáticas móveis e invariantes aprovados. 563 fichas editoriais inalteradas, 566 IDs e 619 URLs preservados. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem133.json.
+
+Retomar por scKXtqgNmOYETwmXi4EP (Ventisol Clin16), sEmIjHvnB3y4J7UZWBe2 (lanterna tática) e SEqRg2PsdNDdUJEB4T3W (lavadora portátil). 71 pendentes e 8 dependentes de fonte.
+
 ## Passagem 132 — 06/11/2026, publicada e verificada no site
 
 - RiCj7wC1QDBSMgPUQWD1 — Davely: distingue rotação do motor, velocidade do jato e alimentação.
