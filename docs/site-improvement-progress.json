@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "SnMMDq9bDXiMWX0IXYdO",
-      "SUBPibuHNUsgB6zVTL5r",
-      "SwJrTICSHQ1hJE2aIYz1",
       "tb7c733uByymDrSRjT5f",
       "TEq7tHMr54vb5Gx3KqXy",
       "TJk9BUtlZ9v02ETWQRuG",
       "TLWfr8q21DK8xDKMh01u",
-      "tQpEIHL2QaiZ7xOWZ6py"
+      "tQpEIHL2QaiZ7xOWZ6py",
+      "tqUaLEFDAafDWemxheMX",
+      "tXFA7nfMsVTOUweO3Twi",
+      "u2nLyf1iUS18JLn3P9d5"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T12:32:30.024Z",
-  "catalogueGeneratedAt": "2026-11-06T12:32:25.671Z",
+  "updatedAt": "2026-11-06T12:37:00.715Z",
+  "catalogueGeneratedAt": "2026-11-06T12:34:25.941Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 566,
     "screened_no_change": 78,
     "needs_source": 8,
-    "targeted_correction_complete": 317,
+    "targeted_correction_complete": 320,
     "preserve_prior_review": 98,
-    "pending": 62,
-    "prepared_awaiting_publication": 3
+    "pending": 62
   },
   "items": [
     {
@@ -5514,12 +5513,13 @@
       "url": "https://rankingdacompra.com.br/produto/SnMMDq9bDXiMWX0IXYdO-20260810-1.html",
       "title": "Liquidificador Turbo Power Mondial 550W - L-99 FB — anúncio MLB1793491599",
       "fingerprint": "b011625bfe5dcb0f426b19e9563da83d78b223e60022861031a8876a6e39e952",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:37:00.658Z",
       "workNotes": [
         "Distingue capacidade total do limite de preparo e retira alegação de BPA sem comprovação.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB15578948?wid=MLB1793491599",
@@ -9565,12 +9565,13 @@
       "url": "https://rankingdacompra.com.br/produto/SwJrTICSHQ1hJE2aIYz1-20260810-1.html",
       "title": "Torneira Gourmet Para Cozinha 2 Jatos Bica Móvel Parede Preta Flexível Jato Cone",
       "fingerprint": "d2e44645a7837f20331095594e54607e8b6cfa5649dd85cdede78868be274173",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:37:00.658Z",
       "workNotes": [
         "Retira a promessa de cobrir toda a cuba e explicita medidas e materiais não confirmados.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB67717824"
@@ -9958,12 +9959,13 @@
       "url": "https://rankingdacompra.com.br/produto/SUBPibuHNUsgB6zVTL5r-20260810-1.html",
       "title": "Webcam GoodVision — 1080p, USB 2.0 e microfone anunciados",
       "fingerprint": "1787e30fb451810aada7acc53f23e5b6ae573c885077b612fe50909f6b1fc934",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:37:00.658Z",
       "workNotes": [
         "Não interpreta 360 graus como campo de visão nem garante compatibilidade com aplicativos.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB46220824?wid=MLB3982225645"
@@ -14791,12 +14793,36 @@
     ]
   },
   "triage136": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "SUBPibuHNUsgB6zVTL5r",
       "SnMMDq9bDXiMWX0IXYdO",
       "SwJrTICSHQ1hJE2aIYz1"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T12:37:00.658Z",
+    "changedIds": [
+      "SnMMDq9bDXiMWX0IXYdO",
+      "SUBPibuHNUsgB6zVTL5r",
+      "SwJrTICSHQ1hJE2aIYz1"
+    ],
+    "jointReleaseBatches": [
+      136
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem136.json",
+    "remainingDependencies": [
+      {
+        "id": "SnMMDq9bDXiMWX0IXYdO",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "SUBPibuHNUsgB6zVTL5r",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "SwJrTICSHQ1hJE2aIYz1",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   }
 }

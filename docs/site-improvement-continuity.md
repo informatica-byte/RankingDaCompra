@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 136 — 06/11/2026, publicada e verificada no site
+
+- SnMMDq9bDXiMWX0IXYdO — Mondial L-99 FB, anúncio MLB1793491599: capacidade total e limite de preparo separados; não presume BPA, tensão ou acessórios.
+- SUBPibuHNUsgB6zVTL5r — GoodVision: mantém 1080p, USB 2.0 e microfone como anunciados; não presume tipo de zoom, sentido de 360 graus ou compatibilidade.
+- SwJrTICSHQ1hJE2aIYz1 — Torneira gourmet: cobertura da cuba, materiais por peça e medidas não apresentados como confirmados.
+
+Fonte 0efee201d, geração e2cf96f99; sitemap 42218662624, integridade 42218662569 e implantação 42218742325. Três fichas HTTP 200, 1.565 testes e seis verificações estáticas móveis; 563 outras fichas, 566 IDs e 619 URLs preservados. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem136.json.
+
+Retomar por tb7c733uByymDrSRjT5f (iPhone 17 Pro Max prateado), TEq7tHMr54vb5Gx3KqXy (Whey Growth leite em pó) e TJk9BUtlZ9v02ETWQRuG (loção CeraVe 473 mL). Restam 62 pendentes e 8 dependentes de fonte.
+
 ## Passagem 135 — 06/11/2026, publicada e verificada
 
 - sfV5mG9A2qmqdyJhbQc0 — WAP W200: limitações de mapeamento e aplicativo documentadas pela fabricante.
