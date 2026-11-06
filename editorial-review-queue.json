@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T19:31:24.063Z",
+  "generatedAt": "2026-11-06T19:41:40.751Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 34
+    "screening": 31
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "vr2uogxbiKqrQx1MYdD9",
-      "title": "Smartphone Motorola Moto g35 5G - 128GB 12GB (4GB RAM+8GB Ram Boost) e Camera 50MP com AI NFC Tela 6.7\" com Superbrilho - Verde - Vegan Leather",
-      "url": "https://rankingdacompra.com.br/produto/vr2uogxbiKqrQx1MYdD9-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "VyYiww5HVcBRIH8SD5SD",
-      "title": "Patinete Elétrico V01premium 500w7.8a Amortecedor Hidráulico",
-      "url": "https://rankingdacompra.com.br/produto/VyYiww5HVcBRIH8SD5SD-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "W2fwS2jLu4yjKnRTww98",
-      "title": "Kit Com 10 Cuecas Boxer Masculina Microfibra Original",
-      "url": "https://rankingdacompra.com.br/produto/W2fwS2jLu4yjKnRTww98-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

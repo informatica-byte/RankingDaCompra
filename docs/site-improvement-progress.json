@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "voyycquYPRJSv4TtyT29",
-      "vP33ptkgz0hzzvmaqx1a",
       "vr2uogxbiKqrQx1MYdD9",
       "VyYiww5HVcBRIH8SD5SD",
       "W2fwS2jLu4yjKnRTww98",
       "wAsxhijcNyAq9AblyLkN",
       "wiLibtvJlFYtSbDWLtcv",
-      "WjjOZFdWS3sKRCoFAH7r"
+      "WjjOZFdWS3sKRCoFAH7r",
+      "WO8eJVPACXCORVzrdNVh",
+      "wYxgVNIJeeWmGhcToFLP"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T19:29:43.156Z",
-  "catalogueGeneratedAt": "2026-11-06T19:29:40.268Z",
+  "updatedAt": "2026-11-06T19:41:43.188Z",
+  "catalogueGeneratedAt": "2026-11-06T19:41:40.751Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,10 @@
     "total": 567,
     "screened_no_change": 80,
     "needs_source": 8,
-    "targeted_correction_complete": 345,
+    "targeted_correction_complete": 347,
     "preserve_prior_review": 98,
-    "pending": 34,
-    "prepared_awaiting_publication": 2
+    "pending": 31,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -3342,12 +3342,13 @@
       "url": "https://rankingdacompra.com.br/produto/voyycquYPRJSv4TtyT29-20260810-1.html",
       "title": "Espelho orgânico Capela com LED — 44 × 64 cm anunciados",
       "fingerprint": "3f075857b3f4caec4d1f3140259ad02eef87bb9cf7f5ca1a0ce8c0d9434f4b8a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T19:40:12.823Z",
       "workNotes": [
         "Não garante bivolt, fixação inclusa ou adequação a áreas úmidas.",
-        "Dados da oferta, sem teste independente da unidade."
+        "Dados da oferta, sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB61965929?wid=MLB4296595075"
@@ -4691,17 +4692,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "W2fwS2jLu4yjKnRTww98",
-      "url": "https://rankingdacompra.com.br/produto/W2fwS2jLu4yjKnRTww98-20260810-1.html",
-      "title": "Kit Com 10 Cuecas Boxer Masculina Microfibra Original",
-      "fingerprint": "86852f77c1ac6e4879ccbe9af9d5eeafb48afc341833ace5ad725a641ed2ddf2",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "Pcye5MBHzWVlBIhtSnXX",
       "url": "https://rankingdacompra.com.br/produto/Pcye5MBHzWVlBIhtSnXX-20260810-1.html",
       "title": "Kit com 10 potes de vidro — 640 mL anunciados por unidade",
@@ -4923,6 +4913,24 @@
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3700781669?wid=MLB6118982036"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "W2fwS2jLu4yjKnRTww98",
+      "url": "https://rankingdacompra.com.br/produto/W2fwS2jLu4yjKnRTww98-20260810-1.html",
+      "title": "Kit Espartanos — 10 cuecas boxer de microfibra anunciadas",
+      "fingerprint": "65e12fe1d97696c2864e89d932ae107374d84519fb5633f0fabd3c22342613b6",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Corrige a identificação do anúncio e retira garantia de originalidade.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-1837525408-kit-com-10-cuecas-boxer-masculina-microfibra-original-_JM?searchVariation=79992653328"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -5443,12 +5451,13 @@
       "url": "https://rankingdacompra.com.br/produto/vP33ptkgz0hzzvmaqx1a-20260810-1.html",
       "title": "Lavadora Kärcher Prática Black — 127 V anunciados",
       "fingerprint": "afd43757b37307c66538f15185291d7ec9fdf79e789865f8ce9085f61f00f0af",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T19:40:12.823Z",
       "workNotes": [
         "Retira promessa de economia de água e certificação não verificada.",
-        "Dados da oferta, sem teste independente da unidade."
+        "Dados da oferta, sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB47945119"
@@ -6095,6 +6104,25 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "vr2uogxbiKqrQx1MYdD9",
+      "url": "https://rankingdacompra.com.br/produto/vr2uogxbiKqrQx1MYdD9-20260810-1.html",
+      "title": "Motorola Moto G35 5G verde — 128 GB e 4 GB de RAM",
+      "fingerprint": "1fc4015c3238d2eb1d73cd5218d6ff4e1957226ae298e62319255689ddce616f",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Esclarece RAM física versus expansão virtual para a versão verde.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB41541670",
+        "https://www.motorola.com.br/smartphone-moto-g35-5g-128gb/p?idsku=1612"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "mlMLB6553684470",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6553684470-20260810-1.html",
       "title": "Mouse Gamer Mmo Com Fio 18 Botões Programáveis 24000 Dpi Rgb",
@@ -6735,13 +6763,20 @@
     {
       "id": "VyYiww5HVcBRIH8SD5SD",
       "url": "https://rankingdacompra.com.br/produto/VyYiww5HVcBRIH8SD5SD-20260810-1.html",
-      "title": "Patinete Elétrico V01premium 500w7.8a Amortecedor Hidráulico",
-      "fingerprint": "53dca7e410d0a12753ec33163201f9b4277f352aa726593b0c3324480e90a68f",
-      "status": "pending",
+      "title": "Patinete elétrico V01 Premium — 500 W anunciados",
+      "fingerprint": "578485ed5968c8085b8eb0fd2ea27b8ed78a41e7c10a2a52c5b62493f9ecc54b",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira impressões de desempenho e não confunde A com Ah.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3875404643?wid=MLB6563286992"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "6kC1jJj7i4kRtYyp3SZr",
@@ -8468,17 +8503,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "vr2uogxbiKqrQx1MYdD9",
-      "url": "https://rankingdacompra.com.br/produto/vr2uogxbiKqrQx1MYdD9-20260810-1.html",
-      "title": "Smartphone Motorola Moto g35 5G - 128GB 12GB (4GB RAM+8GB Ram Boost) e Camera 50MP com AI NFC Tela 6.7\" com Superbrilho - Verde - Vegan Leather",
-      "fingerprint": "b4ad641b0223e26205eadaad7897131b5466fc9a3947e4f28085d62880aad477",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "YXqPx6O5Gl3YRR4I8w9a",
@@ -15371,10 +15395,38 @@
     ]
   },
   "triage146": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "vP33ptkgz0hzzvmaqx1a",
       "voyycquYPRJSv4TtyT29"
+    ],
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T19:40:12.823Z",
+    "changedIds": [
+      "voyycquYPRJSv4TtyT29",
+      "vP33ptkgz0hzzvmaqx1a"
+    ],
+    "jointReleaseBatches": [
+      146
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem146.json",
+    "remainingDependencies": [
+      {
+        "id": "voyycquYPRJSv4TtyT29",
+        "note": "Dados da oferta, sem teste independente da unidade."
+      },
+      {
+        "id": "vP33ptkgz0hzzvmaqx1a",
+        "note": "Dados da oferta, sem teste independente da unidade."
+      }
+    ]
+  },
+  "triage147": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "VyYiww5HVcBRIH8SD5SD",
+      "W2fwS2jLu4yjKnRTww98",
+      "vr2uogxbiKqrQx1MYdD9"
     ],
     "newDeepReviews": 0
   }
