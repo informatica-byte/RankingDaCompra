@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "uc5ynLQTGAPKkIMIyzQ2",
-      "UCDnByA5YaWN9eiyA5IM",
-      "Uh8jBpd9D8uEtK4Q3X43",
       "UqO48Rj9I0f8SpOqabpv",
       "uRfZSbUKT8yjArcSlGPL",
       "UTXc1AEUdk18yttkAXMb",
       "uvlx1EGGFowAjO3EBgrw",
-      "uVSddfqWEhUv6l94yiMK"
+      "uVSddfqWEhUv6l94yiMK",
+      "UwYGeOO2ABtDN07iR9ch",
+      "V7bn4LXC1XY8jMepUGEp",
+      "vdgdhBrdL4pb4rL1YK0x"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T16:28:18.001Z",
-  "catalogueGeneratedAt": "2026-11-06T16:28:15.432Z",
+  "updatedAt": "2026-11-06T17:37:16.405Z",
+  "catalogueGeneratedAt": "2026-11-06T16:30:09.124Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,9 +705,8 @@
     "total": 566,
     "screened_no_change": 80,
     "needs_source": 8,
-    "targeted_correction_complete": 328,
+    "targeted_correction_complete": 330,
     "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 2,
     "pending": 50
   },
   "items": [
@@ -1856,12 +1855,13 @@
       "url": "https://rankingdacompra.com.br/produto/UCDnByA5YaWN9eiyA5IM-20260810-1.html",
       "title": "Cama elástica infantil com rede — tamanho a confirmar",
       "fingerprint": "c827f7ea50e8d1a3e47ba04c2854c7dd6570e84511909a425b2fd3d70917a1ab",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T17:37:16.362Z",
       "workNotes": [
         "Sinaliza que o endereço menciona 3 m e 1,55 m e não confirma a variante.",
-        "Dimensão da unidade não verificada."
+        "Dimensão da unidade não verificada.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU1092743446?wid=MLB1025840915"
@@ -9960,12 +9960,13 @@
       "url": "https://rankingdacompra.com.br/produto/Uh8jBpd9D8uEtK4Q3X43-20260810-1.html",
       "title": "Vitamina D3 + K2 (MK-7) — 60 cápsulas anunciadas",
       "fingerprint": "1cec4f7ce6c683b1ce3f8642e9d2c55ef3825d7c6a34bb79f339526c8bfeedc3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T17:37:16.362Z",
       "workNotes": [
         "Retira superlativos e não presume os teores por cápsula ou porção.",
-        "Rótulo da unidade não confirmado."
+        "Rótulo da unidade não confirmado.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB62162205?wid=MLB4307126823"
@@ -15017,11 +15018,34 @@
     ]
   },
   "triage140": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "UCDnByA5YaWN9eiyA5IM",
       "Uh8jBpd9D8uEtK4Q3X43"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T17:37:16.362Z",
+    "changedIds": [
+      "UCDnByA5YaWN9eiyA5IM",
+      "Uh8jBpd9D8uEtK4Q3X43"
+    ],
+    "jointReleaseBatches": [
+      140
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem140.json",
+    "remainingDependencies": [
+      {
+        "id": "uc5ynLQTGAPKkIMIyzQ2",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "UCDnByA5YaWN9eiyA5IM",
+        "note": "Dimensão da unidade não verificada."
+      },
+      {
+        "id": "Uh8jBpd9D8uEtK4Q3X43",
+        "note": "Rótulo da unidade não confirmado."
+      }
+    ]
   }
 }
