@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "uvlx1EGGFowAjO3EBgrw",
-      "uVSddfqWEhUv6l94yiMK",
-      "UwYGeOO2ABtDN07iR9ch",
+      "mlMLB4962090958",
       "V7bn4LXC1XY8jMepUGEp",
       "vdgdhBrdL4pb4rL1YK0x",
       "vfoOrRV7xpu2EgJ8aIUy",
       "VgdT8EtzIO0zWeDyEz7E",
-      "Vgm0UKQmBdAvSbO683Yj"
+      "Vgm0UKQmBdAvSbO683Yj",
+      "VIm8Tf6PT9I5VlI8BdRa",
+      "visu8XqPlr740f0W0So0"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T18:27:35.617Z",
-  "catalogueGeneratedAt": "2026-11-06T18:27:32.580Z",
+  "updatedAt": "2026-11-06T18:30:46.213Z",
+  "catalogueGeneratedAt": "2026-11-06T18:29:40.404Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 567,
     "screened_no_change": 80,
     "needs_source": 8,
-    "targeted_correction_complete": 333,
+    "targeted_correction_complete": 336,
     "preserve_prior_review": 98,
-    "pending": 45,
-    "prepared_awaiting_publication": 3
+    "pending": 45
   },
   "items": [
     {
@@ -2640,12 +2639,13 @@
       "url": "https://rankingdacompra.com.br/produto/uvlx1EGGFowAjO3EBgrw-20260810-1.html",
       "title": "Churrasqueira Portátil Camping Praia Compacta Galvanizada",
       "fingerprint": "a19e41c495759c92a03d8747a15cfae1c8941957b01a9df8c121573ee5e2f094",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T18:30:46.175Z",
       "workNotes": [
         "Sinaliza medidas ambíguas e não confirma prazo de garantia.",
-        "Dados da oferta, sem teste independente."
+        "Dados da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5442255551?wid=MLB7791362962"
@@ -7378,12 +7378,13 @@
       "url": "https://rankingdacompra.com.br/produto/UwYGeOO2ABtDN07iR9ch-20260810-1.html",
       "title": "Power bank DTimp — 20.000 mAh anunciados",
       "fingerprint": "6548c2b685076495c990ded4e435a5775d7296a7d6b176610b26bdc4b381263e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T18:30:46.175Z",
       "workNotes": [
         "Expõe divergência de potência e retira compatibilidade universal.",
-        "Dados da oferta, sem teste independente."
+        "Dados da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB54026101?wid=MLB4169895537"
@@ -7474,12 +7475,13 @@
       "url": "https://rankingdacompra.com.br/produto/uVSddfqWEhUv6l94yiMK-20260810-1.html",
       "title": "Principia Kit Trio Limpeza Facial Personalizada",
       "fingerprint": "ecff783f8d09a7b4ca9575c3f812e9951f81ef288bf6599408796a6a76271af7",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T18:30:46.175Z",
       "workNotes": [
         "Distingue fórmulas de composição do kit e retira garantia de tolerância.",
-        "Dados da oferta, sem teste independente."
+        "Dados da oferta, sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB74862155?wid=MLB4839435111"
@@ -15140,12 +15142,36 @@
     ]
   },
   "triage142": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "UwYGeOO2ABtDN07iR9ch",
       "uVSddfqWEhUv6l94yiMK",
       "uvlx1EGGFowAjO3EBgrw"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T18:30:46.175Z",
+    "changedIds": [
+      "uvlx1EGGFowAjO3EBgrw",
+      "uVSddfqWEhUv6l94yiMK",
+      "UwYGeOO2ABtDN07iR9ch"
+    ],
+    "jointReleaseBatches": [
+      142
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem142.json",
+    "remainingDependencies": [
+      {
+        "id": "uvlx1EGGFowAjO3EBgrw",
+        "note": "Dados da oferta, sem teste independente."
+      },
+      {
+        "id": "uVSddfqWEhUv6l94yiMK",
+        "note": "Dados da oferta, sem teste independente."
+      },
+      {
+        "id": "UwYGeOO2ABtDN07iR9ch",
+        "note": "Dados da oferta, sem teste independente."
+      }
+    ]
   }
 }

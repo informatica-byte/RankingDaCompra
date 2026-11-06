@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 142 — 06/11/2026, publicada e verificada
+
+- uvlx1EGGFowAjO3EBgrw — churrasqueira: medidas ambíguas e garantia não confirmada.
+- uVSddfqWEhUv6l94yiMK — Principia: fórmulas distintas, conteúdo do kit e volume a confirmar.
+- UwYGeOO2ABtDN07iR9ch — DTimp: 20 W versus 22,5 W na oferta; sem promessa de compatibilidade universal.
+
+Fonte db7f25521, geração 7c92d690d; sitemap 42271148332, integridade 42271148560, Pages 42271234406. Três fichas HTTP 200 com afiliados preservados; 1.574 testes, seis verificações móveis e invariantes aprovados. 564 fichas inalteradas, 567 IDs e 620 URLs preservados. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem142.json.
+
+Reparo da lavadora confirmado: sitemap público igual ao gerado em 9c66c5b13, implantação posterior 42269843375 concluída. Retomar por mlMLB4962090958 (Nike Air Max Alpha Trainer 6, novo), V7bn4LXC1XY8jMepUGEp (Bitzee Sunny), vdgdhBrdL4pb4rL1YK0x (Electrolux KE4GR) e vfoOrRV7xpu2EgJ8aIUy (Galaxy S25 FE). 45 pendentes e 8 dependentes de fonte.
+
 ## Reparo da publicação da lavadora portátil — 06/11/2026
 
 Execução manual 42266336947 bloqueada por duas páginas do mesmo anúncio. Cópia de 01/11: SEqRg2PsdNDdUJEB4T3W e YQ2jG9GgNpoRO7ocIocJ têm mesmo título de origem, anúncio MLB3621404839, catálogo MLBU605239077, referência da foto e afiliado; sem seletor de variante divergente. Regra restrita a esses IDs e títulos aceitos. Principal SEqRg2PsdNDdUJEB4T3W, URL antiga YQ2jG9GgNpoRO7ocIocJ preservada como encaminhamento noindex; sem fusão, exclusão ou gravação de cadastros.
