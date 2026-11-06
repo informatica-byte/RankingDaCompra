@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "mlMLB4962090958",
-      "V7bn4LXC1XY8jMepUGEp",
-      "vdgdhBrdL4pb4rL1YK0x",
       "vfoOrRV7xpu2EgJ8aIUy",
       "VgdT8EtzIO0zWeDyEz7E",
       "Vgm0UKQmBdAvSbO683Yj",
       "VIm8Tf6PT9I5VlI8BdRa",
-      "visu8XqPlr740f0W0So0"
+      "visu8XqPlr740f0W0So0",
+      "VJ0UNCYoJYS4gSEKpZKQ",
+      "voyycquYPRJSv4TtyT29",
+      "vP33ptkgz0hzzvmaqx1a"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T18:33:11.145Z",
-  "catalogueGeneratedAt": "2026-11-06T18:33:08.428Z",
+  "updatedAt": "2026-11-06T18:36:02.233Z",
+  "catalogueGeneratedAt": "2026-11-06T18:34:48.007Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 567,
     "screened_no_change": 80,
     "needs_source": 8,
-    "targeted_correction_complete": 336,
+    "targeted_correction_complete": 339,
     "preserve_prior_review": 98,
-    "pending": 42,
-    "prepared_awaiting_publication": 3
+    "pending": 42
   },
   "items": [
     {
@@ -3043,12 +3042,13 @@
       "url": "https://rankingdacompra.com.br/produto/vdgdhBrdL4pb4rL1YK0x-20260810-1.html",
       "title": "Cooktop Electrolux KE4GR a gás — quatro bocas",
       "fingerprint": "167146f190d4508f87e54e74bbc32082ba1e228be50ef5adcc6470f917ab931a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T18:36:02.202Z",
       "workNotes": [
         "Distingue alimentação elétrica de gás e dimensões externas de recorte.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB50661985?wid=MLB4190456415",
@@ -3286,12 +3286,13 @@
       "url": "https://rankingdacompra.com.br/produto/V7bn4LXC1XY8jMepUGEp-20260810-1.html",
       "title": "Disney Pet Virtual Interativo Bitzee Sunny 3816",
       "fingerprint": "fc0bd0e08cf6630ac5aa36d56f4ade29e2b1a417dd862840a6efb74c57b9dc4f",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T18:36:02.202Z",
       "workNotes": [
         "Retira nota e condições comerciais sem respaldo; pilhas a confirmar.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB37863727?wid=MLB5100889784",
@@ -9423,12 +9424,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4962090958-20260810-1.html",
       "title": "Tênis Nike Air Max Alpha Trainer 6 Masculino",
       "fingerprint": "ecc5017dc4ac83e2c79886b678762a635e235dbbaf4d7cda0c197e5549e9e491",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T18:36:02.202Z",
       "workNotes": [
         "Corrige código do anúncio e documenta finalidade do modelo.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-4962090958-tnis-nike-air-max-alpha-trainer-6-masculino-_JM",
@@ -15200,12 +15202,36 @@
     ]
   },
   "triage143": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "V7bn4LXC1XY8jMepUGEp",
       "mlMLB4962090958",
       "vdgdhBrdL4pb4rL1YK0x"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T18:36:02.202Z",
+    "changedIds": [
+      "mlMLB4962090958",
+      "V7bn4LXC1XY8jMepUGEp",
+      "vdgdhBrdL4pb4rL1YK0x"
+    ],
+    "jointReleaseBatches": [
+      143
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem143.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4962090958",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "V7bn4LXC1XY8jMepUGEp",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "vdgdhBrdL4pb4rL1YK0x",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   }
 }

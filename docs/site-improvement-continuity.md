@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 143 — 06/11/2026, publicada e verificada
+
+- mlMLB4962090958 — Nike Alpha Trainer 6: cadastro público mais recente identificado, corrigido primeiro; finalidade de treino e código do anúncio.
+- V7bn4LXC1XY8jMepUGEp — Bitzee Sunny: características da marca; sem nota sem fonte ou garantia de pilhas e condições comerciais.
+- vdgdhBrdL4pb4rL1YK0x — Electrolux KE4GR: bivolt se refere ao acendimento; conversão de gás e recorte exigem instruções do modelo.
+
+Fonte 5701cdecb, geração 73001ffba, implantação 42272029562. Três fichas HTTP 200, testes e verificações estáticas móveis aprovados; 564 outras fichas, 567 IDs e 620 URLs preservados. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem143.json.
+
+Prioridade nas retomadas: novos produtos públicos ainda não revisados; depois a ordem de visualizações registrada. Próximos: vfoOrRV7xpu2EgJ8aIUy (Galaxy S25 FE), VgdT8EtzIO0zWeDyEz7E (Dellamed Umi Pop Health) e Vgm0UKQmBdAvSbO683Yj (carrinho organizador). Restam 42 pendentes e 8 dependentes de fonte.
+
 ## Passagem 142 — 06/11/2026, publicada e verificada
 
 - uvlx1EGGFowAjO3EBgrw — churrasqueira: medidas ambíguas e garantia não confirmada.
