@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T18:36:02.233Z",
-  "catalogueGeneratedAt": "2026-11-06T18:34:48.007Z",
+  "updatedAt": "2026-11-06T19:15:10.296Z",
+  "catalogueGeneratedAt": "2026-11-06T19:15:08.373Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 339,
     "preserve_prior_review": 98,
-    "pending": 42
+    "pending": 39,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2448,13 +2449,20 @@
     {
       "id": "Vgm0UKQmBdAvSbO683Yj",
       "url": "https://rankingdacompra.com.br/produto/Vgm0UKQmBdAvSbO683Yj-20260810-1.html",
-      "title": "Carrinho Rodinhas Organizador Multiuso Acrílico 3 Andares",
-      "fingerprint": "f1b50847125406cedcd7b9047866415b99258b800ab2ffa146314f06161d70cb",
-      "status": "pending",
+      "title": "Carrinho organizador com rodinhas — três níveis anunciados",
+      "fingerprint": "972fad806152687a1b6fdc929735c39f14e5b0203b1b8e94626c82d484d5b06f",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige a descrição truncada e não generaliza material ou carga.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3732575466?wid=MLB4418866933"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "jGYvacocpYFsksmL0eAG",
@@ -2584,17 +2592,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "vfoOrRV7xpu2EgJ8aIUy",
-      "url": "https://rankingdacompra.com.br/produto/vfoOrRV7xpu2EgJ8aIUy-20260810-1.html",
-      "title": "Celular Samsung Galaxy S25 Fe 5g, 128gb, 8gb Ram, Câmera Tripla De 50+12+8, Tela Grande De 6.7 Azul Marinho",
-      "fingerprint": "110302df1cc5d93e892425ba44633bd7c54e40e3d041c584201b0b06a2740798",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "F8RXRAtxM4QOCg5hbFh9",
@@ -8016,6 +8013,25 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "vfoOrRV7xpu2EgJ8aIUy",
+      "url": "https://rankingdacompra.com.br/produto/vfoOrRV7xpu2EgJ8aIUy-20260810-1.html",
+      "title": "Samsung Galaxy S25 FE 5G — 128 GB, azul-marinho",
+      "fingerprint": "ff3122b68bae29463c64f1f5424fb2215395eae2b7d1ba23b5bb80a4ace59dea",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira superioridade de desempenho não testada.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB61655019?wid=MLB6064737210",
+        "https://shop.samsung.com/br/galaxy-s25-fe/p?skud=12191"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "b2ejp8pkiWYOgBAdeXto",
       "url": "https://rankingdacompra.com.br/produto/b2ejp8pkiWYOgBAdeXto-20260810-1.html",
       "title": "Samsung Galaxy S26 5G 256 GB/12 GB — preto",
@@ -9849,12 +9865,20 @@
       "id": "VgdT8EtzIO0zWeDyEz7E",
       "url": "https://rankingdacompra.com.br/produto/VgdT8EtzIO0zWeDyEz7E-20260810-1.html",
       "title": "Umidificador De Ar Ultrassônico Umi Pop Health 2,3l Dellamed Cor Branco Bivolt",
-      "fingerprint": "6b91e89e47c04642ebf7c682a978df4a1283bf6ecd2ad448ccb9054539aa3d22",
-      "status": "pending",
+      "fingerprint": "6538bebb2244b594b98680d5230aabb8521d102607476ad07c763fb97da4006d",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige a capacidade e retira ação antibacteriana não verificada.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB26908451?wid=MLB5000118226",
+        "https://www.dellamed.com.br/bem-estar/umidificadores/umidificador-de-ar-ultrassonico-pop-dellamed"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "FeYsjVKPd6nzosN6U8QB",
@@ -15233,5 +15257,14 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage144": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "VgdT8EtzIO0zWeDyEz7E",
+      "Vgm0UKQmBdAvSbO683Yj",
+      "vfoOrRV7xpu2EgJ8aIUy"
+    ],
+    "newDeepReviews": 0
   }
 }

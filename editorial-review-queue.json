@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T18:34:48.007Z",
+  "generatedAt": "2026-11-06T19:15:08.373Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 42
+    "screening": 39
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "vfoOrRV7xpu2EgJ8aIUy",
-      "title": "Celular Samsung Galaxy S25 Fe 5g, 128gb, 8gb Ram, Câmera Tripla De 50+12+8, Tela Grande De 6.7 Azul Marinho",
-      "url": "https://rankingdacompra.com.br/produto/vfoOrRV7xpu2EgJ8aIUy-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "VgdT8EtzIO0zWeDyEz7E",
-      "title": "Umidificador De Ar Ultrassônico Umi Pop Health 2,3l Dellamed Cor Branco Bivolt",
-      "url": "https://rankingdacompra.com.br/produto/VgdT8EtzIO0zWeDyEz7E-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "Vgm0UKQmBdAvSbO683Yj",
-      "title": "Carrinho Rodinhas Organizador Multiuso Acrílico 3 Andares",
-      "url": "https://rankingdacompra.com.br/produto/Vgm0UKQmBdAvSbO683Yj-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

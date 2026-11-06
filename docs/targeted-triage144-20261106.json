@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Novos produtos primeiro; depois fila de visualizações.",
+  "items": [
+    {
+      "id": "vfoOrRV7xpu2EgJ8aIUy",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira superioridade de desempenho não testada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB61655019?wid=MLB6064737210",
+        "https://shop.samsung.com/br/galaxy-s25-fe/p?skud=12191"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "VgdT8EtzIO0zWeDyEz7E",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige a capacidade e retira ação antibacteriana não verificada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB26908451?wid=MLB5000118226",
+        "https://www.dellamed.com.br/bem-estar/umidificadores/umidificador-de-ar-ultrassonico-pop-dellamed"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "Vgm0UKQmBdAvSbO683Yj",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige a descrição truncada e não generaliza material ou carga.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3732575466?wid=MLB4418866933"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}
