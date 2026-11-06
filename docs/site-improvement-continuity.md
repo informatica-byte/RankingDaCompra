@@ -1,12 +1,24 @@
 # Continuidade prioritária — Ranking da Compra
-## Passagem 146 — 06/11/2026
+## Passagem 147 — 06/11/2026, publicada e verificada
+
+Sem novos cadastros públicos desde o lote 146. Espelho e Kärcher do lote 146 confirmados no site, com afiliados preservados.
+
+- vr2uogxbiKqrQx1MYdD9 — Moto G35 verde: 4 GB de RAM física, não 12 GB; expansão virtual separada.
+- VyYiww5HVcBRIH8SD5SD — V01 Premium: potência e suspensão atribuídas à oferta; unidade de bateria e desempenho não confirmados.
+- W2fwS2jLu4yjKnRTww98 — boxer Espartanos: código do anúncio, sem garantia de autenticidade ou tecido além do anunciado.
+
+Fonte 0d70ca3dc, geração e64a706b7, implantação 42282170207. Três fichas HTTP 200, 1.574 testes, seis verificações estáticas móveis e invariantes aprovados. 564 outras fichas, 567 IDs e 620 URLs preservados. Provas em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem146.json e verificacao-publicada-triagem147.json.
+
+Depois de eventuais novos públicos, retomar por wAsxhijcNyAq9AblyLkN (WAP GTW Compact), wiLibtvJlFYtSbDWLtcv (Boaonda Adventure) e WjjOZFdWS3sKRCoFAH7r (camiseta masculina). Restam 31 pendentes e 8 aguardando fontes.
+
+## Passagem 146 — 06/11/2026, publicada e verificada
 
 Sem produtos novos desde o lote 145; retomada por visualizações.
 
 - voyycquYPRJSv4TtyT29 — espelho Capela com LED: 44 × 64 cm e luz fria anunciados; tensão, fixação e proteção contra umidade não confirmadas.
 - vP33ptkgz0hzzvmaqx1a — Kärcher Prática Black: 127 V e especificações atribuídas à oferta; sem economia de água ou certificação não confirmadas.
 
-Fonte c10e3bb44, geração 889fb75d0, implantação 42280407582. 1.574 testes, quatro verificações estáticas móveis e invariantes aprovados; 565 fichas inalteradas, 567 IDs e 620 URLs. Confirmar no site com `node scripts/verify-targeted-editorial.mjs 146 20261106`; não refazer as duas fichas.
+Fonte c10e3bb44, geração 889fb75d0, implantação 42280407582. 1.574 testes, quatro verificações estáticas móveis e invariantes aprovados; 565 fichas inalteradas, 567 IDs e 620 URLs. Duas fichas HTTP 200 confirmadas, com afiliados preservados.
 
 Depois de eventuais novos públicos, retomar por vr2uogxbiKqrQx1MYdD9 (Moto G35 verde), VyYiww5HVcBRIH8SD5SD (patinete V01premium) e W2fwS2jLu4yjKnRTww98 (kit de cuecas boxer). Restam 34 pendentes e 8 aguardando fontes, além das duas fichas até confirmação.
 
