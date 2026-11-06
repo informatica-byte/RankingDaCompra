@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T12:14:45.587Z",
+  "generatedAt": "2026-11-06T12:20:01.155Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 68
+    "screening": 65
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "sfV5mG9A2qmqdyJhbQc0",
-      "title": "WAP Robô W200 Aspirador Robô 3 em 1 Varre Aspira Passa Pano Bivolt",
-      "url": "https://rankingdacompra.com.br/produto/sfV5mG9A2qmqdyJhbQc0-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "sIeDtT4BuRsDRnKrSUMR",
-      "title": "NIVEA SUN Protetor Solar Facial Toque Seco Antissinais FPS70 40ml, Alta Proteção UVA/UVB, Controla a Oleosidade, Previne Envelhecimento, Textura Leve",
-      "url": "https://rankingdacompra.com.br/produto/sIeDtT4BuRsDRnKrSUMR-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "SJ6VQZLSc4brIArHnkRW",
-      "title": "Piscina Inflável Grande 2,92m 4 Câmaras Com Bomba Elétrica",
-      "url": "https://rankingdacompra.com.br/produto/SJ6VQZLSc4brIArHnkRW-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

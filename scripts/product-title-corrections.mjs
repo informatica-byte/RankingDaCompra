@@ -8,6 +8,8 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ["sfV5mG9A2qmqdyJhbQc0",{syncInformationalSchema:true,allowTruncatedHeading:true,expectedListing:'MLB7159098736',model:/^(?:WAP Robô W200 Aspirador Robô 3 em 1 Varre Aspira Passa Pano Bivolt)$/i,summary:"A WAP documenta que o Robot W200 varre, aspira e passa pano, tem coletor de 275 mL, retorno à base e agendamento. A autonomia divulgada é de até 1 h e 15 min. O W200 não tem mapeamento automático nem controle por aplicativo; a marca informa três modos selecionáveis pelo controle remoto. Esta ficha não mediu autonomia ou cobertura.",positiveNotes:[],negativeNotes:[],contextSourceUrl:"https://parceiros.wap.ind.br/robo-aspirador-wap-robot-w200/p",contextSourceLabel:"Ficha do fabricante",suppressRating:true}],
+  ["sIeDtT4BuRsDRnKrSUMR",{syncInformationalSchema:true,allowTruncatedHeading:true,model:/^(?:NIVEA SUN Protetor Solar Facial Toque Seco Antissinais FPS70 40ml, Alta Proteção UVA\/UVB, Controla a Oleosidade, Previne Envelhecimento, Textura Leve|NIVEA SUN Toque Seco Antissinais FPS 70 — 40 mL)$/i,correct:"NIVEA SUN Toque Seco Antissinais FPS 70 — 40 mL",summary:"A NIVEA identifica este protetor solar facial como Toque Seco Antissinais FPS 70, de 40 mL, com fórmula sem óleo. A marca orienta reaplicar após suor intenso, banho ou secagem com toalha. Essa instrução não comprova nem descarta resistência ao suor. Confira as indicações do rótulo da unidade e siga as instruções de aplicação.",positiveNotes:[],negativeNotes:[],contextSourceUrl:"https://www.nivea.com.br/produtos/nivea-sun-protetor-solar-facial-toque-seco-antissinais-fps70-40059009803970033.html",contextSourceLabel:"Ficha do fabricante",suppressRating:true}],
   ["scKXtqgNmOYETwmXi4EP",{syncInformationalSchema:true,allowTruncatedHeading:true,expectedListing:'MLB4722851223',model:/^(?:Climatizador Portátil 16 Litros 130w Ventisol Clin16 Cor Cinza)$/i,summary:"A Ventisol identifica o CLIN16 como climatizador evaporativo de 16 L e 130 W, com filtro tipo colmeia e três velocidades. A marca lista versões de 127 V e 220 V separadamente; confira a tensão da unidade anunciada. Não é ar-condicionado e esta ficha não mediu queda de temperatura nem consumo no ambiente.",positiveNotes:[],negativeNotes:[],contextSourceUrl:"https://www.ventisol.com.br/climatizador-16l-ventisol-130w-clin16",contextSourceLabel:"Ficha da Ventisol",suppressRating:true}],
   ["sEmIjHvnB3y4J7UZWBe2",{syncInformationalSchema:true,allowTruncatedHeading:true,expectedListing:'MLB4507302081',model:/^(?:Lanterna Tatica Aluminio Led Laser Canhao Luz Mais Potente Lanterna Potente Com Zoom De Longo Alcance, Lanterna Tática Militar Para Acampamento, Caminhada, Pesca Preto|Lanterna tática LED preta — zoom e cinco modos anunciados)$/i,correct:"Lanterna tática LED preta — zoom e cinco modos anunciados",summary:"A oferta descreve uma lanterna LED preta com zoom e cinco modos. O cadastro menciona 22 m e alimentação USB, mas não confirma o alcance real, a autonomia ou o tipo de conector. A menção a laser no título anterior não comprova que exista um emissor laser. Confira o modelo e o conteúdo da embalagem na oferta.",positiveNotes:[],negativeNotes:[],suppressRating:true}],
   ["SEqRg2PsdNDdUJEB4T3W",{syncInformationalSchema:true,allowTruncatedHeading:true,expectedListing:'MLB3621404839',model:/^(?:Lavadora Lava Jato Portátil Pressão 2 Baterias \+ Maleta|Lavadora portátil — duas baterias e maleta anunciadas)$/i,correct:"Lavadora portátil — duas baterias e maleta anunciadas",summary:"A oferta anuncia uma lavadora portátil com duas baterias e maleta. A ficha anterior cita 4 L/min e bivolt, mas a vazão não foi medida e a tensão de entrada do carregador não foi confirmada. Confira no anúncio quais acessórios acompanham o kit e verifique a etiqueta do carregador antes de ligá-lo.",positiveNotes:[],negativeNotes:[],suppressRating:true}],
@@ -2025,7 +2027,7 @@ const PRODUCT_CORRECTIONS = new Map([
     negativeNotes:['Autonomia real, conforto e qualidade do microfone não foram medidos. IPX4 não comprova proteção contra poeira.'], suppressRating:true,
     sourceUrl:'https://www.mi.com/global/product/redmi-buds-6-play/', sourceLabel:'Redmi Buds 6 Play: especificações e limites informados pela Xiaomi',
   }],
-  ['SJ6VQZLSc4brIArHnkRW', {model:/piscina.*infl[aá]vel/i, category:'esporte-e-lazer'}],
+  ["SJ6VQZLSc4brIArHnkRW",{syncInformationalSchema:true,allowTruncatedHeading:true,expectedListing:'MLB5298257521',model:/^(?:Piscina Inflável Grande 2,92m 4 Câmaras Com Bomba Elétrica|Piscina inflável de 2,92 m — quatro câmaras anunciadas)$/i,correct:"Piscina inflável de 2,92 m — quatro câmaras anunciadas",summary:"A oferta identifica uma piscina inflável de 2,92 m com quatro câmaras. O cadastro cita capacidade de 3.600 L, mas não esclarece o nível de enchimento usado para esse valor. O título anterior citava bomba elétrica, enquanto o endereço da oferta menciona dreno. Confirme o conteúdo do kit; a inclusão da bomba não está comprovada.",positiveNotes:[],negativeNotes:[],suppressRating:true,category:'esporte-e-lazer'}],
   ['gNcq5nSqWbfqYi1M9c23', {
     model:/apfer|lanterna/i, correct:'Lanterna LED Apfer recarregável',
     summary:'Lanterna LED Apfer identificada no cadastro. Os valores de fluxo luminoso, alcance e autonomia são alegações do anúncio, não medições da equipe. Não há comprovação de que seja a mais forte do mundo. Confirme modelo, bateria, carregador, modos e proteção contra água com o vendedor antes de comprar.',
@@ -2352,7 +2354,11 @@ for(const [id,review]of MARKETPLACE_FIELD_REVIEWS)if(review.summary) {
 function correctionFor(product) {
   const id=String(product?.id||'');
   let correction = PRODUCT_CORRECTIONS.get(id);
-  if (correction?.expectedListing && !matchesExistingOffer(product, correction.expectedListing)) return undefined;
+  // Preserve the pre-existing category-only repair, not the new offer copy.
+  const title=String(product?.titulo||'');
+  const legacyCategory=id==='SJ6VQZLSc4brIArHnkRW' && /piscina.*infl[aá]vel/i.test(title)
+    ? {category:'esporte-e-lazer'} : undefined;
+  if (correction?.expectedListing && !matchesExistingOffer(product, correction.expectedListing)) return legacyCategory;
   // Old safeguards (for example removing unsupported superlatives) still
   // apply when the exact current listing cannot be established. They do not
   // grant permission to attach this review's new seller-declared facts.
@@ -2360,7 +2366,7 @@ function correctionFor(product) {
   // Um cadastro pode ser reutilizado. Nunca aplicar a ficha do modelo anterior
   // só porque o ID continua igual; a identidade atual precisa corresponder.
   if(correction?.sourceKind==='marketplace-listing' && !documentedSpecifications(product)) return undefined;
-  return correction?.model && !correction.model.test(String(product?.titulo || "")) ? undefined : correction;
+  return correction?.model && !correction.model.test(title) ? legacyCategory : correction;
 }
 
 export function manufacturerEvidence(product) {

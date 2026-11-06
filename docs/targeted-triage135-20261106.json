@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções documentais pontuais.",
+  "items": [
+    {
+      "id": "sfV5mG9A2qmqdyJhbQc0",
+      "decision": "targeted_correction_complete",
+      "reason": "Substitui impressão subjetiva de navegação por limitações documentadas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB64970204?wid=MLB7159098736",
+        "https://parceiros.wap.ind.br/robo-aspirador-wap-robot-w200/p"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "sIeDtT4BuRsDRnKrSUMR",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessa absoluta do título e não presume ausência de resistência ao suor.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB20741622",
+        "https://www.nivea.com.br/produtos/nivea-sun-protetor-solar-facial-toque-seco-antissinais-fps70-40059009803970033.html"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "SJ6VQZLSc4brIArHnkRW",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira a garantia de bomba inclusa e qualifica capacidade anunciada.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5282336005?wid=MLB5298257521"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}

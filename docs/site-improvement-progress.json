@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T12:16:22.357Z",
-  "catalogueGeneratedAt": "2026-11-06T12:14:45.587Z",
+  "updatedAt": "2026-11-06T12:20:04.612Z",
+  "catalogueGeneratedAt": "2026-11-06T12:20:01.155Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 314,
     "preserve_prior_review": 98,
-    "pending": 68
+    "pending": 65,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -6193,13 +6194,21 @@
     {
       "id": "sIeDtT4BuRsDRnKrSUMR",
       "url": "https://rankingdacompra.com.br/produto/sIeDtT4BuRsDRnKrSUMR-20260810-1.html",
-      "title": "NIVEA SUN Protetor Solar Facial Toque Seco Antissinais FPS70 40ml, Alta Proteção UVA/UVB, Controla a Oleosidade, Previne Envelhecimento, Textura Leve",
-      "fingerprint": "42fe01fed14be1376168cdc71a9d2cbe25faae0d2468af8a5e56018dc1f45efa",
-      "status": "pending",
+      "title": "NIVEA SUN Toque Seco Antissinais FPS 70 — 40 mL",
+      "fingerprint": "70236286a872c7e1339e515d4fe4cbebeaf13003fe7e48a5475af7abdf13edcf",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira promessa absoluta do título e não presume ausência de resistência ao suor.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB20741622",
+        "https://www.nivea.com.br/produtos/nivea-sun-protetor-solar-facial-toque-seco-antissinais-fps70-40059009803970033.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "TEaC0vVXmdvp4s8QMqpn",
@@ -7094,6 +7103,24 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "SJ6VQZLSc4brIArHnkRW",
+      "url": "https://rankingdacompra.com.br/produto/SJ6VQZLSc4brIArHnkRW-20260810-1.html",
+      "title": "Piscina inflável de 2,92 m — quatro câmaras anunciadas",
+      "fingerprint": "7851679c85c24f44bdfb2debe27ed795cf38c5b0857c3d38810fe452336cee1e",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira a garantia de bomba inclusa e qualifica capacidade anunciada.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU5282336005?wid=MLB5298257521"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "hhnKX4x5l2ab7gguVoYU",
       "url": "https://rankingdacompra.com.br/produto/hhnKX4x5l2ab7gguVoYU-20260810-1.html",
       "title": "Piscina inflável de PVC — capacidade de 3.000 litros anunciada",
@@ -7111,17 +7138,6 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
-    },
-    {
-      "id": "SJ6VQZLSc4brIArHnkRW",
-      "url": "https://rankingdacompra.com.br/produto/SJ6VQZLSc4brIArHnkRW-20260810-1.html",
-      "title": "Piscina Inflável Grande 2,92m 4 Câmaras Com Bomba Elétrica",
-      "fingerprint": "866cd08cb192858111e754abe2d68a5a2aaa8d256531f9be47af81045c9876a4",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "mhz9cN2MnCkxuSW5OPlv",
@@ -9904,12 +9920,20 @@
       "id": "sfV5mG9A2qmqdyJhbQc0",
       "url": "https://rankingdacompra.com.br/produto/sfV5mG9A2qmqdyJhbQc0-20260810-1.html",
       "title": "WAP Robô W200 Aspirador Robô 3 em 1 Varre Aspira Passa Pano Bivolt",
-      "fingerprint": "47b02700c370c44fbbeba1d340672d0fa7edf7fd487d9bf85495840a48404b30",
-      "status": "pending",
+      "fingerprint": "f8740aea7d15d173443fb919a5faac72dd30b01722091de4afd0923822ce916c",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Substitui impressão subjetiva de navegação por limitações documentadas.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB64970204?wid=MLB7159098736",
+        "https://parceiros.wap.ind.br/robo-aspirador-wap-robot-w200/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "SUBPibuHNUsgB6zVTL5r",
@@ -14707,5 +14731,14 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage135": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "SJ6VQZLSc4brIArHnkRW",
+      "sIeDtT4BuRsDRnKrSUMR",
+      "sfV5mG9A2qmqdyJhbQc0"
+    ],
+    "newDeepReviews": 0
   }
 }
