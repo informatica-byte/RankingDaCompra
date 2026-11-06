@@ -1,11 +1,11 @@
 # Continuidade prioritária — Ranking da Compra
-## Passagem 141 — 06/11/2026
+## Passagem 141 — 06/11/2026, publicada e verificada
 
 - UqO48Rj9I0f8SpOqabpv — Aramis: retirado preço antigo do texto e alegação antibacteriana não verificada; variantes separadas e título preservado.
 - uRfZSbUKT8yjArcSlGPL — Moto G06: RAM física e RAM Boost diferenciadas; sem garantir desempenho da biometria.
 - UTXc1AEUdk18yttkAXMb — NAC Forged: teor por cápsula ou porção e declarações do rótulo não confirmados.
 
-Fonte 678528f3c, geração dc11baff4; sitemap 42264163198, integridade 42264163182, implantação 42264249125. 1.565 testes, seis verificações estáticas móveis e invariantes aprovados. Confirmar no site com `node scripts/verify-targeted-editorial.mjs 141 20261106`, sem refazer a revisão.
+Fonte 678528f3c, geração dc11baff4; sitemap 42264163198, integridade 42264163182, implantação 42264249125. 1.565 testes, seis verificações estáticas móveis e invariantes aprovados. Três páginas HTTP 200 verificadas; prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem141.json.
 
 Após confirmar, retomar por uvlx1EGGFowAjO3EBgrw (churrasqueira portátil), uVSddfqWEhUv6l94yiMK (kit Principia) e UwYGeOO2ABtDN07iR9ch (power bank DTimp). Restam 47 pendentes e 8 dependentes de fonte.
 
