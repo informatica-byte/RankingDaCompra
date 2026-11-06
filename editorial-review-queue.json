@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T11:25:56.371Z",
+  "generatedAt": "2026-11-06T12:12:45.687Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 71
+    "screening": 68
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "scKXtqgNmOYETwmXi4EP",
-      "title": "Climatizador Portátil 16 Litros 130w Ventisol Clin16 Cor Cinza",
-      "url": "https://rankingdacompra.com.br/produto/scKXtqgNmOYETwmXi4EP-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "sEmIjHvnB3y4J7UZWBe2",
-      "title": "Lanterna Tatica Aluminio Led Laser Canhao Luz Mais Potente Lanterna Potente Com Zoom De Longo Alcance, Lanterna Tática Militar Para Acampamento, Caminhada, Pesca Preto",
-      "url": "https://rankingdacompra.com.br/produto/sEmIjHvnB3y4J7UZWBe2-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "SEqRg2PsdNDdUJEB4T3W",
-      "title": "Lavadora Lava Jato Portátil Pressão 2 Baterias + Maleta",
-      "url": "https://rankingdacompra.com.br/produto/SEqRg2PsdNDdUJEB4T3W-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

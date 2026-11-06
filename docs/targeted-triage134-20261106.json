@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções documentais pontuais.",
+  "items": [
+    {
+      "id": "scKXtqgNmOYETwmXi4EP",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue climatizador de ar-condicionado e versões elétricas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB32974346?wid=MLB4722851223",
+        "https://www.ventisol.com.br/climatizador-16l-ventisol-130w-clin16"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "sEmIjHvnB3y4J7UZWBe2",
+      "decision": "targeted_correction_complete",
+      "reason": "Remove superlativo e separa LED de laser não comprovado.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3830361452?wid=MLB4507302081"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "SEqRg2PsdNDdUJEB4T3W",
+      "decision": "targeted_correction_complete",
+      "reason": "Não trata vazão e tensão de entrada como confirmadas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU605239077?wid=MLB3621404839"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}
