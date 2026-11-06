@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T13:10:25.199Z",
+  "generatedAt": "2026-11-06T13:15:13.691Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 56
+    "screening": 53
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "tXFA7nfMsVTOUweO3Twi",
-      "title": "Tênis Masculino Charged Skyline 5 Under Armour",
-      "url": "https://rankingdacompra.com.br/produto/tXFA7nfMsVTOUweO3Twi-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "u2nLyf1iUS18JLn3P9d5",
-      "title": "Sony PlayStation 4 PS4 Slim 500GB + 2 Controles + Jogo",
-      "url": "https://rankingdacompra.com.br/produto/u2nLyf1iUS18JLn3P9d5-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "u9P6kD78JZexijimIjHN",
-      "title": "Kit 5 Camisetas Masculinas Slim Básicas Coloridas Premium",
-      "url": "https://rankingdacompra.com.br/produto/u9P6kD78JZexijimIjHN-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

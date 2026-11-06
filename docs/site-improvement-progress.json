@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T13:12:37.098Z",
-  "catalogueGeneratedAt": "2026-11-06T13:10:25.199Z",
+  "updatedAt": "2026-11-06T13:15:16.758Z",
+  "catalogueGeneratedAt": "2026-11-06T13:15:13.691Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 325,
     "preserve_prior_review": 98,
-    "pending": 56
+    "pending": 53,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4563,17 +4564,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "u9P6kD78JZexijimIjHN",
-      "url": "https://rankingdacompra.com.br/produto/u9P6kD78JZexijimIjHN-20260810-1.html",
-      "title": "Kit 5 Camisetas Masculinas Slim Básicas Coloridas Premium",
-      "fingerprint": "f5c458cb45894164fa52576ce92dca655f33e25a77efabff4a31aa0c0f2b5084",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "FlQInLlTCwVdemK0g3rZ",
       "url": "https://rankingdacompra.com.br/produto/FlQInLlTCwVdemK0g3rZ-20260810-1.html",
       "title": "Kit 5 Potes De Vidro Marmita C/ Tampa Hermético 640ml",
@@ -5190,6 +5180,24 @@
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB37818093"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "u9P6kD78JZexijimIjHN",
+      "url": "https://rankingdacompra.com.br/produto/u9P6kD78JZexijimIjHN-20260810-1.html",
+      "title": "Kit Zaroc de cinco camisetas masculinas slim",
+      "fingerprint": "91646e523b7c56bcff8b83bce361cdf0850b08fee6d2aa5f93dbd39e13f8c069",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Corrige o tipo de código e retira o rótulo promocional premium.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-1894079521"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -7465,6 +7473,25 @@
       "sourceLinks": []
     },
     {
+      "id": "u2nLyf1iUS18JLn3P9d5",
+      "url": "https://rankingdacompra.com.br/produto/u2nLyf1iUS18JLn3P9d5-20260810-1.html",
+      "title": "PS4 Slim 500 GB — dois controles e jogo anunciados",
+      "fingerprint": "9ec03ce56692c67aaaf1db27eecb73869620394ff9a7794a51dfeb74022d4a6c",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira promessas comerciais e não garante controles originais.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3499805433?wid=MLB5826418272",
+        "https://www.playstation.com/en-gb/ps4/tech-specs/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "Kyw9WRrxRLj36DL50JfQ",
       "url": "https://rankingdacompra.com.br/produto/Kyw9WRrxRLj36DL50JfQ-20260810-1.html",
       "title": "PS5 Slim anunciado — edição e conteúdo do kit a confirmar",
@@ -8473,17 +8500,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "u2nLyf1iUS18JLn3P9d5",
-      "url": "https://rankingdacompra.com.br/produto/u2nLyf1iUS18JLn3P9d5-20260810-1.html",
-      "title": "Sony PlayStation 4 PS4 Slim 500GB + 2 Controles + Jogo",
-      "fingerprint": "0fd3d7ae6779bffd7275d7938802d9cffaeb07fb275d230aea549d61de7bebda",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "htLzwGXLZpkVa0eXWdkr",
       "url": "https://rankingdacompra.com.br/produto/htLzwGXLZpkVa0eXWdkr-20260810-1.html",
       "title": "Soprador lateral Carbon Fak FAK260S — motor 2 tempos de 26 cc",
@@ -9117,12 +9133,20 @@
       "id": "tXFA7nfMsVTOUweO3Twi",
       "url": "https://rankingdacompra.com.br/produto/tXFA7nfMsVTOUweO3Twi-20260810-1.html",
       "title": "Tênis Masculino Charged Skyline 5 Under Armour",
-      "fingerprint": "0facd6a5baefaed5e675131d5ed81827314abbf4a7d58d5734b21bb4c0c7a5f2",
-      "status": "pending",
+      "fingerprint": "1832682f24992df34dbdf7d4764ba4369de9e0a73e708aa73faf449af79cd447",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira ano e aderência não verificados.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3779617963?wid=MLB4469892307",
+        "https://www.underarmour.com.br/tenis-de-corrida-under-armour-charged-skyline-5-masculino-6014736-001/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "JWp7l6fsqNkkSsBCAosW",
@@ -14936,5 +14960,14 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage139": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "tXFA7nfMsVTOUweO3Twi",
+      "u2nLyf1iUS18JLn3P9d5",
+      "u9P6kD78JZexijimIjHN"
+    ],
+    "newDeepReviews": 0
   }
 }

@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções documentais pontuais.",
+  "items": [
+    {
+      "id": "tXFA7nfMsVTOUweO3Twi",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira ano e aderência não verificados.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3779617963?wid=MLB4469892307",
+        "https://www.underarmour.com.br/tenis-de-corrida-under-armour-charged-skyline-5-masculino-6014736-001/p"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "u2nLyf1iUS18JLn3P9d5",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira promessas comerciais e não garante controles originais.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3499805433?wid=MLB5826418272",
+        "https://www.playstation.com/en-gb/ps4/tech-specs/"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "u9P6kD78JZexijimIjHN",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige o tipo de código e retira o rótulo promocional premium.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-1894079521"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}
