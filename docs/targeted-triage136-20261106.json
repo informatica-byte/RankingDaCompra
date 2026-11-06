@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções documentais pontuais.",
+  "items": [
+    {
+      "id": "SnMMDq9bDXiMWX0IXYdO",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue capacidade total do limite de preparo e retira alegação de BPA sem comprovação.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB15578948?wid=MLB1793491599",
+        "https://manuais.emondial.com/Manual-L-99-FB.pdf"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "SUBPibuHNUsgB6zVTL5r",
+      "decision": "targeted_correction_complete",
+      "reason": "Não interpreta 360 graus como campo de visão nem garante compatibilidade com aplicativos.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB46220824?wid=MLB3982225645"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "SwJrTICSHQ1hJE2aIYz1",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira a promessa de cobrir toda a cuba e explicita medidas e materiais não confirmados.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB67717824"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}

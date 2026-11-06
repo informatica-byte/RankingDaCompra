@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T12:23:29.173Z",
+  "generatedAt": "2026-11-06T12:32:25.671Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 65
+    "screening": 62
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "SnMMDq9bDXiMWX0IXYdO",
-      "title": "Liquidificador Turbo Power Mondial 550W - L-99 FB — anúncio MLB1793491599",
-      "url": "https://rankingdacompra.com.br/produto/SnMMDq9bDXiMWX0IXYdO-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "SUBPibuHNUsgB6zVTL5r",
-      "title": "Webcam Camera Full Hd Zoom 1080p 360 Graus Videoconferencia Streamcam Web Cam Entrada Usb 2.0 Com Microfone- GoodVision",
-      "url": "https://rankingdacompra.com.br/produto/SUBPibuHNUsgB6zVTL5r-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "SwJrTICSHQ1hJE2aIYz1",
-      "title": "Torneira Gourmet Para Cozinha 2 Jatos Bica Móvel Parede Preta Flexível Jato Cone",
-      "url": "https://rankingdacompra.com.br/produto/SwJrTICSHQ1hJE2aIYz1-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

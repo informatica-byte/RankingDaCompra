@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T12:27:13.737Z",
-  "catalogueGeneratedAt": "2026-11-06T12:23:29.173Z",
+  "updatedAt": "2026-11-06T12:32:30.024Z",
+  "catalogueGeneratedAt": "2026-11-06T12:32:25.671Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 317,
     "preserve_prior_review": 98,
-    "pending": 65
+    "pending": 62,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -5512,12 +5513,20 @@
       "id": "SnMMDq9bDXiMWX0IXYdO",
       "url": "https://rankingdacompra.com.br/produto/SnMMDq9bDXiMWX0IXYdO-20260810-1.html",
       "title": "Liquidificador Turbo Power Mondial 550W - L-99 FB — anúncio MLB1793491599",
-      "fingerprint": "7c77f99e818c2888f6e50f0ef7968e8c773820c27972111c27a0acaf7bd865e4",
-      "status": "pending",
+      "fingerprint": "b011625bfe5dcb0f426b19e9563da83d78b223e60022861031a8876a6e39e952",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue capacidade total do limite de preparo e retira alegação de BPA sem comprovação.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB15578948?wid=MLB1793491599",
+        "https://manuais.emondial.com/Manual-L-99-FB.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Bf3ccSwSiVkLw1Z8k2Hu",
@@ -9555,12 +9564,19 @@
       "id": "SwJrTICSHQ1hJE2aIYz1",
       "url": "https://rankingdacompra.com.br/produto/SwJrTICSHQ1hJE2aIYz1-20260810-1.html",
       "title": "Torneira Gourmet Para Cozinha 2 Jatos Bica Móvel Parede Preta Flexível Jato Cone",
-      "fingerprint": "1c5c55447e795014db03492dd713ac8efc346a34bacf2ac147eb0df3b0f3d50a",
-      "status": "pending",
+      "fingerprint": "d2e44645a7837f20331095594e54607e8b6cfa5649dd85cdede78868be274173",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira a promessa de cobrir toda a cuba e explicita medidas e materiais não confirmados.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB67717824"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "c1R3iVzduEndTWAhxXvO",
@@ -9940,13 +9956,20 @@
     {
       "id": "SUBPibuHNUsgB6zVTL5r",
       "url": "https://rankingdacompra.com.br/produto/SUBPibuHNUsgB6zVTL5r-20260810-1.html",
-      "title": "Webcam Camera Full Hd Zoom 1080p 360 Graus Videoconferencia Streamcam Web Cam Entrada Usb 2.0 Com Microfone- GoodVision",
-      "fingerprint": "d9464e72570adde8edb96eef5705850c04537501a8248cb44643a659e4379e71",
-      "status": "pending",
+      "title": "Webcam GoodVision — 1080p, USB 2.0 e microfone anunciados",
+      "fingerprint": "1787e30fb451810aada7acc53f23e5b6ae573c885077b612fe50909f6b1fc934",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Não interpreta 360 graus como campo de visão nem garante compatibilidade com aplicativos.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB46220824?wid=MLB3982225645"
+      ],
+      "previousState": "prepared_awaiting_publication",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB6619764606",
@@ -14766,5 +14789,14 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage136": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "SUBPibuHNUsgB6zVTL5r",
+      "SnMMDq9bDXiMWX0IXYdO",
+      "SwJrTICSHQ1hJE2aIYz1"
+    ],
+    "newDeepReviews": 0
   }
 }
