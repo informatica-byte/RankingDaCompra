@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## Reparo da publicação da lavadora portátil — 06/11/2026
+
+Execução manual 42266336947 bloqueada por duas páginas do mesmo anúncio. Cópia de 01/11: SEqRg2PsdNDdUJEB4T3W e YQ2jG9GgNpoRO7ocIocJ têm mesmo título de origem, anúncio MLB3621404839, catálogo MLBU605239077, referência da foto e afiliado; sem seletor de variante divergente. Regra restrita a esses IDs e títulos aceitos. Principal SEqRg2PsdNDdUJEB4T3W, URL antiga YQ2jG9GgNpoRO7ocIocJ preservada como encaminhamento noindex; sem fusão, exclusão ou gravação de cadastros.
+
+Fonte 29f93c7df, geração 9c66c5b13, sitemap 42267487613 aprovado, implantação 42267599108. 1.574 testes locais aprovados; não houve alteração dos preços e links verificados nas entradas públicas já existentes nem dos arquivos de histórico. Aguardar confirmação de que o sitemap servido coincide com a geração; as duas rotas da lavadora já respondiam corretamente na versão anterior.
+
+Primeira implantação retornou “Deployment failed, try again later”. Solicitada uma única repetição apenas dos jobs que falharam; job de deploy 128065299032 ainda em andamento na última consulta. Sitemap público ainda era o anterior; principal e endereço antigo responderam HTTP 200 com canônico correto e afiliado preservado na ficha principal. Retomar conferindo essa implantação, sem regerar o catálogo.
+
 ## Passagem 141 — 06/11/2026, publicada e verificada
 
 - UqO48Rj9I0f8SpOqabpv — Aramis: retirado preço antigo do texto e alegação antibacteriana não verificada; variantes separadas e título preservado.
