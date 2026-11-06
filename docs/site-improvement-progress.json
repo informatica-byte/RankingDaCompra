@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "r7HSFtoP8OEdijhRMIDk",
-      "rfym6WivFVhxpwn2WF6r",
-      "RHhkWKxMXBZONt8jx4Ew",
       "RiCj7wC1QDBSMgPUQWD1",
       "rjkXSj5wDd3i4spfoHet",
       "rkEqyfJAguQZwMzfh25s",
       "rL4T2UGKrNxcJGZoJVpX",
-      "sCCEJZohlc5e7c4yVrl4"
+      "sCCEJZohlc5e7c4yVrl4",
+      "scKXtqgNmOYETwmXi4EP",
+      "sEmIjHvnB3y4J7UZWBe2",
+      "SEqRg2PsdNDdUJEB4T3W"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T10:47:17.155Z",
-  "catalogueGeneratedAt": "2026-11-06T10:47:15.001Z",
+  "updatedAt": "2026-11-06T10:50:25.611Z",
+  "catalogueGeneratedAt": "2026-11-06T10:48:59.853Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 565,
     "screened_no_change": 78,
     "needs_source": 8,
-    "targeted_correction_complete": 302,
+    "targeted_correction_complete": 305,
     "preserve_prior_review": 98,
-    "pending": 76,
-    "prepared_awaiting_publication": 3
+    "pending": 76
   },
   "items": [
     {
@@ -2369,12 +2368,13 @@
       "url": "https://rankingdacompra.com.br/produto/r7HSFtoP8OEdijhRMIDk-20260810-1.html",
       "title": "Carretilha de pesca — relação 7,2:1 anunciada",
       "fingerprint": "e365613a099efda0a1d718164d0679db5f508cb9fd3b6d18e59de7587fbcde9d",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T10:50:25.587Z",
       "workNotes": [
         "Não confunde sistema magnético com arrasto nem pressupõe o lado da manivela.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-4839780461-carretilha-molinete-pesca181-rolamentos-721-pescaria-_JM?searchVariation=197263205538"
@@ -2846,12 +2846,13 @@
       "url": "https://rankingdacompra.com.br/produto/RHhkWKxMXBZONt8jx4Ew-20260810-1.html",
       "title": "Computador BRX Core i5-6500 — 8 GB e SSD de 256 GB anunciados",
       "fingerprint": "0fe9773c069a8f9811c74b0086ebca2d2c9f58b092370e39aa9aae5a2f46c068",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T10:50:25.587Z",
       "workNotes": [
         "Esclarece que a menção a Windows não confirma edição nem licença.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB80104605?wid=MLB7777101942"
@@ -9880,12 +9881,13 @@
       "url": "https://rankingdacompra.com.br/produto/rfym6WivFVhxpwn2WF6r-20260810-1.html",
       "title": "Winleve Studio Otimizador Windows 10 E 11 Digital",
       "fingerprint": "cfa34a48305f4efa4a8db3525de4816898cdc3c9f88bb8ff079daae402d1d84c",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T10:50:25.587Z",
       "workNotes": [
         "Remove afirmação não verificada de ausência de telemetria.",
-        "Sem teste independente."
+        "Sem teste independente.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4707774752?pdp_filters=item_id%3AMLB5046495691"
@@ -14480,12 +14482,44 @@
     "backendWrites": 0
   },
   "triage131": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "RHhkWKxMXBZONt8jx4Ew",
       "r7HSFtoP8OEdijhRMIDk",
       "rfym6WivFVhxpwn2WF6r"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T10:50:25.587Z",
+    "changedIds": [
+      "r7HSFtoP8OEdijhRMIDk",
+      "rfym6WivFVhxpwn2WF6r",
+      "RHhkWKxMXBZONt8jx4Ew"
+    ],
+    "jointReleaseBatches": [
+      131
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem131.json",
+    "remainingDependencies": [
+      {
+        "id": "r7HSFtoP8OEdijhRMIDk",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "rfym6WivFVhxpwn2WF6r",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "RHhkWKxMXBZONt8jx4Ew",
+        "note": "Sem teste independente."
+      }
+    ],
+    "sourceCommit": "08cbd7e1f2f4f7f35442a6c9290951115cae024c",
+    "generatedCommit": "a65d843d71e7617eb535016e5dfcf9550208a669",
+    "sitemapRun": 42205502296,
+    "integrityRun": 42205502162,
+    "pagesRun": 42205570445,
+    "testsPassed": 1554,
+    "localMobileChecks": 6,
+    "backendWrites": 0
   }
 }

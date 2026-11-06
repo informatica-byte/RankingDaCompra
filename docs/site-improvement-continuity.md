@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 131 — 20261106, PUBLICADA E VERIFICADA
+
+- r7HSFtoP8OEdijhRMIDk: targeted_correction_complete. Não confunde sistema magnético com arrasto nem pressupõe o lado da manivela. Limite: Sem teste independente.
+- rfym6WivFVhxpwn2WF6r: targeted_correction_complete. Remove afirmação não verificada de ausência de telemetria. Limite: Sem teste independente.
+- RHhkWKxMXBZONt8jx4Ew: targeted_correction_complete. Esclarece que a menção a Windows não confirma edição nem licença. Limite: Sem teste independente.
+
+Fonte 08cbd7e1f2f4f7f35442a6c9290951115cae024c; geração a65d843d71e7617eb535016e5dfcf9550208a669; sitemap 42205502296, integridade 42205502162, Pages 42205570445: SUCCESS. 1554 testes, validate-site e invariantes aprovados. 3 fichas publicadas HTTP200; 562 entradas editoriais inalteradas. Preservados 565 IDs/afiliados/campos operacionais e 618 URLs; histórico comparado por hash durante preparação. 6 verificações estáticas 360/390 px, requests externos bloqueados: não celular físico nem teste de produto. Sem Firestore, conferência diária, exclusão, união ou preços/afiliados alterados. Prova outputs/melhorias-integrais-20261030/verificacao-publicada-triagem131.json.
+
+Totais: {"total":565,"screened_no_change":78,"needs_source":8,"targeted_correction_complete":305,"preserve_prior_review":98,"pending":76}. Próximos pendentes: RiCj7wC1QDBSMgPUQWD1 — Mini Ventilador Soprador Ar Turbo 130000rpm Assoprador Sem Fio Recarregável Usb 3 Níveis Jato Forte Portátil Multiuso Limpeza Teclado Carro Acende Churrasqueira Davely; rjkXSj5wDd3i4spfoHet — Software Rede Manutenção Windows Titanium Tech Toolkit; rkEqyfJAguQZwMzfh25s — Perfume Billion Casino Royal Paris Elysees Masculino Intense 100ml Original. Não repetir estes IDs ou as 98 análises profundas. Fila GA4 salva 01–28/10, não demanda atual comprovada. Checkpoint final local, sem push documental extra.
+
 ## Passagem 130 — 20261106, PUBLICADA E VERIFICADA
 
 - QV00w4vTmt2SwgU8xisL: targeted_correction_complete. Distingue a redução de cloro do C3 da ação bacteriológica do C7 e evita prometer ausência de gotejamento. Limite: Descrição do fabricante, sem teste da unidade.
