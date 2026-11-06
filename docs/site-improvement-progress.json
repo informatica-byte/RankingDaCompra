@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T10:45:04.090Z",
-  "catalogueGeneratedAt": "2026-11-06T10:42:53.105Z",
+  "updatedAt": "2026-11-06T10:47:17.155Z",
+  "catalogueGeneratedAt": "2026-11-06T10:47:15.001Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 302,
     "preserve_prior_review": 98,
-    "pending": 79
+    "pending": 76,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2366,13 +2367,20 @@
     {
       "id": "r7HSFtoP8OEdijhRMIDk",
       "url": "https://rankingdacompra.com.br/produto/r7HSFtoP8OEdijhRMIDk-20260810-1.html",
-      "title": "Carretilha Molinete Pesca,18+1 Rolamentos 7.2:1 Pescaria",
-      "fingerprint": "9fd1917559b263cff64a7bd7f0921186204782be609b590cb927262f5f7db516",
-      "status": "pending",
+      "title": "Carretilha de pesca — relação 7,2:1 anunciada",
+      "fingerprint": "e365613a099efda0a1d718164d0679db5f508cb9fd3b6d18e59de7587fbcde9d",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Não confunde sistema magnético com arrasto nem pressupõe o lado da manivela.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4839780461-carretilha-molinete-pesca181-rolamentos-721-pescaria-_JM?searchVariation=197263205538"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "q4XshIAfttQBQ9Bwz7uB",
@@ -2836,13 +2844,20 @@
     {
       "id": "RHhkWKxMXBZONt8jx4Ew",
       "url": "https://rankingdacompra.com.br/produto/RHhkWKxMXBZONt8jx4Ew-20260810-1.html",
-      "title": "Computador Completo 20'' BRX Intel Core i5 6ª Geração 8GB SSD 256GB Monitor LED 75Hz Windows Teclado Mouse Kit Completo Desktop Office Home Office Estudo Trabalho",
-      "fingerprint": "ce43ebb06f10a950489ccb3571238a2221443c41a88f50e4f566117719af7fc8",
-      "status": "pending",
+      "title": "Computador BRX Core i5-6500 — 8 GB e SSD de 256 GB anunciados",
+      "fingerprint": "0fe9773c069a8f9811c74b0086ebca2d2c9f58b092370e39aa9aae5a2f46c068",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Esclarece que a menção a Windows não confirma edição nem licença.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB80104605?wid=MLB7777101942"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "YdPOVmrHVJ8EO7fmgyXu",
@@ -9864,12 +9879,19 @@
       "id": "rfym6WivFVhxpwn2WF6r",
       "url": "https://rankingdacompra.com.br/produto/rfym6WivFVhxpwn2WF6r-20260810-1.html",
       "title": "Winleve Studio Otimizador Windows 10 E 11 Digital",
-      "fingerprint": "74788a969af78b8c8a0bee248c0797a8c3395d46e8723b3b8c277035fd9a9804",
-      "status": "pending",
+      "fingerprint": "cfa34a48305f4efa4a8db3525de4816898cdc3c9f88bb8ff079daae402d1d84c",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Remove afirmação não verificada de ausência de telemetria.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4707774752?pdp_filters=item_id%3AMLB5046495691"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "NQAtVQKwZQtKxXtEn21Q",
@@ -14456,5 +14478,14 @@
     "testsPassed": 1553,
     "localMobileChecks": 6,
     "backendWrites": 0
+  },
+  "triage131": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "RHhkWKxMXBZONt8jx4Ew",
+      "r7HSFtoP8OEdijhRMIDk",
+      "rfym6WivFVhxpwn2WF6r"
+    ],
+    "newDeepReviews": 0
   }
 }

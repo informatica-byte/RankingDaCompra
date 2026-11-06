@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T10:42:53.105Z",
+  "generatedAt": "2026-11-06T10:47:15.001Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 79
+    "screening": 76
   },
   "items": [
     {
@@ -55,27 +55,6 @@
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "r7HSFtoP8OEdijhRMIDk",
-      "title": "Carretilha Molinete Pesca,18+1 Rolamentos 7.2:1 Pescaria",
-      "url": "https://rankingdacompra.com.br/produto/r7HSFtoP8OEdijhRMIDk-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "rfym6WivFVhxpwn2WF6r",
-      "title": "Winleve Studio Otimizador Windows 10 E 11 Digital",
-      "url": "https://rankingdacompra.com.br/produto/rfym6WivFVhxpwn2WF6r-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "RHhkWKxMXBZONt8jx4Ew",
-      "title": "Computador Completo 20'' BRX Intel Core i5 6ª Geração 8GB SSD 256GB Monitor LED 75Hz Windows Teclado Mouse Kit Completo Desktop Office Home Office Estudo Trabalho",
-      "url": "https://rankingdacompra.com.br/produto/RHhkWKxMXBZONt8jx4Ew-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

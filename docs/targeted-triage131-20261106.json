@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções pontuais com dados locais da oferta.",
+  "items": [
+    {
+      "id": "r7HSFtoP8OEdijhRMIDk",
+      "decision": "targeted_correction_complete",
+      "reason": "Não confunde sistema magnético com arrasto nem pressupõe o lado da manivela.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4839780461-carretilha-molinete-pesca181-rolamentos-721-pescaria-_JM?searchVariation=197263205538"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "rfym6WivFVhxpwn2WF6r",
+      "decision": "targeted_correction_complete",
+      "reason": "Remove afirmação não verificada de ausência de telemetria.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4707774752?pdp_filters=item_id%3AMLB5046495691"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "RHhkWKxMXBZONt8jx4Ew",
+      "decision": "targeted_correction_complete",
+      "reason": "Esclarece que a menção a Windows não confirma edição nem licença.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB80104605?wid=MLB7777101942"
+      ],
+      "sourceLimit": "Sem teste independente."
+    }
+  ],
+  "counts": {
+    "screened": 3,
+    "targetedCorrections": 3,
+    "screenedNoChange": 0,
+    "newDeepReviews": 0
+  }
+}
