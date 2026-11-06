@@ -1,4 +1,16 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 144 — 06/11/2026
+
+Nenhuma página recém-publicada após o lote 143 no catálogo público conferido. A fila por visualizações avançou pelos três IDs abaixo, sem repetir os concluídos.
+
+- vfoOrRV7xpu2EgJ8aIUy — Galaxy S25 FE: especificações documentadas, sem superioridade não testada.
+- VgdT8EtzIO0zWeDyEz7E — Dellamed Umi Pop: 2,3 L segundo a marca; retiradas alegações antibacteriana e de ruído não comprovadas.
+- Vgm0UKQmBdAvSbO683Yj — Carrinho: três níveis e rodinhas anunciados; material, medidas e carga a confirmar.
+
+Fonte 8b48f1795, geração e1768ebf1, sitemap 42278189985 e Pages 42278272798. 1.574 testes, seis verificações estáticas móveis e invariantes de preços, IDs, afiliados e URLs aprovados. Confirmar no site com `node scripts/verify-targeted-editorial.mjs 144 20261106` antes de marcar publicado; não refazer as revisões.
+
+Retomar, após priorizar eventuais novos públicos, por VIm8Tf6PT9I5VlI8BdRa (Galaxy A17 preto), visu8XqPlr740f0W0So0 (Moto G35) e VJ0UNCYoJYS4gSEKpZKQ (Realme C75 5G). 39 pendentes e 8 dependentes de fonte, além das três preparadas até a confirmação pública.
+
 ## Passagem 143 — 06/11/2026, publicada e verificada
 
 - mlMLB4962090958 — Nike Alpha Trainer 6: cadastro público mais recente identificado, corrigido primeiro; finalidade de treino e código do anúncio.
