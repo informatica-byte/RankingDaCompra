@@ -5007,20 +5007,6 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5299235149-20260810-1.html"
     },
     {
-      "id": "mlMLB3868708109",
-      "title": "Kit Intelbras Twibi Force AX — Wi-Fi 6 Mesh, duas unidades",
-      "summary": "A oferta anuncia duas unidades brancas do Twibi Force AX. A Intelbras documenta Wi-Fi 6 em 5 GHz e porta WAN/LAN Gigabit. A velocidade de 75 MB/s citada no cadastro não representa um desempenho garantido: o resultado depende do plano, dos dispositivos, da posição dos módulos e das barreiras no ambiente.",
-      "category": "Roteador",
-      "image": "https://rankingdacompra.com.br/produto/imagens/mlMLB3868708109-local-a3347795d18465922843326fa098c0d8da35cfa3ed73c91c6ba129bc8f6a85fd.jpg",
-      "price": null,
-      "checkedAt": null,
-      "recordedPrice": null,
-      "rating": 0,
-      "ranking": 0,
-      "comparison": null,
-      "url": "https://rankingdacompra.com.br/produto/mlMLB3868708109-20260810-1.html"
-    },
-    {
       "id": "mlMLB4953439757",
       "title": "Kit Mobilador Teclado Gamer Rgb 80% Suporte Mouse Hub Cabo",
       "summary": "A oferta descreve um kit com teclado e mouse RGB, mouse pad e conexão OTG USB-C. O teclado é anunciado como de membrana, com toque descrito pelo vendedor como semimecânico; isso não confirma interruptores mecânicos. O cadastro informa QWERTY e português do Brasil, mas não confirma o padrão ABNT2. Confira a disposição das teclas, os acessórios incluídos na variante e o suporte a OTG no seu aparelho.",
@@ -5075,6 +5061,54 @@
       "ranking": 0,
       "comparison": null,
       "url": "https://rankingdacompra.com.br/produto/kkADU0pbN4LUhcYR1HMH-20260810-1.html"
+    },
+    {
+      "id": "mlMLB3868708109",
+      "title": "Kit roteador Intelbras Twibi Force AX — Wi-Fi 6 Mesh, duas unidades",
+      "summary": "A oferta anuncia duas unidades brancas do Twibi Force AX. A Intelbras documenta Wi-Fi 6 em 5 GHz e porta WAN/LAN Gigabit. A velocidade de 75 MB/s citada no cadastro não representa um desempenho garantido: o resultado depende do plano, dos dispositivos, da posição dos módulos e das barreiras no ambiente.",
+      "category": "Roteador",
+      "image": "https://rankingdacompra.com.br/produto/imagens/mlMLB3868708109-local-a3347795d18465922843326fa098c0d8da35cfa3ed73c91c6ba129bc8f6a85fd.jpg",
+      "price": null,
+      "checkedAt": null,
+      "recordedPrice": null,
+      "rating": 0,
+      "ranking": 0,
+      "comparison": {
+        "family": "roteador",
+        "features": [
+          {
+            "label": "Wi-Fi 6",
+            "value": "Informado",
+            "state": "yes",
+            "basis": "cadastro"
+          },
+          {
+            "label": "Banda de 5 GHz",
+            "value": "Informado",
+            "state": "yes",
+            "basis": "cadastro"
+          },
+          {
+            "label": "Portas Gigabit",
+            "value": "Informado",
+            "state": "yes",
+            "basis": "cadastro"
+          },
+          {
+            "label": "Quantidade de portas",
+            "value": "Não informado / a confirmar",
+            "state": "unknown",
+            "basis": "cadastro"
+          },
+          {
+            "label": "Rede Mesh",
+            "value": "Informado",
+            "state": "yes",
+            "basis": "cadastro"
+          }
+        ]
+      },
+      "url": "https://rankingdacompra.com.br/produto/mlMLB3868708109-20260810-1.html"
     },
     {
       "id": "mlMLB7752259240",

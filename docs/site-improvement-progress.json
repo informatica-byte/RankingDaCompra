@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T11:20:25.780Z",
-  "catalogueGeneratedAt": "2026-11-06T11:20:23.722Z",
+  "updatedAt": "2026-11-06T11:24:20.920Z",
+  "catalogueGeneratedAt": "2026-11-06T11:24:17.529Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -4956,25 +4956,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "mlMLB3868708109",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB3868708109-20260810-1.html",
-      "title": "Kit Intelbras Twibi Force AX — Wi-Fi 6 Mesh, duas unidades",
-      "fingerprint": "445d32d3aacfe78cf6588890c30d9ae616c536714eef06ea06205c24da8adf17",
-      "status": "prepared_awaiting_publication",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [
-        "Retira velocidade sem contexto.",
-        "Sem teste independente da unidade."
-      ],
-      "sourceLinks": [
-        "https://www.mercadolivre.com.br/p/MLB26578044?wid=MLB3868708109",
-        "https://backend.intelbras.com/sites/default/files/2023-09/Datasheet%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX%20vf_ES.pdf"
-      ],
-      "previousState": "pending",
-      "changedSinceCheckpoint": true
-    },
-    {
       "id": "mlMLB4953439757",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4953439757-20260810-1.html",
       "title": "Kit Mobilador Teclado Gamer Rgb 80% Suporte Mouse Hub Cabo",
@@ -5040,6 +5021,25 @@
         "https://www.mercadolivre.com.br/p/MLB53618239?wid=MLB5554213538"
       ],
       "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB3868708109",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB3868708109-20260810-1.html",
+      "title": "Kit roteador Intelbras Twibi Force AX — Wi-Fi 6 Mesh, duas unidades",
+      "fingerprint": "1ad598be603a47f2f3fae70916b94233d33785256e5bc6c9b5ee9b894ce38109",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira velocidade sem contexto.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB26578044?wid=MLB3868708109",
+        "https://backend.intelbras.com/sites/default/files/2023-09/Datasheet%20M%C3%B3dulo%20e%20Conjunto%20Twibi%20Force%20AX%20vf_ES.pdf"
+      ],
+      "previousState": "prepared_awaiting_publication",
       "changedSinceCheckpoint": true
     },
     {
