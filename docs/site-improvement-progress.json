@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T13:20:53.897Z",
-  "catalogueGeneratedAt": "2026-11-06T13:16:58.944Z",
+  "updatedAt": "2026-11-06T16:28:18.001Z",
+  "catalogueGeneratedAt": "2026-11-06T16:28:15.432Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -703,11 +703,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 566,
-    "screened_no_change": 79,
+    "screened_no_change": 80,
     "needs_source": 8,
     "targeted_correction_complete": 328,
     "preserve_prior_review": 98,
-    "pending": 53
+    "prepared_awaiting_publication": 2,
+    "pending": 50
   },
   "items": [
     {
@@ -1853,13 +1854,20 @@
     {
       "id": "UCDnByA5YaWN9eiyA5IM",
       "url": "https://rankingdacompra.com.br/produto/UCDnByA5YaWN9eiyA5IM-20260810-1.html",
-      "title": "Cama Elástica Infantil 3,0m Pula Pula Com Rede De Proteção",
-      "fingerprint": "04a1cfaeb649c2b154342afbacb8f73e23f068e43408d2edcf1b35303ebaf7d9",
-      "status": "pending",
+      "title": "Cama elástica infantil com rede — tamanho a confirmar",
+      "fingerprint": "c827f7ea50e8d1a3e47ba04c2854c7dd6570e84511909a425b2fd3d70917a1ab",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Sinaliza que o endereço menciona 3 m e 1,55 m e não confirma a variante.",
+        "Dimensão da unidade não verificada."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU1092743446?wid=MLB1025840915"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "KjczAN39YiZOmTgmzwIt",
@@ -5292,11 +5300,16 @@
       "url": "https://rankingdacompra.com.br/produto/uc5ynLQTGAPKkIMIyzQ2-20260810-1.html",
       "title": "Lanterna Tática Farolete Sabre de Luz LED",
       "fingerprint": "88f1cda6776c2a0916a4ca5f2c84f0092e30fc031824415f6ba18e5162ea1918",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-06T16:28:18.002Z",
+      "workNotes": [
+        "A ficha já rejeita o alcance de 2 km e o fluxo luminoso sem comprovação.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3139513792?wid=MLB4038709183"
+      ]
     },
     {
       "id": "sEmIjHvnB3y4J7UZWBe2",
@@ -9945,13 +9958,20 @@
     {
       "id": "Uh8jBpd9D8uEtK4Q3X43",
       "url": "https://rankingdacompra.com.br/produto/Uh8jBpd9D8uEtK4Q3X43-20260810-1.html",
-      "title": "VITAMINA D3 + K2 Menaquinona-7 - Fórmula com Máxima Concentração e Biodisponibilidade - 60 Cápsulas",
-      "fingerprint": "20a034b3c8eba4bb81248d2bc1f9df3c75631f5bffde3367ed9219a61dd2a1a1",
-      "status": "pending",
+      "title": "Vitamina D3 + K2 (MK-7) — 60 cápsulas anunciadas",
+      "fingerprint": "1cec4f7ce6c683b1ce3f8642e9d2c55ef3825d7c6a34bb79f339526c8bfeedc3",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira superlativos e não presume os teores por cápsula ou porção.",
+        "Rótulo da unidade não confirmado."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB62162205?wid=MLB4307126823"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "LASwiEy13CerUN6q3pKn",
@@ -14995,5 +15015,13 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage140": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "UCDnByA5YaWN9eiyA5IM",
+      "Uh8jBpd9D8uEtK4Q3X43"
+    ],
+    "newDeepReviews": 0
   }
 }

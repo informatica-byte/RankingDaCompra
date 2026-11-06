@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T13:16:58.944Z",
+  "generatedAt": "2026-11-06T16:28:15.432Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 53
+    "screening": 50
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "uc5ynLQTGAPKkIMIyzQ2",
-      "title": "Lanterna Tática Farolete Sabre de Luz LED",
-      "url": "https://rankingdacompra.com.br/produto/uc5ynLQTGAPKkIMIyzQ2-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "UCDnByA5YaWN9eiyA5IM",
-      "title": "Cama Elástica Infantil 3,0m Pula Pula Com Rede De Proteção",
-      "url": "https://rankingdacompra.com.br/produto/UCDnByA5YaWN9eiyA5IM-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "Uh8jBpd9D8uEtK4Q3X43",
-      "title": "VITAMINA D3 + K2 Menaquinona-7 - Fórmula com Máxima Concentração e Biodisponibilidade - 60 Cápsulas",
-      "url": "https://rankingdacompra.com.br/produto/Uh8jBpd9D8uEtK4Q3X43-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções documentais pontuais.",
+  "items": [
+    {
+      "id": "uc5ynLQTGAPKkIMIyzQ2",
+      "decision": "screened_no_change",
+      "reason": "A ficha já rejeita o alcance de 2 km e o fluxo luminoso sem comprovação.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU3139513792?wid=MLB4038709183"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "UCDnByA5YaWN9eiyA5IM",
+      "decision": "targeted_correction_complete",
+      "reason": "Sinaliza que o endereço menciona 3 m e 1,55 m e não confirma a variante.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU1092743446?wid=MLB1025840915"
+      ],
+      "sourceLimit": "Dimensão da unidade não verificada."
+    },
+    {
+      "id": "Uh8jBpd9D8uEtK4Q3X43",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira superlativos e não presume os teores por cápsula ou porção.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB62162205?wid=MLB4307126823"
+      ],
+      "sourceLimit": "Rótulo da unidade não confirmado."
+    }
+  ]
+}
