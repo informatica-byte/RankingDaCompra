@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T12:55:11.385Z",
+  "generatedAt": "2026-11-06T13:07:56.518Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 59
+    "screening": 56
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "TLWfr8q21DK8xDKMh01u",
-      "title": "Celimax Retinal Shot Tightening Booster 15 ml",
-      "url": "https://rankingdacompra.com.br/produto/TLWfr8q21DK8xDKMh01u-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "tQpEIHL2QaiZ7xOWZ6py",
-      "title": "Pulverizador De Espuma Eletrico Alta Pressão Snow Foam",
-      "url": "https://rankingdacompra.com.br/produto/tQpEIHL2QaiZ7xOWZ6py-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "tqUaLEFDAafDWemxheMX",
-      "title": "Pendrive 8gb Usb-c Usb 3.0 Tipo C Otg Metal Anti Raio 2em1",
-      "url": "https://rankingdacompra.com.br/produto/tqUaLEFDAafDWemxheMX-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

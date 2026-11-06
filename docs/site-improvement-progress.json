@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T12:57:20.089Z",
-  "catalogueGeneratedAt": "2026-11-06T12:55:11.385Z",
+  "updatedAt": "2026-11-06T13:08:00.161Z",
+  "catalogueGeneratedAt": "2026-11-06T13:07:56.518Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -703,11 +703,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 566,
-    "screened_no_change": 78,
+    "screened_no_change": 79,
     "needs_source": 8,
     "targeted_correction_complete": 323,
     "preserve_prior_review": 98,
-    "pending": 59
+    "pending": 56,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -2498,11 +2499,16 @@
       "url": "https://rankingdacompra.com.br/produto/TLWfr8q21DK8xDKMh01u-20260810-1.html",
       "title": "Celimax Retinal Shot Tightening Booster 15 ml",
       "fingerprint": "6af2e655d8e51ce4ecd8a0eb9454568bcae805f3f24b82357df34374037c01a6",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-06T13:08:00.163Z",
+      "workNotes": [
+        "A ficha já separa identificação, orientação do fabricante e resultados não testados.",
+        "Conferência documental, sem teste da unidade."
+      ],
+      "sourceLinks": [
+        "https://celimax.us/products/the-vita-a-retinal-shot-tightening-booster"
+      ]
     },
     {
       "id": "8sDa6bmYd25zEEKRnQJn",
@@ -6868,13 +6874,20 @@
     {
       "id": "tqUaLEFDAafDWemxheMX",
       "url": "https://rankingdacompra.com.br/produto/tqUaLEFDAafDWemxheMX-20260810-1.html",
-      "title": "Pendrive 8gb Usb-c Usb 3.0 Tipo C Otg Metal Anti Raio 2em1",
-      "fingerprint": "98ee5279eadd4c7b8fb7b44a394f6cd05d575de6e96f69c1941a3c11ef6bb76d",
-      "status": "pending",
+      "title": "Pendrive de 8 GB — USB e USB-C anunciados",
+      "fingerprint": "2f453d20c8dc1f9927dcebe3e0443b5e15c8b8f5401a28cf551c566cba499487",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira do título as alegações de resistência e padrão USB não comprovadas.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4643658890?wid=MLB5015828935"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "pGWith3ABAHWNTRZG3fM",
@@ -7484,13 +7497,20 @@
     {
       "id": "tQpEIHL2QaiZ7xOWZ6py",
       "url": "https://rankingdacompra.com.br/produto/tQpEIHL2QaiZ7xOWZ6py-20260810-1.html",
-      "title": "Pulverizador De Espuma Eletrico Alta Pressão Snow Foam",
-      "fingerprint": "6260448fe190715f2ece7830bb3031732bbfa12ba5592ea2b5f321815e742a4f",
-      "status": "pending",
+      "title": "Pulverizador elétrico de espuma Snow Foam — 2 L anunciados",
+      "fingerprint": "4bf67eafa249d5fba3656204a5cc3381e9965a276c9e8aeea8c6a5f3449c15b1",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira a garantia implícita de alta pressão e sinaliza pressão e válvula não verificadas.",
+        "Dados locais da oferta, sem manual específico ou teste."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4367171795?wid=MLB7216680136"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "IJvxoOY9DmdDPOXo8ZQ3",
@@ -14884,5 +14904,13 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage138": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "tQpEIHL2QaiZ7xOWZ6py",
+      "tqUaLEFDAafDWemxheMX"
+    ],
+    "newDeepReviews": 0
   }
 }

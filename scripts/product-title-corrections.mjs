@@ -8,6 +8,7 @@ import {EPSON_DESCRIPTION} from './public-seo-labels.mjs';
 
 import { EXISTING_OFFER_REVIEWS, matchesExistingOffer } from './existing-offer-reviews.mjs';
 const PRODUCT_CORRECTIONS = new Map([
+  ["tQpEIHL2QaiZ7xOWZ6py",{syncInformationalSchema:true,expectedListing:'MLB7216680136',model:/^(?:Pulverizador De Espuma Eletrico Alta Pressão Snow Foam|Pulverizador elétrico de espuma Snow Foam — 2 L anunciados)$/i,correct:"Pulverizador elétrico de espuma Snow Foam — 2 L anunciados",summary:"A oferta identifica um pulverizador elétrico de espuma Bahrein, com reservatório anunciado de 2 L. A descrição cita pressão máxima de 8 bar e válvula de segurança, mas não confirma a pressão em operação nem documenta o funcionamento da válvula. Esta ficha não testou pressão, vedação ou autonomia. Confira as instruções e os acessórios da unidade antes de usar.",positiveNotes:[],negativeNotes:[],suppressRating:true}],
   ["tb7c733uByymDrSRjT5f",{syncInformationalSchema:true,allowTruncatedHeading:true,expectedListing:'MLB5687309408',model:/^(?:iPhone 17 Pro Max 256GB - Prateado - Distribuidor Autorizado|iPhone 17 Pro Max prateado — 256 GB)$/i,correct:"iPhone 17 Pro Max prateado — 256 GB",summary:"A oferta identifica o iPhone 17 Pro Max prateado de 256 GB. A Apple documenta o chip A19 Pro e distingue a teleobjetiva óptica de 4x do enquadramento de 8x com qualidade óptica. As até 37 horas de reprodução de vídeo são uma estimativa da fabricante, não garantia de uso real. Esta ficha não confirmou a condição de distribuidor autorizado do vendedor.",positiveNotes:[],negativeNotes:[],contextSourceUrl:"https://support.apple.com/pt-br/125091",contextSourceLabel:"Referência do fabricante",suppressRating:true}],
   ["TEq7tHMr54vb5Gx3KqXy",{syncInformationalSchema:true,allowTruncatedHeading:true,expectedListing:'MLB4278606427',model:/^(?:Whey Protein Concentrado 1kg Growth Supplements - Leite em Pó)$/i,summary:"A oferta identifica o Whey Protein Concentrado Growth de 1 kg, sabor leite em pó. O valor de 2,3 g de proteína por porção registrado na descrição anterior não foi confirmado no rótulo da unidade. Confira na embalagem desse sabor o tamanho da porção, os teores de proteína e carboidratos e as declarações de alergênicos e lactose. Não use a tabela de outro sabor como substituta.",positiveNotes:[],negativeNotes:[],contextSourceUrl:"https://www.gsuplementos.com.br/whey-protein-concentrado-1kg-growth-supplements-p985936",contextSourceLabel:"Referência do fabricante",suppressRating:true}],
   ["TJk9BUtlZ9v02ETWQRuG",{syncInformationalSchema:true,allowTruncatedHeading:true,expectedListing:'MLB3269837602',model:/^(?:Loção Hidratante Corporal Sem Perfume, com Ceramidas Essenciais e Ácido Hialurônico, Textura Fluida CeraVe 473ml|Loção hidratante corporal CeraVe sem fragrância — 473 mL)$/i,correct:"Loção hidratante corporal CeraVe sem fragrância — 473 mL",summary:"O anúncio identifica a loção hidratante corporal CeraVe em embalagem de 473 mL. A marca apresenta a fórmula sem fragrância, com três ceramidas essenciais e ácido hialurônico, para pele normal a levemente seca. A fabricante descreve hidratação prolongada; esta ficha não mediu a duração na pele nem confirmou o tipo de dosador da unidade.",positiveNotes:[],negativeNotes:[],contextSourceUrl:"https://www.cerave.com.br/todos-os-produtos/locao-hidratante",contextSourceLabel:"Referência do fabricante",suppressRating:true}],
@@ -2014,7 +2015,8 @@ const PRODUCT_CORRECTIONS = new Map([
     negativeNotes:['Potência, protocolos e quantidade de saídas simultâneas precisam de confirmação no modelo oferecido.'], suppressRating:true,
   }],
   ['tqUaLEFDAafDWemxheMX', {
-    model:/pendrive.*8gb.*usb.?c/i,
+    model:/^(?:Pendrive 8gb Usb-c Usb 3\.0 Tipo C Otg Metal Anti Raio 2em1|Pendrive de 8 GB — USB e USB-C anunciados)$/i,
+    expectedListing:'MLB5015828935',syncInformationalSchema:true,correct:'Pendrive de 8 GB — USB e USB-C anunciados',
     summary:'O cadastro identifica um pendrive de 8 GB com conexões USB e USB-C anunciadas. Confirme os conectores, o suporte a OTG no celular e o formato dos arquivos. A velocidade de 140 MB/s e a proteção contra raios X citadas anteriormente não foram comprovadas nesta análise. Não testamos capacidade real, velocidade de gravação, resistência ou integridade dos arquivos.',
     positiveNotes:['Conexões USB e USB-C anunciadas; confirme a compatibilidade dos aparelhos.'],
     negativeNotes:['Velocidade, capacidade real e resistência não foram testadas. Não use como única cópia de arquivos importantes.'], suppressRating:true,
@@ -2364,7 +2366,11 @@ function correctionFor(product) {
   const legacyCategory=id==='SJ6VQZLSc4brIArHnkRW' && /piscina.*infl[aá]vel/i.test(title)
     ? {category:'esporte-e-lazer'} : id==='SUBPibuHNUsgB6zVTL5r' && /webcam/i.test(title)
       ? {category:'informatica'} : undefined;
-  if (correction?.expectedListing && !matchesExistingOffer(product, correction.expectedListing)) return legacyCategory;
+  // Preserve the older cautions when the abbreviated title matches, without retitling another offer.
+  const legacyCorrection=id==='tqUaLEFDAafDWemxheMX' && /pendrive.*8gb.*usb.?c/i.test(title)
+    ? {summary:correction.summary,positiveNotes:correction.positiveNotes,negativeNotes:correction.negativeNotes,suppressRating:true}
+    : legacyCategory;
+  if (correction?.expectedListing && !matchesExistingOffer(product, correction.expectedListing)) return legacyCorrection;
   // Old safeguards (for example removing unsupported superlatives) still
   // apply when the exact current listing cannot be established. They do not
   // grant permission to attach this review's new seller-declared facts.
@@ -2372,7 +2378,7 @@ function correctionFor(product) {
   // Um cadastro pode ser reutilizado. Nunca aplicar a ficha do modelo anterior
   // só porque o ID continua igual; a identidade atual precisa corresponder.
   if(correction?.sourceKind==='marketplace-listing' && !documentedSpecifications(product)) return undefined;
-  return correction?.model && !correction.model.test(title) ? legacyCategory : correction;
+  return correction?.model && !correction.model.test(title) ? legacyCorrection : correction;
 }
 
 export function manufacturerEvidence(product) {

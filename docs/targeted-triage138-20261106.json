@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções documentais pontuais.",
+  "items": [
+    {
+      "id": "TLWfr8q21DK8xDKMh01u",
+      "decision": "screened_no_change",
+      "reason": "A ficha já separa identificação, orientação do fabricante e resultados não testados.",
+      "sourceLinks": [
+        "https://celimax.us/products/the-vita-a-retinal-shot-tightening-booster"
+      ],
+      "sourceLimit": "Conferência documental, sem teste da unidade."
+    },
+    {
+      "id": "tQpEIHL2QaiZ7xOWZ6py",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira a garantia implícita de alta pressão e sinaliza pressão e válvula não verificadas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4367171795?wid=MLB7216680136"
+      ],
+      "sourceLimit": "Dados locais da oferta, sem manual específico ou teste."
+    },
+    {
+      "id": "tqUaLEFDAafDWemxheMX",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira do título as alegações de resistência e padrão USB não comprovadas.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4643658890?wid=MLB5015828935"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}
