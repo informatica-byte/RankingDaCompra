@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T12:37:00.715Z",
-  "catalogueGeneratedAt": "2026-11-06T12:34:25.941Z",
+  "updatedAt": "2026-11-06T12:53:27.958Z",
+  "catalogueGeneratedAt": "2026-11-06T12:53:25.177Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 320,
     "preserve_prior_review": 98,
-    "pending": 62
+    "pending": 59,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -4227,17 +4228,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "tb7c733uByymDrSRjT5f",
-      "url": "https://rankingdacompra.com.br/produto/tb7c733uByymDrSRjT5f-20260810-1.html",
-      "title": "iPhone 17 Pro Max 256GB - Prateado - Distribuidor Autorizado",
-      "fingerprint": "73e97447af88e46b7282f3cf0e9d597cd641ab139bae6fea1092a3a56217309f",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "MHUka27wtlYZaI8FiHWi",
       "url": "https://rankingdacompra.com.br/produto/MHUka27wtlYZaI8FiHWi-20260810-1.html",
       "title": "iPhone 17 Pro Max 256GB — Laranja-cósmico",
@@ -4252,6 +4242,25 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB1055308620?wid=MLB4200316101"
       ]
+    },
+    {
+      "id": "tb7c733uByymDrSRjT5f",
+      "url": "https://rankingdacompra.com.br/produto/tb7c733uByymDrSRjT5f-20260810-1.html",
+      "title": "iPhone 17 Pro Max prateado — 256 GB",
+      "fingerprint": "673363d979428d945de873fe43b541289b58da58b18afdbde9901c60d0cfce9b",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue 4x óptico de 8x com qualidade óptica e não endossa o vendedor.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB1055308605?wid=MLB5687309408",
+        "https://support.apple.com/pt-br/125091"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "XGM5P52X6EJc7X55vC8Y",
@@ -5605,13 +5614,21 @@
     {
       "id": "TJk9BUtlZ9v02ETWQRuG",
       "url": "https://rankingdacompra.com.br/produto/TJk9BUtlZ9v02ETWQRuG-20260810-1.html",
-      "title": "Loção Hidratante Corporal Sem Perfume, com Ceramidas Essenciais e Ácido Hialurônico, Textura Fluida CeraVe 473ml",
-      "fingerprint": "4a6a1a9d783245fe18d24556f26ea52ba39d710e03bd315718c13b682529cbb2",
-      "status": "pending",
+      "title": "Loção hidratante corporal CeraVe sem fragrância — 473 mL",
+      "fingerprint": "a77da5588f3fdcc359c13d1d45dad715054075a38ad6d345d0f73ec624f0f085",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige a indicação de pele e separa a descrição da marca do desempenho não medido.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB21361292?wid=MLB3269837602",
+        "https://www.cerave.com.br/todos-os-produtos/locao-hidratante"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "H3AOP8Gxqhtn1TcPX2Ug",
@@ -10007,12 +10024,20 @@
       "id": "TEq7tHMr54vb5Gx3KqXy",
       "url": "https://rankingdacompra.com.br/produto/TEq7tHMr54vb5Gx3KqXy-20260810-1.html",
       "title": "Whey Protein Concentrado 1kg Growth Supplements - Leite em Pó",
-      "fingerprint": "72261c76d0b783a12e96178cd31444c530abbf162e7322707ada9f9fbc5953e8",
-      "status": "pending",
+      "fingerprint": "4261b7cae6de4d89d3c0d355cd0094a9a3c69f7e6833c74511c60155059c4801",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira valor nutricional não confirmado e não transfere tabela de outro sabor.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB19140327?wid=MLB4278606427",
+        "https://www.gsuplementos.com.br/whey-protein-concentrado-1kg-growth-supplements-p985936"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "rfym6WivFVhxpwn2WF6r",
@@ -14824,5 +14849,14 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage137": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "TEq7tHMr54vb5Gx3KqXy",
+      "TJk9BUtlZ9v02ETWQRuG",
+      "tb7c733uByymDrSRjT5f"
+    ],
+    "newDeepReviews": 0
   }
 }

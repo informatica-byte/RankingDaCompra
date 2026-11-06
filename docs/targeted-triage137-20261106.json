@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções documentais pontuais.",
+  "items": [
+    {
+      "id": "tb7c733uByymDrSRjT5f",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue 4x óptico de 8x com qualidade óptica e não endossa o vendedor.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB1055308605?wid=MLB5687309408",
+        "https://support.apple.com/pt-br/125091"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "TEq7tHMr54vb5Gx3KqXy",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira valor nutricional não confirmado e não transfere tabela de outro sabor.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB19140327?wid=MLB4278606427",
+        "https://www.gsuplementos.com.br/whey-protein-concentrado-1kg-growth-supplements-p985936"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "TJk9BUtlZ9v02ETWQRuG",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige a indicação de pele e separa a descrição da marca do desempenho não medido.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB21361292?wid=MLB3269837602",
+        "https://www.cerave.com.br/todos-os-produtos/locao-hidratante"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}

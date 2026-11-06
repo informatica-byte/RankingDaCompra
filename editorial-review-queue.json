@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T12:34:25.941Z",
+  "generatedAt": "2026-11-06T12:53:25.177Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 62
+    "screening": 59
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "tb7c733uByymDrSRjT5f",
-      "title": "iPhone 17 Pro Max 256GB - Prateado - Distribuidor Autorizado",
-      "url": "https://rankingdacompra.com.br/produto/tb7c733uByymDrSRjT5f-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "TEq7tHMr54vb5Gx3KqXy",
-      "title": "Whey Protein Concentrado 1kg Growth Supplements - Leite em Pó",
-      "url": "https://rankingdacompra.com.br/produto/TEq7tHMr54vb5Gx3KqXy-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "TJk9BUtlZ9v02ETWQRuG",
-      "title": "Loção Hidratante Corporal Sem Perfume, com Ceramidas Essenciais e Ácido Hialurônico, Textura Fluida CeraVe 473ml",
-      "url": "https://rankingdacompra.com.br/produto/TJk9BUtlZ9v02ETWQRuG-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
