@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "tXFA7nfMsVTOUweO3Twi",
-      "u2nLyf1iUS18JLn3P9d5",
-      "u9P6kD78JZexijimIjHN",
       "uc5ynLQTGAPKkIMIyzQ2",
       "UCDnByA5YaWN9eiyA5IM",
       "Uh8jBpd9D8uEtK4Q3X43",
       "UqO48Rj9I0f8SpOqabpv",
-      "uRfZSbUKT8yjArcSlGPL"
+      "uRfZSbUKT8yjArcSlGPL",
+      "UTXc1AEUdk18yttkAXMb",
+      "uvlx1EGGFowAjO3EBgrw",
+      "uVSddfqWEhUv6l94yiMK"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T13:15:16.758Z",
-  "catalogueGeneratedAt": "2026-11-06T13:15:13.691Z",
+  "updatedAt": "2026-11-06T13:20:53.897Z",
+  "catalogueGeneratedAt": "2026-11-06T13:16:58.944Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 566,
     "screened_no_change": 79,
     "needs_source": 8,
-    "targeted_correction_complete": 325,
+    "targeted_correction_complete": 328,
     "preserve_prior_review": 98,
-    "pending": 53,
-    "prepared_awaiting_publication": 3
+    "pending": 53
   },
   "items": [
     {
@@ -5189,12 +5188,13 @@
       "url": "https://rankingdacompra.com.br/produto/u9P6kD78JZexijimIjHN-20260810-1.html",
       "title": "Kit Zaroc de cinco camisetas masculinas slim",
       "fingerprint": "91646e523b7c56bcff8b83bce361cdf0850b08fee6d2aa5f93dbd39e13f8c069",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T13:20:53.865Z",
       "workNotes": [
         "Corrige o tipo de código e retira o rótulo promocional premium.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-1894079521"
@@ -7477,12 +7477,13 @@
       "url": "https://rankingdacompra.com.br/produto/u2nLyf1iUS18JLn3P9d5-20260810-1.html",
       "title": "PS4 Slim 500 GB — dois controles e jogo anunciados",
       "fingerprint": "9ec03ce56692c67aaaf1db27eecb73869620394ff9a7794a51dfeb74022d4a6c",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T13:20:53.865Z",
       "workNotes": [
         "Retira promessas comerciais e não garante controles originais.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3499805433?wid=MLB5826418272",
@@ -9134,12 +9135,13 @@
       "url": "https://rankingdacompra.com.br/produto/tXFA7nfMsVTOUweO3Twi-20260810-1.html",
       "title": "Tênis Masculino Charged Skyline 5 Under Armour",
       "fingerprint": "1832682f24992df34dbdf7d4764ba4369de9e0a73e708aa73faf449af79cd447",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T13:20:53.865Z",
       "workNotes": [
         "Retira ano e aderência não verificados.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU3779617963?wid=MLB4469892307",
@@ -14962,12 +14964,36 @@
     ]
   },
   "triage139": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "tXFA7nfMsVTOUweO3Twi",
       "u2nLyf1iUS18JLn3P9d5",
       "u9P6kD78JZexijimIjHN"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T13:20:53.865Z",
+    "changedIds": [
+      "tXFA7nfMsVTOUweO3Twi",
+      "u2nLyf1iUS18JLn3P9d5",
+      "u9P6kD78JZexijimIjHN"
+    ],
+    "jointReleaseBatches": [
+      139
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem139.json",
+    "remainingDependencies": [
+      {
+        "id": "tXFA7nfMsVTOUweO3Twi",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "u2nLyf1iUS18JLn3P9d5",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "u9P6kD78JZexijimIjHN",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   }
 }

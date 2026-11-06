@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 139 — 06/11/2026, publicada e verificada
+
+- tXFA7nfMsVTOUweO3Twi — Skyline 5: finalidade conforme a marca; sem afirmar ano, aderência ou conforto não verificados.
+- u2nLyf1iUS18JLn3P9d5 — PS4 Slim: capacidade nominal, conteúdo atribuído ao anúncio e sem garantias comerciais.
+- u9P6kD78JZexijimIjHN — Zaroc: código do anúncio, sem selo promocional; composição e medidas não confirmadas.
+
+Fonte eccc16ffe, geração 02a5e7d04, implantação 42224268503. Três fichas HTTP 200 com afiliados preservados; 563 outras fichas inalteradas. 1.565 testes, seis verificações estáticas móveis e invariantes aprovados. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem139.json.
+
+Retomar por uc5ynLQTGAPKkIMIyzQ2 (lanterna Sabre de Luz), UCDnByA5YaWN9eiyA5IM (cama elástica 3 m) e Uh8jBpd9D8uEtK4Q3X43 (vitamina D3 + K2). Restam 53 pendentes e 8 dependentes de fonte.
+
 ## Passagem 138 — 06/11/2026, publicada e verificada no site
 
 - TLWfr8q21DK8xDKMh01u — Celimax: conferido, sem necessidade de alteração.
