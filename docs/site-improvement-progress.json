@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T17:37:16.405Z",
-  "catalogueGeneratedAt": "2026-11-06T16:30:09.124Z",
+  "updatedAt": "2026-11-06T17:41:16.524Z",
+  "catalogueGeneratedAt": "2026-11-06T17:41:13.444Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 330,
     "preserve_prior_review": 98,
-    "pending": 50
+    "pending": 47,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -6186,13 +6187,20 @@
     {
       "id": "UTXc1AEUdk18yttkAXMb",
       "url": "https://rankingdacompra.com.br/produto/UTXc1AEUdk18yttkAXMb-20260810-1.html",
-      "title": "Nac 600mg N-acetil L-cisteína Antioxidante - Fórmula Com Máxima Concentração E Pureza 120 Cápsulas - Forged Nutrition",
-      "fingerprint": "ff8625dc80cea7944c3d79e848ed31eae6b113cf17e88f354ed5bd739ef1e006",
-      "status": "pending",
+      "title": "NAC Forged Nutrition — 600 mg e 120 cápsulas anunciados",
+      "fingerprint": "9b197e1f1e143b8f27a804207b586eb088baa5a207aa06067365077bd957fd5d",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira superlativos e não presume teor por porção, alergênicos ou restrições do rótulo.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB67471826?wid=MLB6552026218"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "d6VCoNciFGrUwOkaNoDU",
@@ -8322,12 +8330,20 @@
       "id": "uRfZSbUKT8yjArcSlGPL",
       "url": "https://rankingdacompra.com.br/produto/uRfZSbUKT8yjArcSlGPL-20260810-1.html",
       "title": "Smartphone Motorola Moto G06",
-      "fingerprint": "bd1124622d1ddbb8aca18a5aedb7678084fd6a6da86b8b7502b6a23806834a5d",
-      "status": "pending",
+      "fingerprint": "9d41c2d045a60ad2f6cd3cfe952ad38ae79407437b632243c07f8458be9fd803",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue RAM física de virtual e não garante segurança biométrica.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB58353028?wid=MLB7416511860",
+        "https://empresas.motorola.com.br/smartphone-motorola-moto-g06-128gb/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "vr2uogxbiKqrQx1MYdD9",
@@ -9117,12 +9133,19 @@
       "id": "UqO48Rj9I0f8SpOqabpv",
       "url": "https://rankingdacompra.com.br/produto/UqO48Rj9I0f8SpOqabpv-20260810-1.html",
       "title": "Tênis Masculino Casual Aramis Daily Slip Confortável Moderno",
-      "fingerprint": "fff268407bbf3ebf67a341616ee6f17a2e03956322bca6aadc7263f6360a364c",
-      "status": "pending",
+      "fingerprint": "fb877b63b70559247529ad1e46d1f484d9b12e37f7a048eb291e680a923ad5b8",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira valor antigo do texto e alegações não comprovadas de conforto e ação antibacteriana.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4359093019-tnis-masculino-casual-aramis-daily-slip-confortavel-moderno-_JM?searchVariation=201545712661"
+      ],
+      "previousState": "prepared_awaiting_publication",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB4031468281",
@@ -15047,5 +15070,14 @@
         "note": "Rótulo da unidade não confirmado."
       }
     ]
+  },
+  "triage141": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "UTXc1AEUdk18yttkAXMb",
+      "UqO48Rj9I0f8SpOqabpv",
+      "uRfZSbUKT8yjArcSlGPL"
+    ],
+    "newDeepReviews": 0
   }
 }

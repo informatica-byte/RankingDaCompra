@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T16:30:09.124Z",
+  "generatedAt": "2026-11-06T17:41:13.444Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 50
+    "screening": 47
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "UqO48Rj9I0f8SpOqabpv",
-      "title": "Tênis Masculino Casual Aramis Daily Slip Confortável Moderno",
-      "url": "https://rankingdacompra.com.br/produto/UqO48Rj9I0f8SpOqabpv-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "uRfZSbUKT8yjArcSlGPL",
-      "title": "Smartphone Motorola Moto G06",
-      "url": "https://rankingdacompra.com.br/produto/uRfZSbUKT8yjArcSlGPL-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "UTXc1AEUdk18yttkAXMb",
-      "title": "Nac 600mg N-acetil L-cisteína Antioxidante - Fórmula Com Máxima Concentração E Pureza 120 Cápsulas - Forged Nutrition",
-      "url": "https://rankingdacompra.com.br/produto/UTXc1AEUdk18yttkAXMb-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

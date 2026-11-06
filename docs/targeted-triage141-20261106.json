@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Correções documentais pontuais.",
+  "items": [
+    {
+      "id": "UqO48Rj9I0f8SpOqabpv",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira valor antigo do texto e alegações não comprovadas de conforto e ação antibacteriana.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4359093019-tnis-masculino-casual-aramis-daily-slip-confortavel-moderno-_JM?searchVariation=201545712661"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "uRfZSbUKT8yjArcSlGPL",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue RAM física de virtual e não garante segurança biométrica.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB58353028?wid=MLB7416511860",
+        "https://empresas.motorola.com.br/smartphone-motorola-moto-g06-128gb/p"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "UTXc1AEUdk18yttkAXMb",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira superlativos e não presume teor por porção, alergênicos ou restrições do rótulo.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB67471826?wid=MLB6552026218"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}
