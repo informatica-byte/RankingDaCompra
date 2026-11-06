@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 132 — 06/11/2026, publicada e verificada no site
+
+- RiCj7wC1QDBSMgPUQWD1 — Davely: distingue rotação do motor, velocidade do jato e alimentação.
+- rjkXSj5wDd3i4spfoHet — Titanium: procedência, compatibilidade e licença não verificadas.
+- rkEqyfJAguQZwMzfh25s — Billion Casino Royal: família oriental conforme a marca; concentração, autenticidade e desempenho da unidade não verificados.
+
+Fonte 901d5e162; geração 2044238ab; sitemap 42209025983 e integridade 42209026083 concluídos com sucesso. Três páginas HTTP 200 verificadas, 563 entradas editoriais preservadas, 566 IDs e 619 URLs protegidos. 1.565 testes e seis verificações estáticas em 360/390 px aprovados. Sem Firestore no lote editorial, sem alteração de preço ou de links. Evidência em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem132.json.
+
+Retomar por mlMLB3868708109 (Intelbras Twibi Force AX), rL4T2UGKrNxcJGZoJVpX (Kérastase Densifique) e sCCEJZohlc5e7c4yVrl4 (porta-condimentos Vitrex), conforme a fila registrada. Restam 74 pendentes e 8 dependentes de fonte; 308 correções pontuais acumuladas.
+
 ## Passagem 131 — 20261106, PUBLICADA E VERIFICADA
 
 - r7HSFtoP8OEdijhRMIDk: targeted_correction_complete. Não confunde sistema magnético com arrasto nem pressupõe o lado da manivela. Limite: Sem teste independente.

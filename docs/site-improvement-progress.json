@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "RiCj7wC1QDBSMgPUQWD1",
-      "rjkXSj5wDd3i4spfoHet",
-      "rkEqyfJAguQZwMzfh25s",
+      "mlMLB3868708109",
       "rL4T2UGKrNxcJGZoJVpX",
       "sCCEJZohlc5e7c4yVrl4",
       "scKXtqgNmOYETwmXi4EP",
       "sEmIjHvnB3y4J7UZWBe2",
-      "SEqRg2PsdNDdUJEB4T3W"
+      "SEqRg2PsdNDdUJEB4T3W",
+      "sfV5mG9A2qmqdyJhbQc0",
+      "sIeDtT4BuRsDRnKrSUMR"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T11:14:42.529Z",
-  "catalogueGeneratedAt": "2026-11-06T11:14:38.132Z",
+  "updatedAt": "2026-11-06T11:17:59.784Z",
+  "catalogueGeneratedAt": "2026-11-06T11:16:46.381Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,9 +705,8 @@
     "total": 566,
     "screened_no_change": 78,
     "needs_source": 8,
-    "targeted_correction_complete": 305,
+    "targeted_correction_complete": 308,
     "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 3,
     "pending": 74
   },
   "items": [
@@ -1400,12 +1399,13 @@
       "url": "https://rankingdacompra.com.br/produto/rkEqyfJAguQZwMzfh25s-20260810-1.html",
       "title": "Billion Casino Royal Paris Elysees — 100 mL anunciados",
       "fingerprint": "c7dc5c640cb3e18ccba8f684f45a28648523b5c2f4f597f14cf4956bb85ba42e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T11:17:59.747Z",
       "workNotes": [
         "Remove garantia implícita de autenticidade e separa a família oficial da concentração não confirmada.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB6138946?pdp_filters=item_id%3AMLB2084718645",
@@ -5793,12 +5793,13 @@
       "url": "https://rankingdacompra.com.br/produto/RiCj7wC1QDBSMgPUQWD1-20260810-1.html",
       "title": "Mini soprador portátil Davely — recarga USB anunciada",
       "fingerprint": "58c88e89b2809d525a295f255a98d59567a720fbd7ea71f1a8e3777fcda550cb",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T11:17:59.747Z",
       "workNotes": [
         "Separa rotação, velocidade do jato e alimentação; não confirma bivolt.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB69649128?pdp_filters=item_id%3AMLB6781687878"
@@ -8341,12 +8342,13 @@
       "url": "https://rankingdacompra.com.br/produto/rjkXSj5wDd3i4spfoHet-20260810-1.html",
       "title": "Software Rede Manutenção Windows Titanium Tech Toolkit",
       "fingerprint": "39df3623262badd7108ba9e7554f2cf27f9395d4f2a4d6a48a8cc334b440c215",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T11:17:59.747Z",
       "workNotes": [
         "Distingue o que o anúncio oferece de licença e procedência verificadas.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-5041220911-software-rede-manutenco-windows-titanium-tech-toolkit-_JM"
@@ -14557,12 +14559,36 @@
     "backendWrites": 0
   },
   "triage132": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "RiCj7wC1QDBSMgPUQWD1",
       "rjkXSj5wDd3i4spfoHet",
       "rkEqyfJAguQZwMzfh25s"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T11:17:59.747Z",
+    "changedIds": [
+      "RiCj7wC1QDBSMgPUQWD1",
+      "rjkXSj5wDd3i4spfoHet",
+      "rkEqyfJAguQZwMzfh25s"
+    ],
+    "jointReleaseBatches": [
+      132
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem132.json",
+    "remainingDependencies": [
+      {
+        "id": "RiCj7wC1QDBSMgPUQWD1",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "rjkXSj5wDd3i4spfoHet",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "rkEqyfJAguQZwMzfh25s",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   }
 }
