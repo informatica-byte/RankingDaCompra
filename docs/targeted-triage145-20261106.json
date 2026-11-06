@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Novos produtos primeiro; depois fila de visualizações.",
+  "items": [
+    {
+      "id": "VIm8Tf6PT9I5VlI8BdRa",
+      "decision": "targeted_correction_complete",
+      "reason": "Não confunde LTE com 5G e retira avaliação sem fonte.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65114795?wid=MLB7293572044",
+        "https://news.samsung.com/br/feitos-para-durar-samsung-apresenta-galaxy-a17-e-galaxy-a07-no-brasil-com-armazenamento-robusto-recursos-ai-processador-de-alto-desempenho-e-ate-6-anos-de-atualizacoes"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "visu8XqPlr740f0W0So0",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue RAM física e virtual, corrige a tela e sinaliza caixa aberta.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB2054732230?wid=MLB6334077238",
+        "https://www.motorola.com.br/smartphone-moto-g35-5g-128gb/p?idsku=1612"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "VJ0UNCYoJYS4gSEKpZKQ",
+      "decision": "targeted_correction_complete",
+      "reason": "Sinaliza divergência da RAM sem substituir a variante por suposição.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB51559571?wid=MLB4181539471",
+        "https://www.realme.com/br/realme-c75-5g/specs"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}

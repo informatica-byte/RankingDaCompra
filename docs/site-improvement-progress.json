@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T19:15:10.296Z",
-  "catalogueGeneratedAt": "2026-11-06T19:15:08.373Z",
+  "updatedAt": "2026-11-06T19:22:26.546Z",
+  "catalogueGeneratedAt": "2026-11-06T19:22:24.681Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,8 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 339,
     "preserve_prior_review": 98,
-    "pending": 39,
-    "prepared_awaiting_publication": 3
+    "pending": 36,
+    "prepared_awaiting_publication": 6
   },
   "items": [
     {
@@ -2531,17 +2531,6 @@
         "https://shop.samsung.com/br/galaxy-a17-256gb/p",
         "https://news.samsung.com/br/feitos-para-durar-samsung-apresenta-galaxy-a17-e-galaxy-a07-no-brasil-com-armazenamento-robusto-recursos-ai-processador-de-alto-desempenho-e-ate-6-anos-de-atualizacoes"
       ]
-    },
-    {
-      "id": "VIm8Tf6PT9I5VlI8BdRa",
-      "url": "https://rankingdacompra.com.br/produto/VIm8Tf6PT9I5VlI8BdRa-20260810-1.html",
-      "title": "Celular Samsung Galaxy A17 Com Ia, 128gb, 4gb Ram, Câm De 50mp, Tela De 6.7\", Nfc, Ip54 - Preto",
-      "fingerprint": "6e94ce61a07ef467456cd4908378b67c4093d6ca3a8c9a372c080a5aaa04ab3f",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
     },
     {
       "id": "tvmAXcLVslrks9nZlnoa",
@@ -6071,6 +6060,25 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "visu8XqPlr740f0W0So0",
+      "url": "https://rankingdacompra.com.br/produto/visu8XqPlr740f0W0So0-20260810-1.html",
+      "title": "Motorola Moto G35 5G grafite — 128 GB anunciados",
+      "fingerprint": "ee9b1e41d78001643c7eb348328cb3cd6b5bf9a736d52f3f95ca25615dc29c13",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue RAM física e virtual, corrige a tela e sinaliza caixa aberta.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB2054732230?wid=MLB6334077238",
+        "https://www.motorola.com.br/smartphone-moto-g35-5g-128gb/p?idsku=1612"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "mlMLB6553684470",
       "url": "https://rankingdacompra.com.br/produto/mlMLB6553684470-20260810-1.html",
       "title": "Mouse Gamer Mmo Com Fio 18 Botões Programáveis 24000 Dpi Rgb",
@@ -7688,6 +7696,25 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "VJ0UNCYoJYS4gSEKpZKQ",
+      "url": "https://rankingdacompra.com.br/produto/VJ0UNCYoJYS4gSEKpZKQ-20260810-1.html",
+      "title": "realme C75 5G — 256 GB anunciados, RAM a confirmar",
+      "fingerprint": "a89d0e1692de6a42708ba0328d90e420dc884cbc403dca609cc801ed7a102a15",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Sinaliza divergência da RAM sem substituir a variante por suposição.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB51559571?wid=MLB4181539471",
+        "https://www.realme.com/br/realme-c75-5g/specs"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "j8z58qFPJKTUJogf5HTM",
       "url": "https://rankingdacompra.com.br/produto/j8z58qFPJKTUJogf5HTM-20260810-1.html",
       "title": "Realme Note 80s 128 GB e 4 GB de RAM — especificações anunciadas",
@@ -8008,6 +8035,25 @@
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB55521828?wid=MLB5249120331"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "VIm8Tf6PT9I5VlI8BdRa",
+      "url": "https://rankingdacompra.com.br/produto/VIm8Tf6PT9I5VlI8BdRa-20260810-1.html",
+      "title": "Samsung Galaxy A17 preto — 128 GB e 4 GB de RAM anunciados",
+      "fingerprint": "539b0768d9cc78b7cebf17e6d6ec6dcd4510863be38a387aeb0424dc400f8079",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Não confunde LTE com 5G e retira avaliação sem fonte.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB65114795?wid=MLB7293572044",
+        "https://news.samsung.com/br/feitos-para-durar-samsung-apresenta-galaxy-a17-e-galaxy-a07-no-brasil-com-armazenamento-robusto-recursos-ai-processador-de-alto-desempenho-e-ate-6-anos-de-atualizacoes"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -8416,32 +8462,10 @@
       "sourceLinks": []
     },
     {
-      "id": "visu8XqPlr740f0W0So0",
-      "url": "https://rankingdacompra.com.br/produto/visu8XqPlr740f0W0So0-20260810-1.html",
-      "title": "Smartphone Motorola Moto G35 5g 12gb Ram Boost 128g Cor Grafite",
-      "fingerprint": "7cdea12950e8fbdcdc7d4df00e712632d3672467d9060c5af4c6c8d63136f76f",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "YXqPx6O5Gl3YRR4I8w9a",
       "url": "https://rankingdacompra.com.br/produto/YXqPx6O5Gl3YRR4I8w9a-20260810-1.html",
       "title": "Smartphone Motorola Moto G56",
       "fingerprint": "ac4eb89f1e7a1305a3b4bc9d4ef341351e217cf9d371f6aff805c4683b1dfd35",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
-      "id": "VJ0UNCYoJYS4gSEKpZKQ",
-      "url": "https://rankingdacompra.com.br/produto/VJ0UNCYoJYS4gSEKpZKQ-20260810-1.html",
-      "title": "Smartphone Realme C75 5g 256gb 8gb Ram Dual Sim",
-      "fingerprint": "9e2591befbbbd893ad9e0e0fdd485993560b67bc9af458787b8b5cb7be0faa83",
       "status": "pending",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
@@ -15264,6 +15288,15 @@
       "VgdT8EtzIO0zWeDyEz7E",
       "Vgm0UKQmBdAvSbO683Yj",
       "vfoOrRV7xpu2EgJ8aIUy"
+    ],
+    "newDeepReviews": 0
+  },
+  "triage145": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "VIm8Tf6PT9I5VlI8BdRa",
+      "VJ0UNCYoJYS4gSEKpZKQ",
+      "visu8XqPlr740f0W0So0"
     ],
     "newDeepReviews": 0
   }
