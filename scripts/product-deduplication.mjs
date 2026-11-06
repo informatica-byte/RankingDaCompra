@@ -10,7 +10,8 @@ const normalizedTitle = value => String(value || '').normalize('NFD')
 export const REVIEWED_PUBLICATION_PAIRS = Object.freeze([
   ['MLB4291609113','MLB61669343','https://meli.la/2KKtanb',
     ['pGWith3ABAHWNTRZG3fM','Penta Magnésio Essencial Labs — 60 cápsulas anunciadas','PENTA MAGNÉSIO - Bisglicinato + Dimalato + Citrato + Taurato + Óxido de Magnésio - A Combinação Perfeita de 5 Magnésios com Máxima Pureza e Biodisponibilidade - 60 Cápsulas'],
-    ['0ZlMlzbCo5Rh41J5oUjj','PENTA MAGNÉSIO - Bisglicinato + Dimalato + Citrato + Taurato + Óxido de Magnésio - A Combinação Perfeita de 5 Magnésios com Máxima Pureza e Biodisponibilidade - 60 Cápsulas']],
+    ['0ZlMlzbCo5Rh41J5oUjj','PENTA MAGNÉSIO - Bisglicinato + Dimalato + Citrato + Taurato + Óxido de Magnésio - A Combinação Perfeita de 5 Magnésios com Máxima Pureza e Biodisponibilidade - 60 Cápsulas'],
+    ['UqiDgQqIGUW5AWzaZg8i','PENTA MAGNÉSIO - Bisglicinato + Dimalato + Citrato + Taurato + Óxido de Magnésio - A Combinação Perfeita de 5 Magnésios com Máxima Pureza e Biodisponibilidade - 60 Cápsulas']],
   ['MLB3954862383','MLB45553868','https://meli.la/1WbosCJ',
     ['g3QWQpsMAD73Kg7gMUzm','Torneira Camperluz de parede flexível com dois jatos anunciados','Torneira Gourmet Luxo Flexível Cozinha Parede 2 Jatos Pia Metal Cor Aço Inox e Preto- Marca Camperluz'],
     ['mMWeLANeahGbxGFHmpie','Torneira Gourmet Luxo Flexível Cozinha Parede 2 Jatos Pia Metal Cor Aço Inox e Preto- Marca Camperluz']],
