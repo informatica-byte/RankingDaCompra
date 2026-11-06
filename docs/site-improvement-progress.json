@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "tb7c733uByymDrSRjT5f",
-      "TEq7tHMr54vb5Gx3KqXy",
-      "TJk9BUtlZ9v02ETWQRuG",
       "TLWfr8q21DK8xDKMh01u",
       "tQpEIHL2QaiZ7xOWZ6py",
       "tqUaLEFDAafDWemxheMX",
       "tXFA7nfMsVTOUweO3Twi",
-      "u2nLyf1iUS18JLn3P9d5"
+      "u2nLyf1iUS18JLn3P9d5",
+      "u9P6kD78JZexijimIjHN",
+      "uc5ynLQTGAPKkIMIyzQ2",
+      "UCDnByA5YaWN9eiyA5IM"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T12:53:27.958Z",
-  "catalogueGeneratedAt": "2026-11-06T12:53:25.177Z",
+  "updatedAt": "2026-11-06T12:57:20.089Z",
+  "catalogueGeneratedAt": "2026-11-06T12:55:11.385Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 566,
     "screened_no_change": 78,
     "needs_source": 8,
-    "targeted_correction_complete": 320,
+    "targeted_correction_complete": 323,
     "preserve_prior_review": 98,
-    "pending": 59,
-    "prepared_awaiting_publication": 3
+    "pending": 59
   },
   "items": [
     {
@@ -4248,12 +4247,13 @@
       "url": "https://rankingdacompra.com.br/produto/tb7c733uByymDrSRjT5f-20260810-1.html",
       "title": "iPhone 17 Pro Max prateado — 256 GB",
       "fingerprint": "673363d979428d945de873fe43b541289b58da58b18afdbde9901c60d0cfce9b",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:57:20.052Z",
       "workNotes": [
         "Distingue 4x óptico de 8x com qualidade óptica e não endossa o vendedor.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB1055308605?wid=MLB5687309408",
@@ -5616,12 +5616,13 @@
       "url": "https://rankingdacompra.com.br/produto/TJk9BUtlZ9v02ETWQRuG-20260810-1.html",
       "title": "Loção hidratante corporal CeraVe sem fragrância — 473 mL",
       "fingerprint": "a77da5588f3fdcc359c13d1d45dad715054075a38ad6d345d0f73ec624f0f085",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:57:20.052Z",
       "workNotes": [
         "Corrige a indicação de pele e separa a descrição da marca do desempenho não medido.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB21361292?wid=MLB3269837602",
@@ -10025,12 +10026,13 @@
       "url": "https://rankingdacompra.com.br/produto/TEq7tHMr54vb5Gx3KqXy-20260810-1.html",
       "title": "Whey Protein Concentrado 1kg Growth Supplements - Leite em Pó",
       "fingerprint": "4261b7cae6de4d89d3c0d355cd0094a9a3c69f7e6833c74511c60155059c4801",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-06T12:57:20.052Z",
       "workNotes": [
         "Retira valor nutricional não confirmado e não transfere tabela de outro sabor.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB19140327?wid=MLB4278606427",
@@ -14851,12 +14853,36 @@
     ]
   },
   "triage137": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "TEq7tHMr54vb5Gx3KqXy",
       "TJk9BUtlZ9v02ETWQRuG",
       "tb7c733uByymDrSRjT5f"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-06T12:57:20.052Z",
+    "changedIds": [
+      "tb7c733uByymDrSRjT5f",
+      "TEq7tHMr54vb5Gx3KqXy",
+      "TJk9BUtlZ9v02ETWQRuG"
+    ],
+    "jointReleaseBatches": [
+      137
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem137.json",
+    "remainingDependencies": [
+      {
+        "id": "tb7c733uByymDrSRjT5f",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "TEq7tHMr54vb5Gx3KqXy",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "TJk9BUtlZ9v02ETWQRuG",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   }
 }

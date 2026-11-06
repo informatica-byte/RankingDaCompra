@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 137 — 06/11/2026, publicada e verificada
+
+- tb7c733uByymDrSRjT5f — iPhone prateado: distingue teleobjetiva de 4x e 8x com qualidade óptica, atribui autonomia à Apple e não endossa o vendedor.
+- TEq7tHMr54vb5Gx3KqXy — Whey Growth: retira teor nutricional não confirmado; rótulo do sabor leite em pó é a referência para a unidade.
+- TJk9BUtlZ9v02ETWQRuG — CeraVe: indicação oficial para pele normal a levemente seca; duração não medida.
+
+Fonte a2934f16a, geração 1e721f080; sitemap 42221309777, integridade 42221309562 e Pages 42221373760 concluídos. Três fichas HTTP 200, 1.565 testes e seis verificações estáticas móveis aprovados. 563 outras fichas, 566 IDs e 619 URLs preservados. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem137.json.
+
+Retomar por TLWfr8q21DK8xDKMh01u (Celimax Retinal Shot), tQpEIHL2QaiZ7xOWZ6py (pulverizador Snow Foam) e tqUaLEFDAafDWemxheMX (pendrive USB-C 8 GB). Restam 59 pendentes e 8 dependentes de fonte.
+
 ## Passagem 136 — 06/11/2026, publicada e verificada no site
 
 - SnMMDq9bDXiMWX0IXYdO — Mondial L-99 FB, anúncio MLB1793491599: capacidade total e limite de preparo separados; não presume BPA, tensão ou acessórios.
