@@ -1,4 +1,14 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 140 — 06/11/2026
+
+- uc5ynLQTGAPKkIMIyzQ2 — Sabre de Luz: triagem sem mudança; a ficha já não garante alcance ou fluxo luminoso.
+- UCDnByA5YaWN9eiyA5IM — cama elástica: 3 m e 1,55 m aparecem no endereço; tamanho da variante a confirmar.
+- Uh8jBpd9D8uEtK4Q3X43 — D3 + K2: sem teor por cápsula ou porção não confirmado nem promessa de biodisponibilidade superior.
+
+Fonte 0e24e84e1, geração 83c0976e9 e implantação 42252988703. 1.565 testes, seis verificações estáticas móveis e invariantes aprovados. Confirmar no site com `node scripts/verify-targeted-editorial.mjs 140 20261106`, sem refazer as fichas.
+
+Depois do lote, retomar por UqO48Rj9I0f8SpOqabpv (Aramis Daily Slip), uRfZSbUKT8yjArcSlGPL (Moto G06) e UTXc1AEUdk18yttkAXMb (NAC Forged Nutrition). 50 pendentes e 8 dependentes de fonte.
+
 ## Passagem 139 — 06/11/2026, publicada e verificada
 
 - tXFA7nfMsVTOUweO3Twi — Skyline 5: finalidade conforme a marca; sem afirmar ano, aderência ou conforto não verificados.
