@@ -1,4 +1,15 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 146 — 06/11/2026
+
+Sem produtos novos desde o lote 145; retomada por visualizações.
+
+- voyycquYPRJSv4TtyT29 — espelho Capela com LED: 44 × 64 cm e luz fria anunciados; tensão, fixação e proteção contra umidade não confirmadas.
+- vP33ptkgz0hzzvmaqx1a — Kärcher Prática Black: 127 V e especificações atribuídas à oferta; sem economia de água ou certificação não confirmadas.
+
+Fonte c10e3bb44, geração 889fb75d0, implantação 42280407582. 1.574 testes, quatro verificações estáticas móveis e invariantes aprovados; 565 fichas inalteradas, 567 IDs e 620 URLs. Confirmar no site com `node scripts/verify-targeted-editorial.mjs 146 20261106`; não refazer as duas fichas.
+
+Depois de eventuais novos públicos, retomar por vr2uogxbiKqrQx1MYdD9 (Moto G35 verde), VyYiww5HVcBRIH8SD5SD (patinete V01premium) e W2fwS2jLu4yjKnRTww98 (kit de cuecas boxer). Restam 34 pendentes e 8 aguardando fontes, além das duas fichas até confirmação.
+
 ## Passagem 145 — 06/11/2026, publicada e verificada
 
 Sem novos cadastros publicados desde o lote 144. Retomada por visualizações:
