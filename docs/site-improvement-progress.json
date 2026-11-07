@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "WO8eJVPACXCORVzrdNVh",
-      "wYxgVNIJeeWmGhcToFLP",
-      "WZIrFRxgOFZ1skyzk5SS",
       "x75GETnbI3P4zycAKwOI",
       "xbXvQNhfLeV7MLszyz6X",
       "XGM5P52X6EJc7X55vC8Y",
       "xLxOtmzGQ48dLjjnJ9g4",
-      "xq3BIapk5fun5CkIrwc1"
+      "xq3BIapk5fun5CkIrwc1",
+      "XXQfkSFgQfT2yD1mVrsP",
+      "y0k4BCvQKQ3oyN0VMz7B",
+      "Y0m34sJnzLnojKcK5wAp"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:07:33.048Z",
-  "catalogueGeneratedAt": "2026-11-07T01:07:30.769Z",
+  "updatedAt": "2026-11-07T01:11:45.288Z",
+  "catalogueGeneratedAt": "2026-11-07T01:09:17.659Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 568,
     "screened_no_change": 81,
     "needs_source": 8,
-    "targeted_correction_complete": 354,
+    "targeted_correction_complete": 356,
     "preserve_prior_review": 98,
-    "pending": 25,
-    "prepared_awaiting_publication": 2
+    "pending": 25
   },
   "items": [
     {
@@ -2872,12 +2871,13 @@
       "url": "https://rankingdacompra.com.br/produto/WZIrFRxgOFZ1skyzk5SS-20260810-1.html",
       "title": "Combo Siàge Nutri Diamond Shampoo, Condicionador E Máscara",
       "fingerprint": "2ecfdb41ee6441c910d14f065a665984f7f499dfb7924f5f7cb13ada1474d985",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:11:38.609Z",
       "workNotes": [
         "Completa o conteúdo do trio com referência oficial, sem garantir volumes da oferta ou resultados.",
-        "Documentação do modelo; sem teste da unidade."
+        "Documentação do modelo; sem teste da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB74646505",
@@ -4099,12 +4099,13 @@
       "url": "https://rankingdacompra.com.br/produto/WO8eJVPACXCORVzrdNVh-20260810-1.html",
       "title": "Guitarra E Microfone Infantil Instrumento Brinquedo Musical Cor Rosa Atentu",
       "fingerprint": "510b1b2547862cfaa175e5896f461e2ef5ad3a7d8e42b0c7e6cd81fbc02bff27",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:11:38.609Z",
       "workNotes": [
         "Verifica registro e faixa etária sem garantir conexão ou acessórios.",
-        "Documentação do modelo; sem teste da unidade."
+        "Documentação do modelo; sem teste da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB42455316?wid=MLB5150671412",
@@ -15563,11 +15564,34 @@
     ]
   },
   "triage149": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "WO8eJVPACXCORVzrdNVh",
       "WZIrFRxgOFZ1skyzk5SS"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-07T01:11:45.264Z",
+    "changedIds": [
+      "WO8eJVPACXCORVzrdNVh",
+      "WZIrFRxgOFZ1skyzk5SS"
+    ],
+    "jointReleaseBatches": [
+      149
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem149.json",
+    "remainingDependencies": [
+      {
+        "id": "WO8eJVPACXCORVzrdNVh",
+        "note": "Documentação do modelo; sem teste da unidade."
+      },
+      {
+        "id": "wYxgVNIJeeWmGhcToFLP",
+        "note": "Sem teste independente."
+      },
+      {
+        "id": "WZIrFRxgOFZ1skyzk5SS",
+        "note": "Documentação do modelo; sem teste da unidade."
+      }
+    ]
   }
 }

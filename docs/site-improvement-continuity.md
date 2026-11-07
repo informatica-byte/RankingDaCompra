@@ -1,4 +1,16 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 149 — 06/11/2026, publicada e verificada
+
+Sem novas páginas desde o lote 148. Ordem de visualizações preservada:
+
+- WO8eJVPACXCORVzrdNVh — Atentu: registro GUITMIC-RS e faixa etária documentados pelo Inmetro; conexão e acessórios a confirmar.
+- wYxgVNIJeeWmGhcToFLP — power bank 20.000 mAh: triagem sem alteração, pois já separa potência anunciada e desempenho não testado.
+- WZIrFRxgOFZ1skyzk5SS — Siàge Nutri Diamond: conteúdo do trio de referência documentado pela Eudora; volumes da oferta a confirmar.
+
+Fonte 38b92812c, geração e6fd3db62, implantação 42322492897. Duas páginas HTTP 200 com afiliados preservados; 566 outras fichas, 568 IDs e 621 URLs preservados. 1.574 testes, seis verificações estáticas móveis e invariantes aprovados. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem149.json.
+
+Priorizar novos públicos; depois retomar por x75GETnbI3P4zycAKwOI (Azzaro Pour Homme 100 mL), xbXvQNhfLeV7MLszyz6X (patinete iX7Pro) e XGM5P52X6EJc7X55vC8Y (jarra de borossilicato). Restam 25 pendentes e 8 aguardando fontes.
+
 ## Passagem 148 — 06/11/2026, publicada e verificada
 
 - mlMLB4841103289 — garrafa térmica 800 mL: publicação mais recente, priorizada; tempos térmicos anunciados, vedação e ausência de BPA não verificadas.
