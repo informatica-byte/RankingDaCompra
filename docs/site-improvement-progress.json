@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:57:25.716Z",
-  "catalogueGeneratedAt": "2026-11-07T01:56:23.801Z",
+  "updatedAt": "2026-11-07T01:59:05.124Z",
+  "catalogueGeneratedAt": "2026-11-07T01:58:13.208Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 568,
     "screened_no_change": 81,
     "needs_source": 8,
-    "targeted_correction_complete": 364,
+    "targeted_correction_complete": 367,
     "preserve_prior_review": 98,
-    "pending": 14,
-    "prepared_awaiting_publication": 3
+    "pending": 14
   },
   "items": [
     {
@@ -6581,9 +6580,9 @@
       "url": "https://rankingdacompra.com.br/produto/y8qOGP907Z3Bry3AI9cc-20260810-1.html",
       "title": "Numberblocks Brinquedo Educativo Cubos Matemáticos Didáticos",
       "fingerprint": "09066fa8c51017231ec9cfc3b0b1a5bfbf5d81883a4a6146e730987c86a1f6dc",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:59:05.127Z",
       "workNotes": [
         "Atribui conteúdo e idade à oferta, sem presumir licenciamento."
       ],
@@ -9454,9 +9453,9 @@
       "url": "https://rankingdacompra.com.br/produto/Y9pvF6r8j4nJdGwU4ht4-20260810-1.html",
       "title": "Tênis Masculino E Feminino Smash V2 Bdp Puma",
       "fingerprint": "9354c53b46d02e2493186679f86205e0573a5fd04552b2de4d8bea5344fb8c42",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:59:05.127Z",
       "workNotes": [
         "Retira garantia de aderência e ressalva palmilha da variante não confirmada."
       ],
@@ -9526,9 +9525,9 @@
       "url": "https://rankingdacompra.com.br/produto/y3sJNKuSXBHScRkQ0wMN-20260810-1.html",
       "title": "Tênis Masculino Grand Court Base 3.0 Adidas",
       "fingerprint": "d8e82bed7882260ec6e778698825d11fca82b10efa6546d37f25b2799a103022",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:59:05.127Z",
       "workNotes": [
         "Retira alegações de amortecimento e distingue a referência documentada da variante da oferta."
       ],
@@ -15695,11 +15694,14 @@
     "pagesRun": 42326371783
   },
   "triage153": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "changedIds": [
       "y3sJNKuSXBHScRkQ0wMN",
       "y8qOGP907Z3Bry3AI9cc",
       "Y9pvF6r8j4nJdGwU4ht4"
-    ]
+    ],
+    "verifiedAt": "2026-11-07T01:59:05.127Z",
+    "sourceCommit": "07b9765fc",
+    "pagesRun": 42326841613
   }
 }

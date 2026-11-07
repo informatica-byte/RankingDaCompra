@@ -1,9 +1,11 @@
 # Continuidade prioritária — Ranking da Compra
-## Passagem 153 — 06/11/2026
+## Passagem 153 — 06/11/2026, publicada e verificada
 
 Sem novas fichas públicas. Ajustes em y3sJNKuSXBHScRkQ0wMN (Adidas Grand Court Base 3.0), y8qOGP907Z3Bry3AI9cc (Numberblocks) e Y9pvF6r8j4nJdGwU4ht4 (Puma Smash V2 BDP). Evidências em `docs/targeted-triage153-20261106.json`.
 
-Confirmar a publicação sem repetir as revisões. Retomar por novos produtos públicos, depois Yc8WKEmLYvUlf1em3nGt (Yoyo V01 Plus), ye0EVvhX1qjcRDsb9Srw (cozedor Vyrox) e yGygA3k1h886kEa7LOqh (Coleção Primeira Biblioteca).
+Fonte 07b9765fc, geração bab9eacd1, Pages 42326841613. Três páginas públicas HTTP 200 com conteúdo e afiliados conferidos; 1.574 testes e 621 URLs validadas.
+
+Não repetir estas revisões. Retomar por novos produtos públicos, depois Yc8WKEmLYvUlf1em3nGt (Yoyo V01 Plus), ye0EVvhX1qjcRDsb9Srw (cozedor Vyrox) e yGygA3k1h886kEa7LOqh (Coleção Primeira Biblioteca). Restam 14 pendentes e 8 aguardando fontes.
 
 ## Passagem 152 — 06/11/2026, publicada e verificada
 
