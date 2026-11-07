@@ -1,5 +1,19 @@
 {
   "version": 1,
+  "deepTechnicalAudit20261107": {
+    "status": "published_verified",
+    "sourceCommit": "11cec2a99",
+    "generatedCommit": "dd037fef4",
+    "pagesRun": 42360200440,
+    "htmlPagesChecked": 843,
+    "internalReferencesChecked": 11107,
+    "testsPassed": 1575,
+    "metadataPagesCorrected": 8,
+    "firestoreQueries": 0,
+    "realRecordWrites": 0,
+    "report": "docs/deep-audit-20261107.md",
+    "limits": "Static and isolated UI checks; representative public checks. Not a penetration test, effective account-permission audit or current seller-data verification."
+  },
   "informationalSeasonalTheme20261104": {
     "status": "published_verified",
     "sourceCommit": "719626078f9f0795bf7fa2e77f03a1ea889ee0fd",

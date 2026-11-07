@@ -24,4 +24,10 @@ Não mede vendas, comissões, posicionamento Google ou desempenho de rede em cel
 
 Não repetir as triagens dos produtos inalterados. Trabalhos globais restantes dependem de escopo e evidência próprios; este relatório não declara todas as melhorias futuras concluídas. A agenda de continuidade e a revisão SEO separada são preservadas.
 
-Publicação: preparada; atualizar abaixo somente após evidência pública.
+## Publicação verificada
+
+- Correção inicial: 956102b5b. Durante a confirmação pública, detectada regeneração parcial de um dos títulos. Regra corrigida em 11cec2a99, com regressão para esse caso.
+- Geração final dd037fef4, GitHub Pages 42360200440 concluído com sucesso.
+- Oito fichas públicas HTTP 200, títulos correspondentes aos arquivos corrigidos, afiliados preservados e títulos distintos.
+- Inicial, análises, comparador, dashboard, painel móvel, robots.txt e sitemap.xml públicos HTTP 200. URL inexistente respondeu 404.
+- Não há títulos de SEO repetidos entre as 621 URLs locais do sitemap após a correção.

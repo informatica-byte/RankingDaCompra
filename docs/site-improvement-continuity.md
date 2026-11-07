@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## Auditoria técnica de encerramento editorial — 07/11/2026
+
+Auditoria estática de 843 HTMLs e 11.107 referências sem erros; 1.575 testes e QA local de vitrine/comparador/música/vídeos/painéis/retomada do robô/quarentena aprovados. Quatro pares de títulos SEO repetidos corrigidos somente em metadados; nenhuma união ou revisão factual refeita. A regra protege futuras regenerações parciais.
+
+Fonte final 11cec2a99, geração dd037fef4, Pages 42360200440 SUCCESS. Oito fichas, inicial, análises, comparador, dois painéis, robots e sitemap HTTP 200; URL inexistente 404. Afiliados preservados. Relatório e limites em `docs/deep-audit-20261107.md`.
+
+Ponto de retomada: não repetir triagem editorial nem esta auditoria sem nova falha/evidência. Acesso administrativo real, métricas e especificações atuais dos vendedores não foram reconfirmados. Trabalhos globais e revisão SEO separada permanecem; não encerrar a agenda como se todo trabalho futuro estivesse concluído.
+
 ## Passagem 156 — 07/11/2026, publicada e verificada
 
 Usuário autorizou usar os dados do vendedor para as oito fichas antes bloqueadas. Ajuste editorial atribuído à oferta, sem testes ou validação independente. Ofertas tentadas na web inacessíveis; dados locais previamente extraídos do anúncio, não uma leitura atual. Contradições mantidas explícitas, especialmente operadora Claro/Vivo da Point. IDs e fontes no manifesto `docs/targeted-triage156-20261107.json`.
