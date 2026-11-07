@@ -6,6 +6,7 @@ import info from '../informational-mode.js';
 import decision from '../decision-brief.js';
 import {popularById,matchesPopularAnalysis,registeredOfferUrl} from './popular-analysis.mjs';
 import {applyPublicSeoLabels} from './public-seo-labels.mjs';
+// The guide module is also an explicit sitemap-workflow dependency.
 import {applyGuideDecisionSupport} from './guide-decision-support.mjs';
 const featuredBriefs=JSON.parse(await readFile(new URL('../featured-analysis.json',import.meta.url),'utf8')).products;
 

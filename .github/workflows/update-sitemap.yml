@@ -13,6 +13,7 @@ on:
       - "scripts/published-discovery-summary.mjs"
       - "scripts/comparison-guides.mjs"
       - "scripts/guide-public-copy.mjs"
+      - "scripts/guide-decision-support.mjs"
       - "comparison-integrity.js"
       - "scripts/discovery-editorial.mjs"
       - "scripts/published-editorial.mjs"
