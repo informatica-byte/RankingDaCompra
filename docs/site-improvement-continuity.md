@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — roteiro de decisão em três guias — 07/11/2026
+
+Guias de notebooks, celulares e Smart TVs: três conferências e três perguntas específicas por página, seleção manual no comparador, sem novas afirmações sobre produtos. Código idempotente integrado ao gerador. Não reabertas revisões das fichas.
+
+1.577 testes, 12 combinações de layout com rede bloqueada e validador geral aprovados. Dados, histórico e 621 URLs preservados. Confirmar a publicação; detalhes em `docs/global05-decision-guides-20261107.md`.
+
+GLOBAL-05 permanece parcial. Retomar pela necessidade de orientação específica em impressoras, air fryers e ferramentas; não refazer os três guias desta rodada nem as fichas concluídas.
+
 ## Auditoria técnica de encerramento editorial — 07/11/2026
 
 Auditoria estática de 843 HTMLs e 11.107 referências sem erros; 1.575 testes e QA local de vitrine/comparador/música/vídeos/painéis/retomada do robô/quarentena aprovados. Quatro pares de títulos SEO repetidos corrigidos somente em metadados; nenhuma união ou revisão factual refeita. A regra protege futuras regenerações parciais.

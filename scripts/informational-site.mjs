@@ -6,6 +6,7 @@ import info from '../informational-mode.js';
 import decision from '../decision-brief.js';
 import {popularById,matchesPopularAnalysis,registeredOfferUrl} from './popular-analysis.mjs';
 import {applyPublicSeoLabels} from './public-seo-labels.mjs';
+import {applyGuideDecisionSupport} from './guide-decision-support.mjs';
 const featuredBriefs=JSON.parse(await readFile(new URL('../featured-analysis.json',import.meta.url),'utf8')).products;
 
 const money=/R\$(?:\s|&nbsp;)*[\d.,]+/gi;
@@ -131,6 +132,7 @@ export function informationalHtml(source,product,file=''){
   const rendered=decision.render(product.decisionBrief);
   html=html.replace(/<p class="summary">([^]*?)<\/p>/,(paragraph,body)=> '<!-- decision-brief:start -->'+rendered+'<!-- decision-brief:end -->'+(decision.sober(body)===decision.text(body)?paragraph:'<p class="summary">'+info.esc(decision.sober(body)||'Alegações promocionais do anúncio não foram comprovadas nesta análise. Consulte os dados e as fontes disponíveis.')+'</p>'));
  }
+ html=applyGuideDecisionSupport(html,file);
  if(JSON.stringify(affiliateLinks(source))!==JSON.stringify(affiliateLinks(html)))throw Error('A migração alteraria os links de afiliados de '+(product?.id||'uma página')+'. Operação bloqueada.');
  return html;
 }
