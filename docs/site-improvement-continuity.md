@@ -1,4 +1,10 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 156 — 07/11/2026
+
+Usuário autorizou usar os dados do vendedor para as oito fichas antes bloqueadas. Ajuste editorial atribuído à oferta, sem testes ou validação independente. Ofertas tentadas na web inacessíveis; dados locais previamente extraídos do anúncio, não uma leitura atual. Contradições mantidas explícitas, especialmente operadora Claro/Vivo da Point. IDs e fontes no manifesto `docs/targeted-triage156-20261107.json`.
+
+Confirmar a publicação, sem apresentar o fechamento editorial como comprovação das especificações. Não repetir as revisões; futuras confirmações exigem fonte nova ou modelo/etiqueta correspondente. Trabalhos globais ainda não estão todos concluídos.
+
 ## Passagem 155 — 06/11/2026, publicada e verificada
 
 Sem novas fichas públicas. Triagem das 11 pendentes: dez correções pontuais e câmera-lâmpada Raytechno preservada sem alteração. IDs e fontes em `docs/targeted-triage155-20261106.json`. As oito fichas dependentes de fontes não foram reabertas.

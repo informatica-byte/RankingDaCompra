@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-07",
+  "policy": "Seller-attributed public snapshot; no claim of current live listing confirmation or independent testing.",
+  "items": [
+    {
+      "id": "40SKVMiLnqTYwYcP2duQ",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB69621318?pdp_filters=item_id%3AMLB5031200555"
+      ],
+      "sourceLimit": "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
+    },
+    {
+      "id": "mlMLB5239190177",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/adaptador-usb-rj45-ugreen-ethernet-gigabit-1000mbps-cm209/up/MLBU5210851128?pdp_filters=item_id%3AMLB5239190177"
+      ],
+      "sourceLimit": "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
+    },
+    {
+      "id": "mlMLB4656461981",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB68770277?wid=MLB4656461981"
+      ],
+      "sourceLimit": "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
+    },
+    {
+      "id": "jdxZ0gYEI0XGOPYbWh78",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/aparelhos-academia-aparelho-abdominal-ab-circlecasa-dobravel/up/MLBU3690429243?pdp_filters=item_id%3AMLB6091779718"
+      ],
+      "sourceLimit": "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
+    },
+    {
+      "id": "mlMLB4186778677",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/atiradeira-estilingue-profissional-do-laser-c100-esfera-aco/up/MLBU3400340276?wid=MLB4186778677"
+      ],
+      "sourceLimit": "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
+    },
+    {
+      "id": "t4cAWb59UILzYeRHO0qk",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB75494102?wid=MLB4915160895"
+      ],
+      "sourceLimit": "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
+    },
+    {
+      "id": "O6sfkmnugDGyVCAnNtyN",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB21814751?pdp_filters=item_id%3AMLB3225819794"
+      ],
+      "sourceLimit": "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
+    },
+    {
+      "id": "0o2cubZBfwlgcwFokAWY",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB50744233?pdp_filters=item_id%3AMLB6040467738"
+      ],
+      "sourceLimit": "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
+    }
+  ]
+}
