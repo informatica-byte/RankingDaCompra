@@ -1,5 +1,32 @@
 // Editorial questions, not inferred product specifications or automatic rankings.
 const guides={
+ 'melhores-casa.html':{
+  heading:'Antes de escolher produtos para casa',
+  checks:['Comece pela tarefa: limpar, cozinhar, organizar ou cuidar do conforto. Compare apenas produtos da mesma finalidade.','Confira medidas do produto e do local de uso, alimentação e acessórios necessários.','Procure no manual os materiais permitidos, os cuidados de limpeza e os limites do modelo.'],
+  questions:[
+   ['Como usar um guia com tantos tipos de produto?','Escolha primeiro o grupo correspondente à tarefa nas opções abaixo. Um aspirador e um liquidificador não são alternativas entre si; o guia não escolhe um vencedor entre funções diferentes.'],
+   ['Se o nome diz universal, serve no meu espaço ou aparelho?','Não presuma isso pelo título. Confira dimensões, encaixes e compatibilidade da unidade com o vendedor ou na documentação. Informação ausente continua a confirmar.'],
+   ['Como conferir se cabe e se está pronto para usar?','Compare as dimensões completas com o local disponível e confira as exigências de instalação e o conteúdo da embalagem. Fotos e capacidade anunciada não substituem essas medidas.']
+  ]
+ },
+ 'melhores-cameras-de-seguranca.html':{
+  heading:'Antes de comparar câmeras de segurança',
+  checks:['Defina o ambiente e o que pretende observar; confira a indicação de instalação e alimentação do modelo.','Confirme rede compatível, aplicativo, forma de gravação e o que é necessário para guardar as imagens.','Verifique se os recursos desejados dependem de acessórios ou assinatura e confira as condições antes de comprar.'],
+  questions:[
+   ['Mais resolução garante imagem noturna melhor?','A resolução anunciada, sozinha, não comprova nitidez à noite, alcance ou identificação de detalhes. Veja as fontes e limitações da ficha; não fizemos testes próprios de imagem.'],
+   ['Preciso de assinatura para gravar?','Confira as opções do modelo: armazenamento local, nuvem e condições de acesso podem ser diferentes. Se o anúncio não esclarecer custos e limites, pergunte antes de contar com gravação contínua ou consulta remota.'],
+   ['A câmera cobre todo o ambiente e evita incidentes?','Não trate isso como garantia. Confira campo de visão, posição de instalação e requisitos de conexão. Esta ficha não mede pontos cegos, precisão dos alertas nem prevenção de incidentes.']
+  ]
+ },
+ 'melhores-informatica.html':{
+  heading:'Antes de escolher equipamentos de informática',
+  checks:['Separe a tarefa e o tipo de equipamento: computador, periférico, rede ou outro acessório.','Confira modelos e configurações completos, portas disponíveis e suporte ao sistema que você usa.','Verifique cabos, adaptadores e demais itens incluídos; não presuma compatibilidade só pelo formato do conector.'],
+  questions:[
+   ['Todos os itens deste guia podem ser comparados entre si?','Não. Use os grupos abaixo para separar funções equivalentes. Um computador, um controle e um adaptador atendem a necessidades diferentes e não devem receber uma classificação única.'],
+   ['Um conector com o mesmo formato confirma compatibilidade?','Confira as funções e os requisitos documentados de ambos os equipamentos. Se precisar de um recurso específico, como vídeo, rede ou alimentação, não o presuma apenas pela aparência da porta.'],
+   ['Mais memória ou números maiores no anúncio garantem desempenho?','Confira primeiro o código completo e a configuração do produto, depois os requisitos dos programas e aparelhos envolvidos. A ficha não mediu desempenho nem comprova resultado pelo número isolado.']
+  ]
+ },
  'melhores-impressoras.html':{
   heading:'Antes de comparar impressoras',
   checks:['Liste o que pretende imprimir: documentos, imagens ou etiquetas, em cores ou apenas preto.','Confira as funções do modelo: imprimir, copiar e digitalizar são itens separados.','Identifique o consumível correto e confirme conexão e suporte ao sistema do seu computador ou celular.'],

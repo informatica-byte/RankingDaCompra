@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — casa, câmeras e informática — 07/11/2026
+
+Acrescentadas orientações de escolha específicas nos três guias, sem refazer conteúdo/fichas: três conferências e três perguntas por página. Dados operacionais, afiliados e seis guias anteriores preservados.
+
+1.578 testes, 12 combinações de layout com rede bloqueada e validador geral aprovados. Confirmar implantação; relatório `docs/global05-decision-guides-3-20261107.md`.
+
+Retomar pela necessidade de orientação nos guias de brinquedos, esporte e lazer e bicicletas; não repetir os nove guias contemplados. GLOBAL-05 continua parcial.
+
 ## GLOBAL-05 — impressoras, air fryers e ferramentas — 07/11/2026
 
 Lacuna de orientação específica constatada; acrescentadas três conferências e três perguntas por guia, sem novas informações de produtos. Conteúdo anterior e os três guias já concluídos preservados. Código integrado ao gerador; sem dados/cadastros/afiliados alterados.
