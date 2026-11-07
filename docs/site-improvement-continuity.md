@@ -1,9 +1,11 @@
 # Continuidade prioritária — Ranking da Compra
-## Passagem 155 — 06/11/2026
+## Passagem 155 — 06/11/2026, publicada e verificada
 
 Sem novas fichas públicas. Triagem das 11 pendentes: dez correções pontuais e câmera-lâmpada Raytechno preservada sem alteração. IDs e fontes em `docs/targeted-triage155-20261106.json`. As oito fichas dependentes de fontes não foram reabertas.
 
-Confirmar a publicação sem repetir a triagem. Após validar o lote, só retomar por novos produtos, por evidência nova para as oito fichas bloqueadas ou pelo próximo trabalho global em aberto.
+Fonte 205b64916, geração 7a12d8e74, Pages 42328259688. Onze páginas públicas HTTP 200 com descrições e afiliados conferidos, incluindo a ficha sem alteração. 1.574 testes e 621 URLs validadas. Zero fichas na fila regular; oito aguardam fontes.
+
+Não repetir a triagem. Retomar apenas por novos produtos, por evidência nova para as oito fichas bloqueadas ou pelo próximo trabalho global em aberto.
 
 ## Passagem 154 — 06/11/2026, publicada e verificada
 

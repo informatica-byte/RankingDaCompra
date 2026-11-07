@@ -681,8 +681,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T02:13:45.384Z",
-  "catalogueGeneratedAt": "2026-11-07T02:12:41.963Z",
+  "updatedAt": "2026-11-07T02:15:48.989Z",
+  "catalogueGeneratedAt": "2026-11-07T02:14:34.102Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -696,9 +696,8 @@
     "total": 568,
     "screened_no_change": 82,
     "needs_source": 8,
-    "targeted_correction_complete": 370,
-    "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 10
+    "targeted_correction_complete": 380,
+    "preserve_prior_review": 98
   },
   "items": [
     {
@@ -2076,7 +2075,7 @@
       "fingerprint": "d61a8d1b7aa1a58b5545134840a0cfaf8de3e55700ce1964e5c9f90e06da7e80",
       "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": "2026-11-07T02:13:45.386Z",
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "A ficha Raytechno já distingue dados do anúncio e limitações de imagem, detecção e compatibilidade."
       ],
@@ -2401,9 +2400,9 @@
       "url": "https://rankingdacompra.com.br/produto/ZGxs2yoDgmpnMApDWyHn-20260810-1.html",
       "title": "Carregador USB-C de 20 W para iPhone",
       "fingerprint": "8e7fce17e7209e3a8a72031c37b1287202be54be73ddca8c6b41dd35cb52c8f4",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta."
       ],
@@ -3954,9 +3953,9 @@
       "url": "https://rankingdacompra.com.br/produto/YZvcITogQcf1bnnARlRx-20260810-1.html",
       "title": "Furadeira Parafusadeira De Impacto 2 Baterias 21v + 46 Peças",
       "fingerprint": "1bf5550750fecb58ef8a84616af8394e02db273a808f1c14d48fda68c1dd03c7",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta."
       ],
@@ -4221,9 +4220,9 @@
       "url": "https://rankingdacompra.com.br/produto/Z4BxOInHt44ImemttzRQ-20260810-1.html",
       "title": "Honeywhale M2 Pro Patinete Eletrico Adulto, 500w Motor-max, 32 Km/h Velocidade Máxima, 22 Km De Autonomia, Honey Whale Scooter Elétrica Com App Bluetooth (36v 7.8ah)",
       "fingerprint": "5cb12114dd3bb4eb0b65183936392d53aeed53e3143bb2c397c7126be35a83cb",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta."
       ],
@@ -5668,9 +5667,9 @@
       "url": "https://rankingdacompra.com.br/produto/Zo8ybuHaQjV6HlCbCWqf-20260810-1.html",
       "title": "Liquidificador Philco 1200W 3L 12 Velocidades Preto PH900",
       "fingerprint": "06e03a1c551e1f521799065be3b110a60549334287e510eb448c8a9e92e48647",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta."
       ],
@@ -8656,9 +8655,9 @@
       "url": "https://rankingdacompra.com.br/produto/YXqPx6O5Gl3YRR4I8w9a-20260810-1.html",
       "title": "Smartphone Motorola Moto G56",
       "fingerprint": "44f063631b0f1dd942f5fe49af14fe3042475d0cec446269477bb9545779d7dc",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta."
       ],
@@ -9038,9 +9037,9 @@
       "url": "https://rankingdacompra.com.br/produto/ypj5xGtjDkHWV6xVFgfd-20260810-1.html",
       "title": "Tênis Barreda Decode adidas",
       "fingerprint": "f37ea4f998740e33110581edb8bea73d8dde654d0cfb68f681b91eb1b88367a2",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta."
       ],
@@ -9093,9 +9092,9 @@
       "url": "https://rankingdacompra.com.br/produto/Z7iMVBFxNAT5eyiMYxwH-20260810-1.html",
       "title": "Tênis Casual Rock 09 Cinza Slip On Sola Reta Camurça Macio",
       "fingerprint": "c01024014e4c7a094e6fd76cf1cea83399e843de83ea97a92c7d57a70b96b2b0",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta."
       ],
@@ -10270,9 +10269,9 @@
       "url": "https://rankingdacompra.com.br/produto/Zdn2bdtuTZGcOZIQSpRK-20260810-1.html",
       "title": "Ventilador De Parede Oscilante Preto 50cm New Plástico 130W 3 Pás Ventisol",
       "fingerprint": "b520791bce081e1cf02c9ec84ec9ba4742462246705633d9d6e77e1296ad92cf",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta."
       ],
@@ -10287,9 +10286,9 @@
       "url": "https://rankingdacompra.com.br/produto/yJAghLjqy4ystXibSU2F-20260810-1.html",
       "title": "Ventilador De Teto Ventisol Fênix E-27 Branco 130w Com 3 Pás De Plástico",
       "fingerprint": "088f76e20963065601c409f286d2cc26fbdff9f6aecf884d6672e0fa11b897a3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta."
       ],
@@ -10454,9 +10453,9 @@
       "url": "https://rankingdacompra.com.br/produto/YprAHdwDVV8lFBm4b77k-20260810-1.html",
       "title": "Wella Kit Nutri Enrich Shampoo 1l+condicionador 1l",
       "fingerprint": "2cb113ab35552d49778c75dbc8b3eff83dbd3f00ff0f4186e76167174d9567ff",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:15:48.992Z",
       "workNotes": [
         "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta."
       ],
@@ -15779,7 +15778,7 @@
     "pagesRun": 42327750581
   },
   "triage155": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "changedIds": [
       "yJAghLjqy4ystXibSU2F",
       "ypj5xGtjDkHWV6xVFgfd",
@@ -15791,6 +15790,9 @@
       "YXqPx6O5Gl3YRR4I8w9a",
       "Z7iMVBFxNAT5eyiMYxwH",
       "Zdn2bdtuTZGcOZIQSpRK"
-    ]
+    ],
+    "verifiedAt": "2026-11-07T02:15:48.992Z",
+    "sourceCommit": "205b64916",
+    "pagesRun": 42328259688
   }
 }
