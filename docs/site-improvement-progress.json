@@ -76,9 +76,6 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "x75GETnbI3P4zycAKwOI",
-      "xbXvQNhfLeV7MLszyz6X",
-      "XGM5P52X6EJc7X55vC8Y",
       "xLxOtmzGQ48dLjjnJ9g4",
       "xq3BIapk5fun5CkIrwc1",
       "XXQfkSFgQfT2yD1mVrsP",
@@ -690,8 +687,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:11:45.288Z",
-  "catalogueGeneratedAt": "2026-11-07T01:09:17.659Z",
+  "updatedAt": "2026-11-07T01:19:47.088Z",
+  "catalogueGeneratedAt": "2026-11-07T01:17:23.353Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,9 +702,9 @@
     "total": 568,
     "screened_no_change": 81,
     "needs_source": 8,
-    "targeted_correction_complete": 356,
+    "targeted_correction_complete": 359,
     "preserve_prior_review": 98,
-    "pending": 25
+    "pending": 22
   },
   "items": [
     {
@@ -4352,13 +4349,20 @@
     {
       "id": "XGM5P52X6EJc7X55vC8Y",
       "url": "https://rankingdacompra.com.br/produto/XGM5P52X6EJc7X55vC8Y-20260810-1.html",
-      "title": "Jarra Vidro Borossilicato 1.4L Tampa Inox Resistente Cor Transparente",
-      "fingerprint": "f5ffe3075141c14ed351d0e3c501fd4c1b2230c6854a76d47548d7faa09454a2",
-      "status": "pending",
+      "title": "Jarra de vidro borossilicato 1,4 L com tampa inox",
+      "fingerprint": "7d751539e544adf05cdd779455b9770a4d577a5cecf80bc82d53bbcea98215e7",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-07T01:19:47.091Z",
+      "workNotes": [
+        "Retira a garantia de vedação e não presume resistência térmica, temperatura ou compatibilidade com lava-louças.",
+        "Dados da oferta; sem manual específico ou ensaio de vedação e choque térmico."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB34703973"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "jXr2Y2GPpfN57sjqnpfV",
@@ -6799,13 +6803,18 @@
     {
       "id": "xbXvQNhfLeV7MLszyz6X",
       "url": "https://rankingdacompra.com.br/produto/xbXvQNhfLeV7MLszyz6X-20260810-1.html",
-      "title": "Patinete Elétrico iX7Pro Xroymexroy Adulto Bateria 17.5Ah Grande Autonomia 80km",
-      "fingerprint": "d27c02a49780ddb8cb9e3c10a3d51c627b42d08b43fb053f3bc969b3ed40566b",
-      "status": "pending",
+      "title": "Patinete elétrico dobrável iX7Pro Xroymexroy",
+      "fingerprint": "7add29b774e32d4be6cd615561cc4a6d3303b887322c78841c5c1503637cf16b",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-07T01:19:47.091Z",
+      "workNotes": [
+        "Retira a autonomia do título e distingue as alegações da oferta de medições.",
+        "Snapshot da própria oferta; condições de ensaio e equivalência com outras marcas não verificadas."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "Evo4CPaNJPvGuj1ILt5u",
@@ -7195,12 +7204,19 @@
       "id": "x75GETnbI3P4zycAKwOI",
       "url": "https://rankingdacompra.com.br/produto/x75GETnbI3P4zycAKwOI-20260810-1.html",
       "title": "Perfume Masculino Eau de Toilette Azzaro - Azzaro Pour Homme 100 ml",
-      "fingerprint": "9aedef707adb888096d9c43d4297c69e332fb4460098c9de1d20e0a049d0384b",
-      "status": "pending",
+      "fingerprint": "d4d720d4b113f34ebf6a24cd195b0d5c372ec71483e1fd15c50ddef69561462e",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-07T01:19:47.091Z",
+      "workNotes": [
+        "Substitui a pirâmide não sustentada pelas notas de destaque descritas pela Azzaro.",
+        "Sem teste de fixação ou projeção."
+      ],
+      "sourceLinks": [
+        "https://www.azzaro.com/en/fragrances/azzaro-pour-homme"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB7748620676",
@@ -15593,5 +15609,18 @@
         "note": "Documentação do modelo; sem teste da unidade."
       }
     ]
+  },
+  "triage150": {
+    "status": "published_verified",
+    "verifiedAt": "2026-11-07T01:19:47.091Z",
+    "changedIds": [
+      "x75GETnbI3P4zycAKwOI",
+      "xbXvQNhfLeV7MLszyz6X",
+      "XGM5P52X6EJc7X55vC8Y"
+    ],
+    "sourceCommit": "c41d5c733",
+    "generatedCommit": "e10147feb",
+    "pagesRun": 42323267308,
+    "testsPassed": 1574
   }
 }
