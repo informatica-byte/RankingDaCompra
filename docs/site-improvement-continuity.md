@@ -3,7 +3,7 @@
 
 Guias de notebooks, celulares e Smart TVs: três conferências e três perguntas específicas por página, seleção manual no comparador, sem novas afirmações sobre produtos. Código idempotente integrado ao gerador. Não reabertas revisões das fichas.
 
-1.577 testes, 12 combinações de layout com rede bloqueada e validador geral aprovados. Dados, histórico e 621 URLs preservados. Confirmar a publicação; detalhes em `docs/global05-decision-guides-20261107.md`.
+1.577 testes, 12 combinações de layout com rede bloqueada e validador geral aprovados. Dados, histórico e 621 URLs preservados. Publicação confirmada nos três guias HTTP 200, com roteiro e links preservados. Fonte 1c9be1b8a, geração 1ec25b5dd, Pages 42361103615 SUCCESS. Detalhes em `docs/global05-decision-guides-20261107.md`.
 
 GLOBAL-05 permanece parcial. Retomar pela necessidade de orientação específica em impressoras, air fryers e ferramentas; não refazer os três guias desta rodada nem as fichas concluídas.
 

@@ -13,6 +13,6 @@ Verificações locais:
 - Validação geral: 568 produtos e 621 URLs.
 - Catálogo público, índice, histórico e sitemap preservados.
 
-Estado: preparado; confirmar implantação e conteúdo público antes de marcar publicado.
+Estado: publicado e verificado. Fonte 1c9be1b8a, geração 1ec25b5dd, Pages 42361103615 SUCCESS. Os três guias responderam HTTP 200 com o roteiro idêntico ao preparado; links das lojas preservados em comparação ao Git anterior.
 
 GLOBAL-05 continua parcial: este lote não declara revisão profunda de todos os 31 guias. Próxima necessidade candidata: orientar os guias de impressoras, air fryers e ferramentas, somente após verificar lacuna equivalente. Não refazer as três páginas acima sem mudança ou falha nova.

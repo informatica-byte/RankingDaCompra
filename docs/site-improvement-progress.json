@@ -1,5 +1,20 @@
 {
   "version": 1,
+  "global05DecisionGuides20261107": {
+    "status": "published_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-notebook.html", "melhores-celular.html", "melhores-smart-tv.html"],
+    "sourceCommit": "1c9be1b8a",
+    "generatedCommit": "1ec25b5dd",
+    "pagesRun": 42361103615,
+    "testsPassed": 1577,
+    "staticLayoutsChecked": 12,
+    "productReviewsRepeated": 0,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "report": "docs/global05-decision-guides-20261107.md",
+    "next": "Verificar lacunas de orientação em guias de impressoras, air fryers e ferramentas; não repetir os três guias publicados."
+  },
   "deepTechnicalAudit20261107": {
     "status": "published_verified",
     "sourceCommit": "11cec2a99",
