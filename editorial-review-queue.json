@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-07T01:59:17.815Z",
+  "generatedAt": "2026-11-07T02:06:13.783Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 14
+    "screening": 11
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "Yc8WKEmLYvUlf1em3nGt",
-      "title": "Patinete Elétrico Yoyo V01 Plus 500w Banco Removível Scooter",
-      "url": "https://rankingdacompra.com.br/produto/Yc8WKEmLYvUlf1em3nGt-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "ye0EVvhX1qjcRDsb9Srw",
-      "title": "Cozedor De Ovos Eletrico Desligamento Automatico A Vapor Portatil Cozinha 7 Ovos Egg Fit Fitness Panela Eletrica Facil Limpeza Economico Ovo Cozido Legume Vyrox",
-      "url": "https://rankingdacompra.com.br/produto/ye0EVvhX1qjcRDsb9Srw-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "yGygA3k1h886kEa7LOqh",
-      "title": "Coleção Primeira Biblioteca Volume 01 - Box com 10 Livrinhos - On Line Editora - Capa Dura",
-      "url": "https://rankingdacompra.com.br/produto/yGygA3k1h886kEa7LOqh-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

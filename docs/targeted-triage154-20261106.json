@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-06",
+  "items": [
+    {
+      "id": "Yc8WKEmLYvUlf1em3nGt",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue os números anunciados de desempenho verificado.",
+      "sourceLinks": []
+    },
+    {
+      "id": "ye0EVvhX1qjcRDsb9Srw",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira a afirmação não confirmada sobre o gatilho do desligamento.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/loja/vyrox-vrx?official_store_id=177482"
+      ]
+    },
+    {
+      "id": "yGygA3k1h886kEa7LOqh",
+      "decision": "targeted_correction_complete",
+      "reason": "Confirma o conteúdo com a editora e retira benefícios não demonstrados.",
+      "sourceLinks": [
+        "https://www.editoraonline.com.br/livros-infantil/colecao-primeira-biblioteca-volume-01-box-com-10-livrinhos"
+      ]
+    }
+  ]
+}

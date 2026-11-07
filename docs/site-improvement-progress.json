@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "Yc8WKEmLYvUlf1em3nGt",
-      "ye0EVvhX1qjcRDsb9Srw",
-      "yGygA3k1h886kEa7LOqh",
       "yJAghLjqy4ystXibSU2F",
       "ypj5xGtjDkHWV6xVFgfd",
       "YprAHdwDVV8lFBm4b77k",
       "YXqPx6O5Gl3YRR4I8w9a",
-      "YZvcITogQcf1bnnARlRx"
+      "YZvcITogQcf1bnnARlRx",
+      "Z4BxOInHt44ImemttzRQ",
+      "Z7iMVBFxNAT5eyiMYxwH",
+      "Zdn2bdtuTZGcOZIQSpRK"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:59:05.124Z",
-  "catalogueGeneratedAt": "2026-11-07T01:58:13.208Z",
+  "updatedAt": "2026-11-07T02:07:46.969Z",
+  "catalogueGeneratedAt": "2026-11-07T02:06:13.783Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 367,
     "preserve_prior_review": 98,
-    "pending": 14
+    "pending": 11,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2846,12 +2847,18 @@
       "id": "yGygA3k1h886kEa7LOqh",
       "url": "https://rankingdacompra.com.br/produto/yGygA3k1h886kEa7LOqh-20260810-1.html",
       "title": "Coleção Primeira Biblioteca Volume 01 - Box com 10 Livrinhos - On Line Editora - Capa Dura",
-      "fingerprint": "f3a8cd63f82f32d9bb94ccd9716e2fcf95386a6a00026bb31d5e5516e7ffdd84",
-      "status": "pending",
+      "fingerprint": "ee7aa1c24ce0a5fc3cd062c682b46ec086b60833bf4efce35ccab5afb6cb4a80",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Confirma o conteúdo com a editora e retira benefícios não demonstrados."
+      ],
+      "sourceLinks": [
+        "https://www.editoraonline.com.br/livros-infantil/colecao-primeira-biblioteca-volume-01-box-com-10-livrinhos"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "C8VXX9MfKS8ULwDiDWXn",
@@ -3125,12 +3132,18 @@
       "id": "ye0EVvhX1qjcRDsb9Srw",
       "url": "https://rankingdacompra.com.br/produto/ye0EVvhX1qjcRDsb9Srw-20260810-1.html",
       "title": "Cozedor De Ovos Eletrico Desligamento Automatico A Vapor Portatil Cozinha 7 Ovos Egg Fit Fitness Panela Eletrica Facil Limpeza Economico Ovo Cozido Legume Vyrox",
-      "fingerprint": "82784e5312a9a86b0876e4c4cb106fdc1676c347879c527eaaec5d5493ba7f2a",
-      "status": "pending",
+      "fingerprint": "0b4bb7887174fe712822a1ee6381dafaa5ab2e60a4b1e81465ada51a82a31150",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira a afirmação não confirmada sobre o gatilho do desligamento."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/loja/vyrox-vrx?official_store_id=177482"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "2bvf1eThLNTx4TSWmm6j",
@@ -6916,12 +6929,16 @@
       "id": "Yc8WKEmLYvUlf1em3nGt",
       "url": "https://rankingdacompra.com.br/produto/Yc8WKEmLYvUlf1em3nGt-20260810-1.html",
       "title": "Patinete Elétrico Yoyo V01 Plus 500w Banco Removível Scooter",
-      "fingerprint": "bb05d9629ce3ec22c93e9e7e5703c7c5811bebf2013d3662a1fdc4136d3d9841",
-      "status": "pending",
+      "fingerprint": "f9fbe7ba290bbbd58fdf9aaa30064c893f92ea4df8669f225f4bba899392dcc9",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Distingue os números anunciados de desempenho verificado."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "UxB7AJhrBhm36FCTachh",
@@ -15703,5 +15720,13 @@
     "verifiedAt": "2026-11-07T01:59:05.127Z",
     "sourceCommit": "07b9765fc",
     "pagesRun": 42326841613
+  },
+  "triage154": {
+    "status": "prepared_awaiting_publication",
+    "changedIds": [
+      "Yc8WKEmLYvUlf1em3nGt",
+      "ye0EVvhX1qjcRDsb9Srw",
+      "yGygA3k1h886kEa7LOqh"
+    ]
   }
 }

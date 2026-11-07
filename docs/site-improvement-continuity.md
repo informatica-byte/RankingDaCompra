@@ -1,4 +1,10 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 154 — 06/11/2026
+
+Sem novas fichas públicas; incorporada a geração remota 806c08880, sem alterações nas impressões digitais das fichas. Ajustes em Yc8WKEmLYvUlf1em3nGt (Yoyo V01 Plus), ye0EVvhX1qjcRDsb9Srw (cozedor Vyrox) e yGygA3k1h886kEa7LOqh (Coleção Primeira Biblioteca). Fontes em `docs/targeted-triage154-20261106.json`.
+
+Confirmar a publicação sem repetir revisões. Retomar pelos recém-publicados e depois yJAghLjqy4ystXibSU2F (Ventisol Fênix), ypj5xGtjDkHWV6xVFgfd (Adidas Barreda Decode) e YprAHdwDVV8lFBm4b77k (Wella Nutri Enrich).
+
 ## Passagem 153 — 06/11/2026, publicada e verificada
 
 Sem novas fichas públicas. Ajustes em y3sJNKuSXBHScRkQ0wMN (Adidas Grand Court Base 3.0), y8qOGP907Z3Bry3AI9cc (Numberblocks) e Y9pvF6r8j4nJdGwU4ht4 (Puma Smash V2 BDP). Evidências em `docs/targeted-triage153-20261106.json`.
