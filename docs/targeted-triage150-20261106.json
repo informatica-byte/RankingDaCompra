@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "items": [
+    {"id":"x75GETnbI3P4zycAKwOI","decision":"targeted_correction_complete","reason":"Substitui a pirâmide não sustentada pelas notas de destaque descritas pela Azzaro.","sourceLinks":["https://www.azzaro.com/en/fragrances/azzaro-pour-homme"],"sourceLimit":"Sem teste de fixação ou projeção."},
+    {"id":"xbXvQNhfLeV7MLszyz6X","decision":"targeted_correction_complete","reason":"Retira a autonomia do título e distingue as alegações da oferta de medições.","sourceLinks":[],"sourceLimit":"Snapshot da própria oferta; condições de ensaio e equivalência com outras marcas não verificadas."},
+    {"id":"XGM5P52X6EJc7X55vC8Y","decision":"targeted_correction_complete","reason":"Retira a garantia de vedação e não presume resistência térmica, temperatura ou compatibilidade com lava-louças.","sourceLinks":["https://www.mercadolivre.com.br/p/MLB34703973"],"sourceLimit":"Dados da oferta; sem manual específico ou ensaio de vedação e choque térmico."}
+  ]
+}
