@@ -1,5 +1,20 @@
 {
   "version": 1,
+  "global05DecisionGuidesBatch2": {
+    "status": "published_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-impressoras.html", "melhores-fritadeira-air-fryer-eletrica.html", "melhores-ferramentas.html"],
+    "sourceCommit": "9cedf9d33",
+    "dependencyFixCommit": "054ef31d1",
+    "generatedCommit": "d52032677",
+    "pagesRun": 42361609137,
+    "testsPassed": 1578,
+    "staticLayoutsChecked": 12,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "report": "docs/global05-decision-guides-2-20261107.md",
+    "next": "Verificar a necessidade dos guias de casa, câmeras de segurança e informática. Preservar os seis guias contemplados e todas as fichas encerradas."
+  },
   "global05DecisionGuides20261107": {
     "status": "published_verified",
     "globalStatus": "partial",

@@ -3,7 +3,7 @@
 
 Lacuna de orientação específica constatada; acrescentadas três conferências e três perguntas por guia, sem novas informações de produtos. Conteúdo anterior e os três guias já concluídos preservados. Código integrado ao gerador; sem dados/cadastros/afiliados alterados.
 
-Confirmar testes e publicação. Relatório `docs/global05-decision-guides-2-20261107.md`.
+Publicado e verificado: 1.578 testes, 12 combinações de layout, três guias HTTP 200 com roteiro e links preservados. Fonte 9cedf9d33 e ajuste de dependência 054ef31d1; geração d52032677, Pages 42361609137 SUCCESS. Fluxo de publicação atualizado para reconhecer o módulo de roteiros, mantendo os testes de segurança dos caminhos. Relatório `docs/global05-decision-guides-2-20261107.md`.
 
 Retomar pela necessidade dos guias de casa, câmeras de segurança e informática. GLOBAL-05 permanece parcial; não repetir os seis guias já contemplados ou as fichas encerradas.
 

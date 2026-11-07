@@ -12,6 +12,6 @@ Roteiro estático integrado ao gerador, sem SDK, consulta Firestore ou evento ad
 
 Verificações: layout em 12 combinações com rede bloqueada (360/390/768/1366 px), validador com 568 produtos e 621 URLs, comparação com Git comprovando que as únicas diferenças nos três HTMLs são as novas seções. Catálogos, histórico, URLs e afiliados preservados.
 
-Publicação: preparada; atualizar após verificação pública e testes completos.
+Publicação verificada: fonte editorial 9cedf9d33, ajuste de dependência 054ef31d1, geração d52032677 e Pages 42361609137 SUCCESS. Três guias HTTP 200 com roteiro idêntico ao local e links preservados. 1.578 testes passaram. O workflow reconhece o módulo como dependência; a lista exata de caminhos permitidos continua coberta por teste, sem remover sua validação.
 
 Ponto de retomada: GLOBAL-05 continua parcial. Verificar a necessidade de roteiro nos guias de casa, câmeras de segurança e informática antes de alterar. Não repetir os seis guias já contemplados nem as revisões dos produtos.
