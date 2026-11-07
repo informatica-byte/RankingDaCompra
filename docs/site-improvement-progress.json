@@ -1,5 +1,22 @@
 {
   "version": 1,
+  "global05DecisionGuidesBatch4": {
+    "status": "published_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-brinquedos.html", "melhores-esporte-e-lazer.html", "melhores-bicicletas.html"],
+    "sourceCommit": "987972a38",
+    "generatedCommit": "071c486a4",
+    "pagesRun": 42424542036,
+    "testsPassed": 1578,
+    "staticLayoutsChecked": 12,
+    "publicProducts": 570,
+    "sitemapUrls": 623,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "unreviewedNewPublicIds": ["mlMLB4291904221", "mlMLB6577157814"],
+    "report": "docs/global05-decision-guides-4-20261107.md",
+    "next": "Priorizar os dois novos públicos se houver evidência, depois necessidade dos guias de beleza/cuidados, roupas/calçados e malas/bolsas. Não repetir os 12 guias contemplados."
+  },
   "global05DecisionGuidesBatch3": {
     "status": "published_verified",
     "globalStatus": "partial",
