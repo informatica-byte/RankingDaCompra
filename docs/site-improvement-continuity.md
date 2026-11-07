@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — impressoras, air fryers e ferramentas — 07/11/2026
+
+Lacuna de orientação específica constatada; acrescentadas três conferências e três perguntas por guia, sem novas informações de produtos. Conteúdo anterior e os três guias já concluídos preservados. Código integrado ao gerador; sem dados/cadastros/afiliados alterados.
+
+Confirmar testes e publicação. Relatório `docs/global05-decision-guides-2-20261107.md`.
+
+Retomar pela necessidade dos guias de casa, câmeras de segurança e informática. GLOBAL-05 permanece parcial; não repetir os seis guias já contemplados ou as fichas encerradas.
+
 ## GLOBAL-05 — roteiro de decisão em três guias — 07/11/2026
 
 Guias de notebooks, celulares e Smart TVs: três conferências e três perguntas específicas por página, seleção manual no comparador, sem novas afirmações sobre produtos. Código idempotente integrado ao gerador. Não reabertas revisões das fichas.

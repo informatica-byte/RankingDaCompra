@@ -1,5 +1,32 @@
 // Editorial questions, not inferred product specifications or automatic rankings.
 const guides={
+ 'melhores-impressoras.html':{
+  heading:'Antes de comparar impressoras',
+  checks:['Liste o que pretende imprimir: documentos, imagens ou etiquetas, em cores ou apenas preto.','Confira as funções do modelo: imprimir, copiar e digitalizar são itens separados.','Identifique o consumível correto e confirme conexão e suporte ao sistema do seu computador ou celular.'],
+  questions:[
+   ['Todas as impressoras deste grupo atendem à mesma tarefa?','Não conclua isso apenas pela categoria. Confira se o modelo trabalha com o tipo e o tamanho de papel ou etiqueta que você usa; separe propostas diferentes antes de comparar.'],
+   ['Wi-Fi garante impressão por qualquer celular?','Confira o aplicativo, o sistema e as conexões documentadas para o modelo. A presença de Wi-Fi no anúncio não basta para confirmar toda combinação de aparelho e aplicativo.'],
+   ['O rendimento anunciado é uma quantidade garantida de páginas?','Trate o rendimento como declaração da fonte e confira as condições de medição. A ficha não mediu seu consumo de tinta ou toner; confirme também o que acompanha a caixa e os códigos de reposição.']
+  ]
+ },
+ 'melhores-fritadeira-air-fryer-eletrica.html':{
+  heading:'Antes de comparar air fryers',
+  checks:['Confira o formato interno, as medidas disponíveis na bancada e os espaços livres exigidos pelo manual.','Verifique a tensão da unidade, os acessórios incluídos e as orientações de limpeza.','Pense nos alimentos e recipientes que pretende preparar, sem presumir porções apenas pelo volume anunciado.'],
+  questions:[
+   ['Uma capacidade maior em litros garante mais porções?','Não use apenas os litros para decidir. Confira as dimensões e a organização do cesto ou das prateleiras; a ficha não fez testes de quantidade ou resultado de preparo.'],
+   ['Modelos de cesto e de forno podem ser comparados como iguais?','Confira primeiro a forma de uso e os acessórios de cada modelo. Compare propostas equivalentes e observe o espaço interno e o acesso para limpar, sem presumir que um formato seja melhor para todos.'],
+   ['Potência maior significa preparo melhor ou menor consumo?','O número de potência isolado não comprova resultado, tempo de preparo ou consumo no seu uso. Consulte a documentação e não trate a ficha como teste de eficiência.']
+  ]
+ },
+ 'melhores-ferramentas.html':{
+  heading:'Antes de comparar ferramentas',
+  checks:['Defina a tarefa e o material de trabalho antes de escolher o tipo de ferramenta.','Confira o código do modelo, a alimentação e os limites descritos pelo fabricante ou vendedor.','Verifique os acessórios realmente incluídos e a compatibilidade de baterias, carregadores e peças de reposição.'],
+  questions:[
+   ['Qual ferramenta deste guia devo comparar primeiro?','Use os grupos abaixo para separar furadeiras, parafusadeiras, lavadoras e politrizes. A categoria Ferramentas reúne funções diferentes; não existe um vencedor único entre todas elas.'],
+   ['Um kit com mais peças é necessariamente mais completo para mim?','Confira a lista de peças e quais delas servem à sua tarefa. A quantidade no título não demonstra qualidade, compatibilidade ou que todos os acessórios necessários estejam incluídos.'],
+   ['Voltagem ou torque maior comprova uso profissional?','Não. Confira a identificação da bateria, o regime dos valores anunciados e a finalidade documentada do modelo. A ficha não mediu torque, resistência ou desempenho e não substitui as instruções de uso e segurança.']
+  ]
+ },
  'melhores-notebook.html':{
   heading:'Antes de comparar notebooks',
   checks:['Anote os programas que pretende usar e confira os requisitos nos sites dos desenvolvedores.','Confira o código completo do notebook, processador, RAM física, armazenamento e sistema operacional.','Se pretende ampliar a memória ou o SSD, peça a documentação dessa configuração antes de contar com a expansão.'],
