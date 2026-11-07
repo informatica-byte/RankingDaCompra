@@ -1,5 +1,32 @@
 // Editorial questions, not inferred product specifications or automatic rankings.
 const guides={
+ 'melhores-brinquedos.html':{
+  heading:'Antes de escolher brinquedos',
+  checks:['Confira a indicação etária e os avisos na embalagem do modelo, não apenas nas fotos do anúncio.','Compare a lista de peças e verifique se pilhas, baterias ou outros acessórios acompanham o conjunto.','Considere o espaço e a forma de brincar; se faltar identificação ou orientação, peça esclarecimento antes da compra.'],
+  questions:[
+   ['A aparência parecida confirma o mesmo brinquedo?','Confira a marca, o código do modelo e o conteúdo da caixa. Um personagem ou uma foto semelhante não confirma a mesma versão nem licenciamento.'],
+   ['O que significa educativo no anúncio?','Trate isso como apresentação do vendedor. A ficha pode descrever atividades propostas, mas não comprova resultados de aprendizagem ou desenvolvimento.'],
+   ['Posso escolher só pela idade sugerida no título?','Confira a indicação e os avisos na embalagem e as orientações do fabricante para o produto específico. Informação incompleta não equivale a confirmação de adequação ou segurança.']
+  ]
+ },
+ 'melhores-esporte-e-lazer.html':{
+  heading:'Antes de escolher itens para esporte e lazer',
+  checks:['Defina a atividade e compare somente produtos de finalidade equivalente.','Confira medidas, montagem, acessórios incluídos e limites declarados para o modelo.','Procure orientações específicas de uso e manutenção antes de contar com resistência ou desempenho anunciados.'],
+  questions:[
+   ['Existe um melhor produto entre todos os itens do guia?','Não há uma classificação única entre atividades diferentes. Use os grupos abaixo e confira a ficha individual dos itens cujo tipo ainda está a confirmar.'],
+   ['O limite de peso do anúncio é um teste feito pelo site?','Não. Atribuímos o limite à fonte que o informa; não realizamos ensaios de carga. Confira a identificação e as instruções da unidade, inclusive condições de montagem.'],
+   ['Como decidir se o item atende ao meu uso?','Liste o que precisa: medidas, transporte, local de uso e acessórios. Se uma característica decisiva não estiver documentada, confirme antes de escolher em vez de presumir que o recurso existe.']
+  ]
+ },
+ 'melhores-bicicletas.html':{
+  heading:'Antes de comparar bicicletas',
+  checks:['Diferencie bicicleta convencional, elétrica e ergométrica; escolha o tipo adequado à atividade.','Confira as medidas e a configuração do modelo, os ajustes disponíveis e as orientações de montagem.','Se o modelo tiver motor ou bateria, confira identificação, carregador e condições dos números anunciados.'],
+  questions:[
+   ['Bicicletas ergométricas e de passeio são alternativas iguais?','Não. Confira primeiro a finalidade e compare dentro do grupo correspondente. O guia não escolhe um vencedor entre propostas diferentes.'],
+   ['O aro ou o nome do modelo bastam para acertar o tamanho?','Confira as medidas e a tabela do modelo, além dos ajustes disponíveis. Um nome ou medida isolada no título não confirma que a bicicleta se ajustará a você.'],
+   ['Como interpretar autonomia e limites anunciados?','Confira as condições informadas pelo vendedor ou fabricante e a versão da unidade. O site não mediu autonomia, esforço ou carga e não transforma valores anunciados em desempenho garantido.']
+  ]
+ },
  'melhores-casa.html':{
   heading:'Antes de escolher produtos para casa',
   checks:['Comece pela tarefa: limpar, cozinhar, organizar ou cuidar do conforto. Compare apenas produtos da mesma finalidade.','Confira medidas do produto e do local de uso, alimentação e acessórios necessários.','Procure no manual os materiais permitidos, os cuidados de limpeza e os limites do modelo.'],

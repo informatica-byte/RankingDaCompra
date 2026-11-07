@@ -1,4 +1,10 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — brinquedos, esporte/lazer e bicicletas — 07/11/2026
+
+Acrescentadas orientações específicas, sem rever fichas ou alterar afiliados. 1.578 testes, 12 combinações de layout com rede bloqueada e validação de 570 produtos/623 URLs aprovados. Base remota integrada e preservada. Confirmar publicação; relatório `docs/global05-decision-guides-4-20261107.md`.
+
+Retomada: dois novos públicos ainda não revisados, mlMLB4291904221 (climatizador Itatiaia 20 L) e mlMLB6577157814 (videoporteiro Intelbras MVW 2000), primeiro se houver evidência; depois necessidade dos guias de beleza/cuidados, roupas/calçados e malas/bolsas. Não repetir os 12 guias contemplados nem as fichas encerradas. GLOBAL-05 continua parcial.
+
 ## GLOBAL-05 — casa, câmeras e informática — 07/11/2026
 
 Acrescentadas orientações de escolha específicas nos três guias, sem refazer conteúdo/fichas: três conferências e três perguntas por página. Dados operacionais, afiliados e seis guias anteriores preservados.
