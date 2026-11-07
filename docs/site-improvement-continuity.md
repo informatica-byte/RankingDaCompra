@@ -1,9 +1,11 @@
 # Continuidade prioritária — Ranking da Compra
-## Passagem 154 — 06/11/2026
+## Passagem 154 — 06/11/2026, publicada e verificada
 
 Sem novas fichas públicas; incorporada a geração remota 806c08880, sem alterações nas impressões digitais das fichas. Ajustes em Yc8WKEmLYvUlf1em3nGt (Yoyo V01 Plus), ye0EVvhX1qjcRDsb9Srw (cozedor Vyrox) e yGygA3k1h886kEa7LOqh (Coleção Primeira Biblioteca). Fontes em `docs/targeted-triage154-20261106.json`.
 
-Confirmar a publicação sem repetir revisões. Retomar pelos recém-publicados e depois yJAghLjqy4ystXibSU2F (Ventisol Fênix), ypj5xGtjDkHWV6xVFgfd (Adidas Barreda Decode) e YprAHdwDVV8lFBm4b77k (Wella Nutri Enrich).
+Fonte 13dbeb547, geração 941e558b9, Pages 42327750581 concluído. As três fichas retornaram HTTP 200, com descrições e afiliados conferidos. 1.574 testes aprovados; 621 URLs preservadas. A geração editorial normalizou o índice derivado para o modo sem preços, sem alterar os valores salvos.
+
+Não repetir as revisões. Retomar pelos recém-publicados e depois yJAghLjqy4ystXibSU2F (Ventisol Fênix), ypj5xGtjDkHWV6xVFgfd (Adidas Barreda Decode) e YprAHdwDVV8lFBm4b77k (Wella Nutri Enrich). Restam 11 pendentes e 8 aguardando fontes.
 
 ## Passagem 153 — 06/11/2026, publicada e verificada
 

@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T02:07:46.969Z",
-  "catalogueGeneratedAt": "2026-11-07T02:06:13.783Z",
+  "updatedAt": "2026-11-07T02:10:16.126Z",
+  "catalogueGeneratedAt": "2026-11-07T02:08:39.499Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 568,
     "screened_no_change": 81,
     "needs_source": 8,
-    "targeted_correction_complete": 367,
+    "targeted_correction_complete": 370,
     "preserve_prior_review": 98,
-    "pending": 11,
-    "prepared_awaiting_publication": 3
+    "pending": 11
   },
   "items": [
     {
@@ -2848,9 +2847,9 @@
       "url": "https://rankingdacompra.com.br/produto/yGygA3k1h886kEa7LOqh-20260810-1.html",
       "title": "Coleção Primeira Biblioteca Volume 01 - Box com 10 Livrinhos - On Line Editora - Capa Dura",
       "fingerprint": "ee7aa1c24ce0a5fc3cd062c682b46ec086b60833bf4efce35ccab5afb6cb4a80",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:10:16.128Z",
       "workNotes": [
         "Confirma o conteúdo com a editora e retira benefícios não demonstrados."
       ],
@@ -3133,9 +3132,9 @@
       "url": "https://rankingdacompra.com.br/produto/ye0EVvhX1qjcRDsb9Srw-20260810-1.html",
       "title": "Cozedor De Ovos Eletrico Desligamento Automatico A Vapor Portatil Cozinha 7 Ovos Egg Fit Fitness Panela Eletrica Facil Limpeza Economico Ovo Cozido Legume Vyrox",
       "fingerprint": "0b4bb7887174fe712822a1ee6381dafaa5ab2e60a4b1e81465ada51a82a31150",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:10:16.128Z",
       "workNotes": [
         "Retira a afirmação não confirmada sobre o gatilho do desligamento."
       ],
@@ -6930,9 +6929,9 @@
       "url": "https://rankingdacompra.com.br/produto/Yc8WKEmLYvUlf1em3nGt-20260810-1.html",
       "title": "Patinete Elétrico Yoyo V01 Plus 500w Banco Removível Scooter",
       "fingerprint": "f9fbe7ba290bbbd58fdf9aaa30064c893f92ea4df8669f225f4bba899392dcc9",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T02:10:16.128Z",
       "workNotes": [
         "Distingue os números anunciados de desempenho verificado."
       ],
@@ -15722,11 +15721,14 @@
     "pagesRun": 42326841613
   },
   "triage154": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "changedIds": [
       "Yc8WKEmLYvUlf1em3nGt",
       "ye0EVvhX1qjcRDsb9Srw",
       "yGygA3k1h886kEa7LOqh"
-    ]
+    ],
+    "verifiedAt": "2026-11-07T02:10:16.128Z",
+    "sourceCommit": "13dbeb547",
+    "pagesRun": 42327750581
   }
 }
