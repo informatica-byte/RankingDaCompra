@@ -76,9 +76,6 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "xLxOtmzGQ48dLjjnJ9g4",
-      "xq3BIapk5fun5CkIrwc1",
-      "XXQfkSFgQfT2yD1mVrsP",
       "y0k4BCvQKQ3oyN0VMz7B",
       "Y0m34sJnzLnojKcK5wAp"
     ],
@@ -687,8 +684,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:19:47.088Z",
-  "catalogueGeneratedAt": "2026-11-07T01:17:23.353Z",
+  "updatedAt": "2026-11-07T01:25:44.083Z",
+  "catalogueGeneratedAt": "2026-11-07T01:23:49.118Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -704,7 +701,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 359,
     "preserve_prior_review": 98,
-    "pending": 22
+    "pending": 19,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -2296,12 +2294,18 @@
       "id": "XXQfkSFgQfT2yD1mVrsP",
       "url": "https://rankingdacompra.com.br/produto/XXQfkSFgQfT2yD1mVrsP-20260810-1.html",
       "title": "Campainha Sem Fio Intelbras CIB 101 Preta",
-      "fingerprint": "f1c5c913a2b1c3ae989d0258a4c085023a86be9ce75d32039ddbaac38498c9d0",
-      "status": "pending",
+      "fingerprint": "69f945637cf43d7b7559d3ebf04cd541d9c0ab15b46856fccaf39ae835475bcb",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Esclarece alimentação do receptor e condições do alcance."
+      ],
+      "sourceLinks": [
+        "https://backend.intelbras.com/sites/default/files/2021-10/datasheet-cib-101-pt.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "CvM3xyDY4t5BF7XdPjF6",
@@ -4477,12 +4481,18 @@
       "id": "xLxOtmzGQ48dLjjnJ9g4",
       "url": "https://rankingdacompra.com.br/produto/xLxOtmzGQ48dLjjnJ9g4-20260810-1.html",
       "title": "Kit 10 Cuecas Boxer Lisa Polo Wear Sortido",
-      "fingerprint": "44b10e71d586c7ee73977b3e83719905aa848022cbdbd2b9c202a5164ab1cf0a",
-      "status": "pending",
+      "fingerprint": "b6896a404dd36f3d35510fa57bf69e3a46f9d71bff9e289d4793f65dd0407345",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige código de anúncio apresentado como catálogo e esclarece o sortimento."
+      ],
+      "sourceLinks": [
+        "https://www.polowear.com.br/kit-10-cuecas-boxer-lisa-polo-wear-sortido-9226/p"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "AF2AykzSppuQzGXdmvlT",
@@ -5508,12 +5518,18 @@
       "id": "xq3BIapk5fun5CkIrwc1",
       "url": "https://rankingdacompra.com.br/produto/xq3BIapk5fun5CkIrwc1-20260810-1.html",
       "title": "Lavadora De Alta Pressão Philco 1750psi 12 Mpa 1500w Plp2300 220V",
-      "fingerprint": "0b3f06cca0509d6c714a8134e02d5f33b89ee255b7ff7ff733b455fdffe53154",
-      "status": "pending",
+      "fingerprint": "9e2ea1bcb07b826a1b16fad45e4a293c4c9273f146aeae811f2235d8c05bc73c",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Separa pressão nominal de máxima e sinaliza divergências da documentação."
+      ],
+      "sourceLinks": [
+        "https://suporte.philco.com.br/sfsites/c/sfc/servlet.shepherd/document/download/069V200000SCV3FIAX"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "vP33ptkgz0hzzvmaqx1a",
@@ -15622,5 +15638,13 @@
     "generatedCommit": "e10147feb",
     "pagesRun": 42323267308,
     "testsPassed": 1574
+  },
+  "triage151": {
+    "status": "prepared_awaiting_publication",
+    "changedIds": [
+      "xLxOtmzGQ48dLjjnJ9g4",
+      "xq3BIapk5fun5CkIrwc1",
+      "XXQfkSFgQfT2yD1mVrsP"
+    ]
   }
 }

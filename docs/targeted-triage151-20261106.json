@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-06",
+  "items": [
+    {
+      "id": "xLxOtmzGQ48dLjjnJ9g4",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige código de anúncio apresentado como catálogo e esclarece o sortimento.",
+      "sourceLinks": [
+        "https://www.polowear.com.br/kit-10-cuecas-boxer-lisa-polo-wear-sortido-9226/p"
+      ]
+    },
+    {
+      "id": "xq3BIapk5fun5CkIrwc1",
+      "decision": "targeted_correction_complete",
+      "reason": "Separa pressão nominal de máxima e sinaliza divergências da documentação.",
+      "sourceLinks": [
+        "https://suporte.philco.com.br/sfsites/c/sfc/servlet.shepherd/document/download/069V200000SCV3FIAX"
+      ]
+    },
+    {
+      "id": "XXQfkSFgQfT2yD1mVrsP",
+      "decision": "targeted_correction_complete",
+      "reason": "Esclarece alimentação do receptor e condições do alcance.",
+      "sourceLinks": [
+        "https://backend.intelbras.com/sites/default/files/2021-10/datasheet-cib-101-pt.pdf"
+      ]
+    }
+  ]
+}

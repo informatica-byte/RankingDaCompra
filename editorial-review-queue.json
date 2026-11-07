@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-07T01:17:23.353Z",
+  "generatedAt": "2026-11-07T01:23:49.118Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 25
+    "screening": 19
   },
   "items": [
     {
@@ -62,48 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "x75GETnbI3P4zycAKwOI",
-      "title": "Perfume Masculino Eau de Toilette Azzaro - Azzaro Pour Homme 100 ml",
-      "url": "https://rankingdacompra.com.br/produto/x75GETnbI3P4zycAKwOI-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "xbXvQNhfLeV7MLszyz6X",
-      "title": "Patinete elétrico dobrável iX7Pro Xroymexroy",
-      "url": "https://rankingdacompra.com.br/produto/xbXvQNhfLeV7MLszyz6X-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "XGM5P52X6EJc7X55vC8Y",
-      "title": "Jarra de vidro borossilicato 1,4 L com tampa inox",
-      "url": "https://rankingdacompra.com.br/produto/XGM5P52X6EJc7X55vC8Y-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "xLxOtmzGQ48dLjjnJ9g4",
-      "title": "Kit 10 Cuecas Boxer Lisa Polo Wear Sortido",
-      "url": "https://rankingdacompra.com.br/produto/xLxOtmzGQ48dLjjnJ9g4-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "xq3BIapk5fun5CkIrwc1",
-      "title": "Lavadora De Alta Pressão Philco 1750psi 12 Mpa 1500w Plp2300 220V",
-      "url": "https://rankingdacompra.com.br/produto/xq3BIapk5fun5CkIrwc1-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "XXQfkSFgQfT2yD1mVrsP",
-      "title": "Campainha Sem Fio Intelbras CIB 101 Preta",
-      "url": "https://rankingdacompra.com.br/produto/XXQfkSFgQfT2yD1mVrsP-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
