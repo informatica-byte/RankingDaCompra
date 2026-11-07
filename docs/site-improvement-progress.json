@@ -1,5 +1,20 @@
 {
   "version": 1,
+  "global05DecisionGuidesBatch3": {
+    "status": "published_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-casa.html", "melhores-cameras-de-seguranca.html", "melhores-informatica.html"],
+    "sourceCommit": "2260cad1c",
+    "mergeCommit": "810cbe5a7",
+    "generatedCommit": "76c0bd76a",
+    "pagesRun": 42361920700,
+    "testsPassed": 1578,
+    "staticLayoutsChecked": 12,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "report": "docs/global05-decision-guides-3-20261107.md",
+    "next": "Verificar a necessidade dos guias de brinquedos, esporte e lazer e bicicletas. Preservar os nove guias com roteiro e todas as fichas encerradas."
+  },
   "global05DecisionGuidesBatch2": {
     "status": "published_verified",
     "globalStatus": "partial",

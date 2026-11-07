@@ -14,6 +14,6 @@ Implementação estática/idempotente pelo módulo de roteiros, já incluído na
 
 1.578 testes passaram. Validador: 568 produtos e 621 URLs. Comparação com Git comprova que os três HTMLs só receberam as novas seções; catálogos, busca, histórico, afiliados e sitemap preservados.
 
-Publicação preparada; confirmar conteúdo público antes de concluir.
+Publicação verificada: fonte editorial 2260cad1c, merge de preservação remota 810cbe5a7, geração 76c0bd76a e Pages 42361920700 SUCCESS. Três guias HTTP 200, roteiro idêntico ao local e links preservados. Atualização remota independente do localizador integrada sem sobrescrita.
 
 GLOBAL-05 permanece parcial. Próxima verificação de necessidade: guias de brinquedos, esporte e lazer e bicicletas. Não repetir os nove guias com roteiro nem as fichas concluídas.

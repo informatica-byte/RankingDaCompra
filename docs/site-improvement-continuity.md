@@ -3,7 +3,7 @@
 
 Acrescentadas orientações de escolha específicas nos três guias, sem refazer conteúdo/fichas: três conferências e três perguntas por página. Dados operacionais, afiliados e seis guias anteriores preservados.
 
-1.578 testes, 12 combinações de layout com rede bloqueada e validador geral aprovados. Confirmar implantação; relatório `docs/global05-decision-guides-3-20261107.md`.
+1.578 testes, 12 combinações de layout com rede bloqueada e validador geral aprovados. Implantação confirmada nos três guias HTTP 200 com roteiro correto e afiliados preservados. Fonte 2260cad1c, merge remoto 810cbe5a7, geração 76c0bd76a, Pages 42361920700 SUCCESS. Relatório `docs/global05-decision-guides-3-20261107.md`.
 
 Retomar pela necessidade de orientação nos guias de brinquedos, esporte e lazer e bicicletas; não repetir os nove guias contemplados. GLOBAL-05 continua parcial.
 
