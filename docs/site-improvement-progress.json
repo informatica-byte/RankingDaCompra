@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "wAsxhijcNyAq9AblyLkN",
-      "wiLibtvJlFYtSbDWLtcv",
-      "WjjOZFdWS3sKRCoFAH7r",
       "WO8eJVPACXCORVzrdNVh",
       "wYxgVNIJeeWmGhcToFLP",
       "WZIrFRxgOFZ1skyzk5SS",
       "x75GETnbI3P4zycAKwOI",
-      "xbXvQNhfLeV7MLszyz6X"
+      "xbXvQNhfLeV7MLszyz6X",
+      "XGM5P52X6EJc7X55vC8Y",
+      "xLxOtmzGQ48dLjjnJ9g4",
+      "xq3BIapk5fun5CkIrwc1"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:01:58.319Z",
-  "catalogueGeneratedAt": "2026-11-07T01:01:55.768Z",
+  "updatedAt": "2026-11-07T01:05:04.274Z",
+  "catalogueGeneratedAt": "2026-11-07T01:03:59.582Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,9 +705,8 @@
     "total": 568,
     "screened_no_change": 80,
     "needs_source": 8,
-    "targeted_correction_complete": 350,
+    "targeted_correction_complete": 354,
     "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 4,
     "pending": 28
   },
   "items": [
@@ -1837,12 +1836,13 @@
       "url": "https://rankingdacompra.com.br/produto/wiLibtvJlFYtSbDWLtcv-20260810-1.html",
       "title": "Calçado Boaonda Adventure",
       "fingerprint": "5bd340471646be6c343c5c0968217a9d1272e592657b3bc51c3951d8bf2ad7ed",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:05:04.251Z",
       "workNotes": [
         "Distingue formato anatômico de indicação ortopédica e corrige o código.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-5477527702-sandalia-ortopedica-boaonda-adventure-super-leve-conforto-_JM?searchVariation=199364076097",
@@ -2244,12 +2244,13 @@
       "url": "https://rankingdacompra.com.br/produto/WjjOZFdWS3sKRCoFAH7r-20260810-1.html",
       "title": "Camiseta masculina lisa Stateless Fashion",
       "fingerprint": "dda08e622df4e419f994cb6a1d9bc87e5fa40d97918e9d6c5628c8bdc700e504",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:05:04.251Z",
       "workNotes": [
         "Retira qualificativo promocional e não presume origem ou percentual de algodão.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-4020676149-camiseta-basica-masculina-algodo-lisa-malha-peruana-premium-_JM?searchVariation=193830531569"
@@ -3982,12 +3983,13 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4841103289-20260810-1.html",
       "title": "Garrafa Térmica Água Personalizada 800ml Inox Academia",
       "fingerprint": "935570ded00d245717642a9b8c709ef471529be366fbfc683c6492239fe06e19",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:05:04.251Z",
       "workNotes": [
         "Qualifica tempos térmicos e não garante vedação ou ausência de BPA.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU4212790346?wid=MLB4841103289"
@@ -10229,12 +10231,13 @@
       "url": "https://rankingdacompra.com.br/produto/wAsxhijcNyAq9AblyLkN-20260810-1.html",
       "title": "Wap Aspirador De Pó E Líquido Portátil Gtw Compact 1400w",
       "fingerprint": "9b467b514f95ddb4a517bd565eb763afa4ae262da5fab51975ee5bf58753cb9e",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:05:04.251Z",
       "workNotes": [
         "Corrige capacidade total e preserva distinção entre volume útil e total.",
-        "Sem teste independente da unidade."
+        "Sem teste independente da unidade.",
+        "Targeted necessary correction only, not a new deep review."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB27050983?wid=MLB3873397755",
@@ -15499,13 +15502,42 @@
     ]
   },
   "triage148": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "ids": [
       "WjjOZFdWS3sKRCoFAH7r",
       "mlMLB4841103289",
       "wAsxhijcNyAq9AblyLkN",
       "wiLibtvJlFYtSbDWLtcv"
     ],
-    "newDeepReviews": 0
+    "newDeepReviews": 0,
+    "verifiedAt": "2026-11-07T01:05:04.251Z",
+    "changedIds": [
+      "mlMLB4841103289",
+      "wAsxhijcNyAq9AblyLkN",
+      "wiLibtvJlFYtSbDWLtcv",
+      "WjjOZFdWS3sKRCoFAH7r"
+    ],
+    "jointReleaseBatches": [
+      148
+    ],
+    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem148.json",
+    "remainingDependencies": [
+      {
+        "id": "mlMLB4841103289",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "wAsxhijcNyAq9AblyLkN",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "wiLibtvJlFYtSbDWLtcv",
+        "note": "Sem teste independente da unidade."
+      },
+      {
+        "id": "WjjOZFdWS3sKRCoFAH7r",
+        "note": "Sem teste independente da unidade."
+      }
+    ]
   }
 }

@@ -1,4 +1,15 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 148 — 06/11/2026, publicada e verificada
+
+- mlMLB4841103289 — garrafa térmica 800 mL: publicação mais recente, priorizada; tempos térmicos anunciados, vedação e ausência de BPA não verificadas.
+- wAsxhijcNyAq9AblyLkN — WAP GTW Compact: volume total de 5,5 L e capacidades úteis separadas, segundo a marca.
+- wiLibtvJlFYtSbDWLtcv — Boaonda Adventure: formato anatômico documentado, sem endossar indicação terapêutica.
+- WjjOZFdWS3sKRCoFAH7r — camiseta Stateless Fashion: origem e composição percentual a confirmar.
+
+Fonte 01c7687c9, geração 56b3c0609, Pages 42321972898. Quatro fichas HTTP 200 com afiliados preservados; 564 outras inalteradas, 568 IDs e 621 URLs preservados. 1.574 testes, oito verificações estáticas móveis e invariantes aprovados. Prova em outputs/melhorias-integrais-20261030/verificacao-publicada-triagem148.json.
+
+Priorizar novos públicos, depois retomar por WO8eJVPACXCORVzrdNVh (guitarra infantil Atentu), wYxgVNIJeeWmGhcToFLP (power bank 20.000 mAh) e WZIrFRxgOFZ1skyzk5SS (Siàge Nutri Diamond). Restam 28 pendentes e 8 aguardando fontes.
+
 ## Passagem 147 — 06/11/2026, publicada e verificada
 
 Sem novos cadastros públicos desde o lote 146. Espelho e Kärcher do lote 146 confirmados no site, com afiliados preservados.
