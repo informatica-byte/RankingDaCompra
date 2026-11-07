@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:51:35.033Z",
-  "catalogueGeneratedAt": "2026-11-07T01:50:33.196Z",
+  "updatedAt": "2026-11-07T01:54:02.329Z",
+  "catalogueGeneratedAt": "2026-11-07T01:52:24.277Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -705,10 +705,9 @@
     "total": 568,
     "screened_no_change": 81,
     "needs_source": 8,
-    "targeted_correction_complete": 362,
+    "targeted_correction_complete": 364,
     "preserve_prior_review": 98,
-    "pending": 17,
-    "prepared_awaiting_publication": 2
+    "pending": 17
   },
   "items": [
     {
@@ -3336,9 +3335,9 @@
       "url": "https://rankingdacompra.com.br/produto/Y0m34sJnzLnojKcK5wAp-20260810-1.html",
       "title": "Ducha Loren Shower Ultra Eletrônica 127V 5500W Lorenzetti",
       "fingerprint": "3453e89f79ac6b56a11965095f29fe10290382140543cb543c1caeef7e381b09",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:54:02.332Z",
       "workNotes": [
         "Confirma resistência da variante 127 V e sinaliza classe energética não confirmada."
       ],
@@ -5217,9 +5216,9 @@
       "url": "https://rankingdacompra.com.br/produto/y0k4BCvQKQ3oyN0VMz7B-20260810-1.html",
       "title": "Kit Teclado Mouse Celular Android Mobilador Jogo Freefire Nf",
       "fingerprint": "48e28522a34003089478766957f83e7a23677913c44060b865532268a41bcf30",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:54:02.332Z",
       "workNotes": [
         "Remove texto de preço e distingue menção ao jogo de compatibilidade comprovada."
       ],
@@ -15669,10 +15668,13 @@
     "pagesRun": 42324072252
   },
   "triage152": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "changedIds": [
       "y0k4BCvQKQ3oyN0VMz7B",
       "Y0m34sJnzLnojKcK5wAp"
-    ]
+    ],
+    "verifiedAt": "2026-11-07T01:54:02.332Z",
+    "sourceCommit": "d86289ffa",
+    "pagesRun": 42326371783
   }
 }
