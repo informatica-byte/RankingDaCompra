@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-06",
+  "items": [
+    {
+      "id": "yJAghLjqy4ystXibSU2F",
+      "decision": "targeted_correction_complete",
+      "reason": "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta.",
+      "sourceLinks": []
+    },
+    {
+      "id": "ypj5xGtjDkHWV6xVFgfd",
+      "decision": "targeted_correction_complete",
+      "reason": "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta.",
+      "sourceLinks": [
+        "https://www.adidas.com.br/tenis-barreda-decode/JR3521.html"
+      ]
+    },
+    {
+      "id": "YprAHdwDVV8lFBm4b77k",
+      "decision": "targeted_correction_complete",
+      "reason": "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta.",
+      "sourceLinks": [
+        "https://www.wella.com/professional/en-US/products/collections/hair-care/invigo-nutri-enrich"
+      ]
+    },
+    {
+      "id": "ZGxs2yoDgmpnMApDWyHn",
+      "decision": "targeted_correction_complete",
+      "reason": "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta.",
+      "sourceLinks": [
+        "https://support.apple.com/pt-br/120548"
+      ]
+    },
+    {
+      "id": "YZvcITogQcf1bnnARlRx",
+      "decision": "targeted_correction_complete",
+      "reason": "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta.",
+      "sourceLinks": []
+    },
+    {
+      "id": "Z4BxOInHt44ImemttzRQ",
+      "decision": "targeted_correction_complete",
+      "reason": "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta.",
+      "sourceLinks": [
+        "https://www.honeywhale.com.br/produto/m2-pro-patinete-eletrico-dobravel/"
+      ]
+    },
+    {
+      "id": "Zo8ybuHaQjV6HlCbCWqf",
+      "decision": "targeted_correction_complete",
+      "reason": "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta.",
+      "sourceLinks": [
+        "https://sac.philco.com.br/catalogos/catalogophilco_cozinha.pdf"
+      ]
+    },
+    {
+      "id": "YXqPx6O5Gl3YRR4I8w9a",
+      "decision": "targeted_correction_complete",
+      "reason": "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta.",
+      "sourceLinks": [
+        "https://empresas.motorola.com.br/smartphone-moto-g56-5g/p?idsku=1403"
+      ]
+    },
+    {
+      "id": "Z7iMVBFxNAT5eyiMYxwH",
+      "decision": "targeted_correction_complete",
+      "reason": "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta.",
+      "sourceLinks": []
+    },
+    {
+      "id": "Zdn2bdtuTZGcOZIQSpRK",
+      "decision": "targeted_correction_complete",
+      "reason": "Ajuste pontual para retirar alegações não verificadas ou explicitar os limites dos dados da oferta.",
+      "sourceLinks": [
+        "https://registro.inmetro.gov.br/consulta/detalhe.aspx?NumeroRegistro=004840%2F2013&pag=1"
+      ]
+    },
+    {
+      "id": "zuvOrERyR2wVRA9ZmYGe",
+      "decision": "screened_no_change",
+      "reason": "A ficha Raytechno já distingue dados do anúncio e limitações de imagem, detecção e compatibilidade.",
+      "sourceLinks": []
+    }
+  ]
+}

@@ -1,4 +1,10 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 155 — 06/11/2026
+
+Sem novas fichas públicas. Triagem das 11 pendentes: dez correções pontuais e câmera-lâmpada Raytechno preservada sem alteração. IDs e fontes em `docs/targeted-triage155-20261106.json`. As oito fichas dependentes de fontes não foram reabertas.
+
+Confirmar a publicação sem repetir a triagem. Após validar o lote, só retomar por novos produtos, por evidência nova para as oito fichas bloqueadas ou pelo próximo trabalho global em aberto.
+
 ## Passagem 154 — 06/11/2026, publicada e verificada
 
 Sem novas fichas públicas; incorporada a geração remota 806c08880, sem alterações nas impressões digitais das fichas. Ajustes em Yc8WKEmLYvUlf1em3nGt (Yoyo V01 Plus), ye0EVvhX1qjcRDsb9Srw (cozedor Vyrox) e yGygA3k1h886kEa7LOqh (Coleção Primeira Biblioteca). Fontes em `docs/targeted-triage154-20261106.json`.
