@@ -96,10 +96,13 @@ export async function distinguishRepeatedProductMetadata(root) {
   const file='produto/'+name,html=await readFile(resolve(root,file),'utf8');
   if(/http-equiv=["']refresh["']|noindex|rdc-paused-product|rdc-retired-product/i.test(html))continue;
   const title=html.match(/<title>([^<]+)<\/title>/i)?.[1];
-  if(title)pages.push({file,html,title});
+  // A regeneration may reset only one side of a previously repeated pair.
+  // Compare the underlying label so both pages retain deterministic metadata.
+  const baseTitle=title?.replace(/\s+—\s+(?:anúncio MLB\d+(?: \/ [\w-]+)?|ficha [\w-]+)(?= \| Ranking da Compra$)/,'');
+  if(title)pages.push({file,html,title,baseTitle});
  }
  const groups=new Map();
- for(const page of pages)groups.set(page.title,[...(groups.get(page.title)||[]),page]);
+ for(const page of pages)groups.set(page.baseTitle,[...(groups.get(page.baseTitle)||[]),page]);
  const changedFiles=[];
  for(const group of groups.values()){
   if(group.length<2)continue;
@@ -110,7 +113,7 @@ export async function distinguishRepeatedProductMetadata(root) {
    // A listing can appear in two saved records; the page ID remains unique.
    const sameListing=listing&&group.filter(p=>{try{return safety.listingId({marketplace:'mercado_livre',link:registeredOfferUrl(p.html)})===listing;}catch{return false;}}).length>1;
    const suffix=sameListing?reference+' / '+id:reference;
-   const title=decode(page.title).replace(/\s*\| Ranking da Compra$/,'')+' — '+suffix+' | Ranking da Compra';
+   const title=decode(page.baseTitle).replace(/\s*\| Ranking da Compra$/,'')+' — '+suffix+' | Ranking da Compra';
    let next=page.html.replace(/<title>[^<]+<\/title>/i,()=>'<title>'+esc(title)+'</title>');
    const description=page.html.match(/<meta\b[^>]*name=["']description["'][^>]*content=["']([^"']*)/i)?.[1];
    if(description&&group.filter(p=>p.html.includes('content="'+description+'"')).length>1){

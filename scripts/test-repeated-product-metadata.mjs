@@ -16,5 +16,8 @@ test('metadados repetidos distinguem páginas sem alterar conteúdo ou afiliados
   assert.notEqual(out[0].match(/<title>(.*?)<\/title>/)[1],out[1].match(/<title>(.*?)<\/title>/)[1]);
   for(const h of out){assert.ok(h.includes('<h1>Produto</h1>'));assert.ok(h.includes('href="https://meli.la/preservar"'));assert.ok(h.includes('Referência:'));}
   assert.deepEqual(await distinguishRepeatedProductMetadata(root),[]);
+  await writeFile(join(root,'produto','a-20260810-1.html'),page('MLB1234567890'));
+  assert.equal((await distinguishRepeatedProductMetadata(root)).length,1);
+  assert.deepEqual(await distinguishRepeatedProductMetadata(root),[]);
  }finally{await rm(root,{recursive:true,force:true});}
 });
