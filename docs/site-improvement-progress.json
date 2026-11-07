@@ -681,8 +681,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T09:22:55.758Z",
-  "catalogueGeneratedAt": "2026-11-07T09:21:51.901Z",
+  "updatedAt": "2026-11-07T09:25:09.342Z",
+  "catalogueGeneratedAt": "2026-11-07T09:23:51.799Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -695,9 +695,8 @@
   "counts": {
     "total": 568,
     "screened_no_change": 82,
-    "targeted_correction_complete": 380,
-    "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 8
+    "targeted_correction_complete": 388,
+    "preserve_prior_review": 98
   },
   "items": [
     {
@@ -768,11 +767,12 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB5239190177-20260810-1.html",
       "title": "Adaptador Usb Rj45 Ugreen Ethernet Gigabit 1000mbps Cm209",
       "fingerprint": "f16fbb99397f254e9bd8efafe220d9bf9775c6377eaf71e6fe8746d483f5c9a6",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T09:25:09.344Z",
       "workNotes": [
-        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado."
+        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+        "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/adaptador-usb-rj45-ugreen-ethernet-gigabit-1000mbps-cm209/up/MLBU5210851128?pdp_filters=item_id%3AMLB5239190177"
@@ -868,11 +868,12 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4656461981-20260810-1.html",
       "title": "Aparador De Pelos Nariz E Orelha Elétrico Recarregável Sem Fio Acemic Preto Cortador Nasal Portátil Masculino E Feminino Para Higiene Pessoal Remoção De Pelos Com Praticidade E Precisão",
       "fingerprint": "f2809d7203bebded98b6886f63e13c8462a144708cc3bdd26bc2f79b7cbebc17",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T09:25:09.344Z",
       "workNotes": [
-        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado."
+        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+        "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB68770277?wid=MLB4656461981"
@@ -904,11 +905,12 @@
       "url": "https://rankingdacompra.com.br/produto/jdxZ0gYEI0XGOPYbWh78-20260810-1.html",
       "title": "Aparelhos Academia Aparelho Abdominal Ab Circlecasa Dobrável",
       "fingerprint": "0c8a48d24dbe2bc2806df607d6a721b01c6fc4e7d39a9eb4b67fa28efd3541fb",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T09:25:09.344Z",
       "workNotes": [
-        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado."
+        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+        "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/aparelhos-academia-aparelho-abdominal-ab-circlecasa-dobravel/up/MLBU3690429243?pdp_filters=item_id%3AMLB6091779718"
@@ -1025,11 +1027,12 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4186778677-20260810-1.html",
       "title": "Atiradeira Estilingue Profissional Do Laser C/100 Esfera Aço",
       "fingerprint": "88510b638338cede6ddfebe60f079bb5c13247631b8ab44efedeed368662ffa8",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T09:25:09.344Z",
       "workNotes": [
-        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado."
+        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+        "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/atiradeira-estilingue-profissional-do-laser-c100-esfera-aco/up/MLBU3400340276?wid=MLB4186778677"
@@ -1113,11 +1116,12 @@
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "fingerprint": "db34fe9391172bf3fa7ae9db49950d0da15ad8a887f7ff9760bf9dd2c86f19b6",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T09:25:09.344Z",
       "workNotes": [
-        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado."
+        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+        "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB75494102?wid=MLB4915160895"
@@ -1173,11 +1177,12 @@
       "url": "https://rankingdacompra.com.br/produto/O6sfkmnugDGyVCAnNtyN-20260810-1.html",
       "title": "Balança Digital Corporal Bioimpedância Aplicativo Bluetooth Relaxmedic",
       "fingerprint": "23dd2552f44ea3915942e0ab4091d920de599013b1a391a89af78642475bc173",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T09:25:09.344Z",
       "workNotes": [
-        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado."
+        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+        "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB21814751?pdp_filters=item_id%3AMLB3225819794"
@@ -5042,11 +5047,12 @@
       "url": "https://rankingdacompra.com.br/produto/40SKVMiLnqTYwYcP2duQ-20260810-1.html",
       "title": "Kit de três controles remotos 433 MHz",
       "fingerprint": "b666fe6e6c14b54101779fb04740049ab84f9678ea62b4cc91c487ee36802ce3",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T09:25:09.344Z",
       "workNotes": [
-        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado."
+        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+        "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB69621318?pdp_filters=item_id%3AMLB5031200555"
@@ -5908,11 +5914,12 @@
       "url": "https://rankingdacompra.com.br/produto/0o2cubZBfwlgcwFokAWY-20260810-1.html",
       "title": "Maquininha Mercado Pago Point Pro 3 — operadora a confirmar",
       "fingerprint": "e908b4c244f00a16893d2ee5f567dd3dd6eaf318981fa864c240aea102546c6c",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T09:25:09.344Z",
       "workNotes": [
-        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado."
+        "Atribui os dados registrados ao vendedor e torna explícito o que não foi verificado.",
+        "Dados do anúncio já registrados no catálogo público; oferta atual não reconfirmada, sem teste independente."
       ],
       "sourceLinks": [
         "https://www.mercadolivre.com.br/p/MLB50744233?pdp_filters=item_id%3AMLB6040467738"
@@ -15825,7 +15832,7 @@
     "pagesRun": 42328259688
   },
   "triage156": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "changedIds": [
       "40SKVMiLnqTYwYcP2duQ",
       "mlMLB5239190177",
@@ -15835,6 +15842,9 @@
       "t4cAWb59UILzYeRHO0qk",
       "O6sfkmnugDGyVCAnNtyN",
       "0o2cubZBfwlgcwFokAWY"
-    ]
+    ],
+    "verifiedAt": "2026-11-07T09:25:09.344Z",
+    "sourceCommit": "7b0c5506c",
+    "pagesRun": 42359585013
   }
 }

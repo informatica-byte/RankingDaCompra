@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "7b0c5506c",
+  "generatedCommit": "d692e0f13",
+  "pagesRun": 42359585013,
+  "publicVerification": "Eight HTTP 200 pages; public catalogue matches prepared products; meta descriptions and affiliate anchors match local copies.",
+  "ids": [
+    "40SKVMiLnqTYwYcP2duQ",
+    "mlMLB5239190177",
+    "mlMLB4656461981",
+    "jdxZ0gYEI0XGOPYbWh78",
+    "mlMLB4186778677",
+    "t4cAWb59UILzYeRHO0qk",
+    "O6sfkmnugDGyVCAnNtyN",
+    "0o2cubZBfwlgcwFokAWY"
+  ],
+  "testsPassed": 1574,
+  "sitemapUrls": 621,
+  "affiliateLinksChanged": false,
+  "firestoreQueries": 0,
+  "sourceLimit": "Seller data from previously recorded listing snapshots; current listing contents inaccessible during this work. Editorial attribution is not independent technical verification."
+}

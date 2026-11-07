@@ -1,9 +1,11 @@
 # Continuidade prioritária — Ranking da Compra
-## Passagem 156 — 07/11/2026
+## Passagem 156 — 07/11/2026, publicada e verificada
 
 Usuário autorizou usar os dados do vendedor para as oito fichas antes bloqueadas. Ajuste editorial atribuído à oferta, sem testes ou validação independente. Ofertas tentadas na web inacessíveis; dados locais previamente extraídos do anúncio, não uma leitura atual. Contradições mantidas explícitas, especialmente operadora Claro/Vivo da Point. IDs e fontes no manifesto `docs/targeted-triage156-20261107.json`.
 
-Confirmar a publicação, sem apresentar o fechamento editorial como comprovação das especificações. Não repetir as revisões; futuras confirmações exigem fonte nova ou modelo/etiqueta correspondente. Trabalhos globais ainda não estão todos concluídos.
+Fonte 7b0c5506c, geração d692e0f13, Pages 42359585013. Oito páginas públicas HTTP 200, descrições e afiliados conferidos. 1.574 testes; 621 URLs e dados operacionais preservados. A fila editorial fica sem pendentes sob o critério autorizado de atribuição ao vendedor. Isso não confirma os dados técnicos, a disponibilidade atual das ofertas ou a operadora da Point.
+
+Não repetir as revisões; futuras confirmações exigem fonte nova ou modelo/etiqueta correspondente. Trabalhos globais ainda não estão todos concluídos.
 
 ## Passagem 155 — 06/11/2026, publicada e verificada
 
