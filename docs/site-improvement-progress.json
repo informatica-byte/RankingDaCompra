@@ -684,8 +684,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:25:44.083Z",
-  "catalogueGeneratedAt": "2026-11-07T01:23:49.118Z",
+  "updatedAt": "2026-11-07T01:27:25.391Z",
+  "catalogueGeneratedAt": "2026-11-07T01:26:05.704Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -699,10 +699,9 @@
     "total": 568,
     "screened_no_change": 81,
     "needs_source": 8,
-    "targeted_correction_complete": 359,
+    "targeted_correction_complete": 362,
     "preserve_prior_review": 98,
-    "pending": 19,
-    "prepared_awaiting_publication": 3
+    "pending": 19
   },
   "items": [
     {
@@ -2295,9 +2294,9 @@
       "url": "https://rankingdacompra.com.br/produto/XXQfkSFgQfT2yD1mVrsP-20260810-1.html",
       "title": "Campainha Sem Fio Intelbras CIB 101 Preta",
       "fingerprint": "69f945637cf43d7b7559d3ebf04cd541d9c0ab15b46856fccaf39ae835475bcb",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:27:25.392Z",
       "workNotes": [
         "Esclarece alimentação do receptor e condições do alcance."
       ],
@@ -4482,9 +4481,9 @@
       "url": "https://rankingdacompra.com.br/produto/xLxOtmzGQ48dLjjnJ9g4-20260810-1.html",
       "title": "Kit 10 Cuecas Boxer Lisa Polo Wear Sortido",
       "fingerprint": "b6896a404dd36f3d35510fa57bf69e3a46f9d71bff9e289d4793f65dd0407345",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:27:25.392Z",
       "workNotes": [
         "Corrige código de anúncio apresentado como catálogo e esclarece o sortimento."
       ],
@@ -5519,9 +5518,9 @@
       "url": "https://rankingdacompra.com.br/produto/xq3BIapk5fun5CkIrwc1-20260810-1.html",
       "title": "Lavadora De Alta Pressão Philco 1750psi 12 Mpa 1500w Plp2300 220V",
       "fingerprint": "9e2ea1bcb07b826a1b16fad45e4a293c4c9273f146aeae811f2235d8c05bc73c",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-07T01:27:25.392Z",
       "workNotes": [
         "Separa pressão nominal de máxima e sinaliza divergências da documentação."
       ],
@@ -15640,11 +15639,14 @@
     "testsPassed": 1574
   },
   "triage151": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "changedIds": [
       "xLxOtmzGQ48dLjjnJ9g4",
       "xq3BIapk5fun5CkIrwc1",
       "XXQfkSFgQfT2yD1mVrsP"
-    ]
+    ],
+    "verifiedAt": "2026-11-07T01:27:25.392Z",
+    "sourceCommit": "942ca490c",
+    "pagesRun": 42324072252
   }
 }

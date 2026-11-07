@@ -1,9 +1,11 @@
 # Continuidade prioritária — Ranking da Compra
-## Passagem 151 — 06/11/2026
+## Passagem 151 — 06/11/2026, publicada e verificada
 
 Não havia novas fichas públicas desde a passagem 150. Revisão pontual por visualizações: xLxOtmzGQ48dLjjnJ9g4 (Polo Wear: código do anúncio e cores variáveis), xq3BIapk5fun5CkIrwc1 (Philco PLP2300 220 V: pressão nominal/máxima, mangueira e divergências na ficha técnica) e XXQfkSFgQfT2yD1mVrsP (Intelbras CIB 101: receptor na tomada e alcance sem barreiras). Fontes em `docs/targeted-triage151-20261106.json`.
 
-Após confirmar a publicação, não refazer estes três IDs. Priorizar novos públicos e retomar por y0k4BCvQKQ3oyN0VMz7B (kit teclado e mouse para celular) e Y0m34sJnzLnojKcK5wAp (Loren Shower Ultra 127 V).
+Fonte 942ca490c, geração a5f0395d8, Pages 42324072252. Três fichas HTTP 200 com descrições e afiliados conferidos; demais fichas preservadas, 1.574 testes e 621 URLs validadas.
+
+Não refazer estes três IDs. Priorizar novos públicos e retomar por y0k4BCvQKQ3oyN0VMz7B (kit teclado e mouse para celular) e Y0m34sJnzLnojKcK5wAp (Loren Shower Ultra 127 V). Restam 19 pendentes e 8 aguardando fontes.
 
 ## Passagem 150 — 06/11/2026, publicada e verificada
 
