@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T21:26:08.333Z",
+  "generatedAt": "2026-11-07T01:01:55.768Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 32
+    "screening": 28
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "wAsxhijcNyAq9AblyLkN",
-      "title": "Wap Aspirador De Pó E Líquido Portátil Gtw Compact 1400w",
-      "url": "https://rankingdacompra.com.br/produto/wAsxhijcNyAq9AblyLkN-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "wiLibtvJlFYtSbDWLtcv",
-      "title": "Sandália Ortopédica Boaonda Adventure Super Leve Conforto",
-      "url": "https://rankingdacompra.com.br/produto/wiLibtvJlFYtSbDWLtcv-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "WjjOZFdWS3sKRCoFAH7r",
-      "title": "Camiseta Basica Masculina Algodão Lisa Malha Peruana Premium",
-      "url": "https://rankingdacompra.com.br/produto/WjjOZFdWS3sKRCoFAH7r-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
@@ -278,13 +257,6 @@
       "id": "zuvOrERyR2wVRA9ZmYGe",
       "title": "Câmera Lâmpada IP Wi-Fi Raytechno Full HD 1080p com Visão Noturna e Sensor de Movimento",
       "url": "https://rankingdacompra.com.br/produto/zuvOrERyR2wVRA9ZmYGe-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB4841103289",
-      "title": "Garrafa Térmica Água Personalizada 800ml Inox Academia",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB4841103289-20260810-1.html",
       "state": "screening",
       "reasons": []
     }

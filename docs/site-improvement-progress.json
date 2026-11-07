@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-06T19:44:39.321Z",
-  "catalogueGeneratedAt": "2026-11-06T19:43:25.960Z",
+  "updatedAt": "2026-11-07T01:01:58.319Z",
+  "catalogueGeneratedAt": "2026-11-07T01:01:55.768Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -702,12 +702,13 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 567,
+    "total": 568,
     "screened_no_change": 80,
     "needs_source": 8,
     "targeted_correction_complete": 350,
     "preserve_prior_review": 98,
-    "pending": 31
+    "prepared_awaiting_publication": 4,
+    "pending": 28
   },
   "items": [
     {
@@ -1832,6 +1833,25 @@
       "sourceLinks": []
     },
     {
+      "id": "wiLibtvJlFYtSbDWLtcv",
+      "url": "https://rankingdacompra.com.br/produto/wiLibtvJlFYtSbDWLtcv-20260810-1.html",
+      "title": "Calçado Boaonda Adventure",
+      "fingerprint": "5bd340471646be6c343c5c0968217a9d1272e592657b3bc51c3951d8bf2ad7ed",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue formato anatômico de indicação ortopédica e corrige o código.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5477527702-sandalia-ortopedica-boaonda-adventure-super-leve-conforto-_JM?searchVariation=199364076097",
+        "https://inside.boaonda.com.br/modelo/adventure/"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
       "id": "OwXKuXw3ZMFmcvx7jF4v",
       "url": "https://rankingdacompra.com.br/produto/OwXKuXw3ZMFmcvx7jF4v-20260810-1.html",
       "title": "Calibrador portátil B&G sem fio — até 150 PSI anunciados",
@@ -2201,17 +2221,6 @@
       ]
     },
     {
-      "id": "WjjOZFdWS3sKRCoFAH7r",
-      "url": "https://rankingdacompra.com.br/produto/WjjOZFdWS3sKRCoFAH7r-20260810-1.html",
-      "title": "Camiseta Basica Masculina Algodão Lisa Malha Peruana Premium",
-      "fingerprint": "ec882b90b47634c7baffefae461038f6f4274551abfff9023ab10eb3bc37de50",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "Ql4iYvaqcH2l6SPpBDsi",
       "url": "https://rankingdacompra.com.br/produto/Ql4iYvaqcH2l6SPpBDsi-20260810-1.html",
       "title": "Camiseta Dry-fit Preta Caveira Unisex Dark Lab",
@@ -2226,6 +2235,24 @@
       ],
       "sourceLinks": [
         "https://produto.mercadolivre.com.br/MLB-3800842215-camiseta-dry-fit-preta-caveira-unisex-dark-lab-_JM?searchVariation=181250232814"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
+    },
+    {
+      "id": "WjjOZFdWS3sKRCoFAH7r",
+      "url": "https://rankingdacompra.com.br/produto/WjjOZFdWS3sKRCoFAH7r-20260810-1.html",
+      "title": "Camiseta masculina lisa Stateless Fashion",
+      "fingerprint": "dda08e622df4e419f994cb6a1d9bc87e5fa40d97918e9d6c5628c8bdc700e504",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Retira qualificativo promocional e não presume origem ou percentual de algodão.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4020676149-camiseta-basica-masculina-algodo-lisa-malha-peruana-premium-_JM?searchVariation=193830531569"
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
@@ -3949,6 +3976,24 @@
       "sourceLinks": [
         "https://www.mercadolivre.com.br/up/MLBU5227274240"
       ]
+    },
+    {
+      "id": "mlMLB4841103289",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4841103289-20260810-1.html",
+      "title": "Garrafa Térmica Água Personalizada 800ml Inox Academia",
+      "fingerprint": "935570ded00d245717642a9b8c709ef471529be366fbfc683c6492239fe06e19",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Qualifica tempos térmicos e não garante vedação ou ausência de BPA.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4212790346?wid=MLB4841103289"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "MEkEjNiiDdi5MpmlP07R",
@@ -8154,17 +8199,6 @@
       "changedSinceCheckpoint": true
     },
     {
-      "id": "wiLibtvJlFYtSbDWLtcv",
-      "url": "https://rankingdacompra.com.br/produto/wiLibtvJlFYtSbDWLtcv-20260810-1.html",
-      "title": "Sandália Ortopédica Boaonda Adventure Super Leve Conforto",
-      "fingerprint": "df17c6c0723264f23a50e7d131efec89907c0cabf70aaab2c027d85417069ac7",
-      "status": "pending",
-      "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
-    },
-    {
       "id": "mlMLB4222763449",
       "url": "https://rankingdacompra.com.br/produto/mlMLB4222763449-20260810-1.html",
       "title": "Sanduicheira Inox Multiuso Oster Preto/inox",
@@ -10194,12 +10228,20 @@
       "id": "wAsxhijcNyAq9AblyLkN",
       "url": "https://rankingdacompra.com.br/produto/wAsxhijcNyAq9AblyLkN-20260810-1.html",
       "title": "Wap Aspirador De Pó E Líquido Portátil Gtw Compact 1400w",
-      "fingerprint": "fbfb4d039eb9f436c920b431e38e231da3bd1db46a10e2412512773ef74b4c32",
-      "status": "pending",
+      "fingerprint": "9b467b514f95ddb4a517bd565eb763afa4ae262da5fab51975ee5bf58753cb9e",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Corrige capacidade total e preserva distinção entre volume útil e total.",
+        "Sem teste independente da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB27050983?wid=MLB3873397755",
+        "https://mais.conteudo.wap.ind.br/wap/produtos/aspirador/barril/aspirador_gtw_compact_fw009439_fw009440/arquivos/apresentacao/apresentacao_gtw_compact.pdf"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "sfV5mG9A2qmqdyJhbQc0",
@@ -15455,5 +15497,15 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage148": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "WjjOZFdWS3sKRCoFAH7r",
+      "mlMLB4841103289",
+      "wAsxhijcNyAq9AblyLkN",
+      "wiLibtvJlFYtSbDWLtcv"
+    ],
+    "newDeepReviews": 0
   }
 }

@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Novos produtos primeiro; depois fila de visualizações.",
+  "items": [
+    {
+      "id": "mlMLB4841103289",
+      "decision": "targeted_correction_complete",
+      "reason": "Qualifica tempos térmicos e não garante vedação ou ausência de BPA.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/up/MLBU4212790346?wid=MLB4841103289"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "wAsxhijcNyAq9AblyLkN",
+      "decision": "targeted_correction_complete",
+      "reason": "Corrige capacidade total e preserva distinção entre volume útil e total.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB27050983?wid=MLB3873397755",
+        "https://mais.conteudo.wap.ind.br/wap/produtos/aspirador/barril/aspirador_gtw_compact_fw009439_fw009440/arquivos/apresentacao/apresentacao_gtw_compact.pdf"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "wiLibtvJlFYtSbDWLtcv",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue formato anatômico de indicação ortopédica e corrige o código.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-5477527702-sandalia-ortopedica-boaonda-adventure-super-leve-conforto-_JM?searchVariation=199364076097",
+        "https://inside.boaonda.com.br/modelo/adventure/"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    },
+    {
+      "id": "WjjOZFdWS3sKRCoFAH7r",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira qualificativo promocional e não presume origem ou percentual de algodão.",
+      "sourceLinks": [
+        "https://produto.mercadolivre.com.br/MLB-4020676149-camiseta-basica-masculina-algodo-lisa-malha-peruana-premium-_JM?searchVariation=193830531569"
+      ],
+      "sourceLimit": "Sem teste independente da unidade."
+    }
+  ]
+}
