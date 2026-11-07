@@ -88,6 +88,40 @@ export function seoSitemap(xml,files){
   return files.has(file)?entry.replace(/<lastmod>([^<]+)<\/lastmod>/, (tag,date)=>date.slice(0,10)<'2026-10-29'?'<lastmod>2026-10-29</lastmod>':tag):entry;
  });
 }
+// Distinguish public pages, not product variants. Only metadata changes.
+export async function distinguishRepeatedProductMetadata(root) {
+ const pages=[];
+ for(const name of await readdir(resolve(root,'produto'))){
+  if(!/^[\w-]+-20260810-1\.html$/.test(name))continue;
+  const file='produto/'+name,html=await readFile(resolve(root,file),'utf8');
+  if(/http-equiv=["']refresh["']|noindex|rdc-paused-product|rdc-retired-product/i.test(html))continue;
+  const title=html.match(/<title>([^<]+)<\/title>/i)?.[1];
+  if(title)pages.push({file,html,title});
+ }
+ const groups=new Map();
+ for(const page of pages)groups.set(page.title,[...(groups.get(page.title)||[]),page]);
+ const changedFiles=[];
+ for(const group of groups.values()){
+  if(group.length<2)continue;
+  for(const page of group){
+   let listing='';try{listing=safety.listingId({marketplace:'mercado_livre',link:registeredOfferUrl(page.html)})||'';}catch{}
+   const id=page.file.split('/').at(-1).replace(/-20260810-1\.html$/,'');
+   const reference=listing?'anúncio '+listing:'ficha '+id;
+   // A listing can appear in two saved records; the page ID remains unique.
+   const sameListing=listing&&group.filter(p=>{try{return safety.listingId({marketplace:'mercado_livre',link:registeredOfferUrl(p.html)})===listing;}catch{return false;}}).length>1;
+   const suffix=sameListing?reference+' / '+id:reference;
+   const title=decode(page.title).replace(/\s*\| Ranking da Compra$/,'')+' — '+suffix+' | Ranking da Compra';
+   let next=page.html.replace(/<title>[^<]+<\/title>/i,()=>'<title>'+esc(title)+'</title>');
+   const description=page.html.match(/<meta\b[^>]*name=["']description["'][^>]*content=["']([^"']*)/i)?.[1];
+   if(description&&group.filter(p=>p.html.includes('content="'+description+'"')).length>1){
+    next=next.replace(/(<meta\b[^>]*(?:name=["'](?:description|twitter:description)["']|property=["']og:description["'])[^>]*content=)(["'])(.*?)\2/gi,(_,a,q,value)=>a+q+esc(decode(value)+' Referência: '+suffix+'.')+q);
+   }
+   if(JSON.stringify(affiliateTargets(next))!==JSON.stringify(affiliateTargets(page.html)))throw Error('Afiliado alterado em metadados: '+page.file);
+   if(next!==page.html){await writeFile(resolve(root,page.file),next,'utf8');changedFiles.push(page.file);}
+  }
+ }
+ return changedFiles;
+}
 export async function applyPublicSeoLabels(root=process.cwd()){
  root=resolve(root);
  const searchPath=resolve(root,'search-index.json'),search=JSON.parse(await readFile(searchPath,'utf8')),labels=new Map();
@@ -114,6 +148,7 @@ export async function applyPublicSeoLabels(root=process.cwd()){
  const sitemapPath=resolve(root,'sitemap.xml'),xml=await readFile(sitemapPath,'utf8');
  const nextXml=seoSitemap(xml,new Set([...descriptions.keys(),...labels.keys()]));
  if(nextXml!==xml){await writeFile(sitemapPath,nextXml,'utf8');changed++;changedFiles.push('sitemap.xml');}
- return {changed,changedFiles,labels:[...labels.values()]};
+ const distinguished=await distinguishRepeatedProductMetadata(root);
+ return {changed:changed+distinguished.length,changedFiles:[...new Set([...changedFiles,...distinguished])],labels:[...labels.values()]};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href)console.log(JSON.stringify(await applyPublicSeoLabels()));
