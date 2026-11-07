@@ -76,14 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "y3sJNKuSXBHScRkQ0wMN",
-      "y8qOGP907Z3Bry3AI9cc",
-      "Y9pvF6r8j4nJdGwU4ht4",
       "Yc8WKEmLYvUlf1em3nGt",
       "ye0EVvhX1qjcRDsb9Srw",
       "yGygA3k1h886kEa7LOqh",
       "yJAghLjqy4ystXibSU2F",
-      "ypj5xGtjDkHWV6xVFgfd"
+      "ypj5xGtjDkHWV6xVFgfd",
+      "YprAHdwDVV8lFBm4b77k",
+      "YXqPx6O5Gl3YRR4I8w9a",
+      "YZvcITogQcf1bnnARlRx"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:54:02.329Z",
-  "catalogueGeneratedAt": "2026-11-07T01:52:24.277Z",
+  "updatedAt": "2026-11-07T01:57:25.716Z",
+  "catalogueGeneratedAt": "2026-11-07T01:56:23.801Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -707,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 364,
     "preserve_prior_review": 98,
-    "pending": 17
+    "pending": 14,
+    "prepared_awaiting_publication": 3
   },
   "items": [
     {
@@ -6579,12 +6580,18 @@
       "id": "y8qOGP907Z3Bry3AI9cc",
       "url": "https://rankingdacompra.com.br/produto/y8qOGP907Z3Bry3AI9cc-20260810-1.html",
       "title": "Numberblocks Brinquedo Educativo Cubos Matemáticos Didáticos",
-      "fingerprint": "62883462f2983bf46d3c03b41b6de78427b3bd58fcf4a9c233cab99d007d475d",
-      "status": "pending",
+      "fingerprint": "09066fa8c51017231ec9cfc3b0b1a5bfbf5d81883a4a6146e730987c86a1f6dc",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Atribui conteúdo e idade à oferta, sem presumir licenciamento."
+      ],
+      "sourceLinks": [
+        "https://lista.mercadolivre.com.br/brinquedos-numberblocks"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "pNwNrsWTQMEyOC4qwff1",
@@ -9446,12 +9453,16 @@
       "id": "Y9pvF6r8j4nJdGwU4ht4",
       "url": "https://rankingdacompra.com.br/produto/Y9pvF6r8j4nJdGwU4ht4-20260810-1.html",
       "title": "Tênis Masculino E Feminino Smash V2 Bdp Puma",
-      "fingerprint": "4372f46bf0f0e504299fbd355a0a14af7d9730049bbf24d11d613008f1a80ac6",
-      "status": "pending",
+      "fingerprint": "9354c53b46d02e2493186679f86205e0573a5fd04552b2de4d8bea5344fb8c42",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira garantia de aderência e ressalva palmilha da variante não confirmada."
+      ],
+      "sourceLinks": [],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "nfzTOT5XTvnh8Q8DyLvb",
@@ -9514,12 +9525,18 @@
       "id": "y3sJNKuSXBHScRkQ0wMN",
       "url": "https://rankingdacompra.com.br/produto/y3sJNKuSXBHScRkQ0wMN-20260810-1.html",
       "title": "Tênis Masculino Grand Court Base 3.0 Adidas",
-      "fingerprint": "fea7dfab7e2cac02e9d42e4ded93967abd534700767c2e3238f7eb13a5131b8e",
-      "status": "pending",
+      "fingerprint": "d8e82bed7882260ec6e778698825d11fca82b10efa6546d37f25b2799a103022",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Retira alegações de amortecimento e distingue a referência documentada da variante da oferta."
+      ],
+      "sourceLinks": [
+        "https://www.adidas.com.ph/grand-court-base-3.0-shoes/HQ0092.html"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "NQyo56LcUgwwA2tz8YCF",
@@ -15676,5 +15693,13 @@
     "verifiedAt": "2026-11-07T01:54:02.332Z",
     "sourceCommit": "d86289ffa",
     "pagesRun": 42326371783
+  },
+  "triage153": {
+    "status": "prepared_awaiting_publication",
+    "changedIds": [
+      "y3sJNKuSXBHScRkQ0wMN",
+      "y8qOGP907Z3Bry3AI9cc",
+      "Y9pvF6r8j4nJdGwU4ht4"
+    ]
   }
 }

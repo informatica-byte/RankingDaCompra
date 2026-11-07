@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-06",
+  "items": [
+    {
+      "id": "y3sJNKuSXBHScRkQ0wMN",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira alegações de amortecimento e distingue a referência documentada da variante da oferta.",
+      "sourceLinks": [
+        "https://www.adidas.com.ph/grand-court-base-3.0-shoes/HQ0092.html"
+      ]
+    },
+    {
+      "id": "y8qOGP907Z3Bry3AI9cc",
+      "decision": "targeted_correction_complete",
+      "reason": "Atribui conteúdo e idade à oferta, sem presumir licenciamento.",
+      "sourceLinks": [
+        "https://lista.mercadolivre.com.br/brinquedos-numberblocks"
+      ]
+    },
+    {
+      "id": "Y9pvF6r8j4nJdGwU4ht4",
+      "decision": "targeted_correction_complete",
+      "reason": "Retira garantia de aderência e ressalva palmilha da variante não confirmada.",
+      "sourceLinks": []
+    }
+  ]
+}

@@ -1,4 +1,10 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 153 — 06/11/2026
+
+Sem novas fichas públicas. Ajustes em y3sJNKuSXBHScRkQ0wMN (Adidas Grand Court Base 3.0), y8qOGP907Z3Bry3AI9cc (Numberblocks) e Y9pvF6r8j4nJdGwU4ht4 (Puma Smash V2 BDP). Evidências em `docs/targeted-triage153-20261106.json`.
+
+Confirmar a publicação sem repetir as revisões. Retomar por novos produtos públicos, depois Yc8WKEmLYvUlf1em3nGt (Yoyo V01 Plus), ye0EVvhX1qjcRDsb9Srw (cozedor Vyrox) e yGygA3k1h886kEa7LOqh (Coleção Primeira Biblioteca).
+
 ## Passagem 152 — 06/11/2026, publicada e verificada
 
 Sem novos produtos no catálogo público desde a passagem 151. Ajustes preparados para y0k4BCvQKQ3oyN0VMz7B (kit RCJ Parts: compatibilidade não testada) e Y0m34sJnzLnojKcK5wAp (Loren Shower Ultra Eletrônica 127 V: resistência da variante e etiqueta energética a conferir). Evidências em `docs/targeted-triage152-20261106.json`.

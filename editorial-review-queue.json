@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-07T01:52:24.277Z",
+  "generatedAt": "2026-11-07T01:56:23.801Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 17
+    "screening": 14
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "y3sJNKuSXBHScRkQ0wMN",
-      "title": "Tênis Masculino Grand Court Base 3.0 Adidas",
-      "url": "https://rankingdacompra.com.br/produto/y3sJNKuSXBHScRkQ0wMN-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "y8qOGP907Z3Bry3AI9cc",
-      "title": "Numberblocks Brinquedo Educativo Cubos Matemáticos Didáticos",
-      "url": "https://rankingdacompra.com.br/produto/y8qOGP907Z3Bry3AI9cc-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "Y9pvF6r8j4nJdGwU4ht4",
-      "title": "Tênis Masculino E Feminino Smash V2 Bdp Puma",
-      "url": "https://rankingdacompra.com.br/produto/Y9pvF6r8j4nJdGwU4ht4-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
