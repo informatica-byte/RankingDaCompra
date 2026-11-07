@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-06",
+  "protectedDeepReviews": 98,
+  "policy": "Novos produtos primeiro; depois fila de visualizações.",
+  "items": [
+    {
+      "id": "WO8eJVPACXCORVzrdNVh",
+      "decision": "targeted_correction_complete",
+      "reason": "Verifica registro e faixa etária sem garantir conexão ou acessórios.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB42455316?wid=MLB5150671412",
+        "https://registro.inmetro.gov.br/consulta/detalhe.aspx?NumeroRegistro=007615%2F2024&pag=1"
+      ],
+      "sourceLimit": "Documentação do modelo; sem teste da unidade."
+    },
+    {
+      "id": "wYxgVNIJeeWmGhcToFLP",
+      "decision": "screened_no_change",
+      "reason": "A ficha já atribui capacidade e potência à oferta, sem garantir desempenho ou indução.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB72899141?wid=MLB7502238108"
+      ],
+      "sourceLimit": "Sem teste independente."
+    },
+    {
+      "id": "WZIrFRxgOFZ1skyzk5SS",
+      "decision": "targeted_correction_complete",
+      "reason": "Completa o conteúdo do trio com referência oficial, sem garantir volumes da oferta ou resultados.",
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB74646505",
+        "https://www.eudora.com.br/produto/combo-siage-nutri-diamond-shampoo-250ml-condicionador-200ml-mascara-capilar-250g"
+      ],
+      "sourceLimit": "Documentação do modelo; sem teste da unidade."
+    }
+  ]
+}

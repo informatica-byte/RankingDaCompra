@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-07T01:03:59.582Z",
+  "generatedAt": "2026-11-07T01:07:30.769Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 28
+    "screening": 25
   },
   "items": [
     {
@@ -62,27 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "WO8eJVPACXCORVzrdNVh",
-      "title": "Guitarra E Microfone Infantil Instrumento Brinquedo Musical Cor Rosa Atentu",
-      "url": "https://rankingdacompra.com.br/produto/WO8eJVPACXCORVzrdNVh-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "wYxgVNIJeeWmGhcToFLP",
-      "title": "Power Bank 20000mah Carregador Portátil 4 Cabos Integrados Visor Digital Lanterna Led Usb Tipo C Compatível iPhone Samsung Xiaomi Android Bateria Externa Carrega 4 Dispositivos Preto",
-      "url": "https://rankingdacompra.com.br/produto/wYxgVNIJeeWmGhcToFLP-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "WZIrFRxgOFZ1skyzk5SS",
-      "title": "Combo Siàge Nutri Diamond Shampoo, Condicionador E Máscara",
-      "url": "https://rankingdacompra.com.br/produto/WZIrFRxgOFZ1skyzk5SS-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {

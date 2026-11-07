@@ -690,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:05:04.274Z",
-  "catalogueGeneratedAt": "2026-11-07T01:03:59.582Z",
+  "updatedAt": "2026-11-07T01:07:33.048Z",
+  "catalogueGeneratedAt": "2026-11-07T01:07:30.769Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -703,11 +703,12 @@
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
     "total": 568,
-    "screened_no_change": 80,
+    "screened_no_change": 81,
     "needs_source": 8,
     "targeted_correction_complete": 354,
     "preserve_prior_review": 98,
-    "pending": 28
+    "pending": 25,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -2870,12 +2871,20 @@
       "id": "WZIrFRxgOFZ1skyzk5SS",
       "url": "https://rankingdacompra.com.br/produto/WZIrFRxgOFZ1skyzk5SS-20260810-1.html",
       "title": "Combo Siàge Nutri Diamond Shampoo, Condicionador E Máscara",
-      "fingerprint": "6536813cbe0dfec17a827bc0546c3dbae9cf4bb72862f1555bf9d1774d53ad2a",
-      "status": "pending",
+      "fingerprint": "2ecfdb41ee6441c910d14f065a665984f7f499dfb7924f5f7cb13ada1474d985",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Completa o conteúdo do trio com referência oficial, sem garantir volumes da oferta ou resultados.",
+        "Documentação do modelo; sem teste da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB74646505",
+        "https://www.eudora.com.br/produto/combo-siage-nutri-diamond-shampoo-250ml-condicionador-200ml-mascara-capilar-250g"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5259893582",
@@ -4089,12 +4098,20 @@
       "id": "WO8eJVPACXCORVzrdNVh",
       "url": "https://rankingdacompra.com.br/produto/WO8eJVPACXCORVzrdNVh-20260810-1.html",
       "title": "Guitarra E Microfone Infantil Instrumento Brinquedo Musical Cor Rosa Atentu",
-      "fingerprint": "4c4b6b9a77b47a238084407dc25d46f1fe4bf267cfc0530e964a064f792c3290",
-      "status": "pending",
+      "fingerprint": "510b1b2547862cfaa175e5896f461e2ef5ad3a7d8e42b0c7e6cd81fbc02bff27",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Verifica registro e faixa etária sem garantir conexão ou acessórios.",
+        "Documentação do modelo; sem teste da unidade."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB42455316?wid=MLB5150671412",
+        "https://registro.inmetro.gov.br/consulta/detalhe.aspx?NumeroRegistro=007615%2F2024&pag=1"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "NJipazuMXMzOH9YZbxwu",
@@ -7455,11 +7472,16 @@
       "url": "https://rankingdacompra.com.br/produto/wYxgVNIJeeWmGhcToFLP-20260810-1.html",
       "title": "Power Bank 20000mah Carregador Portátil 4 Cabos Integrados Visor Digital Lanterna Led Usb Tipo C Compatível iPhone Samsung Xiaomi Android Bateria Externa Carrega 4 Dispositivos Preto",
       "fingerprint": "1a8bf1f351837337e3399c9f6d2241641e98c72d19ef9fdec3b79e9656e4e0f3",
-      "status": "pending",
+      "status": "screened_no_change",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "lastCompletedAt": "2026-11-07T01:07:33.049Z",
+      "workNotes": [
+        "A ficha já atribui capacidade e potência à oferta, sem garantir desempenho ou indução.",
+        "Sem teste independente."
+      ],
+      "sourceLinks": [
+        "https://www.mercadolivre.com.br/p/MLB72899141?wid=MLB7502238108"
+      ]
     },
     {
       "id": "C5b5fKstKDUgNDUxnQkP",
@@ -15539,5 +15561,13 @@
         "note": "Sem teste independente da unidade."
       }
     ]
+  },
+  "triage149": {
+    "status": "prepared_awaiting_publication",
+    "ids": [
+      "WO8eJVPACXCORVzrdNVh",
+      "WZIrFRxgOFZ1skyzk5SS"
+    ],
+    "newDeepReviews": 0
   }
 }
