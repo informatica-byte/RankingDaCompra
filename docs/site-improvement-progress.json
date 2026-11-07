@@ -76,8 +76,14 @@
     },
     "privateEvidence": "outputs/melhorias-integrais-20261030/ga4-prioridade-visualizacoes-20261031.json",
     "nextPendingIds": [
-      "y0k4BCvQKQ3oyN0VMz7B",
-      "Y0m34sJnzLnojKcK5wAp"
+      "y3sJNKuSXBHScRkQ0wMN",
+      "y8qOGP907Z3Bry3AI9cc",
+      "Y9pvF6r8j4nJdGwU4ht4",
+      "Yc8WKEmLYvUlf1em3nGt",
+      "ye0EVvhX1qjcRDsb9Srw",
+      "yGygA3k1h886kEa7LOqh",
+      "yJAghLjqy4ystXibSU2F",
+      "ypj5xGtjDkHWV6xVFgfd"
     ],
     "ties": "ID ascending using localeCompare; this is not a difference in popularity.",
     "limits": "Views include repeated page views and potentially tests. They are not unique people, search demand or sales. No row means no measured view in this report, not proof that nobody visited. Do not publish raw metrics in the public repository.",
@@ -684,8 +690,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T01:27:25.391Z",
-  "catalogueGeneratedAt": "2026-11-07T01:26:05.704Z",
+  "updatedAt": "2026-11-07T01:51:35.033Z",
+  "catalogueGeneratedAt": "2026-11-07T01:50:33.196Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -701,7 +707,8 @@
     "needs_source": 8,
     "targeted_correction_complete": 362,
     "preserve_prior_review": 98,
-    "pending": 19
+    "pending": 17,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -3328,12 +3335,18 @@
       "id": "Y0m34sJnzLnojKcK5wAp",
       "url": "https://rankingdacompra.com.br/produto/Y0m34sJnzLnojKcK5wAp-20260810-1.html",
       "title": "Ducha Loren Shower Ultra Eletrônica 127V 5500W Lorenzetti",
-      "fingerprint": "a207ec4dd3d481fd8f264958fa96224b381cf727a013273e7a9922079bcbc2eb",
-      "status": "pending",
+      "fingerprint": "3453e89f79ac6b56a11965095f29fe10290382140543cb543c1caeef7e381b09",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Confirma resistência da variante 127 V e sinaliza classe energética não confirmada."
+      ],
+      "sourceLinks": [
+        "https://lorenzetti.com.br/produto/loren-shower-eletronica"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "mlMLB5952869866",
@@ -5203,12 +5216,18 @@
       "id": "y0k4BCvQKQ3oyN0VMz7B",
       "url": "https://rankingdacompra.com.br/produto/y0k4BCvQKQ3oyN0VMz7B-20260810-1.html",
       "title": "Kit Teclado Mouse Celular Android Mobilador Jogo Freefire Nf",
-      "fingerprint": "abd2870db43d59bdb74f03625af8c889d301d531403109ba0da79187c42c70fa",
-      "status": "pending",
+      "fingerprint": "48e28522a34003089478766957f83e7a23677913c44060b865532268a41bcf30",
+      "status": "prepared_awaiting_publication",
       "previousReviewPresent": false,
       "lastCompletedAt": null,
-      "workNotes": [],
-      "sourceLinks": []
+      "workNotes": [
+        "Remove texto de preço e distingue menção ao jogo de compatibilidade comprovada."
+      ],
+      "sourceLinks": [
+        "https://lista.mercadolivre.com.br/informatica/_Deal_cupom-achadinhos-geral-seller-dev_Container_cupom-achadinhos-geral-seller-dev_BRAND_16962824"
+      ],
+      "previousState": "pending",
+      "changedSinceCheckpoint": true
     },
     {
       "id": "51ek2WOgqwYGnIqBAEPP",
@@ -15648,5 +15667,12 @@
     "verifiedAt": "2026-11-07T01:27:25.392Z",
     "sourceCommit": "942ca490c",
     "pagesRun": 42324072252
+  },
+  "triage152": {
+    "status": "prepared_awaiting_publication",
+    "changedIds": [
+      "y0k4BCvQKQ3oyN0VMz7B",
+      "Y0m34sJnzLnojKcK5wAp"
+    ]
   }
 }

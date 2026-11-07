@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-07T01:26:05.704Z",
+  "generatedAt": "2026-11-07T01:50:33.196Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
     "needs_source": 8,
-    "screening": 19
+    "screening": 17
   },
   "items": [
     {
@@ -62,20 +62,6 @@
       "title": "aweshine Tripé / Bastão Para Celular Portátil Até 1,90 M Com Controle,Celular 360° Rotação para Celular、Câmera、Vlog E Gopro",
       "url": "https://rankingdacompra.com.br/produto/t4cAWb59UILzYeRHO0qk-20260810-1.html",
       "state": "needs_source",
-      "reasons": []
-    },
-    {
-      "id": "y0k4BCvQKQ3oyN0VMz7B",
-      "title": "Kit Teclado Mouse Celular Android Mobilador Jogo Freefire Nf",
-      "url": "https://rankingdacompra.com.br/produto/y0k4BCvQKQ3oyN0VMz7B-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "Y0m34sJnzLnojKcK5wAp",
-      "title": "Ducha Loren Shower Ultra Eletrônica 127V 5500W Lorenzetti",
-      "url": "https://rankingdacompra.com.br/produto/Y0m34sJnzLnojKcK5wAp-20260810-1.html",
-      "state": "screening",
       "reasons": []
     },
     {
