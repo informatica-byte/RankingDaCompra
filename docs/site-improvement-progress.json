@@ -773,8 +773,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-08T11:54:14.446Z",
-  "catalogueGeneratedAt": "2026-11-08T11:52:00.976Z",
+  "updatedAt": "2026-11-08T11:56:31.095Z",
+  "catalogueGeneratedAt": "2026-11-08T11:54:55.047Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -787,9 +787,8 @@
   "counts": {
     "total": 570,
     "screened_no_change": 82,
-    "targeted_correction_complete": 388,
-    "preserve_prior_review": 98,
-    "prepared_awaiting_publication": 2
+    "targeted_correction_complete": 390,
+    "preserve_prior_review": 98
   },
   "items": [
     {
@@ -2842,9 +2841,9 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB4291904221-20260810-1.html",
       "title": "Climatizador De Ar Frio Portátil Itatiaia 20 Litros 4 Em 1",
       "fingerprint": "68e787fe885454b2ec884c32189377e21d4171669619fcffc275a23ae364711a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-08T11:56:31.097Z",
       "workNotes": [
         "Distingue reservatório e funções documentadas, sem garantir purificação ou assumir que a variante tem o peso da referência atual.",
         "Referência documental do fabricante; sem teste da unidade, variante da oferta e itens do kit devem ser conferidos."
@@ -10466,9 +10465,9 @@
       "url": "https://rankingdacompra.com.br/produto/mlMLB6577157814-20260810-1.html",
       "title": "Videoporteiro Inteligente Wi-fi Mvw 2000 Intelbras",
       "fingerprint": "b5343c7dbd2121fa51a8d4d54e180e10b1bbd196c4bbcbad546eb87ad4919d2a",
-      "status": "prepared_awaiting_publication",
+      "status": "targeted_correction_complete",
       "previousReviewPresent": false,
-      "lastCompletedAt": null,
+      "lastCompletedAt": "2026-11-08T11:56:31.097Z",
       "workNotes": [
         "Separa alimentação dos módulos e retira garantia irrestrita de resistência ambiental.",
         "Referência documental do fabricante; sem teste da unidade, variante da oferta e itens do kit devem ser conferidos."
@@ -11201,7 +11200,7 @@
     ]
   },
   "preparedRelease": {
-    "status": "awaiting_github_pages_release",
+    "status": "published_verified",
     "batches": [
       157
     ],
@@ -15921,12 +15920,15 @@
     "pagesRun": 42359585013
   },
   "triage157": {
-    "status": "prepared_awaiting_publication",
+    "status": "published_verified",
     "changedIds": [
       "mlMLB4291904221",
       "mlMLB6577157814"
     ],
     "newDeepReviews": 0,
-    "sourceLimit": "Manufacturer reference, not a test of the unit or confirmation of exact offer variant"
+    "sourceLimit": "Manufacturer reference, not a test of the unit or confirmation of exact offer variant",
+    "verifiedAt": "2026-11-08T11:56:31.097Z",
+    "sourceCommit": "4657a5332",
+    "pagesRun": 42477835941
   }
 }

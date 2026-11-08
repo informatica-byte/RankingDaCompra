@@ -1,9 +1,9 @@
 # Continuidade prioritária — Ranking da Compra
-## Passagem 157 — 08/11/2026
+## Passagem 157 — 08/11/2026, publicada e verificada
 
 Prioridade aos dois recém-publicados, sem reabrir revisões anteriores. mlMLB4291904221 (Itatiaia 20 L): funções da referência da marca, reservatório e peso divergente sinalizado. mlMLB6577157814 (Intelbras MVW 2000): alimentação do módulo externo separada da campainha e retirada garantia genérica de resistência ambiental.
 
-Fontes e limites em `docs/targeted-triage157-20261108.json`. Oito combinações de layout aprovadas, rede bloqueada. Invariantes preservam as outras 568 fichas, cadastros/campos operacionais, histórico, 623 URLs e afiliados. Confirmar publicação e testes completos.
+Fontes e limites em `docs/targeted-triage157-20261108.json`. 1.578 testes e oito combinações de layout aprovados, rede bloqueada. Invariantes preservam as outras 568 fichas, cadastros/campos operacionais, histórico, 623 URLs e afiliados. Fonte 4657a5332, geração 739919539, Pages 42477835941 SUCCESS. As duas páginas HTTP 200 com descrição, fonte documental e afiliados conferidos.
 
 Depois da verificação, retomar pela necessidade dos guias de beleza/cuidados, roupas/calçados e malas/bolsas, sem repetir estes dois IDs ou os 12 guias contemplados. Não tratar referência documental como teste da unidade.
 
