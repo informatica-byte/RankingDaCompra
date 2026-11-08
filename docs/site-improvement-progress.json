@@ -3,7 +3,11 @@
   "global05DecisionGuidesBatch4": {
     "status": "published_verified",
     "globalStatus": "partial",
-    "files": ["melhores-brinquedos.html", "melhores-esporte-e-lazer.html", "melhores-bicicletas.html"],
+    "files": [
+      "melhores-brinquedos.html",
+      "melhores-esporte-e-lazer.html",
+      "melhores-bicicletas.html"
+    ],
     "sourceCommit": "987972a38",
     "generatedCommit": "071c486a4",
     "pagesRun": 42424542036,
@@ -13,14 +17,18 @@
     "sitemapUrls": 623,
     "recordWrites": 0,
     "firestoreQueries": 0,
-    "unreviewedNewPublicIds": ["mlMLB4291904221", "mlMLB6577157814"],
+    "unreviewedNewPublicIds": [],
     "report": "docs/global05-decision-guides-4-20261107.md",
     "next": "Priorizar os dois novos públicos se houver evidência, depois necessidade dos guias de beleza/cuidados, roupas/calçados e malas/bolsas. Não repetir os 12 guias contemplados."
   },
   "global05DecisionGuidesBatch3": {
     "status": "published_verified",
     "globalStatus": "partial",
-    "files": ["melhores-casa.html", "melhores-cameras-de-seguranca.html", "melhores-informatica.html"],
+    "files": [
+      "melhores-casa.html",
+      "melhores-cameras-de-seguranca.html",
+      "melhores-informatica.html"
+    ],
     "sourceCommit": "2260cad1c",
     "mergeCommit": "810cbe5a7",
     "generatedCommit": "76c0bd76a",
@@ -35,7 +43,11 @@
   "global05DecisionGuidesBatch2": {
     "status": "published_verified",
     "globalStatus": "partial",
-    "files": ["melhores-impressoras.html", "melhores-fritadeira-air-fryer-eletrica.html", "melhores-ferramentas.html"],
+    "files": [
+      "melhores-impressoras.html",
+      "melhores-fritadeira-air-fryer-eletrica.html",
+      "melhores-ferramentas.html"
+    ],
     "sourceCommit": "9cedf9d33",
     "dependencyFixCommit": "054ef31d1",
     "generatedCommit": "d52032677",
@@ -50,7 +62,11 @@
   "global05DecisionGuides20261107": {
     "status": "published_verified",
     "globalStatus": "partial",
-    "files": ["melhores-notebook.html", "melhores-celular.html", "melhores-smart-tv.html"],
+    "files": [
+      "melhores-notebook.html",
+      "melhores-celular.html",
+      "melhores-smart-tv.html"
+    ],
     "sourceCommit": "1c9be1b8a",
     "generatedCommit": "1ec25b5dd",
     "pagesRun": 42361103615,
@@ -757,8 +773,8 @@
   },
   "interventionPolicy": "Inspect one pending item at a time. Edit only an identified factual/editorial defect or consequential confirmed gap. Do not rewrite merely to increase reviewed count. Skip screened_no_change, targeted_correction_complete and needs_source while fingerprint/source unchanged; reopen only for new evidence or defect. Never alter affiliates or invent facts.",
   "scope": "public informational site; no prices, records, affiliates or security rules changed",
-  "updatedAt": "2026-11-07T09:25:09.342Z",
-  "catalogueGeneratedAt": "2026-11-07T09:23:51.799Z",
+  "updatedAt": "2026-11-08T11:54:14.446Z",
+  "catalogueGeneratedAt": "2026-11-08T11:52:00.976Z",
   "modelPolicy": {
     "recommended": "GPT-6.1 Sol / Medium",
     "changeOnlyAfterUserConfirmation": true,
@@ -769,10 +785,11 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 568,
+    "total": 570,
     "screened_no_change": 82,
     "targeted_correction_complete": 388,
-    "preserve_prior_review": 98
+    "preserve_prior_review": 98,
+    "prepared_awaiting_publication": 2
   },
   "items": [
     {
@@ -2819,6 +2836,22 @@
       ],
       "previousState": "pending",
       "changedSinceCheckpoint": true
+    },
+    {
+      "id": "mlMLB4291904221",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB4291904221-20260810-1.html",
+      "title": "Climatizador De Ar Frio Portátil Itatiaia 20 Litros 4 Em 1",
+      "fingerprint": "68e787fe885454b2ec884c32189377e21d4171669619fcffc275a23ae364711a",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Distingue reservatório e funções documentadas, sem garantir purificação ou assumir que a variante tem o peso da referência atual.",
+        "Referência documental do fabricante; sem teste da unidade, variante da oferta e itens do kit devem ser conferidos."
+      ],
+      "sourceLinks": [
+        "https://www.minhaitatiaia.com.br/climatizador-de-ar-20l-itatiaia-1/p"
+      ]
     },
     {
       "id": "7TeZ4aAirqbiu3TNCsug",
@@ -10429,6 +10462,22 @@
       "changedSinceCheckpoint": true
     },
     {
+      "id": "mlMLB6577157814",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6577157814-20260810-1.html",
+      "title": "Videoporteiro Inteligente Wi-fi Mvw 2000 Intelbras",
+      "fingerprint": "b5343c7dbd2121fa51a8d4d54e180e10b1bbd196c4bbcbad546eb87ad4919d2a",
+      "status": "prepared_awaiting_publication",
+      "previousReviewPresent": false,
+      "lastCompletedAt": null,
+      "workNotes": [
+        "Separa alimentação dos módulos e retira garantia irrestrita de resistência ambiental.",
+        "Referência documental do fabricante; sem teste da unidade, variante da oferta e itens do kit devem ser conferidos."
+      ],
+      "sourceLinks": [
+        "https://backend.intelbras.com/sites/default/files/2026-03/Datasheet%20MVW%202000.pdf"
+      ]
+    },
+    {
       "id": "Uh8jBpd9D8uEtK4Q3X43",
       "url": "https://rankingdacompra.com.br/produto/Uh8jBpd9D8uEtK4Q3X43-20260810-1.html",
       "title": "Vitamina D3 + K2 (MK-7) — 60 cápsulas anunciadas",
@@ -11152,68 +11201,16 @@
     ]
   },
   "preparedRelease": {
-    "status": "published_verified",
-    "sourceCommit": "8d11a9c5e51ed13743df1a1fc1a58379333742db",
-    "generatedCommit": "b14229704393c93f0e827a681ab185838cee3eb8",
-    "integrityRun": 41300707351,
-    "generationRun": 41300707215,
-    "deploymentRun": 41300739582,
-    "publication13TestsPassed": 1343,
-    "mobileChecksPassed": 26,
-    "desktopPagesChecked": 13,
-    "mobileProof": "outputs/melhorias-integrais-20261030/verificacao-celular-publicada13.json",
-    "desktopProof": "outputs/melhorias-integrais-20261030/verificacao-desktop-publicada13.json",
-    "publicationScreenshot": "outputs/melhorias-integrais-20261030/publicacao13-github-sucesso.png",
-    "confirmedPublishedIds": [
-      "1tIzUpXs4udqZOZwpQX7",
-      "51cYaPGtvus2ayLrbFwH",
-      "5Kojn8DcrLoydOBjq4vd",
-      "CEVlNR7lM1QTwgcn0tRu",
-      "CFEyN1hdeMSM6BS89h5o",
-      "DlFv98xnrCPIAeFfbRFv",
-      "FWRyLtto1bKeKurNikKq",
-      "SctMie0hqocPmrWupQLO",
-      "U52A4gBWWLEmfCzONtHb",
-      "XRKv9OGoKrBbcDP0GxER",
-      "cjtpmssewHcTpdqJlbS6",
-      "mlMLB5212483469",
-      "w4grNjrGMy69omEzW0QP",
-      "z507ObVuMlSEBSnK40Uc"
-    ],
-    "pendingPublicationIds": [],
-    "singleRetryProof": "outputs/melhorias-integrais-20261030/resultado-tentativa-unica-pages-20261101.json",
-    "singleRetryRun": 41292153828,
-    "singleRetryAttempt": 2,
-    "noAdditionalPublicationAuthorized": true,
+    "status": "awaiting_github_pages_release",
     "batches": [
-      34,
-      35,
-      36,
-      37,
-      38
+      157
     ],
-    "manifestDate": "20261101",
+    "manifestDate": "20261108",
     "ids": [
-      "1tIzUpXs4udqZOZwpQX7",
-      "51cYaPGtvus2ayLrbFwH",
-      "5Kojn8DcrLoydOBjq4vd",
-      "CEVlNR7lM1QTwgcn0tRu",
-      "CFEyN1hdeMSM6BS89h5o",
-      "DlFv98xnrCPIAeFfbRFv",
-      "FWRyLtto1bKeKurNikKq",
-      "SctMie0hqocPmrWupQLO",
-      "U52A4gBWWLEmfCzONtHb",
-      "XRKv9OGoKrBbcDP0GxER",
-      "cjtpmssewHcTpdqJlbS6",
-      "mlMLB5212483469",
-      "w4grNjrGMy69omEzW0QP",
-      "z507ObVuMlSEBSnK40Uc"
+      "mlMLB4291904221",
+      "mlMLB6577157814"
     ],
-    "verificationCommand": "node scripts/verify-targeted-editorial.mjs 34,35,36,37,38 20261101",
-    "supportTicket": "4935458",
-    "doNotRepeatReviews": true,
-    "verifiedAt": "2026-11-01T11:12:17.723Z",
-    "proof": "outputs/melhorias-integrais-20261030/verificacao-publicada-triagem34-35-36-37-38.json"
+    "doNotRepeatReviews": true
   },
   "triage36": {
     "at": "2026-11-01T10:02:42.223Z",
@@ -15922,5 +15919,14 @@
     "verifiedAt": "2026-11-07T09:25:09.344Z",
     "sourceCommit": "7b0c5506c",
     "pagesRun": 42359585013
+  },
+  "triage157": {
+    "status": "prepared_awaiting_publication",
+    "changedIds": [
+      "mlMLB4291904221",
+      "mlMLB6577157814"
+    ],
+    "newDeepReviews": 0,
+    "sourceLimit": "Manufacturer reference, not a test of the unit or confirmation of exact offer variant"
   }
 }

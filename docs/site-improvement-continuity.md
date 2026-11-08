@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## Passagem 157 — 08/11/2026
+
+Prioridade aos dois recém-publicados, sem reabrir revisões anteriores. mlMLB4291904221 (Itatiaia 20 L): funções da referência da marca, reservatório e peso divergente sinalizado. mlMLB6577157814 (Intelbras MVW 2000): alimentação do módulo externo separada da campainha e retirada garantia genérica de resistência ambiental.
+
+Fontes e limites em `docs/targeted-triage157-20261108.json`. Oito combinações de layout aprovadas, rede bloqueada. Invariantes preservam as outras 568 fichas, cadastros/campos operacionais, histórico, 623 URLs e afiliados. Confirmar publicação e testes completos.
+
+Depois da verificação, retomar pela necessidade dos guias de beleza/cuidados, roupas/calçados e malas/bolsas, sem repetir estes dois IDs ou os 12 guias contemplados. Não tratar referência documental como teste da unidade.
+
 ## GLOBAL-05 — brinquedos, esporte/lazer e bicicletas — 07/11/2026
 
 Acrescentadas orientações específicas, sem rever fichas ou alterar afiliados. 1.578 testes, 12 combinações de layout com rede bloqueada e validação de 570 produtos/623 URLs aprovados. Base remota integrada e preservada. Publicação confirmada: fonte 987972a38, geração 071c486a4, Pages 42424542036 SUCCESS; três guias HTTP 200, roteiro correto e links preservados. Relatório `docs/global05-decision-guides-4-20261107.md`.

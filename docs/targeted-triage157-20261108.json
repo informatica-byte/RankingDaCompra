@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-08",
+  "items": [
+    {
+      "id": "mlMLB4291904221",
+      "decision": "targeted_correction_complete",
+      "reason": "Distingue reservatório e funções documentadas, sem garantir purificação ou assumir que a variante tem o peso da referência atual.",
+      "sourceLinks": [
+        "https://www.minhaitatiaia.com.br/climatizador-de-ar-20l-itatiaia-1/p"
+      ],
+      "sourceLimit": "Referência documental do fabricante; sem teste da unidade, variante da oferta e itens do kit devem ser conferidos."
+    },
+    {
+      "id": "mlMLB6577157814",
+      "decision": "targeted_correction_complete",
+      "reason": "Separa alimentação dos módulos e retira garantia irrestrita de resistência ambiental.",
+      "sourceLinks": [
+        "https://backend.intelbras.com/sites/default/files/2026-03/Datasheet%20MVW%202000.pdf"
+      ],
+      "sourceLimit": "Referência documental do fabricante; sem teste da unidade, variante da oferta e itens do kit devem ser conferidos."
+    }
+  ]
+}
