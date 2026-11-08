@@ -1,5 +1,32 @@
 // Editorial questions, not inferred product specifications or automatic rankings.
 const guides={
+ 'melhores-beleza-cuidados-e-saude.html':{
+  heading:'Antes de escolher produtos de beleza e cuidados',
+  checks:['Separe cosméticos, aparelhos e outros itens pela finalidade; não compare funções diferentes como equivalentes.','Confira a identificação, a composição ou configuração e as orientações do rótulo ou manual da unidade.','Se o anúncio não esclarecer uma característica decisiva, peça a informação antes de escolher; não preencha a lacuna por suposição.'],
+  questions:[
+   ['Um benefício no anúncio é um resultado comprovado pelo site?','Não. A ficha distingue alegações do vendedor e informações documentadas, mas não comprova resultado de uso nem benefício de saúde. Não fizemos ensaios próprios dos produtos.'],
+   ['Como comparar kits e embalagens diferentes?','Confira quais itens e quantidades acompanham cada kit e a versão de cada produto. O nome da linha ou a foto do conjunto não confirma a mesma composição em toda oferta.'],
+   ['A indicação para um perfil de uso serve para qualquer pessoa?','Não trate uma descrição geral como indicação individual. Confira as orientações e os avisos do rótulo ou manual; a ficha não substitui avaliação profissional quando ela for necessária.']
+  ]
+ },
+ 'melhores-roupas-e-calcados.html':{
+  heading:'Antes de escolher roupas e calçados',
+  checks:['Defina a finalidade da peça ou do calçado antes de comparar modelos.','Confira a tabela de medidas da oferta, a composição e as orientações de cuidado.','Confirme a cor, a numeração, o conteúdo de kits e as condições de troca com a loja.'],
+  questions:[
+   ['A mesma numeração garante o mesmo ajuste?','Não presuma o ajuste apenas pelo número ou pelo tamanho P, M ou G. Consulte as medidas e as orientações do modelo específico; a ficha não testou a peça no seu corpo ou pé.'],
+   ['Confortável, esportivo ou ortopédico no título é uma comprovação?','Esses termos do anúncio não são resultados de teste desta ficha. Confira a finalidade documentada do modelo e não presuma desempenho ou benefício terapêutico pela descrição comercial.'],
+   ['Cor diferente significa outro modelo para comparar?','Confira a identificação e a construção da variante. Uma mudança apenas de cor ou numeração não é evidência suficiente de uma proposta de uso diferente.']
+  ]
+ },
+ 'melhores-malas-e-bolsas.html':{
+  heading:'Antes de escolher malas e bolsas',
+  checks:['Defina o uso: viagem, rotina, transporte de equipamento ou outra finalidade.','Confira as dimensões externas completas, o peso e os compartimentos da variante.','Verifique material, cuidados e acessórios incluídos; não deduza resistência ou impermeabilidade pelas fotos.'],
+  questions:[
+   ['O nome mala de bordo garante aceitação no transporte?','Não. Confira as medidas completas e consulte diretamente as regras atuais da companhia ou do serviço que usará. A ficha não confirma aceitação para uma viagem específica.'],
+   ['Como saber se meu equipamento cabe?','Compare as medidas do equipamento com as dimensões úteis informadas e verifique os compartimentos. Se essas medidas não constarem, peça ao vendedor; a capacidade em litros não resolve sozinha o encaixe.'],
+   ['Resistente ou impermeável é um teste feito pelo site?','Não. Esses termos devem ser atribuídos à fonte que os declara. Confira a documentação e as condições de uso; não realizamos testes de impacto, carga ou entrada de água.']
+  ]
+ },
  'melhores-brinquedos.html':{
   heading:'Antes de escolher brinquedos',
   checks:['Confira a indicação etária e os avisos na embalagem do modelo, não apenas nas fotos do anúncio.','Compare a lista de peças e verifique se pilhas, baterias ou outros acessórios acompanham o conjunto.','Considere o espaço e a forma de brincar; se faltar identificação ou orientação, peça esclarecimento antes da compra.'],

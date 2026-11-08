@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — beleza/cuidados, roupas/calçados e malas/bolsas — 08/11/2026
+
+Acrescentadas três conferências e três perguntas por guia, sem refazer fichas ou conteúdo anterior. Orientação específica de finalidade, rótulo/configuração, medidas e transporte; sem garantias de saúde, conforto ou aceitação de bagagem.
+
+1.578 testes, 12 combinações de layout com rede bloqueada e validação de 570 produtos/623 URLs aprovados. Confirmar publicação; relatório `docs/global05-decision-guides-5-20261108.md`.
+
+GLOBAL-05 permanece parcial, quinze guias contemplados. Próxima verificação: guias-base de caixas de som, tablets e roteadores; preservar comparativos específicos, não repetir os quinze roteiros ou revisões de produtos.
+
 ## Passagem 157 — 08/11/2026, publicada e verificada
 
 Prioridade aos dois recém-publicados, sem reabrir revisões anteriores. mlMLB4291904221 (Itatiaia 20 L): funções da referência da marca, reservatório e peso divergente sinalizado. mlMLB6577157814 (Intelbras MVW 2000): alimentação do módulo externo separada da campainha e retirada garantia genérica de resistência ambiental.
