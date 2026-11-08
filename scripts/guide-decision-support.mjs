@@ -1,5 +1,23 @@
 // Editorial questions, not inferred product specifications or automatic rankings.
 const guides={
+ 'melhores-caixa-de-som.html':{
+  heading:'Antes de escolher caixas de som',
+  checks:['Defina o uso e o formato: transporte, ambiente fixo ou outra necessidade; compare propostas equivalentes.','Confira entradas, conexões, alimentação e acessórios da variante que pretende comprar.','Se autonomia, resistência à água ou uso com microfone forem decisivos, procure as condições documentadas do modelo.'],
+  questions:[
+   ['Mais watts garantem som melhor ou maior alcance?','A potência anunciada, isoladamente, não comprova qualidade, volume útil ou cobertura do ambiente. A ficha não realizou medições de áudio.'],
+   ['Toda caixa Bluetooth aceita microfone ou toca sem tomada?','Não presuma outros recursos apenas pela conexão Bluetooth. Confira bateria, alimentação, entradas e compatibilidade com os acessórios desejados.'],
+   ['Como interpretar autonomia ou resistência à água?','Confira as condições e limitações da fonte. Tempo anunciado e termos como resistente não são testes desta ficha; verifique a referência exata e as orientações do fabricante.']
+  ]
+ },
+ 'melhores-tablet.html':{
+  heading:'Antes de escolher um tablet',
+  checks:['Liste os aplicativos e tarefas que pretende usar e confira seus requisitos e compatibilidade.','Confira o código da variante, RAM física, armazenamento e as conexões necessárias.','Verifique se teclado, caneta, capa e carregador acompanham a unidade e se os acessórios desejados são compatíveis.'],
+  questions:[
+   ['Este guia garante uma comparação completa do mercado?','Não. Confira quantos modelos estão disponíveis nos grupos abaixo. Se houver apenas um, a página serve para consultar a ficha, não para declarar um vencedor entre concorrentes inexistentes.'],
+   ['Um tablet substitui meu computador?','Depende dos programas, acessórios e tarefas que você precisa. Confira se o sistema e os aplicativos do modelo atendem ao seu trabalho; a ficha não testou sua rotina.'],
+   ['Wi-Fi confirma que posso usar chip de operadora?','Confira separadamente as conexões documentadas da variante. Não presuma suporte a chip, rede móvel ou acessórios apenas pela presença de Wi-Fi ou pela foto do anúncio.']
+  ]
+ },
  'melhores-beleza-cuidados-e-saude.html':{
   heading:'Antes de escolher produtos de beleza e cuidados',
   checks:['Separe cosméticos, aparelhos e outros itens pela finalidade; não compare funções diferentes como equivalentes.','Confira a identificação, a composição ou configuração e as orientações do rótulo ou manual da unidade.','Se o anúncio não esclarecer uma característica decisiva, peça a informação antes de escolher; não preencha a lacuna por suposição.'],

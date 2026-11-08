@@ -1,4 +1,12 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — caixas de som, tablets e roteadores — 08/11/2026
+
+Roteadores já possui roteiro específico e cinco perguntas: sem alteração. Lacuna real em caixas de som e tablets, com três conferências e três perguntas adicionadas por página, sem novas afirmações sobre produtos.
+
+1.578 testes, oito combinações de layout com rede bloqueada e validação de 570 produtos/623 URLs aprovados. Dados, afiliados e guia de roteadores preservados. Confirmar publicação; relatório `docs/global05-decision-guides-6-20261108.md`.
+
+Retomar por necessidade dos guias-base de acessórios para carro, moto e drones; não repetir os dezessete roteiros do módulo nem o roteiro específico de roteadores. GLOBAL-05 segue parcial.
+
 ## GLOBAL-05 — beleza/cuidados, roupas/calçados e malas/bolsas — 08/11/2026
 
 Acrescentadas três conferências e três perguntas por guia, sem refazer fichas ou conteúdo anterior. Orientação específica de finalidade, rótulo/configuração, medidas e transporte; sem garantias de saúde, conforto ou aceitação de bagagem.

@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {applyGuideDecisionSupport,decisionGuideFiles} from './guide-decision-support.mjs';
-test('quinze guias recebem perguntas específicas sem escolher produtos',()=>{
- assert.equal(decisionGuideFiles.length,15);
+test('dezessete guias recebem perguntas específicas sem escolher produtos',()=>{
+ assert.equal(decisionGuideFiles.length,17);
  for(const file of decisionGuideFiles){
   const original='<main><h1>Guia preservado</h1><p>Introdução</p><nav aria-label="Tipos de produto"></nav><a id="affiliate-offer" href="https://meli.la/intacto">Loja</a></main>';
   const result=applyGuideDecisionSupport(original,file);
