@@ -1,8 +1,18 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-08T12:06:37.122Z",
+  "generatedAt": "2026-11-08T12:23:13.887Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
-  "counts": {},
-  "items": []
+  "counts": {
+    "screening": 1
+  },
+  "items": [
+    {
+      "id": "mlMLB5276754248",
+      "title": "Sapatenis Casual Masculino 114861 Com Calce Facil Pegada Liso",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5276754248-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    }
+  ]
 }
