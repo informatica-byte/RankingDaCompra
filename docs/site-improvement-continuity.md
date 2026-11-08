@@ -3,7 +3,7 @@
 
 Roteadores já possui roteiro específico e cinco perguntas: sem alteração. Lacuna real em caixas de som e tablets, com três conferências e três perguntas adicionadas por página, sem novas afirmações sobre produtos.
 
-1.578 testes, oito combinações de layout com rede bloqueada e validação de 570 produtos/623 URLs aprovados. Dados, afiliados e guia de roteadores preservados. Confirmar publicação; relatório `docs/global05-decision-guides-6-20261108.md`.
+1.578 testes, oito combinações de layout com rede bloqueada e validação de 570 produtos/623 URLs aprovados. Dados, afiliados e guia de roteadores preservados. Publicação verificada: fonte b7acf2e2b, geração af6cc1e9a, Pages 42478713501 SUCCESS. Duas páginas HTTP 200 com roteiro e links conferidos; bloco específico de roteadores intacto em produção. Relatório `docs/global05-decision-guides-6-20261108.md`.
 
 Retomar por necessidade dos guias-base de acessórios para carro, moto e drones; não repetir os dezessete roteiros do módulo nem o roteiro específico de roteadores. GLOBAL-05 segue parcial.
 

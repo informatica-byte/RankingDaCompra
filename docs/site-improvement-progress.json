@@ -1,5 +1,20 @@
 {
   "version": 1,
+  "global05DecisionGuidesBatch6": {
+    "status": "published_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-caixa-de-som.html", "melhores-tablet.html"],
+    "screenedNoChange": ["melhores-roteador.html"],
+    "sourceCommit": "b7acf2e2b",
+    "generatedCommit": "af6cc1e9a",
+    "pagesRun": 42478713501,
+    "testsPassed": 1578,
+    "staticLayoutsChecked": 8,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "report": "docs/global05-decision-guides-6-20261108.md",
+    "next": "Verificar lacunas nos guias-base de acessórios para carro, moto e drones. Preservar os dezessete roteiros e o bloco específico de roteadores."
+  },
   "global05DecisionGuidesBatch5": {
     "status": "published_verified",
     "globalStatus": "partial",

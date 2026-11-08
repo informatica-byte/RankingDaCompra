@@ -8,6 +8,6 @@ Caixas de som e tablets ainda precisavam de perguntas específicas. Adicionadas 
 
 Catálogos, busca, histórico, sitemap e guia de roteadores comparados ao Git sem alteração. Nas duas páginas alteradas, apenas as novas seções diferem; afiliados e conteúdo anterior preservados.
 
-Publicação preparada; confirmar conteúdo público antes de encerrar.
+Publicação verificada: fonte b7acf2e2b, geração af6cc1e9a e Pages 42478713501 SUCCESS. Caixas de som e tablets HTTP 200 com roteiro correto e afiliados preservados. Bloco editorial específico e links de roteadores confirmados intactos em produção.
 
 GLOBAL-05 permanece parcial: dezessete guias no módulo, além do roteiro específico de roteadores preservado. Próxima verificação de necessidade: guias-base de acessórios para carro, acessórios para moto e drones. Não reabrir fichas nem repetir os guias concluídos.
