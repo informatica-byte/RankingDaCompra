@@ -3,7 +3,7 @@
 
 Acrescentadas três conferências e três perguntas por guia, sem refazer fichas ou conteúdo anterior. Orientação específica de finalidade, rótulo/configuração, medidas e transporte; sem garantias de saúde, conforto ou aceitação de bagagem.
 
-1.578 testes, 12 combinações de layout com rede bloqueada e validação de 570 produtos/623 URLs aprovados. Confirmar publicação; relatório `docs/global05-decision-guides-5-20261108.md`.
+1.578 testes, 12 combinações de layout com rede bloqueada e validação de 570 produtos/623 URLs aprovados. Publicação confirmada nos três guias HTTP 200, roteiro correto e links preservados. Fonte b8691bf73, geração 4a14f5755, Pages 42478321572 SUCCESS. Relatório `docs/global05-decision-guides-5-20261108.md`.
 
 GLOBAL-05 permanece parcial, quinze guias contemplados. Próxima verificação: guias-base de caixas de som, tablets e roteadores; preservar comparativos específicos, não repetir os quinze roteiros ou revisões de produtos.
 

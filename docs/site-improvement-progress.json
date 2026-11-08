@@ -1,5 +1,19 @@
 {
   "version": 1,
+  "global05DecisionGuidesBatch5": {
+    "status": "published_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-beleza-cuidados-e-saude.html", "melhores-roupas-e-calcados.html", "melhores-malas-e-bolsas.html"],
+    "sourceCommit": "b8691bf73",
+    "generatedCommit": "4a14f5755",
+    "pagesRun": 42478321572,
+    "testsPassed": 1578,
+    "staticLayoutsChecked": 12,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "report": "docs/global05-decision-guides-5-20261108.md",
+    "next": "Verificar lacunas nos guias-base de caixas de som, tablets e roteadores; não repetir os quinze guias com roteiro nem revisões encerradas."
+  },
   "global05DecisionGuidesBatch4": {
     "status": "published_verified",
     "globalStatus": "partial",

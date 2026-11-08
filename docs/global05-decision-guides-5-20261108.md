@@ -12,6 +12,6 @@ Sem recomendação individual, novas especificações, afirmações de eficácia
 
 1.578 testes passaram. Doze combinações de layout em 360/390/768/1366 px aprovadas com rede bloqueada. Validador geral: 570 produtos, 623 URLs. Comparação ao Git: as três páginas diferem somente pelas novas seções; catálogo, busca, histórico e sitemap preservados.
 
-Publicação preparada; confirmar conteúdo público antes de concluir.
+Publicação confirmada: fonte b8691bf73, geração 4a14f5755, Pages 42478321572 SUCCESS. Três páginas HTTP 200 com roteiro idêntico ao local e links preservados.
 
 GLOBAL-05 continua parcial, com quinze guias no módulo de orientação. Retomar pela verificação de lacunas nos guias-base de caixas de som, tablets e roteadores, preservando os comparativos específicos e as análises já encerradas.
