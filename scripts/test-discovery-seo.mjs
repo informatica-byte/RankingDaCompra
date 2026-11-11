@@ -116,6 +116,11 @@ try {
   assert.match(focusedFones, /Fone Bluetooth sem preço confirmado/);
   assert.doesNotMatch(focusedFones, /data-comparison-product="wired"/);
   assert.match(focusedFones, /Fones Bluetooth: compare formatos, recursos e limitações/);
+  assert.match(focusedFones, /mantém conexão com os dois ao mesmo tempo/);
+  assert.doesNotMatch(fones, /mantém conexão com os dois ao mesmo tempo/);
+  const focusedRouter = await readFile(join(directory, 'melhores-roteadores-wifi-6-apartamento.html'), 'utf8');
+  assert.match(focusedRouter, /se o novo aparelho oferece modo ponto de acesso/);
+  assert.doesNotMatch(router, /se o novo aparelho oferece modo ponto de acesso/);
   assert.doesNotMatch(focusedFones, /até R\$ 100|dentro desse teto/);
   assert.match(router, /data-practical-guide/);
   assert.match(watch, /GPS próprio/);

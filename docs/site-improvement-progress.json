@@ -1,15 +1,32 @@
 {
   "version": 1,
-  "global05DecisionGuidesBatch10": {
+  "global05DecisionGuidesBatch11": {
     "status": "prepared_local_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-fones-bluetooth-ate-100.html", "melhores-roteadores-wifi-6-apartamento.html"],
+    "comparisonBase": "e115ca43f",
+    "testsPassed": 4,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "next": "Integrar e publicar os dois complementos; conferir os HTMLs públicos e a preservação de cadastros, guias gerais e afiliados."
+  },
+  "global05DecisionGuidesBatch10": {
+    "status": "published_verified",
     "globalStatus": "partial",
     "files": ["melhores-smartwatches-caminhada.html"],
     "screenedNoChange": ["melhores-relogio-smartwatch.html"],
     "comparisonBase": "24ba2a401",
+    "sourceCommit": "a2dac2626",
+    "generatedCommit": "e115ca43f",
+    "sitemapRun": 43116623540,
+    "integrityRun": 43116623564,
+    "pagesRun": 43116697650,
+    "publicPagesVerified": 1,
+    "productRecordsCompared": 572,
     "testsPassed": 4,
     "recordWrites": 0,
     "firestoreQueries": 0,
-    "next": "Integrar e publicar apenas o complemento do guia de caminhada e conferir a página pública e os invariantes."
+    "next": "Verificar lacunas nos guias específicos de fones Bluetooth e roteadores Wi-Fi 6 para apartamento, sem reabrir os guias gerais."
   },
   "global05DecisionGuidesBatch9": {
     "status": "published_verified",

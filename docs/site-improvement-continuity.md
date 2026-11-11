@@ -1,9 +1,17 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — fones Bluetooth e Wi-Fi 6 para apartamento
+
+Preparado um complemento por guia específico: verificar conexão simultânea a celular e computador nos fones e modo ponto de acesso para manter o equipamento da operadora no guia Wi-Fi 6. Sem novos comparativos, especificações por modelo ou alterações em seleções, cadastros e links.
+
+Quatro testes passaram, incluindo geração e confirmação de que os complementos não aparecem nos guias gerais. Base remota e115ca43f. Ainda não publicado: retomar integrando os dois complementos, validando os arquivos gerados e conferindo as duas páginas públicas.
+
 ## GLOBAL-05 — smartwatches
 
 Guia geral `melhores-relogio-smartwatch.html` mantido intacto: já orienta a escolha por uso, compatibilidade e GPS independente e aponta para o guia de caminhada. Em `melhores-smartwatches-caminhada.html`, preparado apenas um complemento na introdução sobre conferir no manual onde o trajeto gravado fica disponível e se há navegação pelo relógio. Sem duplicar comparativos, reabrir fichas, afirmar recursos de modelos ou alterar links.
 
-Quatro testes passaram, incluindo geração do guia especializado e verificação de que a orientação não aparece no guia geral. Base remota 24ba2a401. Retomar integrando e publicando o complemento, depois conferir a página pública e a preservação de cadastros e afiliados. Ainda não publicado.
+Quatro testes passaram. Publicação verificada: fonte a2dac2626, geração e115ca43f, sitemap 43116623540, integridade 43116623564 e Pages 43116697650 com sucesso. Guia de caminhada respondeu HTTP 200 com o complemento. O guia geral, links da página, dados dos 572 produtos por ID, vitrine e sitemap permaneceram intactos.
+
+Retomar pela triagem dos guias específicos de fones Bluetooth e roteadores Wi-Fi 6 para apartamento, sem reabrir seus guias gerais nem duplicar comparativos.
 
 ## GLOBAL-05 — periféricos sem fio, parafusadeiras e fones
 
