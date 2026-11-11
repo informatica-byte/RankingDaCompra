@@ -886,6 +886,11 @@ const lastModified = newestDate([
 ]);
 await writeFile(resolve("analises.html"), renderDirectoryPage(categories, productsByCategory, productUrls, categoryNames, lastModified), "utf8");
 const guidePages = [];
+const pilotFile = "comparativos/redmi-buds-6-play-vs-soundcore-p30i.html";
+const hasEditorialPilot = await readFile(resolve(pilotFile), "utf8").then(() => true, (error) => {
+  if (error.code === "ENOENT") return false;
+  throw error;
+});
 const guideModifiedDates = new Map();
 for (const category of categories) {
   const categoryName = categoryNames.get(category.id) || category.id;
@@ -930,7 +935,9 @@ for (const category of categories) {
     const price = (product) => numberPrice(product.precoPromocional || product.preco);
     const selected = focusedProducts(config, comparableProducts, price);
     await writeFile(resolve(config.file), renderIntegrityGuide({file:config.file,title:config.title,description:config.intro,
-      products:selected,urls:productUrls,date:guideModified,focused:true,parentFile:fileName}), "utf8");
+      products:selected,urls:productUrls,date:guideModified,focused:true,parentFile:fileName,
+      links:hasEditorialPilot && config.file === "melhores-fones-bluetooth-ate-100.html"
+        ? `<p><a href="/${pilotFile}">Redmi Buds 6 Play vs. soundcore P30i: ANC e autonomia</a></p>` : ""}), "utf8");
     guidePages.push(config.file);
     guideModifiedDates.set(config.file, guideModified);
   }
@@ -950,7 +957,8 @@ await writeFile(
   JSON.stringify(buildSearchIndex(categories, products, productUrls, categoryNames, lastModified), null, 2) + "\n",
   "utf8",
 );
-sitemapXml = updateSitemap(sitemapXml, lastModified, guidePages, guideModifiedDates);
+if (hasEditorialPilot) guideModifiedDates.set(basename(pilotFile), "2026-11-11");
+sitemapXml = updateSitemap(sitemapXml, lastModified, hasEditorialPilot ? [...guidePages, pilotFile] : guidePages, guideModifiedDates);
 await writeFile(resolve("sitemap.xml"), sitemapXml, "utf8");
 const relatedPages = await addRelatedLinks(products, productsByCategory, productUrls, categoryNames);
 
