@@ -887,7 +887,8 @@ const lastModified = newestDate([
 await writeFile(resolve("analises.html"), renderDirectoryPage(categories, productsByCategory, productUrls, categoryNames, lastModified), "utf8");
 const guidePages = [];
 const pilotFile = "comparativos/redmi-buds-6-play-vs-soundcore-p30i.html";
-const hasEditorialPilot = await readFile(resolve(pilotFile), "utf8").then(() => true, (error) => {
+const pilotProducts = ["ARscPKCMZs3D8k22qltl", "ZVVdy8TuP0yW0XNIyiEA"];
+const hasEditorialPilot = pilotProducts.every((id) => productUrls.has(id)) && await readFile(resolve(pilotFile), "utf8").then(() => true, (error) => {
   if (error.code === "ENOENT") return false;
   throw error;
 });
