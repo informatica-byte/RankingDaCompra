@@ -1,11 +1,21 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — periféricos sem fio, parafusadeiras e fones
+
+Preparados localmente roteiros para `melhores-kit-teclado-e-mouse-sem-fio.html` (conexão, receptor, layout e itens do kit) e `melhores-parafusadeira-eletrica.html` (tarefa, encaixe e compatibilidade de baterias). O guia público `melhores-fones-de-ouvido.html` já orienta a escolha por formato e uso; preservado sem duplicar o roteiro.
+
+Três testes focados aprovados. Sobre a base abfdb4185, apenas os dois blocos novos diferiram na simulação; 23 roteiros anteriores e o guia de fones permaneceram intactos. Nenhum cadastro ou afiliado alterado. Ainda não publicado.
+
+Retomar pela integração e publicação dos dois roteiros e conferência das páginas públicas. Não reabrir o guia de fones nesta rodada.
+
 ## GLOBAL-05 — patinetes elétricos, perfumes e supermercado
 
 Preparados localmente três roteiros específicos para `melhores-patinetes-eletricos.html`, `melhores-perfumes.html` e `melhores-super-mercado.html`, que ainda não tinham esse bloco na versão pública. Orientações: autonomia anunciada e transporte; versão e volume de fragrâncias; quantidade, rótulo e validade. Nenhuma ficha foi reaberta e nenhuma especificação de produto foi acrescentada.
 
 Três testes focados aprovados. Na simulação sobre a base remota 9d4c1373b, retirar o novo bloco reproduz exatamente o HTML original de cada guia; os 20 roteiros anteriores permaneceram idênticos. Sem alterações em cadastros, afiliados ou sitemap. Sem publicação nesta rodada.
 
-Retomar integrando e publicando estes três roteiros na base remota atual; conferir a implantação e os três HTMLs públicos. Depois, verificar se há lacunas nos guias de teclado e mouse sem fio, parafusadeira elétrica e fones de ouvido, preservando comparativos específicos e guias já concluídos.
+Publicação concluída e verificada: fonte a1fa0a87c, geração abfdb4185, sitemap 43114858079, integridade 43114858177 e Pages 43114923794 com sucesso. Os três guias retornaram HTTP 200 com roteiros idênticos aos gerados. Os dados dos 572 produtos por ID, os links de lojas dos três HTMLs, a vitrine e o sitemap foram preservados.
+
+Retomar pela verificação de lacunas nos guias de teclado e mouse sem fio, parafusadeira elétrica e fones de ouvido, preservando comparativos específicos e guias já concluídos.
 
 ## GLOBAL-05 — carro, moto e drones — 11/11/2026
 

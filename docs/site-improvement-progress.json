@@ -1,15 +1,34 @@
 {
   "version": 1,
-  "global05DecisionGuidesBatch8": {
+  "global05DecisionGuidesBatch9": {
     "status": "prepared_local_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-kit-teclado-e-mouse-sem-fio.html", "melhores-parafusadeira-eletrica.html"],
+    "screenedNoChange": ["melhores-fones-de-ouvido.html"],
+    "comparisonBase": "abfdb4185",
+    "testsPassed": 3,
+    "previousGuidesPreserved": 23,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "next": "Integrar, publicar e conferir os dois roteiros; preservar o guia de fones."
+  },
+  "global05DecisionGuidesBatch8": {
+    "status": "published_verified",
     "globalStatus": "partial",
     "files": ["melhores-patinetes-eletricos.html", "melhores-perfumes.html", "melhores-super-mercado.html"],
     "comparisonBase": "9d4c1373b",
+    "sourceCommit": "a1fa0a87c",
+    "generatedCommit": "abfdb4185",
+    "sitemapRun": 43114858079,
+    "integrityRun": 43114858177,
+    "pagesRun": 43114923794,
+    "publicPagesVerified": 3,
+    "productRecordsCompared": 572,
     "testsPassed": 3,
     "previousGuidesPreserved": 20,
     "recordWrites": 0,
     "firestoreQueries": 0,
-    "next": "Integrar e publicar este lote; depois verificar lacunas nos guias de teclado e mouse sem fio, parafusadeira elétrica e fones de ouvido."
+    "next": "Verificar lacunas nos guias de teclado e mouse sem fio, parafusadeira elétrica e fones de ouvido."
   },
   "global05DecisionGuidesBatch7": {
     "status": "published_verified",

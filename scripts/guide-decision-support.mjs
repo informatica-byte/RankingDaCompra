@@ -126,6 +126,24 @@ const guides={
    ['Voltagem ou torque maior comprova uso profissional?','Não. Confira a identificação da bateria, o regime dos valores anunciados e a finalidade documentada do modelo. A ficha não mediu torque, resistência ou desempenho e não substitui as instruções de uso e segurança.']
   ]
  },
+ 'melhores-kit-teclado-e-mouse-sem-fio.html':{
+  heading:'O que conferir antes de escolher teclado e mouse sem fio',
+  checks:['Confira se o anúncio é de um kit ou de um item avulso.','Identifique a conexão de cada periférico e confira se o computador tem a porta ou o recurso exigido.','Confira o layout do teclado, as dimensões e como cada periférico é alimentado.'],
+  questions:[
+   ['Todo periférico sem fio funciona por Bluetooth?','Não. Confira se o modelo usa Bluetooth, receptor USB ou oferece ambas as opções.'],
+   ['Um kit usa um único receptor para as duas peças?','Não presuma. Confira os receptores que acompanham a oferta e quais dispositivos cada um atende.'],
+   ['Como confirmar que o teclado tem o layout que eu uso?','Confira o layout declarado para a variante e a foto das teclas. Se a descrição e a imagem divergirem, confirme com o vendedor.']
+  ]
+ },
+ 'melhores-parafusadeira-eletrica.html':{
+  heading:'O que conferir antes de escolher uma parafusadeira',
+  checks:['Defina se a tarefa é apertar parafusos ou também perfurar; confirme a função e os materiais indicados no manual.','Confira o encaixe e as pontas ou brocas compatíveis com o modelo.','Verifique se bateria e carregador estão incluídos e confirme os códigos das peças de reposição.'],
+  questions:[
+   ['Toda parafusadeira também fura?','Não presuma. Verifique se o modelo oferece função de furação e quais materiais o fabricante indica.'],
+   ['A tensão da bateria diz quanto torque a ferramenta entrega?','Não use a tensão como medida de torque. Procure o torque documentado para o modelo, se ele for decisivo para a tarefa.'],
+   ['Posso aproveitar uma bateria que já tenho?','Confira os códigos e a compatibilidade declarada entre bateria, ferramenta e carregador. Encaixe parecido não é confirmação.']
+  ]
+ },
  'melhores-patinetes-eletricos.html':{
   heading:'O que conferir antes de escolher um patinete elétrico',
   checks:['Confirme a motorização e o código da versão; não compare um patinete sem motor com um elétrico.','Confira peso do equipamento, dimensões dobrado e carga máxima na documentação do modelo.','Para o trajeto pretendido, verifique as condições da autonomia anunciada, o carregador e a disponibilidade de peças de reposição.'],
