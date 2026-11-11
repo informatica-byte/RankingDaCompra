@@ -126,6 +126,33 @@ const guides={
    ['Voltagem ou torque maior comprova uso profissional?','Não. Confira a identificação da bateria, o regime dos valores anunciados e a finalidade documentada do modelo. A ficha não mediu torque, resistência ou desempenho e não substitui as instruções de uso e segurança.']
   ]
  },
+ 'melhores-carro.html':{
+  heading:'O que conferir antes de escolher um acessório para carro',
+  checks:['Separe os itens pela tarefa: calibrar pneus, auxiliar na partida, limpar ou registrar o trajeto.','Compare a alimentação, a conexão e os requisitos de instalação do acessório com o manual do veículo.','Confira quais cabos, adaptadores, suportes ou bicos acompanham a oferta.'],
+  questions:[
+   ['Um compressor e um auxiliar de partida fazem a mesma coisa?','Não. São funções diferentes. Se o anúncio oferece as duas no mesmo aparelho, confirme no manual os limites de cada função.'],
+   ['A indicação de 12 V basta para escolher um acessório?','Não. Confira também o conector, a corrente exigida pelo acessório e os limites indicados no manual do veículo.'],
+   ['O que devo confirmar em uma câmera veicular?','Confira onde ela pode ser instalada, como recebe energia, se exige cartão de memória e quais módulos acompanham a oferta.']
+  ]
+ },
+ 'melhores-moto.html':{
+  heading:'O que conferir antes de escolher um acessório para moto',
+  checks:['Se for vestuário, consulte a tabela de medidas da oferta e considere as roupas que usará por baixo.','Se o item for instalado na moto, confirme marca, modelo, ano e pontos de fixação.','Confira o conteúdo da oferta e o que o vendedor informa sobre uso e conservação.'],
+  questions:[
+   ['Como escolher o tamanho de uma capa de chuva?','Compare suas medidas com a tabela do anúncio. Se não houver tabela, peça as medidas da peça antes de escolher.'],
+   ['A menção a PVC confirma a vedação da peça inteira?','Não. Confira o que a oferta informa sobre costuras e fechamentos. O material indicado não comprova sozinho a vedação da peça.'],
+   ['Uma única oferta já permite comparar modelos?','Não. Use a ficha para consultar esse item individualmente e confira a versão anunciada antes de decidir.']
+  ]
+ },
+ 'melhores-drone.html':{
+  heading:'O que conferir antes de escolher um drone',
+  checks:['Confirme o código e a versão exata do drone, do controle e das baterias da oferta.','Separe os recursos de voo, gravação e transmissão de imagem; confira cada um na documentação do modelo.','Antes de voar, verifique as orientações oficiais aplicáveis ao equipamento e ao local de uso.'],
+  questions:[
+   ['A resolução anunciada é a mesma para gravar e transmitir imagem?','Não presuma. Confira separadamente os modos de gravação e de transmissão e onde os arquivos ficam salvos.'],
+   ['Duas baterias confirmam um tempo total de voo?','Não. Confira a quantidade incluída e as condições usadas para divulgar a autonomia de cada bateria. A ficha não mede o tempo real de voo.'],
+   ['Como confirmar se o controle funciona com meu celular?','Confira o aplicativo indicado para a versão, o sistema compatível e como a conexão é feita. Se o vendedor não informar, deixe a compatibilidade a confirmar.']
+  ]
+ },
  'melhores-notebook.html':{
   heading:'Antes de comparar notebooks',
   checks:['Anote os programas que pretende usar e confira os requisitos nos sites dos desenvolvedores.','Confira o código completo do notebook, processador, RAM física, armazenamento e sistema operacional.','Se pretende ampliar a memória ou o SSD, peça a documentação dessa configuração antes de contar com a expansão.'],

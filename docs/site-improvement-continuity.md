@@ -1,4 +1,10 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — carro, moto e drones — 11/11/2026
+
+Preparado e testado localmente: roteiro de decisão para `melhores-carro.html`, `melhores-moto.html` e `melhores-drone.html`. A inspeção do site publicado confirmou a ausência dos roteiros. Três testes focados aprovados. A aplicação em memória sobre os HTMLs de `origin/main` (97c1c9575) inseriu somente o novo bloco por página e deixou os outros 17 guias idênticos; nenhum cadastro, preço ou afiliado alterado. Sem regeneração ou publicação nesta rodada.
+
+Retomar pela integração dos dois scripts com a base remota atual, preservando as alterações locais e o checkpoint d41020922; validar e publicar a rodada antes de revisar a necessidade de roteiro em `melhores-patinetes-eletricos.html`, `melhores-perfumes.html` e `melhores-super-mercado.html`. Não repetir os guias já tratados.
+
 ## GLOBAL-05 — caixas de som, tablets e roteadores — 08/11/2026
 
 Roteadores já possui roteiro específico e cinco perguntas: sem alteração. Lacuna real em caixas de som e tablets, com três conferências e três perguntas adicionadas por página, sem novas afirmações sobre produtos.

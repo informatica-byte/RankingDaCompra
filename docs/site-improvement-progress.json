@@ -1,5 +1,15 @@
 {
   "version": 1,
+  "global05DecisionGuidesBatch7": {
+    "status": "prepared_local_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-carro.html", "melhores-moto.html", "melhores-drone.html"],
+    "comparisonBase": "97c1c9575",
+    "testsPassed": 3,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "next": "Integrar e publicar os roteiros preparados, preservando alterações locais e remotas. Depois verificar lacunas em patinetes elétricos, perfumes e supermercado sem repetir guias concluídos."
+  },
   "global05DecisionGuidesBatch6": {
     "status": "published_verified",
     "globalStatus": "partial",
