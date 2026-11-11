@@ -25,7 +25,7 @@ export async function auditOffline(root = process.cwd()) {
     for (const entry of await readdir(resolve(root, folder), { withFileTypes: true })) {
       const path = folder ? folder + "/" + entry.name : entry.name;
       if (entry.isDirectory()) {
-        if (["produto", "presentes", "assets"].includes(entry.name) || folder) await visit(path);
+        if (["produto", "presentes", "comparativos", "assets"].includes(entry.name) || folder) await visit(path);
       } else if (entry.isFile()) files.push(path);
     }
   }
