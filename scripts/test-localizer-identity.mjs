@@ -89,7 +89,7 @@ async function runQueue({ headSucceeded = true, olderSucceeded = true, recentPen
         : { readSucceeded: olderSucceeded, http: olderSucceeded ? undefined : 429, cursor: null, items: [] };
     },
     resolveRequest: async request => {
-      if (failProduct) throw new LocalizerError({ events: [{ stage: 'anuncio', http: 403 }] });
+      if (failProduct) throw new LocalizerError(typeof failProduct === 'object' ? failProduct : { events: [{ stage: 'anuncio', http: 403 }] });
       return { status: 'ok', mlb: 'MLB4359093019', precoAtual: 32.15, linkOriginal: request.link };
     },
     writeFile: async (path, content) => output.set(path, content),
@@ -164,6 +164,19 @@ test('falha do anúncio continua separada da cota e não agenda espera do Firest
   assert.equal(payload.queueState.readFailure, undefined);
   assert.equal(payload.resultados.new.status, 'erro');
   assert.match(output.get('memory-summary'), /anuncio: HTTP 403/);
+  assert.match(output.get('memory-output'), /manual_review_only=false/);
+});
+
+test('HTTP 403 em anúncio identificado requer revisão manual sem declarar o pedido resolvido', async () => {
+  const blocked = { identified: true, missingFields: ['titulo', 'preco', 'imagem'], events: [{ stage: 'anuncio', http: 403 }, { stage: 'imagem', http: 206 }] };
+  const { payload, output } = await runQueue({ recentPending: true, failProduct: blocked });
+  assert.equal(payload.resultados.new.status, 'erro');
+  assert.match(output.get('memory-output'), /failed_count=1\nincomplete=true/);
+  assert.match(output.get('memory-output'), /manual_review_only=true/);
+  const quota = await runQueue({ recentPending: true, olderSucceeded: false, failProduct: blocked });
+  assert.match(quota.output.get('memory-output'), /manual_review_only=false/);
+  const server = await runQueue({ recentPending: true, failProduct: { ...blocked, events: [...blocked.events, { stage: 'anuncio', http: 500 }] } });
+  assert.match(server.output.get('memory-output'), /manual_review_only=false/);
 });
 
 test('metadados de espera só aceitam HTTP 429 e duas horas, sem texto livre nem prazo eterno', () => {

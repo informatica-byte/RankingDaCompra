@@ -660,6 +660,14 @@ if (queue.length || JSON.stringify(payload.queueState || null) !== priorQueueSta
 // Encerrar o processo não significa ter conseguido consultar o Mercado Livre.
 // Os resultados devem ser publicados antes de sinalizar a conferência parcial.
 const summary = resolutionSummary(queue.map(request => request.id), payload.resultados, MAX_REQUEST_ATTEMPTS);
+const manualReviewCount = queue.filter(({ id }) => {
+  const result = payload.resultados[id];
+  const diagnostic = result?.diagnostico;
+  return result?.status === 'erro' && diagnostic?.identified === true && !diagnostic.challenge
+    && diagnostic.missingFields?.length > 0
+    && diagnostic.events?.some(event => event.stage === 'anuncio' && event.http === 403)
+    && diagnostic.events.every(event => !event.failure && (event.http < 400 || (event.stage === 'anuncio' && event.http === 403)));
+}).length;
 const queueStatus = queueReadSucceeded ? 'read' : deferredQuota ? 'deferred' : queueReadHttp === 429 ? 'quota' : 'incomplete';
 const retryAfter = queueQuotaRetry(payload.queueState)?.retryAfter || '';
 const queueNotice = queueReadSucceeded ? '' : queueReadHttp === 429
@@ -668,7 +676,7 @@ const queueNotice = queueReadSucceeded ? '' : queueReadHttp === 429
 console.log(`Localizador: ${summary.processed} processados; ${summary.succeeded} resolvidos; ${summary.failed} falhas nesta execução; ${summary.exhausted} pedidos com tentativas esgotadas no histórico.`);
 if (queueNotice) console.warn(queueNotice);
 if (summary.failed) console.warn('::warning::Conferência parcial: dados indisponíveis no Mercado Livre. Os preços e cadastros existentes não foram alterados.');
-if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `failed_count=${summary.failed}\nincomplete=${summary.failed > 0 || !queueReadSucceeded}\nqueue_status=${queueStatus}\nretry_after=${retryAfter}\n`);
+if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `failed_count=${summary.failed}\nincomplete=${summary.failed > 0 || !queueReadSucceeded}\nqueue_status=${queueStatus}\nretry_after=${retryAfter}\nmanual_review_only=${queueReadSucceeded && summary.failed > 0 && manualReviewCount === summary.failed}\n`);
 if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY,
   `## Resultado real do localizador\n\nProcessados: ${summary.processed}. Resolvidos: ${summary.succeeded}. Falhas em pedidos nesta execução: ${summary.failed}. Pedidos com tentativas esgotadas no histórico: ${summary.exhausted}.\n\n${queueNotice ? queueNotice + '\n\n' : ''}Nenhum preço/cadastro foi alterado. Pedidos com três tentativas esgotadas precisam de revisão do link ou preenchimento manual no painel; não são repetidos indefinidamente.\n\n${diagnosticTable(queue, payload.resultados)}`);
 
