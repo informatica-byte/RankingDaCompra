@@ -1,16 +1,23 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-10T04:10:05.758Z",
+  "generatedAt": "2026-11-11T01:42:02.698Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
-    "screening": 1
+    "screening": 2
   },
   "items": [
     {
       "id": "mlMLB5276754248",
       "title": "Sapatenis Casual Masculino 114861 Com Calce Facil Pegada Liso",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5276754248-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "mlMLB5776728534",
+      "title": "Mouse Vertical Ergonômico Sem Fio Recarregável Bluetooth e USB 2.4G – RGB, Silencioso, DPI Ajustável, Reduz Tensão no Pulso, Portátil e Confortável – Compatível com Notebook, PC, Windows e Mac - Apfer",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5776728534-20260810-1.html",
       "state": "screening",
       "reasons": []
     }
