@@ -126,6 +126,33 @@ const guides={
    ['Voltagem ou torque maior comprova uso profissional?','Não. Confira a identificação da bateria, o regime dos valores anunciados e a finalidade documentada do modelo. A ficha não mediu torque, resistência ou desempenho e não substitui as instruções de uso e segurança.']
   ]
  },
+ 'melhores-patinetes-eletricos.html':{
+  heading:'O que conferir antes de escolher um patinete elétrico',
+  checks:['Confirme a motorização e o código da versão; não compare um patinete sem motor com um elétrico.','Confira peso do equipamento, dimensões dobrado e carga máxima na documentação do modelo.','Para o trajeto pretendido, verifique as condições da autonomia anunciada, o carregador e a disponibilidade de peças de reposição.'],
+  questions:[
+   ['A autonomia anunciada vale para o meu trajeto?','Não trate o número como garantia. Procure as condições declaradas de medição, como carga, terreno e velocidade. Se não estiverem informadas, não estime a distância pelo título.'],
+   ['O que conferir se eu precisar carregar o patinete na mão?','Compare o peso e as dimensões dobrado da versão exata com o espaço disponível e a frequência com que terá de transportá-lo.'],
+   ['Posso usar o modelo em qualquer via?','Não presuma isso pela oferta. Verifique a classificação do modelo e as orientações oficiais aplicáveis ao local de circulação.']
+  ]
+ },
+ 'melhores-perfumes.html':{
+  heading:'O que conferir antes de escolher uma fragrância',
+  checks:['Confirme a linha e a versão exata da fragrância, além da concentração e do volume no rótulo.','Separe perfumes, body splashes e kits; verifique o volume de cada frasco, não só o total da oferta.','Se o perfil olfativo for decisivo, consulte as notas descritas pela marca para essa versão e, se possível, experimente uma amostra.'],
+  questions:[
+   ['Frascos com nomes parecidos são a mesma fragrância?','Não presuma. Confira a versão e a concentração indicadas no rótulo, especialmente quando a linha tem várias edições.'],
+   ['A concentração indica quantas horas a fragrância vai durar?','Não use a concentração como promessa de duração. Este guia não mediu fixação nem projeção.'],
+   ['Como comparar um kit com um frasco avulso?','Confira a lista de itens, a versão e o volume de cada frasco. Não presuma que todos os itens do kit sejam o mesmo perfume.']
+  ]
+ },
+ 'melhores-super-mercado.html':{
+  heading:'O que conferir antes de escolher um item de supermercado',
+  checks:['Compare apenas itens da mesma finalidade e confira a versão no rótulo.','Verifique quantidade de unidades e peso ou volume líquido por embalagem.','Quando o item for um alimento, confira ingredientes, declaração de alergênicos, validade e conservação no rótulo da versão anunciada.'],
+  questions:[
+   ['O número de unidades diz quanto produto vou receber?','Não por si só. Confirme o conteúdo líquido de cada unidade e o que vem no pacote; não deduza pela foto.'],
+   ['Dá para confirmar ingredientes ou alergênicos pelo nome da oferta?','Não. Procure o rótulo legível da versão exata. Se essa informação for essencial e não estiver disponível, confirme antes de decidir.'],
+   ['Como conferir validade e conservação em uma compra online?','Consulte as orientações do rótulo e, quando a oferta não indicar a validade do lote, peça essa informação ao vendedor.']
+  ]
+ },
  'melhores-carro.html':{
   heading:'O que conferir antes de escolher um acessório para carro',
   checks:['Separe os itens pela tarefa: calibrar pneus, auxiliar na partida, limpar ou registrar o trajeto.','Compare a alimentação, a conexão e os requisitos de instalação do acessório com o manual do veículo.','Confira quais cabos, adaptadores, suportes ou bicos acompanham a oferta.'],

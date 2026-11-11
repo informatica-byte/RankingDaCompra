@@ -1,9 +1,19 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — patinetes elétricos, perfumes e supermercado
+
+Preparados localmente três roteiros específicos para `melhores-patinetes-eletricos.html`, `melhores-perfumes.html` e `melhores-super-mercado.html`, que ainda não tinham esse bloco na versão pública. Orientações: autonomia anunciada e transporte; versão e volume de fragrâncias; quantidade, rótulo e validade. Nenhuma ficha foi reaberta e nenhuma especificação de produto foi acrescentada.
+
+Três testes focados aprovados. Na simulação sobre a base remota 9d4c1373b, retirar o novo bloco reproduz exatamente o HTML original de cada guia; os 20 roteiros anteriores permaneceram idênticos. Sem alterações em cadastros, afiliados ou sitemap. Sem publicação nesta rodada.
+
+Retomar integrando e publicando estes três roteiros na base remota atual; conferir a implantação e os três HTMLs públicos. Depois, verificar se há lacunas nos guias de teclado e mouse sem fio, parafusadeira elétrica e fones de ouvido, preservando comparativos específicos e guias já concluídos.
+
 ## GLOBAL-05 — carro, moto e drones — 11/11/2026
 
 Preparado e testado localmente: roteiro de decisão para `melhores-carro.html`, `melhores-moto.html` e `melhores-drone.html`. A inspeção do site publicado confirmou a ausência dos roteiros. Três testes focados aprovados. A aplicação em memória sobre os HTMLs de `origin/main` (97c1c9575) inseriu somente o novo bloco por página e deixou os outros 17 guias idênticos; nenhum cadastro, preço ou afiliado alterado. Sem regeneração ou publicação nesta rodada.
 
-Retomar pela integração dos dois scripts com a base remota atual, preservando as alterações locais e o checkpoint d41020922; validar e publicar a rodada antes de revisar a necessidade de roteiro em `melhores-patinetes-eletricos.html`, `melhores-perfumes.html` e `melhores-super-mercado.html`. Não repetir os guias já tratados.
+Publicação concluída: fonte 71527e669, geração 9d4c1373b, sitemap 43114091246, integridade 43114091147 e Pages 43114157625 concluídos com sucesso. Os três roteiros públicos retornaram HTTP 200 e correspondem exatamente aos blocos gerados. Os 572 produtos do catálogo público mantiveram os mesmos dados por ID; as URLs de lojas nos 47 HTMLs regenerados, a vitrine e o sitemap foram preservados.
+
+Retomar pela verificação de necessidade de roteiro em `melhores-patinetes-eletricos.html`, `melhores-perfumes.html` e `melhores-super-mercado.html`. Não repetir os guias já tratados. Na próxima integração, usar a base remota atual e preservar este checkpoint local.
 
 ## GLOBAL-05 — caixas de som, tablets e roteadores — 08/11/2026
 

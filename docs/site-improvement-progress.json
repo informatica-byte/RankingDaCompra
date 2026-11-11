@@ -1,14 +1,32 @@
 {
   "version": 1,
-  "global05DecisionGuidesBatch7": {
+  "global05DecisionGuidesBatch8": {
     "status": "prepared_local_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-patinetes-eletricos.html", "melhores-perfumes.html", "melhores-super-mercado.html"],
+    "comparisonBase": "9d4c1373b",
+    "testsPassed": 3,
+    "previousGuidesPreserved": 20,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "next": "Integrar e publicar este lote; depois verificar lacunas nos guias de teclado e mouse sem fio, parafusadeira elétrica e fones de ouvido."
+  },
+  "global05DecisionGuidesBatch7": {
+    "status": "published_verified",
     "globalStatus": "partial",
     "files": ["melhores-carro.html", "melhores-moto.html", "melhores-drone.html"],
     "comparisonBase": "97c1c9575",
+    "sourceCommit": "71527e669",
+    "generatedCommit": "9d4c1373b",
+    "sitemapRun": 43114091246,
+    "integrityRun": 43114091147,
+    "pagesRun": 43114157625,
+    "publicPagesVerified": 3,
+    "productRecordsCompared": 572,
     "testsPassed": 3,
     "recordWrites": 0,
     "firestoreQueries": 0,
-    "next": "Integrar e publicar os roteiros preparados, preservando alterações locais e remotas. Depois verificar lacunas em patinetes elétricos, perfumes e supermercado sem repetir guias concluídos."
+    "next": "Verificar lacunas em patinetes elétricos, perfumes e supermercado sem repetir guias concluídos."
   },
   "global05DecisionGuidesBatch6": {
     "status": "published_verified",
