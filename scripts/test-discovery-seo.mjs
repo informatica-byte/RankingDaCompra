@@ -119,6 +119,9 @@ try {
   assert.doesNotMatch(focusedFones, /até R\$ 100|dentro desse teto/);
   assert.match(router, /data-practical-guide/);
   assert.match(watch, /GPS próprio/);
+  const focusedWatch = await readFile(join(directory, 'melhores-smartwatches-caminhada.html'), 'utf8');
+  assert.match(focusedWatch, /onde o registro fica disponível e se há navegação no pulso/);
+  assert.doesNotMatch(watch, /onde o registro fica disponível e se há navegação no pulso/);
   console.log("Guias SEO: produtos comparáveis, títulos completos, selo calculado e datas por categoria validados.");
 } finally {
   await rm(directory, { recursive: true, force: true });

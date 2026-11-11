@@ -105,7 +105,7 @@ export const FOCUSED_GUIDES = [
   // that is deliberately absent from informational product pages.
   {file: 'melhores-fones-bluetooth-ate-100.html', category: /fone/i, title: 'Fones Bluetooth: compare formatos, recursos e limitações', intro: 'Compare fones Bluetooth pelo formato, microfone, autonomia e recursos anunciados. Modelos de tipos diferentes ficam separados; dados ausentes ou contraditórios continuam sinalizados. Consulte as condições de compra na loja parceira.', wirelessHeadphones: true},
   {file: 'melhores-roteadores-wifi-6-apartamento.html', category: /roteador/i, title: 'Roteadores Wi-Fi 6 para apartamento: como escolher', intro: 'Compare roteadores com Wi-Fi 6 anunciado e veja o que falta confirmar para seu apartamento. Não prometemos alcance através de paredes ou cobertura total sem medição.', wifi6: true},
-  {file: 'melhores-smartwatches-caminhada.html', category: /smartwatch|relogio-smart/i, title: 'Smartwatch para caminhada: compare GPS e recursos anunciados', intro: 'Veja smartwatches cadastrados e confirme se o GPS funciona sem celular, a compatibilidade e a autonomia. Esta seleção não afirma teste de precisão dos sensores nem adequação médica.'},
+  {file: 'melhores-smartwatches-caminhada.html', category: /smartwatch|relogio-smart/i, title: 'Smartwatch para caminhada: compare GPS e recursos anunciados', intro: 'Veja smartwatches cadastrados e confirme se o GPS funciona sem celular, a compatibilidade e a autonomia. Se quiser consultar o trajeto depois ou seguir uma rota pelo relógio, confira no manual onde o registro fica disponível e se há navegação no pulso. Esta seleção não afirma teste de precisão dos sensores nem adequação médica.'},
 ];
 
 export function focusedProducts(config, products, price) {

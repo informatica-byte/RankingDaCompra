@@ -1,11 +1,19 @@
 # Continuidade prioritária — Ranking da Compra
+## GLOBAL-05 — smartwatches
+
+Guia geral `melhores-relogio-smartwatch.html` mantido intacto: já orienta a escolha por uso, compatibilidade e GPS independente e aponta para o guia de caminhada. Em `melhores-smartwatches-caminhada.html`, preparado apenas um complemento na introdução sobre conferir no manual onde o trajeto gravado fica disponível e se há navegação pelo relógio. Sem duplicar comparativos, reabrir fichas, afirmar recursos de modelos ou alterar links.
+
+Quatro testes passaram, incluindo geração do guia especializado e verificação de que a orientação não aparece no guia geral. Base remota 24ba2a401. Retomar integrando e publicando o complemento, depois conferir a página pública e a preservação de cadastros e afiliados. Ainda não publicado.
+
 ## GLOBAL-05 — periféricos sem fio, parafusadeiras e fones
 
 Preparados localmente roteiros para `melhores-kit-teclado-e-mouse-sem-fio.html` (conexão, receptor, layout e itens do kit) e `melhores-parafusadeira-eletrica.html` (tarefa, encaixe e compatibilidade de baterias). O guia público `melhores-fones-de-ouvido.html` já orienta a escolha por formato e uso; preservado sem duplicar o roteiro.
 
 Três testes focados aprovados. Sobre a base abfdb4185, apenas os dois blocos novos diferiram na simulação; 23 roteiros anteriores e o guia de fones permaneceram intactos. Nenhum cadastro ou afiliado alterado. Ainda não publicado.
 
-Retomar pela integração e publicação dos dois roteiros e conferência das páginas públicas. Não reabrir o guia de fones nesta rodada.
+Publicação concluída e verificada: fonte 4d1218906, geração 24ba2a401, sitemap 43115474859, integridade 43115474913 e Pages 43115538186 com sucesso. As duas páginas públicas retornaram HTTP 200 com roteiros idênticos aos gerados. Fora dos dois blocos inseridos, o HTML dos guias permaneceu idêntico, inclusive os links. Os dados dos 572 produtos por ID, a vitrine, o sitemap e o guia de fones foram preservados.
+
+Retomar pela triagem dos guias de smartwatches e seus comparativos específicos; acrescentar roteiro só se houver lacuna comprovada e não reabrir o guia de fones de ouvido já conferido.
 
 ## GLOBAL-05 — patinetes elétricos, perfumes e supermercado
 

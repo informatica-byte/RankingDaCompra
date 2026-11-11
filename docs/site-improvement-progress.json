@@ -1,16 +1,34 @@
 {
   "version": 1,
-  "global05DecisionGuidesBatch9": {
+  "global05DecisionGuidesBatch10": {
     "status": "prepared_local_verified",
+    "globalStatus": "partial",
+    "files": ["melhores-smartwatches-caminhada.html"],
+    "screenedNoChange": ["melhores-relogio-smartwatch.html"],
+    "comparisonBase": "24ba2a401",
+    "testsPassed": 4,
+    "recordWrites": 0,
+    "firestoreQueries": 0,
+    "next": "Integrar e publicar apenas o complemento do guia de caminhada e conferir a página pública e os invariantes."
+  },
+  "global05DecisionGuidesBatch9": {
+    "status": "published_verified",
     "globalStatus": "partial",
     "files": ["melhores-kit-teclado-e-mouse-sem-fio.html", "melhores-parafusadeira-eletrica.html"],
     "screenedNoChange": ["melhores-fones-de-ouvido.html"],
     "comparisonBase": "abfdb4185",
+    "sourceCommit": "4d1218906",
+    "generatedCommit": "24ba2a401",
+    "sitemapRun": 43115474859,
+    "integrityRun": 43115474913,
+    "pagesRun": 43115538186,
+    "publicPagesVerified": 2,
+    "productRecordsCompared": 572,
     "testsPassed": 3,
     "previousGuidesPreserved": 23,
     "recordWrites": 0,
     "firestoreQueries": 0,
-    "next": "Integrar, publicar e conferir os dois roteiros; preservar o guia de fones."
+    "next": "Verificar lacunas nos guias de smartwatches e seus comparativos específicos; não reabrir o guia de fones já conferido."
   },
   "global05DecisionGuidesBatch8": {
     "status": "published_verified",
