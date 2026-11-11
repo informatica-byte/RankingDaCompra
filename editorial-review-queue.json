@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T23:25:45.074Z",
+  "generatedAt": "2026-11-11T23:44:18.652Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
-    "screening": 2
+    "screening": 3
   },
   "items": [
     {
@@ -18,6 +18,13 @@
       "id": "mlMLB5776728534",
       "title": "Mouse Vertical Ergonômico Sem Fio Recarregável Bluetooth e USB 2.4G – RGB, Silencioso, DPI Ajustável, Reduz Tensão no Pulso, Portátil e Confortável – Compatível com Notebook, PC, Windows e Mac - Apfer",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5776728534-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "mlMLB7378919598",
+      "title": "Mixer Eos Emx02 Aco Inoxidavel E Preto 60 Hz 600w",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB7378919598-20260810-1.html",
       "state": "screening",
       "reasons": []
     }
