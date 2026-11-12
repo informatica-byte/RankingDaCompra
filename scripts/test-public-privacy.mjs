@@ -37,6 +37,24 @@ function browser({render=false,host=null}={}) {
   vm.runInNewContext(source, {window, document, location: {hostname: 'rankingdacompra.com.br'}, localStorage: {getItem: key => stored.get(key) || null, setItem: (key, val) => stored.set(key, val)}, Date, CustomEvent: class {constructor(type, options = {}) {this.type = type; this.detail = options.detail;}}});
   return {window, loaded, stored,document,nodes};
 }
+test('os três comparativos reutilizam o controle de consentimento sem tag direta nem evento próprio', async () => {
+  for (const page of ['redmi-buds-6-play-vs-soundcore-p30i', 'amazfit-bip-6-vs-huawei-watch-fit-5', 'deco-x10-vs-twibi-force-ax']) {
+    const html = await readFile(new URL('../comparativos/' + page + '.html', import.meta.url), 'utf8');
+    assert.deepEqual(html.match(/<script\b[^>]*>/gi), ['<script defer src="/privacy-controls.js?v=20261022-continuous">']);
+    assert.doesNotMatch(html, /googletagmanager\.com|\bgtag\s*\(/);
+  }
+  const {window, nodes, loaded} = browser({render:true});
+  const banner = nodes.get('rdc-privacy-banner');
+  assert.equal(loaded.filter(tag => tag.src).length, 0);
+  banner.querySelector('[data-privacy-reject]').click();
+  assert.equal(loaded.filter(tag => tag.src).length, 0);
+  nodes.get('settings').click();
+  banner.querySelector('[data-privacy-accept]').click();
+  assert.equal(loaded.filter(tag => tag.src).length, 1);
+  assert.equal(window.dataLayer.filter(args => args[0] === 'config').length, 1);
+  assert.equal(window.dataLayer.filter(args => args[0] === 'event').length, 0);
+});
+
 test('GA e eventos ficam desativados até uma escolha positiva; recusa não carrega GA', () => {
   const {window, loaded} = browser();
   assert.equal(window.RDCPrivacy.analyticsAllowed(), false);
