@@ -890,6 +890,7 @@ const editorialComparisons = [
   { file: "comparativos/redmi-buds-6-play-vs-soundcore-p30i.html", products: ["ARscPKCMZs3D8k22qltl", "ZVVdy8TuP0yW0XNIyiEA"], guide: "melhores-fones-bluetooth-ate-100.html", label: "Redmi Buds 6 Play vs. soundcore P30i: ANC e autonomia", date: "2026-11-11" },
   { file: "comparativos/amazfit-bip-6-vs-huawei-watch-fit-5.html", products: ["9P123IBTTYnSCMilPvXB", "5MGE98tYssH9nEfBeHoW"], guide: "melhores-smartwatches-caminhada.html", label: "Amazfit Bip 6 × HUAWEI WATCH FIT 5: GPS para caminhada", date: "2026-11-12" },
 ];
+editorialComparisons.push({ file: "comparativos/deco-x10-vs-twibi-force-ax.html", products: ["LUsq533hX6lTuHwnZbhz", "sMCnNBstxTrJqaF6jp2O"], guide: "melhores-roteadores-wifi-6-apartamento.html", label: "Deco X10 × Twibi Force AX: versões de uma unidade", date: "2026-11-12" });
 const availableComparisons = [];
 for (const comparison of editorialComparisons) {
   if (!comparison.products.every((id) => productUrls.has(id))) continue;
