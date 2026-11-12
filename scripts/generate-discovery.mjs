@@ -886,12 +886,20 @@ const lastModified = newestDate([
 ]);
 await writeFile(resolve("analises.html"), renderDirectoryPage(categories, productsByCategory, productUrls, categoryNames, lastModified), "utf8");
 const guidePages = [];
-const pilotFile = "comparativos/redmi-buds-6-play-vs-soundcore-p30i.html";
-const pilotProducts = ["ARscPKCMZs3D8k22qltl", "ZVVdy8TuP0yW0XNIyiEA"];
-const hasEditorialPilot = pilotProducts.every((id) => productUrls.has(id)) && await readFile(resolve(pilotFile), "utf8").then(() => true, (error) => {
-  if (error.code === "ENOENT") return false;
-  throw error;
-});
+const editorialComparisons = [
+  { file: "comparativos/redmi-buds-6-play-vs-soundcore-p30i.html", products: ["ARscPKCMZs3D8k22qltl", "ZVVdy8TuP0yW0XNIyiEA"], guide: "melhores-fones-bluetooth-ate-100.html", label: "Redmi Buds 6 Play vs. soundcore P30i: ANC e autonomia", date: "2026-11-11" },
+  { file: "comparativos/amazfit-bip-6-vs-huawei-watch-fit-5.html", products: ["9P123IBTTYnSCMilPvXB", "5MGE98tYssH9nEfBeHoW"], guide: "melhores-smartwatches-caminhada.html", label: "Amazfit Bip 6 × HUAWEI WATCH FIT 5: GPS para caminhada", date: "2026-11-12" },
+];
+const availableComparisons = [];
+for (const comparison of editorialComparisons) {
+  if (!comparison.products.every((id) => productUrls.has(id))) continue;
+  try {
+    await readFile(resolve(comparison.file), "utf8");
+    availableComparisons.push(comparison);
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
+}
 const guideModifiedDates = new Map();
 for (const category of categories) {
   const categoryName = categoryNames.get(category.id) || category.id;
@@ -937,8 +945,8 @@ for (const category of categories) {
     const selected = focusedProducts(config, comparableProducts, price);
     await writeFile(resolve(config.file), renderIntegrityGuide({file:config.file,title:config.title,description:config.intro,
       products:selected,urls:productUrls,date:guideModified,focused:true,parentFile:fileName,
-      links:hasEditorialPilot && config.file === "melhores-fones-bluetooth-ate-100.html"
-        ? `<p><a href="/${pilotFile}">Redmi Buds 6 Play vs. soundcore P30i: ANC e autonomia</a></p>` : ""}), "utf8");
+      links:availableComparisons.filter((entry) => entry.guide === config.file)
+        .map((entry) => `<p><a href="/${entry.file}">${entry.label}</a></p>`).join("")}), "utf8");
     guidePages.push(config.file);
     guideModifiedDates.set(config.file, guideModified);
   }
@@ -958,8 +966,8 @@ await writeFile(
   JSON.stringify(buildSearchIndex(categories, products, productUrls, categoryNames, lastModified), null, 2) + "\n",
   "utf8",
 );
-if (hasEditorialPilot) guideModifiedDates.set(basename(pilotFile), "2026-11-11");
-sitemapXml = updateSitemap(sitemapXml, lastModified, hasEditorialPilot ? [...guidePages, pilotFile] : guidePages, guideModifiedDates);
+for (const entry of availableComparisons) guideModifiedDates.set(basename(entry.file), entry.date);
+sitemapXml = updateSitemap(sitemapXml, lastModified, [...guidePages, ...availableComparisons.map((entry) => entry.file)], guideModifiedDates);
 await writeFile(resolve("sitemap.xml"), sitemapXml, "utf8");
 const relatedPages = await addRelatedLinks(products, productsByCategory, productUrls, categoryNames);
 
