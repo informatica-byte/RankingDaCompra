@@ -492,7 +492,8 @@
     const image = document.querySelector("[data-ranki-image]");
     if (!image) return;
     const theme = SEASONAL_THEMES[id];
-    image.src = RANKI_THEME_IMAGES[id] || "/ranki.png";
+    const source = RANKI_THEME_IMAGES[id] || "/ranki.png";
+    if (image.getAttribute("src") !== source) image.src = source;
     image.width = theme ? 362 : 512;
     image.height = theme ? 362 : 768;
     image.alt = theme
@@ -508,7 +509,7 @@
     const mascot = document.createElement("div");
     mascot.className = "ranki-hero";
     mascot.dataset.rankiMascot = "hero";
-    mascot.innerHTML = `<button class="ranki-trigger" type="button" aria-expanded="false" aria-controls="ranki-help" aria-label="Abrir o Ranki Ajuda"><img src="/ranki.png" width="512" height="768" decoding="async" alt="Ranki, a raposa assistente de ofertas do Ranking da Compra" data-ranki-image><span class="ranki-caption"><strong>Ranki</strong><span>posso ajudar?</span></span></button>`;
+    mascot.innerHTML = `<button class="ranki-trigger" type="button" aria-expanded="false" aria-controls="ranki-help" aria-label="Abrir o Ranki Ajuda"><img width="512" height="768" decoding="async" alt="Ranki, a raposa assistente de ofertas do Ranking da Compra" data-ranki-image><span class="ranki-caption"><strong>Ranki</strong><span>posso ajudar?</span></span></button>`;
     wrap.appendChild(mascot);
     updateMascotTheme(document.body.dataset.seasonalTheme || "");
     ensureRankiHelp();
@@ -2372,7 +2373,6 @@
     injectWeeklyRankingStyles();
     void protectAffiliateProductPrice();
     repairVisibleEditorial();
-    renderMascot();
     setupFunnelTracking();
     if (/dashboard\.html$/i.test(location.pathname)) {
       if (await renderAdmin()) return;
@@ -2402,6 +2402,7 @@
     applyPromotionTitle(state.config);
     renderVideoShowcase(state.config);
     renderSeasonalTheme(state.config);
+    renderMascot();
     void historyPending;
     const routeParams = new URLSearchParams(location.search);
     if (/^\/(?:index\.html)?$/.test(location.pathname)
