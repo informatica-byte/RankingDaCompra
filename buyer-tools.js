@@ -141,6 +141,12 @@
     needControl.className = 'buyer-need';
     needControl.innerHTML = 'Por onde você quer começar?<select data-buyer-need><option value="">Todas as necessidades</option><option value="study">Estudo e trabalho — computadores e periféricos</option><option value="audio">Música e chamadas — formatos de áudio</option><option value="wifi">Conexão de internet — equipamentos de rede</option><option value="monitor">Monitoramento — câmeras de segurança</option></select><small>Atalhos por tipo, não recomendação de desempenho. Compare somente modelos equivalentes.</small>';
     root.querySelector('.buyer-controls').appendChild(needControl);
+    if (window.RDCInformational?.enabled && root.hasAttribute('data-buyer-catalog')) {
+      const guidance = document.createElement('details');
+      guidance.className = 'buyer-guidance';
+      guidance.innerHTML = '<summary>Perguntas para orientar sua escolha (opcional)</summary><ul><li><strong>O que eu preciso resolver?</strong> Comece pelo filtro de necessidade e escolha produtos do mesmo tipo.</li><li><strong>Qual característica é indispensável?</strong> Procure essa informação nas linhas do comparativo e confira a fonte.</li><li><strong>O que ainda falta confirmar?</strong> Um dado não informado não significa que o produto não tenha o recurso. Confira a versão e os itens inclusos no anúncio.</li></ul>';
+      root.querySelector('.buyer-controls').after(guidance);
+    }
     const status = root.querySelector('[data-buyer-status]');
     const results = root.querySelector('[data-buyer-results]');
     const comparison = root.querySelector('[data-buyer-comparison]');

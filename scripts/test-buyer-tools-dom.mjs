@@ -6,11 +6,15 @@ import vm from 'node:vm';
 const sample=(id,title,extra={})=>({id,title,category:'Informática',summary:'Confira os critérios e limitações.',url:'/produto/'+id+'-20260810-1.html',recordedPrice:100,checkedAt:'2026-10-11T12:00:00Z',...extra});
 const makeElement=()=>({dataset:{},value:'',checked:false,innerHTML:'',textContent:'',setAttribute(name,value){this[name]=value;},querySelectorAll(){return this.buttons||[];},insertAdjacentHTML(_where,html){this.innerHTML+=html;}});
 
-async function page(products,search='',initialQuery='',searchCount=null) {
+async function page(products,search='',initialQuery='',searchCount=null,informational=false) {
   const selectors=Object.fromEntries(['query','category','budget','recent','same-type','status','results','comparison'].map(key=>['[data-buyer-'+key+']',makeElement()]));
   selectors['[data-buyer-query]'].value=initialQuery;
   const events={},root={dataset:{},classList:{add(){}},innerHTML:'',querySelector:selector=>selectors[selector]||null,contains:element=>element?.owner===root,addEventListener:(name,handler)=>{events[name]=handler;}};
   const controls=makeElement();
+  root.hasAttribute=name=>name==='data-buyer-catalog';
+  controls.after=element=>{controls.guidance=element;};
+  selectors['.buyer-help']=makeElement();
+  for(const key of ['budget','recent']) selectors['[data-buyer-'+key+']'].closest=()=>({});
   controls.appendChild=element=>{if(element.className==='buyer-check buyer-same-type')selectors['[data-buyer-same-type]'].checked=/ checked/.test(element.innerHTML);else {selectors.shortcuts=element;element.buttons=[...element.innerHTML.matchAll(/data-buyer-budget-shortcut="([^"]*)"/g)].map(match=>({...makeElement(),dataset:{buyerBudgetShortcut:match[1]}}));}};
   selectors['.buyer-controls']=controls;
   const document={activeElement:null,head:{appendChild(){}},readyState:'loading',createElement:()=>makeElement(),addEventListener(){}};
@@ -34,6 +38,7 @@ async function page(products,search='',initialQuery='',searchCount=null) {
     container.querySelector=selector=>container.querySelectorAll(selector)[0]||null;
   }
   const context={window:{location:{search},RDCPublicData:{json:async path=>{assert.equal(path,'/search-index.json');return {products};}}},document,location:{search},URL,URLSearchParams,Intl};
+  if(informational)context.window.RDCInformational={enabled:true,load:async()=>({products})};
   vm.runInNewContext(await readFile(new URL('../buyer-tools.js',import.meta.url),'utf8'),context);
   await context.window.RDCBuyerTools.mount(root,initialQuery,searchCount);
   const select=(id,checked=true)=>{
@@ -42,6 +47,15 @@ async function page(products,search='',initialQuery='',searchCount=null) {
   };
   return {root,selectors,events,select,document,window:context.window,tools:context.window.RDCBuyerTools};
 }
+
+test('comparador informativo oferece perguntas opcionais sem exigir respostas',async()=>{
+  const result=await page([sample('router','Roteador A')],'','',null,true);
+  const guidance=result.selectors['.buyer-controls'].guidance;
+  assert.match(guidance.innerHTML,/<summary>[^<]*opcional/);
+  assert.match(guidance.innerHTML,/não informado não significa/);
+  assert.doesNotMatch(guidance.innerHTML,/<input|<form/);
+  assert.match(result.selectors['[data-buyer-results]'].innerHTML,/Roteador A/);
+});
 
 test('atalhos filtram preços registrados, preservam seleção e sincronizam valor personalizado e limpeza',async()=>{
   const products=[sample('one','Roteador A',{recordedPrice:99}),sample('two','Roteador B',{recordedPrice:201}),sample('unknown','Roteador C',{recordedPrice:null})];
