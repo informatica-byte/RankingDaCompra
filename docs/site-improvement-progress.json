@@ -896,12 +896,23 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 573,
+    "total": 574,
     "screened_no_change": 82,
-    "targeted_correction_complete": 393,
+    "targeted_correction_complete": 394,
     "preserve_prior_review": 98
   },
   "items": [
+    {
+      "id": "mlMLB6837388614",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB6837388614-20260810-1.html",
+      "title": "Tênis Masculino Delta 122 Olympikus",
+      "fingerprint": "2b289075fd8d3d86e1d6710e40bbf72868878d106f2027b3be341ff3ed4b045a",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-11-12",
+      "workNotes": ["Resumo editorial publicado e verificado na ficha e nos três índices; geração dd8263b95. Ano de lançamento não confirmado e aderência não testada."],
+      "sourceLinks": []
+    },
     {
       "id": "mlMLB7378919598",
       "url": "https://rankingdacompra.com.br/produto/mlMLB7378919598-20260810-1.html",

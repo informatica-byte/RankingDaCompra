@@ -3,16 +3,6 @@
   "generatedAt": "2026-11-13T00:43:29.080Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
-  "counts": {
-    "screening": 1
-  },
-  "items": [
-    {
-      "id": "mlMLB6837388614",
-      "title": "Tênis Masculino Delta 122 Olympikus",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB6837388614-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    }
-  ]
+  "counts": {},
+  "items": []
 }
