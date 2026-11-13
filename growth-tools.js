@@ -492,7 +492,9 @@
     const image = document.querySelector("[data-ranki-image]");
     if (!image) return;
     const theme = SEASONAL_THEMES[id];
-    const source = RANKI_THEME_IMAGES[id] || "/ranki.png";
+    const mobileBlackFriday = id === "black-friday" && /^\/(?:index\.html)?$/.test(location.pathname)
+      && window.matchMedia?.("(max-width: 700px)").matches;
+    const source = mobileBlackFriday ? "/assets/ranki/black-friday-mobile.webp" : (RANKI_THEME_IMAGES[id] || "/ranki.png");
     if (image.getAttribute("src") !== source) image.src = source;
     image.width = theme ? 362 : 512;
     image.height = theme ? 362 : 768;
