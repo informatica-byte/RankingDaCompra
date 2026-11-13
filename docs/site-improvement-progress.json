@@ -896,12 +896,51 @@
   },
   "resumeRule": "Skip unchanged completed or previously reviewed items. Reopen only changed content, a new source or a documented defect. A generic rewrite is not a factual review.",
   "counts": {
-    "total": 570,
+    "total": 573,
     "screened_no_change": 82,
-    "targeted_correction_complete": 390,
+    "targeted_correction_complete": 393,
     "preserve_prior_review": 98
   },
   "items": [
+    {
+      "id": "mlMLB7378919598",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB7378919598-20260810-1.html",
+      "title": "Mixer Eos Emx02 Aco Inoxidavel E Preto 60 Hz 600w",
+      "fingerprint": "2594e954719644a618ba9288b441d7abbbd9b8a5ae5637fb12f924a7f1946ce6",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-11-12",
+      "workNotes": [
+        "Correção publicada e verificada; geração b9112e72f."
+      ],
+      "sourceLinks": []
+    },
+    {
+      "id": "mlMLB5776728534",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5776728534-20260810-1.html",
+      "title": "Mouse vertical Apfer — Bluetooth e USB de 2,4 GHz",
+      "fingerprint": "fdc68a879de689f2ea89f759ee1a90916f57d4e41c081e636b856b5e8473f400",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-11-12",
+      "workNotes": [
+        "Correção publicada e verificada; geração b9112e72f."
+      ],
+      "sourceLinks": []
+    },
+    {
+      "id": "mlMLB5276754248",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5276754248-20260810-1.html",
+      "title": "Sapatenis Casual Masculino 114861 Com Calce Facil Pegada Liso",
+      "fingerprint": "7efc1ffd216328da0798eacf4c1d7062b7ba2446e647767dcde2a19984641c3b",
+      "status": "targeted_correction_complete",
+      "previousReviewPresent": false,
+      "lastCompletedAt": "2026-11-12",
+      "workNotes": [
+        "Correção publicada e verificada; geração b9112e72f."
+      ],
+      "sourceLinks": []
+    },
     {
       "id": "mlMLB7448186850",
       "url": "https://rankingdacompra.com.br/produto/mlMLB7448186850-20260810-1.html",

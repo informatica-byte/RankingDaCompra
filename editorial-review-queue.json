@@ -3,30 +3,6 @@
   "generatedAt": "2026-11-12T23:57:56.927Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
-  "counts": {
-    "screening": 3
-  },
-  "items": [
-    {
-      "id": "mlMLB5276754248",
-      "title": "Sapatenis Casual Masculino 114861 Com Calce Facil Pegada Liso",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5276754248-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB5776728534",
-      "title": "Mouse vertical Apfer — Bluetooth e USB de 2,4 GHz",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB5776728534-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    },
-    {
-      "id": "mlMLB7378919598",
-      "title": "Mixer Eos Emx02 Aco Inoxidavel E Preto 60 Hz 600w",
-      "url": "https://rankingdacompra.com.br/produto/mlMLB7378919598-20260810-1.html",
-      "state": "screening",
-      "reasons": []
-    }
-  ]
+  "counts": {},
+  "items": []
 }
