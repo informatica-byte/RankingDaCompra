@@ -16,6 +16,13 @@ test('catálogo compartilha uma leitura, conserva cache em memória e não grava
  assert.equal(calls.length,1);assert.equal(calls[0].path,'/informational-catalogue.json');assert.equal(calls[0].options.credentials,'omit');assert.equal(f.timers.size,0);
  assert.doesNotMatch(source,/localStorage|sessionStorage|\.collection\(|getDoc\(/);
 });
+test('vitrine estática não baixa catálogo nem substitui os módulos publicados',async()=>{
+ const f=runtime(async()=>assert.fail('fetch desnecessário'));
+ f.context.location={pathname:'/'};
+ const app={dataset:{},querySelector:selector=>selector==='[data-info-home-static]:not([hidden])'?{}:null,set innerHTML(_){assert.fail('substituição desnecessária');}};
+ await f.api.route({app,setSeo:()=>assert.fail('SEO estático deve permanecer')});
+ assert.deepEqual(app.dataset,{});
+});
 test('rede parada ou corpo JSON parado expiram e permitem nova tentativa sem resposta tardia vencer',async()=>{
  for(const stage of ['network','body']){
   let calls=0,finish,signal;

@@ -27,6 +27,8 @@
   pending=Promise.race([request,deadline]).catch(error=>{pending=null;throw error;}).finally(()=>clearTimeout(timer));return pending;
  }
  async function route({app,setSeo,query='',category='',id=''}){
+  // The published home already contains the final shelves and video controls.
+  if(!query&&!category&&!id&&/^\/(?:index\.html)?$/.test(globalThis.location?.pathname||'')&&app.querySelector('[data-info-home-static]:not([hidden])'))return;
   const key=JSON.stringify([query,category,id]);if(app.dataset.informationalRoute===key)return;app.dataset.informationalRoute=key;
   try{
    const data=await load();
