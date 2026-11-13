@@ -6,7 +6,7 @@ import { test } from 'node:test';
 const html = readFileSync(new URL('../painel-celular.html', import.meta.url), 'utf8');
 const handler = html.slice(html.indexOf('async function preencherRevisaoIA()'), html.indexOf('function mlb(v)')) + '\n$("revisao-ia").onclick = preencherRevisaoIA;';
 const link = 'https://example.invalid/anuncio?variante=1';
-function fixture(source = link) {
+function fixture(source = link, status = 'URL_RETRIEVAL_STATUS_SUCCESS') {
   const fields = Object.fromEntries(['revisao-ia','revisao-ia-status','link','link-afiliado','titulo','preview','dados','resumo','pros','contras'].map(id => [id, { value: '', getClientRects: () => [1] }]));
   fields.link.value = link;
   let finish;
@@ -17,7 +17,7 @@ function fixture(source = link) {
     window:{RDCEditorialPolicy:{assertDraft(){}}} };
   runInNewContext(handler, ctx);
   return { fields, start: fields['revisao-ia'].onclick, finish: () => finish({response:{
-    candidates:[{urlContextMetadata:{urlMetadata:[{urlRetrievalStatus:'URL_RETRIEVAL_STATUS_SUCCESS',retrievedUrl:source}]}}],
+    candidates:[{urlContextMetadata:{urlMetadata:status ? [{urlRetrievalStatus:status,retrievedUrl:source}] : []}}],
     text:()=>JSON.stringify({status:'ok',dadosTecnicos:['Especificação A'.repeat(4),'Especificação B'.repeat(4),'Especificação C'.repeat(4)],comentario:'Resumo',pros:['Vantagem'],contras:['Limitação']}) }}) };
 }
 test('preenche os quatro campos vazios com a resposta do anúncio exato', async () => {
@@ -27,6 +27,21 @@ test('preenche os quatro campos vazios com a resposta do anúncio exato', async 
   assert.equal(f.fields.resumo.value,'Resumo');
   assert.equal(f.fields.pros.value,'Vantagem');
   assert.equal(f.fields.contras.value,'Limitação');
+});
+test('ignora rastreamento, mas não aceita troca de variante nem perda do identificador da oferta', async () => {
+  for (const [source, expected] of [[link+'&tracking_id=123',true],[link.split('?')[0],false],[link.replace('=1','=2'),false]]) {
+    const f=fixture(source), done=f.start();
+    f.finish(); await done;
+    assert.equal(Boolean(f.fields.dados.value),expected);
+  }
+});
+test('distingue falha de leitura de ausência de confirmação e mantém os campos vazios', async () => {
+  for (const [status,message] of [['URL_RETRIEVAL_STATUS_ERROR',/não conseguiu ler/], [null,/nenhuma leitura/]]) {
+    const f=fixture(link,status), done=f.start();
+    f.finish(); await done;
+    assert.match(f.fields['revisao-ia-status'].textContent,message);
+    assert.equal(f.fields.resumo.value,'');
+  }
 });
 test('preenche vazios e preserva texto anterior e texto digitado durante a consulta', async () => {
   const f=fixture();

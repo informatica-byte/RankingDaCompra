@@ -1861,11 +1861,24 @@
             " Inclua pelo menos três fatos técnicos específicos, um resumo de até 480 caracteres e vantagens e limitações comprováveis de até 290 caracteres por campo. Se não houver base para um campo, deixe-o vazio.";
           const r = (await comPrazo(modelRapido.generateContent(prompt), 15000, "A IA editorial")).response;
           const c = r?.candidates?.[0] || {}, meta = c.urlContextMetadata || c.url_context_metadata || {};
-          const urlConfirmada = value => { try { return new URL(value).href; } catch { return ""; } };
-          if (!(meta.urlMetadata || meta.url_metadata || []).some(x =>
-            ["SUCCESS", "URL_RETRIEVAL_STATUS_SUCCESS"].includes(x.urlRetrievalStatus || x.url_retrieval_status) &&
-            urlConfirmada(x.retrievedUrl || x.retrieved_url) === urlConfirmada(link))) {
-            throw Error("Não consegui confirmar a leitura deste anúncio. Preencha manualmente.");
+          const urlConfirmada = value => {
+            try {
+              const url = new URL(value);
+              if (url.protocol !== "https:" || url.username || url.password) return "";
+              for (const key of ["tracking_id", "polycard_client", "sid", "matt_event_ts", "matt_d2id", "matt_tracing_id"]) url.searchParams.delete(key);
+              url.searchParams.sort();
+              return url.href;
+            } catch { return ""; }
+          };
+          const fontes = meta.urlMetadata || meta.url_metadata || [];
+          const lidas = fontes.filter(x => ["SUCCESS", "URL_RETRIEVAL_STATUS_SUCCESS"].includes(x.urlRetrievalStatus || x.url_retrieval_status));
+          if (!lidas.length) {
+            throw Error(fontes.length ? "A IA não conseguiu ler o anúncio. Preencha manualmente." :
+              "A IA não confirmou nenhuma leitura de página. Preencha manualmente.");
+          }
+          const esperada = urlConfirmada(link);
+          if (!esperada || !lidas.every(x => urlConfirmada(x.retrievedUrl || x.retrieved_url) === esperada)) {
+            throw Error("A IA leu uma URL diferente. Não foi possível confirmar o mesmo anúncio e variante.");
           }
           const d = JSON.parse(json(r.text()));
           if (d.status !== "ok") throw Error("O anúncio não forneceu dados suficientes. Preencha manualmente.");
