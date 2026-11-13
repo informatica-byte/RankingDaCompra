@@ -1,16 +1,23 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-13T16:54:45.104Z",
+  "generatedAt": "2026-11-13T18:03:03.705Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
-    "screening": 1
+    "screening": 2
   },
   "items": [
     {
       "id": "mlMLB5325059337",
       "title": "Tablet Xiaomi Redmi Pad 2 256GB com 8GB RAM Wi-Fi e Tela de 11\" Cinza",
       "url": "https://rankingdacompra.com.br/produto/mlMLB5325059337-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "mlMLB7635156520",
+      "title": "Motocicleta Eletrica Bike Bicicleta Moto 1000w Autonomia De Ate 45km Bateria Litio Freio A Disco Para 2 Pessoas Sem Cnh Branco",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB7635156520-20260810-1.html",
       "state": "screening",
       "reasons": []
     }
