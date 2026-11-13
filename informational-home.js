@@ -61,6 +61,15 @@
  }
  function guideCards(items){return items.map(g=>'<a href="'+esc(g.path)+'"><strong>'+esc(g.title)+'</strong><span>Ver modelos, diferenças e limitações →</span></a>').join('');}
  function videoCards(items){return items.map(v=>'<article class="info-video-card" data-info-video-card="'+esc(v.id)+'"><div class="info-video-media"><img src="'+esc(v.image)+'" alt="'+esc(v.title)+'" loading="lazy" decoding="async" width="320" height="180"></div><h3>'+esc(v.title)+'</h3><button type="button" data-info-video-play="'+esc(v.id)+'" aria-label="Assistir ao vídeo de '+esc(v.title)+'">▶ Assistir ao vídeo</button><a href="'+esc(v.path)+'" data-info-video-product>Conhecer o produto e suas limitações →</a><a href="https://www.youtube.com/watch?v='+esc(v.id)+'" target="_blank" rel="noopener noreferrer">Abrir no YouTube ↗</a></article>').join('');}
+ const needs=[
+  {label:'Melhorar o Wi-Fi',guide:'/melhores-roteadores-wifi-6-apartamento.html',pair:'/comparativos/deco-x10-vs-twibi-force-ax.html',pairLabel:'Comparar Deco X10 e Twibi Force AX'},
+  {label:'Escolher um fone Bluetooth',guide:'/melhores-fones-bluetooth-ate-100.html',pair:'/comparativos/redmi-buds-6-play-vs-soundcore-p30i.html',pairLabel:'Comparar Redmi Buds 6 Play e soundcore P30i'},
+  {label:'Escolher um relógio para caminhada',guide:'/melhores-smartwatches-caminhada.html',pair:'/comparativos/amazfit-bip-6-vs-huawei-watch-fit-5.html',pairLabel:'Comparar Bip 6 e WATCH FIT 5'}
+ ];
+ function needShortcuts(data){
+  const published=new Set(guides(data).map(g=>g.path));
+  return needs.filter(n=>published.has(n.guide));
+ }
  function markup(data,config){
   const products=selection(data),allGuides=guides(data),clips=videos(data,config),shelves=collections(data);
   const top=products.length?'<section class="info-home-section" id="melhores-escolhas" data-best-choices="true"><div id="top6-editorial"><span class="eyebrow">Seleção editorial</span><h2 data-best-title>'+(products.length===6?'Top 6 para conhecer e comparar':'Produtos para conhecer e comparar')+'</h2><p>Seis caminhos para explorar características e usos diferentes, não uma classificação do melhor para o pior. Compare apenas modelos do mesmo tipo e consulte as fontes de cada ficha.</p><div class="deal-grid" data-best-products>'+info.cards(products)+'</div><a class="button secondary" href="/melhores-escolhas.html">Explorar mais produtos selecionados</a></div></section>':'';
@@ -69,7 +78,9 @@
   const nav='<nav class="info-home-nav" aria-label="Explore a vitrine">'+(products.length?'<a href="#top6-editorial">Top 6 editorial</a>':'')+(allGuides.length?'<a href="#comparativos-inicio">Comparativos por categoria</a>':'')+(clips.length?'<a href="#videos-inicio">Vídeos dos produtos</a>':'')+'</nav>';
   const catalogue='<p class="info-catalogue-summary"><strong>'+esc(String(data.products?.length||0))+' análises no catálogo</strong><span>'+allGuides.length+' guias para explorar</span><a href="/analises.html">Conhecer todas as categorias →</a></p>';
   const shelfNav=shelves.length?'<nav class="info-home-nav info-shelf-nav" aria-label="Produtos por interesse">'+shelves.map(s=>'<a href="#explore-'+esc(s.id)+'">'+esc(s.products[0].category)+'</a>').join('')+'</nav>':'';
-  return nav+catalogue+top+comparison+shelfNav+collectionCards(shelves)+video;
+  const shortcuts=needShortcuts(data);
+  const byNeed=shortcuts.length?'<section class="info-home-section" id="atalhos-necessidade" aria-labelledby="atalhos-necessidade-titulo"><h2 id="atalhos-necessidade-titulo">O que você precisa resolver?</h2><p>Comece por um guia ou compare dois modelos lado a lado.</p><div class="info-guide-grid">'+shortcuts.map(n=>'<article><h3><a href="'+esc(n.guide)+'">'+esc(n.label)+'</a></h3><p><a href="'+esc(n.pair)+'">'+esc(n.pairLabel)+' →</a></p></article>').join('')+'</div></section>':'';
+  return nav+byNeed+catalogue+top+comparison+shelfNav+collectionCards(shelves)+video;
  }
  function bind(scope){scope.addEventListener('click',event=>{const button=event.target.closest('[data-info-video-play]');if(!button||!scope.contains(button)||!videoId('https://www.youtube.com/watch?v='+button.dataset.infoVideoPlay))return;const card=button.closest('[data-info-video-card]');if(!card)return;
   for(const other of scope.querySelectorAll('[data-info-video-card]')){other.querySelector('iframe')?.remove();const img=other.querySelector('img'),play=other.querySelector('[data-info-video-play]');if(img)img.hidden=false;if(play)play.hidden=false;}
@@ -93,5 +104,5 @@
   };
   const observer=new MutationObserver(()=>void enhance());observer.observe(app,{childList:true,subtree:true});void enhance();
  }
- return {selection,guides,collections,structuredData,videoId,videos,markup,bind,init};
+ return {selection,guides,needShortcuts,collections,structuredData,videoId,videos,markup,bind,init};
 });

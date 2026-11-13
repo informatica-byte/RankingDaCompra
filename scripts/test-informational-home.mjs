@@ -27,6 +27,16 @@ test('Top 6 usa somente seleção existente, sem preço, pontuação ou duplica�
 test('comparativos só apontam para guias locais sem repetir URL ou aceitar credenciais',()=>{
  const data=feed();data.guides.push(data.guides[0],{url:'https://evil.example/melhores-x.html',title:'Falso'},{url:'https://u:p@rankingdacompra.com.br/melhores-x.html',title:'Falso'},{url:'melhores-x.html?q=1',title:'Parâmetros'},{url:'javascript:alert(1)',title:'Falso'});assert.equal(home.guides(data).length,1);
 });
+test('atalhos por necessidade usam guias elegíveis e pares fixos já publicados',()=>{
+ const data=feed();
+ assert.equal(home.needShortcuts(data).length,0);
+ data.guides.push({url:'/melhores-smartwatches-caminhada.html',title:'Caminhada'});
+ const html=home.markup(data,config());
+ assert.match(html,/id="atalhos-necessidade"/);
+ assert.match(html,/href="\/melhores-smartwatches-caminhada\.html">Escolher um relógio para caminhada/);
+ assert.match(html,/href="\/comparativos\/amazfit-bip-6-vs-huawei-watch-fit-5\.html"/);
+ assert.doesNotMatch(html,/deco-x10-vs-twibi-force-ax/);
+});
 test('vídeo precisa de ID válido e da página exata de produto publicado; configurações não mudam',()=>{
  const settings=config(),before=JSON.stringify(settings);settings.youtubeShowcaseItems.push(settings.youtubeShowcaseItems[0],{youtubeUrl:'https://youtu.be/nzOv8It_lLE',productUrl:'https://evil.example/produto/a.html'},{youtubeUrl:'https://youtube.com.evil.example/watch?v=12345678901',productUrl:'/produto/a.html'},{youtubeUrl:'https://www.youtube.com/watch?v=12345678901',productUrl:'/produto/missing.html'});
  assert.equal(home.videos(feed(),settings).length,1);assert.equal(home.videos(feed(),{...settings,youtubeShowcaseEnabled:false}).length,0);assert.equal(JSON.stringify(config()),before);

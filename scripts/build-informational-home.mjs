@@ -8,6 +8,7 @@ export async function buildInformationalHome(root=process.cwd()){
  // A visible shelf must not advertise a missing, retired or non-indexable article.
  const routes=new Set([...home.selection(data),...home.collections(data).flatMap(s=>s.products)].map(p=>new URL(p.url,'https://rankingdacompra.com.br').pathname));
  home.guides(data).forEach(g=>routes.add(g.path));
+ home.needShortcuts(data).forEach(n=>routes.add(n.pair));
  home.videos(data,config).forEach(v=>routes.add(v.path));
  for(const path of routes){
   if(!sitemap.includes('<loc>https://rankingdacompra.com.br'+path+'</loc>'))throw Error('Destino fora do sitemap: '+path+'; página anterior preservada.');
@@ -23,7 +24,7 @@ export async function buildInformationalHome(root=process.cwd()){
  next=next.replace(/<link rel="stylesheet" href="\/informational-home\.css[^>]*>/g,'').replace(/<script defer src="\/informational-home\.js[^>]*><\/script>/g,'');
  next=next.replace(/<script id="informational-home-schema" type="application\/ld\+json">[^]*?<\/script>/g,'');
  const schema=JSON.stringify(home.structuredData(data)).replace(/</g,'\\u003c');
- next=next.replace('</head>',()=>'<link rel="stylesheet" href="/informational-home.css?v=20261028-1"><script defer src="/informational-home.js?v=20261028-1"></script><script id="informational-home-schema" type="application/ld+json">'+schema+'</script></head>');
+ next=next.replace('</head>',()=>'<link rel="stylesheet" href="/informational-home.css?v=20261028-1"><script defer src="/informational-home.js?v=20261112-needs"></script><script id="informational-home-schema" type="application/ld+json">'+schema+'</script></head>');
  // Fixed content revision, not a claim that every product was reviewed today.
  const updatedSitemap=sitemap.replace(/<url>\s*<loc>https:\/\/rankingdacompra\.com\.br\/<\/loc>([^]*?)<\/url>/,block=>block.replace(/<lastmod>([^<]+)<\/lastmod>/,(tag,date)=>date.slice(0,10)<'2026-10-27'?'<lastmod>2026-10-27</lastmod>':tag));
  if(next!==original)await writeFile(resolve(root,'index.html'),next,'utf8');
