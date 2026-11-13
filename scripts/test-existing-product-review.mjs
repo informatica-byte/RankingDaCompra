@@ -7,7 +7,8 @@ const html=readFileSync('painel-celular.html','utf8');
 function between(start,end){const first=html.indexOf(start),last=html.indexOf(end,first);assert.ok(first>=0&&last>first);return html.slice(first,last);}
 const helpers=between('function mlb(v) {','function seg(v) {')
   +between('function mesmaIdentidadePublicacao(','async function aplicarResultadoRobo(');
-const handler=between('async function revisarCadastroExistentePublicacao() {','$("analisar").onclick = async () => {');
+const reviewBinding='$("revisar-cadastro-existente").onclick = revisarCadastroExistentePublicacao;';
+const handler=between('async function revisarCadastroExistentePublicacao() {',reviewBinding)+reviewBinding;
 const link='https://produto.mercadolivre.com.br/MLB-123456789-fone-_JM';
 const product={id:'persisted',titulo:'Fone TWS existente',link,linkAfiliado:'https://meli.la/original',mercadoLivreItemId:'MLB123456789',categoria:'audio',preco:'150,00',precoAnterior:'180,00',precoPromocional:'130,00',foto:'https://example.com/foto.jpg',dadosTecnicos:'Dados cadastrados',comentario:'Texto original',pros:'Qualidade',contras:'Limitação',selo:'Mais Vendido'};
 const plain=value=>JSON.parse(JSON.stringify(value));
