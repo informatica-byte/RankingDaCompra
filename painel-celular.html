@@ -115,6 +115,8 @@
           <p id="publicacao-ajuda-manual" class="mini" hidden>A janela mantém esta revisão aberta. Copie o preço à vista, a foto e as características do mesmo produto; não use preço de parcela. No celular, o anúncio abre em outra aba.</p>
           <img id="foto-previa" alt="Foto do produto" />
           <div id="foto-erro" class="foto-erro" role="alert">A imagem informada não abriu. Cole outra URL de foto antes de publicar.</div>
+          <button id="revisao-ia" class="btn claro" type="button">✨ Preencher campos vazios com IA</button>
+          <p id="revisao-ia-status" class="mini" role="status" aria-live="polite">A IA consulta o anúncio original. Revise as sugestões antes de publicar.</p>
           <div class="grade">
             <div class="largo"><label>Produto</label><input id="titulo" class="campo" required /></div>
             <div>
@@ -1839,6 +1841,58 @@
         if (/app.?check/i.test(codigo + " " + s)) return "A validação App Check não foi concluída. Mantenha esta aba aberta para preservar o formulário e consulte o diagnóstico local. Os dados desta operação não foram confirmados; não repita a ação enquanto a falha estiver em investigação.";
         return s;
       }
+      async function preencherRevisaoIA() {
+        const botao = $("revisao-ia"), status = $("revisao-ia-status");
+        const ids = ["dados", "resumo", "pros", "contras"];
+        const vazios = ids.filter(id => !$(id).value.trim());
+        if (!vazios.length) { status.textContent = "Os quatro campos já estão preenchidos."; return; }
+        const sessao = auth.currentUser, revisao = resultado;
+        const link = $("link").value.trim(), afiliado = $("link-afiliado").value.trim(), titulo = $("titulo").value.trim();
+        if (!sessao || !revisao || revisao.link !== link || !linkMarketplaceValido(link, marketplaceAtual())) {
+          status.textContent = "Abra a revisão de um anúncio válido antes de usar a IA."; return;
+        }
+        botao.disabled = true;
+        status.textContent = "Consultando apenas o anúncio original…";
+        try {
+          const prompt = "Consulte exclusivamente este anúncio via contexto por URL: " + link +
+            "\nConfira a variante da URL. Se não puder confirmar a página e a variante, responda {\"status\":\"sem_dados\"}." +
+            "\nUse só informações explícitas da página, nunca opiniões de compradores, preços ou alegações de testes próprios." +
+            "\nRetorne somente JSON: {\"status\":\"ok\",\"dadosTecnicos\":[\"\"],\"comentario\":\"\",\"pros\":[\"\"],\"contras\":[\"\"]}." +
+            " Inclua pelo menos três fatos técnicos específicos, um resumo de até 480 caracteres e vantagens e limitações comprováveis de até 290 caracteres por campo. Se não houver base para um campo, deixe-o vazio.";
+          const r = (await comPrazo(modelRapido.generateContent(prompt), 15000, "A IA editorial")).response;
+          const c = r?.candidates?.[0] || {}, meta = c.urlContextMetadata || c.url_context_metadata || {};
+          const urlConfirmada = value => { try { return new URL(value).href; } catch { return ""; } };
+          if (!(meta.urlMetadata || meta.url_metadata || []).some(x =>
+            ["SUCCESS", "URL_RETRIEVAL_STATUS_SUCCESS"].includes(x.urlRetrievalStatus || x.url_retrieval_status) &&
+            urlConfirmada(x.retrievedUrl || x.retrieved_url) === urlConfirmada(link))) {
+            throw Error("Não consegui confirmar a leitura deste anúncio. Preencha manualmente.");
+          }
+          const d = JSON.parse(json(r.text()));
+          if (d.status !== "ok") throw Error("O anúncio não forneceu dados suficientes. Preencha manualmente.");
+          window.RDCEditorialPolicy.assertDraft({comentario:d.comentario,pros:d.pros,contras:d.contras});
+          const tecnicos = lista(d.dadosTecnicos);
+          const valores = {
+            dados: tecnicos.length >= 3 && tecnicos.join("\n").length >= 120 ? tecnicos.join("\n") : "",
+            resumo: textoEditorial(d.comentario, 480),
+            pros: textoEditorial(d.pros, 290),
+            contras: textoEditorial(d.contras, 290),
+          };
+          if (auth.currentUser !== sessao || resultado !== revisao || $("link").value.trim() !== link ||
+            $("link-afiliado").value.trim() !== afiliado || $("titulo").value.trim() !== titulo ||
+            !$("preview").getClientRects().length) {
+            status.textContent = "A revisão mudou. Nenhum campo foi preenchido."; return;
+          }
+          let preenchidos = 0;
+          for (const id of vazios) if (!$(id).value.trim() && valores[id]) {
+            $(id).value = valores[id]; preenchidos++;
+          }
+          if (preenchidos) edicaoManual = true;
+          status.textContent = preenchidos ? `Sugestões em ${preenchidos} de 4 campos. Confira com o anúncio; nada foi salvo.` :
+            "Nenhum campo vazio pôde ser preenchido. Seus dados foram mantidos.";
+        } catch (e) {
+          status.textContent = mensagemIA(e) || "IA indisponível. Seus campos foram mantidos.";
+        } finally { botao.disabled = false; }
+      }
       function mlb(v) {
         const raw = String(v || "").trim();
         if (/^https?:\/\//i.test(raw)) return window.RDCProductSaveSafety.listingId({ marketplace: "mercado_livre", link: raw });
@@ -3033,6 +3087,7 @@
         }
       }
       $("revisar-cadastro-existente").onclick = revisarCadastroExistentePublicacao;
+      $("revisao-ia").onclick = preencherRevisaoIA;
       $("analisar").onclick = async () => {
         if ((typeof ofertasRelampagoExistentesMovel !== 'undefined' && ofertasRelampagoExistentesMovel.isBusy()) || publicacaoExpressaEmAndamento || cadastroExistenteExpressa.isBusy()) return;
         cadastroExistenteExpressa.reset();
