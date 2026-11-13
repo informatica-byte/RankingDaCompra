@@ -1,8 +1,18 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-13T02:39:57.272Z",
+  "generatedAt": "2026-11-13T16:54:45.104Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
-  "counts": {},
-  "items": []
+  "counts": {
+    "screening": 1
+  },
+  "items": [
+    {
+      "id": "mlMLB5325059337",
+      "title": "Tablet Xiaomi Redmi Pad 2 256GB com 8GB RAM Wi-Fi e Tela de 11\" Cinza",
+      "url": "https://rankingdacompra.com.br/produto/mlMLB5325059337-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    }
+  ]
 }
