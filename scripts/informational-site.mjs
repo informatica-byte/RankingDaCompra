@@ -122,7 +122,8 @@ export function informationalHtml(source,product,file=''){
  html=html.replace(/>(Conferir pre[cç]o(?: atual)?|Ver pre[cç]o)( no Mercado Livre| na Mercado Livre| na Shopee)</gi,(_all,_action,place)=>'>Ver produto'+place.replace('na Mercado','no Mercado')+'<');
  html=html.replace(/[ \t]+\r?\n/g,'\n');
  html=html.replace(/<script src="\/decision-brief\.js[^>]*><\/script>/g,'');
- const injection='<meta name="rdc-site-mode" content="informational"><link rel="stylesheet" href="/informational-mode.css?v='+info.VERSION+'"><script src="/decision-brief.js?v='+info.VERSION+'"></script><script src="/informational-mode.js?v='+info.VERSION+'"></script>';
+ const modeScriptVersion=file==='index.html'?'20261112-static-home':info.VERSION;
+ const injection='<meta name="rdc-site-mode" content="informational"><link rel="stylesheet" href="/informational-mode.css?v='+info.VERSION+'"><script src="/decision-brief.js?v='+info.VERSION+'"></script><script src="/informational-mode.js?v='+modeScriptVersion+'"></script>';
  const policy=html.match(/<meta\b(?=[^>]*http-equiv=["']Content-Security-Policy["'])(?:[^>"']|"[^"]*"|'[^']*')*>/i);
  if(policy)html=html.slice(0,policy.index+policy[0].length)+injection+html.slice(policy.index+policy[0].length);
  else html=html.replace(/<head([^>]*)>/i,'<head$1>'+injection);
