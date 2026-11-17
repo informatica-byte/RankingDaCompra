@@ -1,3 +1,4 @@
+import {assertReplacementGuidance} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -20,6 +21,7 @@ test('revisões da campanha correspondem ao anúncio registrado e estão visíve
     const schemas=[...html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j];});
     const fullName=schemas.find(n=>n['@type']==='Article'&&n.about?.name)?.about.name;
     assert.ok(fullName,p.id+': identidade completa, sem depender do título visual truncado');
+    if(assertReplacementGuidance(p.id,html,fullName))continue;
     assert.equal(matchesPopularAnalysis(p,fullName,registeredOfferUrl(html)),true,p.id);
     assert.ok(html.includes('data-reviewed-depth="'+p.id+'"'),p.id);
     assert.ok(html.includes('30/10/2026'),p.id);

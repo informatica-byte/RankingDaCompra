@@ -91,6 +91,8 @@ jobs:
     steps:
       - name: Baixar os arquivos do site
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
 
       - name: Preparar Node.js
         uses: actions/setup-node@v5
@@ -109,6 +111,7 @@ jobs:
           PRESERVE_PUBLISHED_PRICES: ${{ inputs.preserve_published_prices || contains(github.event.head_commit.message, '[preservar-precos]') }}
           VERIFY_REVIEW_PAUSES: ${{ contains(github.event.head_commit.message, '[verificar-pausas]') }}
           EDITORIAL_LOCAL: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[editorial-local]') }}
+          VALIDATE_SCOPED_PAYLOAD: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[editorial-local]') && contains(github.event.head_commit.message, '[lote-estatico-validado]') }}
           # Nunca restaurar este cache entre publicações: uma nova execução lê
           # os dados atuais. Só retentativas da mesma execução reaproveitam páginas.
           RDC_FIRESTORE_READ_CACHE_SCOPE: ${{ github.run_id }}-${{ github.run_attempt }}
@@ -124,6 +127,12 @@ jobs:
               exit 1
             fi
             node --input-type=module -e "import fs from 'node:fs';import {assertCurrentProductIdentities} from './scripts/fixtures/assert-current-product-identities.mjs';const j=f=>JSON.parse(fs.readFileSync(f,'utf8'));assertCurrentProductIdentities(j('informational-catalogue.json'),j('search-index.json'),j('vitrine-publica.json'));"
+            if [[ "$VALIDATE_SCOPED_PAYLOAD" == "true" ]]; then
+              # This commit already contains the precise static payload. Verify
+              # it without regenerating unrelated catalogue entries.
+              git show HEAD^:vitrine-publica.json > "$RUNNER_TEMP/rdc-before-publication.json"
+              node scripts/publication-price-guard.mjs "$RUNNER_TEMP/rdc-before-publication.json" vitrine-publica.json
+            fi
           else
           generated=false
           for attempt in 1 2 3; do
@@ -144,6 +153,7 @@ jobs:
             echo "Firebase indisponível: sitemap, páginas, busca e Top 6 existentes foram preservados." >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
+          if [[ "$VALIDATE_SCOPED_PAYLOAD" != "true" ]]; then
           node scripts/product-title-corrections.mjs
           DISCOVERY_USE_GENERATED=true node scripts/generate-discovery.mjs
           node scripts/generate-home-static.mjs
@@ -156,6 +166,7 @@ jobs:
           node scripts/build-informational-home.mjs
           # Arquivos locais e ordem salva, sem Analytics/Firestore.
           node scripts/build-editorial-review-queue.mjs
+          fi
           if [[ "$VERIFY_REVIEW_PAUSES" == "true" ]]; then node scripts/verify-reviewed-pauses.mjs; fi
           node --test scripts/test-*.mjs
           node scripts/validate-site.mjs

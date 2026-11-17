@@ -1,3 +1,4 @@
+import {assertReviewedCoverage} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -17,7 +18,7 @@ test('PRO PHONE SEE mantém a revisão anterior sem garantir água, ANC ou conec
  const x=correctProductData(phone),r=MARKETPLACE_FIELD_REVIEWS.get(phone.id);assert.equal(x.comentario,r.summary);assert.equal(x.pros,r.positiveNotes.join('\n'));assert.equal(x.contras,r.negativeNotes.join('\n'));assert.match(x.titulo,/5\.3 anunciado/);assert.match(x.titulo,/proteção e ANC a confirmar/);assert.doesNotMatch(x.titulo,/Light|Lightning|prova.*água/i);
 });
 test('catálogo, busca e Article coerentes, sem ampliar 98 análises profundas',async()=>{
- const get=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));assert.equal(c.products.filter(p=>p.decisionBrief?.reviewed).length,98);
+ const get=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));await assertReviewedCoverage(c);
  for(const raw of [tool,phone]){const p=c.products.find(p=>p.id===raw.id);assert.equal(p.title,correctProductData(raw).titulo);const h=await readFile(new URL('../produto/'+p.id+'-20260810-1.html',import.meta.url),'utf8');const nodes=[...h.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});const a=nodes.find(n=>n['@type']==='Article');assert.equal(a.about.name,p.title);assert.equal(a.description,s.products.find(x=>x.id===raw.id).summary);}
 });
 test('checkpoint genérico permanece local e recusa marcar conteúdo não publicado como concluído',async()=>{

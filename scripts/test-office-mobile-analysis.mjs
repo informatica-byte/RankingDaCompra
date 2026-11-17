@@ -1,3 +1,4 @@
+import {assertReplacementGuidance} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -22,6 +23,7 @@ test('identidade, fonte e resumo público das seis revisões correspondem ao cad
   const html=await readFile(new URL('../produto/'+p.id+'-20260810-1.html',import.meta.url),'utf8');
   const schemas=[...html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});
   const name=schemas.find(n=>n['@type']==='Article'&&n.about?.name)?.about.name;
+  if(assertReplacementGuidance(p.id,html,name))continue;
   assert.equal(matchesPopularAnalysis(p,name,registeredOfferUrl(html)),true,p.id);
   assert.equal(matchesPopularAnalysis(p,name,'https://www.mercadolivre.com.br/p/MLB99999999?pdp_filters=item_id%3AMLB0000000000'),false,p.id);
   assert.ok(html.includes('data-reviewed-depth="'+p.id+'"'),p.id);

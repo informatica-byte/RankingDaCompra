@@ -1,3 +1,4 @@
+import {assertReviewedCoverage} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -19,7 +20,7 @@ test('sem modelo elétrico presumido, benefício terapêutico ou escolha arbitr�
 });
 test('três correções alinhadas em busca e Article, sem ampliar análises profundas',async()=>{
  const get=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));
- const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));assert.equal(c.products.filter(p=>p.decisionBrief?.reviewed).length,98);
+ const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));await assertReviewedCoverage(c);
  for(const record of records){const p=c.products.find(p=>p.id===record.id);assert.equal(p.decisionBrief.reviewed,false);const html=await readFile(new URL('../produto/'+record.id+'-20260810-1.html',import.meta.url),'utf8');const nodes=[...html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});assert.equal(nodes.find(n=>n['@type']==='Article').about.name,p.title);assert.equal(s.products.find(p=>p.id===record.id).summary,nodes.find(n=>n['@type']==='Article').description);}
 });
 test('publicação editorial não autentica nem lê Firestore e mantém trava e validadores',async()=>{

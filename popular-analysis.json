@@ -148,7 +148,7 @@
     },
     {
       "id": "UkgpEmnU2nSDUmOujW6W", "views": 8,
-      "guard": "Smartwatch NOVANTE Alexa", "expectedListing": "MLB6162191874",
+      "guard": "\\bSmartwatch (?:NOVANTE Alexa|Alexa Chamadas NOVANTE)\\b", "expectedListing": "MLB6162191874",
       "title": "NOVANTE HT1291: chamadas, GPS e limites das medições",
       "description": "Entenda o NOVANTE do anúncio MLB6162191874: modelo HT1291 informado pelo vendedor, funções ligadas ao celular e recursos que não devem ser presumidos.",
       "publicSummary": "A revisão registrada do anúncio MLB6162191874 identifica o NOVANTE HT1291, com Alexa e chamadas Bluetooth anunciadas pelo vendedor. A descrição consultada não informa GPS independente. Não validamos precisão clínica, autonomia ou uso na água.",

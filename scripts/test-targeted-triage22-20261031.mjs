@@ -1,3 +1,4 @@
+import {assertReviewedCoverage} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -12,6 +13,6 @@ test('campos de proteção, flutuação e autonomia não viram vantagens confirm
 });
 test('Inova alinhada em busca e Article sem ampliar as 98 análises ou alterar outra ficha',async()=>{
  const get=async p=>JSON.parse(await readFile(new URL('../'+p,import.meta.url),'utf8'));
- const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));assert.equal(c.products.filter(x=>x.decisionBrief?.reviewed).length,98);
+ const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));await assertReviewedCoverage(c);
  const p=c.products.find(x=>x.id===raw.id),h=await readFile(new URL('../produto/'+raw.id+'-20260810-1.html',import.meta.url),'utf8');const nodes=[...h.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});const a=nodes.find(x=>x['@type']==='Article');assert.equal(a.about.name,p.title);assert.equal(a.description,s.products.find(x=>x.id===raw.id).summary);assert.equal(p.decisionBrief.reviewed,false);
 });

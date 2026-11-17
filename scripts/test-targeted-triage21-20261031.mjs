@@ -1,3 +1,4 @@
+import {assertReviewedCoverage} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -13,6 +14,6 @@ test('triagem 21 não escolhe carga por imagem, converte mAh em horas ou inventa
 });
 test('quatro correções da triagem 21 têm títulos e Article alinhados sem aumentar 98 análises',async()=>{
  const get=async p=>JSON.parse(await readFile(new URL('../'+p,import.meta.url),'utf8'));
- const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));assert.equal(c.products.filter(x=>x.decisionBrief?.reviewed).length,98);
+ const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));await assertReviewedCoverage(c);
  for(const [id] of samples){const p=c.products.find(x=>x.id===id),h=await readFile(new URL('../produto/'+id+'-20260810-1.html',import.meta.url),'utf8');const nodes=[...h.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});const a=nodes.find(x=>x['@type']==='Article');assert.equal(a.about.name,p.title);assert.equal(a.description,s.products.find(x=>x.id===id).summary);assert.equal(p.decisionBrief.reviewed,false);}
 });

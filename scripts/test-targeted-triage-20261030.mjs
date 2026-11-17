@@ -1,3 +1,4 @@
+import {assertReviewedCoverage} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -21,7 +22,7 @@ test('mangueira tem título legível dentro do limite, sem reescrever sua ficha;
 
 test('as correções pontuais estão na busca sem transformar cinco ajustes em novas análises profundas',async()=>{
  const s=JSON.parse(await readFile(new URL('../search-index.json',import.meta.url),'utf8'));const c=JSON.parse(await readFile(new URL('../informational-catalogue.json',import.meta.url),'utf8'));
- assert.equal(c.products.filter(p=>p.decisionBrief?.reviewed).length,98);
+ await assertReviewedCoverage(c);
  assert.match(s.products.find(p=>p.id==='MWjfkNgY4oXJD8NhCOQn').title,/^Mangueira/);
  assert.match(s.products.find(p=>p.id==='jGYvacocpYFsksmL0eAG').title,/velocidade anunciada não testada/);
  assert.doesNotMatch(s.products.find(p=>p.id==='5FQyewGiYpron6Bn32d1').summary,/Excelente capacidade|suportando até 20kg/);

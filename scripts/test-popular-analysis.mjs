@@ -2,6 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {POPULAR_ANALYSES,matchesPopularAnalysis,registeredOfferUrl} from './popular-analysis.mjs';
+test('NOVANTE aceita as duas ordens do título, somente no anúncio comprovado',()=>{
+ const item=POPULAR_ANALYSES.products.find(p=>p.id==='UkgpEmnU2nSDUmOujW6W');
+ const base='https://www.mercadolivre.com.br/p/MLB64244402';
+ for(const title of ['Smartwatch NOVANTE Alexa','Relógio Inteligente Smartwatch Alexa Chamadas NOVANTE Masculino Feminino Esportivo IP68 Bluetooth']){
+  assert.equal(matchesPopularAnalysis(item,title,base+'?wid=MLB6162191874'),true);
+  assert.equal(matchesPopularAnalysis(item,title,base+'?wid=MLB6162191875'),false);
+  assert.equal(matchesPopularAnalysis(item,title,base),false);
+  assert.equal(matchesPopularAnalysis(item,title,base+'?wid=MLB6162191874#wid=MLB6162191875'),false);
+ }
+ assert.equal(matchesPopularAnalysis(item,'Smartwatch Alexa Chamadas outra marca',base+'?wid=MLB6162191874'),false);
+});
 import {FEATURED_ANALYSES,CONFIG,improveProduct,resolveEditorialProduct} from './visibility-editorial.mjs';
 import {affiliateLinks,assertInformationalHtml,informationalHtml} from './informational-site.mjs';
 import {localRemovals} from './product-removals.mjs';

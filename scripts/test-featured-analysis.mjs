@@ -1,3 +1,4 @@
+import {assertReplacementGuidance,articleName} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -22,6 +23,7 @@ test('as análises profundas preservam identidade, canonical, links e ausência 
   if(deleted.has(item.id)){await assert.rejects(readFile(new URL('produto/'+item.id+'-20260810-1.html',root)),{code:'ENOENT'});continue;}
   const page=await resolveEditorialProduct(rootPath,item);
   if(page.inactive){assert.doesNotMatch(page.html,/data-reviewed-depth=/);continue;}
+  const name=articleName(page.html); if(assertReplacementGuidance(item.id,page.html,name))continue;
   const out=informationalHtml(improveProduct(page.html,item),{id:item.id},page.file);
   assert.deepEqual(affiliateLinks(out),affiliateLinks(page.html));
   assertInformationalHtml(out,page.file);assert.match(out,/data-reviewed-depth=/);assert.match(out,/Dúvidas frequentes sobre este modelo/);

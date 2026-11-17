@@ -1,3 +1,4 @@
+import {assertReviewedCoverage} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -13,6 +14,6 @@ test('impressora mantém limites de compatibilidade; patinete não garante motor
  const s=correctProductData(scooter);assert.equal(s.categoria,'brinquedos');assert.match(s.comentario,/sem afirmar que o modelo tem ou não motor/);assert.doesNotMatch(s.pros,/40|segur|estável|elétrico|anos/i);assert.doesNotMatch(s.titulo,/40|elétrico|anos/i);
 });
 test('duas correções alinhadas em busca, Article e categoria; 98 análises preservadas',async()=>{
- const get=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));assert.equal(c.products.filter(p=>p.decisionBrief?.reviewed).length,98);
+ const get=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));await assertReviewedCoverage(c);
  for(const raw of [printer,scooter]){const p=c.products.find(x=>x.id===raw.id);assert.equal(p.title,correctProductData(raw).titulo);const h=await readFile(new URL('../produto/'+raw.id+'-20260810-1.html',import.meta.url),'utf8');const nodes=[...h.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});assert.equal(nodes.find(x=>x['@type']==='Article').about.name,p.title);assert.equal(nodes.find(x=>x['@type']==='Article').description,s.products.find(x=>x.id===raw.id).summary);assert.equal(p.decisionBrief.reviewed,false);if(raw.id===scooter.id){assert.equal(p.categoryId,'brinquedos');assert.equal(p.category,'Brinquedos');assert.match(h,/analises\.html#brinquedos/);}}
 });

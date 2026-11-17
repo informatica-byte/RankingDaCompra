@@ -4,7 +4,7 @@
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
-    "screening": 2
+    "screening": 7
   },
   "items": [
     {
@@ -18,6 +18,41 @@
       "id": "mlMLB7635156520",
       "title": "Motocicleta Eletrica Bike Bicicleta Moto 1000w Autonomia De Ate 45km Bateria Litio Freio A Disco Para 2 Pessoas Sem Cnh Branco",
       "url": "https://rankingdacompra.com.br/produto/mlMLB7635156520-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "b052WcTAD3j2UDZHQiXY",
+      "title": "Mop Esfregão Giratório Condor Balde Inox 13 Litros + Refil Microfibra + Cabo Longo 1,4 Metros",
+      "url": "https://rankingdacompra.com.br/produto/b052WcTAD3j2UDZHQiXY-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "EmrdwlcDgCCM5suoz8dB",
+      "title": "Impressora 3x1 Multifuncional Epson Ecotank L3250 Wifi Bivol Preto",
+      "url": "https://rankingdacompra.com.br/produto/EmrdwlcDgCCM5suoz8dB-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "FlqPY3yHJ2xPoNgnhSTE",
+      "title": "Galaxy Buds Core Preto",
+      "url": "https://rankingdacompra.com.br/produto/FlqPY3yHJ2xPoNgnhSTE-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "NQAtVQKwZQtKxXtEn21Q",
+      "title": "Xiaomi Poco X7 Pro 5g 12gb Ram 512gb Global Nfc Dual Sim",
+      "url": "https://rankingdacompra.com.br/produto/NQAtVQKwZQtKxXtEn21Q-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "UNQtBcYJ9obcCPWURmeq",
+      "title": "Xiaomi Redmi 15c Dual Sim 128gb 4gb Ram Cor",
+      "url": "https://rankingdacompra.com.br/produto/UNQtBcYJ9obcCPWURmeq-20260810-1.html",
       "state": "screening",
       "reasons": []
     }

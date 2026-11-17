@@ -1,3 +1,4 @@
+import {assertReviewedCoverage} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -16,7 +17,7 @@ test('triagem 18 qualifica carga/estatura, marca divergente e condição oficial
 });
 test('triagem 18 tem categorias e resumos coerentes, preservando 98 análises profundas',async()=>{
  const get=async p=>JSON.parse(await readFile(new URL('../'+p,import.meta.url),'utf8'));
- const c=await get('informational-catalogue.json'),s=await get('search-index.json');assert.equal(c.products.filter(x=>x.decisionBrief?.reviewed).length,98);
+ const c=await get('informational-catalogue.json'),s=await get('search-index.json');await assertReviewedCoverage(c);
  for(const [id,,category] of samples){const p=c.products.find(x=>x.id===id),h=await readFile(new URL('../produto/'+id+'-20260810-1.html',import.meta.url),'utf8');const nodes=[...h.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});
   if(category){const label=category==='perfumes'?'Perfumes':'Esporte e Lazer';assert.equal(p.categoryId,category);assert.equal(p.category,label);assert.ok(h.includes('<span>Categoria</span>'+label));assert.equal(nodes.find(x=>x['@type']==='BreadcrumbList').itemListElement.find(x=>x.position===2).name,label);}
   if(!['liYhKi9ZlLnwNTT1uvBl','mlMLB7006667338'].includes(id))assert.equal(nodes.find(x=>x['@type']==='Article').description,s.products.find(x=>x.id===id).summary);

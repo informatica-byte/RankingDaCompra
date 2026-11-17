@@ -1,3 +1,4 @@
+import {assertReplacementGuidance,articleName} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile, mkdtemp, mkdir, writeFile, rm} from 'node:fs/promises';
@@ -39,6 +40,7 @@ test('todas as páginas principais selecionadas têm uma única seção e links 
   const pages=(await Promise.all(CONFIG.products.map(x=>verifiedEditorialPage(root,x,deleted)))).filter(Boolean);
   for(const page of pages.filter(p=>p.inactive)){assert.doesNotMatch(page.html,/visibility-editorial:start|id=["']affiliate-offer["']/);}
   for(const {file,html,item:entry} of [...pages.filter(p=>!p.inactive),...await Promise.all(CONFIG.guides.map(async x=>({file:x.file,html:await readFile(new URL('../'+x.file,import.meta.url),'utf8'),item:x})))]){
+    if(assertReplacementGuidance(entry.id,html,articleName(html)))continue;
     assert.equal((html.match(/<!-- visibility-editorial:start -->/g)||[]).length,1,file);
     assert.ok(html.includes(entry.title.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))),file);
     for(const link of entry.links){if(link.url.startsWith('/')){

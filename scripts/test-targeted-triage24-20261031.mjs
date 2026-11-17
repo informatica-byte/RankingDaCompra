@@ -1,3 +1,4 @@
+import {assertReviewedCoverage} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -19,6 +20,6 @@ test('títulos e vantagens não garantem promoção, aderência, potência ou co
 });
 test('três títulos e resumos coerentes no catálogo, busca e Article; 98 análises preservadas',async()=>{
  const get=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));
- const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));assert.equal(c.products.filter(p=>p.decisionBrief?.reviewed).length,98);
+ const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));await assertReviewedCoverage(c);
  for(const raw of records){const p=c.products.find(p=>p.id===raw.id),expected=correctProductData(raw);assert.equal(p.title,expected.titulo);assert.equal(p.decisionBrief.reviewed,false);const html=await readFile(new URL('../produto/'+raw.id+'-20260810-1.html',import.meta.url),'utf8');const nodes=[...html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});assert.equal(nodes.find(n=>n['@type']==='Article').about.name,p.title);assert.equal(nodes.find(n=>n['@type']==='Article').description,s.products.find(x=>x.id===raw.id).summary);}
 });

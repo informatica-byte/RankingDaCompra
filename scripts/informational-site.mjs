@@ -1,5 +1,6 @@
 import {readFile,readdir} from 'node:fs/promises';
 import {writeGeneratedFile as writeFile} from './generated-file-write.mjs';
+import {guidance,insertGuidance} from './local-purchase-guidance.mjs';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import info from '../informational-mode.js';
@@ -135,6 +136,7 @@ export function informationalHtml(source,product,file=''){
   html=html.replace(/<p class="summary">([^]*?)<\/p>/,(paragraph,body)=> '<!-- decision-brief:start -->'+rendered+'<!-- decision-brief:end -->'+(decision.sober(body)===decision.text(body)?paragraph:'<p class="summary">'+info.esc(decision.sober(body)||'Alegações promocionais do anúncio não foram comprovadas nesta análise. Consulte os dados e as fontes disponíveis.')+'</p>'));
  }
  html=applyGuideDecisionSupport(html,file);
+ if(product&&Object.hasOwn(guidance,product.id)&&file==='produto/'+product.id+'-20260810-1.html')html=insertGuidance(html,product.id);
  if(JSON.stringify(affiliateLinks(source))!==JSON.stringify(affiliateLinks(html)))throw Error('A migração alteraria os links de afiliados de '+(product?.id||'uma página')+'. Operação bloqueada.');
  return html;
 }

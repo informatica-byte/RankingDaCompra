@@ -1,3 +1,4 @@
+import {assertReplacementGuidance} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -17,6 +18,7 @@ test('análises e fontes dos sete modelos ficam na ficha certa e recusam outra o
  const c=JSON.parse(await readFile(new URL('../informational-catalogue.json',import.meta.url),'utf8'));
  for(const p of EVERYDAY_TECH_ANALYSES.products){
   const product=c.products.find(x=>x.id===p.id);const h=await readFile(new URL('..'+new URL(product.url).pathname,import.meta.url),'utf8');
+  if(assertReplacementGuidance(p.id,h,product.title))continue;
   assert.equal(matchesPopularAnalysis(p,product.title,registeredOfferUrl(h)),true,p.id);
   assert.equal(matchesPopularAnalysis(p,product.title,'https://www.mercadolivre.com.br/p/MLB99999999?pdp_filters=item_id%3AMLB0000000000'),false,p.id);
   assert.ok(h.includes('data-reviewed-depth="'+p.id+'"'),p.id);for(const s of p.sources)assert.ok(h.includes(s.url),p.id);

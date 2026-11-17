@@ -1,3 +1,4 @@
+import {assertReviewedCoverage} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -14,7 +15,7 @@ test('Matteo não recebe reescrita nem informações de outro calçado',()=>{
  const p={id:'mlMLB4513080577',titulo:'Tênis Em Couro Sneaker Masculino Casual Matteo Classic Ease',comentario:'Dados do anúncio',pros:'',contras:'',link:'https://meli.la/preservado'};const x=correctProductData(p);for(const k of Object.keys(p))assert.deepEqual(x[k],p[k]);
 });
 test('Havit mantém título coerente no catálogo, busca e Article, sem ampliar análises profundas',async()=>{
- const get=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));assert.equal(c.products.filter(p=>p.decisionBrief?.reviewed).length,98);
+ const get=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));await assertReviewedCoverage(c);
  assert.equal(c.products.find(p=>p.id===id).title,title);assert.equal(s.products.find(p=>p.id===id).title,title);
  const h=await readFile(new URL('../produto/'+id+'-20260810-1.html',import.meta.url),'utf8');const nodes=[...h.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});assert.equal(nodes.find(x=>x['@type']==='Article').about.name,title);
 });

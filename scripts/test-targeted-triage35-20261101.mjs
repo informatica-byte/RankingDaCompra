@@ -1,3 +1,4 @@
+import {assertReviewedCoverage} from './fixtures/assert-reviewed-coverage.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -27,7 +28,7 @@ test('IdeaPad não herda descrição ThinkPad nem a configuração 83NS0002BR',(
  const x=correctProductData(rows[3]);assert.match(x.comentario,/descrição antiga falava de um ThinkPad/);assert.match(x.comentario,/não foram combinados/);assert.match(x.comentario,/não autentica a unidade/);assert.doesNotMatch(x.pros,/16 GB|10310U|recondicionado|512 GB/);assert.match(documentedSpecifications(x).features.find(f=>f.label==='Armazenamento SSD').value,/^256 GB/);
 });
 test('catálogo, busca e Article coerentes e 98 análises profundas preservadas',async()=>{
- const get=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));assert.equal(c.products.filter(p=>p.decisionBrief?.reviewed).length,98);
+ const get=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));const c=await get('informational-catalogue.json'),s=await get('search-index.json');assertCurrentProductIdentities(c,s,await get('vitrine-publica.json'));await assertReviewedCoverage(c);
  for(const raw of rows){const p=c.products.find(p=>p.id===raw.id);assert.equal(p.title,correctProductData(raw).titulo);const h=await readFile(new URL('../produto/'+p.id+'-20260810-1.html',import.meta.url),'utf8');const nodes=[...h.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>{const j=JSON.parse(m[1]);return j['@graph']||[j]});const a=nodes.find(n=>n['@type']==='Article');assert.equal(a.about.name,p.title);assert.equal(a.description,s.products.find(x=>x.id===raw.id).summary);}
 });
 test('liberação conjunta conserva guardas e recusa ID repetido ou ordem inválida',()=>{
