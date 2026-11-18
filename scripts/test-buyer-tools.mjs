@@ -10,6 +10,12 @@ async function api() {
   return context.window.RDCBuyerTools;
 }
 
+test('destaque de diferenças preserva incertezas, negações e fontes distintas',async()=>{
+ const tools=await api(),yes={value:'Sim',state:'yes',basis:'fabricante',sourceUrl:'https://example.com/a'};
+ assert.equal(tools.rowDiffers({values:[yes,{...yes}]}),false);
+ for(const change of [{state:'unknown'},{state:'no'},{value:'Não confirmado'},{sourceUrl:'https://example.com/b'},{basis:'cadastro'}])assert.equal(tools.rowDiffers({values:[yes,{...yes,...change}]}),true);
+});
+
 test('comparison rows preserve confirmed negatives and distinguish missing evidence', async () => {
   const tools = await api();
   const products = [

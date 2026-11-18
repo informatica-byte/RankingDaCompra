@@ -10,6 +10,7 @@ async function page(products,search='',initialQuery='',searchCount=null,informat
   const selectors=Object.fromEntries(['query','category','budget','recent','same-type','status','results','comparison'].map(key=>['[data-buyer-'+key+']',makeElement()]));
   selectors['[data-buyer-query]'].value=initialQuery;
   const events={},root={dataset:{},classList:{add(){}},innerHTML:'',querySelector:selector=>selectors[selector]||null,contains:element=>element?.owner===root,addEventListener:(name,handler)=>{events[name]=handler;}};
+  selectors['[data-buyer-comparison]'].before=()=>{};
   const controls=makeElement();
   root.hasAttribute=name=>name==='data-buyer-catalog';
   controls.after=element=>{controls.guidance=element;};
@@ -55,6 +56,23 @@ test('comparador informativo oferece perguntas opcionais sem exigir respostas',a
   assert.match(guidance.innerHTML,/não informado não significa/);
   assert.doesNotMatch(guidance.innerHTML,/<input|<form/);
   assert.match(result.selectors['[data-buyer-results]'].innerHTML,/Roteador A/);
+});
+
+test('sair do campo de busca não redesenha a lista durante o primeiro toque na seleção',async()=>{
+ const result=await page([sample('one','Roteador A'),sample('two','Roteador B')]);
+ const before=result.selectors['[data-buyer-results]'].querySelectorAll('[data-buyer-select]')[0];
+ result.events.change({target:{matches:()=>true}});
+ assert.equal(result.selectors['[data-buyer-results]'].querySelectorAll('[data-buyer-select]')[0],before);
+ result.select('one');assert.equal(result.selectors['[data-buyer-same-type]'].checked,true);
+});
+
+test('limpar seleção não muda os filtros nem os produtos e esvazia a tabela',async()=>{
+ const result=await page([sample('one','Roteador A'),sample('two','Roteador B')],'?produto=one');
+ result.selectors['[data-buyer-query]'].value='Roteador';
+ result.events.click({target:{closest:selector=>selector==='[data-buyer-clear-selection]'?{}:null}});
+ assert.equal(result.selectors['[data-buyer-comparison]'].innerHTML,'');
+ assert.equal(result.selectors['[data-buyer-query]'].value,'Roteador');
+ assert.equal(result.selectors['[data-buyer-same-type]'].checked,false);
 });
 
 test('atalhos filtram preços registrados, preservam seleção e sincronizam valor personalizado e limpeza',async()=>{

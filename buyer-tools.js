@@ -94,6 +94,11 @@
     try { const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password ? url.href : ''; }
     catch { return ''; }
   }
+  function rowDiffers(row) {
+    // Compare the recorded text AND its evidence, never infer equivalent specs.
+    const keys=row.values.map(f=>JSON.stringify([f.state,String(f.value).trim().replace(/\s+/g,' '),f.basis,f.sourceUrl||'']));
+    return new Set(keys).size>1;
+  }
   const budgetShortcuts = [100, 200, 500, 1000, 3000];
   function validBudget(value) {
     const number = Number(value);
@@ -150,6 +155,10 @@
     const status = root.querySelector('[data-buyer-status]');
     const results = root.querySelector('[data-buyer-results]');
     const comparison = root.querySelector('[data-buyer-comparison]');
+    const selection = document.createElement('div');
+    selection.className='buyer-selection';selection.hidden=true;
+    comparison.before(selection);
+    let differencesOnly=false;
     const typeControl = document.createElement('label');
     typeControl.className = 'buyer-check buyer-same-type';
     typeControl.innerHTML = '<input data-buyer-same-type type="checkbox"' + (requested ? ' checked' : '') + '> Mostrar só alternativas do mesmo tipo selecionado';
@@ -165,13 +174,20 @@
     if (initialBudget) root.querySelector('[data-buyer-budget]').value = String(initialBudget);
     const renderComparison = () => {
       const selected = [...chosen.values()];
+      selection.hidden=!selected.length;
+      selection.innerHTML=selected.length?'<div class="buyer-selection-actions"><strong>'+selected.length+' de 3 selecionados</strong><button type="button" data-buyer-jump>Ver comparação</button><button type="button" data-buyer-clear-selection>Limpar seleção</button></div><ul aria-label="Produtos selecionados">'+selected.map(p=>'<li><span title="'+esc(p.title)+'">'+esc(p.title)+'</span><button type="button" data-buyer-remove="'+esc(p.id)+'" aria-label="Remover '+esc(p.title)+' da comparação">×</button></li>').join('')+'</ul>':'';
       if (!selected.length) { comparison.innerHTML = ''; return; }
-      const header = selected.map(product=>'<th scope="col">' + esc(product.title) + '<br><button type="button" data-buyer-remove="' + esc(product.id) + '">Remover</button></th>').join('');
-      const features = featureRows(selected).map(row => '<tr><th scope="row">' + esc(row.label) + '</th>'
+      const header = selected.map(product=>'<th scope="col"><span class="buyer-column-title" title="'+esc(product.title)+'">' + esc(product.title) + '</span><button type="button" data-buyer-remove="' + esc(product.id) + '" aria-label="Remover '+esc(product.title)+'">Remover</button></th>').join('');
+      const rows=featureRows(selected),showDifferences=differencesOnly&&selected.length>1;
+      const features = rows.filter(row=>!showDifferences||rowDiffers(row)).map(row => '<tr'+(selected.length>1&&rowDiffers(row)?' class="buyer-difference"':'')+'><th scope="row">' + esc(row.label) + '</th>'
         + row.values.map(feature => '<td>' + esc(feature.value) + (feature.state !== 'unknown' ? '<small>Fonte: '
           + (feature.basis === 'fabricante' ? 'informação do fabricante' : 'informação cadastrada, não teste próprio')
           + (feature.basis === 'fabricante' && sourceUrl(feature.sourceUrl) ? ' · <a href="' + esc(sourceUrl(feature.sourceUrl)) + '" target="_blank" rel="noopener noreferrer">Consultar fonte</a>' : '') + '</small>' : '') + '</td>').join('') + '</tr>').join('');
       comparison.innerHTML = '<section><h2>Comparação: ' + esc(group(selected[0])) + '</h2><p>' + (selected.length === 1 ? 'Produto selecionado. Marque mais uma ou duas alternativas abaixo. ' : '') + 'Comparamos informações cadastradas e do fabricante, não testes próprios. Uma característica não confirmada não é uma característica ausente.</p><div class="buyer-table-scroll" tabindex="0" aria-label="Comparação de produtos, deslize para ver todas as colunas"><table><thead><tr><th scope="col">Critério</th>' + header + '</tr></thead><tbody>' + (window.RDCInformational?.enabled ? '' : '<tr><th scope="row">Preço e conferência</th>' + selected.map(product=>'<td>' + esc(priceLabel(product)) + '</td>').join('') + '</tr>') + features + [['Limite da confirmação',product=>comparisonFeatures(product).some(f=>f.basis==='fabricante' && sourceUrl(f.sourceUrl)) ? 'Veja as fontes de fabricante nos campos documentados. Os demais dados ainda precisam de confirmação.' : 'Sem especificações técnicas confirmadas por fonte de fabricante nesta revisão. Consulte a ficha e o vendedor.']].map(([label,value])=>'<tr><th scope="row">' + label + '</th>' + selected.map(product=>'<td>' + esc(value(product)) + '</td>').join('') + '</tr>').join('') + '<tr><th scope="row">Ficha completa e lojas</th>' + selected.map(product=>'<td><a href="' + esc(safeProductUrl(product.url)) + '">Ver análise e ofertas</a></td>').join('') + '</tr></tbody></table></div></section>';
+      const heading=comparison.querySelector('h2');heading?.setAttribute('tabindex','-1');
+      const table=comparison.querySelector('.buyer-table-scroll');
+      table?.setAttribute('data-buyer-columns',String(selected.length));
+      table?.insertAdjacentHTML('beforebegin','<div class="buyer-comparison-options"><button type="button" data-buyer-differences aria-pressed="'+String(differencesOnly)+'"'+(selected.length<2?' disabled':'')+'>'+(differencesOnly?'Mostrar todos os critérios':'Só diferenças')+'</button><p>Deslize a tabela para os lados. As linhas destacadas têm texto ou fontes diferentes, não indicam um vencedor.</p></div>'+(showDifferences&&!rows.some(rowDiffers)?'<p role="status">Não há diferenças documentadas nas linhas técnicas. Isso não comprova que os produtos sejam equivalentes.</p>':''));
     };
     const rememberFocus = () => {
       const active = document.activeElement;
@@ -211,6 +227,9 @@
     };
     root.addEventListener('input', event => { if (event.target.matches('[data-buyer-query],[data-buyer-budget]')) { limit = 24; render(); } });
     root.addEventListener('change', event => {
+      // Text fields already render on input. Their blur/change must not replace
+      // a checkbox between pointerdown and click, swallowing the first tap.
+      if(event.target.matches?.('[data-buyer-query],[data-buyer-budget]'))return;
       if(event.target.matches?.('[data-buyer-need]')){const need=event.target.value;if(Object.hasOwn(needTypes,need)||need==='')recordInteraction('need_'+(need||'all'),chosen.size);}
       const id = event.target.dataset.buyerSelect;
       if (!id) limit = 24;
@@ -221,12 +240,15 @@
           event.target.checked = false;
           status.textContent = chosen.size >= 3 ? 'Limite de três produtos. Remova um para escolher outro.' : 'Escolha modelos distintos do mesmo tipo. Outra cor do mesmo modelo não é uma alternativa diferente.';
           return;
-        } else chosen.set(id, product);
+        } else {if(!chosen.size)root.querySelector('[data-buyer-same-type]').checked=true;chosen.set(id, product);}
         recordInteraction(event.target.checked ? 'compare_select' : 'compare_remove', chosen.size, undefined, product);
       }
       render();
     });
     root.addEventListener('click', event => {
+      if(event.target.closest('[data-buyer-jump]')){const heading=comparison.querySelector('h2');heading?.scrollIntoView({block:'start'});heading?.focus({preventScroll:true});}
+      if(event.target.closest('[data-buyer-clear-selection]')){chosen.clear();differencesOnly=false;root.querySelector('[data-buyer-same-type]').checked=false;render();root.querySelector('[data-buyer-query]').focus();}
+      if(event.target.closest('[data-buyer-differences]')){differencesOnly=!differencesOnly;renderComparison();comparison.querySelector('[data-buyer-differences]')?.focus({preventScroll:true});}
       const shortcut = event.target.closest('[data-buyer-budget-shortcut]');
       if (shortcut && (shortcut.dataset.buyerBudgetShortcut === '' || budgetShortcuts.includes(Number(shortcut.dataset.buyerBudgetShortcut)))) {
         root.querySelector('[data-buyer-budget]').value = shortcut.dataset.buyerBudgetShortcut;
@@ -250,13 +272,17 @@
     });
     render();
   }
-  window.RDCBuyerTools = { filterProducts, recent, price, group, comparable, safeProductUrl, comparisonFeatures, featureRows, needMatches, mount };
+  window.RDCBuyerTools = { filterProducts, recent, price, group, comparable, safeProductUrl, comparisonFeatures, featureRows, rowDiffers, needMatches, mount };
   if (typeof document === 'undefined') return;
   const style = document.createElement('style');
   style.textContent = '.buyer-tools,.buyer-tools *{box-sizing:border-box}.buyer-tools{display:block!important}.buyer-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px;background:#eff8f3;border:1px solid #c8ded1;border-radius:14px;padding:16px}.buyer-controls label{font-weight:700}.buyer-controls input:not([type=checkbox]),.buyer-controls select{display:block;width:100%;min-height:44px;margin-top:6px;border:1px solid #9bb8a7;border-radius:8px;padding:8px;font:inherit;background:#fff}.buyer-controls button,.buyer-table-scroll button{min-height:44px;border:1px solid #147653;border-radius:8px;background:#fff;color:#116149;font:inherit;cursor:pointer}.buyer-check{display:flex;align-items:center;gap:8px;min-height:44px}.buyer-check input{width:18px;height:18px;flex:none}.buyer-help{font-size:.88rem;line-height:1.5;color:#53665b}.buyer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px}.buyer-card{border:1px solid #dae7df;border-radius:12px;background:#fff;padding:16px;min-width:0}.buyer-card img{width:100%;object-fit:contain;height:140px}.buyer-card h3{font-size:1rem;line-height:1.4}.buyer-card p{font-size:.86rem;line-height:1.5;color:#345442}.buyer-card small{display:block;margin-top:12px}.buyer-table-scroll{overflow:auto;max-width:100%;margin-bottom:20px}.buyer-table-scroll table{width:100%;border-collapse:collapse;min-width:580px}.buyer-table-scroll th,.buyer-table-scroll td{padding:12px;vertical-align:top;border:1px solid #d7e4dc;min-width:150px;max-width:320px;font-size:.88rem;overflow-wrap:anywhere}.buyer-table-scroll th{background:#edf7f1}.buyer-tools :focus-visible{outline:3px solid #1769e0;outline-offset:2px}';
   document.head.appendChild(style);
+  style.textContent += '.buyer-column-title{display:block;margin-bottom:8px}@media(max-width:600px){.buyer-column-title{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4}.buyer-table-scroll td{line-height:1.5}}';
+  style.textContent += '.buyer-selection[hidden]{display:none}.buyer-selection{position:sticky;top:8px;z-index:4;padding:12px;margin:16px 0;border:1px solid #7fa68f;border-radius:12px;background:#f1f8f4;box-shadow:0 3px 12px #10231c15}.buyer-selection-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.buyer-selection button,.buyer-comparison-options button{min-height:44px;border:1px solid #147653;border-radius:8px;background:#fff;color:#116149;padding:8px 12px;font:inherit;cursor:pointer}.buyer-selection ul{display:flex;gap:8px;overflow-x:auto;list-style:none;margin:8px 0 0;padding:0}.buyer-selection li{display:flex;align-items:center;gap:4px;min-width:0;flex:0 0 220px}.buyer-selection li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.buyer-selection li button{flex:none;min-width:44px}.buyer-comparison-options{margin:12px 0}.buyer-comparison-options button[aria-pressed=true]{background:#116149;color:#fff}.buyer-comparison-options button:disabled{opacity:.6;cursor:default}.buyer-comparison-options p{font-size:.875rem;line-height:1.5}.buyer-difference td{background:#f0f6fc}.buyer-table-scroll{max-height:70vh;isolation:isolate}.buyer-table-scroll table{border-collapse:separate;border-spacing:0}.buyer-table-scroll thead th{position:sticky;top:0;z-index:2}.buyer-table-scroll tr>th:first-child{position:sticky;left:0;z-index:1}.buyer-table-scroll thead th:first-child{z-index:3}.buyer-tools h2{scroll-margin-top:160px}@media(max-width:600px){.buyer-selection-actions strong{width:100%}.buyer-selection li{flex-basis:190px}.buyer-table-scroll th,.buyer-table-scroll td{min-width:190px;padding:10px}.buyer-table-scroll tr>th:first-child{min-width:112px;width:112px;max-width:112px}.buyer-table-scroll table{min-width:0}.buyer-table-scroll thead th{font-size:.875rem}.buyer-table-scroll td small{font-size:.875rem}.buyer-check{padding:8px 0}.buyer-check input{width:22px;height:22px}}';
   style.textContent += '.buyer-table-scroll td small{display:block;margin-top:6px;color:#53665b;font-size:.76rem}.buyer-same-type{grid-column:1/-1}';
   style.textContent += '.buyer-budget-shortcuts{grid-column:1/-1;min-width:0}.buyer-budget-shortcuts>div{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.buyer-budget-shortcuts button{padding:8px 12px}.buyer-budget-shortcuts button[aria-pressed=true]{background:#116149;color:#fff}.buyer-budget-shortcuts small{display:block;line-height:1.5}.buyer-controls{grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr))}';
+  style.textContent += '@media(max-width:600px){.buyer-table-scroll td small{font-size:.875rem}}';
+  style.textContent += '@media(max-width:600px){.buyer-table-scroll[data-buyer-columns="2"] table{table-layout:fixed;width:100%}.buyer-table-scroll[data-buyer-columns="2"] th,.buyer-table-scroll[data-buyer-columns="2"] td{min-width:0;max-width:none;width:auto;padding:8px;font-size:.875rem}.buyer-table-scroll[data-buyer-columns="2"] tr>th:first-child{width:80px;min-width:80px;max-width:80px}.buyer-table-scroll[data-buyer-columns="2"] thead button{max-width:100%;padding:6px;font-size:.875rem}}';
   const start = () => {
     mount(document.querySelector('[data-buyer-catalog]'));
     const app = document.getElementById('app');
