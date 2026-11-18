@@ -87,7 +87,7 @@
   const shelfNav=shelves.length?'<nav class="info-home-nav info-shelf-nav" aria-label="Produtos por interesse">'+shelves.map(s=>'<a href="#explore-'+esc(s.id)+'">'+esc(s.products[0].category)+'</a>').join('')+'</nav>':'';
   const shortcuts=needShortcuts(data);
   const byNeed=shortcuts.length?'<section class="info-home-section" id="atalhos-necessidade" aria-labelledby="atalhos-necessidade-titulo"><h2 id="atalhos-necessidade-titulo">O que você precisa resolver?</h2><p>Comece por um guia ou compare dois modelos lado a lado.</p><div class="info-guide-grid">'+shortcuts.map(n=>'<article><h3><a href="'+esc(n.guide)+'">'+esc(n.label)+'</a></h3><p><a href="'+esc(n.pair)+'">'+esc(n.pairLabel)+' →</a></p></article>').join('')+'</div></section>':'';
-  return nav+byNeed+catalogue+top+comparison+shelfNav+collectionCards(shelves)+video;
+  return nav+info.searchForm(data)+byNeed+catalogue+top+comparison+shelfNav+collectionCards(shelves)+video;
  }
  function bind(scope){scope.addEventListener('click',event=>{const button=event.target.closest('[data-info-video-play]');if(!button||!scope.contains(button)||!videoId('https://www.youtube.com/watch?v='+button.dataset.infoVideoPlay))return;const card=button.closest('[data-info-video-card]');if(!card)return;
   for(const other of scope.querySelectorAll('[data-info-video-card]')){other.querySelector('iframe')?.remove();const img=other.querySelector('img'),play=other.querySelector('[data-info-video-play]');if(img)img.hidden=false;if(play)play.hidden=false;}
@@ -95,7 +95,7 @@
  });}
  function init(){
   if(!info?.enabled||!/^\/(?:index\.html)?$/.test(location.pathname))return;
-  const params=new URLSearchParams(location.search);if(['busca','cat','produto'].some(key=>params.has(key)))return;
+  const params=new URLSearchParams(location.search);if(['busca','cat','produto','categoria','finalidade'].some(key=>params.has(key)))return;
   const app=document.getElementById('app');if(!app)return;
   // Static markup remains useful with JavaScript disabled or a failed feed.
   const staticHome=app.querySelector('[data-info-home-static]');if(staticHome)bind(staticHome);

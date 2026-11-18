@@ -7,6 +7,26 @@
  const enabled=true,VERSION='20261028-info2';
  const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const normalize=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+ const purposes=[
+  {id:'trabalho-estudo',label:'Trabalhar e estudar',categories:['Notebook','Tablet','Informática','Impressoras','Teclados e mouses']},
+  {id:'conexao',label:'Melhorar a conexão',categories:['Roteador']},
+  {id:'audio-video',label:'Ouvir música e assistir',categories:['Fones de ouvido','Caixas de som','Smart TVs']},
+  {id:'casa',label:'Cuidar da casa e cozinhar',categories:['Casa','Fritadeira Air Fryer elétrica']},
+  {id:'monitoramento',label:'Explorar monitoramento',categories:['Câmeras de segurança']},
+  {id:'mobilidade',label:'Explorar mobilidade e lazer',categories:['Bicicletas','Patinete Elétrico','Esporte e Lazer','Carro','Moto','DRONE']},
+  {id:'cuidados',label:'Explorar cuidados pessoais',categories:['Beleza Cuidados e Saúde','Perfumes']},
+  {id:'reparos',label:'Explorar ferramentas e reparos',categories:['Ferramentas','Parafusadeira Elétrica']}
+ ];
+ function searchProducts(products,{query='',category='',purpose=''}={}){
+  const terms=normalize(query).trim().split(/\s+/).filter(Boolean),group=purposes.find(p=>p.id===purpose);
+  return products.filter(p=>(!category||p.categoryId===category||normalize(p.category)===normalize(category))&&(!purpose||(group&&group.categories.some(c=>normalize(c)===normalize(p.category))))&&terms.every(term=>normalize([p.title,p.summary,p.category].join(' ')).includes(term))).map((p,index)=>({p,index,score:terms.reduce((score,term)=>score+(normalize(p.title).includes(term)?10:0)+(normalize(p.category).includes(term)?3:0),0)})).sort((a,b)=>b.score-a.score||a.index-b.index).map(item=>item.p);
+ }
+ function searchForm(data,{query='',category='',purpose=''}={}){
+  const categories=[...new Set(data.products.map(p=>p.category).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  const selectedCategory=categories.find(c=>normalize(c)===normalize(category)||data.products.some(p=>p.category===c&&p.categoryId===category))||category;
+  const options=(items,value)=>items.map(([id,label])=>'<option value="'+esc(id)+'"'+(id===value?' selected':'')+'>'+esc(label)+'</option>').join('');
+  return '<section class="info-search-panel" aria-labelledby="catalogue-search-title"><h2 id="catalogue-search-title">Encontre o que faz sentido para você</h2><form class="info-search-filters" action="/" method="get" role="search"><label for="catalogue-query">Produto, marca ou modelo<input id="catalogue-query" name="busca" type="search" value="'+esc(query)+'" placeholder="Ex.: fone, notebook ou air fryer"></label><label for="catalogue-category">Categoria<select id="catalogue-category" name="categoria"><option value="">Todas as categorias</option>'+options(categories.map(c=>[c,c]),selectedCategory)+'</select></label><label for="catalogue-purpose">Finalidade<select id="catalogue-purpose" name="finalidade" aria-describedby="catalogue-purpose-help"><option value="">Todas as finalidades</option>'+options(purposes.map(p=>[p.id,p.label]),purpose)+'</select></label><button class="button primary" type="submit">Buscar e filtrar</button></form><p id="catalogue-purpose-help" class="fine">Finalidades agrupam categorias para explorar; não garantem que cada modelo atenda ao seu uso. Confira os detalhes na ficha.</p><a href="/?busca=" data-search-clear>Limpar busca e filtros</a></section>';
+ }
  const privatePath=path=>/\/(?:dashboard|painel-celular|admin|estudio-videos|login)(?:[./-]|$)/i.test(path);
  function text(value){return String(value||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();}
  function excerpt(value){const clean=(decision?decision.sober(value):text(value)).split(/(?<=[.!?])\s+/).filter(sentence=>!/(?:R\$\s*\d|\d+[,.]?\d*\s*%\s*(?:off|de desconto)|menor pre[cç]o|mais barato|melhor custo.benef[ií]cio|mais vendido|confira pre[cç]o)/i.test(sentence)).join(' ');return clean.length>230?clean.slice(0,226).replace(/\s+\S*$/,'')+'…':clean;}
@@ -27,21 +47,36 @@
   pending=Promise.race([request,deadline]).catch(error=>{pending=null;throw error;}).finally(()=>clearTimeout(timer));return pending;
  }
  async function route({app,setSeo,query='',category='',id=''}){
+  const params=new URLSearchParams(globalThis.location?.search||'');
+  category=category||params.get('categoria')||'';const purpose=params.get('finalidade')||'';
+  const browsing=params.has('busca')||params.has('categoria')||params.has('finalidade');
   // The published home already contains the final shelves and video controls.
-  if(!query&&!category&&!id&&/^\/(?:index\.html)?$/.test(globalThis.location?.pathname||'')&&app.querySelector('[data-info-home-static]:not([hidden])'))return;
-  const key=JSON.stringify([query,category,id]);if(app.dataset.informationalRoute===key)return;app.dataset.informationalRoute=key;
+  if(!query&&!category&&!id&&!purpose&&!browsing&&/^\/(?:index\.html)?$/.test(globalThis.location?.pathname||'')&&app.querySelector('[data-info-home-static]:not([hidden])'))return;
+  const key=JSON.stringify([query,category,id,purpose,browsing]);if(app.dataset.informationalRoute===key)return;app.dataset.informationalRoute=key;
   try{
    const data=await load();
    if(id){const product=data.products.find(p=>p.id===id);if(product){location.replace(productUrl(product));return;}app.innerHTML='<main class="wrap"><h1>Produto não encontrado</h1><p>Esse cadastro não está publicado. <a href="/analises.html">Ver as análises disponíveis</a>.</p></main>';return;}
-   const terms=normalize(query).split(/\s+/).filter(Boolean);
-   const found=data.products.filter(p=>(!category||p.categoryId===category||normalize(p.category)===normalize(category))&&terms.every(term=>normalize(p.title+' '+p.summary+' '+p.category).includes(term)));
-   const isHome=!query&&!category;
+   const found=searchProducts(data.products,{query,category,purpose});
+   const isHome=!query&&!category&&!purpose&&!browsing;
    const selected=isHome?data.selected.map(id=>found.find(p=>p.id===id)).filter(Boolean).slice(0,6):found.slice(0,72);
    const items=selected.length?selected:found.slice(0,isHome?6:72);
    const title=isHome?'Escolha com clareza. Compare antes de comprar.':query?'Resultados para “'+query+'”':'Conheça os produtos desta categoria';
-   setSeo(title+' | Ranking da Compra','Análises de informações anunciadas, diferenças de uso, limitações e fontes. Consulte as condições de compra nas lojas.',null,query||category?'noindex,follow':'index,follow');
+   setSeo(title+' | Ranking da Compra','Análises de informações anunciadas, diferenças de uso, limitações e fontes. Consulte as condições de compra nas lojas.',null,isHome?'index,follow':'noindex,follow');
    app.innerHTML='<section class="hero info-hero"><div class="wrap"><div class="eyebrow">Informações para uma escolha consciente</div><h1>'+esc(title)+'</h1><p>Entenda as diferenças, veja o que está documentado e escolha o que faz sentido para o seu uso. As condições de compra ficam nas lojas parceiras.</p><form class="hero-search" action="/comparar.html" role="search"><label for="info-search">O que você quer entender ou comprar?</label><input id="info-search" name="q" type="search" value="'+esc(query)+'" placeholder="Ex.: fone para reuniões, notebook ou roteador"><button type="submit">Encontrar produtos</button></form><div class="hero-actions"><a class="button primary" href="/comparar.html">Comparar características</a><a class="button secondary" href="/analises.html">Explorar os guias</a></div><div class="hero-proof"><span>✓ Fontes e limites indicados</span><span>✓ Diferenças entre tipos e modelos</span><span>✓ Links de afiliados identificados</span></div></div></section><main class="wrap"><section id="melhores-escolhas" data-best-choices="true"><h2 data-best-title>'+(isHome?'Produtos para conhecer melhor':found.length+' produto(s) encontrado(s)')+'</h2><p>Seleção editorial para explorar, não um ranking de menor preço. Abra a ficha para conferir os detalhes e as dúvidas ainda não respondidas.</p><div class="deal-grid" data-best-products>'+cards(items)+'</div>'+(found.length>72?'<p>Use a busca ou o <a href="/comparar.html">comparador</a> para refinar os resultados.</p>':'')+'</section>'+(isHome?'<section class="info-guides"><h2>Comece pela dúvida que você quer resolver</h2><div class="info-guide-grid">'+data.guides.slice(0,6).map(g=>'<a href="/'+esc(g.url)+'"><strong>'+esc(g.title)+'</strong><span>Ver diferenças e cuidados para escolher →</span></a>').join('')+'</div></section><section class="info-questions"><h2>O que vale conferir antes de escolher?</h2><details><summary>Dois produtos da mesma categoria servem para o mesmo uso?</summary><p>Nem sempre. Um headphone, um fone intra-auricular e um modelo aberto têm propostas diferentes. O comparador separa os tipos identificados e sinaliza informações contraditórias.</p></details><details><summary>Um dado do anúncio já foi comprovado em teste?</summary><p>Não. Identificamos o que vem do anúncio, o que tem documentação do fabricante e o que permanece sem confirmação. Não afirmamos teste prático que não realizamos.</p></details><details><summary>Onde vejo as condições de compra?</summary><p>Na loja parceira. Confira a versão, os acessórios, a entrega e as condições do vendedor antes de concluir a compra. Podemos receber comissão pelos links de afiliados, sem custo adicional para você.</p></details></section>':'')+'<p class="fine">Informações para orientar a escolha, sem garantia de desempenho ou disponibilidade. <a href="/politica-afiliados.html">Entenda como o site se mantém</a>.</p></main>';
    document.body.classList.add('js-app-ready');document.querySelector('.static-home')?.setAttribute('hidden','');
+   if(!isHome){
+    const hero=app.querySelector('.info-hero .wrap');hero.querySelector('.hero-search')?.remove();
+    hero.insertAdjacentHTML('beforeend',searchForm(data,{query,category,purpose}));
+    const results=app.querySelector('[data-best-products]'),heading=app.querySelector('[data-best-title]');
+    heading.setAttribute('aria-live','polite');
+    if(!found.length)results.innerHTML='<p class="empty" role="status">Nenhum produto corresponde à combinação. Tente retirar um filtro ou usar outro termo.</p>';
+    const section=results.closest('section');let shown=items.length;
+    // All results stay reachable without new catalogue requests or database reads.
+    section.querySelectorAll(':scope > p').forEach(p=>{if(p.querySelector('a[href="/comparar.html"]'))p.remove();});
+    if(found.length>shown){const more=document.createElement('button');more.type='button';more.className='button secondary';more.textContent='Mostrar mais resultados';more.onclick=()=>{const next=found.slice(shown,shown+24);results.insertAdjacentHTML('beforeend',cards(next));shown+=next.length;more.hidden=shown>=found.length;counter.textContent=shown+' de '+found.length+' produtos exibidos';};section.append(more);}
+    const counter=document.createElement('p');counter.dataset.searchCount='';counter.setAttribute('role','status');counter.textContent=shown+' de '+found.length+' produtos exibidos';section.append(counter);
+    section.insertAdjacentHTML('beforeend','<nav class="info-home-nav" aria-label="Voltar à vitrine"><a href="/#top6-editorial">Top 6</a><a href="/#comparativos-inicio">Comparativos</a><a href="/#videos-inicio">Vídeos</a></nav>');
+   }
   }catch{
    delete app.dataset.informationalRoute;
    const retained=app.querySelector('[data-info-home-static],[data-info-home-restored]');
@@ -91,5 +126,5 @@
   }
   const observer=new MutationObserver(()=>cleanVisible());observer.observe(document.body,{childList:true,subtree:true});setTimeout(()=>observer.disconnect(),120000);
  }
- return {enabled,VERSION,esc,text,excerpt,safe,privatePath,productUrl,cards,faq,route,load,cleanVisible,init,campaignCard,campaignImage};
+ return {enabled,VERSION,esc,text,excerpt,safe,privatePath,productUrl,cards,faq,route,load,cleanVisible,init,campaignCard,campaignImage,searchProducts,searchForm};
 });
