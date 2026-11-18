@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-14T02:28:53.259Z",
+  "generatedAt": "2026-11-18T03:44:26.849Z",
   "priorityWindow": "GA4 salva 01–28/10/2026; não demanda atual nem vendas",
   "limits": "Triagem heurística, não diagnóstico completo. Fichas concluídas e inalteradas preservadas. Sem métricas brutas, preços, credenciais ou links de afiliados.",
   "counts": {
-    "screening": 7
+    "screening": 15
   },
   "items": [
     {
@@ -53,6 +53,62 @@
       "id": "UNQtBcYJ9obcCPWURmeq",
       "title": "Xiaomi Redmi 15c Dual Sim 128gb 4gb Ram Cor",
       "url": "https://rankingdacompra.com.br/produto/UNQtBcYJ9obcCPWURmeq-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "Bp4dNosktHQXiSy3r9S0",
+      "title": "Tapete Decorativo Felpudo 2,00x1,50 Sala Quarto Escritório Cor Cinza Liso Pelo Alto Casa Laura Enxovais",
+      "url": "https://rankingdacompra.com.br/produto/Bp4dNosktHQXiSy3r9S0-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "FpO2EOBfcTy3F04Jk6pY",
+      "title": "Fone De Ouvido Sem Fio Bluetooth Compativel Jbl 760",
+      "url": "https://rankingdacompra.com.br/produto/FpO2EOBfcTy3F04Jk6pY-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "J6WCPaTR5KOqjsAC1nM7",
+      "title": "Lampada Led Solar Recarregável Camping Usb Pesca Jardim Lampiao Viagem Several",
+      "url": "https://rankingdacompra.com.br/produto/J6WCPaTR5KOqjsAC1nM7-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "LrJn9p8N4KF5HhsvGNL2",
+      "title": "Smartphone Motorola Moto G06 - 128gb 4gb Ram",
+      "url": "https://rankingdacompra.com.br/produto/LrJn9p8N4KF5HhsvGNL2-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "MgDXTGUyMBcJUtTahZIY",
+      "title": "Patinete Elétrico 500w Autonomia 37km Dobrável Ipx4 App 10",
+      "url": "https://rankingdacompra.com.br/produto/MgDXTGUyMBcJUtTahZIY-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "Ped2JwDkTqMRNcZ0BhTf",
+      "title": "Skatenete Max Led Ajustável Patinete 120kg Bandeirante",
+      "url": "https://rankingdacompra.com.br/produto/Ped2JwDkTqMRNcZ0BhTf-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "VJ0UNCYoJYS4gSEKpZKQ",
+      "title": "Smartphone Realme C75 5g 256gb 8gb Ram Dual Sim",
+      "url": "https://rankingdacompra.com.br/produto/VJ0UNCYoJYS4gSEKpZKQ-20260810-1.html",
+      "state": "screening",
+      "reasons": []
+    },
+    {
+      "id": "z3tHbOuX0kaa90FEyIvS",
+      "title": "Kit 3 Bermuda Masculina Short Tactel Secagem Rápida Academia",
+      "url": "https://rankingdacompra.com.br/produto/z3tHbOuX0kaa90FEyIvS-20260810-1.html",
       "state": "screening",
       "reasons": []
     }
