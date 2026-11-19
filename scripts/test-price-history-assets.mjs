@@ -107,10 +107,17 @@ test('generated history exactly matches every source point and verification flag
 
 test('compact history preserves verified minimum and never promotes legacy low price', async () => {
   const source = await read('growth-tools.js');
-  const context = vm.createContext({state:{history:{products:{one:{points:[['2026-10-20', 1, false],['2026-10-21', 100, true]]}}}},HISTORY_DAYS:30,numberPrice:Number,Date});
+  // Keep this fixture inside its intended 30-day window regardless of run date.
+  let fixtureNow = Date.parse('2026-10-25T12:00:00-03:00');
+  class FixtureDate extends Date { static now() { return fixtureNow; } }
+  const context = vm.createContext({state:{history:{products:{one:{points:[['2026-10-20', 1, false],['2026-10-21', 100, true]]}}}},HISTORY_DAYS:30,numberPrice:Number,Date:FixtureDate});
   vm.runInContext(source.slice(source.indexOf('  function historySummary('), source.indexOf('  function currentPriceFromCard(')), context);
   assert.equal(context.historySummary('one', 100).minimum, 100);
   assert.equal(context.historySummary('one', 100).pendingReview, 1);
+  fixtureNow = Date.parse('2026-11-21T12:00:00-03:00');
+  assert.equal(context.historySummary('one', 100).minimum, 0);
+  assert.equal(context.historySummary('one', 100).pendingReview, 0);
+  assert.equal(context.historySummary('one', 100).points.length, 0);
   assert.doesNotMatch(source, /ranking-price-history-cache|HISTORY_URL|RDCPublicData\.json\("\/historico-precos\.json"/);
 });
 
