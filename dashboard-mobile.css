@@ -1,0 +1,23 @@
+/* Presentation only: no hidden actions, product mutations or data requests. */
+@media (max-width: 1100px) and (min-width: 901px){
+ .recentes-destaque .central-ofertas{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:700px){
+ body{padding:12px}
+ #admin-content .painel{box-sizing:border-box;padding:16px;min-width:0;max-width:100%}
+ #admin-content .row{gap:12px}
+ #admin-content .col{min-width:0;flex:1 1 220px}
+ #admin-content input:not([type="checkbox"]):not([type="radio"]),#admin-content textarea,#admin-content select{font-size:1rem;min-height:44px;max-width:100%}
+ #admin-content label{font-size:.875rem;line-height:1.5}
+ #admin-content button{min-height:44px;white-space:normal;overflow-wrap:anywhere}
+ #admin-content .central-cabecalho-acoes{display:grid;grid-template-columns:minmax(0,1fr);width:100%;gap:10px}
+ #admin-content .central-cabecalho-acoes>*{box-sizing:border-box;width:100%;min-height:44px;margin:0;font-size:1rem;line-height:1.4;text-align:center}
+ #admin-content .central-cabecalho-acoes a{display:flex;align-items:center;justify-content:center}
+ #admin-content .recentes-destaque{padding:12px}
+ #admin-content .campanha-topo{grid-template-columns:72px minmax(0,1fr)}
+ #admin-content .campanha-topo img{width:72px;height:72px}
+ #admin-content .campanha-topo h4{font-size:1rem;line-height:1.4;min-width:0;overflow-wrap:anywhere}
+ #admin-content .campanha-status,#admin-content .campanha-publicacao,#admin-content .central-status{font-size:.875rem;line-height:1.5}
+ #admin-content .central-bloco>p,#admin-content .central-titulo p{font-size:.875rem;line-height:1.5}
+ #admin-content :is(input,select,textarea,button,a):focus-visible{outline:3px solid #1769e0;outline-offset:3px}
+}
