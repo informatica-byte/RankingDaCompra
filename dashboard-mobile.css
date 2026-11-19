@@ -3,6 +3,10 @@
  .recentes-destaque .central-ofertas{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:700px){
+ #admin-content .lista-admin .item-admin:not(.item-preco){flex-wrap:wrap;gap:12px}
+ #admin-content .lista-admin .item-admin-conteudo{flex:1 1 200px;overflow-wrap:anywhere}
+ #admin-content .lista-admin .acoes{flex:1 0 100%;flex-direction:row;flex-wrap:wrap;gap:12px}
+ #admin-content .lista-admin .acoes>*{box-sizing:border-box;min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;white-space:normal;overflow-wrap:anywhere;max-width:100%}
  body{padding:12px}
  #admin-content .painel{box-sizing:border-box;padding:16px;min-width:0;max-width:100%}
  #admin-content .row{gap:12px}
