@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import home from '../informational-home.js';
+const data=JSON.parse(readFileSync('informational-catalogue.json','utf8'));
+test('destaques renovados usam seis categorias e não alteram catálogo ou seleção anterior',()=>{const before=JSON.stringify(data);const items=home.highlights(data);assert.equal(items.length,6);assert.equal(new Set(items.map(x=>x.product.category)).size,6);assert.equal(JSON.stringify(data),before);assert.ok(!items.some(x=>x.product.id==='mlMLB7635156520'));});
+test('destaques não reutilizam ID com modelo diferente ou rota externa',()=>{const p=data.products.find(x=>x.id==='mlMLB5325059337');assert.equal(home.highlights({products:[{...p,title:'Outro modelo'}]}).length,0);assert.equal(home.highlights({products:[{...p,url:'https://example.com/produto/falso.html'}]}).length,0);});

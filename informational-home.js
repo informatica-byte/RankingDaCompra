@@ -77,6 +77,18 @@
   const published=new Set(guides(data).map(g=>g.path));
   return needs.filter(n=>published.has(n.guide));
  }
+ const renewedHighlights=[
+  ['mlMLB5325059337',/redmi.*pad.*2/i,'Recentes no catálogo'],
+  ['mlMLB6837388614',/delta.*122.*olympikus/i,'Recentes no catálogo'],
+  ['mlMLB7378919598',/mixer.*eos.*emx02/i,'Recentes no catálogo'],
+  ['N1cKmru7WcRrMBSj4ut7',/espuma.*2l.*lotus/i,'Interesse na base histórica'],
+  ['hokaCwafFsMcmt9QPBdX',/hp.*135a/i,'Interesse na base histórica'],
+  ['UkgpEmnU2nSDUmOujW6W',/novante.*MLB6162191874/i,'Interesse na base histórica']
+ ];
+ function highlights(data){
+  const byId=new Map((data.products||[]).map(p=>[p.id,p])),seen=new Set();
+  return renewedHighlights.flatMap(([id,guard,basis])=>{const p=byId.get(id);if(!p||!guard.test(p.title)||info.productUrl(p)==='#'||seen.has(p.category))return [];seen.add(p.category);return [{product:p,basis}];});
+ }
  function markup(data,config){
   const products=selection(data),allGuides=guides(data),clips=videos(data,config),shelves=collections(data);
   const top=products.length?'<section class="info-home-section" id="melhores-escolhas" data-best-choices="true"><div id="top6-editorial"><span class="eyebrow">Seleção editorial</span><h2 data-best-title>'+(products.length===6?'Top 6 para conhecer e comparar':'Produtos para conhecer e comparar')+'</h2><p>Seis caminhos para explorar características e usos diferentes, não uma classificação do melhor para o pior. Compare apenas modelos do mesmo tipo e consulte as fontes de cada ficha.</p><div class="deal-grid" data-best-products>'+homeCards(products)+'</div><a class="button secondary" href="/melhores-escolhas.html">Explorar mais produtos selecionados</a></div></section>':'';
@@ -87,7 +99,9 @@
   const shelfNav=shelves.length?'<nav class="info-home-nav info-shelf-nav" aria-label="Produtos por interesse">'+shelves.map(s=>'<a href="#explore-'+esc(s.id)+'">'+esc(s.products[0].category)+'</a>').join('')+'</nav>':'';
   const shortcuts=needShortcuts(data);
   const byNeed=shortcuts.length?'<section class="info-home-section" id="atalhos-necessidade" aria-labelledby="atalhos-necessidade-titulo"><h2 id="atalhos-necessidade-titulo">O que você precisa resolver?</h2><p>Comece por um guia ou compare dois modelos lado a lado.</p><div class="info-guide-grid">'+shortcuts.map(n=>'<article><h3><a href="'+esc(n.guide)+'">'+esc(n.label)+'</a></h3><p><a href="'+esc(n.pair)+'">'+esc(n.pairLabel)+' →</a></p></article>').join('')+'</div></section>':'';
-  return nav+info.searchForm(data)+byNeed+catalogue+top+comparison+shelfNav+collectionCards(shelves)+video;
+  const renewed=highlights(data);
+  const highlightsBlock=renewed.length?'<section class="info-home-section" id="destaques-renovados" aria-labelledby="destaques-renovados-titulo"><span class="eyebrow">Explore outras categorias</span><h2 id="destaques-renovados-titulo">Recentes no catálogo e interesse registrado</h2><p>Seleção renovada em 20/11/2026: combina cadastros recentes já publicados com interesse da base GA4 salva de 28/09 a 25/10/2026. Não é ranking de hoje, confirmação de estoque nem registro de vendas. Confira as fontes e limitações de cada ficha.</p><div class="deal-grid">'+renewed.map(item=>'<div data-home-highlight="'+esc(item.product.id)+'"><p class="fine">'+esc(item.basis)+'</p>'+homeCards([item.product])+'</div>').join('')+'</div></section>':'';
+  return nav+info.searchForm(data)+byNeed+catalogue+top+highlightsBlock+comparison+shelfNav+collectionCards(shelves)+video;
  }
  function bind(scope){scope.addEventListener('click',event=>{const button=event.target.closest('[data-info-video-play]');if(!button||!scope.contains(button)||!videoId('https://www.youtube.com/watch?v='+button.dataset.infoVideoPlay))return;const card=button.closest('[data-info-video-card]');if(!card)return;
   for(const other of scope.querySelectorAll('[data-info-video-card]')){other.querySelector('iframe')?.remove();const img=other.querySelector('img'),play=other.querySelector('[data-info-video-play]');if(img)img.hidden=false;if(play)play.hidden=false;}
@@ -111,5 +125,5 @@
   };
   const observer=new MutationObserver(()=>void enhance());observer.observe(app,{childList:true,subtree:true});void enhance();
  }
- return {selection,guides,needShortcuts,collections,structuredData,videoId,videos,markup,bind,init};
+ return {selection,highlights,guides,needShortcuts,collections,structuredData,videoId,videos,markup,bind,init};
 });

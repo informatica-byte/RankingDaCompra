@@ -80,7 +80,8 @@ test('vitrine e dados estruturados são permanentes, e o sitemap não ganha pág
  const raw=html.match(/<script id="informational-home-schema" type="application\/ld\+json">([^]*?)<\/script>/)?.[1];assert.ok(raw);assert.deepEqual(JSON.parse(raw),home.structuredData(data));
  assert.ok(sitemap.match(/<loc>https:\/\/rankingdacompra\.com\.br\/<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/)?.[1]>='2026-10-27');
  for(const s of home.collections(data))for(const p of s.products)assert.ok(sitemap.includes('<loc>'+p.url+'</loc>'));
- const expected=home.selection(data).length+home.collections(data).reduce((n,s)=>n+s.products.length,0);
+ const highlights=home.highlights(data);for(const {product} of highlights)assert.ok(sitemap.includes('<loc>'+product.url+'</loc>'));
+ const expected=home.selection(data).length+highlights.length+home.collections(data).reduce((n,s)=>n+s.products.length,0);
  const block=html.split('<!-- static-home-products:start -->')[1].split('<!-- static-home-products:end -->')[0];assert.equal((block.match(/data-info-product=/g)||[]).length,expected);
  assert.ok(block.indexOf('data-best-products')<block.indexOf('id="comparativos-inicio"'));
 });
