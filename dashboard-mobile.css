@@ -3,6 +3,9 @@
  .recentes-destaque .central-ofertas{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:700px){
+ #admin-content .painel-consumo .consumo-manual summary{box-sizing:border-box;min-height:44px;padding:12px 0;font-size:.875rem;line-height:1.5}
+ #admin-content .painel-consumo .consumo-acoes a{box-sizing:border-box;display:flex;align-items:center;min-height:44px;max-width:100%;font-size:.875rem;line-height:1.5;overflow-wrap:anywhere}
+ #admin-content .painel-consumo :is(.consumo-subtitulo,.consumo-hora,.consumo-status,.ajuda-metrica,.consumo-medidor span){font-size:.875rem;line-height:1.5;overflow-wrap:anywhere}
  #admin-content .foco-acoes>*{box-sizing:border-box;display:flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;font-size:.875rem;line-height:1.4;overflow-wrap:anywhere}
  #admin-content .foco-acoes{gap:12px}
  #admin-content .lista-admin .item-admin:not(.item-preco){flex-wrap:wrap;gap:12px}
