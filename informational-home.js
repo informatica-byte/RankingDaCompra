@@ -9,6 +9,18 @@
  // Editorial shelves point to existing articles, never to invented offers.
  // ID + model + category guards prevent a reused record from becoming a new recommendation.
  const SHELVES=[
+  {id:'casa-rotina',title:'Casa: opções para a rotina',category:'Casa',guide:'melhores-casa.html',question:'Explore propostas diferentes, sem tratar aparelhos de funções distintas como equivalentes. Confira dimensões, tensão e acessórios em cada ficha.',items:[
+   ['DNqszoYPu5LLhotuYNKp',/electrolux.*AWD01/i,'Aspirador Electrolux AWD01'],
+   ['AhbvEgzfMuC19ltrB2WN',/philco.*PAF11B/i,'Air fryer Philco PAF11B']
+  ]},
+  {id:'ferramentas-rotina',title:'Ferramentas: escolha pela tarefa',category:'Ferramentas',guide:'melhores-ferramentas.html',question:'Identifique a tarefa e confira alimentação, encaixes e itens do kit. Não presumimos compatibilidade ou desempenho profissional.',items:[
+   ['OwXKuXw3ZMFmcvx7jF4v',/calibrador.*B&G/i,'Calibrador portátil B&G'],
+   ['3AiculsXxRCfEkCx7Qin',/black.*tools.*TBF750/i,'Furadeira The Black Tools TBF750']
+  ]},
+  {id:'brinquedos-explorar',title:'Brinquedos: descubra antes de escolher',category:'Brinquedos',guide:'melhores-brinquedos.html',question:'Confira faixa etária, dimensões, peças pequenas e supervisão no anúncio e na embalagem. A seleção não certifica segurança ou adequação à idade.',items:[
+   ['NmI6KXBT8ibSc1r5Fwqy',/brastoy.*escavadeira/i,'Escavadeira Brastoy de controle remoto'],
+   ['qN6qOlF1Re6ltU5WRdaE',/caminh.o.*dinossauro/i,'Caminhão dinossauro com carrinhos']
+  ]},
   {id:'fones-tws',title:'Fones TWS: veja as diferenças antes de escolher',category:'Fones de ouvido',family:'fone-tws',guide:'melhores-fones-de-ouvido.html',question:'Compare encaixe, autonomia anunciada, microfone e cancelamento de ruído. Outra cor do mesmo modelo não é uma alternativa diferente.',items:[
    ['kYzXt8BeErDzXsC6BlwB',/havit.*tw982/i,'HAVIT LIFE 01T (TW982)'],
    ['ZVVdy8TuP0yW0XNIyiEA',/soundcore.*p30i/i,'soundcore P30i da Anker'],

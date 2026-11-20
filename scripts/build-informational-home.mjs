@@ -25,7 +25,7 @@ export async function buildInformationalHome(root=process.cwd()){
  next=next.replace(/<script id="informational-home-schema" type="application\/ld\+json">[^]*?<\/script>/g,'');
  const schema=JSON.stringify(home.structuredData(data)).replace(/</g,'\\u003c');
  next=next.replace(/\/informational-mode\.js\?v=[^"']+/g,'/informational-mode.js?v=20261118-search-filters');
- next=next.replace('</head>',()=>'<link rel="stylesheet" href="/informational-home.css?v=20261118-search-filters"><script defer src="/informational-home.js?v=20261120-highlights"></script><script id="informational-home-schema" type="application/ld+json">'+schema+'</script></head>');
+ next=next.replace('</head>',()=>'<link rel="stylesheet" href="/informational-home.css?v=20261120-refresh"><script defer src="/informational-home.js?v=20261120-refresh"></script><script id="informational-home-schema" type="application/ld+json">'+schema+'</script></head>');
  // Fixed content revision, not a claim that every product was reviewed today.
  const updatedSitemap=sitemap.replace(/<url>\s*<loc>https:\/\/rankingdacompra\.com\.br\/<\/loc>([^]*?)<\/url>/,block=>block.replace(/<lastmod>([^<]+)<\/lastmod>/,(tag,date)=>date.slice(0,10)<'2026-10-27'?'<lastmod>2026-10-27</lastmod>':tag));
  if(next!==original)await writeFile(resolve(root,'index.html'),next,'utf8');

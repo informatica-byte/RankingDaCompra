@@ -1,0 +1,9 @@
+# Renovação visual da vitrine — 20/11/2026
+
+Base fa939e590. CSS escopado a .static-home: superfícies diferenciadas para busca, necessidades, Top 6, destaques, guias e vídeos; cartões consistentes, navegação com áreas amplas, uma coluna no celular, foco existente preservado e transições respeitando preferência de movimento reduzido. Sem esconder seções.
+
+Três seleções adicionais (dois produtos cada): Casa (Electrolux AWD01 e Philco PAF11B), Ferramentas (calibrador B&G e The Black Tools TBF750), Brinquedos (escavadeira Brastoy e caminhão dinossauro). Apenas fichas existentes, guardadas por ID, título/modelo, categoria e URL. Orientações gerais sem inventar especificações; builder exige destinos indexáveis no sitemap. Mantidas quatro seleções anteriores, Top 6, seis destaques complementares, 31 guias e 14 vídeos. Interesse histórico permanece identificado com janela, não convertido em ranking atual.
+
+QA isolada Chrome 360/390/768/1280: sete seleções, 18 cartões dessas categorias, seis destaques complementares, cartões dentro da largura. HTML dos blocos Top 6, comparativos e vídeos idêntico à base; só apresentação CSS muda. Scripts da página removidos, rede bloqueada, imagens locais servidas quando disponíveis; não confirma disponibilidade das imagens externas. Capturas locais inspecionadas. Não é aparelho físico nem sessão real. Sem navegação para afiliados, consultas ao Firebase ou GA4. 1604 testes aprovados, incluindo novo teste de categorias, não duplicação de IDs, imutabilidade do catálogo e rejeição de modelo trocado.
+
+Arquivos de cadastro, catálogos públicos, sitemap, IDs, preços, afiliados e configuração não modificados. Só home e seus assets, gerador, teste e documentação. Geração restrita da home com DISCOVERY_USE_GENERATED=true, sem geração ampla. Evidência outputs/storefront-refresh-20261120/qa.json e capturas na raiz do Codex. Confirmar implantação antes de encerrar. Agendas SEO/GA4 preservadas.
