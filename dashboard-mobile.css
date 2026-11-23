@@ -3,6 +3,7 @@
  .recentes-destaque .central-ofertas{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:700px){
+ #admin-content #growth-youtube-enabled{box-sizing:border-box;width:20px;min-width:20px;max-width:20px;height:20px;margin:0 8px 0 0;vertical-align:middle}
  #admin-content .ga4-actions>*{box-sizing:border-box;min-width:0;max-width:100%;overflow-wrap:anywhere}
  #admin-content .ga4-periods dl{grid-template-columns:minmax(0,1fr);gap:12px}
  #admin-content .ga4-periods dl>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,auto);gap:12px;align-items:center;border-bottom:1px solid #d7e4dc;padding-bottom:10px;min-width:0}
