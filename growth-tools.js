@@ -712,7 +712,7 @@
     preview.style.setProperty("--season-a", theme.colors[0]);
     preview.style.setProperty("--season-b", theme.colors[1]);
     preview.style.setProperty("--season-accent", theme.colors[2]);
-    preview.innerHTML = `<img src="${escapeHtml(RANKI_THEME_IMAGES[id])}" width="362" height="362" alt="Prévia da roupa do Ranki para ${escapeHtml(theme.name)}"><div><strong>${escapeHtml(theme.icon)} ${escapeHtml(theme.title)}</strong><span>${escapeHtml(theme.message)}</span></div>`;
+    preview.innerHTML = `<img src="${escapeHtml(RANKI_THEME_IMAGES[id])}" width="362" height="362" alt="Prévia da roupa do Ranki para ${escapeHtml(theme.name)}"><div><strong>${escapeHtml(theme.icon)} ${escapeHtml(theme.name)} — escolhas bem informadas</strong><span>Compare características, vantagens e limitações antes de escolher.</span></div>`;
   }
 
   function injectStyles() {
@@ -1379,7 +1379,7 @@
         </div>
         </div><p>Para escolher produtos, rankings e o título permanente, use <a href="#best-choices-dashboard">Melhores escolhas</a> na Central.</p><label for="growth-youtube-title">Título da pequena vitrine de vídeos</label>
         <input id="growth-youtube-title" type="text" maxlength="80" placeholder="Vídeos do Ranki: produtos em destaque">
-        <p class="showcase-admin-help"><b>Cadastre de 3 a 20 vídeos.</b> Em cada linha, cole o vídeo do YouTube e a página exata do produto correspondente. O cartão com foto, nome e preço será criado automaticamente sobre o vídeo.</p>
+        <p class="showcase-admin-help"><b>Cadastre de 3 a 20 vídeos.</b> Em cada linha, cole o vídeo do YouTube e a página exata do produto correspondente. O cartão com foto, nome e acesso à ficha informativa será criado automaticamente sobre o vídeo.</p>
         <div id="growth-youtube-items" class="video-pair-list" aria-label="Vídeos e produtos correspondentes"></div>
         <button id="growth-youtube-add" type="button">+ Adicionar outro vídeo</button>
         <div class="growth-row"><label><input id="growth-youtube-enabled" type="checkbox"> Exibir e reproduzir a sequência automaticamente na vitrine</label></div>
@@ -1408,7 +1408,7 @@
           <div class="seasonal-admin-actions"><button id="gift-guide-ai" type="button">Sugerir títulos com IA</button><button id="gift-guide-save" type="button">Salvar título do guia</button><a id="gift-guide-open" href="/presentes/" target="_blank" rel="noopener noreferrer">Abrir guia</a></div>
           <div class="promotion-ai-results" id="gift-guide-suggestions"></div>
           <p class="seasonal-status" id="gift-guide-status" role="status" aria-live="polite"></p>
-          <p class="seasonal-admin-help">Depois de salvar, use <a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer">Criar páginas agora</a> para publicar a mudança. O título só incluirá uma faixa de preço quando houver ao menos produtos da seleção conferidos dentro dela.</p>
+          <p class="seasonal-admin-help">Depois de salvar, use <a href="https://github.com/informatica-byte/RankingDaCompra/actions/workflows/update-sitemap.yml" target="_blank" rel="noopener noreferrer">Criar páginas agora</a> para publicar a mudança. Use um título informativo que descreva a seleção, sem prometer descontos ou valores.</p>
         </div>
       </div>`;
     const anchor = logout?.closest("section,div") || document.querySelector("main") || document.body;
@@ -1588,7 +1588,7 @@
         const settings = { [key]: title, giftGuideUpdatedAt: firebase.firestore.FieldValue.serverTimestamp() };
         await db.collection("produtos").doc(".site-theme").set(settings, { merge: true });
         updateCachedConfig({ [key]: title });
-        giftStatus.textContent = "Título salvo. Use Criar páginas agora para publicar; alegações de preço só entram se houver produtos conferidos suficientes.";
+        giftStatus.textContent = "Título salvo. Use Criar páginas agora para publicar o guia informativo.";
       } catch (error) {
         giftStatus.textContent = `Não foi possível salvar (${String(error?.code || error?.message || "erro").slice(0, 90)}). A página atual foi preservada.`;
       } finally { button.disabled = false; }
