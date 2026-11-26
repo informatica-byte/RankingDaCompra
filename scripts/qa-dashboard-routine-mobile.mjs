@@ -1,0 +1,9 @@
+import assert from 'node:assert/strict';import {readFile,mkdir,writeFile} from 'node:fs/promises';import {pathToFileURL} from 'node:url';
+const {chromium}=await import(pathToFileURL(process.env.RDC_PLAYWRIGHT_MODULE));
+const html=await readFile('dashboard.html','utf8'),css=await readFile('dashboard-mobile.css','utf8');
+const start=html.indexOf('<section class="painel" aria-labelledby="rotina-titulo">'),markup=html.slice(start,html.indexOf('</section>',start)+10);
+const browser=await chromium.launch({headless:true,channel:'chrome'}),results=[];const out='../../outputs/dashboard-routine-mobile-20261126';await mkdir(out,{recursive:true});
+try{for(const width of [360,390,768]){const page=await browser.newPage({viewport:{width,height:1000}});await page.route('**/*',r=>r.abort());await page.setContent(html.replace(/<script\b[^]*?<\/script>/gi,'').replace(/<link\b[^>]*>/gi,''));await page.evaluate(markup=>{document.querySelector('#login-content').style.display='none';const a=document.querySelector('#admin-content');a.style.display='block';a.innerHTML=markup;},markup);await page.addStyleTag({content:css});
+const data=await page.locator('[aria-labelledby="rotina-titulo"]').evaluate(e=>({client:e.clientWidth,scroll:e.scrollWidth,font:getComputedStyle(e.querySelector('.metrica-visita span')).fontSize,linkHeight:e.querySelector('a').getBoundingClientRect().height,disabled:e.querySelector('#btn-encerrar-promocoes-vencidas').disabled,values:[...e.querySelectorAll('strong')].map(x=>x.textContent)}));
+assert.ok(data.scroll<=data.client);assert.equal(data.disabled,true);assert.ok(data.values.every(v=>v==='—'));if(process.env.QA_EXPECT_FIXED==='true'&&width<=700){assert.equal(data.font,'14px');assert.ok(data.linkHeight>=44);}
+results.push({width,...data});await page.screenshot({path:`${out}/${width}.png`});await page.close();}await writeFile(`${out}/qa.json`,JSON.stringify(results,null,2));console.log(results);}finally{await browser.close();}

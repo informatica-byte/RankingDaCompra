@@ -3,6 +3,7 @@
  .recentes-destaque .central-ofertas{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:700px){
+ #admin-content section[aria-labelledby="rotina-titulo"] :is(.metrica-visita span,.ajuda-metrica){font-size:.875rem;line-height:1.5;overflow-wrap:anywhere}
  #admin-content #seo-opportunities-dashboard .seo-toolbar :is(a,label,button){box-sizing:border-box;min-height:44px;max-width:100%;font-size:.875rem;line-height:1.5;overflow-wrap:anywhere}
  #admin-content #seo-opportunities-dashboard :is(.seo-summary span,.seo-status,.seo-empty span,.seo-recommendation){font-size:.875rem;line-height:1.5;overflow-wrap:anywhere}
  #admin-content #seo-opportunities-dashboard .seo-date{font-size:.875rem!important;line-height:1.5;overflow-wrap:anywhere}
