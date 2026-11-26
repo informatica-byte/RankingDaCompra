@@ -6,6 +6,7 @@
  .recentes-destaque .central-ofertas{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:700px){
+ #admin-content .rdc-local-diagnostics :is(p,pre){font-size:.875rem;line-height:1.5}
  #admin-content #central-alertas :is(.central-alerta-item,.central-tudo-certo){font-size:.875rem;line-height:1.5;min-width:0;overflow-wrap:anywhere}
  #admin-content #central-alertas .central-alerta-item{grid-template-columns:minmax(0,1fr)}
  #admin-content #central-relatorio :is(th,td,.canal-linha,.ajuda-metrica){font-size:.875rem;line-height:1.5}
