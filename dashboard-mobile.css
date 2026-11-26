@@ -3,6 +3,11 @@
  .recentes-destaque .central-ofertas{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:700px){
+ #admin-content #central-relatorio :is(th,td,.canal-linha,.ajuda-metrica){font-size:.875rem;line-height:1.5}
+ #admin-content #central-relatorio .tabela-central table{min-width:520px}
+ #admin-content #central-relatorio .tabela-central::before{content:"Deslize a tabela para ver todas as colunas →";display:block;font-size:.875rem;line-height:1.5;color:#435a4c;margin-bottom:8px}
+ #admin-content #central-relatorio .tabela-central button{min-width:80px}
+ #admin-content #central-relatorio .canal-linha{grid-template-columns:minmax(0,100px) minmax(0,1fr) minmax(28px,auto);overflow-wrap:anywhere}
  #login-content input{font-size:1rem;min-height:44px;max-width:100%}
  #admin-content section[aria-labelledby="rotina-titulo"] :is(.metrica-visita span,.ajuda-metrica){font-size:.875rem;line-height:1.5;overflow-wrap:anywhere}
  #admin-content #seo-opportunities-dashboard .seo-toolbar :is(a,label,button){box-sizing:border-box;min-height:44px;max-width:100%;font-size:.875rem;line-height:1.5;overflow-wrap:anywhere}
