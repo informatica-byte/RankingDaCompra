@@ -6,6 +6,7 @@
  .recentes-destaque .central-ofertas{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:700px){
+ #admin-content #central-secoes .secao-central-card :is(span,small){font-size:.875rem;line-height:1.5;overflow-wrap:anywhere}
  #admin-content #best-choices-dashboard .best-guide-option input[type="checkbox"]{box-sizing:border-box;flex:0 0 20px;width:20px;min-width:20px;max-width:20px;height:20px;padding:0}
  #admin-content #best-choices-dashboard .best-admin-row{display:grid;grid-template-columns:minmax(0,1fr)}
  #admin-content #best-choices-dashboard .best-buttons a{box-sizing:border-box;display:inline-flex;align-items:center;min-height:44px;max-width:100%;overflow-wrap:anywhere}
